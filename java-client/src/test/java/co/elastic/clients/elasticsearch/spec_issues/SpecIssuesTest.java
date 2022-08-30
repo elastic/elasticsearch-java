@@ -19,13 +19,19 @@
 
 package co.elastic.clients.elasticsearch.spec_issues;
 
+import co.elastic.clients.documentation.usage.Product;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.analysis.LimitTokenCountTokenFilter;
+import co.elastic.clients.elasticsearch._types.mapping.Property;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeFieldType;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Suggester;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.GetFieldMappingRequest;
 import co.elastic.clients.elasticsearch.indices.GetFieldMappingResponse;
@@ -76,10 +82,39 @@ public class SpecIssuesTest extends ModelTestCase {
     }
 
     @Test
+    public void i0298_runtimeMappings() throws Exception {
+        ElasticsearchClient client = ElasticsearchTestServer.global().client();
+
+        String index = "i0298";
+
+        Product p = new Product("p1", "p2", 42.0);
+
+        client.index(ir -> ir
+            .index(index)
+            .document(p));
+
+        client.indices().flush(f -> f.index(index));
+
+        RuntimeField runtimeField = RuntimeField.of(rf -> rf
+            .type(RuntimeFieldType.Double)
+            .script(Script.of(s -> s
+                .inline(i -> i.
+                    source("emit(doc['price'].value * 1.19)")
+                )
+            ))
+        );
+
+        client.search(sr -> sr
+                .index(index)
+                .runtimeMappings("priceWithTax", runtimeField), // NOTE: the builder accepts only lists here
+            Product.class);
+    }
+
+    @Test
     public void i0297_mappingSettings() {
 
         CreateIndexRequest request = CreateIndexRequest.of(r -> r
-            .index("name")
+            .index("i0297")
             .settings(s -> s
                 // This is "mapping" and not "mappings"
                 .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001)))
@@ -118,9 +153,54 @@ public class SpecIssuesTest extends ModelTestCase {
             "}";
 
         CreateIndexRequest request = CreateIndexRequest.of(r -> r
-            .index("name")
+            .index("i0295")
             .withJson(new StringReader(json))
         );
+    }
+
+    @Test
+    public void i0254_suggesterTest() throws Exception {
+        new Suggester.Builder().suggesters("song-suggest", s -> s.completion(c->c.field("suggest"))).build();
+    }
+
+    @Test
+    public void i0249_variantKind() throws Exception {
+        try (ElasticsearchTestServer server = new ElasticsearchTestServer("analysis-icu").start()) {
+
+            ElasticsearchClient esClient = server.client();
+
+            esClient.indices().create(r -> r
+                .index("i0249")
+                .withJson(new StringReader("{\n" +
+                    "  \"mappings\": {\n" +
+                    "    \"properties\": {\n" +
+                    "      \"name\": {   \n" +
+                    "        \"type\": \"text\",\n" +
+                    "        \"fields\": {\n" +
+                    "          \"sort\": {  \n" +
+                    "            \"type\": \"icu_collation_keyword\",\n" +
+                    "            \"index\": false,\n" +
+                    "            \"language\": \"de\",\n" +
+                    "            \"country\": \"DE\",\n" +
+                    "            \"variant\": \"@collation=phonebook\"\n" +
+                    "          }\n" +
+                    "        }\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}\n"))
+            );
+
+            GetFieldMappingResponse fm = esClient.indices().getFieldMapping(b -> b
+                .index("i0249")
+                .fields("*")
+            );
+
+            Property property = fm.get("i0249").mappings().get("name").mapping().get("name").text().fields().get("sort");
+
+            assertTrue(property._isCustom());
+            assertEquals("icu_collation_keyword", property._customKind());
+        }
     }
 
     @Test

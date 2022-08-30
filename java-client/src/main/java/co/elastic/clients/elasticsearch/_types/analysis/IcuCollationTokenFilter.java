@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -47,27 +46,40 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
 	private final IcuCollationAlternate alternate;
 
+	@Nullable
 	private final IcuCollationCaseFirst casefirst;
 
-	private final boolean caselevel;
+	@Nullable
+	private final Boolean caselevel;
 
+	@Nullable
 	private final String country;
 
+	@Nullable
 	private final IcuCollationDecomposition decomposition;
 
-	private final boolean hiraganaquaternarymode;
+	@Nullable
+	private final Boolean hiraganaquaternarymode;
 
+	@Nullable
 	private final String language;
 
-	private final boolean numeric;
+	@Nullable
+	private final Boolean numeric;
 
+	@Nullable
+	private final String rules;
+
+	@Nullable
 	private final IcuCollationStrength strength;
 
 	@Nullable
 	private final String variabletop;
 
+	@Nullable
 	private final String variant;
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,18 +87,18 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	private IcuCollationTokenFilter(Builder builder) {
 		super(builder);
 
-		this.alternate = ApiTypeHelper.requireNonNull(builder.alternate, this, "alternate");
-		this.casefirst = ApiTypeHelper.requireNonNull(builder.casefirst, this, "casefirst");
-		this.caselevel = ApiTypeHelper.requireNonNull(builder.caselevel, this, "caselevel");
-		this.country = ApiTypeHelper.requireNonNull(builder.country, this, "country");
-		this.decomposition = ApiTypeHelper.requireNonNull(builder.decomposition, this, "decomposition");
-		this.hiraganaquaternarymode = ApiTypeHelper.requireNonNull(builder.hiraganaquaternarymode, this,
-				"hiraganaquaternarymode");
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
-		this.numeric = ApiTypeHelper.requireNonNull(builder.numeric, this, "numeric");
-		this.strength = ApiTypeHelper.requireNonNull(builder.strength, this, "strength");
+		this.alternate = builder.alternate;
+		this.casefirst = builder.casefirst;
+		this.caselevel = builder.caselevel;
+		this.country = builder.country;
+		this.decomposition = builder.decomposition;
+		this.hiraganaquaternarymode = builder.hiraganaquaternarymode;
+		this.language = builder.language;
+		this.numeric = builder.numeric;
+		this.rules = builder.rules;
+		this.strength = builder.strength;
 		this.variabletop = builder.variabletop;
-		this.variant = ApiTypeHelper.requireNonNull(builder.variant, this, "variant");
+		this.variant = builder.variant;
 
 	}
 
@@ -103,64 +115,81 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * Required - API name: {@code alternate}
+	 * API name: {@code alternate}
 	 */
+	@Nullable
 	public final IcuCollationAlternate alternate() {
 		return this.alternate;
 	}
 
 	/**
-	 * Required - API name: {@code caseFirst}
+	 * API name: {@code caseFirst}
 	 */
+	@Nullable
 	public final IcuCollationCaseFirst casefirst() {
 		return this.casefirst;
 	}
 
 	/**
-	 * Required - API name: {@code caseLevel}
+	 * API name: {@code caseLevel}
 	 */
-	public final boolean caselevel() {
+	@Nullable
+	public final Boolean caselevel() {
 		return this.caselevel;
 	}
 
 	/**
-	 * Required - API name: {@code country}
+	 * API name: {@code country}
 	 */
+	@Nullable
 	public final String country() {
 		return this.country;
 	}
 
 	/**
-	 * Required - API name: {@code decomposition}
+	 * API name: {@code decomposition}
 	 */
+	@Nullable
 	public final IcuCollationDecomposition decomposition() {
 		return this.decomposition;
 	}
 
 	/**
-	 * Required - API name: {@code hiraganaQuaternaryMode}
+	 * API name: {@code hiraganaQuaternaryMode}
 	 */
-	public final boolean hiraganaquaternarymode() {
+	@Nullable
+	public final Boolean hiraganaquaternarymode() {
 		return this.hiraganaquaternarymode;
 	}
 
 	/**
-	 * Required - API name: {@code language}
+	 * API name: {@code language}
 	 */
+	@Nullable
 	public final String language() {
 		return this.language;
 	}
 
 	/**
-	 * Required - API name: {@code numeric}
+	 * API name: {@code numeric}
 	 */
-	public final boolean numeric() {
+	@Nullable
+	public final Boolean numeric() {
 		return this.numeric;
 	}
 
 	/**
-	 * Required - API name: {@code strength}
+	 * API name: {@code rules}
 	 */
+	@Nullable
+	public final String rules() {
+		return this.rules;
+	}
+
+	/**
+	 * API name: {@code strength}
+	 */
+	@Nullable
 	public final IcuCollationStrength strength() {
 		return this.strength;
 	}
@@ -174,8 +203,9 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * Required - API name: {@code variant}
+	 * API name: {@code variant}
 	 */
+	@Nullable
 	public final String variant() {
 		return this.variant;
 	}
@@ -184,36 +214,62 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 
 		generator.write("type", "icu_collation");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("alternate");
-		this.alternate.serialize(generator, mapper);
-		generator.writeKey("caseFirst");
-		this.casefirst.serialize(generator, mapper);
-		generator.writeKey("caseLevel");
-		generator.write(this.caselevel);
+		if (this.alternate != null) {
+			generator.writeKey("alternate");
+			this.alternate.serialize(generator, mapper);
+		}
+		if (this.casefirst != null) {
+			generator.writeKey("caseFirst");
+			this.casefirst.serialize(generator, mapper);
+		}
+		if (this.caselevel != null) {
+			generator.writeKey("caseLevel");
+			generator.write(this.caselevel);
 
-		generator.writeKey("country");
-		generator.write(this.country);
+		}
+		if (this.country != null) {
+			generator.writeKey("country");
+			generator.write(this.country);
 
-		generator.writeKey("decomposition");
-		this.decomposition.serialize(generator, mapper);
-		generator.writeKey("hiraganaQuaternaryMode");
-		generator.write(this.hiraganaquaternarymode);
+		}
+		if (this.decomposition != null) {
+			generator.writeKey("decomposition");
+			this.decomposition.serialize(generator, mapper);
+		}
+		if (this.hiraganaquaternarymode != null) {
+			generator.writeKey("hiraganaQuaternaryMode");
+			generator.write(this.hiraganaquaternarymode);
 
-		generator.writeKey("language");
-		generator.write(this.language);
+		}
+		if (this.language != null) {
+			generator.writeKey("language");
+			generator.write(this.language);
 
-		generator.writeKey("numeric");
-		generator.write(this.numeric);
+		}
+		if (this.numeric != null) {
+			generator.writeKey("numeric");
+			generator.write(this.numeric);
 
-		generator.writeKey("strength");
-		this.strength.serialize(generator, mapper);
+		}
+		if (this.rules != null) {
+			generator.writeKey("rules");
+			generator.write(this.rules);
+
+		}
+		if (this.strength != null) {
+			generator.writeKey("strength");
+			this.strength.serialize(generator, mapper);
+		}
 		if (this.variabletop != null) {
 			generator.writeKey("variableTop");
 			generator.write(this.variabletop);
 
 		}
-		generator.writeKey("variant");
-		generator.write(this.variant);
+		if (this.variant != null) {
+			generator.writeKey("variant");
+			generator.write(this.variant);
+
+		}
 
 	}
 
@@ -226,97 +282,118 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuCollationTokenFilter> {
+		@Nullable
 		private IcuCollationAlternate alternate;
 
+		@Nullable
 		private IcuCollationCaseFirst casefirst;
 
+		@Nullable
 		private Boolean caselevel;
 
+		@Nullable
 		private String country;
 
+		@Nullable
 		private IcuCollationDecomposition decomposition;
 
+		@Nullable
 		private Boolean hiraganaquaternarymode;
 
+		@Nullable
 		private String language;
 
+		@Nullable
 		private Boolean numeric;
 
+		@Nullable
+		private String rules;
+
+		@Nullable
 		private IcuCollationStrength strength;
 
 		@Nullable
 		private String variabletop;
 
+		@Nullable
 		private String variant;
 
 		/**
-		 * Required - API name: {@code alternate}
+		 * API name: {@code alternate}
 		 */
-		public final Builder alternate(IcuCollationAlternate value) {
+		public final Builder alternate(@Nullable IcuCollationAlternate value) {
 			this.alternate = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code caseFirst}
+		 * API name: {@code caseFirst}
 		 */
-		public final Builder casefirst(IcuCollationCaseFirst value) {
+		public final Builder casefirst(@Nullable IcuCollationCaseFirst value) {
 			this.casefirst = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code caseLevel}
+		 * API name: {@code caseLevel}
 		 */
-		public final Builder caselevel(boolean value) {
+		public final Builder caselevel(@Nullable Boolean value) {
 			this.caselevel = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code country}
+		 * API name: {@code country}
 		 */
-		public final Builder country(String value) {
+		public final Builder country(@Nullable String value) {
 			this.country = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code decomposition}
+		 * API name: {@code decomposition}
 		 */
-		public final Builder decomposition(IcuCollationDecomposition value) {
+		public final Builder decomposition(@Nullable IcuCollationDecomposition value) {
 			this.decomposition = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code hiraganaQuaternaryMode}
+		 * API name: {@code hiraganaQuaternaryMode}
 		 */
-		public final Builder hiraganaquaternarymode(boolean value) {
+		public final Builder hiraganaquaternarymode(@Nullable Boolean value) {
 			this.hiraganaquaternarymode = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code language}
+		 * API name: {@code language}
 		 */
-		public final Builder language(String value) {
+		public final Builder language(@Nullable String value) {
 			this.language = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code numeric}
+		 * API name: {@code numeric}
 		 */
-		public final Builder numeric(boolean value) {
+		public final Builder numeric(@Nullable Boolean value) {
 			this.numeric = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code strength}
+		 * API name: {@code rules}
 		 */
-		public final Builder strength(IcuCollationStrength value) {
+		public final Builder rules(@Nullable String value) {
+			this.rules = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code strength}
+		 */
+		public final Builder strength(@Nullable IcuCollationStrength value) {
 			this.strength = value;
 			return this;
 		}
@@ -330,9 +407,9 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		}
 
 		/**
-		 * Required - API name: {@code variant}
+		 * API name: {@code variant}
 		 */
-		public final Builder variant(String value) {
+		public final Builder variant(@Nullable String value) {
 			this.variant = value;
 			return this;
 		}
@@ -374,6 +451,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		op.add(Builder::hiraganaquaternarymode, JsonpDeserializer.booleanDeserializer(), "hiraganaQuaternaryMode");
 		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 		op.add(Builder::numeric, JsonpDeserializer.booleanDeserializer(), "numeric");
+		op.add(Builder::rules, JsonpDeserializer.stringDeserializer(), "rules");
 		op.add(Builder::strength, IcuCollationStrength._DESERIALIZER, "strength");
 		op.add(Builder::variabletop, JsonpDeserializer.stringDeserializer(), "variableTop");
 		op.add(Builder::variant, JsonpDeserializer.stringDeserializer(), "variant");

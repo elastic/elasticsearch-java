@@ -84,7 +84,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 	private final Time queryDelay;
 
-	private final Map<String, List<RuntimeField>> runtimeMappings;
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	private final Map<String, ScriptField> scriptFields;
 
@@ -206,7 +206,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code runtime_mappings}
 	 */
-	public final Map<String, List<RuntimeField>> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -295,16 +295,9 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtimeMappings.entrySet()) {
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.writeStartArray();
-				if (item0.getValue() != null) {
-					for (RuntimeField item1 : item0.getValue()) {
-						item1.serialize(generator, mapper);
-
-					}
-				}
-				generator.writeEnd();
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -368,7 +361,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		private Time queryDelay;
 
 		@Nullable
-		private Map<String, List<RuntimeField>> runtimeMappings;
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
@@ -560,7 +553,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(Map<String, List<RuntimeField>> map) {
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
@@ -570,9 +563,19 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
+		public final Builder runtimeMappings(String key, RuntimeField value) {
 			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
 			return this;
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -655,8 +658,8 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
