@@ -225,8 +225,8 @@ dependencies {
 
     // MIT
     // https://www.testcontainers.org/
-    testImplementation("org.testcontainers", "testcontainers", "1.17.2")
-    testImplementation("org.testcontainers", "elasticsearch", "1.17.2")
+    testImplementation("org.testcontainers", "testcontainers", "1.17.3")
+    testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
 }
 
 
