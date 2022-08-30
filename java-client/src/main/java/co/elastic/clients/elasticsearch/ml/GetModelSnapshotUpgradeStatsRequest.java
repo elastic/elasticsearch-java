@@ -60,7 +60,6 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 
 	private final String jobId;
 
-	@Nullable
 	private final String snapshotId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.snapshotId = builder.snapshotId;
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
@@ -108,15 +107,14 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the model snapshot. You
-	 * can get information for multiple snapshots by using a comma-separated list or
-	 * a wildcard expression. You can get all snapshots by using <code>_all</code>,
-	 * by specifying <code>*</code> as the snapshot ID, or by omitting the snapshot
-	 * ID.
+	 * Required - A numerical character string that uniquely identifies the model
+	 * snapshot. You can get information for multiple snapshots by using a
+	 * comma-separated list or a wildcard expression. You can get all snapshots by
+	 * using <code>_all</code>, by specifying <code>*</code> as the snapshot ID, or
+	 * by omitting the snapshot ID.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
-	@Nullable
 	public final String snapshotId() {
 		return this.snapshotId;
 	}
@@ -135,7 +133,6 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 
 		private String jobId;
 
-		@Nullable
 		private String snapshotId;
 
 		/**
@@ -169,15 +166,15 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the model snapshot. You
-		 * can get information for multiple snapshots by using a comma-separated list or
-		 * a wildcard expression. You can get all snapshots by using <code>_all</code>,
-		 * by specifying <code>*</code> as the snapshot ID, or by omitting the snapshot
-		 * ID.
+		 * Required - A numerical character string that uniquely identifies the model
+		 * snapshot. You can get information for multiple snapshots by using a
+		 * comma-separated list or a wildcard expression. You can get all snapshots by
+		 * using <code>_all</code>, by specifying <code>*</code> as the snapshot ID, or
+		 * by omitting the snapshot ID.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public final Builder snapshotId(@Nullable String value) {
+		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
 			return this;
 		}
@@ -216,8 +213,7 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.snapshotId() != null)
-					propsSet |= _snapshotId;
+				propsSet |= _snapshotId;
 				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
