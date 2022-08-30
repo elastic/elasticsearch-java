@@ -36,6 +36,7 @@ import co.elastic.clients.elasticsearch.core.search.Rescore;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.elasticsearch.core.search.Suggester;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -78,6 +79,8 @@ public class MultisearchBody implements JsonpSerializable {
 
 	@Nullable
 	private final Boolean explain;
+
+	private final Map<String, JsonData> ext;
 
 	private final List<String> storedFields;
 
@@ -152,6 +155,7 @@ public class MultisearchBody implements JsonpSerializable {
 		this.collapse = builder.collapse;
 		this.query = builder.query;
 		this.explain = builder.explain;
+		this.ext = ApiTypeHelper.unmodifiable(builder.ext);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.from = builder.from;
@@ -218,6 +222,15 @@ public class MultisearchBody implements JsonpSerializable {
 	@Nullable
 	public final Boolean explain() {
 		return this.explain;
+	}
+
+	/**
+	 * Configuration of search extensions defined by Elasticsearch plugins.
+	 * <p>
+	 * API name: {@code ext}
+	 */
+	public final Map<String, JsonData> ext() {
+		return this.ext;
 	}
 
 	/**
@@ -508,6 +521,17 @@ public class MultisearchBody implements JsonpSerializable {
 			generator.write(this.explain);
 
 		}
+		if (ApiTypeHelper.isDefined(this.ext)) {
+			generator.writeKey("ext");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.ext.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
@@ -721,6 +745,9 @@ public class MultisearchBody implements JsonpSerializable {
 		private Boolean explain;
 
 		@Nullable
+		private Map<String, JsonData> ext;
+
+		@Nullable
 		private List<String> storedFields;
 
 		@Nullable
@@ -866,6 +893,30 @@ public class MultisearchBody implements JsonpSerializable {
 		 */
 		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
+			return this;
+		}
+
+		/**
+		 * Configuration of search extensions defined by Elasticsearch plugins.
+		 * <p>
+		 * API name: {@code ext}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ext</code>.
+		 */
+		public final Builder ext(Map<String, JsonData> map) {
+			this.ext = _mapPutAll(this.ext, map);
+			return this;
+		}
+
+		/**
+		 * Configuration of search extensions defined by Elasticsearch plugins.
+		 * <p>
+		 * API name: {@code ext}
+		 * <p>
+		 * Adds an entry to <code>ext</code>.
+		 */
+		public final Builder ext(String key, JsonData value) {
+			this.ext = _mapPut(this.ext, key, value);
 			return this;
 		}
 
@@ -1424,6 +1475,7 @@ public class MultisearchBody implements JsonpSerializable {
 		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),

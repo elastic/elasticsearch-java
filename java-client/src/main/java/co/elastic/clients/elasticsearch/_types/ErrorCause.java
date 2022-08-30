@@ -60,6 +60,7 @@ public class ErrorCause implements JsonpSerializable {
 	@Nullable
 	private final String type;
 
+	@Nullable
 	private final String reason;
 
 	@Nullable
@@ -79,7 +80,7 @@ public class ErrorCause implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 		this.type = builder.type;
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.reason = builder.reason;
 		this.stackTrace = builder.stackTrace;
 		this.causedBy = builder.causedBy;
 		this.rootCause = ApiTypeHelper.unmodifiable(builder.rootCause);
@@ -109,10 +110,11 @@ public class ErrorCause implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A human-readable explanation of the error, in english
+	 * A human-readable explanation of the error, in english
 	 * <p>
 	 * API name: {@code reason}
 	 */
+	@Nullable
 	public final String reason() {
 		return this.reason;
 	}
@@ -172,9 +174,11 @@ public class ErrorCause implements JsonpSerializable {
 			generator.write(this.type);
 
 		}
-		generator.writeKey("reason");
-		generator.write(this.reason);
+		if (this.reason != null) {
+			generator.writeKey("reason");
+			generator.write(this.reason);
 
+		}
 		if (this.stackTrace != null) {
 			generator.writeKey("stack_trace");
 			generator.write(this.stackTrace);
@@ -246,6 +250,7 @@ public class ErrorCause implements JsonpSerializable {
 		@Nullable
 		private String type;
 
+		@Nullable
 		private String reason;
 
 		@Nullable
@@ -271,11 +276,11 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A human-readable explanation of the error, in english
+		 * A human-readable explanation of the error, in english
 		 * <p>
 		 * API name: {@code reason}
 		 */
-		public final Builder reason(String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
