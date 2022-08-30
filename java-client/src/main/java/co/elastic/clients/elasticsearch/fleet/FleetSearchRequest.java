@@ -43,6 +43,7 @@ import co.elastic.clients.elasticsearch.core.search.Rescore;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.elasticsearch.core.search.Suggester;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -119,6 +120,8 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final Boolean explain;
 
+	private final Map<String, JsonData> ext;
+
 	private final List<FieldAndFormat> fields;
 
 	@Nullable
@@ -178,7 +181,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final String routing;
 
-	private final Map<String, List<RuntimeField>> runtimeMappings;
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	private final Map<String, ScriptField> scriptFields;
 
@@ -243,6 +246,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
+		this.ext = ApiTypeHelper.unmodifiable(builder.ext);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.from = builder.from;
 		this.highlight = builder.highlight;
@@ -412,6 +416,15 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final Boolean explain() {
 		return this.explain;
+	}
+
+	/**
+	 * Configuration of search extensions defined by Elasticsearch plugins.
+	 * <p>
+	 * API name: {@code ext}
+	 */
+	public final Map<String, JsonData> ext() {
+		return this.ext;
 	}
 
 	/**
@@ -604,7 +617,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
-	public final Map<String, List<RuntimeField>> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -827,6 +840,17 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.explain);
 
 		}
+		if (ApiTypeHelper.isDefined(this.ext)) {
+			generator.writeKey("ext");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.ext.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
@@ -903,16 +927,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtimeMappings.entrySet()) {
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.writeStartArray();
-				if (item0.getValue() != null) {
-					for (RuntimeField item1 : item0.getValue()) {
-						item1.serialize(generator, mapper);
-
-					}
-				}
-				generator.writeEnd();
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -1069,6 +1086,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		private Boolean explain;
 
 		@Nullable
+		private Map<String, JsonData> ext;
+
+		@Nullable
 		private List<FieldAndFormat> fields;
 
 		@Nullable
@@ -1131,7 +1151,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		private String routing;
 
 		@Nullable
-		private Map<String, List<RuntimeField>> runtimeMappings;
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
@@ -1386,6 +1406,30 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
+			return this;
+		}
+
+		/**
+		 * Configuration of search extensions defined by Elasticsearch plugins.
+		 * <p>
+		 * API name: {@code ext}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ext</code>.
+		 */
+		public final Builder ext(Map<String, JsonData> map) {
+			this.ext = _mapPutAll(this.ext, map);
+			return this;
+		}
+
+		/**
+		 * Configuration of search extensions defined by Elasticsearch plugins.
+		 * <p>
+		 * API name: {@code ext}
+		 * <p>
+		 * Adds an entry to <code>ext</code>.
+		 */
+		public final Builder ext(String key, JsonData value) {
+			this.ext = _mapPut(this.ext, key, value);
 			return this;
 		}
 
@@ -1680,7 +1724,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(Map<String, List<RuntimeField>> map) {
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
@@ -1693,9 +1737,22 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * Adds an entry to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
+		public final Builder runtimeMappings(String key, RuntimeField value) {
 			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
 			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -2052,6 +2109,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
 				"docvalue_fields");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
@@ -2065,8 +2123,8 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

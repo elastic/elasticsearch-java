@@ -59,6 +59,7 @@ public class GetTokenResponse implements JsonpSerializable {
 
 	private final String type;
 
+	@Nullable
 	private final String refreshToken;
 
 	@Nullable
@@ -74,7 +75,7 @@ public class GetTokenResponse implements JsonpSerializable {
 		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
 		this.scope = builder.scope;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.refreshToken = ApiTypeHelper.requireNonNull(builder.refreshToken, this, "refreshToken");
+		this.refreshToken = builder.refreshToken;
 		this.kerberosAuthenticationResponseToken = builder.kerberosAuthenticationResponseToken;
 		this.authentication = ApiTypeHelper.requireNonNull(builder.authentication, this, "authentication");
 
@@ -114,8 +115,9 @@ public class GetTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code refresh_token}
+	 * API name: {@code refresh_token}
 	 */
+	@Nullable
 	public final String refreshToken() {
 		return this.refreshToken;
 	}
@@ -160,9 +162,11 @@ public class GetTokenResponse implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		generator.writeKey("refresh_token");
-		generator.write(this.refreshToken);
+		if (this.refreshToken != null) {
+			generator.writeKey("refresh_token");
+			generator.write(this.refreshToken);
 
+		}
 		if (this.kerberosAuthenticationResponseToken != null) {
 			generator.writeKey("kerberos_authentication_response_token");
 			generator.write(this.kerberosAuthenticationResponseToken);
@@ -194,6 +198,7 @@ public class GetTokenResponse implements JsonpSerializable {
 
 		private String type;
 
+		@Nullable
 		private String refreshToken;
 
 		@Nullable
@@ -234,9 +239,9 @@ public class GetTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code refresh_token}
+		 * API name: {@code refresh_token}
 		 */
-		public final Builder refreshToken(String value) {
+		public final Builder refreshToken(@Nullable String value) {
 			this.refreshToken = value;
 			return this;
 		}
