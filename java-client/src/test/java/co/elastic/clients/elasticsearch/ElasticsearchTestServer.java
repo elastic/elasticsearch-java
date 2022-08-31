@@ -46,7 +46,6 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     private final String[] plugins;
     private volatile ElasticsearchContainer container;
-    private int port;
     private final JsonpMapper mapper = new JsonbJsonpMapper();
     private RestClient restClient;
     private ElasticsearchTransport transport;
@@ -102,7 +101,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
             .withPassword("changeme");
         container.start();
 
-        port = container.getMappedPort(9200);
+        int port = container.getMappedPort(9200);
 
         boolean useTLS = version.major() >= 8;
         HttpHost host = new HttpHost("localhost", port, useTLS ? "https": "http");
@@ -165,8 +164,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
         container = null;
     }
 
-    public int port() {
-        return port;
+    public ElasticsearchContainer container() {
+        return this.container;
     }
 
     public RestClient restClient() {
