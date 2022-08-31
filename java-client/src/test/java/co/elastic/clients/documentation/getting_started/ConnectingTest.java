@@ -25,11 +25,18 @@ import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import javax.net.ssl.SSLContext;
+import java.io.File;
 
 public class ConnectingTest {
 
@@ -63,6 +70,76 @@ public class ConnectingTest {
             processProduct(hit.source());
         }
         //end::first-request
+    }
+
+    @Disabled // we don't have a running ES
+    @Test
+    public void createSecureClientCert() throws Exception {
+
+        // Create the low-level client
+        String host = "localhost";
+        int port = 9200;
+        String login = "elastic";
+        String password = "changeme";
+
+        //tag::create-secure-client-cert
+        File certFile = new File("/path/to/http_ca.crt");
+
+        SSLContext sslContext = TransportUtils
+            .sslContextFromHttpCaCrt(certFile); // <1>
+
+        BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); // <2>
+        credsProv.setCredentials(
+            AuthScope.ANY, new UsernamePasswordCredentials(login, password)
+        );
+
+        RestClient restClient = RestClient
+            .builder(new HttpHost(host, port, "https")) // <3>
+            .setHttpClientConfigCallback(hc -> hc
+                .setSSLContext(sslContext) // <4>
+                .setDefaultCredentialsProvider(credsProv)
+            )
+            .build();
+
+        // Create the transport and the API client
+        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+        //end::create-secure-client-cert
+    }
+
+    @Disabled // we don't have a running ES
+    @Test
+    public void createSecureClientFingerPrint() throws Exception {
+
+        // Create the low-level client
+        String host = "localhost";
+        int port = 9200;
+        String login = "elastic";
+        String password = "changeme";
+
+        //tag::create-secure-client-fingerprint
+        String fingerprint = "<certificate fingerprint>";
+
+        SSLContext sslContext = TransportUtils
+            .sslContextFromCaFingerprint(fingerprint); // <1>
+
+        BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); // <2>
+        credsProv.setCredentials(
+            AuthScope.ANY, new UsernamePasswordCredentials(login, password)
+        );
+
+        RestClient restClient = RestClient
+            .builder(new HttpHost(host, port, "https")) // <3>
+            .setHttpClientConfigCallback(hc -> hc
+                .setSSLContext(sslContext) // <4>
+                .setDefaultCredentialsProvider(credsProv)
+            )
+            .build();
+
+        // Create the transport and the API client
+        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+        //end::create-secure-client-fingerprint
     }
 
     private void processProduct(Product p) {}
