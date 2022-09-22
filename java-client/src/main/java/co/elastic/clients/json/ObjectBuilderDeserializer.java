@@ -77,12 +77,12 @@ public class ObjectBuilderDeserializer<T, B extends ObjectBuilder<T>> extends De
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper) {
         ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper);
-        return builder.build();
+        return builder == null ? null : builder.build();
     }
 
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
         ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper, event);
-        return builder.build();
+        return builder == null ? null : builder.build();
     }
 }
