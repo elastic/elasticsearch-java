@@ -29,12 +29,12 @@ import java.util.function.Supplier;
  * @see JsonpDeserializable
  * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-12.html#jls-12.4">Initialization of Classes and Interfaces</a>
  */
-class LazyDeserializer<T> extends DelegatingDeserializer.SameType<T> {
+public class LazyDeserializer<T> extends DelegatingDeserializer.SameType<T> {
 
     private final Supplier<JsonpDeserializer<T>> ctor;
     private volatile JsonpDeserializer<T> deserializer = null;
 
-    LazyDeserializer(Supplier<JsonpDeserializer<T>> ctor) {
+    public LazyDeserializer(Supplier<JsonpDeserializer<T>> ctor) {
         this.ctor = ctor;
     }
 

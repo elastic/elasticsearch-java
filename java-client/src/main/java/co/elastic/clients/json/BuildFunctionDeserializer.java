@@ -45,12 +45,12 @@ public class BuildFunctionDeserializer<B, T> extends DelegatingDeserializer<T, B
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper) {
         B builder = builderDeserializer.deserialize(parser, mapper);
-        return build.apply(builder);
+        return builder == null ? null : build.apply(builder);
     }
 
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
         B builder = builderDeserializer.deserialize(parser, mapper, event);
-        return build.apply(builder);
+        return builder == null ? null : build.apply(builder);
     }
 }
