@@ -295,11 +295,13 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         public EnumSet<Event> acceptedEvents() {
             // Accepted events is computed lazily
             // no need for double-checked lock, we don't care about computing it several times
-            if (acceptedEvents == null) {
-                acceptedEvents = EnumSet.of(Event.START_ARRAY);
-                acceptedEvents.addAll(itemDeserializer.acceptedEvents());
+            EnumSet<Event> events = acceptedEvents;
+            if (events == null) {
+                events = EnumSet.of(Event.START_ARRAY);
+                events.addAll(itemDeserializer.acceptedEvents());
+                acceptedEvents = events;
             }
-            return acceptedEvents;
+            return events;
         }
 
         @Override
