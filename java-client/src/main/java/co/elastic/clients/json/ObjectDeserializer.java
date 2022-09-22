@@ -44,6 +44,8 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
             this.name = name;
         }
 
+        public abstract EnumSet<Event> acceptedEvents();
+
         public abstract void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object);
 
         public abstract void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object, Event event);
@@ -65,6 +67,11 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
         public String name() {
             return this.name;
+        }
+
+        @Override
+        public EnumSet<Event> acceptedEvents() {
+            return deserializer.acceptedEvents();
         }
 
         public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
@@ -89,6 +96,11 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         @Override
         public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, Object object, Event event) {
             JsonpUtils.skipValue(parser, event);
+        }
+
+        @Override
+        public EnumSet<Event> acceptedEvents() {
+            return EnumSet.allOf(Event.class);
         }
     };
 
@@ -242,6 +254,8 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
         }
 
+        //acceptedEvents = EnumSet.copyOf(acceptedEvents);
+        //acceptedEvents.addAll(shortcutProperty.acceptedEvents());
         acceptedEvents = EventSetObjectAndString;
     }
 
