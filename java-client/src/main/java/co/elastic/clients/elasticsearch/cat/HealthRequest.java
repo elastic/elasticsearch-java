@@ -31,7 +31,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -81,7 +80,9 @@ public class HealthRequest extends CatRequestBase {
 	 * Builder for {@link HealthRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<HealthRequest> {
 		@Nullable
 		private Boolean ts;
 
@@ -92,6 +93,11 @@ public class HealthRequest extends CatRequestBase {
 		 */
 		public final Builder ts(@Nullable Boolean value) {
 			this.ts = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

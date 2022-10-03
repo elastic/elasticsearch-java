@@ -47,7 +47,7 @@ public abstract class CatRequestBase extends RequestBase {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				WithJsonObjectBuilderBase<BuilderT> {
+				RequestBase.AbstractBuilder<BuilderT> {
 		protected abstract BuilderT self();
 
 	}

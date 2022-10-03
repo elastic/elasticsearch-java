@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -83,7 +82,9 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 	 * Builder for {@link ClearApiKeyCacheRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearApiKeyCacheRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ClearApiKeyCacheRequest> {
 		private List<String> ids;
 
 		/**
@@ -107,6 +108,11 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		 */
 		public final Builder ids(String value, String... values) {
 			this.ids = _listAdd(this.ids, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

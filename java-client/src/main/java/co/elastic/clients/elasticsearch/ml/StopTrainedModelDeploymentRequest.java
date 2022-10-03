@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -119,7 +118,9 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 	 * Builder for {@link StopTrainedModelDeploymentRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopTrainedModelDeploymentRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<StopTrainedModelDeploymentRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -162,6 +163,11 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

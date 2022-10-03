@@ -40,7 +40,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -337,7 +336,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	 * Builder for {@link TermvectorsRequest}.
 	 */
 
-	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+	public static class Builder<TDocument> extends RequestBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<TermvectorsRequest<TDocument>> {
 		@Nullable
