@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -114,7 +113,9 @@ public class GetRepositoryRequest extends RequestBase {
 	 * Builder for {@link GetRepositoryRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRepositoryRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetRepositoryRequest> {
 		@Nullable
 		private Boolean local;
 
@@ -175,6 +176,11 @@ public class GetRepositoryRequest extends RequestBase {
 		 */
 		public final Builder name(String value, String... values) {
 			this.name = _listAdd(this.name, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

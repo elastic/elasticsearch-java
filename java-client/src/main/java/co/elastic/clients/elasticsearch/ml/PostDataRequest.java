@@ -40,7 +40,6 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.String;
@@ -155,7 +154,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PostDataRequest}.
 	 */
 	@Deprecated
-	public static class Builder<TData> extends WithJsonObjectBuilderBase<Builder<TData>>
+	public static class Builder<TData> extends RequestBase.AbstractBuilder<Builder<TData>>
 			implements
 				ObjectBuilder<PostDataRequest<TData>> {
 		private String jobId;

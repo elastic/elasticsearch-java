@@ -36,7 +36,6 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -237,7 +236,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link GetInfluencersRequest}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetInfluencersRequest> {
 		@Nullable

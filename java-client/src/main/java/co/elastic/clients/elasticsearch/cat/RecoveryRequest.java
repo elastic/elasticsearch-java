@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -128,7 +127,9 @@ public class RecoveryRequest extends CatRequestBase {
 	 * Builder for {@link RecoveryRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<RecoveryRequest> {
 		@Nullable
 		private Boolean activeOnly;
 
@@ -195,6 +196,11 @@ public class RecoveryRequest extends CatRequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

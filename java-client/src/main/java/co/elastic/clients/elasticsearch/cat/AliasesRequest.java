@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -97,7 +96,9 @@ public class AliasesRequest extends CatRequestBase {
 	 * Builder for {@link AliasesRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<AliasesRequest> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
@@ -151,6 +152,11 @@ public class AliasesRequest extends CatRequestBase {
 		 */
 		public final Builder name(String value, String... values) {
 			this.name = _listAdd(this.name, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

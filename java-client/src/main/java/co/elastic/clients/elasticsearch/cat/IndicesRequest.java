@@ -35,7 +35,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -158,7 +157,9 @@ public class IndicesRequest extends CatRequestBase {
 	 * Builder for {@link IndicesRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<IndicesRequest> {
 		@Nullable
 		private Bytes bytes;
 
@@ -266,6 +267,11 @@ public class IndicesRequest extends CatRequestBase {
 		 */
 		public final Builder pri(@Nullable Boolean value) {
 			this.pri = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

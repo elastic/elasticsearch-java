@@ -38,7 +38,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -288,7 +287,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * Builder for {@link PutTemplateRequest}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTemplateRequest> {
 		@Nullable

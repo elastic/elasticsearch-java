@@ -36,7 +36,6 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -172,7 +171,7 @@ public class ExistsRequest extends RequestBase {
 	 * Builder for {@link ExistsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<ExistsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -292,6 +291,11 @@ public class ExistsRequest extends RequestBase {
 		 */
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

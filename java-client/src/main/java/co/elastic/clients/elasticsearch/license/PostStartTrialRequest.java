@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -97,7 +96,9 @@ public class PostStartTrialRequest extends RequestBase {
 	 * Builder for {@link PostStartTrialRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartTrialRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PostStartTrialRequest> {
 		@Nullable
 		private Boolean acknowledge;
 
@@ -119,6 +120,11 @@ public class PostStartTrialRequest extends RequestBase {
 		 */
 		public final Builder typeQueryString(@Nullable String value) {
 			this.typeQueryString = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

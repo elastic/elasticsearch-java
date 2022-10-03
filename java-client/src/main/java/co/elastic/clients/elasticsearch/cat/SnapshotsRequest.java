@@ -32,7 +32,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -97,7 +96,9 @@ public class SnapshotsRequest extends CatRequestBase {
 	 * Builder for {@link SnapshotsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<SnapshotsRequest> {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
@@ -135,6 +136,11 @@ public class SnapshotsRequest extends CatRequestBase {
 		 */
 		public final Builder repository(String value, String... values) {
 			this.repository = _listAdd(this.repository, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

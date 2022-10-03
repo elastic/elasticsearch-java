@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -83,7 +82,9 @@ public class GetLifecycleRequest extends RequestBase {
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private List<String> policyId;
 
@@ -108,6 +109,11 @@ public class GetLifecycleRequest extends RequestBase {
 		 */
 		public final Builder policyId(String value, String... values) {
 			this.policyId = _listAdd(this.policyId, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

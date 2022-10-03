@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CertificateInformation implements JsonpSerializable {
+	@Nullable
 	private final String alias;
 
 	private final DateTime expiry;
@@ -69,7 +70,7 @@ public class CertificateInformation implements JsonpSerializable {
 
 	private CertificateInformation(Builder builder) {
 
-		this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
+		this.alias = builder.alias;
 		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
 		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
 		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
@@ -84,8 +85,9 @@ public class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code alias}
+	 * API name: {@code alias}
 	 */
+	@Nullable
 	public final String alias() {
 		return this.alias;
 	}
@@ -143,9 +145,11 @@ public class CertificateInformation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("alias");
-		generator.write(this.alias);
+		if (this.alias != null) {
+			generator.writeKey("alias");
+			generator.write(this.alias);
 
+		}
 		generator.writeKey("expiry");
 		this.expiry.serialize(generator, mapper);
 		generator.writeKey("format");
@@ -179,6 +183,7 @@ public class CertificateInformation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<CertificateInformation> {
+		@Nullable
 		private String alias;
 
 		private DateTime expiry;
@@ -194,9 +199,9 @@ public class CertificateInformation implements JsonpSerializable {
 		private String subjectDn;
 
 		/**
-		 * Required - API name: {@code alias}
+		 * API name: {@code alias}
 		 */
-		public final Builder alias(String value) {
+		public final Builder alias(@Nullable String value) {
 			this.alias = value;
 			return this;
 		}

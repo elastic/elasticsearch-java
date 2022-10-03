@@ -35,7 +35,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -185,7 +184,7 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link GetTokenRequest}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetTokenRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetTokenRequest> {
 		@Nullable
 		private AccessTokenGrantType grantType;
 

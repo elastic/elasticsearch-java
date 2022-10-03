@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -124,7 +123,9 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	 * Builder for {@link DeleteDanglingIndexRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteDanglingIndexRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteDanglingIndexRequest> {
 		private Boolean acceptDataLoss;
 
 		private String indexUuid;
@@ -191,6 +192,11 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

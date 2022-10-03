@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -109,7 +108,9 @@ public class SetUpgradeModeRequest extends RequestBase {
 	 * Builder for {@link SetUpgradeModeRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SetUpgradeModeRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<SetUpgradeModeRequest> {
 		@Nullable
 		private Boolean enabled;
 
@@ -145,6 +146,11 @@ public class SetUpgradeModeRequest extends RequestBase {
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

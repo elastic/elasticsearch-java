@@ -39,7 +39,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -271,7 +270,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	 * Builder for {@link MsearchRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MsearchRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<MsearchRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -488,6 +487,11 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 */
 		public final Builder searches(Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn) {
 			return searches(fn.apply(new RequestItem.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

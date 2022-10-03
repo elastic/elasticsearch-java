@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -93,7 +92,9 @@ public class DeleteCalendarEventRequest extends RequestBase {
 	 * Builder for {@link DeleteCalendarEventRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarEventRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteCalendarEventRequest> {
 		private String calendarId;
 
 		private String eventId;
@@ -115,6 +116,11 @@ public class DeleteCalendarEventRequest extends RequestBase {
 		 */
 		public final Builder eventId(String value) {
 			this.eventId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
