@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -108,7 +107,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 	 * Builder for {@link DeleteSnapshotRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteSnapshotRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteSnapshotRequest> {
 		@Nullable
 		private Time masterTimeout;
 
@@ -152,6 +153,11 @@ public class DeleteSnapshotRequest extends RequestBase {
 		 */
 		public final Builder snapshot(String value) {
 			this.snapshot = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

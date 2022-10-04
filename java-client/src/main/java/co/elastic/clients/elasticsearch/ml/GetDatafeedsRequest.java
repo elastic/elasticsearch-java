@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -133,7 +132,9 @@ public class GetDatafeedsRequest extends RequestBase {
 	 * Builder for {@link GetDatafeedsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetDatafeedsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -202,6 +203,11 @@ public class GetDatafeedsRequest extends RequestBase {
 		 */
 		public final Builder excludeGenerated(@Nullable Boolean value) {
 			this.excludeGenerated = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

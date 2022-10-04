@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -97,7 +96,9 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 	 * Builder for {@link DeleteTrainedModelAliasRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelAliasRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteTrainedModelAliasRequest> {
 		private String modelAlias;
 
 		private String modelId;
@@ -119,6 +120,11 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

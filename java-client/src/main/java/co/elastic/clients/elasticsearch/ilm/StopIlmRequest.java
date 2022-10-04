@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,7 +92,7 @@ public class StopIlmRequest extends RequestBase {
 	 * Builder for {@link StopIlmRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopIlmRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<StopIlmRequest> {
 		@Nullable
 		private Time masterTimeout;
 
@@ -128,6 +127,11 @@ public class StopIlmRequest extends RequestBase {
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

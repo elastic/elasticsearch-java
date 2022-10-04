@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -161,7 +160,9 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	 * Builder for {@link MlDataFrameAnalyticsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<MlDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -278,6 +279,11 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		 */
 		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.time(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -120,7 +119,9 @@ public class StartTransformRequest extends RequestBase {
 	 * Builder for {@link StartTransformRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTransformRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<StartTransformRequest> {
 		@Nullable
 		private Time timeout;
 
@@ -154,6 +155,11 @@ public class StartTransformRequest extends RequestBase {
 		 */
 		public final Builder transformId(String value) {
 			this.transformId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -34,7 +34,6 @@ import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -91,7 +90,7 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	 * Builder for {@link DeleteVotingConfigExclusionsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
 		@Nullable
@@ -109,6 +108,11 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		 */
 		public final Builder waitForRemoval(@Nullable Boolean value) {
 			this.waitForRemoval = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

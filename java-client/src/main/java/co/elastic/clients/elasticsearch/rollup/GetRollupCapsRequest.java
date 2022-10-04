@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -83,7 +82,9 @@ public class GetRollupCapsRequest extends RequestBase {
 	 * Builder for {@link GetRollupCapsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupCapsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetRollupCapsRequest> {
 		@Nullable
 		private String id;
 
@@ -95,6 +96,11 @@ public class GetRollupCapsRequest extends RequestBase {
 		 */
 		public final Builder id(@Nullable String value) {
 			this.id = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

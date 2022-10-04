@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -112,7 +111,9 @@ public class GetAsyncSearchRequest extends RequestBase {
 	 * Builder for {@link GetAsyncSearchRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAsyncSearchRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetAsyncSearchRequest> {
 		private String id;
 
 		@Nullable
@@ -169,6 +170,11 @@ public class GetAsyncSearchRequest extends RequestBase {
 		 */
 		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

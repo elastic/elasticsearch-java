@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -99,7 +98,9 @@ public class EnableUserProfileRequest extends RequestBase {
 	 * Builder for {@link EnableUserProfileRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnableUserProfileRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<EnableUserProfileRequest> {
 		@Nullable
 		private Refresh refresh;
 
@@ -124,6 +125,11 @@ public class EnableUserProfileRequest extends RequestBase {
 		 */
 		public final Builder uid(String value) {
 			this.uid = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

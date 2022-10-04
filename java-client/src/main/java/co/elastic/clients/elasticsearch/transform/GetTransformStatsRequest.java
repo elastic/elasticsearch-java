@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -141,7 +140,9 @@ public class GetTransformStatsRequest extends RequestBase {
 	 * Builder for {@link GetTransformStatsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformStatsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetTransformStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -221,6 +222,11 @@ public class GetTransformStatsRequest extends RequestBase {
 		 */
 		public final Builder transformId(String value, String... values) {
 			this.transformId = _listAdd(this.transformId, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

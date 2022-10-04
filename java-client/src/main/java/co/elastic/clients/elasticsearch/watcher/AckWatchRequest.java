@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -95,7 +94,7 @@ public class AckWatchRequest extends RequestBase {
 	 * Builder for {@link AckWatchRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<AckWatchRequest> {
 		@Nullable
 		private List<String> actionId;
 
@@ -132,6 +131,11 @@ public class AckWatchRequest extends RequestBase {
 		 */
 		public final Builder watchId(String value) {
 			this.watchId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

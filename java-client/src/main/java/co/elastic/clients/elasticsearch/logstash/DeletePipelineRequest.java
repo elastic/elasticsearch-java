@@ -35,7 +35,6 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -83,7 +82,9 @@ public class DeletePipelineRequest extends RequestBase {
 	 * Builder for {@link DeletePipelineRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePipelineRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeletePipelineRequest> {
 		private String id;
 
 		/**
@@ -93,6 +94,11 @@ public class DeletePipelineRequest extends RequestBase {
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

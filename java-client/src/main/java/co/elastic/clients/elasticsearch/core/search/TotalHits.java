@@ -25,16 +25,21 @@ package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpMappingException;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.LazyDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Long;
+import java.util.EnumSet;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -148,19 +153,44 @@ public class TotalHits implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
 	/**
 	 * Json deserializer for {@link TotalHits}
 	 */
-	public static final JsonpDeserializer<TotalHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TotalHits::setupTotalHitsDeserializer);
+	// Custom deserializer that can read the modern TotalHits structure and the
+	// pre-7.0 single value
+	public static final JsonpDeserializer<TotalHits> _DESERIALIZER = new LazyDeserializer<>(() -> {
 
-	protected static void setupTotalHitsDeserializer(ObjectDeserializer<TotalHits.Builder> op) {
+		JsonpDeserializer<Long> longDeserializer = JsonpDeserializer.longDeserializer();
+		EnumSet<JsonParser.Event> events = EnumSet.of(JsonParser.Event.START_OBJECT);
+		events.addAll(longDeserializer.acceptedEvents());
 
-		op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
-		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
+		return new JsonpDeserializerBase<TotalHits>(events) {
+			@Override
+			public TotalHits deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+				Builder builder = new Builder();
 
-	}
+				if (longDeserializer.acceptedEvents().contains(event)) {
+					return builder.relation(TotalHitsRelation.Eq)
+							.value(longDeserializer.deserialize(parser, mapper, event)).build();
+				}
 
+				JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
+				while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
+					JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
+					switch (parser.getString()) {
+						case "relation" :
+							builder.relation(TotalHitsRelation._DESERIALIZER.deserialize(parser, mapper));
+							break;
+						case "value" :
+							builder.value(longDeserializer.deserialize(parser, mapper));
+							break;
+						default :
+							throw new JsonpMappingException("Unknown field '" + parser.getString() + "'",
+									parser.getLocation());
+					}
+				}
+				return builder.build();
+			}
+		};
+	});
 }

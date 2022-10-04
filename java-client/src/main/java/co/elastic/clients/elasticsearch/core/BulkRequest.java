@@ -41,7 +41,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -255,7 +254,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * Builder for {@link BulkRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<BulkRequest> {
 		@Nullable
 		private SourceConfigParam source;
 
@@ -488,6 +487,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 */
 		public final Builder operations(Function<BulkOperation.Builder, ObjectBuilder<BulkOperation>> fn) {
 			return operations(fn.apply(new BulkOperation.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

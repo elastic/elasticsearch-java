@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -101,7 +100,7 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 	 * Builder for {@link RankFeatureFunctionSaturation}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends RankFeatureFunction.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankFeatureFunctionSaturation> {
 		@Nullable

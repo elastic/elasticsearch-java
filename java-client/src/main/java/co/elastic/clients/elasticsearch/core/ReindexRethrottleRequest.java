@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
@@ -98,7 +97,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 	 * Builder for {@link ReindexRethrottleRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ReindexRethrottleRequest> {
 		@Nullable
 		private Float requestsPerSecond;
 
@@ -122,6 +123,11 @@ public class ReindexRethrottleRequest extends RequestBase {
 		 */
 		public final Builder taskId(String value) {
 			this.taskId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

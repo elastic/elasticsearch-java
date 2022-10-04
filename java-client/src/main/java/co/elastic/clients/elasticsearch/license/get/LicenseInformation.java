@@ -68,7 +68,8 @@ public class LicenseInformation implements JsonpSerializable {
 
 	private final String issuer;
 
-	private final long maxNodes;
+	@Nullable
+	private final Long maxNodes;
 
 	@Nullable
 	private final Integer maxResourceUnits;
@@ -91,7 +92,7 @@ public class LicenseInformation implements JsonpSerializable {
 		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
 		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
 		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");
-		this.maxNodes = ApiTypeHelper.requireNonNull(builder.maxNodes, this, "maxNodes");
+		this.maxNodes = builder.maxNodes;
 		this.maxResourceUnits = builder.maxResourceUnits;
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
@@ -149,9 +150,10 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code max_nodes}
+	 * API name: {@code max_nodes}
 	 */
-	public final long maxNodes() {
+	@Nullable
+	public final Long maxNodes() {
 		return this.maxNodes;
 	}
 
@@ -224,9 +226,11 @@ public class LicenseInformation implements JsonpSerializable {
 		generator.writeKey("issuer");
 		generator.write(this.issuer);
 
-		generator.writeKey("max_nodes");
-		generator.write(this.maxNodes);
+		if (this.maxNodes != null) {
+			generator.writeKey("max_nodes");
+			generator.write(this.maxNodes);
 
+		}
 		if (this.maxResourceUnits != null) {
 			generator.writeKey("max_resource_units");
 			JsonpUtils.serializeIntOrNull(generator, this.maxResourceUnits, 0);
@@ -271,6 +275,7 @@ public class LicenseInformation implements JsonpSerializable {
 
 		private String issuer;
 
+		@Nullable
 		private Long maxNodes;
 
 		@Nullable
@@ -333,9 +338,9 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code max_nodes}
+		 * API name: {@code max_nodes}
 		 */
-		public final Builder maxNodes(long value) {
+		public final Builder maxNodes(@Nullable Long value) {
 			this.maxNodes = value;
 			return this;
 		}

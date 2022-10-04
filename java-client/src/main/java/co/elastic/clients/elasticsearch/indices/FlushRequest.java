@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -164,7 +163,7 @@ public class FlushRequest extends RequestBase {
 	 * Builder for {@link FlushRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<FlushRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -281,6 +280,11 @@ public class FlushRequest extends RequestBase {
 		 */
 		public final Builder waitIfOngoing(@Nullable Boolean value) {
 			this.waitIfOngoing = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

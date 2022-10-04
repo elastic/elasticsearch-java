@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -99,7 +98,9 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 	 * Builder for {@link SearchableSnapshotsStatsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchableSnapshotsStatsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<SearchableSnapshotsStatsRequest> {
 		@Nullable
 		private List<String> index;
 
@@ -137,6 +138,11 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		 */
 		public final Builder level(@Nullable StatsLevel value) {
 			this.level = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
