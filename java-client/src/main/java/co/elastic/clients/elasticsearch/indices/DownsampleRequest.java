@@ -21,11 +21,10 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.rollup;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,38 +43,38 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: rollup.rollup.Request
+// typedef: indices.downsample.Request
 
 /**
- * Rollup an index
+ * Downsample an index
  * 
- * @see <a href="../doc-files/api-spec.html#rollup.rollup.Request">API
+ * @see <a href="../doc-files/api-spec.html#indices.downsample.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RollupRequest extends RequestBase implements JsonpSerializable {
+public class DownsampleRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
-	private final String rollupIndex;
+	private final String targetIndex;
 
-	private final JsonData config;
+	private final DownsampleConfig config;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RollupRequest(Builder builder) {
+	private DownsampleRequest(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.targetIndex = ApiTypeHelper.requireNonNull(builder.targetIndex, this, "targetIndex");
 		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 
-	public static RollupRequest of(Function<Builder, ObjectBuilder<RollupRequest>> fn) {
+	public static DownsampleRequest of(Function<Builder, ObjectBuilder<DownsampleRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The index to roll up
+	 * Required - The index to downsample
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -84,18 +83,18 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the rollup index to create
+	 * Required - The name of the target index to store downsampled data
 	 * <p>
-	 * API name: {@code rollup_index}
+	 * API name: {@code target_index}
 	 */
-	public final String rollupIndex() {
-		return this.rollupIndex;
+	public final String targetIndex() {
+		return this.targetIndex;
 	}
 
 	/**
 	 * Required - Request body.
 	 */
-	public final JsonData config() {
+	public final DownsampleConfig config() {
 		return this.config;
 	}
 
@@ -110,18 +109,20 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RollupRequest}.
+	 * Builder for {@link DownsampleRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<RollupRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DownsampleRequest> {
 		private String index;
 
-		private String rollupIndex;
+		private String targetIndex;
 
-		private JsonData config;
+		private DownsampleConfig config;
 
 		/**
-		 * Required - The index to roll up
+		 * Required - The index to downsample
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -131,28 +132,35 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the rollup index to create
+		 * Required - The name of the target index to store downsampled data
 		 * <p>
-		 * API name: {@code rollup_index}
+		 * API name: {@code target_index}
 		 */
-		public final Builder rollupIndex(String value) {
-			this.rollupIndex = value;
+		public final Builder targetIndex(String value) {
+			this.targetIndex = value;
 			return this;
 		}
 
 		/**
 		 * Required - Request body.
 		 */
-		public final Builder config(JsonData value) {
+		public final Builder config(DownsampleConfig value) {
 			this.config = value;
 			return this;
+		}
+
+		/**
+		 * Required - Request body.
+		 */
+		public final Builder config(Function<DownsampleConfig.Builder, ObjectBuilder<DownsampleConfig>> fn) {
+			return this.config(fn.apply(new DownsampleConfig.Builder()).build());
 		}
 
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 
 			@SuppressWarnings("unchecked")
-			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
+			DownsampleConfig value = (DownsampleConfig) DownsampleConfig._DESERIALIZER.deserialize(parser, mapper);
 			return this.config(value);
 		}
 
@@ -162,22 +170,22 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RollupRequest}.
+		 * Builds a {@link DownsampleRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RollupRequest build() {
+		public DownsampleRequest build() {
 			_checkSingleUse();
 
-			return new RollupRequest(this);
+			return new DownsampleRequest(this);
 		}
 	}
 
-	public static final JsonpDeserializer<RollupRequest> _DESERIALIZER = createRollupRequestDeserializer();
-	protected static JsonpDeserializer<RollupRequest> createRollupRequestDeserializer() {
+	public static final JsonpDeserializer<DownsampleRequest> _DESERIALIZER = createDownsampleRequestDeserializer();
+	protected static JsonpDeserializer<DownsampleRequest> createDownsampleRequestDeserializer() {
 
-		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+		JsonpDeserializer<DownsampleConfig> valueDeserializer = DownsampleConfig._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
 				.config(valueDeserializer.deserialize(parser, mapper, event)).build());
@@ -186,10 +194,10 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code rollup.rollup}".
+	 * Endpoint "{@code indices.downsample}".
 	 */
-	public static final Endpoint<RollupRequest, RollupResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/rollup.rollup",
+	public static final Endpoint<DownsampleRequest, DownsampleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.downsample",
 
 			// Request method
 			request -> {
@@ -199,21 +207,21 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 
 			// Request path
 			request -> {
-				final int _rollupIndex = 1 << 0;
+				final int _targetIndex = 1 << 0;
 				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _rollupIndex;
+				propsSet |= _targetIndex;
 				propsSet |= _index;
 
-				if (propsSet == (_index | _rollupIndex)) {
+				if (propsSet == (_index | _targetIndex)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/_rollup");
+					buf.append("/_downsample");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.rollupIndex, buf);
+					SimpleEndpoint.pathEncode(request.targetIndex, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -224,5 +232,5 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, RollupResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, DownsampleResponse._DESERIALIZER);
 }

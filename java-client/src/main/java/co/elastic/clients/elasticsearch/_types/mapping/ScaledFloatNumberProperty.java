@@ -30,7 +30,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,9 +46,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ScaledFloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
-	private final Boolean coerce;
-
-	@Nullable
 	private final Double nullValue;
 
 	@Nullable
@@ -60,7 +56,6 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 	private ScaledFloatNumberProperty(Builder builder) {
 		super(builder);
 
-		this.coerce = builder.coerce;
 		this.nullValue = builder.nullValue;
 		this.scalingFactor = builder.scalingFactor;
 
@@ -76,14 +71,6 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 	@Override
 	public Property.Kind _propertyKind() {
 		return Property.Kind.ScaledFloat;
-	}
-
-	/**
-	 * API name: {@code coerce}
-	 */
-	@Nullable
-	public final Boolean coerce() {
-		return this.coerce;
 	}
 
 	/**
@@ -106,11 +93,6 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 
 		generator.write("type", "scaled_float");
 		super.serializeInternal(generator, mapper);
-		if (this.coerce != null) {
-			generator.writeKey("coerce");
-			generator.write(this.coerce);
-
-		}
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
@@ -134,21 +116,10 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 			implements
 				ObjectBuilder<ScaledFloatNumberProperty> {
 		@Nullable
-		private Boolean coerce;
-
-		@Nullable
 		private Double nullValue;
 
 		@Nullable
 		private Double scalingFactor;
-
-		/**
-		 * API name: {@code coerce}
-		 */
-		public final Builder coerce(@Nullable Boolean value) {
-			this.coerce = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code null_value}
@@ -195,7 +166,6 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 	protected static void setupScaledFloatNumberPropertyDeserializer(
 			ObjectDeserializer<ScaledFloatNumberProperty.Builder> op) {
 		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
-		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::nullValue, JsonpDeserializer.doubleDeserializer(), "null_value");
 		op.add(Builder::scalingFactor, JsonpDeserializer.doubleDeserializer(), "scaling_factor");
 

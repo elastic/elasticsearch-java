@@ -38,6 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -73,6 +74,12 @@ public class ApiKey implements JsonpSerializable {
 
 	private final Map<String, JsonData> metadata;
 
+	private final Map<String, RoleDescriptor> roleDescriptors;
+
+	private final List<Map<String, RoleDescriptor>> limitedBy;
+
+	private final List<String> sort;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ApiKey(Builder builder) {
@@ -85,6 +92,9 @@ public class ApiKey implements JsonpSerializable {
 		this.realm = builder.realm;
 		this.username = builder.username;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.limitedBy = ApiTypeHelper.unmodifiable(builder.limitedBy);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
 
@@ -154,6 +164,27 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code role_descriptors}
+	 */
+	public final Map<String, RoleDescriptor> roleDescriptors() {
+		return this.roleDescriptors;
+	}
+
+	/**
+	 * API name: {@code limited_by}
+	 */
+	public final List<Map<String, RoleDescriptor>> limitedBy() {
+		return this.limitedBy;
+	}
+
+	/**
+	 * API name: {@code _sort}
+	 */
+	public final List<String> sort() {
+		return this.sort;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -206,6 +237,45 @@ public class ApiKey implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
+			generator.writeKey("role_descriptors");
+			generator.writeStartObject();
+			for (Map.Entry<String, RoleDescriptor> item0 : this.roleDescriptors.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.limitedBy)) {
+			generator.writeKey("limited_by");
+			generator.writeStartArray();
+			for (Map<String, RoleDescriptor> item0 : this.limitedBy) {
+				generator.writeStartObject();
+				if (item0 != null) {
+					for (Map.Entry<String, RoleDescriptor> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.sort)) {
+			generator.writeKey("_sort");
+			generator.writeStartArray();
+			for (String item0 : this.sort) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -242,6 +312,15 @@ public class ApiKey implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, JsonData> metadata;
+
+		@Nullable
+		private Map<String, RoleDescriptor> roleDescriptors;
+
+		@Nullable
+		private List<Map<String, RoleDescriptor>> limitedBy;
+
+		@Nullable
+		private List<String> sort;
 
 		/**
 		 * API name: {@code creation}
@@ -319,6 +398,76 @@ public class ApiKey implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>roleDescriptors</code>.
+		 */
+		public final Builder roleDescriptors(Map<String, RoleDescriptor> map) {
+			this.roleDescriptors = _mapPutAll(this.roleDescriptors, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds an entry to <code>roleDescriptors</code>.
+		 */
+		public final Builder roleDescriptors(String key, RoleDescriptor value) {
+			this.roleDescriptors = _mapPut(this.roleDescriptors, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds an entry to <code>roleDescriptors</code> using a builder lambda.
+		 */
+		public final Builder roleDescriptors(String key,
+				Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
+			return roleDescriptors(key, fn.apply(new RoleDescriptor.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code limited_by}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>limitedBy</code>.
+		 */
+		public final Builder limitedBy(List<Map<String, RoleDescriptor>> list) {
+			this.limitedBy = _listAddAll(this.limitedBy, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code limited_by}
+		 * <p>
+		 * Adds one or more values to <code>limitedBy</code>.
+		 */
+		public final Builder limitedBy(Map<String, RoleDescriptor> value, Map<String, RoleDescriptor>... values) {
+			this.limitedBy = _listAdd(this.limitedBy, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
+		 */
+		public final Builder sort(List<String> list) {
+			this.sort = _listAddAll(this.sort, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
+		 */
+		public final Builder sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -355,6 +504,11 @@ public class ApiKey implements JsonpSerializable {
 		op.add(Builder::realm, JsonpDeserializer.stringDeserializer(), "realm");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
+				"role_descriptors");
+		op.add(Builder::limitedBy, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER)), "limited_by");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "_sort");
 
 	}
 

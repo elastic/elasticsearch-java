@@ -570,6 +570,39 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.downsample
+
+	/**
+	 * Downsample an index
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DownsampleResponse downsample(DownsampleRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DownsampleRequest, DownsampleResponse, ErrorResponse> endpoint = (JsonEndpoint<DownsampleRequest, DownsampleResponse, ErrorResponse>) DownsampleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Downsample an index
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DownsampleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DownsampleResponse downsample(Function<DownsampleRequest.Builder, ObjectBuilder<DownsampleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return downsample(fn.apply(new DownsampleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.exists
 
 	/**

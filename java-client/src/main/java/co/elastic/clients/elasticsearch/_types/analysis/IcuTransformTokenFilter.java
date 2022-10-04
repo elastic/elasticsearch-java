@@ -46,6 +46,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
 	private final IcuTransformDirection dir;
 
 	private final String id;
@@ -55,7 +56,7 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	private IcuTransformTokenFilter(Builder builder) {
 		super(builder);
 
-		this.dir = ApiTypeHelper.requireNonNull(builder.dir, this, "dir");
+		this.dir = builder.dir;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
@@ -73,8 +74,9 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * Required - API name: {@code dir}
+	 * API name: {@code dir}
 	 */
+	@Nullable
 	public final IcuTransformDirection dir() {
 		return this.dir;
 	}
@@ -90,8 +92,10 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 
 		generator.write("type", "icu_transform");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("dir");
-		this.dir.serialize(generator, mapper);
+		if (this.dir != null) {
+			generator.writeKey("dir");
+			this.dir.serialize(generator, mapper);
+		}
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -106,14 +110,15 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuTransformTokenFilter> {
+		@Nullable
 		private IcuTransformDirection dir;
 
 		private String id;
 
 		/**
-		 * Required - API name: {@code dir}
+		 * API name: {@code dir}
 		 */
-		public final Builder dir(IcuTransformDirection value) {
+		public final Builder dir(@Nullable IcuTransformDirection value) {
 			this.dir = value;
 			return this;
 		}

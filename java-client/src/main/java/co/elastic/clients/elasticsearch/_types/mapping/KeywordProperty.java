@@ -168,8 +168,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	}
 
 	/**
-	 * [experimental] For internal use by Elastic only. Marks the field as a time
-	 * series dimension. Defaults to false.
+	 * For internal use by Elastic only. Marks the field as a time series dimension.
+	 * Defaults to false.
 	 * <p>
 	 * API name: {@code time_series_dimension}
 	 */
@@ -330,8 +330,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 
 		/**
-		 * [experimental] For internal use by Elastic only. Marks the field as a time
-		 * series dimension. Defaults to false.
+		 * For internal use by Elastic only. Marks the field as a time series dimension.
+		 * Defaults to false.
 		 * <p>
 		 * API name: {@code time_series_dimension}
 		 */

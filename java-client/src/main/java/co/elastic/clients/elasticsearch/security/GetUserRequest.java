@@ -34,9 +34,11 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -54,11 +56,15 @@ import javax.annotation.Nullable;
 public class GetUserRequest extends RequestBase {
 	private final List<String> username;
 
+	@Nullable
+	private final Boolean withProfileUid;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetUserRequest(Builder builder) {
 
 		this.username = ApiTypeHelper.unmodifiable(builder.username);
+		this.withProfileUid = builder.withProfileUid;
 
 	}
 
@@ -77,6 +83,16 @@ public class GetUserRequest extends RequestBase {
 		return this.username;
 	}
 
+	/**
+	 * If true will return the User Profile ID for a user, if any.
+	 * <p>
+	 * API name: {@code with_profile_uid}
+	 */
+	@Nullable
+	public final Boolean withProfileUid() {
+		return this.withProfileUid;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -86,6 +102,9 @@ public class GetUserRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetUserRequest> {
 		@Nullable
 		private List<String> username;
+
+		@Nullable
+		private Boolean withProfileUid;
 
 		/**
 		 * An identifier for the user. You can specify multiple usernames as a
@@ -112,6 +131,16 @@ public class GetUserRequest extends RequestBase {
 		 */
 		public final Builder username(String value, String... values) {
 			this.username = _listAdd(this.username, value, values);
+			return this;
+		}
+
+		/**
+		 * If true will return the User Profile ID for a user, if any.
+		 * <p>
+		 * API name: {@code with_profile_uid}
+		 */
+		public final Builder withProfileUid(@Nullable Boolean value) {
+			this.withProfileUid = value;
 			return this;
 		}
 
@@ -177,7 +206,11 @@ public class GetUserRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.withProfileUid != null) {
+					params.put("with_profile_uid", String.valueOf(request.withProfileUid));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetUserResponse._DESERIALIZER);
 }

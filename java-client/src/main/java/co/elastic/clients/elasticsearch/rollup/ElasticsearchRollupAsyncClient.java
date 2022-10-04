@@ -251,39 +251,6 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: rollup.rollup
-
-	/**
-	 * Rollup an index
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<RollupResponse> rollup(RollupRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<RollupRequest, RollupResponse, ErrorResponse> endpoint = (JsonEndpoint<RollupRequest, RollupResponse, ErrorResponse>) RollupRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Rollup an index
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link RollupRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<RollupResponse> rollup(
-			Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn) {
-		return rollup(fn.apply(new RollupRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: rollup.rollup_search
 
 	/**

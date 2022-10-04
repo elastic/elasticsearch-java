@@ -21,9 +21,9 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.rollup;
+package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,46 +35,53 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: rollup.rollup.Response
+// typedef: indices._types.DownsampleConfig
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#rollup.rollup.Response">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.DownsampleConfig">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RollupResponse implements JsonpSerializable {
-	private final JsonData valueBody;
+public class DownsampleConfig implements JsonpSerializable {
+	private final Time fixedInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RollupResponse(Builder builder) {
+	private DownsampleConfig(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.fixedInterval = ApiTypeHelper.requireNonNull(builder.fixedInterval, this, "fixedInterval");
 
 	}
 
-	public static RollupResponse of(Function<Builder, ObjectBuilder<RollupResponse>> fn) {
+	public static DownsampleConfig of(Function<Builder, ObjectBuilder<DownsampleConfig>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Response value.
+	 * Required - API name: {@code fixed_interval}
 	 */
-	public final JsonData valueBody() {
-		return this.valueBody;
+	public final Time fixedInterval() {
+		return this.fixedInterval;
 	}
 
 	/**
-	 * Serialize this value to JSON.
+	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("fixed_interval");
+		this.fixedInterval.serialize(generator, mapper);
 
 	}
 
@@ -86,26 +93,25 @@ public class RollupResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RollupResponse}.
+	 * Builder for {@link DownsampleConfig}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RollupResponse> {
-		private JsonData valueBody;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DownsampleConfig> {
+		private Time fixedInterval;
 
 		/**
-		 * Required - Response value.
+		 * Required - API name: {@code fixed_interval}
 		 */
-		public final Builder valueBody(JsonData value) {
-			this.valueBody = value;
+		public final Builder fixedInterval(Time value) {
+			this.fixedInterval = value;
 			return this;
 		}
 
-		@Override
-		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
-
-			@SuppressWarnings("unchecked")
-			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
-			return this.valueBody(value);
+		/**
+		 * Required - API name: {@code fixed_interval}
+		 */
+		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fixedInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -114,25 +120,30 @@ public class RollupResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RollupResponse}.
+		 * Builds a {@link DownsampleConfig}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RollupResponse build() {
+		public DownsampleConfig build() {
 			_checkSingleUse();
 
-			return new RollupResponse(this);
+			return new DownsampleConfig(this);
 		}
 	}
 
-	public static final JsonpDeserializer<RollupResponse> _DESERIALIZER = createRollupResponseDeserializer();
-	protected static JsonpDeserializer<RollupResponse> createRollupResponseDeserializer() {
+	// ---------------------------------------------------------------------------------------------
 
-		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+	/**
+	 * Json deserializer for {@link DownsampleConfig}
+	 */
+	public static final JsonpDeserializer<DownsampleConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DownsampleConfig::setupDownsampleConfigDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+	protected static void setupDownsampleConfigDeserializer(ObjectDeserializer<DownsampleConfig.Builder> op) {
+
+		op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
+
 	}
 
 }

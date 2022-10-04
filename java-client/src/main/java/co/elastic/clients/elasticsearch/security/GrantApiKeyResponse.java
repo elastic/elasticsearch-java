@@ -58,6 +58,8 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 	@Nullable
 	private final Long expiration;
 
+	private final String encoded;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GrantApiKeyResponse(Builder builder) {
@@ -66,6 +68,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
+		this.encoded = ApiTypeHelper.requireNonNull(builder.encoded, this, "encoded");
 
 	}
 
@@ -103,6 +106,13 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code encoded}
+	 */
+	public final String encoded() {
+		return this.encoded;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -127,6 +137,8 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 			generator.write(this.expiration);
 
 		}
+		generator.writeKey("encoded");
+		generator.write(this.encoded);
 
 	}
 
@@ -152,6 +164,8 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 
 		@Nullable
 		private Long expiration;
+
+		private String encoded;
 
 		/**
 		 * Required - API name: {@code api_key}
@@ -182,6 +196,14 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 		 */
 		public final Builder expiration(@Nullable Long value) {
 			this.expiration = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code encoded}
+		 */
+		public final Builder encoded(String value) {
+			this.encoded = value;
 			return this;
 		}
 
@@ -217,6 +239,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
+		op.add(Builder::encoded, JsonpDeserializer.stringDeserializer(), "encoded");
 
 	}
 

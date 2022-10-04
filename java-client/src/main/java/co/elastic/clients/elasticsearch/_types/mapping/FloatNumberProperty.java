@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class FloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class FloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Float nullValue;
 
@@ -95,7 +95,7 @@ public class FloatNumberProperty extends StandardNumberProperty implements Prope
 	 * Builder for {@link FloatNumberProperty}.
 	 */
 
-	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
+	public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FloatNumberProperty> {
 		@Nullable
@@ -136,7 +136,7 @@ public class FloatNumberProperty extends StandardNumberProperty implements Prope
 			.lazy(Builder::new, FloatNumberProperty::setupFloatNumberPropertyDeserializer);
 
 	protected static void setupFloatNumberPropertyDeserializer(ObjectDeserializer<FloatNumberProperty.Builder> op) {
-		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
+		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.floatDeserializer(), "null_value");
 
 		op.ignore("type");

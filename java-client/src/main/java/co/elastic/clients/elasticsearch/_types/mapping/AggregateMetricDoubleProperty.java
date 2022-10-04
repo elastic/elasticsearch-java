@@ -51,6 +51,9 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 
 	private final List<String> metrics;
 
+	@Nullable
+	private final TimeSeriesMetricType timeSeriesMetric;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AggregateMetricDoubleProperty(Builder builder) {
@@ -58,6 +61,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 
 		this.defaultMetric = ApiTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
 		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.timeSeriesMetric = builder.timeSeriesMetric;
 
 	}
 
@@ -87,6 +91,14 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		return this.metrics;
 	}
 
+	/**
+	 * API name: {@code time_series_metric}
+	 */
+	@Nullable
+	public final TimeSeriesMetricType timeSeriesMetric() {
+		return this.timeSeriesMetric;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "aggregate_metric_double");
@@ -104,6 +116,10 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 			generator.writeEnd();
 
 		}
+		if (this.timeSeriesMetric != null) {
+			generator.writeKey("time_series_metric");
+			this.timeSeriesMetric.serialize(generator, mapper);
+		}
 
 	}
 
@@ -119,6 +135,9 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		private String defaultMetric;
 
 		private List<String> metrics;
+
+		@Nullable
+		private TimeSeriesMetricType timeSeriesMetric;
 
 		/**
 		 * Required - API name: {@code default_metric}
@@ -145,6 +164,14 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		 */
 		public final Builder metrics(String value, String... values) {
 			this.metrics = _listAdd(this.metrics, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code time_series_metric}
+		 */
+		public final Builder timeSeriesMetric(@Nullable TimeSeriesMetricType value) {
+			this.timeSeriesMetric = value;
 			return this;
 		}
 
@@ -180,6 +207,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		op.add(Builder::defaultMetric, JsonpDeserializer.stringDeserializer(), "default_metric");
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"metrics");
+		op.add(Builder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");
 
 		op.ignore("type");
 	}

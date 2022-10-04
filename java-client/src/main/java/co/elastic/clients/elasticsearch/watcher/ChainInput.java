@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ChainInput implements InputVariant, JsonpSerializable {
-	private final List<Input> inputs;
+	private final List<NamedValue<Input>> inputs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +74,7 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Required - API name: {@code inputs}
 	 */
-	public final List<Input> inputs() {
+	public final List<NamedValue<Input>> inputs() {
 		return this.inputs;
 	}
 
@@ -91,8 +92,12 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.inputs)) {
 			generator.writeKey("inputs");
 			generator.writeStartArray();
-			for (Input item0 : this.inputs) {
-				item0.serialize(generator, mapper);
+			for (NamedValue<Input> item0 : this.inputs) {
+				generator.writeStartObject();
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
+
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -113,14 +118,14 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ChainInput> {
-		private List<Input> inputs;
+		private List<NamedValue<Input>> inputs;
 
 		/**
 		 * Required - API name: {@code inputs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>inputs</code>.
 		 */
-		public final Builder inputs(List<Input> list) {
+		public final Builder inputs(List<NamedValue<Input>> list) {
 			this.inputs = _listAddAll(this.inputs, list);
 			return this;
 		}
@@ -130,18 +135,9 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>inputs</code>.
 		 */
-		public final Builder inputs(Input value, Input... values) {
+		public final Builder inputs(NamedValue<Input> value, NamedValue<Input>... values) {
 			this.inputs = _listAdd(this.inputs, value, values);
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code inputs}
-		 * <p>
-		 * Adds a value to <code>inputs</code> using a builder lambda.
-		 */
-		public final Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return inputs(fn.apply(new Input.Builder()).build());
 		}
 
 		@Override
@@ -172,7 +168,8 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 
 	protected static void setupChainInputDeserializer(ObjectDeserializer<ChainInput.Builder> op) {
 
-		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(Input._DESERIALIZER), "inputs");
+		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> Input._DESERIALIZER)),
+				"inputs");
 
 	}
 
