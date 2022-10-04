@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security.grant_api_key;
 
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.security.RoleDescriptor;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -58,7 +59,9 @@ public class GrantApiKey implements JsonpSerializable {
 	@Nullable
 	private final Time expiration;
 
-	private final List<Map<String, JsonData>> roleDescriptors;
+	private final List<Map<String, RoleDescriptor>> roleDescriptors;
+
+	private final Map<String, JsonData> metadata;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,6 +70,7 @@ public class GrantApiKey implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 	}
 
@@ -92,8 +96,15 @@ public class GrantApiKey implements JsonpSerializable {
 	/**
 	 * API name: {@code role_descriptors}
 	 */
-	public final List<Map<String, JsonData>> roleDescriptors() {
+	public final List<Map<String, RoleDescriptor>> roleDescriptors() {
 		return this.roleDescriptors;
+	}
+
+	/**
+	 * API name: {@code metadata}
+	 */
+	public final Map<String, JsonData> metadata() {
+		return this.metadata;
 	}
 
 	/**
@@ -118,16 +129,27 @@ public class GrantApiKey implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartArray();
-			for (Map<String, JsonData> item0 : this.roleDescriptors) {
+			for (Map<String, RoleDescriptor> item0 : this.roleDescriptors) {
 				generator.writeStartObject();
 				if (item0 != null) {
-					for (Map.Entry<String, JsonData> item1 : item0.entrySet()) {
+					for (Map.Entry<String, RoleDescriptor> item1 : item0.entrySet()) {
 						generator.writeKey(item1.getKey());
 						item1.getValue().serialize(generator, mapper);
 
 					}
 				}
 				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -154,7 +176,10 @@ public class GrantApiKey implements JsonpSerializable {
 		private Time expiration;
 
 		@Nullable
-		private List<Map<String, JsonData>> roleDescriptors;
+		private List<Map<String, RoleDescriptor>> roleDescriptors;
+
+		@Nullable
+		private Map<String, JsonData> metadata;
 
 		/**
 		 * Required - API name: {@code name}
@@ -184,7 +209,7 @@ public class GrantApiKey implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>.
 		 */
-		public final Builder roleDescriptors(List<Map<String, JsonData>> list) {
+		public final Builder roleDescriptors(List<Map<String, RoleDescriptor>> list) {
 			this.roleDescriptors = _listAddAll(this.roleDescriptors, list);
 			return this;
 		}
@@ -194,8 +219,28 @@ public class GrantApiKey implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>roleDescriptors</code>.
 		 */
-		public final Builder roleDescriptors(Map<String, JsonData> value, Map<String, JsonData>... values) {
+		public final Builder roleDescriptors(Map<String, RoleDescriptor> value, Map<String, RoleDescriptor>... values) {
 			this.roleDescriptors = _listAdd(this.roleDescriptors, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
+		 */
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -229,9 +274,9 @@ public class GrantApiKey implements JsonpSerializable {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
-		op.add(Builder::roleDescriptors,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
-				"role_descriptors");
+		op.add(Builder::roleDescriptors, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER)), "role_descriptors");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 
 	}
 

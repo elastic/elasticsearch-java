@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ShortNumberProperty extends StandardNumberProperty implements PropertyVariant {
+public class ShortNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Number nullValue;
 
@@ -95,7 +95,7 @@ public class ShortNumberProperty extends StandardNumberProperty implements Prope
 	 * Builder for {@link ShortNumberProperty}.
 	 */
 
-	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
+	public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShortNumberProperty> {
 		@Nullable
@@ -136,7 +136,7 @@ public class ShortNumberProperty extends StandardNumberProperty implements Prope
 			.lazy(Builder::new, ShortNumberProperty::setupShortNumberPropertyDeserializer);
 
 	protected static void setupShortNumberPropertyDeserializer(ObjectDeserializer<ShortNumberProperty.Builder> op) {
-		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
+		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.numberDeserializer(), "null_value");
 
 		op.ignore("type");

@@ -56,14 +56,14 @@ import javax.annotation.Nullable;
 public class GetUserProfileRequest extends RequestBase {
 	private final List<String> data;
 
-	private final String uid;
+	private final List<String> uid;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetUserProfileRequest(Builder builder) {
 
 		this.data = ApiTypeHelper.unmodifiable(builder.data);
-		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
+		this.uid = ApiTypeHelper.unmodifiableRequired(builder.uid, this, "uid");
 
 	}
 
@@ -88,7 +88,7 @@ public class GetUserProfileRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code uid}
 	 */
-	public final String uid() {
+	public final List<String> uid() {
 		return this.uid;
 	}
 
@@ -104,7 +104,7 @@ public class GetUserProfileRequest extends RequestBase {
 		@Nullable
 		private List<String> data;
 
-		private String uid;
+		private List<String> uid;
 
 		/**
 		 * List of filters for the <code>data</code> field of the profile document. To
@@ -140,9 +140,23 @@ public class GetUserProfileRequest extends RequestBase {
 		 * Required - A unique identifier for the user profile.
 		 * <p>
 		 * API name: {@code uid}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>uid</code>.
 		 */
-		public final Builder uid(String value) {
-			this.uid = value;
+		public final Builder uid(List<String> list) {
+			this.uid = _listAddAll(this.uid, list);
+			return this;
+		}
+
+		/**
+		 * Required - A unique identifier for the user profile.
+		 * <p>
+		 * API name: {@code uid}
+		 * <p>
+		 * Adds one or more values to <code>uid</code>.
+		 */
+		public final Builder uid(String value, String... values) {
+			this.uid = _listAdd(this.uid, value, values);
 			return this;
 		}
 
@@ -191,7 +205,7 @@ public class GetUserProfileRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/profile");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.uid, buf);
+					SimpleEndpoint.pathEncode(request.uid.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

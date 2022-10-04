@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch.security.get_user_profile.GetUserProfileErrors;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,10 +35,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
-import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -52,13 +50,17 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetUserProfileResponse implements JsonpSerializable {
-	private final Map<String, UserProfileWithMetadata> result;
+	private final List<UserProfileWithMetadata> profiles;
+
+	@Nullable
+	private final GetUserProfileErrors errors;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetUserProfileResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.profiles = ApiTypeHelper.unmodifiableRequired(builder.profiles, this, "profiles");
+		this.errors = builder.errors;
 
 	}
 
@@ -67,30 +69,46 @@ public class GetUserProfileResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Response value.
+	 * Required - API name: {@code profiles}
 	 */
-	public final Map<String, UserProfileWithMetadata> result() {
-		return this.result;
+	public final List<UserProfileWithMetadata> profiles() {
+		return this.profiles;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * API name: {@code errors}
 	 */
-	public final @Nullable UserProfileWithMetadata get(String key) {
-		return this.result.get(key);
+	@Nullable
+	public final GetUserProfileErrors errors() {
+		return this.errors;
 	}
 
 	/**
-	 * Serialize this value to JSON.
+	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, UserProfileWithMetadata> item0 : this.result.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (ApiTypeHelper.isDefined(this.profiles)) {
+			generator.writeKey("profiles");
+			generator.writeStartArray();
+			for (UserProfileWithMetadata item0 : this.profiles) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.errors != null) {
+			generator.writeKey("errors");
+			this.errors.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -108,45 +126,54 @@ public class GetUserProfileResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetUserProfileResponse> {
-		private Map<String, UserProfileWithMetadata> result = new HashMap<>();
+		private List<UserProfileWithMetadata> profiles;
+
+		@Nullable
+		private GetUserProfileErrors errors;
 
 		/**
-		 * Required - Response value.
+		 * Required - API name: {@code profiles}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all elements of <code>list</code> to <code>profiles</code>.
 		 */
-		public final Builder result(Map<String, UserProfileWithMetadata> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder profiles(List<UserProfileWithMetadata> list) {
+			this.profiles = _listAddAll(this.profiles, list);
 			return this;
 		}
 
 		/**
-		 * Required - Response value.
+		 * Required - API name: {@code profiles}
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds one or more values to <code>profiles</code>.
 		 */
-		public final Builder result(String key, UserProfileWithMetadata value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder profiles(UserProfileWithMetadata value, UserProfileWithMetadata... values) {
+			this.profiles = _listAdd(this.profiles, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - Response value.
+		 * Required - API name: {@code profiles}
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds a value to <code>profiles</code> using a builder lambda.
 		 */
-		public final Builder result(String key,
+		public final Builder profiles(
 				Function<UserProfileWithMetadata.Builder, ObjectBuilder<UserProfileWithMetadata>> fn) {
-			return result(key, fn.apply(new UserProfileWithMetadata.Builder()).build());
+			return profiles(fn.apply(new UserProfileWithMetadata.Builder()).build());
 		}
 
-		@Override
-		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+		/**
+		 * API name: {@code errors}
+		 */
+		public final Builder errors(@Nullable GetUserProfileErrors value) {
+			this.errors = value;
+			return this;
+		}
 
-			@SuppressWarnings("unchecked")
-			Map<String, UserProfileWithMetadata> value = (Map<String, UserProfileWithMetadata>) JsonpDeserializer
-					.stringMapDeserializer(UserProfileWithMetadata._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+		/**
+		 * API name: {@code errors}
+		 */
+		public final Builder errors(Function<GetUserProfileErrors.Builder, ObjectBuilder<GetUserProfileErrors>> fn) {
+			return this.errors(fn.apply(new GetUserProfileErrors.Builder()).build());
 		}
 
 		@Override
@@ -167,14 +194,21 @@ public class GetUserProfileResponse implements JsonpSerializable {
 		}
 	}
 
-	public static final JsonpDeserializer<GetUserProfileResponse> _DESERIALIZER = createGetUserProfileResponseDeserializer();
-	protected static JsonpDeserializer<GetUserProfileResponse> createGetUserProfileResponseDeserializer() {
+	// ---------------------------------------------------------------------------------------------
 
-		JsonpDeserializer<Map<String, UserProfileWithMetadata>> valueDeserializer = JsonpDeserializer
-				.stringMapDeserializer(UserProfileWithMetadata._DESERIALIZER);
+	/**
+	 * Json deserializer for {@link GetUserProfileResponse}
+	 */
+	public static final JsonpDeserializer<GetUserProfileResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetUserProfileResponse::setupGetUserProfileResponseDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+	protected static void setupGetUserProfileResponseDeserializer(
+			ObjectDeserializer<GetUserProfileResponse.Builder> op) {
+
+		op.add(Builder::profiles, JsonpDeserializer.arrayDeserializer(UserProfileWithMetadata._DESERIALIZER),
+				"profiles");
+		op.add(Builder::errors, GetUserProfileErrors._DESERIALIZER, "errors");
+
 	}
 
 }

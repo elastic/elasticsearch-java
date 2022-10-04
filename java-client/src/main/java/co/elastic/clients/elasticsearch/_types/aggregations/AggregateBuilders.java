@@ -551,6 +551,24 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IpPrefixAggregate ip_prefix}
+	 * {@code Aggregate} variant.
+	 */
+	public static IpPrefixAggregate.Builder ipPrefix() {
+		return new IpPrefixAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link IpPrefixAggregate ip_prefix}
+	 * {@code Aggregate} variant.
+	 */
+	public static Aggregate ipPrefix(Function<IpPrefixAggregate.Builder, ObjectBuilder<IpPrefixAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.ipPrefix(fn.apply(new IpPrefixAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link IpRangeAggregate ip_range} {@code Aggregate}
 	 * variant.
 	 */

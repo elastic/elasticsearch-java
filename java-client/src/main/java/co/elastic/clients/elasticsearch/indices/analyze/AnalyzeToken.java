@@ -54,7 +54,7 @@ public class AnalyzeToken implements JsonpSerializable {
 	private final long position;
 
 	@Nullable
-	private final Long positionLength;
+	private final Long positionlength;
 
 	private final long startOffset;
 
@@ -68,7 +68,7 @@ public class AnalyzeToken implements JsonpSerializable {
 
 		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
 		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
-		this.positionLength = builder.positionLength;
+		this.positionlength = builder.positionlength;
 		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
 		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
@@ -94,11 +94,11 @@ public class AnalyzeToken implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code position_length}
+	 * API name: {@code positionLength}
 	 */
 	@Nullable
-	public final Long positionLength() {
-		return this.positionLength;
+	public final Long positionlength() {
+		return this.positionlength;
 	}
 
 	/**
@@ -139,9 +139,9 @@ public class AnalyzeToken implements JsonpSerializable {
 		generator.writeKey("position");
 		generator.write(this.position);
 
-		if (this.positionLength != null) {
-			generator.writeKey("position_length");
-			generator.write(this.positionLength);
+		if (this.positionlength != null) {
+			generator.writeKey("positionLength");
+			generator.write(this.positionlength);
 
 		}
 		generator.writeKey("start_offset");
@@ -172,7 +172,7 @@ public class AnalyzeToken implements JsonpSerializable {
 		private Long position;
 
 		@Nullable
-		private Long positionLength;
+		private Long positionlength;
 
 		private Long startOffset;
 
@@ -197,10 +197,10 @@ public class AnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code position_length}
+		 * API name: {@code positionLength}
 		 */
-		public final Builder positionLength(@Nullable Long value) {
-			this.positionLength = value;
+		public final Builder positionlength(@Nullable Long value) {
+			this.positionlength = value;
 			return this;
 		}
 
@@ -258,7 +258,7 @@ public class AnalyzeToken implements JsonpSerializable {
 
 		op.add(Builder::endOffset, JsonpDeserializer.longDeserializer(), "end_offset");
 		op.add(Builder::position, JsonpDeserializer.longDeserializer(), "position");
-		op.add(Builder::positionLength, JsonpDeserializer.longDeserializer(), "position_length");
+		op.add(Builder::positionlength, JsonpDeserializer.longDeserializer(), "positionLength");
 		op.add(Builder::startOffset, JsonpDeserializer.longDeserializer(), "start_offset");
 		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

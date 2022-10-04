@@ -561,6 +561,39 @@ public class ElasticsearchIndicesAsyncClient
 		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.downsample
+
+	/**
+	 * Downsample an index
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DownsampleResponse> downsample(DownsampleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DownsampleRequest, DownsampleResponse, ErrorResponse> endpoint = (JsonEndpoint<DownsampleRequest, DownsampleResponse, ErrorResponse>) DownsampleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Downsample an index
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DownsampleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DownsampleResponse> downsample(
+			Function<DownsampleRequest.Builder, ObjectBuilder<DownsampleRequest>> fn) {
+		return downsample(fn.apply(new DownsampleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.exists
 
 	/**

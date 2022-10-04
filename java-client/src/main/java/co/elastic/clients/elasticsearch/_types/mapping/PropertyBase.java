@@ -86,6 +86,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Metadata about the field.
+	 * <p>
 	 * API name: {@code meta}
 	 */
 	public final Map<String, String> meta() {
@@ -236,6 +238,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Metadata about the field.
+		 * <p>
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
@@ -246,6 +250,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Metadata about the field.
+		 * <p>
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds an entry to <code>meta</code>.

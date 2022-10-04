@@ -38,10 +38,12 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,6 +71,9 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 	private final List<SortOptions> sort;
 
+	@Nullable
+	private final Boolean withLimitedBy;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryApiKeysRequest(Builder builder) {
@@ -78,6 +83,7 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.size = builder.size;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.withLimitedBy = builder.withLimitedBy;
 
 	}
 
@@ -133,6 +139,18 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public final List<SortOptions> sort() {
 		return this.sort;
+	}
+
+	/**
+	 * Return the snapshot of the owner user's role descriptors associated with the
+	 * API key. An API key's actual permission is the intersection of its assigned
+	 * role descriptors and the owner user's role descriptors.
+	 * <p>
+	 * API name: {@code with_limited_by}
+	 */
+	@Nullable
+	public final Boolean withLimitedBy() {
+		return this.withLimitedBy;
 	}
 
 	/**
@@ -207,6 +225,9 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private List<SortOptions> sort;
+
+		@Nullable
+		private Boolean withLimitedBy;
 
 		/**
 		 * Starting document offset. By default, you cannot page through more than
@@ -304,6 +325,18 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
+		/**
+		 * Return the snapshot of the owner user's role descriptors associated with the
+		 * API key. An API key's actual permission is the intersection of its assigned
+		 * role descriptors and the owner user's role descriptors.
+		 * <p>
+		 * API name: {@code with_limited_by}
+		 */
+		public final Builder withLimitedBy(@Nullable Boolean value) {
+			this.withLimitedBy = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -363,7 +396,11 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.withLimitedBy != null) {
+					params.put("with_limited_by", String.valueOf(request.withLimitedBy));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, QueryApiKeysResponse._DESERIALIZER);
 }

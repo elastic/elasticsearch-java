@@ -63,6 +63,9 @@ public class SourceField implements JsonpSerializable {
 
 	private final List<String> includes;
 
+	@Nullable
+	private final SourceFieldMode mode;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SourceField(Builder builder) {
@@ -72,6 +75,7 @@ public class SourceField implements JsonpSerializable {
 		this.enabled = builder.enabled;
 		this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
 		this.includes = ApiTypeHelper.unmodifiable(builder.includes);
+		this.mode = builder.mode;
 
 	}
 
@@ -115,6 +119,14 @@ public class SourceField implements JsonpSerializable {
 	 */
 	public final List<String> includes() {
 		return this.includes;
+	}
+
+	/**
+	 * API name: {@code mode}
+	 */
+	@Nullable
+	public final SourceFieldMode mode() {
+		return this.mode;
 	}
 
 	/**
@@ -163,6 +175,10 @@ public class SourceField implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.mode != null) {
+			generator.writeKey("mode");
+			this.mode.serialize(generator, mapper);
+		}
 
 	}
 
@@ -192,6 +208,9 @@ public class SourceField implements JsonpSerializable {
 
 		@Nullable
 		private List<String> includes;
+
+		@Nullable
+		private SourceFieldMode mode;
 
 		/**
 		 * API name: {@code compress}
@@ -257,6 +276,14 @@ public class SourceField implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code mode}
+		 */
+		public final Builder mode(@Nullable SourceFieldMode value) {
+			this.mode = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -292,6 +319,7 @@ public class SourceField implements JsonpSerializable {
 				"excludes");
 		op.add(Builder::includes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"includes");
+		op.add(Builder::mode, SourceFieldMode._DESERIALIZER, "mode");
 
 	}
 

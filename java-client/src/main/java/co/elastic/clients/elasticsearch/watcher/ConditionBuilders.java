@@ -28,6 +28,11 @@ import java.util.function.Function;
 
 /**
  * Builders for {@link Condition} variants.
+ * <p>
+ * Variants <code>array_compare</code>, <code>compare</code> are not available
+ * here as they don't have a dedicated class. Use {@link Condition}'s builder
+ * for these.
+ * 
  */
 public class ConditionBuilders {
 	private ConditionBuilders() {
@@ -48,43 +53,6 @@ public class ConditionBuilders {
 	public static Condition always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> fn) {
 		Condition.Builder builder = new Condition.Builder();
 		builder.always(fn.apply(new AlwaysCondition.Builder()).build());
-		return builder.build();
-	}
-
-	/**
-	 * Creates a builder for the {@link ArrayCompareCondition array_compare}
-	 * {@code Condition} variant.
-	 */
-	public static ArrayCompareCondition.Builder arrayCompare() {
-		return new ArrayCompareCondition.Builder();
-	}
-
-	/**
-	 * Creates a Condition of the {@link ArrayCompareCondition array_compare}
-	 * {@code Condition} variant.
-	 */
-	public static Condition arrayCompare(
-			Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
-		Condition.Builder builder = new Condition.Builder();
-		builder.arrayCompare(fn.apply(new ArrayCompareCondition.Builder()).build());
-		return builder.build();
-	}
-
-	/**
-	 * Creates a builder for the {@link CompareCondition compare} {@code Condition}
-	 * variant.
-	 */
-	public static CompareCondition.Builder compare() {
-		return new CompareCondition.Builder();
-	}
-
-	/**
-	 * Creates a Condition of the {@link CompareCondition compare} {@code Condition}
-	 * variant.
-	 */
-	public static Condition compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> fn) {
-		Condition.Builder builder = new Condition.Builder();
-		builder.compare(fn.apply(new CompareCondition.Builder()).build());
 		return builder.build();
 	}
 

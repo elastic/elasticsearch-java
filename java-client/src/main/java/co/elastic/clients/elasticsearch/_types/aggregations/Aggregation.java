@@ -134,6 +134,8 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 
 		IpRange("ip_range"),
 
+		IpPrefix("ip_prefix"),
+
 		Inference("inference"),
 
 		MatrixStats("matrix_stats"),
@@ -873,6 +875,23 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 	 */
 	public IpRangeAggregation ipRange() {
 		return TaggedUnionUtils.get(this, Kind.IpRange);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ip_prefix}?
+	 */
+	public boolean isIpPrefix() {
+		return _kind == Kind.IpPrefix;
+	}
+
+	/**
+	 * Get the {@code ip_prefix} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ip_prefix} kind.
+	 */
+	public IpPrefixAggregation ipPrefix() {
+		return TaggedUnionUtils.get(this, Kind.IpPrefix);
 	}
 
 	/**
@@ -2054,6 +2073,16 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			return this.ipRange(fn.apply(new IpRangeAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder ipPrefix(IpPrefixAggregation v) {
+			this._kind = Kind.IpPrefix;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder ipPrefix(Function<IpPrefixAggregation.Builder, ObjectBuilder<IpPrefixAggregation>> fn) {
+			return this.ipPrefix(fn.apply(new IpPrefixAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder inference(InferenceAggregation v) {
 			this._kind = Kind.Inference;
 			this._value = v;
@@ -2595,6 +2624,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		op.add(Builder::global, GlobalAggregation._DESERIALIZER, "global");
 		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
 		op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");
+		op.add(Builder::ipPrefix, IpPrefixAggregation._DESERIALIZER, "ip_prefix");
 		op.add(Builder::inference, InferenceAggregation._DESERIALIZER, "inference");
 		op.add(Builder::matrixStats, MatrixStatsAggregation._DESERIALIZER, "matrix_stats");
 		op.add(Builder::max, MaxAggregation._DESERIALIZER, "max");

@@ -121,6 +121,8 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		Inference("inference"),
 
+		IpPrefix("ip_prefix"),
+
 		IpRange("ip_range"),
 
 		Lrareterms("lrareterms"),
@@ -738,6 +740,23 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	 */
 	public InferenceAggregate inference() {
 		return TaggedUnionUtils.get(this, Kind.Inference);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ip_prefix}?
+	 */
+	public boolean isIpPrefix() {
+		return _kind == Kind.IpPrefix;
+	}
+
+	/**
+	 * Get the {@code ip_prefix} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ip_prefix} kind.
+	 */
+	public IpPrefixAggregate ipPrefix() {
+		return TaggedUnionUtils.get(this, Kind.IpPrefix);
 	}
 
 	/**
@@ -1744,6 +1763,17 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.inference(fn.apply(new InferenceAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> ipPrefix(IpPrefixAggregate v) {
+			this._kind = Kind.IpPrefix;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> ipPrefix(
+				Function<IpPrefixAggregate.Builder, ObjectBuilder<IpPrefixAggregate>> fn) {
+			return this.ipPrefix(fn.apply(new IpPrefixAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> ipRange(IpRangeAggregate v) {
 			this._kind = Kind.IpRange;
 			this._value = v;
@@ -2208,6 +2238,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("hdr_percentiles", HdrPercentilesAggregate._DESERIALIZER);
 		deserializers.put("histogram", HistogramAggregate._DESERIALIZER);
 		deserializers.put("inference", InferenceAggregate._DESERIALIZER);
+		deserializers.put("ip_prefix", IpPrefixAggregate._DESERIALIZER);
 		deserializers.put("ip_range", IpRangeAggregate._DESERIALIZER);
 		deserializers.put("lrareterms", LongRareTermsAggregate._DESERIALIZER);
 		deserializers.put("lterms", LongTermsAggregate._DESERIALIZER);

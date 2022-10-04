@@ -65,6 +65,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	private final String password;
 
 	@Nullable
+	private final String runAs;
+
+	@Nullable
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,6 +78,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.grantType = ApiTypeHelper.requireNonNull(builder.grantType, this, "grantType");
 		this.password = builder.password;
+		this.runAs = builder.runAs;
 		this.username = builder.username;
 
 	}
@@ -114,6 +118,14 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * API name: {@code run_as}
+	 */
+	@Nullable
+	public final String runAs() {
+		return this.runAs;
+	}
+
+	/**
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -147,6 +159,11 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.password);
 
 		}
+		if (this.runAs != null) {
+			generator.writeKey("run_as");
+			generator.write(this.runAs);
+
+		}
 		if (this.username != null) {
 			generator.writeKey("username");
 			generator.write(this.username);
@@ -173,6 +190,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 
 		@Nullable
 		private String password;
+
+		@Nullable
+		private String runAs;
 
 		@Nullable
 		private String username;
@@ -217,6 +237,14 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * API name: {@code run_as}
+		 */
+		public final Builder runAs(@Nullable String value) {
+			this.runAs = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {
@@ -256,6 +284,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::apiKey, GrantApiKey._DESERIALIZER, "api_key");
 		op.add(Builder::grantType, ApiKeyGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::runAs, JsonpDeserializer.stringDeserializer(), "run_as");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}

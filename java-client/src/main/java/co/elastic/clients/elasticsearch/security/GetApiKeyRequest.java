@@ -66,6 +66,9 @@ public class GetApiKeyRequest extends RequestBase {
 	@Nullable
 	private final String username;
 
+	@Nullable
+	private final Boolean withLimitedBy;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetApiKeyRequest(Builder builder) {
@@ -75,6 +78,7 @@ public class GetApiKeyRequest extends RequestBase {
 		this.owner = builder.owner;
 		this.realmName = builder.realmName;
 		this.username = builder.username;
+		this.withLimitedBy = builder.withLimitedBy;
 
 	}
 
@@ -132,6 +136,18 @@ public class GetApiKeyRequest extends RequestBase {
 		return this.username;
 	}
 
+	/**
+	 * Return the snapshot of the owner user's role descriptors associated with the
+	 * API key. An API key's actual permission is the intersection of its assigned
+	 * role descriptors and the owner user's role descriptors.
+	 * <p>
+	 * API name: {@code with_limited_by}
+	 */
+	@Nullable
+	public final Boolean withLimitedBy() {
+		return this.withLimitedBy;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -155,6 +171,9 @@ public class GetApiKeyRequest extends RequestBase {
 
 		@Nullable
 		private String username;
+
+		@Nullable
+		private Boolean withLimitedBy;
 
 		/**
 		 * API key id of the API key to be retrieved
@@ -203,6 +222,18 @@ public class GetApiKeyRequest extends RequestBase {
 		 */
 		public final Builder username(@Nullable String value) {
 			this.username = value;
+			return this;
+		}
+
+		/**
+		 * Return the snapshot of the owner user's role descriptors associated with the
+		 * API key. An API key's actual permission is the intersection of its assigned
+		 * role descriptors and the owner user's role descriptors.
+		 * <p>
+		 * API name: {@code with_limited_by}
+		 */
+		public final Builder withLimitedBy(@Nullable Boolean value) {
+			this.withLimitedBy = value;
 			return this;
 		}
 
@@ -261,6 +292,9 @@ public class GetApiKeyRequest extends RequestBase {
 				}
 				if (request.username != null) {
 					params.put("username", request.username);
+				}
+				if (request.withLimitedBy != null) {
+					params.put("with_limited_by", String.valueOf(request.withLimitedBy));
 				}
 				return params;
 

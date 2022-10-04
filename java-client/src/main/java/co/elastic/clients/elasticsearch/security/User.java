@@ -66,6 +66,9 @@ public class User implements JsonpSerializable {
 
 	private final boolean enabled;
 
+	@Nullable
+	private final String profileUid;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected User(AbstractBuilder<?> builder) {
@@ -76,6 +79,7 @@ public class User implements JsonpSerializable {
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.profileUid = builder.profileUid;
 
 	}
 
@@ -128,6 +132,14 @@ public class User implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code profile_uid}
+	 */
+	@Nullable
+	public final String profileUid() {
+		return this.profileUid;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -174,6 +186,12 @@ public class User implements JsonpSerializable {
 
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
+
+		if (this.profileUid != null) {
+			generator.writeKey("profile_uid");
+			generator.write(this.profileUid);
+
+		}
 
 	}
 
@@ -223,6 +241,9 @@ public class User implements JsonpSerializable {
 		private String username;
 
 		private Boolean enabled;
+
+		@Nullable
+		private String profileUid;
 
 		/**
 		 * API name: {@code email}
@@ -296,6 +317,14 @@ public class User implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * API name: {@code profile_uid}
+		 */
+		public final BuilderT profileUid(@Nullable String value) {
+			this.profileUid = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -318,6 +347,7 @@ public class User implements JsonpSerializable {
 				"roles");
 		op.add(AbstractBuilder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(AbstractBuilder::profileUid, JsonpDeserializer.stringDeserializer(), "profile_uid");
 
 	}
 

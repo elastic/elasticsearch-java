@@ -54,6 +54,9 @@ import javax.annotation.Nullable;
 public class TaskInfo implements JsonpSerializable {
 	private final String action;
 
+	@Nullable
+	private final Boolean cancelled;
+
 	private final boolean cancellable;
 
 	@Nullable
@@ -85,6 +88,7 @@ public class TaskInfo implements JsonpSerializable {
 	protected TaskInfo(AbstractBuilder<?> builder) {
 
 		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancelled = builder.cancelled;
 		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
 		this.description = builder.description;
 		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
@@ -108,6 +112,14 @@ public class TaskInfo implements JsonpSerializable {
 	 */
 	public final String action() {
 		return this.action;
+	}
+
+	/**
+	 * API name: {@code cancelled}
+	 */
+	@Nullable
+	public final Boolean cancelled() {
+		return this.cancelled;
 	}
 
 	/**
@@ -205,6 +217,11 @@ public class TaskInfo implements JsonpSerializable {
 		generator.writeKey("action");
 		generator.write(this.action);
 
+		if (this.cancelled != null) {
+			generator.writeKey("cancelled");
+			generator.write(this.cancelled);
+
+		}
 		generator.writeKey("cancellable");
 		generator.write(this.cancellable);
 
@@ -292,6 +309,9 @@ public class TaskInfo implements JsonpSerializable {
 				WithJsonObjectBuilderBase<BuilderT> {
 		private String action;
 
+		@Nullable
+		private Boolean cancelled;
+
 		private Boolean cancellable;
 
 		@Nullable
@@ -323,6 +343,14 @@ public class TaskInfo implements JsonpSerializable {
 		 */
 		public final BuilderT action(String value) {
 			this.action = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code cancelled}
+		 */
+		public final BuilderT cancelled(@Nullable Boolean value) {
+			this.cancelled = value;
 			return self();
 		}
 
@@ -456,6 +484,7 @@ public class TaskInfo implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::action, JsonpDeserializer.stringDeserializer(), "action");
+		op.add(AbstractBuilder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
 		op.add(AbstractBuilder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
 		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(AbstractBuilder::headers,

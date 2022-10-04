@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch.security.has_privileges_user_profile.HasPrivilegesUserProfileErrors;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -52,14 +53,15 @@ import javax.annotation.Nullable;
 public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 	private final List<String> hasPrivilegeUids;
 
-	private final List<String> errorUids;
+	@Nullable
+	private final HasPrivilegesUserProfileErrors errors;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private HasPrivilegesUserProfileResponse(Builder builder) {
 
 		this.hasPrivilegeUids = ApiTypeHelper.unmodifiableRequired(builder.hasPrivilegeUids, this, "hasPrivilegeUids");
-		this.errorUids = ApiTypeHelper.unmodifiable(builder.errorUids);
+		this.errors = builder.errors;
 
 	}
 
@@ -83,10 +85,11 @@ public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 	 * It does not include the missing profile IDs or the profile IDs of the users
 	 * that do not have all the requested privileges. This field is absent if empty.
 	 * <p>
-	 * API name: {@code error_uids}
+	 * API name: {@code errors}
 	 */
-	public final List<String> errorUids() {
-		return this.errorUids;
+	@Nullable
+	public final HasPrivilegesUserProfileErrors errors() {
+		return this.errors;
 	}
 
 	/**
@@ -110,14 +113,9 @@ public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.errorUids)) {
-			generator.writeKey("error_uids");
-			generator.writeStartArray();
-			for (String item0 : this.errorUids) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+		if (this.errors != null) {
+			generator.writeKey("errors");
+			this.errors.serialize(generator, mapper);
 
 		}
 
@@ -140,7 +138,7 @@ public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 		private List<String> hasPrivilegeUids;
 
 		@Nullable
-		private List<String> errorUids;
+		private HasPrivilegesUserProfileErrors errors;
 
 		/**
 		 * Required - The subset of the requested profile IDs of the users that have all
@@ -173,12 +171,10 @@ public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 		 * It does not include the missing profile IDs or the profile IDs of the users
 		 * that do not have all the requested privileges. This field is absent if empty.
 		 * <p>
-		 * API name: {@code error_uids}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>errorUids</code>.
+		 * API name: {@code errors}
 		 */
-		public final Builder errorUids(List<String> list) {
-			this.errorUids = _listAddAll(this.errorUids, list);
+		public final Builder errors(@Nullable HasPrivilegesUserProfileErrors value) {
+			this.errors = value;
 			return this;
 		}
 
@@ -187,13 +183,11 @@ public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 		 * It does not include the missing profile IDs or the profile IDs of the users
 		 * that do not have all the requested privileges. This field is absent if empty.
 		 * <p>
-		 * API name: {@code error_uids}
-		 * <p>
-		 * Adds one or more values to <code>errorUids</code>.
+		 * API name: {@code errors}
 		 */
-		public final Builder errorUids(String value, String... values) {
-			this.errorUids = _listAdd(this.errorUids, value, values);
-			return this;
+		public final Builder errors(
+				Function<HasPrivilegesUserProfileErrors.Builder, ObjectBuilder<HasPrivilegesUserProfileErrors>> fn) {
+			return this.errors(fn.apply(new HasPrivilegesUserProfileErrors.Builder()).build());
 		}
 
 		@Override
@@ -227,8 +221,7 @@ public class HasPrivilegesUserProfileResponse implements JsonpSerializable {
 
 		op.add(Builder::hasPrivilegeUids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"has_privilege_uids");
-		op.add(Builder::errorUids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"error_uids");
+		op.add(Builder::errors, HasPrivilegesUserProfileErrors._DESERIALIZER, "errors");
 
 	}
 

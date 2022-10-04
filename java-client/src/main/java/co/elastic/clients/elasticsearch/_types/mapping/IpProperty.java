@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -53,10 +54,19 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 	private final Boolean index;
 
 	@Nullable
+	private final Boolean ignoreMalformed;
+
+	@Nullable
 	private final String nullValue;
 
 	@Nullable
-	private final Boolean ignoreMalformed;
+	private final OnScriptError onScriptError;
+
+	@Nullable
+	private final Script script;
+
+	@Nullable
+	private final Boolean timeSeriesDimension;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,8 +75,11 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 
 		this.boost = builder.boost;
 		this.index = builder.index;
-		this.nullValue = builder.nullValue;
 		this.ignoreMalformed = builder.ignoreMalformed;
+		this.nullValue = builder.nullValue;
+		this.onScriptError = builder.onScriptError;
+		this.script = builder.script;
+		this.timeSeriesDimension = builder.timeSeriesDimension;
 
 	}
 
@@ -99,6 +112,14 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 	}
 
 	/**
+	 * API name: {@code ignore_malformed}
+	 */
+	@Nullable
+	public final Boolean ignoreMalformed() {
+		return this.ignoreMalformed;
+	}
+
+	/**
 	 * API name: {@code null_value}
 	 */
 	@Nullable
@@ -107,11 +128,30 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 	}
 
 	/**
-	 * API name: {@code ignore_malformed}
+	 * API name: {@code on_script_error}
 	 */
 	@Nullable
-	public final Boolean ignoreMalformed() {
-		return this.ignoreMalformed;
+	public final OnScriptError onScriptError() {
+		return this.onScriptError;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public final Script script() {
+		return this.script;
+	}
+
+	/**
+	 * For internal use by Elastic only. Marks the field as a time series dimension.
+	 * Defaults to false.
+	 * <p>
+	 * API name: {@code time_series_dimension}
+	 */
+	@Nullable
+	public final Boolean timeSeriesDimension() {
+		return this.timeSeriesDimension;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -128,14 +168,28 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 			generator.write(this.index);
 
 		}
+		if (this.ignoreMalformed != null) {
+			generator.writeKey("ignore_malformed");
+			generator.write(this.ignoreMalformed);
+
+		}
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
 		}
-		if (this.ignoreMalformed != null) {
-			generator.writeKey("ignore_malformed");
-			generator.write(this.ignoreMalformed);
+		if (this.onScriptError != null) {
+			generator.writeKey("on_script_error");
+			this.onScriptError.serialize(generator, mapper);
+		}
+		if (this.script != null) {
+			generator.writeKey("script");
+			this.script.serialize(generator, mapper);
+
+		}
+		if (this.timeSeriesDimension != null) {
+			generator.writeKey("time_series_dimension");
+			generator.write(this.timeSeriesDimension);
 
 		}
 
@@ -157,10 +211,19 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		private Boolean index;
 
 		@Nullable
+		private Boolean ignoreMalformed;
+
+		@Nullable
 		private String nullValue;
 
 		@Nullable
-		private Boolean ignoreMalformed;
+		private OnScriptError onScriptError;
+
+		@Nullable
+		private Script script;
+
+		@Nullable
+		private Boolean timeSeriesDimension;
 
 		/**
 		 * API name: {@code boost}
@@ -179,6 +242,14 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		}
 
 		/**
+		 * API name: {@code ignore_malformed}
+		 */
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
+			this.ignoreMalformed = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code null_value}
 		 */
 		public final Builder nullValue(@Nullable String value) {
@@ -187,10 +258,36 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		}
 
 		/**
-		 * API name: {@code ignore_malformed}
+		 * API name: {@code on_script_error}
 		 */
-		public final Builder ignoreMalformed(@Nullable Boolean value) {
-			this.ignoreMalformed = value;
+		public final Builder onScriptError(@Nullable OnScriptError value) {
+			this.onScriptError = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(@Nullable Script value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
+		 * For internal use by Elastic only. Marks the field as a time series dimension.
+		 * Defaults to false.
+		 * <p>
+		 * API name: {@code time_series_dimension}
+		 */
+		public final Builder timeSeriesDimension(@Nullable Boolean value) {
+			this.timeSeriesDimension = value;
 			return this;
 		}
 
@@ -224,8 +321,11 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
-		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
 
 		op.ignore("type");
 	}

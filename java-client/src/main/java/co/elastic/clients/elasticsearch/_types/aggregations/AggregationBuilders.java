@@ -672,6 +672,24 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IpPrefixAggregation ip_prefix}
+	 * {@code Aggregation} variant.
+	 */
+	public static IpPrefixAggregation.Builder ipPrefix() {
+		return new IpPrefixAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link IpPrefixAggregation ip_prefix}
+	 * {@code Aggregation} variant.
+	 */
+	public static Aggregation ipPrefix(Function<IpPrefixAggregation.Builder, ObjectBuilder<IpPrefixAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.ipPrefix(fn.apply(new IpPrefixAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link InferenceAggregation inference}
 	 * {@code Aggregation} variant.
 	 */
