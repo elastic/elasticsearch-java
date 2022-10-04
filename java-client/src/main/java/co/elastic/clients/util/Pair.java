@@ -27,50 +27,49 @@ import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.stream.JsonParser;
 
 import java.util.EnumSet;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 /**
- * A named value, i.e. a string/value pair.
+ * A key/value pair. Used to represent pairs where the name is not a string (generally an enum).
+ * <p>
+ * The key must have a string representation in JSON.
  */
-public class NamedValue<T> {
+public class Pair<K, V> {
 
-    private final String name;
-    private final T value;
+    private final K name;
+    private final V value;
 
-    public NamedValue(String name, T value) {
+    public Pair(K name, V value) {
         this.name = name;
         this.value = value;
     }
 
-    public String name() {
+    public K key() {
         return this.name;
     }
 
-    public T value() {
+    public V value() {
         return this.value;
     }
 
-    public static <T> NamedValue<T> of(String name, T value) {
-        return new NamedValue<>(name, value);
+    public static <K, V> Pair<K, V> of(K name, V value) {
+        return new Pair<>(name, value);
     }
 
-    public static <T> JsonpDeserializer<NamedValue<T>> deserializer(Supplier<JsonpDeserializer<T>> valueParserBuilder) {
-        return deserializer(valueParserBuilder.get());
-    }
-
-    public static <T> JsonpDeserializer<NamedValue<T>> deserializer(JsonpDeserializer<T> valueDeserializer) {
-        return new JsonpDeserializerBase<NamedValue<T>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
+    public static <K, V> JsonpDeserializer<Pair<K, V>> deserializer(Function<String, K> keyDeserializer, JsonpDeserializer<V> valueDeserializer) {
+        return new JsonpDeserializerBase<Pair<K, V>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
             @Override
-            public NamedValue<T> deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            public Pair<K, V> deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
                 JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
                 String name = parser.getString();
 
                 try {
-                    T value = valueDeserializer.deserialize(parser, mapper);
+                    K key = keyDeserializer.apply(parser.getString());
+                    V value = valueDeserializer.deserialize(parser, mapper);
                     JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 
-                    return new NamedValue<>(name, value);
+                    return new Pair<>(key, value);
                 } catch (Exception e) {
                     throw JsonpMappingException.from(e, null, name, parser);
                 }
