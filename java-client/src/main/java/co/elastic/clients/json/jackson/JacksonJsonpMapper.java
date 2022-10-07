@@ -45,17 +45,17 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     }
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this(
-            objectMapper
-                .configure(SerializationFeature.INDENT_OUTPUT, false)
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL),
+        this(objectMapper,
             // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
             new JacksonJsonProvider(objectMapper.getFactory())
         );
     }
 
     public JacksonJsonpMapper() {
-        this(new ObjectMapper());
+        this(new ObjectMapper()
+            .configure(SerializationFeature.INDENT_OUTPUT, false)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        );
     }
 
     @Override
