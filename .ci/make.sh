@@ -111,7 +111,7 @@ case $CMD in
         TASK_ARGS=("$VERSION" "$codegen_folder")
         ;;
     bump)
-        if [ -v $VERSION ]; then
+        if [ -z "$VERSION" ]; then
             echo -e "\033[31;1mTARGET: bump -> missing version parameter\033[0m"
             exit 1
         fi
@@ -159,6 +159,7 @@ if [[ "$CMD" == "assemble" ]]; then
   fi
 
   build_image
+    echo -e "\033[34;1mINFO:\033[0m Building version ${assemble_version}\033[0m"
   docker run --rm --env VERSION=$assemble_version -u "$(id -u)" \
     $git_mount $src_mount $output_mount \
     $docker_image \
@@ -176,7 +177,7 @@ if [[ "$CMD" == "assemble" ]]; then
 fi
 
 if [[ "$CMD" == "bump" ]]; then
-    echo "TODO"
+  echo $VERSION > config/version.txt
 fi
 
 if [[ "$CMD" == "codegen" ]]; then

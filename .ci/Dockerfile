@@ -26,30 +26,32 @@ FROM openjdk:15
 # it can be overridden at build time
 ARG BUILDER_UID=1000
 ARG BUILDER_GID=1000
-ENV BUILDER_USER elastic
-ENV BUILDER_GROUP elastic
 
-# Create user
-RUN groupadd --system -g ${BUILDER_GID} ${BUILDER_GROUP} \
-    && useradd --system --shell /bin/bash -u ${BUILDER_UID} -g ${BUILDER_GROUP} -d /var/lib/elastic -m elastic 1>/dev/null 2>/dev/null \
-    && mkdir -p /elasticsearch-java && mkdir /elasticsearch-java/build \
-    && chown -R ${BUILDER_USER}:${BUILDER_GROUP} /elasticsearch-java
+# Create group and user if needed
+RUN (getent group ${BUILDER_GID} || groupadd -g ${BUILDER_GID} elastic) \
+    && (getent passwd ${BUILDER_UID} || useradd -u ${BUILDER_UID} -g ${BUILDER_GID} elastic) \
+    && mkdir -p /elasticsearch-java/build \
+    && chown -R ${BUILDER_UID}:${BUILDER_GID} /elasticsearch-java
 
 WORKDIR /elasticsearch-java/
-USER ${BUILDER_USER}:${BUILDER_GROUP}
+USER ${BUILDER_UID}:${BUILDER_GID}
 
 # Download and initialize Gradle
-COPY --chown=$BUILDER_USER:$BUILDER_GROUP gradlew ./
-COPY --chown=$BUILDER_USER:$BUILDER_GROUP gradle ./gradle
+COPY --chown=$BUILDER_UID:$BUILDER_GID gradlew ./
+COPY --chown=$BUILDER_UID:$BUILDER_GID gradle ./gradle
 RUN ./gradlew
 
-COPY LICENSE.txt NOTICE.txt ./
+COPY --chown=$BUILDER_UID:$BUILDER_GID LICENSE.txt NOTICE.txt ./
 
-# Prefetch dependencies
-COPY --chown=$BUILDER_USER:$BUILDER_GROUP build.gradle.kts settings.gradle.kts ./
-COPY --chown=$BUILDER_USER:$BUILDER_GROUP buildSrc ./buildSrc/
-COPY --chown=$BUILDER_USER:$BUILDER_GROUP config ./config/
-COPY --chown=$BUILDER_USER:$BUILDER_GROUP java-client/build.gradle.kts ./java-client/
+# Prefetch and cache dependencies
+COPY --chown=$BUILDER_UID:$BUILDER_GID build.gradle.kts settings.gradle.kts ./
+COPY --chown=$BUILDER_UID:$BUILDER_GID buildSrc ./buildSrc/
+COPY --chown=$BUILDER_UID:$BUILDER_GID config ./config/
+COPY --chown=$BUILDER_UID:$BUILDER_GID java-client/build.gradle.kts ./java-client/
 RUN ./gradlew resolveDependencies
 
+# Build artifacts. Expects these mounted directories:
+# /elasticsearch-java/.git - git index (read-only)
+# /elasticsearch-java/java-client/src - source files (read-only)
+# /elasticsearch-java/build - output directory (read-write)
 ENTRYPOINT ["./gradlew"]
