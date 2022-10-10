@@ -25,12 +25,16 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AdjacencyMatrixBucket
 
@@ -42,15 +46,34 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class AdjacencyMatrixBucket extends MultiBucketBase {
+	private final String key;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AdjacencyMatrixBucket(Builder builder) {
 		super(builder);
 
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+
 	}
 
 	public static AdjacencyMatrixBucket of(Function<Builder, ObjectBuilder<AdjacencyMatrixBucket>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code key}
+	 */
+	public final String key() {
+		return this.key;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		generator.writeKey("key");
+		generator.write(this.key);
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -62,6 +85,16 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AdjacencyMatrixBucket> {
+		private String key;
+
+		/**
+		 * Required - API name: {@code key}
+		 */
+		public final Builder key(String value) {
+			this.key = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -90,6 +123,7 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 
 	protected static void setupAdjacencyMatrixBucketDeserializer(ObjectDeserializer<AdjacencyMatrixBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 
 	}
 

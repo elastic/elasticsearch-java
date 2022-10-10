@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
+import co.elastic.clients.elasticsearch.indices.forcemerge.ForceMergeResponseBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,7 +41,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ForcemergeResponse extends ShardsOperationResponseBase {
+public class ForcemergeResponse extends ForceMergeResponseBody {
 	// ---------------------------------------------------------------------------------------------
 
 	private ForcemergeResponse(Builder builder) {
@@ -59,7 +59,7 @@ public class ForcemergeResponse extends ShardsOperationResponseBase {
 	 * Builder for {@link ForcemergeResponse}.
 	 */
 
-	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends ForceMergeResponseBody.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForcemergeResponse> {
 		@Override
@@ -89,7 +89,7 @@ public class ForcemergeResponse extends ShardsOperationResponseBase {
 			.lazy(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer);
 
 	protected static void setupForcemergeResponseDeserializer(ObjectDeserializer<ForcemergeResponse.Builder> op) {
-		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
+		ForceMergeResponseBody.setupForceMergeResponseBodyDeserializer(op);
 
 	}
 

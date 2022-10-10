@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.elasticsearch.ml.Job;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,54 +34,48 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
-// typedef: xpack.usage.Jobs
+// typedef: xpack.usage.MlJobForecasts
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#xpack.usage.Jobs">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.MlJobForecasts">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Jobs implements JsonpSerializable {
-	private final Map<String, Job> jobs;
+public class MlJobForecasts implements JsonpSerializable {
+	private final long total;
 
-	@Nullable
-	private final AllJobs all;
+	private final long forecastedJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Jobs(Builder builder) {
+	private MlJobForecasts(Builder builder) {
 
-		this.jobs = ApiTypeHelper.unmodifiable(builder.jobs);
-
-		this.all = builder.all;
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.forecastedJobs = ApiTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs");
 
 	}
 
-	public static Jobs of(Function<Builder, ObjectBuilder<Jobs>> fn) {
+	public static MlJobForecasts of(Function<Builder, ObjectBuilder<MlJobForecasts>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Detailed job data
+	 * Required - API name: {@code total}
 	 */
-	public final Map<String, Job> jobs() {
-		return this.jobs;
+	public final long total() {
+		return this.total;
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code forecasted_jobs}
 	 */
-	@Nullable
-	public final AllJobs all() {
-		return this.all;
+	public final long forecastedJobs() {
+		return this.forecastedJobs;
 	}
 
 	/**
@@ -96,17 +89,11 @@ public class Jobs implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		for (Map.Entry<String, Job> item0 : this.jobs.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		generator.writeKey("total");
+		generator.write(this.total);
 
-		}
-
-		if (this.all != null) {
-			generator.writeKey("_all");
-			this.all.serialize(generator, mapper);
-
-		}
+		generator.writeKey("forecasted_jobs");
+		generator.write(this.forecastedJobs);
 
 	}
 
@@ -118,58 +105,28 @@ public class Jobs implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Jobs}.
+	 * Builder for {@link MlJobForecasts}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Jobs> {
-		@Nullable
-		private Map<String, Job> jobs = new HashMap<>();
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MlJobForecasts> {
+		private Long total;
+
+		private Long forecastedJobs;
 
 		/**
-		 * Detailed job data
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>jobs</code>.
+		 * Required - API name: {@code total}
 		 */
-		public final Builder jobs(Map<String, Job> map) {
-			this.jobs = _mapPutAll(this.jobs, map);
+		public final Builder total(long value) {
+			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Detailed job data
-		 * <p>
-		 * Adds an entry to <code>jobs</code>.
+		 * Required - API name: {@code forecasted_jobs}
 		 */
-		public final Builder jobs(String key, Job value) {
-			this.jobs = _mapPut(this.jobs, key, value);
+		public final Builder forecastedJobs(long value) {
+			this.forecastedJobs = value;
 			return this;
-		}
-
-		/**
-		 * Detailed job data
-		 * <p>
-		 * Adds an entry to <code>jobs</code> using a builder lambda.
-		 */
-		public final Builder jobs(String key, Function<Job.Builder, ObjectBuilder<Job>> fn) {
-			return jobs(key, fn.apply(new Job.Builder()).build());
-		}
-
-		@Nullable
-		private AllJobs all;
-
-		/**
-		 * API name: {@code _all}
-		 */
-		public final Builder all(@Nullable AllJobs value) {
-			this.all = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _all}
-		 */
-		public final Builder all(Function<AllJobs.Builder, ObjectBuilder<AllJobs>> fn) {
-			return this.all(fn.apply(new AllJobs.Builder()).build());
 		}
 
 		@Override
@@ -178,33 +135,30 @@ public class Jobs implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Jobs}.
+		 * Builds a {@link MlJobForecasts}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Jobs build() {
+		public MlJobForecasts build() {
 			_checkSingleUse();
 
-			return new Jobs(this);
+			return new MlJobForecasts(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Jobs}
+	 * Json deserializer for {@link MlJobForecasts}
 	 */
-	public static final JsonpDeserializer<Jobs> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Jobs::setupJobsDeserializer);
+	public static final JsonpDeserializer<MlJobForecasts> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MlJobForecasts::setupMlJobForecastsDeserializer);
 
-	protected static void setupJobsDeserializer(ObjectDeserializer<Jobs.Builder> op) {
+	protected static void setupMlJobForecastsDeserializer(ObjectDeserializer<MlJobForecasts.Builder> op) {
 
-		op.add(Builder::all, AllJobs._DESERIALIZER, "_all");
-
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			builder.jobs(name, Job._DESERIALIZER.deserialize(parser, mapper));
-		});
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::forecastedJobs, JsonpDeserializer.longDeserializer(), "forecasted_jobs");
 
 	}
 

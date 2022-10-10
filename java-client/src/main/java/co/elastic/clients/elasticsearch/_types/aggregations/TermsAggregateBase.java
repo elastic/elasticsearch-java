@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +48,8 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 	@Nullable
 	private final Long docCountErrorUpperBound;
 
-	private final long sumOtherDocCount;
+	@Nullable
+	private final Long sumOtherDocCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 		super(builder);
 
 		this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
-		this.sumOtherDocCount = ApiTypeHelper.requireNonNull(builder.sumOtherDocCount, this, "sumOtherDocCount");
+		this.sumOtherDocCount = builder.sumOtherDocCount;
 
 	}
 
@@ -70,9 +70,10 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 	}
 
 	/**
-	 * Required - API name: {@code sum_other_doc_count}
+	 * API name: {@code sum_other_doc_count}
 	 */
-	public final long sumOtherDocCount() {
+	@Nullable
+	public final Long sumOtherDocCount() {
 		return this.sumOtherDocCount;
 	}
 
@@ -84,8 +85,11 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 			generator.write(this.docCountErrorUpperBound);
 
 		}
-		generator.writeKey("sum_other_doc_count");
-		generator.write(this.sumOtherDocCount);
+		if (this.sumOtherDocCount != null) {
+			generator.writeKey("sum_other_doc_count");
+			generator.write(this.sumOtherDocCount);
+
+		}
 
 	}
 
@@ -95,6 +99,7 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 		@Nullable
 		private Long docCountErrorUpperBound;
 
+		@Nullable
 		private Long sumOtherDocCount;
 
 		/**
@@ -106,9 +111,9 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 		}
 
 		/**
-		 * Required - API name: {@code sum_other_doc_count}
+		 * API name: {@code sum_other_doc_count}
 		 */
-		public final BuilderT sumOtherDocCount(long value) {
+		public final BuilderT sumOtherDocCount(@Nullable Long value) {
 			this.sumOtherDocCount = value;
 			return self();
 		}

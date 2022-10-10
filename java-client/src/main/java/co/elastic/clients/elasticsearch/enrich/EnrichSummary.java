@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.Pair;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class EnrichSummary implements JsonpSerializable {
-	private final EnrichConfiguration config;
+	private final Pair<EnrichPolicyType, EnrichPolicy> config;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ public class EnrichSummary implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code config}
 	 */
-	public final EnrichConfiguration config() {
+	public final Pair<EnrichPolicyType, EnrichPolicy> config() {
 		return this.config;
 	}
 
@@ -80,7 +81,11 @@ public class EnrichSummary implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("config");
-		this.config.serialize(generator, mapper);
+		generator.writeStartObject();
+		generator.writeKey(this.config.key().jsonValue());
+		this.config.value().serialize(generator, mapper);
+
+		generator.writeEnd();
 
 	}
 
@@ -96,12 +101,12 @@ public class EnrichSummary implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EnrichSummary> {
-		private EnrichConfiguration config;
+		private Pair<EnrichPolicyType, EnrichPolicy> config;
 
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(EnrichConfiguration value) {
+		public final Builder config(Pair<EnrichPolicyType, EnrichPolicy> value) {
 			this.config = value;
 			return this;
 		}
@@ -109,8 +114,16 @@ public class EnrichSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(Function<EnrichConfiguration.Builder, ObjectBuilder<EnrichConfiguration>> fn) {
-			return this.config(fn.apply(new EnrichConfiguration.Builder()).build());
+		public Builder config(EnrichPolicyType key, EnrichPolicy value) {
+			this.config = new Pair(key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code config}
+		 */
+		public Builder config(EnrichPolicyType key, Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.config(key, fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		@Override
@@ -141,7 +154,9 @@ public class EnrichSummary implements JsonpSerializable {
 
 	protected static void setupEnrichSummaryDeserializer(ObjectDeserializer<EnrichSummary.Builder> op) {
 
-		op.add(Builder::config, EnrichConfiguration._DESERIALIZER, "config");
+		op.add(Builder::config,
+				Pair.deserializer((k) -> EnrichPolicyType._DESERIALIZER.parse(k), EnrichPolicy._DESERIALIZER),
+				"config");
 
 	}
 

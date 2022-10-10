@@ -48,12 +48,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SlmPolicy implements JsonpSerializable {
+	@Nullable
 	private final SlmConfiguration config;
 
 	private final String name;
 
 	private final String repository;
 
+	@Nullable
 	private final Retention retention;
 
 	private final String schedule;
@@ -62,10 +64,10 @@ public class SlmPolicy implements JsonpSerializable {
 
 	private SlmPolicy(Builder builder) {
 
-		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.config = builder.config;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.retention = ApiTypeHelper.requireNonNull(builder.retention, this, "retention");
+		this.retention = builder.retention;
 		this.schedule = ApiTypeHelper.requireNonNull(builder.schedule, this, "schedule");
 
 	}
@@ -75,8 +77,9 @@ public class SlmPolicy implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code config}
+	 * API name: {@code config}
 	 */
+	@Nullable
 	public final SlmConfiguration config() {
 		return this.config;
 	}
@@ -96,8 +99,9 @@ public class SlmPolicy implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code retention}
+	 * API name: {@code retention}
 	 */
+	@Nullable
 	public final Retention retention() {
 		return this.retention;
 	}
@@ -120,18 +124,22 @@ public class SlmPolicy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("config");
-		this.config.serialize(generator, mapper);
+		if (this.config != null) {
+			generator.writeKey("config");
+			this.config.serialize(generator, mapper);
 
+		}
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("repository");
 		generator.write(this.repository);
 
-		generator.writeKey("retention");
-		this.retention.serialize(generator, mapper);
+		if (this.retention != null) {
+			generator.writeKey("retention");
+			this.retention.serialize(generator, mapper);
 
+		}
 		generator.writeKey("schedule");
 		generator.write(this.schedule);
 
@@ -149,26 +157,28 @@ public class SlmPolicy implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SlmPolicy> {
+		@Nullable
 		private SlmConfiguration config;
 
 		private String name;
 
 		private String repository;
 
+		@Nullable
 		private Retention retention;
 
 		private String schedule;
 
 		/**
-		 * Required - API name: {@code config}
+		 * API name: {@code config}
 		 */
-		public final Builder config(SlmConfiguration value) {
+		public final Builder config(@Nullable SlmConfiguration value) {
 			this.config = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code config}
+		 * API name: {@code config}
 		 */
 		public final Builder config(Function<SlmConfiguration.Builder, ObjectBuilder<SlmConfiguration>> fn) {
 			return this.config(fn.apply(new SlmConfiguration.Builder()).build());
@@ -191,15 +201,15 @@ public class SlmPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code retention}
+		 * API name: {@code retention}
 		 */
-		public final Builder retention(Retention value) {
+		public final Builder retention(@Nullable Retention value) {
 			this.retention = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code retention}
+		 * API name: {@code retention}
 		 */
 		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
 			return this.retention(fn.apply(new Retention.Builder()).build());

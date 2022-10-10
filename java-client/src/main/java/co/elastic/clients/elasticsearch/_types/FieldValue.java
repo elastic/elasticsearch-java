@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -64,12 +65,16 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 		return new FieldValue(Kind.String, value);
 	}
 
+	public static FieldValue of(JsonData value) {
+		return new FieldValue(Kind.Any, value);
+	}
+
 	public static final FieldValue NULL = new FieldValue(Kind.Null, null);
 	public static final FieldValue TRUE = new FieldValue(Kind.Boolean, Boolean.TRUE);
 	public static final FieldValue FALSE = new FieldValue(Kind.Boolean, Boolean.FALSE);
 
 	public enum Kind {
-		Double, Long, Boolean, String, Null
+		Double, Long, Boolean, String, Null, Any
 	}
 
 	private final Kind _kind;
@@ -97,6 +102,8 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 				return this.stringValue();
 			case Null :
 				return "null";
+			case Any :
+				throw new IllegalStateException("Composite field value cannot be formatted as a string");
 
 			default :
 				throw new IllegalStateException("Unknown kind " + _kind);
@@ -187,6 +194,24 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	}
 
 	/**
+	 * Is this variant instance of kind {@code any}?
+	 */
+	public boolean isAny() {
+		return _kind == Kind.Any;
+	}
+
+	/**
+	 * Get the {@code any} variant value, used to represent non-scalar values (i.e.
+	 * objects and arrays)
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code string} kind.
+	 */
+	public JsonData anyValue() {
+		return TaggedUnionUtils.get(this, Kind.Any);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code null}?
 	 */
 	public boolean isNull() {
@@ -210,6 +235,9 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 				break;
 			case Null :
 				generator.writeNull();
+				break;
+			case Any :
+				((JsonData) this._value).serialize(generator, mapper);
 				break;
 		}
 	}
@@ -242,6 +270,12 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 			return this;
 		}
 
+		public ObjectBuilder<FieldValue> anyValue(JsonData v) {
+			this._kind = Kind.Any;
+			this._value = v;
+			return this;
+		}
+
 		public ObjectBuilder<FieldValue> nullValue() {
 			this._kind = Kind.Null;
 			this._value = null;
@@ -255,10 +289,9 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	}
 
 	public static final JsonpDeserializer<FieldValue> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> JsonpDeserializer.of(
-					EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.VALUE_NUMBER,
-							JsonParser.Event.VALUE_NULL, JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE),
-					(parser, mapper, event) -> {
+			.lazy(() -> JsonpDeserializer.of(EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.VALUE_NUMBER,
+					JsonParser.Event.VALUE_NULL, JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE,
+					JsonParser.Event.START_OBJECT, JsonParser.Event.START_ARRAY), (parser, mapper, event) -> {
 						switch (event) {
 							case VALUE_NULL :
 								return NULL;
@@ -274,6 +307,9 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 								} else {
 									return FieldValue.of(parser.getBigDecimal().doubleValue());
 								}
+							case START_OBJECT :
+							case START_ARRAY :
+								return FieldValue.of(JsonData.of(parser.getValue()));
 						}
 						return null;
 					}));

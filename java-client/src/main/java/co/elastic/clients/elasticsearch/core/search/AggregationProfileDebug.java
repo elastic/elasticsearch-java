@@ -131,6 +131,9 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	@Nullable
 	private final Integer segmentsCollected;
 
+	@Nullable
+	private final String mapReducer;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AggregationProfileDebug(Builder builder) {
@@ -162,6 +165,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
 		this.segmentsCounted = builder.segmentsCounted;
 		this.segmentsCollected = builder.segmentsCollected;
+		this.mapReducer = builder.mapReducer;
 
 	}
 
@@ -384,6 +388,14 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code map_reducer}
+	 */
+	@Nullable
+	public final String mapReducer() {
+		return this.mapReducer;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -539,6 +551,11 @@ public class AggregationProfileDebug implements JsonpSerializable {
 			generator.write(this.segmentsCollected);
 
 		}
+		if (this.mapReducer != null) {
+			generator.writeKey("map_reducer");
+			generator.write(this.mapReducer);
+
+		}
 
 	}
 
@@ -636,6 +653,9 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 		@Nullable
 		private Integer segmentsCollected;
+
+		@Nullable
+		private String mapReducer;
 
 		/**
 		 * API name: {@code segments_with_multi_valued_ords}
@@ -896,6 +916,14 @@ public class AggregationProfileDebug implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code map_reducer}
+		 */
+		public final Builder mapReducer(@Nullable String value) {
+			this.mapReducer = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -959,6 +987,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(AggregationProfileDelegateDebugFilter._DESERIALIZER), "filters");
 		op.add(Builder::segmentsCounted, JsonpDeserializer.integerDeserializer(), "segments_counted");
 		op.add(Builder::segmentsCollected, JsonpDeserializer.integerDeserializer(), "segments_collected");
+		op.add(Builder::mapReducer, JsonpDeserializer.stringDeserializer(), "map_reducer");
 
 	}
 

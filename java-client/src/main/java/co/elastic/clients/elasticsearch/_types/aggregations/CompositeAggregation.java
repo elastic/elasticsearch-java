@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CompositeAggregation extends BucketAggregationBase implements AggregationVariant {
-	private final Map<String, String> after;
+	private final Map<String, FieldValue> after;
 
 	@Nullable
 	private final Integer size;
@@ -82,7 +83,7 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * API name: {@code after}
 	 */
-	public final Map<String, String> after() {
+	public final Map<String, FieldValue> after() {
 		return this.after;
 	}
 
@@ -107,9 +108,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		if (ApiTypeHelper.isDefined(this.after)) {
 			generator.writeKey("after");
 			generator.writeStartObject();
-			for (Map.Entry<String, String> item0 : this.after.entrySet()) {
+			for (Map.Entry<String, FieldValue> item0 : this.after.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -151,7 +152,7 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 			implements
 				ObjectBuilder<CompositeAggregation> {
 		@Nullable
-		private Map<String, String> after;
+		private Map<String, FieldValue> after;
 
 		@Nullable
 		private Integer size;
@@ -164,7 +165,7 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>after</code>.
 		 */
-		public final Builder after(Map<String, String> map) {
+		public final Builder after(Map<String, FieldValue> map) {
 			this.after = _mapPutAll(this.after, map);
 			return this;
 		}
@@ -174,9 +175,18 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		 * <p>
 		 * Adds an entry to <code>after</code>.
 		 */
-		public final Builder after(String key, String value) {
+		public final Builder after(String key, FieldValue value) {
 			this.after = _mapPut(this.after, key, value);
 			return this;
+		}
+
+		/**
+		 * API name: {@code after}
+		 * <p>
+		 * Adds an entry to <code>after</code> using a builder lambda.
+		 */
+		public final Builder after(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return after(key, fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -236,8 +246,7 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 
 	protected static void setupCompositeAggregationDeserializer(ObjectDeserializer<CompositeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
-				"after");
+		op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sources, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(CompositeAggregationSource._DESERIALIZER)), "sources");
