@@ -57,6 +57,7 @@ product="elastic/elasticsearch-java"
 output_folder=".ci/output"
 codegen_folder=".ci/output"
 OUTPUT_DIR="$repo/${output_folder}"
+WORKFLOW="${WORKFLOW-staging}"
 mkdir -p "$OUTPUT_DIR"
 
 echo -e "\033[34;1mINFO:\033[0m PRODUCT ${product}\033[0m"
@@ -110,7 +111,7 @@ case $CMD in
         TASK_ARGS=("$VERSION" "$codegen_folder")
         ;;
     bump)
-        if [ -v $VERSION ]; then
+        if [ -z "$VERSION" ]; then
             echo -e "\033[31;1mTARGET: bump -> missing version parameter\033[0m"
             exit 1
         fi
@@ -137,9 +138,11 @@ output_mount="-v $repo/.ci/output:/elasticsearch-java/build"
 build_image() {
   echo -e "\033[34;1mINFO: building $product container\033[0m"
 
-  docker build --file .ci/Dockerfile --tag $docker_image \
-    --build-arg USER_ID="$(id -u)" \
-    --build-arg GROUP_ID="$(id -g)" .
+  docker build \
+    --file .ci/Dockerfile \
+    --tag $docker_image \
+    --build-arg BUILDER_UID="$(id -u)" \
+    --build-arg BUILDER_GID="$(id -g)" .
 }
 
 # ------------------------------------------------------- #
@@ -148,8 +151,16 @@ build_image() {
 
 if [[ "$CMD" == "assemble" ]]; then
   rm -rf .ci/output/repository
+
+  if [[ "$WORKFLOW" == 'snapshot' ]]; then
+    assemble_version="$VERSION-SNAPSHOT"
+  else
+    assemble_version="$VERSION"
+  fi
+
   build_image
-  docker run --rm --env VERSION=$VERSION \
+    echo -e "\033[34;1mINFO:\033[0m Building version ${assemble_version}\033[0m"
+  docker run --rm --env VERSION=$assemble_version -u "$(id -u)" \
     $git_mount $src_mount $output_mount \
     $docker_image \
     publishForReleaseManager
@@ -158,7 +169,7 @@ if [[ "$CMD" == "assemble" ]]; then
 	  if [[ -n ${DEPENDENCIES_REPORTS_DIR+x} ]]; then
 	    cp .ci/output/release/dependencies.csv "$DEPENDENCIES_REPORTS_DIR"/"$DEPENDENCIES_REPORT"
     fi
-		echo -e "\033[32;1mTARGET: successfully assembled client version $VERSION\033[0m"
+		echo -e "\033[32;1mTARGET: successfully assembled client version $assemble_version\033[0m"
 	else
 		echo -e "\033[31;1mTARGET: assemble failed, empty workspace!\033[0m"
 		exit 1
@@ -166,7 +177,7 @@ if [[ "$CMD" == "assemble" ]]; then
 fi
 
 if [[ "$CMD" == "bump" ]]; then
-    echo "TODO"
+  echo $VERSION > config/version.txt
 fi
 
 if [[ "$CMD" == "codegen" ]]; then
