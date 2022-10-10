@@ -36,7 +36,6 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
-import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -50,7 +49,7 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class SettingsSimilarityBm25 implements JsonpSerializable {
-	private final int b;
+	private final double b;
 
 	private final boolean discountOverlaps;
 
@@ -73,7 +72,7 @@ public class SettingsSimilarityBm25 implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code b}
 	 */
-	public final int b() {
+	public final double b() {
 		return this.b;
 	}
 
@@ -127,7 +126,7 @@ public class SettingsSimilarityBm25 implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SettingsSimilarityBm25> {
-		private Integer b;
+		private Double b;
 
 		private Boolean discountOverlaps;
 
@@ -136,7 +135,7 @@ public class SettingsSimilarityBm25 implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code b}
 		 */
-		public final Builder b(int value) {
+		public final Builder b(double value) {
 			this.b = value;
 			return this;
 		}
@@ -186,7 +185,7 @@ public class SettingsSimilarityBm25 implements JsonpSerializable {
 	protected static void setupSettingsSimilarityBm25Deserializer(
 			ObjectDeserializer<SettingsSimilarityBm25.Builder> op) {
 
-		op.add(Builder::b, JsonpDeserializer.integerDeserializer(), "b");
+		op.add(Builder::b, JsonpDeserializer.doubleDeserializer(), "b");
 		op.add(Builder::discountOverlaps, JsonpDeserializer.booleanDeserializer(), "discount_overlaps");
 		op.add(Builder::k1, JsonpDeserializer.doubleDeserializer(), "k1");
 

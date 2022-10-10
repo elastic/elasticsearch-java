@@ -176,6 +176,19 @@ public class ElasticsearchLicenseAsyncClient
 		return post(fn.apply(new PostRequest.Builder()).build());
 	}
 
+	/**
+	 * Updates the license for the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PostResponse> post() {
+		return this.transport.performRequestAsync(new PostRequest.Builder().build(), PostRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: license.post_start_basic
 
 	/**

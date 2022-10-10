@@ -68,7 +68,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
-		this.licenses = ApiTypeHelper.unmodifiableRequired(builder.licenses, this, "licenses");
+		this.licenses = ApiTypeHelper.unmodifiable(builder.licenses);
 
 	}
 
@@ -95,8 +95,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A sequence of one or more JSON documents containing the license
-	 * information.
+	 * A sequence of one or more JSON documents containing the license information.
 	 * <p>
 	 * API name: {@code licenses}
 	 */
@@ -146,6 +145,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private License license;
 
+		@Nullable
 		private List<License> licenses;
 
 		/**
@@ -174,8 +174,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A sequence of one or more JSON documents containing the license
-		 * information.
+		 * A sequence of one or more JSON documents containing the license information.
 		 * <p>
 		 * API name: {@code licenses}
 		 * <p>
@@ -187,8 +186,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A sequence of one or more JSON documents containing the license
-		 * information.
+		 * A sequence of one or more JSON documents containing the license information.
 		 * <p>
 		 * API name: {@code licenses}
 		 * <p>
@@ -200,8 +198,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A sequence of one or more JSON documents containing the license
-		 * information.
+		 * A sequence of one or more JSON documents containing the license information.
 		 * <p>
 		 * API name: {@code licenses}
 		 * <p>

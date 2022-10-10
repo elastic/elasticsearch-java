@@ -61,6 +61,9 @@ public class EnrichPolicy implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
+	@Nullable
+	private final String elasticsearchVersion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private EnrichPolicy(Builder builder) {
@@ -70,6 +73,7 @@ public class EnrichPolicy implements JsonpSerializable {
 		this.matchField = ApiTypeHelper.requireNonNull(builder.matchField, this, "matchField");
 		this.query = builder.query;
 		this.name = builder.name;
+		this.elasticsearchVersion = builder.elasticsearchVersion;
 
 	}
 
@@ -112,6 +116,14 @@ public class EnrichPolicy implements JsonpSerializable {
 	@Nullable
 	public final String name() {
 		return this.name;
+	}
+
+	/**
+	 * API name: {@code elasticsearch_version}
+	 */
+	@Nullable
+	public final String elasticsearchVersion() {
+		return this.elasticsearchVersion;
 	}
 
 	/**
@@ -158,6 +170,11 @@ public class EnrichPolicy implements JsonpSerializable {
 			generator.write(this.name);
 
 		}
+		if (this.elasticsearchVersion != null) {
+			generator.writeKey("elasticsearch_version");
+			generator.write(this.elasticsearchVersion);
+
+		}
 
 	}
 
@@ -184,6 +201,9 @@ public class EnrichPolicy implements JsonpSerializable {
 
 		@Nullable
 		private String name;
+
+		@Nullable
+		private String elasticsearchVersion;
 
 		/**
 		 * Required - API name: {@code enrich_fields}
@@ -249,6 +269,14 @@ public class EnrichPolicy implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code elasticsearch_version}
+		 */
+		public final Builder elasticsearchVersion(@Nullable String value) {
+			this.elasticsearchVersion = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -284,6 +312,7 @@ public class EnrichPolicy implements JsonpSerializable {
 		op.add(Builder::matchField, JsonpDeserializer.stringDeserializer(), "match_field");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::elasticsearchVersion, JsonpDeserializer.stringDeserializer(), "elasticsearch_version");
 
 	}
 

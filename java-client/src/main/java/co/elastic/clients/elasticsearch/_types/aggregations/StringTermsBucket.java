@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StringTermsBucket extends TermsBucketBase {
-	private final String key;
+	private final FieldValue key;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ public class StringTermsBucket extends TermsBucketBase {
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final String key() {
+	public final FieldValue key() {
 		return this.key;
 	}
 
@@ -72,7 +72,7 @@ public class StringTermsBucket extends TermsBucketBase {
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("key");
-		generator.write(this.key);
+		this.key.serialize(generator, mapper);
 
 	}
 
@@ -85,13 +85,52 @@ public class StringTermsBucket extends TermsBucketBase {
 	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StringTermsBucket> {
-		private String key;
+		private FieldValue key;
+
+		/**
+		 * Required - API name: {@code key}
+		 */
+		public final Builder key(FieldValue value) {
+			this.key = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 */
+		public final Builder key(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.key(fn.apply(new FieldValue.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code key}
 		 */
 		public final Builder key(String value) {
-			this.key = value;
+			this.key = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 */
+		public final Builder key(long value) {
+			this.key = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 */
+		public final Builder key(double value) {
+			this.key = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 */
+		public final Builder key(boolean value) {
+			this.key = FieldValue.of(value);
 			return this;
 		}
 
@@ -123,7 +162,7 @@ public class StringTermsBucket extends TermsBucketBase {
 
 	protected static void setupStringTermsBucketDeserializer(ObjectDeserializer<StringTermsBucket.Builder> op) {
 		TermsBucketBase.setupTermsBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+		op.add(Builder::key, FieldValue._DESERIALIZER, "key");
 
 	}
 

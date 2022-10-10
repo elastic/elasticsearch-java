@@ -46,6 +46,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class IpRangeBucket extends MultiBucketBase {
 	@Nullable
+	private final String key;
+
+	@Nullable
 	private final String from;
 
 	@Nullable
@@ -56,6 +59,7 @@ public class IpRangeBucket extends MultiBucketBase {
 	private IpRangeBucket(Builder builder) {
 		super(builder);
 
+		this.key = builder.key;
 		this.from = builder.from;
 		this.to = builder.to;
 
@@ -63,6 +67,14 @@ public class IpRangeBucket extends MultiBucketBase {
 
 	public static IpRangeBucket of(Function<Builder, ObjectBuilder<IpRangeBucket>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code key}
+	 */
+	@Nullable
+	public final String key() {
+		return this.key;
 	}
 
 	/**
@@ -84,6 +96,11 @@ public class IpRangeBucket extends MultiBucketBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (this.key != null) {
+			generator.writeKey("key");
+			generator.write(this.key);
+
+		}
 		if (this.from != null) {
 			generator.writeKey("from");
 			generator.write(this.from);
@@ -107,10 +124,21 @@ public class IpRangeBucket extends MultiBucketBase {
 			implements
 				ObjectBuilder<IpRangeBucket> {
 		@Nullable
+		private String key;
+
+		@Nullable
 		private String from;
 
 		@Nullable
 		private String to;
+
+		/**
+		 * API name: {@code key}
+		 */
+		public final Builder key(@Nullable String value) {
+			this.key = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code from}
@@ -156,6 +184,7 @@ public class IpRangeBucket extends MultiBucketBase {
 
 	protected static void setupIpRangeBucketDeserializer(ObjectDeserializer<IpRangeBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
 		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
 

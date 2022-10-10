@@ -54,6 +54,9 @@ public class IpPrefixBucket extends MultiBucketBase {
 
 	private final int prefixLength;
 
+	@Nullable
+	private final String netmask;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IpPrefixBucket(Builder builder) {
@@ -62,6 +65,7 @@ public class IpPrefixBucket extends MultiBucketBase {
 		this.isIpv6 = ApiTypeHelper.requireNonNull(builder.isIpv6, this, "isIpv6");
 		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
+		this.netmask = builder.netmask;
 
 	}
 
@@ -90,6 +94,14 @@ public class IpPrefixBucket extends MultiBucketBase {
 		return this.prefixLength;
 	}
 
+	/**
+	 * API name: {@code netmask}
+	 */
+	@Nullable
+	public final String netmask() {
+		return this.netmask;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -101,6 +113,12 @@ public class IpPrefixBucket extends MultiBucketBase {
 
 		generator.writeKey("prefix_length");
 		generator.write(this.prefixLength);
+
+		if (this.netmask != null) {
+			generator.writeKey("netmask");
+			generator.write(this.netmask);
+
+		}
 
 	}
 
@@ -118,6 +136,9 @@ public class IpPrefixBucket extends MultiBucketBase {
 		private String key;
 
 		private Integer prefixLength;
+
+		@Nullable
+		private String netmask;
 
 		/**
 		 * Required - API name: {@code is_ipv6}
@@ -140,6 +161,14 @@ public class IpPrefixBucket extends MultiBucketBase {
 		 */
 		public final Builder prefixLength(int value) {
 			this.prefixLength = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code netmask}
+		 */
+		public final Builder netmask(@Nullable String value) {
+			this.netmask = value;
 			return this;
 		}
 
@@ -174,6 +203,7 @@ public class IpPrefixBucket extends MultiBucketBase {
 		op.add(Builder::isIpv6, JsonpDeserializer.booleanDeserializer(), "is_ipv6");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 		op.add(Builder::prefixLength, JsonpDeserializer.integerDeserializer(), "prefix_length");
+		op.add(Builder::netmask, JsonpDeserializer.stringDeserializer(), "netmask");
 
 	}
 

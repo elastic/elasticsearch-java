@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,56 +30,44 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
-// typedef: indices._types.IndexVersioning
+// typedef: ml.clear_trained_model_deployment_cache.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#indices._types.IndexVersioning">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ml.clear_trained_model_deployment_cache.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndexVersioning implements JsonpSerializable {
-	@Nullable
-	private final String created;
-
-	@Nullable
-	private final String createdString;
+public class ClearTrainedModelDeploymentCacheResponse implements JsonpSerializable {
+	private final boolean cleared;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IndexVersioning(Builder builder) {
+	private ClearTrainedModelDeploymentCacheResponse(Builder builder) {
 
-		this.created = builder.created;
-		this.createdString = builder.createdString;
+		this.cleared = ApiTypeHelper.requireNonNull(builder.cleared, this, "cleared");
 
 	}
 
-	public static IndexVersioning of(Function<Builder, ObjectBuilder<IndexVersioning>> fn) {
+	public static ClearTrainedModelDeploymentCacheResponse of(
+			Function<Builder, ObjectBuilder<ClearTrainedModelDeploymentCacheResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code cleared}
 	 */
-	@Nullable
-	public final String created() {
-		return this.created;
-	}
-
-	/**
-	 * API name: {@code created_string}
-	 */
-	@Nullable
-	public final String createdString() {
-		return this.createdString;
+	public final boolean cleared() {
+		return this.cleared;
 	}
 
 	/**
@@ -93,16 +81,8 @@ public class IndexVersioning implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.created != null) {
-			generator.writeKey("created");
-			generator.write(this.created);
-
-		}
-		if (this.createdString != null) {
-			generator.writeKey("created_string");
-			generator.write(this.createdString);
-
-		}
+		generator.writeKey("cleared");
+		generator.write(this.cleared);
 
 	}
 
@@ -114,29 +94,19 @@ public class IndexVersioning implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IndexVersioning}.
+	 * Builder for {@link ClearTrainedModelDeploymentCacheResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexVersioning> {
-		@Nullable
-		private String created;
-
-		@Nullable
-		private String createdString;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClearTrainedModelDeploymentCacheResponse> {
+		private Boolean cleared;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code cleared}
 		 */
-		public final Builder created(@Nullable String value) {
-			this.created = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code created_string}
-		 */
-		public final Builder createdString(@Nullable String value) {
-			this.createdString = value;
+		public final Builder cleared(boolean value) {
+			this.cleared = value;
 			return this;
 		}
 
@@ -146,30 +116,31 @@ public class IndexVersioning implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IndexVersioning}.
+		 * Builds a {@link ClearTrainedModelDeploymentCacheResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndexVersioning build() {
+		public ClearTrainedModelDeploymentCacheResponse build() {
 			_checkSingleUse();
 
-			return new IndexVersioning(this);
+			return new ClearTrainedModelDeploymentCacheResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IndexVersioning}
+	 * Json deserializer for {@link ClearTrainedModelDeploymentCacheResponse}
 	 */
-	public static final JsonpDeserializer<IndexVersioning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexVersioning::setupIndexVersioningDeserializer);
+	public static final JsonpDeserializer<ClearTrainedModelDeploymentCacheResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					ClearTrainedModelDeploymentCacheResponse::setupClearTrainedModelDeploymentCacheResponseDeserializer);
 
-	protected static void setupIndexVersioningDeserializer(ObjectDeserializer<IndexVersioning.Builder> op) {
+	protected static void setupClearTrainedModelDeploymentCacheResponseDeserializer(
+			ObjectDeserializer<ClearTrainedModelDeploymentCacheResponse.Builder> op) {
 
-		op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
-		op.add(Builder::createdString, JsonpDeserializer.stringDeserializer(), "created_string");
+		op.add(Builder::cleared, JsonpDeserializer.booleanDeserializer(), "cleared");
 
 	}
 

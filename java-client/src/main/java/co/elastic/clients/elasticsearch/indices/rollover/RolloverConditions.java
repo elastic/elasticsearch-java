@@ -51,10 +51,16 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class RolloverConditions implements JsonpSerializable {
 	@Nullable
+	private final Time minAge;
+
+	@Nullable
 	private final Time maxAge;
 
 	@Nullable
 	private final Long maxAgeMillis;
+
+	@Nullable
+	private final Long minDocs;
 
 	@Nullable
 	private final Long maxDocs;
@@ -71,22 +77,40 @@ public class RolloverConditions implements JsonpSerializable {
 	@Nullable
 	private final String maxPrimaryShardSizeBytes;
 
+	@Nullable
+	private final Long minPrimaryShardDocs;
+
+	@Nullable
+	private final Long maxPrimaryShardDocs;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RolloverConditions(Builder builder) {
 
+		this.minAge = builder.minAge;
 		this.maxAge = builder.maxAge;
 		this.maxAgeMillis = builder.maxAgeMillis;
+		this.minDocs = builder.minDocs;
 		this.maxDocs = builder.maxDocs;
 		this.maxSize = builder.maxSize;
 		this.maxSizeBytes = builder.maxSizeBytes;
 		this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
 		this.maxPrimaryShardSizeBytes = builder.maxPrimaryShardSizeBytes;
+		this.minPrimaryShardDocs = builder.minPrimaryShardDocs;
+		this.maxPrimaryShardDocs = builder.maxPrimaryShardDocs;
 
 	}
 
 	public static RolloverConditions of(Function<Builder, ObjectBuilder<RolloverConditions>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code min_age}
+	 */
+	@Nullable
+	public final Time minAge() {
+		return this.minAge;
 	}
 
 	/**
@@ -103,6 +127,14 @@ public class RolloverConditions implements JsonpSerializable {
 	@Nullable
 	public final Long maxAgeMillis() {
 		return this.maxAgeMillis;
+	}
+
+	/**
+	 * API name: {@code min_docs}
+	 */
+	@Nullable
+	public final Long minDocs() {
+		return this.minDocs;
 	}
 
 	/**
@@ -146,6 +178,22 @@ public class RolloverConditions implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code min_primary_shard_docs}
+	 */
+	@Nullable
+	public final Long minPrimaryShardDocs() {
+		return this.minPrimaryShardDocs;
+	}
+
+	/**
+	 * API name: {@code max_primary_shard_docs}
+	 */
+	@Nullable
+	public final Long maxPrimaryShardDocs() {
+		return this.maxPrimaryShardDocs;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -156,6 +204,11 @@ public class RolloverConditions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.minAge != null) {
+			generator.writeKey("min_age");
+			this.minAge.serialize(generator, mapper);
+
+		}
 		if (this.maxAge != null) {
 			generator.writeKey("max_age");
 			this.maxAge.serialize(generator, mapper);
@@ -164,6 +217,11 @@ public class RolloverConditions implements JsonpSerializable {
 		if (this.maxAgeMillis != null) {
 			generator.writeKey("max_age_millis");
 			generator.write(this.maxAgeMillis);
+
+		}
+		if (this.minDocs != null) {
+			generator.writeKey("min_docs");
+			generator.write(this.minDocs);
 
 		}
 		if (this.maxDocs != null) {
@@ -191,6 +249,16 @@ public class RolloverConditions implements JsonpSerializable {
 			generator.write(this.maxPrimaryShardSizeBytes);
 
 		}
+		if (this.minPrimaryShardDocs != null) {
+			generator.writeKey("min_primary_shard_docs");
+			generator.write(this.minPrimaryShardDocs);
+
+		}
+		if (this.maxPrimaryShardDocs != null) {
+			generator.writeKey("max_primary_shard_docs");
+			generator.write(this.maxPrimaryShardDocs);
+
+		}
 
 	}
 
@@ -209,10 +277,16 @@ public class RolloverConditions implements JsonpSerializable {
 			implements
 				ObjectBuilder<RolloverConditions> {
 		@Nullable
+		private Time minAge;
+
+		@Nullable
 		private Time maxAge;
 
 		@Nullable
 		private Long maxAgeMillis;
+
+		@Nullable
+		private Long minDocs;
 
 		@Nullable
 		private Long maxDocs;
@@ -228,6 +302,27 @@ public class RolloverConditions implements JsonpSerializable {
 
 		@Nullable
 		private String maxPrimaryShardSizeBytes;
+
+		@Nullable
+		private Long minPrimaryShardDocs;
+
+		@Nullable
+		private Long maxPrimaryShardDocs;
+
+		/**
+		 * API name: {@code min_age}
+		 */
+		public final Builder minAge(@Nullable Time value) {
+			this.minAge = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_age}
+		 */
+		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.minAge(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * API name: {@code max_age}
@@ -249,6 +344,14 @@ public class RolloverConditions implements JsonpSerializable {
 		 */
 		public final Builder maxAgeMillis(@Nullable Long value) {
 			this.maxAgeMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_docs}
+		 */
+		public final Builder minDocs(@Nullable Long value) {
+			this.minDocs = value;
 			return this;
 		}
 
@@ -292,6 +395,22 @@ public class RolloverConditions implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code min_primary_shard_docs}
+		 */
+		public final Builder minPrimaryShardDocs(@Nullable Long value) {
+			this.minPrimaryShardDocs = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_primary_shard_docs}
+		 */
+		public final Builder maxPrimaryShardDocs(@Nullable Long value) {
+			this.maxPrimaryShardDocs = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -320,14 +439,18 @@ public class RolloverConditions implements JsonpSerializable {
 
 	protected static void setupRolloverConditionsDeserializer(ObjectDeserializer<RolloverConditions.Builder> op) {
 
+		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
 		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
 		op.add(Builder::maxAgeMillis, JsonpDeserializer.longDeserializer(), "max_age_millis");
+		op.add(Builder::minDocs, JsonpDeserializer.longDeserializer(), "min_docs");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
 		op.add(Builder::maxSizeBytes, JsonpDeserializer.stringDeserializer(), "max_size_bytes");
 		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
 		op.add(Builder::maxPrimaryShardSizeBytes, JsonpDeserializer.stringDeserializer(),
 				"max_primary_shard_size_bytes");
+		op.add(Builder::minPrimaryShardDocs, JsonpDeserializer.longDeserializer(), "min_primary_shard_docs");
+		op.add(Builder::maxPrimaryShardDocs, JsonpDeserializer.longDeserializer(), "max_primary_shard_docs");
 
 	}
 

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MultiTermsBucket extends MultiBucketBase {
-	private final List<String> key;
+	private final List<FieldValue> key;
 
 	@Nullable
 	private final String keyAsString;
@@ -74,7 +75,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final List<String> key() {
+	public final List<FieldValue> key() {
 		return this.key;
 	}
 
@@ -100,8 +101,8 @@ public class MultiTermsBucket extends MultiBucketBase {
 		if (ApiTypeHelper.isDefined(this.key)) {
 			generator.writeKey("key");
 			generator.writeStartArray();
-			for (String item0 : this.key) {
-				generator.write(item0);
+			for (FieldValue item0 : this.key) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -129,7 +130,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MultiTermsBucket> {
-		private List<String> key;
+		private List<FieldValue> key;
 
 		@Nullable
 		private String keyAsString;
@@ -142,7 +143,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>key</code>.
 		 */
-		public final Builder key(List<String> list) {
+		public final Builder key(List<FieldValue> list) {
 			this.key = _listAddAll(this.key, list);
 			return this;
 		}
@@ -152,9 +153,18 @@ public class MultiTermsBucket extends MultiBucketBase {
 		 * <p>
 		 * Adds one or more values to <code>key</code>.
 		 */
-		public final Builder key(String value, String... values) {
+		public final Builder key(FieldValue value, FieldValue... values) {
 			this.key = _listAdd(this.key, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds a value to <code>key</code> using a builder lambda.
+		 */
+		public final Builder key(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return key(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -201,7 +211,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 
 	protected static void setupMultiTermsBucketDeserializer(ObjectDeserializer<MultiTermsBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "key");
+		op.add(Builder::key, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "key");
 		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
 		op.add(Builder::docCountErrorUpperBound, JsonpDeserializer.longDeserializer(), "doc_count_error_upper_bound");
 

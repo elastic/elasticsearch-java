@@ -58,6 +58,9 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 	@Nullable
 	private final String specializedFor;
 
+	@Nullable
+	private final Integer segmentsCountedInConstantTime;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AggregationProfileDelegateDebugFilter(Builder builder) {
@@ -65,6 +68,7 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		this.resultsFromMetadata = builder.resultsFromMetadata;
 		this.query = builder.query;
 		this.specializedFor = builder.specializedFor;
+		this.segmentsCountedInConstantTime = builder.segmentsCountedInConstantTime;
 
 	}
 
@@ -98,6 +102,14 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 	}
 
 	/**
+	 * API name: {@code segments_counted_in_constant_time}
+	 */
+	@Nullable
+	public final Integer segmentsCountedInConstantTime() {
+		return this.segmentsCountedInConstantTime;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -121,6 +133,11 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		if (this.specializedFor != null) {
 			generator.writeKey("specialized_for");
 			generator.write(this.specializedFor);
+
+		}
+		if (this.segmentsCountedInConstantTime != null) {
+			generator.writeKey("segments_counted_in_constant_time");
+			generator.write(this.segmentsCountedInConstantTime);
 
 		}
 
@@ -149,6 +166,9 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		@Nullable
 		private String specializedFor;
 
+		@Nullable
+		private Integer segmentsCountedInConstantTime;
+
 		/**
 		 * API name: {@code results_from_metadata}
 		 */
@@ -170,6 +190,14 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		 */
 		public final Builder specializedFor(@Nullable String value) {
 			this.specializedFor = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code segments_counted_in_constant_time}
+		 */
+		public final Builder segmentsCountedInConstantTime(@Nullable Integer value) {
+			this.segmentsCountedInConstantTime = value;
 			return this;
 		}
 
@@ -206,6 +234,8 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		op.add(Builder::resultsFromMetadata, JsonpDeserializer.integerDeserializer(), "results_from_metadata");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::specializedFor, JsonpDeserializer.stringDeserializer(), "specialized_for");
+		op.add(Builder::segmentsCountedInConstantTime, JsonpDeserializer.integerDeserializer(),
+				"segments_counted_in_constant_time");
 
 	}
 

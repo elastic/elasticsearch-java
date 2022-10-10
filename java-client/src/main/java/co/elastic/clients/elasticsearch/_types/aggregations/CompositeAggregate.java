@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket> implements AggregateVariant {
-	private final Map<String, JsonData> afterKey;
+	private final Map<String, FieldValue> afterKey;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 	/**
 	 * API name: {@code after_key}
 	 */
-	public final Map<String, JsonData> afterKey() {
+	public final Map<String, FieldValue> afterKey() {
 		return this.afterKey;
 	}
 
@@ -84,7 +84,7 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		if (ApiTypeHelper.isDefined(this.afterKey)) {
 			generator.writeKey("after_key");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.afterKey.entrySet()) {
+			for (Map.Entry<String, FieldValue> item0 : this.afterKey.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -105,14 +105,14 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 			implements
 				ObjectBuilder<CompositeAggregate> {
 		@Nullable
-		private Map<String, JsonData> afterKey;
+		private Map<String, FieldValue> afterKey;
 
 		/**
 		 * API name: {@code after_key}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>afterKey</code>.
 		 */
-		public final Builder afterKey(Map<String, JsonData> map) {
+		public final Builder afterKey(Map<String, FieldValue> map) {
 			this.afterKey = _mapPutAll(this.afterKey, map);
 			return this;
 		}
@@ -122,9 +122,18 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		 * <p>
 		 * Adds an entry to <code>afterKey</code>.
 		 */
-		public final Builder afterKey(String key, JsonData value) {
+		public final Builder afterKey(String key, FieldValue value) {
 			this.afterKey = _mapPut(this.afterKey, key, value);
 			return this;
+		}
+
+		/**
+		 * API name: {@code after_key}
+		 * <p>
+		 * Adds an entry to <code>afterKey</code> using a builder lambda.
+		 */
+		public final Builder afterKey(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return afterKey(key, fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -156,7 +165,7 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 
 	protected static void setupCompositeAggregateDeserializer(ObjectDeserializer<CompositeAggregate.Builder> op) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, CompositeBucket._DESERIALIZER);
-		op.add(Builder::afterKey, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "after_key");
+		op.add(Builder::afterKey, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "after_key");
 
 	}
 

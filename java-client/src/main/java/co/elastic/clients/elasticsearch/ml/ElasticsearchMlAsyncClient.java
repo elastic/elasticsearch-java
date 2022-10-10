@@ -54,6 +54,54 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 		return new ElasticsearchMlAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: ml.clear_trained_model_deployment_cache
+
+	/**
+	 * Clear the cached results from a trained model deployment
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ClearTrainedModelDeploymentCacheResponse> clearTrainedModelDeploymentCache(
+			ClearTrainedModelDeploymentCacheRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearTrainedModelDeploymentCacheRequest, ClearTrainedModelDeploymentCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearTrainedModelDeploymentCacheRequest, ClearTrainedModelDeploymentCacheResponse, ErrorResponse>) ClearTrainedModelDeploymentCacheRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Clear the cached results from a trained model deployment
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearTrainedModelDeploymentCacheRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ClearTrainedModelDeploymentCacheResponse> clearTrainedModelDeploymentCache(
+			Function<ClearTrainedModelDeploymentCacheRequest.Builder, ObjectBuilder<ClearTrainedModelDeploymentCacheRequest>> fn) {
+		return clearTrainedModelDeploymentCache(
+				fn.apply(new ClearTrainedModelDeploymentCacheRequest.Builder()).build());
+	}
+
+	/**
+	 * Clear the cached results from a trained model deployment
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ClearTrainedModelDeploymentCacheResponse> clearTrainedModelDeploymentCache() {
+		return this.transport.performRequestAsync(new ClearTrainedModelDeploymentCacheRequest.Builder().build(),
+				ClearTrainedModelDeploymentCacheRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: ml.close_job
 
 	/**

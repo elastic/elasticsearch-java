@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CompositeBucket extends MultiBucketBase {
-	private final Map<String, JsonData> key;
+	private final Map<String, FieldValue> key;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public class CompositeBucket extends MultiBucketBase {
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final Map<String, JsonData> key() {
+	public final Map<String, FieldValue> key() {
 		return this.key;
 	}
 
@@ -76,7 +76,7 @@ public class CompositeBucket extends MultiBucketBase {
 		if (ApiTypeHelper.isDefined(this.key)) {
 			generator.writeKey("key");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.key.entrySet()) {
+			for (Map.Entry<String, FieldValue> item0 : this.key.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -96,14 +96,14 @@ public class CompositeBucket extends MultiBucketBase {
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompositeBucket> {
-		private Map<String, JsonData> key;
+		private Map<String, FieldValue> key;
 
 		/**
 		 * Required - API name: {@code key}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>key</code>.
 		 */
-		public final Builder key(Map<String, JsonData> map) {
+		public final Builder key(Map<String, FieldValue> map) {
 			this.key = _mapPutAll(this.key, map);
 			return this;
 		}
@@ -113,9 +113,18 @@ public class CompositeBucket extends MultiBucketBase {
 		 * <p>
 		 * Adds an entry to <code>key</code>.
 		 */
-		public final Builder key(String key, JsonData value) {
+		public final Builder key(String key, FieldValue value) {
 			this.key = _mapPut(this.key, key, value);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds an entry to <code>key</code> using a builder lambda.
+		 */
+		public final Builder key(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return key(key, fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +155,7 @@ public class CompositeBucket extends MultiBucketBase {
 
 	protected static void setupCompositeBucketDeserializer(ObjectDeserializer<CompositeBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "key");
+		op.add(Builder::key, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "key");
 
 	}
 

@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -49,12 +50,16 @@ import javax.annotation.Nullable;
 public class JoinProperty extends PropertyBase implements PropertyVariant {
 	private final Map<String, List<String>> relations;
 
+	@Nullable
+	private final Boolean eagerGlobalOrdinals;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private JoinProperty(Builder builder) {
 		super(builder);
 
 		this.relations = ApiTypeHelper.unmodifiable(builder.relations);
+		this.eagerGlobalOrdinals = builder.eagerGlobalOrdinals;
 
 	}
 
@@ -75,6 +80,14 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 	 */
 	public final Map<String, List<String>> relations() {
 		return this.relations;
+	}
+
+	/**
+	 * API name: {@code eager_global_ordinals}
+	 */
+	@Nullable
+	public final Boolean eagerGlobalOrdinals() {
+		return this.eagerGlobalOrdinals;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -99,6 +112,11 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 			generator.writeEnd();
 
 		}
+		if (this.eagerGlobalOrdinals != null) {
+			generator.writeKey("eager_global_ordinals");
+			generator.write(this.eagerGlobalOrdinals);
+
+		}
 
 	}
 
@@ -111,6 +129,9 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProperty> {
 		@Nullable
 		private Map<String, List<String>> relations;
+
+		@Nullable
+		private Boolean eagerGlobalOrdinals;
 
 		/**
 		 * API name: {@code relations}
@@ -129,6 +150,14 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 		 */
 		public final Builder relations(String key, List<String> value) {
 			this.relations = _mapPut(this.relations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code eager_global_ordinals}
+		 */
+		public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
+			this.eagerGlobalOrdinals = value;
 			return this;
 		}
 
@@ -162,6 +191,7 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::relations, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "relations");
+		op.add(Builder::eagerGlobalOrdinals, JsonpDeserializer.booleanDeserializer(), "eager_global_ordinals");
 
 		op.ignore("type");
 	}

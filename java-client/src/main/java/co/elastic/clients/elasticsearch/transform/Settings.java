@@ -65,6 +65,9 @@ public class Settings implements JsonpSerializable {
 	@Nullable
 	private final Integer maxPageSearchSize;
 
+	@Nullable
+	private final Boolean unattended;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Settings(Builder builder) {
@@ -74,6 +77,7 @@ public class Settings implements JsonpSerializable {
 		this.deduceMappings = builder.deduceMappings;
 		this.docsPerSecond = builder.docsPerSecond;
 		this.maxPageSearchSize = builder.maxPageSearchSize;
+		this.unattended = builder.unattended;
 
 	}
 
@@ -145,6 +149,19 @@ public class Settings implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the transform runs in unattended mode. In unattended
+	 * mode, the transform retries indefinitely in case of an error which means the
+	 * transform never fails. Setting the number of retries other than infinite
+	 * fails in validation.
+	 * <p>
+	 * API name: {@code unattended}
+	 */
+	@Nullable
+	public final Boolean unattended() {
+		return this.unattended;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -180,6 +197,11 @@ public class Settings implements JsonpSerializable {
 			generator.write(this.maxPageSearchSize);
 
 		}
+		if (this.unattended != null) {
+			generator.writeKey("unattended");
+			generator.write(this.unattended);
+
+		}
 
 	}
 
@@ -209,6 +231,9 @@ public class Settings implements JsonpSerializable {
 
 		@Nullable
 		private Integer maxPageSearchSize;
+
+		@Nullable
+		private Boolean unattended;
 
 		/**
 		 * Specifies whether the transform checkpoint ranges should be optimized for
@@ -273,6 +298,19 @@ public class Settings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * If <code>true</code>, the transform runs in unattended mode. In unattended
+		 * mode, the transform retries indefinitely in case of an error which means the
+		 * transform never fails. Setting the number of retries other than infinite
+		 * fails in validation.
+		 * <p>
+		 * API name: {@code unattended}
+		 */
+		public final Builder unattended(@Nullable Boolean value) {
+			this.unattended = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -306,6 +344,7 @@ public class Settings implements JsonpSerializable {
 		op.add(Builder::deduceMappings, JsonpDeserializer.booleanDeserializer(), "deduce_mappings");
 		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
 		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
+		op.add(Builder::unattended, JsonpDeserializer.booleanDeserializer(), "unattended");
 
 	}
 

@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -29,35 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.GapPolicy">API
+ * @see <a href="../doc-files/api-spec.html#enrich._types.PolicyType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum GapPolicy implements JsonEnum {
-	/**
-	 * Treats missing data as if the bucket does not exist. It will skip the bucket
-	 * and continue calculating using the next available value.
-	 */
-	Skip("skip"),
+public enum EnrichPolicyType implements JsonEnum {
+	GeoMatch("geo_match"),
 
-	/**
-	 * Replace missing values with a zero (0) and pipeline aggregation computation
-	 * will proceed as normal.
-	 */
-	InsertZeros("insert_zeros"),
+	Match("match"),
 
-	/**
-	 * Similar to skip, except if the metric provides a non-null, non-NaN value this
-	 * value is used, otherwise the empty bucket is skipped.
-	 */
-	KeepValues("keep_values"),
+	Range("range"),
 
 	;
 
 	private final String jsonValue;
 
-	GapPolicy(String jsonValue) {
+	EnrichPolicyType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -65,6 +52,6 @@ public enum GapPolicy implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<GapPolicy> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GapPolicy.values());
+	public static final JsonEnum.Deserializer<EnrichPolicyType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			EnrichPolicyType.values());
 }

@@ -55,6 +55,56 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 		return new ElasticsearchMlClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: ml.clear_trained_model_deployment_cache
+
+	/**
+	 * Clear the cached results from a trained model deployment
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ClearTrainedModelDeploymentCacheResponse clearTrainedModelDeploymentCache(
+			ClearTrainedModelDeploymentCacheRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearTrainedModelDeploymentCacheRequest, ClearTrainedModelDeploymentCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearTrainedModelDeploymentCacheRequest, ClearTrainedModelDeploymentCacheResponse, ErrorResponse>) ClearTrainedModelDeploymentCacheRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Clear the cached results from a trained model deployment
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearTrainedModelDeploymentCacheRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ClearTrainedModelDeploymentCacheResponse clearTrainedModelDeploymentCache(
+			Function<ClearTrainedModelDeploymentCacheRequest.Builder, ObjectBuilder<ClearTrainedModelDeploymentCacheRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return clearTrainedModelDeploymentCache(
+				fn.apply(new ClearTrainedModelDeploymentCacheRequest.Builder()).build());
+	}
+
+	/**
+	 * Clear the cached results from a trained model deployment
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ClearTrainedModelDeploymentCacheResponse clearTrainedModelDeploymentCache()
+			throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ClearTrainedModelDeploymentCacheRequest.Builder().build(),
+				ClearTrainedModelDeploymentCacheRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: ml.close_job
 
 	/**

@@ -72,7 +72,7 @@ public class SlmConfiguration implements JsonpSerializable {
 	private SlmConfiguration(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.includeGlobalState = builder.includeGlobalState;
 		this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
@@ -97,10 +97,10 @@ public class SlmConfiguration implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A comma-separated list of data streams and indices to include in
-	 * the snapshot. Multi-index syntax is supported. By default, a snapshot
-	 * includes all data streams and indices in the cluster. If this argument is
-	 * provided, the snapshot only includes the specified data streams and clusters.
+	 * A comma-separated list of data streams and indices to include in the
+	 * snapshot. Multi-index syntax is supported. By default, a snapshot includes
+	 * all data streams and indices in the cluster. If this argument is provided,
+	 * the snapshot only includes the specified data streams and clusters.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -231,6 +231,7 @@ public class SlmConfiguration implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
+		@Nullable
 		private List<String> indices;
 
 		@Nullable
@@ -258,10 +259,10 @@ public class SlmConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams and indices to include in
-		 * the snapshot. Multi-index syntax is supported. By default, a snapshot
-		 * includes all data streams and indices in the cluster. If this argument is
-		 * provided, the snapshot only includes the specified data streams and clusters.
+		 * A comma-separated list of data streams and indices to include in the
+		 * snapshot. Multi-index syntax is supported. By default, a snapshot includes
+		 * all data streams and indices in the cluster. If this argument is provided,
+		 * the snapshot only includes the specified data streams and clusters.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -273,10 +274,10 @@ public class SlmConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams and indices to include in
-		 * the snapshot. Multi-index syntax is supported. By default, a snapshot
-		 * includes all data streams and indices in the cluster. If this argument is
-		 * provided, the snapshot only includes the specified data streams and clusters.
+		 * A comma-separated list of data streams and indices to include in the
+		 * snapshot. Multi-index syntax is supported. By default, a snapshot includes
+		 * all data streams and indices in the cluster. If this argument is provided,
+		 * the snapshot only includes the specified data streams and clusters.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
