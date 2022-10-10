@@ -56,7 +56,9 @@ public class Pair<K, V> {
         return new Pair<>(name, value);
     }
 
-    public static <K, V> JsonpDeserializer<Pair<K, V>> deserializer(Function<String, K> keyDeserializer, JsonpDeserializer<V> valueDeserializer) {
+    public static <K, V> JsonpDeserializer<Pair<K, V>> deserializer(
+        Function<String, K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
+    ) {
         return new JsonpDeserializerBase<Pair<K, V>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
             @Override
             public Pair<K, V> deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
