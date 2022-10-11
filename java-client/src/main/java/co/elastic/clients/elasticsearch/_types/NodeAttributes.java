@@ -63,6 +63,8 @@ public class NodeAttributes implements JsonpSerializable {
 
 	private final List<NodeRole> roles;
 
+	private final String externalId;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeAttributes(Builder builder) {
@@ -73,6 +75,7 @@ public class NodeAttributes implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.externalId = ApiTypeHelper.requireNonNull(builder.externalId, this, "externalId");
 
 	}
 
@@ -134,6 +137,13 @@ public class NodeAttributes implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code external_id}
+	 */
+	public final String externalId() {
+		return this.externalId;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -178,6 +188,8 @@ public class NodeAttributes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("external_id");
+		generator.write(this.externalId);
 
 	}
 
@@ -206,6 +218,8 @@ public class NodeAttributes implements JsonpSerializable {
 
 		@Nullable
 		private List<NodeRole> roles;
+
+		private String externalId;
 
 		/**
 		 * Required - Lists node attributes.
@@ -291,6 +305,14 @@ public class NodeAttributes implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - API name: {@code external_id}
+		 */
+		public final Builder externalId(String value) {
+			this.externalId = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -326,6 +348,7 @@ public class NodeAttributes implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
+		op.add(Builder::externalId, JsonpDeserializer.stringDeserializer(), "external_id");
 
 	}
 

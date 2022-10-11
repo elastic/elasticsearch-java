@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -53,6 +54,9 @@ public class HighlightField extends HighlightBase {
 
 	private final List<String> matchedFields;
 
+	@Nullable
+	private final Analyzer analyzer;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HighlightField(Builder builder) {
@@ -60,6 +64,7 @@ public class HighlightField extends HighlightBase {
 
 		this.fragmentOffset = builder.fragmentOffset;
 		this.matchedFields = ApiTypeHelper.unmodifiable(builder.matchedFields);
+		this.analyzer = builder.analyzer;
 
 	}
 
@@ -82,6 +87,14 @@ public class HighlightField extends HighlightBase {
 		return this.matchedFields;
 	}
 
+	/**
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public final Analyzer analyzer() {
+		return this.analyzer;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -98,6 +111,11 @@ public class HighlightField extends HighlightBase {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.analyzer != null) {
+			generator.writeKey("analyzer");
+			this.analyzer.serialize(generator, mapper);
 
 		}
 
@@ -117,6 +135,9 @@ public class HighlightField extends HighlightBase {
 
 		@Nullable
 		private List<String> matchedFields;
+
+		@Nullable
+		private Analyzer analyzer;
 
 		/**
 		 * API name: {@code fragment_offset}
@@ -144,6 +165,21 @@ public class HighlightField extends HighlightBase {
 		public final Builder matchedFields(String value, String... values) {
 			this.matchedFields = _listAdd(this.matchedFields, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code analyzer}
+		 */
+		public final Builder analyzer(@Nullable Analyzer value) {
+			this.analyzer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code analyzer}
+		 */
+		public final Builder analyzer(Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
+			return this.analyzer(fn.apply(new Analyzer.Builder()).build());
 		}
 
 		@Override
@@ -177,6 +213,7 @@ public class HighlightField extends HighlightBase {
 		op.add(Builder::fragmentOffset, JsonpDeserializer.integerDeserializer(), "fragment_offset");
 		op.add(Builder::matchedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"matched_fields");
+		op.add(Builder::analyzer, Analyzer._DESERIALIZER, "analyzer");
 
 	}
 

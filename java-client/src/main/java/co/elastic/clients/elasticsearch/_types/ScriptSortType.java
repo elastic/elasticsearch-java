@@ -38,6 +38,8 @@ public enum ScriptSortType implements JsonEnum {
 
 	Number("number"),
 
+	Version("version"),
+
 	;
 
 	private final String jsonValue;

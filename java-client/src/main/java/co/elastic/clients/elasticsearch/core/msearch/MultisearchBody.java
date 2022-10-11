@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.msearch;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SortOptions;
@@ -111,7 +112,7 @@ public class MultisearchBody implements JsonpSerializable {
 
 	private final Map<String, ScriptField> scriptFields;
 
-	private final List<String> searchAfter;
+	private final List<FieldValue> searchAfter;
 
 	@Nullable
 	private final Integer size;
@@ -345,7 +346,7 @@ public class MultisearchBody implements JsonpSerializable {
 	/**
 	 * API name: {@code search_after}
 	 */
-	public final List<String> searchAfter() {
+	public final List<FieldValue> searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -639,8 +640,8 @@ public class MultisearchBody implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
-			for (String item0 : this.searchAfter) {
-				generator.write(item0);
+			for (FieldValue item0 : this.searchAfter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -801,7 +802,7 @@ public class MultisearchBody implements JsonpSerializable {
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private List<String> searchAfter;
+		private List<FieldValue> searchAfter;
 
 		@Nullable
 		private Integer size;
@@ -1184,7 +1185,7 @@ public class MultisearchBody implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(List<String> list) {
+		public final Builder searchAfter(List<FieldValue> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
@@ -1194,9 +1195,18 @@ public class MultisearchBody implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(String value, String... values) {
+		public final Builder searchAfter(FieldValue value, FieldValue... values) {
 			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds a value to <code>searchAfter</code> using a builder lambda.
+		 */
+		public final Builder searchAfter(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return searchAfter(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -1535,8 +1545,7 @@ public class MultisearchBody implements JsonpSerializable {
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"search_after");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");

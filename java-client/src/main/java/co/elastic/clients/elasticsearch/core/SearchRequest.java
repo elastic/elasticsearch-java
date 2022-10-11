@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
@@ -189,7 +190,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time scroll;
 
-	private final List<String> searchAfter;
+	private final List<FieldValue> searchAfter;
 
 	@Nullable
 	private final SearchType searchType;
@@ -707,7 +708,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * API name: {@code search_after}
 	 */
-	public final List<String> searchAfter() {
+	public final List<FieldValue> searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -1010,8 +1011,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
-			for (String item0 : this.searchAfter) {
-				generator.write(item0);
+			for (FieldValue item0 : this.searchAfter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -1223,7 +1224,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Time scroll;
 
 		@Nullable
-		private List<String> searchAfter;
+		private List<FieldValue> searchAfter;
 
 		@Nullable
 		private SearchType searchType;
@@ -1967,7 +1968,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(List<String> list) {
+		public final Builder searchAfter(List<FieldValue> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
@@ -1977,9 +1978,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(String value, String... values) {
+		public final Builder searchAfter(FieldValue value, FieldValue... values) {
 			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds a value to <code>searchAfter</code> using a builder lambda.
+		 */
+		public final Builder searchAfter(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return searchAfter(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -2257,8 +2267,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"search_after");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");

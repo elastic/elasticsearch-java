@@ -782,6 +782,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns the information about the capabilities of fields among multiple
+	 * indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FieldCapsResponse> fieldCaps() {
+		return this.transport.performRequestAsync(new FieldCapsRequest.Builder().build(), FieldCapsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: get
 
 	/**
