@@ -35,9 +35,23 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum GapPolicy implements JsonEnum {
+	/**
+	 * Treats missing data as if the bucket does not exist. It will skip the bucket
+	 * and continue calculating using the next available value.
+	 */
 	Skip("skip"),
 
+	/**
+	 * Replace missing values with a zero (0) and pipeline aggregation computation
+	 * will proceed as normal.
+	 */
 	InsertZeros("insert_zeros"),
+
+	/**
+	 * Similar to skip, except if the metric provides a non-null, non-NaN value this
+	 * value is used, otherwise the empty bucket is skipped.
+	 */
+	KeepValues("keep_values"),
 
 	;
 

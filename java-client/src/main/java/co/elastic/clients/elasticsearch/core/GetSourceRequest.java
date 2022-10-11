@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,7 +35,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 
-public class GetSourceRequest {
+public class GetSourceRequest extends RequestBase {
 	@Nullable
 	private final SourceConfigParam source;
 
@@ -251,7 +251,9 @@ public class GetSourceRequest {
 	 * Builder for {@link GetSourceRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSourceRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetSourceRequest> {
 		@Nullable
 		private SourceConfigParam source;
 
@@ -471,6 +473,11 @@ public class GetSourceRequest {
 		 */
 		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -99,7 +98,9 @@ public class DeleteRoleRequest extends RequestBase {
 	 * Builder for {@link DeleteRoleRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteRoleRequest> {
 		private String name;
 
 		@Nullable
@@ -125,6 +126,11 @@ public class DeleteRoleRequest extends RequestBase {
 		 */
 		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

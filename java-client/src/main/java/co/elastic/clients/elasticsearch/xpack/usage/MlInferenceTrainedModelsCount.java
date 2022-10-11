@@ -37,6 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
 
@@ -54,6 +55,9 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 	private final long other;
 
+	@Nullable
+	private final Long passThrough;
+
 	private final long regression;
 
 	private final long classification;
@@ -65,6 +69,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.prepackaged = ApiTypeHelper.requireNonNull(builder.prepackaged, this, "prepackaged");
 		this.other = ApiTypeHelper.requireNonNull(builder.other, this, "other");
+		this.passThrough = builder.passThrough;
 		this.regression = ApiTypeHelper.requireNonNull(builder.regression, this, "regression");
 		this.classification = ApiTypeHelper.requireNonNull(builder.classification, this, "classification");
 
@@ -93,6 +98,14 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	 */
 	public final long other() {
 		return this.other;
+	}
+
+	/**
+	 * API name: {@code pass_through}
+	 */
+	@Nullable
+	public final Long passThrough() {
+		return this.passThrough;
 	}
 
 	/**
@@ -129,6 +142,11 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		generator.writeKey("other");
 		generator.write(this.other);
 
+		if (this.passThrough != null) {
+			generator.writeKey("pass_through");
+			generator.write(this.passThrough);
+
+		}
 		generator.writeKey("regression");
 		generator.write(this.regression);
 
@@ -157,6 +175,9 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 		private Long other;
 
+		@Nullable
+		private Long passThrough;
+
 		private Long regression;
 
 		private Long classification;
@@ -182,6 +203,14 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		 */
 		public final Builder other(long value) {
 			this.other = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code pass_through}
+		 */
+		public final Builder passThrough(@Nullable Long value) {
+			this.passThrough = value;
 			return this;
 		}
 
@@ -233,6 +262,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::prepackaged, JsonpDeserializer.longDeserializer(), "prepackaged");
 		op.add(Builder::other, JsonpDeserializer.longDeserializer(), "other");
+		op.add(Builder::passThrough, JsonpDeserializer.longDeserializer(), "pass_through");
 		op.add(Builder::regression, JsonpDeserializer.longDeserializer(), "regression");
 		op.add(Builder::classification, JsonpDeserializer.longDeserializer(), "classification");
 

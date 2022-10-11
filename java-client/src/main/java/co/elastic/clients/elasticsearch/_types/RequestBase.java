@@ -50,6 +50,13 @@ public abstract class RequestBase {
 	public RequestBase() {
 	}
 
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
+		protected abstract BuilderT self();
+
+	}
+
 	@Override
 	public String toString() {
 
@@ -82,13 +89,6 @@ public abstract class RequestBase {
 		}
 
 		return sb.toString();
-	}
-
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
-		protected abstract BuilderT self();
-
 	}
 
 }

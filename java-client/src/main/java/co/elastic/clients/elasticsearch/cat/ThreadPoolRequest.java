@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -99,7 +98,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 	 * Builder for {@link ThreadPoolRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
 		private ThreadPoolSize size;
 
@@ -139,6 +140,11 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 */
 		public final Builder threadPoolPatterns(String value, String... values) {
 			this.threadPoolPatterns = _listAdd(this.threadPoolPatterns, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

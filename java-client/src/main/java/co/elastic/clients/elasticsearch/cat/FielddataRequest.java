@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -98,7 +97,9 @@ public class FielddataRequest extends CatRequestBase {
 	 * Builder for {@link FielddataRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<FielddataRequest> {
 		@Nullable
 		private Bytes bytes;
 
@@ -136,6 +137,11 @@ public class FielddataRequest extends CatRequestBase {
 		 */
 		public final Builder fields(String value, String... values) {
 			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

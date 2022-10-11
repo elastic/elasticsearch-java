@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -144,7 +143,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 	 * Builder for {@link GetIndexTemplateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetIndexTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -220,6 +221,11 @@ public class GetIndexTemplateRequest extends RequestBase {
 		 */
 		public final Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

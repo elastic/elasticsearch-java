@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.GeoLine;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,6 +52,8 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 
 	private final GeoLine geometry;
 
+	private final JsonData properties;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoLineAggregate(Builder builder) {
@@ -58,6 +61,7 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.geometry = ApiTypeHelper.requireNonNull(builder.geometry, this, "geometry");
+		this.properties = ApiTypeHelper.requireNonNull(builder.properties, this, "properties");
 
 	}
 
@@ -87,6 +91,13 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		return this.geometry;
 	}
 
+	/**
+	 * Required - API name: {@code properties}
+	 */
+	public final JsonData properties() {
+		return this.properties;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -95,6 +106,9 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 
 		generator.writeKey("geometry");
 		this.geometry.serialize(generator, mapper);
+
+		generator.writeKey("properties");
+		this.properties.serialize(generator, mapper);
 
 	}
 
@@ -110,6 +124,8 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		private String type;
 
 		private GeoLine geometry;
+
+		private JsonData properties;
 
 		/**
 		 * Required - API name: {@code type}
@@ -132,6 +148,14 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		 */
 		public final Builder geometry(Function<GeoLine.Builder, ObjectBuilder<GeoLine>> fn) {
 			return this.geometry(fn.apply(new GeoLine.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code properties}
+		 */
+		public final Builder properties(JsonData value) {
+			this.properties = value;
+			return this;
 		}
 
 		@Override
@@ -164,6 +188,7 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::geometry, GeoLine._DESERIALIZER, "geometry");
+		op.add(Builder::properties, JsonData._DESERIALIZER, "properties");
 
 	}
 

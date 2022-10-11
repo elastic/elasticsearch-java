@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
+import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,7 +36,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,21 +47,21 @@ import javax.annotation.Nullable;
 // typedef: ingest.simulate.DocumentSimulation
 
 /**
- *
+ * The simulated document, with optional metadata.
+ * 
  * @see <a href=
  *      "../../doc-files/api-spec.html#ingest.simulate.DocumentSimulation">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class DocumentSimulation implements JsonpSerializable {
+	private final Map<String, String> metadata;
+
 	private final String id;
 
 	private final String index;
 
 	private final Ingest ingest;
-
-	@Nullable
-	private final String parent;
 
 	@Nullable
 	private final String routing;
@@ -68,22 +71,38 @@ public class DocumentSimulation implements JsonpSerializable {
 	@Nullable
 	private final String type;
 
+	@Nullable
+	private final Long version;
+
+	@Nullable
+	private final VersionType versionType;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DocumentSimulation(Builder builder) {
 
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-		this.parent = builder.parent;
 		this.routing = builder.routing;
 		this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
 		this.type = builder.type;
+		this.version = builder.version;
+		this.versionType = builder.versionType;
 
 	}
 
 	public static DocumentSimulation of(Function<Builder, ObjectBuilder<DocumentSimulation>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Additional metadata
+	 */
+	public final Map<String, String> metadata() {
+		return this.metadata;
 	}
 
 	/**
@@ -105,14 +124,6 @@ public class DocumentSimulation implements JsonpSerializable {
 	 */
 	public final Ingest ingest() {
 		return this.ingest;
-	}
-
-	/**
-	 * API name: {@code _parent}
-	 */
-	@Nullable
-	public final String parent() {
-		return this.parent;
 	}
 
 	/**
@@ -139,6 +150,22 @@ public class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code _version}
+	 */
+	@Nullable
+	public final Long version() {
+		return this.version;
+	}
+
+	/**
+	 * API name: {@code _version_type}
+	 */
+	@Nullable
+	public final VersionType versionType() {
+		return this.versionType;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -149,6 +176,12 @@ public class DocumentSimulation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		for (Map.Entry<String, String> item0 : this.metadata.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.write(item0.getValue());
+
+		}
+
 		generator.writeKey("_id");
 		generator.write(this.id);
 
@@ -158,11 +191,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		generator.writeKey("_ingest");
 		this.ingest.serialize(generator, mapper);
 
-		if (this.parent != null) {
-			generator.writeKey("_parent");
-			generator.write(this.parent);
-
-		}
 		if (this.routing != null) {
 			generator.writeKey("_routing");
 			generator.write(this.routing);
@@ -184,6 +212,15 @@ public class DocumentSimulation implements JsonpSerializable {
 			generator.write(this.type);
 
 		}
+		if (this.version != null) {
+			generator.writeKey("_version");
+			generator.write(this.version);
+
+		}
+		if (this.versionType != null) {
+			generator.writeKey("_version_type");
+			this.versionType.serialize(generator, mapper);
+		}
 
 	}
 
@@ -201,14 +238,34 @@ public class DocumentSimulation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DocumentSimulation> {
+		@Nullable
+		private Map<String, String> metadata = new HashMap<>();
+
+		/**
+		 * Additional metadata
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
+		 */
+		public final Builder metadata(Map<String, String> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Additional metadata
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, String value) {
+			this.metadata = _mapPut(this.metadata, key, value);
+			return this;
+		}
+
 		private String id;
 
 		private String index;
 
 		private Ingest ingest;
-
-		@Nullable
-		private String parent;
 
 		@Nullable
 		private String routing;
@@ -217,6 +274,12 @@ public class DocumentSimulation implements JsonpSerializable {
 
 		@Nullable
 		private String type;
+
+		@Nullable
+		private Long version;
+
+		@Nullable
+		private VersionType versionType;
 
 		/**
 		 * Required - API name: {@code _id}
@@ -247,14 +310,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		 */
 		public final Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
 			return this.ingest(fn.apply(new Ingest.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code _parent}
-		 */
-		public final Builder parent(@Nullable String value) {
-			this.parent = value;
-			return this;
 		}
 
 		/**
@@ -293,6 +348,22 @@ public class DocumentSimulation implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code _version}
+		 */
+		public final Builder version(@Nullable Long value) {
+			this.version = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _version_type}
+		 */
+		public final Builder versionType(@Nullable VersionType value) {
+			this.versionType = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -324,10 +395,15 @@ public class DocumentSimulation implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::ingest, Ingest._DESERIALIZER, "_ingest");
-		op.add(Builder::parent, JsonpDeserializer.stringDeserializer(), "_parent");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_source");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "_version_type");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.metadata(name, JsonpDeserializer.stringDeserializer().deserialize(parser, mapper));
+		});
 
 	}
 

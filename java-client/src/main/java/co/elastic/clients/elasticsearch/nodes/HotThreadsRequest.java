@@ -35,7 +35,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -190,7 +189,9 @@ public class HotThreadsRequest extends RequestBase {
 	 * Builder for {@link HotThreadsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThreadsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<HotThreadsRequest> {
 		@Nullable
 		private Boolean ignoreIdleThreads;
 
@@ -338,6 +339,11 @@ public class HotThreadsRequest extends RequestBase {
 		 */
 		public final Builder type(@Nullable ThreadType value) {
 			this.type = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

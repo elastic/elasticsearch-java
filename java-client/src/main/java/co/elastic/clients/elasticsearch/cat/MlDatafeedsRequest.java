@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -219,7 +218,9 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	 * Builder for {@link MlDatafeedsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
 		private Boolean allowNoDatafeeds;
 
@@ -380,6 +381,11 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		 */
 		public final Builder v(@Nullable Boolean value) {
 			this.v = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

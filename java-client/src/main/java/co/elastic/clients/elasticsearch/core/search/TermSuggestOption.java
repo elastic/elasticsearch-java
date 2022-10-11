@@ -34,6 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
@@ -53,17 +54,25 @@ import javax.annotation.Nullable;
 public class TermSuggestOption implements JsonpSerializable {
 	private final String text;
 
+	private final double score;
+
 	private final long freq;
 
-	private final double score;
+	@Nullable
+	private final String highlighted;
+
+	@Nullable
+	private final Boolean collateMatch;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TermSuggestOption(Builder builder) {
 
 		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.freq = ApiTypeHelper.requireNonNull(builder.freq, this, "freq");
 		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.freq = ApiTypeHelper.requireNonNull(builder.freq, this, "freq");
+		this.highlighted = builder.highlighted;
+		this.collateMatch = builder.collateMatch;
 
 	}
 
@@ -79,6 +88,13 @@ public class TermSuggestOption implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code score}
+	 */
+	public final double score() {
+		return this.score;
+	}
+
+	/**
 	 * Required - API name: {@code freq}
 	 */
 	public final long freq() {
@@ -86,10 +102,19 @@ public class TermSuggestOption implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code score}
+	 * API name: {@code highlighted}
 	 */
-	public final double score() {
-		return this.score;
+	@Nullable
+	public final String highlighted() {
+		return this.highlighted;
+	}
+
+	/**
+	 * API name: {@code collate_match}
+	 */
+	@Nullable
+	public final Boolean collateMatch() {
+		return this.collateMatch;
 	}
 
 	/**
@@ -106,11 +131,22 @@ public class TermSuggestOption implements JsonpSerializable {
 		generator.writeKey("text");
 		generator.write(this.text);
 
+		generator.writeKey("score");
+		generator.write(this.score);
+
 		generator.writeKey("freq");
 		generator.write(this.freq);
 
-		generator.writeKey("score");
-		generator.write(this.score);
+		if (this.highlighted != null) {
+			generator.writeKey("highlighted");
+			generator.write(this.highlighted);
+
+		}
+		if (this.collateMatch != null) {
+			generator.writeKey("collate_match");
+			generator.write(this.collateMatch);
+
+		}
 
 	}
 
@@ -128,15 +164,29 @@ public class TermSuggestOption implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermSuggestOption> {
 		private String text;
 
+		private Double score;
+
 		private Long freq;
 
-		private Double score;
+		@Nullable
+		private String highlighted;
+
+		@Nullable
+		private Boolean collateMatch;
 
 		/**
 		 * Required - API name: {@code text}
 		 */
 		public final Builder text(String value) {
 			this.text = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code score}
+		 */
+		public final Builder score(double value) {
+			this.score = value;
 			return this;
 		}
 
@@ -149,10 +199,18 @@ public class TermSuggestOption implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code score}
+		 * API name: {@code highlighted}
 		 */
-		public final Builder score(double value) {
-			this.score = value;
+		public final Builder highlighted(@Nullable String value) {
+			this.highlighted = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code collate_match}
+		 */
+		public final Builder collateMatch(@Nullable Boolean value) {
+			this.collateMatch = value;
 			return this;
 		}
 
@@ -185,8 +243,10 @@ public class TermSuggestOption implements JsonpSerializable {
 	protected static void setupTermSuggestOptionDeserializer(ObjectDeserializer<TermSuggestOption.Builder> op) {
 
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-		op.add(Builder::freq, JsonpDeserializer.longDeserializer(), "freq");
 		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
+		op.add(Builder::freq, JsonpDeserializer.longDeserializer(), "freq");
+		op.add(Builder::highlighted, JsonpDeserializer.stringDeserializer(), "highlighted");
+		op.add(Builder::collateMatch, JsonpDeserializer.booleanDeserializer(), "collate_match");
 
 	}
 

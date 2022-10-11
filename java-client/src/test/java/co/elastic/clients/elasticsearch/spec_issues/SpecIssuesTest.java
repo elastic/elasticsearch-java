@@ -256,7 +256,7 @@ public class SpecIssuesTest extends ModelTestCase {
             "cnn.com",
             resp.aggregations().get("login_filter").filter()
                 .aggregations().get("to_domain").sterms()
-                .buckets().array().get(0).key());
+                .buckets().array().get(0).key().stringValue());
     }
 
     @Test

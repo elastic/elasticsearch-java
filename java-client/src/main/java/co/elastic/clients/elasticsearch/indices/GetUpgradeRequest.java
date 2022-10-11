@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -82,7 +81,9 @@ public class GetUpgradeRequest extends RequestBase {
 	 * Builder for {@link GetUpgradeRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetUpgradeRequest> {
 		@Nullable
 		private String index;
 
@@ -94,6 +95,11 @@ public class GetUpgradeRequest extends RequestBase {
 		 */
 		public final Builder index(@Nullable String value) {
 			this.index = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

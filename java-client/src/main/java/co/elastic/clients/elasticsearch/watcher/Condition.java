@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,7 +33,9 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.Pair;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
@@ -147,7 +150,7 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code array_compare} kind.
 	 */
-	public ArrayCompareCondition arrayCompare() {
+	public NamedValue<ArrayCompareCondition> arrayCompare() {
 		return TaggedUnionUtils.get(this, Kind.ArrayCompare);
 	}
 
@@ -164,7 +167,7 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code compare} kind.
 	 */
-	public CompareCondition compare() {
+	public NamedValue<Pair<ConditionOp, FieldValue>> compare() {
 		return TaggedUnionUtils.get(this, Kind.Compare);
 	}
 
@@ -211,6 +214,31 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_kind) {
+				case ArrayCompare :
+					generator.writeStartObject();
+					generator.writeKey(((NamedValue<ArrayCompareCondition>) this._value).name());
+					((NamedValue<ArrayCompareCondition>) this._value).value().serialize(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case Compare :
+					generator.writeStartObject();
+					generator.writeKey(((NamedValue<Pair<ConditionOp, FieldValue>>) this._value).name());
+					generator.writeStartObject();
+					generator.writeKey(
+							((NamedValue<Pair<ConditionOp, FieldValue>>) this._value).value().key().jsonValue());
+					((NamedValue<Pair<ConditionOp, FieldValue>>) this._value).value().value().serialize(generator,
+							mapper);
+
+					generator.writeEnd();
+
+					generator.writeEnd();
+
+					break;
+			}
 		}
 
 		generator.writeEnd();
@@ -240,26 +268,16 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 			return this.always(fn.apply(new AlwaysCondition.Builder()).build());
 		}
 
-		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition v) {
+		public ObjectBuilder<Condition> arrayCompare(NamedValue<ArrayCompareCondition> v) {
 			this._kind = Kind.ArrayCompare;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Condition> arrayCompare(
-				Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
-			return this.arrayCompare(fn.apply(new ArrayCompareCondition.Builder()).build());
-		}
-
-		public ObjectBuilder<Condition> compare(CompareCondition v) {
+		public ObjectBuilder<Condition> compare(NamedValue<Pair<ConditionOp, FieldValue>> v) {
 			this._kind = Kind.Compare;
 			this._value = v;
 			return this;
-		}
-
-		public ObjectBuilder<Condition> compare(
-				Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> fn) {
-			return this.compare(fn.apply(new CompareCondition.Builder()).build());
 		}
 
 		public ObjectBuilder<Condition> never(NeverCondition v) {
@@ -292,8 +310,12 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 	protected static void setupConditionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::always, AlwaysCondition._DESERIALIZER, "always");
-		op.add(Builder::arrayCompare, ArrayCompareCondition._DESERIALIZER, "array_compare");
-		op.add(Builder::compare, CompareCondition._DESERIALIZER, "compare");
+		op.add(Builder::arrayCompare, NamedValue.deserializer(() -> ArrayCompareCondition._DESERIALIZER),
+				"array_compare");
+		op.add(Builder::compare,
+				NamedValue.deserializer(
+						() -> Pair.deserializer((k) -> ConditionOp._DESERIALIZER.parse(k), FieldValue._DESERIALIZER)),
+				"compare");
 		op.add(Builder::never, NeverCondition._DESERIALIZER, "never");
 		op.add(Builder::script, ScriptCondition._DESERIALIZER, "script");
 

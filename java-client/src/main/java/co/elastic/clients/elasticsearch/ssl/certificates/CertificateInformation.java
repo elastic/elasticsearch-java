@@ -50,6 +50,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CertificateInformation implements JsonpSerializable {
+	@Nullable
 	private final String alias;
 
 	private final String expiry;
@@ -57,6 +58,9 @@ public class CertificateInformation implements JsonpSerializable {
 	private final String format;
 
 	private final boolean hasPrivateKey;
+
+	@Nullable
+	private final String issuer;
 
 	private final String path;
 
@@ -68,10 +72,11 @@ public class CertificateInformation implements JsonpSerializable {
 
 	private CertificateInformation(Builder builder) {
 
-		this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
+		this.alias = builder.alias;
 		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
 		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
 		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
+		this.issuer = builder.issuer;
 		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 		this.serialNumber = ApiTypeHelper.requireNonNull(builder.serialNumber, this, "serialNumber");
 		this.subjectDn = ApiTypeHelper.requireNonNull(builder.subjectDn, this, "subjectDn");
@@ -83,8 +88,9 @@ public class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code alias}
+	 * API name: {@code alias}
 	 */
+	@Nullable
 	public final String alias() {
 		return this.alias;
 	}
@@ -108,6 +114,14 @@ public class CertificateInformation implements JsonpSerializable {
 	 */
 	public final boolean hasPrivateKey() {
 		return this.hasPrivateKey;
+	}
+
+	/**
+	 * API name: {@code issuer}
+	 */
+	@Nullable
+	public final String issuer() {
+		return this.issuer;
 	}
 
 	/**
@@ -142,9 +156,11 @@ public class CertificateInformation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("alias");
-		generator.write(this.alias);
+		if (this.alias != null) {
+			generator.writeKey("alias");
+			generator.write(this.alias);
 
+		}
 		generator.writeKey("expiry");
 		generator.write(this.expiry);
 
@@ -154,6 +170,11 @@ public class CertificateInformation implements JsonpSerializable {
 		generator.writeKey("has_private_key");
 		generator.write(this.hasPrivateKey);
 
+		if (this.issuer != null) {
+			generator.writeKey("issuer");
+			generator.write(this.issuer);
+
+		}
 		generator.writeKey("path");
 		generator.write(this.path);
 
@@ -179,6 +200,7 @@ public class CertificateInformation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<CertificateInformation> {
+		@Nullable
 		private String alias;
 
 		private String expiry;
@@ -187,6 +209,9 @@ public class CertificateInformation implements JsonpSerializable {
 
 		private Boolean hasPrivateKey;
 
+		@Nullable
+		private String issuer;
+
 		private String path;
 
 		private String serialNumber;
@@ -194,9 +219,9 @@ public class CertificateInformation implements JsonpSerializable {
 		private String subjectDn;
 
 		/**
-		 * Required - API name: {@code alias}
+		 * API name: {@code alias}
 		 */
-		public final Builder alias(String value) {
+		public final Builder alias(@Nullable String value) {
 			this.alias = value;
 			return this;
 		}
@@ -222,6 +247,14 @@ public class CertificateInformation implements JsonpSerializable {
 		 */
 		public final Builder hasPrivateKey(boolean value) {
 			this.hasPrivateKey = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code issuer}
+		 */
+		public final Builder issuer(@Nullable String value) {
+			this.issuer = value;
 			return this;
 		}
 
@@ -282,6 +315,7 @@ public class CertificateInformation implements JsonpSerializable {
 		op.add(Builder::expiry, JsonpDeserializer.stringDeserializer(), "expiry");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::hasPrivateKey, JsonpDeserializer.booleanDeserializer(), "has_private_key");
+		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::serialNumber, JsonpDeserializer.stringDeserializer(), "serial_number");
 		op.add(Builder::subjectDn, JsonpDeserializer.stringDeserializer(), "subject_dn");

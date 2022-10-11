@@ -104,7 +104,7 @@ public class TypedKeysTest extends ModelTestCase {
         Aggregate avg2 = AvgAggregate.of(_1 -> _1.value(2.0))._toAggregate();
 
         Aggregate aggregate = StringTermsAggregate.of(_0 -> _0
-            .sumOtherDocCount(1)
+            .sumOtherDocCount(1L)
             .buckets(b -> b.array(
                 ListBuilder.of(StringTermsBucket.Builder::new)
                 .add(_1 -> _1
@@ -148,9 +148,9 @@ public class TypedKeysTest extends ModelTestCase {
         StringTermsAggregate foo = resp.aggregations().get("foo").sterms();
         assertEquals(1, foo.sumOtherDocCount());
         assertEquals(1, foo.buckets().array().get(0).docCount());
-        assertEquals("key_1", foo.buckets().array().get(0).key());
+        assertEquals("key_1", foo.buckets().array().get(0).key().stringValue());
         assertEquals(1.0, foo.buckets().array().get(0).aggregations().get("bar").avg().value(), 0.01);
-        assertEquals("key_2", foo.buckets().array().get(1).key());
+        assertEquals("key_2", foo.buckets().array().get(1).key().stringValue());
         assertEquals(2.0, foo.buckets().array().get(1).aggregations().get("bar").avg().value(), 0.01);
     }
 
@@ -221,7 +221,7 @@ public class TypedKeysTest extends ModelTestCase {
             .aggregations().get("top_tags_per_comment").sterms()
             .buckets().array().get(0);
 
-        assertEquals("tag1", bucket.key());
+        assertEquals("tag1", bucket.key().stringValue());
         assertEquals(1, bucket.docCount());
 
         // Check that it's typed_keys encoded
@@ -258,7 +258,7 @@ public class TypedKeysTest extends ModelTestCase {
             .aggregations().get("top_tags_per_comment").sterms()
             .buckets().array().get(0);
 
-        assertEquals("tag1", bucket.key());
+        assertEquals("tag1", bucket.key().stringValue());
         assertEquals(1, bucket.docCount());
 
 

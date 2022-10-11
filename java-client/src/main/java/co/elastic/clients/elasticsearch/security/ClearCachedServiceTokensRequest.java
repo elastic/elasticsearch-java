@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -108,7 +107,9 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 	 * Builder for {@link ClearCachedServiceTokensRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedServiceTokensRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ClearCachedServiceTokensRequest> {
 		private List<String> name;
 
 		private String namespace;
@@ -156,6 +157,11 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 		 */
 		public final Builder service(String value) {
 			this.service = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

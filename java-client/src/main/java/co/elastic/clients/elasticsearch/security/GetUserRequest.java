@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -84,7 +83,7 @@ public class GetUserRequest extends RequestBase {
 	 * Builder for {@link GetUserRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetUserRequest> {
 		@Nullable
 		private List<String> username;
 
@@ -113,6 +112,11 @@ public class GetUserRequest extends RequestBase {
 		 */
 		public final Builder username(String value, String... values) {
 			this.username = _listAdd(this.username, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

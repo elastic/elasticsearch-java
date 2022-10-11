@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -96,7 +95,9 @@ public class GetServiceAccountsRequest extends RequestBase {
 	 * Builder for {@link GetServiceAccountsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceAccountsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetServiceAccountsRequest> {
 		@Nullable
 		private String namespace;
 
@@ -120,6 +121,11 @@ public class GetServiceAccountsRequest extends RequestBase {
 		 */
 		public final Builder service(@Nullable String value) {
 			this.service = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

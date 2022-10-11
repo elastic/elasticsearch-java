@@ -43,7 +43,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.Long;
@@ -250,7 +249,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 * Builder for {@link CreateRequest}.
 	 */
 
-	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+	public static class Builder<TDocument> extends RequestBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<CreateRequest<TDocument>> {
 		private String id;

@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.enrich;
+package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,50 +34,48 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
-// typedef: enrich._types.Configuration
+// typedef: xpack.usage.MlJobForecasts
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#enrich._types.Configuration">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.MlJobForecasts">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class EnrichConfiguration implements JsonpSerializable {
-	@Nullable
-	private final EnrichPolicy geoMatch;
+public class MlJobForecasts implements JsonpSerializable {
+	private final long total;
 
-	private final EnrichPolicy match;
+	private final long forecastedJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private EnrichConfiguration(Builder builder) {
+	private MlJobForecasts(Builder builder) {
 
-		this.geoMatch = builder.geoMatch;
-		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.forecastedJobs = ApiTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs");
 
 	}
 
-	public static EnrichConfiguration of(Function<Builder, ObjectBuilder<EnrichConfiguration>> fn) {
+	public static MlJobForecasts of(Function<Builder, ObjectBuilder<MlJobForecasts>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code geo_match}
+	 * Required - API name: {@code total}
 	 */
-	@Nullable
-	public final EnrichPolicy geoMatch() {
-		return this.geoMatch;
+	public final long total() {
+		return this.total;
 	}
 
 	/**
-	 * Required - API name: {@code match}
+	 * Required - API name: {@code forecasted_jobs}
 	 */
-	public final EnrichPolicy match() {
-		return this.match;
+	public final long forecastedJobs() {
+		return this.forecastedJobs;
 	}
 
 	/**
@@ -91,13 +89,11 @@ public class EnrichConfiguration implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.geoMatch != null) {
-			generator.writeKey("geo_match");
-			this.geoMatch.serialize(generator, mapper);
+		generator.writeKey("total");
+		generator.write(this.total);
 
-		}
-		generator.writeKey("match");
-		this.match.serialize(generator, mapper);
+		generator.writeKey("forecasted_jobs");
+		generator.write(this.forecastedJobs);
 
 	}
 
@@ -109,45 +105,28 @@ public class EnrichConfiguration implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link EnrichConfiguration}.
+	 * Builder for {@link MlJobForecasts}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<EnrichConfiguration> {
-		@Nullable
-		private EnrichPolicy geoMatch;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MlJobForecasts> {
+		private Long total;
 
-		private EnrichPolicy match;
+		private Long forecastedJobs;
 
 		/**
-		 * API name: {@code geo_match}
+		 * Required - API name: {@code total}
 		 */
-		public final Builder geoMatch(@Nullable EnrichPolicy value) {
-			this.geoMatch = value;
+		public final Builder total(long value) {
+			this.total = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code geo_match}
+		 * Required - API name: {@code forecasted_jobs}
 		 */
-		public final Builder geoMatch(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
-			return this.geoMatch(fn.apply(new EnrichPolicy.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code match}
-		 */
-		public final Builder match(EnrichPolicy value) {
-			this.match = value;
+		public final Builder forecastedJobs(long value) {
+			this.forecastedJobs = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code match}
-		 */
-		public final Builder match(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
-			return this.match(fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		@Override
@@ -156,30 +135,30 @@ public class EnrichConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link EnrichConfiguration}.
+		 * Builds a {@link MlJobForecasts}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public EnrichConfiguration build() {
+		public MlJobForecasts build() {
 			_checkSingleUse();
 
-			return new EnrichConfiguration(this);
+			return new MlJobForecasts(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link EnrichConfiguration}
+	 * Json deserializer for {@link MlJobForecasts}
 	 */
-	public static final JsonpDeserializer<EnrichConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EnrichConfiguration::setupEnrichConfigurationDeserializer);
+	public static final JsonpDeserializer<MlJobForecasts> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MlJobForecasts::setupMlJobForecastsDeserializer);
 
-	protected static void setupEnrichConfigurationDeserializer(ObjectDeserializer<EnrichConfiguration.Builder> op) {
+	protected static void setupMlJobForecastsDeserializer(ObjectDeserializer<MlJobForecasts.Builder> op) {
 
-		op.add(Builder::geoMatch, EnrichPolicy._DESERIALIZER, "geo_match");
-		op.add(Builder::match, EnrichPolicy._DESERIALIZER, "match");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::forecastedJobs, JsonpDeserializer.longDeserializer(), "forecasted_jobs");
 
 	}
 

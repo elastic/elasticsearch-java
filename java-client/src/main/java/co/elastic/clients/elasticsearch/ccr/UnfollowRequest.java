@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -82,7 +81,7 @@ public class UnfollowRequest extends RequestBase {
 	 * Builder for {@link UnfollowRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnfollowRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<UnfollowRequest> {
 		private String index;
 
 		/**
@@ -93,6 +92,11 @@ public class UnfollowRequest extends RequestBase {
 		 */
 		public final Builder index(String value) {
 			this.index = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

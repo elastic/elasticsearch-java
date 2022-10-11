@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -99,7 +98,9 @@ public class CacheStatsRequest extends RequestBase {
 	 * Builder for {@link CacheStatsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CacheStatsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<CacheStatsRequest> {
 		@Nullable
 		private Time masterTimeout;
 
@@ -146,6 +147,11 @@ public class CacheStatsRequest extends RequestBase {
 		 */
 		public final Builder nodeId(String value, String... values) {
 			this.nodeId = _listAdd(this.nodeId, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

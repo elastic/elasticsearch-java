@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -234,7 +233,9 @@ public class MlJobsRequest extends CatRequestBase {
 	 * Builder for {@link MlJobsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlJobsRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<MlJobsRequest> {
 		@Nullable
 		private Boolean allowNoJobs;
 
@@ -408,6 +409,11 @@ public class MlJobsRequest extends CatRequestBase {
 		 */
 		public final Builder v(@Nullable Boolean value) {
 			this.v = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

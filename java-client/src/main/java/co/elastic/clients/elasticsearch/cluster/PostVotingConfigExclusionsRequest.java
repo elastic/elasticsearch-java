@@ -36,7 +36,6 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -119,7 +118,9 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	 * Builder for {@link PostVotingConfigExclusionsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostVotingConfigExclusionsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PostVotingConfigExclusionsRequest> {
 		@Nullable
 		private List<String> nodeIds;
 
@@ -204,6 +205,11 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

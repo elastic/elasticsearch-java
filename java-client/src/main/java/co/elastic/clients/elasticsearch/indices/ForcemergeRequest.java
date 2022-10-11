@@ -34,7 +34,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -174,7 +173,9 @@ public class ForcemergeRequest extends RequestBase {
 	 * Builder for {@link ForcemergeRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForcemergeRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ForcemergeRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -299,6 +300,11 @@ public class ForcemergeRequest extends RequestBase {
 		 */
 		public final Builder onlyExpungeDeletes(@Nullable Boolean value) {
 			this.onlyExpungeDeletes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

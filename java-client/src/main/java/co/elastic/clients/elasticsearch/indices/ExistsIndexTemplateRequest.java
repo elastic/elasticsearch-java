@@ -36,7 +36,6 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -101,7 +100,9 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 	 * Builder for {@link ExistsIndexTemplateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsIndexTemplateRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ExistsIndexTemplateRequest> {
 		@Nullable
 		private Time masterTimeout;
 
@@ -136,6 +137,11 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 		 */
 		public final Builder name(String value) {
 			this.name = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

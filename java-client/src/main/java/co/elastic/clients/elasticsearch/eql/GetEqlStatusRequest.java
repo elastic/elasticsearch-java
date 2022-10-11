@@ -33,7 +33,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -81,7 +80,9 @@ public class GetEqlStatusRequest extends RequestBase {
 	 * Builder for {@link GetEqlStatusRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetEqlStatusRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetEqlStatusRequest> {
 		private String id;
 
 		/**
@@ -91,6 +92,11 @@ public class GetEqlStatusRequest extends RequestBase {
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

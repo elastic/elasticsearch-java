@@ -31,7 +31,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -81,7 +80,9 @@ public class TemplatesRequest extends CatRequestBase {
 	 * Builder for {@link TemplatesRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRequest> {
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<TemplatesRequest> {
 		@Nullable
 		private String name;
 
@@ -92,6 +93,11 @@ public class TemplatesRequest extends CatRequestBase {
 		 */
 		public final Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

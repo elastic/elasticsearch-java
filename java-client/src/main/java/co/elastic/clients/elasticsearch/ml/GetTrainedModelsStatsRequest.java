@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -137,7 +136,9 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 	 * Builder for {@link GetTrainedModelsStatsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsStatsRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetTrainedModelsStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -195,6 +196,11 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		 */
 		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

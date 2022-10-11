@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 public class MachineLearning extends Base {
 	private final Map<String, Datafeed> datafeeds;
 
-	private final Jobs jobs;
+	private final Map<String, JobUsage> jobs;
 
 	private final int nodeCount;
 
@@ -63,7 +63,7 @@ public class MachineLearning extends Base {
 		super(builder);
 
 		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
-		this.jobs = ApiTypeHelper.requireNonNull(builder.jobs, this, "jobs");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 		this.nodeCount = ApiTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount");
 		this.dataFrameAnalyticsJobs = ApiTypeHelper.requireNonNull(builder.dataFrameAnalyticsJobs, this,
 				"dataFrameAnalyticsJobs");
@@ -83,9 +83,12 @@ public class MachineLearning extends Base {
 	}
 
 	/**
-	 * Required - API name: {@code jobs}
+	 * Required - Job usage statistics. The <code>_all</code> entry is always
+	 * present and gathers statistics for all jobs.
+	 * <p>
+	 * API name: {@code jobs}
 	 */
-	public final Jobs jobs() {
+	public final Map<String, JobUsage> jobs() {
 		return this.jobs;
 	}
 
@@ -124,9 +127,17 @@ public class MachineLearning extends Base {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("jobs");
-		this.jobs.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.jobs)) {
+			generator.writeKey("jobs");
+			generator.writeStartObject();
+			for (Map.Entry<String, JobUsage> item0 : this.jobs.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("node_count");
 		generator.write(this.nodeCount);
 
@@ -147,7 +158,7 @@ public class MachineLearning extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<MachineLearning> {
 		private Map<String, Datafeed> datafeeds;
 
-		private Jobs jobs;
+		private Map<String, JobUsage> jobs;
 
 		private Integer nodeCount;
 
@@ -185,18 +196,41 @@ public class MachineLearning extends Base {
 		}
 
 		/**
-		 * Required - API name: {@code jobs}
+		 * Required - Job usage statistics. The <code>_all</code> entry is always
+		 * present and gathers statistics for all jobs.
+		 * <p>
+		 * API name: {@code jobs}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>jobs</code>.
 		 */
-		public final Builder jobs(Jobs value) {
-			this.jobs = value;
+		public final Builder jobs(Map<String, JobUsage> map) {
+			this.jobs = _mapPutAll(this.jobs, map);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code jobs}
+		 * Required - Job usage statistics. The <code>_all</code> entry is always
+		 * present and gathers statistics for all jobs.
+		 * <p>
+		 * API name: {@code jobs}
+		 * <p>
+		 * Adds an entry to <code>jobs</code>.
 		 */
-		public final Builder jobs(Function<Jobs.Builder, ObjectBuilder<Jobs>> fn) {
-			return this.jobs(fn.apply(new Jobs.Builder()).build());
+		public final Builder jobs(String key, JobUsage value) {
+			this.jobs = _mapPut(this.jobs, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Job usage statistics. The <code>_all</code> entry is always
+		 * present and gathers statistics for all jobs.
+		 * <p>
+		 * API name: {@code jobs}
+		 * <p>
+		 * Adds an entry to <code>jobs</code> using a builder lambda.
+		 */
+		public final Builder jobs(String key, Function<JobUsage.Builder, ObjectBuilder<JobUsage>> fn) {
+			return jobs(key, fn.apply(new JobUsage.Builder()).build());
 		}
 
 		/**
@@ -267,7 +301,7 @@ public class MachineLearning extends Base {
 	protected static void setupMachineLearningDeserializer(ObjectDeserializer<MachineLearning.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::datafeeds, JsonpDeserializer.stringMapDeserializer(Datafeed._DESERIALIZER), "datafeeds");
-		op.add(Builder::jobs, Jobs._DESERIALIZER, "jobs");
+		op.add(Builder::jobs, JsonpDeserializer.stringMapDeserializer(JobUsage._DESERIALIZER), "jobs");
 		op.add(Builder::nodeCount, JsonpDeserializer.integerDeserializer(), "node_count");
 		op.add(Builder::dataFrameAnalyticsJobs, MlDataFrameAnalyticsJobs._DESERIALIZER, "data_frame_analytics_jobs");
 		op.add(Builder::inference, MlInference._DESERIALIZER, "inference");

@@ -54,6 +54,9 @@ import javax.annotation.Nullable;
 public class Info implements JsonpSerializable {
 	private final String action;
 
+	@Nullable
+	private final Boolean cancelled;
+
 	private final boolean cancellable;
 
 	private final List<Info> children;
@@ -84,6 +87,7 @@ public class Info implements JsonpSerializable {
 	private Info(Builder builder) {
 
 		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancelled = builder.cancelled;
 		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
 		this.children = ApiTypeHelper.unmodifiable(builder.children);
 		this.description = builder.description;
@@ -107,6 +111,14 @@ public class Info implements JsonpSerializable {
 	 */
 	public final String action() {
 		return this.action;
+	}
+
+	/**
+	 * API name: {@code cancelled}
+	 */
+	@Nullable
+	public final Boolean cancelled() {
+		return this.cancelled;
 	}
 
 	/**
@@ -203,6 +215,11 @@ public class Info implements JsonpSerializable {
 		generator.writeKey("action");
 		generator.write(this.action);
 
+		if (this.cancelled != null) {
+			generator.writeKey("cancelled");
+			generator.write(this.cancelled);
+
+		}
 		generator.writeKey("cancellable");
 		generator.write(this.cancellable);
 
@@ -281,6 +298,9 @@ public class Info implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Info> {
 		private String action;
 
+		@Nullable
+		private Boolean cancelled;
+
 		private Boolean cancellable;
 
 		@Nullable
@@ -312,6 +332,14 @@ public class Info implements JsonpSerializable {
 		 */
 		public final Builder action(String value) {
 			this.action = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code cancelled}
+		 */
+		public final Builder cancelled(@Nullable Boolean value) {
+			this.cancelled = value;
 			return this;
 		}
 
@@ -472,6 +500,7 @@ public class Info implements JsonpSerializable {
 	protected static void setupInfoDeserializer(ObjectDeserializer<Info.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
+		op.add(Builder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
 		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(Info._DESERIALIZER), "children");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");

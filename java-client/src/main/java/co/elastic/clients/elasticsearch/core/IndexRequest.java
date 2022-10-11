@@ -44,7 +44,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.Boolean;
@@ -311,7 +310,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * Builder for {@link IndexRequest}.
 	 */
 
-	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+	public static class Builder<TDocument> extends RequestBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<IndexRequest<TDocument>> {
 		@Nullable

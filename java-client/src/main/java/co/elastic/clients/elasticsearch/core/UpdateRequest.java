@@ -43,7 +43,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -416,7 +415,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 	public static class Builder<TDocument, TPartialDocument>
 			extends
-				WithJsonObjectBuilderBase<Builder<TDocument, TPartialDocument>>
+				RequestBase.AbstractBuilder<Builder<TDocument, TPartialDocument>>
 			implements
 				ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>> {
 		@Nullable

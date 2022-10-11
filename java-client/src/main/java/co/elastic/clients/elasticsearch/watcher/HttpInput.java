@@ -49,9 +49,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class HttpInput implements InputVariant, JsonpSerializable {
-	@Nullable
-	private final HttpInput http;
-
 	private final List<String> extract;
 
 	@Nullable
@@ -64,7 +61,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 	private HttpInput(Builder builder) {
 
-		this.http = builder.http;
 		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
 		this.request = builder.request;
 		this.responseContentType = builder.responseContentType;
@@ -81,14 +77,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 	@Override
 	public Input.Kind _inputKind() {
 		return Input.Kind.Http;
-	}
-
-	/**
-	 * API name: {@code http}
-	 */
-	@Nullable
-	public final HttpInput http() {
-		return this.http;
 	}
 
 	/**
@@ -125,11 +113,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.http != null) {
-			generator.writeKey("http");
-			this.http.serialize(generator, mapper);
-
-		}
 		if (ApiTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
@@ -165,9 +148,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HttpInput> {
 		@Nullable
-		private HttpInput http;
-
-		@Nullable
 		private List<String> extract;
 
 		@Nullable
@@ -175,21 +155,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 		@Nullable
 		private ResponseContentType responseContentType;
-
-		/**
-		 * API name: {@code http}
-		 */
-		public final Builder http(@Nullable HttpInput value) {
-			this.http = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code http}
-		 */
-		public final Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
-			return this.http(fn.apply(new HttpInput.Builder()).build());
-		}
 
 		/**
 		 * API name: {@code extract}
@@ -263,7 +228,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 
 	protected static void setupHttpInputDeserializer(ObjectDeserializer<HttpInput.Builder> op) {
 
-		op.add(Builder::http, HttpInput._DESERIALIZER, "http");
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");
 		op.add(Builder::request, HttpInputRequestDefinition._DESERIALIZER, "request");
