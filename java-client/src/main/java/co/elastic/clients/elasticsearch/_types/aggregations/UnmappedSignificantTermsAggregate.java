@@ -44,7 +44,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {
+public class UnmappedSignificantTermsAggregate extends SignificantTermsAggregateBase<Void> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private UnmappedSignificantTermsAggregate(Builder builder) {
@@ -71,7 +71,7 @@ public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<
 	 * Builder for {@link UnmappedSignificantTermsAggregate}.
 	 */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
+	public static class Builder extends SignificantTermsAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedSignificantTermsAggregate> {
 		@Override
@@ -87,7 +87,7 @@ public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<
 		 */
 		public UnmappedSignificantTermsAggregate build() {
 			_checkSingleUse();
-			super.tBucketSerializer(null);
+			super.tSerializer(null);
 
 			return new UnmappedSignificantTermsAggregate(this);
 		}
@@ -103,7 +103,8 @@ public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<
 
 	protected static void setupUnmappedSignificantTermsAggregateDeserializer(
 			ObjectDeserializer<UnmappedSignificantTermsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
+		SignificantTermsAggregateBase.setupSignificantTermsAggregateBaseDeserializer(op,
+				JsonpDeserializer.voidDeserializer());
 
 	}
 

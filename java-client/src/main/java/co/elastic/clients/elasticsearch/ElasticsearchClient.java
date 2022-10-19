@@ -788,6 +788,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
 	}
 
+	/**
+	 * Returns the information about the capabilities of fields among multiple
+	 * indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public FieldCapsResponse fieldCaps() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: get
 
 	/**

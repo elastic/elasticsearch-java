@@ -58,7 +58,7 @@ public class FieldSecurity implements JsonpSerializable {
 	private FieldSecurity(Builder builder) {
 
 		this.except = ApiTypeHelper.unmodifiable(builder.except);
-		this.grant = ApiTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
+		this.grant = ApiTypeHelper.unmodifiable(builder.grant);
 
 	}
 
@@ -74,7 +74,7 @@ public class FieldSecurity implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code grant}
+	 * API name: {@code grant}
 	 */
 	public final List<String> grant() {
 		return this.grant;
@@ -129,6 +129,7 @@ public class FieldSecurity implements JsonpSerializable {
 		@Nullable
 		private List<String> except;
 
+		@Nullable
 		private List<String> grant;
 
 		/**
@@ -152,7 +153,7 @@ public class FieldSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code grant}
+		 * API name: {@code grant}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>grant</code>.
 		 */
@@ -162,7 +163,7 @@ public class FieldSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code grant}
+		 * API name: {@code grant}
 		 * <p>
 		 * Adds one or more values to <code>grant</code>.
 		 */

@@ -41,7 +41,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<SignificantLongTermsBucket>
+public class SignificantLongTermsAggregate extends SignificantTermsAggregateBase<SignificantLongTermsBucket>
 		implements
 			AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -69,7 +69,9 @@ public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<Sign
 	 * Builder for {@link SignificantLongTermsAggregate}.
 	 */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<SignificantLongTermsBucket, Builder>
+	public static class Builder
+			extends
+				SignificantTermsAggregateBase.AbstractBuilder<SignificantLongTermsBucket, Builder>
 			implements
 				ObjectBuilder<SignificantLongTermsAggregate> {
 		@Override
@@ -85,7 +87,7 @@ public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<Sign
 		 */
 		public SignificantLongTermsAggregate build() {
 			_checkSingleUse();
-			super.tBucketSerializer(null);
+			super.tSerializer(null);
 
 			return new SignificantLongTermsAggregate(this);
 		}
@@ -101,7 +103,7 @@ public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<Sign
 
 	protected static void setupSignificantLongTermsAggregateDeserializer(
 			ObjectDeserializer<SignificantLongTermsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op,
+		SignificantTermsAggregateBase.setupSignificantTermsAggregateBaseDeserializer(op,
 				SignificantLongTermsBucket._DESERIALIZER);
 
 	}

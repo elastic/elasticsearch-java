@@ -48,10 +48,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
-	private final JsonData emptyValue;
-
 	@Nullable
-	private final String description;
+	private final JsonData emptyValue;
 
 	private final String field;
 
@@ -66,21 +64,21 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 
 	private final List<String> targetFields;
 
-	private final boolean trim;
+	@Nullable
+	private final Boolean trim;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private CsvProcessor(Builder builder) {
 		super(builder);
 
-		this.emptyValue = ApiTypeHelper.requireNonNull(builder.emptyValue, this, "emptyValue");
-		this.description = builder.description;
+		this.emptyValue = builder.emptyValue;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.quote = builder.quote;
 		this.separator = builder.separator;
 		this.targetFields = ApiTypeHelper.unmodifiableRequired(builder.targetFields, this, "targetFields");
-		this.trim = ApiTypeHelper.requireNonNull(builder.trim, this, "trim");
+		this.trim = builder.trim;
 
 	}
 
@@ -97,18 +95,11 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code empty_value}
-	 */
-	public final JsonData emptyValue() {
-		return this.emptyValue;
-	}
-
-	/**
-	 * API name: {@code description}
+	 * API name: {@code empty_value}
 	 */
 	@Nullable
-	public final String description() {
-		return this.description;
+	public final JsonData emptyValue() {
+		return this.emptyValue;
 	}
 
 	/**
@@ -150,21 +141,19 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code trim}
+	 * API name: {@code trim}
 	 */
-	public final boolean trim() {
+	@Nullable
+	public final Boolean trim() {
 		return this.trim;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("empty_value");
-		this.emptyValue.serialize(generator, mapper);
-
-		if (this.description != null) {
-			generator.writeKey("description");
-			generator.write(this.description);
+		if (this.emptyValue != null) {
+			generator.writeKey("empty_value");
+			this.emptyValue.serialize(generator, mapper);
 
 		}
 		generator.writeKey("field");
@@ -195,8 +184,11 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("trim");
-		generator.write(this.trim);
+		if (this.trim != null) {
+			generator.writeKey("trim");
+			generator.write(this.trim);
+
+		}
 
 	}
 
@@ -207,10 +199,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	 */
 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<CsvProcessor> {
-		private JsonData emptyValue;
-
 		@Nullable
-		private String description;
+		private JsonData emptyValue;
 
 		private String field;
 
@@ -225,21 +215,14 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 
 		private List<String> targetFields;
 
+		@Nullable
 		private Boolean trim;
 
 		/**
-		 * Required - API name: {@code empty_value}
+		 * API name: {@code empty_value}
 		 */
-		public final Builder emptyValue(JsonData value) {
+		public final Builder emptyValue(@Nullable JsonData value) {
 			this.emptyValue = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code description}
-		 */
-		public final Builder description(@Nullable String value) {
-			this.description = value;
 			return this;
 		}
 
@@ -296,9 +279,9 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code trim}
+		 * API name: {@code trim}
 		 */
-		public final Builder trim(boolean value) {
+		public final Builder trim(@Nullable Boolean value) {
 			this.trim = value;
 			return this;
 		}
@@ -332,7 +315,6 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	protected static void setupCsvProcessorDeserializer(ObjectDeserializer<CsvProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::emptyValue, JsonData._DESERIALIZER, "empty_value");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 		op.add(Builder::quote, JsonpDeserializer.stringDeserializer(), "quote");

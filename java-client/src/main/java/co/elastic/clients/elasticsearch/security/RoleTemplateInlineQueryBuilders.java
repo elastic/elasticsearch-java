@@ -21,37 +21,29 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#_types.ScriptSortType">API
- *      specification</a>
+ * Builders for {@link RoleTemplateInlineQuery} variants.
+ * <p>
+ * Variants <code>query_string</code> are not available here as they don't have
+ * a dedicated class. Use {@link RoleTemplateInlineQuery}'s builder for these.
+ * 
  */
-@JsonpDeserializable
-public enum ScriptSortType implements JsonEnum {
-	String("string"),
-
-	Number("number"),
-
-	Version("version"),
-
-	;
-
-	private final String jsonValue;
-
-	ScriptSortType(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class RoleTemplateInlineQueryBuilders {
+	private RoleTemplateInlineQueryBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	/**
+	 * Creates a builder for the {@link Query query_object}
+	 * {@code RoleTemplateInlineQuery} variant.
+	 */
+	public static Query.Builder queryObject() {
+		return new Query.Builder();
 	}
 
-	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ScriptSortType.values());
 }

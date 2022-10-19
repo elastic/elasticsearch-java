@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -29,22 +29,28 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.ScriptSortType">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest._types.JsonProcessorConflictStrategy">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum ScriptSortType implements JsonEnum {
-	String("string"),
+public enum JsonProcessorConflictStrategy implements JsonEnum {
+	/**
+	 * Root fields that conflict with fields from the parsed JSON will be
+	 * overridden.
+	 */
+	Replace("replace"),
 
-	Number("number"),
-
-	Version("version"),
+	/**
+	 * Conflicting fields will be merged.
+	 */
+	Merge("merge"),
 
 	;
 
 	private final String jsonValue;
 
-	ScriptSortType(String jsonValue) {
+	JsonProcessorConflictStrategy(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -52,6 +58,6 @@ public enum ScriptSortType implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ScriptSortType.values());
+	public static final JsonEnum.Deserializer<JsonProcessorConflictStrategy> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			JsonProcessorConflictStrategy.values());
 }

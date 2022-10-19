@@ -46,11 +46,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DissectProcessor extends ProcessorBase implements ProcessorVariant {
+	@Nullable
 	private final String appendSeparator;
 
 	private final String field;
 
-	private final boolean ignoreMissing;
+	@Nullable
+	private final Boolean ignoreMissing;
 
 	private final String pattern;
 
@@ -59,9 +61,9 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	private DissectProcessor(Builder builder) {
 		super(builder);
 
-		this.appendSeparator = ApiTypeHelper.requireNonNull(builder.appendSeparator, this, "appendSeparator");
+		this.appendSeparator = builder.appendSeparator;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.ignoreMissing = builder.ignoreMissing;
 		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
@@ -79,8 +81,9 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code append_separator}
+	 * API name: {@code append_separator}
 	 */
+	@Nullable
 	public final String appendSeparator() {
 		return this.appendSeparator;
 	}
@@ -93,9 +96,10 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code ignore_missing}
+	 * API name: {@code ignore_missing}
 	 */
-	public final boolean ignoreMissing() {
+	@Nullable
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -109,15 +113,19 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("append_separator");
-		generator.write(this.appendSeparator);
+		if (this.appendSeparator != null) {
+			generator.writeKey("append_separator");
+			generator.write(this.appendSeparator);
 
+		}
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("ignore_missing");
-		generator.write(this.ignoreMissing);
+		if (this.ignoreMissing != null) {
+			generator.writeKey("ignore_missing");
+			generator.write(this.ignoreMissing);
 
+		}
 		generator.writeKey("pattern");
 		generator.write(this.pattern);
 
@@ -132,18 +140,20 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DissectProcessor> {
+		@Nullable
 		private String appendSeparator;
 
 		private String field;
 
+		@Nullable
 		private Boolean ignoreMissing;
 
 		private String pattern;
 
 		/**
-		 * Required - API name: {@code append_separator}
+		 * API name: {@code append_separator}
 		 */
-		public final Builder appendSeparator(String value) {
+		public final Builder appendSeparator(@Nullable String value) {
 			this.appendSeparator = value;
 			return this;
 		}
@@ -157,9 +167,9 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code ignore_missing}
+		 * API name: {@code ignore_missing}
 		 */
-		public final Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}

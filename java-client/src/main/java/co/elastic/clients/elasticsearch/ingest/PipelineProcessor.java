@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,12 +48,16 @@ import javax.annotation.Nullable;
 public class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
 
+	@Nullable
+	private final Boolean ignoreMissingPipeline;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PipelineProcessor(Builder builder) {
 		super(builder);
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.ignoreMissingPipeline = builder.ignoreMissingPipeline;
 
 	}
 
@@ -75,11 +80,25 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 		return this.name;
 	}
 
+	/**
+	 * API name: {@code ignore_missing_pipeline}
+	 */
+	@Nullable
+	public final Boolean ignoreMissingPipeline() {
+		return this.ignoreMissingPipeline;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("name");
 		generator.write(this.name);
+
+		if (this.ignoreMissingPipeline != null) {
+			generator.writeKey("ignore_missing_pipeline");
+			generator.write(this.ignoreMissingPipeline);
+
+		}
 
 	}
 
@@ -94,11 +113,22 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 				ObjectBuilder<PipelineProcessor> {
 		private String name;
 
+		@Nullable
+		private Boolean ignoreMissingPipeline;
+
 		/**
 		 * Required - API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_missing_pipeline}
+		 */
+		public final Builder ignoreMissingPipeline(@Nullable Boolean value) {
+			this.ignoreMissingPipeline = value;
 			return this;
 		}
 
@@ -131,6 +161,7 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	protected static void setupPipelineProcessorDeserializer(ObjectDeserializer<PipelineProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::ignoreMissingPipeline, JsonpDeserializer.booleanDeserializer(), "ignore_missing_pipeline");
 
 	}
 

@@ -60,7 +60,22 @@ public class RolloverConditions implements JsonpSerializable {
 	private final String maxSize;
 
 	@Nullable
+	private final String minSize;
+
+	@Nullable
+	private final String maxSizeBytes;
+
+	@Nullable
 	private final String maxPrimaryShardSize;
+
+	@Nullable
+	private final String minPrimaryShardSize;
+
+	@Nullable
+	private final Long maxPrimaryShardDocs;
+
+	@Nullable
+	private final Long minPrimaryShardDocs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,7 +84,12 @@ public class RolloverConditions implements JsonpSerializable {
 		this.maxAge = builder.maxAge;
 		this.maxDocs = builder.maxDocs;
 		this.maxSize = builder.maxSize;
+		this.minSize = builder.minSize;
+		this.maxSizeBytes = builder.maxSizeBytes;
 		this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
+		this.minPrimaryShardSize = builder.minPrimaryShardSize;
+		this.maxPrimaryShardDocs = builder.maxPrimaryShardDocs;
+		this.minPrimaryShardDocs = builder.minPrimaryShardDocs;
 
 	}
 
@@ -102,11 +122,51 @@ public class RolloverConditions implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code min_size}
+	 */
+	@Nullable
+	public final String minSize() {
+		return this.minSize;
+	}
+
+	/**
+	 * API name: {@code max_size_bytes}
+	 */
+	@Nullable
+	public final String maxSizeBytes() {
+		return this.maxSizeBytes;
+	}
+
+	/**
 	 * API name: {@code max_primary_shard_size}
 	 */
 	@Nullable
 	public final String maxPrimaryShardSize() {
 		return this.maxPrimaryShardSize;
+	}
+
+	/**
+	 * API name: {@code min_primary_shard_size}
+	 */
+	@Nullable
+	public final String minPrimaryShardSize() {
+		return this.minPrimaryShardSize;
+	}
+
+	/**
+	 * API name: {@code max_primary_shard_docs}
+	 */
+	@Nullable
+	public final Long maxPrimaryShardDocs() {
+		return this.maxPrimaryShardDocs;
+	}
+
+	/**
+	 * API name: {@code min_primary_shard_docs}
+	 */
+	@Nullable
+	public final Long minPrimaryShardDocs() {
+		return this.minPrimaryShardDocs;
 	}
 
 	/**
@@ -135,9 +195,34 @@ public class RolloverConditions implements JsonpSerializable {
 			generator.write(this.maxSize);
 
 		}
+		if (this.minSize != null) {
+			generator.writeKey("min_size");
+			generator.write(this.minSize);
+
+		}
+		if (this.maxSizeBytes != null) {
+			generator.writeKey("max_size_bytes");
+			generator.write(this.maxSizeBytes);
+
+		}
 		if (this.maxPrimaryShardSize != null) {
 			generator.writeKey("max_primary_shard_size");
 			generator.write(this.maxPrimaryShardSize);
+
+		}
+		if (this.minPrimaryShardSize != null) {
+			generator.writeKey("min_primary_shard_size");
+			generator.write(this.minPrimaryShardSize);
+
+		}
+		if (this.maxPrimaryShardDocs != null) {
+			generator.writeKey("max_primary_shard_docs");
+			generator.write(this.maxPrimaryShardDocs);
+
+		}
+		if (this.minPrimaryShardDocs != null) {
+			generator.writeKey("min_primary_shard_docs");
+			generator.write(this.minPrimaryShardDocs);
 
 		}
 
@@ -167,7 +252,22 @@ public class RolloverConditions implements JsonpSerializable {
 		private String maxSize;
 
 		@Nullable
+		private String minSize;
+
+		@Nullable
+		private String maxSizeBytes;
+
+		@Nullable
 		private String maxPrimaryShardSize;
+
+		@Nullable
+		private String minPrimaryShardSize;
+
+		@Nullable
+		private Long maxPrimaryShardDocs;
+
+		@Nullable
+		private Long minPrimaryShardDocs;
 
 		/**
 		 * API name: {@code max_age}
@@ -201,10 +301,50 @@ public class RolloverConditions implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code min_size}
+		 */
+		public final Builder minSize(@Nullable String value) {
+			this.minSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_size_bytes}
+		 */
+		public final Builder maxSizeBytes(@Nullable String value) {
+			this.maxSizeBytes = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code max_primary_shard_size}
 		 */
 		public final Builder maxPrimaryShardSize(@Nullable String value) {
 			this.maxPrimaryShardSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_primary_shard_size}
+		 */
+		public final Builder minPrimaryShardSize(@Nullable String value) {
+			this.minPrimaryShardSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_primary_shard_docs}
+		 */
+		public final Builder maxPrimaryShardDocs(@Nullable Long value) {
+			this.maxPrimaryShardDocs = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_primary_shard_docs}
+		 */
+		public final Builder minPrimaryShardDocs(@Nullable Long value) {
+			this.minPrimaryShardDocs = value;
 			return this;
 		}
 
@@ -239,7 +379,12 @@ public class RolloverConditions implements JsonpSerializable {
 		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
+		op.add(Builder::minSize, JsonpDeserializer.stringDeserializer(), "min_size");
+		op.add(Builder::maxSizeBytes, JsonpDeserializer.stringDeserializer(), "max_size_bytes");
 		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
+		op.add(Builder::minPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "min_primary_shard_size");
+		op.add(Builder::maxPrimaryShardDocs, JsonpDeserializer.longDeserializer(), "max_primary_shard_docs");
+		op.add(Builder::minPrimaryShardDocs, JsonpDeserializer.longDeserializer(), "min_primary_shard_docs");
 
 	}
 
