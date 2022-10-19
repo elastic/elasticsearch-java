@@ -47,16 +47,20 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
+	@Nullable
 	private final String databaseFile;
 
 	private final String field;
 
-	private final boolean firstOnly;
+	@Nullable
+	private final Boolean firstOnly;
 
-	private final boolean ignoreMissing;
+	@Nullable
+	private final Boolean ignoreMissing;
 
 	private final List<String> properties;
 
+	@Nullable
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
@@ -64,12 +68,12 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	private GeoIpProcessor(Builder builder) {
 		super(builder);
 
-		this.databaseFile = ApiTypeHelper.requireNonNull(builder.databaseFile, this, "databaseFile");
+		this.databaseFile = builder.databaseFile;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.firstOnly = ApiTypeHelper.requireNonNull(builder.firstOnly, this, "firstOnly");
-		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
-		this.properties = ApiTypeHelper.unmodifiableRequired(builder.properties, this, "properties");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.firstOnly = builder.firstOnly;
+		this.ignoreMissing = builder.ignoreMissing;
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
+		this.targetField = builder.targetField;
 
 	}
 
@@ -86,8 +90,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code database_file}
+	 * API name: {@code database_file}
 	 */
+	@Nullable
 	public final String databaseFile() {
 		return this.databaseFile;
 	}
@@ -100,29 +105,32 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code first_only}
+	 * API name: {@code first_only}
 	 */
-	public final boolean firstOnly() {
+	@Nullable
+	public final Boolean firstOnly() {
 		return this.firstOnly;
 	}
 
 	/**
-	 * Required - API name: {@code ignore_missing}
+	 * API name: {@code ignore_missing}
 	 */
-	public final boolean ignoreMissing() {
+	@Nullable
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * Required - API name: {@code properties}
+	 * API name: {@code properties}
 	 */
 	public final List<String> properties() {
 		return this.properties;
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -130,18 +138,24 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("database_file");
-		generator.write(this.databaseFile);
+		if (this.databaseFile != null) {
+			generator.writeKey("database_file");
+			generator.write(this.databaseFile);
 
+		}
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("first_only");
-		generator.write(this.firstOnly);
+		if (this.firstOnly != null) {
+			generator.writeKey("first_only");
+			generator.write(this.firstOnly);
 
-		generator.writeKey("ignore_missing");
-		generator.write(this.ignoreMissing);
+		}
+		if (this.ignoreMissing != null) {
+			generator.writeKey("ignore_missing");
+			generator.write(this.ignoreMissing);
 
+		}
 		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
@@ -152,8 +166,11 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
+
+		}
 
 	}
 
@@ -166,22 +183,27 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoIpProcessor> {
+		@Nullable
 		private String databaseFile;
 
 		private String field;
 
+		@Nullable
 		private Boolean firstOnly;
 
+		@Nullable
 		private Boolean ignoreMissing;
 
+		@Nullable
 		private List<String> properties;
 
+		@Nullable
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code database_file}
+		 * API name: {@code database_file}
 		 */
-		public final Builder databaseFile(String value) {
+		public final Builder databaseFile(@Nullable String value) {
 			this.databaseFile = value;
 			return this;
 		}
@@ -195,23 +217,23 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code first_only}
+		 * API name: {@code first_only}
 		 */
-		public final Builder firstOnly(boolean value) {
+		public final Builder firstOnly(@Nullable Boolean value) {
 			this.firstOnly = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code ignore_missing}
+		 * API name: {@code ignore_missing}
 		 */
-		public final Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code properties}
+		 * API name: {@code properties}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 */
@@ -221,7 +243,7 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code properties}
+		 * API name: {@code properties}
 		 * <p>
 		 * Adds one or more values to <code>properties</code>.
 		 */
@@ -231,9 +253,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -78,7 +79,7 @@ public class ApiKey implements JsonpSerializable {
 
 	private final List<Map<String, RoleDescriptor>> limitedBy;
 
-	private final List<String> sort;
+	private final List<FieldValue> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -180,7 +181,7 @@ public class ApiKey implements JsonpSerializable {
 	/**
 	 * API name: {@code _sort}
 	 */
-	public final List<String> sort() {
+	public final List<FieldValue> sort() {
 		return this.sort;
 	}
 
@@ -269,8 +270,8 @@ public class ApiKey implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("_sort");
 			generator.writeStartArray();
-			for (String item0 : this.sort) {
-				generator.write(item0);
+			for (FieldValue item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -320,7 +321,7 @@ public class ApiKey implements JsonpSerializable {
 		private List<Map<String, RoleDescriptor>> limitedBy;
 
 		@Nullable
-		private List<String> sort;
+		private List<FieldValue> sort;
 
 		/**
 		 * API name: {@code creation}
@@ -453,7 +454,7 @@ public class ApiKey implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(List<String> list) {
+		public final Builder sort(List<FieldValue> list) {
 			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
@@ -463,9 +464,18 @@ public class ApiKey implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(String value, String... values) {
+		public final Builder sort(FieldValue value, FieldValue... values) {
 			this.sort = _listAdd(this.sort, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code _sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
+		 */
+		public final Builder sort(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return sort(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -508,7 +518,7 @@ public class ApiKey implements JsonpSerializable {
 				"role_descriptors");
 		op.add(Builder::limitedBy, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER)), "limited_by");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "_sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "_sort");
 
 	}
 

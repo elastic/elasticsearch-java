@@ -94,7 +94,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filters = builder.filters;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
@@ -136,8 +136,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Comma-separated list of fields to retrieve capabilities for.
-	 * Wildcard (<code>*</code>) expressions are supported.
+	 * List of fields to retrieve capabilities for. Wildcard (<code>*</code>)
+	 * expressions are supported.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -230,6 +230,16 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.indexFilter != null) {
 			generator.writeKey("index_filter");
 			this.indexFilter.serialize(generator, mapper);
@@ -264,6 +274,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
+		@Nullable
 		private List<String> fields;
 
 		@Nullable
@@ -332,8 +343,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of fields to retrieve capabilities for.
-		 * Wildcard (<code>*</code>) expressions are supported.
+		 * List of fields to retrieve capabilities for. Wildcard (<code>*</code>)
+		 * expressions are supported.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -345,8 +356,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of fields to retrieve capabilities for.
-		 * Wildcard (<code>*</code>) expressions are supported.
+		 * List of fields to retrieve capabilities for. Wildcard (<code>*</code>)
+		 * expressions are supported.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -532,6 +543,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupFieldCapsRequestDeserializer(ObjectDeserializer<FieldCapsRequest.Builder> op) {
 
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
@@ -596,7 +608,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (request.filters != null) {
 					params.put("filters", request.filters);
 				}
-				params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));
 				}

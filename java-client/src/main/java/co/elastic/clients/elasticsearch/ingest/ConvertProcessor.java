@@ -51,6 +51,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	@Nullable
 	private final Boolean ignoreMissing;
 
+	@Nullable
 	private final String targetField;
 
 	private final ConvertType type;
@@ -62,7 +63,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = builder.targetField;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
@@ -95,8 +96,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -119,9 +121,11 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 			generator.write(this.ignoreMissing);
 
 		}
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
 
+		}
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -141,6 +145,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		@Nullable
 		private Boolean ignoreMissing;
 
+		@Nullable
 		private String targetField;
 
 		private ConvertType type;
@@ -162,9 +167,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}

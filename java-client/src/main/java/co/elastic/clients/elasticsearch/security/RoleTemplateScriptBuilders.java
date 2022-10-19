@@ -21,37 +21,33 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.elasticsearch._types.StoredScriptId;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#_types.ScriptSortType">API
- *      specification</a>
+ * Builders for {@link RoleTemplateScript} variants.
  */
-@JsonpDeserializable
-public enum ScriptSortType implements JsonEnum {
-	String("string"),
-
-	Number("number"),
-
-	Version("version"),
-
-	;
-
-	private final String jsonValue;
-
-	ScriptSortType(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class RoleTemplateScriptBuilders {
+	private RoleTemplateScriptBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	/**
+	 * Creates a builder for the {@link StoredScriptId stored}
+	 * {@code RoleTemplateScript} variant.
+	 */
+	public static StoredScriptId.Builder stored() {
+		return new StoredScriptId.Builder();
 	}
 
-	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ScriptSortType.values());
+	/**
+	 * Creates a builder for the {@link RoleTemplateInlineScript inline}
+	 * {@code RoleTemplateScript} variant.
+	 */
+	public static RoleTemplateInlineScript.Builder inline() {
+		return new RoleTemplateInlineScript.Builder();
+	}
+
 }

@@ -53,6 +53,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MappingLimitSettings implements JsonpSerializable {
 	@Nullable
+	private final Boolean coerce;
+
+	@Nullable
 	private final MappingLimitSettingsTotalFields totalFields;
 
 	@Nullable
@@ -77,6 +80,7 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 	private MappingLimitSettings(Builder builder) {
 
+		this.coerce = builder.coerce;
 		this.totalFields = builder.totalFields;
 		this.depth = builder.depth;
 		this.nestedFields = builder.nestedFields;
@@ -89,6 +93,14 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 	public static MappingLimitSettings of(Function<Builder, ObjectBuilder<MappingLimitSettings>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code coerce}
+	 */
+	@Nullable
+	public final Boolean coerce() {
+		return this.coerce;
 	}
 
 	/**
@@ -158,6 +170,11 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.coerce != null) {
+			generator.writeKey("coerce");
+			generator.write(this.coerce);
+
+		}
 		if (this.totalFields != null) {
 			generator.writeKey("total_fields");
 			this.totalFields.serialize(generator, mapper);
@@ -211,6 +228,9 @@ public class MappingLimitSettings implements JsonpSerializable {
 			implements
 				ObjectBuilder<MappingLimitSettings> {
 		@Nullable
+		private Boolean coerce;
+
+		@Nullable
 		private MappingLimitSettingsTotalFields totalFields;
 
 		@Nullable
@@ -230,6 +250,14 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 		@Nullable
 		private Boolean ignoreMalformed;
+
+		/**
+		 * API name: {@code coerce}
+		 */
+		public final Builder coerce(@Nullable Boolean value) {
+			this.coerce = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code total_fields}
@@ -363,6 +391,7 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 	protected static void setupMappingLimitSettingsDeserializer(ObjectDeserializer<MappingLimitSettings.Builder> op) {
 
+		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::totalFields, MappingLimitSettingsTotalFields._DESERIALIZER, "total_fields");
 		op.add(Builder::depth, MappingLimitSettingsDepth._DESERIALIZER, "depth");
 		op.add(Builder::nestedFields, MappingLimitSettingsNestedFields._DESERIALIZER, "nested_fields");

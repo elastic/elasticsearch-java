@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -39,7 +40,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +62,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Query query;
 
-	private final List<String> searchAfter;
+	private final List<FieldValue> searchAfter;
 
 	@Nullable
 	private final Integer size;
@@ -110,7 +110,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code search_after}
 	 */
-	public final List<String> searchAfter() {
+	public final List<FieldValue> searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -157,8 +157,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
-			for (String item0 : this.searchAfter) {
-				generator.write(item0);
+			for (FieldValue item0 : this.searchAfter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -198,7 +198,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		private Query query;
 
 		@Nullable
-		private List<String> searchAfter;
+		private List<FieldValue> searchAfter;
 
 		@Nullable
 		private Integer size;
@@ -242,7 +242,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(List<String> list) {
+		public final Builder searchAfter(List<FieldValue> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
@@ -254,9 +254,20 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(String value, String... values) {
+		public final Builder searchAfter(FieldValue value, FieldValue... values) {
 			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds a value to <code>searchAfter</code> using a builder lambda.
+		 */
+		public final Builder searchAfter(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return searchAfter(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -334,8 +345,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"search_after");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
