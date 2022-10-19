@@ -56,7 +56,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	private final List<GlobalPrivilege> global;
 
-	private final List<IndicesPrivileges> indices;
+	private final List<UserIndicesPrivileges> indices;
 
 	private final List<String> runAs;
 
@@ -98,13 +98,9 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - In this context <code>IndicesPrivileges.query</code> property can
-	 * only be a string, see <code>IndicesPrivileges</code> documentation for
-	 * detail.
-	 * <p>
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
-	public final List<IndicesPrivileges> indices() {
+	public final List<UserIndicesPrivileges> indices() {
 		return this.indices;
 	}
 
@@ -159,7 +155,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
-			for (IndicesPrivileges item0 : this.indices) {
+			for (UserIndicesPrivileges item0 : this.indices) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -199,7 +195,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 		private List<GlobalPrivilege> global;
 
-		private List<IndicesPrivileges> indices;
+		private List<UserIndicesPrivileges> indices;
 
 		private List<String> runAs;
 
@@ -283,44 +279,32 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - In this context <code>IndicesPrivileges.query</code> property can
-		 * only be a string, see <code>IndicesPrivileges</code> documentation for
-		 * detail.
-		 * <p>
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesPrivileges> list) {
+		public final Builder indices(List<UserIndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
-		 * Required - In this context <code>IndicesPrivileges.query</code> property can
-		 * only be a string, see <code>IndicesPrivileges</code> documentation for
-		 * detail.
-		 * <p>
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+		public final Builder indices(UserIndicesPrivileges value, UserIndicesPrivileges... values) {
 			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - In this context <code>IndicesPrivileges.query</code> property can
-		 * only be a string, see <code>IndicesPrivileges</code> documentation for
-		 * detail.
-		 * <p>
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
+		public final Builder indices(Function<UserIndicesPrivileges.Builder, ObjectBuilder<UserIndicesPrivileges>> fn) {
+			return indices(fn.apply(new UserIndicesPrivileges.Builder()).build());
 		}
 
 		/**
@@ -377,7 +361,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
 		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(UserIndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}

@@ -42,41 +42,40 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: security._types.IndicesPrivileges
+// typedef: security._types.UserIndicesPrivileges
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#security._types.IndicesPrivileges">API
+ *      "../doc-files/api-spec.html#security._types.UserIndicesPrivileges">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndicesPrivileges implements JsonpSerializable {
+public class UserIndicesPrivileges implements JsonpSerializable {
 	private final List<FieldSecurity> fieldSecurity;
 
 	private final List<String> names;
 
 	private final List<IndexPrivilege> privileges;
 
-	@Nullable
-	private final Query query;
+	private final List<Query> query;
 
-	@Nullable
-	private final Boolean allowRestrictedIndices;
+	private final boolean allowRestrictedIndices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IndicesPrivileges(Builder builder) {
+	private UserIndicesPrivileges(Builder builder) {
 
 		this.fieldSecurity = ApiTypeHelper.unmodifiable(builder.fieldSecurity);
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
-		this.query = builder.query;
-		this.allowRestrictedIndices = builder.allowRestrictedIndices;
+		this.query = ApiTypeHelper.unmodifiable(builder.query);
+		this.allowRestrictedIndices = ApiTypeHelper.requireNonNull(builder.allowRestrictedIndices, this,
+				"allowRestrictedIndices");
 
 	}
 
-	public static IndicesPrivileges of(Function<Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+	public static UserIndicesPrivileges of(Function<Builder, ObjectBuilder<UserIndicesPrivileges>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -110,31 +109,29 @@ public class IndicesPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * A search query that defines the documents the owners of the role have access
-	 * to. A document within the specified indices must match this query for it to
-	 * be accessible by the owners of the role. Use a custom query of type
+	 * Search queries that define the documents the user has access to. A document
+	 * within the specified indices must match these queries for it to be accessible
+	 * by the owners of the role. Use a custom query of type
 	 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
 	 * templated queries
 	 * <p>
 	 * API name: {@code query}
 	 */
-	@Nullable
-	public final Query query() {
+	public final List<Query> query() {
 		return this.query;
 	}
 
 	/**
-	 * Set to <code>true</code> if using wildcard or regular expressions for
-	 * patterns that cover restricted indices. Implicitly, restricted indices have
-	 * limited privileges that can cause pattern tests to fail. If restricted
+	 * Required - Set to <code>true</code> if using wildcard or regular expressions
+	 * for patterns that cover restricted indices. Implicitly, restricted indices
+	 * have limited privileges that can cause pattern tests to fail. If restricted
 	 * indices are explicitly included in the <code>names</code> list, Elasticsearch
 	 * checks privileges against these indices regardless of the value set for
 	 * <code>allow_restricted_indices</code>.
 	 * <p>
 	 * API name: {@code allow_restricted_indices}
 	 */
-	@Nullable
-	public final Boolean allowRestrictedIndices() {
+	public final boolean allowRestrictedIndices() {
 		return this.allowRestrictedIndices;
 	}
 
@@ -178,16 +175,18 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.query != null) {
+		if (ApiTypeHelper.isDefined(this.query)) {
 			generator.writeKey("query");
-			generator.write(JsonpUtils.toJsonString(this.query, mapper));
+			generator.writeStartArray();
+			for (Query item0 : this.query) {
+				generator.write(JsonpUtils.toJsonString(item0, mapper));
+
+			}
+			generator.writeEnd();
 
 		}
-		if (this.allowRestrictedIndices != null) {
-			generator.writeKey("allow_restricted_indices");
-			generator.write(this.allowRestrictedIndices);
-
-		}
+		generator.writeKey("allow_restricted_indices");
+		generator.write(this.allowRestrictedIndices);
 
 	}
 
@@ -199,10 +198,12 @@ public class IndicesPrivileges implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IndicesPrivileges}.
+	 * Builder for {@link UserIndicesPrivileges}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndicesPrivileges> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UserIndicesPrivileges> {
 		@Nullable
 		private List<FieldSecurity> fieldSecurity;
 
@@ -211,9 +212,8 @@ public class IndicesPrivileges implements JsonpSerializable {
 		private List<IndexPrivilege> privileges;
 
 		@Nullable
-		private Query query;
+		private List<Query> query;
 
-		@Nullable
 		private Boolean allowRestrictedIndices;
 
 		/**
@@ -304,43 +304,63 @@ public class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A search query that defines the documents the owners of the role have access
-		 * to. A document within the specified indices must match this query for it to
-		 * be accessible by the owners of the role. Use a custom query of type
+		 * Search queries that define the documents the user has access to. A document
+		 * within the specified indices must match these queries for it to be accessible
+		 * by the owners of the role. Use a custom query of type
 		 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
 		 * templated queries
 		 * <p>
 		 * API name: {@code query}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>query</code>.
 		 */
-		public final Builder query(@Nullable Query value) {
-			this.query = value;
+		public final Builder query(List<Query> list) {
+			this.query = _listAddAll(this.query, list);
 			return this;
 		}
 
 		/**
-		 * A search query that defines the documents the owners of the role have access
-		 * to. A document within the specified indices must match this query for it to
-		 * be accessible by the owners of the role. Use a custom query of type
+		 * Search queries that define the documents the user has access to. A document
+		 * within the specified indices must match these queries for it to be accessible
+		 * by the owners of the role. Use a custom query of type
 		 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
 		 * templated queries
 		 * <p>
 		 * API name: {@code query}
+		 * <p>
+		 * Adds one or more values to <code>query</code>.
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Query value, Query... values) {
+			this.query = _listAdd(this.query, value, values);
+			return this;
 		}
 
 		/**
-		 * Set to <code>true</code> if using wildcard or regular expressions for
-		 * patterns that cover restricted indices. Implicitly, restricted indices have
-		 * limited privileges that can cause pattern tests to fail. If restricted
+		 * Search queries that define the documents the user has access to. A document
+		 * within the specified indices must match these queries for it to be accessible
+		 * by the owners of the role. Use a custom query of type
+		 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
+		 * templated queries
+		 * <p>
+		 * API name: {@code query}
+		 * <p>
+		 * Adds a value to <code>query</code> using a builder lambda.
+		 */
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Required - Set to <code>true</code> if using wildcard or regular expressions
+		 * for patterns that cover restricted indices. Implicitly, restricted indices
+		 * have limited privileges that can cause pattern tests to fail. If restricted
 		 * indices are explicitly included in the <code>names</code> list, Elasticsearch
 		 * checks privileges against these indices regardless of the value set for
 		 * <code>allow_restricted_indices</code>.
 		 * <p>
 		 * API name: {@code allow_restricted_indices}
 		 */
-		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
+		public final Builder allowRestrictedIndices(boolean value) {
 			this.allowRestrictedIndices = value;
 			return this;
 		}
@@ -351,33 +371,34 @@ public class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IndicesPrivileges}.
+		 * Builds a {@link UserIndicesPrivileges}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndicesPrivileges build() {
+		public UserIndicesPrivileges build() {
 			_checkSingleUse();
 
-			return new IndicesPrivileges(this);
+			return new UserIndicesPrivileges(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IndicesPrivileges}
+	 * Json deserializer for {@link UserIndicesPrivileges}
 	 */
-	public static final JsonpDeserializer<IndicesPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesPrivileges::setupIndicesPrivilegesDeserializer);
+	public static final JsonpDeserializer<UserIndicesPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UserIndicesPrivileges::setupUserIndicesPrivilegesDeserializer);
 
-	protected static void setupIndicesPrivilegesDeserializer(ObjectDeserializer<IndicesPrivileges.Builder> op) {
+	protected static void setupUserIndicesPrivilegesDeserializer(ObjectDeserializer<UserIndicesPrivileges.Builder> op) {
 
 		op.add(Builder::fieldSecurity, JsonpDeserializer.arrayDeserializer(FieldSecurity._DESERIALIZER),
 				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
-		op.add(Builder::query, JsonpDeserializer.jsonString(Query._DESERIALIZER), "query");
+		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonString(Query._DESERIALIZER)),
+				"query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}

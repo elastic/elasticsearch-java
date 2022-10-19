@@ -51,6 +51,9 @@ import javax.annotation.Nullable;
 
 public abstract class ProcessorBase implements JsonpSerializable {
 	@Nullable
+	private final String description;
+
+	@Nullable
 	private final String if_;
 
 	@Nullable
@@ -65,11 +68,20 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 	protected ProcessorBase(AbstractBuilder<?> builder) {
 
+		this.description = builder.description;
 		this.if_ = builder.if_;
 		this.ignoreFailure = builder.ignoreFailure;
 		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);
 		this.tag = builder.tag;
 
+	}
+
+	/**
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -114,6 +126,11 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
 		if (this.if_ != null) {
 			generator.writeKey("if");
 			generator.write(this.if_);
@@ -151,6 +168,9 @@ public abstract class ProcessorBase implements JsonpSerializable {
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
+		private String description;
+
+		@Nullable
 		private String if_;
 
 		@Nullable
@@ -161,6 +181,14 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		@Nullable
 		private String tag;
+
+		/**
+		 * API name: {@code description}
+		 */
+		public final BuilderT description(@Nullable String value) {
+			this.description = value;
+			return self();
+		}
 
 		/**
 		 * API name: {@code if}
@@ -223,6 +251,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupProcessorBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(AbstractBuilder::if_, JsonpDeserializer.stringDeserializer(), "if");
 		op.add(AbstractBuilder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");

@@ -51,10 +51,12 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 
 	private final String field;
 
-	private final boolean ignoreMissing;
+	@Nullable
+	private final Boolean ignoreMissing;
 
 	private final ShapeType shapeType;
 
+	@Nullable
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
@@ -64,9 +66,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 
 		this.errorDistance = ApiTypeHelper.requireNonNull(builder.errorDistance, this, "errorDistance");
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.ignoreMissing = builder.ignoreMissing;
 		this.shapeType = ApiTypeHelper.requireNonNull(builder.shapeType, this, "shapeType");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = builder.targetField;
 
 	}
 
@@ -97,9 +99,10 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code ignore_missing}
+	 * API name: {@code ignore_missing}
 	 */
-	public final boolean ignoreMissing() {
+	@Nullable
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -111,8 +114,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -126,13 +130,18 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("ignore_missing");
-		generator.write(this.ignoreMissing);
+		if (this.ignoreMissing != null) {
+			generator.writeKey("ignore_missing");
+			generator.write(this.ignoreMissing);
 
+		}
 		generator.writeKey("shape_type");
 		this.shapeType.serialize(generator, mapper);
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
+
+		}
 
 	}
 
@@ -149,10 +158,12 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 
 		private String field;
 
+		@Nullable
 		private Boolean ignoreMissing;
 
 		private ShapeType shapeType;
 
+		@Nullable
 		private String targetField;
 
 		/**
@@ -172,9 +183,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code ignore_missing}
+		 * API name: {@code ignore_missing}
 		 */
-		public final Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -188,9 +199,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}

@@ -67,8 +67,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.patternDefinitions = ApiTypeHelper.unmodifiableRequired(builder.patternDefinitions, this,
-				"patternDefinitions");
+		this.patternDefinitions = ApiTypeHelper.unmodifiable(builder.patternDefinitions);
 		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 		this.traceMatch = builder.traceMatch;
 
@@ -102,7 +101,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code pattern_definitions}
+	 * API name: {@code pattern_definitions}
 	 */
 	public final Map<String, String> patternDefinitions() {
 		return this.patternDefinitions;
@@ -175,6 +174,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean ignoreMissing;
 
+		@Nullable
 		private Map<String, String> patternDefinitions;
 
 		private List<String> patterns;
@@ -199,7 +199,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code pattern_definitions}
+		 * API name: {@code pattern_definitions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>.
 		 */
@@ -209,7 +209,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code pattern_definitions}
+		 * API name: {@code pattern_definitions}
 		 * <p>
 		 * Adds an entry to <code>patternDefinitions</code>.
 		 */

@@ -50,6 +50,7 @@ import javax.annotation.Nullable;
 public class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String modelId;
 
+	@Nullable
 	private final String targetField;
 
 	private final Map<String, JsonData> fieldMap;
@@ -63,7 +64,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		super(builder);
 
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = builder.targetField;
 		this.fieldMap = ApiTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
 
@@ -89,8 +90,9 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -116,9 +118,11 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
 
+		}
 		if (ApiTypeHelper.isDefined(this.fieldMap)) {
 			generator.writeKey("field_map");
 			generator.writeStartObject();
@@ -149,6 +153,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 				ObjectBuilder<InferenceProcessor> {
 		private String modelId;
 
+		@Nullable
 		private String targetField;
 
 		@Nullable
@@ -166,9 +171,9 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
