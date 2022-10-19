@@ -24,6 +24,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 
+import java.io.StringReader;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -215,5 +216,28 @@ public interface JsonpDeserializer<V> {
         JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
     ) {
         return new JsonpDeserializerBase.EnumMapDeserializer<>(keyDeserializer, valueDeserializer);
+    }
+
+    /**
+     * Creates a deserializer that will accept a value both as regular JSON and as JSON-in-a-string.
+     */
+    static <T> JsonpDeserializer<T> jsonString(JsonpDeserializer<T> valueDeserializer) {
+        EnumSet<Event> acceptedEvents = EnumSet.copyOf(valueDeserializer.acceptedEvents());
+        acceptedEvents.add(Event.VALUE_STRING);
+
+        EnumSet<Event> nativeEvents = EnumSet.copyOf(valueDeserializer.nativeEvents());
+        nativeEvents.add(Event.VALUE_STRING);
+
+        return new JsonpDeserializerBase<T>(acceptedEvents, nativeEvents) {
+            @Override
+            public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+                if (event == Event.VALUE_STRING) {
+                    JsonParser stringParser = mapper.jsonProvider().createParser(new StringReader(parser.getString()));
+                    return valueDeserializer.deserialize(stringParser, mapper);
+                } else {
+                    return valueDeserializer.deserialize(parser, mapper, event);
+                }
+            }
+        };
     }
 }

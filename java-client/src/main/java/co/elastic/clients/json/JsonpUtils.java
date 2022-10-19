@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonParsingException;
 
 import javax.annotation.Nullable;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.util.AbstractMap;
 import java.util.Map;
@@ -326,6 +327,14 @@ public class JsonpUtils {
             // Ignore
         }
         return dest;
+    }
+
+    public static String toJsonString(JsonpSerializable value, JsonpMapper mapper) {
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        value.serialize(generator, mapper);
+        generator.close();
+        return writer.toString();
     }
 
     /**
