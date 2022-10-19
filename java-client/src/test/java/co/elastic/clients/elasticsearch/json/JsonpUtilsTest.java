@@ -20,12 +20,16 @@
 package co.elastic.clients.elasticsearch.json;
 
 import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.elasticsearch.security.IndexPrivilege;
+import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
+import co.elastic.clients.elasticsearch.security.RoleTemplateScript;
+import co.elastic.clients.elasticsearch.security.UserIndicesPrivileges;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.util.AllowForbiddenApis;
 import jakarta.json.JsonException;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
@@ -34,7 +38,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.function.Consumer;
 
-public class JsonpUtilsTest extends Assertions {
+public class JsonpUtilsTest extends ModelTestCase {
 
     @Test
     @AllowForbiddenApis("Testing JsonpUtil.provider()")
@@ -140,6 +144,59 @@ public class JsonpUtilsTest extends Assertions {
 
         // Serialize non infinite default values
         assertEquals("{\"a\":0}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, 0, 0)));
+    }
+
+    @Test
+    public void testJsonString() {
+        // Single value
+        {
+            IndicesPrivileges priv = IndicesPrivileges.of(i -> i
+                .names("bar")
+                .query(q -> q.term(t -> t.field("baz").value(1)))
+                .privileges(IndexPrivilege.All)
+            );
+
+            String json = "{\"names\":[\"bar\"],\"privileges\":[\"all\"],\"query\":\"{\\\"term\\\":{\\\"baz\\\":{\\\"value\\\":1}}}\"}";
+
+            assertEquals(json, toJson(priv));
+
+            priv = fromJson(json, IndicesPrivileges.class);
+            assertEquals("baz", priv.query().term().field());
+        }
+
+        // Single value template
+        {
+            IndicesPrivileges priv = IndicesPrivileges.of(i -> i
+                .names("bar")
+                .query(q -> q._custom("template", RoleTemplateScript.of(s -> s.stored(v -> v.id("foo")))))
+                .privileges(IndexPrivilege.All)
+            );
+
+            String json = "{\"names\":[\"bar\"],\"privileges\":[\"all\"],\"query\":\"{\\\"template\\\":{\\\"id\\\":\\\"foo\\\"}}\"}";
+
+            assertEquals(json, toJson(priv));
+
+            priv = fromJson(json, IndicesPrivileges.class);
+            assertEquals("foo", priv.query()._custom().to(RoleTemplateScript.class).stored().id());
+        }
+
+        // Array value
+        {
+            UserIndicesPrivileges priv = UserIndicesPrivileges.of(i -> i
+                .names("bar")
+                .query(q -> q.term(t -> t.field("baz").value(1)))
+                .privileges(IndexPrivilege.All)
+                .allowRestrictedIndices(false)
+            );
+
+            String json = "{\"names\":[\"bar\"],\"privileges\":[\"all\"],\"query\":[\"{\\\"term\\\":{\\\"baz\\\":{\\\"value\\\":1}}}\"]," +
+                "\"allow_restricted_indices\":false}";
+
+            assertEquals(json, toJson(priv));
+
+            priv = fromJson(json, UserIndicesPrivileges.class);
+            assertEquals("baz", priv.query().get(0).term().field());
+        }
     }
 
     private static String orNullHelper(Consumer<JsonGenerator> c) {
