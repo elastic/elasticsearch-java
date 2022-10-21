@@ -50,7 +50,6 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -500,7 +499,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code doc}
 		 */
-		public final Builder<TDocument, TPartialDocument> doc(@Nullable TPartialDocument value) {
+		public final Builder<TDocument, TPartialDocument> document(@Nullable TPartialDocument value) {
 			this.doc = value;
 			return this;
 		}
@@ -510,7 +509,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code doc_as_upsert}
 		 */
-		public final Builder<TDocument, TPartialDocument> docAsUpsert(@Nullable Boolean value) {
+		public final Builder<TDocument, TPartialDocument> documentAsUpsert(@Nullable Boolean value) {
 			this.docAsUpsert = value;
 			return this;
 		}
@@ -764,8 +763,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::detectNoop, JsonpDeserializer.booleanDeserializer(), "detect_noop");
-		op.add(Builder::doc, tPartialDocumentDeserializer, "doc");
-		op.add(Builder::docAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
+		op.add(Builder::document, tPartialDocumentDeserializer, "doc");
+		op.add(Builder::documentAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::scriptedUpsert, JsonpDeserializer.booleanDeserializer(), "scripted_upsert");
 		op.add(Builder::upsert, tDocumentDeserializer, "upsert");
