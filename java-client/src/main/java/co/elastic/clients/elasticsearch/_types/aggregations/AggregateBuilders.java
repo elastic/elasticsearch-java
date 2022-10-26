@@ -422,6 +422,24 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link GeoHexGridAggregate geohex_grid}
+	 * {@code Aggregate} variant.
+	 */
+	public static GeoHexGridAggregate.Builder geohexGrid() {
+		return new GeoHexGridAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link GeoHexGridAggregate geohex_grid}
+	 * {@code Aggregate} variant.
+	 */
+	public static Aggregate geohexGrid(Function<GeoHexGridAggregate.Builder, ObjectBuilder<GeoHexGridAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.geohexGrid(fn.apply(new GeoHexGridAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GeoLineAggregate geo_line} {@code Aggregate}
 	 * variant.
 	 */
