@@ -22,6 +22,7 @@ package co.elastic.clients.transport.rest_client;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,5 +54,11 @@ class HttpClientBinaryResponse implements BinaryResponse {
         }
         consumed = true;
         return entity.getContent();
+    }
+
+    @Override
+    public void close() throws IOException {
+        consumed = true;
+        EntityUtils.consume(entity);
     }
 }
