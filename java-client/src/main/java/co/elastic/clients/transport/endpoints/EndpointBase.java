@@ -21,15 +21,14 @@ package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Endpoint;
 import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 
-public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, ResponseT>
-    implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
+public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ErrorResponse> {
 
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
 
@@ -42,24 +41,63 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         return (Function<T, Map<String, String>>) EMPTY_MAP;
     }
 
-    private final JsonpDeserializer<ResponseT> responseParser;
+    protected final String id;
+    protected final Function<RequestT, String> method;
+    protected final Function<RequestT, String> requestUrl;
+    protected final Function<RequestT, Map<String, String>> queryParameters;
+    protected final Function<RequestT, Map<String, String>> headers;
+    protected final boolean hasRequestBody;
 
-    public SimpleEndpoint(
+    public EndpointBase(
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
-        boolean hasRequestBody,
-        JsonpDeserializer<ResponseT> responseParser
+        boolean hasRequestBody
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody);
-        this.responseParser = responseParser;
+        this.id = id;
+        this.method = method;
+        this.requestUrl = requestUrl;
+        this.queryParameters = queryParameters;
+        this.headers = headers;
+        this.hasRequestBody = hasRequestBody;
     }
 
     @Override
-    public JsonpDeserializer<ResponseT> responseDeserializer() {
-        return this.responseParser;
+    public String id() {
+        return this.id;
+    }
+
+    @Override
+    public String method(RequestT request) {
+        return this.method.apply(request);
+    }
+
+    @Override
+    public String requestUrl(RequestT request) {
+        return this.requestUrl.apply(request);
+    }
+
+    @Override
+    public Map<String, String> queryParameters(RequestT request) {
+        return this.queryParameters.apply(request);
+    }
+
+    @Override
+    public Map<String, String> headers(RequestT request) {
+        return this.headers.apply(request);
+    }
+
+    @Override
+    public boolean hasRequestBody() {
+        return this.hasRequestBody;
+    }
+
+    // ES-specific
+    @Override
+    public boolean isError(int statusCode) {
+        return statusCode >= 400;
     }
 
     @Override

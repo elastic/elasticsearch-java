@@ -27,6 +27,7 @@ import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.TransportException;
 import co.elastic.clients.transport.Version;
+import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
@@ -246,8 +247,8 @@ public class RestClientTransport implements ElasticsearchTransport {
         Endpoint<?, ResponseT, ErrorT> endpoint
     ) throws IOException {
 
+        int statusCode = clientResp.getStatusLine().getStatusCode();
         try {
-            int statusCode = clientResp.getStatusLine().getStatusCode();
 
             if (statusCode == 200) {
                 checkProductHeader(clientResp, endpoint);
@@ -294,7 +295,10 @@ public class RestClientTransport implements ElasticsearchTransport {
                 return decodeResponse(statusCode, clientResp.getEntity(), clientResp, endpoint);
             }
         } finally {
-            EntityUtils.consume(clientResp.getEntity());
+            // Consume the entity unless this is a successful binary endpoint, where the user must consume the entity
+            if (!(endpoint instanceof BinaryEndpoint && !endpoint.isError(statusCode))) {
+                EntityUtils.consume(clientResp.getEntity());
+            }
         }
     }
 
@@ -302,16 +306,9 @@ public class RestClientTransport implements ElasticsearchTransport {
         int statusCode, @Nullable HttpEntity entity, Response clientResp, Endpoint<?, ResponseT, ?> endpoint
     ) throws IOException {
 
-        if (endpoint instanceof BooleanEndpoint) {
-            BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
-
+        if (endpoint instanceof JsonEndpoint) {
             @SuppressWarnings("unchecked")
-            ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
-            return response;
-
-        } else if (endpoint instanceof JsonEndpoint){
-            @SuppressWarnings("unchecked")
-            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>)endpoint;
+            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
             // Successful response
             ResponseT response = null;
             JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
@@ -326,9 +323,26 @@ public class RestClientTransport implements ElasticsearchTransport {
                 InputStream content = entity.getContent();
                 try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                     response = responseParser.deserialize(parser, mapper);
-                };
+                }
+                ;
             }
             return response;
+
+        } else if(endpoint instanceof BooleanEndpoint) {
+            BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
+
+            @SuppressWarnings("unchecked")
+            ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
+            return response;
+
+
+        } else if (endpoint instanceof BinaryEndpoint) {
+            BinaryEndpoint<?> bep = (BinaryEndpoint<?>) endpoint;
+
+            @SuppressWarnings("unchecked")
+            ResponseT response = (ResponseT) new HttpClientBinaryResponse(entity);
+            return response;
+
         } else {
             throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id());
         }
