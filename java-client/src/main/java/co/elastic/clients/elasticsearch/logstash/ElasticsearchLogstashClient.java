@@ -67,7 +67,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 
 	public BooleanResponse deletePipeline(DeletePipelineRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
+		Endpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -135,7 +135,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 
 	public BooleanResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPipelineRequest, BooleanResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
+		Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

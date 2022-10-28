@@ -21,35 +21,37 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch.core.search_mvt;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
-
-// typedef: cluster.post_voting_config_exclusions.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#cluster.post_voting_config_exclusions.Response">API
+ *      "../../doc-files/api-spec.html#_global.search_mvt._types.GridType">API
  *      specification</a>
  */
+@JsonpDeserializable
+public enum GridType implements JsonEnum {
+	Grid("grid"),
 
-public class PostVotingConfigExclusionsResponse {
-	public PostVotingConfigExclusionsResponse() {
+	Point("point"),
+
+	Centroid("centroid"),
+
+	;
+
+	private final String jsonValue;
+
+	GridType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	/**
-	 * Singleton instance for {@link PostVotingConfigExclusionsResponse}.
-	 */
-	public static final PostVotingConfigExclusionsResponse _INSTANCE = new PostVotingConfigExclusionsResponse();
+	public String jsonValue() {
+		return this.jsonValue;
+	}
 
-	public static final JsonpDeserializer<PostVotingConfigExclusionsResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(PostVotingConfigExclusionsResponse._INSTANCE);
-
+	public static final JsonEnum.Deserializer<GridType> _DESERIALIZER = new JsonEnum.Deserializer<>(GridType.values());
 }
