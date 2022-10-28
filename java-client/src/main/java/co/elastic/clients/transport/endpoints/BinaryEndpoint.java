@@ -22,9 +22,9 @@ package co.elastic.clients.transport.endpoints;
 import java.util.Map;
 import java.util.function.Function;
 
-public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanResponse> {
+public class BinaryEndpoint<RequestT> extends EndpointBase<RequestT, BinaryResponse> {
 
-    public BooleanEndpoint(
+    public BinaryEndpoint(
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
@@ -39,10 +39,7 @@ public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanRes
 
     @Override
     public boolean isError(int statusCode) {
-        return statusCode >= 500;
-    }
-
-    public boolean getResult(int statusCode) {
-        return statusCode < 400;
+        return statusCode >= 400;
     }
 }
+
