@@ -19,30 +19,26 @@
 
 package co.elastic.clients.transport.endpoints;
 
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.transport.JsonEndpoint;
+
 import java.util.Map;
 import java.util.function.Function;
 
-public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanResponse> {
+public class SimpleJsonEndpoint<RequestT, ResponseT> extends SimpleEndpoint<RequestT, ResponseT>
+    implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
 
-    public BooleanEndpoint(
+    public SimpleJsonEndpoint(
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
         Function<RequestT,
-            Map<String, String>> queryParameters,
+        Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         boolean hasRequestBody,
-        Object ignored // same number of arguments as SimpleEndpoint
+        JsonpDeserializer<ResponseT> responseParser
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody);
-    }
-
-    @Override
-    public boolean isError(int statusCode) {
-        return statusCode >= 500;
-    }
-
-    public boolean getResult(int statusCode) {
-        return statusCode < 400;
+        super(id, method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
     }
 }
