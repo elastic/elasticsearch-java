@@ -1624,7 +1624,7 @@ public class ElasticsearchSecurityAsyncClient
 
 	public CompletableFuture<BooleanResponse> samlCompleteLogout(SamlCompleteLogoutRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse>) SamlCompleteLogoutRequest._ENDPOINT;
+		Endpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse>) SamlCompleteLogoutRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}

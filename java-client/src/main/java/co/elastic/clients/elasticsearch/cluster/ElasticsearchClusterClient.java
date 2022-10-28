@@ -151,7 +151,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>) DeleteVotingConfigExclusionsRequest._ENDPOINT;
+		Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>) DeleteVotingConfigExclusionsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -199,7 +199,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public BooleanResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse>) ExistsComponentTemplateRequest._ENDPOINT;
+		Endpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse>) ExistsComponentTemplateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -426,7 +426,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>) PostVotingConfigExclusionsRequest._ENDPOINT;
+		Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>) PostVotingConfigExclusionsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

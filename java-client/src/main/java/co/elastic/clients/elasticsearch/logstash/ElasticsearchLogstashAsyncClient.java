@@ -69,7 +69,7 @@ public class ElasticsearchLogstashAsyncClient
 
 	public CompletableFuture<BooleanResponse> deletePipeline(DeletePipelineRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
+		Endpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -135,7 +135,7 @@ public class ElasticsearchLogstashAsyncClient
 
 	public CompletableFuture<BooleanResponse> putPipeline(PutPipelineRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPipelineRequest, BooleanResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
+		Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<PutPipelineRequest, BooleanResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
