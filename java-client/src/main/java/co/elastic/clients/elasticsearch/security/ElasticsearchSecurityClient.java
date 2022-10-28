@@ -1675,7 +1675,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	public BooleanResponse samlCompleteLogout(SamlCompleteLogoutRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse>) SamlCompleteLogoutRequest._ENDPOINT;
+		Endpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse>) SamlCompleteLogoutRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

@@ -96,6 +96,7 @@ import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteRequest;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteResponse;
 import co.elastic.clients.elasticsearch.core.ScrollRequest;
 import co.elastic.clients.elasticsearch.core.ScrollResponse;
+import co.elastic.clients.elasticsearch.core.SearchMvtRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.SearchShardsRequest;
@@ -144,6 +145,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BinaryResponse;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
@@ -668,7 +670,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
+		Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -701,7 +703,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse>) ExistsSourceRequest._ENDPOINT;
+		Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse>) ExistsSourceRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1531,6 +1533,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	// ----- Endpoint: search_mvt
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BinaryResponse searchMvt(SearchMvtRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<SearchMvtRequest, BinaryResponse, ErrorResponse> endpoint = (Endpoint<SearchMvtRequest, BinaryResponse, ErrorResponse>) SearchMvtRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchMvtRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BinaryResponse searchMvt(Function<SearchMvtRequest.Builder, ObjectBuilder<SearchMvtRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return searchMvt(fn.apply(new SearchMvtRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: search_shards
