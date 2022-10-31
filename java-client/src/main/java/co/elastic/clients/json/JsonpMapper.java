@@ -24,6 +24,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Type;
 
 /**
  * A {@code JsonpMapper} combines a JSON-P provider and object serialization/deserialization based on JSON-P events.
@@ -44,7 +45,14 @@ public interface JsonpMapper {
     /**
      * Deserialize an object, given its class.
      */
-    <T> T deserialize(JsonParser parser, Class<T> clazz);
+    default <T> T deserialize(JsonParser parser, Class<T> clazz) {
+        return deserialize(parser, (Type)clazz);
+    }
+
+    /**
+     * Deserialize an object, given its type.
+     */
+    <T> T deserialize(JsonParser parser, Type type);
 
     /**
      * Serialize an object.
