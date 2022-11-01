@@ -20,6 +20,10 @@
 package co.elastic.clients.elasticsearch.json;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.Result;
+import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -40,6 +44,7 @@ import org.junit.jupiter.api.Test;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.Collections;
 
 public class JsonDataTest extends Assertions {
 
@@ -124,5 +129,39 @@ public class JsonDataTest extends Assertions {
 
         assertEquals(JsonValue.ValueType.STRING, value.getValueType());
         assertEquals("foo", ((JsonString)value).getString());
+    }
+
+    @Test
+    public void testIndexResponse() {
+        IndexResponse resp = IndexResponse.of(r -> r
+                .index("foo")
+                .id("1")
+                .primaryTerm(1)
+                .seqNo(1)
+                .version(1)
+                .shards(s -> s.successful(1).failed(0).total(1))
+                .result(Result.Created)
+        );
+
+        String json = new JacksonJsonpMapper().serializeToString(resp);
+
+        assertEquals("{\"_id\":\"1\",\"_index\":\"foo\",\"_primary_term\":1,\"result\":\"created\",\"_seq_no\":1,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\"_version\":1}", json);
+    }
+
+    @Test
+    public void testSearchResponse() {
+        SearchResponse<?> resp = SearchResponse.searchResponseOf(r -> r
+                .took(10)
+                .shards(s -> s.successful(1).failed(0).total(1))
+                .timedOut(false)
+                .hits(h -> h
+                        .total(t -> t.value(0).relation(TotalHitsRelation.Eq))
+                        .hits(Collections.emptyList())
+                )
+        );
+
+        String json = new JacksonJsonpMapper().serializeToString(resp);
+
+        assertEquals("{\"took\":10,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]}}", json);
     }
 }

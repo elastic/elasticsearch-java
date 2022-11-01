@@ -49,6 +49,11 @@ public abstract class DelegatingJsonpMapper implements JsonpMapper {
     }
 
     @Override
+    public <T> String serializeToString(T value) {
+        return mapper.serializeToString(value);
+    }
+
+    @Override
     public boolean ignoreUnknownFields() {
         return mapper.ignoreUnknownFields();
     }
