@@ -231,10 +231,6 @@ dependencies {
     // https://www.testcontainers.org/
     testImplementation("org.testcontainers", "testcontainers", "1.17.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
-
-    // Apache 2.0
-    // https://guava.dev/
-    testImplementation("com.google.guava:guava:31.1-jre")
 }
 
 

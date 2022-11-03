@@ -23,9 +23,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.google.common.reflect.TypeToken;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.jupiter.api.Assertions;
@@ -96,10 +96,10 @@ public class JsonpMapperTest extends Assertions {
 
         // Use a j.l.reflect.Type to deserialize map values correctly
         {
-            TypeToken<Map<String, SomeClass>> typeToken = new TypeToken<Map<String, SomeClass>>() {};
+            TypeReference<Map<String, SomeClass>> typeRef = new TypeReference<Map<String, SomeClass>>() {};
 
             JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
-            Map<String, SomeClass> map = mapper.deserialize(parser, typeToken.getType());
+            Map<String, SomeClass> map = mapper.deserialize(parser, typeRef.getType());
 
             System.out.println(map);
             assertEquals(1, map.get("foo").intValue);
