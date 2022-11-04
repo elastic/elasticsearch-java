@@ -32,6 +32,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
+import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -90,6 +91,40 @@ public class ElasticsearchFleetAsyncClient extends ApiClient<ElasticsearchTransp
 			Function<FleetSearchRequest.Builder, ObjectBuilder<FleetSearchRequest>> fn,
 			Class<TDocument> tDocumentClass) {
 		return search(fn.apply(new FleetSearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Search API where the search will only be executed after specified checkpoints
+	 * are available due to a refresh. This API is designed for internal use by the
+	 * fleet server project.
+	 * 
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<FleetSearchResponse<TDocument>> search(FleetSearchRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FleetSearchRequest, FleetSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<FleetSearchRequest, FleetSearchResponse<TDocument>, ErrorResponse>) FleetSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:fleet.search.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Search API where the search will only be executed after specified checkpoints
+	 * are available due to a refresh. This API is designed for internal use by the
+	 * fleet server project.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link FleetSearchRequest}
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<FleetSearchResponse<TDocument>> search(
+			Function<FleetSearchRequest.Builder, ObjectBuilder<FleetSearchRequest>> fn, Type tDocumentType) {
+		return search(fn.apply(new FleetSearchRequest.Builder()).build(), tDocumentType);
 	}
 
 }

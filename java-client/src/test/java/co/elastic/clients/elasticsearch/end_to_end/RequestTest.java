@@ -45,6 +45,7 @@ import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.DateTime;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -53,6 +54,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -194,6 +196,31 @@ public class RequestTest extends Assertions {
         assertEquals(1, msearch.responses().get(0).result().hits().hits().size());
         assertTrue(msearch.responses().get(1).isFailure());
         assertEquals(404, msearch.responses().get(1).failure().status());
+    }
+
+    @Test
+    public void testMappingWithType() throws IOException {
+        String index = "mapping-with-type";
+
+        // Ingest some data
+        Map<String, AppData> map = new HashMap<>();
+        AppData appData = new AppData();
+        appData.setIntValue(1);
+        appData.setMsg("foo");
+        map.put("foo", appData);
+        appData = new AppData();
+        appData.setIntValue(2);
+        appData.setMsg("bar");
+        map.put("bar", appData);
+
+        String id = client.index(i -> i.index(index).document(map)).id();
+
+        TypeReference<Map<String, AppData>> typeRef = new TypeReference<Map<String, AppData>>() {};
+
+        Map<String, AppData> result = client.<Map<String, AppData>>get(g -> g.index(index).id(id), typeRef.getType()).source();
+        assertEquals(1, result.get("foo").intValue);
+        assertEquals(2, result.get("bar").intValue);
+
     }
 
     @Test

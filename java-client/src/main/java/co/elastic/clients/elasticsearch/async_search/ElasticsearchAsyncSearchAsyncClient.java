@@ -32,6 +32,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
+import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -131,6 +132,42 @@ public class ElasticsearchAsyncSearchAsyncClient
 		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Retrieves the results of a previously submitted async search request given
+	 * its ID.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.6/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(GetAsyncSearchRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse>) GetAsyncSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.get.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves the results of a previously submitted async search request given
+	 * its ID.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAsyncSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.6/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(
+			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn, Type tDocumentType) {
+		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: async_search.status
 
 	/**
@@ -200,6 +237,39 @@ public class ElasticsearchAsyncSearchAsyncClient
 	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
 			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass) {
 		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Executes a search request asynchronously.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.6/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(SubmitRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse>) SubmitRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.submit.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Executes a search request asynchronously.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SubmitRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.6/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
+			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Type tDocumentType) {
+		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentType);
 	}
 
 }

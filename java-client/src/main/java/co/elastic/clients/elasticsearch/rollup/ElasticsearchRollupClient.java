@@ -34,6 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -290,6 +291,41 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Enables searching rolled-up data using the standard query DSL.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> RollupSearchResponse<TDocument> rollupSearch(RollupSearchRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:rollup.rollup_search.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Enables searching rolled-up data using the standard query DSL.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RollupSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> RollupSearchResponse<TDocument> rollupSearch(
+			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: rollup.start_job

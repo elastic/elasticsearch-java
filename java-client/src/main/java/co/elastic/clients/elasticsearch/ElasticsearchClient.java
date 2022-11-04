@@ -150,6 +150,7 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -762,6 +763,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> ExplainResponse<TDocument> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: field_caps
 
 	/**
@@ -845,6 +881,40 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Returns a document.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> GetResponse<TDocument> get(GetRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.get.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns a document.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
+			Type tDocumentType) throws IOException, ElasticsearchException {
+		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: get_script
@@ -945,6 +1015,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Returns the source of a document.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.get_source.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the source of a document.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSourceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> GetSourceResponse<TDocument> getSource(
+			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: index
 
 	/**
@@ -1029,6 +1134,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Performs a kNN search.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> KnnSearchResponse<TDocument> knnSearch(KnnSearchRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.knn_search.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Performs a kNN search.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link KnnSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> KnnSearchResponse<TDocument> knnSearch(
+			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: mget
 
 	/**
@@ -1063,6 +1203,40 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Allows to get multiple documents in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.mget.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to get multiple documents in one request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MgetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
+			Type tDocumentType) throws IOException, ElasticsearchException {
+		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: msearch
@@ -1102,6 +1276,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Allows to execute several search operations in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.msearch.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to execute several search operations in one request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MsearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> MsearchResponse<TDocument> msearch(
+			Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: msearch_template
 
 	/**
@@ -1137,6 +1346,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Allows to execute several search template operations in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
+			Type tDocumentType) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.msearch_template.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to execute several search template operations in one request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MsearchTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(
+			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: mtermvectors
@@ -1461,6 +1705,42 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
 	}
 
+	/**
+	 * Allows an arbitrary script to be executed and a result to be returned
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
+			ScriptsPainlessExecuteRequest request, Type tResultType) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult",
+				getDeserializer(tResultType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows an arbitrary script to be executed and a result to be returned
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScriptsPainlessExecuteRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
+			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
+			Type tResultType) throws IOException, ElasticsearchException {
+		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultType);
+	}
+
 	// ----- Endpoint: scroll
 
 	/**
@@ -1498,6 +1778,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> ScrollResponse<TDocument> scroll(ScrollRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scroll.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScrollRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> ScrollResponse<TDocument> scroll(
+			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: search
 
 	/**
@@ -1533,6 +1848,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Returns results matching a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.search.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns results matching a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> SearchResponse<TDocument> search(
+			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: search_mvt
@@ -1657,6 +2007,41 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
+			Type tDocumentType) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.search_template.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
+			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: terms_enum
 
 	/**
@@ -1767,6 +2152,42 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Updates a document with a script or partial document.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
+			UpdateRequest<TDocument, TPartialDocument> request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.update.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates a document with a script or partial document.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
+			Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
+			Type tDocumentType) throws IOException, ElasticsearchException {
+		return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: update_by_query
