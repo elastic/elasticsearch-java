@@ -26,8 +26,9 @@ package co.elastic.clients.util;
  * available in {@link ApiTypeHelper} to disable checks. Use with caution.
  */
 public class MissingRequiredPropertyException extends RuntimeException {
-    private Class<?> clazz;
-    private String property;
+    private final Class<?> clazz;
+    private final String property;
+
     public MissingRequiredPropertyException(Object obj, String property) {
         super("Missing required property '" + obj.getClass().getSimpleName() + "." + property + "'");
         this.clazz = obj.getClass();

@@ -25,6 +25,7 @@ import jakarta.json.stream.JsonParser;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.lang.reflect.Type;
 
 class JsonDataImpl implements JsonData {
     private final Object value;
@@ -65,19 +66,30 @@ class JsonDataImpl implements JsonData {
 
     @Override
     public <T> T to(Class<T> clazz) {
+        return to((Type)clazz, null);
+    }
+
+    @Override
+    public <T> T to(Type clazz) {
         return to(clazz, null);
     }
 
     @Override
     public <T> T to(Class<T> clazz, JsonpMapper mapper) {
-        if (clazz.isAssignableFrom(value.getClass())) {
-            return (T) value;
+        return to((Type)clazz, mapper);
+    }
+
+    @Override
+    public <T> T to(Type type, JsonpMapper mapper) {
+        if (type instanceof Class<?> && ((Class<?>)type).isAssignableFrom(value.getClass())) {
+            @SuppressWarnings("unchecked")
+            T result = (T) value;
+            return result;
         }
 
         mapper = getMapper(mapper);
-
         JsonParser parser = getParser(mapper);
-        return mapper.deserialize(parser, clazz);
+        return mapper.deserialize(parser, type);
     }
 
     @Override

@@ -32,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.EnumSet;
 
 public class JacksonJsonpMapper extends JsonpMapperBase {
@@ -76,8 +77,8 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     }
 
     @Override
-    protected  <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
-        return new JacksonValueParser<>(clazz);
+    protected  <T> JsonpDeserializer<T> getDefaultDeserializer(Type type) {
+        return new JacksonValueParser<>(type);
     }
 
     @Override
@@ -103,11 +104,11 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
 
     private class JacksonValueParser<T> extends JsonpDeserializerBase<T> {
 
-        private final Class<T> clazz;
+        private final Type type;
 
-        protected JacksonValueParser(Class<T> clazz) {
+        protected JacksonValueParser(Type type) {
             super(EnumSet.allOf(JsonParser.Event.class));
-            this.clazz = clazz;
+            this.type = type;
         }
 
         @Override
@@ -120,7 +121,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
             com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser)parser).jacksonParser();
 
             try {
-                return objectMapper.readValue(jkParser, clazz);
+                return objectMapper.readValue(jkParser, objectMapper().constructType(type));
             } catch(IOException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }

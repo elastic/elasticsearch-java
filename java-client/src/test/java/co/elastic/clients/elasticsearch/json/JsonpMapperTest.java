@@ -23,6 +23,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import jakarta.json.stream.JsonGenerator;
@@ -32,8 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.lang.reflect.Type;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JsonpMapperTest extends Assertions {
 
@@ -67,6 +71,40 @@ public class JsonpMapperTest extends Assertions {
 
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
+    }
+
+    @Test
+    public void testDeserializeWithType() {
+
+        String json = "{\"foo\":{\"int_value\":1,\"double_value\":1.0},\"bar\":{\"int_value\":2,\"double_value\":2.0}}";
+
+        ObjectMapper jkMapper = new ObjectMapper();
+        jkMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper(jkMapper);
+
+        // With type erasure, map values are raw json nodes
+        {
+            JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+            Map<String, SomeClass> map = new HashMap<>();
+            map = mapper.deserialize(parser, (Type) map.getClass());
+
+            Map<String, SomeClass> finalMap = map;
+            assertThrows(ClassCastException.class, () -> {
+                assertEquals(1, finalMap.get("foo").intValue);
+            });
+        }
+
+        // Use a j.l.reflect.Type to deserialize map values correctly
+        {
+            TypeReference<Map<String, SomeClass>> typeRef = new TypeReference<Map<String, SomeClass>>() {};
+
+            JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+            Map<String, SomeClass> map = mapper.deserialize(parser, typeRef.getType());
+
+            System.out.println(map);
+            assertEquals(1, map.get("foo").intValue);
+            assertEquals(2, map.get("bar").intValue);
+        }
     }
 
     private void testSerialize(JsonpMapper mapper, String expected) {

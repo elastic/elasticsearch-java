@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Assertions;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.util.Random;
 
 /**
@@ -93,12 +94,20 @@ public abstract class ModelTestCase extends Assertions {
     }
 
     public static <T> T fromJson(String json, Class<T> clazz, JsonpMapper mapper) {
+        return fromJson(json, (Type)clazz, mapper);
+    }
+
+    public static <T> T fromJson(String json, Type type, JsonpMapper mapper) {
         JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
-        return mapper.deserialize(parser, clazz);
+        return mapper.deserialize(parser, type);
     }
 
     protected <T> T fromJson(String json, Class<T> clazz) {
         return fromJson(json, clazz, mapper);
+    }
+
+    protected <T> T fromJson(String json, Type type) {
+        return fromJson(json, type, mapper);
     }
 
     @SuppressWarnings("unchecked")
