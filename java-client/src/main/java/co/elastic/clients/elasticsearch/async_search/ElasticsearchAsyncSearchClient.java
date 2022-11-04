@@ -34,6 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -132,6 +133,43 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Retrieves the results of a previously submitted async search request given
+	 * its ID.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> GetAsyncSearchResponse<TDocument> get(GetAsyncSearchRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse>) GetAsyncSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.get.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves the results of a previously submitted async search request given
+	 * its ID.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAsyncSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> GetAsyncSearchResponse<TDocument> get(
+			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: async_search.status
 
 	/**
@@ -171,6 +209,43 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 		return status(fn.apply(new AsyncSearchStatusRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Retrieves the status of a previously submitted async search request given its
+	 * ID.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> AsyncSearchStatusResponse<TDocument> status(AsyncSearchStatusRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse>) AsyncSearchStatusRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.status.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves the status of a previously submitted async search request given its
+	 * ID.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link AsyncSearchStatusRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> AsyncSearchStatusResponse<TDocument> status(
+			Function<AsyncSearchStatusRequest.Builder, ObjectBuilder<AsyncSearchStatusRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return status(fn.apply(new AsyncSearchStatusRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: async_search.submit
 
 	/**
@@ -206,6 +281,41 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Executes a search request asynchronously.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> SubmitResponse<TDocument> submit(SubmitRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse>) SubmitRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:async_search.submit.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Executes a search request asynchronously.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SubmitRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> SubmitResponse<TDocument> submit(
+			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentType);
 	}
 
 }

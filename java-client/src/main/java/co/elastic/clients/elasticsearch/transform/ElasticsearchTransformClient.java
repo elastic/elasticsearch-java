@@ -34,6 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -208,6 +209,42 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn,
 			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
 		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), tTransformClass);
+	}
+
+	/**
+	 * Previews a transform.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TTransform> PreviewTransformResponse<TTransform> previewTransform(PreviewTransformRequest request,
+			Type tTransformType) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:transform.preview_transform.TTransform",
+				getDeserializer(tTransformType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Previews a transform.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PreviewTransformRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TTransform> PreviewTransformResponse<TTransform> previewTransform(
+			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn, Type tTransformType)
+			throws IOException, ElasticsearchException {
+		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), tTransformType);
 	}
 
 	// ----- Endpoint: transform.put_transform

@@ -32,6 +32,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
+import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -1623,6 +1624,40 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 			Function<PreviewDatafeedRequest.Builder, ObjectBuilder<PreviewDatafeedRequest>> fn,
 			Class<TDocument> tDocumentClass) {
 		return previewDatafeed(fn.apply(new PreviewDatafeedRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Previews a datafeed.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<PreviewDatafeedResponse<TDocument>> previewDatafeed(
+			PreviewDatafeedRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse>) PreviewDatafeedRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Previews a datafeed.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PreviewDatafeedRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<PreviewDatafeedResponse<TDocument>> previewDatafeed(
+			Function<PreviewDatafeedRequest.Builder, ObjectBuilder<PreviewDatafeedRequest>> fn, Type tDocumentType) {
+		return previewDatafeed(fn.apply(new PreviewDatafeedRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: ml.put_calendar

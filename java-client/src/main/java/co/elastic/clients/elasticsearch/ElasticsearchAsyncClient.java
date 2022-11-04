@@ -145,6 +145,7 @@ import co.elastic.clients.transport.endpoints.BinaryResponse;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
+import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -742,6 +743,40 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Type tDocumentType) {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: field_caps
 
 	/**
@@ -825,6 +860,39 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
 			Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn, Class<TDocument> tDocumentClass) {
 		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Returns a document.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.get.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns a document.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
+			Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn, Type tDocumentType) {
+		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: get_script
@@ -924,6 +992,40 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Returns the source of a document.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(GetSourceRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.get_source.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the source of a document.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSourceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
+			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Type tDocumentType) {
+		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: index
 
 	/**
@@ -1006,6 +1108,39 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Allows to get multiple documents in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(MgetRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.mget.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to get multiple documents in one request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MgetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(
+			Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn, Type tDocumentType) {
+		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: msearch
 
 	/**
@@ -1040,6 +1175,40 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(
 			Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn, Class<TDocument> tDocumentClass) {
 		return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Allows to execute several search operations in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(MsearchRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.msearch.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to execute several search operations in one request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MsearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(
+			Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn, Type tDocumentType) {
+		return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: msearch_template
@@ -1077,6 +1246,40 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) {
 		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Allows to execute several search template operations in one request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
+			MsearchTemplateRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.msearch_template.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to execute several search template operations in one request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MsearchTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
+			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn, Type tDocumentType) {
+		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: mtermvectors
@@ -1393,6 +1596,42 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
 	}
 
+	/**
+	 * Allows an arbitrary script to be executed and a result to be returned
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
+			ScriptsPainlessExecuteRequest request, Type tResultType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult",
+				getDeserializer(tResultType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows an arbitrary script to be executed and a result to be returned
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScriptsPainlessExecuteRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
+			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
+			Type tResultType) {
+		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultType);
+	}
+
 	// ----- Endpoint: scroll
 
 	/**
@@ -1429,6 +1668,39 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<ScrollResponse<TDocument>> scroll(ScrollRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scroll.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScrollRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<ScrollResponse<TDocument>> scroll(
+			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Type tDocumentType) {
+		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: search
 
 	/**
@@ -1463,6 +1735,39 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass) {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Returns results matching a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<SearchResponse<TDocument>> search(SearchRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.search.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns results matching a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
+			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Type tDocumentType) {
+		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: search_mvt
@@ -1586,6 +1891,40 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
 	}
 
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
+			SearchTemplateRequest request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.search_template.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
+			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn, Type tDocumentType) {
+		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentType);
+	}
+
 	// ----- Endpoint: terms_enum
 
 	/**
@@ -1693,6 +2032,41 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 			Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
 			Class<TDocument> tDocumentClass) {
 		return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Updates a document with a script or partial document.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
+			UpdateRequest<TDocument, TPartialDocument> request, Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.update.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates a document with a script or partial document.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
+			Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
+			Type tDocumentType) {
+		return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: update_by_query
