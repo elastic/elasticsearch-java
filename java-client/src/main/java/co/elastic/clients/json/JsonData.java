@@ -26,6 +26,7 @@ import jakarta.json.stream.JsonParser;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.util.EnumSet;
 
 /**
@@ -60,9 +61,21 @@ public interface JsonData extends JsonpSerializable {
     <T> T to(Class<T> clazz);
 
     /**
+     * Converts this object to a target type. A mapper must have been provided at creation time.
+     *
+     * @throws IllegalStateException if no mapper was provided at creation time.
+     */
+    <T> T to(Type type);
+
+    /**
      * Converts this object to a target class.
      */
      <T> T to(Class<T> clazz, JsonpMapper mapper);
+
+    /**
+     * Converts this object to a target type.
+     */
+    <T> T to(Type type, JsonpMapper mapper);
 
     /**
      * Converts this object using a deserializer. A mapper must have been provided at creation time.

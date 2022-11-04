@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonParser.Event;
 
 import java.io.CharArrayReader;
 import java.io.CharArrayWriter;
+import java.lang.reflect.Type;
 import java.util.EnumSet;
 
 public class JsonbJsonpMapper extends JsonpMapperBase {
@@ -60,8 +61,8 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
     }
 
     @Override
-    protected <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
-        return new Deserializer<>(clazz);
+    protected <T> JsonpDeserializer<T> getDefaultDeserializer(Type type) {
+        return new Deserializer<>(type);
     }
 
     @Override
@@ -86,11 +87,11 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
     }
 
     private class Deserializer<T> extends JsonpDeserializerBase<T> {
-        private final Class<T> clazz;
+        private final Type type;
 
-        Deserializer(Class<T> clazz) {
+        Deserializer(Type type) {
             super(EnumSet.allOf(JsonParser.Event.class));
-            this.clazz = clazz;
+            this.type = type;
         }
 
         @Override
@@ -106,7 +107,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
             generator.close();
 
             CharArrayReader car = new CharArrayReader(caw.toCharArray());
-            return jsonb.fromJson(car, clazz);
+            return jsonb.fromJson(car, type);
         }
     }
 

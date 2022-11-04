@@ -25,6 +25,7 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 
 import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -88,15 +89,23 @@ public interface JsonpDeserializer<V> {
 
     //---------------------------------------------------------------------------------------------
 
+//    /**
+//     * Creates a deserializer for a class that delegates to the mapper provided to
+//     * {@link #deserialize(JsonParser, JsonpMapper)}.
+//     */
+//    static <T>JsonpDeserializer<T> of(Class<T> clazz) {
+//        return of((Type)clazz);
+//    }
+
     /**
-     * Creates a deserializer for a class that delegates to the mapper provided to
+     * Creates a deserializer for a type that delegates to the mapper provided to
      * {@link #deserialize(JsonParser, JsonpMapper)}.
      */
-    static <T>JsonpDeserializer<T> of (Class<T> clazz) {
+    static <T>JsonpDeserializer<T> of(Type type) {
         return new JsonpDeserializerBase<T>(EnumSet.allOf(JsonParser.Event.class)) {
             @Override
             public T deserialize(JsonParser parser, JsonpMapper mapper) {
-                return mapper.deserialize(parser, clazz);
+                return mapper.deserialize(parser, type);
             }
 
             @Override
