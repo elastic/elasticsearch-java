@@ -18,4 +18,14 @@
  */
 
 rootProject.name = "elasticsearch-java"
-include("java-client")
+
+// Include as subprojects all subdirectories that have a "build.gradle.kts" and no ".gradle-standalone"
+(rootProject.projectDir.listFiles() ?: arrayOf<File>()).
+    filter { File(it, "build.gradle.kts").exists() }.
+    filter { !File(it, ".gradle-standalone").exists() }.
+    filter { it.name != "buildSrc" }.
+    toTypedArray().
+    forEach { dir ->
+        include(dir.name)
+        project(":" + dir.name).projectDir = dir
+    }

@@ -19,6 +19,7 @@
 
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
+import com.github.jk1.license.render.LicenseDataCollector
 import java.io.FileWriter
 
 plugins {
@@ -26,8 +27,8 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "1.19"
-    id("de.thetaphi.forbiddenapis") version "3.3"
+    id("com.github.jk1.dependency-license-report") version "2.1"
+    id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
 java {
@@ -179,7 +180,7 @@ publishing {
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
-    val elasticsearchVersion = "7.17.4"
+    val elasticsearchVersion = "7.17.7"
     val jacksonVersion = "2.13.3"
 
     // Apache 2.0
@@ -265,21 +266,31 @@ class SpdxReporter(val dest: File) : ReportRenderer {
         FileWriter(dest).use { out ->
             out.append("name,url,version,revision,license\n")
             data?.allDependencies?.forEach { dep ->
-                val info = com.github.jk1.license.render.LicenseDataCollector.multiModuleLicenseInfo(dep)
 
                 val depVersion = dep.version
                 val depName = dep.group + ":" + dep.name
-                val depUrl = info.moduleUrls.first()
 
-                val licenseIds = info.licenses.mapNotNull { license ->
-                    license.name?.let {
-                        checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
-                    }
-                }.toSet()
+                //--------------
+                // FIXME: restore section below once 2.2 is released
+                // See https://github.com/jk1/Gradle-License-Report/issues/251
+                val (depUrl, licenseId, licenseUrl) = LicenseDataCollector.singleModuleLicenseInfo(dep)
+                checkNotNull(spdxIds[licenseId]) { "No SPDX identifier for $licenseId" }
 
-                // Combine multiple licenses.
-                // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
-                val licenseId = licenseIds.joinToString(" OR ")
+                //--------------
+                // val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
+                // val depUrl = info.moduleUrls.first()
+                //
+                // val licenseIds = info.licenses.mapNotNull { license ->
+                //     license.name?.let {
+                //         checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
+                //     }
+                // }.toSet()
+                //
+                // // Combine multiple licenses.
+                // // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
+                // val licenseId = licenseIds.joinToString(" OR ")
+                //--------------
+
                 out.append("${quote(depName)},${quote(depUrl)},${quote(depVersion)},,${quote(licenseId)}\n")
             }
         }
