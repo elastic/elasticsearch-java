@@ -96,9 +96,15 @@ class JsonDataImpl implements JsonData {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (value instanceof JsonValue) {
             generator.write((JsonValue) value);
+        } else if (this.mapper == null) {
+            mapper.serialize(value, generator);
+        } else if (this.mapper.getClass() != mapper.getClass()) {
+            // Workaround for https://github.com/elastic/elasticsearch-java/issues/424
+            // Mappers can require generators to have been created by them (see JacksonJsonpMapper), so use the mapper
+            // parameter if its class is different from the one passed at construction time.
+            mapper.serialize(value, generator);
         } else {
-            // Mapper provided at creation time has precedence
-            (this.mapper != null ? this.mapper : mapper).serialize(value, generator);
+            this.mapper.serialize(value, generator);
         }
     }
 
