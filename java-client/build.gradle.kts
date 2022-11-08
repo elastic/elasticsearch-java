@@ -89,6 +89,7 @@ tasks.withType<Javadoc> {
     // Gradle calls javadoc with a list of file and not a path. This prevents doc-files from being copied.
     opt.addStringOption("sourcepath", project.projectDir.path + "/src/main/java")
     opt.docFilesSubDirs(true)
+    opt.addBooleanOption("Xdoclint:-missing", true)
 
     doLast {
         // Javadoc adds its decoration to html doc files, including quite some JS. This slows down the api spec
