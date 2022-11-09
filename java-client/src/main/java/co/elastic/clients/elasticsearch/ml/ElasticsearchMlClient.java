@@ -91,20 +91,6 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 				fn.apply(new ClearTrainedModelDeploymentCacheRequest.Builder()).build());
 	}
 
-	/**
-	 * Clear the cached results from a trained model deployment
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public ClearTrainedModelDeploymentCacheResponse clearTrainedModelDeploymentCache()
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ClearTrainedModelDeploymentCacheRequest.Builder().build(),
-				ClearTrainedModelDeploymentCacheRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: ml.close_job
 
 	/**
