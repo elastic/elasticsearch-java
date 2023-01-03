@@ -75,7 +75,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
 		@Nullable

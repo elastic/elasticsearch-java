@@ -192,7 +192,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		return JsonpUtils.toString(this);
 	}
 
-	protected abstract static class AbstractBuilder<TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>>
+	public abstract static class AbstractBuilder<TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable

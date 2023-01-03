@@ -78,7 +78,7 @@ public abstract class BucketPathAggregation extends AggregationBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable

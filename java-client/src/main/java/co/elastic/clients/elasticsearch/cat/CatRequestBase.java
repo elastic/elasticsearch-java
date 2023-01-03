@@ -45,7 +45,7 @@ public abstract class CatRequestBase extends RequestBase {
 	public CatRequestBase() {
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				RequestBase.AbstractBuilder<BuilderT> {
 		protected abstract BuilderT self();

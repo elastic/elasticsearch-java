@@ -118,7 +118,7 @@ public class UserProfileWithMetadata extends UserProfile {
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				UserProfile.AbstractBuilder<BuilderT> {
 		private Long lastSynchronized;

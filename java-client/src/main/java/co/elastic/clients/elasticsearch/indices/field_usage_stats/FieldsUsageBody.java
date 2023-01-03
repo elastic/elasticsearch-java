@@ -107,7 +107,7 @@ public abstract class FieldsUsageBody implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable

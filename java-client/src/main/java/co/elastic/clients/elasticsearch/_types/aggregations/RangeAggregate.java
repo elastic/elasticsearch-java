@@ -90,7 +90,7 @@ public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implem
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				MultiBucketAggregateBase.AbstractBuilder<RangeBucket, BuilderT> {
 	}
