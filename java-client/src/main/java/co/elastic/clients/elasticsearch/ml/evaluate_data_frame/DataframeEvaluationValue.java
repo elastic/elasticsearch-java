@@ -118,7 +118,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		private Double value;

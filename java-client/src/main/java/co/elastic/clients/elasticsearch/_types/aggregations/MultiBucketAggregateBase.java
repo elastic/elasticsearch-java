@@ -77,7 +77,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>>
+	public abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>>
 			extends
 				AggregateBase.AbstractBuilder<BuilderT> {
 		private Buckets<TBucket> buckets;

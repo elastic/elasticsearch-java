@@ -93,7 +93,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AsyncSearchResponseBase.AbstractBuilder<BuilderT> {
 		private ShardStatistics shards;

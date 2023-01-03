@@ -119,7 +119,7 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		private DateTime executionTime;

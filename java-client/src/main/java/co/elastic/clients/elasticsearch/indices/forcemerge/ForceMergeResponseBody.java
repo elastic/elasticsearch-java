@@ -80,7 +80,7 @@ public abstract class ForceMergeResponseBody extends ShardsOperationResponseBase
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				ShardsOperationResponseBase.AbstractBuilder<BuilderT> {
 		@Nullable

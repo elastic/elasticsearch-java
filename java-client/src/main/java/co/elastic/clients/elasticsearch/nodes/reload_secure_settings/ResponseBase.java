@@ -98,7 +98,7 @@ public abstract class ResponseBase extends NodesResponseBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				NodesResponseBase.AbstractBuilder<BuilderT> {
 		private String clusterName;

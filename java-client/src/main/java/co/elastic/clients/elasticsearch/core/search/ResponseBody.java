@@ -311,7 +311,7 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
+	public abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		private Long took;

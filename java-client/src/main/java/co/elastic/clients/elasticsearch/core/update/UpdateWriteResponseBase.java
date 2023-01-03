@@ -83,7 +83,7 @@ public abstract class UpdateWriteResponseBase<TDocument> extends WriteResponseBa
 
 	}
 
-	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
+	public abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
 			extends
 				WriteResponseBase.AbstractBuilder<BuilderT> {
 		@Nullable
