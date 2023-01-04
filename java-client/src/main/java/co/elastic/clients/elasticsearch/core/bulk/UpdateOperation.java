@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -53,7 +53,11 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		implements
 			NdJsonpSerializable,
 			BulkOperationVariant {
+	@Nullable
 	private final UpdateAction<TDocument, TPartialDocument> action;
+
+	@Nullable
+	private final BinaryData binaryAction;
 
 	@Nullable
 	private final Boolean requireAlias;
@@ -71,7 +75,8 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 
 	private UpdateOperation(Builder<TDocument, TPartialDocument> builder) {
 		super(builder);
-		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.action = builder.action;
+		this.binaryAction = builder.binaryAction;
 
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
@@ -94,15 +99,30 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 	}
 
 	/**
-	 * Required - API name: {@code action}
+	 * Update action
+	 * <p>
+	 * API name: {@code action}
 	 */
+	@Nullable
 	public final UpdateAction<TDocument, TPartialDocument> action() {
 		return this.action;
 	}
 
+	/**
+	 * Serialized representation of the update action. You should use
+	 * <code>action</code> instead. This binary representation is used by the
+	 * <code>BulkIngester</code> helper to compute the binary size of bulk requests.
+	 * <p>
+	 * API name: {@code binary_action}
+	 */
+	@Nullable
+	public final BinaryData binaryAction() {
+		return this.binaryAction;
+	}
+
 	@Override
 	public Iterator<?> _serializables() {
-		return Arrays.asList(this, this.action).iterator();
+		return Arrays.asList(this, this.action, this.binaryAction).iterator();
 	}
 
 	/**
@@ -148,22 +168,43 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 				BulkOperationBase.AbstractBuilder<Builder<TDocument, TPartialDocument>>
 			implements
 				ObjectBuilder<UpdateOperation<TDocument, TPartialDocument>> {
+		@Nullable
 		private UpdateAction<TDocument, TPartialDocument> action;
 
+		@Nullable
+		private BinaryData binaryAction;
+
 		/**
-		 * Required - API name: {@code action}
+		 * Update action
+		 * <p>
+		 * API name: {@code action}
 		 */
-		public final Builder<TDocument, TPartialDocument> action(UpdateAction<TDocument, TPartialDocument> value) {
+		public final Builder<TDocument, TPartialDocument> action(
+				@Nullable UpdateAction<TDocument, TPartialDocument> value) {
 			this.action = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code action}
+		 * Update action
+		 * <p>
+		 * API name: {@code action}
 		 */
 		public final Builder<TDocument, TPartialDocument> action(
 				Function<UpdateAction.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateAction<TDocument, TPartialDocument>>> fn) {
 			return this.action(fn.apply(new UpdateAction.Builder<TDocument, TPartialDocument>()).build());
+		}
+
+		/**
+		 * Serialized representation of the update action. You should use
+		 * <code>action</code> instead. This binary representation is used by the
+		 * <code>BulkIngester</code> helper to compute the binary size of bulk requests.
+		 * <p>
+		 * API name: {@code binary_action}
+		 */
+		public final Builder<TDocument, TPartialDocument> binaryAction(@Nullable BinaryData value) {
+			this.binaryAction = value;
+			return this;
 		}
 
 		@Nullable
