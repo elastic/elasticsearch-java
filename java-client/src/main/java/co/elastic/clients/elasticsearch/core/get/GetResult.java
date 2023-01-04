@@ -282,7 +282,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		}
 	}
 
-	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
+	public abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		private String index;

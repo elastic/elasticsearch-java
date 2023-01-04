@@ -111,7 +111,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				DocValuesPropertyBase.AbstractBuilder<BuilderT> {
 		@Nullable

@@ -85,7 +85,7 @@ public abstract class SignificantTermsBucketBase extends MultiBucketBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				MultiBucketBase.AbstractBuilder<BuilderT> {
 		private Double score;

@@ -76,7 +76,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				CorePropertyBase.AbstractBuilder<BuilderT> {
 		@Nullable

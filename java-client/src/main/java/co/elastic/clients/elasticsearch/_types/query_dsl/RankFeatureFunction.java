@@ -45,7 +45,7 @@ public abstract class RankFeatureFunction {
 	public RankFeatureFunction() {
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		protected abstract BuilderT self();

@@ -98,7 +98,7 @@ public abstract class SignificantTermsAggregateBase<T> extends MultiBucketAggreg
 
 	}
 
-	protected abstract static class AbstractBuilder<T, BuilderT extends AbstractBuilder<T, BuilderT>>
+	public abstract static class AbstractBuilder<T, BuilderT extends AbstractBuilder<T, BuilderT>>
 			extends
 				MultiBucketAggregateBase.AbstractBuilder<T, BuilderT> {
 		@Nullable

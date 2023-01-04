@@ -76,7 +76,7 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				MetricAggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable

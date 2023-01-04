@@ -111,7 +111,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				NumberPropertyBase.AbstractBuilder<BuilderT> {
 		@Nullable

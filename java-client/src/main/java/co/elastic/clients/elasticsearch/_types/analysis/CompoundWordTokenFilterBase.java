@@ -185,7 +185,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				TokenFilterBase.AbstractBuilder<BuilderT> {
 		@Nullable

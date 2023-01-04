@@ -116,7 +116,7 @@ public abstract class WriteOperation extends BulkOperationBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				BulkOperationBase.AbstractBuilder<BuilderT> {
 		@Nullable

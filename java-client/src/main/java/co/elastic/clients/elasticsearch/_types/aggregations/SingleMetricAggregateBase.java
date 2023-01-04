@@ -96,7 +96,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AggregateBase.AbstractBuilder<BuilderT> {
 		private Double value;
