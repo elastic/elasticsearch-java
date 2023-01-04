@@ -34,6 +34,7 @@ import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.MissingRequiredPropertyException;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -54,9 +55,13 @@ import javax.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -153,9 +158,15 @@ public class RestClientTransport implements ElasticsearchTransport {
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) {
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
-
         RequestFuture<ResponseT> future = new RequestFuture<>();
+        org.elasticsearch.client.Request clientReq;
+        try {
+            clientReq = prepareLowLevelRequest(request, endpoint, options);
+        } catch (Exception e) {
+            // Terminate early
+            future.completeExceptionally(e);
+            return future;
+        }
 
         // Propagate required property checks to the thread that will decode the response
         boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
@@ -187,7 +198,7 @@ public class RestClientTransport implements ElasticsearchTransport {
         RequestT request,
         Endpoint<RequestT, ?, ?> endpoint,
         @Nullable TransportOptions options
-    ) {
+    ) throws IOException {
         String method = endpoint.method(request);
         String path = endpoint.requestUrl(request);
         Map<String, String> params = endpoint.queryParameters(request);
@@ -206,28 +217,48 @@ public class RestClientTransport implements ElasticsearchTransport {
 
         if (endpoint.hasRequestBody()) {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             if (request instanceof NdJsonpSerializable) {
-                writeNdJson((NdJsonpSerializable) request, baos);
+                List<ByteBuffer> lines = new ArrayList<>();
+                collectNdJsonLines(lines, (NdJsonpSerializable)request);
+                clientReq.setEntity(new MultiBufferEntity(lines, JsonContentType));
             } else {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(request, generator);
                 generator.close();
+                clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), JsonContentType));
             }
-
-            clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), JsonContentType));
         }
         // Request parameter intercepted by LLRC
         clientReq.addParameter("ignore", "400,401,403,404,405");
         return clientReq;
     }
 
+    private static final ByteBuffer NdJsonSeparator = ByteBuffer.wrap("\n".getBytes(StandardCharsets.UTF_8));
+
+    private void collectNdJsonLines(List<ByteBuffer> lines, NdJsonpSerializable value) {
+        Iterator<?> values = value._serializables();
+        while(values.hasNext()) {
+            Object item = values.next();
+            if (item == null) {
+                // Skip
+            } else if (item instanceof NdJsonpSerializable && item != value) { // do not recurse on the item itself
+                collectNdJsonLines(lines, (NdJsonpSerializable)item);
+            } else {
+                // TODO: items that aren't already BinaryData could be serialized to ByteBuffers lazily
+                // to reduce the number of buffers to keep in memory
+                lines.add(BinaryData.of(item, this.mapper).asByteBuffer());
+                lines.add(NdJsonSeparator);
+            }
+        }
+    }
+
     /**
      * Write an nd-json value by serializing each of its items on a separate line, recursing if its items themselves implement
      * {@link NdJsonpSerializable} to flattening nested structures.
      */
-    private void writeNdJson(NdJsonpSerializable value, ByteArrayOutputStream baos) {
+    private void writeNdJson(NdJsonpSerializable value, ByteArrayOutputStream baos) throws IOException {
         Iterator<?> values = value._serializables();
         while(values.hasNext()) {
             Object item = values.next();
@@ -324,7 +355,6 @@ public class RestClientTransport implements ElasticsearchTransport {
                 try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                     response = responseParser.deserialize(parser, mapper);
                 }
-                ;
             }
             return response;
 

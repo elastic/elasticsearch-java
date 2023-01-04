@@ -20,9 +20,13 @@
 package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.SimpleJsonpMapper;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterAll;
@@ -95,5 +99,30 @@ public class BinaryEndpointTest extends Assertions {
 
         assertEquals("application/vnd.hello-world", resp.contentType());
         assertEquals("Hello world", baos.toString(StandardCharsets.UTF_8.name()));
+    }
+
+    @Test
+    public void convertJsonToBinaryEndpoint() throws IOException {
+
+        ElasticsearchClient esClient = ElasticsearchTestServer.global().client();
+
+        // Create the search request
+        SearchRequest request = SearchRequest.of(b -> b);
+
+        // Create a binary endpoint from the regular search endpoint. It will not deserialize
+        // the response and instead will just return the raw response input stream.
+        BinaryEndpoint<SearchRequest> binarySearchEndpoint = SearchRequest._ENDPOINT.withBinaryResponse();
+
+        // Force typed_keys to false, so that aggregations names do not hold type information
+        TransportOptions options = esClient._transportOptions().toBuilder()
+            .setParameter("typed_keys", "false")
+            .build();
+
+        // Call Elasticsearch by providing the transport the request and endpoint
+        BinaryResponse binaryResponse = esClient._transport().performRequest(request, binarySearchEndpoint, options);
+
+        // Do something with the response
+        String response = IOUtils.toString(binaryResponse.content(), StandardCharsets.UTF_8);
+        assertTrue(response.matches("\\{\"took\":\\d+,\"timed_out\":false.*"));
     }
 }

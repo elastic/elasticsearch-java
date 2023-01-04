@@ -220,6 +220,9 @@ dependencies {
         exclude(group = "org.glassfish", module = "jakarta.json")
     }
 
+    // Apache-2.0
+    testImplementation("commons-io:commons-io:2.11.0")
+
     // EPL-2.0
     // https://junit.org/junit5/
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
