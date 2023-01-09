@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Storage implements JsonpSerializable {
-	private final StorageType type;
+	private final String type;
 
 	@Nullable
 	private final Boolean allowMmap;
@@ -69,7 +70,7 @@ public class Storage implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public final StorageType type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -100,7 +101,8 @@ public class Storage implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
+		generator.write(this.type);
+
 		if (this.allowMmap != null) {
 			generator.writeKey("allow_mmap");
 			generator.write(this.allowMmap);
@@ -121,7 +123,7 @@ public class Storage implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Storage> {
-		private StorageType type;
+		private String type;
 
 		@Nullable
 		private Boolean allowMmap;
@@ -129,8 +131,16 @@ public class Storage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final Builder type(StorageType value) {
+		public final Builder type(String value) {
 			this.type = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code type}
+		 */
+		public final Builder type(StorageType value) {
+			this.type = value == null ? null : value.jsonValue();
 			return this;
 		}
 
@@ -177,7 +187,7 @@ public class Storage implements JsonpSerializable {
 
 	protected static void setupStorageDeserializer(ObjectDeserializer<Storage.Builder> op) {
 
-		op.add(Builder::type, StorageType._DESERIALIZER, "type");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::allowMmap, JsonpDeserializer.booleanDeserializer(), "allow_mmap");
 
 	}

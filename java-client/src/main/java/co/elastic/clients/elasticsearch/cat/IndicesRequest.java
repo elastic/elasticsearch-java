@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.HealthStatus;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -73,6 +74,9 @@ public class IndicesRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean pri;
 
+	@Nullable
+	private final TimeUnit time;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesRequest(Builder builder) {
@@ -83,6 +87,7 @@ public class IndicesRequest extends CatRequestBase {
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.pri = builder.pri;
+		this.time = builder.time;
 
 	}
 
@@ -151,6 +156,16 @@ public class IndicesRequest extends CatRequestBase {
 		return this.pri;
 	}
 
+	/**
+	 * The unit in which to display time values
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -177,6 +192,9 @@ public class IndicesRequest extends CatRequestBase {
 
 		@Nullable
 		private Boolean pri;
+
+		@Nullable
+		private TimeUnit time;
 
 		/**
 		 * The unit in which to display byte values
@@ -270,6 +288,16 @@ public class IndicesRequest extends CatRequestBase {
 			return this;
 		}
 
+		/**
+		 * The unit in which to display time values
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -348,6 +376,9 @@ public class IndicesRequest extends CatRequestBase {
 				}
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
 				}
 				return params;
 

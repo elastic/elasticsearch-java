@@ -55,6 +55,9 @@ import javax.annotation.Nullable;
 public class Anomaly implements JsonpSerializable {
 	private final List<Double> actual;
 
+	@Nullable
+	private final AnomalyExplanation anomalyScoreExplanation;
+
 	private final long bucketSpan;
 
 	@Nullable
@@ -111,6 +114,7 @@ public class Anomaly implements JsonpSerializable {
 	private Anomaly(Builder builder) {
 
 		this.actual = ApiTypeHelper.unmodifiable(builder.actual);
+		this.anomalyScoreExplanation = builder.anomalyScoreExplanation;
 		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
 		this.byFieldName = builder.byFieldName;
 		this.byFieldValue = builder.byFieldValue;
@@ -144,6 +148,16 @@ public class Anomaly implements JsonpSerializable {
 	 */
 	public final List<Double> actual() {
 		return this.actual;
+	}
+
+	/**
+	 * Information about the factors impacting the initial anomaly score.
+	 * <p>
+	 * API name: {@code anomaly_score_explanation}
+	 */
+	@Nullable
+	public final AnomalyExplanation anomalyScoreExplanation() {
+		return this.anomalyScoreExplanation;
 	}
 
 	/**
@@ -323,6 +337,11 @@ public class Anomaly implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.anomalyScoreExplanation != null) {
+			generator.writeKey("anomaly_score_explanation");
+			this.anomalyScoreExplanation.serialize(generator, mapper);
+
+		}
 		generator.writeKey("bucket_span");
 		generator.write(this.bucketSpan);
 
@@ -443,6 +462,9 @@ public class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<Double> actual;
 
+		@Nullable
+		private AnomalyExplanation anomalyScoreExplanation;
+
 		private Long bucketSpan;
 
 		@Nullable
@@ -515,6 +537,26 @@ public class Anomaly implements JsonpSerializable {
 		public final Builder actual(Double value, Double... values) {
 			this.actual = _listAdd(this.actual, value, values);
 			return this;
+		}
+
+		/**
+		 * Information about the factors impacting the initial anomaly score.
+		 * <p>
+		 * API name: {@code anomaly_score_explanation}
+		 */
+		public final Builder anomalyScoreExplanation(@Nullable AnomalyExplanation value) {
+			this.anomalyScoreExplanation = value;
+			return this;
+		}
+
+		/**
+		 * Information about the factors impacting the initial anomaly score.
+		 * <p>
+		 * API name: {@code anomaly_score_explanation}
+		 */
+		public final Builder anomalyScoreExplanation(
+				Function<AnomalyExplanation.Builder, ObjectBuilder<AnomalyExplanation>> fn) {
+			return this.anomalyScoreExplanation(fn.apply(new AnomalyExplanation.Builder()).build());
 		}
 
 		/**
@@ -768,6 +810,7 @@ public class Anomaly implements JsonpSerializable {
 	protected static void setupAnomalyDeserializer(ObjectDeserializer<Anomaly.Builder> op) {
 
 		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
+		op.add(Builder::anomalyScoreExplanation, AnomalyExplanation._DESERIALIZER, "anomaly_score_explanation");
 		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
