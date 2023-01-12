@@ -21,31 +21,30 @@ package co.elastic.clients.documentation.usage;
 
 import co.elastic.clients.documentation.DocTestsTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._helpers.bulk.BulkIngester;
-import co.elastic.clients.elasticsearch._helpers.bulk.BulkListener;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
-import co.elastic.clients.util.BinaryData;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpMapper;
+import jakarta.json.spi.JsonProvider;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class IndexingBulkTest extends ModelTestCase {
 
     private final DocTestsTransport transport = new DocTestsTransport();
     private final ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
-    private final Log logger = LogFactory.getLog(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     BulkResponse result = BulkResponse.of(r -> r
         .errors(false)
@@ -93,6 +92,15 @@ public class IndexingBulkTest extends ModelTestCase {
         //end::bulk-objects
     }
 
+    //tag::read-json
+    public static JsonData readJson(InputStream input, ElasticsearchClient esClient) {
+        JsonpMapper jsonpMapper = esClient._transport().jsonpMapper();
+        JsonProvider jsonProvider = jsonpMapper.jsonProvider();
+
+        return JsonData.from(jsonProvider.createParser(input), jsonpMapper);
+    }
+    //end::read-json
+
     @Test
     public void indexBulkJson() throws Exception {
         transport.setResult(result);
@@ -108,105 +116,15 @@ public class IndexingBulkTest extends ModelTestCase {
         BulkRequest.Builder br = new BulkRequest.Builder();
 
         for (File file: logFiles) {
-            FileInputStream input = new FileInputStream(file);
-            BinaryData data = BinaryData.of(IOUtils.toByteArray(input));
+            JsonData json = readJson(new FileInputStream(file), esClient);
 
             br.operations(op -> op
                 .index(idx -> idx
                     .index("logs")
-                    .document(data)
+                    .document(json)
                 )
             );
         }
         //end::bulk-json
-    }
-
-    @Test
-    public void useBulkIndexer() throws Exception {
-
-        File logDir = new File(".");
-        File[] logFiles = logDir.listFiles(
-            file -> file.getName().matches("log-.*\\.json")
-        );
-
-        //tag::bulk-ingester-setup
-        BulkIngester<Void> ingester = BulkIngester.of(b -> b
-            .client(esClient)    // <1>
-            .maxOperations(100)  // <2>
-            .flushInterval(1, TimeUnit.SECONDS) // <3>
-        );
-
-        for (File file: logFiles) {
-            FileInputStream input = new FileInputStream(file);
-            BinaryData data = BinaryData.of(IOUtils.toByteArray(input));
-
-            ingester.add(op -> op // <4>
-                .index(idx -> idx
-                    .index("logs")
-                    .document(data)
-                )
-            );
-        }
-
-        ingester.close(); // <5>
-        //end::bulk-ingester-setup
-
-    }
-
-    @Test
-    public void useBulkIndexerWithContext() throws Exception {
-
-        File[] logFiles = new File[]{};
-
-        //tag::bulk-ingester-context
-        BulkListener<String> listener = new BulkListener<String>() { // <1>
-            @Override
-            public void beforeBulk(long executionId, BulkRequest request, List<String> contexts) {
-            }
-
-            @Override
-            public void afterBulk(long executionId, BulkRequest request, List<String> contexts, BulkResponse response) {
-                // The request was accepted, but may contain failed items.
-                // The "context" list gives the file name for each bulk item.
-                logger.debug("Bulk request " + executionId + " completed");
-                for (int i = 0; i < contexts.size(); i++) {
-                    BulkResponseItem item = response.items().get(i);
-                    if (item.error() != null) {
-                        // Inspect the failure cause
-                        logger.error("Failed to index file " + contexts.get(i) + " - " + item.error().reason());
-                    }
-                }
-            }
-
-            @Override
-            public void afterBulk(long executionId, BulkRequest request, List<String> contexts, Throwable failure) {
-                // The request could not be sent
-                logger.debug("Bulk request " + executionId + " failed", failure);
-            }
-        };
-
-        BulkIngester<String> ingester = BulkIngester.of(b -> b
-            .client(esClient)
-            .maxOperations(100)
-            .flushInterval(1, TimeUnit.SECONDS)
-            .listener(listener) // <2>
-        );
-
-        for (File file: logFiles) {
-            FileInputStream input = new FileInputStream(file);
-            BinaryData data = BinaryData.of(IOUtils.toByteArray(input));
-
-            ingester.add(op -> op
-                .index(idx -> idx
-                    .index("logs")
-                    .document(data)
-                ),
-                file.getName() // <3>
-            );
-        }
-
-        ingester.close();
-        //end::bulk-ingester-context
-
     }
 }
