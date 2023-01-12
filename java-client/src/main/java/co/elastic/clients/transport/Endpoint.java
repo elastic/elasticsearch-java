@@ -20,7 +20,6 @@
 package co.elastic.clients.transport;
 
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -83,15 +82,4 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   @Nullable
   JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
 
-  default BinaryEndpoint<RequestT> withBinaryResponse() {
-      return new BinaryEndpoint<>(
-          this.id(),
-          this::method,
-          this::requestUrl,
-          this::queryParameters,
-          this::headers,
-          this.hasRequestBody(),
-          null
-      );
-  }
 }
