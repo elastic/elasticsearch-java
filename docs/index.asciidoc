@@ -34,6 +34,6 @@ include::usage/index.asciidoc[]
 
 include::troubleshooting/index.asciidoc[]
 include::javadoc-and-source.asciidoc[]
-include::release-notes.asciidoc[]
+include::release-notes/index.asciidoc[]
 include::external-resources.asciidoc[]
 include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[]

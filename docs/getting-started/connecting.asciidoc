@@ -39,6 +39,7 @@ include-tagged::{doc-tests-src}/getting_started/ConnectingTest.java[first-reques
 --------------------------------------------------
 
 [discrete]
+[[using-a-secure-connection]]
 ==== Using a secure connection
 
 The <<java-rest-low>> documentation explains how to set up encrypted communications in detail.
