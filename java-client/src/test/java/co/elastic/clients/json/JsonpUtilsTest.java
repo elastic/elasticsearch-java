@@ -70,6 +70,16 @@ public class JsonpUtilsTest extends ModelTestCase {
     }
 
     @Test
+    @AllowForbiddenApis("Testing JsonpUtil.provider()")
+    public void testProviderCache() {
+        // A new provider at each call
+        assertNotSame(JsonpUtils.findProvider(), JsonpUtils.findProvider());
+
+        // Result is cached
+        assertSame(JsonpUtils.provider(), JsonpUtils.provider());
+    }
+
+    @Test
     public void testObjectToString() {
         // Test that we call toString() on application classes.
         Hit<SomeUserData> hit = Hit.of(h -> h
