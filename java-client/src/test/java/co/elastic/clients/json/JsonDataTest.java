@@ -17,16 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.json;
+package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonData;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpMapperBase;
-import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
