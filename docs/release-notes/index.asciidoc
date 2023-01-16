@@ -1,0 +1,9 @@
+[[release_notes]]
+== Release notes
+
+* <<breaking-changes-policy>>
+* <<release-highlights>>
+
+include::breaking-change-policy.asciidoc[]
+include::release-highlights.asciidoc[]
+

@@ -1,0 +1,47 @@
+[[release-highlights]]
+=== Release highlights
+
+These are the important new features and changes in minor releases. Every release also updates the {java-client} to the latest https://github.com/elastic/elasticsearch-specification[API specification]. This includes new APIs and bug fixes in the specification of existing APIs.
+
+For a list of detailed changes, including bug fixes, please see the https://github.com/elastic/elasticsearch-java/releases[GitHub project realease notes].
+
+[discrete]
+==== Version 8.6
+
+* Allow using `java.lang.reflect.Type` in addition to `java.lang.Class` to define application types for deserialization - https://github.com/elastic/elasticsearch-java/pull/438[#438]
+
+[discrete]
+==== Version 8.5
+
+* Add support for API endpoints that return binary content, such as the Vector tile API - https://github.com/elastic/elasticsearch-java/pull/434[#434]
+* Add support for <<variant-types-custom,plugin-defined custom components>> - https://github.com/elastic/elasticsearch-java/pull/370[#370], https://github.com/elastic/elasticsearch-java/pull/371[#371]
+* Add SSL setup helper class and <<using-a-secure-connection,documentation>> - https://github.com/elastic/elasticsearch-java/pull/371[#390]
+
+[discrete]
+==== Version 8.4
+
+* Add troubleshooting documentation on <<missing-required-property,`MissingRequiredPropertyException`>> - https://github.com/elastic/elasticsearch-java/pull/301[#301]
+* Allow <<serialize-without-typed-keys,serializing aggregations without typed keys>>. This is useful in scenarios where the Java application is used as a proxy and the responses are sent back to its client - https://github.com/elastic/elasticsearch-java/pull/316[#316]
+
+[discrete]
+==== Version 8.3
+
+* Add `toString()` implementation to all value classes - https://github.com/elastic/elasticsearch-java/pull/269[#269]
+
+[discrete]
+==== Version 8.2
+
+* Add <<loading-json,the `withJson()` method>> to all builder classes - https://github.com/elastic/elasticsearch-java/pull/316[#200]
+* Add troubleshooting docs for <<class-not-found-jsonprovider,jakarta-json and build systems like Spring>> - https://github.com/elastic/elasticsearch-java/pull/215[#215]
+* Improve JSON mapping errors by adding location and property path in the exception message - https://github.com/elastic/elasticsearch-java/pull/237[#237]
+
+[discrete]
+==== Version 8.1
+
+* Add documentation for <<migrate-hlrc,HLRC's compatibility mode>> with {es} 8.x  - https://github.com/elastic/elasticsearch-java/pull/230[#230]
+
+[discrete]
+==== Version 8.0
+
+* Change the JSON-P implementation from Glassfish to Parsson - https://github.com/elastic/elasticsearch-java/pull/63[#63]
+* Accept `null` values in lists - https://github.com/elastic/elasticsearch-java/pull/68[#68]
