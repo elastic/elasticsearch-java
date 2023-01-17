@@ -163,42 +163,53 @@ public class JsonpUtils {
     /**
      * Looks ahead a field value in the Json object from the upcoming object in a parser, which should be on the
      * START_OBJECT event.
-     *
+     * <p>
      * Returns a pair containing that value and a parser that should be used to actually parse the object
      * (the object has been consumed from the original one).
      */
     public static Map.Entry<String, JsonParser> lookAheadFieldValue(
         String name, String defaultValue, JsonParser parser, JsonpMapper mapper
     ) {
-        // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
         JsonLocation location = parser.getLocation();
-        JsonObject object = parser.getObject();
-        String result = object.getString(name, null);
 
-        if (result == null) {
-            result = defaultValue;
-        }
-
-        if (result == null) {
-            throw new JsonpMappingException("Property '" + name + "' not found", location);
-        }
-
-        JsonParser newParser = objectParser(object, mapper);
-
-        // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
-        newParser = new DelegatingJsonParser(newParser) {
-            @Override
-            public JsonLocation getLocation() {
-                return new JsonLocationImpl(location.getLineNumber(), location.getColumnNumber(), location.getStreamOffset()) {
-                    @Override
-                    public String toString() {
-                        return "(in object at " + super.toString().substring(1);
-                    }
-                };
+        if (parser instanceof LookAheadJsonParser) {
+            // Fast buffered path
+            Map.Entry<String, JsonParser> result = ((LookAheadJsonParser) parser).lookAheadFieldValue(name, defaultValue);
+            if (result.getKey() == null) {
+                throw new JsonpMappingException("Property '" + name + "' not found", location);
             }
-        };
+            return result;
 
-        return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+        } else {
+            // Unbuffered path: parse the object into a JsonObject, then extract the value and parse it again
+            JsonObject object = parser.getObject();
+            String result = object.getString(name, null);
+
+            if (result == null) {
+                result = defaultValue;
+            }
+
+            if (result == null) {
+                throw new JsonpMappingException("Property '" + name + "' not found", location);
+            }
+
+            JsonParser newParser = objectParser(object, mapper);
+
+            // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
+            newParser = new DelegatingJsonParser(newParser) {
+                @Override
+                public JsonLocation getLocation() {
+                    return new JsonLocationImpl(location.getLineNumber(), location.getColumnNumber(), location.getStreamOffset()) {
+                        @Override
+                        public String toString() {
+                            return "(in object at " + super.toString().substring(1);
+                        }
+                    };
+                }
+            };
+
+            return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+        }
     }
 
     /**
