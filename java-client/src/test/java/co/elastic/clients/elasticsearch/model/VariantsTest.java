@@ -186,6 +186,14 @@ public class VariantsTest extends ModelTestCase {
     }
 
     @Test
+    public void testEmptyProperty() {
+        // Edge case where we have a property with no fields and no type
+        String json = "{}";
+        Property property = fromJson(json, Property.class);
+        assertEquals(Property.Kind.Object, property._kind());
+    }
+
+    @Test
     public void testNestedVariantsWithContainerProperties() {
 
         SearchRequest search = SearchRequest.of(s -> s
