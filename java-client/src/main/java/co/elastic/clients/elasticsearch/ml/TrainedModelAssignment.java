@@ -35,6 +35,7 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -53,6 +54,9 @@ import javax.annotation.Nullable;
 public class TrainedModelAssignment implements JsonpSerializable {
 	private final DeploymentAssignmentState assignmentState;
 
+	@Nullable
+	private final Integer maxAssignedAllocations;
+
 	private final Map<String, TrainedModelAssignmentRoutingTable> routingTable;
 
 	private final DateTime startTime;
@@ -64,6 +68,7 @@ public class TrainedModelAssignment implements JsonpSerializable {
 	private TrainedModelAssignment(Builder builder) {
 
 		this.assignmentState = ApiTypeHelper.requireNonNull(builder.assignmentState, this, "assignmentState");
+		this.maxAssignedAllocations = builder.maxAssignedAllocations;
 		this.routingTable = ApiTypeHelper.unmodifiableRequired(builder.routingTable, this, "routingTable");
 		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
 		this.taskParameters = ApiTypeHelper.requireNonNull(builder.taskParameters, this, "taskParameters");
@@ -81,6 +86,14 @@ public class TrainedModelAssignment implements JsonpSerializable {
 	 */
 	public final DeploymentAssignmentState assignmentState() {
 		return this.assignmentState;
+	}
+
+	/**
+	 * API name: {@code max_assigned_allocations}
+	 */
+	@Nullable
+	public final Integer maxAssignedAllocations() {
+		return this.maxAssignedAllocations;
 	}
 
 	/**
@@ -121,6 +134,11 @@ public class TrainedModelAssignment implements JsonpSerializable {
 
 		generator.writeKey("assignment_state");
 		this.assignmentState.serialize(generator, mapper);
+		if (this.maxAssignedAllocations != null) {
+			generator.writeKey("max_assigned_allocations");
+			generator.write(this.maxAssignedAllocations);
+
+		}
 		if (ApiTypeHelper.isDefined(this.routingTable)) {
 			generator.writeKey("routing_table");
 			generator.writeStartObject();
@@ -155,6 +173,9 @@ public class TrainedModelAssignment implements JsonpSerializable {
 				ObjectBuilder<TrainedModelAssignment> {
 		private DeploymentAssignmentState assignmentState;
 
+		@Nullable
+		private Integer maxAssignedAllocations;
+
 		private Map<String, TrainedModelAssignmentRoutingTable> routingTable;
 
 		private DateTime startTime;
@@ -168,6 +189,14 @@ public class TrainedModelAssignment implements JsonpSerializable {
 		 */
 		public final Builder assignmentState(DeploymentAssignmentState value) {
 			this.assignmentState = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_assigned_allocations}
+		 */
+		public final Builder maxAssignedAllocations(@Nullable Integer value) {
+			this.maxAssignedAllocations = value;
 			return this;
 		}
 
@@ -263,6 +292,7 @@ public class TrainedModelAssignment implements JsonpSerializable {
 			ObjectDeserializer<TrainedModelAssignment.Builder> op) {
 
 		op.add(Builder::assignmentState, DeploymentAssignmentState._DESERIALIZER, "assignment_state");
+		op.add(Builder::maxAssignedAllocations, JsonpDeserializer.integerDeserializer(), "max_assigned_allocations");
 		op.add(Builder::routingTable,
 				JsonpDeserializer.stringMapDeserializer(TrainedModelAssignmentRoutingTable._DESERIALIZER),
 				"routing_table");

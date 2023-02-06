@@ -69,6 +69,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 
 	private final String datafeedId;
 
+	@Nullable
 	private final Time frequency;
 
 	private final List<String> indices;
@@ -78,7 +79,8 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	@Nullable
 	private final IndicesOptions indicesOptions;
 
-	private final int maxEmptySearches;
+	@Nullable
+	private final Integer maxEmptySearches;
 
 	private final Query query;
 
@@ -94,16 +96,16 @@ public class PutDatafeedResponse implements JsonpSerializable {
 
 	private PutDatafeedResponse(Builder builder) {
 
-		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.authorization = builder.authorization;
 		this.chunkingConfig = ApiTypeHelper.requireNonNull(builder.chunkingConfig, this, "chunkingConfig");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
-		this.frequency = ApiTypeHelper.requireNonNull(builder.frequency, this, "frequency");
+		this.frequency = builder.frequency;
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.indicesOptions = builder.indicesOptions;
-		this.maxEmptySearches = ApiTypeHelper.requireNonNull(builder.maxEmptySearches, this, "maxEmptySearches");
+		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryDelay = ApiTypeHelper.requireNonNull(builder.queryDelay, this, "queryDelay");
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -117,7 +119,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code aggregations}
+	 * API name: {@code aggregations}
 	 */
 	public final Map<String, Aggregation> aggregations() {
 		return this.aggregations;
@@ -154,8 +156,9 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code frequency}
+	 * API name: {@code frequency}
 	 */
+	@Nullable
 	public final Time frequency() {
 		return this.frequency;
 	}
@@ -183,9 +186,10 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code max_empty_searches}
+	 * API name: {@code max_empty_searches}
 	 */
-	public final int maxEmptySearches() {
+	@Nullable
+	public final Integer maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
@@ -262,9 +266,11 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		generator.writeKey("datafeed_id");
 		generator.write(this.datafeedId);
 
-		generator.writeKey("frequency");
-		this.frequency.serialize(generator, mapper);
+		if (this.frequency != null) {
+			generator.writeKey("frequency");
+			this.frequency.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
@@ -283,9 +289,11 @@ public class PutDatafeedResponse implements JsonpSerializable {
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
-		generator.writeKey("max_empty_searches");
-		generator.write(this.maxEmptySearches);
+		if (this.maxEmptySearches != null) {
+			generator.writeKey("max_empty_searches");
+			generator.write(this.maxEmptySearches);
 
+		}
 		generator.writeKey("query");
 		this.query.serialize(generator, mapper);
 
@@ -333,6 +341,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<PutDatafeedResponse> {
+		@Nullable
 		private Map<String, Aggregation> aggregations;
 
 		@Nullable
@@ -345,6 +354,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 
 		private String datafeedId;
 
+		@Nullable
 		private Time frequency;
 
 		private List<String> indices;
@@ -354,6 +364,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		@Nullable
 		private IndicesOptions indicesOptions;
 
+		@Nullable
 		private Integer maxEmptySearches;
 
 		private Query query;
@@ -369,7 +380,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		private Integer scrollSize;
 
 		/**
-		 * Required - API name: {@code aggregations}
+		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
@@ -379,7 +390,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code aggregations}
+		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds an entry to <code>aggregations</code>.
 		 */
@@ -389,7 +400,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code aggregations}
+		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
@@ -453,15 +464,15 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code frequency}
+		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Time value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code frequency}
+		 * API name: {@code frequency}
 		 */
 		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.frequency(fn.apply(new Time.Builder()).build());
@@ -511,9 +522,9 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code max_empty_searches}
+		 * API name: {@code max_empty_searches}
 		 */
-		public final Builder maxEmptySearches(int value) {
+		public final Builder maxEmptySearches(@Nullable Integer value) {
 			this.maxEmptySearches = value;
 			return this;
 		}

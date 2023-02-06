@@ -139,8 +139,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<Map<String, Double>> indicesBoost;
 
-	@Nullable
-	private final KnnQuery knn;
+	private final List<KnnQuery> knn;
 
 	@Nullable
 	private final Boolean lenient;
@@ -254,7 +253,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
-		this.knn = builder.knn;
+		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minCompatibleShardNode = builder.minCompatibleShardNode;
@@ -524,8 +523,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code knn}
 	 */
-	@Nullable
-	public final KnnQuery knn() {
+	public final List<KnnQuery> knn() {
 		return this.knn;
 	}
 
@@ -946,9 +944,14 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.knn != null) {
+		if (ApiTypeHelper.isDefined(this.knn)) {
 			generator.writeKey("knn");
-			this.knn.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (KnnQuery item0 : this.knn) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.minScore != null) {
@@ -1170,7 +1173,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
-		private KnnQuery knn;
+		private List<KnnQuery> knn;
 
 		@Nullable
 		private Boolean lenient;
@@ -1659,9 +1662,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>knn</code>.
 		 */
-		public final Builder knn(@Nullable KnnQuery value) {
-			this.knn = value;
+		public final Builder knn(List<KnnQuery> list) {
+			this.knn = _listAddAll(this.knn, list);
 			return this;
 		}
 
@@ -1669,9 +1674,23 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
+		 * <p>
+		 * Adds one or more values to <code>knn</code>.
+		 */
+		public final Builder knn(KnnQuery value, KnnQuery... values) {
+			this.knn = _listAdd(this.knn, value, values);
+			return this;
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 * <p>
+		 * Adds a value to <code>knn</code> using a builder lambda.
 		 */
 		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
-			return this.knn(fn.apply(new KnnQuery.Builder()).build());
+			return knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		/**
@@ -2256,7 +2275,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
-		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
+		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnQuery._DESERIALIZER), "knn");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");

@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,50 +34,52 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml.open_job.Response
+// typedef: _types.mapping.RuntimeFieldFetchFields
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml.open_job.Response">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.mapping.RuntimeFieldFetchFields">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenJobResponse implements JsonpSerializable {
-	private final boolean opened;
+public class RuntimeFieldFetchFields implements JsonpSerializable {
+	private final String field;
 
-	private final String node;
+	@Nullable
+	private final String format;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenJobResponse(Builder builder) {
+	private RuntimeFieldFetchFields(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.format = builder.format;
 
 	}
 
-	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+	public static RuntimeFieldFetchFields of(Function<Builder, ObjectBuilder<RuntimeFieldFetchFields>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code opened}
+	 * Required - API name: {@code field}
 	 */
-	public final boolean opened() {
-		return this.opened;
+	public final String field() {
+		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * API name: {@code format}
 	 */
-	public final String node() {
-		return this.node;
+	@Nullable
+	public final String format() {
+		return this.format;
 	}
 
 	/**
@@ -91,11 +93,14 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("opened");
-		generator.write(this.opened);
+		generator.writeKey("field");
+		generator.write(this.field);
 
-		generator.writeKey("node");
-		generator.write(this.node);
+		if (this.format != null) {
+			generator.writeKey("format");
+			generator.write(this.format);
+
+		}
 
 	}
 
@@ -107,27 +112,30 @@ public class OpenJobResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenJobResponse}.
+	 * Builder for {@link RuntimeFieldFetchFields}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OpenJobResponse> {
-		private Boolean opened;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RuntimeFieldFetchFields> {
+		private String field;
 
-		private String node;
+		@Nullable
+		private String format;
 
 		/**
-		 * Required - API name: {@code opened}
+		 * Required - API name: {@code field}
 		 */
-		public final Builder opened(boolean value) {
-			this.opened = value;
+		public final Builder field(String value) {
+			this.field = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * API name: {@code format}
 		 */
-		public final Builder node(String value) {
-			this.node = value;
+		public final Builder format(@Nullable String value) {
+			this.format = value;
 			return this;
 		}
 
@@ -137,30 +145,33 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenJobResponse}.
+		 * Builds a {@link RuntimeFieldFetchFields}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenJobResponse build() {
+		public RuntimeFieldFetchFields build() {
 			_checkSingleUse();
 
-			return new OpenJobResponse(this);
+			return new RuntimeFieldFetchFields(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenJobResponse}
+	 * Json deserializer for {@link RuntimeFieldFetchFields}
 	 */
-	public static final JsonpDeserializer<OpenJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobResponse::setupOpenJobResponseDeserializer);
+	public static final JsonpDeserializer<RuntimeFieldFetchFields> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RuntimeFieldFetchFields::setupRuntimeFieldFetchFieldsDeserializer);
 
-	protected static void setupOpenJobResponseDeserializer(ObjectDeserializer<OpenJobResponse.Builder> op) {
+	protected static void setupRuntimeFieldFetchFieldsDeserializer(
+			ObjectDeserializer<RuntimeFieldFetchFields.Builder> op) {
 
-		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+
+		op.shortcutProperty("field");
 
 	}
 

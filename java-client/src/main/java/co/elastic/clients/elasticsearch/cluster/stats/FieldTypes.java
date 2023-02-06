@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -56,6 +57,15 @@ public class FieldTypes implements JsonpSerializable {
 	private final int indexCount;
 
 	@Nullable
+	private final Long indexedVectorCount;
+
+	@Nullable
+	private final Long indexedVectorDimMax;
+
+	@Nullable
+	private final Long indexedVectorDimMin;
+
+	@Nullable
 	private final Integer scriptCount;
 
 	// ---------------------------------------------------------------------------------------------
@@ -65,6 +75,9 @@ public class FieldTypes implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.indexedVectorCount = builder.indexedVectorCount;
+		this.indexedVectorDimMax = builder.indexedVectorDimMax;
+		this.indexedVectorDimMin = builder.indexedVectorDimMin;
 		this.scriptCount = builder.scriptCount;
 
 	}
@@ -95,6 +108,30 @@ public class FieldTypes implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code indexed_vector_count}
+	 */
+	@Nullable
+	public final Long indexedVectorCount() {
+		return this.indexedVectorCount;
+	}
+
+	/**
+	 * API name: {@code indexed_vector_dim_max}
+	 */
+	@Nullable
+	public final Long indexedVectorDimMax() {
+		return this.indexedVectorDimMax;
+	}
+
+	/**
+	 * API name: {@code indexed_vector_dim_min}
+	 */
+	@Nullable
+	public final Long indexedVectorDimMin() {
+		return this.indexedVectorDimMin;
+	}
+
+	/**
 	 * API name: {@code script_count}
 	 */
 	@Nullable
@@ -122,6 +159,21 @@ public class FieldTypes implements JsonpSerializable {
 		generator.writeKey("index_count");
 		generator.write(this.indexCount);
 
+		if (this.indexedVectorCount != null) {
+			generator.writeKey("indexed_vector_count");
+			generator.write(this.indexedVectorCount);
+
+		}
+		if (this.indexedVectorDimMax != null) {
+			generator.writeKey("indexed_vector_dim_max");
+			generator.write(this.indexedVectorDimMax);
+
+		}
+		if (this.indexedVectorDimMin != null) {
+			generator.writeKey("indexed_vector_dim_min");
+			generator.write(this.indexedVectorDimMin);
+
+		}
 		if (this.scriptCount != null) {
 			generator.writeKey("script_count");
 			generator.write(this.scriptCount);
@@ -149,6 +201,15 @@ public class FieldTypes implements JsonpSerializable {
 		private Integer indexCount;
 
 		@Nullable
+		private Long indexedVectorCount;
+
+		@Nullable
+		private Long indexedVectorDimMax;
+
+		@Nullable
+		private Long indexedVectorDimMin;
+
+		@Nullable
 		private Integer scriptCount;
 
 		/**
@@ -172,6 +233,30 @@ public class FieldTypes implements JsonpSerializable {
 		 */
 		public final Builder indexCount(int value) {
 			this.indexCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code indexed_vector_count}
+		 */
+		public final Builder indexedVectorCount(@Nullable Long value) {
+			this.indexedVectorCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code indexed_vector_dim_max}
+		 */
+		public final Builder indexedVectorDimMax(@Nullable Long value) {
+			this.indexedVectorDimMax = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code indexed_vector_dim_min}
+		 */
+		public final Builder indexedVectorDimMin(@Nullable Long value) {
+			this.indexedVectorDimMin = value;
 			return this;
 		}
 
@@ -214,6 +299,9 @@ public class FieldTypes implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+		op.add(Builder::indexedVectorCount, JsonpDeserializer.longDeserializer(), "indexed_vector_count");
+		op.add(Builder::indexedVectorDimMax, JsonpDeserializer.longDeserializer(), "indexed_vector_dim_max");
+		op.add(Builder::indexedVectorDimMin, JsonpDeserializer.longDeserializer(), "indexed_vector_dim_min");
 		op.add(Builder::scriptCount, JsonpDeserializer.integerDeserializer(), "script_count");
 
 	}

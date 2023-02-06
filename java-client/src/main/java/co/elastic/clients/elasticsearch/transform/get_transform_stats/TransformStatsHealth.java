@@ -21,8 +21,9 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,50 +35,39 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml.open_job.Response
+// typedef: transform.get_transform_stats.TransformStatsHealth
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml.open_job.Response">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#transform.get_transform_stats.TransformStatsHealth">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenJobResponse implements JsonpSerializable {
-	private final boolean opened;
-
-	private final String node;
+public class TransformStatsHealth implements JsonpSerializable {
+	private final HealthStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenJobResponse(Builder builder) {
+	private TransformStatsHealth(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+	public static TransformStatsHealth of(Function<Builder, ObjectBuilder<TransformStatsHealth>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code opened}
+	 * Required - API name: {@code status}
 	 */
-	public final boolean opened() {
-		return this.opened;
-	}
-
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
+	public final HealthStatus status() {
+		return this.status;
 	}
 
 	/**
@@ -91,11 +81,8 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("opened");
-		generator.write(this.opened);
-
-		generator.writeKey("node");
-		generator.write(this.node);
+		generator.writeKey("status");
+		this.status.serialize(generator, mapper);
 
 	}
 
@@ -107,27 +94,19 @@ public class OpenJobResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenJobResponse}.
+	 * Builder for {@link TransformStatsHealth}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OpenJobResponse> {
-		private Boolean opened;
-
-		private String node;
-
-		/**
-		 * Required - API name: {@code opened}
-		 */
-		public final Builder opened(boolean value) {
-			this.opened = value;
-			return this;
-		}
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TransformStatsHealth> {
+		private HealthStatus status;
 
 		/**
-		 * Required - API name: {@code node}
+		 * Required - API name: {@code status}
 		 */
-		public final Builder node(String value) {
-			this.node = value;
+		public final Builder status(HealthStatus value) {
+			this.status = value;
 			return this;
 		}
 
@@ -137,30 +116,29 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenJobResponse}.
+		 * Builds a {@link TransformStatsHealth}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenJobResponse build() {
+		public TransformStatsHealth build() {
 			_checkSingleUse();
 
-			return new OpenJobResponse(this);
+			return new TransformStatsHealth(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenJobResponse}
+	 * Json deserializer for {@link TransformStatsHealth}
 	 */
-	public static final JsonpDeserializer<OpenJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobResponse::setupOpenJobResponseDeserializer);
+	public static final JsonpDeserializer<TransformStatsHealth> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TransformStatsHealth::setupTransformStatsHealthDeserializer);
 
-	protected static void setupOpenJobResponseDeserializer(ObjectDeserializer<OpenJobResponse.Builder> op) {
+	protected static void setupTransformStatsHealthDeserializer(ObjectDeserializer<TransformStatsHealth.Builder> op) {
 
-		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 
 	}
 

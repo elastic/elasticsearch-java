@@ -49,7 +49,7 @@ public enum CatTrainedModelsColumn implements JsonEnum {
 	 * Identifier for the data frame analytics job that created the model. Only
 	 * displayed if it is still available.
 	 */
-	DataFrameAnalyticsId("data_frame_analytics_id", "df", "dataFrameAnalytics"),
+	DataFrameAnalyticsId("data_frame_analytics_id", "df", "dataFrameAnalytics", "dfid"),
 
 	/**
 	 * The description of the trained model.
@@ -62,7 +62,7 @@ public enum CatTrainedModelsColumn implements JsonEnum {
 	HeapSize("heap_size", "hs", "modelHeapSize"),
 
 	/**
-	 * Idetifier for the trained model.
+	 * Identifier for the trained model.
 	 */
 	Id("id"),
 

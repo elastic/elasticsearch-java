@@ -57,7 +57,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		super(builder);
 
 		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
@@ -81,7 +81,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 	}
 
 	/**
-	 * Required - API name: {@code fields}
+	 * API name: {@code fields}
 	 */
 	public final List<MatrixStatsFields> fields() {
 		return this.fields;
@@ -117,6 +117,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 				ObjectBuilder<MatrixStatsAggregate> {
 		private Long docCount;
 
+		@Nullable
 		private List<MatrixStatsFields> fields;
 
 		/**
@@ -128,7 +129,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
@@ -138,7 +139,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
 		 */
@@ -148,7 +149,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds a value to <code>fields</code> using a builder lambda.
 		 */

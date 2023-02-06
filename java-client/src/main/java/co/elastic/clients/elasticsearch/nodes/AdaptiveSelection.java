@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -52,13 +53,13 @@ public class AdaptiveSelection implements JsonpSerializable {
 	private final Long avgQueueSize;
 
 	@Nullable
-	private final Long avgResponseTime;
+	private final Time avgResponseTime;
 
 	@Nullable
 	private final Long avgResponseTimeNs;
 
 	@Nullable
-	private final String avgServiceTime;
+	private final Time avgServiceTime;
 
 	@Nullable
 	private final Long avgServiceTimeNs;
@@ -99,7 +100,7 @@ public class AdaptiveSelection implements JsonpSerializable {
 	 * API name: {@code avg_response_time}
 	 */
 	@Nullable
-	public final Long avgResponseTime() {
+	public final Time avgResponseTime() {
 		return this.avgResponseTime;
 	}
 
@@ -115,7 +116,7 @@ public class AdaptiveSelection implements JsonpSerializable {
 	 * API name: {@code avg_service_time}
 	 */
 	@Nullable
-	public final String avgServiceTime() {
+	public final Time avgServiceTime() {
 		return this.avgServiceTime;
 	}
 
@@ -161,7 +162,7 @@ public class AdaptiveSelection implements JsonpSerializable {
 		}
 		if (this.avgResponseTime != null) {
 			generator.writeKey("avg_response_time");
-			generator.write(this.avgResponseTime);
+			this.avgResponseTime.serialize(generator, mapper);
 
 		}
 		if (this.avgResponseTimeNs != null) {
@@ -171,7 +172,7 @@ public class AdaptiveSelection implements JsonpSerializable {
 		}
 		if (this.avgServiceTime != null) {
 			generator.writeKey("avg_service_time");
-			generator.write(this.avgServiceTime);
+			this.avgServiceTime.serialize(generator, mapper);
 
 		}
 		if (this.avgServiceTimeNs != null) {
@@ -208,13 +209,13 @@ public class AdaptiveSelection implements JsonpSerializable {
 		private Long avgQueueSize;
 
 		@Nullable
-		private Long avgResponseTime;
+		private Time avgResponseTime;
 
 		@Nullable
 		private Long avgResponseTimeNs;
 
 		@Nullable
-		private String avgServiceTime;
+		private Time avgServiceTime;
 
 		@Nullable
 		private Long avgServiceTimeNs;
@@ -236,9 +237,16 @@ public class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_response_time}
 		 */
-		public final Builder avgResponseTime(@Nullable Long value) {
+		public final Builder avgResponseTime(@Nullable Time value) {
 			this.avgResponseTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code avg_response_time}
+		 */
+		public final Builder avgResponseTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.avgResponseTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -252,9 +260,16 @@ public class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_service_time}
 		 */
-		public final Builder avgServiceTime(@Nullable String value) {
+		public final Builder avgServiceTime(@Nullable Time value) {
 			this.avgServiceTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code avg_service_time}
+		 */
+		public final Builder avgServiceTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.avgServiceTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -310,9 +325,9 @@ public class AdaptiveSelection implements JsonpSerializable {
 	protected static void setupAdaptiveSelectionDeserializer(ObjectDeserializer<AdaptiveSelection.Builder> op) {
 
 		op.add(Builder::avgQueueSize, JsonpDeserializer.longDeserializer(), "avg_queue_size");
-		op.add(Builder::avgResponseTime, JsonpDeserializer.longDeserializer(), "avg_response_time");
+		op.add(Builder::avgResponseTime, Time._DESERIALIZER, "avg_response_time");
 		op.add(Builder::avgResponseTimeNs, JsonpDeserializer.longDeserializer(), "avg_response_time_ns");
-		op.add(Builder::avgServiceTime, JsonpDeserializer.stringDeserializer(), "avg_service_time");
+		op.add(Builder::avgServiceTime, Time._DESERIALIZER, "avg_service_time");
 		op.add(Builder::avgServiceTimeNs, JsonpDeserializer.longDeserializer(), "avg_service_time_ns");
 		op.add(Builder::outgoingSearches, JsonpDeserializer.longDeserializer(), "outgoing_searches");
 		op.add(Builder::rank, JsonpDeserializer.stringDeserializer(), "rank");

@@ -32,6 +32,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.DataTiers;
 import co.elastic.clients.elasticsearch.xpack.usage.Eql;
 import co.elastic.clients.elasticsearch.xpack.usage.Flattened;
 import co.elastic.clients.elasticsearch.xpack.usage.FrozenIndices;
+import co.elastic.clients.elasticsearch.xpack.usage.HealthStatistics;
 import co.elastic.clients.elasticsearch.xpack.usage.Ilm;
 import co.elastic.clients.elasticsearch.xpack.usage.MachineLearning;
 import co.elastic.clients.elasticsearch.xpack.usage.Monitoring;
@@ -99,6 +100,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 	private final Base graph;
 
+	@Nullable
+	private final HealthStatistics healthApi;
+
 	private final Ilm ilm;
 
 	private final Base logstash;
@@ -147,6 +151,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.flattened = builder.flattened;
 		this.frozenIndices = ApiTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
+		this.healthApi = builder.healthApi;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
@@ -270,6 +275,14 @@ public class XpackUsageResponse implements JsonpSerializable {
 	 */
 	public final Base graph() {
 		return this.graph;
+	}
+
+	/**
+	 * API name: {@code health_api}
+	 */
+	@Nullable
+	public final HealthStatistics healthApi() {
+		return this.healthApi;
 	}
 
 	/**
@@ -435,6 +448,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 		generator.writeKey("graph");
 		this.graph.serialize(generator, mapper);
 
+		if (this.healthApi != null) {
+			generator.writeKey("health_api");
+			this.healthApi.serialize(generator, mapper);
+
+		}
 		generator.writeKey("ilm");
 		this.ilm.serialize(generator, mapper);
 
@@ -529,6 +547,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		private FrozenIndices frozenIndices;
 
 		private Base graph;
+
+		@Nullable
+		private HealthStatistics healthApi;
 
 		private Ilm ilm;
 
@@ -768,6 +789,21 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder graph(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.graph(fn.apply(new Base.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code health_api}
+		 */
+		public final Builder healthApi(@Nullable HealthStatistics value) {
+			this.healthApi = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code health_api}
+		 */
+		public final Builder healthApi(Function<HealthStatistics.Builder, ObjectBuilder<HealthStatistics>> fn) {
+			return this.healthApi(fn.apply(new HealthStatistics.Builder()).build());
 		}
 
 		/**
@@ -1023,6 +1059,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::flattened, Flattened._DESERIALIZER, "flattened");
 		op.add(Builder::frozenIndices, FrozenIndices._DESERIALIZER, "frozen_indices");
 		op.add(Builder::graph, Base._DESERIALIZER, "graph");
+		op.add(Builder::healthApi, HealthStatistics._DESERIALIZER, "health_api");
 		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");
 		op.add(Builder::logstash, Base._DESERIALIZER, "logstash");
 		op.add(Builder::ml, MachineLearning._DESERIALIZER, "ml");

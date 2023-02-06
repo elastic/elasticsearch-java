@@ -87,6 +87,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	private final ModelPlotConfig modelPlotConfig;
 
 	@Nullable
+	private final Time modelPruneWindow;
+
+	@Nullable
 	private final Long modelSnapshotRetentionDays;
 
 	@Nullable
@@ -113,6 +116,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
+		this.modelPruneWindow = builder.modelPruneWindow;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.perPartitionCategorization = builder.perPartitionCategorization;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
@@ -246,6 +250,14 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code model_prune_window}
+	 */
+	@Nullable
+	public final Time modelPruneWindow() {
+		return this.modelPruneWindow;
+	}
+
+	/**
 	 * Advanced configuration option, which affects the automatic removal of old
 	 * model snapshots for this job. It specifies the maximum period of time (in
 	 * days) that snapshots are retained. This period is relative to the timestamp
@@ -376,6 +388,11 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
+		if (this.modelPruneWindow != null) {
+			generator.writeKey("model_prune_window");
+			this.modelPruneWindow.serialize(generator, mapper);
+
+		}
 		if (this.modelSnapshotRetentionDays != null) {
 			generator.writeKey("model_snapshot_retention_days");
 			generator.write(this.modelSnapshotRetentionDays);
@@ -439,6 +456,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private ModelPlotConfig modelPlotConfig;
+
+		@Nullable
+		private Time modelPruneWindow;
 
 		@Nullable
 		private Long modelSnapshotRetentionDays;
@@ -676,6 +696,21 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code model_prune_window}
+		 */
+		public final Builder modelPruneWindow(@Nullable Time value) {
+			this.modelPruneWindow = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code model_prune_window}
+		 */
+		public final Builder modelPruneWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.modelPruneWindow(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Advanced configuration option, which affects the automatic removal of old
 		 * model snapshots for this job. It specifies the maximum period of time (in
 		 * days) that snapshots are retained. This period is relative to the timestamp
@@ -775,6 +810,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
 		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
 		op.add(Builder::modelPlotConfig, ModelPlotConfig._DESERIALIZER, "model_plot_config");
+		op.add(Builder::modelPruneWindow, Time._DESERIALIZER, "model_prune_window");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
 		op.add(Builder::perPartitionCategorization, PerPartitionCategorization._DESERIALIZER,

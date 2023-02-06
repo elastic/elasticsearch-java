@@ -33,10 +33,12 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -67,7 +69,13 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	private final String datafeedId;
 
 	@Nullable
+	private final DateTime end;
+
+	@Nullable
 	private final JobConfig jobConfig;
+
+	@Nullable
+	private final DateTime start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +83,9 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 
 		this.datafeedConfig = builder.datafeedConfig;
 		this.datafeedId = builder.datafeedId;
+		this.end = builder.end;
 		this.jobConfig = builder.jobConfig;
+		this.start = builder.start;
 
 	}
 
@@ -108,6 +118,16 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * The end time when the datafeed preview should stop
+	 * <p>
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public final DateTime end() {
+		return this.end;
+	}
+
+	/**
 	 * The configuration details for the anomaly detection job that is associated
 	 * with the datafeed. If the <code>datafeed_config</code> object does not
 	 * include a <code>job_id</code> that references an existing anomaly detection
@@ -121,6 +141,16 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public final JobConfig jobConfig() {
 		return this.jobConfig;
+	}
+
+	/**
+	 * The start time from where the datafeed preview should begin
+	 * <p>
+	 * API name: {@code start}
+	 */
+	@Nullable
+	public final DateTime start() {
+		return this.start;
 	}
 
 	/**
@@ -163,7 +193,13 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		private String datafeedId;
 
 		@Nullable
+		private DateTime end;
+
+		@Nullable
 		private JobConfig jobConfig;
+
+		@Nullable
+		private DateTime start;
 
 		/**
 		 * The datafeed definition to preview.
@@ -199,6 +235,16 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * The end time when the datafeed preview should stop
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(@Nullable DateTime value) {
+			this.end = value;
+			return this;
+		}
+
+		/**
 		 * The configuration details for the anomaly detection job that is associated
 		 * with the datafeed. If the <code>datafeed_config</code> object does not
 		 * include a <code>job_id</code> that references an existing anomaly detection
@@ -227,6 +273,16 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
 			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
+		}
+
+		/**
+		 * The start time from where the datafeed preview should begin
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(@Nullable DateTime value) {
+			this.start = value;
+			return this;
 		}
 
 		@Override
@@ -308,7 +364,14 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.start != null) {
+					params.put("start", request.start.toString());
+				}
+				if (request.end != null) {
+					params.put("end", request.end.toString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PreviewDatafeedResponse._DESERIALIZER);
 

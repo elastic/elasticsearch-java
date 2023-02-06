@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,50 +34,38 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
-// typedef: ml.open_job.Response
+// typedef: xpack.usage.Invocations
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml.open_job.Response">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.Invocations">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenJobResponse implements JsonpSerializable {
-	private final boolean opened;
-
-	private final String node;
+public class Invocations implements JsonpSerializable {
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenJobResponse(Builder builder) {
+	private Invocations(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+	public static Invocations of(Function<Builder, ObjectBuilder<Invocations>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code opened}
+	 * Required - API name: {@code total}
 	 */
-	public final boolean opened() {
-		return this.opened;
-	}
-
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
+	public final long total() {
+		return this.total;
 	}
 
 	/**
@@ -91,11 +79,8 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("opened");
-		generator.write(this.opened);
-
-		generator.writeKey("node");
-		generator.write(this.node);
+		generator.writeKey("total");
+		generator.write(this.total);
 
 	}
 
@@ -107,27 +92,17 @@ public class OpenJobResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenJobResponse}.
+	 * Builder for {@link Invocations}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OpenJobResponse> {
-		private Boolean opened;
-
-		private String node;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Invocations> {
+		private Long total;
 
 		/**
-		 * Required - API name: {@code opened}
+		 * Required - API name: {@code total}
 		 */
-		public final Builder opened(boolean value) {
-			this.opened = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code node}
-		 */
-		public final Builder node(String value) {
-			this.node = value;
+		public final Builder total(long value) {
+			this.total = value;
 			return this;
 		}
 
@@ -137,30 +112,29 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenJobResponse}.
+		 * Builds a {@link Invocations}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenJobResponse build() {
+		public Invocations build() {
 			_checkSingleUse();
 
-			return new OpenJobResponse(this);
+			return new Invocations(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenJobResponse}
+	 * Json deserializer for {@link Invocations}
 	 */
-	public static final JsonpDeserializer<OpenJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobResponse::setupOpenJobResponseDeserializer);
+	public static final JsonpDeserializer<Invocations> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Invocations::setupInvocationsDeserializer);
 
-	protected static void setupOpenJobResponseDeserializer(ObjectDeserializer<OpenJobResponse.Builder> op) {
+	protected static void setupInvocationsDeserializer(ObjectDeserializer<Invocations.Builder> op) {
 
-		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

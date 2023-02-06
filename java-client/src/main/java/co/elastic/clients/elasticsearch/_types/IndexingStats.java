@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
@@ -82,6 +83,9 @@ public class IndexingStats implements JsonpSerializable {
 
 	private final Map<String, IndexingStats> types;
 
+	@Nullable
+	private final Double writeLoad;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexingStats(Builder builder) {
@@ -101,6 +105,7 @@ public class IndexingStats implements JsonpSerializable {
 		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
 		this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed");
 		this.types = ApiTypeHelper.unmodifiable(builder.types);
+		this.writeLoad = builder.writeLoad;
 
 	}
 
@@ -210,6 +215,14 @@ public class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code write_load}
+	 */
+	@Nullable
+	public final Double writeLoad() {
+		return this.writeLoad;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -276,6 +289,11 @@ public class IndexingStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.writeLoad != null) {
+			generator.writeKey("write_load");
+			generator.write(this.writeLoad);
+
+		}
 
 	}
 
@@ -322,6 +340,9 @@ public class IndexingStats implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, IndexingStats> types;
+
+		@Nullable
+		private Double writeLoad;
 
 		/**
 		 * Required - API name: {@code index_current}
@@ -477,6 +498,14 @@ public class IndexingStats implements JsonpSerializable {
 			return types(key, fn.apply(new IndexingStats.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code write_load}
+		 */
+		public final Builder writeLoad(@Nullable Double value) {
+			this.writeLoad = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -519,6 +548,7 @@ public class IndexingStats implements JsonpSerializable {
 		op.add(Builder::indexTotal, JsonpDeserializer.longDeserializer(), "index_total");
 		op.add(Builder::indexFailed, JsonpDeserializer.longDeserializer(), "index_failed");
 		op.add(Builder::types, JsonpDeserializer.stringMapDeserializer(IndexingStats._DESERIALIZER), "types");
+		op.add(Builder::writeLoad, JsonpDeserializer.doubleDeserializer(), "write_load");
 
 	}
 

@@ -68,6 +68,7 @@ public class Detector implements JsonpSerializable {
 	@Nullable
 	private final String fieldName;
 
+	@Nullable
 	private final String function;
 
 	@Nullable
@@ -89,7 +90,7 @@ public class Detector implements JsonpSerializable {
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
-		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
+		this.function = builder.function;
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.useNull = builder.useNull;
@@ -172,12 +173,13 @@ public class Detector implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The analysis function that is used. For example,
-	 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
-	 * <code>max</code>, or <code>sum</code>.
+	 * The analysis function that is used. For example, <code>count</code>,
+	 * <code>rare</code>, <code>mean</code>, <code>min</code>, <code>max</code>, or
+	 * <code>sum</code>.
 	 * <p>
 	 * API name: {@code function}
 	 */
+	@Nullable
 	public final String function() {
 		return this.function;
 	}
@@ -261,9 +263,11 @@ public class Detector implements JsonpSerializable {
 			generator.write(this.fieldName);
 
 		}
-		generator.writeKey("function");
-		generator.write(this.function);
+		if (this.function != null) {
+			generator.writeKey("function");
+			generator.write(this.function);
 
+		}
 		if (this.overFieldName != null) {
 			generator.writeKey("over_field_name");
 			generator.write(this.overFieldName);
@@ -312,6 +316,7 @@ public class Detector implements JsonpSerializable {
 		@Nullable
 		private String fieldName;
 
+		@Nullable
 		private String function;
 
 		@Nullable
@@ -425,13 +430,13 @@ public class Detector implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The analysis function that is used. For example,
-		 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
-		 * <code>max</code>, or <code>sum</code>.
+		 * The analysis function that is used. For example, <code>count</code>,
+		 * <code>rare</code>, <code>mean</code>, <code>min</code>, <code>max</code>, or
+		 * <code>sum</code>.
 		 * <p>
 		 * API name: {@code function}
 		 */
-		public final Builder function(String value) {
+		public final Builder function(@Nullable String value) {
 			this.function = value;
 			return this;
 		}

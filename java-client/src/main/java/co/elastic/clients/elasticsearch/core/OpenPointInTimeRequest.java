@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -63,6 +64,8 @@ import javax.annotation.Nullable;
  */
 
 public class OpenPointInTimeRequest extends RequestBase {
+	private final List<ExpandWildcard> expandWildcards;
+
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
@@ -70,18 +73,37 @@ public class OpenPointInTimeRequest extends RequestBase {
 
 	private final Time keepAlive;
 
+	@Nullable
+	private final String preference;
+
+	@Nullable
+	private final String routing;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private OpenPointInTimeRequest(Builder builder) {
 
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
+		this.preference = builder.preference;
+		this.routing = builder.routing;
 
 	}
 
 	public static OpenPointInTimeRequest of(Function<Builder, ObjectBuilder<OpenPointInTimeRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
@@ -114,6 +136,27 @@ public class OpenPointInTimeRequest extends RequestBase {
 		return this.keepAlive;
 	}
 
+	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
+	 * API name: {@code preference}
+	 */
+	@Nullable
+	public final String preference() {
+		return this.preference;
+	}
+
+	/**
+	 * Specific routing value
+	 * <p>
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public final String routing() {
+		return this.routing;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -124,11 +167,46 @@ public class OpenPointInTimeRequest extends RequestBase {
 			implements
 				ObjectBuilder<OpenPointInTimeRequest> {
 		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
 		private Boolean ignoreUnavailable;
 
 		private List<String> index;
 
 		private Time keepAlive;
+
+		@Nullable
+		private String preference;
+
+		@Nullable
+		private String routing;
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
 
 		/**
 		 * Whether specified concrete indices should be ignored when unavailable
@@ -186,6 +264,27 @@ public class OpenPointInTimeRequest extends RequestBase {
 			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
+		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
+		 * API name: {@code preference}
+		 */
+		public final Builder preference(@Nullable String value) {
+			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * Specific routing value
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -240,8 +339,18 @@ public class OpenPointInTimeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
 				}
 				params.put("keep_alive", request.keepAlive._toJsonString());
 				return params;

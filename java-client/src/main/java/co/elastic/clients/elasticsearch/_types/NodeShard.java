@@ -74,6 +74,9 @@ public class NodeShard implements JsonpSerializable {
 	@Nullable
 	private final String relocatingNode;
 
+	@Nullable
+	private final RelocationFailureInfo relocationFailureInfo;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeShard(Builder builder) {
@@ -87,6 +90,7 @@ public class NodeShard implements JsonpSerializable {
 		this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
 		this.unassignedInfo = builder.unassignedInfo;
 		this.relocatingNode = builder.relocatingNode;
+		this.relocationFailureInfo = builder.relocationFailureInfo;
 
 	}
 
@@ -161,6 +165,14 @@ public class NodeShard implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code relocation_failure_info}
+	 */
+	@Nullable
+	public final RelocationFailureInfo relocationFailureInfo() {
+		return this.relocationFailureInfo;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -219,6 +231,11 @@ public class NodeShard implements JsonpSerializable {
 			generator.write(this.relocatingNode);
 
 		}
+		if (this.relocationFailureInfo != null) {
+			generator.writeKey("relocation_failure_info");
+			this.relocationFailureInfo.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -256,6 +273,9 @@ public class NodeShard implements JsonpSerializable {
 
 		@Nullable
 		private String relocatingNode;
+
+		@Nullable
+		private RelocationFailureInfo relocationFailureInfo;
 
 		/**
 		 * Required - API name: {@code state}
@@ -361,6 +381,22 @@ public class NodeShard implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code relocation_failure_info}
+		 */
+		public final Builder relocationFailureInfo(@Nullable RelocationFailureInfo value) {
+			this.relocationFailureInfo = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code relocation_failure_info}
+		 */
+		public final Builder relocationFailureInfo(
+				Function<RelocationFailureInfo.Builder, ObjectBuilder<RelocationFailureInfo>> fn) {
+			return this.relocationFailureInfo(fn.apply(new RelocationFailureInfo.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -400,6 +436,7 @@ public class NodeShard implements JsonpSerializable {
 				"recovery_source");
 		op.add(Builder::unassignedInfo, UnassignedInformation._DESERIALIZER, "unassigned_info");
 		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
+		op.add(Builder::relocationFailureInfo, RelocationFailureInfo._DESERIALIZER, "relocation_failure_info");
 
 	}
 

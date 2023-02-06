@@ -53,6 +53,9 @@ import javax.annotation.Nullable;
 public class TrainedModelDeploymentStats implements JsonpSerializable {
 	private final TrainedModelDeploymentAllocationStatus allocationStatus;
 
+	@Nullable
+	private final String cacheSize;
+
 	private final int errorCount;
 
 	private final int inferenceCount;
@@ -82,6 +85,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	private TrainedModelDeploymentStats(Builder builder) {
 
 		this.allocationStatus = ApiTypeHelper.requireNonNull(builder.allocationStatus, this, "allocationStatus");
+		this.cacheSize = builder.cacheSize;
 		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
 		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
@@ -111,6 +115,14 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	 */
 	public final TrainedModelDeploymentAllocationStatus allocationStatus() {
 		return this.allocationStatus;
+	}
+
+	/**
+	 * API name: {@code cache_size}
+	 */
+	@Nullable
+	public final String cacheSize() {
+		return this.cacheSize;
 	}
 
 	/**
@@ -245,6 +257,11 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		generator.writeKey("allocation_status");
 		this.allocationStatus.serialize(generator, mapper);
 
+		if (this.cacheSize != null) {
+			generator.writeKey("cache_size");
+			generator.write(this.cacheSize);
+
+		}
 		generator.writeKey("error_count");
 		generator.write(this.errorCount);
 
@@ -298,6 +315,9 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 				ObjectBuilder<TrainedModelDeploymentStats> {
 		private TrainedModelDeploymentAllocationStatus allocationStatus;
 
+		@Nullable
+		private String cacheSize;
+
 		private Integer errorCount;
 
 		private Integer inferenceCount;
@@ -340,6 +360,14 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		public final Builder allocationStatus(
 				Function<TrainedModelDeploymentAllocationStatus.Builder, ObjectBuilder<TrainedModelDeploymentAllocationStatus>> fn) {
 			return this.allocationStatus(fn.apply(new TrainedModelDeploymentAllocationStatus.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code cache_size}
+		 */
+		public final Builder cacheSize(@Nullable String value) {
+			this.cacheSize = value;
+			return this;
 		}
 
 		/**
@@ -513,6 +541,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 			ObjectDeserializer<TrainedModelDeploymentStats.Builder> op) {
 
 		op.add(Builder::allocationStatus, TrainedModelDeploymentAllocationStatus._DESERIALIZER, "allocation_status");
+		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
 		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.integerDeserializer(), "inference_count");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");

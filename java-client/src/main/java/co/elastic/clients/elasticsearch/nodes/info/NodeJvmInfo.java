@@ -70,8 +70,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 	private final String vmVersion;
 
-	private final boolean bundledJdk;
-
 	private final boolean usingBundledJdk;
 
 	@Nullable
@@ -92,7 +90,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
 		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
 		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
-		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
 		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
 		this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
 		this.inputArguments = ApiTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
@@ -164,13 +161,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 	 */
 	public final String vmVersion() {
 		return this.vmVersion;
-	}
-
-	/**
-	 * Required - API name: {@code bundled_jdk}
-	 */
-	public final boolean bundledJdk() {
-		return this.bundledJdk;
 	}
 
 	/**
@@ -247,9 +237,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		generator.writeKey("vm_version");
 		generator.write(this.vmVersion);
 
-		generator.writeKey("bundled_jdk");
-		generator.write(this.bundledJdk);
-
 		generator.writeKey("using_bundled_jdk");
 		generator.write(this.usingBundledJdk);
 
@@ -300,8 +287,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		private String vmVendor;
 
 		private String vmVersion;
-
-		private Boolean bundledJdk;
 
 		private Boolean usingBundledJdk;
 
@@ -414,14 +399,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code bundled_jdk}
-		 */
-		public final Builder bundledJdk(boolean value) {
-			this.bundledJdk = value;
-			return this;
-		}
-
-		/**
 		 * Required - API name: {@code using_bundled_jdk}
 		 */
 		public final Builder usingBundledJdk(boolean value) {
@@ -496,8 +473,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");
 		op.add(Builder::vmVendor, JsonpDeserializer.stringDeserializer(), "vm_vendor");
 		op.add(Builder::vmVersion, JsonpDeserializer.stringDeserializer(), "vm_version");
-		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
-		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
+		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk", "bundled_jdk");
 		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.booleanDeserializer(),
 				"using_compressed_ordinary_object_pointers");
 		op.add(Builder::inputArguments, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

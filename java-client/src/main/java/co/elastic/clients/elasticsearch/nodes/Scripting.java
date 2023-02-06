@@ -35,7 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -55,6 +57,8 @@ public class Scripting implements JsonpSerializable {
 	@Nullable
 	private final Long compilations;
 
+	private final Map<String, Long> compilationsHistory;
+
 	@Nullable
 	private final Long compilationLimitTriggered;
 
@@ -66,6 +70,7 @@ public class Scripting implements JsonpSerializable {
 
 		this.cacheEvictions = builder.cacheEvictions;
 		this.compilations = builder.compilations;
+		this.compilationsHistory = ApiTypeHelper.unmodifiable(builder.compilationsHistory);
 		this.compilationLimitTriggered = builder.compilationLimitTriggered;
 		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 
@@ -89,6 +94,13 @@ public class Scripting implements JsonpSerializable {
 	@Nullable
 	public final Long compilations() {
 		return this.compilations;
+	}
+
+	/**
+	 * API name: {@code compilations_history}
+	 */
+	public final Map<String, Long> compilationsHistory() {
+		return this.compilationsHistory;
 	}
 
 	/**
@@ -125,6 +137,17 @@ public class Scripting implements JsonpSerializable {
 		if (this.compilations != null) {
 			generator.writeKey("compilations");
 			generator.write(this.compilations);
+
+		}
+		if (ApiTypeHelper.isDefined(this.compilationsHistory)) {
+			generator.writeKey("compilations_history");
+			generator.writeStartObject();
+			for (Map.Entry<String, Long> item0 : this.compilationsHistory.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.compilationLimitTriggered != null) {
@@ -164,6 +187,9 @@ public class Scripting implements JsonpSerializable {
 		private Long compilations;
 
 		@Nullable
+		private Map<String, Long> compilationsHistory;
+
+		@Nullable
 		private Long compilationLimitTriggered;
 
 		@Nullable
@@ -182,6 +208,26 @@ public class Scripting implements JsonpSerializable {
 		 */
 		public final Builder compilations(@Nullable Long value) {
 			this.compilations = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code compilations_history}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>compilationsHistory</code>.
+		 */
+		public final Builder compilationsHistory(Map<String, Long> map) {
+			this.compilationsHistory = _mapPutAll(this.compilationsHistory, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code compilations_history}
+		 * <p>
+		 * Adds an entry to <code>compilationsHistory</code>.
+		 */
+		public final Builder compilationsHistory(String key, Long value) {
+			this.compilationsHistory = _mapPut(this.compilationsHistory, key, value);
 			return this;
 		}
 
@@ -252,6 +298,8 @@ public class Scripting implements JsonpSerializable {
 
 		op.add(Builder::cacheEvictions, JsonpDeserializer.longDeserializer(), "cache_evictions");
 		op.add(Builder::compilations, JsonpDeserializer.longDeserializer(), "compilations");
+		op.add(Builder::compilationsHistory,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()), "compilations_history");
 		op.add(Builder::compilationLimitTriggered, JsonpDeserializer.longDeserializer(), "compilation_limit_triggered");
 		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(Context._DESERIALIZER), "contexts");
 

@@ -34,50 +34,39 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml.open_job.Response
+// typedef: ml._types.Vocabulary
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml.open_job.Response">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.Vocabulary">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenJobResponse implements JsonpSerializable {
-	private final boolean opened;
-
-	private final String node;
+public class Vocabulary implements JsonpSerializable {
+	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenJobResponse(Builder builder) {
+	private Vocabulary(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+	public static Vocabulary of(Function<Builder, ObjectBuilder<Vocabulary>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code opened}
+	 * Required - API name: {@code index}
 	 */
-	public final boolean opened() {
-		return this.opened;
-	}
-
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
+	public final String index() {
+		return this.index;
 	}
 
 	/**
@@ -91,11 +80,8 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("opened");
-		generator.write(this.opened);
-
-		generator.writeKey("node");
-		generator.write(this.node);
+		generator.writeKey("index");
+		generator.write(this.index);
 
 	}
 
@@ -107,27 +93,17 @@ public class OpenJobResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenJobResponse}.
+	 * Builder for {@link Vocabulary}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OpenJobResponse> {
-		private Boolean opened;
-
-		private String node;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Vocabulary> {
+		private String index;
 
 		/**
-		 * Required - API name: {@code opened}
+		 * Required - API name: {@code index}
 		 */
-		public final Builder opened(boolean value) {
-			this.opened = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code node}
-		 */
-		public final Builder node(String value) {
-			this.node = value;
+		public final Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -137,30 +113,29 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenJobResponse}.
+		 * Builds a {@link Vocabulary}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenJobResponse build() {
+		public Vocabulary build() {
 			_checkSingleUse();
 
-			return new OpenJobResponse(this);
+			return new Vocabulary(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenJobResponse}
+	 * Json deserializer for {@link Vocabulary}
 	 */
-	public static final JsonpDeserializer<OpenJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobResponse::setupOpenJobResponseDeserializer);
+	public static final JsonpDeserializer<Vocabulary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Vocabulary::setupVocabularyDeserializer);
 
-	protected static void setupOpenJobResponseDeserializer(ObjectDeserializer<OpenJobResponse.Builder> op) {
+	protected static void setupVocabularyDeserializer(ObjectDeserializer<Vocabulary.Builder> op) {
 
-		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
 	}
 

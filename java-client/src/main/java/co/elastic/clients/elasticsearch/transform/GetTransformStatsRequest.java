@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -65,6 +66,9 @@ public class GetTransformStatsRequest extends RequestBase {
 	@Nullable
 	private final Long size;
 
+	@Nullable
+	private final Time timeout;
+
 	private final List<String> transformId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -74,6 +78,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
+		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.unmodifiableRequired(builder.transformId, this, "transformId");
 
 	}
@@ -122,6 +127,16 @@ public class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait for the stats
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * Required - Identifier for the transform. It can be a transform identifier or
 	 * a wildcard expression. You can get information for all transforms by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
@@ -151,6 +166,9 @@ public class GetTransformStatsRequest extends RequestBase {
 
 		@Nullable
 		private Long size;
+
+		@Nullable
+		private Time timeout;
 
 		private List<String> transformId;
 
@@ -191,6 +209,25 @@ public class GetTransformStatsRequest extends RequestBase {
 		public final Builder size(@Nullable Long value) {
 			this.size = value;
 			return this;
+		}
+
+		/**
+		 * Controls the time to wait for the stats
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Controls the time to wait for the stats
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -289,6 +326,9 @@ public class GetTransformStatsRequest extends RequestBase {
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

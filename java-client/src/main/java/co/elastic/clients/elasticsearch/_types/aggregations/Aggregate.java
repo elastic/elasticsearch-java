@@ -107,6 +107,8 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		GeohashGrid("geohash_grid"),
 
+		GeohexGrid("geohex_grid"),
+
 		GeoLine("geo_line"),
 
 		GeotileGrid("geotile_grid"),
@@ -619,6 +621,23 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	 */
 	public GeoHashGridAggregate geohashGrid() {
 		return TaggedUnionUtils.get(this, Kind.GeohashGrid);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohex_grid}?
+	 */
+	public boolean isGeohexGrid() {
+		return _kind == Kind.GeohexGrid;
+	}
+
+	/**
+	 * Get the {@code geohex_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geohex_grid} kind.
+	 */
+	public GeoHexGridAggregate geohexGrid() {
+		return TaggedUnionUtils.get(this, Kind.GeohexGrid);
 	}
 
 	/**
@@ -1687,6 +1706,17 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.geohashGrid(fn.apply(new GeoHashGridAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> geohexGrid(GeoHexGridAggregate v) {
+			this._kind = Kind.GeohexGrid;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> geohexGrid(
+				Function<GeoHexGridAggregate.Builder, ObjectBuilder<GeoHexGridAggregate>> fn) {
+			return this.geohexGrid(fn.apply(new GeoHexGridAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> geoLine(GeoLineAggregate v) {
 			this._kind = Kind.GeoLine;
 			this._value = v;
@@ -2231,6 +2261,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("geo_centroid", GeoCentroidAggregate._DESERIALIZER);
 		deserializers.put("geo_distance", GeoDistanceAggregate._DESERIALIZER);
 		deserializers.put("geohash_grid", GeoHashGridAggregate._DESERIALIZER);
+		deserializers.put("geohex_grid", GeoHexGridAggregate._DESERIALIZER);
 		deserializers.put("geo_line", GeoLineAggregate._DESERIALIZER);
 		deserializers.put("geotile_grid", GeoTileGridAggregate._DESERIALIZER);
 		deserializers.put("global", GlobalAggregate._DESERIALIZER);

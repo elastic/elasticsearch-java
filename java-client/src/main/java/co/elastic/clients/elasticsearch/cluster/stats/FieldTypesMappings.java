@@ -34,6 +34,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
+import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -53,12 +56,28 @@ public class FieldTypesMappings implements JsonpSerializable {
 
 	private final List<RuntimeFieldTypes> runtimeFieldTypes;
 
+	@Nullable
+	private final Integer totalFieldCount;
+
+	@Nullable
+	private final Integer totalDeduplicatedFieldCount;
+
+	@Nullable
+	private final String totalDeduplicatedMappingSize;
+
+	@Nullable
+	private final Long totalDeduplicatedMappingSizeInBytes;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FieldTypesMappings(Builder builder) {
 
 		this.fieldTypes = ApiTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
 		this.runtimeFieldTypes = ApiTypeHelper.unmodifiable(builder.runtimeFieldTypes);
+		this.totalFieldCount = builder.totalFieldCount;
+		this.totalDeduplicatedFieldCount = builder.totalDeduplicatedFieldCount;
+		this.totalDeduplicatedMappingSize = builder.totalDeduplicatedMappingSize;
+		this.totalDeduplicatedMappingSizeInBytes = builder.totalDeduplicatedMappingSizeInBytes;
 
 	}
 
@@ -78,6 +97,38 @@ public class FieldTypesMappings implements JsonpSerializable {
 	 */
 	public final List<RuntimeFieldTypes> runtimeFieldTypes() {
 		return this.runtimeFieldTypes;
+	}
+
+	/**
+	 * API name: {@code total_field_count}
+	 */
+	@Nullable
+	public final Integer totalFieldCount() {
+		return this.totalFieldCount;
+	}
+
+	/**
+	 * API name: {@code total_deduplicated_field_count}
+	 */
+	@Nullable
+	public final Integer totalDeduplicatedFieldCount() {
+		return this.totalDeduplicatedFieldCount;
+	}
+
+	/**
+	 * API name: {@code total_deduplicated_mapping_size}
+	 */
+	@Nullable
+	public final String totalDeduplicatedMappingSize() {
+		return this.totalDeduplicatedMappingSize;
+	}
+
+	/**
+	 * API name: {@code total_deduplicated_mapping_size_in_bytes}
+	 */
+	@Nullable
+	public final Long totalDeduplicatedMappingSizeInBytes() {
+		return this.totalDeduplicatedMappingSizeInBytes;
 	}
 
 	/**
@@ -111,6 +162,26 @@ public class FieldTypesMappings implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.totalFieldCount != null) {
+			generator.writeKey("total_field_count");
+			generator.write(this.totalFieldCount);
+
+		}
+		if (this.totalDeduplicatedFieldCount != null) {
+			generator.writeKey("total_deduplicated_field_count");
+			generator.write(this.totalDeduplicatedFieldCount);
+
+		}
+		if (this.totalDeduplicatedMappingSize != null) {
+			generator.writeKey("total_deduplicated_mapping_size");
+			generator.write(this.totalDeduplicatedMappingSize);
+
+		}
+		if (this.totalDeduplicatedMappingSizeInBytes != null) {
+			generator.writeKey("total_deduplicated_mapping_size_in_bytes");
+			generator.write(this.totalDeduplicatedMappingSizeInBytes);
+
+		}
 
 	}
 
@@ -132,6 +203,18 @@ public class FieldTypesMappings implements JsonpSerializable {
 
 		@Nullable
 		private List<RuntimeFieldTypes> runtimeFieldTypes;
+
+		@Nullable
+		private Integer totalFieldCount;
+
+		@Nullable
+		private Integer totalDeduplicatedFieldCount;
+
+		@Nullable
+		private String totalDeduplicatedMappingSize;
+
+		@Nullable
+		private Long totalDeduplicatedMappingSizeInBytes;
 
 		/**
 		 * Required - API name: {@code field_types}
@@ -192,6 +275,38 @@ public class FieldTypesMappings implements JsonpSerializable {
 			return runtimeFieldTypes(fn.apply(new RuntimeFieldTypes.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code total_field_count}
+		 */
+		public final Builder totalFieldCount(@Nullable Integer value) {
+			this.totalFieldCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_deduplicated_field_count}
+		 */
+		public final Builder totalDeduplicatedFieldCount(@Nullable Integer value) {
+			this.totalDeduplicatedFieldCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_deduplicated_mapping_size}
+		 */
+		public final Builder totalDeduplicatedMappingSize(@Nullable String value) {
+			this.totalDeduplicatedMappingSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_deduplicated_mapping_size_in_bytes}
+		 */
+		public final Builder totalDeduplicatedMappingSizeInBytes(@Nullable Long value) {
+			this.totalDeduplicatedMappingSizeInBytes = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -223,6 +338,13 @@ public class FieldTypesMappings implements JsonpSerializable {
 		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "field_types");
 		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes._DESERIALIZER),
 				"runtime_field_types");
+		op.add(Builder::totalFieldCount, JsonpDeserializer.integerDeserializer(), "total_field_count");
+		op.add(Builder::totalDeduplicatedFieldCount, JsonpDeserializer.integerDeserializer(),
+				"total_deduplicated_field_count");
+		op.add(Builder::totalDeduplicatedMappingSize, JsonpDeserializer.stringDeserializer(),
+				"total_deduplicated_mapping_size");
+		op.add(Builder::totalDeduplicatedMappingSizeInBytes, JsonpDeserializer.longDeserializer(),
+				"total_deduplicated_mapping_size_in_bytes");
 
 	}
 

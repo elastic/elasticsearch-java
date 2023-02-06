@@ -55,12 +55,16 @@ public class PassThroughInferenceOptions implements InferenceConfigCreateVariant
 	@Nullable
 	private final String resultsField;
 
+	@Nullable
+	private final Vocabulary vocabulary;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PassThroughInferenceOptions(Builder builder) {
 
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
+		this.vocabulary = builder.vocabulary;
 
 	}
 
@@ -98,6 +102,14 @@ public class PassThroughInferenceOptions implements InferenceConfigCreateVariant
 	}
 
 	/**
+	 * API name: {@code vocabulary}
+	 */
+	@Nullable
+	public final Vocabulary vocabulary() {
+		return this.vocabulary;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -116,6 +128,11 @@ public class PassThroughInferenceOptions implements InferenceConfigCreateVariant
 		if (this.resultsField != null) {
 			generator.writeKey("results_field");
 			generator.write(this.resultsField);
+
+		}
+		if (this.vocabulary != null) {
+			generator.writeKey("vocabulary");
+			this.vocabulary.serialize(generator, mapper);
 
 		}
 
@@ -140,6 +157,9 @@ public class PassThroughInferenceOptions implements InferenceConfigCreateVariant
 
 		@Nullable
 		private String resultsField;
+
+		@Nullable
+		private Vocabulary vocabulary;
 
 		/**
 		 * The tokenization options
@@ -169,6 +189,21 @@ public class PassThroughInferenceOptions implements InferenceConfigCreateVariant
 		public final Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code vocabulary}
+		 */
+		public final Builder vocabulary(@Nullable Vocabulary value) {
+			this.vocabulary = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code vocabulary}
+		 */
+		public final Builder vocabulary(Function<Vocabulary.Builder, ObjectBuilder<Vocabulary>> fn) {
+			return this.vocabulary(fn.apply(new Vocabulary.Builder()).build());
 		}
 
 		@Override
@@ -202,6 +237,7 @@ public class PassThroughInferenceOptions implements InferenceConfigCreateVariant
 
 		op.add(Builder::tokenization, TokenizationConfig._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+		op.add(Builder::vocabulary, Vocabulary._DESERIALIZER, "vocabulary");
 
 	}
 

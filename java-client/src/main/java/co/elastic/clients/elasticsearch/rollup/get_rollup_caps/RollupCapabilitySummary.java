@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_caps;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RollupCapabilitySummary implements JsonpSerializable {
-	private final Map<String, Map<String, JsonData>> fields;
+	private final Map<String, List<RollupFieldSummary>> fields;
 
 	private final String indexPattern;
 
@@ -77,7 +77,7 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public final Map<String, Map<String, JsonData>> fields() {
+	public final Map<String, List<RollupFieldSummary>> fields() {
 		return this.fields;
 	}
 
@@ -116,13 +116,12 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
-			for (Map.Entry<String, Map<String, JsonData>> item0 : this.fields.entrySet()) {
+			for (Map.Entry<String, List<RollupFieldSummary>> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.writeStartObject();
+				generator.writeStartArray();
 				if (item0.getValue() != null) {
-					for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
-						generator.writeKey(item1.getKey());
-						item1.getValue().serialize(generator, mapper);
+					for (RollupFieldSummary item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
 
 					}
 				}
@@ -157,7 +156,7 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RollupCapabilitySummary> {
-		private Map<String, Map<String, JsonData>> fields;
+		private Map<String, List<RollupFieldSummary>> fields;
 
 		private String indexPattern;
 
@@ -170,7 +169,7 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, Map<String, JsonData>> map) {
+		public final Builder fields(Map<String, List<RollupFieldSummary>> map) {
 			this.fields = _mapPutAll(this.fields, map);
 			return this;
 		}
@@ -180,7 +179,7 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>fields</code>.
 		 */
-		public final Builder fields(String key, Map<String, JsonData> value) {
+		public final Builder fields(String key, List<RollupFieldSummary> value) {
 			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
@@ -238,8 +237,8 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 	protected static void setupRollupCapabilitySummaryDeserializer(
 			ObjectDeserializer<RollupCapabilitySummary.Builder> op) {
 
-		op.add(Builder::fields, JsonpDeserializer
-				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)), "fields");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(RollupFieldSummary._DESERIALIZER)), "fields");
 		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");

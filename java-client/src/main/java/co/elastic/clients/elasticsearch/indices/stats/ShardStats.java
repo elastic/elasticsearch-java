@@ -39,6 +39,7 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -46,9 +47,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -82,6 +86,9 @@ public class ShardStats implements JsonpSerializable {
 
 	@Nullable
 	private final IndexingStats indexing;
+
+	@Nullable
+	private final MappingStats mappings;
 
 	@Nullable
 	private final MergesStats merges;
@@ -128,8 +135,7 @@ public class ShardStats implements JsonpSerializable {
 	@Nullable
 	private final BulkStats bulk;
 
-	@Nullable
-	private final ShardsTotalStats shards;
+	private final Map<String, JsonData> shards;
 
 	@Nullable
 	private final ShardsTotalStats shardStats;
@@ -148,6 +154,7 @@ public class ShardStats implements JsonpSerializable {
 		this.flush = builder.flush;
 		this.get = builder.get;
 		this.indexing = builder.indexing;
+		this.mappings = builder.mappings;
 		this.merges = builder.merges;
 		this.shardPath = builder.shardPath;
 		this.queryCache = builder.queryCache;
@@ -163,7 +170,7 @@ public class ShardStats implements JsonpSerializable {
 		this.translog = builder.translog;
 		this.warmer = builder.warmer;
 		this.bulk = builder.bulk;
-		this.shards = builder.shards;
+		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
 		this.shardStats = builder.shardStats;
 		this.indices = builder.indices;
 
@@ -227,6 +234,14 @@ public class ShardStats implements JsonpSerializable {
 	@Nullable
 	public final IndexingStats indexing() {
 		return this.indexing;
+	}
+
+	/**
+	 * API name: {@code mappings}
+	 */
+	@Nullable
+	public final MappingStats mappings() {
+		return this.mappings;
 	}
 
 	/**
@@ -352,8 +367,7 @@ public class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code shards}
 	 */
-	@Nullable
-	public final ShardsTotalStats shards() {
+	public final Map<String, JsonData> shards() {
 		return this.shards;
 	}
 
@@ -417,6 +431,11 @@ public class ShardStats implements JsonpSerializable {
 		if (this.indexing != null) {
 			generator.writeKey("indexing");
 			this.indexing.serialize(generator, mapper);
+
+		}
+		if (this.mappings != null) {
+			generator.writeKey("mappings");
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.merges != null) {
@@ -494,9 +513,15 @@ public class ShardStats implements JsonpSerializable {
 			this.bulk.serialize(generator, mapper);
 
 		}
-		if (this.shards != null) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
-			this.shards.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.shards.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.shardStats != null) {
@@ -546,6 +571,9 @@ public class ShardStats implements JsonpSerializable {
 		private IndexingStats indexing;
 
 		@Nullable
+		private MappingStats mappings;
+
+		@Nullable
 		private MergesStats merges;
 
 		@Nullable
@@ -591,7 +619,7 @@ public class ShardStats implements JsonpSerializable {
 		private BulkStats bulk;
 
 		@Nullable
-		private ShardsTotalStats shards;
+		private Map<String, JsonData> shards;
 
 		@Nullable
 		private ShardsTotalStats shardStats;
@@ -702,6 +730,21 @@ public class ShardStats implements JsonpSerializable {
 		 */
 		public final Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
 			return this.indexing(fn.apply(new IndexingStats.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(@Nullable MappingStats value) {
+			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(Function<MappingStats.Builder, ObjectBuilder<MappingStats>> fn) {
+			return this.mappings(fn.apply(new MappingStats.Builder()).build());
 		}
 
 		/**
@@ -932,17 +975,22 @@ public class ShardStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 */
-		public final Builder shards(@Nullable ShardsTotalStats value) {
-			this.shards = value;
+		public final Builder shards(Map<String, JsonData> map) {
+			this.shards = _mapPutAll(this.shards, map);
 			return this;
 		}
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
 		 */
-		public final Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
-			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
+		public final Builder shards(String key, JsonData value) {
+			this.shards = _mapPut(this.shards, key, value);
+			return this;
 		}
 
 		/**
@@ -1010,6 +1058,7 @@ public class ShardStats implements JsonpSerializable {
 		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
 		op.add(Builder::get, GetStats._DESERIALIZER, "get");
 		op.add(Builder::indexing, IndexingStats._DESERIALIZER, "indexing");
+		op.add(Builder::mappings, MappingStats._DESERIALIZER, "mappings");
 		op.add(Builder::merges, MergesStats._DESERIALIZER, "merges");
 		op.add(Builder::shardPath, ShardPath._DESERIALIZER, "shard_path");
 		op.add(Builder::queryCache, ShardQueryCache._DESERIALIZER, "query_cache");
@@ -1025,7 +1074,7 @@ public class ShardStats implements JsonpSerializable {
 		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
 		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
 		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
-		op.add(Builder::shards, ShardsTotalStats._DESERIALIZER, "shards");
+		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "shards");
 		op.add(Builder::shardStats, ShardsTotalStats._DESERIALIZER, "shard_stats");
 		op.add(Builder::indices, IndicesStats._DESERIALIZER, "indices");
 

@@ -74,6 +74,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 	private final InferenceConfigCreate inferenceConfig;
 
+	@Nullable
 	private final Input input;
 
 	@Nullable
@@ -98,7 +99,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.definition = builder.definition;
 		this.description = builder.description;
 		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
-		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
+		this.input = builder.input;
 		this.metadata = builder.metadata;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.modelSizeBytes = builder.modelSizeBytes;
@@ -168,10 +169,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Required - The input field names for the model definition.
+	 * The input field names for the model definition.
 	 * <p>
 	 * API name: {@code input}
 	 */
+	@Nullable
 	public final Input input() {
 		return this.input;
 	}
@@ -255,9 +257,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		generator.writeKey("inference_config");
 		this.inferenceConfig.serialize(generator, mapper);
 
-		generator.writeKey("input");
-		this.input.serialize(generator, mapper);
+		if (this.input != null) {
+			generator.writeKey("input");
+			this.input.serialize(generator, mapper);
 
+		}
 		if (this.metadata != null) {
 			generator.writeKey("metadata");
 			this.metadata.serialize(generator, mapper);
@@ -308,6 +312,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 		private InferenceConfigCreate inferenceConfig;
 
+		@Nullable
 		private Input input;
 
 		@Nullable
@@ -404,17 +409,17 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Required - The input field names for the model definition.
+		 * The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public final Builder input(Input value) {
+		public final Builder input(@Nullable Input value) {
 			this.input = value;
 			return this;
 		}
 
 		/**
-		 * Required - The input field names for the model definition.
+		 * The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}
 		 */

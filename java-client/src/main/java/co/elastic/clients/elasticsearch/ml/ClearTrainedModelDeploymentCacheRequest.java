@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -54,14 +55,13 @@ import javax.annotation.Nullable;
  */
 
 public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
-	@Nullable
 	private final String modelId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ClearTrainedModelDeploymentCacheRequest(Builder builder) {
 
-		this.modelId = builder.modelId;
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
@@ -71,11 +71,10 @@ public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
 	}
 
 	/**
-	 * The unique identifier of the trained model.
+	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	@Nullable
 	public final String modelId() {
 		return this.modelId;
 	}
@@ -89,15 +88,14 @@ public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ClearTrainedModelDeploymentCacheRequest> {
-		@Nullable
 		private String modelId;
 
 		/**
-		 * The unique identifier of the trained model.
+		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public final Builder modelId(@Nullable String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -140,8 +138,7 @@ public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
-					propsSet |= _modelId;
+				propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();

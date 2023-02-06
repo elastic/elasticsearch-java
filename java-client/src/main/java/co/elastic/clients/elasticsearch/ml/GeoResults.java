@@ -34,50 +34,55 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml.open_job.Response
+// typedef: ml._types.GeoResults
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml.open_job.Response">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.GeoResults">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenJobResponse implements JsonpSerializable {
-	private final boolean opened;
+public class GeoResults implements JsonpSerializable {
+	private final String actualPoint;
 
-	private final String node;
+	private final String typicalPoint;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenJobResponse(Builder builder) {
+	private GeoResults(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.actualPoint = ApiTypeHelper.requireNonNull(builder.actualPoint, this, "actualPoint");
+		this.typicalPoint = ApiTypeHelper.requireNonNull(builder.typicalPoint, this, "typicalPoint");
 
 	}
 
-	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+	public static GeoResults of(Function<Builder, ObjectBuilder<GeoResults>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code opened}
+	 * Required - The actual value for the bucket formatted as a
+	 * <code>geo_point</code>.
+	 * <p>
+	 * API name: {@code actual_point}
 	 */
-	public final boolean opened() {
-		return this.opened;
+	public final String actualPoint() {
+		return this.actualPoint;
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * Required - The typical value for the bucket formatted as a
+	 * <code>geo_point</code>.
+	 * <p>
+	 * API name: {@code typical_point}
 	 */
-	public final String node() {
-		return this.node;
+	public final String typicalPoint() {
+		return this.typicalPoint;
 	}
 
 	/**
@@ -91,11 +96,11 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("opened");
-		generator.write(this.opened);
+		generator.writeKey("actual_point");
+		generator.write(this.actualPoint);
 
-		generator.writeKey("node");
-		generator.write(this.node);
+		generator.writeKey("typical_point");
+		generator.write(this.typicalPoint);
 
 	}
 
@@ -107,27 +112,33 @@ public class OpenJobResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenJobResponse}.
+	 * Builder for {@link GeoResults}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OpenJobResponse> {
-		private Boolean opened;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoResults> {
+		private String actualPoint;
 
-		private String node;
+		private String typicalPoint;
 
 		/**
-		 * Required - API name: {@code opened}
+		 * Required - The actual value for the bucket formatted as a
+		 * <code>geo_point</code>.
+		 * <p>
+		 * API name: {@code actual_point}
 		 */
-		public final Builder opened(boolean value) {
-			this.opened = value;
+		public final Builder actualPoint(String value) {
+			this.actualPoint = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * Required - The typical value for the bucket formatted as a
+		 * <code>geo_point</code>.
+		 * <p>
+		 * API name: {@code typical_point}
 		 */
-		public final Builder node(String value) {
-			this.node = value;
+		public final Builder typicalPoint(String value) {
+			this.typicalPoint = value;
 			return this;
 		}
 
@@ -137,30 +148,30 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenJobResponse}.
+		 * Builds a {@link GeoResults}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenJobResponse build() {
+		public GeoResults build() {
 			_checkSingleUse();
 
-			return new OpenJobResponse(this);
+			return new GeoResults(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenJobResponse}
+	 * Json deserializer for {@link GeoResults}
 	 */
-	public static final JsonpDeserializer<OpenJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobResponse::setupOpenJobResponseDeserializer);
+	public static final JsonpDeserializer<GeoResults> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoResults::setupGeoResultsDeserializer);
 
-	protected static void setupOpenJobResponseDeserializer(ObjectDeserializer<OpenJobResponse.Builder> op) {
+	protected static void setupGeoResultsDeserializer(ObjectDeserializer<GeoResults.Builder> op) {
 
-		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::actualPoint, JsonpDeserializer.stringDeserializer(), "actual_point");
+		op.add(Builder::typicalPoint, JsonpDeserializer.stringDeserializer(), "typical_point");
 
 	}
 

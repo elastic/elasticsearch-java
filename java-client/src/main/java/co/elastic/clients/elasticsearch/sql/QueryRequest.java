@@ -148,6 +148,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If true, the results in a columnar fashion: one row represents all the values
+	 * of a certain column from the current page of results.
+	 * <p>
 	 * API name: {@code columnar}
 	 */
 	@Nullable
@@ -485,6 +488,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If true, the results in a columnar fashion: one row represents all the values
+		 * of a certain column from the current page of results.
+		 * <p>
 		 * API name: {@code columnar}
 		 */
 		public final Builder columnar(@Nullable Boolean value) {

@@ -85,7 +85,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.metric = builder.metric;
 		this.requests = ApiTypeHelper.unmodifiableRequired(builder.requests, this, "requests");
 		this.searchType = builder.searchType;
@@ -133,10 +133,10 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Comma-separated list of data streams, indices, and index aliases
-	 * used to limit the request. Wildcard (<code>*</code>) expressions are
-	 * supported. To target all data streams and indices in a cluster, omit this
-	 * parameter or use <code>_all</code> or <code>*</code>.
+	 * Comma-separated list of data streams, indices, and index aliases used to
+	 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
+	 * target all data streams and indices in a cluster, omit this parameter or use
+	 * <code>_all</code> or <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -219,6 +219,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
+		@Nullable
 		private List<String> index;
 
 		@Nullable
@@ -282,10 +283,10 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * used to limit the request. Wildcard (<code>*</code>) expressions are
-		 * supported. To target all data streams and indices in a cluster, omit this
-		 * parameter or use <code>_all</code> or <code>*</code>.
+		 * Comma-separated list of data streams, indices, and index aliases used to
+		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
+		 * target all data streams and indices in a cluster, omit this parameter or use
+		 * <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -297,10 +298,10 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * used to limit the request. Wildcard (<code>*</code>) expressions are
-		 * supported. To target all data streams and indices in a cluster, omit this
-		 * parameter or use <code>_all</code> or <code>*</code>.
+		 * Comma-separated list of data streams, indices, and index aliases used to
+		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
+		 * target all data streams and indices in a cluster, omit this parameter or use
+		 * <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -431,7 +432,8 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 
 				int propsSet = 0;
 
-				propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();

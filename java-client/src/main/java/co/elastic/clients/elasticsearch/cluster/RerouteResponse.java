@@ -56,6 +56,7 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 
 	private final List<RerouteExplanation> explanations;
 
+	@Nullable
 	private final JsonData state;
 
 	// ---------------------------------------------------------------------------------------------
@@ -64,7 +65,7 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 
 		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
-		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.state = builder.state;
 
 	}
 
@@ -87,12 +88,13 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 	}
 
 	/**
-	 * Required - There aren't any guarantees on the output/structure of the raw
-	 * cluster state. Here you will find the internal representation of the cluster,
-	 * which can differ from the external representation.
+	 * There aren't any guarantees on the output/structure of the raw cluster state.
+	 * Here you will find the internal representation of the cluster, which can
+	 * differ from the external representation.
 	 * <p>
 	 * API name: {@code state}
 	 */
+	@Nullable
 	public final JsonData state() {
 		return this.state;
 	}
@@ -121,8 +123,11 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		generator.writeKey("state");
-		this.state.serialize(generator, mapper);
+		if (this.state != null) {
+			generator.writeKey("state");
+			this.state.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -143,6 +148,7 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 		@Nullable
 		private List<RerouteExplanation> explanations;
 
+		@Nullable
 		private JsonData state;
 
 		/**
@@ -183,13 +189,13 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 		}
 
 		/**
-		 * Required - There aren't any guarantees on the output/structure of the raw
-		 * cluster state. Here you will find the internal representation of the cluster,
-		 * which can differ from the external representation.
+		 * There aren't any guarantees on the output/structure of the raw cluster state.
+		 * Here you will find the internal representation of the cluster, which can
+		 * differ from the external representation.
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public final Builder state(JsonData value) {
+		public final Builder state(@Nullable JsonData value) {
 			this.state = value;
 			return this;
 		}

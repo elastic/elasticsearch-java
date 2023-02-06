@@ -53,6 +53,9 @@ public class Phases implements JsonpSerializable {
 	private final Phase delete;
 
 	@Nullable
+	private final Phase frozen;
+
+	@Nullable
 	private final Phase hot;
 
 	@Nullable
@@ -64,6 +67,7 @@ public class Phases implements JsonpSerializable {
 
 		this.cold = builder.cold;
 		this.delete = builder.delete;
+		this.frozen = builder.frozen;
 		this.hot = builder.hot;
 		this.warm = builder.warm;
 
@@ -87,6 +91,14 @@ public class Phases implements JsonpSerializable {
 	@Nullable
 	public final Phase delete() {
 		return this.delete;
+	}
+
+	/**
+	 * API name: {@code frozen}
+	 */
+	@Nullable
+	public final Phase frozen() {
+		return this.frozen;
 	}
 
 	/**
@@ -126,6 +138,11 @@ public class Phases implements JsonpSerializable {
 			this.delete.serialize(generator, mapper);
 
 		}
+		if (this.frozen != null) {
+			generator.writeKey("frozen");
+			this.frozen.serialize(generator, mapper);
+
+		}
 		if (this.hot != null) {
 			generator.writeKey("hot");
 			this.hot.serialize(generator, mapper);
@@ -156,6 +173,9 @@ public class Phases implements JsonpSerializable {
 
 		@Nullable
 		private Phase delete;
+
+		@Nullable
+		private Phase frozen;
 
 		@Nullable
 		private Phase hot;
@@ -191,6 +211,21 @@ public class Phases implements JsonpSerializable {
 		 */
 		public final Builder delete(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
 			return this.delete(fn.apply(new Phase.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code frozen}
+		 */
+		public final Builder frozen(@Nullable Phase value) {
+			this.frozen = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code frozen}
+		 */
+		public final Builder frozen(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
+			return this.frozen(fn.apply(new Phase.Builder()).build());
 		}
 
 		/**
@@ -253,6 +288,7 @@ public class Phases implements JsonpSerializable {
 
 		op.add(Builder::cold, Phase._DESERIALIZER, "cold");
 		op.add(Builder::delete, Phase._DESERIALIZER, "delete");
+		op.add(Builder::frozen, Phase._DESERIALIZER, "frozen");
 		op.add(Builder::hot, Phase._DESERIALIZER, "hot");
 		op.add(Builder::warm, Phase._DESERIALIZER, "warm");
 

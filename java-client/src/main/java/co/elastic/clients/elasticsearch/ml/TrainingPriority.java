@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -29,33 +29,20 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.RuntimeFieldType">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.TrainingPriority">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum RuntimeFieldType implements JsonEnum {
-	Boolean("boolean"),
+public enum TrainingPriority implements JsonEnum {
+	Normal("normal"),
 
-	Date("date"),
-
-	Double("double"),
-
-	GeoPoint("geo_point"),
-
-	Ip("ip"),
-
-	Keyword("keyword"),
-
-	Long("long"),
-
-	Lookup("lookup"),
+	Low("low"),
 
 	;
 
 	private final String jsonValue;
 
-	RuntimeFieldType(String jsonValue) {
+	TrainingPriority(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -63,6 +50,6 @@ public enum RuntimeFieldType implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			RuntimeFieldType.values());
+	public static final JsonEnum.Deserializer<TrainingPriority> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			TrainingPriority.values());
 }

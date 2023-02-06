@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
+import co.elastic.clients.elasticsearch.core.search_mvt.GridAggregationType;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -69,6 +70,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Aggregation> aggs;
 
 	@Nullable
+	private final Integer buffer;
+
+	@Nullable
 	private final Boolean exactBounds;
 
 	@Nullable
@@ -77,6 +81,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	private final String field;
 
 	private final List<String> fields;
+
+	@Nullable
+	private final GridAggregationType gridAgg;
 
 	@Nullable
 	private final Integer gridPrecision;
@@ -99,6 +106,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final TrackHits trackTotalHits;
 
+	@Nullable
+	private final Boolean withLabels;
+
 	private final int x;
 
 	private final int y;
@@ -110,10 +120,12 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	private SearchMvtRequest(Builder builder) {
 
 		this.aggs = ApiTypeHelper.unmodifiable(builder.aggs);
+		this.buffer = builder.buffer;
 		this.exactBounds = builder.exactBounds;
 		this.extent = builder.extent;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.gridAgg = builder.gridAgg;
 		this.gridPrecision = builder.gridPrecision;
 		this.gridType = builder.gridType;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
@@ -122,6 +134,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		this.size = builder.size;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.trackTotalHits = builder.trackTotalHits;
+		this.withLabels = builder.withLabels;
 		this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x");
 		this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y");
 		this.zoom = ApiTypeHelper.requireNonNull(builder.zoom, this, "zoom");
@@ -148,6 +161,18 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final Map<String, Aggregation> aggs() {
 		return this.aggs;
+	}
+
+	/**
+	 * Size, in pixels, of a clipping buffer outside the tile. This allows renderers
+	 * to avoid outline artifacts from geometries that extend past the extent of the
+	 * tile.
+	 * <p>
+	 * API name: {@code buffer}
+	 */
+	@Nullable
+	public final Integer buffer() {
+		return this.buffer;
 	}
 
 	/**
@@ -193,6 +218,16 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> fields() {
 		return this.fields;
+	}
+
+	/**
+	 * Aggregation used to create a grid for the <code>field</code>.
+	 * <p>
+	 * API name: {@code grid_agg}
+	 */
+	@Nullable
+	public final GridAggregationType gridAgg() {
+		return this.gridAgg;
 	}
 
 	/**
@@ -286,6 +321,17 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the hits and aggs layers will contain additional point
+	 * features representing suggested label positions for the original features.
+	 * <p>
+	 * API name: {@code with_labels}
+	 */
+	@Nullable
+	public final Boolean withLabels() {
+		return this.withLabels;
+	}
+
+	/**
 	 * Required - X coordinate for the vector tile to search
 	 * <p>
 	 * API name: {@code x}
@@ -334,6 +380,11 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.buffer != null) {
+			generator.writeKey("buffer");
+			generator.write(this.buffer);
+
+		}
 		if (this.exactBounds != null) {
 			generator.writeKey("exact_bounds");
 			generator.write(this.exactBounds);
@@ -353,6 +404,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 			}
 			generator.writeEnd();
 
+		}
+		if (this.gridAgg != null) {
+			generator.writeKey("grid_agg");
+			this.gridAgg.serialize(generator, mapper);
 		}
 		if (this.gridPrecision != null) {
 			generator.writeKey("grid_precision");
@@ -399,6 +454,11 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 			this.trackTotalHits.serialize(generator, mapper);
 
 		}
+		if (this.withLabels != null) {
+			generator.writeKey("with_labels");
+			generator.write(this.withLabels);
+
+		}
 
 	}
 
@@ -415,6 +475,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		private Map<String, Aggregation> aggs;
 
 		@Nullable
+		private Integer buffer;
+
+		@Nullable
 		private Boolean exactBounds;
 
 		@Nullable
@@ -424,6 +487,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<String> fields;
+
+		@Nullable
+		private GridAggregationType gridAgg;
 
 		@Nullable
 		private Integer gridPrecision;
@@ -447,6 +513,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private TrackHits trackTotalHits;
+
+		@Nullable
+		private Boolean withLabels;
 
 		private Integer x;
 
@@ -517,6 +586,18 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Size, in pixels, of a clipping buffer outside the tile. This allows renderers
+		 * to avoid outline artifacts from geometries that extend past the extent of the
+		 * tile.
+		 * <p>
+		 * API name: {@code buffer}
+		 */
+		public final Builder buffer(@Nullable Integer value) {
+			this.buffer = value;
+			return this;
+		}
+
+		/**
 		 * If false, the meta layer’s feature is the bounding box of the tile. If true,
 		 * the meta layer’s feature is a bounding box resulting from a geo_bounds
 		 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
@@ -576,6 +657,16 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder fields(String value, String... values) {
 			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * Aggregation used to create a grid for the <code>field</code>.
+		 * <p>
+		 * API name: {@code grid_agg}
+		 */
+		public final Builder gridAgg(@Nullable GridAggregationType value) {
+			this.gridAgg = value;
 			return this;
 		}
 
@@ -766,6 +857,17 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the hits and aggs layers will contain additional point
+		 * features representing suggested label positions for the original features.
+		 * <p>
+		 * API name: {@code with_labels}
+		 */
+		public final Builder withLabels(@Nullable Boolean value) {
+			this.withLabels = value;
+			return this;
+		}
+
+		/**
 		 * Required - X coordinate for the vector tile to search
 		 * <p>
 		 * API name: {@code x}
@@ -824,9 +926,11 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupSearchMvtRequestDeserializer(ObjectDeserializer<SearchMvtRequest.Builder> op) {
 
 		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::buffer, JsonpDeserializer.integerDeserializer(), "buffer");
 		op.add(Builder::exactBounds, JsonpDeserializer.booleanDeserializer(), "exact_bounds");
 		op.add(Builder::extent, JsonpDeserializer.integerDeserializer(), "extent");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::gridAgg, GridAggregationType._DESERIALIZER, "grid_agg");
 		op.add(Builder::gridPrecision, JsonpDeserializer.integerDeserializer(), "grid_precision");
 		op.add(Builder::gridType, GridType._DESERIALIZER, "grid_type");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
@@ -835,6 +939,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
+		op.add(Builder::withLabels, JsonpDeserializer.booleanDeserializer(), "with_labels");
 
 	}
 

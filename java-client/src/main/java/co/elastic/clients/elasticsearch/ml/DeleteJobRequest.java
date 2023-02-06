@@ -60,6 +60,9 @@ import javax.annotation.Nullable;
 
 public class DeleteJobRequest extends RequestBase {
 	@Nullable
+	private final Boolean deleteUserAnnotations;
+
+	@Nullable
 	private final Boolean force;
 
 	private final String jobId;
@@ -71,6 +74,7 @@ public class DeleteJobRequest extends RequestBase {
 
 	private DeleteJobRequest(Builder builder) {
 
+		this.deleteUserAnnotations = builder.deleteUserAnnotations;
 		this.force = builder.force;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.waitForCompletion = builder.waitForCompletion;
@@ -79,6 +83,17 @@ public class DeleteJobRequest extends RequestBase {
 
 	public static DeleteJobRequest of(Function<Builder, ObjectBuilder<DeleteJobRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Specifies whether annotations that have been added by the user should be
+	 * deleted along with any auto-generated annotations when the job is reset.
+	 * <p>
+	 * API name: {@code delete_user_annotations}
+	 */
+	@Nullable
+	public final Boolean deleteUserAnnotations() {
+		return this.deleteUserAnnotations;
 	}
 
 	/**
@@ -122,12 +137,26 @@ public class DeleteJobRequest extends RequestBase {
 			implements
 				ObjectBuilder<DeleteJobRequest> {
 		@Nullable
+		private Boolean deleteUserAnnotations;
+
+		@Nullable
 		private Boolean force;
 
 		private String jobId;
 
 		@Nullable
 		private Boolean waitForCompletion;
+
+		/**
+		 * Specifies whether annotations that have been added by the user should be
+		 * deleted along with any auto-generated annotations when the job is reset.
+		 * <p>
+		 * API name: {@code delete_user_annotations}
+		 */
+		public final Builder deleteUserAnnotations(@Nullable Boolean value) {
+			this.deleteUserAnnotations = value;
+			return this;
+		}
 
 		/**
 		 * Use to forcefully delete an opened job; this method is quicker than closing
@@ -216,6 +245,9 @@ public class DeleteJobRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.deleteUserAnnotations != null) {
+					params.put("delete_user_annotations", String.valueOf(request.deleteUserAnnotations));
+				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
 				}

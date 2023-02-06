@@ -36,6 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,8 +50,19 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RuntimeField implements JsonpSerializable {
+	private final List<RuntimeFieldFetchFields> fetchFields;
+
 	@Nullable
 	private final String format;
+
+	@Nullable
+	private final String inputField;
+
+	@Nullable
+	private final String targetField;
+
+	@Nullable
+	private final String targetIndex;
 
 	@Nullable
 	private final Script script;
@@ -61,7 +73,11 @@ public class RuntimeField implements JsonpSerializable {
 
 	private RuntimeField(Builder builder) {
 
+		this.fetchFields = ApiTypeHelper.unmodifiable(builder.fetchFields);
 		this.format = builder.format;
+		this.inputField = builder.inputField;
+		this.targetField = builder.targetField;
+		this.targetIndex = builder.targetIndex;
 		this.script = builder.script;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
@@ -72,11 +88,50 @@ public class RuntimeField implements JsonpSerializable {
 	}
 
 	/**
+	 * For type <code>lookup</code>
+	 * <p>
+	 * API name: {@code fetch_fields}
+	 */
+	public final List<RuntimeFieldFetchFields> fetchFields() {
+		return this.fetchFields;
+	}
+
+	/**
 	 * API name: {@code format}
 	 */
 	@Nullable
 	public final String format() {
 		return this.format;
+	}
+
+	/**
+	 * For type <code>lookup</code>
+	 * <p>
+	 * API name: {@code input_field}
+	 */
+	@Nullable
+	public final String inputField() {
+		return this.inputField;
+	}
+
+	/**
+	 * For type <code>lookup</code>
+	 * <p>
+	 * API name: {@code target_field}
+	 */
+	@Nullable
+	public final String targetField() {
+		return this.targetField;
+	}
+
+	/**
+	 * For type <code>lookup</code>
+	 * <p>
+	 * API name: {@code target_index}
+	 */
+	@Nullable
+	public final String targetIndex() {
+		return this.targetIndex;
 	}
 
 	/**
@@ -105,9 +160,34 @@ public class RuntimeField implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.fetchFields)) {
+			generator.writeKey("fetch_fields");
+			generator.writeStartArray();
+			for (RuntimeFieldFetchFields item0 : this.fetchFields) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.format != null) {
 			generator.writeKey("format");
 			generator.write(this.format);
+
+		}
+		if (this.inputField != null) {
+			generator.writeKey("input_field");
+			generator.write(this.inputField);
+
+		}
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
+
+		}
+		if (this.targetIndex != null) {
+			generator.writeKey("target_index");
+			generator.write(this.targetIndex);
 
 		}
 		if (this.script != null) {
@@ -133,7 +213,19 @@ public class RuntimeField implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RuntimeField> {
 		@Nullable
+		private List<RuntimeFieldFetchFields> fetchFields;
+
+		@Nullable
 		private String format;
+
+		@Nullable
+		private String inputField;
+
+		@Nullable
+		private String targetField;
+
+		@Nullable
+		private String targetIndex;
 
 		@Nullable
 		private Script script;
@@ -141,10 +233,76 @@ public class RuntimeField implements JsonpSerializable {
 		private RuntimeFieldType type;
 
 		/**
+		 * For type <code>lookup</code>
+		 * <p>
+		 * API name: {@code fetch_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fetchFields</code>.
+		 */
+		public final Builder fetchFields(List<RuntimeFieldFetchFields> list) {
+			this.fetchFields = _listAddAll(this.fetchFields, list);
+			return this;
+		}
+
+		/**
+		 * For type <code>lookup</code>
+		 * <p>
+		 * API name: {@code fetch_fields}
+		 * <p>
+		 * Adds one or more values to <code>fetchFields</code>.
+		 */
+		public final Builder fetchFields(RuntimeFieldFetchFields value, RuntimeFieldFetchFields... values) {
+			this.fetchFields = _listAdd(this.fetchFields, value, values);
+			return this;
+		}
+
+		/**
+		 * For type <code>lookup</code>
+		 * <p>
+		 * API name: {@code fetch_fields}
+		 * <p>
+		 * Adds a value to <code>fetchFields</code> using a builder lambda.
+		 */
+		public final Builder fetchFields(
+				Function<RuntimeFieldFetchFields.Builder, ObjectBuilder<RuntimeFieldFetchFields>> fn) {
+			return fetchFields(fn.apply(new RuntimeFieldFetchFields.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
 			this.format = value;
+			return this;
+		}
+
+		/**
+		 * For type <code>lookup</code>
+		 * <p>
+		 * API name: {@code input_field}
+		 */
+		public final Builder inputField(@Nullable String value) {
+			this.inputField = value;
+			return this;
+		}
+
+		/**
+		 * For type <code>lookup</code>
+		 * <p>
+		 * API name: {@code target_field}
+		 */
+		public final Builder targetField(@Nullable String value) {
+			this.targetField = value;
+			return this;
+		}
+
+		/**
+		 * For type <code>lookup</code>
+		 * <p>
+		 * API name: {@code target_index}
+		 */
+		public final Builder targetIndex(@Nullable String value) {
+			this.targetIndex = value;
 			return this;
 		}
 
@@ -199,7 +357,12 @@ public class RuntimeField implements JsonpSerializable {
 
 	protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
 
+		op.add(Builder::fetchFields, JsonpDeserializer.arrayDeserializer(RuntimeFieldFetchFields._DESERIALIZER),
+				"fetch_fields");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::inputField, JsonpDeserializer.stringDeserializer(), "input_field");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::targetIndex, JsonpDeserializer.stringDeserializer(), "target_index");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 

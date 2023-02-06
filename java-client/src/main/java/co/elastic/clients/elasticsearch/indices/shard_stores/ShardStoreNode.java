@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -41,100 +41,60 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.NodeAttributes
+// typedef: indices.shard_stores.ShardStoreNode
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.NodeAttributes">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#indices.shard_stores.ShardStoreNode">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeAttributes implements JsonpSerializable {
+public class ShardStoreNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
-	private final String ephemeralId;
-
 	@Nullable
-	private final String id;
-
-	private final String name;
-
-	private final String transportAddress;
-
-	private final List<NodeRole> roles;
+	private final String ephemeralId;
 
 	@Nullable
 	private final String externalId;
 
+	private final String name;
+
+	private final List<String> roles;
+
+	private final String transportAddress;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeAttributes(Builder builder) {
+	private ShardStoreNode(Builder builder) {
 
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
-		this.id = builder.id;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.ephemeralId = builder.ephemeralId;
 		this.externalId = builder.externalId;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
-	public static NodeAttributes of(Function<Builder, ObjectBuilder<NodeAttributes>> fn) {
+	public static ShardStoreNode of(Function<Builder, ObjectBuilder<ShardStoreNode>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Lists node attributes.
-	 * <p>
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * Required - The ephemeral ID of the node.
-	 * <p>
 	 * API name: {@code ephemeral_id}
 	 */
+	@Nullable
 	public final String ephemeralId() {
 		return this.ephemeralId;
-	}
-
-	/**
-	 * The unique identifier of the node.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
-
-	/**
-	 * Required - The unique identifier of the node.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * Required - The host and port where transport HTTP connections are accepted.
-	 * <p>
-	 * API name: {@code transport_address}
-	 */
-	public final String transportAddress() {
-		return this.transportAddress;
-	}
-
-	/**
-	 * API name: {@code roles}
-	 */
-	public final List<NodeRole> roles() {
-		return this.roles;
 	}
 
 	/**
@@ -143,6 +103,27 @@ public class NodeAttributes implements JsonpSerializable {
 	@Nullable
 	public final String externalId() {
 		return this.externalId;
+	}
+
+	/**
+	 * Required - API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * Required - API name: {@code roles}
+	 */
+	public final List<String> roles() {
+		return this.roles;
+	}
+
+	/**
+	 * Required - API name: {@code transport_address}
+	 */
+	public final String transportAddress() {
+		return this.transportAddress;
 	}
 
 	/**
@@ -167,27 +148,9 @@ public class NodeAttributes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("ephemeral_id");
-		generator.write(this.ephemeralId);
-
-		if (this.id != null) {
-			generator.writeKey("id");
-			generator.write(this.id);
-
-		}
-		generator.writeKey("name");
-		generator.write(this.name);
-
-		generator.writeKey("transport_address");
-		generator.write(this.transportAddress);
-
-		if (ApiTypeHelper.isDefined(this.roles)) {
-			generator.writeKey("roles");
-			generator.writeStartArray();
-			for (NodeRole item0 : this.roles) {
-				item0.serialize(generator, mapper);
-			}
-			generator.writeEnd();
+		if (this.ephemeralId != null) {
+			generator.writeKey("ephemeral_id");
+			generator.write(this.ephemeralId);
 
 		}
 		if (this.externalId != null) {
@@ -195,6 +158,21 @@ public class NodeAttributes implements JsonpSerializable {
 			generator.write(this.externalId);
 
 		}
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		if (ApiTypeHelper.isDefined(this.roles)) {
+			generator.writeKey("roles");
+			generator.writeStartArray();
+			for (String item0 : this.roles) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeKey("transport_address");
+		generator.write(this.transportAddress);
 
 	}
 
@@ -206,31 +184,26 @@ public class NodeAttributes implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeAttributes}.
+	 * Builder for {@link ShardStoreNode}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeAttributes> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardStoreNode> {
 		private Map<String, String> attributes;
 
+		@Nullable
 		private String ephemeralId;
-
-		@Nullable
-		private String id;
-
-		private String name;
-
-		private String transportAddress;
-
-		@Nullable
-		private List<NodeRole> roles;
 
 		@Nullable
 		private String externalId;
 
+		private String name;
+
+		private List<String> roles;
+
+		private String transportAddress;
+
 		/**
-		 * Required - Lists node attributes.
-		 * <p>
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
@@ -240,9 +213,7 @@ public class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Lists node attributes.
-		 * <p>
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds an entry to <code>attributes</code>.
 		 */
@@ -252,62 +223,10 @@ public class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The ephemeral ID of the node.
-		 * <p>
 		 * API name: {@code ephemeral_id}
 		 */
-		public final Builder ephemeralId(String value) {
+		public final Builder ephemeralId(@Nullable String value) {
 			this.ephemeralId = value;
-			return this;
-		}
-
-		/**
-		 * The unique identifier of the node.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - The unique identifier of the node.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - The host and port where transport HTTP connections are accepted.
-		 * <p>
-		 * API name: {@code transport_address}
-		 */
-		public final Builder transportAddress(String value) {
-			this.transportAddress = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code roles}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 */
-		public final Builder roles(List<NodeRole> list) {
-			this.roles = _listAddAll(this.roles, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code roles}
-		 * <p>
-		 * Adds one or more values to <code>roles</code>.
-		 */
-		public final Builder roles(NodeRole value, NodeRole... values) {
-			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
@@ -319,42 +238,77 @@ public class NodeAttributes implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
+		 */
+		public final Builder roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
+		 */
+		public final Builder roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code transport_address}
+		 */
+		public final Builder transportAddress(String value) {
+			this.transportAddress = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link NodeAttributes}.
+		 * Builds a {@link ShardStoreNode}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeAttributes build() {
+		public ShardStoreNode build() {
 			_checkSingleUse();
 
-			return new NodeAttributes(this);
+			return new ShardStoreNode(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeAttributes}
+	 * Json deserializer for {@link ShardStoreNode}
 	 */
-	public static final JsonpDeserializer<NodeAttributes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeAttributes::setupNodeAttributesDeserializer);
+	public static final JsonpDeserializer<ShardStoreNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStoreNode::setupShardStoreNodeDeserializer);
 
-	protected static void setupNodeAttributesDeserializer(ObjectDeserializer<NodeAttributes.Builder> op) {
+	protected static void setupShardStoreNodeDeserializer(ObjectDeserializer<ShardStoreNode.Builder> op) {
 
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");
 		op.add(Builder::ephemeralId, JsonpDeserializer.stringDeserializer(), "ephemeral_id");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
 		op.add(Builder::externalId, JsonpDeserializer.stringDeserializer(), "external_id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 
 	}
 

@@ -52,6 +52,9 @@ import javax.annotation.Nullable;
 public class TransformStats implements JsonpSerializable {
 	private final Checkpointing checkpointing;
 
+	@Nullable
+	private final TransformStatsHealth health;
+
 	private final String id;
 
 	@Nullable
@@ -69,6 +72,7 @@ public class TransformStats implements JsonpSerializable {
 	private TransformStats(Builder builder) {
 
 		this.checkpointing = ApiTypeHelper.requireNonNull(builder.checkpointing, this, "checkpointing");
+		this.health = builder.health;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.node = builder.node;
 		this.reason = builder.reason;
@@ -86,6 +90,14 @@ public class TransformStats implements JsonpSerializable {
 	 */
 	public final Checkpointing checkpointing() {
 		return this.checkpointing;
+	}
+
+	/**
+	 * API name: {@code health}
+	 */
+	@Nullable
+	public final TransformStatsHealth health() {
+		return this.health;
 	}
 
 	/**
@@ -139,6 +151,11 @@ public class TransformStats implements JsonpSerializable {
 		generator.writeKey("checkpointing");
 		this.checkpointing.serialize(generator, mapper);
 
+		if (this.health != null) {
+			generator.writeKey("health");
+			this.health.serialize(generator, mapper);
+
+		}
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -174,6 +191,9 @@ public class TransformStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TransformStats> {
 		private Checkpointing checkpointing;
 
+		@Nullable
+		private TransformStatsHealth health;
+
 		private String id;
 
 		@Nullable
@@ -199,6 +219,21 @@ public class TransformStats implements JsonpSerializable {
 		 */
 		public final Builder checkpointing(Function<Checkpointing.Builder, ObjectBuilder<Checkpointing>> fn) {
 			return this.checkpointing(fn.apply(new Checkpointing.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code health}
+		 */
+		public final Builder health(@Nullable TransformStatsHealth value) {
+			this.health = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code health}
+		 */
+		public final Builder health(Function<TransformStatsHealth.Builder, ObjectBuilder<TransformStatsHealth>> fn) {
+			return this.health(fn.apply(new TransformStatsHealth.Builder()).build());
 		}
 
 		/**
@@ -284,6 +319,7 @@ public class TransformStats implements JsonpSerializable {
 	protected static void setupTransformStatsDeserializer(ObjectDeserializer<TransformStats.Builder> op) {
 
 		op.add(Builder::checkpointing, Checkpointing._DESERIALIZER, "checkpointing");
+		op.add(Builder::health, TransformStatsHealth._DESERIALIZER, "health");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::node, NodeAttributes._DESERIALIZER, "node");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");

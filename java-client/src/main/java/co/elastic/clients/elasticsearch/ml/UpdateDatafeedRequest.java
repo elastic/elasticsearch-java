@@ -98,6 +98,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	private final IndicesOptions indicesOptions;
 
 	@Nullable
+	private final String jobId;
+
+	@Nullable
 	private final Integer maxEmptySearches;
 
 	@Nullable
@@ -128,6 +131,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
+		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
@@ -288,6 +292,14 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * API name: {@code job_id}
+	 */
+	@Nullable
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
 	 * If a real-time datafeed has never seen any data (including during any initial
 	 * training period), it automatically stops and closes the associated job after
 	 * this many real-time searches return no documents. In other words, it stops
@@ -420,6 +432,11 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
+		if (this.jobId != null) {
+			generator.writeKey("job_id");
+			generator.write(this.jobId);
+
+		}
 		if (this.maxEmptySearches != null) {
 			generator.writeKey("max_empty_searches");
 			generator.write(this.maxEmptySearches);
@@ -505,6 +522,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 		@Nullable
 		private IndicesOptions indicesOptions;
+
+		@Nullable
+		private String jobId;
 
 		@Nullable
 		private Integer maxEmptySearches;
@@ -797,6 +817,14 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(@Nullable String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
 		 * If a real-time datafeed has never seen any data (including during any initial
 		 * training period), it automatically stops and closes the associated job after
 		 * this many real-time searches return no documents. In other words, it stops
@@ -1001,6 +1029,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");

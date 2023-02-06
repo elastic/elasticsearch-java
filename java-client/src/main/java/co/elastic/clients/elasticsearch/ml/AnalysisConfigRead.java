@@ -109,9 +109,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * day. If the anomaly detection job uses a datafeed with aggregations, this
 	 * value must also be divisible by the interval of the date histogram
 	 * aggregation.
-	 * <ul>
-	 * <li>@server_default 5m</li>
-	 * </ul>
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -403,9 +400,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * day. If the anomaly detection job uses a datafeed with aggregations, this
 		 * value must also be divisible by the interval of the date histogram
 		 * aggregation.
-		 * <ul>
-		 * <li>@server_default 5m</li>
-		 * </ul>
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -421,9 +415,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * day. If the anomaly detection job uses a datafeed with aggregations, this
 		 * value must also be divisible by the interval of the date histogram
 		 * aggregation.
-		 * <ul>
-		 * <li>@server_default 5m</li>
-		 * </ul>
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */

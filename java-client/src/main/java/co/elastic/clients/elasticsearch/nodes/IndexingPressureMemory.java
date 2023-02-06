@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,6 +50,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class IndexingPressureMemory implements JsonpSerializable {
 	@Nullable
+	private final String limit;
+
+	@Nullable
 	private final Long limitInBytes;
 
 	@Nullable
@@ -61,6 +65,7 @@ public class IndexingPressureMemory implements JsonpSerializable {
 
 	private IndexingPressureMemory(Builder builder) {
 
+		this.limit = builder.limit;
 		this.limitInBytes = builder.limitInBytes;
 		this.current = builder.current;
 		this.total = builder.total;
@@ -69,6 +74,14 @@ public class IndexingPressureMemory implements JsonpSerializable {
 
 	public static IndexingPressureMemory of(Function<Builder, ObjectBuilder<IndexingPressureMemory>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code limit}
+	 */
+	@Nullable
+	public final String limit() {
+		return this.limit;
 	}
 
 	/**
@@ -106,6 +119,11 @@ public class IndexingPressureMemory implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.limit != null) {
+			generator.writeKey("limit");
+			generator.write(this.limit);
+
+		}
 		if (this.limitInBytes != null) {
 			generator.writeKey("limit_in_bytes");
 			generator.write(this.limitInBytes);
@@ -139,6 +157,9 @@ public class IndexingPressureMemory implements JsonpSerializable {
 			implements
 				ObjectBuilder<IndexingPressureMemory> {
 		@Nullable
+		private String limit;
+
+		@Nullable
 		private Long limitInBytes;
 
 		@Nullable
@@ -146,6 +167,14 @@ public class IndexingPressureMemory implements JsonpSerializable {
 
 		@Nullable
 		private PressureMemory total;
+
+		/**
+		 * API name: {@code limit}
+		 */
+		public final Builder limit(@Nullable String value) {
+			this.limit = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code limit_in_bytes}
@@ -214,6 +243,7 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	protected static void setupIndexingPressureMemoryDeserializer(
 			ObjectDeserializer<IndexingPressureMemory.Builder> op) {
 
+		op.add(Builder::limit, JsonpDeserializer.stringDeserializer(), "limit");
 		op.add(Builder::limitInBytes, JsonpDeserializer.longDeserializer(), "limit_in_bytes");
 		op.add(Builder::current, PressureMemory._DESERIALIZER, "current");
 		op.add(Builder::total, PressureMemory._DESERIALIZER, "total");

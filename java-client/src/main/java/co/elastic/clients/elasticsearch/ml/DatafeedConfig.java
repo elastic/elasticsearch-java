@@ -71,8 +71,6 @@ public class DatafeedConfig implements JsonpSerializable {
 	@Nullable
 	private final Time frequency;
 
-	private final List<String> indexes;
-
 	private final List<String> indices;
 
 	@Nullable
@@ -84,6 +82,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	@Nullable
 	private final Integer maxEmptySearches;
 
+	@Nullable
 	private final Query query;
 
 	@Nullable
@@ -105,12 +104,11 @@ public class DatafeedConfig implements JsonpSerializable {
 		this.datafeedId = builder.datafeedId;
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.frequency = builder.frequency;
-		this.indexes = ApiTypeHelper.unmodifiable(builder.indexes);
-		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
@@ -193,15 +191,8 @@ public class DatafeedConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indexes}
-	 */
-	public final List<String> indexes() {
-		return this.indexes;
-	}
-
-	/**
-	 * Required - An array of index names. Wildcards are supported. If any indices
-	 * are in remote clusters, the machine learning nodes must have the
+	 * An array of index names. Wildcards are supported. If any indices are in
+	 * remote clusters, the machine learning nodes must have the
 	 * <code>remote_cluster_client</code> role.
 	 * <p>
 	 * API name: {@code indices}
@@ -245,13 +236,14 @@ public class DatafeedConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The Elasticsearch query domain-specific language (DSL). This value
+	 * The Elasticsearch query domain-specific language (DSL). This value
 	 * corresponds to the query object in an Elasticsearch search POST body. All the
 	 * options that are supported by Elasticsearch can be used, as this object is
 	 * passed verbatim to Elasticsearch.
 	 * <p>
 	 * API name: {@code query}
 	 */
+	@Nullable
 	public final Query query() {
 		return this.query;
 	}
@@ -345,16 +337,6 @@ public class DatafeedConfig implements JsonpSerializable {
 			this.frequency.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.indexes)) {
-			generator.writeKey("indexes");
-			generator.writeStartArray();
-			for (String item0 : this.indexes) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
@@ -380,9 +362,11 @@ public class DatafeedConfig implements JsonpSerializable {
 			generator.write(this.maxEmptySearches);
 
 		}
-		generator.writeKey("query");
-		this.query.serialize(generator, mapper);
+		if (this.query != null) {
+			generator.writeKey("query");
+			this.query.serialize(generator, mapper);
 
+		}
 		if (this.queryDelay != null) {
 			generator.writeKey("query_delay");
 			this.queryDelay.serialize(generator, mapper);
@@ -446,8 +430,6 @@ public class DatafeedConfig implements JsonpSerializable {
 		private Time frequency;
 
 		@Nullable
-		private List<String> indexes;
-
 		private List<String> indices;
 
 		@Nullable
@@ -459,6 +441,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		@Nullable
 		private Integer maxEmptySearches;
 
+		@Nullable
 		private Query query;
 
 		@Nullable
@@ -617,28 +600,8 @@ public class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indexes}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexes</code>.
-		 */
-		public final Builder indexes(List<String> list) {
-			this.indexes = _listAddAll(this.indexes, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code indexes}
-		 * <p>
-		 * Adds one or more values to <code>indexes</code>.
-		 */
-		public final Builder indexes(String value, String... values) {
-			this.indexes = _listAdd(this.indexes, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - An array of index names. Wildcards are supported. If any indices
-		 * are in remote clusters, the machine learning nodes must have the
+		 * An array of index names. Wildcards are supported. If any indices are in
+		 * remote clusters, the machine learning nodes must have the
 		 * <code>remote_cluster_client</code> role.
 		 * <p>
 		 * API name: {@code indices}
@@ -651,8 +614,8 @@ public class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An array of index names. Wildcards are supported. If any indices
-		 * are in remote clusters, the machine learning nodes must have the
+		 * An array of index names. Wildcards are supported. If any indices are in
+		 * remote clusters, the machine learning nodes must have the
 		 * <code>remote_cluster_client</code> role.
 		 * <p>
 		 * API name: {@code indices}
@@ -708,20 +671,20 @@ public class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The Elasticsearch query domain-specific language (DSL). This value
+		 * The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch.
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * Required - The Elasticsearch query domain-specific language (DSL). This value
+		 * The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch.
@@ -884,10 +847,8 @@ public class DatafeedConfig implements JsonpSerializable {
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
-		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"indices");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");

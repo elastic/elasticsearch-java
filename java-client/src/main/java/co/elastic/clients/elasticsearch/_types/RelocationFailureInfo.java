@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,50 +34,38 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
-// typedef: ml.open_job.Response
+// typedef: _types.RelocationFailureInfo
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml.open_job.Response">API
+ * @see <a href="../doc-files/api-spec.html#_types.RelocationFailureInfo">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenJobResponse implements JsonpSerializable {
-	private final boolean opened;
-
-	private final String node;
+public class RelocationFailureInfo implements JsonpSerializable {
+	private final int failedAttempts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenJobResponse(Builder builder) {
+	private RelocationFailureInfo(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.failedAttempts = ApiTypeHelper.requireNonNull(builder.failedAttempts, this, "failedAttempts");
 
 	}
 
-	public static OpenJobResponse of(Function<Builder, ObjectBuilder<OpenJobResponse>> fn) {
+	public static RelocationFailureInfo of(Function<Builder, ObjectBuilder<RelocationFailureInfo>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code opened}
+	 * Required - API name: {@code failed_attempts}
 	 */
-	public final boolean opened() {
-		return this.opened;
-	}
-
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
+	public final int failedAttempts() {
+		return this.failedAttempts;
 	}
 
 	/**
@@ -91,11 +79,8 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("opened");
-		generator.write(this.opened);
-
-		generator.writeKey("node");
-		generator.write(this.node);
+		generator.writeKey("failed_attempts");
+		generator.write(this.failedAttempts);
 
 	}
 
@@ -107,27 +92,19 @@ public class OpenJobResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenJobResponse}.
+	 * Builder for {@link RelocationFailureInfo}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OpenJobResponse> {
-		private Boolean opened;
-
-		private String node;
-
-		/**
-		 * Required - API name: {@code opened}
-		 */
-		public final Builder opened(boolean value) {
-			this.opened = value;
-			return this;
-		}
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RelocationFailureInfo> {
+		private Integer failedAttempts;
 
 		/**
-		 * Required - API name: {@code node}
+		 * Required - API name: {@code failed_attempts}
 		 */
-		public final Builder node(String value) {
-			this.node = value;
+		public final Builder failedAttempts(int value) {
+			this.failedAttempts = value;
 			return this;
 		}
 
@@ -137,30 +114,29 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenJobResponse}.
+		 * Builds a {@link RelocationFailureInfo}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenJobResponse build() {
+		public RelocationFailureInfo build() {
 			_checkSingleUse();
 
-			return new OpenJobResponse(this);
+			return new RelocationFailureInfo(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenJobResponse}
+	 * Json deserializer for {@link RelocationFailureInfo}
 	 */
-	public static final JsonpDeserializer<OpenJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobResponse::setupOpenJobResponseDeserializer);
+	public static final JsonpDeserializer<RelocationFailureInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RelocationFailureInfo::setupRelocationFailureInfoDeserializer);
 
-	protected static void setupOpenJobResponseDeserializer(ObjectDeserializer<OpenJobResponse.Builder> op) {
+	protected static void setupRelocationFailureInfoDeserializer(ObjectDeserializer<RelocationFailureInfo.Builder> op) {
 
-		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::failedAttempts, JsonpDeserializer.integerDeserializer(), "failed_attempts");
 
 	}
 

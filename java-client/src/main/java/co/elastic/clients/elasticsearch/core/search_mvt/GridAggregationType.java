@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch.core.search_mvt;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -30,32 +30,20 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.RuntimeFieldType">API
+ *      "../../doc-files/api-spec.html#_global.search_mvt._types.GridAggregationType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum RuntimeFieldType implements JsonEnum {
-	Boolean("boolean"),
+public enum GridAggregationType implements JsonEnum {
+	Geotile("geotile"),
 
-	Date("date"),
-
-	Double("double"),
-
-	GeoPoint("geo_point"),
-
-	Ip("ip"),
-
-	Keyword("keyword"),
-
-	Long("long"),
-
-	Lookup("lookup"),
+	Geohex("geohex"),
 
 	;
 
 	private final String jsonValue;
 
-	RuntimeFieldType(String jsonValue) {
+	GridAggregationType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -63,6 +51,6 @@ public enum RuntimeFieldType implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			RuntimeFieldType.values());
+	public static final JsonEnum.Deserializer<GridAggregationType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			GridAggregationType.values());
 }

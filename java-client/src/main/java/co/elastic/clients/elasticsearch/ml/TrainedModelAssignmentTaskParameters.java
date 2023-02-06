@@ -58,6 +58,8 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 	private final int numberOfAllocations;
 
+	private final TrainingPriority priority;
+
 	private final int queueCapacity;
 
 	private final int threadsPerAllocation;
@@ -71,6 +73,7 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
 		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
 				"numberOfAllocations");
+		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
 		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity");
 		this.threadsPerAllocation = ApiTypeHelper.requireNonNull(builder.threadsPerAllocation, this,
 				"threadsPerAllocation");
@@ -120,6 +123,13 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code priority}
+	 */
+	public final TrainingPriority priority() {
+		return this.priority;
+	}
+
+	/**
 	 * Required - Number of inference requests are allowed in the queue at a time.
 	 * <p>
 	 * API name: {@code queue_capacity}
@@ -160,6 +170,8 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		generator.writeKey("number_of_allocations");
 		generator.write(this.numberOfAllocations);
 
+		generator.writeKey("priority");
+		this.priority.serialize(generator, mapper);
 		generator.writeKey("queue_capacity");
 		generator.write(this.queueCapacity);
 
@@ -189,6 +201,8 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		private String cacheSize;
 
 		private Integer numberOfAllocations;
+
+		private TrainingPriority priority;
 
 		private Integer queueCapacity;
 
@@ -232,6 +246,14 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		 */
 		public final Builder numberOfAllocations(int value) {
 			this.numberOfAllocations = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code priority}
+		 */
+		public final Builder priority(TrainingPriority value) {
+			this.priority = value;
 			return this;
 		}
 
@@ -289,6 +311,7 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
+		op.add(Builder::priority, TrainingPriority._DESERIALIZER, "priority");
 		op.add(Builder::queueCapacity, JsonpDeserializer.integerDeserializer(), "queue_capacity");
 		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 

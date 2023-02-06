@@ -55,6 +55,9 @@ import javax.annotation.Nullable;
  */
 
 public class ResetJobRequest extends RequestBase {
+	@Nullable
+	private final Boolean deleteUserAnnotations;
+
 	private final String jobId;
 
 	@Nullable
@@ -64,6 +67,7 @@ public class ResetJobRequest extends RequestBase {
 
 	private ResetJobRequest(Builder builder) {
 
+		this.deleteUserAnnotations = builder.deleteUserAnnotations;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.waitForCompletion = builder.waitForCompletion;
 
@@ -71,6 +75,17 @@ public class ResetJobRequest extends RequestBase {
 
 	public static ResetJobRequest of(Function<Builder, ObjectBuilder<ResetJobRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Specifies whether annotations that have been added by the user should be
+	 * deleted along with any auto-generated annotations when the job is reset.
+	 * <p>
+	 * API name: {@code delete_user_annotations}
+	 */
+	@Nullable
+	public final Boolean deleteUserAnnotations() {
+		return this.deleteUserAnnotations;
 	}
 
 	/**
@@ -99,10 +114,24 @@ public class ResetJobRequest extends RequestBase {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<ResetJobRequest> {
+		@Nullable
+		private Boolean deleteUserAnnotations;
+
 		private String jobId;
 
 		@Nullable
 		private Boolean waitForCompletion;
+
+		/**
+		 * Specifies whether annotations that have been added by the user should be
+		 * deleted along with any auto-generated annotations when the job is reset.
+		 * <p>
+		 * API name: {@code delete_user_annotations}
+		 */
+		public final Builder deleteUserAnnotations(@Nullable Boolean value) {
+			this.deleteUserAnnotations = value;
+			return this;
+		}
 
 		/**
 		 * Required - The ID of the job to reset.
@@ -180,6 +209,9 @@ public class ResetJobRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.deleteUserAnnotations != null) {
+					params.put("delete_user_annotations", String.valueOf(request.deleteUserAnnotations));
+				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}

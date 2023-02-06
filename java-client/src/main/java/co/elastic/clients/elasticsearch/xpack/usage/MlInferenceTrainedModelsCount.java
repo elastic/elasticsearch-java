@@ -67,6 +67,9 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	@Nullable
 	private final Long ner;
 
+	@Nullable
+	private final Long textEmbedding;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MlInferenceTrainedModelsCount(Builder builder) {
@@ -78,6 +81,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		this.regression = builder.regression;
 		this.classification = builder.classification;
 		this.ner = builder.ner;
+		this.textEmbedding = builder.textEmbedding;
 
 	}
 
@@ -139,6 +143,14 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code text_embedding}
+	 */
+	@Nullable
+	public final Long textEmbedding() {
+		return this.textEmbedding;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -178,6 +190,11 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 			generator.write(this.ner);
 
 		}
+		if (this.textEmbedding != null) {
+			generator.writeKey("text_embedding");
+			generator.write(this.textEmbedding);
+
+		}
 
 	}
 
@@ -212,6 +229,9 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 		@Nullable
 		private Long ner;
+
+		@Nullable
+		private Long textEmbedding;
 
 		/**
 		 * Required - API name: {@code total}
@@ -269,6 +289,14 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code text_embedding}
+		 */
+		public final Builder textEmbedding(@Nullable Long value) {
+			this.textEmbedding = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -305,6 +333,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		op.add(Builder::regression, JsonpDeserializer.longDeserializer(), "regression");
 		op.add(Builder::classification, JsonpDeserializer.longDeserializer(), "classification");
 		op.add(Builder::ner, JsonpDeserializer.longDeserializer(), "ner");
+		op.add(Builder::textEmbedding, JsonpDeserializer.longDeserializer(), "text_embedding");
 
 	}
 

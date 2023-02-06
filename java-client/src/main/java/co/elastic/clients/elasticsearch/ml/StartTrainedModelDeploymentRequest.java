@@ -64,6 +64,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	private final Integer numberOfAllocations;
 
 	@Nullable
+	private final TrainingPriority priority;
+
+	@Nullable
 	private final Integer queueCapacity;
 
 	@Nullable
@@ -82,6 +85,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		this.cacheSize = builder.cacheSize;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numberOfAllocations = builder.numberOfAllocations;
+		this.priority = builder.priority;
 		this.queueCapacity = builder.queueCapacity;
 		this.threadsPerAllocation = builder.threadsPerAllocation;
 		this.timeout = builder.timeout;
@@ -130,6 +134,16 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	@Nullable
 	public final Integer numberOfAllocations() {
 		return this.numberOfAllocations;
+	}
+
+	/**
+	 * The deployment priority.
+	 * <p>
+	 * API name: {@code priority}
+	 */
+	@Nullable
+	public final TrainingPriority priority() {
+		return this.priority;
 	}
 
 	/**
@@ -197,6 +211,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		private Integer numberOfAllocations;
 
 		@Nullable
+		private TrainingPriority priority;
+
+		@Nullable
 		private Integer queueCapacity;
 
 		@Nullable
@@ -244,6 +261,16 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		 */
 		public final Builder numberOfAllocations(@Nullable Integer value) {
 			this.numberOfAllocations = value;
+			return this;
+		}
+
+		/**
+		 * The deployment priority.
+		 * <p>
+		 * API name: {@code priority}
+		 */
+		public final Builder priority(@Nullable TrainingPriority value) {
+			this.priority = value;
 			return this;
 		}
 
@@ -371,6 +398,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 				}
 				if (request.numberOfAllocations != null) {
 					params.put("number_of_allocations", String.valueOf(request.numberOfAllocations));
+				}
+				if (request.priority != null) {
+					params.put("priority", request.priority.jsonValue());
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

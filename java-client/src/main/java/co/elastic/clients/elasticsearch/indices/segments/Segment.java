@@ -63,8 +63,6 @@ public class Segment implements JsonpSerializable {
 
 	private final int generation;
 
-	private final double memoryInBytes;
-
 	private final boolean search;
 
 	private final double sizeInBytes;
@@ -82,7 +80,6 @@ public class Segment implements JsonpSerializable {
 		this.compound = ApiTypeHelper.requireNonNull(builder.compound, this, "compound");
 		this.deletedDocs = ApiTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs");
 		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
-		this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
 		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
 		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
@@ -127,13 +124,6 @@ public class Segment implements JsonpSerializable {
 	 */
 	public final int generation() {
 		return this.generation;
-	}
-
-	/**
-	 * Required - API name: {@code memory_in_bytes}
-	 */
-	public final double memoryInBytes() {
-		return this.memoryInBytes;
 	}
 
 	/**
@@ -198,9 +188,6 @@ public class Segment implements JsonpSerializable {
 		generator.writeKey("generation");
 		generator.write(this.generation);
 
-		generator.writeKey("memory_in_bytes");
-		generator.write(this.memoryInBytes);
-
 		generator.writeKey("search");
 		generator.write(this.search);
 
@@ -236,8 +223,6 @@ public class Segment implements JsonpSerializable {
 		private Long deletedDocs;
 
 		private Integer generation;
-
-		private Double memoryInBytes;
 
 		private Boolean search;
 
@@ -296,14 +281,6 @@ public class Segment implements JsonpSerializable {
 		 */
 		public final Builder generation(int value) {
 			this.generation = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code memory_in_bytes}
-		 */
-		public final Builder memoryInBytes(double value) {
-			this.memoryInBytes = value;
 			return this;
 		}
 
@@ -373,7 +350,6 @@ public class Segment implements JsonpSerializable {
 		op.add(Builder::compound, JsonpDeserializer.booleanDeserializer(), "compound");
 		op.add(Builder::deletedDocs, JsonpDeserializer.longDeserializer(), "deleted_docs");
 		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
-		op.add(Builder::memoryInBytes, JsonpDeserializer.doubleDeserializer(), "memory_in_bytes");
 		op.add(Builder::search, JsonpDeserializer.booleanDeserializer(), "search");
 		op.add(Builder::sizeInBytes, JsonpDeserializer.doubleDeserializer(), "size_in_bytes");
 		op.add(Builder::numDocs, JsonpDeserializer.longDeserializer(), "num_docs");

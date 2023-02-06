@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class AnalysisConfig implements JsonpSerializable {
+	@Nullable
 	private final Time bucketSpan;
 
 	@Nullable
@@ -84,7 +85,7 @@ public class AnalysisConfig implements JsonpSerializable {
 
 	private AnalysisConfig(Builder builder) {
 
-		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.bucketSpan = builder.bucketSpan;
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
 		this.categorizationFilters = ApiTypeHelper.unmodifiable(builder.categorizationFilters);
@@ -103,18 +104,15 @@ public class AnalysisConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The size of the interval that the analysis is aggregated into,
-	 * typically between <code>5m</code> and <code>1h</code>. This value should be
-	 * either a whole number of days or equate to a whole number of buckets in one
-	 * day. If the anomaly detection job uses a datafeed with aggregations, this
-	 * value must also be divisible by the interval of the date histogram
-	 * aggregation.
-	 * <ul>
-	 * <li>@server_default 5m</li>
-	 * </ul>
+	 * The size of the interval that the analysis is aggregated into, typically
+	 * between <code>5m</code> and <code>1h</code>. This value should be either a
+	 * whole number of days or equate to a whole number of buckets in one day. If
+	 * the anomaly detection job uses a datafeed with aggregations, this value must
+	 * also be divisible by the interval of the date histogram aggregation.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
+	@Nullable
 	public final Time bucketSpan() {
 		return this.bucketSpan;
 	}
@@ -281,9 +279,11 @@ public class AnalysisConfig implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("bucket_span");
-		this.bucketSpan.serialize(generator, mapper);
+		if (this.bucketSpan != null) {
+			generator.writeKey("bucket_span");
+			this.bucketSpan.serialize(generator, mapper);
 
+		}
 		if (this.categorizationAnalyzer != null) {
 			generator.writeKey("categorization_analyzer");
 			this.categorizationAnalyzer.serialize(generator, mapper);
@@ -364,6 +364,7 @@ public class AnalysisConfig implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AnalysisConfig> {
+		@Nullable
 		private Time bucketSpan;
 
 		@Nullable
@@ -396,33 +397,25 @@ public class AnalysisConfig implements JsonpSerializable {
 		private String summaryCountFieldName;
 
 		/**
-		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>. This value should be
-		 * either a whole number of days or equate to a whole number of buckets in one
-		 * day. If the anomaly detection job uses a datafeed with aggregations, this
-		 * value must also be divisible by the interval of the date histogram
-		 * aggregation.
-		 * <ul>
-		 * <li>@server_default 5m</li>
-		 * </ul>
+		 * The size of the interval that the analysis is aggregated into, typically
+		 * between <code>5m</code> and <code>1h</code>. This value should be either a
+		 * whole number of days or equate to a whole number of buckets in one day. If
+		 * the anomaly detection job uses a datafeed with aggregations, this value must
+		 * also be divisible by the interval of the date histogram aggregation.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Time value) {
+		public final Builder bucketSpan(@Nullable Time value) {
 			this.bucketSpan = value;
 			return this;
 		}
 
 		/**
-		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>. This value should be
-		 * either a whole number of days or equate to a whole number of buckets in one
-		 * day. If the anomaly detection job uses a datafeed with aggregations, this
-		 * value must also be divisible by the interval of the date histogram
-		 * aggregation.
-		 * <ul>
-		 * <li>@server_default 5m</li>
-		 * </ul>
+		 * The size of the interval that the analysis is aggregated into, typically
+		 * between <code>5m</code> and <code>1h</code>. This value should be either a
+		 * whole number of days or equate to a whole number of buckets in one day. If
+		 * the anomaly detection job uses a datafeed with aggregations, this value must
+		 * also be divisible by the interval of the date histogram aggregation.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */

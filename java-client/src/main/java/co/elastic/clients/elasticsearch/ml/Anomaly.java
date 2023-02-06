@@ -55,6 +55,9 @@ import javax.annotation.Nullable;
 public class Anomaly implements JsonpSerializable {
 	private final List<Double> actual;
 
+	@Nullable
+	private final AnomalyExplanation anomalyScoreExplanation;
+
 	private final long bucketSpan;
 
 	@Nullable
@@ -75,6 +78,9 @@ public class Anomaly implements JsonpSerializable {
 
 	@Nullable
 	private final String functionDescription;
+
+	@Nullable
+	private final GeoResults geoResults;
 
 	private final List<Influence> influencers;
 
@@ -111,6 +117,7 @@ public class Anomaly implements JsonpSerializable {
 	private Anomaly(Builder builder) {
 
 		this.actual = ApiTypeHelper.unmodifiable(builder.actual);
+		this.anomalyScoreExplanation = builder.anomalyScoreExplanation;
 		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
 		this.byFieldName = builder.byFieldName;
 		this.byFieldValue = builder.byFieldValue;
@@ -119,6 +126,7 @@ public class Anomaly implements JsonpSerializable {
 		this.fieldName = builder.fieldName;
 		this.function = builder.function;
 		this.functionDescription = builder.functionDescription;
+		this.geoResults = builder.geoResults;
 		this.influencers = ApiTypeHelper.unmodifiable(builder.influencers);
 		this.initialRecordScore = ApiTypeHelper.requireNonNull(builder.initialRecordScore, this, "initialRecordScore");
 		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
@@ -140,6 +148,8 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The actual value for the bucket.
+	 * <p>
 	 * API name: {@code actual}
 	 */
 	public final List<Double> actual() {
@@ -147,13 +157,30 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code bucket_span}
+	 * Information about the factors impacting the initial anomaly score.
+	 * <p>
+	 * API name: {@code anomaly_score_explanation}
+	 */
+	@Nullable
+	public final AnomalyExplanation anomalyScoreExplanation() {
+		return this.anomalyScoreExplanation;
+	}
+
+	/**
+	 * Required - The length of the bucket in seconds. This value matches the
+	 * <code>bucket_span</code> that is specified in the job.
+	 * <p>
+	 * API name: {@code bucket_span}
 	 */
 	public final long bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
+	 * The field used to split the data. In particular, this property is used for
+	 * analyzing the splits with respect to their own history. It is used for
+	 * finding unusual values in the context of the split.
+	 * <p>
 	 * API name: {@code by_field_name}
 	 */
 	@Nullable
@@ -162,6 +189,8 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The value of <code>by_field_name</code>.
+	 * <p>
 	 * API name: {@code by_field_value}
 	 */
 	@Nullable
@@ -170,6 +199,20 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * For population analysis, an over field must be specified in the detector.
+	 * This property contains an array of anomaly records that are the causes for
+	 * the anomaly that has been identified for the over field. This sub-resource
+	 * contains the most anomalous records for the <code>over_field_name</code>. For
+	 * scalability reasons, a maximum of the 10 most significant causes of the
+	 * anomaly are returned. As part of the core analytical modeling, these
+	 * low-level anomaly records are aggregated for their parent over field record.
+	 * The <code>causes</code> resource contains similar elements to the record
+	 * resource, namely <code>actual</code>, <code>typical</code>,
+	 * <code>geo_results.actual_point</code>,
+	 * <code>geo_results.typical_point</code>, <code>*_field_name</code> and
+	 * <code>*_field_value</code>. Probability and scores are not applicable to
+	 * causes.
+	 * <p>
 	 * API name: {@code causes}
 	 */
 	public final List<AnomalyCause> causes() {
@@ -177,13 +220,19 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code detector_index}
+	 * Required - A unique identifier for the detector.
+	 * <p>
+	 * API name: {@code detector_index}
 	 */
 	public final int detectorIndex() {
 		return this.detectorIndex;
 	}
 
 	/**
+	 * Certain functions require a field to operate on, for example,
+	 * <code>sum()</code>. For those functions, this value is the name of the field
+	 * to be analyzed.
+	 * <p>
 	 * API name: {@code field_name}
 	 */
 	@Nullable
@@ -192,6 +241,9 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The function in which the anomaly occurs, as specified in the detector
+	 * configuration. For example, <code>max</code>.
+	 * <p>
 	 * API name: {@code function}
 	 */
 	@Nullable
@@ -200,6 +252,9 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The description of the function in which the anomaly occurs, as specified in
+	 * the detector configuration.
+	 * <p>
 	 * API name: {@code function_description}
 	 */
 	@Nullable
@@ -208,6 +263,21 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * If the detector function is <code>lat_long</code>, this object contains comma
+	 * delimited strings for the latitude and longitude of the actual and typical
+	 * values.
+	 * <p>
+	 * API name: {@code geo_results}
+	 */
+	@Nullable
+	public final GeoResults geoResults() {
+		return this.geoResults;
+	}
+
+	/**
+	 * If influencers were specified in the detector configuration, this array
+	 * contains influencers that contributed to or were to blame for an anomaly.
+	 * <p>
 	 * API name: {@code influencers}
 	 */
 	public final List<Influence> influencers() {
@@ -215,27 +285,40 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code initial_record_score}
+	 * Required - A normalized score between 0-100, which is based on the
+	 * probability of the anomalousness of this record. This is the initial value
+	 * that was calculated at the time the bucket was processed.
+	 * <p>
+	 * API name: {@code initial_record_score}
 	 */
 	public final double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
 	/**
-	 * Required - API name: {@code is_interim}
+	 * Required - If true, this is an interim result. In other words, the results
+	 * are calculated based on partial input data.
+	 * <p>
+	 * API name: {@code is_interim}
 	 */
 	public final boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
-	 * Required - API name: {@code job_id}
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
 	 */
 	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
+	 * The field used to split the data. In particular, this property is used for
+	 * analyzing the splits with respect to the history of all splits. It is used
+	 * for finding unusual values in the population of all splits.
+	 * <p>
 	 * API name: {@code over_field_name}
 	 */
 	@Nullable
@@ -244,6 +327,8 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The value of <code>over_field_name</code>.
+	 * <p>
 	 * API name: {@code over_field_value}
 	 */
 	@Nullable
@@ -252,6 +337,9 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The field used to segment the analysis. When you use this property, you have
+	 * completely independent baselines for each value of this field.
+	 * <p>
 	 * API name: {@code partition_field_name}
 	 */
 	@Nullable
@@ -260,6 +348,8 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
+	 * The value of <code>partition_field_name</code>.
+	 * <p>
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
@@ -268,34 +358,51 @@ public class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code probability}
+	 * Required - The probability of the individual anomaly occurring, in the range
+	 * 0 to 1. For example, <code>0.0000772031</code>. This value can be held to a
+	 * high precision of over 300 decimal places, so the <code>record_score</code>
+	 * is provided as a human-readable and friendly interpretation of this.
+	 * <p>
+	 * API name: {@code probability}
 	 */
 	public final double probability() {
 		return this.probability;
 	}
 
 	/**
-	 * Required - API name: {@code record_score}
+	 * Required - A normalized score between 0-100, which is based on the
+	 * probability of the anomalousness of this record. Unlike
+	 * <code>initial_record_score</code>, this value will be updated by a
+	 * re-normalization process as new data is analyzed.
+	 * <p>
+	 * API name: {@code record_score}
 	 */
 	public final double recordScore() {
 		return this.recordScore;
 	}
 
 	/**
-	 * Required - API name: {@code result_type}
+	 * Required - Internal. This is always set to <code>record</code>.
+	 * <p>
+	 * API name: {@code result_type}
 	 */
 	public final String resultType() {
 		return this.resultType;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * Required - The start time of the bucket for which these results were
+	 * calculated.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
 	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
+	 * The typical value for the bucket, according to analytical modeling.
+	 * <p>
 	 * API name: {@code typical}
 	 */
 	public final List<Double> typical() {
@@ -321,6 +428,11 @@ public class Anomaly implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.anomalyScoreExplanation != null) {
+			generator.writeKey("anomaly_score_explanation");
+			this.anomalyScoreExplanation.serialize(generator, mapper);
 
 		}
 		generator.writeKey("bucket_span");
@@ -362,6 +474,11 @@ public class Anomaly implements JsonpSerializable {
 		if (this.functionDescription != null) {
 			generator.writeKey("function_description");
 			generator.write(this.functionDescription);
+
+		}
+		if (this.geoResults != null) {
+			generator.writeKey("geo_results");
+			this.geoResults.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.influencers)) {
@@ -443,6 +560,9 @@ public class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<Double> actual;
 
+		@Nullable
+		private AnomalyExplanation anomalyScoreExplanation;
+
 		private Long bucketSpan;
 
 		@Nullable
@@ -464,6 +584,9 @@ public class Anomaly implements JsonpSerializable {
 
 		@Nullable
 		private String functionDescription;
+
+		@Nullable
+		private GeoResults geoResults;
 
 		@Nullable
 		private List<Influence> influencers;
@@ -498,6 +621,8 @@ public class Anomaly implements JsonpSerializable {
 		private List<Double> typical;
 
 		/**
+		 * The actual value for the bucket.
+		 * <p>
 		 * API name: {@code actual}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actual</code>.
@@ -508,6 +633,8 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The actual value for the bucket.
+		 * <p>
 		 * API name: {@code actual}
 		 * <p>
 		 * Adds one or more values to <code>actual</code>.
@@ -518,7 +645,30 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code bucket_span}
+		 * Information about the factors impacting the initial anomaly score.
+		 * <p>
+		 * API name: {@code anomaly_score_explanation}
+		 */
+		public final Builder anomalyScoreExplanation(@Nullable AnomalyExplanation value) {
+			this.anomalyScoreExplanation = value;
+			return this;
+		}
+
+		/**
+		 * Information about the factors impacting the initial anomaly score.
+		 * <p>
+		 * API name: {@code anomaly_score_explanation}
+		 */
+		public final Builder anomalyScoreExplanation(
+				Function<AnomalyExplanation.Builder, ObjectBuilder<AnomalyExplanation>> fn) {
+			return this.anomalyScoreExplanation(fn.apply(new AnomalyExplanation.Builder()).build());
+		}
+
+		/**
+		 * Required - The length of the bucket in seconds. This value matches the
+		 * <code>bucket_span</code> that is specified in the job.
+		 * <p>
+		 * API name: {@code bucket_span}
 		 */
 		public final Builder bucketSpan(long value) {
 			this.bucketSpan = value;
@@ -526,6 +676,10 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The field used to split the data. In particular, this property is used for
+		 * analyzing the splits with respect to their own history. It is used for
+		 * finding unusual values in the context of the split.
+		 * <p>
 		 * API name: {@code by_field_name}
 		 */
 		public final Builder byFieldName(@Nullable String value) {
@@ -534,6 +688,8 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The value of <code>by_field_name</code>.
+		 * <p>
 		 * API name: {@code by_field_value}
 		 */
 		public final Builder byFieldValue(@Nullable String value) {
@@ -542,6 +698,20 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * For population analysis, an over field must be specified in the detector.
+		 * This property contains an array of anomaly records that are the causes for
+		 * the anomaly that has been identified for the over field. This sub-resource
+		 * contains the most anomalous records for the <code>over_field_name</code>. For
+		 * scalability reasons, a maximum of the 10 most significant causes of the
+		 * anomaly are returned. As part of the core analytical modeling, these
+		 * low-level anomaly records are aggregated for their parent over field record.
+		 * The <code>causes</code> resource contains similar elements to the record
+		 * resource, namely <code>actual</code>, <code>typical</code>,
+		 * <code>geo_results.actual_point</code>,
+		 * <code>geo_results.typical_point</code>, <code>*_field_name</code> and
+		 * <code>*_field_value</code>. Probability and scores are not applicable to
+		 * causes.
+		 * <p>
 		 * API name: {@code causes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>causes</code>.
@@ -552,6 +722,20 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * For population analysis, an over field must be specified in the detector.
+		 * This property contains an array of anomaly records that are the causes for
+		 * the anomaly that has been identified for the over field. This sub-resource
+		 * contains the most anomalous records for the <code>over_field_name</code>. For
+		 * scalability reasons, a maximum of the 10 most significant causes of the
+		 * anomaly are returned. As part of the core analytical modeling, these
+		 * low-level anomaly records are aggregated for their parent over field record.
+		 * The <code>causes</code> resource contains similar elements to the record
+		 * resource, namely <code>actual</code>, <code>typical</code>,
+		 * <code>geo_results.actual_point</code>,
+		 * <code>geo_results.typical_point</code>, <code>*_field_name</code> and
+		 * <code>*_field_value</code>. Probability and scores are not applicable to
+		 * causes.
+		 * <p>
 		 * API name: {@code causes}
 		 * <p>
 		 * Adds one or more values to <code>causes</code>.
@@ -562,6 +746,20 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * For population analysis, an over field must be specified in the detector.
+		 * This property contains an array of anomaly records that are the causes for
+		 * the anomaly that has been identified for the over field. This sub-resource
+		 * contains the most anomalous records for the <code>over_field_name</code>. For
+		 * scalability reasons, a maximum of the 10 most significant causes of the
+		 * anomaly are returned. As part of the core analytical modeling, these
+		 * low-level anomaly records are aggregated for their parent over field record.
+		 * The <code>causes</code> resource contains similar elements to the record
+		 * resource, namely <code>actual</code>, <code>typical</code>,
+		 * <code>geo_results.actual_point</code>,
+		 * <code>geo_results.typical_point</code>, <code>*_field_name</code> and
+		 * <code>*_field_value</code>. Probability and scores are not applicable to
+		 * causes.
+		 * <p>
 		 * API name: {@code causes}
 		 * <p>
 		 * Adds a value to <code>causes</code> using a builder lambda.
@@ -571,7 +769,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code detector_index}
+		 * Required - A unique identifier for the detector.
+		 * <p>
+		 * API name: {@code detector_index}
 		 */
 		public final Builder detectorIndex(int value) {
 			this.detectorIndex = value;
@@ -579,6 +779,10 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * Certain functions require a field to operate on, for example,
+		 * <code>sum()</code>. For those functions, this value is the name of the field
+		 * to be analyzed.
+		 * <p>
 		 * API name: {@code field_name}
 		 */
 		public final Builder fieldName(@Nullable String value) {
@@ -587,6 +791,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The function in which the anomaly occurs, as specified in the detector
+		 * configuration. For example, <code>max</code>.
+		 * <p>
 		 * API name: {@code function}
 		 */
 		public final Builder function(@Nullable String value) {
@@ -595,6 +802,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The description of the function in which the anomaly occurs, as specified in
+		 * the detector configuration.
+		 * <p>
 		 * API name: {@code function_description}
 		 */
 		public final Builder functionDescription(@Nullable String value) {
@@ -603,6 +813,32 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * If the detector function is <code>lat_long</code>, this object contains comma
+		 * delimited strings for the latitude and longitude of the actual and typical
+		 * values.
+		 * <p>
+		 * API name: {@code geo_results}
+		 */
+		public final Builder geoResults(@Nullable GeoResults value) {
+			this.geoResults = value;
+			return this;
+		}
+
+		/**
+		 * If the detector function is <code>lat_long</code>, this object contains comma
+		 * delimited strings for the latitude and longitude of the actual and typical
+		 * values.
+		 * <p>
+		 * API name: {@code geo_results}
+		 */
+		public final Builder geoResults(Function<GeoResults.Builder, ObjectBuilder<GeoResults>> fn) {
+			return this.geoResults(fn.apply(new GeoResults.Builder()).build());
+		}
+
+		/**
+		 * If influencers were specified in the detector configuration, this array
+		 * contains influencers that contributed to or were to blame for an anomaly.
+		 * <p>
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencers</code>.
@@ -613,6 +849,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * If influencers were specified in the detector configuration, this array
+		 * contains influencers that contributed to or were to blame for an anomaly.
+		 * <p>
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds one or more values to <code>influencers</code>.
@@ -623,6 +862,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * If influencers were specified in the detector configuration, this array
+		 * contains influencers that contributed to or were to blame for an anomaly.
+		 * <p>
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds a value to <code>influencers</code> using a builder lambda.
@@ -632,7 +874,11 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code initial_record_score}
+		 * Required - A normalized score between 0-100, which is based on the
+		 * probability of the anomalousness of this record. This is the initial value
+		 * that was calculated at the time the bucket was processed.
+		 * <p>
+		 * API name: {@code initial_record_score}
 		 */
 		public final Builder initialRecordScore(double value) {
 			this.initialRecordScore = value;
@@ -640,7 +886,10 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code is_interim}
+		 * Required - If true, this is an interim result. In other words, the results
+		 * are calculated based on partial input data.
+		 * <p>
+		 * API name: {@code is_interim}
 		 */
 		public final Builder isInterim(boolean value) {
 			this.isInterim = value;
@@ -648,7 +897,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_id}
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
 		 */
 		public final Builder jobId(String value) {
 			this.jobId = value;
@@ -656,6 +907,10 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The field used to split the data. In particular, this property is used for
+		 * analyzing the splits with respect to the history of all splits. It is used
+		 * for finding unusual values in the population of all splits.
+		 * <p>
 		 * API name: {@code over_field_name}
 		 */
 		public final Builder overFieldName(@Nullable String value) {
@@ -664,6 +919,8 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The value of <code>over_field_name</code>.
+		 * <p>
 		 * API name: {@code over_field_value}
 		 */
 		public final Builder overFieldValue(@Nullable String value) {
@@ -672,6 +929,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The field used to segment the analysis. When you use this property, you have
+		 * completely independent baselines for each value of this field.
+		 * <p>
 		 * API name: {@code partition_field_name}
 		 */
 		public final Builder partitionFieldName(@Nullable String value) {
@@ -680,6 +940,8 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The value of <code>partition_field_name</code>.
+		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
 		public final Builder partitionFieldValue(@Nullable String value) {
@@ -688,7 +950,12 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code probability}
+		 * Required - The probability of the individual anomaly occurring, in the range
+		 * 0 to 1. For example, <code>0.0000772031</code>. This value can be held to a
+		 * high precision of over 300 decimal places, so the <code>record_score</code>
+		 * is provided as a human-readable and friendly interpretation of this.
+		 * <p>
+		 * API name: {@code probability}
 		 */
 		public final Builder probability(double value) {
 			this.probability = value;
@@ -696,7 +963,12 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code record_score}
+		 * Required - A normalized score between 0-100, which is based on the
+		 * probability of the anomalousness of this record. Unlike
+		 * <code>initial_record_score</code>, this value will be updated by a
+		 * re-normalization process as new data is analyzed.
+		 * <p>
+		 * API name: {@code record_score}
 		 */
 		public final Builder recordScore(double value) {
 			this.recordScore = value;
@@ -704,7 +976,9 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code result_type}
+		 * Required - Internal. This is always set to <code>record</code>.
+		 * <p>
+		 * API name: {@code result_type}
 		 */
 		public final Builder resultType(String value) {
 			this.resultType = value;
@@ -712,7 +986,10 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * Required - The start time of the bucket for which these results were
+		 * calculated.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
 		public final Builder timestamp(long value) {
 			this.timestamp = value;
@@ -720,6 +997,8 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The typical value for the bucket, according to analytical modeling.
+		 * <p>
 		 * API name: {@code typical}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typical</code>.
@@ -730,6 +1009,8 @@ public class Anomaly implements JsonpSerializable {
 		}
 
 		/**
+		 * The typical value for the bucket, according to analytical modeling.
+		 * <p>
 		 * API name: {@code typical}
 		 * <p>
 		 * Adds one or more values to <code>typical</code>.
@@ -768,6 +1049,7 @@ public class Anomaly implements JsonpSerializable {
 	protected static void setupAnomalyDeserializer(ObjectDeserializer<Anomaly.Builder> op) {
 
 		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
+		op.add(Builder::anomalyScoreExplanation, AnomalyExplanation._DESERIALIZER, "anomaly_score_explanation");
 		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
@@ -776,6 +1058,7 @@ public class Anomaly implements JsonpSerializable {
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
+		op.add(Builder::geoResults, GeoResults._DESERIALIZER, "geo_results");
 		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence._DESERIALIZER), "influencers");
 		op.add(Builder::initialRecordScore, JsonpDeserializer.doubleDeserializer(), "initial_record_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
