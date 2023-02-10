@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * <code>OR|AND|PREFIX</code>
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.7/query-dsl-simple-query-string-query.html#supported-flags">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.8/query-dsl-simple-query-string-query.html#supported-flags">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_types.query_dsl.SimpleQueryStringFlags">API

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * polygons.
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.7/shape.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.8/shape.html">Documentation
  *      on elastic.co</a>
  * @see <a href="../../doc-files/api-spec.html#_types.mapping.ShapeProperty">API
  *      specification</a>

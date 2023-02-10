@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  * Discounted cumulative gain (DCG)
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.7/search-rank-eval.html#_discounted_cumulative_gain_dcg">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.8/search-rank-eval.html#_discounted_cumulative_gain_dcg">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricDiscountedCumulativeGain">API

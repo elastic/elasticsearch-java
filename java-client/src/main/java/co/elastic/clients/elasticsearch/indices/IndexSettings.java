@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.7/index-modules.html#index-modules-settings">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.8/index-modules.html#index-modules-settings">Documentation
  *      on elastic.co</a>
  * @see <a href="../doc-files/api-spec.html#indices._types.IndexSettings">API
  *      specification</a>
