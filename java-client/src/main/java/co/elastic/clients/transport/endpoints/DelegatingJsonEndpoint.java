@@ -58,9 +58,10 @@ public class DelegatingJsonEndpoint<Req, Res, Err> implements JsonEndpoint<Req, 
         return endpoint.headers(request);
     }
 
+    @Nullable
     @Override
-    public boolean hasRequestBody() {
-        return endpoint.hasRequestBody();
+    public Object body(Req request) {
+        return endpoint.body(request);
     }
 
     @Override
