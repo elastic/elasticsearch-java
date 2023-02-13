@@ -70,7 +70,23 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     return Collections.emptyMap();
   }
 
-  boolean hasRequestBody();
+  /**
+   * Get the body for a request. The caller must handle several cases depending on the interface implemented by the result:
+   * <li>
+   *     {@code null} means the request has no body.
+   * </li>
+   * <li>
+   *     {@link co.elastic.clients.json.NdJsonpSerializable} must be serialized as nd-json.
+   * </li>
+   * <li>
+   *     {@link co.elastic.clients.util.BinaryData} must be serialized as is.
+   * </li>
+   * <li>
+   *     All other objects must be serialized as JSON using a {@link co.elastic.clients.json.JsonpMapper}
+   * </li>
+   */
+  @Nullable
+  Object body(RequestT request);
 
   /**
    * Is this status code to be considered as an error?
@@ -90,7 +106,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
           this::requestUrl,
           this::queryParameters,
           this::headers,
-          this.hasRequestBody(),
+          this::body,
           null
       );
   }
