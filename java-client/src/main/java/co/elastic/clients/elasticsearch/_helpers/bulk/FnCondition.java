@@ -81,6 +81,11 @@ class FnCondition {
                 }
                 condition.awaitUninterruptibly();
             }
+
+            if (canRun != null && !canRun.getAsBoolean()) {
+                return null;
+            }
+
             return fn.get();
         } finally {
             lock.unlock();
