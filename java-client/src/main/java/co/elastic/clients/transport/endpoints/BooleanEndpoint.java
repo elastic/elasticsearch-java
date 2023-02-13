@@ -34,7 +34,7 @@ public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanRes
         boolean hasRequestBody,
         Object ignored // same number of arguments as SimpleEndpoint
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody);
+        super(id, method, requestUrl, queryParameters, headers, hasRequestBody ? returnSelf() : returnNull());
     }
 
     @Override
