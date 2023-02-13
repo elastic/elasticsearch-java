@@ -24,23 +24,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.JsonEndpoint;
 import org.apache.http.client.utils.URLEncodedUtils;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 
 public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, ResponseT>
     implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
-
-    private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
-
-    /**
-     * Returns a function that always returns an empty String to String map. Useful to avoid creating lots of
-     * duplicate lambdas in endpoints that don't have headers or parameters.
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> Function<T, Map<String, String>> emptyMap() {
-        return (Function<T, Map<String, String>>) EMPTY_MAP;
-    }
 
     private final JsonpDeserializer<ResponseT> responseParser;
 
@@ -50,11 +38,31 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         Function<RequestT, String> requestUrl,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
-        boolean hasRequestBody,
+        Function<RequestT, Object> body,
         JsonpDeserializer<ResponseT> responseParser
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody);
+        super(id, method, requestUrl, queryParameters, headers, body);
         this.responseParser = responseParser;
+    }
+
+    public SimpleEndpoint(
+        String id,
+        Function<RequestT, String> method,
+        Function<RequestT, String> requestUrl,
+        Function<RequestT, Map<String, String>> queryParameters,
+        Function<RequestT, Map<String, String>> headers,
+        boolean hasResponseBody,
+        JsonpDeserializer<ResponseT> responseParser
+    ) {
+        this(
+            id,
+            method,
+            requestUrl,
+            queryParameters,
+            headers,
+            hasResponseBody ? returnSelf() : returnNull(),
+            responseParser
+        );
     }
 
     @Override
@@ -76,7 +84,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             requestUrl,
             queryParameters,
             headers,
-            hasRequestBody,
+            body,
             newResponseParser
         );
     }

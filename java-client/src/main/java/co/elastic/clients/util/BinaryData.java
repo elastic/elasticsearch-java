@@ -19,17 +19,27 @@
 
 package co.elastic.clients.util;
 
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
 /**
- * Binary data representing a serialized value.
+ * Binary data with an associated content type.
  */
+@JsonpDeserializable
 public interface BinaryData {
+
+    /**
+     * The content type.
+     */
+    String contentType();
 
     /**
      * Write this data to an output stream.
@@ -52,6 +62,9 @@ public interface BinaryData {
     /**
      * Create a {@code BinaryData} from a value and a JSON mapper. The binary content is the result of serializing
      * {@code value} with {@code mapper}. Returns {@code null} if {@code value} is null.
+     * <p>
+     * Note that the result's content-type can be different from {@code "application/json"} if the JSON mapper is setup to
+     * produce other representations such as CBOR or SMILE.
      */
     static BinaryData of(Object value, JsonpMapper mapper) {
         if (value == null) {
@@ -67,42 +80,23 @@ public interface BinaryData {
         mapper.serialize(value, generator);
         generator.close();
 
-        return new ByteArrayBinaryData(out.array(), 0, out.size());
+        return new ByteArrayBinaryData(out.array(), 0, out.size(), ContentType.APPLICATION_JSON);
     }
 
-    static BinaryData of(byte[] bytes) {
-        return new ByteArrayBinaryData(bytes, 0, bytes.length);
+    static BinaryData of(byte[] bytes, String contentType) {
+        return new ByteArrayBinaryData(bytes, 0, bytes.length, contentType);
     }
 
-    static BinaryData of(byte[] value, int offset, int length) {
-        return new ByteArrayBinaryData(value, offset, length);
+    static BinaryData of(byte[] value, int offset, int length, String contentType) {
+        return new ByteArrayBinaryData(value, offset, length, contentType);
     }
 
-    class ByteArrayBinaryData implements BinaryData {
-
-        private final byte[] bytes;
-        private final int offset;
-        private final int length;
-
-        ByteArrayBinaryData(byte[] bytes, int offset, int length) {
-            this.bytes = bytes;
-            this.offset = offset;
-            this.length = length;
-        }
-
+    JsonpDeserializer<BinaryData> _DESERIALIZER = new JsonpDeserializerBase<BinaryData>(
+        ByteArrayBinaryData._DESERIALIZER.acceptedEvents()
+    ) {
         @Override
-        public void writeTo(OutputStream out) throws IOException {
-            out.write(bytes, offset, length);
+        public BinaryData deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            return ByteArrayBinaryData._DESERIALIZER.deserialize(parser, mapper, event);
         }
-
-        @Override
-        public long size() {
-            return length;
-        }
-
-        @Override
-        public ByteBuffer asByteBuffer() {
-            return ByteBuffer.wrap(bytes, offset, length);
-        }
-    }
+    };
 }

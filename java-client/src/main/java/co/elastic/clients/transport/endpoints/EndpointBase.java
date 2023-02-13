@@ -24,6 +24,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import org.apache.http.client.utils.URLEncodedUtils;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
@@ -31,6 +32,8 @@ import java.util.function.Function;
 public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ErrorResponse> {
 
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
+    private static final Function<?, Object> RETURN_NULL = x -> null;
+    private static final Function<?, ?> RETURN_SELF = x -> x;
 
     /**
      * Returns a function that always returns an empty String to String map. Useful to avoid creating lots of
@@ -41,12 +44,29 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         return (Function<T, Map<String, String>>) EMPTY_MAP;
     }
 
+    /**
+     * Returns a function that always returns {@code null}.
+     */
+    @SuppressWarnings("unchecked")
+    static <T, U> Function<T, U> returnNull() {
+        return (Function<T, U>) RETURN_NULL;
+    }
+
+    /**
+     * Returns a function that always returns its parameter. It's similar to {@code Function.identity()} with the difference
+     * that the input and output generic parameters are different, making it suitable for use in a wider range of use cases.
+     */
+    @SuppressWarnings("unchecked")
+    static <T, U> Function<T, U> returnSelf() {
+        return (Function<T, U>) RETURN_SELF;
+    }
+
     protected final String id;
     protected final Function<RequestT, String> method;
     protected final Function<RequestT, String> requestUrl;
     protected final Function<RequestT, Map<String, String>> queryParameters;
     protected final Function<RequestT, Map<String, String>> headers;
-    protected final boolean hasRequestBody;
+    protected final Function<RequestT, Object> body;
 
     public EndpointBase(
         String id,
@@ -54,14 +74,14 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         Function<RequestT, String> requestUrl,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
-        boolean hasRequestBody
+        Function<RequestT, Object> body
     ) {
         this.id = id;
         this.method = method;
         this.requestUrl = requestUrl;
         this.queryParameters = queryParameters;
         this.headers = headers;
-        this.hasRequestBody = hasRequestBody;
+        this.body = body;
     }
 
     @Override
@@ -89,9 +109,10 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         return this.headers.apply(request);
     }
 
+    @Nullable
     @Override
-    public boolean hasRequestBody() {
-        return this.hasRequestBody;
+    public Object body(RequestT request) {
+        return this.body.apply(request);
     }
 
     // ES-specific
@@ -114,7 +135,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
             requestUrl,
             queryParameters,
             headers,
-            hasRequestBody,
+            body,
             newResponseParser
         );
     }
