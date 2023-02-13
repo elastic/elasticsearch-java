@@ -44,6 +44,8 @@ import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.util.BinaryData;
+import co.elastic.clients.util.ContentType;
 import co.elastic.clients.util.DateTime;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Assertions;
@@ -51,6 +53,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -196,6 +199,33 @@ public class RequestTest extends Assertions {
         assertEquals(1, msearch.responses().get(0).result().hits().hits().size());
         assertTrue(msearch.responses().get(1).isFailure());
         assertEquals(404, msearch.responses().get(1).failure().status());
+    }
+
+    @Test
+    public void testBinaryDataIngestion() throws IOException {
+        String index = "binary-ingestion-test";
+        String id = "foo-bar";
+
+        BinaryData data = BinaryData.of("{\"foo\":\"bar\"}".getBytes(), ContentType.APPLICATION_JSON);
+
+        client.index(i -> i
+            .index(index)
+            .id(id)
+            .document(data)
+            .refresh(Refresh.True)
+        );
+
+        GetResponse<BinaryData> getResponse = client.get(g -> g
+                .index(index)
+                .id(id)
+            , BinaryData.class
+        );
+
+        assertEquals(id, getResponse.id());
+        assertEquals(
+            "{\"foo\":\"bar\"}",
+            new String(getResponse.source().asByteBuffer().array(), StandardCharsets.UTF_8)
+        );
     }
 
     @Test
