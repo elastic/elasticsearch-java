@@ -17,21 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.endpoints;
+package co.elastic.clients.util;
 
-import co.elastic.clients.elasticsearch.core.ExistsRequest;
-import co.elastic.clients.elasticsearch.security.SamlCompleteLogoutRequest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+/**
+ * Constants for content-type values.
+ */
+public class ContentType {
 
-public class BooleanEndpointTest extends Assertions {
+    private ContentType() {}
 
-    @Test
-    public void testHasRequestBody() {
-        ExistsRequest er = ExistsRequest.of(r -> r.index("foo").id("1"));
-        assertNull(ExistsRequest._ENDPOINT.body(er));
-
-        SamlCompleteLogoutRequest sclr = SamlCompleteLogoutRequest.of(r -> r.ids("1").realm("r"));
-        assertNotNull(SamlCompleteLogoutRequest._ENDPOINT.body(sclr));
-    }
+    public static final String APPLICATION_JSON = "application/json";
 }

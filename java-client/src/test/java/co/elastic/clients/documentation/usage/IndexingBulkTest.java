@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.util.BinaryData;
+import co.elastic.clients.util.ContentType;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -109,7 +110,7 @@ public class IndexingBulkTest extends ModelTestCase {
 
         for (File file: logFiles) {
             FileInputStream input = new FileInputStream(file);
-            BinaryData data = BinaryData.of(IOUtils.toByteArray(input));
+            BinaryData data = BinaryData.of(IOUtils.toByteArray(input), ContentType.APPLICATION_JSON);
 
             br.operations(op -> op
                 .index(idx -> idx
@@ -138,7 +139,7 @@ public class IndexingBulkTest extends ModelTestCase {
 
         for (File file: logFiles) {
             FileInputStream input = new FileInputStream(file);
-            BinaryData data = BinaryData.of(IOUtils.toByteArray(input));
+            BinaryData data = BinaryData.of(IOUtils.toByteArray(input), ContentType.APPLICATION_JSON);
 
             ingester.add(op -> op // <4>
                 .index(idx -> idx
@@ -194,7 +195,7 @@ public class IndexingBulkTest extends ModelTestCase {
 
         for (File file: logFiles) {
             FileInputStream input = new FileInputStream(file);
-            BinaryData data = BinaryData.of(IOUtils.toByteArray(input));
+            BinaryData data = BinaryData.of(IOUtils.toByteArray(input), ContentType.APPLICATION_JSON);
 
             ingester.add(op -> op
                 .index(idx -> idx

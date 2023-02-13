@@ -59,6 +59,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -215,21 +216,41 @@ public class RestClientTransport implements ElasticsearchTransport {
 
         clientReq.addParameters(params);
 
-        if (endpoint.hasRequestBody()) {
-            // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
-
-            if (request instanceof NdJsonpSerializable) {
+        Object body = endpoint.body(request);
+        if (body != null) {
+            // Request has a body
+            if (body instanceof NdJsonpSerializable) {
                 List<ByteBuffer> lines = new ArrayList<>();
-                collectNdJsonLines(lines, (NdJsonpSerializable)request);
+                collectNdJsonLines(lines, (NdJsonpSerializable) request);
                 clientReq.setEntity(new MultiBufferEntity(lines, JsonContentType));
+
+            } else if (body instanceof BinaryData) {
+                BinaryData data = (BinaryData)body;
+
+                // ES expects the Accept and Content-Type headers to be consistent.
+                ContentType contentType;
+                String dataContentType = data.contentType();
+                if (co.elastic.clients.util.ContentType.APPLICATION_JSON.equals(dataContentType)) {
+                    // Fast path
+                    contentType = JsonContentType;
+                } else {
+                    contentType = ContentType.parse(dataContentType);
+                }
+
+                clientReq.setEntity(new MultiBufferEntity(
+                    Collections.singletonList(data.asByteBuffer()),
+                    contentType
+                ));
+
             } else {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
-                mapper.serialize(request, generator);
+                mapper.serialize(body, generator);
                 generator.close();
                 clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), JsonContentType));
             }
         }
+
         // Request parameter intercepted by LLRC
         clientReq.addParameter("ignore", "400,401,403,404,405");
         return clientReq;
