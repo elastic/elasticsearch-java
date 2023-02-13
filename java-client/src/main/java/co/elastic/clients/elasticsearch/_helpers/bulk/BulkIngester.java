@@ -130,24 +130,60 @@ public class BulkIngester<Context> implements AutoCloseable {
 
     //----- Getters
 
+    /**
+     * The configured max operations to buffer in a single bulk request.
+     */
     public int maxOperations() {
         return this.maxOperations;
     }
 
+    /**
+     * The configured maximum size in bytes for a bulk request. Operations are added to the request until
+     * adding an operation leads the request to exceed this siz.
+     */
     public long maxSize() {
         return this.maxSize;
     }
 
+    /**
+     * The configured maximum number of concurrent request sent to Elasticsearch.
+     */
     public int maxConcurrentRequests() {
         return this.maxRequests;
     }
 
+    /**
+     * The configured flush period.
+     */
     public Duration flushInterval() {
         if (this.flushIntervalMillis != null) {
             return Duration.ofMillis(flushIntervalMillis);
         } else {
             return null;
         }
+    }
+
+    /**
+     * The number of operations that have been buffered, waiting to be sent.
+     */
+    public int pendingOperations() {
+        List<BulkOperation> operations = this.operations;
+        return operations == null ? 0 : operations.size();
+    }
+
+    /**
+     * The size in bytes of operations that have been buffered, waiting to be sent.
+     */
+    public long pendingOperationsSize() {
+        return this.currentSize;
+    }
+
+
+    /**
+     * The number of in flight bulk requests.
+     */
+    public int pendingRequests() {
+        return this.requestsInFlightCount;
     }
 
     //----- Statistics
