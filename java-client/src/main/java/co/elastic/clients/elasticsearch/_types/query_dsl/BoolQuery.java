@@ -331,6 +331,16 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 			return new BoolQuery(this);
 		}
+
+		/**
+		 * Returns <code>true</code> if this query has at least one should, must, must
+		 * not or filter clause.
+		 */
+		public boolean hasClauses() {
+			return !(this.must == null || this.must.isEmpty()) || !(this.mustNot == null || this.mustNot.isEmpty())
+					|| !(this.should == null || this.should.isEmpty())
+					|| !(this.filter == null || this.filter.isEmpty());
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -351,4 +361,12 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	/**
+	 * Returns <code>true</code> if this query has at least one should, must, must
+	 * not or filter clause.
+	 */
+	public boolean hasClauses() {
+		return !(this.must == null || this.must.isEmpty()) || !(this.mustNot == null || this.mustNot.isEmpty())
+				|| !(this.should == null || this.should.isEmpty()) || !(this.filter == null || this.filter.isEmpty());
+	}
 }
