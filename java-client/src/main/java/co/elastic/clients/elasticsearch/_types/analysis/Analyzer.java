@@ -628,7 +628,7 @@ public class Analyzer implements OpenTaggedUnion<Analyzer.Kind, Object>, JsonpSe
 			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
 		});
 
-		op.setTypeProperty("type", null);
+		op.setTypeProperty("type", "custom");
 
 	}
 

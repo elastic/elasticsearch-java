@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScore;
@@ -28,6 +29,8 @@ import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.json.JsonData;
 import org.junit.jupiter.api.Test;
+
+import java.util.function.Consumer;
 
 public class VariantsTest extends ModelTestCase {
 
@@ -100,6 +103,24 @@ public class VariantsTest extends ModelTestCase {
         assertEquals(1.0, property.ip().boost().doubleValue(), 0.09);
 
         assertTrue(property.ip().fields().get("a-field").float_().coerce());
+    }
+
+    @Test
+    public void testDefaultInternalTag() {
+
+        Consumer<String> test = s -> {
+            Analyzer a = fromJson(s, Analyzer.class);
+            assertEquals(Analyzer.Kind.Custom, a._kind());
+            assertEquals("some-filter", a.custom().filter().get(0));
+            assertTrue(a.custom().charFilter().isEmpty());
+            assertEquals("some-tokenizer", a.custom().tokenizer());
+        };
+
+        // Explicit type
+        test.accept("{\"type\":\"custom\",\"filter\":[\"some-filter\"],\"tokenizer\":\"some-tokenizer\"}");
+
+        // Default type
+        test.accept("{\"filter\":[\"some-filter\"],\"tokenizer\":\"some-tokenizer\"}");
     }
 
     @Test
