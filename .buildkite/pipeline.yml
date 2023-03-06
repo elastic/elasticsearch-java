@@ -1,0 +1,3 @@
+steps:
+  - label: ":java: Greetings"
+    command: "echo 'Hello, world!'"
