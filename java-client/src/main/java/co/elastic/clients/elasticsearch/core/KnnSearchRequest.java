@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#_global.knn_search.Request">API
  *      specification</a>
+ * @deprecated 8.4.0
  */
+@Deprecated
 @JsonpDeserializable
 public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -247,7 +249,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link KnnSearchRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KnnSearchRequest> {

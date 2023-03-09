@@ -60,9 +60,9 @@
 '_global.index.Response': '_global/index/IndexResponse.ts#L22-L24',
 '_global.info.Request': '_global/info/RootNodeInfoRequest.ts#L22-L27',
 '_global.info.Response': '_global/info/RootNodeInfoResponse.ts#L23-L31',
-'_global.knn_search.Request': '_global/knn_search/KnnSearchRequest.ts#L27-L79',
+'_global.knn_search.Request': '_global/knn_search/KnnSearchRequest.ts#L27-L80',
 '_global.knn_search.Response': '_global/knn_search/KnnSearchResponse.ts#L26-L54',
-'_global.knn_search._types.Query': '_global/knn_search/_types/Knn.ts#L25-L34',
+'_global.knn_search._types.Query': '_global/knn_search/_types/Knn.ts#L24-L33',
 '_global.mget.MultiGetError': '_global/mget/types.ts#L62-L66',
 '_global.mget.Operation': '_global/mget/types.ts#L32-L55',
 '_global.mget.Request': '_global/mget/MultiGetRequest.ts#L25-L91',
@@ -257,7 +257,7 @@
 '_types.IndicesResponseBase': '_types/Base.ts#L77-L79',
 '_types.InlineGet': '_types/common.ts#L286-L295',
 '_types.InlineScript': '_types/Scripting.ts#L45-L50',
-'_types.KnnQuery': '_types/Knn.ts#L24-L37',
+'_types.KnnQuery': '_types/Knn.ts#L26-L41',
 '_types.LatLonGeoLocation': '_types/Geo.ts#L110-L113',
 '_types.Level': '_types/common.ts#L229-L233',
 '_types.LifecycleOperationMode': '_types/Lifecycle.ts#L20-L24',
@@ -271,6 +271,7 @@
 '_types.OpType': '_types/common.ts#L235-L238',
 '_types.PluginStats': '_types/Stats.ts#L138-L148',
 '_types.QueryCacheStats': '_types/Stats.ts#L150-L159',
+'_types.QueryVectorBuilder': '_types/Knn.ts#L43-L46',
 '_types.RecoveryStats': '_types/Stats.ts#L161-L166',
 '_types.Refresh': '_types/common.ts#L240-L247',
 '_types.RefreshStats': '_types/Stats.ts#L168-L175',
@@ -305,6 +306,7 @@
 '_types.StoredScriptId': '_types/Scripting.ts#L52-L54',
 '_types.SuggestMode': '_types/common.ts#L256-L260',
 '_types.TaskFailure': '_types/Errors.ts#L66-L71',
+'_types.TextEmbedding': '_types/Knn.ts#L48-L51',
 '_types.ThreadType': '_types/common.ts#L262-L268',
 '_types.TimeUnit': '_types/Time.ts#L69-L84',
 '_types.TopLeftBottomRightGeoBounds': '_types/Geo.ts#L145-L148',
@@ -2535,10 +2537,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/94dced0edf8426138a83c8ff5ee7b33e25280ace/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/4ab557491062aab5a916a1e274e28c266b0e0708/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/94dced0edf8426138a83c8ff5ee7b33e25280ace/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/4ab557491062aab5a916a1e274e28c266b0e0708/specification/">Elasticsearch API specification</a>.
 </body>
 </html>
