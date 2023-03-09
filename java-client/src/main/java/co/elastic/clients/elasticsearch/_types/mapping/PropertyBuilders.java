@@ -250,7 +250,7 @@ public class PropertyBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link DynamicProperty {dynamic_type}}
+	 * Creates a builder for the {@link DynamicProperty {dynamic_property}}
 	 * {@code Property} variant.
 	 */
 	public static DynamicProperty.Builder dynamicProperty() {
@@ -258,7 +258,7 @@ public class PropertyBuilders {
 	}
 
 	/**
-	 * Creates a Property of the {@link DynamicProperty {dynamic_type}}
+	 * Creates a Property of the {@link DynamicProperty {dynamic_property}}
 	 * {@code Property} variant.
 	 */
 	public static Property dynamicProperty(Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {

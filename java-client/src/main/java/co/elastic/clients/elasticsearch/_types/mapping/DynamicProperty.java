@@ -324,7 +324,7 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "{dynamic_type}");
+		generator.write("type", "{dynamic_property}");
 		super.serializeInternal(generator, mapper);
 		if (this.enabled != null) {
 			generator.writeKey("enabled");
