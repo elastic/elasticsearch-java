@@ -211,9 +211,9 @@ public class RestClientOptions implements TransportOptions {
             + metaVersion
             + ",jv="
             + System.getProperty("java.specification.version")
-            + ",hl=2"
             + ",t="
             + metaVersion
+            + ",hl=2"
             + ",hc="
             + (httpClientVersion == null ? "" : httpClientVersion.getRelease())
             + LanguageRuntimeVersions.getRuntimeMetadata();
