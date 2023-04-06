@@ -28,6 +28,7 @@ include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-objects]
 <3> Sets the properties for the index operation, similar to <<indexing, single document indexing>>: index name, identifier and document.
 
 [discrete]
+[[indexing-raw-json-data]]
 ==== Indexing raw JSON data
 
 The `document` property of a bulk index request can be any object that can be serialized to JSON using your Elasticsearch client's JSON mapper. However, data that is ingested in bulk is often available as JSON text (e.g. files on disk), and parsing this JSON just to re-serialize it to send the bulk request would be a waste of resources. So documents in bulk operations can also be of type `BinaryData` that are sent verbatim (without parsing) to the {es} server.
