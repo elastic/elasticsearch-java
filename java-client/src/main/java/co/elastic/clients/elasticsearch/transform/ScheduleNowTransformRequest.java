@@ -42,42 +42,22 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: transform.start_transform.Request
+// typedef: transform.schedule_now_transform.Request
 
 /**
- * Starts a transform.
+ * Schedules now a transform.
  * <p>
- * When you start a transform, it creates the destination index if it does not
- * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
- * the <code>auto_expand_replicas</code> is set to <code>0-1</code>. If it is a
- * pivot transform, it deduces the mapping definitions for the destination index
- * from the source indices and the transform aggregations. If fields in the
- * destination index are derived from scripts (as in the case of
- * <code>scripted_metric</code> or <code>bucket_script</code> aggregations), the
- * transform uses dynamic mappings unless an index template exists. If it is a
- * latest transform, it does not deduce mapping definitions; it uses dynamic
- * mappings. To use explicit mappings, create the destination index before you
- * start the transform. Alternatively, you can create an index template, though
- * it does not affect the deduced mappings in a pivot transform.
- * <p>
- * When the transform starts, a series of validations occur to ensure its
- * success. If you deferred validation when you created the transform, they
- * occur when you start the transform—​with the exception of privilege checks.
- * When Elasticsearch security features are enabled, the transform remembers
- * which roles the user that created it had at the time of creation and uses
- * those same roles. If those roles do not have the required privileges on the
- * source and destination indices, the transform fails when it attempts
- * unauthorized operations.
+ * If you _schedule_now a transform, it will process the new data instantly,
+ * without waiting for the configured frequency interval. After _schedule_now
+ * API is called, the transform will be processed again at now + frequency
+ * unless _schedule_now API is called again in the meantime.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#transform.start_transform.Request">API
+ *      "../doc-files/api-spec.html#transform.schedule_now_transform.Request">API
  *      specification</a>
  */
 
-public class StartTransformRequest extends RequestBase {
-	@Nullable
-	private final String from;
-
+public class ScheduleNowTransformRequest extends RequestBase {
 	@Nullable
 	private final Time timeout;
 
@@ -85,33 +65,19 @@ public class StartTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private StartTransformRequest(Builder builder) {
+	private ScheduleNowTransformRequest(Builder builder) {
 
-		this.from = builder.from;
 		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public static StartTransformRequest of(Function<Builder, ObjectBuilder<StartTransformRequest>> fn) {
+	public static ScheduleNowTransformRequest of(Function<Builder, ObjectBuilder<ScheduleNowTransformRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Restricts the set of transformed entities to those changed after this time.
-	 * Relative times like now-30d are supported. Only applicable for continuous
-	 * transforms.
-	 * <p>
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public final String from() {
-		return this.from;
-	}
-
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * Controls the time to wait for the scheduling to take place
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -132,35 +98,19 @@ public class StartTransformRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link StartTransformRequest}.
+	 * Builder for {@link ScheduleNowTransformRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<StartTransformRequest> {
-		@Nullable
-		private String from;
-
+				ObjectBuilder<ScheduleNowTransformRequest> {
 		@Nullable
 		private Time timeout;
 
 		private String transformId;
 
 		/**
-		 * Restricts the set of transformed entities to those changed after this time.
-		 * Relative times like now-30d are supported. Only applicable for continuous
-		 * transforms.
-		 * <p>
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable String value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * Controls the time to wait for the scheduling to take place
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -170,8 +120,7 @@ public class StartTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * Controls the time to wait for the scheduling to take place
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -195,25 +144,25 @@ public class StartTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link StartTransformRequest}.
+		 * Builds a {@link ScheduleNowTransformRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public StartTransformRequest build() {
+		public ScheduleNowTransformRequest build() {
 			_checkSingleUse();
 
-			return new StartTransformRequest(this);
+			return new ScheduleNowTransformRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code transform.start_transform}".
+	 * Endpoint "{@code transform.schedule_now_transform}".
 	 */
-	public static final Endpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/transform.start_transform",
+	public static final Endpoint<ScheduleNowTransformRequest, ScheduleNowTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.schedule_now_transform",
 
 			// Request method
 			request -> {
@@ -234,7 +183,7 @@ public class StartTransformRequest extends RequestBase {
 					buf.append("/_transform");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.transformId, buf);
-					buf.append("/_start");
+					buf.append("/_schedule_now");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -244,13 +193,10 @@ public class StartTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", request.from);
-				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, StartTransformResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ScheduleNowTransformResponse._DESERIALIZER);
 }

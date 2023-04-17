@@ -64,6 +64,8 @@ import co.elastic.clients.elasticsearch.core.GetScriptRequest;
 import co.elastic.clients.elasticsearch.core.GetScriptResponse;
 import co.elastic.clients.elasticsearch.core.GetSourceRequest;
 import co.elastic.clients.elasticsearch.core.GetSourceResponse;
+import co.elastic.clients.elasticsearch.core.HealthReportRequest;
+import co.elastic.clients.elasticsearch.core.HealthReportResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
@@ -1031,6 +1033,52 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
 			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Type tDocumentType) {
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentType);
+	}
+
+	// ----- Endpoint: health_report
+
+	/**
+	 * Returns the health of the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/health-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<HealthReportResponse> healthReport(HealthReportRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HealthReportRequest, HealthReportResponse, ErrorResponse> endpoint = (JsonEndpoint<HealthReportRequest, HealthReportResponse, ErrorResponse>) HealthReportRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the health of the cluster.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link HealthReportRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/health-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<HealthReportResponse> healthReport(
+			Function<HealthReportRequest.Builder, ObjectBuilder<HealthReportRequest>> fn) {
+		return healthReport(fn.apply(new HealthReportRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns the health of the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/health-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<HealthReportResponse> healthReport() {
+		return this.transport.performRequestAsync(new HealthReportRequest.Builder().build(),
+				HealthReportRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: index

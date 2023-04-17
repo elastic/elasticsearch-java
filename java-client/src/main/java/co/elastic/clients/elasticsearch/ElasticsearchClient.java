@@ -65,6 +65,8 @@ import co.elastic.clients.elasticsearch.core.GetScriptRequest;
 import co.elastic.clients.elasticsearch.core.GetScriptResponse;
 import co.elastic.clients.elasticsearch.core.GetSourceRequest;
 import co.elastic.clients.elasticsearch.core.GetSourceResponse;
+import co.elastic.clients.elasticsearch.core.HealthReportRequest;
+import co.elastic.clients.elasticsearch.core.HealthReportResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
@@ -1048,6 +1050,53 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Type tDocumentType)
 			throws IOException, ElasticsearchException {
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentType);
+	}
+
+	// ----- Endpoint: health_report
+
+	/**
+	 * Returns the health of the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/health-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HealthReportResponse healthReport(HealthReportRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HealthReportRequest, HealthReportResponse, ErrorResponse> endpoint = (JsonEndpoint<HealthReportRequest, HealthReportResponse, ErrorResponse>) HealthReportRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the health of the cluster.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link HealthReportRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/health-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final HealthReportResponse healthReport(
+			Function<HealthReportRequest.Builder, ObjectBuilder<HealthReportRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return healthReport(fn.apply(new HealthReportRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns the health of the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/health-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HealthReportResponse healthReport() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new HealthReportRequest.Builder().build(), HealthReportRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: index

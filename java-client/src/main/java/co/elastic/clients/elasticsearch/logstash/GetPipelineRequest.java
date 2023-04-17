@@ -150,6 +150,12 @@ public class GetPipelineRequest extends RequestBase {
 
 				propsSet |= _id;
 
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_logstash");
+					buf.append("/pipeline");
+					return buf.toString();
+				}
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_logstash");

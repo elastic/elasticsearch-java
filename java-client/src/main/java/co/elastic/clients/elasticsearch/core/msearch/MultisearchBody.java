@@ -88,8 +88,7 @@ public class MultisearchBody implements JsonpSerializable {
 
 	private final List<FieldAndFormat> docvalueFields;
 
-	@Nullable
-	private final KnnQuery knn;
+	private final List<KnnQuery> knn;
 
 	@Nullable
 	private final Integer from;
@@ -163,7 +162,7 @@ public class MultisearchBody implements JsonpSerializable {
 		this.ext = ApiTypeHelper.unmodifiable(builder.ext);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
-		this.knn = builder.knn;
+		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
@@ -266,8 +265,7 @@ public class MultisearchBody implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code knn}
 	 */
-	@Nullable
-	public final KnnQuery knn() {
+	public final List<KnnQuery> knn() {
 		return this.knn;
 	}
 
@@ -568,9 +566,14 @@ public class MultisearchBody implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.knn != null) {
+		if (ApiTypeHelper.isDefined(this.knn)) {
 			generator.writeKey("knn");
-			this.knn.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (KnnQuery item0 : this.knn) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.from != null) {
@@ -775,7 +778,7 @@ public class MultisearchBody implements JsonpSerializable {
 		private List<FieldAndFormat> docvalueFields;
 
 		@Nullable
-		private KnnQuery knn;
+		private List<KnnQuery> knn;
 
 		@Nullable
 		private Integer from;
@@ -1016,9 +1019,11 @@ public class MultisearchBody implements JsonpSerializable {
 		 * Defines the approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>knn</code>.
 		 */
-		public final Builder knn(@Nullable KnnQuery value) {
-			this.knn = value;
+		public final Builder knn(List<KnnQuery> list) {
+			this.knn = _listAddAll(this.knn, list);
 			return this;
 		}
 
@@ -1026,9 +1031,23 @@ public class MultisearchBody implements JsonpSerializable {
 		 * Defines the approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
+		 * <p>
+		 * Adds one or more values to <code>knn</code>.
+		 */
+		public final Builder knn(KnnQuery value, KnnQuery... values) {
+			this.knn = _listAdd(this.knn, value, values);
+			return this;
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 * <p>
+		 * Adds a value to <code>knn</code> using a builder lambda.
 		 */
 		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
-			return this.knn(fn.apply(new KnnQuery.Builder()).build());
+			return knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		/**
@@ -1532,7 +1551,7 @@ public class MultisearchBody implements JsonpSerializable {
 				"stored_fields");
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
 				"docvalue_fields");
-		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
+		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnQuery._DESERIALIZER), "knn");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::indicesBoost,

@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch.core.health_report;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,60 +30,51 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.analysis.StemmerTokenFilter
+// typedef: _global.health_report.IlmIndicator
 
 /**
- *
+ * ILM
+ * 
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.StemmerTokenFilter">API
+ *      "../../doc-files/api-spec.html#_global.health_report.IlmIndicator">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class IlmIndicator extends BaseIndicator {
 	@Nullable
-	private final String language;
+	private final IlmIndicatorDetails details;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private StemmerTokenFilter(Builder builder) {
+	private IlmIndicator(Builder builder) {
 		super(builder);
 
-		this.language = builder.language;
+		this.details = builder.details;
 
 	}
 
-	public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
+	public static IlmIndicator of(Function<Builder, ObjectBuilder<IlmIndicator>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Stemmer;
-	}
-
-	/**
-	 * API name: {@code language}
+	 * API name: {@code details}
 	 */
 	@Nullable
-	public final String language() {
-		return this.language;
+	public final IlmIndicatorDetails details() {
+		return this.details;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "stemmer");
 		super.serializeInternal(generator, mapper);
-		if (this.language != null) {
-			generator.writeKey("language");
-			generator.write(this.language);
+		if (this.details != null) {
+			generator.writeKey("details");
+			this.details.serialize(generator, mapper);
 
 		}
 
@@ -92,21 +83,26 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link StemmerTokenFilter}.
+	 * Builder for {@link IlmIndicator}.
 	 */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StemmerTokenFilter> {
+	public static class Builder extends BaseIndicator.AbstractBuilder<Builder> implements ObjectBuilder<IlmIndicator> {
 		@Nullable
-		private String language;
+		private IlmIndicatorDetails details;
 
 		/**
-		 * API name: {@code language}
+		 * API name: {@code details}
 		 */
-		public final Builder language(@Nullable String value) {
-			this.language = value;
+		public final Builder details(@Nullable IlmIndicatorDetails value) {
+			this.details = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code details}
+		 */
+		public final Builder details(Function<IlmIndicatorDetails.Builder, ObjectBuilder<IlmIndicatorDetails>> fn) {
+			return this.details(fn.apply(new IlmIndicatorDetails.Builder()).build());
 		}
 
 		@Override
@@ -115,31 +111,30 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
-		 * Builds a {@link StemmerTokenFilter}.
+		 * Builds a {@link IlmIndicator}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public StemmerTokenFilter build() {
+		public IlmIndicator build() {
 			_checkSingleUse();
 
-			return new StemmerTokenFilter(this);
+			return new IlmIndicator(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link StemmerTokenFilter}
+	 * Json deserializer for {@link IlmIndicator}
 	 */
-	public static final JsonpDeserializer<StemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StemmerTokenFilter::setupStemmerTokenFilterDeserializer);
+	public static final JsonpDeserializer<IlmIndicator> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IlmIndicator::setupIlmIndicatorDeserializer);
 
-	protected static void setupStemmerTokenFilterDeserializer(ObjectDeserializer<StemmerTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language", "name");
+	protected static void setupIlmIndicatorDeserializer(ObjectDeserializer<IlmIndicator.Builder> op) {
+		BaseIndicator.setupBaseIndicatorDeserializer(op);
+		op.add(Builder::details, IlmIndicatorDetails._DESERIALIZER, "details");
 
-		op.ignore("type");
 	}
 
 }
