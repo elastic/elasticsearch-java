@@ -35,6 +35,7 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -82,6 +83,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 	@Nullable
 	private final Integer estimatedOperations;
 
+	@Nullable
+	private final Boolean fullyDefined;
+
 	private final InferenceConfigCreate inferenceConfig;
 
 	private final TrainedModelConfigInput input;
@@ -113,6 +117,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.description = builder.description;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
+		this.fullyDefined = builder.fullyDefined;
 		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.licenseLevel = builder.licenseLevel;
@@ -230,6 +235,16 @@ public class TrainedModelConfig implements JsonpSerializable {
 	@Nullable
 	public final Integer estimatedOperations() {
 		return this.estimatedOperations;
+	}
+
+	/**
+	 * True if the full model definition is present.
+	 * <p>
+	 * API name: {@code fully_defined}
+	 */
+	@Nullable
+	public final Boolean fullyDefined() {
+		return this.fullyDefined;
 	}
 
 	/**
@@ -362,6 +377,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 			generator.write(this.estimatedOperations);
 
 		}
+		if (this.fullyDefined != null) {
+			generator.writeKey("fully_defined");
+			generator.write(this.fullyDefined);
+
+		}
 		generator.writeKey("inference_config");
 		this.inferenceConfig.serialize(generator, mapper);
 
@@ -456,6 +476,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 		@Nullable
 		private Integer estimatedOperations;
+
+		@Nullable
+		private Boolean fullyDefined;
 
 		private InferenceConfigCreate inferenceConfig;
 
@@ -612,6 +635,16 @@ public class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * True if the full model definition is present.
+		 * <p>
+		 * API name: {@code fully_defined}
+		 */
+		public final BuilderT fullyDefined(@Nullable Boolean value) {
+			this.fullyDefined = value;
+			return self();
+		}
+
+		/**
 		 * Required - The default configuration for inference. This can be either a
 		 * regression, classification, or one of the many NLP focused configurations. It
 		 * must match the underlying definition.trained_model's target_type.
@@ -739,6 +772,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.integerDeserializer(),
 				"estimated_heap_memory_usage_bytes");
 		op.add(AbstractBuilder::estimatedOperations, JsonpDeserializer.integerDeserializer(), "estimated_operations");
+		op.add(AbstractBuilder::fullyDefined, JsonpDeserializer.booleanDeserializer(), "fully_defined");
 		op.add(AbstractBuilder::inferenceConfig, InferenceConfigCreate._DESERIALIZER, "inference_config");
 		op.add(AbstractBuilder::input, TrainedModelConfigInput._DESERIALIZER, "input");
 		op.add(AbstractBuilder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");

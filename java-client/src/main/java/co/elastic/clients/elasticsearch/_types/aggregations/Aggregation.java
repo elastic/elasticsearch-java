@@ -110,6 +110,8 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 
 		ExtendedStatsBucket("extended_stats_bucket"),
 
+		FrequentItemSets("frequent_item_sets"),
+
 		Filter("filter"),
 
 		Filters("filters"),
@@ -671,6 +673,24 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 	 */
 	public ExtendedStatsBucketAggregation extendedStatsBucket() {
 		return TaggedUnionUtils.get(this, Kind.ExtendedStatsBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code frequent_item_sets}?
+	 */
+	public boolean isFrequentItemSets() {
+		return _kind == Kind.FrequentItemSets;
+	}
+
+	/**
+	 * Get the {@code frequent_item_sets} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code frequent_item_sets}
+	 *             kind.
+	 */
+	public FrequentItemSetsAggregation frequentItemSets() {
+		return TaggedUnionUtils.get(this, Kind.FrequentItemSets);
 	}
 
 	/**
@@ -1946,6 +1966,17 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			return this.extendedStatsBucket(fn.apply(new ExtendedStatsBucketAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder frequentItemSets(FrequentItemSetsAggregation v) {
+			this._kind = Kind.FrequentItemSets;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder frequentItemSets(
+				Function<FrequentItemSetsAggregation.Builder, ObjectBuilder<FrequentItemSetsAggregation>> fn) {
+			return this.frequentItemSets(fn.apply(new FrequentItemSetsAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder filter(Query v) {
 			this._kind = Kind.Filter;
 			this._value = v;
@@ -2612,6 +2643,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		op.add(Builder::diversifiedSampler, DiversifiedSamplerAggregation._DESERIALIZER, "diversified_sampler");
 		op.add(Builder::extendedStats, ExtendedStatsAggregation._DESERIALIZER, "extended_stats");
 		op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation._DESERIALIZER, "extended_stats_bucket");
+		op.add(Builder::frequentItemSets, FrequentItemSetsAggregation._DESERIALIZER, "frequent_item_sets");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::filters, FiltersAggregation._DESERIALIZER, "filters");
 		op.add(Builder::geoBounds, GeoBoundsAggregation._DESERIALIZER, "geo_bounds");

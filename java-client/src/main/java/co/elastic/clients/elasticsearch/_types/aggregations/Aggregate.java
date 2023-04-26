@@ -99,6 +99,8 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		Filters("filters"),
 
+		FrequentItemSets("frequent_item_sets"),
+
 		GeoBounds("geo_bounds"),
 
 		GeoCentroid("geo_centroid"),
@@ -553,6 +555,24 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	 */
 	public FiltersAggregate filters() {
 		return TaggedUnionUtils.get(this, Kind.Filters);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code frequent_item_sets}?
+	 */
+	public boolean isFrequentItemSets() {
+		return _kind == Kind.FrequentItemSets;
+	}
+
+	/**
+	 * Get the {@code frequent_item_sets} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code frequent_item_sets}
+	 *             kind.
+	 */
+	public FrequentItemSetsAggregate frequentItemSets() {
+		return TaggedUnionUtils.get(this, Kind.FrequentItemSets);
 	}
 
 	/**
@@ -1662,6 +1682,17 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.filters(fn.apply(new FiltersAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> frequentItemSets(FrequentItemSetsAggregate v) {
+			this._kind = Kind.FrequentItemSets;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> frequentItemSets(
+				Function<FrequentItemSetsAggregate.Builder, ObjectBuilder<FrequentItemSetsAggregate>> fn) {
+			return this.frequentItemSets(fn.apply(new FrequentItemSetsAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> geoBounds(GeoBoundsAggregate v) {
 			this._kind = Kind.GeoBounds;
 			this._value = v;
@@ -2257,6 +2288,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("extended_stats_bucket", ExtendedStatsBucketAggregate._DESERIALIZER);
 		deserializers.put("filter", FilterAggregate._DESERIALIZER);
 		deserializers.put("filters", FiltersAggregate._DESERIALIZER);
+		deserializers.put("frequent_item_sets", FrequentItemSetsAggregate._DESERIALIZER);
 		deserializers.put("geo_bounds", GeoBoundsAggregate._DESERIALIZER);
 		deserializers.put("geo_centroid", GeoCentroidAggregate._DESERIALIZER);
 		deserializers.put("geo_distance", GeoDistanceAggregate._DESERIALIZER);

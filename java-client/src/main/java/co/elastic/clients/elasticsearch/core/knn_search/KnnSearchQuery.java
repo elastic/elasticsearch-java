@@ -34,7 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
+import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
 public class KnnSearchQuery implements JsonpSerializable {
 	private final String field;
 
-	private final List<Double> queryVector;
+	private final List<Float> queryVector;
 
 	private final long k;
 
@@ -89,7 +89,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code query_vector}
 	 */
-	public final List<Double> queryVector() {
+	public final List<Float> queryVector() {
 		return this.queryVector;
 	}
 
@@ -128,7 +128,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.queryVector)) {
 			generator.writeKey("query_vector");
 			generator.writeStartArray();
-			for (Double item0 : this.queryVector) {
+			for (Float item0 : this.queryVector) {
 				generator.write(item0);
 
 			}
@@ -157,7 +157,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<KnnSearchQuery> {
 		private String field;
 
-		private List<Double> queryVector;
+		private List<Float> queryVector;
 
 		private Long k;
 
@@ -180,7 +180,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(List<Double> list) {
+		public final Builder queryVector(List<Float> list) {
 			this.queryVector = _listAddAll(this.queryVector, list);
 			return this;
 		}
@@ -192,7 +192,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(Double value, Double... values) {
+		public final Builder queryVector(Float value, Float... values) {
 			this.queryVector = _listAdd(this.queryVector, value, values);
 			return this;
 		}
@@ -246,7 +246,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	protected static void setupKnnSearchQueryDeserializer(ObjectDeserializer<KnnSearchQuery.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
+		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()),
 				"query_vector");
 		op.add(Builder::k, JsonpDeserializer.longDeserializer(), "k");
 		op.add(Builder::numCandidates, JsonpDeserializer.longDeserializer(), "num_candidates");

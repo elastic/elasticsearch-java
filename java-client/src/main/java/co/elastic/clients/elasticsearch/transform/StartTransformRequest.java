@@ -76,6 +76,9 @@ import javax.annotation.Nullable;
 
 public class StartTransformRequest extends RequestBase {
 	@Nullable
+	private final String from;
+
+	@Nullable
 	private final Time timeout;
 
 	private final String transformId;
@@ -84,6 +87,7 @@ public class StartTransformRequest extends RequestBase {
 
 	private StartTransformRequest(Builder builder) {
 
+		this.from = builder.from;
 		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
@@ -91,6 +95,18 @@ public class StartTransformRequest extends RequestBase {
 
 	public static StartTransformRequest of(Function<Builder, ObjectBuilder<StartTransformRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Restricts the set of transformed entities to those changed after this time.
+	 * Relative times like now-30d are supported. Only applicable for continuous
+	 * transforms.
+	 * <p>
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public final String from() {
+		return this.from;
 	}
 
 	/**
@@ -123,9 +139,24 @@ public class StartTransformRequest extends RequestBase {
 			implements
 				ObjectBuilder<StartTransformRequest> {
 		@Nullable
+		private String from;
+
+		@Nullable
 		private Time timeout;
 
 		private String transformId;
+
+		/**
+		 * Restricts the set of transformed entities to those changed after this time.
+		 * Relative times like now-30d are supported. Only applicable for continuous
+		 * transforms.
+		 * <p>
+		 * API name: {@code from}
+		 */
+		public final Builder from(@Nullable String value) {
+			this.from = value;
+			return this;
+		}
 
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
@@ -213,6 +244,9 @@ public class StartTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.from != null) {
+					params.put("from", request.from);
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}

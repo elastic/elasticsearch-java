@@ -54,6 +54,8 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 	private final String modelId;
 
+	private final String deploymentId;
+
 	private final String cacheSize;
 
 	private final int numberOfAllocations;
@@ -70,6 +72,7 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 		this.modelBytes = ApiTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
 		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
 		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
 				"numberOfAllocations");
@@ -101,6 +104,15 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	 */
 	public final String modelId() {
 		return this.modelId;
+	}
+
+	/**
+	 * Required - The unique identifier for the trained model deployment.
+	 * <p>
+	 * API name: {@code deployment_id}
+	 */
+	public final String deploymentId() {
+		return this.deploymentId;
 	}
 
 	/**
@@ -164,6 +176,9 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
+		generator.writeKey("deployment_id");
+		generator.write(this.deploymentId);
+
 		generator.writeKey("cache_size");
 		generator.write(this.cacheSize);
 
@@ -198,6 +213,8 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 		private String modelId;
 
+		private String deploymentId;
+
 		private String cacheSize;
 
 		private Integer numberOfAllocations;
@@ -225,6 +242,16 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * Required - The unique identifier for the trained model deployment.
+		 * <p>
+		 * API name: {@code deployment_id}
+		 */
+		public final Builder deploymentId(String value) {
+			this.deploymentId = value;
 			return this;
 		}
 
@@ -309,6 +336,7 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 		op.add(Builder::modelBytes, JsonpDeserializer.integerDeserializer(), "model_bytes");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::deploymentId, JsonpDeserializer.stringDeserializer(), "deployment_id");
 		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::priority, TrainingPriority._DESERIALIZER, "priority");
