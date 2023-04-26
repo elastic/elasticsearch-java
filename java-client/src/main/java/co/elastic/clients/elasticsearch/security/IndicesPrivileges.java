@@ -56,7 +56,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	private final List<String> names;
 
-	private final List<IndexPrivilege> privileges;
+	private final List<String> privileges;
 
 	@Nullable
 	private final Query query;
@@ -105,7 +105,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code privileges}
 	 */
-	public final List<IndexPrivilege> privileges() {
+	public final List<String> privileges() {
 		return this.privileges;
 	}
 
@@ -172,8 +172,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.privileges)) {
 			generator.writeKey("privileges");
 			generator.writeStartArray();
-			for (IndexPrivilege item0 : this.privileges) {
-				item0.serialize(generator, mapper);
+			for (String item0 : this.privileges) {
+				generator.write(item0);
+
 			}
 			generator.writeEnd();
 
@@ -208,7 +209,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 		private List<String> names;
 
-		private List<IndexPrivilege> privileges;
+		private List<String> privileges;
 
 		@Nullable
 		private Query query;
@@ -285,7 +286,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
-		public final Builder privileges(List<IndexPrivilege> list) {
+		public final Builder privileges(List<String> list) {
 			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
@@ -298,7 +299,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public final Builder privileges(IndexPrivilege value, IndexPrivilege... values) {
+		public final Builder privileges(String value, String... values) {
 			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
@@ -376,7 +377,8 @@ public class IndicesPrivileges implements JsonpSerializable {
 		op.add(Builder::fieldSecurity, JsonpDeserializer.arrayDeserializer(FieldSecurity._DESERIALIZER),
 				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"privileges");
 		op.add(Builder::query, JsonpDeserializer.jsonString(Query._DESERIALIZER), "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
