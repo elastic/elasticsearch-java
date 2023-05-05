@@ -153,6 +153,13 @@ public class JsonpUtils {
     /**
      * Copy the JSON value at the current parser location to a JSON generator.
      */
+    public static void copy(JsonParser parser, JsonGenerator generator) {
+        copy(parser, generator, parser.next());
+    }
+
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
     public static void copy(JsonParser parser, JsonGenerator generator, JsonParser.Event event) {
 
         switch (event) {
