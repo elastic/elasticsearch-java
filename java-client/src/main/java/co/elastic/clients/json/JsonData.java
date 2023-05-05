@@ -58,7 +58,9 @@ public interface JsonData extends JsonpSerializable {
      *
      * @throws IllegalStateException if no mapper was provided at creation time.
      */
-    <T> T to(Class<T> clazz);
+    default <T> T to(Class<T> clazz) {
+        return to((Type)clazz);
+    }
 
     /**
      * Converts this object to a target type. A mapper must have been provided at creation time.
@@ -70,7 +72,9 @@ public interface JsonData extends JsonpSerializable {
     /**
      * Converts this object to a target class.
      */
-     <T> T to(Class<T> clazz, JsonpMapper mapper);
+     default <T> T to(Class<T> clazz, JsonpMapper mapper) {
+         return to((Type)clazz, mapper);
+     }
 
     /**
      * Converts this object to a target type.
@@ -145,8 +149,7 @@ public interface JsonData extends JsonpSerializable {
      * {@link #deserialize(JsonpDeserializer)}.
      */
     static JsonData from(JsonParser parser, JsonpMapper mapper) {
-        parser.next(); // Need to be at the beginning of the value to read
-        return of(parser.getValue(), mapper);
+        return from(parser, mapper, parser.next());
     }
 
     /**
@@ -155,7 +158,11 @@ public interface JsonData extends JsonpSerializable {
      * {@link #deserialize(JsonpDeserializer)}.
      */
     static JsonData from(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        return of(parser.getValue(), mapper);
+        if (parser instanceof BufferingJsonParser) {
+            return ((BufferingJsonParser)parser).getJsonData();
+        } else {
+            return of(parser.getValue(), mapper);
+        }
     }
 
     JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(

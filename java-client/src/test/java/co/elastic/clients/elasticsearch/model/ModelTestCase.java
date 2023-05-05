@@ -33,6 +33,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.util.EnumSet;
 import java.util.Random;
 
 /**
@@ -40,15 +41,22 @@ import java.util.Random;
  */
 public abstract class ModelTestCase extends Assertions {
 
+    protected enum JsonImpl { Jsonb, Jackson, Simple };
+
     // Same value for all tests in a test run
     private static final int RAND = new Random().nextInt(100);
 
+    protected final JsonImpl jsonImpl;
     protected final JsonpMapper mapper;
 
-    private JsonpMapper setupMapper(int rand) {
-        // Randomly choose json-b or jackson
-        switch(rand % 3) {
-            case 0:
+    private static JsonImpl chooseJsonImpl(EnumSet<JsonImpl> jsonImplCandidates, int rand) {
+        // Converting an EnumSet to an array always uses the same order.
+        return jsonImplCandidates.toArray(new JsonImpl[jsonImplCandidates.size()])[rand % jsonImplCandidates.size()];
+    }
+
+    private static JsonpMapper createMapper(JsonImpl jsonImpl, int rand) {
+        switch(jsonImpl) {
+            case Jsonb:
                 System.out.println("Using a JsonB mapper (rand = " + rand + ").");
                 return new JsonbJsonpMapper() {
                     @Override
@@ -57,7 +65,7 @@ public abstract class ModelTestCase extends Assertions {
                     }
                 };
 
-            case 1:
+            case Jackson:
                 System.out.println("Using a Jackson mapper (rand = " + rand + ").");
                 return new JacksonJsonpMapper() {
                     @Override
@@ -72,12 +80,25 @@ public abstract class ModelTestCase extends Assertions {
         }
     }
 
-    protected ModelTestCase() {
-        this(RAND);
+    protected ModelTestCase(EnumSet<JsonImpl> jsonImplCandidates, int rand) {
+        jsonImpl = chooseJsonImpl(jsonImplCandidates, rand);
+        mapper = createMapper(jsonImpl, rand);
+    }
+
+    protected ModelTestCase(EnumSet<JsonImpl> jsonImplCandidates) {
+        this(jsonImplCandidates, RAND);
+    }
+
+    protected ModelTestCase(JsonImpl jsonImpl) {
+        this(EnumSet.of(jsonImpl), RAND);
     }
 
     protected ModelTestCase(int rand) {
-        mapper = setupMapper(rand);
+        this(EnumSet.allOf(JsonImpl.class), rand);
+    }
+
+    protected ModelTestCase() {
+        this(EnumSet.allOf(JsonImpl.class), RAND);
     }
 
     protected <T> String toJson(T value) {

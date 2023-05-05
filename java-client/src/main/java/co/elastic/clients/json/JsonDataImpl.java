@@ -65,18 +65,8 @@ class JsonDataImpl implements JsonData {
     }
 
     @Override
-    public <T> T to(Class<T> clazz) {
-        return to((Type)clazz, null);
-    }
-
-    @Override
     public <T> T to(Type clazz) {
         return to(clazz, null);
-    }
-
-    @Override
-    public <T> T to(Class<T> clazz, JsonpMapper mapper) {
-        return to((Type)clazz, mapper);
     }
 
     @Override
