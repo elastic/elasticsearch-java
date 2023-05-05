@@ -46,10 +46,9 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     }
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this(objectMapper,
-            // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
-            new JacksonJsonProvider(objectMapper.getFactory())
-        );
+        this.objectMapper = objectMapper;
+        // Order is important as JacksonJsonProvider(this) will get ObjectMapper
+        this.provider = new JacksonJsonProvider(this);
     }
 
     public JacksonJsonpMapper() {
