@@ -19,28 +19,26 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
+import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-public class JsonDataTest extends Assertions {
+public class JsonDataTest extends ModelTestCase {
 
-
-    public static <T, B extends ObjectBuilder<T>> B withJson(B builder, Reader json, ElasticsearchClient client) {
-        return withJson(builder, json, client._transport().jsonpMapper());
-    }
+//    public JsonDataTest() {
+//        super(JsonImpl.Jackson);
+//    }
 
     public static <T, B extends ObjectBuilder<T>> B withJson(B builder, Reader json, JsonpMapper mapper) {
         JsonpDeserializer<?> classDeser = JsonpMapperBase.findDeserializer(builder.getClass().getEnclosingClass());
@@ -69,13 +67,17 @@ public class JsonDataTest extends Assertions {
 
     @Test
     public void testParsing() {
-        JsonpMapper mapper = new JsonbJsonpMapper();
+        if (jsonImpl == JsonImpl.Simple) {
+            return; // Doesn't support user-defined object mapping
+        }
+
         String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
             "\"stringValue\":\"foo\"}";
 
         JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
 
         JsonData data = JsonData.from(parser, mapper);
+        checkClass(data);
         assertEquals("foo", data.toJson().asJsonObject().getString("stringValue"));
 
         JsonpMapperTest.SomeClass to = data.to(JsonpMapperTest.SomeClass.class);
@@ -83,9 +85,11 @@ public class JsonDataTest extends Assertions {
     }
 
     @Test
-    public void testSerialize() {
+    public void testSerializeObject() {
+        if (jsonImpl == JsonImpl.Simple) {
+            return; // Doesn't support user-defined object mapping
+        }
 
-        JsonpMapper mapper = new JsonbJsonpMapper();
         String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
             "\"stringValue\":\"foo\"}";
 
@@ -110,13 +114,56 @@ public class JsonDataTest extends Assertions {
     }
 
     @Test
+    public void testSerializeValueOrBuffer() {
+        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
+            "\"stringValue\":\"foo\"}";
+
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+
+        JsonData data = JsonData.from(parser, mapper);
+        checkClass(data);
+
+        assertEquals(json, toJson(data, mapper));
+    }
+
+    @Test
     public void testConvert() {
 
         JsonData json = JsonData.of("foo");
 
-        final JsonValue value = json.toJson(new JsonbJsonpMapper());
+        final JsonValue value = json.toJson(mapper);
 
         assertEquals(JsonValue.ValueType.STRING, value.getValueType());
         assertEquals("foo", ((JsonString)value).getString());
+    }
+
+    @Test
+    public void testFieldValues() {
+        // Specific test for https://github.com/elastic/elasticsearch-java/issues/548 which led to buffered JsonData
+
+        String json = "{\"_index\":\"idx\",\"_id\":\"doc_id\",\"fields\":{\"bar\":\"Bar value\",\"foo\":1}}";
+
+        Hit<Void> hit = fromJson(json, Hit.createHitDeserializer(JsonpDeserializer.voidDeserializer()));
+
+        assertEquals(1, hit.fields().get("foo").to(Integer.class));
+        assertEquals("Bar value", hit.fields().get("bar").to(String.class));
+
+        checkClass(hit.fields().get("foo"));
+        checkClass(hit.fields().get("bar"));
+
+        assertEquals(json, toJson(hit));
+    }
+
+    private void checkClass(JsonData data) {
+        String name = data.getClass().getName();
+        switch (jsonImpl) {
+            case Jackson:
+                assertEquals(name, "co.elastic.clients.json.jackson.JacksonJsonBuffer");
+                break;
+
+            case Jsonb:
+            case Simple:
+                assertEquals(name, "co.elastic.clients.json.JsonDataImpl");
+        }
     }
 }
