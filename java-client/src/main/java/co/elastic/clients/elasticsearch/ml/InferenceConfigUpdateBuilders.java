@@ -190,6 +190,26 @@ public class InferenceConfigUpdateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link TextExpansionInferenceUpdateOptions
+	 * text_expansion} {@code InferenceConfigUpdate} variant.
+	 */
+	public static TextExpansionInferenceUpdateOptions.Builder textExpansion() {
+		return new TextExpansionInferenceUpdateOptions.Builder();
+	}
+
+	/**
+	 * Creates a InferenceConfigUpdate of the
+	 * {@link TextExpansionInferenceUpdateOptions text_expansion}
+	 * {@code InferenceConfigUpdate} variant.
+	 */
+	public static InferenceConfigUpdate textExpansion(
+			Function<TextExpansionInferenceUpdateOptions.Builder, ObjectBuilder<TextExpansionInferenceUpdateOptions>> fn) {
+		InferenceConfigUpdate.Builder builder = new InferenceConfigUpdate.Builder();
+		builder.textExpansion(fn.apply(new TextExpansionInferenceUpdateOptions.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link QuestionAnsweringInferenceUpdateOptions
 	 * question_answering} {@code InferenceConfigUpdate} variant.
 	 */

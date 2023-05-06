@@ -86,6 +86,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	@Nullable
 	private final Boolean fullyDefined;
 
+	@Nullable
 	private final InferenceConfigCreate inferenceConfig;
 
 	private final TrainedModelConfigInput input;
@@ -118,7 +119,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
 		this.fullyDefined = builder.fullyDefined;
-		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
+		this.inferenceConfig = builder.inferenceConfig;
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
@@ -248,12 +249,14 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The default configuration for inference. This can be either a
-	 * regression, classification, or one of the many NLP focused configurations. It
-	 * must match the underlying definition.trained_model's target_type.
+	 * The default configuration for inference. This can be either a regression,
+	 * classification, or one of the many NLP focused configurations. It must match
+	 * the underlying definition.trained_model's target_type. For pre-packaged
+	 * models such as ELSER the config is not required.
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
+	@Nullable
 	public final InferenceConfigCreate inferenceConfig() {
 		return this.inferenceConfig;
 	}
@@ -382,9 +385,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 			generator.write(this.fullyDefined);
 
 		}
-		generator.writeKey("inference_config");
-		this.inferenceConfig.serialize(generator, mapper);
+		if (this.inferenceConfig != null) {
+			generator.writeKey("inference_config");
+			this.inferenceConfig.serialize(generator, mapper);
 
+		}
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
@@ -480,6 +485,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		@Nullable
 		private Boolean fullyDefined;
 
+		@Nullable
 		private InferenceConfigCreate inferenceConfig;
 
 		private TrainedModelConfigInput input;
@@ -645,21 +651,23 @@ public class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The default configuration for inference. This can be either a
-		 * regression, classification, or one of the many NLP focused configurations. It
-		 * must match the underlying definition.trained_model's target_type.
+		 * The default configuration for inference. This can be either a regression,
+		 * classification, or one of the many NLP focused configurations. It must match
+		 * the underlying definition.trained_model's target_type. For pre-packaged
+		 * models such as ELSER the config is not required.
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final BuilderT inferenceConfig(InferenceConfigCreate value) {
+		public final BuilderT inferenceConfig(@Nullable InferenceConfigCreate value) {
 			this.inferenceConfig = value;
 			return self();
 		}
 
 		/**
-		 * Required - The default configuration for inference. This can be either a
-		 * regression, classification, or one of the many NLP focused configurations. It
-		 * must match the underlying definition.trained_model's target_type.
+		 * The default configuration for inference. This can be either a regression,
+		 * classification, or one of the many NLP focused configurations. It must match
+		 * the underlying definition.trained_model's target_type. For pre-packaged
+		 * models such as ELSER the config is not required.
 		 * <p>
 		 * API name: {@code inference_config}
 		 */

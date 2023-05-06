@@ -33,26 +33,22 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml._types.TextEmbeddingInferenceOptions
+// typedef: ml._types.TextExpansionInferenceOptions
 
 /**
- * Text embedding inference options
+ * Text expansion inference options
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#ml._types.TextEmbeddingInferenceOptions">API
+ *      "../doc-files/api-spec.html#ml._types.TextExpansionInferenceOptions">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVariant, JsonpSerializable {
-	@Nullable
-	private final Integer embeddingSize;
-
+public class TextExpansionInferenceOptions implements InferenceConfigCreateVariant, JsonpSerializable {
 	@Nullable
 	private final TokenizationConfig tokenization;
 
@@ -61,15 +57,14 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbeddingInferenceOptions(Builder builder) {
+	private TextExpansionInferenceOptions(Builder builder) {
 
-		this.embeddingSize = builder.embeddingSize;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
 
 	}
 
-	public static TextEmbeddingInferenceOptions of(Function<Builder, ObjectBuilder<TextEmbeddingInferenceOptions>> fn) {
+	public static TextExpansionInferenceOptions of(Function<Builder, ObjectBuilder<TextExpansionInferenceOptions>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -78,17 +73,7 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 	 */
 	@Override
 	public InferenceConfigCreate.Kind _inferenceConfigCreateKind() {
-		return InferenceConfigCreate.Kind.TextEmbedding;
-	}
-
-	/**
-	 * The number of dimensions in the embedding output
-	 * <p>
-	 * API name: {@code embedding_size}
-	 */
-	@Nullable
-	public final Integer embeddingSize() {
-		return this.embeddingSize;
+		return InferenceConfigCreate.Kind.TextExpansion;
 	}
 
 	/**
@@ -123,11 +108,6 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.embeddingSize != null) {
-			generator.writeKey("embedding_size");
-			generator.write(this.embeddingSize);
-
-		}
 		if (this.tokenization != null) {
 			generator.writeKey("tokenization");
 			this.tokenization.serialize(generator, mapper);
@@ -149,30 +129,17 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbeddingInferenceOptions}.
+	 * Builder for {@link TextExpansionInferenceOptions}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TextEmbeddingInferenceOptions> {
-		@Nullable
-		private Integer embeddingSize;
-
+				ObjectBuilder<TextExpansionInferenceOptions> {
 		@Nullable
 		private TokenizationConfig tokenization;
 
 		@Nullable
 		private String resultsField;
-
-		/**
-		 * The number of dimensions in the embedding output
-		 * <p>
-		 * API name: {@code embedding_size}
-		 */
-		public final Builder embeddingSize(@Nullable Integer value) {
-			this.embeddingSize = value;
-			return this;
-		}
 
 		/**
 		 * The tokenization options
@@ -210,30 +177,29 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 		}
 
 		/**
-		 * Builds a {@link TextEmbeddingInferenceOptions}.
+		 * Builds a {@link TextExpansionInferenceOptions}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbeddingInferenceOptions build() {
+		public TextExpansionInferenceOptions build() {
 			_checkSingleUse();
 
-			return new TextEmbeddingInferenceOptions(this);
+			return new TextExpansionInferenceOptions(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbeddingInferenceOptions}
+	 * Json deserializer for {@link TextExpansionInferenceOptions}
 	 */
-	public static final JsonpDeserializer<TextEmbeddingInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TextEmbeddingInferenceOptions::setupTextEmbeddingInferenceOptionsDeserializer);
+	public static final JsonpDeserializer<TextExpansionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TextExpansionInferenceOptions::setupTextExpansionInferenceOptionsDeserializer);
 
-	protected static void setupTextEmbeddingInferenceOptionsDeserializer(
-			ObjectDeserializer<TextEmbeddingInferenceOptions.Builder> op) {
+	protected static void setupTextExpansionInferenceOptionsDeserializer(
+			ObjectDeserializer<TextExpansionInferenceOptions.Builder> op) {
 
-		op.add(Builder::embeddingSize, JsonpDeserializer.integerDeserializer(), "embedding_size");
 		op.add(Builder::tokenization, TokenizationConfig._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
 

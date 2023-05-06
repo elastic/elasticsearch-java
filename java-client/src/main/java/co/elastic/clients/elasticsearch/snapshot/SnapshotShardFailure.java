@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
 public class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;
 
+	@Nullable
 	private final String nodeId;
 
 	private final String reason;
@@ -64,7 +65,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 	private SnapshotShardFailure(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.nodeId = builder.nodeId;
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
@@ -83,8 +84,9 @@ public class SnapshotShardFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code node_id}
+	 * API name: {@code node_id}
 	 */
+	@Nullable
 	public final String nodeId() {
 		return this.nodeId;
 	}
@@ -124,9 +126,11 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("node_id");
-		generator.write(this.nodeId);
+		if (this.nodeId != null) {
+			generator.writeKey("node_id");
+			generator.write(this.nodeId);
 
+		}
 		generator.writeKey("reason");
 		generator.write(this.reason);
 
@@ -154,6 +158,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 				ObjectBuilder<SnapshotShardFailure> {
 		private String index;
 
+		@Nullable
 		private String nodeId;
 
 		private String reason;
@@ -171,9 +176,9 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node_id}
+		 * API name: {@code node_id}
 		 */
-		public final Builder nodeId(String value) {
+		public final Builder nodeId(@Nullable String value) {
 			this.nodeId = value;
 			return this;
 		}
