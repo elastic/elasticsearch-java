@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch._types.GeoLocation;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -53,7 +54,16 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 	private final Boolean ignoreZValue;
 
 	@Nullable
+	private final Boolean index;
+
+	@Nullable
 	private final GeoLocation nullValue;
+
+	@Nullable
+	private final OnScriptError onScriptError;
+
+	@Nullable
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,7 +72,10 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 
 		this.ignoreMalformed = builder.ignoreMalformed;
 		this.ignoreZValue = builder.ignoreZValue;
+		this.index = builder.index;
 		this.nullValue = builder.nullValue;
+		this.onScriptError = builder.onScriptError;
+		this.script = builder.script;
 
 	}
 
@@ -95,11 +108,35 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 	}
 
 	/**
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final Boolean index() {
+		return this.index;
+	}
+
+	/**
 	 * API name: {@code null_value}
 	 */
 	@Nullable
 	public final GeoLocation nullValue() {
 		return this.nullValue;
+	}
+
+	/**
+	 * API name: {@code on_script_error}
+	 */
+	@Nullable
+	public final OnScriptError onScriptError() {
+		return this.onScriptError;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public final Script script() {
+		return this.script;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -116,9 +153,24 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 			generator.write(this.ignoreZValue);
 
 		}
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
 			this.nullValue.serialize(generator, mapper);
+
+		}
+		if (this.onScriptError != null) {
+			generator.writeKey("on_script_error");
+			this.onScriptError.serialize(generator, mapper);
+
+		}
+		if (this.script != null) {
+			generator.writeKey("script");
+			this.script.serialize(generator, mapper);
 
 		}
 
@@ -140,7 +192,16 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		private Boolean ignoreZValue;
 
 		@Nullable
+		private Boolean index;
+
+		@Nullable
 		private GeoLocation nullValue;
+
+		@Nullable
+		private OnScriptError onScriptError;
+
+		@Nullable
+		private Script script;
 
 		/**
 		 * API name: {@code ignore_malformed}
@@ -159,6 +220,14 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		}
 
 		/**
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable Boolean value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code null_value}
 		 */
 		public final Builder nullValue(@Nullable GeoLocation value) {
@@ -171,6 +240,29 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		 */
 		public final Builder nullValue(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
 			return this.nullValue(fn.apply(new GeoLocation.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code on_script_error}
+		 */
+		public final Builder onScriptError(@Nullable OnScriptError value) {
+			this.onScriptError = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(@Nullable Script value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -203,7 +295,10 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
+		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::nullValue, GeoLocation._DESERIALIZER, "null_value");
+		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 		op.ignore("type");
 	}
