@@ -22,7 +22,6 @@ package co.elastic.clients.transport.endpoints;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.JsonEndpoint;
-import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -87,15 +86,5 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             body,
             newResponseParser
         );
-    }
-
-    public static RuntimeException noPathTemplateFound(String what) {
-        return new RuntimeException("Could not find a request " + what + " with this set of properties. " +
-            "Please check the API documentation, or raise an issue if this should be a valid request.");
-    }
-
-    public static void pathEncode(String src, StringBuilder dest) {
-        // TODO: avoid dependency on HttpClient here (and use something more efficient)
-        dest.append(URLEncodedUtils.formatSegments(src).substring(1));
     }
 }

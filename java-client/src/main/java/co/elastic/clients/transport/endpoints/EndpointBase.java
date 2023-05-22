@@ -22,9 +22,11 @@ package co.elastic.clients.transport.endpoints;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.Endpoint;
-import org.apache.http.client.utils.URLEncodedUtils;
 
 import javax.annotation.Nullable;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
@@ -145,8 +147,54 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
             "Please check the API documentation, or raise an issue if this should be a valid request.");
     }
 
-    public static void pathEncode(String src, StringBuilder dest) {
-        // TODO: avoid dependency on HttpClient here (and use something more efficient)
-        dest.append(URLEncodedUtils.formatSegments(src).substring(1));
+    private static final BitSet PATH_SAFE;
+    private static final char[] HEX_CHARS;
+
+    static {
+        PATH_SAFE   = new BitSet(256);
+        // From RFC 3986
+        // unreserved = ALPHA / DIGIT / "-" / "." / "_" / "~"
+        PATH_SAFE.set('a', 'z'+1);
+        PATH_SAFE.set('A', 'Z'+1);
+        PATH_SAFE.set('0', '9'+1);
+        PATH_SAFE.set('-');
+        PATH_SAFE.set('.');
+        PATH_SAFE.set('_');
+        PATH_SAFE.set('~');
+
+        // sub-delims  = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
+        PATH_SAFE.set('!');
+        PATH_SAFE.set('$');
+        PATH_SAFE.set('&');
+        PATH_SAFE.set('\'');
+        PATH_SAFE.set('(');
+        PATH_SAFE.set(')');
+        PATH_SAFE.set('*');
+        PATH_SAFE.set('+');
+        PATH_SAFE.set(',');
+        PATH_SAFE.set(';');
+        PATH_SAFE.set('=');
+
+        // pchar = unreserved / pct-encoded / sub-delims / ":" / "@"
+        PATH_SAFE.set(':');
+        PATH_SAFE.set('@');
+
+        HEX_CHARS = "0123456789ABCDEF".toCharArray();
+    }
+
+    public static void pathEncode(final String src, StringBuilder dest) {
+        final ByteBuffer buf = StandardCharsets.UTF_8.encode(src);
+        // In UTF-8 multibyte encoding, all bytes have the high bit set. This means we can iterate
+        // on all bytes and percent-encode without having to care about code point context.
+        while (buf.hasRemaining()) {
+            int b = buf.get() & 0xff;
+            if (PATH_SAFE.get(b)) {
+                dest.append((char) b);
+            } else {
+                dest.append("%");
+                dest.append(HEX_CHARS[b >> 4 & 0xF]);
+                dest.append(HEX_CHARS[b & 0xF]);
+            }
+        }
     }
 }
