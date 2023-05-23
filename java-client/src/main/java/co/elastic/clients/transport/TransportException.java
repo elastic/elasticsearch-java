@@ -24,22 +24,32 @@ import java.io.IOException;
 
 public class TransportException extends IOException {
 
+    private final int statusCode;
     private final String endpointId;
 
-    public TransportException(String message, String endpointId) {
-        this(message, endpointId, null);
+    public TransportException(int statusCode, String message, String endpointId) {
+        this(statusCode, message, endpointId, null);
     }
 
-    public TransportException(String message, String endpointId, Throwable cause) {
-        super(endpointId == null ? message : "[" + endpointId + "] " + message, cause);
+    public TransportException(int statusCode, String message, String endpointId, Throwable cause) {
+        super("status: " + statusCode + ", " + (endpointId == null ? message : "[" + endpointId + "] " + message), cause);
+        this.statusCode = statusCode;
         this.endpointId = endpointId;
+    }
+
+    /**
+     * Status code returned by the http resquest
+     */
+    public int statusCode() {
+        return statusCode;
     }
 
     /**
      * Identifier of the API endpoint that caused the exception, if known.
      */
     @Nullable
-    String getEndpointId() {
+    public String endpointId() {
         return endpointId;
     }
+
 }
