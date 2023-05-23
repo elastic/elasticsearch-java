@@ -36,6 +36,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.MissingRequiredPropertyException;
+import jakarta.json.JsonException;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.HttpEntity;
@@ -85,7 +86,7 @@ public class RestClientTransport implements ElasticsearchTransport {
 
     /**
      * The {@code Future} implementation returned by async requests.
-     * It wraps the RestClient's cancellable and progagates cancellation.
+     * It wraps the RestClient's cancellable and propagates cancellation.
      */
     private static class RequestFuture<T> extends CompletableFuture<T> {
         private volatile Cancellable cancellable;
@@ -310,6 +311,7 @@ public class RestClientTransport implements ElasticsearchTransport {
                 JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
                 if (errorDeserializer == null) {
                     throw new TransportException(
+                        statusCode,
                         "Request failed with status code '" + statusCode + "'",
                         endpoint.id(), new ResponseException(clientResp)
                     );
@@ -318,6 +320,7 @@ public class RestClientTransport implements ElasticsearchTransport {
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
                     throw new TransportException(
+                        statusCode,
                         "Expecting a response body, but none was sent",
                         endpoint.id(), new ResponseException(clientResp)
                     );
@@ -333,14 +336,17 @@ public class RestClientTransport implements ElasticsearchTransport {
                         // TODO: have the endpoint provide the exception constructor
                         throw new ElasticsearchException(endpoint.id(), (ErrorResponse) error);
                     }
-                } catch(MissingRequiredPropertyException errorEx) {
+                } catch(JsonException | MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type
                     try {
                         ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
                         return response;
                     } catch(Exception respEx) {
                         // No better luck: throw the original error decoding exception
-                        throw new TransportException("Failed to decode error response", endpoint.id(), new ResponseException(clientResp));
+                        throw new TransportException(statusCode,
+                            "Failed to decode error response, check exception cause for additional details", endpoint.id(),
+                            new ResponseException(clientResp)
+                        );
                     }
                 }
             } else {
@@ -368,6 +374,7 @@ public class RestClientTransport implements ElasticsearchTransport {
                 // Expecting a body
                 if (entity == null) {
                     throw new TransportException(
+                        statusCode,
                         "Expecting a response body, but none was sent",
                         endpoint.id(), new ResponseException(clientResp)
                     );
@@ -395,7 +402,7 @@ public class RestClientTransport implements ElasticsearchTransport {
             return response;
 
         } else {
-            throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id());
+            throw new TransportException(statusCode, "Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id());
         }
     }
 
@@ -411,6 +418,7 @@ public class RestClientTransport implements ElasticsearchTransport {
                 return;
             }
             throw new TransportException(
+                clientResp.getStatusLine().getStatusCode(),
                 "Missing [X-Elastic-Product] header. Please check that you are connecting to an Elasticsearch "
                     + "instance, and that any networking filters are preserving that header.",
                 endpoint.id(),
@@ -419,7 +427,9 @@ public class RestClientTransport implements ElasticsearchTransport {
         }
 
         if (!"Elasticsearch".equals(header)) {
-            throw new TransportException("Invalid value '" + header + "' for 'X-Elastic-Product' header.",
+            throw new TransportException(
+                clientResp.getStatusLine().getStatusCode(),
+                "Invalid value '" + header + "' for 'X-Elastic-Product' header.",
                 endpoint.id(),
                 new ResponseException(clientResp)
             );
