@@ -173,7 +173,7 @@ public class RestClientOptions implements TransportOptions {
             builder.addHeader(USER_AGENT_HEADER, USER_AGENT_VALUE);
         }
         if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase("Accept"))) {
-            builder.addHeader("Accept", RestClientTransport.JsonContentType.toString());
+            builder.addHeader("Accept", RestClientTransport.JsonContentType);
         }
 
         return builder;
