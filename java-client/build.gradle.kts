@@ -18,8 +18,8 @@
  */
 
 import com.github.jk1.license.ProjectData
-import com.github.jk1.license.render.ReportRenderer
 import com.github.jk1.license.render.LicenseDataCollector
+import com.github.jk1.license.render.ReportRenderer
 import java.io.FileWriter
 
 plugins {
@@ -53,8 +53,8 @@ tasks.getByName<ProcessResources>("processResources") {
         if (name != "apis.json") {
             // Only process main source-set resources (test files are large)
             expand(
-                "version" to version,
-                "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")
+                    "version" to version,
+                    "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")
             )
         }
     }
@@ -69,7 +69,7 @@ tasks.withType<Jar> {
         if (rootProject.extra.has("gitHashFull")) {
             val jar = this as Jar
             jar.manifest.attributes["X-Git-Revision"] = rootProject.extra["gitHashFull"]
-            jar.manifest.attributes["X-Git-Commit-Time"] = rootProject .extra["gitCommitTime"]
+            jar.manifest.attributes["X-Git-Commit-Time"] = rootProject.extra["gitCommitTime"]
         } else {
             throw GradleException("No git information available")
         }
@@ -154,7 +154,7 @@ publishing {
                     // are the same as the one used in the dependency section below.
                     val xPathFactory = javax.xml.xpath.XPathFactory.newInstance()
                     val depSelector = xPathFactory.newXPath()
-                        .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
+                            .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
                     val versionSelector = xPathFactory.newXPath().compile("version")
 
                     var foundVersion = false;
@@ -183,6 +183,7 @@ dependencies {
     // the Java API client coexists with a 7.x HLRC work fine
     val elasticsearchVersion = "7.17.7"
     val jacksonVersion = "2.13.3"
+    val openTelemetryVersion = "1.26.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
@@ -200,6 +201,13 @@ dependencies {
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
     api("org.eclipse.parsson:parsson:1.0.0")
+
+    // OpenTelemetry API for native instrumentation of the client.
+    // Apache 2.0
+    // https://github.com/open-telemetry/opentelemetry-java
+    implementation("io.opentelemetry", "opentelemetry-api", openTelemetryVersion)
+    implementation("io.opentelemetry", "opentelemetry-semconv", "$openTelemetryVersion-alpha")
+
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonb-api
@@ -236,6 +244,9 @@ dependencies {
     // https://www.testcontainers.org/
     testImplementation("org.testcontainers", "testcontainers", "1.17.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
+
+
+    testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
 }
 
 
@@ -247,17 +258,17 @@ licenseReport {
 class SpdxReporter(val dest: File) : ReportRenderer {
     // License names to their SPDX identifier
     val spdxIds = mapOf(
-        "Apache License, Version 2.0" to "Apache-2.0",
-        "The Apache Software License, Version 2.0" to "Apache-2.0",
-        "BSD Zero Clause License" to "0BSD",
-        "Eclipse Public License 2.0" to "EPL-2.0",
-        "Eclipse Public License v. 2.0" to "EPL-2.0",
-        "Eclipse Public License - v 2.0" to "EPL-2.0",
-        "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
-        "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
+            "Apache License, Version 2.0" to "Apache-2.0",
+            "The Apache Software License, Version 2.0" to "Apache-2.0",
+            "BSD Zero Clause License" to "0BSD",
+            "Eclipse Public License 2.0" to "EPL-2.0",
+            "Eclipse Public License v. 2.0" to "EPL-2.0",
+            "Eclipse Public License - v 2.0" to "EPL-2.0",
+            "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
+            "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
     )
 
-    private fun quote(str: String) : String {
+    private fun quote(str: String): String {
         return if (str.contains(',') || str.contains("\"")) {
             "\"" + str.replace("\"", "\"\"") + "\""
         } else {

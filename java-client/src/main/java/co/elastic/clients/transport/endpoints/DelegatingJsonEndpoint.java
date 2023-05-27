@@ -49,6 +49,16 @@ public class DelegatingJsonEndpoint<Req, Res, Err> implements JsonEndpoint<Req, 
     }
 
     @Override
+    public String route(Req request) {
+        return endpoint.route(request);
+    }
+
+    @Override
+    public Map<String, String> pathParameters(Req request) {
+        return endpoint.pathParameters(request);
+    }
+
+    @Override
     public Map<String, String> queryParameters(Req request) {
         return endpoint.queryParameters(request);
     }
