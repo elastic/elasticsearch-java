@@ -127,10 +127,10 @@ public class RestClientMonolithTransport implements ElasticsearchTransport {
     }
 
     /**
-     * Copies this {@link #RestClientTransport} with specific request options.
+     * Copies this {@link #RestClientMonolithTransport} with specific request options.
      */
-    public RestClientTransport withRequestOptions(@Nullable TransportOptions options) {
-        return new RestClientTransport(this.restClient, this.mapper, options);
+    public RestClientMonolithTransport withRequestOptions(@Nullable TransportOptions options) {
+        return new RestClientMonolithTransport(this.restClient, this.mapper, options);
     }
 
     @Override

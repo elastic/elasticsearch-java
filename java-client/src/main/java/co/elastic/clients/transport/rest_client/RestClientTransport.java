@@ -20,216 +20,24 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.transport.TransportBase;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.TransportOptions;
-import co.elastic.clients.util.BinaryData;
-import co.elastic.clients.util.NoCopyByteArrayOutputStream;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.entity.ContentType;
-import org.apache.http.util.EntityUtils;
-import org.elasticsearch.client.Cancellable;
-import org.elasticsearch.client.Request;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.Response;
-import org.elasticsearch.client.ResponseException;
-import org.elasticsearch.client.ResponseListener;
+import co.elastic.clients.transport.ElasticsearchTransportBase;
 import org.elasticsearch.client.RestClient;
 
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 
-public class RestClientTransport extends TransportBase<RestClientOptions> implements ElasticsearchTransport {
-
-    private static final ConcurrentHashMap<String, ContentType> ContentTypeCache = new ConcurrentHashMap<>();
-
-    /**
-     * The {@code Future} implementation returned by async requests.
-     * It wraps the RestClient's cancellable and propagates cancellation.
-     */
-    private static class RequestFuture<T> extends CompletableFuture<T> {
-        private volatile Cancellable cancellable;
-
-        @Override
-        public boolean cancel(boolean mayInterruptIfRunning) {
-            boolean cancelled = super.cancel(mayInterruptIfRunning);
-            if (cancelled && cancellable != null) {
-                cancellable.cancel();
-            }
-            return cancelled;
-        }
-    }
+public class RestClientTransport extends ElasticsearchTransportBase<RestClientOptions> {
 
     private final RestClient restClient;
 
-    public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
-        this(restClient, mapper, null);
+    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper) {
+        this(restClient, jsonpMapper, null);
     }
 
-    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable TransportOptions options) {
-        super(mapper, options == null ? RestClientOptions.initialOptions() : RestClientOptions.of(options));
+    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options) {
+        super(jsonpMapper, new RestClientHttpClient(restClient), options);
         this.restClient = restClient;
     }
 
-    /**
-     * Returns the underlying low level Rest Client used by this transport.
-     */
     public RestClient restClient() {
         return this.restClient;
-    }
-
-    @Override
-    protected RestClientOptions createOptions(@Nullable TransportOptions options) {
-        return options == null ? transportOptions : RestClientOptions.of(options);
-    }
-
-    @Override
-    protected TransportResponse performRequest(TransportRequest request, RestClientOptions options) throws IOException {
-        Request restRequest = createRestRequest(request, options);
-        Response restResponse = restClient.performRequest(restRequest);
-        return new RestResponse(restResponse);
-    }
-
-    @Override
-    protected CompletableFuture<TransportResponse> performRequestAsync(TransportRequest request, RestClientOptions options) {
-
-        RequestFuture<TransportResponse> future = new RequestFuture<>();
-        org.elasticsearch.client.Request restRequest;
-
-        try {
-            restRequest = createRestRequest(request, options);
-        } catch(Throwable thr) {
-            // Terminate early
-            future.completeExceptionally(thr);
-            return future;
-        }
-
-        future.cancellable = restClient.performRequestAsync(restRequest, new ResponseListener() {
-            @Override
-            public void onSuccess(org.elasticsearch.client.Response response) {
-                future.complete(new RestResponse(response));
-            }
-
-            @Override
-            public void onFailure(Exception exception) {
-                future.completeExceptionally(exception);
-            }
-        });
-
-        return future;
-    }
-
-    @Override
-    public void close() throws IOException {
-        this.restClient.close();
-    }
-
-    private org.elasticsearch.client.Request createRestRequest(TransportRequest request, RestClientOptions options) {
-        org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(
-            request.method, request.path
-        );
-
-        RequestOptions restOptions = options == null ?
-            transportOptions.restClientRequestOptions() :
-            RestClientOptions.of(options).restClientRequestOptions();
-
-        if (restOptions != null) {
-            clientReq.setOptions(restOptions);
-        }
-
-        clientReq.addParameters(request.queryParams);
-
-        Iterable<ByteBuffer> body = request.body;
-        if (body != null) {
-            ContentType ct = ContentTypeCache.computeIfAbsent(request.contentType, ContentType::parse);
-            clientReq.setEntity(new MultiBufferEntity(body, ct));
-        }
-
-        // Request parameter intercepted by LLRC
-        clientReq.addParameter("ignore", "400,401,403,404,405");
-        return clientReq;
-    }
-
-    private static class RestResponse implements TransportResponse {
-        private final org.elasticsearch.client.Response restResponse;
-
-        public RestResponse(org.elasticsearch.client.Response restResponse) {
-            this.restResponse = restResponse;
-        }
-
-        @Override
-        public int statusCode() {
-            return restResponse.getStatusLine().getStatusCode();
-        }
-
-        @Override
-        public String getHeader(String name) {
-            return restResponse.getHeader(name);
-        }
-
-        @Nullable
-        @Override
-        public BinaryData getBody() throws IOException {
-            HttpEntity entity = restResponse.getEntity();
-            return entity == null ? null : new HttpEntityBinaryData(restResponse.getEntity());
-        }
-
-        @Override
-        public Throwable createException() throws IOException {
-            return new ResponseException(this.restResponse);
-        }
-
-        @Override
-        public void close() throws IOException {
-            EntityUtils.consume(restResponse.getEntity());
-        }
-    }
-
-    private static class HttpEntityBinaryData implements BinaryData {
-        private final HttpEntity entity;
-
-        public HttpEntityBinaryData(HttpEntity entity) {
-            this.entity = entity;
-        }
-
-        @Override
-        public String contentType() {
-            Header h = entity.getContentType();
-            return h == null ? "application/octet-stream" : h.getValue();
-        }
-
-        @Override
-        public void writeTo(OutputStream out) throws IOException {
-            entity.writeTo(out);
-        }
-
-        @Override
-        public ByteBuffer asByteBuffer() throws IOException {
-            NoCopyByteArrayOutputStream out = new NoCopyByteArrayOutputStream();
-            entity.writeTo(out);
-            return out.asByteBuffer();
-        }
-
-        @Override
-        public InputStream asInputStream() throws IOException {
-            return entity.getContent();
-        }
-
-        @Override
-        public boolean isRepeatable() {
-            return entity.isRepeatable();
-        }
-
-        @Override
-        public long size() {
-            long len = entity.getContentLength();
-            return len < 0 ? -1 : entity.getContentLength();
-        }
     }
 }

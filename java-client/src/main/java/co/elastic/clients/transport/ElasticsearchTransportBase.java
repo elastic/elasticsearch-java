@@ -28,6 +28,7 @@ import co.elastic.clients.transport.endpoints.BinaryDataResponse;
 import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.ByteArrayBinaryData;
@@ -53,25 +54,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public abstract class TransportBase<
+public abstract class ElasticsearchTransportBase<
     Options extends TransportOptions
-    > implements Transport {
-
-    public static class TransportRequest {
-        public final String method;
-        public final String path;
-        public final Map<String, String> queryParams;
-        @Nullable public final String contentType;
-        @Nullable public final Iterable<ByteBuffer> body;
-
-        public TransportRequest(String method, String path, Map<String, String> queryParams, @Nullable String contentType, @Nullable Iterable<ByteBuffer> body) {
-            this.method = method;
-            this.path = path;
-            this.queryParams = queryParams;
-            this.contentType = contentType;
-            this.body = body;
-        }
-    }
+    > implements ElasticsearchTransport {
 
     public static final String JsonContentType;
 
@@ -85,19 +70,20 @@ public abstract class TransportBase<
         }
     }
 
-    /**
-     * Create implementation-specific options from optional initial options.
-     */
-    protected abstract Options createOptions(@Nullable TransportOptions options);
-    protected abstract TransportResponse performRequest(TransportRequest request, Options options) throws IOException;
-    protected abstract CompletableFuture<TransportResponse> performRequestAsync(TransportRequest request, Options options);
+    private final TransportHttpClient<Options> httpClient;
+
+    @Override
+    public void close() throws IOException {
+        httpClient.close();
+    }
 
     private final JsonpMapper mapper;
     protected final Options transportOptions;
 
-    protected TransportBase(JsonpMapper jsonpMapper, Options options) {
+    public ElasticsearchTransportBase(JsonpMapper jsonpMapper, TransportHttpClient<Options> httpClient, Options options) {
         this.mapper = jsonpMapper;
-        this.transportOptions = options;
+        this.httpClient = httpClient;
+        this.transportOptions = options == null ? httpClient.createOptions(null) : options;
     }
 
     @Override
@@ -116,15 +102,19 @@ public abstract class TransportBase<
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-        TransportRequest req = prepareTransportRequest(request, endpoint, options);
-        Options opts = createOptions(options);
-        TransportResponse resp = performRequest(req, opts);
+        TransportHttpClient.Request req = prepareTransportRequest(request, endpoint, options);
+        Options opts = options == null ? transportOptions : httpClient.createOptions(options);
+        TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), req, opts);
         return getApiResponse(resp, endpoint);
     }
 
     @Override
-    public final <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(RequestT request, Endpoint<RequestT, ResponseT, ErrorT> endpoint, @Nullable TransportOptions options) {
-        TransportRequest clientReq;
+    public final <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
+        RequestT request,
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
+    ) {
+        TransportHttpClient.Request clientReq;
         try {
             clientReq = prepareTransportRequest(request, endpoint, options);
         } catch (Exception e) {
@@ -137,7 +127,9 @@ public abstract class TransportBase<
         // Propagate required property checks to the thread that will decode the response
         boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
 
-        CompletableFuture<TransportResponse> clientFuture = performRequestAsync(clientReq, createOptions(options));
+        CompletableFuture<TransportHttpClient.Response> clientFuture = httpClient.performRequestAsync(
+            endpoint.id(), clientReq, httpClient.createOptions(options)
+        );
 
         // Cancelling the result will cancel the upstream future created by the http client, allowing to stop in-flight requests
         CompletableFuture<ResponseT> future = new CompletableFuture<ResponseT>() {
@@ -171,7 +163,7 @@ public abstract class TransportBase<
         return future;
     }
 
-    private <RequestT, ResponseT, ErrorT> TransportRequest prepareTransportRequest(
+    private <RequestT, ResponseT, ErrorT> TransportHttpClient.Request prepareTransportRequest(
         RequestT request,
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
@@ -214,7 +206,7 @@ public abstract class TransportBase<
             }
         }
 
-        return new TransportRequest(method, path, params, contentType, bodyBuffers);
+        return new TransportHttpClient.Request(method, path, params, contentType, bodyBuffers);
     }
 
     private static final ByteBuffer NdJsonSeparator = ByteBuffer.wrap("\n".getBytes(StandardCharsets.UTF_8));
@@ -236,16 +228,8 @@ public abstract class TransportBase<
         }
     }
 
-    protected interface TransportResponse {
-        int statusCode();
-        String getHeader(String name);
-        @Nullable BinaryData getBody() throws IOException;
-        Throwable createException() throws IOException;
-        void close() throws IOException;
-    }
-
     private <ResponseT, ErrorT> ResponseT getApiResponse(
-        TransportResponse clientResp,
+        TransportHttpClient.Response clientResp,
         Endpoint<?, ResponseT, ErrorT> endpoint
     ) throws IOException {
 
@@ -314,7 +298,7 @@ public abstract class TransportBase<
     }
 
     private <ResponseT> ResponseT decodeTransportResponse(
-        int statusCode, @Nullable BinaryData entity, TransportResponse clientResp, Endpoint<?, ResponseT, ?> endpoint
+        int statusCode, @Nullable BinaryData entity, TransportHttpClient.Response clientResp, Endpoint<?, ResponseT, ?> endpoint
     ) throws IOException {
 
         if (endpoint instanceof JsonEndpoint) {
@@ -369,7 +353,7 @@ public abstract class TransportBase<
         "es/snapshot.create" // #74 / elastic/elasticsearch#82358
     ));
 
-    private void checkProductHeader(TransportResponse clientResp, Endpoint<?, ?, ?> endpoint) throws IOException {
+    private void checkProductHeader(TransportHttpClient.Response clientResp, Endpoint<?, ?, ?> endpoint) throws IOException {
         String header = clientResp.getHeader("X-Elastic-Product");
         if (header == null) {
             if (endpointsMissingProductHeader.contains(endpoint.id())) {

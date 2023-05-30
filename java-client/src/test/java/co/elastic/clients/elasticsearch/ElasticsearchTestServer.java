@@ -17,8 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch;
+package co.elastic.clients.tests;
 
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
