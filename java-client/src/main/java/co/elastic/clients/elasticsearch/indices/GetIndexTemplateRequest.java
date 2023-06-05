@@ -57,6 +57,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 	private final Boolean flatSettings;
 
 	@Nullable
+	private final Boolean includeDefaults;
+
+	@Nullable
 	private final Boolean local;
 
 	@Nullable
@@ -70,6 +73,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 	private GetIndexTemplateRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
+		this.includeDefaults = builder.includeDefaults;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
@@ -88,6 +92,16 @@ public class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	public final Boolean flatSettings() {
 		return this.flatSettings;
+	}
+
+	/**
+	 * If true, returns all relevant default configurations for the index template.
+	 * <p>
+	 * API name: {@code include_defaults}
+	 */
+	@Nullable
+	public final Boolean includeDefaults() {
+		return this.includeDefaults;
 	}
 
 	/**
@@ -136,6 +150,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 		private Boolean flatSettings;
 
 		@Nullable
+		private Boolean includeDefaults;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
@@ -151,6 +168,16 @@ public class GetIndexTemplateRequest extends RequestBase {
 		 */
 		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns all relevant default configurations for the index template.
+		 * <p>
+		 * API name: {@code include_defaults}
+		 */
+		public final Builder includeDefaults(@Nullable Boolean value) {
+			this.includeDefaults = value;
 			return this;
 		}
 
@@ -262,6 +289,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.includeDefaults != null) {
+					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));

@@ -62,6 +62,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	private final Boolean create;
 
 	@Nullable
+	private final Boolean includeDefaults;
+
+	@Nullable
 	private final Time masterTimeout;
 
 	@Nullable
@@ -74,6 +77,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	private SimulateTemplateRequest(Builder builder) {
 
 		this.create = builder.create;
+		this.includeDefaults = builder.includeDefaults;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
@@ -95,6 +99,16 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	public final Boolean create() {
 		return this.create;
+	}
+
+	/**
+	 * If true, returns all relevant default configurations for the index template.
+	 * <p>
+	 * API name: {@code include_defaults}
+	 */
+	@Nullable
+	public final Boolean includeDefaults() {
+		return this.includeDefaults;
 	}
 
 	/**
@@ -148,6 +162,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		private Boolean create;
 
 		@Nullable
+		private Boolean includeDefaults;
+
+		@Nullable
 		private Time masterTimeout;
 
 		@Nullable
@@ -165,6 +182,16 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder create(@Nullable Boolean value) {
 			this.create = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns all relevant default configurations for the index template.
+		 * <p>
+		 * API name: {@code include_defaults}
+		 */
+		public final Builder includeDefaults(@Nullable Boolean value) {
+			this.includeDefaults = value;
 			return this;
 		}
 
@@ -300,6 +327,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
+				}
+				if (request.includeDefaults != null) {
+					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
 				return params;
 

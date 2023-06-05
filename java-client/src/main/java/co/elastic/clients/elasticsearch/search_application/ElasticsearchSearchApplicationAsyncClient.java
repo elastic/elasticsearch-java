@@ -91,6 +91,40 @@ public class ElasticsearchSearchApplicationAsyncClient
 		return delete(fn.apply(new DeleteSearchApplicationRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: search_application.delete_behavioral_analytics
+
+	/**
+	 * Delete a behavioral analytics collection.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteBehavioralAnalyticsResponse> deleteBehavioralAnalytics(
+			DeleteBehavioralAnalyticsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteBehavioralAnalyticsRequest, DeleteBehavioralAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteBehavioralAnalyticsRequest, DeleteBehavioralAnalyticsResponse, ErrorResponse>) DeleteBehavioralAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete a behavioral analytics collection.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteBehavioralAnalyticsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteBehavioralAnalyticsResponse> deleteBehavioralAnalytics(
+			Function<DeleteBehavioralAnalyticsRequest.Builder, ObjectBuilder<DeleteBehavioralAnalyticsRequest>> fn) {
+		return deleteBehavioralAnalytics(fn.apply(new DeleteBehavioralAnalyticsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: search_application.get
 
 	/**
@@ -122,6 +156,53 @@ public class ElasticsearchSearchApplicationAsyncClient
 	public final CompletableFuture<GetSearchApplicationResponse> get(
 			Function<GetSearchApplicationRequest.Builder, ObjectBuilder<GetSearchApplicationRequest>> fn) {
 		return get(fn.apply(new GetSearchApplicationRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: search_application.get_behavioral_analytics
+
+	/**
+	 * Returns the existing behavioral analytics collections.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetBehavioralAnalyticsResponse> getBehavioralAnalytics(
+			GetBehavioralAnalyticsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetBehavioralAnalyticsRequest, GetBehavioralAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetBehavioralAnalyticsRequest, GetBehavioralAnalyticsResponse, ErrorResponse>) GetBehavioralAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the existing behavioral analytics collections.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetBehavioralAnalyticsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetBehavioralAnalyticsResponse> getBehavioralAnalytics(
+			Function<GetBehavioralAnalyticsRequest.Builder, ObjectBuilder<GetBehavioralAnalyticsRequest>> fn) {
+		return getBehavioralAnalytics(fn.apply(new GetBehavioralAnalyticsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns the existing behavioral analytics collections.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetBehavioralAnalyticsResponse> getBehavioralAnalytics() {
+		return this.transport.performRequestAsync(new GetBehavioralAnalyticsRequest.Builder().build(),
+				GetBehavioralAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: search_application.list
@@ -199,6 +280,40 @@ public class ElasticsearchSearchApplicationAsyncClient
 
 	public final CompletableFuture<PutResponse> put(Function<PutRequest.Builder, ObjectBuilder<PutRequest>> fn) {
 		return put(fn.apply(new PutRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: search_application.put_behavioral_analytics
+
+	/**
+	 * Creates a behavioral analytics collection.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutBehavioralAnalyticsResponse> putBehavioralAnalytics(
+			PutBehavioralAnalyticsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutBehavioralAnalyticsRequest, PutBehavioralAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutBehavioralAnalyticsRequest, PutBehavioralAnalyticsResponse, ErrorResponse>) PutBehavioralAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates a behavioral analytics collection.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutBehavioralAnalyticsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-analytics-collection.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutBehavioralAnalyticsResponse> putBehavioralAnalytics(
+			Function<PutBehavioralAnalyticsRequest.Builder, ObjectBuilder<PutBehavioralAnalyticsRequest>> fn) {
+		return putBehavioralAnalytics(fn.apply(new PutBehavioralAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: search_application.search

@@ -59,6 +59,9 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	@Nullable
 	private final IndexSettings settings;
 
+	@Nullable
+	private final DataLifecycleWithRollover lifecycle;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexTemplateSummary(Builder builder) {
@@ -66,6 +69,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
+		this.lifecycle = builder.lifecycle;
 
 	}
 
@@ -94,6 +98,14 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	@Nullable
 	public final IndexSettings settings() {
 		return this.settings;
+	}
+
+	/**
+	 * API name: {@code lifecycle}
+	 */
+	@Nullable
+	public final DataLifecycleWithRollover lifecycle() {
+		return this.lifecycle;
 	}
 
 	/**
@@ -128,6 +140,11 @@ public class IndexTemplateSummary implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
+		if (this.lifecycle != null) {
+			generator.writeKey("lifecycle");
+			this.lifecycle.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -153,6 +170,9 @@ public class IndexTemplateSummary implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettings settings;
+
+		@Nullable
+		private DataLifecycleWithRollover lifecycle;
 
 		/**
 		 * API name: {@code aliases}
@@ -213,6 +233,22 @@ public class IndexTemplateSummary implements JsonpSerializable {
 			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
+			this.lifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(
+				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -244,6 +280,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
 
 	}
 

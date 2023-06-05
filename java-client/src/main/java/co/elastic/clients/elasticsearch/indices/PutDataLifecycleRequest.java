@@ -26,8 +26,11 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -35,7 +38,6 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -45,35 +47,52 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
-// typedef: indices.get_data_stream.Request
+// typedef: indices.put_data_lifecycle.Request
 
 /**
- * Returns data streams.
+ * Update the data lifecycle of the specified data streams.
  * 
- * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#indices.put_data_lifecycle.Request">API
  *      specification</a>
  */
+@JsonpDeserializable
+public class PutDataLifecycleRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Time dataRetention;
 
-public class GetDataStreamRequest extends RequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
-	private final Boolean includeDefaults;
+	private final Time masterTimeout;
 
 	private final List<String> name;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private GetDataStreamRequest(Builder builder) {
+	private PutDataLifecycleRequest(Builder builder) {
 
+		this.dataRetention = builder.dataRetention;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.includeDefaults = builder.includeDefaults;
-		this.name = ApiTypeHelper.unmodifiable(builder.name);
+		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.timeout = builder.timeout;
 
 	}
 
-	public static GetDataStreamRequest of(Function<Builder, ObjectBuilder<GetDataStreamRequest>> fn) {
+	public static PutDataLifecycleRequest of(Function<Builder, ObjectBuilder<PutDataLifecycleRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code data_retention}
+	 */
+	@Nullable
+	public final Time dataRetention() {
+		return this.dataRetention;
 	}
 
 	/**
@@ -87,18 +106,18 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, returns all relevant default configurations for the index template.
+	 * Specify timeout for connection to master
 	 * <p>
-	 * API name: {@code include_defaults}
+	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final Boolean includeDefaults() {
-		return this.includeDefaults;
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
-	 * A comma-separated list of data streams to get; use <code>*</code> to get all
-	 * data streams
+	 * Required - A comma-separated list of data streams whose lifecycle will be
+	 * updated; use <code>*</code> to set the lifecycle to all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -106,23 +125,72 @@ public class GetDataStreamRequest extends RequestBase {
 		return this.name;
 	}
 
+	/**
+	 * Explicit timestamp for the document
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.dataRetention != null) {
+			generator.writeKey("data_retention");
+			this.dataRetention.serialize(generator, mapper);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetDataStreamRequest}.
+	 * Builder for {@link PutDataLifecycleRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetDataStreamRequest> {
+				ObjectBuilder<PutDataLifecycleRequest> {
+		@Nullable
+		private Time dataRetention;
+
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
-		private Boolean includeDefaults;
+		private Time masterTimeout;
+
+		private List<String> name;
 
 		@Nullable
-		private List<String> name;
+		private Time timeout;
+
+		/**
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(@Nullable Time value) {
+			this.dataRetention = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
@@ -151,18 +219,27 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns all relevant default configurations for the index template.
+		 * Specify timeout for connection to master
 		 * <p>
-		 * API name: {@code include_defaults}
+		 * API name: {@code master_timeout}
 		 */
-		public final Builder includeDefaults(@Nullable Boolean value) {
-			this.includeDefaults = value;
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - A comma-separated list of data streams whose lifecycle will be
+		 * updated; use <code>*</code> to set the lifecycle to all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -174,8 +251,8 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * Required - A comma-separated list of data streams whose lifecycle will be
+		 * updated; use <code>*</code> to set the lifecycle to all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -186,35 +263,69 @@ public class GetDataStreamRequest extends RequestBase {
 			return this;
 		}
 
+		/**
+		 * Explicit timestamp for the document
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit timestamp for the document
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link GetDataStreamRequest}.
+		 * Builds a {@link PutDataLifecycleRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetDataStreamRequest build() {
+		public PutDataLifecycleRequest build() {
 			_checkSingleUse();
 
-			return new GetDataStreamRequest(this);
+			return new PutDataLifecycleRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.get_data_stream}".
+	 * Json deserializer for {@link PutDataLifecycleRequest}
 	 */
-	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.get_data_stream",
+	public static final JsonpDeserializer<PutDataLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataLifecycleRequest::setupPutDataLifecycleRequestDeserializer);
+
+	protected static void setupPutDataLifecycleRequestDeserializer(
+			ObjectDeserializer<PutDataLifecycleRequest.Builder> op) {
+
+		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code indices.put_data_lifecycle}".
+	 */
+	public static final Endpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_data_lifecycle",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "PUT";
 
 			},
 
@@ -224,19 +335,14 @@ public class GetDataStreamRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.name()))
-					propsSet |= _name;
+				propsSet |= _name;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_data_stream");
-					return buf.toString();
-				}
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_lifecycle");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -246,14 +352,17 @@ public class GetDataStreamRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
-				if (request.includeDefaults != null) {
-					params.put("include_defaults", String.valueOf(request.includeDefaults));
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetDataStreamResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutDataLifecycleResponse._DESERIALIZER);
 }

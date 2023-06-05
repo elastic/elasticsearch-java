@@ -21,10 +21,9 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,70 +34,41 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
-// typedef: indices.get_data_stream.Request
+// typedef: search_application.get_behavioral_analytics.Request
 
 /**
- * Returns data streams.
+ * Returns the existing behavioral analytics collections.
  * 
- * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#search_application.get_behavioral_analytics.Request">API
  *      specification</a>
  */
 
-public class GetDataStreamRequest extends RequestBase {
-	private final List<ExpandWildcard> expandWildcards;
-
-	@Nullable
-	private final Boolean includeDefaults;
-
+public class GetBehavioralAnalyticsRequest extends RequestBase {
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetDataStreamRequest(Builder builder) {
+	private GetBehavioralAnalyticsRequest(Builder builder) {
 
-		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.includeDefaults = builder.includeDefaults;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
-	public static GetDataStreamRequest of(Function<Builder, ObjectBuilder<GetDataStreamRequest>> fn) {
+	public static GetBehavioralAnalyticsRequest of(Function<Builder, ObjectBuilder<GetBehavioralAnalyticsRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
-	 * <p>
-	 * API name: {@code expand_wildcards}
-	 */
-	public final List<ExpandWildcard> expandWildcards() {
-		return this.expandWildcards;
-	}
-
-	/**
-	 * If true, returns all relevant default configurations for the index template.
-	 * <p>
-	 * API name: {@code include_defaults}
-	 */
-	@Nullable
-	public final Boolean includeDefaults() {
-		return this.includeDefaults;
-	}
-
-	/**
-	 * A comma-separated list of data streams to get; use <code>*</code> to get all
-	 * data streams
+	 * A list of analytics collections to limit the returned information
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -109,60 +79,17 @@ public class GetDataStreamRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetDataStreamRequest}.
+	 * Builder for {@link GetBehavioralAnalyticsRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetDataStreamRequest> {
-		@Nullable
-		private List<ExpandWildcard> expandWildcards;
-
-		@Nullable
-		private Boolean includeDefaults;
-
+				ObjectBuilder<GetBehavioralAnalyticsRequest> {
 		@Nullable
 		private List<String> name;
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 */
-		public final Builder expandWildcards(List<ExpandWildcard> list) {
-			this.expandWildcards = _listAddAll(this.expandWildcards, list);
-			return this;
-		}
-
-		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 * <p>
-		 * Adds one or more values to <code>expandWildcards</code>.
-		 */
-		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
-			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
-			return this;
-		}
-
-		/**
-		 * If true, returns all relevant default configurations for the index template.
-		 * <p>
-		 * API name: {@code include_defaults}
-		 */
-		public final Builder includeDefaults(@Nullable Boolean value) {
-			this.includeDefaults = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * A list of analytics collections to limit the returned information
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -174,8 +101,7 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * A list of analytics collections to limit the returned information
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -192,25 +118,25 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetDataStreamRequest}.
+		 * Builds a {@link GetBehavioralAnalyticsRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetDataStreamRequest build() {
+		public GetBehavioralAnalyticsRequest build() {
 			_checkSingleUse();
 
-			return new GetDataStreamRequest(this);
+			return new GetBehavioralAnalyticsRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.get_data_stream}".
+	 * Endpoint "{@code search_application.get_behavioral_analytics}".
 	 */
-	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.get_data_stream",
+	public static final Endpoint<GetBehavioralAnalyticsRequest, GetBehavioralAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/search_application.get_behavioral_analytics",
 
 			// Request method
 			request -> {
@@ -229,12 +155,14 @@ public class GetDataStreamRequest extends RequestBase {
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_data_stream");
+					buf.append("/_application");
+					buf.append("/analytics");
 					return buf.toString();
 				}
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_data_stream");
+					buf.append("/_application");
+					buf.append("/analytics");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
@@ -245,15 +173,7 @@ public class GetDataStreamRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-				}
-				if (request.includeDefaults != null) {
-					params.put("include_defaults", String.valueOf(request.includeDefaults));
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetDataStreamResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetBehavioralAnalyticsResponse._DESERIALIZER);
 }

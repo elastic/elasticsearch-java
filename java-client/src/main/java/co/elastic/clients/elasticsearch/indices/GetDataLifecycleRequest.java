@@ -45,16 +45,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
-// typedef: indices.get_data_stream.Request
+// typedef: indices.get_data_lifecycle.Request
 
 /**
- * Returns data streams.
+ * Retrieves the data lifecycle configuration of one or more data streams.
  * 
- * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#indices.get_data_lifecycle.Request">API
  *      specification</a>
  */
 
-public class GetDataStreamRequest extends RequestBase {
+public class GetDataLifecycleRequest extends RequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
@@ -64,15 +65,15 @@ public class GetDataStreamRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetDataStreamRequest(Builder builder) {
+	private GetDataLifecycleRequest(Builder builder) {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.includeDefaults = builder.includeDefaults;
-		this.name = ApiTypeHelper.unmodifiable(builder.name);
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public static GetDataStreamRequest of(Function<Builder, ObjectBuilder<GetDataStreamRequest>> fn) {
+	public static GetDataLifecycleRequest of(Function<Builder, ObjectBuilder<GetDataLifecycleRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -87,7 +88,8 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, returns all relevant default configurations for the index template.
+	 * Return all relevant default configurations for the data stream (default:
+	 * false)
 	 * <p>
 	 * API name: {@code include_defaults}
 	 */
@@ -97,8 +99,8 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of data streams to get; use <code>*</code> to get all
-	 * data streams
+	 * Required - A comma-separated list of data streams to get; use <code>*</code>
+	 * to get all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -109,19 +111,18 @@ public class GetDataStreamRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetDataStreamRequest}.
+	 * Builder for {@link GetDataLifecycleRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetDataStreamRequest> {
+				ObjectBuilder<GetDataLifecycleRequest> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean includeDefaults;
 
-		@Nullable
 		private List<String> name;
 
 		/**
@@ -151,7 +152,8 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns all relevant default configurations for the index template.
+		 * Return all relevant default configurations for the data stream (default:
+		 * false)
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
@@ -161,8 +163,8 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * Required - A comma-separated list of data streams to get; use <code>*</code>
+		 * to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -174,8 +176,8 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * Required - A comma-separated list of data streams to get; use <code>*</code>
+		 * to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -192,25 +194,25 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetDataStreamRequest}.
+		 * Builds a {@link GetDataLifecycleRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetDataStreamRequest build() {
+		public GetDataLifecycleRequest build() {
 			_checkSingleUse();
 
-			return new GetDataStreamRequest(this);
+			return new GetDataLifecycleRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.get_data_stream}".
+	 * Endpoint "{@code indices.get_data_lifecycle}".
 	 */
-	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.get_data_stream",
+	public static final Endpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_data_lifecycle",
 
 			// Request method
 			request -> {
@@ -224,19 +226,14 @@ public class GetDataStreamRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.name()))
-					propsSet |= _name;
+				propsSet |= _name;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_data_stream");
-					return buf.toString();
-				}
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_lifecycle");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -255,5 +252,5 @@ public class GetDataStreamRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetDataStreamResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDataLifecycleResponse._DESERIALIZER);
 }

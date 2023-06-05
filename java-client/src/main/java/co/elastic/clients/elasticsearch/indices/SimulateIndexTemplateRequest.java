@@ -75,6 +75,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	@Nullable
 	private final DataStreamVisibility dataStream;
 
+	@Nullable
+	private final Boolean includeDefaults;
+
 	private final List<String> indexPatterns;
 
 	@Nullable
@@ -100,6 +103,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.create = builder.create;
 		this.dataStream = builder.dataStream;
+		this.includeDefaults = builder.includeDefaults;
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
@@ -155,6 +159,16 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	@Nullable
 	public final DataStreamVisibility dataStream() {
 		return this.dataStream;
+	}
+
+	/**
+	 * If true, returns all relevant default configurations for the index template.
+	 * <p>
+	 * API name: {@code include_defaults}
+	 */
+	@Nullable
+	public final Boolean includeDefaults() {
+		return this.includeDefaults;
 	}
 
 	/**
@@ -303,6 +317,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		private DataStreamVisibility dataStream;
 
 		@Nullable
+		private Boolean includeDefaults;
+
+		@Nullable
 		private List<String> indexPatterns;
 
 		@Nullable
@@ -395,6 +412,16 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		public final Builder dataStream(
 				Function<DataStreamVisibility.Builder, ObjectBuilder<DataStreamVisibility>> fn) {
 			return this.dataStream(fn.apply(new DataStreamVisibility.Builder()).build());
+		}
+
+		/**
+		 * If true, returns all relevant default configurations for the index template.
+		 * <p>
+		 * API name: {@code include_defaults}
+		 */
+		public final Builder includeDefaults(@Nullable Boolean value) {
+			this.includeDefaults = value;
+			return this;
 		}
 
 		/**
@@ -563,6 +590,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
+				}
+				if (request.includeDefaults != null) {
+					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
 				return params;
 

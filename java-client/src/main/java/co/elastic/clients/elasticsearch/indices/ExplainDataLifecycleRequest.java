@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -32,68 +32,56 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
-// typedef: cluster.get_component_template.Request
+// typedef: indices.explain_data_lifecycle.Request
 
 /**
- * Returns one or more component templates
+ * Retrieves information about the index's current DLM lifecycle, such as any
+ * potential encountered error, time since creation etc.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#cluster.get_component_template.Request">API
+ *      "../doc-files/api-spec.html#indices.explain_data_lifecycle.Request">API
  *      specification</a>
  */
 
-public class GetComponentTemplateRequest extends RequestBase {
-	@Nullable
-	private final Boolean flatSettings;
-
+public class ExplainDataLifecycleRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
-	@Nullable
-	private final Boolean local;
+	private final List<String> index;
 
 	@Nullable
 	private final Time masterTimeout;
 
-	@Nullable
-	private final String name;
-
 	// ---------------------------------------------------------------------------------------------
 
-	private GetComponentTemplateRequest(Builder builder) {
+	private ExplainDataLifecycleRequest(Builder builder) {
 
-		this.flatSettings = builder.flatSettings;
 		this.includeDefaults = builder.includeDefaults;
-		this.local = builder.local;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
-		this.name = builder.name;
 
 	}
 
-	public static GetComponentTemplateRequest of(Function<Builder, ObjectBuilder<GetComponentTemplateRequest>> fn) {
+	public static ExplainDataLifecycleRequest of(Function<Builder, ObjectBuilder<ExplainDataLifecycleRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code flat_settings}
-	 */
-	@Nullable
-	public final Boolean flatSettings() {
-		return this.flatSettings;
-	}
-
-	/**
-	 * Return all default configurations for the component template (default: false)
+	 * indicates if the API should return the default values the system uses for the
+	 * index's lifecycle
 	 * <p>
 	 * API name: {@code include_defaults}
 	 */
@@ -103,18 +91,16 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * Required - The name of the index to explain
 	 * <p>
-	 * API name: {@code local}
+	 * API name: {@code index}
 	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Specify timeout for connection to master
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -123,50 +109,26 @@ public class GetComponentTemplateRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
-	/**
-	 * The comma separated names of the component templates
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetComponentTemplateRequest}.
+	 * Builder for {@link ExplainDataLifecycleRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetComponentTemplateRequest> {
-		@Nullable
-		private Boolean flatSettings;
-
+				ObjectBuilder<ExplainDataLifecycleRequest> {
 		@Nullable
 		private Boolean includeDefaults;
 
-		@Nullable
-		private Boolean local;
+		private List<String> index;
 
 		@Nullable
 		private Time masterTimeout;
 
-		@Nullable
-		private String name;
-
 		/**
-		 * API name: {@code flat_settings}
-		 */
-		public final Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
-			return this;
-		}
-
-		/**
-		 * Return all default configurations for the component template (default: false)
+		 * indicates if the API should return the default values the system uses for the
+		 * index's lifecycle
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
@@ -176,18 +138,31 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * Required - The name of the index to explain
 		 * <p>
-		 * API name: {@code local}
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Required - The name of the index to explain
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -197,22 +172,12 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Specify timeout for connection to master
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * The comma separated names of the component templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
 		}
 
 		@Override
@@ -221,25 +186,25 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetComponentTemplateRequest}.
+		 * Builds a {@link ExplainDataLifecycleRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetComponentTemplateRequest build() {
+		public ExplainDataLifecycleRequest build() {
 			_checkSingleUse();
 
-			return new GetComponentTemplateRequest(this);
+			return new ExplainDataLifecycleRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code cluster.get_component_template}".
+	 * Endpoint "{@code indices.explain_data_lifecycle}".
 	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cluster.get_component_template",
+	public static final Endpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.explain_data_lifecycle",
 
 			// Request method
 			request -> {
@@ -249,23 +214,18 @@ public class GetComponentTemplateRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _name = 1 << 0;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _index;
 
-				if (propsSet == 0) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_component_template");
-					return buf.toString();
-				}
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_component_template");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_lifecycle");
+					buf.append("/explain");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -278,16 +238,10 @@ public class GetComponentTemplateRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetComponentTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ExplainDataLifecycleResponse._DESERIALIZER);
 }

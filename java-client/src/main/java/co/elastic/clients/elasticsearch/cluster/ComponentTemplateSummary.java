@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
+import co.elastic.clients.elasticsearch.indices.DataLifecycleWithRollover;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -67,6 +68,9 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 	private final Map<String, AliasDefinition> aliases;
 
+	@Nullable
+	private final DataLifecycleWithRollover lifecycle;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ComponentTemplateSummary(Builder builder) {
@@ -76,6 +80,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 		this.mappings = builder.mappings;
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.lifecycle = builder.lifecycle;
 
 	}
 
@@ -118,6 +123,14 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	 */
 	public final Map<String, AliasDefinition> aliases() {
 		return this.aliases;
+	}
+
+	/**
+	 * API name: {@code lifecycle}
+	 */
+	@Nullable
+	public final DataLifecycleWithRollover lifecycle() {
+		return this.lifecycle;
 	}
 
 	/**
@@ -174,6 +187,11 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.lifecycle != null) {
+			generator.writeKey("lifecycle");
+			this.lifecycle.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -205,6 +223,9 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, AliasDefinition> aliases;
+
+		@Nullable
+		private DataLifecycleWithRollover lifecycle;
 
 		/**
 		 * API name: {@code _meta}
@@ -307,6 +328,22 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
+			this.lifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(
+				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -341,6 +378,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings._DESERIALIZER), "settings");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
+		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
 
 	}
 

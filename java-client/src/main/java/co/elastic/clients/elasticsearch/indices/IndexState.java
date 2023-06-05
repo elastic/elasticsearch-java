@@ -64,6 +64,9 @@ public class IndexState implements JsonpSerializable {
 	@Nullable
 	private final String dataStream;
 
+	@Nullable
+	private final DataLifecycle lifecycle;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexState(Builder builder) {
@@ -73,6 +76,7 @@ public class IndexState implements JsonpSerializable {
 		this.settings = builder.settings;
 		this.defaults = builder.defaults;
 		this.dataStream = builder.dataStream;
+		this.lifecycle = builder.lifecycle;
 
 	}
 
@@ -123,6 +127,16 @@ public class IndexState implements JsonpSerializable {
 	}
 
 	/**
+	 * Data lifecycle applicable iff this is a data stream.
+	 * <p>
+	 * API name: {@code lifecycle}
+	 */
+	@Nullable
+	public final DataLifecycle lifecycle() {
+		return this.lifecycle;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -164,6 +178,11 @@ public class IndexState implements JsonpSerializable {
 			generator.write(this.dataStream);
 
 		}
+		if (this.lifecycle != null) {
+			generator.writeKey("lifecycle");
+			this.lifecycle.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -193,6 +212,9 @@ public class IndexState implements JsonpSerializable {
 
 		@Nullable
 		private String dataStream;
+
+		@Nullable
+		private DataLifecycle lifecycle;
 
 		/**
 		 * API name: {@code aliases}
@@ -282,6 +304,25 @@ public class IndexState implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Data lifecycle applicable iff this is a data stream.
+		 * <p>
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(@Nullable DataLifecycle value) {
+			this.lifecycle = value;
+			return this;
+		}
+
+		/**
+		 * Data lifecycle applicable iff this is a data stream.
+		 * <p>
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(Function<DataLifecycle.Builder, ObjectBuilder<DataLifecycle>> fn) {
+			return this.lifecycle(fn.apply(new DataLifecycle.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -315,6 +356,7 @@ public class IndexState implements JsonpSerializable {
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::defaults, IndexSettings._DESERIALIZER, "defaults");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
+		op.add(Builder::lifecycle, DataLifecycle._DESERIALIZER, "lifecycle");
 
 	}
 

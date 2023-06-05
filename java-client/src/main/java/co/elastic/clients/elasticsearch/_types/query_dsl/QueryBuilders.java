@@ -915,6 +915,24 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link TextExpansionQuery text_expansion}
+	 * {@code Query} variant.
+	 */
+	public static TextExpansionQuery.Builder textExpansion() {
+		return new TextExpansionQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link TextExpansionQuery text_expansion}
+	 * {@code Query} variant.
+	 */
+	public static Query textExpansion(Function<TextExpansionQuery.Builder, ObjectBuilder<TextExpansionQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.textExpansion(fn.apply(new TextExpansionQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link WildcardQuery wildcard} {@code Query}
 	 * variant.
 	 */
