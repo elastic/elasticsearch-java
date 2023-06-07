@@ -80,20 +80,22 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
     }
 
     @Override
-    public Response performRequest(String endpointId, Request request, RestClientOptions options) throws IOException {
-        org.elasticsearch.client.Request restRequest = createRestRequest(request, options);
+    public Response performRequest(String endpointId, @Nullable Node node, Request request, TransportOptions options) throws IOException {
+        RestClientOptions rcOptions = RestClientOptions.of(options);
+        org.elasticsearch.client.Request restRequest = createRestRequest(request, rcOptions);
         org.elasticsearch.client.Response restResponse = restClient.performRequest(restRequest);
         return new RestResponse(restResponse);
     }
 
     @Override
-    public CompletableFuture<Response> performRequestAsync(String endpointId, Request request, RestClientOptions options) {
+    public CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node, Request request, TransportOptions options) {
 
         RequestFuture<Response> future = new RequestFuture<>();
         org.elasticsearch.client.Request restRequest;
 
         try {
-            restRequest = createRestRequest(request, options);
+            RestClientOptions rcOptions = RestClientOptions.of(options);
+            restRequest = createRestRequest(request, rcOptions);
         } catch(Throwable thr) {
             // Terminate early
             future.completeExceptionally(thr);
@@ -150,18 +152,23 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
         }
 
         @Override
+        public Node node() {
+            return new Node(restResponse.getHost().toURI());
+        }
+
+        @Override
         public int statusCode() {
             return restResponse.getStatusLine().getStatusCode();
         }
 
         @Override
-        public String getHeader(String name) {
+        public String header(String name) {
             return restResponse.getHeader(name);
         }
 
         @Nullable
         @Override
-        public BinaryData getBody() throws IOException {
+        public BinaryData body() throws IOException {
             HttpEntity entity = restResponse.getEntity();
             return entity == null ? null : new HttpEntityBinaryData(restResponse.getEntity());
         }

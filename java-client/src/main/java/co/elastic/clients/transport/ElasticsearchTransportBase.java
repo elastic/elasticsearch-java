@@ -104,7 +104,7 @@ public abstract class ElasticsearchTransportBase<
     ) throws IOException {
         TransportHttpClient.Request req = prepareTransportRequest(request, endpoint, options);
         Options opts = options == null ? transportOptions : httpClient.createOptions(options);
-        TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), req, opts);
+        TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
         return getApiResponse(resp, endpoint);
     }
 
@@ -128,7 +128,7 @@ public abstract class ElasticsearchTransportBase<
         boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
 
         CompletableFuture<TransportHttpClient.Response> clientFuture = httpClient.performRequestAsync(
-            endpoint.id(), clientReq, httpClient.createOptions(options)
+            endpoint.id(), null, clientReq, httpClient.createOptions(options)
         );
 
         // Cancelling the result will cancel the upstream future created by the http client, allowing to stop in-flight requests
@@ -250,7 +250,7 @@ public abstract class ElasticsearchTransportBase<
                     );
                 }
 
-                BinaryData entity = clientResp.getBody();
+                BinaryData entity = clientResp.body();
                 if (entity == null) {
                     throw new TransportException(
                         statusCode,
@@ -264,8 +264,7 @@ public abstract class ElasticsearchTransportBase<
                     entity = new ByteArrayBinaryData(entity);
                 }
 
-                try {
-                    InputStream content = entity.asInputStream();
+                try (InputStream content = entity.asInputStream()) {
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
                         // TODO: have the endpoint provide the exception constructor
@@ -285,7 +284,7 @@ public abstract class ElasticsearchTransportBase<
                     }
                 }
             } else {
-                return decodeTransportResponse(statusCode, clientResp.getBody(), clientResp, endpoint);
+                return decodeTransportResponse(statusCode, clientResp.body(), clientResp, endpoint);
             }
 
 
@@ -316,8 +315,10 @@ public abstract class ElasticsearchTransportBase<
                         endpoint.id(), clientResp.createException()
                     );
                 }
-                InputStream content = entity.asInputStream();
-                try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                try (
+                    InputStream content = entity.asInputStream();
+                    JsonParser parser = mapper.jsonProvider().createParser(content)
+                ) {
                     response = responseParser.deserialize(parser, mapper);
                 } catch (Exception e) {
                     throw new TransportException(
@@ -354,7 +355,7 @@ public abstract class ElasticsearchTransportBase<
     ));
 
     private void checkProductHeader(TransportHttpClient.Response clientResp, Endpoint<?, ?, ?> endpoint) throws IOException {
-        String header = clientResp.getHeader("X-Elastic-Product");
+        String header = clientResp.header("X-Elastic-Product");
         if (header == null) {
             if (endpointsMissingProductHeader.contains(endpoint.id())) {
                 return;

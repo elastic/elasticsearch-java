@@ -24,8 +24,11 @@ import co.elastic.clients.util.BinaryData;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.ByteBuffer;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -50,7 +53,7 @@ public interface TransportHttpClient<Options extends TransportOptions> {
      *
      * @return the request response
      */
-    Response performRequest(String endpointId, Request request, Options options) throws IOException;
+    Response performRequest(String endpointId, @Nullable Node node, Request request, TransportOptions options) throws IOException;
 
     /**
      * Perform an asynchronous request.
@@ -61,7 +64,7 @@ public interface TransportHttpClient<Options extends TransportOptions> {
      *
      * @return the request response
      */
-    CompletableFuture<Response> performRequestAsync(String endpointId, Request request, Options options);
+    CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node, Request request, TransportOptions options);
 
     /**
      * Close this client, freeing associated resources.
@@ -69,9 +72,66 @@ public interface TransportHttpClient<Options extends TransportOptions> {
     void close() throws IOException;
 
     /**
+     * A node/host to send requests to.
+     */
+    class Node {
+        private final URI uri;
+        private final Set<String> roles;
+        private final Map<String, String> attributes;
+
+        /**
+         * Create a node with its URI, roles and attributes.
+         * <p>
+         * If the URI doesn't end with a '{@code /}', then one is added.
+         */
+        public Node(URI uri, Set<String> roles, Map<String, String> attributes) {
+            if (!uri.isAbsolute()) {
+                throw new IllegalArgumentException("Node URIs must be absolute: " + uri);
+            }
+
+            if (!uri.getRawPath().endsWith("/")) {
+                uri = uri.resolve(uri.getRawPath() + "/");
+            }
+
+            this.uri = uri;
+            this.roles = roles;
+            this.attributes = attributes;
+        }
+
+        public Node(URI uri) {
+            this(uri, Collections.emptySet(), Collections.emptyMap());
+        }
+
+        public Node(String uri) {
+            this(URI.create(uri), Collections.emptySet(), Collections.emptyMap());
+        }
+
+        public URI uri() {
+            return this.uri;
+        }
+
+        public URI uriForPath(String path) {
+            // Make sure the path will be appended to the node's URI path if it exists, and will not replace it.
+            if (this.uri.getRawPath().length() > 1) {
+                if (path.charAt(0) == '/') {
+                    path = path.substring(1);
+                }
+            }
+
+            return uri.resolve(path);
+        }
+
+        @Override
+        public String toString() {
+            return uri.toString();
+        }
+    }
+
+    /**
      * An http request.
      */
     class Request {
+        @Nullable
         private final String method;
         private final String path;
         private final Map<String, String> queryParams;
@@ -118,6 +178,12 @@ public interface TransportHttpClient<Options extends TransportOptions> {
     interface Response {
 
         /**
+         * The host/node that was used to send the request. It may be different from the one that was provided with the request
+         * if the http client has an internal retry mechanism.
+         */
+        Node node();
+
+        /**
          * The response status code.
          */
         int statusCode();
@@ -125,13 +191,13 @@ public interface TransportHttpClient<Options extends TransportOptions> {
         /**
          * Get a header value, or the first value if the header has multiple values.
          */
-        String getHeader(String name);
+        String header(String name);
 
         /**
          * The response body, if any.
          */
         @Nullable
-        BinaryData getBody() throws IOException;
+        BinaryData body() throws IOException;
 
 
         Throwable createException() throws IOException;
