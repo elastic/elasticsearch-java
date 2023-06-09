@@ -19,50 +19,69 @@
 
 package co.elastic.clients.transport.http;
 
+import co.elastic.clients.transport.DefaultTransportOptions;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.BinaryData;
 
 import javax.annotation.Nullable;
+import java.io.Closeable;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.ByteBuffer;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 /**
  * Minimal http client interface needed to implement an Elasticsearch transport.
- *
- * @param <Options> the client's options type
  */
-public interface TransportHttpClient<Options extends TransportOptions> {
+public interface TransportHttpClient {
 
     /**
      * Create a client-specific options value from an existing option object. If {@code null}, this must
      * create the default options to which additional options can be added.
+     * <p>
+     * This method allows implementations to return subclasses with more features (that applications can use by downcasting the result).
+     * By default, it will use {@link DefaultTransportOptions}.
      */
-    Options createOptions(@Nullable TransportOptions options);
+    default TransportOptions createOptions(@Nullable TransportOptions options) {
+        return options == null ? DefaultTransportOptions.EMPTY : options;
+    }
 
     /**
      * Perform a blocking request.
      *
      * @param endpointId the endpoint identifier. Can be used to have specific strategies depending on the endpoint.
+     * @param node the node to send the request to. If {@code null}, the implementation has to choose which node to send the request to,
+     *             or throw an {@code IllegalArgumentException}.
      * @param request the request
-     * @param options additional options for the http client
+     * @param options additional options for the http client. Headers and request parameters set in the options have precedence over
+     *                those defined by the request and should replace them in the final request sent.
      *
-     * @return the request response
+     * @return the response
+     * @throws IllegalArgumentException if {@code node} is {@code is null} and the implementation cannot decide of
+     *         a node to use.
      */
     Response performRequest(String endpointId, @Nullable Node node, Request request, TransportOptions options) throws IOException;
 
     /**
      * Perform an asynchronous request.
+     * <p>
+     * Implementations should return a {@code CompletableFuture} whose cancellation also cancels any http request in flight and frees
+     * the associated resources. This allows applications to implement scenarios like timeouts or "first to respond" fan-out without
+     * leaking resources.
      *
      * @param endpointId the endpoint identifier. Can be used to have specific strategies depending on the endpoint.
+     * @param node the node to send the request to. If {@code null}, the implementation has to choose which node to send the request to,
+     *             or throw an {@code IllegalArgumentException}.
      * @param request the request
-     * @param options additional options for the http client
+     * @param options additional options for the http client. Headers and request parameters set in the options have precedence over
+     *                those defined by the request and should replace them in the final request sent.
      *
-     * @return the request response
+     * @return a future that will be completed with the response.
      */
     CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node, Request request, TransportOptions options);
 
@@ -83,6 +102,11 @@ public interface TransportHttpClient<Options extends TransportOptions> {
          * Create a node with its URI, roles and attributes.
          * <p>
          * If the URI doesn't end with a '{@code /}', then one is added.
+         *
+         * @param uri the node's URI
+         * @param roles the node's roles (such as "master", "ingest", etc). This can be used for routing decisions by multi-node
+         *              implementations.
+         * @param attributes the node's attributes. This can be used for routing decisions by multi-node implementations.
          */
         public Node(URI uri, Set<String> roles, Map<String, String> attributes) {
             if (!uri.isAbsolute()) {
@@ -106,24 +130,35 @@ public interface TransportHttpClient<Options extends TransportOptions> {
             this(URI.create(uri), Collections.emptySet(), Collections.emptyMap());
         }
 
+        /**
+         * The URI of this node. This is an absolute URL with a path ending with a "/".
+         */
         public URI uri() {
             return this.uri;
-        }
-
-        public URI uriForPath(String path) {
-            // Make sure the path will be appended to the node's URI path if it exists, and will not replace it.
-            if (this.uri.getRawPath().length() > 1) {
-                if (path.charAt(0) == '/') {
-                    path = path.substring(1);
-                }
-            }
-
-            return uri.resolve(path);
         }
 
         @Override
         public String toString() {
             return uri.toString();
+        }
+
+        /**
+         * Two nodes are considered equal if their URIs are equal. Roles and attributes are ignored.
+         */
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Node)) return false;
+            Node node = (Node) o;
+            return Objects.equals(uri, node.uri);
+        }
+
+        /**
+         * A node's hash code is that of its URI. Roles and attributes are ignored.
+         */
+        @Override
+        public int hashCode() {
+            return Objects.hash(uri);
         }
     }
 
@@ -135,17 +170,21 @@ public interface TransportHttpClient<Options extends TransportOptions> {
         private final String method;
         private final String path;
         private final Map<String, String> queryParams;
-        @Nullable
-        private final String contentType;
+        private final Map<String, String> headers;
         @Nullable
         private final Iterable<ByteBuffer> body;
 
-        public Request(String method, String path, Map<String, String> queryParams, @Nullable String contentType,
-            @Nullable Iterable<ByteBuffer> body) {
+        public Request(
+            String method,
+            String path,
+            Map<String, String> queryParams,
+            Map<String, String> headers,
+            @Nullable Iterable<ByteBuffer> body
+        ) {
             this.method = method;
             this.path = path;
             this.queryParams = queryParams;
-            this.contentType = contentType;
+            this.headers = headers;
             this.body = body;
         }
 
@@ -161,9 +200,8 @@ public interface TransportHttpClient<Options extends TransportOptions> {
             return queryParams;
         }
 
-        @Nullable
-        public String contentType() {
-            return contentType;
+        public Map<String, String> headers() {
+            return headers;
         }
 
         @Nullable
@@ -175,11 +213,11 @@ public interface TransportHttpClient<Options extends TransportOptions> {
     /**
      * An http response.
      */
-    interface Response {
+    interface Response extends Closeable {
 
         /**
          * The host/node that was used to send the request. It may be different from the one that was provided with the request
-         * if the http client has an internal retry mechanism.
+         * if the http client has a multi-node retry strategy.
          */
         Node node();
 
@@ -190,8 +228,18 @@ public interface TransportHttpClient<Options extends TransportOptions> {
 
         /**
          * Get a header value, or the first value if the header has multiple values.
+         * <p>
+         * Note: header names are case-insensitive
          */
+        @Nullable
         String header(String name);
+
+        /**
+         * Get all values for a given header name.
+         * <p>
+         * Note: header names are case-insensitive
+         */
+        List<String> headers(String name);
 
         /**
          * The response body, if any.
@@ -199,11 +247,14 @@ public interface TransportHttpClient<Options extends TransportOptions> {
         @Nullable
         BinaryData body() throws IOException;
 
-
-        Throwable createException() throws IOException;
+        /**
+         * The original response of the underlying http library, if available.
+         */
+        @Nullable
+        Object originalResponse();
 
         /**
-         * Close this response, freeing its associated resource, consuming the remaining body, if needed.
+         * Close this response, freeing its associated resources if needed, such as consuming the response body.
          */
         void close() throws IOException;
     }

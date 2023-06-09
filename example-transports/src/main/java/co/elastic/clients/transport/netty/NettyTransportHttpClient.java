@@ -19,6 +19,7 @@
 
 package co.elastic.clients.transport.netty;
 
+import co.elastic.clients.transport.DefaultTransportOptions;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
@@ -41,6 +42,7 @@ import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.codec.http.HttpContent;
 import io.netty.handler.codec.http.HttpHeaderNames;
+import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpResponse;
@@ -48,49 +50,51 @@ import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.LastHttpContent;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import io.netty.util.concurrent.Future;
 
 import javax.annotation.Nullable;
-import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-public class NettyTransportClient implements TransportHttpClient<DefaultOptions> {
+/**
+ * Prototype implementation of {@link TransportHttpClient} based on Netty. Not production-ready.
+ */
+public class NettyTransportHttpClient implements TransportHttpClient {
 
     private final NioEventLoopGroup workerGroup = new NioEventLoopGroup();
     private final SslContext sslContext;
 
-    public NettyTransportClient() {
+    public NettyTransportHttpClient() {
         try {
-            sslContext = SslContextBuilder.forClient()
-                .sslContextProvider(SSLContext.getDefault().getProvider())
+            // Trust any certificate. DO NOT USE IN PRODUCTION!
+            this.sslContext = SslContextBuilder
+                .forClient()
+                .trustManager(InsecureTrustManagerFactory.INSTANCE)
                 .build();
-        } catch (SSLException | NoSuchAlgorithmException e) {
+        } catch (SSLException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public DefaultOptions createOptions(@Nullable TransportOptions options) {
-        return options == null ? new DefaultOptions() : new DefaultOptions(options);
+    public DefaultTransportOptions createOptions(@Nullable TransportOptions options) {
+        return DefaultTransportOptions.of(options);
     }
 
     @Override
     public Response performRequest(String endpointId, Node node, Request request, TransportOptions options) throws IOException {
-
         try {
             return performRequestAsync(endpointId, node, request, options).get();
         } catch (InterruptedException ie) {
@@ -104,7 +108,7 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
     @Override
     public CompletableFuture<Response> performRequestAsync(String endpointId, Node node, Request request, TransportOptions options) {
 
-        CompletableFuture<Response> promise = new CompletableFuture<>() {
+        CompletableFuture<Response> promise = new CompletableFuture<Response>() {
             @Override
             public boolean cancel(boolean mayInterruptIfRunning) {
                 // TODO: cancel pending request
@@ -128,13 +132,22 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
                 }
             });
 
+        String uri = request.path();
 
-        String path = request.path();
+        // If the node is not at the server root, prepend its path.
+        String nodePath = node.uri().getRawPath();
+        if (nodePath.length() > 1) {
+            if (uri.charAt(0) == '/') {
+                uri = uri.substring(1);
+            }
+            uri = nodePath + uri;
+        }
+
+        // Append query parameters
         String queryString = queryString(request, options);
         if (queryString != null) {
-            path = path + "?" + queryString;
+            uri = uri + "?" + queryString;
         }
-        String uri = node.uriForPath(path).toString();
 
         ByteBuf nettyBody;
         Iterable<ByteBuffer> body = request.body();
@@ -160,24 +173,19 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
             nettyBody
         );
 
+        HttpHeaders nettyHeaders = nettyRequest.headers();
         // Netty doesn't set Content-Length automatically with FullRequest.
-        nettyRequest.headers().set(HttpHeaderNames.CONTENT_LENGTH, nettyBody.readableBytes());
-
-        if (request.contentType() != null) {
-            nettyRequest.headers().set(HttpHeaderNames.CONTENT_TYPE, request.contentType());
-        }
+        nettyHeaders.set(HttpHeaderNames.CONTENT_LENGTH, nettyBody.readableBytes());
 
         int port = node.uri().getPort();
         if (port == -1) {
             port = node.uri().getScheme().equals("https") ? 443 : 80;
         }
-        nettyRequest.headers().set(HttpHeaderNames.HOST, node.uri().getHost() + ":" + port);
 
-        if (options != null) {
-            for (Map.Entry<String, String> header: options.headers()) {
-                nettyRequest.headers().set(header.getKey(), header.getValue());
-            }
-        }
+        nettyHeaders.set(HttpHeaderNames.HOST, node.uri().getHost() + ":" + port);
+
+        request.headers().forEach(nettyHeaders::set);
+        options.headers().stream().forEach((kv) -> nettyHeaders.set(kv.getKey(), kv.getValue()));
 
         ChannelFuture future0 = bootstrap.connect(node.uri().getHost(), port);
         future0.addListener((ChannelFutureListener) future1 -> {
@@ -222,8 +230,14 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
             return allParams
                 .entrySet()
                 .stream()
-                .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" +
-                    URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+                .map(e -> {
+                    try {
+                        return URLEncoder.encode(e.getKey(), "UTF-8") + "=" +
+                            URLEncoder.encode(e.getValue(), "UTF-8");
+                    } catch(UnsupportedEncodingException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                })
                 .collect(Collectors.joining("&"));
         }
     }
@@ -261,7 +275,7 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
         private volatile HttpResponse response;
         private volatile List<ByteBuf> body;
 
-        public ChannelHandler(Node node, CompletableFuture<Response> promise) {
+        ChannelHandler(Node node, CompletableFuture<Response> promise) {
             this.node = node;
             this.promise = promise;
         }
@@ -308,7 +322,7 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
         @Nullable
         private final List<ByteBuf> body;
 
-        public NettyResponse(Node node, HttpResponse response, @Nullable List<ByteBuf> body) {
+        NettyResponse(Node node, HttpResponse response, @Nullable List<ByteBuf> body) {
             this.node = node;
             this.response = response;
             this.body = body;
@@ -329,6 +343,11 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
             return response.headers().get(name);
         }
 
+        @Override
+        public List<String> headers(String name) {
+            return response.headers().getAll(name); // returns an empty list if no values
+        }
+
         @Nullable
         @Override
         public BinaryData body() throws IOException {
@@ -343,17 +362,20 @@ public class NettyTransportClient implements TransportHttpClient<DefaultOptions>
             );
         }
 
+        @Nullable
         @Override
-        public Throwable createException() throws IOException {
-            // TODO
-            return null;
+        public HttpResponse originalResponse() {
+            return this.response;
         }
 
         @Override
         public void close() throws IOException {
             if (body != null) {
                 for (ByteBuf buf: body) {
-                    buf.release();
+                    // May have been released already if body() was consumed
+                    if (buf.refCnt() > 0) {
+                        buf.release();
+                    }
                 }
                 body.clear();
             }

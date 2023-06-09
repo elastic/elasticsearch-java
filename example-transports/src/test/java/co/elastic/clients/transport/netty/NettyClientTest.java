@@ -22,9 +22,9 @@ package co.elastic.clients.transport.netty;
 
 import co.elastic.clients.transport.TransportHttpClientTest;
 
-public class NettyClientTest extends TransportHttpClientTest<NettyTransportClient> {
+public class NettyClientTest extends TransportHttpClientTest<NettyTransportHttpClient> {
 
-    public NettyClientTest() {
-        super(new NettyTransportClient());
+    public NettyClientTest() throws Exception {
+        super(new NettyTransportHttpClient());
     }
 }

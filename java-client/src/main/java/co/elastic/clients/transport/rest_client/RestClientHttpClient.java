@@ -20,15 +20,16 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
 import org.apache.http.Header;
+import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Cancellable;
-import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
 
@@ -37,10 +38,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.util.AbstractList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RestClientHttpClient implements TransportHttpClient<RestClientOptions> {
+public class RestClientHttpClient implements TransportHttpClient {
 
     private static final ConcurrentHashMap<String, ContentType> ContentTypeCache = new ConcurrentHashMap<>();
 
@@ -76,7 +81,7 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
 
     @Override
     public RestClientOptions createOptions(@Nullable TransportOptions options) {
-        return options == null ? RestClientOptions.initialOptions() : RestClientOptions.of(options);
+        return RestClientOptions.of(options);
     }
 
     @Override
@@ -88,7 +93,9 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
     }
 
     @Override
-    public CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node, Request request, TransportOptions options) {
+    public CompletableFuture<Response> performRequestAsync(
+        String endpointId, @Nullable Node node, Request request, TransportOptions options
+    ) {
 
         RequestFuture<Response> future = new RequestFuture<>();
         org.elasticsearch.client.Request restRequest;
@@ -127,15 +134,41 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
             request.method(), request.path()
         );
 
+        Iterable<ByteBuffer> body = request.body();
+
+        Map<String, String> requestHeaders = request.headers();
+        if (!requestHeaders.isEmpty()) {
+
+            int headerCount = requestHeaders.size();
+            if ((body == null && headerCount != 3) || headerCount != 4) {
+                if (options == null) {
+                    options = RestClientOptions.initialOptions();
+                }
+
+                RestClientOptions.Builder builder = options.toBuilder();
+                for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
+                    builder.setHeader(header.getKey(), header.getValue());
+                }
+                // Original option headers have precedence
+                for (Map.Entry<String, String> header : options.headers()) {
+                    builder.setHeader(header.getKey(), header.getValue());
+                }
+                options = builder.build();
+            }
+        }
+
         if (options != null) {
             clientReq.setOptions(options.restClientRequestOptions());
         }
 
         clientReq.addParameters(request.queryParams());
 
-        Iterable<ByteBuffer> body = request.body();
         if (body != null) {
-            ContentType ct = ContentTypeCache.computeIfAbsent(request.contentType(), ContentType::parse);
+            ContentType ct = null;
+            String ctStr;
+            if (( ctStr = requestHeaders.get(HeaderMap.CONTENT_TYPE)) != null) {
+                ct = ContentTypeCache.computeIfAbsent(ctStr, ContentType::parse);
+            }
             clientReq.setEntity(new MultiBufferEntity(body, ct));
         }
 
@@ -144,7 +177,7 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
         return clientReq;
     }
 
-    private static class RestResponse implements Response {
+    static class RestResponse implements Response {
         private final org.elasticsearch.client.Response restResponse;
 
         RestResponse(org.elasticsearch.client.Response restResponse) {
@@ -166,6 +199,29 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
             return restResponse.getHeader(name);
         }
 
+        @Override
+        public List<String> headers(String name) {
+            Header[] headers = restResponse.getHeaders();
+            for (int i = 0; i < headers.length; i++) {
+                Header header = headers[i];
+                if (header.getName().equalsIgnoreCase(name)) {
+                    HeaderElement[] elements = header.getElements();
+                    return new AbstractList<String>() {
+                        @Override
+                        public String get(int index) {
+                            return elements[index].getValue();
+                        }
+
+                        @Override
+                        public int size() {
+                            return elements.length;
+                        }
+                    };
+                }
+            }
+            return Collections.emptyList();
+        }
+
         @Nullable
         @Override
         public BinaryData body() throws IOException {
@@ -173,9 +229,10 @@ public class RestClientHttpClient implements TransportHttpClient<RestClientOptio
             return entity == null ? null : new HttpEntityBinaryData(restResponse.getEntity());
         }
 
+        @Nullable
         @Override
-        public Throwable createException() throws IOException {
-            return new ResponseException(this.restResponse);
+        public org.elasticsearch.client.Response originalResponse() {
+            return this.restResponse;
         }
 
         @Override

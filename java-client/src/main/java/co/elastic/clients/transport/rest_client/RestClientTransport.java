@@ -24,7 +24,7 @@ import co.elastic.clients.transport.ElasticsearchTransportBase;
 import org.elasticsearch.client.RestClient;
 
 
-public class RestClientTransport extends ElasticsearchTransportBase<RestClientOptions> {
+public class RestClientTransport extends ElasticsearchTransportBase {
 
     private final RestClient restClient;
 
@@ -33,7 +33,7 @@ public class RestClientTransport extends ElasticsearchTransportBase<RestClientOp
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options) {
-        super(jsonpMapper, new RestClientHttpClient(restClient), options);
+        super(new RestClientHttpClient(restClient), options, jsonpMapper);
         this.restClient = restClient;
     }
 

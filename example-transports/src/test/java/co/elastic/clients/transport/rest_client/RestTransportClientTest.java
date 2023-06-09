@@ -20,10 +20,8 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportHttpClientTest;
-import co.elastic.clients.transport.http.TransportHttpClient;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 
 public class RestTransportClientTest extends TransportHttpClientTest<RestClientHttpClient> {
 

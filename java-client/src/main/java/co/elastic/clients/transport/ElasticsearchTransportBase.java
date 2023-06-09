@@ -28,7 +28,9 @@ import co.elastic.clients.transport.endpoints.BinaryDataResponse;
 import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
+import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.ByteArrayBinaryData;
@@ -50,27 +52,28 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public abstract class ElasticsearchTransportBase<
-    Options extends TransportOptions
-    > implements ElasticsearchTransport {
+public abstract class ElasticsearchTransportBase implements ElasticsearchTransport {
 
-    public static final String JsonContentType;
+    private static final String USER_AGENT_VALUE = getUserAgent();
+    private static final String CLIENT_META_VALUE = getClientMeta();
+    public static final String JSON_CONTENT_TYPE;
 
     static {
         if (Version.VERSION == null) {
-            JsonContentType = ContentType.APPLICATION_JSON;
+            JSON_CONTENT_TYPE = ContentType.APPLICATION_JSON;
         } else {
-            JsonContentType =
+            JSON_CONTENT_TYPE =
                 "application/vnd.elasticsearch+json; compatible-with=" +
                 Version.VERSION.major();
         }
     }
 
-    private final TransportHttpClient<Options> httpClient;
+    private final TransportHttpClient httpClient;
 
     @Override
     public void close() throws IOException {
@@ -78,12 +81,12 @@ public abstract class ElasticsearchTransportBase<
     }
 
     private final JsonpMapper mapper;
-    protected final Options transportOptions;
+    protected final TransportOptions transportOptions;
 
-    public ElasticsearchTransportBase(JsonpMapper jsonpMapper, TransportHttpClient<Options> httpClient, Options options) {
+    public ElasticsearchTransportBase(TransportHttpClient httpClient, TransportOptions options, JsonpMapper jsonpMapper) {
         this.mapper = jsonpMapper;
         this.httpClient = httpClient;
-        this.transportOptions = options == null ? httpClient.createOptions(null) : options;
+        this.transportOptions = httpClient.createOptions(options);
     }
 
     @Override
@@ -102,8 +105,8 @@ public abstract class ElasticsearchTransportBase<
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-        TransportHttpClient.Request req = prepareTransportRequest(request, endpoint, options);
-        Options opts = options == null ? transportOptions : httpClient.createOptions(options);
+        TransportOptions opts = options == null ? transportOptions : options;
+        TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
         TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
         return getApiResponse(resp, endpoint);
     }
@@ -114,9 +117,10 @@ public abstract class ElasticsearchTransportBase<
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) {
+        TransportOptions opts = options == null ? transportOptions : options;
         TransportHttpClient.Request clientReq;
         try {
-            clientReq = prepareTransportRequest(request, endpoint, options);
+            clientReq = prepareTransportRequest(request, endpoint);
         } catch (Exception e) {
             // Terminate early
             CompletableFuture<ResponseT> future = new CompletableFuture<>();
@@ -128,7 +132,7 @@ public abstract class ElasticsearchTransportBase<
         boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
 
         CompletableFuture<TransportHttpClient.Response> clientFuture = httpClient.performRequestAsync(
-            endpoint.id(), null, clientReq, httpClient.createOptions(options)
+            endpoint.id(), null, clientReq, opts
         );
 
         // Cancelling the result will cancel the upstream future created by the http client, allowing to stop in-flight requests
@@ -165,15 +169,14 @@ public abstract class ElasticsearchTransportBase<
 
     private <RequestT, ResponseT, ErrorT> TransportHttpClient.Request prepareTransportRequest(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-        @Nullable TransportOptions options
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint
     ) throws IOException {
         String method = endpoint.method(request);
         String path = endpoint.requestUrl(request);
         Map<String, String> params = endpoint.queryParameters(request);
 
         List<ByteBuffer> bodyBuffers = null;
-        String contentType = null;
+        HeaderMap headers = DefaultHeaders;
 
         Object body = endpoint.body(request);
         if (body != null) {
@@ -181,7 +184,7 @@ public abstract class ElasticsearchTransportBase<
             if (body instanceof NdJsonpSerializable) {
                 bodyBuffers = new ArrayList<>();
                 collectNdJsonLines(bodyBuffers, (NdJsonpSerializable) request);
-                contentType = JsonContentType;
+                headers = JsonContentTypeHeaders;
 
             } else if (body instanceof BinaryData) {
                 BinaryData data = (BinaryData)body;
@@ -190,9 +193,10 @@ public abstract class ElasticsearchTransportBase<
                 String dataContentType = data.contentType();
                 if (ContentType.APPLICATION_JSON.equals(dataContentType)) {
                     // Fast path
-                    contentType = JsonContentType;
+                    headers = JsonContentTypeHeaders;
                 } else {
-                    contentType = dataContentType;
+                    headers = new HeaderMap(DefaultHeaders);
+                    headers.put(HeaderMap.CONTENT_TYPE, dataContentType);
                 }
                 bodyBuffers = Collections.singletonList(data.asByteBuffer());
 
@@ -202,11 +206,19 @@ public abstract class ElasticsearchTransportBase<
                 mapper.serialize(body, generator);
                 generator.close();
                 bodyBuffers = Collections.singletonList(baos.asByteBuffer());
-                contentType = JsonContentType;
+                headers = JsonContentTypeHeaders;
             }
         }
 
-        return new TransportHttpClient.Request(method, path, params, contentType, bodyBuffers);
+        return new TransportHttpClient.Request(method, path, params, headers, bodyBuffers);
+    }
+
+    private static final HeaderMap JsonContentTypeHeaders = new HeaderMap();
+    private static final HeaderMap DefaultHeaders = new HeaderMap();
+    static {
+        addStandardHeaders(DefaultHeaders);
+        addStandardHeaders(JsonContentTypeHeaders);
+        JsonContentTypeHeaders.put(HeaderMap.CONTENT_TYPE, JSON_CONTENT_TYPE);
     }
 
     private static final ByteBuffer NdJsonSeparator = ByteBuffer.wrap("\n".getBytes(StandardCharsets.UTF_8));
@@ -241,23 +253,26 @@ public abstract class ElasticsearchTransportBase<
             }
 
             if (endpoint.isError(statusCode)) {
+
                 JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
                 if (errorDeserializer == null) {
                     throw new TransportException(
-                        statusCode,
+                        clientResp,
                         "Request failed with status code '" + statusCode + "'",
-                        endpoint.id(), clientResp.createException()
+                        endpoint.id()
                     );
                 }
 
                 BinaryData entity = clientResp.body();
                 if (entity == null) {
                     throw new TransportException(
-                        statusCode,
+                        clientResp,
                         "Expecting a response body, but none was sent",
-                        endpoint.id(), clientResp.createException()
+                        endpoint.id()
                     );
                 }
+
+                checkJsonContentType(entity.contentType(), clientResp, endpoint);
 
                 // We may have to replay it.
                 if (!entity.isRepeatable()) {
@@ -277,9 +292,11 @@ public abstract class ElasticsearchTransportBase<
                         return response;
                     } catch(Exception respEx) {
                         // No better luck: throw the original error decoding exception
-                        throw new TransportException(statusCode,
-                            "Failed to decode error response, check exception cause for additional details", endpoint.id(),
-                            clientResp.createException()
+                        throw new TransportException(
+                            clientResp,
+                            "Failed to decode error response, check exception cause for additional details",
+                            endpoint.id(),
+                            errorEx
                         );
                     }
                 }
@@ -310,11 +327,12 @@ public abstract class ElasticsearchTransportBase<
                 // Expecting a body
                 if (entity == null) {
                     throw new TransportException(
-                        statusCode,
+                        clientResp,
                         "Expecting a response body, but none was sent",
-                        endpoint.id(), clientResp.createException()
+                        endpoint.id()
                     );
                 }
+                checkJsonContentType(entity.contentType(), clientResp, endpoint);
                 try (
                     InputStream content = entity.asInputStream();
                     JsonParser parser = mapper.jsonProvider().createParser(content)
@@ -322,7 +340,7 @@ public abstract class ElasticsearchTransportBase<
                     response = responseParser.deserialize(parser, mapper);
                 } catch (Exception e) {
                     throw new TransportException(
-                        statusCode,
+                        clientResp,
                         "Failed to decode response",
                         endpoint.id(),
                         e
@@ -345,7 +363,10 @@ public abstract class ElasticsearchTransportBase<
             return response;
 
         } else {
-            throw new TransportException(statusCode, "Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id());
+            throw new TransportException(
+                clientResp,
+                "Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id()
+            );
         }
     }
 
@@ -361,21 +382,67 @@ public abstract class ElasticsearchTransportBase<
                 return;
             }
             throw new TransportException(
-                clientResp.statusCode(),
+                clientResp,
                 "Missing [X-Elastic-Product] header. Please check that you are connecting to an Elasticsearch "
                     + "instance, and that any networking filters are preserving that header.",
-                endpoint.id(),
-                clientResp.createException()
+                endpoint.id()
             );
         }
 
         if (!"Elasticsearch".equals(header)) {
             throw new TransportException(
-                clientResp.statusCode(),
+                clientResp,
                 "Invalid value '" + header + "' for 'X-Elastic-Product' header.",
-                endpoint.id(),
-                clientResp.createException()
+                endpoint.id()
             );
         }
+    }
+
+    private void checkJsonContentType(
+        String contentType, TransportHttpClient.Response clientResp, Endpoint<?, ?, ?> endpoint
+    ) throws IOException {
+        if (contentType == null) {
+            throw new TransportException(clientResp, "Response has no content-type", endpoint.id());
+        }
+
+        if (contentType.startsWith("application/json") || contentType.startsWith("application/vnd.elasticsearch+json")) {
+            return;
+        }
+
+        throw new TransportException(clientResp, "Expecting JSON data but response content-type is: " + contentType, endpoint.id());
+    }
+
+    private static void addStandardHeaders(HeaderMap headers) {
+        headers.put(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
+        headers.put(HeaderMap.CLIENT_META, CLIENT_META_VALUE);
+        headers.put(HeaderMap.ACCEPT, JSON_CONTENT_TYPE);
+    }
+
+    private static String getUserAgent() {
+        return String.format(
+            Locale.ROOT,
+            "elastic-java/%s (Java/%s)",
+            Version.VERSION == null ? "Unknown" : Version.VERSION.toString(),
+            System.getProperty("java.version")
+        );
+    }
+
+    private static String getClientMeta() {
+        // Use a single 'p' suffix for all prerelease versions (snapshot, beta, etc).
+        String metaVersion = Version.VERSION == null ? "" : Version.VERSION.toString();
+        int dashPos = metaVersion.indexOf('-');
+        if (dashPos > 0) {
+            metaVersion = metaVersion.substring(0, dashPos) + "p";
+        }
+
+        // service, language, transport, followed by additional information
+        return "es="
+            + metaVersion
+            + ",jv="
+            + System.getProperty("java.specification.version")
+            + ",t="
+            + metaVersion
+            + ",hl=2"
+            + LanguageRuntimeVersions.getRuntimeMetadata();
     }
 }

@@ -24,7 +24,7 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
-import org.elasticsearch.client.ResponseException;
+import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -68,8 +68,8 @@ public class TransportTest extends Assertions {
         assertEquals(401, ex.statusCode());
         assertEquals("es/cat.indices", ex.endpointId());
 
-        // Cause is transport-dependent
-        ResponseException restException = (ResponseException) ex.getCause();
-        assertEquals(401, restException.getResponse().getStatusLine().getStatusCode());
+        // Original response is transport-dependent
+        Response restClientResponse = (Response)ex.response().originalResponse();
+        assertEquals(401, restClientResponse.getStatusLine().getStatusCode());
     }
 }

@@ -50,7 +50,13 @@ public interface TransportOptions {
 
         Builder addHeader(String name, String value);
 
+        Builder setHeader(String name, String value);
+
+        Builder removeHeader(String name);
+
         Builder setParameter(String name, String value);
+
+        Builder removeParameter(String name);
 
         Builder onWarnings(Function<List<String>, Boolean> listener);
     }

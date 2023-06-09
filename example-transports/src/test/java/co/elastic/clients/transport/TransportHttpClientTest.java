@@ -19,8 +19,8 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
-import co.elastic.clients.transport.netty.DefaultOptions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpServer;
@@ -29,9 +29,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -40,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class TransportHttpClientTest<Client extends TransportHttpClient<?>> extends Assertions {
+public abstract class TransportHttpClientTest<Client extends TransportHttpClient> extends Assertions {
 
     public static record EchoResponse(Map<String, List<String>> headers, String body) {
     }
@@ -95,12 +93,17 @@ public abstract class TransportHttpClientTest<Client extends TransportHttpClient
             "http://" + server.getAddress().getHostString() + ":" + server.getAddress().getPort() + "/"
         );
 
-        TransportOptions options = new DefaultOptions.Builder().addHeader("X-Header", "some value").build();
+        TransportOptions options = new DefaultTransportOptions.Builder()
+            .addHeader("X-Options-Header", "options value")
+            .build();
 
+        HeaderMap headers = new HeaderMap();
+        headers.put("Content-Type", "text/plain");
+        headers.put("X-Request-Header", "request value");
         TransportHttpClient.Response response = httpClient.performRequest(
             "foo",
             node,
-            new TransportHttpClient.Request("POST", "/root/echo", Map.of(), "text/plain", requestBody),
+            new TransportHttpClient.Request("POST", "/root/echo", Map.of(), headers, requestBody),
             options
         );
 
@@ -110,7 +113,8 @@ public abstract class TransportHttpClientTest<Client extends TransportHttpClient
 
         var echoHeaders = normalizeHeaders(echoResponse.headers());
         assertEquals("text/plain", echoHeaders.get("content-type"));
-        assertEquals("some value", echoHeaders.get("x-header"));
+        assertEquals("options value", echoHeaders.get("x-options-header"));
+        assertEquals("request value", echoHeaders.get("x-request-header"));
 
         dump(echoHeaders);
 

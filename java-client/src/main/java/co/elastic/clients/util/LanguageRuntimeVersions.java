@@ -17,14 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
+package co.elastic.clients.util;
 
 // Copied verbatim from https://github.com/elastic/jvm-languages-sniffer
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-class LanguageRuntimeVersions {
+public class LanguageRuntimeVersions {
 
     /**
      * Returns runtime information by looking up classes identifying non-Java JVM
