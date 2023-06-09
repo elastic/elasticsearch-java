@@ -157,11 +157,13 @@ public class IngesterOperation {
     private static void copyIndexProperties(IndexOperation<?> op, IndexOperation.Builder<?> builder) {
         copyBaseProperties(op, builder);
         builder.pipeline(op.pipeline());
+        builder.requireAlias(op.requireAlias());
     }
 
     private static void copyCreateProperties(CreateOperation<?> op, CreateOperation.Builder<?> builder) {
         copyBaseProperties(op, builder);
         builder.pipeline(op.pipeline());
+        builder.requireAlias(op.requireAlias());
     }
 
     private static int size(String name, @Nullable Boolean value) {

@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.core.bulk.OperationType;
 import co.elastic.clients.elasticsearch.end_to_end.RequestTest;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.SimpleJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -356,6 +357,28 @@ class BulkIngesterTest extends Assertions {
 
         assertEquals("foo", storedRequest.get().index());
         assertEquals("bar", storedRequest.get().routing());
+    }
+
+    @Test
+    public void pipelineTest() {
+        String json = "{\"create\":{\"_id\":\"some_id\",\"_index\":\"some_idx\",\"pipeline\":\"pipe\",\"require_alias\":true}}";
+        JsonpMapper mapper = new SimpleJsonpMapper();
+
+        BulkOperation create = BulkOperation.of(o -> o.create(c -> c
+                .pipeline("pipe")
+                .requireAlias(true)
+                .index("some_idx")
+                .id("some_id")
+                .document("Some doc")
+        ));
+
+        String createStr = JsonpUtils.toJsonString(create, mapper);
+        assertEquals(json, createStr);
+
+        BulkOperation create1 = IngesterOperation.of(create, mapper).operation();
+
+        String create1Str = JsonpUtils.toJsonString(create1, mapper);
+        assertEquals(json, create1Str);
     }
 
     @Test
