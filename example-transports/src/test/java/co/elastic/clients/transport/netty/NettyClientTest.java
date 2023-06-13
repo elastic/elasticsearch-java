@@ -17,27 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
-
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransportBase;
-import org.elasticsearch.client.RestClient;
+package co.elastic.clients.transport.netty;
 
 
-public class RestClientTransport extends ElasticsearchTransportBase {
+import co.elastic.clients.transport.TransportHttpClientTest;
 
-    private final RestClient restClient;
+public class NettyClientTest extends TransportHttpClientTest<NettyTransportHttpClient> {
 
-    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper) {
-        this(restClient, jsonpMapper, null);
-    }
-
-    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options) {
-        super(new RestClientHttpClient(restClient), options, jsonpMapper);
-        this.restClient = restClient;
-    }
-
-    public RestClient restClient() {
-        return this.restClient;
+    public NettyClientTest() throws Exception {
+        super(new NettyTransportHttpClient());
     }
 }

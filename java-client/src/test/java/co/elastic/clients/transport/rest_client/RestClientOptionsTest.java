@@ -20,7 +20,9 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.SimpleJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import com.sun.net.httpserver.Headers;
@@ -58,6 +60,8 @@ class RestClientOptionsTest extends Assertions {
         // Register a handler on the core.exists("capture-handler/{name}") endpoint that will capture request headers.
         httpServer.createContext("/capture-headers/_doc/", exchange -> {
             String testName = exchange.getRequestURI().getPath().substring("/capture-headers/_doc/".length());
+            System.out.println(exchange.getResponseHeaders());
+            System.out.println();
             collectedHeaders.put(testName, exchange.getRequestHeaders());
 
             // Reply with an empty 200 response
@@ -74,6 +78,15 @@ class RestClientOptionsTest extends Assertions {
         httpServer.stop(0);
         httpServer = null;
         collectedHeaders = null;
+    }
+    
+    private ElasticsearchTransport newRestClientTransport(RestClient restClient, JsonpMapper mapper) {
+        return newRestClientTransport(restClient, mapper, null);
+    }
+
+    private ElasticsearchTransport newRestClientTransport(RestClient restClient, JsonpMapper mapper, RestClientOptions options) {
+        return new RestClientTransport(restClient, mapper, options);
+        //return new RestClientMonolithTransport(restClient, mapper, options);
     }
 
     /**
@@ -114,7 +127,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper());
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper());
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         String id = checkHeaders(esClient);
@@ -127,7 +140,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper(),
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(),
             new RestClientOptions.Builder(RequestOptions.DEFAULT.toBuilder()).build()
         );
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
@@ -142,7 +155,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper());
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper());
         ElasticsearchClient esClient = new ElasticsearchClient(transport).withTransportOptions(
             new RestClientOptions.Builder(RequestOptions.DEFAULT.toBuilder()).build()
         );
@@ -157,7 +170,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper());
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper());
         ElasticsearchClient esClient = new ElasticsearchClient(transport)
             .withTransportOptions(o -> o
                 .addHeader("Foo", "bar")
@@ -179,7 +192,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options));
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options));
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
         // Should not override client meta
         String id = checkHeaders(esClient);

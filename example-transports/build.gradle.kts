@@ -17,27 +17,39 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
+plugins {
+    java
+    `java-library`
+    `java-test-fixtures`
+}
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransportBase;
-import org.elasticsearch.client.RestClient;
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 
-public class RestClientTransport extends ElasticsearchTransportBase {
+dependencies {
+    val jacksonVersion = "2.13.3"
 
-    private final RestClient restClient;
+    api("io.netty", "netty-codec-http", "4.1.93.Final")
 
-    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper) {
-        this(restClient, jsonpMapper, null);
-    }
+    implementation(project(":java-client"))
 
-    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options) {
-        super(new RestClientHttpClient(restClient), options, jsonpMapper);
-        this.restClient = restClient;
-    }
+    // Apache 2.0
+    // https://github.com/FasterXML/jackson
+    testImplementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    testImplementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
 
-    public RestClient restClient() {
-        return this.restClient;
-    }
+    // EPL-2.0
+    // https://junit.org/junit5/
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+
+}
+repositories {
+    mavenCentral()
 }

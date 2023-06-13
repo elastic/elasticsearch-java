@@ -19,25 +19,21 @@
 
 package co.elastic.clients.transport.rest_client;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.TransportHttpClientTest;
+import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 
+public class RestTransportClientTest extends TransportHttpClientTest<RestClientHttpClient> {
 
-public class RestClientTransport extends ElasticsearchTransportBase {
-
-    private final RestClient restClient;
-
-    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper) {
-        this(restClient, jsonpMapper, null);
+    public RestTransportClientTest() {
+        super(createClient());
     }
 
-    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options) {
-        super(new RestClientHttpClient(restClient), options, jsonpMapper);
-        this.restClient = restClient;
-    }
+    private static RestClientHttpClient createClient() {
+        RestClient restClient = RestClient.builder(
+            new HttpHost(server.getAddress().getAddress(), server.getAddress().getPort(), "http")
+        ).build();
 
-    public RestClient restClient() {
-        return this.restClient;
+        return new RestClientHttpClient(restClient);
     }
 }

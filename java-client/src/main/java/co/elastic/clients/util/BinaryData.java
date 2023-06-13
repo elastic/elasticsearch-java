@@ -27,6 +27,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
@@ -43,13 +44,31 @@ public interface BinaryData {
 
     /**
      * Write this data to an output stream.
+     * @throws IllegalStateException if the content has already been consumed and the object
+     *         isn't replayable.
      */
     void writeTo(OutputStream out) throws IOException;
 
     /**
-     * Return this data as a {@code ByteBuffer}
+     * Return this data as a {@code ByteBuffer}.
+     *
+     * @throws IllegalStateException if the content has already been consumed and the object
+     *         isn't replayable.
      */
-    ByteBuffer asByteBuffer();
+    ByteBuffer asByteBuffer() throws IOException;
+
+    /**
+     * Return this data as an {@code InputStream}.
+     *
+     * @throws IllegalStateException if the content has already been consumed and the object
+     *         isn't replayable.
+     */
+    InputStream asInputStream() throws IOException;
+
+    /**
+     * Can this object be consumed several times?
+     */
+    boolean isRepeatable();
 
     /**
      * Get the estimated size in bytes of the data.

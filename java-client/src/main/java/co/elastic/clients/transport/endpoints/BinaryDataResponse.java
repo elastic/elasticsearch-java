@@ -17,48 +17,37 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
+package co.elastic.clients.transport.endpoints;
 
-import co.elastic.clients.transport.endpoints.BinaryResponse;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.util.EntityUtils;
+import co.elastic.clients.util.BinaryData;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-class HttpClientBinaryResponse implements BinaryResponse {
-    private final HttpEntity entity;
-    private boolean consumed = false;
+public class BinaryDataResponse implements BinaryResponse {
 
-    HttpClientBinaryResponse(HttpEntity entity) {
-        this.entity = entity;
+    private final BinaryData data;
+
+    public BinaryDataResponse(BinaryData data) {
+        this.data = data;
     }
 
     @Override
     public String contentType() {
-        Header h = entity.getContentType();
-        return h == null ? "application/octet-stream" : h.getValue();
+        return data.contentType();
     }
 
     @Override
     public long contentLength() {
-        long len = entity.getContentLength();
-        return len < 0 ? -1 : entity.getContentLength();
+        return data.size();
     }
 
     @Override
     public InputStream content() throws IOException {
-        if (consumed) {
-            throw new IllegalStateException("Response content has already been consumed");
-        }
-        consumed = true;
-        return entity.getContent();
+        return data.asInputStream();
     }
 
     @Override
     public void close() throws IOException {
-        consumed = true;
-        EntityUtils.consume(entity);
     }
 }
