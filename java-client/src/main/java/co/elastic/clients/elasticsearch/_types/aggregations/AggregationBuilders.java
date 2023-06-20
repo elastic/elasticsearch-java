@@ -450,6 +450,25 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link FrequentItemSetsAggregation
+	 * frequent_item_sets} {@code Aggregation} variant.
+	 */
+	public static FrequentItemSetsAggregation.Builder frequentItemSets() {
+		return new FrequentItemSetsAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link FrequentItemSetsAggregation
+	 * frequent_item_sets} {@code Aggregation} variant.
+	 */
+	public static Aggregation frequentItemSets(
+			Function<FrequentItemSetsAggregation.Builder, ObjectBuilder<FrequentItemSetsAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.frequentItemSets(fn.apply(new FrequentItemSetsAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Query filter} {@code Aggregation} variant.
 	 */
 	public static Query.Builder filter() {

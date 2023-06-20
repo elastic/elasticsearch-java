@@ -83,7 +83,7 @@ public class PluginsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * unique node id
+	 * The unique node identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -93,7 +93,7 @@ public class PluginsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * node name
+	 * The node name.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -103,7 +103,7 @@ public class PluginsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * component
+	 * The component name.
 	 * <p>
 	 * API name: {@code component}
 	 */
@@ -113,7 +113,7 @@ public class PluginsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * component version
+	 * The component version.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -123,7 +123,7 @@ public class PluginsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * plugin details
+	 * The plugin details.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -133,7 +133,7 @@ public class PluginsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * plugin type
+	 * The plugin type.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -217,7 +217,7 @@ public class PluginsRecord implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * unique node id
+		 * The unique node identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -227,7 +227,7 @@ public class PluginsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * node name
+		 * The node name.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -237,7 +237,7 @@ public class PluginsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * component
+		 * The component name.
 		 * <p>
 		 * API name: {@code component}
 		 */
@@ -247,7 +247,7 @@ public class PluginsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * component version
+		 * The component version.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -257,7 +257,7 @@ public class PluginsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * plugin details
+		 * The plugin details.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -267,7 +267,7 @@ public class PluginsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * plugin type
+		 * The plugin type.
 		 * <p>
 		 * API name: {@code type}
 		 */

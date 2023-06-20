@@ -92,7 +92,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * node name
+	 * The node name.
 	 * <p>
 	 * API name: {@code node}
 	 */
@@ -102,7 +102,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * unique node id
+	 * The unique node identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -112,7 +112,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * process id
+	 * The process identifier.
 	 * <p>
 	 * API name: {@code pid}
 	 */
@@ -122,7 +122,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * host name
+	 * The host name.
 	 * <p>
 	 * API name: {@code host}
 	 */
@@ -132,7 +132,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ip address
+	 * The IP address.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -142,7 +142,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * bound transport port
+	 * The bound transport port.
 	 * <p>
 	 * API name: {@code port}
 	 */
@@ -152,7 +152,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * attribute description
+	 * The attribute name.
 	 * <p>
 	 * API name: {@code attr}
 	 */
@@ -162,7 +162,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * attribute value
+	 * The attribute value.
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -264,7 +264,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		private String value;
 
 		/**
-		 * node name
+		 * The node name.
 		 * <p>
 		 * API name: {@code node}
 		 */
@@ -274,7 +274,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * unique node id
+		 * The unique node identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -284,7 +284,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * process id
+		 * The process identifier.
 		 * <p>
 		 * API name: {@code pid}
 		 */
@@ -294,7 +294,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * host name
+		 * The host name.
 		 * <p>
 		 * API name: {@code host}
 		 */
@@ -304,7 +304,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ip address
+		 * The IP address.
 		 * <p>
 		 * API name: {@code ip}
 		 */
@@ -314,7 +314,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * bound transport port
+		 * The bound transport port.
 		 * <p>
 		 * API name: {@code port}
 		 */
@@ -324,7 +324,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * attribute description
+		 * The attribute name.
 		 * <p>
 		 * API name: {@code attr}
 		 */
@@ -334,7 +334,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * attribute value
+		 * The attribute value.
 		 * <p>
 		 * API name: {@code value}
 		 */

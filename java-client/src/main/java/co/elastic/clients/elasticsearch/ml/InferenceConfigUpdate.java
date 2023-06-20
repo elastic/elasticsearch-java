@@ -78,6 +78,8 @@ public class InferenceConfigUpdate implements TaggedUnion<InferenceConfigUpdate.
 
 		TextEmbedding("text_embedding"),
 
+		TextExpansion("text_expansion"),
+
 		QuestionAnswering("question_answering"),
 
 		;
@@ -264,6 +266,23 @@ public class InferenceConfigUpdate implements TaggedUnion<InferenceConfigUpdate.
 	}
 
 	/**
+	 * Is this variant instance of kind {@code text_expansion}?
+	 */
+	public boolean isTextExpansion() {
+		return _kind == Kind.TextExpansion;
+	}
+
+	/**
+	 * Get the {@code text_expansion} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code text_expansion} kind.
+	 */
+	public TextExpansionInferenceUpdateOptions textExpansion() {
+		return TaggedUnionUtils.get(this, Kind.TextExpansion);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code question_answering}?
 	 */
 	public boolean isQuestionAnswering() {
@@ -401,6 +420,17 @@ public class InferenceConfigUpdate implements TaggedUnion<InferenceConfigUpdate.
 			return this.textEmbedding(fn.apply(new TextEmbeddingInferenceUpdateOptions.Builder()).build());
 		}
 
+		public ObjectBuilder<InferenceConfigUpdate> textExpansion(TextExpansionInferenceUpdateOptions v) {
+			this._kind = Kind.TextExpansion;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfigUpdate> textExpansion(
+				Function<TextExpansionInferenceUpdateOptions.Builder, ObjectBuilder<TextExpansionInferenceUpdateOptions>> fn) {
+			return this.textExpansion(fn.apply(new TextExpansionInferenceUpdateOptions.Builder()).build());
+		}
+
 		public ObjectBuilder<InferenceConfigUpdate> questionAnswering(QuestionAnsweringInferenceUpdateOptions v) {
 			this._kind = Kind.QuestionAnswering;
 			this._value = v;
@@ -431,6 +461,7 @@ public class InferenceConfigUpdate implements TaggedUnion<InferenceConfigUpdate.
 		op.add(Builder::ner, NerInferenceUpdateOptions._DESERIALIZER, "ner");
 		op.add(Builder::passThrough, PassThroughInferenceUpdateOptions._DESERIALIZER, "pass_through");
 		op.add(Builder::textEmbedding, TextEmbeddingInferenceUpdateOptions._DESERIALIZER, "text_embedding");
+		op.add(Builder::textExpansion, TextExpansionInferenceUpdateOptions._DESERIALIZER, "text_expansion");
 		op.add(Builder::questionAnswering, QuestionAnsweringInferenceUpdateOptions._DESERIALIZER, "question_answering");
 
 	}

@@ -43,6 +43,8 @@ public enum TimeSeriesMetricType implements JsonEnum {
 
 	Histogram("histogram"),
 
+	Position("position"),
+
 	;
 
 	private final String jsonValue;

@@ -188,6 +188,25 @@ public class InferenceConfigCreateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link TextExpansionInferenceOptions
+	 * text_expansion} {@code InferenceConfigCreate} variant.
+	 */
+	public static TextExpansionInferenceOptions.Builder textExpansion() {
+		return new TextExpansionInferenceOptions.Builder();
+	}
+
+	/**
+	 * Creates a InferenceConfigCreate of the {@link TextExpansionInferenceOptions
+	 * text_expansion} {@code InferenceConfigCreate} variant.
+	 */
+	public static InferenceConfigCreate textExpansion(
+			Function<TextExpansionInferenceOptions.Builder, ObjectBuilder<TextExpansionInferenceOptions>> fn) {
+		InferenceConfigCreate.Builder builder = new InferenceConfigCreate.Builder();
+		builder.textExpansion(fn.apply(new TextExpansionInferenceOptions.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link QuestionAnsweringInferenceOptions
 	 * question_answering} {@code InferenceConfigCreate} variant.
 	 */

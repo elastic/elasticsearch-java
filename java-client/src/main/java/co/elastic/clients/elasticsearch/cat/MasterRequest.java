@@ -39,7 +39,10 @@ import java.util.Objects;
 // typedef: cat.master.Request
 
 /**
- * Returns information about the master node.
+ * Returns information about the master node, including the ID, bound IP
+ * address, and name. IMPORTANT: cat APIs are only intended for human
+ * consumption using the command line or Kibana console. They are not intended
+ * for use by applications. For application consumption, use the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.master.Request">API
  *      specification</a>

@@ -76,7 +76,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * task insertion order
+	 * The task insertion order.
 	 * <p>
 	 * API name: {@code insertOrder}
 	 */
@@ -86,7 +86,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * how long task has been in queue
+	 * Indicates how long the task has been in queue.
 	 * <p>
 	 * API name: {@code timeInQueue}
 	 */
@@ -96,7 +96,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * task priority
+	 * The task priority.
 	 * <p>
 	 * API name: {@code priority}
 	 */
@@ -106,7 +106,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * task source
+	 * The task source.
 	 * <p>
 	 * API name: {@code source}
 	 */
@@ -176,7 +176,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 		private String source;
 
 		/**
-		 * task insertion order
+		 * The task insertion order.
 		 * <p>
 		 * API name: {@code insertOrder}
 		 */
@@ -186,7 +186,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * how long task has been in queue
+		 * Indicates how long the task has been in queue.
 		 * <p>
 		 * API name: {@code timeInQueue}
 		 */
@@ -196,7 +196,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * task priority
+		 * The task priority.
 		 * <p>
 		 * API name: {@code priority}
 		 */
@@ -206,7 +206,7 @@ public class PendingTasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * task source
+		 * The task source.
 		 * <p>
 		 * API name: {@code source}
 		 */

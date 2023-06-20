@@ -130,6 +130,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	}
 
 	/**
+	 * Partial aggregations results, coming from the shards that have already
+	 * completed the execution of the query.
+	 * <p>
 	 * API name: {@code aggregations}
 	 */
 	public final Map<String, Aggregate> aggregations() {
@@ -167,6 +170,11 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates how many reductions of the results have been performed. If this
+	 * number increases compared to the last retrieved results for a get asynch
+	 * search request, you can expect additional results included in the search
+	 * response.
+	 * <p>
 	 * API name: {@code num_reduce_phases}
 	 */
 	@Nullable
@@ -199,7 +207,11 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _shards}
+	 * Required - Indicates how many shards have run the query. Note that in order
+	 * for shard results to be included in the search response, they need to be
+	 * reduced first.
+	 * <p>
+	 * API name: {@code _shards}
 	 */
 	public final ShardStatistics shards() {
 		return this.shards;
@@ -371,6 +383,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
+		 * Partial aggregations results, coming from the shards that have already
+		 * completed the execution of the query.
+		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
@@ -381,6 +396,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * Partial aggregations results, coming from the shards that have already
+		 * completed the execution of the query.
+		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds an entry to <code>aggregations</code>.
@@ -391,6 +409,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * Partial aggregations results, coming from the shards that have already
+		 * completed the execution of the query.
+		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
@@ -461,6 +482,11 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates how many reductions of the results have been performed. If this
+		 * number increases compared to the last retrieved results for a get asynch
+		 * search request, you can expect additional results included in the search
+		 * response.
+		 * <p>
 		 * API name: {@code num_reduce_phases}
 		 */
 		public final Builder<TDocument> numReducePhases(@Nullable Long value) {
@@ -500,7 +526,11 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Indicates how many shards have run the query. Note that in order
+		 * for shard results to be included in the search response, they need to be
+		 * reduced first.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final Builder<TDocument> shards(ShardStatistics value) {
 			this.shards = value;
@@ -508,7 +538,11 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Indicates how many shards have run the query. Note that in order
+		 * for shard results to be included in the search response, they need to be
+		 * reduced first.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());

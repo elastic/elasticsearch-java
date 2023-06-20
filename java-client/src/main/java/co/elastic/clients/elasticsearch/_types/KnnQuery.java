@@ -35,7 +35,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
@@ -55,7 +54,10 @@ import javax.annotation.Nullable;
 public class KnnQuery implements JsonpSerializable {
 	private final String field;
 
-	private final List<Double> queryVector;
+	private final List<Float> queryVector;
+
+	@Nullable
+	private final QueryVectorBuilder queryVectorBuilder;
 
 	private final long k;
 
@@ -71,7 +73,8 @@ public class KnnQuery implements JsonpSerializable {
 	private KnnQuery(Builder builder) {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.queryVector = ApiTypeHelper.unmodifiableRequired(builder.queryVector, this, "queryVector");
+		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
+		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
 		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
 		this.boost = builder.boost;
@@ -93,12 +96,23 @@ public class KnnQuery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The query vector
+	 * The query vector
 	 * <p>
 	 * API name: {@code query_vector}
 	 */
-	public final List<Double> queryVector() {
+	public final List<Float> queryVector() {
 		return this.queryVector;
+	}
+
+	/**
+	 * The query vector builder. You must provide a query_vector_builder or
+	 * query_vector, but not both.
+	 * <p>
+	 * API name: {@code query_vector_builder}
+	 */
+	@Nullable
+	public final QueryVectorBuilder queryVectorBuilder() {
+		return this.queryVectorBuilder;
 	}
 
 	/**
@@ -155,11 +169,16 @@ public class KnnQuery implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.queryVector)) {
 			generator.writeKey("query_vector");
 			generator.writeStartArray();
-			for (Double item0 : this.queryVector) {
+			for (Float item0 : this.queryVector) {
 				generator.write(item0);
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.queryVectorBuilder != null) {
+			generator.writeKey("query_vector_builder");
+			this.queryVectorBuilder.serialize(generator, mapper);
 
 		}
 		generator.writeKey("k");
@@ -200,7 +219,11 @@ public class KnnQuery implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<KnnQuery> {
 		private String field;
 
-		private List<Double> queryVector;
+		@Nullable
+		private List<Float> queryVector;
+
+		@Nullable
+		private QueryVectorBuilder queryVectorBuilder;
 
 		private Long k;
 
@@ -223,27 +246,49 @@ public class KnnQuery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The query vector
+		 * The query vector
 		 * <p>
 		 * API name: {@code query_vector}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(List<Double> list) {
+		public final Builder queryVector(List<Float> list) {
 			this.queryVector = _listAddAll(this.queryVector, list);
 			return this;
 		}
 
 		/**
-		 * Required - The query vector
+		 * The query vector
 		 * <p>
 		 * API name: {@code query_vector}
 		 * <p>
 		 * Adds one or more values to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(Double value, Double... values) {
+		public final Builder queryVector(Float value, Float... values) {
 			this.queryVector = _listAdd(this.queryVector, value, values);
 			return this;
+		}
+
+		/**
+		 * The query vector builder. You must provide a query_vector_builder or
+		 * query_vector, but not both.
+		 * <p>
+		 * API name: {@code query_vector_builder}
+		 */
+		public final Builder queryVectorBuilder(@Nullable QueryVectorBuilder value) {
+			this.queryVectorBuilder = value;
+			return this;
+		}
+
+		/**
+		 * The query vector builder. You must provide a query_vector_builder or
+		 * query_vector, but not both.
+		 * <p>
+		 * API name: {@code query_vector_builder}
+		 */
+		public final Builder queryVectorBuilder(
+				Function<QueryVectorBuilder.Builder, ObjectBuilder<QueryVectorBuilder>> fn) {
+			return this.queryVectorBuilder(fn.apply(new QueryVectorBuilder.Builder()).build());
 		}
 
 		/**
@@ -340,8 +385,9 @@ public class KnnQuery implements JsonpSerializable {
 	protected static void setupKnnQueryDeserializer(ObjectDeserializer<KnnQuery.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
+		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()),
 				"query_vector");
+		op.add(Builder::queryVectorBuilder, QueryVectorBuilder._DESERIALIZER, "query_vector_builder");
 		op.add(Builder::k, JsonpDeserializer.longDeserializer(), "k");
 		op.add(Builder::numCandidates, JsonpDeserializer.longDeserializer(), "num_candidates");
 		op.add(Builder::boost, JsonpDeserializer.floatDeserializer(), "boost");

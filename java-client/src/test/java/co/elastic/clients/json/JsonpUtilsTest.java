@@ -164,7 +164,7 @@ public class JsonpUtilsTest extends ModelTestCase {
             IndicesPrivileges priv = IndicesPrivileges.of(i -> i
                 .names("bar")
                 .query(q -> q.term(t -> t.field("baz").value(1)))
-                .privileges(IndexPrivilege.All)
+                .privileges(IndexPrivilege.All.jsonValue())
             );
 
             String json = "{\"names\":[\"bar\"],\"privileges\":[\"all\"],\"query\":\"{\\\"term\\\":{\\\"baz\\\":{\\\"value\\\":1}}}\"}";
@@ -180,7 +180,7 @@ public class JsonpUtilsTest extends ModelTestCase {
             IndicesPrivileges priv = IndicesPrivileges.of(i -> i
                 .names("bar")
                 .query(q -> q._custom("template", RoleTemplateScript.of(s -> s.stored(v -> v.id("foo")))))
-                .privileges(IndexPrivilege.All)
+                .privileges(IndexPrivilege.All.jsonValue())
             );
 
             String json = "{\"names\":[\"bar\"],\"privileges\":[\"all\"],\"query\":\"{\\\"template\\\":{\\\"id\\\":\\\"foo\\\"}}\"}";
@@ -196,7 +196,7 @@ public class JsonpUtilsTest extends ModelTestCase {
             UserIndicesPrivileges priv = UserIndicesPrivileges.of(i -> i
                 .names("bar")
                 .query(q -> q.term(t -> t.field("baz").value(1)))
-                .privileges(IndexPrivilege.All)
+                .privileges(IndexPrivilege.All.jsonValue())
                 .allowRestrictedIndices(false)
             );
 

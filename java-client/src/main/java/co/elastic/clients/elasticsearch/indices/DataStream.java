@@ -82,6 +82,9 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowCustomRouting;
 
+	@Nullable
+	private final DataLifecycleWithRollover lifecycle;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStream(Builder builder) {
@@ -98,6 +101,7 @@ public class DataStream implements JsonpSerializable {
 		this.ilmPolicy = builder.ilmPolicy;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowCustomRouting = builder.allowCustomRouting;
+		this.lifecycle = builder.lifecycle;
 
 	}
 
@@ -194,6 +198,14 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code lifecycle}
+	 */
+	@Nullable
+	public final DataLifecycleWithRollover lifecycle() {
+		return this.lifecycle;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -262,6 +274,11 @@ public class DataStream implements JsonpSerializable {
 			generator.write(this.allowCustomRouting);
 
 		}
+		if (this.lifecycle != null) {
+			generator.writeKey("lifecycle");
+			this.lifecycle.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -305,6 +322,9 @@ public class DataStream implements JsonpSerializable {
 
 		@Nullable
 		private Boolean allowCustomRouting;
+
+		@Nullable
+		private DataLifecycleWithRollover lifecycle;
 
 		/**
 		 * Required - API name: {@code name}
@@ -443,6 +463,22 @@ public class DataStream implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
+			this.lifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(
+				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -483,6 +519,7 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
+		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
 
 	}
 

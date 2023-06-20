@@ -35,6 +35,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +57,9 @@ import javax.annotation.Nullable;
 public class GetDataStreamRequest extends RequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
+	@Nullable
+	private final Boolean includeDefaults;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -63,6 +67,7 @@ public class GetDataStreamRequest extends RequestBase {
 	private GetDataStreamRequest(Builder builder) {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.includeDefaults = builder.includeDefaults;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
@@ -79,6 +84,16 @@ public class GetDataStreamRequest extends RequestBase {
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * If true, returns all relevant default configurations for the index template.
+	 * <p>
+	 * API name: {@code include_defaults}
+	 */
+	@Nullable
+	public final Boolean includeDefaults() {
+		return this.includeDefaults;
 	}
 
 	/**
@@ -102,6 +117,9 @@ public class GetDataStreamRequest extends RequestBase {
 				ObjectBuilder<GetDataStreamRequest> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Boolean includeDefaults;
 
 		@Nullable
 		private List<String> name;
@@ -129,6 +147,16 @@ public class GetDataStreamRequest extends RequestBase {
 		 */
 		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
 			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * If true, returns all relevant default configurations for the index template.
+		 * <p>
+		 * API name: {@code include_defaults}
+		 */
+		public final Builder includeDefaults(@Nullable Boolean value) {
+			this.includeDefaults = value;
 			return this;
 		}
 
@@ -221,6 +249,9 @@ public class GetDataStreamRequest extends RequestBase {
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.includeDefaults != null) {
+					params.put("include_defaults", String.valueOf(request.includeDefaults));
 				}
 				return params;
 

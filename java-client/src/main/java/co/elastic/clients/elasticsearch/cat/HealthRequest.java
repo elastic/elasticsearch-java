@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -42,7 +43,18 @@ import javax.annotation.Nullable;
 // typedef: cat.health.Request
 
 /**
- * Returns a concise representation of the cluster health.
+ * Returns the health status of a cluster, similar to the cluster health API.
+ * IMPORTANT: cat APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
+ * application consumption, use the cluster health API. This API is often used
+ * to check malfunctioning clusters. To help you track cluster health alongside
+ * log files and alerting systems, the API returns timestamps in two formats:
+ * <code>HH:MM:SS</code>, which is human-readable but includes no date
+ * information; <code>Unix epoch time</code>, which is machine-sortable and
+ * includes date information. The latter format is useful for cluster recoveries
+ * that take multiple days. You can use the cat health API to verify cluster
+ * health across multiple nodes. You also can use the API to track the recovery
+ * of a large cluster over a longer period of time.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.health.Request">API
  *      specification</a>
@@ -50,12 +62,16 @@ import javax.annotation.Nullable;
 
 public class HealthRequest extends CatRequestBase {
 	@Nullable
+	private final TimeUnit time;
+
+	@Nullable
 	private final Boolean ts;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private HealthRequest(Builder builder) {
 
+		this.time = builder.time;
 		this.ts = builder.ts;
 
 	}
@@ -65,7 +81,17 @@ public class HealthRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Set to false to disable timestamping
+	 * The unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
+	}
+
+	/**
+	 * If true, returns <code>HH:MM:SS</code> and Unix epoch timestamps.
 	 * <p>
 	 * API name: {@code ts}
 	 */
@@ -84,10 +110,23 @@ public class HealthRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<HealthRequest> {
 		@Nullable
+		private TimeUnit time;
+
+		@Nullable
 		private Boolean ts;
 
 		/**
-		 * Set to false to disable timestamping
+		 * The unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns <code>HH:MM:SS</code> and Unix epoch timestamps.
 		 * <p>
 		 * API name: {@code ts}
 		 */
@@ -138,6 +177,9 @@ public class HealthRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
+				}
 				if (request.ts != null) {
 					params.put("ts", String.valueOf(request.ts));
 				}

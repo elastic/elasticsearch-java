@@ -46,8 +46,11 @@ import javax.annotation.Nullable;
 // typedef: cat.aliases.Request
 
 /**
- * Shows information about currently configured aliases to indices including
- * filter and routing infos.
+ * Retrieves the cluster’s index aliases, including filter and routing
+ * information. The API does not return data stream aliases. IMPORTANT: cat APIs
+ * are only intended for human consumption using the command line or the Kibana
+ * console. They are not intended for use by applications. For application
+ * consumption, use the aliases API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.aliases.Request">API
  *      specification</a>
@@ -82,7 +85,9 @@ public class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * A comma-separated list of alias names to return
+	 * A comma-separated list of aliases to retrieve. Supports wildcards
+	 * (<code>*</code>). To retrieve all aliases, omit this parameter or use
+	 * <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -132,7 +137,9 @@ public class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of alias names to return
+		 * A comma-separated list of aliases to retrieve. Supports wildcards
+		 * (<code>*</code>). To retrieve all aliases, omit this parameter or use
+		 * <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -144,7 +151,9 @@ public class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of alias names to return
+		 * A comma-separated list of aliases to retrieve. Supports wildcards
+		 * (<code>*</code>). To retrieve all aliases, omit this parameter or use
+		 * <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

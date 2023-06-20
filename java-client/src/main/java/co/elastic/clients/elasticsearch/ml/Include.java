@@ -59,6 +59,11 @@ public enum Include implements JsonEnum {
 	 */
 	TotalFeatureImportance("total_feature_importance"),
 
+	/**
+	 * Includes the model definition status.
+	 */
+	DefinitionStatus("definition_status"),
+
 	;
 
 	private final String jsonValue;

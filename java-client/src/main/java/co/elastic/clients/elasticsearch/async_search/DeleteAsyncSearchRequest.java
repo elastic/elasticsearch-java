@@ -43,8 +43,12 @@ import javax.annotation.Nullable;
 // typedef: async_search.delete.Request
 
 /**
- * Deletes an async search by ID. If the search is still running, the search
- * request will be cancelled. Otherwise, the saved search results are deleted.
+ * Deletes an async search by identifier. If the search is still running, the
+ * search request will be cancelled. Otherwise, the saved search results are
+ * deleted. If the Elasticsearch security features are enabled, the deletion of
+ * a specific async search is restricted to: the authenticated user that
+ * submitted the original search request; users that have the
+ * <code>cancel_task</code> cluster privilege.
  * 
  * @see <a href="../doc-files/api-spec.html#async_search.delete.Request">API
  *      specification</a>
@@ -66,7 +70,7 @@ public class DeleteAsyncSearchRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The async search ID
+	 * Required - A unique identifier for the async search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,7 +90,7 @@ public class DeleteAsyncSearchRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - The async search ID
+		 * Required - A unique identifier for the async search.
 		 * <p>
 		 * API name: {@code id}
 		 */

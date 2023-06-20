@@ -68,7 +68,7 @@ public class RepositoriesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * unique repository id
+	 * The unique repository identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -78,7 +78,7 @@ public class RepositoriesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * repository type
+	 * The repository type.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -132,7 +132,7 @@ public class RepositoriesRecord implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * unique repository id
+		 * The unique repository identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -142,7 +142,7 @@ public class RepositoriesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * repository type
+		 * The repository type.
 		 * <p>
 		 * API name: {@code type}
 		 */

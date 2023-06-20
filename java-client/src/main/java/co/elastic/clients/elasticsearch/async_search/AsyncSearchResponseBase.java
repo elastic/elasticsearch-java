@@ -92,20 +92,32 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code is_partial}
+	 * Required - When the query is no longer running, this property indicates
+	 * whether the search failed or was successfully completed on all shards. While
+	 * the query is running, <code>is_partial</code> is always set to
+	 * <code>true</code>.
+	 * <p>
+	 * API name: {@code is_partial}
 	 */
 	public final boolean isPartial() {
 		return this.isPartial;
 	}
 
 	/**
-	 * Required - API name: {@code is_running}
+	 * Required - Indicates whether the search is still running or has completed.
+	 * NOTE: If the search failed after some shards returned their results or the
+	 * node that is coordinating the async search dies, results may be partial even
+	 * though <code>is_running</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code is_running}
 	 */
 	public final boolean isRunning() {
 		return this.isRunning;
 	}
 
 	/**
+	 * Indicates when the async search will expire.
+	 * <p>
 	 * API name: {@code expiration_time}
 	 */
 	@Nullable
@@ -207,7 +219,12 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code is_partial}
+		 * Required - When the query is no longer running, this property indicates
+		 * whether the search failed or was successfully completed on all shards. While
+		 * the query is running, <code>is_partial</code> is always set to
+		 * <code>true</code>.
+		 * <p>
+		 * API name: {@code is_partial}
 		 */
 		public final BuilderT isPartial(boolean value) {
 			this.isPartial = value;
@@ -215,7 +232,12 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code is_running}
+		 * Required - Indicates whether the search is still running or has completed.
+		 * NOTE: If the search failed after some shards returned their results or the
+		 * node that is coordinating the async search dies, results may be partial even
+		 * though <code>is_running</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code is_running}
 		 */
 		public final BuilderT isRunning(boolean value) {
 			this.isRunning = value;
@@ -223,6 +245,8 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates when the async search will expire.
+		 * <p>
 		 * API name: {@code expiration_time}
 		 */
 		public final BuilderT expirationTime(@Nullable DateTime value) {

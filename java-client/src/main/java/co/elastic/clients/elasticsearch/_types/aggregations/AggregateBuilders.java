@@ -347,6 +347,25 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link FrequentItemSetsAggregate
+	 * frequent_item_sets} {@code Aggregate} variant.
+	 */
+	public static FrequentItemSetsAggregate.Builder frequentItemSets() {
+		return new FrequentItemSetsAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link FrequentItemSetsAggregate
+	 * frequent_item_sets} {@code Aggregate} variant.
+	 */
+	public static Aggregate frequentItemSets(
+			Function<FrequentItemSetsAggregate.Builder, ObjectBuilder<FrequentItemSetsAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.frequentItemSets(fn.apply(new FrequentItemSetsAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GeoBoundsAggregate geo_bounds}
 	 * {@code Aggregate} variant.
 	 */

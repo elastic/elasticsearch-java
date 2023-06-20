@@ -46,7 +46,9 @@ import javax.annotation.Nullable;
 
 /**
  * Retrieves the results of a previously submitted async search request given
- * its ID.
+ * its identifier. If the Elasticsearch security features are enabled, access to
+ * the results of a specific async search is restricted to the user or API key
+ * that submitted it.
  * 
  * @see <a href="../doc-files/api-spec.html#async_search.get.Request">API
  *      specification</a>
@@ -76,7 +78,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The async search ID
+	 * Required - A unique identifier for the async search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -85,8 +87,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify the time interval in which the results (partial or final) for this
-	 * search will be available
+	 * Specifies how long the async search should be available in the cluster. When
+	 * not specified, the <code>keep_alive</code> set with the corresponding submit
+	 * async request will be used. Otherwise, it is possible to override the value
+	 * and extend the validity of the request. When this period expires, the search,
+	 * if still running, is cancelled. If the search is completed, its saved results
+	 * are deleted.
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
@@ -96,7 +102,11 @@ public class GetAsyncSearchRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify the time that the request should block waiting for the final response
+	 * Specifies to wait for the search to be completed up until the provided
+	 * timeout. Final results will be returned if available before the timeout
+	 * expires, otherwise the currently available results will be returned once the
+	 * timeout expires. By default no timeout is set meaning that the currently
+	 * available results will be returned without any additional wait.
 	 * <p>
 	 * API name: {@code wait_for_completion_timeout}
 	 */
@@ -123,7 +133,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 		private Time waitForCompletionTimeout;
 
 		/**
-		 * Required - The async search ID
+		 * Required - A unique identifier for the async search.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -133,8 +143,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the time interval in which the results (partial or final) for this
-		 * search will be available
+		 * Specifies how long the async search should be available in the cluster. When
+		 * not specified, the <code>keep_alive</code> set with the corresponding submit
+		 * async request will be used. Otherwise, it is possible to override the value
+		 * and extend the validity of the request. When this period expires, the search,
+		 * if still running, is cancelled. If the search is completed, its saved results
+		 * are deleted.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -144,8 +158,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the time interval in which the results (partial or final) for this
-		 * search will be available
+		 * Specifies how long the async search should be available in the cluster. When
+		 * not specified, the <code>keep_alive</code> set with the corresponding submit
+		 * async request will be used. Otherwise, it is possible to override the value
+		 * and extend the validity of the request. When this period expires, the search,
+		 * if still running, is cancelled. If the search is completed, its saved results
+		 * are deleted.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -154,7 +172,11 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the time that the request should block waiting for the final response
+		 * Specifies to wait for the search to be completed up until the provided
+		 * timeout. Final results will be returned if available before the timeout
+		 * expires, otherwise the currently available results will be returned once the
+		 * timeout expires. By default no timeout is set meaning that the currently
+		 * available results will be returned without any additional wait.
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
@@ -164,7 +186,11 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the time that the request should block waiting for the final response
+		 * Specifies to wait for the search to be completed up until the provided
+		 * timeout. Final results will be returned if available before the timeout
+		 * expires, otherwise the currently available results will be returned once the
+		 * timeout expires. By default no timeout is set meaning that the currently
+		 * available results will be returned without any additional wait.
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */

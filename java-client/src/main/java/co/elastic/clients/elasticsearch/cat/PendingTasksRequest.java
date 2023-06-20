@@ -39,7 +39,10 @@ import java.util.Objects;
 // typedef: cat.pending_tasks.Request
 
 /**
- * Returns a concise representation of the cluster pending tasks.
+ * Returns cluster-level changes that have not yet been executed. IMPORTANT: cat
+ * APIs are only intended for human consumption using the command line or Kibana
+ * console. They are not intended for use by applications. For application
+ * consumption, use the pending cluster tasks API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.pending_tasks.Request">API
  *      specification</a>

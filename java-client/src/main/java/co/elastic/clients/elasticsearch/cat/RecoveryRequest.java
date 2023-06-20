@@ -47,7 +47,15 @@ import javax.annotation.Nullable;
 // typedef: cat.recovery.Request
 
 /**
- * Returns information about index shard recoveries, both on-going completed.
+ * Returns information about ongoing and completed shard recoveries. Shard
+ * recovery is the process of initializing a shard copy, such as restoring a
+ * primary shard from a snapshot or syncing a replica shard from a primary
+ * shard. When a shard recovery completes, the recovered shard is available for
+ * search and indexing. For data streams, the API returns information about the
+ * stream’s backing indices. IMPORTANT: cat APIs are only intended for human
+ * consumption using the command line or Kibana console. They are not intended
+ * for use by applications. For application consumption, use the index recovery
+ * API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.recovery.Request">API
  *      specification</a>
@@ -81,7 +89,7 @@ public class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the response only includes ongoing shard recoveries
+	 * If <code>true</code>, the response only includes ongoing shard recoveries.
 	 * <p>
 	 * API name: {@code active_only}
 	 */
@@ -91,7 +99,7 @@ public class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
@@ -102,7 +110,7 @@ public class RecoveryRequest extends CatRequestBase {
 
 	/**
 	 * If <code>true</code>, the response includes detailed information about shard
-	 * recoveries
+	 * recoveries.
 	 * <p>
 	 * API name: {@code detailed}
 	 */
@@ -112,8 +120,9 @@ public class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Comma-separated list or wildcard expression of index names to limit the
-	 * returned information
+	 * A comma-separated list of data streams, indices, and aliases used to limit
+	 * the request. Supports wildcards (<code>*</code>). To target all data streams
+	 * and indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -143,7 +152,7 @@ public class RecoveryRequest extends CatRequestBase {
 		private List<String> index;
 
 		/**
-		 * If <code>true</code>, the response only includes ongoing shard recoveries
+		 * If <code>true</code>, the response only includes ongoing shard recoveries.
 		 * <p>
 		 * API name: {@code active_only}
 		 */
@@ -153,7 +162,7 @@ public class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The unit in which to display byte values
+		 * The unit used to display byte values.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
@@ -164,7 +173,7 @@ public class RecoveryRequest extends CatRequestBase {
 
 		/**
 		 * If <code>true</code>, the response includes detailed information about shard
-		 * recoveries
+		 * recoveries.
 		 * <p>
 		 * API name: {@code detailed}
 		 */
@@ -174,8 +183,9 @@ public class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list or wildcard expression of index names to limit the
-		 * returned information
+		 * A comma-separated list of data streams, indices, and aliases used to limit
+		 * the request. Supports wildcards (<code>*</code>). To target all data streams
+		 * and indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -187,8 +197,9 @@ public class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list or wildcard expression of index names to limit the
-		 * returned information
+		 * A comma-separated list of data streams, indices, and aliases used to limit
+		 * the request. Supports wildcards (<code>*</code>). To target all data streams
+		 * and indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

@@ -46,8 +46,10 @@ import javax.annotation.Nullable;
 // typedef: cat.allocation.Request
 
 /**
- * Provides a snapshot of how many shards are allocated to each data node and
- * how much disk space they are using.
+ * Provides a snapshot of the number of shards allocated to each data node and
+ * their disk space. IMPORTANT: cat APIs are only intended for human consumption
+ * using the command line or Kibana console. They are not intended for use by
+ * applications.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.allocation.Request">API
  *      specification</a>
@@ -73,7 +75,7 @@ public class AllocationRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
@@ -83,7 +85,8 @@ public class AllocationRequest extends CatRequestBase {
 	}
 
 	/**
-	 * A comma-separated list of node IDs or names to limit the returned information
+	 * Comma-separated list of node identifiers or names used to limit the returned
+	 * information.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -107,7 +110,7 @@ public class AllocationRequest extends CatRequestBase {
 		private List<String> nodeId;
 
 		/**
-		 * The unit in which to display byte values
+		 * The unit used to display byte values.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
@@ -117,7 +120,8 @@ public class AllocationRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned information
+		 * Comma-separated list of node identifiers or names used to limit the returned
+		 * information.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -129,7 +133,8 @@ public class AllocationRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned information
+		 * Comma-separated list of node identifiers or names used to limit the returned
+		 * information.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>

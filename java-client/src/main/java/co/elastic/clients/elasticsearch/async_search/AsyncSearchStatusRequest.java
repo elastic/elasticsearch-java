@@ -43,8 +43,10 @@ import javax.annotation.Nullable;
 // typedef: async_search.status.Request
 
 /**
- * Retrieves the status of a previously submitted async search request given its
- * ID.
+ * Retreives the status of a previously submitted async search request given its
+ * identifier, without retrieving search results. If the Elasticsearch security
+ * features are enabled, use of this API is restricted to the
+ * <code>monitoring_user</code> role.
  * 
  * @see <a href="../doc-files/api-spec.html#async_search.status.Request">API
  *      specification</a>
@@ -66,7 +68,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The async search ID
+	 * Required - A unique identifier for the async search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,7 +88,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - The async search ID
+		 * Required - A unique identifier for the async search.
 		 * <p>
 		 * API name: {@code id}
 		 */

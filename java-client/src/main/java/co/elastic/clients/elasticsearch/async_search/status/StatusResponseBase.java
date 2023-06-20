@@ -65,13 +65,19 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 	}
 
 	/**
-	 * Required - API name: {@code _shards}
+	 * Required - Indicates how many shards have run the query so far.
+	 * <p>
+	 * API name: {@code _shards}
 	 */
 	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
+	 * If the async search completed, this field shows the status code of the
+	 * search. For example, 200 indicates that the async search was successfully
+	 * completed. 503 indicates that the async search was completed with an error.
+	 * <p>
 	 * API name: {@code completion_status}
 	 */
 	@Nullable
@@ -102,7 +108,9 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		private Integer completionStatus;
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Indicates how many shards have run the query so far.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(ShardStatistics value) {
 			this.shards = value;
@@ -110,13 +118,19 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Indicates how many shards have run the query so far.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
+		 * If the async search completed, this field shows the status code of the
+		 * search. For example, 200 indicates that the async search was successfully
+		 * completed. 503 indicates that the async search was completed with an error.
+		 * <p>
 		 * API name: {@code completion_status}
 		 */
 		public final BuilderT completionStatus(@Nullable Integer value) {

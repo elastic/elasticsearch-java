@@ -73,7 +73,15 @@ import javax.annotation.Nullable;
 // typedef: async_search.submit.Request
 
 /**
- * Executes a search request asynchronously.
+ * Runs a search request asynchronously. When the primary sort of the results is
+ * an indexed field, shards get sorted based on minimum and maximum value that
+ * they hold for that field, hence partial results become available following
+ * the sort criteria that was requested. Warning: Async search does not support
+ * scroll nor search requests that only include the suggest section. By default,
+ * Elasticsearch doesn’t allow you to store an async search response larger than
+ * 10Mb and an attempt to do this results in an error. The maximum allowed size
+ * for a stored async search response can be set by changing the
+ * <code>search.max_async_search_response_size</code> cluster level setting.
  * 
  * @see <a href="../doc-files/api-spec.html#async_search.submit.Request">API
  *      specification</a>
@@ -145,8 +153,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean keepOnCompletion;
 
-	@Nullable
-	private final KnnQuery knn;
+	private final List<KnnQuery> knn;
 
 	@Nullable
 	private final Boolean lenient;
@@ -265,7 +272,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
-		this.knn = builder.knn;
+		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minCompatibleShardNode = builder.minCompatibleShardNode;
@@ -368,9 +375,10 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of shard results that should be reduced at once on the
-	 * coordinating node. This value should be used as the granularity at which
-	 * progress results will be made available.
+	 * Affects how often partial results become available, which happens whenever
+	 * shard results are reduced. A partial reduction is performed every time the
+	 * coordinating node has received a certain number of new shard responses (5 by
+	 * default).
 	 * <p>
 	 * API name: {@code batched_reduce_size}
 	 */
@@ -380,6 +388,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The default value is the only supported value.
+	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
@@ -528,8 +538,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Update the time interval in which the results (partial or final) for this
-	 * search will be available
+	 * Specifies how long the async search needs to be available. Ongoing async
+	 * searches and any saved search results are deleted after this period.
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
@@ -539,8 +549,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Control whether the response should be stored in the cluster if it completed
-	 * within the provided [wait_for_completion] time (default: false)
+	 * If <code>true</code>, results are stored for later retrieval when the search
+	 * completes within the <code>wait_for_completion_timeout</code>.
 	 * <p>
 	 * API name: {@code keep_on_completion}
 	 */
@@ -554,8 +564,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code knn}
 	 */
-	@Nullable
-	public final KnnQuery knn() {
+	public final List<KnnQuery> knn() {
 		return this.knn;
 	}
 
@@ -621,6 +630,10 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The default value cannot be changed, which enforces the execution of a
+	 * pre-filter roundtrip to retrieve statistics from each shard so that the ones
+	 * that surely don’t hold any document matching the query get skipped.
+	 * <p>
 	 * API name: {@code pre_filter_shard_size}
 	 */
 	@Nullable
@@ -868,7 +881,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify the time that the request should block waiting for the final response
+	 * Blocks and waits until the search is completed up to a certain timeout. When
+	 * the async search completes within the timeout, the response won’t include the
+	 * ID as the results are not stored in the cluster.
 	 * <p>
 	 * API name: {@code wait_for_completion_timeout}
 	 */
@@ -973,9 +988,14 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.knn != null) {
+		if (ApiTypeHelper.isDefined(this.knn)) {
 			generator.writeKey("knn");
-			this.knn.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (KnnQuery item0 : this.knn) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.minScore != null) {
@@ -1203,7 +1223,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private Boolean keepOnCompletion;
 
 		@Nullable
-		private KnnQuery knn;
+		private List<KnnQuery> knn;
 
 		@Nullable
 		private Boolean lenient;
@@ -1396,9 +1416,10 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of shard results that should be reduced at once on the
-		 * coordinating node. This value should be used as the granularity at which
-		 * progress results will be made available.
+		 * Affects how often partial results become available, which happens whenever
+		 * shard results are reduced. A partial reduction is performed every time the
+		 * coordinating node has received a certain number of new shard responses (5 by
+		 * default).
 		 * <p>
 		 * API name: {@code batched_reduce_size}
 		 */
@@ -1408,6 +1429,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The default value is the only supported value.
+		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
 		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
@@ -1688,8 +1711,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Update the time interval in which the results (partial or final) for this
-		 * search will be available
+		 * Specifies how long the async search needs to be available. Ongoing async
+		 * searches and any saved search results are deleted after this period.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -1699,8 +1722,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Update the time interval in which the results (partial or final) for this
-		 * search will be available
+		 * Specifies how long the async search needs to be available. Ongoing async
+		 * searches and any saved search results are deleted after this period.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -1709,8 +1732,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Control whether the response should be stored in the cluster if it completed
-		 * within the provided [wait_for_completion] time (default: false)
+		 * If <code>true</code>, results are stored for later retrieval when the search
+		 * completes within the <code>wait_for_completion_timeout</code>.
 		 * <p>
 		 * API name: {@code keep_on_completion}
 		 */
@@ -1723,9 +1746,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>knn</code>.
 		 */
-		public final Builder knn(@Nullable KnnQuery value) {
-			this.knn = value;
+		public final Builder knn(List<KnnQuery> list) {
+			this.knn = _listAddAll(this.knn, list);
 			return this;
 		}
 
@@ -1733,9 +1758,23 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
+		 * <p>
+		 * Adds one or more values to <code>knn</code>.
+		 */
+		public final Builder knn(KnnQuery value, KnnQuery... values) {
+			this.knn = _listAdd(this.knn, value, values);
+			return this;
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 * <p>
+		 * Adds a value to <code>knn</code> using a builder lambda.
 		 */
 		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
-			return this.knn(fn.apply(new KnnQuery.Builder()).build());
+			return knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		/**
@@ -1817,6 +1856,10 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The default value cannot be changed, which enforces the execution of a
+		 * pre-filter roundtrip to retrieve statistics from each shard so that the ones
+		 * that surely don’t hold any document matching the query get skipped.
+		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
 		public final Builder preFilterShardSize(@Nullable Long value) {
@@ -2262,7 +2305,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the time that the request should block waiting for the final response
+		 * Blocks and waits until the search is completed up to a certain timeout. When
+		 * the async search completes within the timeout, the response won’t include the
+		 * ID as the results are not stored in the cluster.
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
@@ -2272,7 +2317,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the time that the request should block waiting for the final response
+		 * Blocks and waits until the search is completed up to a certain timeout. When
+		 * the async search completes within the timeout, the response won’t include the
+		 * ID as the results are not stored in the cluster.
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
@@ -2323,7 +2370,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
-		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
+		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnQuery._DESERIALIZER), "knn");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");

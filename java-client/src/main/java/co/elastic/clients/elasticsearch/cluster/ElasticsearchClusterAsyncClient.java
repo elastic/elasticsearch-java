@@ -355,6 +355,39 @@ public class ElasticsearchClusterAsyncClient
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: cluster.info
+
+	/**
+	 * Returns different information about the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.8/cluster-info.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ClusterInfoResponse> info(ClusterInfoRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClusterInfoRequest, ClusterInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<ClusterInfoRequest, ClusterInfoResponse, ErrorResponse>) ClusterInfoRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns different information about the cluster.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ClusterInfoRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.8/cluster-info.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ClusterInfoResponse> info(
+			Function<ClusterInfoRequest.Builder, ObjectBuilder<ClusterInfoRequest>> fn) {
+		return info(fn.apply(new ClusterInfoRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: cluster.pending_tasks
 
 	/**

@@ -432,6 +432,41 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.delete_data_lifecycle
+
+	/**
+	 * Deletes the data lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDataLifecycleResponse deleteDataLifecycle(DeleteDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse>) DeleteDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes the data lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDataLifecycleResponse deleteDataLifecycle(
+			Function<DeleteDataLifecycleRequest.Builder, ObjectBuilder<DeleteDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataLifecycle(fn.apply(new DeleteDataLifecycleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.delete_data_stream
 
 	/**
@@ -738,6 +773,43 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.explain_data_lifecycle
+
+	/**
+	 * Retrieves information about the index's current DLM lifecycle, such as any
+	 * potential encountered error, time since creation etc.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/dlm-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ExplainDataLifecycleResponse explainDataLifecycle(ExplainDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse>) ExplainDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves information about the index's current DLM lifecycle, such as any
+	 * potential encountered error, time since creation etc.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/dlm-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ExplainDataLifecycleResponse explainDataLifecycle(
+			Function<ExplainDataLifecycleRequest.Builder, ObjectBuilder<ExplainDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return explainDataLifecycle(fn.apply(new ExplainDataLifecycleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.field_usage_stats
 
 	/**
@@ -942,6 +1014,41 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	public GetAliasResponse getAlias() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_data_lifecycle
+
+	/**
+	 * Returns the data lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataLifecycleResponse getDataLifecycle(GetDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse>) GetDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the data lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataLifecycleResponse getDataLifecycle(
+			Function<GetDataLifecycleRequest.Builder, ObjectBuilder<GetDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataLifecycle(fn.apply(new GetDataLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_data_stream
@@ -1387,6 +1494,41 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	public final PutAliasResponse putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_lifecycle
+
+	/**
+	 * Updates the data lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataLifecycleResponse putDataLifecycle(PutDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse>) PutDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates the data lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataLifecycleResponse putDataLifecycle(
+			Function<PutDataLifecycleRequest.Builder, ObjectBuilder<PutDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_index_template

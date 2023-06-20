@@ -39,7 +39,10 @@ import java.util.Objects;
 // typedef: cat.nodeattrs.Request
 
 /**
- * Returns information about custom node attributes.
+ * Returns information about custom node attributes. IMPORTANT: cat APIs are
+ * only intended for human consumption using the command line or Kibana console.
+ * They are not intended for use by applications. For application consumption,
+ * use the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.nodeattrs.Request">API
  *      specification</a>

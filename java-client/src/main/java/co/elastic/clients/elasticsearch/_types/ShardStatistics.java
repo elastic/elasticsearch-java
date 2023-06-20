@@ -84,14 +84,18 @@ public class ShardStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code successful}
+	 * Required - Indicates how many shards have successfully run the search.
+	 * <p>
+	 * API name: {@code successful}
 	 */
 	public final Number successful() {
 		return this.successful;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Required - Indicates how many shards the search will run on overall.
+	 * <p>
+	 * API name: {@code total}
 	 */
 	public final Number total() {
 		return this.total;
@@ -183,7 +187,9 @@ public class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code successful}
+		 * Required - Indicates how many shards have successfully run the search.
+		 * <p>
+		 * API name: {@code successful}
 		 */
 		public final Builder successful(Number value) {
 			this.successful = value;
@@ -191,7 +197,9 @@ public class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - Indicates how many shards the search will run on overall.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(Number value) {
 			this.total = value;

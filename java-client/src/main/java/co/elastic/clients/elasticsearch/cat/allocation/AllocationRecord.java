@@ -96,7 +96,7 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of shards on node
+	 * Number of primary and replica shards assigned to the node.
 	 * <p>
 	 * API name: {@code shards}
 	 */
@@ -106,7 +106,10 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * disk used by ES indices
+	 * Disk space used by the node’s shards. Does not include disk space for the
+	 * translog or unassigned shards. IMPORTANT: This metric double-counts disk
+	 * space for hard-linked files, such as those created when shrinking, splitting,
+	 * or cloning an index.
 	 * <p>
 	 * API name: {@code disk.indices}
 	 */
@@ -116,7 +119,12 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * disk used (total, not just ES)
+	 * Total disk space in use. Elasticsearch retrieves this metric from the node’s
+	 * operating system (OS). The metric includes disk space for: Elasticsearch,
+	 * including the translog and unassigned shards; the node’s operating system;
+	 * any other applications or files on the node. Unlike
+	 * <code>disk.indices</code>, this metric does not double-count disk space for
+	 * hard-linked files.
 	 * <p>
 	 * API name: {@code disk.used}
 	 */
@@ -126,7 +134,9 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * disk available
+	 * Free disk space available to Elasticsearch. Elasticsearch retrieves this
+	 * metric from the node’s operating system. Disk-based shard allocation uses
+	 * this metric to assign shards to nodes based on available disk space.
 	 * <p>
 	 * API name: {@code disk.avail}
 	 */
@@ -136,7 +146,7 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total capacity of all volumes
+	 * Total disk space for the node, including in-use and available space.
 	 * <p>
 	 * API name: {@code disk.total}
 	 */
@@ -146,7 +156,8 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * percent disk used
+	 * Total percentage of disk space in use. Calculated as
+	 * <code>disk.used / disk.total</code>.
 	 * <p>
 	 * API name: {@code disk.percent}
 	 */
@@ -156,7 +167,7 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * host of node
+	 * Network host for the node. Set using the <code>network.host</code> setting.
 	 * <p>
 	 * API name: {@code host}
 	 */
@@ -166,7 +177,7 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ip of node
+	 * IP address and port for the node.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -176,7 +187,7 @@ public class AllocationRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * name of node
+	 * Name for the node. Set using the <code>node.name</code> setting.
 	 * <p>
 	 * API name: {@code node}
 	 */
@@ -284,7 +295,7 @@ public class AllocationRecord implements JsonpSerializable {
 		private String node;
 
 		/**
-		 * number of shards on node
+		 * Number of primary and replica shards assigned to the node.
 		 * <p>
 		 * API name: {@code shards}
 		 */
@@ -294,7 +305,10 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * disk used by ES indices
+		 * Disk space used by the node’s shards. Does not include disk space for the
+		 * translog or unassigned shards. IMPORTANT: This metric double-counts disk
+		 * space for hard-linked files, such as those created when shrinking, splitting,
+		 * or cloning an index.
 		 * <p>
 		 * API name: {@code disk.indices}
 		 */
@@ -304,7 +318,12 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * disk used (total, not just ES)
+		 * Total disk space in use. Elasticsearch retrieves this metric from the node’s
+		 * operating system (OS). The metric includes disk space for: Elasticsearch,
+		 * including the translog and unassigned shards; the node’s operating system;
+		 * any other applications or files on the node. Unlike
+		 * <code>disk.indices</code>, this metric does not double-count disk space for
+		 * hard-linked files.
 		 * <p>
 		 * API name: {@code disk.used}
 		 */
@@ -314,7 +333,9 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * disk available
+		 * Free disk space available to Elasticsearch. Elasticsearch retrieves this
+		 * metric from the node’s operating system. Disk-based shard allocation uses
+		 * this metric to assign shards to nodes based on available disk space.
 		 * <p>
 		 * API name: {@code disk.avail}
 		 */
@@ -324,7 +345,7 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total capacity of all volumes
+		 * Total disk space for the node, including in-use and available space.
 		 * <p>
 		 * API name: {@code disk.total}
 		 */
@@ -334,7 +355,8 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * percent disk used
+		 * Total percentage of disk space in use. Calculated as
+		 * <code>disk.used / disk.total</code>.
 		 * <p>
 		 * API name: {@code disk.percent}
 		 */
@@ -344,7 +366,7 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * host of node
+		 * Network host for the node. Set using the <code>network.host</code> setting.
 		 * <p>
 		 * API name: {@code host}
 		 */
@@ -354,7 +376,7 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ip of node
+		 * IP address and port for the node.
 		 * <p>
 		 * API name: {@code ip}
 		 */
@@ -364,7 +386,7 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * name of node
+		 * Name for the node. Set using the <code>node.name</code> setting.
 		 * <p>
 		 * API name: {@code node}
 		 */

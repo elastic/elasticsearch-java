@@ -224,7 +224,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 			// Request path
 			request -> {
-				return "/_security/privilege/";
+				return "/_security/privilege";
 
 			},
 

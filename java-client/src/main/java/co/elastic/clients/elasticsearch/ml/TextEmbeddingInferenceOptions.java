@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -50,6 +51,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVariant, JsonpSerializable {
 	@Nullable
+	private final Integer embeddingSize;
+
+	@Nullable
 	private final TokenizationConfig tokenization;
 
 	@Nullable
@@ -59,6 +63,7 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 
 	private TextEmbeddingInferenceOptions(Builder builder) {
 
+		this.embeddingSize = builder.embeddingSize;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
 
@@ -74,6 +79,16 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 	@Override
 	public InferenceConfigCreate.Kind _inferenceConfigCreateKind() {
 		return InferenceConfigCreate.Kind.TextEmbedding;
+	}
+
+	/**
+	 * The number of dimensions in the embedding output
+	 * <p>
+	 * API name: {@code embedding_size}
+	 */
+	@Nullable
+	public final Integer embeddingSize() {
+		return this.embeddingSize;
 	}
 
 	/**
@@ -108,6 +123,11 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.embeddingSize != null) {
+			generator.writeKey("embedding_size");
+			generator.write(this.embeddingSize);
+
+		}
 		if (this.tokenization != null) {
 			generator.writeKey("tokenization");
 			this.tokenization.serialize(generator, mapper);
@@ -136,10 +156,23 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 			implements
 				ObjectBuilder<TextEmbeddingInferenceOptions> {
 		@Nullable
+		private Integer embeddingSize;
+
+		@Nullable
 		private TokenizationConfig tokenization;
 
 		@Nullable
 		private String resultsField;
+
+		/**
+		 * The number of dimensions in the embedding output
+		 * <p>
+		 * API name: {@code embedding_size}
+		 */
+		public final Builder embeddingSize(@Nullable Integer value) {
+			this.embeddingSize = value;
+			return this;
+		}
 
 		/**
 		 * The tokenization options
@@ -200,6 +233,7 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 	protected static void setupTextEmbeddingInferenceOptionsDeserializer(
 			ObjectDeserializer<TextEmbeddingInferenceOptions.Builder> op) {
 
+		op.add(Builder::embeddingSize, JsonpDeserializer.integerDeserializer(), "embedding_size");
 		op.add(Builder::tokenization, TokenizationConfig._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
 

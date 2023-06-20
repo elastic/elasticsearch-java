@@ -50,8 +50,17 @@ import javax.annotation.Nullable;
 // typedef: cat.indices.Request
 
 /**
- * Returns information about indices: number of primaries and replicas, document
- * counts, disk size, ...
+ * Returns high-level information about indices in a cluster, including backing
+ * indices for data streams. IMPORTANT: cat APIs are only intended for human
+ * consumption using the command line or Kibana console. They are not intended
+ * for use by applications. For application consumption, use the get index API.
+ * Use the cat indices API to get the following information for each index in a
+ * cluster: shard count; document count; deleted document count; primary store
+ * size; total store size of all shards, including shard replicas. These metrics
+ * are retrieved directly from Lucene, which Elasticsearch uses internally to
+ * power indexing and search. As a result, all document counts include hidden
+ * nested documents. To get an accurate count of Elasticsearch documents, use
+ * the cat count or count APIs.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.indices.Request">API
  *      specification</a>
@@ -96,7 +105,7 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
@@ -106,8 +115,7 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * The type of index that wildcard patterns can match.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -116,8 +124,8 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * A health status (&quot;green&quot;, &quot;yellow&quot;, or &quot;red&quot; to
-	 * filter only indices matching the specified health status
+	 * The health status used to limit returned indices. By default, the response
+	 * includes indices of any health status.
 	 * <p>
 	 * API name: {@code health}
 	 */
@@ -127,8 +135,8 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * If set to true segment stats will include stats for segments that are not
-	 * currently loaded into memory
+	 * If true, the response includes information from segments that are not loaded
+	 * into memory.
 	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
@@ -138,7 +146,9 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names to limit the returned information
+	 * Comma-separated list of data streams, indices, and aliases used to limit the
+	 * request. Supports wildcards (<code>*</code>). To target all data streams and
+	 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -147,7 +157,7 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Set to true to return stats only for primary shards
+	 * If true, the response only includes information from primary shards.
 	 * <p>
 	 * API name: {@code pri}
 	 */
@@ -157,7 +167,7 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit in which to display time values
+	 * The unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -197,7 +207,7 @@ public class IndicesRequest extends CatRequestBase {
 		private TimeUnit time;
 
 		/**
-		 * The unit in which to display byte values
+		 * The unit used to display byte values.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
@@ -207,8 +217,7 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * The type of index that wildcard patterns can match.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -220,8 +229,7 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * The type of index that wildcard patterns can match.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -233,8 +241,8 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A health status (&quot;green&quot;, &quot;yellow&quot;, or &quot;red&quot; to
-		 * filter only indices matching the specified health status
+		 * The health status used to limit returned indices. By default, the response
+		 * includes indices of any health status.
 		 * <p>
 		 * API name: {@code health}
 		 */
@@ -244,8 +252,8 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * If set to true segment stats will include stats for segments that are not
-		 * currently loaded into memory
+		 * If true, the response includes information from segments that are not loaded
+		 * into memory.
 		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
@@ -255,7 +263,9 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names to limit the returned information
+		 * Comma-separated list of data streams, indices, and aliases used to limit the
+		 * request. Supports wildcards (<code>*</code>). To target all data streams and
+		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -267,7 +277,9 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names to limit the returned information
+		 * Comma-separated list of data streams, indices, and aliases used to limit the
+		 * request. Supports wildcards (<code>*</code>). To target all data streams and
+		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -279,7 +291,7 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Set to true to return stats only for primary shards
+		 * If true, the response only includes information from primary shards.
 		 * <p>
 		 * API name: {@code pri}
 		 */
@@ -289,7 +301,7 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The unit in which to display time values
+		 * The unit used to display time values.
 		 * <p>
 		 * API name: {@code time}
 		 */

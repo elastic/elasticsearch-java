@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices.put_index_template;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
+import co.elastic.clients.elasticsearch.indices.DataLifecycle;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -61,6 +62,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	@Nullable
 	private final IndexSettings settings;
 
+	@Nullable
+	private final DataLifecycle lifecycle;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexTemplateMapping(Builder builder) {
@@ -68,6 +72,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
+		this.lifecycle = builder.lifecycle;
 
 	}
 
@@ -96,6 +101,14 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	@Nullable
 	public final IndexSettings settings() {
 		return this.settings;
+	}
+
+	/**
+	 * API name: {@code lifecycle}
+	 */
+	@Nullable
+	public final DataLifecycle lifecycle() {
+		return this.lifecycle;
 	}
 
 	/**
@@ -130,6 +143,11 @@ public class IndexTemplateMapping implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
+		if (this.lifecycle != null) {
+			generator.writeKey("lifecycle");
+			this.lifecycle.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -155,6 +173,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettings settings;
+
+		@Nullable
+		private DataLifecycle lifecycle;
 
 		/**
 		 * API name: {@code aliases}
@@ -215,6 +236,21 @@ public class IndexTemplateMapping implements JsonpSerializable {
 			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(@Nullable DataLifecycle value) {
+			this.lifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(Function<DataLifecycle.Builder, ObjectBuilder<DataLifecycle>> fn) {
+			return this.lifecycle(fn.apply(new DataLifecycle.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -246,6 +282,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::lifecycle, DataLifecycle._DESERIALIZER, "lifecycle");
 
 	}
 

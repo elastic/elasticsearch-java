@@ -55,10 +55,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	private final SuggestFuzziness fuzzy;
 
 	@Nullable
-	private final String prefix;
-
-	@Nullable
-	private final String regex;
+	private final RegexOptions regex;
 
 	@Nullable
 	private final Boolean skipDuplicates;
@@ -70,7 +67,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
 		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.fuzzy = builder.fuzzy;
-		this.prefix = builder.prefix;
 		this.regex = builder.regex;
 		this.skipDuplicates = builder.skipDuplicates;
 
@@ -104,18 +100,10 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	}
 
 	/**
-	 * API name: {@code prefix}
-	 */
-	@Nullable
-	public final String prefix() {
-		return this.prefix;
-	}
-
-	/**
 	 * API name: {@code regex}
 	 */
 	@Nullable
-	public final String regex() {
+	public final RegexOptions regex() {
 		return this.regex;
 	}
 
@@ -153,14 +141,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 			this.fuzzy.serialize(generator, mapper);
 
 		}
-		if (this.prefix != null) {
-			generator.writeKey("prefix");
-			generator.write(this.prefix);
-
-		}
 		if (this.regex != null) {
 			generator.writeKey("regex");
-			generator.write(this.regex);
+			this.regex.serialize(generator, mapper);
 
 		}
 		if (this.skipDuplicates != null) {
@@ -187,10 +170,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		private SuggestFuzziness fuzzy;
 
 		@Nullable
-		private String prefix;
-
-		@Nullable
-		private String regex;
+		private RegexOptions regex;
 
 		@Nullable
 		private Boolean skipDuplicates;
@@ -231,19 +211,18 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
-		 * API name: {@code prefix}
+		 * API name: {@code regex}
 		 */
-		public final Builder prefix(@Nullable String value) {
-			this.prefix = value;
+		public final Builder regex(@Nullable RegexOptions value) {
+			this.regex = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code regex}
 		 */
-		public final Builder regex(@Nullable String value) {
-			this.regex = value;
-			return this;
+		public final Builder regex(Function<RegexOptions.Builder, ObjectBuilder<RegexOptions>> fn) {
+			return this.regex(fn.apply(new RegexOptions.Builder()).build());
 		}
 
 		/**
@@ -285,8 +264,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		op.add(Builder::contexts, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(CompletionContext._DESERIALIZER)), "contexts");
 		op.add(Builder::fuzzy, SuggestFuzziness._DESERIALIZER, "fuzzy");
-		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
-		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
+		op.add(Builder::regex, RegexOptions._DESERIALIZER, "regex");
 		op.add(Builder::skipDuplicates, JsonpDeserializer.booleanDeserializer(), "skip_duplicates");
 
 	}

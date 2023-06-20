@@ -316,6 +316,41 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 		return resetTransform(fn.apply(new ResetTransformRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: transform.schedule_now_transform
+
+	/**
+	 * Schedules now a transform.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/schedule-now-transform.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ScheduleNowTransformResponse scheduleNowTransform(ScheduleNowTransformRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScheduleNowTransformRequest, ScheduleNowTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<ScheduleNowTransformRequest, ScheduleNowTransformResponse, ErrorResponse>) ScheduleNowTransformRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Schedules now a transform.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScheduleNowTransformRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/schedule-now-transform.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ScheduleNowTransformResponse scheduleNowTransform(
+			Function<ScheduleNowTransformRequest.Builder, ObjectBuilder<ScheduleNowTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return scheduleNowTransform(fn.apply(new ScheduleNowTransformRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: transform.start_transform
 
 	/**

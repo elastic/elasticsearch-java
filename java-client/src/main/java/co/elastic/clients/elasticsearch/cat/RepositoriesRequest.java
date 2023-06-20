@@ -39,7 +39,10 @@ import java.util.Objects;
 // typedef: cat.repositories.Request
 
 /**
- * Returns information about snapshot repositories registered in the cluster.
+ * Returns the snapshot repositories for a cluster. IMPORTANT: cat APIs are only
+ * intended for human consumption using the command line or Kibana console. They
+ * are not intended for use by applications. For application consumption, use
+ * the get snapshot repository API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.repositories.Request">API
  *      specification</a>

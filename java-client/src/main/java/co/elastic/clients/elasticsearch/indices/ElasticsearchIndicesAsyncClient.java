@@ -429,6 +429,39 @@ public class ElasticsearchIndicesAsyncClient
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.delete_data_lifecycle
+
+	/**
+	 * Deletes the data lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteDataLifecycleResponse> deleteDataLifecycle(DeleteDataLifecycleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse>) DeleteDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes the data lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteDataLifecycleResponse> deleteDataLifecycle(
+			Function<DeleteDataLifecycleRequest.Builder, ObjectBuilder<DeleteDataLifecycleRequest>> fn) {
+		return deleteDataLifecycle(fn.apply(new DeleteDataLifecycleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.delete_data_stream
 
 	/**
@@ -726,6 +759,41 @@ public class ElasticsearchIndicesAsyncClient
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.explain_data_lifecycle
+
+	/**
+	 * Retrieves information about the index's current DLM lifecycle, such as any
+	 * potential encountered error, time since creation etc.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/dlm-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ExplainDataLifecycleResponse> explainDataLifecycle(ExplainDataLifecycleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse>) ExplainDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves information about the index's current DLM lifecycle, such as any
+	 * potential encountered error, time since creation etc.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/dlm-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ExplainDataLifecycleResponse> explainDataLifecycle(
+			Function<ExplainDataLifecycleRequest.Builder, ObjectBuilder<ExplainDataLifecycleRequest>> fn) {
+		return explainDataLifecycle(fn.apply(new ExplainDataLifecycleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.field_usage_stats
 
 	/**
@@ -928,6 +996,39 @@ public class ElasticsearchIndicesAsyncClient
 	public CompletableFuture<GetAliasResponse> getAlias() {
 		return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_data_lifecycle
+
+	/**
+	 * Returns the data lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetDataLifecycleResponse> getDataLifecycle(GetDataLifecycleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse>) GetDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the data lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetDataLifecycleResponse> getDataLifecycle(
+			Function<GetDataLifecycleRequest.Builder, ObjectBuilder<GetDataLifecycleRequest>> fn) {
+		return getDataLifecycle(fn.apply(new GetDataLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_data_stream
@@ -1357,6 +1458,39 @@ public class ElasticsearchIndicesAsyncClient
 	public final CompletableFuture<PutAliasResponse> putAlias(
 			Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn) {
 		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_lifecycle
+
+	/**
+	 * Updates the data lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutDataLifecycleResponse> putDataLifecycle(PutDataLifecycleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse>) PutDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates the data lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutDataLifecycleResponse> putDataLifecycle(
+			Function<PutDataLifecycleRequest.Builder, ObjectBuilder<PutDataLifecycleRequest>> fn) {
+		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_index_template

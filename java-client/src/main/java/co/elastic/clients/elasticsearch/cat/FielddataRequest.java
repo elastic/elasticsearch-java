@@ -46,8 +46,11 @@ import javax.annotation.Nullable;
 // typedef: cat.fielddata.Request
 
 /**
- * Shows how much heap memory is currently being used by fielddata on every data
- * node in the cluster.
+ * Returns the amount of heap memory currently used by the field data cache on
+ * every data node in the cluster. IMPORTANT: cat APIs are only intended for
+ * human consumption using the command line or Kibana console. They are not
+ * intended for use by applications. For application consumption, use the nodes
+ * stats API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.fielddata.Request">API
  *      specification</a>
@@ -73,7 +76,7 @@ public class FielddataRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
@@ -83,7 +86,8 @@ public class FielddataRequest extends CatRequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields to return the fielddata size
+	 * Comma-separated list of fields used to limit returned information. To
+	 * retrieve all fields, omit this parameter.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -107,7 +111,7 @@ public class FielddataRequest extends CatRequestBase {
 		private List<String> fields;
 
 		/**
-		 * The unit in which to display byte values
+		 * The unit used to display byte values.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
@@ -117,7 +121,8 @@ public class FielddataRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields to return the fielddata size
+		 * Comma-separated list of fields used to limit returned information. To
+		 * retrieve all fields, omit this parameter.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -129,7 +134,8 @@ public class FielddataRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields to return the fielddata size
+		 * Comma-separated list of fields used to limit returned information. To
+		 * retrieve all fields, omit this parameter.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>

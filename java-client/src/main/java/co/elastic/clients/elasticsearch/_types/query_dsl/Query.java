@@ -170,6 +170,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		TermsSet("terms_set"),
 
+		TextExpansion("text_expansion"),
+
 		Wildcard("wildcard"),
 
 		Wrapper("wrapper"),
@@ -1110,6 +1112,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
+	 * Is this variant instance of kind {@code text_expansion}?
+	 */
+	public boolean isTextExpansion() {
+		return _kind == Kind.TextExpansion;
+	}
+
+	/**
+	 * Get the {@code text_expansion} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code text_expansion} kind.
+	 */
+	public TextExpansionQuery textExpansion() {
+		return TaggedUnionUtils.get(this, Kind.TextExpansion);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code wildcard}?
 	 */
 	public boolean isWildcard() {
@@ -1745,6 +1764,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.termsSet(fn.apply(new TermsSetQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> textExpansion(TextExpansionQuery v) {
+			this._kind = Kind.TextExpansion;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> textExpansion(
+				Function<TextExpansionQuery.Builder, ObjectBuilder<TextExpansionQuery>> fn) {
+			return this.textExpansion(fn.apply(new TextExpansionQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
@@ -1851,6 +1881,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::term, TermQuery._DESERIALIZER, "term");
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
+		op.add(Builder::textExpansion, TextExpansionQuery._DESERIALIZER, "text_expansion");
 		op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
 		op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
 		op.add(Builder::type, TypeQuery._DESERIALIZER, "type");
