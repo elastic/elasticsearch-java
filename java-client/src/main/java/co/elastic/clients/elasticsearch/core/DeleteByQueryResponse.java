@@ -83,12 +83,14 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	@Nullable
 	private final Time throttled;
 
-	private final long throttledMillis;
+	@Nullable
+	private final Long throttledMillis;
 
 	@Nullable
 	private final Time throttledUntil;
 
-	private final long throttledUntilMillis;
+	@Nullable
+	private final Long throttledUntilMillis;
 
 	@Nullable
 	private final Boolean timedOut;
@@ -115,10 +117,9 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		this.sliceId = builder.sliceId;
 		this.task = builder.task;
 		this.throttled = builder.throttled;
-		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+		this.throttledMillis = builder.throttledMillis;
 		this.throttledUntil = builder.throttledUntil;
-		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
-				"throttledUntilMillis");
+		this.throttledUntilMillis = builder.throttledUntilMillis;
 		this.timedOut = builder.timedOut;
 		this.took = builder.took;
 		this.total = builder.total;
@@ -202,9 +203,10 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code throttled_millis}
+	 * API name: {@code throttled_millis}
 	 */
-	public final long throttledMillis() {
+	@Nullable
+	public final Long throttledMillis() {
 		return this.throttledMillis;
 	}
 
@@ -217,9 +219,10 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code throttled_until_millis}
+	 * API name: {@code throttled_until_millis}
 	 */
-	public final long throttledUntilMillis() {
+	@Nullable
+	public final Long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
@@ -316,17 +319,21 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 			this.throttled.serialize(generator, mapper);
 
 		}
-		generator.writeKey("throttled_millis");
-		generator.write(this.throttledMillis);
+		if (this.throttledMillis != null) {
+			generator.writeKey("throttled_millis");
+			generator.write(this.throttledMillis);
 
+		}
 		if (this.throttledUntil != null) {
 			generator.writeKey("throttled_until");
 			this.throttledUntil.serialize(generator, mapper);
 
 		}
-		generator.writeKey("throttled_until_millis");
-		generator.write(this.throttledUntilMillis);
+		if (this.throttledUntilMillis != null) {
+			generator.writeKey("throttled_until_millis");
+			generator.write(this.throttledUntilMillis);
 
+		}
 		if (this.timedOut != null) {
 			generator.writeKey("timed_out");
 			generator.write(this.timedOut);
@@ -391,11 +398,13 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		@Nullable
 		private Time throttled;
 
+		@Nullable
 		private Long throttledMillis;
 
 		@Nullable
 		private Time throttledUntil;
 
+		@Nullable
 		private Long throttledUntilMillis;
 
 		@Nullable
@@ -519,9 +528,9 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code throttled_millis}
+		 * API name: {@code throttled_millis}
 		 */
-		public final Builder throttledMillis(long value) {
+		public final Builder throttledMillis(@Nullable Long value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -542,9 +551,9 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code throttled_until_millis}
+		 * API name: {@code throttled_until_millis}
 		 */
-		public final Builder throttledUntilMillis(long value) {
+		public final Builder throttledUntilMillis(@Nullable Long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
