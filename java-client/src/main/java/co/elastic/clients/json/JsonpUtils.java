@@ -175,7 +175,6 @@ public class JsonpUtils {
 
             case START_ARRAY:
                 generator.writeStartArray();
-                generator.writeStartObject();
                 while ((event = parser.next()) != Event.END_ARRAY) {
                     copy(parser, generator, event);
                 }

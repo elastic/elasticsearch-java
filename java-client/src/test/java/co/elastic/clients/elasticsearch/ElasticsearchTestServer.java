@@ -77,7 +77,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
     }
 
     public synchronized ElasticsearchTestServer start() {
-        Version version = Version.VERSION.major() < 8 ? new Version(7,17,5,false) : new Version(8,3,3,false);
+        Version version = Version.VERSION.major() < 8 ? new Version(7,17,10,false) : new Version(8,3,3,false);
 
         // Note we could use version.major() + "." + version.minor() + "-SNAPSHOT" but plugins won't install on a snapshot version
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;

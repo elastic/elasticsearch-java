@@ -20,15 +20,18 @@
 package co.elastic.clients.elasticsearch.spec_issues;
 
 import co.elastic.clients.documentation.usage.Product;
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.analysis.LimitTokenCountTokenFilter;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeFieldType;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
+import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Suggester;
@@ -40,12 +43,15 @@ import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.elasticsearch.snapshot.RestoreResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.BinaryData;
+import co.elastic.clients.util.ContentType;
 import jakarta.json.stream.JsonParser;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Test issues related to the API specifications.
@@ -53,6 +59,41 @@ import java.io.StringReader;
  * Depending on the feedback provided, this may involve either loading a JSON file or sending requests to an ES server.
  */
 public class SpecIssuesTest extends ModelTestCase {
+
+    @Test
+    public void i0575_asyncBinaryData() throws Exception {
+
+        ElasticsearchAsyncClient esAsyncClient = ElasticsearchTestServer.global().asyncClient();
+
+        String index = "binary-ingestion-test";
+        String id = "foo-bar";
+
+        BinaryData data = BinaryData.of(
+            ("{\"id\":\"27082ce1-d9ab-404e-a810-f2894640edf4\",\"firstName\":\"Jesse\",\"lastName\":\"Pinkman\",\"addresses\":" +
+                "[{\"street\":\"1001 Central Ave NE\",\"city\":\"Albuquerque\",\"state\":\"NM\",\"zip\":\"87106\"}]}").getBytes(),
+            ContentType.APPLICATION_JSON
+        );
+
+        esAsyncClient.index(i -> i
+            .index(index)
+            .id(id)
+            .document(data)
+            .refresh(Refresh.True)
+        ).get();
+
+        GetResponse<BinaryData> getResponse = esAsyncClient.get(g -> g
+                .index(index)
+                .id(id)
+            , BinaryData.class
+        ).get();
+
+        assertEquals(id, getResponse.id());
+        assertEquals(
+            "{\"id\":\"27082ce1-d9ab-404e-a810-f2894640edf4\",\"firstName\":\"Jesse\",\"lastName\":\"Pinkman\",\"addresses\":" +
+                "[{\"street\":\"1001 Central Ave NE\",\"city\":\"Albuquerque\",\"state\":\"NM\",\"zip\":\"87106\"}]}",
+            new String(getResponse.source().asByteBuffer().array(), StandardCharsets.UTF_8)
+        );
+    }
 
     @Test
     public void i0328_charFilter() throws Exception {
