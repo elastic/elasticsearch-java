@@ -433,6 +433,32 @@ class BulkIngesterTest extends Assertions {
 
     }
 
+    @Test
+    public void testConfigValidation() {
+
+        BulkIngester.Builder<Void> b = new BulkIngester.Builder<>();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            b.flushInterval(-1, TimeUnit.MILLISECONDS);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            b.maxConcurrentRequests(0);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            b.maxSize(-2);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            b.maxOperations(-2);
+        });
+
+        assertThrows(IllegalStateException.class, () -> {
+            b.maxSize(-1).maxOperations(-1).build();
+        });
+    }
+
     //-----------------------------------------------------------------------------------------------------------------
 
     private static class CountingListener implements BulkListener<Void> {
