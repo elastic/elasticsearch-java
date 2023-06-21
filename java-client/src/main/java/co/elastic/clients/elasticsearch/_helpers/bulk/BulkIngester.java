@@ -426,8 +426,13 @@ public class BulkIngester<Context> implements AutoCloseable {
         /**
          * Sets when to flush a new bulk request based on the number of operations currently added. Defaults to
          * {@code 1000}. Can be set to {@code -1} to disable it.
+         *
+         * @throws IllegalArgumentException if less than -1.
          */
         public Builder<Context> maxOperations(int count) {
+            if (count < -1) {
+                throw new IllegalArgumentException("Max operations should be at least -1");
+            }
             this.bulkOperations = count;
             return this;
         }
@@ -435,17 +440,27 @@ public class BulkIngester<Context> implements AutoCloseable {
         /**
          * Sets when to flush a new bulk request based on the size in bytes of actions currently added. A request is sent
          * once that size has been exceeded. Defaults to 5 megabytes. Can be set to {@code -1} to disable it.
+         *
+         * @throws IllegalArgumentException if less than -1.
          */
         public Builder<Context> maxSize(long bytes) {
+            if (bytes < -1) {
+                throw new IllegalArgumentException("Max size should be at least -1");
+            }
             this.bulkSize = bytes;
             return this;
         }
 
         /**
-         * Sets the number of concurrent requests allowed to be executed. A value of 1 means 1 concurrent request is allowed to be executed
+         * Sets the number of concurrent requests allowed to be executed. A value of 1 means 1 request is allowed to be executed
          * while accumulating new bulk requests. Defaults to {@code 1}.
+         *
+         * @throws IllegalArgumentException if less than 1.
          */
         public Builder<Context> maxConcurrentRequests(int max) {
+            if (max < 1) {
+                throw new IllegalArgumentException("Max concurrent request should be at least 1");
+            }
             this.maxConcurrentRequests = max;
             return this;
         }
@@ -453,9 +468,14 @@ public class BulkIngester<Context> implements AutoCloseable {
         /**
          * Sets an interval flushing any bulk actions pending if the interval passes. Defaults to not set.
          * <p>
-         * Flushing is still subject to the maximum number of requests set with {@link #maxConcurrentRequests}.     
+         * Flushing is still subject to the maximum number of requests set with {@link #maxConcurrentRequests}.
+         *
+         * @throws IllegalArgumentException if not a positive duration.
          */
         public Builder<Context> flushInterval(long value, TimeUnit unit) {
+            if (value < 0) {
+                throw new IllegalArgumentException("Duration should be positive");
+            }
             this.flushIntervalMillis = unit.toMillis(value);
             return this;
         }
@@ -497,6 +517,13 @@ public class BulkIngester<Context> implements AutoCloseable {
 
         @Override
         public BulkIngester<Context> build() {
+            // Ensure some chunking criteria are defined
+            boolean hasCriteria = this.bulkOperations >= 0 || this.bulkSize >= 0 || this.flushIntervalMillis != null;
+
+            if (!hasCriteria) {
+                throw new IllegalStateException("No bulk operation chunking criteria have been set.");
+            }
+
             return new BulkIngester<>(this);
         }
     }
