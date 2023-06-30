@@ -945,15 +945,14 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeKey("indices_boost");
 			generator.writeStartArray();
 			for (Map<String, Double> item0 : this.indicesBoost) {
-				generator.writeStartObject();
 				if (item0 != null) {
 					for (Map.Entry<String, Double> item1 : item0.entrySet()) {
+						generator.writeStartObject();
 						generator.writeKey(item1.getKey());
 						generator.write(item1.getValue());
-
+						generator.writeEnd();
 					}
 				}
-				generator.writeEnd();
 
 			}
 			generator.writeEnd();
