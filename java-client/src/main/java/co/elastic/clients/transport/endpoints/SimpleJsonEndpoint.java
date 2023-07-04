@@ -33,7 +33,6 @@ public class SimpleJsonEndpoint<RequestT, ResponseT> extends SimpleEndpoint<Requ
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
-        Function<RequestT, String> route,
         Function<RequestT,
             Map<String, String>> pathParameters,
         Function<RequestT,
@@ -42,6 +41,6 @@ public class SimpleJsonEndpoint<RequestT, ResponseT> extends SimpleEndpoint<Requ
         boolean hasRequestBody,
         JsonpDeserializer<ResponseT> responseParser
     ) {
-        super(id, method, requestUrl, route, pathParameters, queryParameters, headers, hasRequestBody, responseParser);
+        super(id, method, requestUrl, pathParameters, queryParameters, headers, hasRequestBody, responseParser);
     }
 }

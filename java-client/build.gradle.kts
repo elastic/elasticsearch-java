@@ -183,7 +183,7 @@ dependencies {
     // the Java API client coexists with a 7.x HLRC work fine
     val elasticsearchVersion = "7.17.7"
     val jacksonVersion = "2.13.3"
-    val openTelemetryVersion = "1.26.0"
+    val openTelemetryVersion = "1.27.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html

@@ -28,7 +28,6 @@ public class BinaryEndpoint<RequestT> extends EndpointBase<RequestT, BinaryRespo
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
-        Function<RequestT, String> route,
         Function<RequestT,
             Map<String, String>> pathParameters,
         Function<RequestT,
@@ -37,14 +36,13 @@ public class BinaryEndpoint<RequestT> extends EndpointBase<RequestT, BinaryRespo
         Function<RequestT, Object> body,
         Object ignored // same number of arguments as SimpleEndpoint
     ) {
-        super(id, method, requestUrl, route, pathParameters, queryParameters, headers, body);
+        super(id, method, requestUrl, pathParameters, queryParameters, headers, body);
     }
 
     public BinaryEndpoint(
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
-        Function<RequestT, String> route,
         Function<RequestT,
             Map<String, String>> pathParameters,
         Function<RequestT,
@@ -53,7 +51,7 @@ public class BinaryEndpoint<RequestT> extends EndpointBase<RequestT, BinaryRespo
         boolean hasRequestBody,
         Object ignored // same number of arguments as SimpleEndpoint
     ) {
-        super(id, method, requestUrl, route, pathParameters, queryParameters, headers, hasRequestBody ? returnSelf() : returnNull());
+        super(id, method, requestUrl, pathParameters, queryParameters, headers, hasRequestBody ? returnSelf() : returnNull());
     }
 
     @Override

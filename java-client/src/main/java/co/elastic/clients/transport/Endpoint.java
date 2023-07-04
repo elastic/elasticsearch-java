@@ -57,11 +57,6 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   String requestUrl(RequestT request);
 
   /**
-   * Get the route for a request (i.e. URL pattern).
-   */
-  String route(RequestT request);
-
-  /**
    * Get the path parameters for a request.
    */
   default Map<String, String> pathParameters(RequestT request)  {
@@ -116,7 +111,6 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
           this.id(),
           this::method,
           this::requestUrl,
-          this::route,
           this::pathParameters,
           this::queryParameters,
           this::headers,

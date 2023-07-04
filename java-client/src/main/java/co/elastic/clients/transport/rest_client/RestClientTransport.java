@@ -107,14 +107,14 @@ public class RestClientTransport implements ElasticsearchTransport {
     private final RestClient restClient;
     private final JsonpMapper mapper;
     private final RestClientOptions transportOptions;
-    private final InstrumentationUtil instrumentationUtil;
+    private final Instrumentation instrumentation;
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable OpenTelemetry openTelemetry,
                                @Nullable TransportOptions options) {
         this.restClient = restClient;
         this.mapper = mapper;
         this.transportOptions = options == null ? RestClientOptions.initialOptions() : RestClientOptions.of(options);
-        this.instrumentationUtil = new InstrumentationUtil(openTelemetry);
+        this.instrumentation = new Instrumentation(openTelemetry);
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable OpenTelemetry openTelemetry) {
@@ -163,12 +163,13 @@ public class RestClientTransport implements ElasticsearchTransport {
             Endpoint<RequestT, ResponseT, ErrorT> endpoint,
             @Nullable TransportOptions options
     ) throws IOException {
-        Span span = instrumentationUtil.createSpanForRequest(request, endpoint);
+        Span span = instrumentation.createSpanForRequest(request, endpoint);
 
         try (Scope ss = span.makeCurrent()) {
             org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options, span);
+            instrumentation.captureBody(span, endpoint, clientReq.getEntity());
             org.elasticsearch.client.Response clientResp = restClient.performRequest(clientReq);
-            instrumentationUtil.captureHostInformation(span, clientResp.getHost());
+            instrumentation.captureResponseInformation(span, clientResp);
             return getHighLevelResponse(clientResp, endpoint);
         } catch (Throwable throwable) {
             span.setStatus(StatusCode.ERROR, throwable.getMessage());
@@ -184,12 +185,13 @@ public class RestClientTransport implements ElasticsearchTransport {
             Endpoint<RequestT, ResponseT, ErrorT> endpoint,
             @Nullable TransportOptions options
     ) {
-        Span span = instrumentationUtil.createSpanForRequest(request, endpoint);
+        Span span = instrumentation.createSpanForRequest(request, endpoint);
 
         RequestFuture<ResponseT> future = new RequestFuture<>();
         org.elasticsearch.client.Request clientReq;
         try (Scope ss = span.makeCurrent()) {
             clientReq = prepareLowLevelRequest(request, endpoint, options, span);
+            instrumentation.captureBody(span, endpoint, clientReq.getEntity());
         } catch (Exception e) {
             // Terminate early
             span.setStatus(StatusCode.ERROR, e.getMessage());
@@ -207,7 +209,7 @@ public class RestClientTransport implements ElasticsearchTransport {
             public void onSuccess(Response clientResp) {
                 try (ApiTypeHelper.DisabledChecksHandle h =
                              ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
-                    instrumentationUtil.captureHostInformation(span, clientResp.getHost());
+                    instrumentation.captureResponseInformation(span, clientResp);
                     ResponseT response = getHighLevelResponse(clientResp, endpoint);
                     future.complete(response);
                 } catch (Exception e) {
@@ -260,7 +262,6 @@ public class RestClientTransport implements ElasticsearchTransport {
                 List<ByteBuffer> lines = new ArrayList<>();
                 collectNdJsonLines(lines, (NdJsonpSerializable) request);
                 clientReq.setEntity(new MultiBufferEntity(lines, JsonContentType));
-                instrumentationUtil.captureBody(span, request, endpoint, lines);
             } else if (body instanceof BinaryData) {
                 BinaryData data = (BinaryData) body;
 
@@ -285,7 +286,6 @@ public class RestClientTransport implements ElasticsearchTransport {
                 mapper.serialize(body, generator);
                 generator.close();
                 clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), JsonContentType));
-                instrumentationUtil.captureBody(span, request, endpoint, baos);
             }
         }
 

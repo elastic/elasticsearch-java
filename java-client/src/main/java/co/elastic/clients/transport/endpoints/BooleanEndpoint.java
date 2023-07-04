@@ -28,7 +28,6 @@ public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanRes
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
-        Function<RequestT, String> route,
         Function<RequestT,
             Map<String, String>> pathParameters,
         Function<RequestT,
@@ -37,7 +36,7 @@ public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanRes
         boolean hasRequestBody,
         Object ignored // same number of arguments as SimpleEndpoint
     ) {
-        super(id, method, requestUrl, route, pathParameters, queryParameters, headers, hasRequestBody ? returnSelf() : returnNull());
+        super(id, method, requestUrl, pathParameters, queryParameters, headers, hasRequestBody ? returnSelf() : returnNull());
     }
 
     @Override

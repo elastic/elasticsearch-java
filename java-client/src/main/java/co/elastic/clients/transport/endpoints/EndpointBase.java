@@ -66,7 +66,6 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
     protected final String id;
     protected final Function<RequestT, String> method;
     protected final Function<RequestT, String> requestUrl;
-    protected final Function<RequestT, String> route;
     protected final Function<RequestT, Map<String, String>> pathParameters;
     protected final Function<RequestT, Map<String, String>> queryParameters;
     protected final Function<RequestT, Map<String, String>> headers;
@@ -76,7 +75,6 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
-        Function<RequestT, String> route,
         Function<RequestT, Map<String, String>> pathParameters,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
@@ -85,7 +83,6 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         this.id = id;
         this.method = method;
         this.requestUrl = requestUrl;
-        this.route = route;
         this.pathParameters = pathParameters;
         this.queryParameters = queryParameters;
         this.headers = headers;
@@ -105,11 +102,6 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
     @Override
     public String requestUrl(RequestT request) {
         return this.requestUrl.apply(request);
-    }
-
-    @Override
-    public String route(RequestT request) {
-        return this.route.apply(request);
     }
 
     @Override
@@ -151,7 +143,6 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
             id,
             method,
             requestUrl,
-            route,
             pathParameters,
             queryParameters,
             headers,
