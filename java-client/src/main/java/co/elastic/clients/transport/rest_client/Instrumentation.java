@@ -37,7 +37,6 @@ import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -81,7 +80,7 @@ public class Instrumentation {
     }
 
     public <RequestT, ResponseT, ErrorT> Span createSpanForRequest(RequestT request,
-                                                                      Endpoint<RequestT, ResponseT, ErrorT> endpoint) {
+                                                                   Endpoint<RequestT, ResponseT, ErrorT> endpoint) {
         if (!INSTRUMENTATION_ENABLED) {
             return Span.getInvalid();
         }
@@ -113,15 +112,12 @@ public class Instrumentation {
 
         span.setAttribute(OTelAttributes.URL_FULL, fullUrl);
         span.setAttribute(OTelAttributes.SERVER_PORT, host.getPort());
+        span.setAttribute(OTelAttributes.SERVER_ADDRESS, host.getHostName());
 
-        InetAddress hostAddress = response.getHost().getAddress();
-        if (hostAddress != null) {
-            span.setAttribute(OTelAttributes.SERVER_ADDRESS, hostAddress.getHostAddress());
-        }
     }
 
     public <RequestT> void captureBody(@Nullable Span span, Endpoint<RequestT, ?, ?> endpoint,
-                                          HttpEntity httpEntity) {
+                                       HttpEntity httpEntity) {
         try {
             if (shouldCaptureBody(span, endpoint, httpEntity)) {
 
