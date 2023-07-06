@@ -42,7 +42,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class Instrumentation {
@@ -69,6 +71,9 @@ public class Instrumentation {
 
     private static final Log logger = LogFactory.getLog(Instrumentation.class);
 
+    // Caching attributes keys to avoid unnecessary memory allocation
+    private static final Map<String, AttributeKey<String>> attributesKeyCache = new ConcurrentHashMap<>();
+
     private final Tracer tracer;
 
     public Instrumentation(@Nullable OpenTelemetry openTelemetry) {
@@ -81,43 +86,57 @@ public class Instrumentation {
 
     public <RequestT, ResponseT, ErrorT> Span createSpanForRequest(RequestT request,
                                                                    Endpoint<RequestT, ResponseT, ErrorT> endpoint) {
-        if (!INSTRUMENTATION_ENABLED) {
+        // calling the instrumentation class should never throw an exception
+        try {
+            if (!INSTRUMENTATION_ENABLED) {
+                return Span.getInvalid();
+            }
+
+            Span span = tracer.spanBuilder(endpoint.id()).setSpanKind(SpanKind.CLIENT).startSpan();
+            if (isInvalidSpan(span)) {
+                span.setAttribute(OTelAttributes.DB_SYSTEM, "elasticsearch");
+                span.setAttribute(OTelAttributes.DB_OPERATION, endpoint.id());
+                span.setAttribute(OTelAttributes.HTTP_REQUEST_METHOD, endpoint.method(request));
+
+                for (Map.Entry<String, String> pathParamEntry : endpoint.pathParameters(request).entrySet()) {
+                    AttributeKey<String> attributeKey = attributesKeyCache.computeIfAbsent(pathParamEntry.getKey(),
+                            (key) -> AttributeKey.stringKey(OTelAttributes.PATH_PART_PREFIX + key));
+                    span.setAttribute(attributeKey, pathParamEntry.getValue());
+                }
+            }
+
+            return span;
+        } catch (RuntimeException e) {
+            logger.debug("Failed creating an OpenTelemetry span for endpoint '" + endpoint.id() + "'.", e);
             return Span.getInvalid();
         }
-
-        Span span = tracer.spanBuilder(endpoint.id()).setSpanKind(SpanKind.CLIENT).startSpan();
-        if (isInvalidSpan(span)) {
-            span.setAttribute(OTelAttributes.DB_SYSTEM, "elasticsearch");
-            span.setAttribute(OTelAttributes.DB_OPERATION, endpoint.id());
-            span.setAttribute(OTelAttributes.HTTP_REQUEST_METHOD, endpoint.method(request));
-
-            for (Map.Entry<String, String> pathParamEntry : endpoint.pathParameters(request).entrySet()) {
-                String attributeKey = OTelAttributes.PATH_PART_PREFIX + pathParamEntry.getKey();
-                span.setAttribute(AttributeKey.stringKey(attributeKey), pathParamEntry.getValue());
-            }
-        }
-
-        return span;
     }
 
     public void captureResponseInformation(@Nullable Span span, Response response) {
-        if (isInvalidSpan(span)) {
-            return;
+        // calling the instrumentation class should never throw an exception
+        try {
+            if (isInvalidSpan(span)) {
+                return;
+            }
+            Objects.requireNonNull(span);
+
+            HttpHost host = response.getHost();
+            String uri = response.getRequestLine().getUri();
+            uri = uri.startsWith("/") ? uri : "/" + uri;
+            String fullUrl = host.toURI() + uri;
+
+            span.setAttribute(OTelAttributes.URL_FULL, fullUrl);
+            span.setAttribute(OTelAttributes.SERVER_PORT, host.getPort());
+            span.setAttribute(OTelAttributes.SERVER_ADDRESS, host.getHostName());
+        } catch (RuntimeException e) {
+            logger.debug("Failed capturing response information for the OpenTelemetry span.", e);
+            // ignore
         }
-
-        HttpHost host = response.getHost();
-        String uri = response.getRequestLine().getUri();
-        uri = uri.startsWith("/") ? uri : "/" + uri;
-        String fullUrl = host.toURI() + uri;
-
-        span.setAttribute(OTelAttributes.URL_FULL, fullUrl);
-        span.setAttribute(OTelAttributes.SERVER_PORT, host.getPort());
-        span.setAttribute(OTelAttributes.SERVER_ADDRESS, host.getHostName());
-
     }
 
     public <RequestT> void captureBody(@Nullable Span span, Endpoint<RequestT, ?, ?> endpoint,
                                        HttpEntity httpEntity) {
+        // calling the instrumentation class should never throw an exception
         try {
             if (shouldCaptureBody(span, endpoint, httpEntity)) {
 
@@ -128,8 +147,8 @@ public class Instrumentation {
 
                 span.setAttribute(OTelAttributes.DB_STATEMENT, body);
             }
-        } catch (IOException e) {
-            logger.debug("Failed reading HTTP body content.", e);
+        } catch (Exception e) {
+            logger.debug("Failed reading HTTP body content for an OpenTelemetry span.", e);
         }
     }
 
