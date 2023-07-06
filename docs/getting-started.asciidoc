@@ -8,17 +8,52 @@ operations with it.
 [discrete]
 === Requirements
 
-* (...)
+* Java 8 or later.
+* A JSON object mapping library to allow seamless integration of
+your application classes with the Elasticsearch API. The examples below
+show usage with Jackson.
 
 [discrete]
 === Installation 
 
-To install the latest version of the client, run the following command:
+[discrete]
+==== Installation in a Gradle project by using Jackson
 
-[source,shell]
---------------------------
+["source","groovy",subs="attributes+"]
+--------------------------------------------------
+dependencies {
+    implementation 'co.elastic.clients:elasticsearch-java:{version}'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+}
+--------------------------------------------------
 
---------------------------
+[discrete]
+==== Installation in a Maven project by using Jackson
+
+In the `pom.xml` of your project, add the following repository definition and
+dependencies:
+
+["source","xml",subs="attributes+"]
+--------------------------------------------------
+<project>
+  <dependencies>
+
+    <dependency>
+      <groupId>co.elastic.clients</groupId>
+      <artifactId>elasticsearch-java</artifactId>
+      <version>{version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.12.3</version>
+    </dependency>
+
+  </dependencies>
+</project>
+--------------------------------------------------
+
 
 Refer to the <<installation>> page to learn more.
 
@@ -27,12 +62,12 @@ Refer to the <<installation>> page to learn more.
 === Connecting
 
 You can connect to the Elastic Cloud using an API key and the Elasticsearch 
-endpoint. 
+endpoint.
 
-[source,java]
-----
-
-----
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/getting_started/ConnectingTest.java[create-client]
+--------------------------------------------------
 
 Your Elasticsearch endpoint can be found on the **My deployment** page of your 
 deployment:
@@ -57,74 +92,74 @@ examples, refer to the <<usage>> page.
 [discrete]
 ==== Creating an index
 
-This is how you create the `my_index` index:
+This is how you create the `product` index:
 
-[source,java]
-----
-
-----
-
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[create-products-index]
+--------------------------------------------------
 
 [discrete]
 ==== Indexing documents
 
-This is a simple way of indexing a document:
+This is a simple way of indexing a document, here a `Product` application object:
 
-[source,java]
-----
-
-----
-
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-dsl]
+--------------------------------------------------
 
 [discrete]
 ==== Getting documents
 
 You can get documents by using the following code:
 
-[source,java]
-----
-
-----
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/ReadingTest.java[get-by-id]
+--------------------------------------------------
+<1> The get request, with the index name and identifier.
+<2> The target class, here `Product`.
 
 
 [discrete]
 ==== Searching documents
 
-This is how you can create a single match query with the Java client: 
+This is how you can create a single match query with the Java client:
 
-[source,java]
-----
-
-----
-
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/SearchingTest.java[search-getting-started]
+--------------------------------------------------
 
 [discrete]
 ==== Updating documents
 
 This is how you can update a document, for example to add a new field:
 
-[source,java]
-----
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-update]
+--------------------------------------------------
 
-----
 
 
 [discrete]
 ==== Deleting documents
 
-[source,java]
-----
-
-----
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-delete]
+--------------------------------------------------
 
 
 [discrete]
 ==== Deleting an index
 
-[source,java]
-----
-
-----
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[create-products-index]
+--------------------------------------------------
 
 
 [discrete]
