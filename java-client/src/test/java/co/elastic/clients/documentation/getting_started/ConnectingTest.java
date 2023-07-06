@@ -27,10 +27,12 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -44,20 +46,28 @@ public class ConnectingTest {
     @Test
     public void createClient() throws Exception {
         //tag::create-client
+        // URL and API key
+        String serverUrl = "https://localhost:9200";
+        String apiKey = "VnVhQ2ZHY0JDZGJrU...";
+
         // Create the low-level client
-        RestClient restClient = RestClient.builder(
-            new HttpHost("localhost", 9200)).build();
+        RestClient restClient = RestClient
+            .builder(HttpHost.create(serverUrl))
+            .setDefaultHeaders(new Header[]{
+                new BasicHeader("Authorization", "ApiKey " + apiKey)
+            })
+            .build();
 
         // Create the transport with a Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(
             restClient, new JacksonJsonpMapper());
 
         // And create the API client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        ElasticsearchClient esClient = new ElasticsearchClient(transport);
         //end::create-client
 
         //tag::first-request
-        SearchResponse<Product> search = client.search(s -> s
+        SearchResponse<Product> search = esClient.search(s -> s
             .index("products")
             .query(q -> q
                 .term(t -> t
