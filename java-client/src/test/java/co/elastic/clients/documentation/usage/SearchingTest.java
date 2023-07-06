@@ -62,6 +62,25 @@ public class SearchingTest {
     );
 
     @Test
+    public void searchSimpleMatch() throws Exception {
+        transport.setResult(searchResponse);
+
+        //tag::search-getting-started
+        String searchText = "bike";
+
+        SearchResponse<Product> response = esClient.search(s -> s
+                .index("products")
+                .query(q -> q
+                    .match(t -> t
+                        .field("name")
+                        .query(searchText)
+                    )
+                ),
+            Product.class
+        );
+        //end::search-getting-started
+    }
+    @Test
     public void searchMatch() throws Exception {
 
         transport.setResult(searchResponse);
