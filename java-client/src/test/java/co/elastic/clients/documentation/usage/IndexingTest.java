@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonData;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,26 @@ public class IndexingTest extends ModelTestCase {
         .result(Result.Created)
         .shards(s -> s.total(1).successful(1).failed(0))
     );
+
+    @Test
+    @Disabled
+    public void createIndex() throws Exception {
+        //tag::create-products-index
+        esClient.indices().create(c -> c
+            .index("products")
+        );
+        //end::create-products-index
+    }
+
+    @Test
+    @Disabled
+    public void deleteIndex() throws Exception {
+        //tag::delete-products-index
+        esClient.indices().delete(d -> d
+            .index("products")
+        );
+        //end::delete-products-index
+    }
 
     @Test
     public void singleDocumentDSL() throws Exception {
@@ -161,5 +182,27 @@ public class IndexingTest extends ModelTestCase {
             "{\"@timestamp\":\"2022-04-08T13:55:32Z\",\"level\":\"warn\",\"message\":\"Some log message\"}",
             toJson(request)
         );
+    }
+
+    @Test
+    public void deleteDocument() throws Exception {
+        //tag::single-doc-delete
+        esClient.delete(d -> d.index("products").id("bk-1"));
+        //end::single-doc-delete
+    }
+
+    @Test
+    @Disabled
+    public void updateDoc() throws Exception {
+        //tag::single-doc-update
+        Product product = new Product("bk-1", "City bike", 123.0);
+
+        esClient.update(u -> u
+                .index("products")
+                .id("bk-1")
+                .upsert(product),
+            Product.class
+        );
+        //end::single-doc-update
     }
 }

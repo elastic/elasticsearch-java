@@ -27,7 +27,8 @@ ifeval::["{release-state}"!="unreleased"]
 endif::[]
 
 include::introduction.asciidoc[]
-include::getting-started/index.asciidoc[]
+include::getting-started.asciidoc[]
+include::setup/index.asciidoc[]
 include::api-conventions/index.asciidoc[]
 
 include::usage/index.asciidoc[]
