@@ -22,4 +22,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## Licence
 
-This software is licensed under the [Apache License 2.0](https://github.com/elastic/elasticsearch-java/blob/main/LICENSE).
+This software is licensed under the [Apache License 2.0](https://github.com/elastic/elasticsearch-java/blob/main/LICENSE.txt).
