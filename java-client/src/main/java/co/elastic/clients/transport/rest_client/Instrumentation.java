@@ -81,7 +81,10 @@ public class Instrumentation {
             openTelemetry = GlobalOpenTelemetry.get();
         }
 
-        tracer = openTelemetry.getTracer("elasticsearch-api");
+        tracer = openTelemetry.tracerBuilder("elasticsearch-api")
+                .setInstrumentationVersion("8.11") // TODO: make this dynamic to being updated with the client versions
+                .setSchemaUrl("https://opentelemetry.io/schemas/1.21.0")
+                .build();
     }
 
     public <RequestT, ResponseT, ErrorT> Span createSpanForRequest(RequestT request,
