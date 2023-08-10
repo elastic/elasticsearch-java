@@ -276,18 +276,4 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBulkOperationBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-
-		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(AbstractBuilder::ifPrimaryTerm, JsonpDeserializer.longDeserializer(), "if_primary_term");
-		op.add(AbstractBuilder::ifSeqNo, JsonpDeserializer.longDeserializer(), "if_seq_no");
-		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(AbstractBuilder::versionType, VersionType._DESERIALIZER, "version_type");
-
-	}
-
 }
