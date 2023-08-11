@@ -133,7 +133,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the trained model id
+	 * The model identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -143,7 +143,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * who created the model
+	 * Information about the creator of the model.
 	 * <p>
 	 * API name: {@code created_by}
 	 */
@@ -153,7 +153,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the estimated heap size to keep the model in memory
+	 * The estimated heap size to keep the model in memory.
 	 * <p>
 	 * API name: {@code heap_size}
 	 */
@@ -163,7 +163,8 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the estimated number of operations to use the model
+	 * The estimated number of operations to use the model. This number helps to
+	 * measure the computational complexity of the model.
 	 * <p>
 	 * API name: {@code operations}
 	 */
@@ -173,7 +174,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The license level of the model
+	 * The license level of the model.
 	 * <p>
 	 * API name: {@code license}
 	 */
@@ -183,7 +184,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The time the model was created
+	 * The time the model was created.
 	 * <p>
 	 * API name: {@code create_time}
 	 */
@@ -193,7 +194,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The version of Elasticsearch when the model was created
+	 * The version of Elasticsearch when the model was created.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -203,7 +204,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The model description
+	 * A description of the model.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -213,7 +214,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of pipelines referencing the model
+	 * The number of pipelines that are referencing the model.
 	 * <p>
 	 * API name: {@code ingest.pipelines}
 	 */
@@ -223,7 +224,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The total number of docs processed by the model
+	 * The total number of documents that are processed by the model.
 	 * <p>
 	 * API name: {@code ingest.count}
 	 */
@@ -233,7 +234,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The total time spent processing docs with this model
+	 * The total time spent processing documents with thie model.
 	 * <p>
 	 * API name: {@code ingest.time}
 	 */
@@ -243,7 +244,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The total documents currently being handled by the model
+	 * The total number of documents that are currently being handled by the model.
 	 * <p>
 	 * API name: {@code ingest.current}
 	 */
@@ -253,7 +254,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The total count of failed ingest attempts with this model
+	 * The total number of failed ingest attempts with the model.
 	 * <p>
 	 * API name: {@code ingest.failed}
 	 */
@@ -263,8 +264,8 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The data frame analytics config id that created the model (if still
-	 * available)
+	 * The identifier for the data frame analytics job that created the model. Only
+	 * displayed if the job is still available.
 	 * <p>
 	 * API name: {@code data_frame.id}
 	 */
@@ -274,7 +275,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The time the data frame analytics config was created
+	 * The time the data frame analytics job was created.
 	 * <p>
 	 * API name: {@code data_frame.create_time}
 	 */
@@ -284,7 +285,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The source index used to train in the data frame analysis
+	 * The source index used to train in the data frame analysis.
 	 * <p>
 	 * API name: {@code data_frame.source_index}
 	 */
@@ -294,7 +295,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The analysis used by the data frame to build the model
+	 * The analysis used by the data frame to build the model.
 	 * <p>
 	 * API name: {@code data_frame.analysis}
 	 */
@@ -483,7 +484,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * the trained model id
+		 * The model identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -493,7 +494,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * who created the model
+		 * Information about the creator of the model.
 		 * <p>
 		 * API name: {@code created_by}
 		 */
@@ -503,7 +504,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the estimated heap size to keep the model in memory
+		 * The estimated heap size to keep the model in memory.
 		 * <p>
 		 * API name: {@code heap_size}
 		 */
@@ -513,7 +514,8 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the estimated number of operations to use the model
+		 * The estimated number of operations to use the model. This number helps to
+		 * measure the computational complexity of the model.
 		 * <p>
 		 * API name: {@code operations}
 		 */
@@ -523,7 +525,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The license level of the model
+		 * The license level of the model.
 		 * <p>
 		 * API name: {@code license}
 		 */
@@ -533,7 +535,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The time the model was created
+		 * The time the model was created.
 		 * <p>
 		 * API name: {@code create_time}
 		 */
@@ -543,7 +545,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The version of Elasticsearch when the model was created
+		 * The version of Elasticsearch when the model was created.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -553,7 +555,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The model description
+		 * A description of the model.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -563,7 +565,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of pipelines referencing the model
+		 * The number of pipelines that are referencing the model.
 		 * <p>
 		 * API name: {@code ingest.pipelines}
 		 */
@@ -573,7 +575,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The total number of docs processed by the model
+		 * The total number of documents that are processed by the model.
 		 * <p>
 		 * API name: {@code ingest.count}
 		 */
@@ -583,7 +585,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The total time spent processing docs with this model
+		 * The total time spent processing documents with thie model.
 		 * <p>
 		 * API name: {@code ingest.time}
 		 */
@@ -593,7 +595,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The total documents currently being handled by the model
+		 * The total number of documents that are currently being handled by the model.
 		 * <p>
 		 * API name: {@code ingest.current}
 		 */
@@ -603,7 +605,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The total count of failed ingest attempts with this model
+		 * The total number of failed ingest attempts with the model.
 		 * <p>
 		 * API name: {@code ingest.failed}
 		 */
@@ -613,8 +615,8 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The data frame analytics config id that created the model (if still
-		 * available)
+		 * The identifier for the data frame analytics job that created the model. Only
+		 * displayed if the job is still available.
 		 * <p>
 		 * API name: {@code data_frame.id}
 		 */
@@ -624,7 +626,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The time the data frame analytics config was created
+		 * The time the data frame analytics job was created.
 		 * <p>
 		 * API name: {@code data_frame.create_time}
 		 */
@@ -634,7 +636,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The source index used to train in the data frame analysis
+		 * The source index used to train in the data frame analysis.
 		 * <p>
 		 * API name: {@code data_frame.source_index}
 		 */
@@ -644,7 +646,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The analysis used by the data frame to build the model
+		 * The analysis used by the data frame to build the model.
 		 * <p>
 		 * API name: {@code data_frame.analysis}
 		 */

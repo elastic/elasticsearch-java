@@ -84,6 +84,8 @@ public class VertexDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Prevents the specified terms from being included in the results.
+	 * <p>
 	 * API name: {@code exclude}
 	 */
 	public final List<String> exclude() {
@@ -91,13 +93,18 @@ public class VertexDefinition implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Identifies a field in the documents of interest.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * Identifies the terms of interest that form the starting points from which you
+	 * want to spider out.
+	 * <p>
 	 * API name: {@code include}
 	 */
 	public final List<VertexInclude> include() {
@@ -105,6 +112,10 @@ public class VertexDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies how many documents must contain a pair of terms before it is
+	 * considered to be a useful connection. This setting acts as a certainty
+	 * threshold.
+	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
@@ -113,6 +124,9 @@ public class VertexDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Controls how many documents on a particular shard have to contain a pair of
+	 * terms before the connection is returned for global consideration.
+	 * <p>
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
@@ -121,6 +135,8 @@ public class VertexDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies the maximum number of vertex terms returned for each field.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -210,6 +226,8 @@ public class VertexDefinition implements JsonpSerializable {
 		private Integer size;
 
 		/**
+		 * Prevents the specified terms from being included in the results.
+		 * <p>
 		 * API name: {@code exclude}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>exclude</code>.
@@ -220,6 +238,8 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Prevents the specified terms from being included in the results.
+		 * <p>
 		 * API name: {@code exclude}
 		 * <p>
 		 * Adds one or more values to <code>exclude</code>.
@@ -230,7 +250,9 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Identifies a field in the documents of interest.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -238,6 +260,9 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Identifies the terms of interest that form the starting points from which you
+		 * want to spider out.
+		 * <p>
 		 * API name: {@code include}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>include</code>.
@@ -248,6 +273,9 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Identifies the terms of interest that form the starting points from which you
+		 * want to spider out.
+		 * <p>
 		 * API name: {@code include}
 		 * <p>
 		 * Adds one or more values to <code>include</code>.
@@ -258,6 +286,9 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Identifies the terms of interest that form the starting points from which you
+		 * want to spider out.
+		 * <p>
 		 * API name: {@code include}
 		 * <p>
 		 * Adds a value to <code>include</code> using a builder lambda.
@@ -267,6 +298,10 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies how many documents must contain a pair of terms before it is
+		 * considered to be a useful connection. This setting acts as a certainty
+		 * threshold.
+		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
 		public final Builder minDocCount(@Nullable Long value) {
@@ -275,6 +310,9 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Controls how many documents on a particular shard have to contain a pair of
+		 * terms before the connection is returned for global consideration.
+		 * <p>
 		 * API name: {@code shard_min_doc_count}
 		 */
 		public final Builder shardMinDocCount(@Nullable Long value) {
@@ -283,6 +321,8 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies the maximum number of vertex terms returned for each field.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {

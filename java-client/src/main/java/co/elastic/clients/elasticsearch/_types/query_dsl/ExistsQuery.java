@@ -69,7 +69,9 @@ public class ExistsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Name of the field you wish to search.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
@@ -93,7 +95,9 @@ public class ExistsQuery extends QueryBase implements QueryVariant {
 		private String field;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Name of the field you wish to search.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;

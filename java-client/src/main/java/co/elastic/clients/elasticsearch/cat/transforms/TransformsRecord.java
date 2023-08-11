@@ -192,7 +192,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the id
+	 * The transform identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -202,7 +202,10 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * transform state
+	 * The status of the transform. Returned values include: <code>aborting</code>:
+	 * The transform is aborting.
+	 * <code>failed: The transform failed. For more information about the failure, check the </code>reason<code>field.</code>indexing<code>: The transform is actively processing data and creating new documents. </code>started<code>: The transform is running but not actively indexing data. </code>stopped<code>: The transform is stopped. </code>stopping`:
+	 * The transform is stopping.
 	 * <p>
 	 * API name: {@code state}
 	 */
@@ -212,7 +215,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * checkpoint
+	 * The sequence number for the checkpoint.
 	 * <p>
 	 * API name: {@code checkpoint}
 	 */
@@ -222,7 +225,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the number of documents read from source indices and processed
+	 * The number of documents that have been processed from the source index of the
+	 * transform.
 	 * <p>
 	 * API name: {@code documents_processed}
 	 */
@@ -232,7 +236,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * progress of the checkpoint
+	 * The progress of the next checkpoint that is currently in progress.
 	 * <p>
 	 * API name: {@code checkpoint_progress}
 	 */
@@ -242,7 +246,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * last time transform searched for updates
+	 * The timestamp of the last search in the source indices. This field is shown
+	 * only if the transform is running.
 	 * <p>
 	 * API name: {@code last_search_time}
 	 */
@@ -252,7 +257,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * changes last detected time
+	 * The timestamp when changes were last detected in the source indices.
 	 * <p>
 	 * API name: {@code changes_last_detection_time}
 	 */
@@ -262,7 +267,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * transform creation time
+	 * The time the transform was created.
 	 * <p>
 	 * API name: {@code create_time}
 	 */
@@ -272,7 +277,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the version of Elasticsearch when the transform was created
+	 * The version of Elasticsearch that existed on the node when the transform was
+	 * created.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -282,7 +288,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * source index
+	 * The source indices for the transform.
 	 * <p>
 	 * API name: {@code source_index}
 	 */
@@ -292,7 +298,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * destination index
+	 * The destination index for the transform.
 	 * <p>
 	 * API name: {@code dest_index}
 	 */
@@ -302,7 +308,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * transform pipeline
+	 * The unique identifier for the ingest pipeline.
 	 * <p>
 	 * API name: {@code pipeline}
 	 */
@@ -312,7 +318,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * description
+	 * The description of the transform.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -322,7 +328,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * batch or continuous transform
+	 * The type of transform: <code>batch</code> or <code>continuous</code>.
 	 * <p>
 	 * API name: {@code transform_type}
 	 */
@@ -332,7 +338,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * frequency of transform
+	 * The interval between checks for changes in the source indices when the
+	 * transform is running continuously.
 	 * <p>
 	 * API name: {@code frequency}
 	 */
@@ -342,7 +349,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * max page search size
+	 * The initial page size that is used for the composite aggregation for each
+	 * checkpoint.
 	 * <p>
 	 * API name: {@code max_page_search_size}
 	 */
@@ -352,7 +360,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * docs per second
+	 * The number of input documents per second.
 	 * <p>
 	 * API name: {@code docs_per_second}
 	 */
@@ -362,7 +370,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * reason for the current state
+	 * If a transform has a <code>failed</code> state, these details describe the
+	 * reason for failure.
 	 * <p>
 	 * API name: {@code reason}
 	 */
@@ -372,7 +381,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total number of search phases
+	 * The total number of search operations on the source index for the transform.
 	 * <p>
 	 * API name: {@code search_total}
 	 */
@@ -382,7 +391,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total number of search failures
+	 * The total number of search failures.
 	 * <p>
 	 * API name: {@code search_failure}
 	 */
@@ -392,7 +401,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total search time
+	 * The total amount of search time, in milliseconds.
 	 * <p>
 	 * API name: {@code search_time}
 	 */
@@ -402,7 +411,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total number of index phases done by the transform
+	 * The total number of index operations done by the transform.
 	 * <p>
 	 * API name: {@code index_total}
 	 */
@@ -412,7 +421,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total number of index failures
+	 * The total number of indexing failures.
 	 * <p>
 	 * API name: {@code index_failure}
 	 */
@@ -422,7 +431,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total time spent indexing documents
+	 * The total time spent indexing documents, in milliseconds.
 	 * <p>
 	 * API name: {@code index_time}
 	 */
@@ -432,7 +441,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the number of documents written to the destination index
+	 * The number of documents that have been indexed into the destination index for
+	 * the transform.
 	 * <p>
 	 * API name: {@code documents_indexed}
 	 */
@@ -442,7 +452,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total time spent deleting documents
+	 * The total time spent deleting documents, in milliseconds.
 	 * <p>
 	 * API name: {@code delete_time}
 	 */
@@ -452,7 +462,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the number of documents deleted from the destination index
+	 * The number of documents deleted from the destination index due to the
+	 * retention policy for the transform.
 	 * <p>
 	 * API name: {@code documents_deleted}
 	 */
@@ -462,7 +473,10 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the number of times the transform has been triggered
+	 * The number of times the transform has been triggered by the scheduler. For
+	 * example, the scheduler triggers the transform indexer to check for updates or
+	 * ingest new data at an interval specified in the <code>frequency</code>
+	 * property.
 	 * <p>
 	 * API name: {@code trigger_count}
 	 */
@@ -472,7 +486,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the number of pages processed
+	 * The number of search or bulk index operations processed. Documents are
+	 * processed in batches instead of individually.
 	 * <p>
 	 * API name: {@code pages_processed}
 	 */
@@ -482,7 +497,7 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the total time spent processing documents
+	 * The total time spent processing results, in milliseconds.
 	 * <p>
 	 * API name: {@code processing_time}
 	 */
@@ -492,7 +507,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * exponential average checkpoint processing time (milliseconds)
+	 * The exponential moving average of the duration of the checkpoint, in
+	 * milliseconds.
 	 * <p>
 	 * API name: {@code checkpoint_duration_time_exp_avg}
 	 */
@@ -502,7 +518,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * exponential average number of documents indexed
+	 * The exponential moving average of the number of new documents that have been
+	 * indexed.
 	 * <p>
 	 * API name: {@code indexed_documents_exp_avg}
 	 */
@@ -512,7 +529,8 @@ public class TransformsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * exponential average number of documents processed
+	 * The exponential moving average of the number of documents that have been
+	 * processed.
 	 * <p>
 	 * API name: {@code processed_documents_exp_avg}
 	 */
@@ -812,7 +830,7 @@ public class TransformsRecord implements JsonpSerializable {
 		private String processedDocumentsExpAvg;
 
 		/**
-		 * the id
+		 * The transform identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -822,7 +840,10 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * transform state
+		 * The status of the transform. Returned values include: <code>aborting</code>:
+		 * The transform is aborting.
+		 * <code>failed: The transform failed. For more information about the failure, check the </code>reason<code>field.</code>indexing<code>: The transform is actively processing data and creating new documents. </code>started<code>: The transform is running but not actively indexing data. </code>stopped<code>: The transform is stopped. </code>stopping`:
+		 * The transform is stopping.
 		 * <p>
 		 * API name: {@code state}
 		 */
@@ -832,7 +853,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * checkpoint
+		 * The sequence number for the checkpoint.
 		 * <p>
 		 * API name: {@code checkpoint}
 		 */
@@ -842,7 +863,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the number of documents read from source indices and processed
+		 * The number of documents that have been processed from the source index of the
+		 * transform.
 		 * <p>
 		 * API name: {@code documents_processed}
 		 */
@@ -852,7 +874,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * progress of the checkpoint
+		 * The progress of the next checkpoint that is currently in progress.
 		 * <p>
 		 * API name: {@code checkpoint_progress}
 		 */
@@ -862,7 +884,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * last time transform searched for updates
+		 * The timestamp of the last search in the source indices. This field is shown
+		 * only if the transform is running.
 		 * <p>
 		 * API name: {@code last_search_time}
 		 */
@@ -872,7 +895,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * changes last detected time
+		 * The timestamp when changes were last detected in the source indices.
 		 * <p>
 		 * API name: {@code changes_last_detection_time}
 		 */
@@ -882,7 +905,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * transform creation time
+		 * The time the transform was created.
 		 * <p>
 		 * API name: {@code create_time}
 		 */
@@ -892,7 +915,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the version of Elasticsearch when the transform was created
+		 * The version of Elasticsearch that existed on the node when the transform was
+		 * created.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -902,7 +926,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * source index
+		 * The source indices for the transform.
 		 * <p>
 		 * API name: {@code source_index}
 		 */
@@ -912,7 +936,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * destination index
+		 * The destination index for the transform.
 		 * <p>
 		 * API name: {@code dest_index}
 		 */
@@ -922,7 +946,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * transform pipeline
+		 * The unique identifier for the ingest pipeline.
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
@@ -932,7 +956,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * description
+		 * The description of the transform.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -942,7 +966,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * batch or continuous transform
+		 * The type of transform: <code>batch</code> or <code>continuous</code>.
 		 * <p>
 		 * API name: {@code transform_type}
 		 */
@@ -952,7 +976,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * frequency of transform
+		 * The interval between checks for changes in the source indices when the
+		 * transform is running continuously.
 		 * <p>
 		 * API name: {@code frequency}
 		 */
@@ -962,7 +987,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * max page search size
+		 * The initial page size that is used for the composite aggregation for each
+		 * checkpoint.
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
@@ -972,7 +998,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * docs per second
+		 * The number of input documents per second.
 		 * <p>
 		 * API name: {@code docs_per_second}
 		 */
@@ -982,7 +1008,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * reason for the current state
+		 * If a transform has a <code>failed</code> state, these details describe the
+		 * reason for failure.
 		 * <p>
 		 * API name: {@code reason}
 		 */
@@ -992,7 +1019,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total number of search phases
+		 * The total number of search operations on the source index for the transform.
 		 * <p>
 		 * API name: {@code search_total}
 		 */
@@ -1002,7 +1029,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total number of search failures
+		 * The total number of search failures.
 		 * <p>
 		 * API name: {@code search_failure}
 		 */
@@ -1012,7 +1039,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total search time
+		 * The total amount of search time, in milliseconds.
 		 * <p>
 		 * API name: {@code search_time}
 		 */
@@ -1022,7 +1049,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total number of index phases done by the transform
+		 * The total number of index operations done by the transform.
 		 * <p>
 		 * API name: {@code index_total}
 		 */
@@ -1032,7 +1059,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total number of index failures
+		 * The total number of indexing failures.
 		 * <p>
 		 * API name: {@code index_failure}
 		 */
@@ -1042,7 +1069,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total time spent indexing documents
+		 * The total time spent indexing documents, in milliseconds.
 		 * <p>
 		 * API name: {@code index_time}
 		 */
@@ -1052,7 +1079,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the number of documents written to the destination index
+		 * The number of documents that have been indexed into the destination index for
+		 * the transform.
 		 * <p>
 		 * API name: {@code documents_indexed}
 		 */
@@ -1062,7 +1090,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total time spent deleting documents
+		 * The total time spent deleting documents, in milliseconds.
 		 * <p>
 		 * API name: {@code delete_time}
 		 */
@@ -1072,7 +1100,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the number of documents deleted from the destination index
+		 * The number of documents deleted from the destination index due to the
+		 * retention policy for the transform.
 		 * <p>
 		 * API name: {@code documents_deleted}
 		 */
@@ -1082,7 +1111,10 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the number of times the transform has been triggered
+		 * The number of times the transform has been triggered by the scheduler. For
+		 * example, the scheduler triggers the transform indexer to check for updates or
+		 * ingest new data at an interval specified in the <code>frequency</code>
+		 * property.
 		 * <p>
 		 * API name: {@code trigger_count}
 		 */
@@ -1092,7 +1124,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the number of pages processed
+		 * The number of search or bulk index operations processed. Documents are
+		 * processed in batches instead of individually.
 		 * <p>
 		 * API name: {@code pages_processed}
 		 */
@@ -1102,7 +1135,7 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the total time spent processing documents
+		 * The total time spent processing results, in milliseconds.
 		 * <p>
 		 * API name: {@code processing_time}
 		 */
@@ -1112,7 +1145,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * exponential average checkpoint processing time (milliseconds)
+		 * The exponential moving average of the duration of the checkpoint, in
+		 * milliseconds.
 		 * <p>
 		 * API name: {@code checkpoint_duration_time_exp_avg}
 		 */
@@ -1122,7 +1156,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * exponential average number of documents indexed
+		 * The exponential moving average of the number of new documents that have been
+		 * indexed.
 		 * <p>
 		 * API name: {@code indexed_documents_exp_avg}
 		 */
@@ -1132,7 +1167,8 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * exponential average number of documents processed
+		 * The exponential moving average of the number of documents that have been
+		 * processed.
 		 * <p>
 		 * API name: {@code processed_documents_exp_avg}
 		 */

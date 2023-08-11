@@ -69,6 +69,8 @@ public class InlineScript extends ScriptBase {
 	}
 
 	/**
+	 * Specifies the language the script is written in.
+	 * <p>
 	 * API name: {@code lang}
 	 */
 	@Nullable
@@ -84,7 +86,9 @@ public class InlineScript extends ScriptBase {
 	}
 
 	/**
-	 * Required - API name: {@code source}
+	 * Required - The script source.
+	 * <p>
+	 * API name: {@code source}
 	 */
 	public final String source() {
 		return this.source;
@@ -130,6 +134,8 @@ public class InlineScript extends ScriptBase {
 		private String source;
 
 		/**
+		 * Specifies the language the script is written in.
+		 * <p>
 		 * API name: {@code lang}
 		 */
 		public final Builder lang(@Nullable String value) {
@@ -138,6 +144,8 @@ public class InlineScript extends ScriptBase {
 		}
 
 		/**
+		 * Specifies the language the script is written in.
+		 * <p>
 		 * API name: {@code lang}
 		 */
 		public final Builder lang(@Nullable ScriptLanguage value) {
@@ -166,7 +174,9 @@ public class InlineScript extends ScriptBase {
 		}
 
 		/**
-		 * Required - API name: {@code source}
+		 * Required - The script source.
+		 * <p>
+		 * API name: {@code source}
 		 */
 		public final Builder source(String value) {
 			this.source = value;

@@ -91,6 +91,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Numeric field containing the number of matching terms required to return a
+	 * document.
+	 * <p>
 	 * API name: {@code minimum_should_match_field}
 	 */
 	@Nullable
@@ -99,6 +102,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Custom script containing the number of matching terms required to return a
+	 * document.
+	 * <p>
 	 * API name: {@code minimum_should_match_script}
 	 */
 	@Nullable
@@ -107,7 +113,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code terms}
+	 * Required - Array of terms you wish to find in the provided field.
+	 * <p>
+	 * API name: {@code terms}
 	 */
 	public final List<String> terms() {
 		return this.terms;
@@ -168,6 +176,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		private List<String> terms;
 
 		/**
+		 * Numeric field containing the number of matching terms required to return a
+		 * document.
+		 * <p>
 		 * API name: {@code minimum_should_match_field}
 		 */
 		public final Builder minimumShouldMatchField(@Nullable String value) {
@@ -176,6 +187,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Custom script containing the number of matching terms required to return a
+		 * document.
+		 * <p>
 		 * API name: {@code minimum_should_match_script}
 		 */
 		public final Builder minimumShouldMatchScript(@Nullable Script value) {
@@ -184,6 +198,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Custom script containing the number of matching terms required to return a
+		 * document.
+		 * <p>
 		 * API name: {@code minimum_should_match_script}
 		 */
 		public final Builder minimumShouldMatchScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -191,7 +208,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code terms}
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 */
@@ -201,7 +220,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code terms}
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
 		 * <p>
 		 * Adds one or more values to <code>terms</code>.
 		 */

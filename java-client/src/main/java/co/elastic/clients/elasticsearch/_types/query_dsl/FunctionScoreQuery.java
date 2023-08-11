@@ -91,6 +91,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Defines how he newly computed score is combined with the score of the query
+	 * <p>
 	 * API name: {@code boost_mode}
 	 */
 	@Nullable
@@ -99,6 +101,9 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * One or more functions that compute a new score for each document returned by
+	 * the query.
+	 * <p>
 	 * API name: {@code functions}
 	 */
 	public final List<FunctionScore> functions() {
@@ -106,6 +111,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Restricts the new score to not exceed the provided limit.
+	 * <p>
 	 * API name: {@code max_boost}
 	 */
 	@Nullable
@@ -114,6 +121,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Excludes documents that do not meet the provided score threshold.
+	 * <p>
 	 * API name: {@code min_score}
 	 */
 	@Nullable
@@ -122,6 +131,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * A query that determines the documents for which a new score is computed.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -130,6 +141,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Specifies how the computed scores are combined
+	 * <p>
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
@@ -204,6 +217,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		private FunctionScoreMode scoreMode;
 
 		/**
+		 * Defines how he newly computed score is combined with the score of the query
+		 * <p>
 		 * API name: {@code boost_mode}
 		 */
 		public final Builder boostMode(@Nullable FunctionBoostMode value) {
@@ -212,6 +227,9 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * One or more functions that compute a new score for each document returned by
+		 * the query.
+		 * <p>
 		 * API name: {@code functions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>functions</code>.
@@ -222,6 +240,9 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * One or more functions that compute a new score for each document returned by
+		 * the query.
+		 * <p>
 		 * API name: {@code functions}
 		 * <p>
 		 * Adds one or more values to <code>functions</code>.
@@ -232,6 +253,9 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * One or more functions that compute a new score for each document returned by
+		 * the query.
+		 * <p>
 		 * API name: {@code functions}
 		 * <p>
 		 * Adds a value to <code>functions</code> using a builder lambda.
@@ -241,6 +265,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Restricts the new score to not exceed the provided limit.
+		 * <p>
 		 * API name: {@code max_boost}
 		 */
 		public final Builder maxBoost(@Nullable Double value) {
@@ -249,6 +275,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Excludes documents that do not meet the provided score threshold.
+		 * <p>
 		 * API name: {@code min_score}
 		 */
 		public final Builder minScore(@Nullable Double value) {
@@ -257,6 +285,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * A query that determines the documents for which a new score is computed.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -265,6 +295,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * A query that determines the documents for which a new score is computed.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -272,6 +304,8 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Specifies how the computed scores are combined
+		 * <p>
 		 * API name: {@code score_mode}
 		 */
 		public final Builder scoreMode(@Nullable FunctionScoreMode value) {

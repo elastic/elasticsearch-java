@@ -102,6 +102,8 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * Analyzer used to normalize the term.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -110,6 +112,8 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * Maximum edit distance allowed for matching.
+	 * <p>
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
@@ -118,6 +122,8 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * Number of beginning characters left unchanged when creating expansions.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -126,13 +132,18 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
-	 * Required - API name: {@code term}
+	 * Required - The term to match.
+	 * <p>
+	 * API name: {@code term}
 	 */
 	public final String term() {
 		return this.term;
 	}
 
 	/**
+	 * Indicates whether edits include transpositions of two adjacent characters
+	 * (for example, <code>ab</code> to <code>ba</code>).
+	 * <p>
 	 * API name: {@code transpositions}
 	 */
 	@Nullable
@@ -141,6 +152,10 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * If specified, match intervals from this field rather than the top-level
+	 * field. The <code>term</code> is normalized using the search analyzer from
+	 * this field, unless <code>analyzer</code> is specified separately.
+	 * <p>
 	 * API name: {@code use_field}
 	 */
 	@Nullable
@@ -220,6 +235,8 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		private String useField;
 
 		/**
+		 * Analyzer used to normalize the term.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -228,6 +245,8 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Maximum edit distance allowed for matching.
+		 * <p>
 		 * API name: {@code fuzziness}
 		 */
 		public final Builder fuzziness(@Nullable String value) {
@@ -236,6 +255,8 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Number of beginning characters left unchanged when creating expansions.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -244,7 +265,9 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
-		 * Required - API name: {@code term}
+		 * Required - The term to match.
+		 * <p>
+		 * API name: {@code term}
 		 */
 		public final Builder term(String value) {
 			this.term = value;
@@ -252,6 +275,9 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Indicates whether edits include transpositions of two adjacent characters
+		 * (for example, <code>ab</code> to <code>ba</code>).
+		 * <p>
 		 * API name: {@code transpositions}
 		 */
 		public final Builder transpositions(@Nullable Boolean value) {
@@ -260,6 +286,10 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * If specified, match intervals from this field rather than the top-level
+		 * field. The <code>term</code> is normalized using the search analyzer from
+		 * this field, unless <code>analyzer</code> is specified separately.
+		 * <p>
 		 * API name: {@code use_field}
 		 */
 		public final Builder useField(@Nullable String value) {

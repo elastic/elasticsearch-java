@@ -104,6 +104,8 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * Creation time for the API key in milliseconds.
+	 * <p>
 	 * API name: {@code creation}
 	 */
 	@Nullable
@@ -112,6 +114,8 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * Expiration time for the API key in milliseconds.
+	 * <p>
 	 * API name: {@code expiration}
 	 */
 	@Nullable
@@ -120,13 +124,18 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - Id for the API key
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
+	 * Invalidation status for the API key. If the key has been invalidated, it has
+	 * a value of <code>true</code>. Otherwise, it is <code>false</code>.
+	 * <p>
 	 * API name: {@code invalidated}
 	 */
 	@Nullable
@@ -135,13 +144,17 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - Name of the API key.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
 	}
 
 	/**
+	 * Realm name of the principal for which this API key was created.
+	 * <p>
 	 * API name: {@code realm}
 	 */
 	@Nullable
@@ -150,6 +163,8 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * Principal for which this API key was created
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -158,6 +173,8 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * Metadata of the API key
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	public final Map<String, JsonData> metadata() {
@@ -165,6 +182,10 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * The role descriptors assigned to this API key when it was created or last
+	 * updated. An empty role descriptor means the API key inherits the owner user’s
+	 * permissions.
+	 * <p>
 	 * API name: {@code role_descriptors}
 	 */
 	public final Map<String, RoleDescriptor> roleDescriptors() {
@@ -172,6 +193,11 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * The owner user’s permissions associated with the API key. It is a
+	 * point-in-time snapshot captured at creation and subsequent updates. An API
+	 * key’s effective permissions are an intersection of its assigned privileges
+	 * and the owner user’s permissions.
+	 * <p>
 	 * API name: {@code limited_by}
 	 */
 	public final List<Map<String, RoleDescriptor>> limitedBy() {
@@ -324,6 +350,8 @@ public class ApiKey implements JsonpSerializable {
 		private List<FieldValue> sort;
 
 		/**
+		 * Creation time for the API key in milliseconds.
+		 * <p>
 		 * API name: {@code creation}
 		 */
 		public final Builder creation(@Nullable Long value) {
@@ -332,6 +360,8 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Expiration time for the API key in milliseconds.
+		 * <p>
 		 * API name: {@code expiration}
 		 */
 		public final Builder expiration(@Nullable Long value) {
@@ -340,7 +370,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - Id for the API key
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -348,6 +380,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Invalidation status for the API key. If the key has been invalidated, it has
+		 * a value of <code>true</code>. Otherwise, it is <code>false</code>.
+		 * <p>
 		 * API name: {@code invalidated}
 		 */
 		public final Builder invalidated(@Nullable Boolean value) {
@@ -356,7 +391,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - Name of the API key.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
@@ -364,6 +401,8 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Realm name of the principal for which this API key was created.
+		 * <p>
 		 * API name: {@code realm}
 		 */
 		public final Builder realm(@Nullable String value) {
@@ -372,6 +411,8 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Principal for which this API key was created
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {
@@ -380,6 +421,8 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Metadata of the API key
+		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
@@ -390,6 +433,8 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Metadata of the API key
+		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds an entry to <code>metadata</code>.
@@ -400,6 +445,10 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The role descriptors assigned to this API key when it was created or last
+		 * updated. An empty role descriptor means the API key inherits the owner user’s
+		 * permissions.
+		 * <p>
 		 * API name: {@code role_descriptors}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>roleDescriptors</code>.
@@ -410,6 +459,10 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The role descriptors assigned to this API key when it was created or last
+		 * updated. An empty role descriptor means the API key inherits the owner user’s
+		 * permissions.
+		 * <p>
 		 * API name: {@code role_descriptors}
 		 * <p>
 		 * Adds an entry to <code>roleDescriptors</code>.
@@ -420,6 +473,10 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The role descriptors assigned to this API key when it was created or last
+		 * updated. An empty role descriptor means the API key inherits the owner user’s
+		 * permissions.
+		 * <p>
 		 * API name: {@code role_descriptors}
 		 * <p>
 		 * Adds an entry to <code>roleDescriptors</code> using a builder lambda.
@@ -430,6 +487,11 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The owner user’s permissions associated with the API key. It is a
+		 * point-in-time snapshot captured at creation and subsequent updates. An API
+		 * key’s effective permissions are an intersection of its assigned privileges
+		 * and the owner user’s permissions.
+		 * <p>
 		 * API name: {@code limited_by}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>limitedBy</code>.
@@ -440,6 +502,11 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The owner user’s permissions associated with the API key. It is a
+		 * point-in-time snapshot captured at creation and subsequent updates. An API
+		 * key’s effective permissions are an intersection of its assigned privileges
+		 * and the owner user’s permissions.
+		 * <p>
 		 * API name: {@code limited_by}
 		 * <p>
 		 * Adds one or more values to <code>limitedBy</code>.

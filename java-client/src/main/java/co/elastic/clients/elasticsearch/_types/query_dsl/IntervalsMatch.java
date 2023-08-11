@@ -102,6 +102,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * Analyzer used to analyze terms in the query.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -110,6 +112,9 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * Maximum number of positions between the matching terms. Terms further apart
+	 * than this are not considered matches.
+	 * <p>
 	 * API name: {@code max_gaps}
 	 */
 	@Nullable
@@ -118,6 +123,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * If <code>true</code>, matching terms must appear in their specified order.
+	 * <p>
 	 * API name: {@code ordered}
 	 */
 	@Nullable
@@ -126,13 +133,19 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Text you wish to find in the provided field.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * If specified, match intervals from this field rather than the top-level
+	 * field. The <code>term</code> is normalized using the search analyzer from
+	 * this field, unless <code>analyzer</code> is specified separately.
+	 * <p>
 	 * API name: {@code use_field}
 	 */
 	@Nullable
@@ -141,6 +154,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * An optional interval filter.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -220,6 +235,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		private IntervalsFilter filter;
 
 		/**
+		 * Analyzer used to analyze terms in the query.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -228,6 +245,9 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Maximum number of positions between the matching terms. Terms further apart
+		 * than this are not considered matches.
+		 * <p>
 		 * API name: {@code max_gaps}
 		 */
 		public final Builder maxGaps(@Nullable Integer value) {
@@ -236,6 +256,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * If <code>true</code>, matching terms must appear in their specified order.
+		 * <p>
 		 * API name: {@code ordered}
 		 */
 		public final Builder ordered(@Nullable Boolean value) {
@@ -244,7 +266,9 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Text you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -252,6 +276,10 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * If specified, match intervals from this field rather than the top-level
+		 * field. The <code>term</code> is normalized using the search analyzer from
+		 * this field, unless <code>analyzer</code> is specified separately.
+		 * <p>
 		 * API name: {@code use_field}
 		 */
 		public final Builder useField(@Nullable String value) {
@@ -260,6 +288,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * An optional interval filter.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable IntervalsFilter value) {
@@ -268,6 +298,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * An optional interval filter.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {

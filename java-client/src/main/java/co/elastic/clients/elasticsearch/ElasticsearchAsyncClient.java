@@ -129,6 +129,7 @@ import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationAsyncCli
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlAsyncClient;
 import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringAsyncClient;
 import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesAsyncClient;
+import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetAsyncClient;
 import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupAsyncClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationAsyncClient;
 import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsAsyncClient;
@@ -138,6 +139,7 @@ import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmAsyncClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotAsyncClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
 import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslAsyncClient;
+import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsAsyncClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksAsyncClient;
 import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformAsyncClient;
 import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherAsyncClient;
@@ -256,6 +258,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchNodesAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchQueryRulesetAsyncClient queryRuleset() {
+		return new ElasticsearchQueryRulesetAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchRollupAsyncClient rollup() {
 		return new ElasticsearchRollupAsyncClient(this.transport, this.transportOptions);
 	}
@@ -290,6 +296,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchSslAsyncClient ssl() {
 		return new ElasticsearchSslAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchSynonymsAsyncClient synonyms() {
+		return new ElasticsearchSynonymsAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTasksAsyncClient tasks() {

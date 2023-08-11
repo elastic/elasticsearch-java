@@ -73,6 +73,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Queries using a pre-indexed shape.
+	 * <p>
 	 * API name: {@code indexed_shape}
 	 */
 	@Nullable
@@ -81,6 +83,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Spatial relation between the query shape and the document shape.
+	 * <p>
 	 * API name: {@code relation}
 	 */
 	@Nullable
@@ -89,6 +93,9 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Queries using an inline shape definition in GeoJSON or Well Known Text (WKT)
+	 * format.
+	 * <p>
 	 * API name: {@code shape}
 	 */
 	@Nullable
@@ -146,6 +153,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		private JsonData shape;
 
 		/**
+		 * Queries using a pre-indexed shape.
+		 * <p>
 		 * API name: {@code indexed_shape}
 		 */
 		public final Builder indexedShape(@Nullable FieldLookup value) {
@@ -154,6 +163,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Queries using a pre-indexed shape.
+		 * <p>
 		 * API name: {@code indexed_shape}
 		 */
 		public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
@@ -161,6 +172,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Spatial relation between the query shape and the document shape.
+		 * <p>
 		 * API name: {@code relation}
 		 */
 		public final Builder relation(@Nullable GeoShapeRelation value) {
@@ -169,6 +182,9 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Queries using an inline shape definition in GeoJSON or Well Known Text (WKT)
+		 * format.
+		 * <p>
 		 * API name: {@code shape}
 		 */
 		public final Builder shape(@Nullable JsonData value) {

@@ -96,6 +96,8 @@ public class LikeDocument implements JsonpSerializable {
 	}
 
 	/**
+	 * A document not present in the index.
+	 * <p>
 	 * API name: {@code doc}
 	 */
 	@Nullable
@@ -111,6 +113,8 @@ public class LikeDocument implements JsonpSerializable {
 	}
 
 	/**
+	 * ID of a document.
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	@Nullable
@@ -119,6 +123,8 @@ public class LikeDocument implements JsonpSerializable {
 	}
 
 	/**
+	 * Index of a document.
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	@Nullable
@@ -258,6 +264,8 @@ public class LikeDocument implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
+		 * A document not present in the index.
+		 * <p>
 		 * API name: {@code doc}
 		 */
 		public final Builder doc(@Nullable JsonData value) {
@@ -286,6 +294,8 @@ public class LikeDocument implements JsonpSerializable {
 		}
 
 		/**
+		 * ID of a document.
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public final Builder id(@Nullable String value) {
@@ -294,6 +304,8 @@ public class LikeDocument implements JsonpSerializable {
 		}
 
 		/**
+		 * Index of a document.
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public final Builder index(@Nullable String value) {

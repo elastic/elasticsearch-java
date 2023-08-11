@@ -88,6 +88,9 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 	}
 
 	/**
+	 * Analyzer used to analyze the <code>pattern</code>. Defaults to the top-level
+	 * field's analyzer.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -96,13 +99,19 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 	}
 
 	/**
-	 * Required - API name: {@code pattern}
+	 * Required - Wildcard pattern used to find matching terms.
+	 * <p>
+	 * API name: {@code pattern}
 	 */
 	public final String pattern() {
 		return this.pattern;
 	}
 
 	/**
+	 * If specified, match intervals from this field rather than the top-level
+	 * field. The <code>pattern</code> is normalized using the search analyzer from
+	 * this field, unless <code>analyzer</code> is specified separately.
+	 * <p>
 	 * API name: {@code use_field}
 	 */
 	@Nullable
@@ -158,6 +167,9 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 		private String useField;
 
 		/**
+		 * Analyzer used to analyze the <code>pattern</code>. Defaults to the top-level
+		 * field's analyzer.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -166,7 +178,9 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 		}
 
 		/**
-		 * Required - API name: {@code pattern}
+		 * Required - Wildcard pattern used to find matching terms.
+		 * <p>
+		 * API name: {@code pattern}
 		 */
 		public final Builder pattern(String value) {
 			this.pattern = value;
@@ -174,6 +188,10 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 		}
 
 		/**
+		 * If specified, match intervals from this field rather than the top-level
+		 * field. The <code>pattern</code> is normalized using the search analyzer from
+		 * this field, unless <code>analyzer</code> is specified separately.
+		 * <p>
 		 * API name: {@code use_field}
 		 */
 		public final Builder useField(@Nullable String value) {

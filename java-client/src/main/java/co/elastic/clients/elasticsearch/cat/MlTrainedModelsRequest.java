@@ -97,9 +97,13 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no trained models. (This
-	 * includes <code>_all</code> string or when no trained models have been
-	 * specified)
+	 * Specifies what to do when the request: contains wildcard expressions and
+	 * there are no models that match; contains the <code>_all</code> string or no
+	 * identifiers and there are no matches; contains wildcard expressions and there
+	 * are only partial matches. If <code>true</code>, the API returns an empty
+	 * array when there are no matches and the subset of results when there are
+	 * partial matches. If <code>false</code>, the API returns a 404 status code
+	 * when there are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -109,7 +113,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
@@ -119,7 +123,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * skips a number of trained models
+	 * Skips the specified number of transforms.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -129,7 +133,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Comma-separated list of column names to display
+	 * A comma-separated list of column names to display.
 	 * <p>
 	 * API name: {@code h}
 	 */
@@ -138,7 +142,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The ID of the trained models stats to fetch
+	 * A unique identifier for the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -148,7 +152,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Comma-separated list of column names or column aliases to sort by
+	 * A comma-separated list of column names or aliases used to sort the response.
 	 * <p>
 	 * API name: {@code s}
 	 */
@@ -157,7 +161,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * specifies a max number of trained models to get
+	 * The maximum number of transforms to display.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -197,9 +201,13 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		private Integer size;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no trained models. (This
-		 * includes <code>_all</code> string or when no trained models have been
-		 * specified)
+		 * Specifies what to do when the request: contains wildcard expressions and
+		 * there are no models that match; contains the <code>_all</code> string or no
+		 * identifiers and there are no matches; contains wildcard expressions and there
+		 * are only partial matches. If <code>true</code>, the API returns an empty
+		 * array when there are no matches and the subset of results when there are
+		 * partial matches. If <code>false</code>, the API returns a 404 status code
+		 * when there are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -209,7 +217,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The unit in which to display byte values
+		 * The unit used to display byte values.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
@@ -219,7 +227,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * skips a number of trained models
+		 * Skips the specified number of transforms.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -229,7 +237,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list of column names to display
+		 * A comma-separated list of column names to display.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -241,7 +249,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list of column names to display
+		 * A comma-separated list of column names to display.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -253,7 +261,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The ID of the trained models stats to fetch
+		 * A unique identifier for the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -263,7 +271,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list of column names or column aliases to sort by
+		 * A comma-separated list of column names or aliases used to sort the response.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>
@@ -275,7 +283,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list of column names or column aliases to sort by
+		 * A comma-separated list of column names or aliases used to sort the response.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>
@@ -287,7 +295,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * specifies a max number of trained models to get
+		 * The maximum number of transforms to display.
 		 * <p>
 		 * API name: {@code size}
 		 */

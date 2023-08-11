@@ -82,6 +82,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Data stream or index for the action. Supports wildcards (<code>*</code>).
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -90,6 +92,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	public final List<String> indices() {
@@ -97,6 +101,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the alias must exist to perform the action.
+	 * <p>
 	 * API name: {@code must_exist}
 	 */
 	@Nullable
@@ -160,6 +166,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		private Boolean mustExist;
 
 		/**
+		 * Data stream or index for the action. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -168,6 +176,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
@@ -178,6 +188,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
@@ -188,6 +200,8 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the alias must exist to perform the action.
+		 * <p>
 		 * API name: {@code must_exist}
 		 */
 		public final Builder mustExist(@Nullable Boolean value) {

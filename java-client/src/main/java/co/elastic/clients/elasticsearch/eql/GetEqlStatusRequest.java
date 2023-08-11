@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
 // typedef: eql.get_status.Request
 
 /**
- * Returns the status of a previously submitted async or stored Event Query
- * Language (EQL) search
+ * Returns the current status for an async EQL search or a stored synchronous
+ * EQL search without returning results.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.get_status.Request">API
  *      specification</a>

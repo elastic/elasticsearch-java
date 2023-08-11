@@ -35,10 +35,20 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum RangeRelation implements JsonEnum {
+	/**
+	 * Matches documents with a range field value entirely within the query’s range.
+	 */
 	Within("within"),
 
+	/**
+	 * Matches documents with a range field value that entirely contains the query’s
+	 * range.
+	 */
 	Contains("contains"),
 
+	/**
+	 * Matches documents with a range field value that intersects the query’s range.
+	 */
 	Intersects("intersects"),
 
 	;

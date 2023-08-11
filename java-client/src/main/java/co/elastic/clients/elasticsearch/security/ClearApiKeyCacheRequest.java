@@ -45,7 +45,8 @@ import javax.annotation.Nullable;
 // typedef: security.clear_api_key_cache.Request
 
 /**
- * Clear a subset or all entries from the API key cache.
+ * Evicts a subset of all entries from the API key cache. The cache is also
+ * automatically cleared on state changes of the security index.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.clear_api_key_cache.Request">API
@@ -68,7 +69,9 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of IDs of API keys to clear from the cache
+	 * Required - Comma-separated list of API key IDs to evict from the API key
+	 * cache. To evict all API keys, use <code>*</code>. Does not support other
+	 * wildcard patterns.
 	 * <p>
 	 * API name: {@code ids}
 	 */
@@ -88,7 +91,9 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		private List<String> ids;
 
 		/**
-		 * Required - A comma-separated list of IDs of API keys to clear from the cache
+		 * Required - Comma-separated list of API key IDs to evict from the API key
+		 * cache. To evict all API keys, use <code>*</code>. Does not support other
+		 * wildcard patterns.
 		 * <p>
 		 * API name: {@code ids}
 		 * <p>
@@ -100,7 +105,9 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of IDs of API keys to clear from the cache
+		 * Required - Comma-separated list of API key IDs to evict from the API key
+		 * cache. To evict all API keys, use <code>*</code>. Does not support other
+		 * wildcard patterns.
 		 * <p>
 		 * API name: {@code ids}
 		 * <p>

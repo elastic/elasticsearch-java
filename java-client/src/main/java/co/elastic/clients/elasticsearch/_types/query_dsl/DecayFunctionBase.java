@@ -58,6 +58,9 @@ public abstract class DecayFunctionBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Determines how the distance is calculated when a field used for computing the
+	 * decay contains multiple values.
+	 * <p>
 	 * API name: {@code multi_value_mode}
 	 */
 	@Nullable
@@ -95,6 +98,9 @@ public abstract class DecayFunctionBase implements JsonpSerializable {
 		private MultiValueMode multiValueMode;
 
 		/**
+		 * Determines how the distance is calculated when a field used for computing the
+		 * decay contains multiple values.
+		 * <p>
 		 * API name: {@code multi_value_mode}
 		 */
 		public final BuilderT multiValueMode(@Nullable MultiValueMode value) {

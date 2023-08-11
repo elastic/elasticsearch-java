@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 // typedef: indices.validate_query.Request
 
 /**
- * Allows a user to validate a potentially expensive query without executing it.
+ * Validates a potentially expensive query without executing it.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.validate_query.Request">API
  *      specification</a>
@@ -125,7 +125,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Execute validation on all shards instead of one random shard per index
+	 * If <code>true</code>, the validation is executed on all shards instead of one
+	 * random shard per index.
 	 * <p>
 	 * API name: {@code all_shards}
 	 */
@@ -135,9 +136,10 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -147,8 +149,7 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify whether wildcard and prefix queries should be analyzed (default:
-	 * false)
+	 * If <code>true</code>, wildcard and prefix queries are analyzed.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -158,7 +159,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The analyzer to use for the query string
+	 * Analyzer to use for the query string. This parameter can only be used when
+	 * the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -168,7 +170,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The default operator for query string query (AND or OR)
+	 * The default operator for query string query: <code>AND</code> or
+	 * <code>OR</code>.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -178,8 +181,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The field to use as default where no field prefix is given in the query
-	 * string
+	 * Field to use as default where no field prefix is given in the query string.
+	 * This parameter can only be used when the <code>q</code> query string
+	 * parameter is specified.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -189,8 +193,12 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -199,7 +207,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Return detailed information about the error
+	 * If <code>true</code>, the response returns detailed information if an error
+	 * has occurred.
 	 * <p>
 	 * API name: {@code explain}
 	 */
@@ -209,8 +218,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -220,8 +229,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of index names to restrict the operation; use
-	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * Comma-separated list of data streams, indices, and aliases to search.
+	 * Supports wildcards (<code>*</code>). To search all data streams or indices,
+	 * omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -230,8 +240,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify whether format-based query failures (such as providing text to a
-	 * numeric field) should be ignored
+	 * If <code>true</code>, format-based query failures (such as providing text to
+	 * a numeric field) in the query string will be ignored.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -241,7 +251,7 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Query in the Lucene query string syntax
+	 * Query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -251,6 +261,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Query in the Lucene query string syntax.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -259,8 +271,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Provide a more detailed explanation showing the actual Lucene query that will
-	 * be executed.
+	 * If <code>true</code>, returns a more detailed explanation showing the actual
+	 * Lucene query that will be executed.
 	 * <p>
 	 * API name: {@code rewrite}
 	 */
@@ -340,7 +352,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		private Boolean rewrite;
 
 		/**
-		 * Execute validation on all shards instead of one random shard per index
+		 * If <code>true</code>, the validation is executed on all shards instead of one
+		 * random shard per index.
 		 * <p>
 		 * API name: {@code all_shards}
 		 */
@@ -350,9 +363,10 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -362,8 +376,7 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify whether wildcard and prefix queries should be analyzed (default:
-		 * false)
+		 * If <code>true</code>, wildcard and prefix queries are analyzed.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -373,7 +386,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The analyzer to use for the query string
+		 * Analyzer to use for the query string. This parameter can only be used when
+		 * the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -383,7 +397,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The default operator for query string query (AND or OR)
+		 * The default operator for query string query: <code>AND</code> or
+		 * <code>OR</code>.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -393,8 +408,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The field to use as default where no field prefix is given in the query
-		 * string
+		 * Field to use as default where no field prefix is given in the query string.
+		 * This parameter can only be used when the <code>q</code> query string
+		 * parameter is specified.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -404,8 +420,12 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -417,8 +437,12 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -430,7 +454,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Return detailed information about the error
+		 * If <code>true</code>, the response returns detailed information if an error
+		 * has occurred.
 		 * <p>
 		 * API name: {@code explain}
 		 */
@@ -440,8 +465,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -451,8 +476,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of index names to restrict the operation; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (<code>*</code>). To search all data streams or indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -464,8 +490,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of index names to restrict the operation; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (<code>*</code>). To search all data streams or indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -477,8 +504,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify whether format-based query failures (such as providing text to a
-		 * numeric field) should be ignored
+		 * If <code>true</code>, format-based query failures (such as providing text to
+		 * a numeric field) in the query string will be ignored.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -488,7 +515,7 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Query in the Lucene query string syntax
+		 * Query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -498,6 +525,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Query in the Lucene query string syntax.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -506,6 +535,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Query in the Lucene query string syntax.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -513,8 +544,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Provide a more detailed explanation showing the actual Lucene query that will
-		 * be executed.
+		 * If <code>true</code>, returns a more detailed explanation showing the actual
+		 * Lucene query that will be executed.
 		 * <p>
 		 * API name: {@code rewrite}
 		 */

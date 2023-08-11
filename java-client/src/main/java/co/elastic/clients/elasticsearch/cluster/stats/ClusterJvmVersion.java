@@ -84,49 +84,65 @@ public class ClusterJvmVersion implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code bundled_jdk}
+	 * Required - Always <code>true</code>. All distributions come with a bundled
+	 * Java Development Kit (JDK).
+	 * <p>
+	 * API name: {@code bundled_jdk}
 	 */
 	public final boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - Total number of selected nodes using JVM.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code using_bundled_jdk}
+	 * Required - If <code>true</code>, a bundled JDK is in use by JVM.
+	 * <p>
+	 * API name: {@code using_bundled_jdk}
 	 */
 	public final boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * Required - Version of JVM used by one or more selected nodes.
+	 * <p>
+	 * API name: {@code version}
 	 */
 	public final String version() {
 		return this.version;
 	}
 
 	/**
-	 * Required - API name: {@code vm_name}
+	 * Required - Name of the JVM.
+	 * <p>
+	 * API name: {@code vm_name}
 	 */
 	public final String vmName() {
 		return this.vmName;
 	}
 
 	/**
-	 * Required - API name: {@code vm_vendor}
+	 * Required - Vendor of the JVM.
+	 * <p>
+	 * API name: {@code vm_vendor}
 	 */
 	public final String vmVendor() {
 		return this.vmVendor;
 	}
 
 	/**
-	 * Required - API name: {@code vm_version}
+	 * Required - Full version number of JVM. The full version number includes a
+	 * plus sign (+) followed by the build number.
+	 * <p>
+	 * API name: {@code vm_version}
 	 */
 	public final String vmVersion() {
 		return this.vmVersion;
@@ -193,7 +209,10 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		private String vmVersion;
 
 		/**
-		 * Required - API name: {@code bundled_jdk}
+		 * Required - Always <code>true</code>. All distributions come with a bundled
+		 * Java Development Kit (JDK).
+		 * <p>
+		 * API name: {@code bundled_jdk}
 		 */
 		public final Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
@@ -201,7 +220,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - Total number of selected nodes using JVM.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -209,7 +230,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code using_bundled_jdk}
+		 * Required - If <code>true</code>, a bundled JDK is in use by JVM.
+		 * <p>
+		 * API name: {@code using_bundled_jdk}
 		 */
 		public final Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
@@ -217,7 +240,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * Required - Version of JVM used by one or more selected nodes.
+		 * <p>
+		 * API name: {@code version}
 		 */
 		public final Builder version(String value) {
 			this.version = value;
@@ -225,7 +250,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vm_name}
+		 * Required - Name of the JVM.
+		 * <p>
+		 * API name: {@code vm_name}
 		 */
 		public final Builder vmName(String value) {
 			this.vmName = value;
@@ -233,7 +260,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vm_vendor}
+		 * Required - Vendor of the JVM.
+		 * <p>
+		 * API name: {@code vm_vendor}
 		 */
 		public final Builder vmVendor(String value) {
 			this.vmVendor = value;
@@ -241,7 +270,10 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vm_version}
+		 * Required - Full version number of JVM. The full version number includes a
+		 * plus sign (+) followed by the build number.
+		 * <p>
+		 * API name: {@code vm_version}
 		 */
 		public final Builder vmVersion(String value) {
 			this.vmVersion = value;

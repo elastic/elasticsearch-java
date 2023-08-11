@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete.Request
 
 /**
- * Deletes an index.
+ * Deletes one or more indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete.Request">API
  *      specification</a>
@@ -90,8 +90,10 @@ public class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Ignore if a wildcard expression resolves to no concrete indices (default:
-	 * false)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -101,8 +103,12 @@ public class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open, closed, or hidden
-	 * indices
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -111,7 +117,8 @@ public class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Ignore unavailable indexes (default: false)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -121,8 +128,11 @@ public class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of indices to delete; use <code>_all</code>
-	 * or <code>*</code> string to delete all indices
+	 * Required - Comma-separated list of indices to delete. You cannot specify
+	 * index aliases. By default, this parameter does not support wildcards
+	 * (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>,
+	 * set the <code>action.destructive_requires_name</code> cluster setting to
+	 * <code>false</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -131,7 +141,8 @@ public class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -141,7 +152,8 @@ public class DeleteIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -177,8 +189,10 @@ public class DeleteIndexRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Ignore if a wildcard expression resolves to no concrete indices (default:
-		 * false)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -188,8 +202,12 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open, closed, or hidden
-		 * indices
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -201,8 +219,12 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open, closed, or hidden
-		 * indices
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -214,7 +236,8 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Ignore unavailable indexes (default: false)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -224,8 +247,11 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
-		 * or <code>*</code> string to delete all indices
+		 * Required - Comma-separated list of indices to delete. You cannot specify
+		 * index aliases. By default, this parameter does not support wildcards
+		 * (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>,
+		 * set the <code>action.destructive_requires_name</code> cluster setting to
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -237,8 +263,11 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
-		 * or <code>*</code> string to delete all indices
+		 * Required - Comma-separated list of indices to delete. You cannot specify
+		 * index aliases. By default, this parameter does not support wildcards
+		 * (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>,
+		 * set the <code>action.destructive_requires_name</code> cluster setting to
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -250,7 +279,8 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -260,7 +290,8 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -269,7 +300,8 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -279,7 +311,8 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

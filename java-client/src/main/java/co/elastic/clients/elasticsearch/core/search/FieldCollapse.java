@@ -77,13 +77,17 @@ public class FieldCollapse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to collapse the result set on
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The number of inner hits and their sort order
+	 * <p>
 	 * API name: {@code inner_hits}
 	 */
 	public final List<InnerHits> innerHits() {
@@ -91,6 +95,9 @@ public class FieldCollapse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of concurrent requests allowed to retrieve the inner_hits per
+	 * group
+	 * <p>
 	 * API name: {@code max_concurrent_group_searches}
 	 */
 	@Nullable
@@ -167,7 +174,9 @@ public class FieldCollapse implements JsonpSerializable {
 		private FieldCollapse collapse;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to collapse the result set on
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -175,6 +184,8 @@ public class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of inner hits and their sort order
+		 * <p>
 		 * API name: {@code inner_hits}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>innerHits</code>.
@@ -185,6 +196,8 @@ public class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of inner hits and their sort order
+		 * <p>
 		 * API name: {@code inner_hits}
 		 * <p>
 		 * Adds one or more values to <code>innerHits</code>.
@@ -195,6 +208,8 @@ public class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of inner hits and their sort order
+		 * <p>
 		 * API name: {@code inner_hits}
 		 * <p>
 		 * Adds a value to <code>innerHits</code> using a builder lambda.
@@ -204,6 +219,9 @@ public class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of concurrent requests allowed to retrieve the inner_hits per
+		 * group
+		 * <p>
 		 * API name: {@code max_concurrent_group_searches}
 		 */
 		public final Builder maxConcurrentGroupSearches(@Nullable Integer value) {

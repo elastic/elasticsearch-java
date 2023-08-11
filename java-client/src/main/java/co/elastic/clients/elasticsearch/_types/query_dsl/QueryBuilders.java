@@ -639,6 +639,22 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RuleQuery rule_query} {@code Query} variant.
+	 */
+	public static RuleQuery.Builder ruleQuery() {
+		return new RuleQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link RuleQuery rule_query} {@code Query} variant.
+	 */
+	public static Query ruleQuery(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.ruleQuery(fn.apply(new RuleQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ScriptQuery script} {@code Query} variant.
 	 */
 	public static ScriptQuery.Builder script() {

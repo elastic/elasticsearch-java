@@ -140,7 +140,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * node name
+	 * The node name.
 	 * <p>
 	 * API name: {@code node_name}
 	 */
@@ -150,7 +150,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * persistent node id
+	 * The persistent node identifier.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -160,7 +160,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ephemeral node id
+	 * The ephemeral node identifier.
 	 * <p>
 	 * API name: {@code ephemeral_node_id}
 	 */
@@ -170,7 +170,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * process id
+	 * The process identifier.
 	 * <p>
 	 * API name: {@code pid}
 	 */
@@ -180,7 +180,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * host name
+	 * The host name for the current node.
 	 * <p>
 	 * API name: {@code host}
 	 */
@@ -190,7 +190,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ip address
+	 * The IP address for the current node.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -200,7 +200,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * bound transport port
+	 * The bound transport port for the current node.
 	 * <p>
 	 * API name: {@code port}
 	 */
@@ -210,7 +210,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * thread pool name
+	 * The thread pool name.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -220,7 +220,9 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * thread pool type
+	 * The thread pool type. Returned values include <code>fixed</code>,
+	 * <code>fixed_auto_queue_size</code>, <code>direct</code>, and
+	 * <code>scaling</code>.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -230,7 +232,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of active threads
+	 * The number of active threads in the current thread pool.
 	 * <p>
 	 * API name: {@code active}
 	 */
@@ -240,7 +242,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of threads
+	 * The number of threads in the current thread pool.
 	 * <p>
 	 * API name: {@code pool_size}
 	 */
@@ -250,7 +252,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of tasks currently in queue
+	 * The number of tasks currently in queue.
 	 * <p>
 	 * API name: {@code queue}
 	 */
@@ -260,7 +262,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * maximum number of tasks permitted in queue
+	 * The maximum number of tasks permitted in the queue.
 	 * <p>
 	 * API name: {@code queue_size}
 	 */
@@ -270,7 +272,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of rejected tasks
+	 * The number of rejected tasks.
 	 * <p>
 	 * API name: {@code rejected}
 	 */
@@ -280,7 +282,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * highest number of seen active threads
+	 * The highest number of active threads in the current thread pool.
 	 * <p>
 	 * API name: {@code largest}
 	 */
@@ -290,7 +292,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of completed tasks
+	 * The number of completed tasks.
 	 * <p>
 	 * API name: {@code completed}
 	 */
@@ -300,7 +302,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * core number of threads in a scaling thread pool
+	 * The core number of active threads allowed in a scaling thread pool.
 	 * <p>
 	 * API name: {@code core}
 	 */
@@ -310,7 +312,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * maximum number of threads in a scaling thread pool
+	 * The maximum number of active threads allowed in a scaling thread pool.
 	 * <p>
 	 * API name: {@code max}
 	 */
@@ -320,7 +322,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of threads in a fixed thread pool
+	 * The number of active threads allowed in a fixed thread pool.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -330,7 +332,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * thread keep alive time
+	 * The thread keep alive time.
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
@@ -526,7 +528,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		private String keepAlive;
 
 		/**
-		 * node name
+		 * The node name.
 		 * <p>
 		 * API name: {@code node_name}
 		 */
@@ -536,7 +538,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * persistent node id
+		 * The persistent node identifier.
 		 * <p>
 		 * API name: {@code node_id}
 		 */
@@ -546,7 +548,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ephemeral node id
+		 * The ephemeral node identifier.
 		 * <p>
 		 * API name: {@code ephemeral_node_id}
 		 */
@@ -556,7 +558,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * process id
+		 * The process identifier.
 		 * <p>
 		 * API name: {@code pid}
 		 */
@@ -566,7 +568,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * host name
+		 * The host name for the current node.
 		 * <p>
 		 * API name: {@code host}
 		 */
@@ -576,7 +578,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ip address
+		 * The IP address for the current node.
 		 * <p>
 		 * API name: {@code ip}
 		 */
@@ -586,7 +588,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * bound transport port
+		 * The bound transport port for the current node.
 		 * <p>
 		 * API name: {@code port}
 		 */
@@ -596,7 +598,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * thread pool name
+		 * The thread pool name.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -606,7 +608,9 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * thread pool type
+		 * The thread pool type. Returned values include <code>fixed</code>,
+		 * <code>fixed_auto_queue_size</code>, <code>direct</code>, and
+		 * <code>scaling</code>.
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -616,7 +620,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of active threads
+		 * The number of active threads in the current thread pool.
 		 * <p>
 		 * API name: {@code active}
 		 */
@@ -626,7 +630,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of threads
+		 * The number of threads in the current thread pool.
 		 * <p>
 		 * API name: {@code pool_size}
 		 */
@@ -636,7 +640,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of tasks currently in queue
+		 * The number of tasks currently in queue.
 		 * <p>
 		 * API name: {@code queue}
 		 */
@@ -646,7 +650,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * maximum number of tasks permitted in queue
+		 * The maximum number of tasks permitted in the queue.
 		 * <p>
 		 * API name: {@code queue_size}
 		 */
@@ -656,7 +660,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of rejected tasks
+		 * The number of rejected tasks.
 		 * <p>
 		 * API name: {@code rejected}
 		 */
@@ -666,7 +670,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * highest number of seen active threads
+		 * The highest number of active threads in the current thread pool.
 		 * <p>
 		 * API name: {@code largest}
 		 */
@@ -676,7 +680,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of completed tasks
+		 * The number of completed tasks.
 		 * <p>
 		 * API name: {@code completed}
 		 */
@@ -686,7 +690,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * core number of threads in a scaling thread pool
+		 * The core number of active threads allowed in a scaling thread pool.
 		 * <p>
 		 * API name: {@code core}
 		 */
@@ -696,7 +700,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * maximum number of threads in a scaling thread pool
+		 * The maximum number of active threads allowed in a scaling thread pool.
 		 * <p>
 		 * API name: {@code max}
 		 */
@@ -706,7 +710,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of threads in a fixed thread pool
+		 * The number of active threads allowed in a fixed thread pool.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -716,7 +720,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * thread keep alive time
+		 * The thread keep alive time.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */

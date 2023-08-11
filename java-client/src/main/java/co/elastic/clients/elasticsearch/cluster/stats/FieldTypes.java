@@ -87,27 +87,36 @@ public class FieldTypes implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - The name for the field type in selected nodes.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - The number of occurrences of the field type in selected nodes.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code index_count}
+	 * Required - The number of indices containing the field type in selected nodes.
+	 * <p>
+	 * API name: {@code index_count}
 	 */
 	public final int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
+	 * For dense_vector field types, number of indexed vector types in selected
+	 * nodes.
+	 * <p>
 	 * API name: {@code indexed_vector_count}
 	 */
 	@Nullable
@@ -116,6 +125,9 @@ public class FieldTypes implements JsonpSerializable {
 	}
 
 	/**
+	 * For dense_vector field types, the maximum dimension of all indexed vector
+	 * types in selected nodes.
+	 * <p>
 	 * API name: {@code indexed_vector_dim_max}
 	 */
 	@Nullable
@@ -124,6 +136,9 @@ public class FieldTypes implements JsonpSerializable {
 	}
 
 	/**
+	 * For dense_vector field types, the minimum dimension of all indexed vector
+	 * types in selected nodes.
+	 * <p>
 	 * API name: {@code indexed_vector_dim_min}
 	 */
 	@Nullable
@@ -132,6 +147,8 @@ public class FieldTypes implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of fields that declare a script.
+	 * <p>
 	 * API name: {@code script_count}
 	 */
 	@Nullable
@@ -213,7 +230,9 @@ public class FieldTypes implements JsonpSerializable {
 		private Integer scriptCount;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - The name for the field type in selected nodes.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
@@ -221,7 +240,9 @@ public class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - The number of occurrences of the field type in selected nodes.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -229,7 +250,9 @@ public class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index_count}
+		 * Required - The number of indices containing the field type in selected nodes.
+		 * <p>
+		 * API name: {@code index_count}
 		 */
 		public final Builder indexCount(int value) {
 			this.indexCount = value;
@@ -237,6 +260,9 @@ public class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
+		 * For dense_vector field types, number of indexed vector types in selected
+		 * nodes.
+		 * <p>
 		 * API name: {@code indexed_vector_count}
 		 */
 		public final Builder indexedVectorCount(@Nullable Long value) {
@@ -245,6 +271,9 @@ public class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
+		 * For dense_vector field types, the maximum dimension of all indexed vector
+		 * types in selected nodes.
+		 * <p>
 		 * API name: {@code indexed_vector_dim_max}
 		 */
 		public final Builder indexedVectorDimMax(@Nullable Long value) {
@@ -253,6 +282,9 @@ public class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
+		 * For dense_vector field types, the minimum dimension of all indexed vector
+		 * types in selected nodes.
+		 * <p>
 		 * API name: {@code indexed_vector_dim_min}
 		 */
 		public final Builder indexedVectorDimMin(@Nullable Long value) {
@@ -261,6 +293,8 @@ public class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of fields that declare a script.
+		 * <p>
 		 * API name: {@code script_count}
 		 */
 		public final Builder scriptCount(@Nullable Integer value) {

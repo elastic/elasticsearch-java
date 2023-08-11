@@ -124,7 +124,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the id
+	 * The identifier for the job.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -134,7 +134,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * analysis type
+	 * The type of analysis that the job performs.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -144,7 +144,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * job creation time
+	 * The time when the job was created.
 	 * <p>
 	 * API name: {@code create_time}
 	 */
@@ -154,7 +154,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the version of Elasticsearch when the analytics was created
+	 * The version of Elasticsearch when the job was created.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -164,7 +164,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * source index
+	 * The name of the source index.
 	 * <p>
 	 * API name: {@code source_index}
 	 */
@@ -174,7 +174,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * destination index
+	 * The name of the destination index.
 	 * <p>
 	 * API name: {@code dest_index}
 	 */
@@ -184,7 +184,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * description
+	 * A description of the job.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -194,7 +194,8 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * model memory limit
+	 * The approximate maximum amount of memory resources that are permitted for the
+	 * job.
 	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
@@ -204,7 +205,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * job state
+	 * The current status of the job.
 	 * <p>
 	 * API name: {@code state}
 	 */
@@ -214,7 +215,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * failure reason
+	 * Messages about the reason why the job failed.
 	 * <p>
 	 * API name: {@code failure_reason}
 	 */
@@ -224,7 +225,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * progress
+	 * The progress report for the job by phase.
 	 * <p>
 	 * API name: {@code progress}
 	 */
@@ -234,7 +235,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * why the job is or is not assigned to a node
+	 * Messages related to the selection of a node.
 	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
@@ -244,7 +245,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * id of the assigned node
+	 * The unique identifier of the assigned node.
 	 * <p>
 	 * API name: {@code node.id}
 	 */
@@ -254,7 +255,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * name of the assigned node
+	 * The name of the assigned node.
 	 * <p>
 	 * API name: {@code node.name}
 	 */
@@ -264,7 +265,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ephemeral id of the assigned node
+	 * The ephemeral identifier of the assigned node.
 	 * <p>
 	 * API name: {@code node.ephemeral_id}
 	 */
@@ -274,7 +275,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * network address of the assigned node
+	 * The network address of the assigned node.
 	 * <p>
 	 * API name: {@code node.address}
 	 */
@@ -440,7 +441,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		private String nodeAddress;
 
 		/**
-		 * the id
+		 * The identifier for the job.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -450,7 +451,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * analysis type
+		 * The type of analysis that the job performs.
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -460,7 +461,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * job creation time
+		 * The time when the job was created.
 		 * <p>
 		 * API name: {@code create_time}
 		 */
@@ -470,7 +471,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the version of Elasticsearch when the analytics was created
+		 * The version of Elasticsearch when the job was created.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -480,7 +481,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * source index
+		 * The name of the source index.
 		 * <p>
 		 * API name: {@code source_index}
 		 */
@@ -490,7 +491,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * destination index
+		 * The name of the destination index.
 		 * <p>
 		 * API name: {@code dest_index}
 		 */
@@ -500,7 +501,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * description
+		 * A description of the job.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -510,7 +511,8 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * model memory limit
+		 * The approximate maximum amount of memory resources that are permitted for the
+		 * job.
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
@@ -520,7 +522,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * job state
+		 * The current status of the job.
 		 * <p>
 		 * API name: {@code state}
 		 */
@@ -530,7 +532,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * failure reason
+		 * Messages about the reason why the job failed.
 		 * <p>
 		 * API name: {@code failure_reason}
 		 */
@@ -540,7 +542,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * progress
+		 * The progress report for the job by phase.
 		 * <p>
 		 * API name: {@code progress}
 		 */
@@ -550,7 +552,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * why the job is or is not assigned to a node
+		 * Messages related to the selection of a node.
 		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
@@ -560,7 +562,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * id of the assigned node
+		 * The unique identifier of the assigned node.
 		 * <p>
 		 * API name: {@code node.id}
 		 */
@@ -570,7 +572,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * name of the assigned node
+		 * The name of the assigned node.
 		 * <p>
 		 * API name: {@code node.name}
 		 */
@@ -580,7 +582,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ephemeral id of the assigned node
+		 * The ephemeral identifier of the assigned node.
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
@@ -590,7 +592,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * network address of the assigned node
+		 * The network address of the assigned node.
 		 * <p>
 		 * API name: {@code node.address}
 		 */

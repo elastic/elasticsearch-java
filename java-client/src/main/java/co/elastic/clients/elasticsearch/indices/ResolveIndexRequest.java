@@ -47,7 +47,8 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_index.Request
 
 /**
- * Returns information about any matching indices, aliases, and data streams
+ * Resolves the specified name(s) and/or index patterns for indices, aliases,
+ * and data streams. Multiple patterns and remote clusters are supported.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.resolve_index.Request">API
  *      specification</a>
@@ -72,8 +73,12 @@ public class ResolveIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -82,7 +87,10 @@ public class ResolveIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of names or wildcard expressions
+	 * Required - Comma-separated name(s) or index pattern(s) of the indices,
+	 * aliases, and data streams to resolve. Resources on remote clusters can be
+	 * specified using the <code>&lt;cluster&gt;</code>:<code>&lt;name&gt;</code>
+	 * syntax.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -105,8 +113,12 @@ public class ResolveIndexRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -118,8 +130,12 @@ public class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -131,7 +147,10 @@ public class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of names or wildcard expressions
+		 * Required - Comma-separated name(s) or index pattern(s) of the indices,
+		 * aliases, and data streams to resolve. Resources on remote clusters can be
+		 * specified using the <code>&lt;cluster&gt;</code>:<code>&lt;name&gt;</code>
+		 * syntax.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -143,7 +162,10 @@ public class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of names or wildcard expressions
+		 * Required - Comma-separated name(s) or index pattern(s) of the indices,
+		 * aliases, and data streams to resolve. Resources on remote clusters can be
+		 * specified using the <code>&lt;cluster&gt;</code>:<code>&lt;name&gt;</code>
+		 * syntax.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

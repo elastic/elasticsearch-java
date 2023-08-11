@@ -81,6 +81,11 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	}
 
 	/**
+	 * Aliases to add. If the index template includes a <code>data_stream</code>
+	 * object, these are data stream aliases. Otherwise, these are index aliases.
+	 * Data stream aliases ignore the <code>index_routing</code>,
+	 * <code>routing</code>, and <code>search_routing</code> options.
+	 * <p>
 	 * API name: {@code aliases}
 	 */
 	public final Map<String, Alias> aliases() {
@@ -88,6 +93,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	}
 
 	/**
+	 * Mapping for fields in the index. If specified, this mapping can include field
+	 * names, field data types, and mapping parameters.
+	 * <p>
 	 * API name: {@code mappings}
 	 */
 	@Nullable
@@ -96,6 +104,8 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	}
 
 	/**
+	 * Configuration options for the index.
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	@Nullable
@@ -178,6 +188,11 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		private DataLifecycle lifecycle;
 
 		/**
+		 * Aliases to add. If the index template includes a <code>data_stream</code>
+		 * object, these are data stream aliases. Otherwise, these are index aliases.
+		 * Data stream aliases ignore the <code>index_routing</code>,
+		 * <code>routing</code>, and <code>search_routing</code> options.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
@@ -188,6 +203,11 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * Aliases to add. If the index template includes a <code>data_stream</code>
+		 * object, these are data stream aliases. Otherwise, these are index aliases.
+		 * Data stream aliases ignore the <code>index_routing</code>,
+		 * <code>routing</code>, and <code>search_routing</code> options.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code>.
@@ -198,6 +218,11 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * Aliases to add. If the index template includes a <code>data_stream</code>
+		 * object, these are data stream aliases. Otherwise, these are index aliases.
+		 * Data stream aliases ignore the <code>index_routing</code>,
+		 * <code>routing</code>, and <code>search_routing</code> options.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code> using a builder lambda.
@@ -207,6 +232,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * Mapping for fields in the index. If specified, this mapping can include field
+		 * names, field data types, and mapping parameters.
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public final Builder mappings(@Nullable TypeMapping value) {
@@ -215,6 +243,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * Mapping for fields in the index. If specified, this mapping can include field
+		 * names, field data types, and mapping parameters.
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
@@ -222,6 +253,8 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * Configuration options for the index.
+		 * <p>
 		 * API name: {@code settings}
 		 */
 		public final Builder settings(@Nullable IndexSettings value) {
@@ -230,6 +263,8 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * Configuration options for the index.
+		 * <p>
 		 * API name: {@code settings}
 		 */
 		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {

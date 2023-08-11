@@ -67,13 +67,22 @@ public class DocStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - Total number of non-deleted documents across all primary shards
+	 * assigned to selected nodes. This number is based on documents in Lucene
+	 * segments and may include documents from nested fields.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final long count() {
 		return this.count;
 	}
 
 	/**
+	 * Total number of deleted documents across all primary shards assigned to
+	 * selected nodes. This number is based on documents in Lucene segments.
+	 * Elasticsearch reclaims the disk space of deleted Lucene documents when a
+	 * segment is merged.
+	 * <p>
 	 * API name: {@code deleted}
 	 */
 	@Nullable
@@ -121,7 +130,11 @@ public class DocStats implements JsonpSerializable {
 		private Long deleted;
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - Total number of non-deleted documents across all primary shards
+		 * assigned to selected nodes. This number is based on documents in Lucene
+		 * segments and may include documents from nested fields.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(long value) {
 			this.count = value;
@@ -129,6 +142,11 @@ public class DocStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of deleted documents across all primary shards assigned to
+		 * selected nodes. This number is based on documents in Lucene segments.
+		 * Elasticsearch reclaims the disk space of deleted Lucene documents when a
+		 * segment is merged.
+		 * <p>
 		 * API name: {@code deleted}
 		 */
 		public final Builder deleted(@Nullable Long value) {

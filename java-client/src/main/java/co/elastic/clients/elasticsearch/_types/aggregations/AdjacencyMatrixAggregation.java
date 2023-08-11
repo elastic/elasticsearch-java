@@ -72,6 +72,8 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 	}
 
 	/**
+	 * Filters used to create buckets. At least one filter is required.
+	 * <p>
 	 * API name: {@code filters}
 	 */
 	public final Map<String, Query> filters() {
@@ -108,6 +110,8 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		private Map<String, Query> filters;
 
 		/**
+		 * Filters used to create buckets. At least one filter is required.
+		 * <p>
 		 * API name: {@code filters}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>filters</code>.
@@ -118,6 +122,8 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		}
 
 		/**
+		 * Filters used to create buckets. At least one filter is required.
+		 * <p>
 		 * API name: {@code filters}
 		 * <p>
 		 * Adds an entry to <code>filters</code>.
@@ -128,6 +134,8 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		}
 
 		/**
+		 * Filters used to create buckets. At least one filter is required.
+		 * <p>
 		 * API name: {@code filters}
 		 * <p>
 		 * Adds an entry to <code>filters</code> using a builder lambda.

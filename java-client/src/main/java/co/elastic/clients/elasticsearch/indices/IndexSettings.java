@@ -224,7 +224,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final MappingLimitSettings mapping;
 
 	@Nullable
-	private final SlowlogSettings indexingSlowlog;
+	private final IndexingSlowlogSettings indexingSlowlog;
 
 	@Nullable
 	private final IndexingPressure indexingPressure;
@@ -755,7 +755,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code indexing.slowlog}
 	 */
 	@Nullable
-	public final SlowlogSettings indexingSlowlog() {
+	public final IndexingSlowlogSettings indexingSlowlog() {
 		return this.indexingSlowlog;
 	}
 
@@ -1292,7 +1292,7 @@ public class IndexSettings implements JsonpSerializable {
 		private MappingLimitSettings mapping;
 
 		@Nullable
-		private SlowlogSettings indexingSlowlog;
+		private IndexingSlowlogSettings indexingSlowlog;
 
 		@Nullable
 		private IndexingPressure indexingPressure;
@@ -1913,7 +1913,7 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code indexing.slowlog}
 		 */
-		public final Builder indexingSlowlog(@Nullable SlowlogSettings value) {
+		public final Builder indexingSlowlog(@Nullable IndexingSlowlogSettings value) {
 			this.indexingSlowlog = value;
 			return this;
 		}
@@ -1921,8 +1921,9 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code indexing.slowlog}
 		 */
-		public final Builder indexingSlowlog(Function<SlowlogSettings.Builder, ObjectBuilder<SlowlogSettings>> fn) {
-			return this.indexingSlowlog(fn.apply(new SlowlogSettings.Builder()).build());
+		public final Builder indexingSlowlog(
+				Function<IndexingSlowlogSettings.Builder, ObjectBuilder<IndexingSlowlogSettings>> fn) {
+			return this.indexingSlowlog(fn.apply(new IndexingSlowlogSettings.Builder()).build());
 		}
 
 		/**
@@ -2049,7 +2050,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::queries, Queries._DESERIALIZER, "queries");
 		op.add(Builder::similarity, SettingsSimilarity._DESERIALIZER, "similarity");
 		op.add(Builder::mapping, MappingLimitSettings._DESERIALIZER, "mapping");
-		op.add(Builder::indexingSlowlog, SlowlogSettings._DESERIALIZER, "indexing.slowlog");
+		op.add(Builder::indexingSlowlog, IndexingSlowlogSettings._DESERIALIZER, "indexing.slowlog");
 		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");
 		op.add(Builder::store, Storage._DESERIALIZER, "store");
 

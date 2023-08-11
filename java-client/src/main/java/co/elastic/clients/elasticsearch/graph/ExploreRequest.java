@@ -50,8 +50,8 @@ import javax.annotation.Nullable;
 // typedef: graph.explore.Request
 
 /**
- * Explore extracted and summarized information about the documents and terms in
- * an index.
+ * Extracts and summarizes information about the documents and terms in an
+ * Elasticsearch data stream or index.
  * 
  * @see <a href="../doc-files/api-spec.html#graph.explore.Request">API
  *      specification</a>
@@ -96,6 +96,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies or more fields from which you want to extract terms that are
+	 * associated with the specified vertices.
+	 * <p>
 	 * API name: {@code connections}
 	 */
 	@Nullable
@@ -104,6 +107,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Direct the Graph API how to build the graph.
+	 * <p>
 	 * API name: {@code controls}
 	 */
 	@Nullable
@@ -112,8 +117,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A comma-separated list of index names to search; use
-	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * Required - Name of the index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -122,6 +126,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * A seed query that identifies the documents of interest. Can be any valid
+	 * Elasticsearch query.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -130,7 +137,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -140,7 +147,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Specifies the period of time to wait for a response from each shard. If no
+	 * response is received before the timeout expires, the request fails and
+	 * returns an error. Defaults to no timeout.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -150,6 +159,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies one or more fields that contain the terms you want to include in
+	 * the graph as vertices.
+	 * <p>
 	 * API name: {@code vertices}
 	 */
 	public final List<VertexDefinition> vertices() {
@@ -223,6 +235,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		private List<VertexDefinition> vertices;
 
 		/**
+		 * Specifies or more fields from which you want to extract terms that are
+		 * associated with the specified vertices.
+		 * <p>
 		 * API name: {@code connections}
 		 */
 		public final Builder connections(@Nullable Hop value) {
@@ -231,6 +246,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies or more fields from which you want to extract terms that are
+		 * associated with the specified vertices.
+		 * <p>
 		 * API name: {@code connections}
 		 */
 		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
@@ -238,6 +256,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Direct the Graph API how to build the graph.
+		 * <p>
 		 * API name: {@code controls}
 		 */
 		public final Builder controls(@Nullable ExploreControls value) {
@@ -246,6 +266,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Direct the Graph API how to build the graph.
+		 * <p>
 		 * API name: {@code controls}
 		 */
 		public final Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
@@ -253,8 +275,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names to search; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Required - Name of the index.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -266,8 +287,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names to search; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Required - Name of the index.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -279,6 +299,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A seed query that identifies the documents of interest. Can be any valid
+		 * Elasticsearch query.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -287,6 +310,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A seed query that identifies the documents of interest. Can be any valid
+		 * Elasticsearch query.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -294,7 +320,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -304,7 +330,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Specifies the period of time to wait for a response from each shard. If no
+		 * response is received before the timeout expires, the request fails and
+		 * returns an error. Defaults to no timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -314,7 +342,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Specifies the period of time to wait for a response from each shard. If no
+		 * response is received before the timeout expires, the request fails and
+		 * returns an error. Defaults to no timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -323,6 +353,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies one or more fields that contain the terms you want to include in
+		 * the graph as vertices.
+		 * <p>
 		 * API name: {@code vertices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vertices</code>.
@@ -333,6 +366,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies one or more fields that contain the terms you want to include in
+		 * the graph as vertices.
+		 * <p>
 		 * API name: {@code vertices}
 		 * <p>
 		 * Adds one or more values to <code>vertices</code>.
@@ -343,6 +379,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies one or more fields that contain the terms you want to include in
+		 * the graph as vertices.
+		 * <p>
 		 * API name: {@code vertices}
 		 * <p>
 		 * Adds a value to <code>vertices</code> using a builder lambda.

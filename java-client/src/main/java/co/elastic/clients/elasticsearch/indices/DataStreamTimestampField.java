@@ -64,7 +64,11 @@ public class DataStreamTimestampField implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - Name of the timestamp field for the data stream, which must be
+	 * <code>@timestamp</code>. The <code>@timestamp</code> field must be included
+	 * in every document indexed to the data stream.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
@@ -103,7 +107,11 @@ public class DataStreamTimestampField implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - Name of the timestamp field for the data stream, which must be
+		 * <code>@timestamp</code>. The <code>@timestamp</code> field must be included
+		 * in every document indexed to the data stream.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;

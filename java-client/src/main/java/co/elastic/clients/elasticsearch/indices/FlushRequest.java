@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 // typedef: indices.flush.Request
 
 /**
- * Performs the flush operation on one or more indices.
+ * Flushes one or more data streams or indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.flush.Request">API
  *      specification</a>
@@ -89,9 +89,10 @@ public class FlushRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -101,8 +102,12 @@ public class FlushRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -111,10 +116,8 @@ public class FlushRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether a flush should be forced even if it is not necessarily needed ie. if
-	 * no changes will be committed to the index. This is useful if transaction log
-	 * IDs should be incremented even if no uncommitted changes are present. (This
-	 * setting can be considered as internal)
+	 * If <code>true</code>, the request forces a flush even if there are no changes
+	 * to commit to the index.
 	 * <p>
 	 * API name: {@code force}
 	 */
@@ -124,8 +127,8 @@ public class FlushRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -135,8 +138,9 @@ public class FlushRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * for all indices
+	 * Comma-separated list of data streams, indices, and aliases to flush. Supports
+	 * wildcards (<code>*</code>). To flush all data streams and indices, omit this
+	 * parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -145,10 +149,9 @@ public class FlushRequest extends RequestBase {
 	}
 
 	/**
-	 * If set to true the flush operation will block until the flush can be executed
-	 * if another flush operation is already executing. The default is true. If set
-	 * to false the flush will be skipped iff if another flush operation is already
-	 * running.
+	 * If <code>true</code>, the flush operation blocks until execution when another
+	 * flush operation is running. If <code>false</code>, Elasticsearch returns an
+	 * error if you request a flush when another flush operation is running.
 	 * <p>
 	 * API name: {@code wait_if_ongoing}
 	 */
@@ -183,9 +186,10 @@ public class FlushRequest extends RequestBase {
 		private Boolean waitIfOngoing;
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -195,8 +199,12 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -208,8 +216,12 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -221,10 +233,8 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether a flush should be forced even if it is not necessarily needed ie. if
-		 * no changes will be committed to the index. This is useful if transaction log
-		 * IDs should be incremented even if no uncommitted changes are present. (This
-		 * setting can be considered as internal)
+		 * If <code>true</code>, the request forces a flush even if there are no changes
+		 * to commit to the index.
 		 * <p>
 		 * API name: {@code force}
 		 */
@@ -234,8 +244,8 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -245,8 +255,9 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * for all indices
+		 * Comma-separated list of data streams, indices, and aliases to flush. Supports
+		 * wildcards (<code>*</code>). To flush all data streams and indices, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -258,8 +269,9 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * for all indices
+		 * Comma-separated list of data streams, indices, and aliases to flush. Supports
+		 * wildcards (<code>*</code>). To flush all data streams and indices, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -271,10 +283,9 @@ public class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * If set to true the flush operation will block until the flush can be executed
-		 * if another flush operation is already executing. The default is true. If set
-		 * to false the flush will be skipped iff if another flush operation is already
-		 * running.
+		 * If <code>true</code>, the flush operation blocks until execution when another
+		 * flush operation is running. If <code>false</code>, Elasticsearch returns an
+		 * error if you request a flush when another flush operation is running.
 		 * <p>
 		 * API name: {@code wait_if_ongoing}
 		 */

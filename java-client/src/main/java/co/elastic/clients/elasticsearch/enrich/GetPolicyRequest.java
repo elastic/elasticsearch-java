@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: enrich.get_policy.Request
 
 /**
- * Gets information about an enrich policy.
+ * Returns information about an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.get_policy.Request">API
  *      specification</a>
@@ -67,7 +67,8 @@ public class GetPolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of enrich policy names
+	 * Comma-separated list of enrich policy names used to limit the request. To
+	 * return information for all enrich policies, omit this parameter.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -88,7 +89,8 @@ public class GetPolicyRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * A comma-separated list of enrich policy names
+		 * Comma-separated list of enrich policy names used to limit the request. To
+		 * return information for all enrich policies, omit this parameter.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -100,7 +102,8 @@ public class GetPolicyRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of enrich policy names
+		 * Comma-separated list of enrich policy names used to limit the request. To
+		 * return information for all enrich policies, omit this parameter.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

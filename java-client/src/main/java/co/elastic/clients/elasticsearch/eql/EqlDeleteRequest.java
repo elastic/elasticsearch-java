@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
 // typedef: eql.delete.Request
 
 /**
- * Deletes an async EQL search by ID. If the search is still running, the search
- * request will be cancelled. Otherwise, the saved search results are deleted.
+ * Deletes an async EQL search or a stored synchronous EQL search. The API also
+ * deletes results for the search.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.delete.Request">API
  *      specification</a>
@@ -66,7 +66,10 @@ public class EqlDeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier for the search to delete.
+	 * Required - Identifier for the search to delete. A search ID is provided in
+	 * the EQL search API's response for an async search. A search ID is also
+	 * provided if the request’s <code>keep_on_completion</code> parameter is
+	 * <code>true</code>.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,7 +89,10 @@ public class EqlDeleteRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - Identifier for the search to delete.
+		 * Required - Identifier for the search to delete. A search ID is provided in
+		 * the EQL search API's response for an async search. A search ID is also
+		 * provided if the request’s <code>keep_on_completion</code> parameter is
+		 * <code>true</code>.
 		 * <p>
 		 * API name: {@code id}
 		 */

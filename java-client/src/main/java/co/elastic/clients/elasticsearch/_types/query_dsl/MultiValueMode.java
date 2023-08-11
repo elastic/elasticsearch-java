@@ -35,12 +35,24 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum MultiValueMode implements JsonEnum {
+	/**
+	 * Distance is the minimum distance.
+	 */
 	Min("min"),
 
+	/**
+	 * Distance is the maximum distance.
+	 */
 	Max("max"),
 
+	/**
+	 * Distance is the average distance.
+	 */
 	Avg("avg"),
 
+	/**
+	 * Distance is the sum of all distances.
+	 */
 	Sum("sum"),
 
 	;

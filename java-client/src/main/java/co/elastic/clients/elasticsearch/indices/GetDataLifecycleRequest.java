@@ -78,8 +78,10 @@ public class GetDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+	 * <code>all</code>, <code>open</code>, <code>closed</code>,
+	 * <code>hidden</code>, <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -88,8 +90,7 @@ public class GetDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Return all relevant default configurations for the data stream (default:
-	 * false)
+	 * If <code>true</code>, return all default settings in the response.
 	 * <p>
 	 * API name: {@code include_defaults}
 	 */
@@ -99,8 +100,9 @@ public class GetDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of data streams to get; use <code>*</code>
-	 * to get all data streams
+	 * Required - Comma-separated list of data streams to limit the request.
+	 * Supports wildcards (<code>*</code>). To target all data streams, omit this
+	 * parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -126,8 +128,10 @@ public class GetDataLifecycleRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>open</code>, <code>closed</code>,
+		 * <code>hidden</code>, <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -139,8 +143,10 @@ public class GetDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>open</code>, <code>closed</code>,
+		 * <code>hidden</code>, <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -152,8 +158,7 @@ public class GetDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Return all relevant default configurations for the data stream (default:
-		 * false)
+		 * If <code>true</code>, return all default settings in the response.
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
@@ -163,8 +168,9 @@ public class GetDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams to get; use <code>*</code>
-		 * to get all data streams
+		 * Required - Comma-separated list of data streams to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -176,8 +182,9 @@ public class GetDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams to get; use <code>*</code>
-		 * to get all data streams
+		 * Required - Comma-separated list of data streams to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

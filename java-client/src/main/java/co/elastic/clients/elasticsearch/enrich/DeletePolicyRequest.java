@@ -65,7 +65,7 @@ public class DeletePolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the enrich policy
+	 * Required - Enrich policy to delete.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -85,7 +85,7 @@ public class DeletePolicyRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Required - The name of the enrich policy
+		 * Required - Enrich policy to delete.
 		 * <p>
 		 * API name: {@code name}
 		 */

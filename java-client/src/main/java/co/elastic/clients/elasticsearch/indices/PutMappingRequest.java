@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.put_mapping.Request
 
 /**
- * Updates the index mappings.
+ * Adds new fields to an existing data stream or index. You can also use this
+ * API to change the search settings of existing fields. For data streams, these
+ * changes are applied to all backing indices by default.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_mapping.Request">API
  *      specification</a>
@@ -184,9 +186,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -236,8 +239,12 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -246,8 +253,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -268,7 +275,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -311,7 +319,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -321,8 +330,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * When true, applies mappings only to the write index of an alias or data
-	 * stream
+	 * If <code>true</code>, the mappings are applied only to the current write
+	 * index for the target.
 	 * <p>
 	 * API name: {@code write_index_only}
 	 */
@@ -583,9 +592,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -668,8 +678,12 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -681,8 +695,12 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -694,8 +712,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -733,7 +751,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -743,7 +762,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -847,7 +867,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -857,7 +878,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -866,8 +888,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * When true, applies mappings only to the write index of an alias or data
-		 * stream
+		 * If <code>true</code>, the mappings are applied only to the current write
+		 * index for the target.
 		 * <p>
 		 * API name: {@code write_index_only}
 		 */

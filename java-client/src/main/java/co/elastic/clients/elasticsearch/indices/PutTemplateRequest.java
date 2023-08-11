@@ -53,7 +53,8 @@ import javax.annotation.Nullable;
 // typedef: indices.put_template.Request
 
 /**
- * Creates or updates an index template.
+ * Creates or updates an index template. Index templates define settings,
+ * mappings, and aliases that can be applied automatically to new indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_template.Request">API
  *      specification</a>
@@ -131,6 +132,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * If <code>true</code>, returns settings in flat format.
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -202,6 +205,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -368,6 +374,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * If <code>true</code>, returns settings in flat format.
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public final Builder flatSettings(@Nullable Boolean value) {
@@ -490,6 +498,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(@Nullable Time value) {
@@ -498,6 +509,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {

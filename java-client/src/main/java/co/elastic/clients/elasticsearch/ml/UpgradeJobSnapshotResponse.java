@@ -68,8 +68,8 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The ID of the assigned node for the upgrade task if it is still
-	 * running.
+	 * Required - The ID of the node that the upgrade task was started on if it is
+	 * still running. In serverless this will be the &quot;serverless&quot;.
 	 * <p>
 	 * API name: {@code node}
 	 */
@@ -125,8 +125,8 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		private Boolean completed;
 
 		/**
-		 * Required - The ID of the assigned node for the upgrade task if it is still
-		 * running.
+		 * Required - The ID of the node that the upgrade task was started on if it is
+		 * still running. In serverless this will be the &quot;serverless&quot;.
 		 * <p>
 		 * API name: {@code node}
 		 */

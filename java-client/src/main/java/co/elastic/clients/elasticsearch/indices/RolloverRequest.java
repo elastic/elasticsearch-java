@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 // typedef: indices.rollover.Request
 
 /**
- * Updates an alias to point to a new index when the existing index is
- * considered to be too large or too old.
+ * Creates a new index for a data stream or index alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.rollover.Request">API
  *      specification</a>
@@ -109,7 +108,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the alias to rollover
+	 * Required - Name of the data stream or index alias to roll over.
 	 * <p>
 	 * API name: {@code alias}
 	 */
@@ -118,6 +117,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Aliases for the target index. Data streams do not support this parameter.
+	 * <p>
 	 * API name: {@code aliases}
 	 */
 	public final Map<String, Alias> aliases() {
@@ -125,6 +126,13 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Conditions for the rollover. If specified, Elasticsearch only performs the
+	 * rollover if the current index satisfies these conditions. If this parameter
+	 * is not specified, Elasticsearch performs the rollover unconditionally. If
+	 * conditions are specified, at least one of them must be a <code>max_*</code>
+	 * condition. The index will rollover if any <code>max_*</code> condition is
+	 * satisfied and all <code>min_*</code> conditions are satisfied.
+	 * <p>
 	 * API name: {@code conditions}
 	 */
 	@Nullable
@@ -133,8 +141,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If set to true the rollover action will only be validated but not actually
-	 * performed even if a condition matches. The default is false
+	 * If <code>true</code>, checks whether the current index satisfies the
+	 * specified conditions but does not perform a rollover.
 	 * <p>
 	 * API name: {@code dry_run}
 	 */
@@ -144,6 +152,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Mapping for fields in the index. If specified, this mapping can include field
+	 * names, field data types, and mapping paramaters.
+	 * <p>
 	 * API name: {@code mappings}
 	 */
 	@Nullable
@@ -152,7 +163,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -162,7 +174,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the rollover index
+	 * Name of the index to create. Supports date math. Data streams do not support
+	 * this parameter.
 	 * <p>
 	 * API name: {@code new_index}
 	 */
@@ -172,6 +185,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Configuration options for the index. Data streams do not support this
+	 * parameter.
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	public final Map<String, JsonData> settings() {
@@ -179,7 +195,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -189,8 +206,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Set the number of active shards to wait for on the newly created rollover
-	 * index before the operation returns.
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to all or any positive integer up to the total number of
+	 * shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -282,7 +300,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
-		 * Required - The name of the alias to rollover
+		 * Required - Name of the data stream or index alias to roll over.
 		 * <p>
 		 * API name: {@code alias}
 		 */
@@ -292,6 +310,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Aliases for the target index. Data streams do not support this parameter.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
@@ -302,6 +322,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Aliases for the target index. Data streams do not support this parameter.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code>.
@@ -312,6 +334,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Aliases for the target index. Data streams do not support this parameter.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code> using a builder lambda.
@@ -321,6 +345,13 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Conditions for the rollover. If specified, Elasticsearch only performs the
+		 * rollover if the current index satisfies these conditions. If this parameter
+		 * is not specified, Elasticsearch performs the rollover unconditionally. If
+		 * conditions are specified, at least one of them must be a <code>max_*</code>
+		 * condition. The index will rollover if any <code>max_*</code> condition is
+		 * satisfied and all <code>min_*</code> conditions are satisfied.
+		 * <p>
 		 * API name: {@code conditions}
 		 */
 		public final Builder conditions(@Nullable RolloverConditions value) {
@@ -329,6 +360,13 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Conditions for the rollover. If specified, Elasticsearch only performs the
+		 * rollover if the current index satisfies these conditions. If this parameter
+		 * is not specified, Elasticsearch performs the rollover unconditionally. If
+		 * conditions are specified, at least one of them must be a <code>max_*</code>
+		 * condition. The index will rollover if any <code>max_*</code> condition is
+		 * satisfied and all <code>min_*</code> conditions are satisfied.
+		 * <p>
 		 * API name: {@code conditions}
 		 */
 		public final Builder conditions(Function<RolloverConditions.Builder, ObjectBuilder<RolloverConditions>> fn) {
@@ -336,8 +374,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If set to true the rollover action will only be validated but not actually
-		 * performed even if a condition matches. The default is false
+		 * If <code>true</code>, checks whether the current index satisfies the
+		 * specified conditions but does not perform a rollover.
 		 * <p>
 		 * API name: {@code dry_run}
 		 */
@@ -347,6 +385,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Mapping for fields in the index. If specified, this mapping can include field
+		 * names, field data types, and mapping paramaters.
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public final Builder mappings(@Nullable TypeMapping value) {
@@ -355,6 +396,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Mapping for fields in the index. If specified, this mapping can include field
+		 * names, field data types, and mapping paramaters.
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
@@ -362,7 +406,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -372,7 +417,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -381,7 +427,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The name of the rollover index
+		 * Name of the index to create. Supports date math. Data streams do not support
+		 * this parameter.
 		 * <p>
 		 * API name: {@code new_index}
 		 */
@@ -391,6 +438,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Configuration options for the index. Data streams do not support this
+		 * parameter.
+		 * <p>
 		 * API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
@@ -401,6 +451,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Configuration options for the index. Data streams do not support this
+		 * parameter.
+		 * <p>
 		 * API name: {@code settings}
 		 * <p>
 		 * Adds an entry to <code>settings</code>.
@@ -411,7 +464,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -421,7 +475,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -430,8 +485,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Set the number of active shards to wait for on the newly created rollover
-		 * index before the operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -441,8 +497,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Set the number of active shards to wait for on the newly created rollover
-		 * index before the operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */

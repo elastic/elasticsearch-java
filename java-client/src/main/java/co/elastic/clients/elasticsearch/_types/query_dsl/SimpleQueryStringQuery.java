@@ -120,6 +120,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Analyzer used to convert text in the query string into tokens.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -128,6 +130,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, the query attempts to analyze wildcard terms in the
+	 * query string.
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -136,6 +141,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, the parser creates a match_phrase query for each
+	 * multi-position token.
+	 * <p>
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
@@ -144,6 +152,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Default boolean logic used to interpret text in the query string if no
+	 * operators are specified.
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -152,6 +163,12 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Array of fields you wish to search. Accepts wildcard expressions. You also
+	 * can boost relevance scores for matches to particular fields using a caret
+	 * (<code>^</code>) notation. Defaults to the
+	 * <code>index.query.default_field index</code> setting, which has a default
+	 * value of <code>*</code>.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
@@ -159,6 +176,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * List of enabled operators for the simple query string syntax.
+	 * <p>
 	 * API name: {@code flags}
 	 */
 	@Nullable
@@ -167,6 +186,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of terms to which the query expands for fuzzy matching.
+	 * <p>
 	 * API name: {@code fuzzy_max_expansions}
 	 */
 	@Nullable
@@ -175,6 +196,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Number of beginning characters left unchanged for fuzzy matching.
+	 * <p>
 	 * API name: {@code fuzzy_prefix_length}
 	 */
 	@Nullable
@@ -183,6 +206,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+	 * adjacent characters (for example, <code>ab</code> to <code>ba</code>).
+	 * <p>
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
@@ -191,6 +217,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, format-based errors, such as providing a text value for
+	 * a numeric field, are ignored.
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -199,6 +228,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Minimum number of clauses that must match for a document to be returned.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -207,13 +238,18 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query string in the simple query string syntax you wish to parse
+	 * and use for search.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * Suffix appended to quoted text in the query string.
+	 * <p>
 	 * API name: {@code quote_field_suffix}
 	 */
 	@Nullable
@@ -342,6 +378,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		private String quoteFieldSuffix;
 
 		/**
+		 * Analyzer used to convert text in the query string into tokens.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -350,6 +388,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, the query attempts to analyze wildcard terms in the
+		 * query string.
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public final Builder analyzeWildcard(@Nullable Boolean value) {
@@ -358,6 +399,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, the parser creates a match_phrase query for each
+		 * multi-position token.
+		 * <p>
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
 		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
@@ -366,6 +410,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Default boolean logic used to interpret text in the query string if no
+		 * operators are specified.
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public final Builder defaultOperator(@Nullable Operator value) {
@@ -374,6 +421,12 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Array of fields you wish to search. Accepts wildcard expressions. You also
+		 * can boost relevance scores for matches to particular fields using a caret
+		 * (<code>^</code>) notation. Defaults to the
+		 * <code>index.query.default_field index</code> setting, which has a default
+		 * value of <code>*</code>.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -384,6 +437,12 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Array of fields you wish to search. Accepts wildcard expressions. You also
+		 * can boost relevance scores for matches to particular fields using a caret
+		 * (<code>^</code>) notation. Defaults to the
+		 * <code>index.query.default_field index</code> setting, which has a default
+		 * value of <code>*</code>.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
@@ -394,6 +453,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * List of enabled operators for the simple query string syntax.
+		 * <p>
 		 * API name: {@code flags}
 		 */
 		public final Builder flags(@Nullable SimpleQueryStringFlags value) {
@@ -402,6 +463,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * List of enabled operators for the simple query string syntax.
+		 * <p>
 		 * API name: {@code flags}
 		 */
 		public final Builder flags(Function<SimpleQueryStringFlags.Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
@@ -409,6 +472,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of terms to which the query expands for fuzzy matching.
+		 * <p>
 		 * API name: {@code fuzzy_max_expansions}
 		 */
 		public final Builder fuzzyMaxExpansions(@Nullable Integer value) {
@@ -417,6 +482,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Number of beginning characters left unchanged for fuzzy matching.
+		 * <p>
 		 * API name: {@code fuzzy_prefix_length}
 		 */
 		public final Builder fuzzyPrefixLength(@Nullable Integer value) {
@@ -425,6 +492,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+		 * adjacent characters (for example, <code>ab</code> to <code>ba</code>).
+		 * <p>
 		 * API name: {@code fuzzy_transpositions}
 		 */
 		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
@@ -433,6 +503,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, format-based errors, such as providing a text value for
+		 * a numeric field, are ignored.
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public final Builder lenient(@Nullable Boolean value) {
@@ -441,6 +514,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Minimum number of clauses that must match for a document to be returned.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -449,7 +524,10 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query string in the simple query string syntax you wish to parse
+		 * and use for search.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -457,6 +535,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Suffix appended to quoted text in the query string.
+		 * <p>
 		 * API name: {@code quote_field_suffix}
 		 */
 		public final Builder quoteFieldSuffix(@Nullable String value) {

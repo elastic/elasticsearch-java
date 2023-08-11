@@ -138,6 +138,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		Regexp("regexp"),
 
+		RuleQuery("rule_query"),
+
 		Script("script"),
 
 		ScriptScore("script_score"),
@@ -834,6 +836,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public RegexpQuery regexp() {
 		return TaggedUnionUtils.get(this, Kind.Regexp);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rule_query}?
+	 */
+	public boolean isRuleQuery() {
+		return _kind == Kind.RuleQuery;
+	}
+
+	/**
+	 * Get the {@code rule_query} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code rule_query} kind.
+	 */
+	public RuleQuery ruleQuery() {
+		return TaggedUnionUtils.get(this, Kind.RuleQuery);
 	}
 
 	/**
@@ -1599,6 +1618,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.regexp(fn.apply(new RegexpQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> ruleQuery(RuleQuery v) {
+			this._kind = Kind.RuleQuery;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> ruleQuery(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
+			return this.ruleQuery(fn.apply(new RuleQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> script(ScriptQuery v) {
 			this._kind = Kind.Script;
 			this._value = v;
@@ -1865,6 +1894,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::range, RangeQuery._DESERIALIZER, "range");
 		op.add(Builder::rankFeature, RankFeatureQuery._DESERIALIZER, "rank_feature");
 		op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
+		op.add(Builder::ruleQuery, RuleQuery._DESERIALIZER, "rule_query");
 		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
 		op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
 		op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");

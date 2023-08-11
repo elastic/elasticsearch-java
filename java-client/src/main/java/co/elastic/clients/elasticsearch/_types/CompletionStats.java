@@ -72,13 +72,19 @@ public class CompletionStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code size_in_bytes}
+	 * Required - Total amount, in bytes, of memory used for completion across all
+	 * shards assigned to selected nodes.
+	 * <p>
+	 * API name: {@code size_in_bytes}
 	 */
 	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
+	 * Total amount of memory used for completion across all shards assigned to
+	 * selected nodes.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -147,7 +153,10 @@ public class CompletionStats implements JsonpSerializable {
 		private Map<String, FieldSizeUsage> fields;
 
 		/**
-		 * Required - API name: {@code size_in_bytes}
+		 * Required - Total amount, in bytes, of memory used for completion across all
+		 * shards assigned to selected nodes.
+		 * <p>
+		 * API name: {@code size_in_bytes}
 		 */
 		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
@@ -155,6 +164,9 @@ public class CompletionStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Total amount of memory used for completion across all shards assigned to
+		 * selected nodes.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable String value) {

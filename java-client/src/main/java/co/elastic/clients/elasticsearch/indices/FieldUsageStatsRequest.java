@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 // typedef: indices.field_usage_stats.Request
 
 /**
- * Returns the field usage stats for each field of an index
+ * Returns field usage information for each shard and field of an index.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.field_usage_stats.Request">API
@@ -99,11 +99,12 @@ public class FieldUsageStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If false, the request returns an error if any wildcard expression, index
-	 * alias, or _all value targets only missing or closed indices. This behavior
-	 * applies even if the request targets other open indices. For example, a
-	 * request targeting <code>foo*,bar*</code> returns an error if an index starts
-	 * with <code>foo</code> but no index starts with <code>bar</code>.
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+	 * error if an index starts with <code>foo</code> but no index starts with
+	 * <code>bar</code>.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -135,7 +136,8 @@ public class FieldUsageStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, missing or closed indices are not included in the response.
+	 * If <code>true</code>, missing or closed indices are not included in the
+	 * response.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -221,11 +223,12 @@ public class FieldUsageStatsRequest extends RequestBase {
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
-		 * If false, the request returns an error if any wildcard expression, index
-		 * alias, or _all value targets only missing or closed indices. This behavior
-		 * applies even if the request targets other open indices. For example, a
-		 * request targeting <code>foo*,bar*</code> returns an error if an index starts
-		 * with <code>foo</code> but no index starts with <code>bar</code>.
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+		 * error if an index starts with <code>foo</code> but no index starts with
+		 * <code>bar</code>.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -291,7 +294,8 @@ public class FieldUsageStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, missing or closed indices are not included in the response.
+		 * If <code>true</code>, missing or closed indices are not included in the
+		 * response.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */

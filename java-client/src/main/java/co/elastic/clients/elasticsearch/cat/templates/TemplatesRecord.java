@@ -80,7 +80,7 @@ public class TemplatesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * template name
+	 * The template name.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -90,7 +90,7 @@ public class TemplatesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * template index patterns
+	 * The template index patterns.
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
@@ -100,7 +100,7 @@ public class TemplatesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * template application order/priority number
+	 * The template application order or priority number.
 	 * <p>
 	 * API name: {@code order}
 	 */
@@ -110,7 +110,7 @@ public class TemplatesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * version
+	 * The template version.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -120,7 +120,7 @@ public class TemplatesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * component templates comprising index template
+	 * The component templates that comprise the index template.
 	 * <p>
 	 * API name: {@code composed_of}
 	 */
@@ -196,7 +196,7 @@ public class TemplatesRecord implements JsonpSerializable {
 		private String composedOf;
 
 		/**
-		 * template name
+		 * The template name.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -206,7 +206,7 @@ public class TemplatesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * template index patterns
+		 * The template index patterns.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 */
@@ -216,7 +216,7 @@ public class TemplatesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * template application order/priority number
+		 * The template application order or priority number.
 		 * <p>
 		 * API name: {@code order}
 		 */
@@ -226,7 +226,7 @@ public class TemplatesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * version
+		 * The template version.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -236,7 +236,7 @@ public class TemplatesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * component templates comprising index template
+		 * The component templates that comprise the index template.
 		 * <p>
 		 * API name: {@code composed_of}
 		 */

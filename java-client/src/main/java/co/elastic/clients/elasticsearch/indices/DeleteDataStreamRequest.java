@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_stream.Request
 
 /**
- * Deletes a data stream.
+ * Deletes one or more data streams and their backing indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_stream.Request">API
@@ -73,8 +73,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values,such as <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -83,8 +83,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of data streams to delete; use
-	 * <code>*</code> to delete all data streams
+	 * Required - Comma-separated list of data streams to delete. Wildcard
+	 * (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -107,8 +107,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values,such as <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -120,8 +120,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values,such as <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -133,8 +133,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams to delete; use
-		 * <code>*</code> to delete all data streams
+		 * Required - Comma-separated list of data streams to delete. Wildcard
+		 * (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -146,8 +146,8 @@ public class DeleteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams to delete; use
-		 * <code>*</code> to delete all data streams
+		 * Required - Comma-separated list of data streams to delete. Wildcard
+		 * (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

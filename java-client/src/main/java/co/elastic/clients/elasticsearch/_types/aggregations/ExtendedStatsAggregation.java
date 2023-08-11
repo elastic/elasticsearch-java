@@ -70,6 +70,8 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase implem
 	}
 
 	/**
+	 * The number of standard deviations above/below the mean to display.
+	 * <p>
 	 * API name: {@code sigma}
 	 */
 	@Nullable
@@ -101,6 +103,8 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase implem
 		private Double sigma;
 
 		/**
+		 * The number of standard deviations above/below the mean to display.
+		 * <p>
 		 * API name: {@code sigma}
 		 */
 		public final Builder sigma(@Nullable Double value) {

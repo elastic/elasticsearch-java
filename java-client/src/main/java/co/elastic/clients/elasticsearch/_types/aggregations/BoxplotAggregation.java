@@ -70,6 +70,10 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Controls memory usage and approximation error by limiting the maximum number
+	 * of nodes used by the underlying TDigest algorithm to
+	 * <code>20 * compression</code>.
+	 * <p>
 	 * API name: {@code compression}
 	 */
 	@Nullable
@@ -101,6 +105,10 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 		private Double compression;
 
 		/**
+		 * Controls memory usage and approximation error by limiting the maximum number
+		 * of nodes used by the underlying TDigest algorithm to
+		 * <code>20 * compression</code>.
+		 * <p>
 		 * API name: {@code compression}
 		 */
 		public final Builder compression(@Nullable Double value) {

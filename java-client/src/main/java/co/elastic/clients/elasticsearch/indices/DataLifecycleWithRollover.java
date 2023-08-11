@@ -70,6 +70,11 @@ public class DataLifecycleWithRollover implements JsonpSerializable {
 	}
 
 	/**
+	 * If defined, every document added to this data stream will be stored at least
+	 * for this time frame. Any time after this duration the document could be
+	 * deleted. When empty, every document in this data stream will be stored
+	 * indefinitely.
+	 * <p>
 	 * API name: {@code data_retention}
 	 */
 	@Nullable
@@ -78,6 +83,13 @@ public class DataLifecycleWithRollover implements JsonpSerializable {
 	}
 
 	/**
+	 * The conditions which will trigger the rollover of a backing index as
+	 * configured by the cluster setting
+	 * <code>cluster.lifecycle.default.rollover</code>. This property is an
+	 * implementation detail and it will only be retrieved when the query param
+	 * <code>include_defaults</code> is set to true. The contents of this field are
+	 * subject to change.
+	 * <p>
 	 * API name: {@code rollover}
 	 */
 	@Nullable
@@ -130,6 +142,11 @@ public class DataLifecycleWithRollover implements JsonpSerializable {
 		private DlmRolloverConditions rollover;
 
 		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
 		 * API name: {@code data_retention}
 		 */
 		public final Builder dataRetention(@Nullable Time value) {
@@ -138,6 +155,11 @@ public class DataLifecycleWithRollover implements JsonpSerializable {
 		}
 
 		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
 		 * API name: {@code data_retention}
 		 */
 		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -145,6 +167,13 @@ public class DataLifecycleWithRollover implements JsonpSerializable {
 		}
 
 		/**
+		 * The conditions which will trigger the rollover of a backing index as
+		 * configured by the cluster setting
+		 * <code>cluster.lifecycle.default.rollover</code>. This property is an
+		 * implementation detail and it will only be retrieved when the query param
+		 * <code>include_defaults</code> is set to true. The contents of this field are
+		 * subject to change.
+		 * <p>
 		 * API name: {@code rollover}
 		 */
 		public final Builder rollover(@Nullable DlmRolloverConditions value) {
@@ -153,6 +182,13 @@ public class DataLifecycleWithRollover implements JsonpSerializable {
 		}
 
 		/**
+		 * The conditions which will trigger the rollover of a backing index as
+		 * configured by the cluster setting
+		 * <code>cluster.lifecycle.default.rollover</code>. This property is an
+		 * implementation detail and it will only be retrieved when the query param
+		 * <code>include_defaults</code> is set to true. The contents of this field are
+		 * subject to change.
+		 * <p>
 		 * API name: {@code rollover}
 		 */
 		public final Builder rollover(

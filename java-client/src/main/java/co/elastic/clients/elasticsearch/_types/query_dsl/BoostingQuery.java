@@ -76,21 +76,28 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code negative_boost}
+	 * Required - Floating point number between 0 and 1.0 used to decrease the
+	 * relevance scores of documents matching the <code>negative</code> query.
+	 * <p>
+	 * API name: {@code negative_boost}
 	 */
 	public final double negativeBoost() {
 		return this.negativeBoost;
 	}
 
 	/**
-	 * Required - API name: {@code negative}
+	 * Required - Query used to decrease the relevance score of matching documents.
+	 * <p>
+	 * API name: {@code negative}
 	 */
 	public final Query negative() {
 		return this.negative;
 	}
 
 	/**
-	 * Required - API name: {@code positive}
+	 * Required - Any returned documents must match this query.
+	 * <p>
+	 * API name: {@code positive}
 	 */
 	public final Query positive() {
 		return this.positive;
@@ -124,7 +131,10 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		private Query positive;
 
 		/**
-		 * Required - API name: {@code negative_boost}
+		 * Required - Floating point number between 0 and 1.0 used to decrease the
+		 * relevance scores of documents matching the <code>negative</code> query.
+		 * <p>
+		 * API name: {@code negative_boost}
 		 */
 		public final Builder negativeBoost(double value) {
 			this.negativeBoost = value;
@@ -132,7 +142,9 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code negative}
+		 * Required - Query used to decrease the relevance score of matching documents.
+		 * <p>
+		 * API name: {@code negative}
 		 */
 		public final Builder negative(Query value) {
 			this.negative = value;
@@ -140,14 +152,18 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code negative}
+		 * Required - Query used to decrease the relevance score of matching documents.
+		 * <p>
+		 * API name: {@code negative}
 		 */
 		public final Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.negative(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code positive}
+		 * Required - Any returned documents must match this query.
+		 * <p>
+		 * API name: {@code positive}
 		 */
 		public final Builder positive(Query value) {
 			this.positive = value;
@@ -155,7 +171,9 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code positive}
+		 * Required - Any returned documents must match this query.
+		 * <p>
+		 * API name: {@code positive}
 		 */
 		public final Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.positive(fn.apply(new Query.Builder()).build());

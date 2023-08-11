@@ -145,6 +145,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Calendar-aware interval. Can be specified using the unit name, such as
+	 * <code>month</code>, or as a single unit quantity, such as <code>1M</code>.
+	 * <p>
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
@@ -153,6 +156,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Enables extending the bounds of the histogram beyond the data itself.
+	 * <p>
 	 * API name: {@code extended_bounds}
 	 */
 	@Nullable
@@ -161,6 +166,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Limits the histogram to specified bounds.
+	 * <p>
 	 * API name: {@code hard_bounds}
 	 */
 	@Nullable
@@ -169,6 +176,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * The date field whose values are use to build a histogram.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -177,6 +186,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Fixed intervals: a fixed number of SI units and never deviate, regardless of
+	 * where they fall on the calendar.
+	 * <p>
 	 * API name: {@code fixed_interval}
 	 */
 	@Nullable
@@ -185,6 +197,10 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * The date format used to format <code>key_as_string</code> in the response. If
+	 * no <code>format</code> is specified, the first date format specified in the
+	 * field mapping is used.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -205,6 +221,10 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Only returns buckets that have <code>min_doc_count</code> number of
+	 * documents. By default, all buckets between the first bucket that matches
+	 * documents and the last one are returned.
+	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
@@ -213,6 +233,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -221,6 +244,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Changes the start value of each bucket by the specified positive
+	 * (<code>+</code>) or negative offset (<code>-</code>) duration.
+	 * <p>
 	 * API name: {@code offset}
 	 */
 	@Nullable
@@ -229,6 +255,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * The order of the returned buckets.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	public final List<NamedValue<SortOrder>> order() {
@@ -251,6 +279,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Time zone used for bucketing and rounding. Defaults to Coordinated Universal
+	 * Time (UTC).
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -259,6 +290,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Set to <code>true</code> to associate a unique string key with each bucket
+	 * and returns the ranges as a hash rather than an array.
+	 * <p>
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -414,6 +448,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		private Boolean keyed;
 
 		/**
+		 * Calendar-aware interval. Can be specified using the unit name, such as
+		 * <code>month</code>, or as a single unit quantity, such as <code>1M</code>.
+		 * <p>
 		 * API name: {@code calendar_interval}
 		 */
 		public final Builder calendarInterval(@Nullable CalendarInterval value) {
@@ -422,6 +459,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Enables extending the bounds of the histogram beyond the data itself.
+		 * <p>
 		 * API name: {@code extended_bounds}
 		 */
 		public final Builder extendedBounds(@Nullable ExtendedBounds<FieldDateMath> value) {
@@ -430,6 +469,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Enables extending the bounds of the histogram beyond the data itself.
+		 * <p>
 		 * API name: {@code extended_bounds}
 		 */
 		public final Builder extendedBounds(
@@ -438,6 +479,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Limits the histogram to specified bounds.
+		 * <p>
 		 * API name: {@code hard_bounds}
 		 */
 		public final Builder hardBounds(@Nullable ExtendedBounds<FieldDateMath> value) {
@@ -446,6 +489,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Limits the histogram to specified bounds.
+		 * <p>
 		 * API name: {@code hard_bounds}
 		 */
 		public final Builder hardBounds(
@@ -454,6 +499,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * The date field whose values are use to build a histogram.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -462,6 +509,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Fixed intervals: a fixed number of SI units and never deviate, regardless of
+		 * where they fall on the calendar.
+		 * <p>
 		 * API name: {@code fixed_interval}
 		 */
 		public final Builder fixedInterval(@Nullable Time value) {
@@ -470,6 +520,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Fixed intervals: a fixed number of SI units and never deviate, regardless of
+		 * where they fall on the calendar.
+		 * <p>
 		 * API name: {@code fixed_interval}
 		 */
 		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -477,6 +530,10 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * The date format used to format <code>key_as_string</code> in the response. If
+		 * no <code>format</code> is specified, the first date format specified in the
+		 * field mapping is used.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
@@ -508,6 +565,10 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Only returns buckets that have <code>min_doc_count</code> number of
+		 * documents. By default, all buckets between the first bucket that matches
+		 * documents and the last one are returned.
+		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
 		public final Builder minDocCount(@Nullable Integer value) {
@@ -516,6 +577,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable DateTime value) {
@@ -524,6 +588,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Changes the start value of each bucket by the specified positive
+		 * (<code>+</code>) or negative offset (<code>-</code>) duration.
+		 * <p>
 		 * API name: {@code offset}
 		 */
 		public final Builder offset(@Nullable Time value) {
@@ -532,6 +599,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Changes the start value of each bucket by the specified positive
+		 * (<code>+</code>) or negative offset (<code>-</code>) duration.
+		 * <p>
 		 * API name: {@code offset}
 		 */
 		public final Builder offset(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -539,6 +609,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * The order of the returned buckets.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
@@ -549,6 +621,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * The order of the returned buckets.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
@@ -594,6 +668,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Time zone used for bucketing and rounding. Defaults to Coordinated Universal
+		 * Time (UTC).
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public final Builder timeZone(@Nullable String value) {
@@ -602,6 +679,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
+		 * Set to <code>true</code> to associate a unique string key with each bucket
+		 * and returns the ranges as a hash rather than an array.
+		 * <p>
 		 * API name: {@code keyed}
 		 */
 		public final Builder keyed(@Nullable Boolean value) {

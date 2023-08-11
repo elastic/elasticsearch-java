@@ -71,6 +71,9 @@ public class Hop implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies one or more fields from which you want to extract terms that are
+	 * associated with the specified vertices.
+	 * <p>
 	 * API name: {@code connections}
 	 */
 	@Nullable
@@ -79,14 +82,19 @@ public class Hop implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - An optional guiding query that constrains the Graph API as it
+	 * explores connected terms.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final Query query() {
 		return this.query;
 	}
 
 	/**
-	 * Required - API name: {@code vertices}
+	 * Required - Contains the fields you are interested in.
+	 * <p>
+	 * API name: {@code vertices}
 	 */
 	public final List<VertexDefinition> vertices() {
 		return this.vertices;
@@ -144,6 +152,9 @@ public class Hop implements JsonpSerializable {
 		private List<VertexDefinition> vertices;
 
 		/**
+		 * Specifies one or more fields from which you want to extract terms that are
+		 * associated with the specified vertices.
+		 * <p>
 		 * API name: {@code connections}
 		 */
 		public final Builder connections(@Nullable Hop value) {
@@ -152,6 +163,9 @@ public class Hop implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies one or more fields from which you want to extract terms that are
+		 * associated with the specified vertices.
+		 * <p>
 		 * API name: {@code connections}
 		 */
 		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
@@ -159,7 +173,10 @@ public class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - An optional guiding query that constrains the Graph API as it
+		 * explores connected terms.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -167,14 +184,19 @@ public class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - An optional guiding query that constrains the Graph API as it
+		 * explores connected terms.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code vertices}
+		 * Required - Contains the fields you are interested in.
+		 * <p>
+		 * API name: {@code vertices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 */
@@ -184,7 +206,9 @@ public class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vertices}
+		 * Required - Contains the fields you are interested in.
+		 * <p>
+		 * API name: {@code vertices}
 		 * <p>
 		 * Adds one or more values to <code>vertices</code>.
 		 */
@@ -194,7 +218,9 @@ public class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code vertices}
+		 * Required - Contains the fields you are interested in.
+		 * <p>
+		 * API name: {@code vertices}
 		 * <p>
 		 * Adds a value to <code>vertices</code> using a builder lambda.
 		 */

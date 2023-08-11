@@ -115,6 +115,8 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Analyzer used to convert the text in the query value into tokens.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -123,6 +125,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum edit distance allowed for matching. Can be applied to the term
+	 * subqueries constructed for all terms but the final term.
+	 * <p>
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
@@ -131,6 +136,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Method used to rewrite the query. Can be applied to the term subqueries
+	 * constructed for all terms but the final term.
+	 * <p>
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
@@ -139,6 +147,10 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+	 * adjacent characters (for example, <code>ab</code> to <code>ba</code>). Can be
+	 * applied to the term subqueries constructed for all terms but the final term.
+	 * <p>
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
@@ -147,6 +159,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of terms to which the query will expand. Can be applied to the
+	 * term subqueries constructed for all terms but the final term.
+	 * <p>
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
@@ -155,6 +170,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Minimum number of clauses that must match for a document to be returned.
+	 * Applied to the constructed bool query.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -163,6 +181,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Boolean logic used to interpret text in the query value. Applied to the
+	 * constructed bool query.
+	 * <p>
 	 * API name: {@code operator}
 	 */
 	@Nullable
@@ -171,6 +192,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Number of beginning characters left unchanged for fuzzy matching. Can be
+	 * applied to the term subqueries constructed for all terms but the final term.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -179,7 +203,10 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Terms you wish to find in the provided field. The last term is
+	 * used in a prefix query.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
@@ -281,6 +308,8 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		private String query;
 
 		/**
+		 * Analyzer used to convert the text in the query value into tokens.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -289,6 +318,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum edit distance allowed for matching. Can be applied to the term
+		 * subqueries constructed for all terms but the final term.
+		 * <p>
 		 * API name: {@code fuzziness}
 		 */
 		public final Builder fuzziness(@Nullable String value) {
@@ -297,6 +329,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Method used to rewrite the query. Can be applied to the term subqueries
+		 * constructed for all terms but the final term.
+		 * <p>
 		 * API name: {@code fuzzy_rewrite}
 		 */
 		public final Builder fuzzyRewrite(@Nullable String value) {
@@ -305,6 +340,10 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+		 * adjacent characters (for example, <code>ab</code> to <code>ba</code>). Can be
+		 * applied to the term subqueries constructed for all terms but the final term.
+		 * <p>
 		 * API name: {@code fuzzy_transpositions}
 		 */
 		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
@@ -313,6 +352,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of terms to which the query will expand. Can be applied to the
+		 * term subqueries constructed for all terms but the final term.
+		 * <p>
 		 * API name: {@code max_expansions}
 		 */
 		public final Builder maxExpansions(@Nullable Integer value) {
@@ -321,6 +363,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Minimum number of clauses that must match for a document to be returned.
+		 * Applied to the constructed bool query.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -329,6 +374,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Boolean logic used to interpret text in the query value. Applied to the
+		 * constructed bool query.
+		 * <p>
 		 * API name: {@code operator}
 		 */
 		public final Builder operator(@Nullable Operator value) {
@@ -337,6 +385,9 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Number of beginning characters left unchanged for fuzzy matching. Can be
+		 * applied to the term subqueries constructed for all terms but the final term.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -345,7 +396,10 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Terms you wish to find in the provided field. The last term is
+		 * used in a prefix query.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;

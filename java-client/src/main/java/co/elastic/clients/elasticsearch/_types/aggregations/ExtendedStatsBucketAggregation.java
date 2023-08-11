@@ -71,6 +71,8 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 	}
 
 	/**
+	 * The number of standard deviations above/below the mean to display.
+	 * <p>
 	 * API name: {@code sigma}
 	 */
 	@Nullable
@@ -102,6 +104,8 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 		private Double sigma;
 
 		/**
+		 * The number of standard deviations above/below the mean to display.
+		 * <p>
 		 * API name: {@code sigma}
 		 */
 		public final Builder sigma(@Nullable Double value) {

@@ -86,6 +86,9 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether to ignore an unmapped path and not return any documents
+	 * instead of an error.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -94,6 +97,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If defined, each search hit will contain inner hits.
+	 * <p>
 	 * API name: {@code inner_hits}
 	 */
 	@Nullable
@@ -102,20 +107,27 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code path}
+	 * Required - Path to the nested object you wish to search.
+	 * <p>
+	 * API name: {@code path}
 	 */
 	public final String path() {
 		return this.path;
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query you wish to run on nested objects in the path.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final Query query() {
 		return this.query;
 	}
 
 	/**
+	 * How scores for matching child objects affect the root parent document’s
+	 * relevance score.
+	 * <p>
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
@@ -170,6 +182,9 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		private ChildScoreMode scoreMode;
 
 		/**
+		 * Indicates whether to ignore an unmapped path and not return any documents
+		 * instead of an error.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {
@@ -178,6 +193,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
 		 * API name: {@code inner_hits}
 		 */
 		public final Builder innerHits(@Nullable InnerHits value) {
@@ -186,6 +203,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
 		 * API name: {@code inner_hits}
 		 */
 		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
@@ -193,7 +212,9 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code path}
+		 * Required - Path to the nested object you wish to search.
+		 * <p>
+		 * API name: {@code path}
 		 */
 		public final Builder path(String value) {
 			this.path = value;
@@ -201,7 +222,9 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query you wish to run on nested objects in the path.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -209,13 +232,18 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query you wish to run on nested objects in the path.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
+		 * How scores for matching child objects affect the root parent document’s
+		 * relevance score.
+		 * <p>
 		 * API name: {@code score_mode}
 		 */
 		public final Builder scoreMode(@Nullable ChildScoreMode value) {

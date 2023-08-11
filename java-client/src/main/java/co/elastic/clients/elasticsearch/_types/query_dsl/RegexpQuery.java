@@ -98,6 +98,10 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Allows case insensitive matching of the regular expression value with the
+	 * indexed field values when set to <code>true</code>. When <code>false</code>,
+	 * case sensitivity of matching depends on the underlying field’s mapping.
+	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
@@ -106,6 +110,8 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Enables optional operators for the regular expression.
+	 * <p>
 	 * API name: {@code flags}
 	 */
 	@Nullable
@@ -114,6 +120,8 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of automaton states required for the query.
+	 * <p>
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
@@ -122,6 +130,8 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Method used to rewrite the query.
+	 * <p>
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
@@ -130,7 +140,10 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code value}
+	 * Required - Regular expression for terms you wish to find in the provided
+	 * field.
+	 * <p>
+	 * API name: {@code value}
 	 */
 	public final String value() {
 		return this.value;
@@ -199,6 +212,10 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		private String value;
 
 		/**
+		 * Allows case insensitive matching of the regular expression value with the
+		 * indexed field values when set to <code>true</code>. When <code>false</code>,
+		 * case sensitivity of matching depends on the underlying field’s mapping.
+		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
 		public final Builder caseInsensitive(@Nullable Boolean value) {
@@ -207,6 +224,8 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Enables optional operators for the regular expression.
+		 * <p>
 		 * API name: {@code flags}
 		 */
 		public final Builder flags(@Nullable String value) {
@@ -215,6 +234,8 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of automaton states required for the query.
+		 * <p>
 		 * API name: {@code max_determinized_states}
 		 */
 		public final Builder maxDeterminizedStates(@Nullable Integer value) {
@@ -223,6 +244,8 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Method used to rewrite the query.
+		 * <p>
 		 * API name: {@code rewrite}
 		 */
 		public final Builder rewrite(@Nullable String value) {
@@ -231,7 +254,10 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Regular expression for terms you wish to find in the provided
+		 * field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(String value) {
 			this.value = value;

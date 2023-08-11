@@ -35,30 +35,75 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SimpleQueryStringFlag implements JsonEnum {
+	/**
+	 * Disables all operators.
+	 */
 	None("NONE"),
 
+	/**
+	 * Enables the <code>+</code> AND operator.
+	 */
 	And("AND"),
 
+	/**
+	 * Enables the <code>\|</code> OR operator.
+	 */
 	Or("OR"),
 
+	/**
+	 * Enables the <code>-</code> NOT operator.
+	 */
 	Not("NOT"),
 
+	/**
+	 * Enables the <code>*</code> prefix operator.
+	 */
 	Prefix("PREFIX"),
 
+	/**
+	 * Enables the <code>&quot;</code> quotes operator used to search for phrases.
+	 */
 	Phrase("PHRASE"),
 
+	/**
+	 * Enables the <code>(</code> and <code>)</code> operators to control operator
+	 * precedence.
+	 */
 	Precedence("PRECEDENCE"),
 
+	/**
+	 * Enables <code>\</code> as an escape character.
+	 */
 	Escape("ESCAPE"),
 
+	/**
+	 * Enables whitespace as split characters.
+	 */
 	Whitespace("WHITESPACE"),
 
+	/**
+	 * Enables the <code>~N</code> operator after a word, where <code>N</code> is an
+	 * integer denoting the allowed edit distance for matching.
+	 */
 	Fuzzy("FUZZY"),
 
+	/**
+	 * Enables the <code>~N</code> operator, after a phrase where <code>N</code> is
+	 * the maximum number of positions allowed between matching tokens. Synonymous
+	 * to <code>SLOP</code>.
+	 */
 	Near("NEAR"),
 
+	/**
+	 * Enables the <code>~N</code> operator, after a phrase where <code>N</code> is
+	 * maximum number of positions allowed between matching tokens. Synonymous to
+	 * <code>NEAR</code>.
+	 */
 	Slop("SLOP"),
 
+	/**
+	 * Enables all optional operators.
+	 */
 	All("ALL"),
 
 	;

@@ -91,6 +91,9 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * When set to <code>true</code> the query ignores an unmapped field and will
+	 * not match any documents.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -149,6 +152,9 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		private Boolean ignoreUnmapped;
 
 		/**
+		 * When set to <code>true</code> the query ignores an unmapped field and will
+		 * not match any documents.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {

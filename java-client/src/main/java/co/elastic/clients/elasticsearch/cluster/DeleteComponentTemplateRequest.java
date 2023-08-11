@@ -47,7 +47,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.delete_component_template.Request
 
 /**
- * Deletes a component template
+ * Deletes component templates. Component templates are building blocks for
+ * constructing index templates that specify index mappings, settings, and
+ * aliases.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.delete_component_template.Request">API
@@ -79,7 +81,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -99,7 +102,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -126,7 +130,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -136,7 +141,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -171,7 +177,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -181,7 +188,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

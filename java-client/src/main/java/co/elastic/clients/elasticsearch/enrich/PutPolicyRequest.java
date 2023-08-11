@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: enrich.put_policy.Request
 
 /**
- * Creates a new enrich policy.
+ * Creates an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.put_policy.Request">API
  *      specification</a>
@@ -79,6 +79,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Matches enrich data to incoming documents based on a <code>geo_shape</code>
+	 * query.
+	 * <p>
 	 * API name: {@code geo_match}
 	 */
 	@Nullable
@@ -87,6 +90,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Matches enrich data to incoming documents based on a <code>term</code> query.
+	 * <p>
 	 * API name: {@code match}
 	 */
 	@Nullable
@@ -95,7 +100,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the enrich policy
+	 * Required - Name of the enrich policy to create or update.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -104,6 +109,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Matches a number, date, or IP address in incoming documents to a range in the
+	 * enrich index based on a <code>term</code> query.
+	 * <p>
 	 * API name: {@code range}
 	 */
 	@Nullable
@@ -161,6 +169,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		private EnrichPolicy range;
 
 		/**
+		 * Matches enrich data to incoming documents based on a <code>geo_shape</code>
+		 * query.
+		 * <p>
 		 * API name: {@code geo_match}
 		 */
 		public final Builder geoMatch(@Nullable EnrichPolicy value) {
@@ -169,6 +180,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Matches enrich data to incoming documents based on a <code>geo_shape</code>
+		 * query.
+		 * <p>
 		 * API name: {@code geo_match}
 		 */
 		public final Builder geoMatch(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
@@ -176,6 +190,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Matches enrich data to incoming documents based on a <code>term</code> query.
+		 * <p>
 		 * API name: {@code match}
 		 */
 		public final Builder match(@Nullable EnrichPolicy value) {
@@ -184,6 +200,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Matches enrich data to incoming documents based on a <code>term</code> query.
+		 * <p>
 		 * API name: {@code match}
 		 */
 		public final Builder match(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
@@ -191,7 +209,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the enrich policy
+		 * Required - Name of the enrich policy to create or update.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -201,6 +219,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Matches a number, date, or IP address in incoming documents to a range in the
+		 * enrich index based on a <code>term</code> query.
+		 * <p>
 		 * API name: {@code range}
 		 */
 		public final Builder range(@Nullable EnrichPolicy value) {
@@ -209,6 +230,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Matches a number, date, or IP address in incoming documents to a range in the
+		 * enrich index based on a <code>term</code> query.
+		 * <p>
 		 * API name: {@code range}
 		 */
 		public final Builder range(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {

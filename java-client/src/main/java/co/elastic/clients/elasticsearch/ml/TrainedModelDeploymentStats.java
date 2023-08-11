@@ -167,8 +167,9 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The deployent stats for each node that currently has the model
-	 * allocated.
+	 * Required - The deployment stats for each node that currently has the model
+	 * allocated. In serverless, stats are reported for a single unnamed virtual
+	 * node.
 	 * <p>
 	 * API name: {@code nodes}
 	 */
@@ -430,8 +431,9 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The deployent stats for each node that currently has the model
-		 * allocated.
+		 * Required - The deployment stats for each node that currently has the model
+		 * allocated. In serverless, stats are reported for a single unnamed virtual
+		 * node.
 		 * <p>
 		 * API name: {@code nodes}
 		 */
@@ -441,8 +443,9 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The deployent stats for each node that currently has the model
-		 * allocated.
+		 * Required - The deployment stats for each node that currently has the model
+		 * allocated. In serverless, stats are reported for a single unnamed virtual
+		 * node.
 		 * <p>
 		 * API name: {@code nodes}
 		 */

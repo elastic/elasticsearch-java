@@ -107,6 +107,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * The target number of buckets.
+	 * <p>
 	 * API name: {@code buckets}
 	 */
 	@Nullable
@@ -115,6 +117,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * The field on which to run the aggregation.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -123,6 +127,10 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * The date format used to format <code>key_as_string</code> in the response. If
+	 * no <code>format</code> is specified, the first date format specified in the
+	 * field mapping is used.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -131,6 +139,10 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * The minimum rounding interval. This can make the collection process more
+	 * efficient, as the aggregation will not attempt to round at any interval lower
+	 * than <code>minimum_interval</code>.
+	 * <p>
 	 * API name: {@code minimum_interval}
 	 */
 	@Nullable
@@ -139,6 +151,9 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -147,6 +162,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * Time zone specified as a ISO 8601 UTC offset.
+	 * <p>
 	 * API name: {@code offset}
 	 */
 	@Nullable
@@ -170,6 +187,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	}
 
 	/**
+	 * Time zone ID.
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -269,6 +288,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		private String timeZone;
 
 		/**
+		 * The target number of buckets.
+		 * <p>
 		 * API name: {@code buckets}
 		 */
 		public final Builder buckets(@Nullable Integer value) {
@@ -277,6 +298,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 
 		/**
+		 * The field on which to run the aggregation.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -285,6 +308,10 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 
 		/**
+		 * The date format used to format <code>key_as_string</code> in the response. If
+		 * no <code>format</code> is specified, the first date format specified in the
+		 * field mapping is used.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
@@ -293,6 +320,10 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 
 		/**
+		 * The minimum rounding interval. This can make the collection process more
+		 * efficient, as the aggregation will not attempt to round at any interval lower
+		 * than <code>minimum_interval</code>.
+		 * <p>
 		 * API name: {@code minimum_interval}
 		 */
 		public final Builder minimumInterval(@Nullable MinimumInterval value) {
@@ -301,6 +332,9 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable DateTime value) {
@@ -309,6 +343,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 
 		/**
+		 * Time zone specified as a ISO 8601 UTC offset.
+		 * <p>
 		 * API name: {@code offset}
 		 */
 		public final Builder offset(@Nullable String value) {
@@ -352,6 +388,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 
 		/**
+		 * Time zone ID.
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public final Builder timeZone(@Nullable String value) {

@@ -47,7 +47,9 @@ import javax.annotation.Nullable;
 // typedef: indices.recovery.Request
 
 /**
- * Returns information about ongoing index shard recoveries.
+ * Returns information about ongoing and completed shard recoveries for one or
+ * more indices. For data streams, the API returns information for the stream’s
+ * backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.recovery.Request">API
  *      specification</a>
@@ -77,7 +79,7 @@ public class RecoveryRequest extends RequestBase {
 	}
 
 	/**
-	 * Display only those recoveries that are currently on-going
+	 * If <code>true</code>, the response only includes ongoing shard recoveries.
 	 * <p>
 	 * API name: {@code active_only}
 	 */
@@ -87,7 +89,8 @@ public class RecoveryRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to display detailed information about shard recovery
+	 * If <code>true</code>, the response includes detailed information about shard
+	 * recoveries.
 	 * <p>
 	 * API name: {@code detailed}
 	 */
@@ -97,8 +100,9 @@ public class RecoveryRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
+	 * Comma-separated list of data streams, indices, and aliases used to limit the
+	 * request. Supports wildcards (<code>*</code>). To target all data streams and
+	 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -123,7 +127,7 @@ public class RecoveryRequest extends RequestBase {
 		private List<String> index;
 
 		/**
-		 * Display only those recoveries that are currently on-going
+		 * If <code>true</code>, the response only includes ongoing shard recoveries.
 		 * <p>
 		 * API name: {@code active_only}
 		 */
@@ -133,7 +137,8 @@ public class RecoveryRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to display detailed information about shard recovery
+		 * If <code>true</code>, the response includes detailed information about shard
+		 * recoveries.
 		 * <p>
 		 * API name: {@code detailed}
 		 */
@@ -143,8 +148,9 @@ public class RecoveryRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
+		 * Comma-separated list of data streams, indices, and aliases used to limit the
+		 * request. Supports wildcards (<code>*</code>). To target all data streams and
+		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -156,8 +162,9 @@ public class RecoveryRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
+		 * Comma-separated list of data streams, indices, and aliases used to limit the
+		 * request. Supports wildcards (<code>*</code>). To target all data streams and
+		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

@@ -48,7 +48,10 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.Request
 
 /**
- * Returns high-level overview of cluster statistics.
+ * Returns cluster statistics. It returns basic index metrics (shard numbers,
+ * store size, memory usage) and information about the current nodes that form
+ * the cluster (number, roles, os, jvm versions, memory usage, cpu and installed
+ * plugins).
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.stats.Request">API
  *      specification</a>
@@ -78,7 +81,7 @@ public class ClusterStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * If <code>true</code>, returns settings in flat format.
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -100,8 +103,8 @@ public class ClusterStatsRequest extends RequestBase {
 	/**
 	 * Period to wait for each node to respond. If a node does not respond before
 	 * its timeout expires, the response does not include its stats. However, timed
-	 * out nodes are included in the response’s _nodes.failed property. Defaults to
-	 * no timeout.
+	 * out nodes are included in the response’s <code>_nodes.failed</code> property.
+	 * Defaults to no timeout.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -129,7 +132,7 @@ public class ClusterStatsRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Return settings in flat format (default: false)
+		 * If <code>true</code>, returns settings in flat format.
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -167,8 +170,8 @@ public class ClusterStatsRequest extends RequestBase {
 		/**
 		 * Period to wait for each node to respond. If a node does not respond before
 		 * its timeout expires, the response does not include its stats. However, timed
-		 * out nodes are included in the response’s _nodes.failed property. Defaults to
-		 * no timeout.
+		 * out nodes are included in the response’s <code>_nodes.failed</code> property.
+		 * Defaults to no timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -180,8 +183,8 @@ public class ClusterStatsRequest extends RequestBase {
 		/**
 		 * Period to wait for each node to respond. If a node does not respond before
 		 * its timeout expires, the response does not include its stats. However, timed
-		 * out nodes are included in the response’s _nodes.failed property. Defaults to
-		 * no timeout.
+		 * out nodes are included in the response’s <code>_nodes.failed</code> property.
+		 * Defaults to no timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

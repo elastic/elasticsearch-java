@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: indices.create.Request
 
 /**
- * Creates an index with optional settings and mappings.
+ * Creates a new index.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.create.Request">API
  *      specification</a>
@@ -94,6 +94,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Aliases for the index.
+	 * <p>
 	 * API name: {@code aliases}
 	 */
 	public final Map<String, Alias> aliases() {
@@ -101,7 +103,7 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - The name of the index
+	 * Required - Name of the index you wish to create.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -125,7 +127,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -135,6 +138,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Configuration options for the index.
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	@Nullable
@@ -143,7 +148,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -153,7 +159,9 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Set the number of active shards to wait for before the operation returns.
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to <code>all</code> or any positive integer up to the total
+	 * number of shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -227,6 +235,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
+		 * Aliases for the index.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
@@ -237,6 +247,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Aliases for the index.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code>.
@@ -247,6 +259,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Aliases for the index.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code> using a builder lambda.
@@ -256,7 +270,7 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Required - The name of the index
+		 * Required - Name of the index you wish to create.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -295,7 +309,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -305,7 +320,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -314,6 +330,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Configuration options for the index.
+		 * <p>
 		 * API name: {@code settings}
 		 */
 		public final Builder settings(@Nullable IndexSettings value) {
@@ -322,6 +340,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Configuration options for the index.
+		 * <p>
 		 * API name: {@code settings}
 		 */
 		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
@@ -329,7 +349,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -339,7 +360,8 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -348,7 +370,9 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Set the number of active shards to wait for before the operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -358,7 +382,9 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Set the number of active shards to wait for before the operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */

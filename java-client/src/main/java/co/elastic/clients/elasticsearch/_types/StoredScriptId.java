@@ -61,7 +61,9 @@ public class StoredScriptId extends ScriptBase {
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - The <code>id</code> for a stored script.
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
@@ -85,7 +87,9 @@ public class StoredScriptId extends ScriptBase {
 		private String id;
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - The <code>id</code> for a stored script.
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;

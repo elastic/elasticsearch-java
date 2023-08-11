@@ -104,6 +104,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The source of the document being percolated.
+	 * <p>
 	 * API name: {@code document}
 	 */
 	@Nullable
@@ -112,6 +114,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * An array of sources of the documents being percolated.
+	 * <p>
 	 * API name: {@code documents}
 	 */
 	public final List<JsonData> documents() {
@@ -119,13 +123,18 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Field that holds the indexed queries. The field must use the
+	 * <code>percolator</code> mapping type.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The ID of a stored document to percolate.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -134,6 +143,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The index of a stored document to percolate.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -142,6 +153,9 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The suffix used for the <code>_percolator_document_slot</code> field when
+	 * multiple <code>percolate</code> queries are specified.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -150,6 +164,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Preference used to fetch document to percolate.
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -158,6 +174,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Routing used to fetch document to percolate.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -166,6 +184,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The expected version of a stored document to percolate.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -261,6 +281,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		private Long version;
 
 		/**
+		 * The source of the document being percolated.
+		 * <p>
 		 * API name: {@code document}
 		 */
 		public final Builder document(@Nullable JsonData value) {
@@ -269,6 +291,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * An array of sources of the documents being percolated.
+		 * <p>
 		 * API name: {@code documents}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>documents</code>.
@@ -279,6 +303,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * An array of sources of the documents being percolated.
+		 * <p>
 		 * API name: {@code documents}
 		 * <p>
 		 * Adds one or more values to <code>documents</code>.
@@ -289,7 +315,10 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Field that holds the indexed queries. The field must use the
+		 * <code>percolator</code> mapping type.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -297,6 +326,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The ID of a stored document to percolate.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public final Builder id(@Nullable String value) {
@@ -305,6 +336,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The index of a stored document to percolate.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -313,6 +346,9 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The suffix used for the <code>_percolator_document_slot</code> field when
+		 * multiple <code>percolate</code> queries are specified.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public final Builder name(@Nullable String value) {
@@ -321,6 +357,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Preference used to fetch document to percolate.
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public final Builder preference(@Nullable String value) {
@@ -329,6 +367,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Routing used to fetch document to percolate.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -337,6 +377,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The expected version of a stored document to percolate.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public final Builder version(@Nullable Long value) {

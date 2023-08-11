@@ -85,6 +85,8 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Query used to limit documents the alias can access.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -93,6 +95,9 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route indexing operations to a specific shard. If specified,
+	 * this overwrites the <code>routing</code> value for indexing operations.
+	 * <p>
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
@@ -101,6 +106,8 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the index is the write index for the alias.
+	 * <p>
 	 * API name: {@code is_write_index}
 	 */
 	@Nullable
@@ -109,6 +116,8 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route indexing and search operations to a specific shard.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -117,6 +126,9 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route search operations to a specific shard. If specified, this
+	 * overwrites the <code>routing</code> value for search operations.
+	 * <p>
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
@@ -125,6 +137,9 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the alias is hidden. All indices for the alias must
+	 * have the same <code>is_hidden</code> value.
+	 * <p>
 	 * API name: {@code is_hidden}
 	 */
 	@Nullable
@@ -207,6 +222,8 @@ public class AliasDefinition implements JsonpSerializable {
 		private Boolean isHidden;
 
 		/**
+		 * Query used to limit documents the alias can access.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable Query value) {
@@ -215,6 +232,8 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Query used to limit documents the alias can access.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -222,6 +241,9 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route indexing operations to a specific shard. If specified,
+		 * this overwrites the <code>routing</code> value for indexing operations.
+		 * <p>
 		 * API name: {@code index_routing}
 		 */
 		public final Builder indexRouting(@Nullable String value) {
@@ -230,6 +252,8 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the index is the write index for the alias.
+		 * <p>
 		 * API name: {@code is_write_index}
 		 */
 		public final Builder isWriteIndex(@Nullable Boolean value) {
@@ -238,6 +262,8 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route indexing and search operations to a specific shard.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -246,6 +272,9 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route search operations to a specific shard. If specified, this
+		 * overwrites the <code>routing</code> value for search operations.
+		 * <p>
 		 * API name: {@code search_routing}
 		 */
 		public final Builder searchRouting(@Nullable String value) {
@@ -254,6 +283,9 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the alias is hidden. All indices for the alias must
+		 * have the same <code>is_hidden</code> value.
+		 * <p>
 		 * API name: {@code is_hidden}
 		 */
 		public final Builder isHidden(@Nullable Boolean value) {

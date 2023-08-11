@@ -51,7 +51,8 @@ import javax.annotation.Nullable;
 // typedef: security.query_api_keys.Request
 
 /**
- * Retrieves information for API keys using a subset of query DSL
+ * Retrieves information for API keys in a paginated manner. You can optionally
+ * filter the results with a query.
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_api_keys.Request">API
  *      specification</a>
@@ -94,7 +95,7 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Starting document offset. By default, you cannot page through more than
 	 * 10,000 hits using the from and size parameters. To page through more hits,
-	 * use the search_after parameter.
+	 * use the <code>search_after</code> parameter.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -105,8 +106,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * A query to filter which API keys to return. The query supports a subset of
-	 * query types, including match_all, bool, term, terms, ids, prefix, wildcard,
-	 * and range. You can query all public information associated with an API key
+	 * query types, including <code>match_all</code>, <code>bool</code>,
+	 * <code>term</code>, <code>terms</code>, <code>ids</code>, <code>prefix</code>,
+	 * <code>wildcard</code>, and <code>range</code>. You can query all public
+	 * information associated with an API key.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -116,6 +119,8 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Search after definition
+	 * <p>
 	 * API name: {@code search_after}
 	 */
 	public final List<FieldValue> searchAfter() {
@@ -124,8 +129,8 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * The number of hits to return. By default, you cannot page through more than
-	 * 10,000 hits using the from and size parameters. To page through more hits,
-	 * use the search_after parameter.
+	 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
+	 * page through more hits, use the <code>search_after</code> parameter.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -135,6 +140,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Other than <code>id</code>, all public fields of an API key are eligible for
+	 * sorting. In addition, sort can also be applied to the <code>_doc</code> field
+	 * to sort by index order.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public final List<SortOptions> sort() {
@@ -232,7 +241,7 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Starting document offset. By default, you cannot page through more than
 		 * 10,000 hits using the from and size parameters. To page through more hits,
-		 * use the search_after parameter.
+		 * use the <code>search_after</code> parameter.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -243,8 +252,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * A query to filter which API keys to return. The query supports a subset of
-		 * query types, including match_all, bool, term, terms, ids, prefix, wildcard,
-		 * and range. You can query all public information associated with an API key
+		 * query types, including <code>match_all</code>, <code>bool</code>,
+		 * <code>term</code>, <code>terms</code>, <code>ids</code>, <code>prefix</code>,
+		 * <code>wildcard</code>, and <code>range</code>. You can query all public
+		 * information associated with an API key.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -255,8 +266,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * A query to filter which API keys to return. The query supports a subset of
-		 * query types, including match_all, bool, term, terms, ids, prefix, wildcard,
-		 * and range. You can query all public information associated with an API key
+		 * query types, including <code>match_all</code>, <code>bool</code>,
+		 * <code>term</code>, <code>terms</code>, <code>ids</code>, <code>prefix</code>,
+		 * <code>wildcard</code>, and <code>range</code>. You can query all public
+		 * information associated with an API key.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -265,6 +278,8 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Search after definition
+		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
@@ -275,6 +290,8 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Search after definition
+		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
 		 * Adds one or more values to <code>searchAfter</code>.
@@ -285,6 +302,8 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Search after definition
+		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
 		 * Adds a value to <code>searchAfter</code> using a builder lambda.
@@ -295,8 +314,8 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * The number of hits to return. By default, you cannot page through more than
-		 * 10,000 hits using the from and size parameters. To page through more hits,
-		 * use the search_after parameter.
+		 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
+		 * page through more hits, use the <code>search_after</code> parameter.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -306,6 +325,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Other than <code>id</code>, all public fields of an API key are eligible for
+		 * sorting. In addition, sort can also be applied to the <code>_doc</code> field
+		 * to sort by index order.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
@@ -316,6 +339,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Other than <code>id</code>, all public fields of an API key are eligible for
+		 * sorting. In addition, sort can also be applied to the <code>_doc</code> field
+		 * to sort by index order.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
@@ -326,6 +353,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Other than <code>id</code>, all public fields of an API key are eligible for
+		 * sorting. In addition, sort can also be applied to the <code>_doc</code> field
+		 * to sort by index order.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.

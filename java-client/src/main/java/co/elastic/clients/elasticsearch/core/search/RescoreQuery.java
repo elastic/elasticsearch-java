@@ -77,13 +77,19 @@ public class RescoreQuery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code rescore_query}
+	 * Required - The query to use for rescoring. This query is only run on the
+	 * Top-K results returned by the <code>query</code> and <code>post_filter</code>
+	 * phases.
+	 * <p>
+	 * API name: {@code rescore_query}
 	 */
 	public final Query query() {
 		return this.query;
 	}
 
 	/**
+	 * Relative importance of the original query versus the rescore query.
+	 * <p>
 	 * API name: {@code query_weight}
 	 */
 	@Nullable
@@ -92,6 +98,8 @@ public class RescoreQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Relative importance of the rescore query versus the original query.
+	 * <p>
 	 * API name: {@code rescore_query_weight}
 	 */
 	@Nullable
@@ -100,6 +108,8 @@ public class RescoreQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Determines how scores are combined.
+	 * <p>
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
@@ -162,7 +172,11 @@ public class RescoreQuery implements JsonpSerializable {
 		private ScoreMode scoreMode;
 
 		/**
-		 * Required - API name: {@code rescore_query}
+		 * Required - The query to use for rescoring. This query is only run on the
+		 * Top-K results returned by the <code>query</code> and <code>post_filter</code>
+		 * phases.
+		 * <p>
+		 * API name: {@code rescore_query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -170,13 +184,19 @@ public class RescoreQuery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code rescore_query}
+		 * Required - The query to use for rescoring. This query is only run on the
+		 * Top-K results returned by the <code>query</code> and <code>post_filter</code>
+		 * phases.
+		 * <p>
+		 * API name: {@code rescore_query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
+		 * Relative importance of the original query versus the rescore query.
+		 * <p>
 		 * API name: {@code query_weight}
 		 */
 		public final Builder queryWeight(@Nullable Double value) {
@@ -185,6 +205,8 @@ public class RescoreQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Relative importance of the rescore query versus the original query.
+		 * <p>
 		 * API name: {@code rescore_query_weight}
 		 */
 		public final Builder rescoreQueryWeight(@Nullable Double value) {
@@ -193,6 +215,8 @@ public class RescoreQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Determines how scores are combined.
+		 * <p>
 		 * API name: {@code score_mode}
 		 */
 		public final Builder scoreMode(@Nullable ScoreMode value) {

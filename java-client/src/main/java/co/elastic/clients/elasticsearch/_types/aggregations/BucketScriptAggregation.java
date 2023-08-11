@@ -70,6 +70,8 @@ public class BucketScriptAggregation extends PipelineAggregationBase implements 
 	}
 
 	/**
+	 * The script to run for this aggregation.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -101,6 +103,8 @@ public class BucketScriptAggregation extends PipelineAggregationBase implements 
 		private Script script;
 
 		/**
+		 * The script to run for this aggregation.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable Script value) {
@@ -109,6 +113,8 @@ public class BucketScriptAggregation extends PipelineAggregationBase implements 
 		}
 
 		/**
+		 * The script to run for this aggregation.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {

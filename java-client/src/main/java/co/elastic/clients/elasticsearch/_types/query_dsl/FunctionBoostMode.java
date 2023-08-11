@@ -35,16 +35,34 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum FunctionBoostMode implements JsonEnum {
+	/**
+	 * Query score and function score are multiplied
+	 */
 	Multiply("multiply"),
 
+	/**
+	 * Only the function score is used. The query score is ignored.
+	 */
 	Replace("replace"),
 
+	/**
+	 * Query score and function score are added
+	 */
 	Sum("sum"),
 
+	/**
+	 * Query score and function score are averaged
+	 */
 	Avg("avg"),
 
+	/**
+	 * Max of query score and function score
+	 */
 	Max("max"),
 
+	/**
+	 * Min of query score and function score
+	 */
 	Min("min"),
 
 	;

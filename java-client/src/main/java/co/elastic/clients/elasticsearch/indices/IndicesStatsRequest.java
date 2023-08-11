@@ -49,7 +49,8 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.Request
 
 /**
- * Provides statistics on operations happening in an index.
+ * Returns statistics for one or more indices. For data streams, the API
+ * retrieves statistics for the stream’s backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.stats.Request">API
  *      specification</a>

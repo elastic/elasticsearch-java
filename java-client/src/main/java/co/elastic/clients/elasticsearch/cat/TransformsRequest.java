@@ -97,8 +97,13 @@ public class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no transforms. (This
-	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * Specifies what to do when the request: contains wildcard expressions and
+	 * there are no transforms that match; contains the <code>_all</code> string or
+	 * no identifiers and there are no matches; contains wildcard expressions and
+	 * there are only partial matches. If <code>true</code>, it returns an empty
+	 * transforms array when there are no matches and the subset of results when
+	 * there are partial matches. If <code>false</code>, the request returns a 404
+	 * status code when there are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -108,7 +113,7 @@ public class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * skips a number of transform configs, defaults to 0
+	 * Skips the specified number of transforms.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -137,7 +142,7 @@ public class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * specifies a max number of transforms to get, defaults to 100
+	 * The maximum number of transforms to obtain.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -147,7 +152,7 @@ public class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Unit used to display time values.
+	 * The unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -157,8 +162,8 @@ public class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The id of the transform for which to get stats. '_all' or '*' implies all
-	 * transforms
+	 * A transform identifier or a wildcard expression. If you do not specify one of
+	 * these options, the API returns information for all transforms.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -198,8 +203,13 @@ public class TransformsRequest extends CatRequestBase {
 		private String transformId;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no transforms. (This
-		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * Specifies what to do when the request: contains wildcard expressions and
+		 * there are no transforms that match; contains the <code>_all</code> string or
+		 * no identifiers and there are no matches; contains wildcard expressions and
+		 * there are only partial matches. If <code>true</code>, it returns an empty
+		 * transforms array when there are no matches and the subset of results when
+		 * there are partial matches. If <code>false</code>, the request returns a 404
+		 * status code when there are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -209,7 +219,7 @@ public class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * skips a number of transform configs, defaults to 0
+		 * Skips the specified number of transforms.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -269,7 +279,7 @@ public class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * specifies a max number of transforms to get, defaults to 100
+		 * The maximum number of transforms to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -279,7 +289,7 @@ public class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Unit used to display time values.
+		 * The unit used to display time values.
 		 * <p>
 		 * API name: {@code time}
 		 */
@@ -289,8 +299,8 @@ public class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The id of the transform for which to get stats. '_all' or '*' implies all
-		 * transforms
+		 * A transform identifier or a wildcard expression. If you do not specify one of
+		 * these options, the API returns information for all transforms.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

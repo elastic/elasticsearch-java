@@ -69,14 +69,19 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - Number of selected nodes using the operating system.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code pretty_name}
+	 * Required - Human-readable name of an operating system used by one or more
+	 * selected nodes.
+	 * <p>
+	 * API name: {@code pretty_name}
 	 */
 	public final String prettyName() {
 		return this.prettyName;
@@ -120,7 +125,9 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 		private String prettyName;
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - Number of selected nodes using the operating system.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -128,7 +135,10 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pretty_name}
+		 * Required - Human-readable name of an operating system used by one or more
+		 * selected nodes.
+		 * <p>
+		 * API name: {@code pretty_name}
 		 */
 		public final Builder prettyName(String value) {
 			this.prettyName = value;

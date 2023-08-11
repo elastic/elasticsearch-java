@@ -69,7 +69,10 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - Contains a script to run as a query. This script must return a
+	 * boolean value, <code>true</code> or <code>false</code>.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final Script script() {
 		return this.script;
@@ -93,7 +96,10 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 		private Script script;
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Contains a script to run as a query. This script must return a
+		 * boolean value, <code>true</code> or <code>false</code>.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Script value) {
 			this.script = value;
@@ -101,7 +107,10 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Contains a script to run as a query. This script must return a
+		 * boolean value, <code>true</code> or <code>false</code>.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());

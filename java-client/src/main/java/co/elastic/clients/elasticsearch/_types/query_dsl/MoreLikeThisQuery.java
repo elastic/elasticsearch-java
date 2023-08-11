@@ -145,6 +145,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The analyzer that is used to analyze the free form text. Defaults to the
+	 * analyzer associated with the first field in fields.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -153,6 +156,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Each term in the formed query could be further boosted by their tf-idf score.
+	 * This sets the boost factor to use when using this feature. Defaults to
+	 * deactivated (0).
+	 * <p>
 	 * API name: {@code boost_terms}
 	 */
 	@Nullable
@@ -161,6 +168,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Controls whether the query should fail (throw an exception) if any of the
+	 * specified fields are not of the supported types (<code>text</code> or
+	 * <code>keyword</code>).
+	 * <p>
 	 * API name: {@code fail_on_unsupported_field}
 	 */
 	@Nullable
@@ -169,6 +180,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * A list of fields to fetch and analyze the text from. Defaults to the
+	 * <code>index.query.default_field</code> index setting, which has a default
+	 * value of <code>*</code>.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
@@ -176,6 +191,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Specifies whether the input documents should also be included in the search
+	 * results returned.
+	 * <p>
 	 * API name: {@code include}
 	 */
 	@Nullable
@@ -184,13 +202,19 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code like}
+	 * Required - Specifies free form text and/or a single or multiple documents for
+	 * which you want to find similar documents.
+	 * <p>
+	 * API name: {@code like}
 	 */
 	public final List<Like> like() {
 		return this.like;
 	}
 
 	/**
+	 * The maximum document frequency above which the terms are ignored from the
+	 * input document.
+	 * <p>
 	 * API name: {@code max_doc_freq}
 	 */
 	@Nullable
@@ -199,6 +223,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The maximum number of query terms that can be selected.
+	 * <p>
 	 * API name: {@code max_query_terms}
 	 */
 	@Nullable
@@ -207,6 +233,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The maximum word length above which the terms are ignored. Defaults to
+	 * unbounded (<code>0</code>).
+	 * <p>
 	 * API name: {@code max_word_length}
 	 */
 	@Nullable
@@ -215,6 +244,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The minimum document frequency below which the terms are ignored from the
+	 * input document.
+	 * <p>
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
@@ -223,6 +255,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * After the disjunctive query has been formed, this parameter controls the
+	 * number of terms that must match.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -231,6 +266,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The minimum term frequency below which the terms are ignored from the input
+	 * document.
+	 * <p>
 	 * API name: {@code min_term_freq}
 	 */
 	@Nullable
@@ -239,6 +277,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The minimum word length below which the terms are ignored.
+	 * <p>
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
@@ -247,6 +287,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Overrides the default analyzer.
+	 * <p>
 	 * API name: {@code per_field_analyzer}
 	 */
 	public final Map<String, String> perFieldAnalyzer() {
@@ -262,6 +304,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * An array of stop words. Any word in this set is ignored.
+	 * <p>
 	 * API name: {@code stop_words}
 	 */
 	public final List<String> stopWords() {
@@ -269,6 +313,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Used in combination with <code>like</code> to exclude documents that match a
+	 * set of terms.
+	 * <p>
 	 * API name: {@code unlike}
 	 */
 	public final List<Like> unlike() {
@@ -481,6 +528,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		private VersionType versionType;
 
 		/**
+		 * The analyzer that is used to analyze the free form text. Defaults to the
+		 * analyzer associated with the first field in fields.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -489,6 +539,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Each term in the formed query could be further boosted by their tf-idf score.
+		 * This sets the boost factor to use when using this feature. Defaults to
+		 * deactivated (0).
+		 * <p>
 		 * API name: {@code boost_terms}
 		 */
 		public final Builder boostTerms(@Nullable Double value) {
@@ -497,6 +551,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Controls whether the query should fail (throw an exception) if any of the
+		 * specified fields are not of the supported types (<code>text</code> or
+		 * <code>keyword</code>).
+		 * <p>
 		 * API name: {@code fail_on_unsupported_field}
 		 */
 		public final Builder failOnUnsupportedField(@Nullable Boolean value) {
@@ -505,6 +563,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * A list of fields to fetch and analyze the text from. Defaults to the
+		 * <code>index.query.default_field</code> index setting, which has a default
+		 * value of <code>*</code>.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -515,6 +577,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * A list of fields to fetch and analyze the text from. Defaults to the
+		 * <code>index.query.default_field</code> index setting, which has a default
+		 * value of <code>*</code>.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
@@ -525,6 +591,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Specifies whether the input documents should also be included in the search
+		 * results returned.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(@Nullable Boolean value) {
@@ -533,7 +602,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code like}
+		 * Required - Specifies free form text and/or a single or multiple documents for
+		 * which you want to find similar documents.
+		 * <p>
+		 * API name: {@code like}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>like</code>.
 		 */
@@ -543,7 +615,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code like}
+		 * Required - Specifies free form text and/or a single or multiple documents for
+		 * which you want to find similar documents.
+		 * <p>
+		 * API name: {@code like}
 		 * <p>
 		 * Adds one or more values to <code>like</code>.
 		 */
@@ -553,7 +628,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code like}
+		 * Required - Specifies free form text and/or a single or multiple documents for
+		 * which you want to find similar documents.
+		 * <p>
+		 * API name: {@code like}
 		 * <p>
 		 * Adds a value to <code>like</code> using a builder lambda.
 		 */
@@ -562,6 +640,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The maximum document frequency above which the terms are ignored from the
+		 * input document.
+		 * <p>
 		 * API name: {@code max_doc_freq}
 		 */
 		public final Builder maxDocFreq(@Nullable Integer value) {
@@ -570,6 +651,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The maximum number of query terms that can be selected.
+		 * <p>
 		 * API name: {@code max_query_terms}
 		 */
 		public final Builder maxQueryTerms(@Nullable Integer value) {
@@ -578,6 +661,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The maximum word length above which the terms are ignored. Defaults to
+		 * unbounded (<code>0</code>).
+		 * <p>
 		 * API name: {@code max_word_length}
 		 */
 		public final Builder maxWordLength(@Nullable Integer value) {
@@ -586,6 +672,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The minimum document frequency below which the terms are ignored from the
+		 * input document.
+		 * <p>
 		 * API name: {@code min_doc_freq}
 		 */
 		public final Builder minDocFreq(@Nullable Integer value) {
@@ -594,6 +683,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * After the disjunctive query has been formed, this parameter controls the
+		 * number of terms that must match.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -602,6 +694,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The minimum term frequency below which the terms are ignored from the input
+		 * document.
+		 * <p>
 		 * API name: {@code min_term_freq}
 		 */
 		public final Builder minTermFreq(@Nullable Integer value) {
@@ -610,6 +705,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The minimum word length below which the terms are ignored.
+		 * <p>
 		 * API name: {@code min_word_length}
 		 */
 		public final Builder minWordLength(@Nullable Integer value) {
@@ -618,6 +715,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Overrides the default analyzer.
+		 * <p>
 		 * API name: {@code per_field_analyzer}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
@@ -628,6 +727,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Overrides the default analyzer.
+		 * <p>
 		 * API name: {@code per_field_analyzer}
 		 * <p>
 		 * Adds an entry to <code>perFieldAnalyzer</code>.
@@ -646,6 +747,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * An array of stop words. Any word in this set is ignored.
+		 * <p>
 		 * API name: {@code stop_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopWords</code>.
@@ -656,6 +759,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * An array of stop words. Any word in this set is ignored.
+		 * <p>
 		 * API name: {@code stop_words}
 		 * <p>
 		 * Adds one or more values to <code>stopWords</code>.
@@ -666,6 +771,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Used in combination with <code>like</code> to exclude documents that match a
+		 * set of terms.
+		 * <p>
 		 * API name: {@code unlike}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>unlike</code>.
@@ -676,6 +784,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Used in combination with <code>like</code> to exclude documents that match a
+		 * set of terms.
+		 * <p>
 		 * API name: {@code unlike}
 		 * <p>
 		 * Adds one or more values to <code>unlike</code>.
@@ -686,6 +797,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Used in combination with <code>like</code> to exclude documents that match a
+		 * set of terms.
+		 * <p>
 		 * API name: {@code unlike}
 		 * <p>
 		 * Adds a value to <code>unlike</code> using a builder lambda.

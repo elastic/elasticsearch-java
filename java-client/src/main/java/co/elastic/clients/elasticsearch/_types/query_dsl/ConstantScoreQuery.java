@@ -69,7 +69,12 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code filter}
+	 * Required - Filter query you wish to run. Any returned documents must match
+	 * this query. Filter queries do not calculate relevance scores. To speed up
+	 * performance, Elasticsearch automatically caches frequently used filter
+	 * queries.
+	 * <p>
+	 * API name: {@code filter}
 	 */
 	public final Query filter() {
 		return this.filter;
@@ -95,7 +100,12 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 		private Query filter;
 
 		/**
-		 * Required - API name: {@code filter}
+		 * Required - Filter query you wish to run. Any returned documents must match
+		 * this query. Filter queries do not calculate relevance scores. To speed up
+		 * performance, Elasticsearch automatically caches frequently used filter
+		 * queries.
+		 * <p>
+		 * API name: {@code filter}
 		 */
 		public final Builder filter(Query value) {
 			this.filter = value;
@@ -103,7 +113,12 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code filter}
+		 * Required - Filter query you wish to run. Any returned documents must match
+		 * this query. Filter queries do not calculate relevance scores. To speed up
+		 * performance, Elasticsearch automatically caches frequently used filter
+		 * queries.
+		 * <p>
+		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());

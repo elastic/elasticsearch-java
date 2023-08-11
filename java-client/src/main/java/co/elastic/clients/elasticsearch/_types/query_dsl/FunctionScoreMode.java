@@ -35,16 +35,34 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum FunctionScoreMode implements JsonEnum {
+	/**
+	 * Scores are multiplied.
+	 */
 	Multiply("multiply"),
 
+	/**
+	 * Scores are summed.
+	 */
 	Sum("sum"),
 
+	/**
+	 * Scores are averaged.
+	 */
 	Avg("avg"),
 
+	/**
+	 * The first function that has a matching filter is applied.
+	 */
 	First("first"),
 
+	/**
+	 * Maximum score is used.
+	 */
 	Max("max"),
 
+	/**
+	 * Minimum score is used.
+	 */
 	Min("min"),
 
 	;

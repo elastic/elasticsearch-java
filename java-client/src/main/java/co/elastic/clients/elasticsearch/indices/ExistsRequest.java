@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 // typedef: indices.exists.Request
 
 /**
- * Returns information about whether a particular index exists.
+ * Checks if a data stream, index, or alias exists.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.exists.Request">API
  *      specification</a>
@@ -95,8 +95,10 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Ignore if a wildcard expression resolves to no concrete indices (default:
-	 * false)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -106,8 +108,12 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -116,7 +122,7 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * If <code>true</code>, returns settings in flat format.
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -126,7 +132,8 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Ignore unavailable indexes (default: false)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -136,7 +143,7 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to return all default setting for each of the indices.
+	 * If <code>true</code>, return all default settings in the response.
 	 * <p>
 	 * API name: {@code include_defaults}
 	 */
@@ -146,7 +153,8 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of index names
+	 * Required - Comma-separated list of data streams, indices, and aliases.
+	 * Supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -155,8 +163,8 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * If <code>true</code>, the request retrieves information from the local node
+	 * only.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -193,8 +201,10 @@ public class ExistsRequest extends RequestBase {
 		private Boolean local;
 
 		/**
-		 * Ignore if a wildcard expression resolves to no concrete indices (default:
-		 * false)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -204,8 +214,12 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -217,8 +231,12 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -230,7 +248,7 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Return settings in flat format (default: false)
+		 * If <code>true</code>, returns settings in flat format.
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -240,7 +258,8 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Ignore unavailable indexes (default: false)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -250,7 +269,7 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to return all default setting for each of the indices.
+		 * If <code>true</code>, return all default settings in the response.
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
@@ -260,7 +279,8 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names
+		 * Required - Comma-separated list of data streams, indices, and aliases.
+		 * Supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -272,7 +292,8 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names
+		 * Required - Comma-separated list of data streams, indices, and aliases.
+		 * Supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -284,8 +305,8 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * If <code>true</code>, the request retrieves information from the local node
+		 * only.
 		 * <p>
 		 * API name: {@code local}
 		 */

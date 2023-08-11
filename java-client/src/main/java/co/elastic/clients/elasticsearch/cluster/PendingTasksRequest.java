@@ -44,8 +44,14 @@ import javax.annotation.Nullable;
 // typedef: cluster.pending_tasks.Request
 
 /**
- * Returns a list of any cluster-level changes (e.g. create index, update
- * mapping, allocate or fail shard) which have not yet been executed.
+ * Returns cluster-level changes (such as create index, update mapping, allocate
+ * or fail shard) that have not yet been executed. NOTE: This API returns a list
+ * of any pending updates to the cluster state. These are distinct from the
+ * tasks reported by the Task Management API which include periodic tasks and
+ * tasks initiated by the user, such as node stats, search queries, or create
+ * index requests. However, if a user-initiated task such as a create index
+ * command causes a cluster state update, the activity of this task might be
+ * reported by both task api and pending cluster tasks API.
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.pending_tasks.Request">API
  *      specification</a>
@@ -72,8 +78,8 @@ public class PendingTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * If <code>true</code>, the request retrieves information from the local node
+	 * only. If <code>false</code>, information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -83,7 +89,8 @@ public class PendingTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -108,8 +115,8 @@ public class PendingTasksRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * If <code>true</code>, the request retrieves information from the local node
+		 * only. If <code>false</code>, information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -119,7 +126,8 @@ public class PendingTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -129,7 +137,8 @@ public class PendingTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

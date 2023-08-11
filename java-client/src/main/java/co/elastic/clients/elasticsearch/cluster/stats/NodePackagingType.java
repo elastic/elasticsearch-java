@@ -71,21 +71,30 @@ public class NodePackagingType implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - Number of selected nodes using the distribution flavor and file
+	 * type.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code flavor}
+	 * Required - Type of Elasticsearch distribution. This is always
+	 * <code>default</code>.
+	 * <p>
+	 * API name: {@code flavor}
 	 */
 	public final String flavor() {
 		return this.flavor;
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - File type (such as <code>tar</code> or <code>zip</code>) used for
+	 * the distribution package.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final String type() {
 		return this.type;
@@ -132,7 +141,10 @@ public class NodePackagingType implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - Number of selected nodes using the distribution flavor and file
+		 * type.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -140,7 +152,10 @@ public class NodePackagingType implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code flavor}
+		 * Required - Type of Elasticsearch distribution. This is always
+		 * <code>default</code>.
+		 * <p>
+		 * API name: {@code flavor}
 		 */
 		public final Builder flavor(String value) {
 			this.flavor = value;
@@ -148,7 +163,10 @@ public class NodePackagingType implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - File type (such as <code>tar</code> or <code>zip</code>) used for
+		 * the distribution package.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(String value) {
 			this.type = value;

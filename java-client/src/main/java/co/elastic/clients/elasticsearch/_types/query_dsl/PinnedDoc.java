@@ -66,14 +66,18 @@ public class PinnedDoc implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * Required - The unique document ID.
+	 * <p>
+	 * API name: {@code _id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code _index}
+	 * Required - The index that contains the document.
+	 * <p>
+	 * API name: {@code _index}
 	 */
 	public final String index() {
 		return this.index;
@@ -115,7 +119,9 @@ public class PinnedDoc implements JsonpSerializable {
 		private String index;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * Required - The unique document ID.
+		 * <p>
+		 * API name: {@code _id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -123,7 +129,9 @@ public class PinnedDoc implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _index}
+		 * Required - The index that contains the document.
+		 * <p>
+		 * API name: {@code _index}
 		 */
 		public final Builder index(String value) {
 			this.index = value;

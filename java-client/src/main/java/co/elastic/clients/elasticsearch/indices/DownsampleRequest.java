@@ -46,7 +46,10 @@ import javax.annotation.Nullable;
 // typedef: indices.downsample.Request
 
 /**
- * Downsample an index
+ * Aggregates a time series (TSDS) index and stores pre-computed statistical
+ * summaries (<code>min</code>, <code>max</code>, <code>sum</code>,
+ * <code>value_count</code> and <code>avg</code>) for each metric field grouped
+ * by a configured time interval.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.downsample.Request">API
  *      specification</a>
@@ -74,7 +77,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The index to downsample
+	 * Required - Name of the time series index to downsample.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -83,7 +86,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The name of the target index to store downsampled data
+	 * Required - Name of the index to create.
 	 * <p>
 	 * API name: {@code target_index}
 	 */
@@ -122,7 +125,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 		private DownsampleConfig config;
 
 		/**
-		 * Required - The index to downsample
+		 * Required - Name of the time series index to downsample.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -132,7 +135,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - The name of the target index to store downsampled data
+		 * Required - Name of the index to create.
 		 * <p>
 		 * API name: {@code target_index}
 		 */

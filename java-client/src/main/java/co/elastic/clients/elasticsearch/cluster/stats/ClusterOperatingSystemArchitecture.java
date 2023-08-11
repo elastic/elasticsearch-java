@@ -50,16 +50,16 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
-	private final int count;
-
 	private final String arch;
+
+	private final int count;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ClusterOperatingSystemArchitecture(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
@@ -69,17 +69,21 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
-	 */
-	public final int count() {
-		return this.count;
-	}
-
-	/**
-	 * Required - API name: {@code arch}
+	 * Required - Name of an architecture used by one or more selected nodes.
+	 * <p>
+	 * API name: {@code arch}
 	 */
 	public final String arch() {
 		return this.arch;
+	}
+
+	/**
+	 * Required - Number of selected nodes using the architecture.
+	 * <p>
+	 * API name: {@code count}
+	 */
+	public final int count() {
+		return this.count;
 	}
 
 	/**
@@ -93,11 +97,11 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
-
 		generator.writeKey("arch");
 		generator.write(this.arch);
+
+		generator.writeKey("count");
+		generator.write(this.count);
 
 	}
 
@@ -115,23 +119,27 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ClusterOperatingSystemArchitecture> {
-		private Integer count;
-
 		private String arch;
 
+		private Integer count;
+
 		/**
-		 * Required - API name: {@code count}
+		 * Required - Name of an architecture used by one or more selected nodes.
+		 * <p>
+		 * API name: {@code arch}
 		 */
-		public final Builder count(int value) {
-			this.count = value;
+		public final Builder arch(String value) {
+			this.arch = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code arch}
+		 * Required - Number of selected nodes using the architecture.
+		 * <p>
+		 * API name: {@code count}
 		 */
-		public final Builder arch(String value) {
-			this.arch = value;
+		public final Builder count(int value) {
+			this.count = value;
 			return this;
 		}
 
@@ -165,8 +173,8 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 	protected static void setupClusterOperatingSystemArchitectureDeserializer(
 			ObjectDeserializer<ClusterOperatingSystemArchitecture.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 
 	}
 

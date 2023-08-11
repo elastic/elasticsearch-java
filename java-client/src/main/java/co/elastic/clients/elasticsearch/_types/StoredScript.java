@@ -70,7 +70,9 @@ public class StoredScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code lang}
+	 * Required - Specifies the language the script is written in.
+	 * <p>
+	 * API name: {@code lang}
 	 */
 	public final String lang() {
 		return this.lang;
@@ -84,7 +86,9 @@ public class StoredScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code source}
+	 * Required - The script source.
+	 * <p>
+	 * API name: {@code source}
 	 */
 	public final String source() {
 		return this.source;
@@ -140,7 +144,9 @@ public class StoredScript implements JsonpSerializable {
 		private String source;
 
 		/**
-		 * Required - API name: {@code lang}
+		 * Required - Specifies the language the script is written in.
+		 * <p>
+		 * API name: {@code lang}
 		 */
 		public final Builder lang(String value) {
 			this.lang = value;
@@ -148,7 +154,9 @@ public class StoredScript implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code lang}
+		 * Required - Specifies the language the script is written in.
+		 * <p>
+		 * API name: {@code lang}
 		 */
 		public final Builder lang(ScriptLanguage value) {
 			this.lang = value == null ? null : value.jsonValue();
@@ -176,7 +184,9 @@ public class StoredScript implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code source}
+		 * Required - The script source.
+		 * <p>
+		 * API name: {@code source}
 		 */
 		public final Builder source(String value) {
 			this.source = value;

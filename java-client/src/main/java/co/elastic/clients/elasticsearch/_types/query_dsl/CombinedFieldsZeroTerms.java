@@ -35,8 +35,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum CombinedFieldsZeroTerms implements JsonEnum {
+	/**
+	 * No documents are returned if the analyzer removes all tokens.
+	 */
 	None("none"),
 
+	/**
+	 * Returns all documents, similar to a <code>match_all</code> query.
+	 */
 	All("all"),
 
 	;

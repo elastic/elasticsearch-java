@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security.has_privileges_user_profile;
 
+import co.elastic.clients.elasticsearch.security.ClusterPrivilege;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
 import co.elastic.clients.json.JsonpDeserializable;
