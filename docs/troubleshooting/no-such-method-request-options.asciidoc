@@ -4,9 +4,10 @@
 
 In certain contexts you may encounter an error when creating the `ElasticsearchClient` saying that the method `RequestOptions$Builder.removeHeader` does not exist:
 
---------
+["source","java"]
+--------------------------------------------------
 java.lang.NoSuchMethodError: 'org.elasticsearch.client.RequestOptions$Builder org.elasticsearch.client.RequestOptions$Builder.removeHeader(java.lang.String)'
---------
+--------------------------------------------------
 
 This method was introduced in `elasticsearch-rest-client` version 7.16.0. The error happens because your project is using an older version of this dependency.
 
