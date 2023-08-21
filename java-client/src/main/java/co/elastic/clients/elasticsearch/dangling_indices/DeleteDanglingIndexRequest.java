@@ -245,6 +245,21 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _indexUuid = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _indexUuid;
+
+				if (propsSet == (_indexUuid)) {
+					params.put("indexUuid", request.indexUuid);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

@@ -263,6 +263,24 @@ public class HealthReportRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _feature = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.feature()))
+					propsSet |= _feature;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_feature)) {
+					params.put("feature", request.feature.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

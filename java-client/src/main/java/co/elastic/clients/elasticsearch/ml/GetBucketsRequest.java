@@ -548,6 +548,28 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _jobId = 1 << 0;
+				final int _timestamp = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _jobId;
+				if (request.timestamp() != null)
+					propsSet |= _timestamp;
+
+				if (propsSet == (_jobId | _timestamp)) {
+					params.put("jobId", request.jobId);
+					params.put("timestamp", request.timestamp.toString());
+				}
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

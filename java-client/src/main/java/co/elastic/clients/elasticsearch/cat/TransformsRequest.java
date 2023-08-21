@@ -368,6 +368,24 @@ public class TransformsRequest extends CatRequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= _transformId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_transformId)) {
+					params.put("transformId", request.transformId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

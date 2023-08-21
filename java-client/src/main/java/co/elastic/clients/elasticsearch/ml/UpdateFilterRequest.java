@@ -38,7 +38,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -311,6 +313,21 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _filterId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _filterId;
+
+				if (propsSet == (_filterId)) {
+					params.put("filterId", request.filterId);
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -271,6 +271,28 @@ public class DeleteForecastRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _jobId = 1 << 0;
+				final int _forecastId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _jobId;
+				if (request.forecastId() != null)
+					propsSet |= _forecastId;
+
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId);
+				}
+				if (propsSet == (_jobId | _forecastId)) {
+					params.put("jobId", request.jobId);
+					params.put("forecastId", request.forecastId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

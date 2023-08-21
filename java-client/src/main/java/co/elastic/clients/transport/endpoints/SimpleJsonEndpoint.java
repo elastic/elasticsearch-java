@@ -34,11 +34,13 @@ public class SimpleJsonEndpoint<RequestT, ResponseT> extends SimpleEndpoint<Requ
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
         Function<RequestT,
-        Map<String, String>> queryParameters,
+            Map<String, String>> pathParameters,
+        Function<RequestT,
+            Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         boolean hasRequestBody,
         JsonpDeserializer<ResponseT> responseParser
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
+        super(id, method, requestUrl, pathParameters, queryParameters, headers, hasRequestBody, responseParser);
     }
 }

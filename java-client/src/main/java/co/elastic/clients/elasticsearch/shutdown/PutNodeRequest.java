@@ -397,6 +397,21 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _nodeId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _nodeId;
+
+				if (propsSet == (_nodeId)) {
+					params.put("nodeId", request.nodeId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

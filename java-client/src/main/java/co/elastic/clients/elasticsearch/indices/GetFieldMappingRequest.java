@@ -402,6 +402,28 @@ public class GetFieldMappingRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+				final int _fields = 1 << 1;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
+				propsSet |= _fields;
+
+				if (propsSet == (_fields)) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index | _fields)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

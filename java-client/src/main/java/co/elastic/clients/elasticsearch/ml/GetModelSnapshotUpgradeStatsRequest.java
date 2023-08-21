@@ -237,6 +237,24 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _snapshotId;
+				propsSet |= _jobId;
+
+				if (propsSet == (_jobId | _snapshotId)) {
+					params.put("jobId", request.jobId);
+					params.put("snapshotId", request.snapshotId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

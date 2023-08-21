@@ -621,6 +621,24 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= _transformId;
+
+				if (propsSet == (_transformId)) {
+					params.put("transformId", request.transformId);
+				}
+				if (propsSet == 0) {
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
