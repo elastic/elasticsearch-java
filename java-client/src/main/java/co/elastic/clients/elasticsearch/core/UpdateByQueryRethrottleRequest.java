@@ -180,6 +180,21 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _taskId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _taskId;
+
+				if (propsSet == (_taskId)) {
+					params.put("taskId", request.taskId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

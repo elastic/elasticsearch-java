@@ -40,6 +40,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -292,6 +294,21 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _datafeedId;
+
+				if (propsSet == (_datafeedId)) {
+					params.put("datafeedId", request.datafeedId);
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -627,6 +627,24 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_index)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

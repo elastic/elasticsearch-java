@@ -307,6 +307,24 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _type = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.type() != null)
+					propsSet |= _type;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_type)) {
+					params.put("type", request.type);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

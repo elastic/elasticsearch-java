@@ -212,6 +212,24 @@ public class GetJobStatsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= _jobId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

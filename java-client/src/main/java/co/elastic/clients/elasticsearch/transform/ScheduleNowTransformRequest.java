@@ -190,6 +190,21 @@ public class ScheduleNowTransformRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _transformId;
+
+				if (propsSet == (_transformId)) {
+					params.put("transformId", request.transformId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

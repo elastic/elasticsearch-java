@@ -37,7 +37,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -203,6 +205,24 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _maxArchiveVersion = 1 << 0;
+				final int _nodeId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _maxArchiveVersion;
+				propsSet |= _nodeId;
+
+				if (propsSet == (_nodeId | _maxArchiveVersion)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("maxArchiveVersion", String.valueOf(request.maxArchiveVersion));
+				}
+				return params;
 			},
 
 			// Request parameters

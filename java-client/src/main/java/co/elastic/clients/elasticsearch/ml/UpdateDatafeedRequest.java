@@ -1076,6 +1076,21 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _datafeedId;
+
+				if (propsSet == (_datafeedId)) {
+					params.put("datafeedId", request.datafeedId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

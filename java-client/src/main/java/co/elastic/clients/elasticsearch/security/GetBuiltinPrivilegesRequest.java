@@ -76,6 +76,11 @@ public class GetBuiltinPrivilegesRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

@@ -511,6 +511,28 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+				propsSet |= _index;
+
+				if (propsSet == (_index | _name)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name);
+				}
+				if (propsSet == (_index | _name)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

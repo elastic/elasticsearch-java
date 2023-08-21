@@ -36,7 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -192,6 +194,24 @@ public class DeleteCalendarJobRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _calendarId = 1 << 0;
+				final int _jobId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _calendarId;
+				propsSet |= _jobId;
+
+				if (propsSet == (_calendarId | _jobId)) {
+					params.put("calendarId", request.calendarId);
+					params.put("jobId", request.jobId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

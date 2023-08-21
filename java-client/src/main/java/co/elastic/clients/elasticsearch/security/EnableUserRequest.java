@@ -182,6 +182,21 @@ public class EnableUserRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _username = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _username;
+
+				if (propsSet == (_username)) {
+					params.put("username", request.username);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

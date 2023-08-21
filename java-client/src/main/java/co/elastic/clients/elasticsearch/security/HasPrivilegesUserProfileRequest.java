@@ -226,6 +226,11 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();
