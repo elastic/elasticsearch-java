@@ -56,9 +56,9 @@ import io.netty.util.concurrent.Future;
 import javax.annotation.Nullable;
 import javax.net.ssl.SSLException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -231,12 +231,8 @@ public class NettyTransportHttpClient implements TransportHttpClient {
                 .entrySet()
                 .stream()
                 .map(e -> {
-                    try {
-                        return URLEncoder.encode(e.getKey(), "UTF-8") + "=" +
-                            URLEncoder.encode(e.getValue(), "UTF-8");
-                    } catch(UnsupportedEncodingException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    return URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" +
+                        URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8);
                 })
                 .collect(Collectors.joining("&"));
         }

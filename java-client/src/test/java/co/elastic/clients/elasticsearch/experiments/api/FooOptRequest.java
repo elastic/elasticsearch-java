@@ -262,7 +262,6 @@ public class FooOptRequest implements JsonpSerializable {
       "foo",
       r -> "POST",
       r -> "/foo",
-      r -> "/foo",
       SimpleEndpoint.emptyMap(),
       SimpleEndpoint.emptyMap(),
       SimpleEndpoint.emptyMap(),
