@@ -30,6 +30,9 @@ import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
+import co.elastic.clients.transport.instrumentation.Instrumentation;
+import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
+import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
@@ -74,6 +77,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     }
 
     private final TransportHttpClient httpClient;
+    private final Instrumentation instrumentation;
 
     @Override
     public void close() throws IOException {
@@ -84,9 +88,27 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     protected final TransportOptions transportOptions;
 
     public ElasticsearchTransportBase(TransportHttpClient httpClient, TransportOptions options, JsonpMapper jsonpMapper) {
+        this(httpClient, options, jsonpMapper, null);
+    }
+
+    public ElasticsearchTransportBase(
+        TransportHttpClient httpClient,
+        TransportOptions options,
+        JsonpMapper jsonpMapper,
+        @Nullable Instrumentation instrumentation
+    ) {
         this.mapper = jsonpMapper;
         this.httpClient = httpClient;
         this.transportOptions = httpClient.createOptions(options);
+
+        // If no instrumentation is provided, fallback to OpenTelemetry and ultimately noop
+        if (instrumentation == null) {
+            instrumentation = OpenTelemetryForElasticsearch.getDefault();
+        }
+        if (instrumentation == null) {
+            instrumentation = NoopInstrumentation.INSTANCE;
+        }
+        this.instrumentation = instrumentation;
     }
 
     @Override
@@ -105,10 +127,25 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-        TransportOptions opts = options == null ? transportOptions : options;
-        TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
-        TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
-        return getApiResponse(resp, endpoint);
+        try (Instrumentation.Context ctx = instrumentation.newContext(request, endpoint)) {
+            try (Instrumentation.ThreadScope ts = ctx.makeCurrent()) {
+
+                TransportOptions opts = options == null ? transportOptions : options;
+                TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
+                ctx.beforeSendingHttpRequest(req, options);
+
+                TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
+                ctx.afterReceivingHttpResponse(resp);
+
+                ResponseT apiResponse = getApiResponse(resp, endpoint);
+                ctx.afterDecodingApiResponse(apiResponse);
+
+                return apiResponse;
+            } catch (Throwable throwable){
+                ctx.recordException(throwable);
+                throw throwable;
+            }
+        }
     }
 
     @Override
@@ -117,12 +154,17 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) {
+        Instrumentation.Context ctx = instrumentation.newContext(request, endpoint);
+
         TransportOptions opts = options == null ? transportOptions : options;
         TransportHttpClient.Request clientReq;
-        try {
+        try (Instrumentation.ThreadScope ss = ctx.makeCurrent()) {
             clientReq = prepareTransportRequest(request, endpoint);
+            ctx.beforeSendingHttpRequest(clientReq, options);
         } catch (Exception e) {
             // Terminate early
+            ctx.recordException(e);
+            ctx.close();
             CompletableFuture<ResponseT> future = new CompletableFuture<>();
             future.completeExceptionally(e);
             return future;
@@ -148,17 +190,27 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         };
 
         clientFuture.handle((clientResp, thr) -> {
-            if (thr != null) {
-                future.completeExceptionally(thr);
-            } else {
-                try (ApiTypeHelper.DisabledChecksHandle h =
-                         ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
+            try (Instrumentation.ThreadScope ts = ctx.makeCurrent()) {
+                if (thr != null) {
+                    // Exception executing the http request
+                    ctx.recordException(thr);
+                    ctx.close();
+                    future.completeExceptionally(thr);
 
-                    ResponseT response = getApiResponse(clientResp, endpoint);
-                    future.complete(response);
+                } else {
+                    try (ApiTypeHelper.DisabledChecksHandle h =
+                             ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
+                        ctx.afterReceivingHttpResponse(clientResp);
+                        ResponseT response = getApiResponse(clientResp, endpoint);
+                        ctx.afterDecodingApiResponse(response);
+                        future.complete(response);
 
-                } catch (Throwable e) {
-                    future.completeExceptionally(e);
+                    } catch (Throwable e) {
+                        ctx.recordException(e);
+                        future.completeExceptionally(e);
+                    } finally {
+                        ctx.close();
+                    }
                 }
             }
             return null;

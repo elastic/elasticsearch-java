@@ -206,6 +206,21 @@ public class ClearCachedRealmsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _realms = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _realms;
+
+				if (propsSet == (_realms)) {
+					params.put("realms", request.realms.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

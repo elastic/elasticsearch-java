@@ -38,6 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -327,6 +328,11 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return "/_cluster/allocation/explain";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

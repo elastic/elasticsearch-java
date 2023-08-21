@@ -242,6 +242,11 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

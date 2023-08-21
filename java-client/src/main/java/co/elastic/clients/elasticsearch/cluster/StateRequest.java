@@ -489,6 +489,31 @@ public class StateRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _metric = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.metric()))
+					propsSet |= _metric;
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_metric)) {
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_metric | _index)) {
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

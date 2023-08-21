@@ -295,6 +295,21 @@ public class GetCalendarEventsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _calendarId;
+
+				if (propsSet == (_calendarId)) {
+					params.put("calendarId", request.calendarId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

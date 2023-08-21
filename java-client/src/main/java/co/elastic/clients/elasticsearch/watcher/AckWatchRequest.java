@@ -36,7 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -200,6 +202,28 @@ public class AckWatchRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _watchId = 1 << 0;
+				final int _actionId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _watchId;
+				if (ApiTypeHelper.isDefined(request.actionId()))
+					propsSet |= _actionId;
+
+				if (propsSet == (_watchId)) {
+					params.put("watchId", request.watchId);
+				}
+				if (propsSet == (_watchId | _actionId)) {
+					params.put("watchId", request.watchId);
+					params.put("actionId", request.actionId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

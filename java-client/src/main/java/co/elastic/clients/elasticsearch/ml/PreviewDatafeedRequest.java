@@ -362,6 +362,24 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= _datafeedId;
+
+				if (propsSet == (_datafeedId)) {
+					params.put("datafeedId", request.datafeedId);
+				}
+				if (propsSet == 0) {
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

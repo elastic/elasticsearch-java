@@ -205,6 +205,24 @@ public class AllocationRequest extends CatRequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _nodeId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.nodeId()))
+					propsSet |= _nodeId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_nodeId)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

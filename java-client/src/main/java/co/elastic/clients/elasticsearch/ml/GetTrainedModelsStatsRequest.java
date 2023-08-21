@@ -279,6 +279,24 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _modelId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.modelId()))
+					propsSet |= _modelId;
+
+				if (propsSet == (_modelId)) {
+					params.put("modelId", request.modelId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == 0) {
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

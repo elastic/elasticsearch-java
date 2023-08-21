@@ -371,6 +371,11 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

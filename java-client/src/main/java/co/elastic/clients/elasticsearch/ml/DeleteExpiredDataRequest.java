@@ -39,6 +39,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -271,6 +273,24 @@ public class DeleteExpiredDataRequest extends RequestBase implements JsonpSerial
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= _jobId;
+
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId);
+				}
+				if (propsSet == 0) {
+				}
+				return params;
 			},
 
 			// Request parameters

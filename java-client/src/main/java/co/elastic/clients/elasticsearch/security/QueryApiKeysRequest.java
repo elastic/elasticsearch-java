@@ -41,6 +41,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -431,6 +432,11 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return "/_security/_query/api_key";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

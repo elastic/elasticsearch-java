@@ -279,6 +279,31 @@ public class SnapshotStatusRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _repository = 1 << 0;
+				final int _snapshot = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= _repository;
+				if (ApiTypeHelper.isDefined(request.snapshot()))
+					propsSet |= _snapshot;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_repository)) {
+					params.put("repository", request.repository);
+				}
+				if (propsSet == (_repository | _snapshot)) {
+					params.put("repository", request.repository);
+					params.put("snapshot", request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
