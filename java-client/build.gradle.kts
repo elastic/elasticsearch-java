@@ -258,6 +258,7 @@ licenseReport {
 class SpdxReporter(val dest: File) : ReportRenderer {
     // License names to their SPDX identifier
     val spdxIds = mapOf(
+            "The Apache License, Version 2.0" to "Apache-2.0",
             "Apache License, Version 2.0" to "Apache-2.0",
             "The Apache Software License, Version 2.0" to "Apache-2.0",
             "BSD Zero Clause License" to "0BSD",
