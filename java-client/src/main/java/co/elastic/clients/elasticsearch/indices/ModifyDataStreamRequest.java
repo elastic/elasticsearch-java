@@ -201,6 +201,11 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

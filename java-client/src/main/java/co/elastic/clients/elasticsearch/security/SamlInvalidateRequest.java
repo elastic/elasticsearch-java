@@ -256,6 +256,11 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

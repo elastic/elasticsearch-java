@@ -107,12 +107,13 @@ public class GenericClass<GenParam> implements JsonpSerializable {
             "genclass",
             // Request method
             request -> "GET",
-
             // Request path
             request -> "/genclass",
-
+            // Path parameters
+            SimpleEndpoint.emptyMap(),
             // Request parameters
             SimpleEndpoint.emptyMap(),
+            // Headers
             SimpleEndpoint.emptyMap(),
             true,
             GenericClass.parser(genParamDeserializer)

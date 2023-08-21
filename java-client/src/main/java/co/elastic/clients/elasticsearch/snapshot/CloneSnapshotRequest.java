@@ -323,6 +323,27 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _targetSnapshot = 1 << 0;
+				final int _repository = 1 << 1;
+				final int _snapshot = 1 << 2;
+
+				int propsSet = 0;
+
+				propsSet |= _targetSnapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
+
+				if (propsSet == (_repository | _snapshot | _targetSnapshot)) {
+					params.put("repository", request.repository);
+					params.put("snapshot", request.snapshot);
+					params.put("targetSnapshot", request.targetSnapshot);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

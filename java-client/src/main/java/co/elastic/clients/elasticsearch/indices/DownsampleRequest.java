@@ -39,6 +39,8 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -229,6 +231,24 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _targetIndex = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _targetIndex;
+				propsSet |= _index;
+
+				if (propsSet == (_index | _targetIndex)) {
+					params.put("index", request.index);
+					params.put("targetIndex", request.targetIndex);
+				}
+				return params;
 			},
 
 			// Request parameters

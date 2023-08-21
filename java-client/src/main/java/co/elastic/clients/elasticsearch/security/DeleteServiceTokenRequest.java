@@ -240,6 +240,27 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
+				final int _name = 1 << 2;
+
+				int propsSet = 0;
+
+				propsSet |= _service;
+				propsSet |= _namespace;
+				propsSet |= _name;
+
+				if (propsSet == (_namespace | _service | _name)) {
+					params.put("namespace", request.namespace);
+					params.put("service", request.service);
+					params.put("name", request.name);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

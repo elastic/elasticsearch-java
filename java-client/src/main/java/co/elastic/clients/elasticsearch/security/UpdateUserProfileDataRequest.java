@@ -376,6 +376,21 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _uid = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _uid;
+
+				if (propsSet == (_uid)) {
+					params.put("uid", request.uid);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

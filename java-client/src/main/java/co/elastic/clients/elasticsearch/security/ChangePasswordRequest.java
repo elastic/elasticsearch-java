@@ -296,6 +296,24 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= _username;
+
+				if (propsSet == (_username)) {
+					params.put("username", request.username);
+				}
+				if (propsSet == 0) {
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

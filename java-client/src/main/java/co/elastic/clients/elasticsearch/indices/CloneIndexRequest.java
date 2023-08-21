@@ -440,6 +440,24 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+				final int _target = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+				propsSet |= _target;
+
+				if (propsSet == (_index | _target)) {
+					params.put("index", request.index);
+					params.put("target", request.target);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

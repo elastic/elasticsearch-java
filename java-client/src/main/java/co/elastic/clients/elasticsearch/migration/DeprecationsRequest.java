@@ -35,6 +35,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -157,6 +159,24 @@ public class DeprecationsRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_index)) {
+					params.put("index", request.index);
+				}
+				return params;
 			},
 
 			// Request parameters

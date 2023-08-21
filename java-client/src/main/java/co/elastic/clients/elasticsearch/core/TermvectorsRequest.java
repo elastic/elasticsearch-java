@@ -681,6 +681,28 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+				if (request.id() != null)
+					propsSet |= _id;
+
+				if (propsSet == (_index | _id)) {
+					params.put("index", request.index);
+					params.put("id", request.id);
+				}
+				if (propsSet == (_index)) {
+					params.put("index", request.index);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

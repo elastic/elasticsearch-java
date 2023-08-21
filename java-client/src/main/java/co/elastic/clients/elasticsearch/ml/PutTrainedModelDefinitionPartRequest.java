@@ -40,6 +40,8 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -304,6 +306,24 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _part = 1 << 0;
+				final int _modelId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _part;
+				propsSet |= _modelId;
+
+				if (propsSet == (_modelId | _part)) {
+					params.put("modelId", request.modelId);
+					params.put("part", String.valueOf(request.part));
+				}
+				return params;
 			},
 
 			// Request parameters

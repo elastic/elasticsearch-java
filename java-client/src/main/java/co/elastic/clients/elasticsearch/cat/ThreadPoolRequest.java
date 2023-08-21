@@ -206,6 +206,25 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _threadPoolPatterns = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.threadPoolPatterns()))
+					propsSet |= _threadPoolPatterns;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_threadPoolPatterns)) {
+					params.put("threadPoolPatterns",
+							request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

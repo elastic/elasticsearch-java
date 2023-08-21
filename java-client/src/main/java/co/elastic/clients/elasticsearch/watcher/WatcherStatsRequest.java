@@ -200,6 +200,25 @@ public class WatcherStatsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _metric = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.metric()))
+					propsSet |= _metric;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_metric)) {
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

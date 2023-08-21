@@ -36,7 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -181,6 +183,24 @@ public class GetRoleMappingRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.name()))
+					propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == 0) {
+				}
+				return params;
 			},
 
 			// Request parameters

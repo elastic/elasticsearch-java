@@ -667,6 +667,48 @@ public class NodesStatsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _metric = 1 << 0;
+				final int _indexMetric = 1 << 1;
+				final int _nodeId = 1 << 2;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.metric()))
+					propsSet |= _metric;
+				if (ApiTypeHelper.isDefined(request.indexMetric()))
+					propsSet |= _indexMetric;
+				if (ApiTypeHelper.isDefined(request.nodeId()))
+					propsSet |= _nodeId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_nodeId)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_metric)) {
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_nodeId | _metric)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_metric | _indexMetric)) {
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("indexMetric",
+							request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_nodeId | _metric | _indexMetric)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("indexMetric",
+							request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

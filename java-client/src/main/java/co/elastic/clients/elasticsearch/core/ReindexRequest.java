@@ -46,6 +46,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Long;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -597,6 +598,11 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return "/_reindex";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

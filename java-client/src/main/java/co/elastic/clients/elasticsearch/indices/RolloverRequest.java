@@ -588,6 +588,28 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _newIndex = 1 << 0;
+				final int _alias = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.newIndex() != null)
+					propsSet |= _newIndex;
+				propsSet |= _alias;
+
+				if (propsSet == (_alias)) {
+					params.put("alias", request.alias);
+				}
+				if (propsSet == (_alias | _newIndex)) {
+					params.put("alias", request.alias);
+					params.put("newIndex", request.newIndex);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

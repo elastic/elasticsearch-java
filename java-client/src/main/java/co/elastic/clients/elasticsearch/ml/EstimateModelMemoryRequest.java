@@ -326,6 +326,11 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

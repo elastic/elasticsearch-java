@@ -205,6 +205,21 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _id = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _id;
+
+				if (propsSet == (_id)) {
+					params.put("id", request.id);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

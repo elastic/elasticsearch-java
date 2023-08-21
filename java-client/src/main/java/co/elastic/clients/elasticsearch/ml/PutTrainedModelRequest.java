@@ -576,6 +576,21 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _modelId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _modelId;
+
+				if (propsSet == (_modelId)) {
+					params.put("modelId", request.modelId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
