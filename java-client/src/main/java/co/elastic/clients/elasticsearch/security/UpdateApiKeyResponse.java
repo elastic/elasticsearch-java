@@ -63,7 +63,10 @@ public class UpdateApiKeyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code updated}
+	 * Required - If <code>true</code>, the API key was updated. If
+	 * <code>false</code>, the API key didn’t change because no change was detected.
+	 * <p>
+	 * API name: {@code updated}
 	 */
 	public final boolean updated() {
 		return this.updated;
@@ -102,7 +105,10 @@ public class UpdateApiKeyResponse implements JsonpSerializable {
 		private Boolean updated;
 
 		/**
-		 * Required - API name: {@code updated}
+		 * Required - If <code>true</code>, the API key was updated. If
+		 * <code>false</code>, the API key didn’t change because no change was detected.
+		 * <p>
+		 * API name: {@code updated}
 		 */
 		public final Builder updated(boolean value) {
 			this.updated = value;

@@ -40,6 +40,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -226,6 +227,11 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				return "/_security/privilege";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

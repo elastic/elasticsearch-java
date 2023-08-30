@@ -36,6 +36,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,7 +67,7 @@ public class DeletePolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the enrich policy
+	 * Required - Enrich policy to delete.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -85,7 +87,7 @@ public class DeletePolicyRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Required - The name of the enrich policy
+		 * Required - Enrich policy to delete.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -144,6 +146,21 @@ public class DeletePolicyRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

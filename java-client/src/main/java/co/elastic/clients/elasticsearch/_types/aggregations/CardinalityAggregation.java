@@ -79,6 +79,9 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 	}
 
 	/**
+	 * A unique count below which counts are expected to be close to accurate. This
+	 * allows to trade memory for accuracy.
+	 * <p>
 	 * API name: {@code precision_threshold}
 	 */
 	@Nullable
@@ -95,6 +98,8 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 	}
 
 	/**
+	 * Mechanism by which cardinality aggregations is run.
+	 * <p>
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
@@ -141,6 +146,9 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 		private CardinalityExecutionMode executionHint;
 
 		/**
+		 * A unique count below which counts are expected to be close to accurate. This
+		 * allows to trade memory for accuracy.
+		 * <p>
 		 * API name: {@code precision_threshold}
 		 */
 		public final Builder precisionThreshold(@Nullable Integer value) {
@@ -157,6 +165,8 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 		}
 
 		/**
+		 * Mechanism by which cardinality aggregations is run.
+		 * <p>
 		 * API name: {@code execution_hint}
 		 */
 		public final Builder executionHint(@Nullable CardinalityExecutionMode value) {

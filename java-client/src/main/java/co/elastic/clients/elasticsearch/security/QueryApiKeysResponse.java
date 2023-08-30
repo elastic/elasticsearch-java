@@ -71,21 +71,27 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Required - The total number of API keys found.
+	 * <p>
+	 * API name: {@code total}
 	 */
 	public final int total() {
 		return this.total;
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - The number of API keys returned in the response.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code api_keys}
+	 * Required - A list of API key information.
+	 * <p>
+	 * API name: {@code api_keys}
 	 */
 	public final List<ApiKey> apiKeys() {
 		return this.apiKeys;
@@ -142,7 +148,9 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 		private List<ApiKey> apiKeys;
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - The total number of API keys found.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(int value) {
 			this.total = value;
@@ -150,7 +158,9 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - The number of API keys returned in the response.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -158,7 +168,9 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code api_keys}
+		 * Required - A list of API key information.
+		 * <p>
+		 * API name: {@code api_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>apiKeys</code>.
 		 */
@@ -168,7 +180,9 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code api_keys}
+		 * Required - A list of API key information.
+		 * <p>
+		 * API name: {@code api_keys}
 		 * <p>
 		 * Adds one or more values to <code>apiKeys</code>.
 		 */
@@ -178,7 +192,9 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code api_keys}
+		 * Required - A list of API key information.
+		 * <p>
+		 * API name: {@code api_keys}
 		 * <p>
 		 * Adds a value to <code>apiKeys</code> using a builder lambda.
 		 */

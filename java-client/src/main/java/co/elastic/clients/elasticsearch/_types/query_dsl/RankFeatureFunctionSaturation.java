@@ -63,6 +63,8 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 	}
 
 	/**
+	 * Configurable pivot value so that the result will be less than 0.5.
+	 * <p>
 	 * API name: {@code pivot}
 	 */
 	@Nullable
@@ -107,6 +109,8 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 		private Float pivot;
 
 		/**
+		 * Configurable pivot value so that the result will be less than 0.5.
+		 * <p>
 		 * API name: {@code pivot}
 		 */
 		public final Builder pivot(@Nullable Float value) {

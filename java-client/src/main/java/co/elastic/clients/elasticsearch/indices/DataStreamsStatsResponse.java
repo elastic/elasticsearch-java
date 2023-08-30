@@ -59,12 +59,12 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 	private final int dataStreamCount;
 
+	private final List<DataStreamsStatsItem> dataStreams;
+
 	@Nullable
 	private final String totalStoreSizes;
 
 	private final int totalStoreSizeBytes;
-
-	private final List<DataStreamsStatsItem> dataStreams;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,10 +73,10 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
 		this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 		this.totalStoreSizes = builder.totalStoreSizes;
 		this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
 				"totalStoreSizeBytes");
-		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
@@ -85,27 +85,46 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _shards}
+	 * Required - Contains information about shards that attempted to execute the
+	 * request.
+	 * <p>
+	 * API name: {@code _shards}
 	 */
 	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * Required - API name: {@code backing_indices}
+	 * Required - Total number of backing indices for the selected data streams.
+	 * <p>
+	 * API name: {@code backing_indices}
 	 */
 	public final int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
-	 * Required - API name: {@code data_stream_count}
+	 * Required - Total number of selected data streams.
+	 * <p>
+	 * API name: {@code data_stream_count}
 	 */
 	public final int dataStreamCount() {
 		return this.dataStreamCount;
 	}
 
 	/**
+	 * Required - Contains statistics for the selected data streams.
+	 * <p>
+	 * API name: {@code data_streams}
+	 */
+	public final List<DataStreamsStatsItem> dataStreams() {
+		return this.dataStreams;
+	}
+
+	/**
+	 * Total size of all shards for the selected data streams. This property is
+	 * included only if the <code>human</code> query parameter is <code>true</code>
+	 * <p>
 	 * API name: {@code total_store_sizes}
 	 */
 	@Nullable
@@ -114,17 +133,12 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_store_size_bytes}
+	 * Required - Total size, in bytes, of all shards for the selected data streams.
+	 * <p>
+	 * API name: {@code total_store_size_bytes}
 	 */
 	public final int totalStoreSizeBytes() {
 		return this.totalStoreSizeBytes;
-	}
-
-	/**
-	 * Required - API name: {@code data_streams}
-	 */
-	public final List<DataStreamsStatsItem> dataStreams() {
-		return this.dataStreams;
 	}
 
 	/**
@@ -147,14 +161,6 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		generator.writeKey("data_stream_count");
 		generator.write(this.dataStreamCount);
 
-		if (this.totalStoreSizes != null) {
-			generator.writeKey("total_store_sizes");
-			generator.write(this.totalStoreSizes);
-
-		}
-		generator.writeKey("total_store_size_bytes");
-		generator.write(this.totalStoreSizeBytes);
-
 		if (ApiTypeHelper.isDefined(this.dataStreams)) {
 			generator.writeKey("data_streams");
 			generator.writeStartArray();
@@ -165,6 +171,13 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.totalStoreSizes != null) {
+			generator.writeKey("total_store_sizes");
+			generator.write(this.totalStoreSizes);
+
+		}
+		generator.writeKey("total_store_size_bytes");
+		generator.write(this.totalStoreSizeBytes);
 
 	}
 
@@ -188,15 +201,18 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 		private Integer dataStreamCount;
 
+		private List<DataStreamsStatsItem> dataStreams;
+
 		@Nullable
 		private String totalStoreSizes;
 
 		private Integer totalStoreSizeBytes;
 
-		private List<DataStreamsStatsItem> dataStreams;
-
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Contains information about shards that attempted to execute the
+		 * request.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -204,14 +220,19 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Contains information about shards that attempted to execute the
+		 * request.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code backing_indices}
+		 * Required - Total number of backing indices for the selected data streams.
+		 * <p>
+		 * API name: {@code backing_indices}
 		 */
 		public final Builder backingIndices(int value) {
 			this.backingIndices = value;
@@ -219,7 +240,9 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_stream_count}
+		 * Required - Total number of selected data streams.
+		 * <p>
+		 * API name: {@code data_stream_count}
 		 */
 		public final Builder dataStreamCount(int value) {
 			this.dataStreamCount = value;
@@ -227,23 +250,9 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_store_sizes}
-		 */
-		public final Builder totalStoreSizes(@Nullable String value) {
-			this.totalStoreSizes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code total_store_size_bytes}
-		 */
-		public final Builder totalStoreSizeBytes(int value) {
-			this.totalStoreSizeBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code data_streams}
+		 * Required - Contains statistics for the selected data streams.
+		 * <p>
+		 * API name: {@code data_streams}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
@@ -253,7 +262,9 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_streams}
+		 * Required - Contains statistics for the selected data streams.
+		 * <p>
+		 * API name: {@code data_streams}
 		 * <p>
 		 * Adds one or more values to <code>dataStreams</code>.
 		 */
@@ -263,13 +274,36 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_streams}
+		 * Required - Contains statistics for the selected data streams.
+		 * <p>
+		 * API name: {@code data_streams}
 		 * <p>
 		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
 		public final Builder dataStreams(
 				Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
 			return dataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
+		}
+
+		/**
+		 * Total size of all shards for the selected data streams. This property is
+		 * included only if the <code>human</code> query parameter is <code>true</code>
+		 * <p>
+		 * API name: {@code total_store_sizes}
+		 */
+		public final Builder totalStoreSizes(@Nullable String value) {
+			this.totalStoreSizes = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total size, in bytes, of all shards for the selected data streams.
+		 * <p>
+		 * API name: {@code total_store_size_bytes}
+		 */
+		public final Builder totalStoreSizeBytes(int value) {
+			this.totalStoreSizeBytes = value;
+			return this;
 		}
 
 		@Override
@@ -304,10 +338,10 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");
 		op.add(Builder::dataStreamCount, JsonpDeserializer.integerDeserializer(), "data_stream_count");
-		op.add(Builder::totalStoreSizes, JsonpDeserializer.stringDeserializer(), "total_store_sizes");
-		op.add(Builder::totalStoreSizeBytes, JsonpDeserializer.integerDeserializer(), "total_store_size_bytes");
 		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(DataStreamsStatsItem._DESERIALIZER),
 				"data_streams");
+		op.add(Builder::totalStoreSizes, JsonpDeserializer.stringDeserializer(), "total_store_sizes");
+		op.add(Builder::totalStoreSizeBytes, JsonpDeserializer.integerDeserializer(), "total_store_size_bytes");
 
 	}
 

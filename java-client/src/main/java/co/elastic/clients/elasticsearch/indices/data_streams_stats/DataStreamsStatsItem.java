@@ -55,12 +55,12 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 	private final String dataStream;
 
+	private final long maximumTimestamp;
+
 	@Nullable
 	private final String storeSize;
 
 	private final int storeSizeBytes;
-
-	private final long maximumTimestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,9 +68,9 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
 		this.dataStream = ApiTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
+		this.maximumTimestamp = ApiTypeHelper.requireNonNull(builder.maximumTimestamp, this, "maximumTimestamp");
 		this.storeSize = builder.storeSize;
 		this.storeSizeBytes = ApiTypeHelper.requireNonNull(builder.storeSizeBytes, this, "storeSizeBytes");
-		this.maximumTimestamp = ApiTypeHelper.requireNonNull(builder.maximumTimestamp, this, "maximumTimestamp");
 
 	}
 
@@ -79,20 +79,42 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code backing_indices}
+	 * Required - Current number of backing indices for the data stream.
+	 * <p>
+	 * API name: {@code backing_indices}
 	 */
 	public final int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
-	 * Required - API name: {@code data_stream}
+	 * Required - Name of the data stream.
+	 * <p>
+	 * API name: {@code data_stream}
 	 */
 	public final String dataStream() {
 		return this.dataStream;
 	}
 
 	/**
+	 * Required - The data stream’s highest <code>@timestamp</code> value, converted
+	 * to milliseconds since the Unix epoch. NOTE: This timestamp is provided as a
+	 * best effort. The data stream may contain <code>@timestamp</code> values
+	 * higher than this if one or more of the following conditions are met: The
+	 * stream contains closed backing indices; Backing indices with a lower
+	 * generation contain higher <code>@timestamp</code> values.
+	 * <p>
+	 * API name: {@code maximum_timestamp}
+	 */
+	public final long maximumTimestamp() {
+		return this.maximumTimestamp;
+	}
+
+	/**
+	 * Total size of all shards for the data stream’s backing indices. This
+	 * parameter is only returned if the <code>human</code> query parameter is
+	 * <code>true</code>.
+	 * <p>
 	 * API name: {@code store_size}
 	 */
 	@Nullable
@@ -101,17 +123,13 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code store_size_bytes}
+	 * Required - Total size, in bytes, of all shards for the data stream’s backing
+	 * indices.
+	 * <p>
+	 * API name: {@code store_size_bytes}
 	 */
 	public final int storeSizeBytes() {
 		return this.storeSizeBytes;
-	}
-
-	/**
-	 * Required - API name: {@code maximum_timestamp}
-	 */
-	public final long maximumTimestamp() {
-		return this.maximumTimestamp;
 	}
 
 	/**
@@ -131,6 +149,9 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		generator.writeKey("data_stream");
 		generator.write(this.dataStream);
 
+		generator.writeKey("maximum_timestamp");
+		generator.write(this.maximumTimestamp);
+
 		if (this.storeSize != null) {
 			generator.writeKey("store_size");
 			generator.write(this.storeSize);
@@ -138,9 +159,6 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		}
 		generator.writeKey("store_size_bytes");
 		generator.write(this.storeSizeBytes);
-
-		generator.writeKey("maximum_timestamp");
-		generator.write(this.maximumTimestamp);
 
 	}
 
@@ -162,15 +180,17 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 		private String dataStream;
 
+		private Long maximumTimestamp;
+
 		@Nullable
 		private String storeSize;
 
 		private Integer storeSizeBytes;
 
-		private Long maximumTimestamp;
-
 		/**
-		 * Required - API name: {@code backing_indices}
+		 * Required - Current number of backing indices for the data stream.
+		 * <p>
+		 * API name: {@code backing_indices}
 		 */
 		public final Builder backingIndices(int value) {
 			this.backingIndices = value;
@@ -178,7 +198,9 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_stream}
+		 * Required - Name of the data stream.
+		 * <p>
+		 * API name: {@code data_stream}
 		 */
 		public final Builder dataStream(String value) {
 			this.dataStream = value;
@@ -186,6 +208,25 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The data stream’s highest <code>@timestamp</code> value, converted
+		 * to milliseconds since the Unix epoch. NOTE: This timestamp is provided as a
+		 * best effort. The data stream may contain <code>@timestamp</code> values
+		 * higher than this if one or more of the following conditions are met: The
+		 * stream contains closed backing indices; Backing indices with a lower
+		 * generation contain higher <code>@timestamp</code> values.
+		 * <p>
+		 * API name: {@code maximum_timestamp}
+		 */
+		public final Builder maximumTimestamp(long value) {
+			this.maximumTimestamp = value;
+			return this;
+		}
+
+		/**
+		 * Total size of all shards for the data stream’s backing indices. This
+		 * parameter is only returned if the <code>human</code> query parameter is
+		 * <code>true</code>.
+		 * <p>
 		 * API name: {@code store_size}
 		 */
 		public final Builder storeSize(@Nullable String value) {
@@ -194,18 +235,13 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code store_size_bytes}
+		 * Required - Total size, in bytes, of all shards for the data stream’s backing
+		 * indices.
+		 * <p>
+		 * API name: {@code store_size_bytes}
 		 */
 		public final Builder storeSizeBytes(int value) {
 			this.storeSizeBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code maximum_timestamp}
-		 */
-		public final Builder maximumTimestamp(long value) {
-			this.maximumTimestamp = value;
 			return this;
 		}
 
@@ -239,9 +275,9 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
+		op.add(Builder::maximumTimestamp, JsonpDeserializer.longDeserializer(), "maximum_timestamp");
 		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store_size");
 		op.add(Builder::storeSizeBytes, JsonpDeserializer.integerDeserializer(), "store_size_bytes");
-		op.add(Builder::maximumTimestamp, JsonpDeserializer.longDeserializer(), "maximum_timestamp");
 
 	}
 

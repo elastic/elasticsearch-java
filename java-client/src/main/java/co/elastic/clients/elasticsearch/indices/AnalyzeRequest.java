@@ -42,7 +42,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,8 +52,7 @@ import javax.annotation.Nullable;
 // typedef: indices.analyze.Request
 
 /**
- * Performs the analysis process on a text and return the tokens breakdown of
- * the text.
+ * Performs analysis on a text string and returns the resulting tokens.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.analyze.Request">API
  *      specification</a>
@@ -106,6 +107,10 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The name of the analyzer that should be applied to the provided
+	 * <code>text</code>. This could be a built-in analyzer, or an analyzer that’s
+	 * been configured in the index.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -114,6 +119,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Array of token attributes used to filter the output of the
+	 * <code>explain</code> parameter.
+	 * <p>
 	 * API name: {@code attributes}
 	 */
 	public final List<String> attributes() {
@@ -121,6 +129,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Array of character filters used to preprocess characters before the
+	 * tokenizer.
+	 * <p>
 	 * API name: {@code char_filter}
 	 */
 	public final List<CharFilter> charFilter() {
@@ -128,6 +139,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes token attributes and additional
+	 * details.
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -136,6 +150,10 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Field used to derive the analyzer. To use this parameter, you must specify an
+	 * index. If specified, the <code>analyzer</code> parameter overrides this
+	 * value.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -144,6 +162,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Array of token filters used to apply after the tokenizer.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	public final List<TokenFilter> filter() {
@@ -151,7 +171,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the index to scope the operation
+	 * Index used to derive the analyzer. If specified, the <code>analyzer</code> or
+	 * field parameter overrides this value. If no index is specified or the index
+	 * does not have a default analyzer, the analyze API uses the standard analyzer.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -161,6 +183,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Normalizer to use to convert text into a single token.
+	 * <p>
 	 * API name: {@code normalizer}
 	 */
 	@Nullable
@@ -169,6 +193,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Text to analyze. If an array of strings is provided, it is analyzed as a
+	 * multi-value field.
+	 * <p>
 	 * API name: {@code text}
 	 */
 	public final List<String> text() {
@@ -176,6 +203,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Tokenizer to use to convert text into tokens.
+	 * <p>
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
@@ -300,6 +329,10 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		private Tokenizer tokenizer;
 
 		/**
+		 * The name of the analyzer that should be applied to the provided
+		 * <code>text</code>. This could be a built-in analyzer, or an analyzer that’s
+		 * been configured in the index.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -308,6 +341,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of token attributes used to filter the output of the
+		 * <code>explain</code> parameter.
+		 * <p>
 		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>attributes</code>.
@@ -318,6 +354,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of token attributes used to filter the output of the
+		 * <code>explain</code> parameter.
+		 * <p>
 		 * API name: {@code attributes}
 		 * <p>
 		 * Adds one or more values to <code>attributes</code>.
@@ -328,6 +367,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of character filters used to preprocess characters before the
+		 * tokenizer.
+		 * <p>
 		 * API name: {@code char_filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
@@ -338,6 +380,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of character filters used to preprocess characters before the
+		 * tokenizer.
+		 * <p>
 		 * API name: {@code char_filter}
 		 * <p>
 		 * Adds one or more values to <code>charFilter</code>.
@@ -348,6 +393,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of character filters used to preprocess characters before the
+		 * tokenizer.
+		 * <p>
 		 * API name: {@code char_filter}
 		 * <p>
 		 * Adds a value to <code>charFilter</code> using a builder lambda.
@@ -357,6 +405,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes token attributes and additional
+		 * details.
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public final Builder explain(@Nullable Boolean value) {
@@ -365,6 +416,10 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Field used to derive the analyzer. To use this parameter, you must specify an
+		 * index. If specified, the <code>analyzer</code> parameter overrides this
+		 * value.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -373,6 +428,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of token filters used to apply after the tokenizer.
+		 * <p>
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
@@ -383,6 +440,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of token filters used to apply after the tokenizer.
+		 * <p>
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds one or more values to <code>filter</code>.
@@ -393,6 +452,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of token filters used to apply after the tokenizer.
+		 * <p>
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds a value to <code>filter</code> using a builder lambda.
@@ -402,7 +463,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The name of the index to scope the operation
+		 * Index used to derive the analyzer. If specified, the <code>analyzer</code> or
+		 * field parameter overrides this value. If no index is specified or the index
+		 * does not have a default analyzer, the analyze API uses the standard analyzer.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -412,6 +475,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Normalizer to use to convert text into a single token.
+		 * <p>
 		 * API name: {@code normalizer}
 		 */
 		public final Builder normalizer(@Nullable String value) {
@@ -420,6 +485,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Text to analyze. If an array of strings is provided, it is analyzed as a
+		 * multi-value field.
+		 * <p>
 		 * API name: {@code text}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>text</code>.
@@ -430,6 +498,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Text to analyze. If an array of strings is provided, it is analyzed as a
+		 * multi-value field.
+		 * <p>
 		 * API name: {@code text}
 		 * <p>
 		 * Adds one or more values to <code>text</code>.
@@ -440,6 +511,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Tokenizer to use to convert text into tokens.
+		 * <p>
 		 * API name: {@code tokenizer}
 		 */
 		public final Builder tokenizer(@Nullable Tokenizer value) {
@@ -448,6 +521,8 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Tokenizer to use to convert text into tokens.
+		 * <p>
 		 * API name: {@code tokenizer}
 		 */
 		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
@@ -532,6 +607,24 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_index)) {
+					params.put("index", request.index);
+				}
+				return params;
 			},
 
 			// Request parameters

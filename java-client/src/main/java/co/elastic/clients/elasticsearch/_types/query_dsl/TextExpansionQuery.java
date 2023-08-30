@@ -46,7 +46,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TextExpansionQuery extends QueryBase implements QueryVariant {
-	private final String value;
+	// Single key dictionary
+	private final String field;
 
 	private final String modelId;
 
@@ -56,8 +57,8 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 	private TextExpansionQuery(Builder builder) {
 		super(builder);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
 
@@ -76,12 +77,10 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - The name of the rank features field to search against
-	 * <p>
-	 * API name: {@code value}
+	 * Required - The target field
 	 */
-	public final String value() {
-		return this.value;
+	public final String field() {
+		return this.field;
 	}
 
 	/**
@@ -103,16 +102,16 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
-
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
 		generator.writeKey("model_text");
 		generator.write(this.modelText);
+
+		generator.writeEnd();
 
 	}
 
@@ -125,21 +124,19 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TextExpansionQuery> {
-		private String value;
+		private String field;
+
+		/**
+		 * Required - The target field
+		 */
+		public final Builder field(String value) {
+			this.field = value;
+			return this;
+		}
 
 		private String modelId;
 
 		private String modelText;
-
-		/**
-		 * Required - The name of the rank features field to search against
-		 * <p>
-		 * API name: {@code value}
-		 */
-		public final Builder value(String value) {
-			this.value = value;
-			return this;
-		}
 
 		/**
 		 * Required - The text expansion NLP model to use
@@ -189,11 +186,10 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 	protected static void setupTextExpansionQueryDeserializer(ObjectDeserializer<TextExpansionQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::modelText, JsonpDeserializer.stringDeserializer(), "model_text");
 
-		op.shortcutProperty("value");
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 

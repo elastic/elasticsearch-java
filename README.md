@@ -12,6 +12,26 @@ The `docs/design` folder contains records of the major decisions in the design o
 - Nested objects can be constructed with builder lambdas, allowing for clean and expressive DSL-like code.
 - Optional values are represented as `null` with `@Nullable` annotations instead of the newer  `Optional`, the Java ecosystem being still very null-based.
 
+## Installation
+
+Refer to the [Installation section](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_installation)
+of the getting started documentation.
+
+## Connecting
+
+Refer to the [Connecting section](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_connecting)
+of the getting started documentation.
+
+## Usage
+
+- [Creating an index](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_creating_an_index)
+- [Indexing a document](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_indexing_documents)
+- [Getting documents](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_getting_documents)
+- [Searching documents](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_searching_documents)
+- [Updating documents](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_updating_documents)
+- [Deleting documents](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_deleting_documents)
+- [Deleting an index](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_deleting_an_index)
+
 ## Documentation
 
 Please refer to [the full documentation on elastic.co](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html) for comprehensive information.

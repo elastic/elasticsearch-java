@@ -77,7 +77,9 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 	}
 
 	/**
-	 * Required - API name: {@code clauses}
+	 * Required - Array of one or more other span type queries.
+	 * <p>
+	 * API name: {@code clauses}
 	 */
 	public final List<SpanQuery> clauses() {
 		return this.clauses;
@@ -109,7 +111,9 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		private List<SpanQuery> clauses;
 
 		/**
-		 * Required - API name: {@code clauses}
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>clauses</code>.
 		 */
@@ -119,7 +123,9 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		}
 
 		/**
-		 * Required - API name: {@code clauses}
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
 		 * <p>
 		 * Adds one or more values to <code>clauses</code>.
 		 */
@@ -129,7 +135,9 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		}
 
 		/**
-		 * Required - API name: {@code clauses}
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
 		 * <p>
 		 * Adds a value to <code>clauses</code> using a builder lambda.
 		 */

@@ -123,7 +123,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * id of the task with the node
+	 * The identifier of the task with the node.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -133,7 +133,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * task action
+	 * The task action.
 	 * <p>
 	 * API name: {@code action}
 	 */
@@ -143,7 +143,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * unique task id
+	 * The unique task identifier.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -153,7 +153,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * parent task id
+	 * The parent task identifier.
 	 * <p>
 	 * API name: {@code parent_task_id}
 	 */
@@ -163,7 +163,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * task type
+	 * The task type.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -173,7 +173,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * start time in ms
+	 * The start time in milliseconds.
 	 * <p>
 	 * API name: {@code start_time}
 	 */
@@ -183,7 +183,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * start time in HH:MM:SS
+	 * The start time in <code>HH:MM:SS</code> format.
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
@@ -193,7 +193,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * running time ns
+	 * The running time in nanoseconds.
 	 * <p>
 	 * API name: {@code running_time_ns}
 	 */
@@ -203,7 +203,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * running time
+	 * The running time.
 	 * <p>
 	 * API name: {@code running_time}
 	 */
@@ -213,7 +213,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * unique node id
+	 * The unique node identifier.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -223,7 +223,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ip address
+	 * The IP address for the node.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -233,7 +233,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * bound transport port
+	 * The bound transport port for the node.
 	 * <p>
 	 * API name: {@code port}
 	 */
@@ -243,7 +243,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * node name
+	 * The node name.
 	 * <p>
 	 * API name: {@code node}
 	 */
@@ -253,7 +253,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * es version
+	 * The Elasticsearch version.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -263,7 +263,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * X-Opaque-ID header
+	 * The X-Opaque-ID header.
 	 * <p>
 	 * API name: {@code x_opaque_id}
 	 */
@@ -273,7 +273,7 @@ public class TasksRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * task action
+	 * The task action description.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -437,7 +437,7 @@ public class TasksRecord implements JsonpSerializable {
 		private String description;
 
 		/**
-		 * id of the task with the node
+		 * The identifier of the task with the node.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -447,7 +447,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * task action
+		 * The task action.
 		 * <p>
 		 * API name: {@code action}
 		 */
@@ -457,7 +457,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * unique task id
+		 * The unique task identifier.
 		 * <p>
 		 * API name: {@code task_id}
 		 */
@@ -467,7 +467,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * parent task id
+		 * The parent task identifier.
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
@@ -477,7 +477,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * task type
+		 * The task type.
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -487,7 +487,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * start time in ms
+		 * The start time in milliseconds.
 		 * <p>
 		 * API name: {@code start_time}
 		 */
@@ -497,7 +497,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * start time in HH:MM:SS
+		 * The start time in <code>HH:MM:SS</code> format.
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
@@ -507,7 +507,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * running time ns
+		 * The running time in nanoseconds.
 		 * <p>
 		 * API name: {@code running_time_ns}
 		 */
@@ -517,7 +517,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * running time
+		 * The running time.
 		 * <p>
 		 * API name: {@code running_time}
 		 */
@@ -527,7 +527,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * unique node id
+		 * The unique node identifier.
 		 * <p>
 		 * API name: {@code node_id}
 		 */
@@ -537,7 +537,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ip address
+		 * The IP address for the node.
 		 * <p>
 		 * API name: {@code ip}
 		 */
@@ -547,7 +547,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * bound transport port
+		 * The bound transport port for the node.
 		 * <p>
 		 * API name: {@code port}
 		 */
@@ -557,7 +557,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * node name
+		 * The node name.
 		 * <p>
 		 * API name: {@code node}
 		 */
@@ -567,7 +567,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * es version
+		 * The Elasticsearch version.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -577,7 +577,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * X-Opaque-ID header
+		 * The X-Opaque-ID header.
 		 * <p>
 		 * API name: {@code x_opaque_id}
 		 */
@@ -587,7 +587,7 @@ public class TasksRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * task action
+		 * The task action description.
 		 * <p>
 		 * API name: {@code description}
 		 */

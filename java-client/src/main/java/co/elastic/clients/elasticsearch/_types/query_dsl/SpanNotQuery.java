@@ -93,6 +93,10 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 	}
 
 	/**
+	 * The number of tokens from within the include span that can’t have overlap
+	 * with the exclude span. Equivalent to setting both <code>pre</code> and
+	 * <code>post</code>.
+	 * <p>
 	 * API name: {@code dist}
 	 */
 	@Nullable
@@ -101,20 +105,27 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 	}
 
 	/**
-	 * Required - API name: {@code exclude}
+	 * Required - Span query whose matches must not overlap those returned.
+	 * <p>
+	 * API name: {@code exclude}
 	 */
 	public final SpanQuery exclude() {
 		return this.exclude;
 	}
 
 	/**
-	 * Required - API name: {@code include}
+	 * Required - Span query whose matches are filtered.
+	 * <p>
+	 * API name: {@code include}
 	 */
 	public final SpanQuery include() {
 		return this.include;
 	}
 
 	/**
+	 * The number of tokens after the include span that can’t have overlap with the
+	 * exclude span.
+	 * <p>
 	 * API name: {@code post}
 	 */
 	@Nullable
@@ -123,6 +134,9 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 	}
 
 	/**
+	 * The number of tokens before the include span that can’t have overlap with the
+	 * exclude span.
+	 * <p>
 	 * API name: {@code pre}
 	 */
 	@Nullable
@@ -178,6 +192,10 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		private Integer pre;
 
 		/**
+		 * The number of tokens from within the include span that can’t have overlap
+		 * with the exclude span. Equivalent to setting both <code>pre</code> and
+		 * <code>post</code>.
+		 * <p>
 		 * API name: {@code dist}
 		 */
 		public final Builder dist(@Nullable Integer value) {
@@ -186,7 +204,9 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		}
 
 		/**
-		 * Required - API name: {@code exclude}
+		 * Required - Span query whose matches must not overlap those returned.
+		 * <p>
+		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(SpanQuery value) {
 			this.exclude = value;
@@ -194,14 +214,18 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		}
 
 		/**
-		 * Required - API name: {@code exclude}
+		 * Required - Span query whose matches must not overlap those returned.
+		 * <p>
+		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.exclude(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code include}
+		 * Required - Span query whose matches are filtered.
+		 * <p>
+		 * API name: {@code include}
 		 */
 		public final Builder include(SpanQuery value) {
 			this.include = value;
@@ -209,13 +233,18 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		}
 
 		/**
-		 * Required - API name: {@code include}
+		 * Required - Span query whose matches are filtered.
+		 * <p>
+		 * API name: {@code include}
 		 */
 		public final Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.include(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
+		 * The number of tokens after the include span that can’t have overlap with the
+		 * exclude span.
+		 * <p>
 		 * API name: {@code post}
 		 */
 		public final Builder post(@Nullable Integer value) {
@@ -224,6 +253,9 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		}
 
 		/**
+		 * The number of tokens before the include span that can’t have overlap with the
+		 * exclude span.
+		 * <p>
 		 * API name: {@code pre}
 		 */
 		public final Builder pre(@Nullable Integer value) {

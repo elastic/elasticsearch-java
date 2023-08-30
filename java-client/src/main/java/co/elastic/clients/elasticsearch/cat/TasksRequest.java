@@ -34,8 +34,8 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +47,10 @@ import javax.annotation.Nullable;
 // typedef: cat.tasks.Request
 
 /**
- * Returns information about the tasks currently executing on one or more nodes
- * in the cluster.
+ * Returns information about tasks currently executing in the cluster.
+ * IMPORTANT: cat APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
+ * application consumption, use the task management API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.tasks.Request">API
  *      specification</a>
@@ -63,7 +65,7 @@ public class TasksRequest extends CatRequestBase {
 	private final List<String> nodeId;
 
 	@Nullable
-	private final Long parentTask;
+	private final String parentTaskId;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -72,7 +74,7 @@ public class TasksRequest extends CatRequestBase {
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
-		this.parentTask = builder.parentTask;
+		this.parentTaskId = builder.parentTaskId;
 
 	}
 
@@ -81,8 +83,7 @@ public class TasksRequest extends CatRequestBase {
 	}
 
 	/**
-	 * A comma-separated list of actions that should be returned. Leave empty to
-	 * return all.
+	 * The task action names, which are used to limit the response.
 	 * <p>
 	 * API name: {@code actions}
 	 */
@@ -91,7 +92,8 @@ public class TasksRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Return detailed task information (default: false)
+	 * If <code>true</code>, the response includes detailed information about shard
+	 * recoveries.
 	 * <p>
 	 * API name: {@code detailed}
 	 */
@@ -101,6 +103,8 @@ public class TasksRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Unique node identifiers, which are used to limit the response.
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	public final List<String> nodeId() {
@@ -108,11 +112,13 @@ public class TasksRequest extends CatRequestBase {
 	}
 
 	/**
-	 * API name: {@code parent_task}
+	 * The parent task identifier, which is used to limit the response.
+	 * <p>
+	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
-	public final Long parentTask() {
-		return this.parentTask;
+	public final String parentTaskId() {
+		return this.parentTaskId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -132,11 +138,10 @@ public class TasksRequest extends CatRequestBase {
 		private List<String> nodeId;
 
 		@Nullable
-		private Long parentTask;
+		private String parentTaskId;
 
 		/**
-		 * A comma-separated list of actions that should be returned. Leave empty to
-		 * return all.
+		 * The task action names, which are used to limit the response.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -148,8 +153,7 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of actions that should be returned. Leave empty to
-		 * return all.
+		 * The task action names, which are used to limit the response.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -161,7 +165,8 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Return detailed task information (default: false)
+		 * If <code>true</code>, the response includes detailed information about shard
+		 * recoveries.
 		 * <p>
 		 * API name: {@code detailed}
 		 */
@@ -171,6 +176,8 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Unique node identifiers, which are used to limit the response.
+		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
@@ -181,6 +188,8 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Unique node identifiers, which are used to limit the response.
+		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds one or more values to <code>nodeId</code>.
@@ -191,10 +200,12 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
-		 * API name: {@code parent_task}
+		 * The parent task identifier, which is used to limit the response.
+		 * <p>
+		 * API name: {@code parent_task_id}
 		 */
-		public final Builder parentTask(@Nullable Long value) {
-			this.parentTask = value;
+		public final Builder parentTaskId(@Nullable String value) {
+			this.parentTaskId = value;
 			return this;
 		}
 
@@ -236,15 +247,20 @@ public class TasksRequest extends CatRequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.parentTaskId != null) {
+					params.put("parent_task_id", request.parentTaskId);
+				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
-				}
-				if (request.parentTask != null) {
-					params.put("parent_task", String.valueOf(request.parentTask));
 				}
 				if (ApiTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));

@@ -110,6 +110,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Greater than.
+	 * <p>
 	 * API name: {@code gt}
 	 */
 	@Nullable
@@ -118,6 +120,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Greater than or equal to.
+	 * <p>
 	 * API name: {@code gte}
 	 */
 	@Nullable
@@ -126,6 +130,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Less than.
+	 * <p>
 	 * API name: {@code lt}
 	 */
 	@Nullable
@@ -134,6 +140,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Less than or equal to.
+	 * <p>
 	 * API name: {@code lte}
 	 */
 	@Nullable
@@ -158,6 +166,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Date format used to convert <code>date</code> values in the query.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -166,6 +176,9 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
+	 * <code>date</code> values in the query to UTC.
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -264,6 +277,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		private String timeZone;
 
 		/**
+		 * Greater than.
+		 * <p>
 		 * API name: {@code gt}
 		 */
 		public final Builder gt(@Nullable JsonData value) {
@@ -272,6 +287,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Greater than or equal to.
+		 * <p>
 		 * API name: {@code gte}
 		 */
 		public final Builder gte(@Nullable JsonData value) {
@@ -280,6 +297,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Less than.
+		 * <p>
 		 * API name: {@code lt}
 		 */
 		public final Builder lt(@Nullable JsonData value) {
@@ -288,6 +307,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Less than or equal to.
+		 * <p>
 		 * API name: {@code lte}
 		 */
 		public final Builder lte(@Nullable JsonData value) {
@@ -312,6 +333,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Date format used to convert <code>date</code> values in the query.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
@@ -320,6 +343,9 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
+		 * <code>date</code> values in the query to UTC.
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public final Builder timeZone(@Nullable String value) {

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.9/analysis-normalizers.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/analysis-normalizers.html">Documentation
  *      on elastic.co</a>
  * @see <a href="../../doc-files/api-spec.html#_types.analysis.Normalizer">API
  *      specification</a>

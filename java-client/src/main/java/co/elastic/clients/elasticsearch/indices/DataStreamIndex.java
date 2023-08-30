@@ -66,14 +66,18 @@ public class DataStreamIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index_name}
+	 * Required - Name of the backing index.
+	 * <p>
+	 * API name: {@code index_name}
 	 */
 	public final String indexName() {
 		return this.indexName;
 	}
 
 	/**
-	 * Required - API name: {@code index_uuid}
+	 * Required - Universally unique identifier (UUID) for the index.
+	 * <p>
+	 * API name: {@code index_uuid}
 	 */
 	public final String indexUuid() {
 		return this.indexUuid;
@@ -115,7 +119,9 @@ public class DataStreamIndex implements JsonpSerializable {
 		private String indexUuid;
 
 		/**
-		 * Required - API name: {@code index_name}
+		 * Required - Name of the backing index.
+		 * <p>
+		 * API name: {@code index_name}
 		 */
 		public final Builder indexName(String value) {
 			this.indexName = value;
@@ -123,7 +129,9 @@ public class DataStreamIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index_uuid}
+		 * Required - Universally unique identifier (UUID) for the index.
+		 * <p>
+		 * API name: {@code index_uuid}
 		 */
 		public final Builder indexUuid(String value) {
 			this.indexUuid = value;

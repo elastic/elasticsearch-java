@@ -80,14 +80,20 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 	}
 
 	/**
-	 * Required - API name: {@code big}
+	 * Required - Can be any span query. Matching spans from <code>little</code>
+	 * that are enclosed within <code>big</code> are returned.
+	 * <p>
+	 * API name: {@code big}
 	 */
 	public final SpanQuery big() {
 		return this.big;
 	}
 
 	/**
-	 * Required - API name: {@code little}
+	 * Required - Can be any span query. Matching spans from <code>little</code>
+	 * that are enclosed within <code>big</code> are returned.
+	 * <p>
+	 * API name: {@code little}
 	 */
 	public final SpanQuery little() {
 		return this.little;
@@ -116,7 +122,10 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		private SpanQuery little;
 
 		/**
-		 * Required - API name: {@code big}
+		 * Required - Can be any span query. Matching spans from <code>little</code>
+		 * that are enclosed within <code>big</code> are returned.
+		 * <p>
+		 * API name: {@code big}
 		 */
 		public final Builder big(SpanQuery value) {
 			this.big = value;
@@ -124,14 +133,20 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		}
 
 		/**
-		 * Required - API name: {@code big}
+		 * Required - Can be any span query. Matching spans from <code>little</code>
+		 * that are enclosed within <code>big</code> are returned.
+		 * <p>
+		 * API name: {@code big}
 		 */
 		public final Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.big(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code little}
+		 * Required - Can be any span query. Matching spans from <code>little</code>
+		 * that are enclosed within <code>big</code> are returned.
+		 * <p>
+		 * API name: {@code little}
 		 */
 		public final Builder little(SpanQuery value) {
 			this.little = value;
@@ -139,7 +154,10 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		}
 
 		/**
-		 * Required - API name: {@code little}
+		 * Required - Can be any span query. Matching spans from <code>little</code>
+		 * that are enclosed within <code>big</code> are returned.
+		 * <p>
+		 * API name: {@code little}
 		 */
 		public final Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.little(fn.apply(new SpanQuery.Builder()).build());

@@ -85,13 +85,17 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Field to be extracted from the document.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * Optional factor to multiply the field value with.
+	 * <p>
 	 * API name: {@code factor}
 	 */
 	@Nullable
@@ -100,6 +104,9 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 	}
 
 	/**
+	 * Value used if the document doesn’t have that field. The modifier and factor
+	 * are still applied to it as though it were read from the document.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -108,6 +115,8 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 	}
 
 	/**
+	 * Modifier to apply to the field value.
+	 * <p>
 	 * API name: {@code modifier}
 	 */
 	@Nullable
@@ -172,7 +181,9 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 		private FieldValueFactorModifier modifier;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Field to be extracted from the document.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -180,6 +191,8 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 		}
 
 		/**
+		 * Optional factor to multiply the field value with.
+		 * <p>
 		 * API name: {@code factor}
 		 */
 		public final Builder factor(@Nullable Double value) {
@@ -188,6 +201,9 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 		}
 
 		/**
+		 * Value used if the document doesn’t have that field. The modifier and factor
+		 * are still applied to it as though it were read from the document.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable Double value) {
@@ -196,6 +212,8 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 		}
 
 		/**
+		 * Modifier to apply to the field value.
+		 * <p>
 		 * API name: {@code modifier}
 		 */
 		public final Builder modifier(@Nullable FieldValueFactorModifier value) {

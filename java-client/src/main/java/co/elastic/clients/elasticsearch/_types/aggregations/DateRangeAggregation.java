@@ -93,6 +93,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The date field whose values are use to build ranges.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -101,6 +103,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The date format used to format <code>from</code> and <code>to</code> in the
+	 * response.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -109,6 +114,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -117,6 +125,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Array of date ranges.
+	 * <p>
 	 * API name: {@code ranges}
 	 */
 	public final List<DateRangeExpression> ranges() {
@@ -124,6 +134,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Time zone used to convert dates from another time zone to UTC.
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -132,6 +144,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Set to <code>true</code> to associate a unique string key with each bucket
+	 * and returns the ranges as a hash rather than an array.
+	 * <p>
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -208,6 +223,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		private Boolean keyed;
 
 		/**
+		 * The date field whose values are use to build ranges.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -216,6 +233,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The date format used to format <code>from</code> and <code>to</code> in the
+		 * response.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
@@ -224,6 +244,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable FieldValue value) {
@@ -232,6 +255,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
@@ -239,6 +265,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(String value) {
@@ -247,6 +276,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(long value) {
@@ -255,6 +287,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(double value) {
@@ -263,6 +298,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(boolean value) {
@@ -271,6 +309,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Array of date ranges.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
@@ -281,6 +321,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Array of date ranges.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds one or more values to <code>ranges</code>.
@@ -291,6 +333,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Array of date ranges.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds a value to <code>ranges</code> using a builder lambda.
@@ -300,6 +344,8 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Time zone used to convert dates from another time zone to UTC.
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public final Builder timeZone(@Nullable String value) {
@@ -308,6 +354,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Set to <code>true</code> to associate a unique string key with each bucket
+		 * and returns the ranges as a hash rather than an array.
+		 * <p>
 		 * API name: {@code keyed}
 		 */
 		public final Builder keyed(@Nullable Boolean value) {

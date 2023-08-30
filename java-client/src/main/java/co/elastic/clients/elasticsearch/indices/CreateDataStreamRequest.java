@@ -36,6 +36,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -43,7 +45,8 @@ import javax.annotation.Nullable;
 // typedef: indices.create_data_stream.Request
 
 /**
- * Creates a data stream
+ * Creates a data stream. You must have a matching index template with data
+ * stream enabled.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.create_data_stream.Request">API
@@ -66,7 +69,14 @@ public class CreateDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the data stream
+	 * Required - Name of the data stream, which must meet the following criteria:
+	 * Lowercase only; Cannot include <code>\</code>, <code>/</code>,
+	 * <code>*</code>, <code>?</code>, <code>&quot;</code>, <code>&lt;</code>,
+	 * <code>&gt;</code>, <code>|</code>, <code>,</code>, <code>#</code>,
+	 * <code>:</code>, or a space character; Cannot start with <code>-</code>,
+	 * <code>_</code>, <code>+</code>, or <code>.ds-</code>; Cannot be
+	 * <code>.</code> or <code>..</code>; Cannot be longer than 255 bytes.
+	 * Multi-byte characters count towards this limit faster.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -86,7 +96,14 @@ public class CreateDataStreamRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Required - The name of the data stream
+		 * Required - Name of the data stream, which must meet the following criteria:
+		 * Lowercase only; Cannot include <code>\</code>, <code>/</code>,
+		 * <code>*</code>, <code>?</code>, <code>&quot;</code>, <code>&lt;</code>,
+		 * <code>&gt;</code>, <code>|</code>, <code>,</code>, <code>#</code>,
+		 * <code>:</code>, or a space character; Cannot start with <code>-</code>,
+		 * <code>_</code>, <code>+</code>, or <code>.ds-</code>; Cannot be
+		 * <code>.</code> or <code>..</code>; Cannot be longer than 255 bytes.
+		 * Multi-byte characters count towards this limit faster.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -144,6 +161,21 @@ public class CreateDataStreamRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

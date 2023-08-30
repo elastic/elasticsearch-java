@@ -84,6 +84,8 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Collection of queries from which to build buckets.
+	 * <p>
 	 * API name: {@code filters}
 	 */
 	@Nullable
@@ -92,6 +94,9 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Set to <code>true</code> to add a bucket to the response which will contain
+	 * all documents that do not match any of the given filters.
+	 * <p>
 	 * API name: {@code other_bucket}
 	 */
 	@Nullable
@@ -100,6 +105,8 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * The key with which the other bucket is returned.
+	 * <p>
 	 * API name: {@code other_bucket_key}
 	 */
 	@Nullable
@@ -108,6 +115,9 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * By default, the named filters aggregation returns the buckets as an object.
+	 * Set to <code>false</code> to return the buckets as an array of objects.
+	 * <p>
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -163,6 +173,8 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		private Boolean keyed;
 
 		/**
+		 * Collection of queries from which to build buckets.
+		 * <p>
 		 * API name: {@code filters}
 		 */
 		public final Builder filters(@Nullable Buckets<Query> value) {
@@ -171,6 +183,8 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Collection of queries from which to build buckets.
+		 * <p>
 		 * API name: {@code filters}
 		 */
 		public final Builder filters(Function<Buckets.Builder<Query>, ObjectBuilder<Buckets<Query>>> fn) {
@@ -178,6 +192,9 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Set to <code>true</code> to add a bucket to the response which will contain
+		 * all documents that do not match any of the given filters.
+		 * <p>
 		 * API name: {@code other_bucket}
 		 */
 		public final Builder otherBucket(@Nullable Boolean value) {
@@ -186,6 +203,8 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * The key with which the other bucket is returned.
+		 * <p>
 		 * API name: {@code other_bucket_key}
 		 */
 		public final Builder otherBucketKey(@Nullable String value) {
@@ -194,6 +213,9 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * By default, the named filters aggregation returns the buckets as an object.
+		 * Set to <code>false</code> to return the buckets as an array of objects.
+		 * <p>
 		 * API name: {@code keyed}
 		 */
 		public final Builder keyed(@Nullable Boolean value) {

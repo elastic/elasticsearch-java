@@ -91,20 +91,31 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code fields}
+	 * Required - List of fields to search. Field wildcard patterns are allowed.
+	 * Only <code>text</code> fields are supported, and they must all have the same
+	 * search <code>analyzer</code>.
+	 * <p>
+	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Text to search for in the provided <code>fields</code>. The
+	 * <code>combined_fields</code> query analyzes the provided text before
+	 * performing a search.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * If true, match phrase queries are automatically created for multi-term
+	 * synonyms.
+	 * <p>
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
@@ -113,6 +124,8 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Boolean logic used to interpret text in the query value.
+	 * <p>
 	 * API name: {@code operator}
 	 */
 	@Nullable
@@ -121,6 +134,8 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Minimum number of clauses that must match for a document to be returned.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -129,6 +144,9 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether no documents are returned if the analyzer removes all
+	 * tokens, such as when using a <code>stop</code> filter.
+	 * <p>
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
@@ -199,7 +217,11 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		private CombinedFieldsZeroTerms zeroTermsQuery;
 
 		/**
-		 * Required - API name: {@code fields}
+		 * Required - List of fields to search. Field wildcard patterns are allowed.
+		 * Only <code>text</code> fields are supported, and they must all have the same
+		 * search <code>analyzer</code>.
+		 * <p>
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
@@ -209,7 +231,11 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * Required - List of fields to search. Field wildcard patterns are allowed.
+		 * Only <code>text</code> fields are supported, and they must all have the same
+		 * search <code>analyzer</code>.
+		 * <p>
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
 		 */
@@ -219,7 +245,11 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Text to search for in the provided <code>fields</code>. The
+		 * <code>combined_fields</code> query analyzes the provided text before
+		 * performing a search.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -227,6 +257,9 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If true, match phrase queries are automatically created for multi-term
+		 * synonyms.
+		 * <p>
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
 		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
@@ -235,6 +268,8 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Boolean logic used to interpret text in the query value.
+		 * <p>
 		 * API name: {@code operator}
 		 */
 		public final Builder operator(@Nullable CombinedFieldsOperator value) {
@@ -243,6 +278,8 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Minimum number of clauses that must match for a document to be returned.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -251,6 +288,9 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Indicates whether no documents are returned if the analyzer removes all
+		 * tokens, such as when using a <code>stop</code> filter.
+		 * <p>
 		 * API name: {@code zero_terms_query}
 		 */
 		public final Builder zeroTermsQuery(@Nullable CombinedFieldsZeroTerms value) {

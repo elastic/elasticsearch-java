@@ -34,8 +34,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SortOrder implements JsonEnum {
+	/**
+	 * Ascending (smallest to largest)
+	 */
 	Asc("asc"),
 
+	/**
+	 * Descending (largest to smallest)
+	 */
 	Desc("desc"),
 
 	;

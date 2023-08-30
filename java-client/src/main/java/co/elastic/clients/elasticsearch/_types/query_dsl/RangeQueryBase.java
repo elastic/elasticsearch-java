@@ -57,6 +57,8 @@ public abstract class RangeQueryBase extends QueryBase {
 	}
 
 	/**
+	 * Indicates how the range query matches values for <code>range</code> fields.
+	 * <p>
 	 * API name: {@code relation}
 	 */
 	@Nullable
@@ -81,6 +83,8 @@ public abstract class RangeQueryBase extends QueryBase {
 		private RangeRelation relation;
 
 		/**
+		 * Indicates how the range query matches values for <code>range</code> fields.
+		 * <p>
 		 * API name: {@code relation}
 		 */
 		public final BuilderT relation(@Nullable RangeRelation value) {

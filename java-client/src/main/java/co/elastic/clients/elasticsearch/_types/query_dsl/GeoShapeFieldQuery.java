@@ -81,6 +81,9 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Query using an indexed shape retrieved from the the specified document and
+	 * path.
+	 * <p>
 	 * API name: {@code indexed_shape}
 	 */
 	@Nullable
@@ -89,6 +92,8 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * Spatial relation operator used to search a geo field.
+	 * <p>
 	 * API name: {@code relation}
 	 */
 	@Nullable
@@ -156,6 +161,9 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Query using an indexed shape retrieved from the the specified document and
+		 * path.
+		 * <p>
 		 * API name: {@code indexed_shape}
 		 */
 		public final Builder indexedShape(@Nullable FieldLookup value) {
@@ -164,6 +172,9 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Query using an indexed shape retrieved from the the specified document and
+		 * path.
+		 * <p>
 		 * API name: {@code indexed_shape}
 		 */
 		public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
@@ -171,6 +182,8 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * Spatial relation operator used to search a geo field.
+		 * <p>
 		 * API name: {@code relation}
 		 */
 		public final Builder relation(@Nullable GeoShapeRelation value) {

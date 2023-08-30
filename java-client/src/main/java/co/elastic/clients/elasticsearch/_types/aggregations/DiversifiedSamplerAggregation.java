@@ -88,6 +88,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	}
 
 	/**
+	 * The type of value used for de-duplication.
+	 * <p>
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
@@ -96,6 +98,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	}
 
 	/**
+	 * Limits how many documents are permitted per choice of de-duplicating value.
+	 * <p>
 	 * API name: {@code max_docs_per_value}
 	 */
 	@Nullable
@@ -112,6 +116,9 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	}
 
 	/**
+	 * Limits how many top-scoring documents are collected in the sample processed
+	 * on each shard.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -120,6 +127,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	}
 
 	/**
+	 * The field used to provide values used for de-duplication.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -182,6 +191,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		private String field;
 
 		/**
+		 * The type of value used for de-duplication.
+		 * <p>
 		 * API name: {@code execution_hint}
 		 */
 		public final Builder executionHint(@Nullable SamplerAggregationExecutionHint value) {
@@ -190,6 +201,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		}
 
 		/**
+		 * Limits how many documents are permitted per choice of de-duplicating value.
+		 * <p>
 		 * API name: {@code max_docs_per_value}
 		 */
 		public final Builder maxDocsPerValue(@Nullable Integer value) {
@@ -213,6 +226,9 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		}
 
 		/**
+		 * Limits how many top-scoring documents are collected in the sample processed
+		 * on each shard.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -221,6 +237,8 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		}
 
 		/**
+		 * The field used to provide values used for de-duplication.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {

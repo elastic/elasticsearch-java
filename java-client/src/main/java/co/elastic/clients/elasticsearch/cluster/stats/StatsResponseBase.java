@@ -77,7 +77,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 	}
 
 	/**
-	 * Required - Name of the cluster, based on the Cluster name setting setting.
+	 * Required - Name of the cluster, based on the cluster name setting.
 	 * <p>
 	 * API name: {@code cluster_name}
 	 */
@@ -125,7 +125,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 	}
 
 	/**
-	 * Required - Unix timestamp, in milliseconds, of the last time the cluster
+	 * Required - Unix timestamp, in milliseconds, for the last time the cluster
 	 * statistics were refreshed.
 	 * <p>
 	 * API name: {@code timestamp}
@@ -172,7 +172,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		private Long timestamp;
 
 		/**
-		 * Required - Name of the cluster, based on the Cluster name setting setting.
+		 * Required - Name of the cluster, based on the cluster name setting.
 		 * <p>
 		 * API name: {@code cluster_name}
 		 */
@@ -245,7 +245,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		}
 
 		/**
-		 * Required - Unix timestamp, in milliseconds, of the last time the cluster
+		 * Required - Unix timestamp, in milliseconds, for the last time the cluster
 		 * statistics were refreshed.
 		 * <p>
 		 * API name: {@code timestamp}

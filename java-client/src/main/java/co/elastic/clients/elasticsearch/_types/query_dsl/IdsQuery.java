@@ -70,6 +70,8 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * An array of document IDs.
+	 * <p>
 	 * API name: {@code values}
 	 */
 	public final List<String> values() {
@@ -103,6 +105,8 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 		private List<String> values;
 
 		/**
+		 * An array of document IDs.
+		 * <p>
 		 * API name: {@code values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>values</code>.
@@ -113,6 +117,8 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * An array of document IDs.
+		 * <p>
 		 * API name: {@code values}
 		 * <p>
 		 * Adds one or more values to <code>values</code>.

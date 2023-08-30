@@ -40,6 +40,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -49,7 +50,11 @@ import javax.annotation.Nullable;
 // typedef: security.create_api_key.Request
 
 /**
- * Creates an API key for access without requiring basic authentication.
+ * Creates an API key for access without requiring basic authentication. A
+ * successful request returns a JSON structure that contains the API key, its
+ * unique id, and its name. If applicable, it also returns expiration
+ * information for the API key in milliseconds. NOTE: By default, API keys never
+ * expire. You can specify expiration information when you create the API keys.
  * 
  * @see <a href="../doc-files/api-spec.html#security.create_api_key.Request">API
  *      specification</a>
@@ -97,8 +102,8 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * Arbitrary metadata that you want to associate with the API key. It supports
-	 * nested data structure. Within the metadata object, keys beginning with _ are
-	 * reserved for system usage.
+	 * nested data structure. Within the metadata object, keys beginning with
+	 * <code>_</code> are reserved for system usage.
 	 * <p>
 	 * API name: {@code metadata}
 	 */
@@ -236,8 +241,8 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Arbitrary metadata that you want to associate with the API key. It supports
-		 * nested data structure. Within the metadata object, keys beginning with _ are
-		 * reserved for system usage.
+		 * nested data structure. Within the metadata object, keys beginning with
+		 * <code>_</code> are reserved for system usage.
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
@@ -250,8 +255,8 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Arbitrary metadata that you want to associate with the API key. It supports
-		 * nested data structure. Within the metadata object, keys beginning with _ are
-		 * reserved for system usage.
+		 * nested data structure. Within the metadata object, keys beginning with
+		 * <code>_</code> are reserved for system usage.
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
@@ -396,6 +401,11 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return "/_security/api_key";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

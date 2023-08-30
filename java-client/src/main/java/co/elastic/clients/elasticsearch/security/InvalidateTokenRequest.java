@@ -254,6 +254,11 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

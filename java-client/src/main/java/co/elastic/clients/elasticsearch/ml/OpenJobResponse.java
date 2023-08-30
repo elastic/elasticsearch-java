@@ -74,7 +74,11 @@ public class OpenJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * Required - The ID of the node that the job was started on. In serverless this
+	 * will be the &quot;serverless&quot;. If the job is allowed to open lazily and
+	 * has not yet been assigned to a node, this value is an empty string.
+	 * <p>
+	 * API name: {@code node}
 	 */
 	public final String node() {
 		return this.node;
@@ -124,7 +128,11 @@ public class OpenJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * Required - The ID of the node that the job was started on. In serverless this
+		 * will be the &quot;serverless&quot;. If the job is allowed to open lazily and
+		 * has not yet been assigned to a node, this value is an empty string.
+		 * <p>
+		 * API name: {@code node}
 		 */
 		public final Builder node(String value) {
 			this.node = value;

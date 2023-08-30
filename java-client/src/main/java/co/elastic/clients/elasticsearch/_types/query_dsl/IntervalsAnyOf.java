@@ -84,13 +84,17 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
-	 * Required - API name: {@code intervals}
+	 * Required - An array of rules to match.
+	 * <p>
+	 * API name: {@code intervals}
 	 */
 	public final List<Intervals> intervals() {
 		return this.intervals;
 	}
 
 	/**
+	 * Rule used to filter returned intervals.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -145,7 +149,9 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		private IntervalsFilter filter;
 
 		/**
-		 * Required - API name: {@code intervals}
+		 * Required - An array of rules to match.
+		 * <p>
+		 * API name: {@code intervals}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>intervals</code>.
 		 */
@@ -155,7 +161,9 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
-		 * Required - API name: {@code intervals}
+		 * Required - An array of rules to match.
+		 * <p>
+		 * API name: {@code intervals}
 		 * <p>
 		 * Adds one or more values to <code>intervals</code>.
 		 */
@@ -165,7 +173,9 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
-		 * Required - API name: {@code intervals}
+		 * Required - An array of rules to match.
+		 * <p>
+		 * API name: {@code intervals}
 		 * <p>
 		 * Adds a value to <code>intervals</code> using a builder lambda.
 		 */
@@ -174,6 +184,8 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Rule used to filter returned intervals.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable IntervalsFilter value) {
@@ -182,6 +194,8 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Rule used to filter returned intervals.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {

@@ -65,14 +65,18 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 	}
 
 	/**
-	 * Required - API name: {@code pivot}
+	 * Required - Configurable pivot value so that the result will be less than 0.5.
+	 * <p>
+	 * API name: {@code pivot}
 	 */
 	public final float pivot() {
 		return this.pivot;
 	}
 
 	/**
-	 * Required - API name: {@code exponent}
+	 * Required - Configurable Exponent.
+	 * <p>
+	 * API name: {@code exponent}
 	 */
 	public final float exponent() {
 		return this.exponent;
@@ -116,7 +120,9 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 		private Float exponent;
 
 		/**
-		 * Required - API name: {@code pivot}
+		 * Required - Configurable pivot value so that the result will be less than 0.5.
+		 * <p>
+		 * API name: {@code pivot}
 		 */
 		public final Builder pivot(float value) {
 			this.pivot = value;
@@ -124,7 +130,9 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 		}
 
 		/**
-		 * Required - API name: {@code exponent}
+		 * Required - Configurable Exponent.
+		 * <p>
+		 * API name: {@code exponent}
 		 */
 		public final Builder exponent(float value) {
 			this.exponent = value;

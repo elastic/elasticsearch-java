@@ -448,6 +448,21 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _policyId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _policyId;
+
+				if (propsSet == (_policyId)) {
+					params.put("policyId", request.policyId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

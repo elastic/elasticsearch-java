@@ -251,6 +251,11 @@ public class SamlPrepareAuthenticationRequest extends RequestBase implements Jso
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

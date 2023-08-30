@@ -54,54 +54,54 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DataStream implements JsonpSerializable {
-	private final String name;
-
-	private final DataStreamTimestampField timestampField;
-
-	private final List<DataStreamIndex> indices;
-
-	private final int generation;
-
-	private final String template;
-
-	private final boolean hidden;
-
-	@Nullable
-	private final Boolean replicated;
-
-	@Nullable
-	private final Boolean system;
-
-	private final HealthStatus status;
-
-	@Nullable
-	private final String ilmPolicy;
-
 	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final Boolean allowCustomRouting;
 
+	private final int generation;
+
+	private final boolean hidden;
+
+	@Nullable
+	private final String ilmPolicy;
+
+	private final List<DataStreamIndex> indices;
+
 	@Nullable
 	private final DataLifecycleWithRollover lifecycle;
+
+	private final String name;
+
+	@Nullable
+	private final Boolean replicated;
+
+	private final HealthStatus status;
+
+	@Nullable
+	private final Boolean system;
+
+	private final String template;
+
+	private final DataStreamTimestampField timestampField;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStream(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
-		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
-		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
-		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden");
-		this.replicated = builder.replicated;
-		this.system = builder.system;
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.ilmPolicy = builder.ilmPolicy;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowCustomRouting = builder.allowCustomRouting;
+		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden");
+		this.ilmPolicy = builder.ilmPolicy;
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.lifecycle = builder.lifecycle;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.replicated = builder.replicated;
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.system = builder.system;
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
 
 	}
 
@@ -110,79 +110,10 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * Required - API name: {@code timestamp_field}
-	 */
-	public final DataStreamTimestampField timestampField() {
-		return this.timestampField;
-	}
-
-	/**
-	 * Required - API name: {@code indices}
-	 */
-	public final List<DataStreamIndex> indices() {
-		return this.indices;
-	}
-
-	/**
-	 * Required - API name: {@code generation}
-	 */
-	public final int generation() {
-		return this.generation;
-	}
-
-	/**
-	 * Required - API name: {@code template}
-	 */
-	public final String template() {
-		return this.template;
-	}
-
-	/**
-	 * Required - API name: {@code hidden}
-	 */
-	public final boolean hidden() {
-		return this.hidden;
-	}
-
-	/**
-	 * API name: {@code replicated}
-	 */
-	@Nullable
-	public final Boolean replicated() {
-		return this.replicated;
-	}
-
-	/**
-	 * API name: {@code system}
-	 */
-	@Nullable
-	public final Boolean system() {
-		return this.system;
-	}
-
-	/**
-	 * Required - API name: {@code status}
-	 */
-	public final HealthStatus status() {
-		return this.status;
-	}
-
-	/**
-	 * API name: {@code ilm_policy}
-	 */
-	@Nullable
-	public final String ilmPolicy() {
-		return this.ilmPolicy;
-	}
-
-	/**
+	 * Custom metadata for the stream, copied from the <code>_meta</code> object of
+	 * the stream’s matching index template. If empty, the response omits this
+	 * property.
+	 * <p>
 	 * API name: {@code _meta}
 	 */
 	public final Map<String, JsonData> meta() {
@@ -190,6 +121,8 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the data stream allows custom routing on write request.
+	 * <p>
 	 * API name: {@code allow_custom_routing}
 	 */
 	@Nullable
@@ -198,11 +131,123 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Current generation for the data stream. This number acts as a
+	 * cumulative count of the stream’s rollovers, starting at 1.
+	 * <p>
+	 * API name: {@code generation}
+	 */
+	public final int generation() {
+		return this.generation;
+	}
+
+	/**
+	 * Required - If <code>true</code>, the data stream is hidden.
+	 * <p>
+	 * API name: {@code hidden}
+	 */
+	public final boolean hidden() {
+		return this.hidden;
+	}
+
+	/**
+	 * Name of the current ILM lifecycle policy in the stream’s matching index
+	 * template. This lifecycle policy is set in the
+	 * <code>index.lifecycle.name</code> setting. If the template does not include a
+	 * lifecycle policy, this property is not included in the response. NOTE: A data
+	 * stream’s backing indices may be assigned different lifecycle policies. To
+	 * retrieve the lifecycle policy for individual backing indices, use the get
+	 * index settings API.
+	 * <p>
+	 * API name: {@code ilm_policy}
+	 */
+	@Nullable
+	public final String ilmPolicy() {
+		return this.ilmPolicy;
+	}
+
+	/**
+	 * Required - Array of objects containing information about the data stream’s
+	 * backing indices. The last item in this array contains information about the
+	 * stream’s current write index.
+	 * <p>
+	 * API name: {@code indices}
+	 */
+	public final List<DataStreamIndex> indices() {
+		return this.indices;
+	}
+
+	/**
+	 * Contains the configuration for the data lifecycle management of this data
+	 * stream.
+	 * <p>
 	 * API name: {@code lifecycle}
 	 */
 	@Nullable
 	public final DataLifecycleWithRollover lifecycle() {
 		return this.lifecycle;
+	}
+
+	/**
+	 * Required - Name of the data stream.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * If <code>true</code>, the data stream is created and managed by cross-cluster
+	 * replication and the local cluster can not write into this data stream or
+	 * change its mappings.
+	 * <p>
+	 * API name: {@code replicated}
+	 */
+	@Nullable
+	public final Boolean replicated() {
+		return this.replicated;
+	}
+
+	/**
+	 * Required - Health status of the data stream. This health status is based on
+	 * the state of the primary and replica shards of the stream’s backing indices.
+	 * <p>
+	 * API name: {@code status}
+	 */
+	public final HealthStatus status() {
+		return this.status;
+	}
+
+	/**
+	 * If <code>true</code>, the data stream is created and managed by an Elastic
+	 * stack component and cannot be modified through normal user interaction.
+	 * <p>
+	 * API name: {@code system}
+	 */
+	@Nullable
+	public final Boolean system() {
+		return this.system;
+	}
+
+	/**
+	 * Required - Name of the index template used to create the data stream’s
+	 * backing indices. The template’s index pattern must match the name of this
+	 * data stream.
+	 * <p>
+	 * API name: {@code template}
+	 */
+	public final String template() {
+		return this.template;
+	}
+
+	/**
+	 * Required - Information about the <code>@timestamp</code> field in the data
+	 * stream.
+	 * <p>
+	 * API name: {@code timestamp_field}
+	 */
+	public final DataStreamTimestampField timestampField() {
+		return this.timestampField;
 	}
 
 	/**
@@ -216,48 +261,6 @@ public class DataStream implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
-
-		generator.writeKey("timestamp_field");
-		this.timestampField.serialize(generator, mapper);
-
-		if (ApiTypeHelper.isDefined(this.indices)) {
-			generator.writeKey("indices");
-			generator.writeStartArray();
-			for (DataStreamIndex item0 : this.indices) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		generator.writeKey("generation");
-		generator.write(this.generation);
-
-		generator.writeKey("template");
-		generator.write(this.template);
-
-		generator.writeKey("hidden");
-		generator.write(this.hidden);
-
-		if (this.replicated != null) {
-			generator.writeKey("replicated");
-			generator.write(this.replicated);
-
-		}
-		if (this.system != null) {
-			generator.writeKey("system");
-			generator.write(this.system);
-
-		}
-		generator.writeKey("status");
-		this.status.serialize(generator, mapper);
-		if (this.ilmPolicy != null) {
-			generator.writeKey("ilm_policy");
-			generator.write(this.ilmPolicy);
-
-		}
 		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
@@ -274,11 +277,52 @@ public class DataStream implements JsonpSerializable {
 			generator.write(this.allowCustomRouting);
 
 		}
+		generator.writeKey("generation");
+		generator.write(this.generation);
+
+		generator.writeKey("hidden");
+		generator.write(this.hidden);
+
+		if (this.ilmPolicy != null) {
+			generator.writeKey("ilm_policy");
+			generator.write(this.ilmPolicy);
+
+		}
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (DataStreamIndex item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.lifecycle != null) {
 			generator.writeKey("lifecycle");
 			this.lifecycle.serialize(generator, mapper);
 
 		}
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		if (this.replicated != null) {
+			generator.writeKey("replicated");
+			generator.write(this.replicated);
+
+		}
+		generator.writeKey("status");
+		this.status.serialize(generator, mapper);
+		if (this.system != null) {
+			generator.writeKey("system");
+			generator.write(this.system);
+
+		}
+		generator.writeKey("template");
+		generator.write(this.template);
+
+		generator.writeKey("timestamp_field");
+		this.timestampField.serialize(generator, mapper);
 
 	}
 
@@ -294,148 +338,43 @@ public class DataStream implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DataStream> {
-		private String name;
-
-		private DataStreamTimestampField timestampField;
-
-		private List<DataStreamIndex> indices;
-
-		private Integer generation;
-
-		private String template;
-
-		private Boolean hidden;
-
-		@Nullable
-		private Boolean replicated;
-
-		@Nullable
-		private Boolean system;
-
-		private HealthStatus status;
-
-		@Nullable
-		private String ilmPolicy;
-
 		@Nullable
 		private Map<String, JsonData> meta;
 
 		@Nullable
 		private Boolean allowCustomRouting;
 
+		private Integer generation;
+
+		private Boolean hidden;
+
+		@Nullable
+		private String ilmPolicy;
+
+		private List<DataStreamIndex> indices;
+
 		@Nullable
 		private DataLifecycleWithRollover lifecycle;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+		private String name;
+
+		@Nullable
+		private Boolean replicated;
+
+		private HealthStatus status;
+
+		@Nullable
+		private Boolean system;
+
+		private String template;
+
+		private DataStreamTimestampField timestampField;
 
 		/**
-		 * Required - API name: {@code timestamp_field}
-		 */
-		public final Builder timestampField(DataStreamTimestampField value) {
-			this.timestampField = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code timestamp_field}
-		 */
-		public final Builder timestampField(
-				Function<DataStreamTimestampField.Builder, ObjectBuilder<DataStreamTimestampField>> fn) {
-			return this.timestampField(fn.apply(new DataStreamTimestampField.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code indices}
+		 * Custom metadata for the stream, copied from the <code>_meta</code> object of
+		 * the stream’s matching index template. If empty, the response omits this
+		 * property.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 */
-		public final Builder indices(List<DataStreamIndex> list) {
-			this.indices = _listAddAll(this.indices, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code indices}
-		 * <p>
-		 * Adds one or more values to <code>indices</code>.
-		 */
-		public final Builder indices(DataStreamIndex value, DataStreamIndex... values) {
-			this.indices = _listAdd(this.indices, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code indices}
-		 * <p>
-		 * Adds a value to <code>indices</code> using a builder lambda.
-		 */
-		public final Builder indices(Function<DataStreamIndex.Builder, ObjectBuilder<DataStreamIndex>> fn) {
-			return indices(fn.apply(new DataStreamIndex.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code generation}
-		 */
-		public final Builder generation(int value) {
-			this.generation = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code template}
-		 */
-		public final Builder template(String value) {
-			this.template = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code hidden}
-		 */
-		public final Builder hidden(boolean value) {
-			this.hidden = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code replicated}
-		 */
-		public final Builder replicated(@Nullable Boolean value) {
-			this.replicated = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code system}
-		 */
-		public final Builder system(@Nullable Boolean value) {
-			this.system = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code status}
-		 */
-		public final Builder status(HealthStatus value) {
-			this.status = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code ilm_policy}
-		 */
-		public final Builder ilmPolicy(@Nullable String value) {
-			this.ilmPolicy = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
@@ -446,6 +385,10 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom metadata for the stream, copied from the <code>_meta</code> object of
+		 * the stream’s matching index template. If empty, the response omits this
+		 * property.
+		 * <p>
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds an entry to <code>meta</code>.
@@ -456,6 +399,8 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the data stream allows custom routing on write request.
+		 * <p>
 		 * API name: {@code allow_custom_routing}
 		 */
 		public final Builder allowCustomRouting(@Nullable Boolean value) {
@@ -464,6 +409,87 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - Current generation for the data stream. This number acts as a
+		 * cumulative count of the stream’s rollovers, starting at 1.
+		 * <p>
+		 * API name: {@code generation}
+		 */
+		public final Builder generation(int value) {
+			this.generation = value;
+			return this;
+		}
+
+		/**
+		 * Required - If <code>true</code>, the data stream is hidden.
+		 * <p>
+		 * API name: {@code hidden}
+		 */
+		public final Builder hidden(boolean value) {
+			this.hidden = value;
+			return this;
+		}
+
+		/**
+		 * Name of the current ILM lifecycle policy in the stream’s matching index
+		 * template. This lifecycle policy is set in the
+		 * <code>index.lifecycle.name</code> setting. If the template does not include a
+		 * lifecycle policy, this property is not included in the response. NOTE: A data
+		 * stream’s backing indices may be assigned different lifecycle policies. To
+		 * retrieve the lifecycle policy for individual backing indices, use the get
+		 * index settings API.
+		 * <p>
+		 * API name: {@code ilm_policy}
+		 */
+		public final Builder ilmPolicy(@Nullable String value) {
+			this.ilmPolicy = value;
+			return this;
+		}
+
+		/**
+		 * Required - Array of objects containing information about the data stream’s
+		 * backing indices. The last item in this array contains information about the
+		 * stream’s current write index.
+		 * <p>
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
+		 */
+		public final Builder indices(List<DataStreamIndex> list) {
+			this.indices = _listAddAll(this.indices, list);
+			return this;
+		}
+
+		/**
+		 * Required - Array of objects containing information about the data stream’s
+		 * backing indices. The last item in this array contains information about the
+		 * stream’s current write index.
+		 * <p>
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
+		 */
+		public final Builder indices(DataStreamIndex value, DataStreamIndex... values) {
+			this.indices = _listAdd(this.indices, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - Array of objects containing information about the data stream’s
+		 * backing indices. The last item in this array contains information about the
+		 * stream’s current write index.
+		 * <p>
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(Function<DataStreamIndex.Builder, ObjectBuilder<DataStreamIndex>> fn) {
+			return indices(fn.apply(new DataStreamIndex.Builder()).build());
+		}
+
+		/**
+		 * Contains the configuration for the data lifecycle management of this data
+		 * stream.
+		 * <p>
 		 * API name: {@code lifecycle}
 		 */
 		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
@@ -472,11 +498,92 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains the configuration for the data lifecycle management of this data
+		 * stream.
+		 * <p>
 		 * API name: {@code lifecycle}
 		 */
 		public final Builder lifecycle(
 				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
 			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+		}
+
+		/**
+		 * Required - Name of the data stream.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the data stream is created and managed by cross-cluster
+		 * replication and the local cluster can not write into this data stream or
+		 * change its mappings.
+		 * <p>
+		 * API name: {@code replicated}
+		 */
+		public final Builder replicated(@Nullable Boolean value) {
+			this.replicated = value;
+			return this;
+		}
+
+		/**
+		 * Required - Health status of the data stream. This health status is based on
+		 * the state of the primary and replica shards of the stream’s backing indices.
+		 * <p>
+		 * API name: {@code status}
+		 */
+		public final Builder status(HealthStatus value) {
+			this.status = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the data stream is created and managed by an Elastic
+		 * stack component and cannot be modified through normal user interaction.
+		 * <p>
+		 * API name: {@code system}
+		 */
+		public final Builder system(@Nullable Boolean value) {
+			this.system = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the index template used to create the data stream’s
+		 * backing indices. The template’s index pattern must match the name of this
+		 * data stream.
+		 * <p>
+		 * API name: {@code template}
+		 */
+		public final Builder template(String value) {
+			this.template = value;
+			return this;
+		}
+
+		/**
+		 * Required - Information about the <code>@timestamp</code> field in the data
+		 * stream.
+		 * <p>
+		 * API name: {@code timestamp_field}
+		 */
+		public final Builder timestampField(DataStreamTimestampField value) {
+			this.timestampField = value;
+			return this;
+		}
+
+		/**
+		 * Required - Information about the <code>@timestamp</code> field in the data
+		 * stream.
+		 * <p>
+		 * API name: {@code timestamp_field}
+		 */
+		public final Builder timestampField(
+				Function<DataStreamTimestampField.Builder, ObjectBuilder<DataStreamTimestampField>> fn) {
+			return this.timestampField(fn.apply(new DataStreamTimestampField.Builder()).build());
 		}
 
 		@Override
@@ -507,19 +614,19 @@ public class DataStream implements JsonpSerializable {
 
 	protected static void setupDataStreamDeserializer(ObjectDeserializer<DataStream.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::timestampField, DataStreamTimestampField._DESERIALIZER, "timestamp_field");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(DataStreamIndex._DESERIALIZER), "indices");
-		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
-		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");
-		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
-		op.add(Builder::replicated, JsonpDeserializer.booleanDeserializer(), "replicated");
-		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
-		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
-		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
+		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
+		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
+		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(DataStreamIndex._DESERIALIZER), "indices");
 		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::replicated, JsonpDeserializer.booleanDeserializer(), "replicated");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
+		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
+		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");
+		op.add(Builder::timestampField, DataStreamTimestampField._DESERIALIZER, "timestamp_field");
 
 	}
 

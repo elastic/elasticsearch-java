@@ -36,6 +36,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -174,6 +176,24 @@ public class GetServiceCredentialsRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _service;
+				propsSet |= _namespace;
+
+				if (propsSet == (_namespace | _service)) {
+					params.put("namespace", request.namespace);
+					params.put("service", request.service);
+				}
+				return params;
 			},
 
 			// Request parameters

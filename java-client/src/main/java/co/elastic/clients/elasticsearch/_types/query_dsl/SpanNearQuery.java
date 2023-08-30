@@ -88,13 +88,17 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 	}
 
 	/**
-	 * Required - API name: {@code clauses}
+	 * Required - Array of one or more other span type queries.
+	 * <p>
+	 * API name: {@code clauses}
 	 */
 	public final List<SpanQuery> clauses() {
 		return this.clauses;
 	}
 
 	/**
+	 * Controls whether matches are required to be in-order.
+	 * <p>
 	 * API name: {@code in_order}
 	 */
 	@Nullable
@@ -103,6 +107,8 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 	}
 
 	/**
+	 * Controls the maximum number of intervening unmatched positions permitted.
+	 * <p>
 	 * API name: {@code slop}
 	 */
 	@Nullable
@@ -152,7 +158,9 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		private Integer slop;
 
 		/**
-		 * Required - API name: {@code clauses}
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>clauses</code>.
 		 */
@@ -162,7 +170,9 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		}
 
 		/**
-		 * Required - API name: {@code clauses}
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
 		 * <p>
 		 * Adds one or more values to <code>clauses</code>.
 		 */
@@ -172,7 +182,9 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		}
 
 		/**
-		 * Required - API name: {@code clauses}
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
 		 * <p>
 		 * Adds a value to <code>clauses</code> using a builder lambda.
 		 */
@@ -181,6 +193,8 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		}
 
 		/**
+		 * Controls whether matches are required to be in-order.
+		 * <p>
 		 * API name: {@code in_order}
 		 */
 		public final Builder inOrder(@Nullable Boolean value) {
@@ -189,6 +203,8 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		}
 
 		/**
+		 * Controls the maximum number of intervening unmatched positions permitted.
+		 * <p>
 		 * API name: {@code slop}
 		 */
 		public final Builder slop(@Nullable Integer value) {

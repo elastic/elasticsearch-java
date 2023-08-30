@@ -35,10 +35,19 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SamplerAggregationExecutionHint implements JsonEnum {
+	/**
+	 * Hold field values directly.
+	 */
 	Map("map"),
 
+	/**
+	 * Hold ordinals of the field as determined by the Lucene index.
+	 */
 	GlobalOrdinals("global_ordinals"),
 
+	/**
+	 * Hold hashes of the field values - with potential for hash collisions.
+	 */
 	BytesHash("bytes_hash"),
 
 	;

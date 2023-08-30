@@ -183,6 +183,11 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

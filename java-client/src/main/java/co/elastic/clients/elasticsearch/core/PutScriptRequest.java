@@ -318,6 +318,28 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _context = 1 << 0;
+				final int _id = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.context() != null)
+					propsSet |= _context;
+				propsSet |= _id;
+
+				if (propsSet == (_id)) {
+					params.put("id", request.id);
+				}
+				if (propsSet == (_id | _context)) {
+					params.put("id", request.id);
+					params.put("context", request.context);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

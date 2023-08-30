@@ -226,6 +226,24 @@ public class DeletePrivilegesRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _application = 1 << 0;
+				final int _name = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _application;
+				propsSet |= _name;
+
+				if (propsSet == (_application | _name)) {
+					params.put("application", request.application);
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

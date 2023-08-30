@@ -35,10 +35,19 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum HighlighterType implements JsonEnum {
+	/**
+	 * The <code>plain</code> highlighter uses the standard Lucene highlighter
+	 */
 	Plain("plain"),
 
+	/**
+	 * The fvh highlighter uses the Lucene Fast Vector highlighter.
+	 */
 	FastVector("fvh"),
 
+	/**
+	 * The unified highlighter uses the Lucene Unified Highlighter.
+	 */
 	Unified("unified"),
 
 	;

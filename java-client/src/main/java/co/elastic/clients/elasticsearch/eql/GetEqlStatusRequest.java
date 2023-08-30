@@ -36,6 +36,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -43,8 +45,8 @@ import javax.annotation.Nullable;
 // typedef: eql.get_status.Request
 
 /**
- * Returns the status of a previously submitted async or stored Event Query
- * Language (EQL) search
+ * Returns the current status for an async EQL search or a stored synchronous
+ * EQL search without returning results.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.get_status.Request">API
  *      specification</a>
@@ -146,6 +148,21 @@ public class GetEqlStatusRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _id = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _id;
+
+				if (propsSet == (_id)) {
+					params.put("id", request.id);
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_alias.Request
 
 /**
- * Deletes an alias.
+ * Removes a data stream or index from an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_alias.Request">API
  *      specification</a>
@@ -80,8 +80,8 @@ public class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of index names (supports wildcards); use
-	 * <code>_all</code> for all indices
+	 * Required - Comma-separated list of data streams or indices used to limit the
+	 * request. Supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -90,7 +90,8 @@ public class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -100,8 +101,9 @@ public class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of aliases to delete (supports wildcards);
-	 * use <code>_all</code> to delete all aliases for the specified indices.
+	 * Required - Comma-separated list of aliases to remove. Supports wildcards
+	 * (<code>*</code>). To remove all aliases, use <code>*</code> or
+	 * <code>_all</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -110,7 +112,8 @@ public class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit timestamp for the document
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -139,8 +142,8 @@ public class DeleteAliasRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - A comma-separated list of index names (supports wildcards); use
-		 * <code>_all</code> for all indices
+		 * Required - Comma-separated list of data streams or indices used to limit the
+		 * request. Supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -152,8 +155,8 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names (supports wildcards); use
-		 * <code>_all</code> for all indices
+		 * Required - Comma-separated list of data streams or indices used to limit the
+		 * request. Supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -165,7 +168,8 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -175,7 +179,8 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -184,8 +189,9 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of aliases to delete (supports wildcards);
-		 * use <code>_all</code> to delete all aliases for the specified indices.
+		 * Required - Comma-separated list of aliases to remove. Supports wildcards
+		 * (<code>*</code>). To remove all aliases, use <code>*</code> or
+		 * <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -197,8 +203,9 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of aliases to delete (supports wildcards);
-		 * use <code>_all</code> to delete all aliases for the specified indices.
+		 * Required - Comma-separated list of aliases to remove. Supports wildcards
+		 * (<code>*</code>). To remove all aliases, use <code>*</code> or
+		 * <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -210,7 +217,8 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -220,7 +228,8 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -290,6 +299,28 @@ public class DeleteAliasRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+				propsSet |= _index;
+
+				if (propsSet == (_index | _name)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index | _name)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -35,14 +35,30 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum ScoreMode implements JsonEnum {
+	/**
+	 * Average the original score and the rescore query score.
+	 */
 	Avg("avg"),
 
+	/**
+	 * Take the max of original score and the rescore query score.
+	 */
 	Max("max"),
 
+	/**
+	 * Take the min of the original score and the rescore query score.
+	 */
 	Min("min"),
 
+	/**
+	 * Multiply the original score by the rescore query score. Useful for
+	 * <code>function</code> query rescores.
+	 */
 	Multiply("multiply"),
 
+	/**
+	 * Add the original score and the rescore query score.
+	 */
 	Total("total"),
 
 	;

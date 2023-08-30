@@ -77,6 +77,11 @@ public class ExploreControls implements JsonpSerializable {
 	}
 
 	/**
+	 * To avoid the top-matching documents sample being dominated by a single source
+	 * of results, it is sometimes necessary to request diversity in the sample. You
+	 * can do this by selecting a single-value field and setting a maximum number of
+	 * documents per value for that field.
+	 * <p>
 	 * API name: {@code sample_diversity}
 	 */
 	@Nullable
@@ -85,6 +90,13 @@ public class ExploreControls implements JsonpSerializable {
 	}
 
 	/**
+	 * Each hop considers a sample of the best-matching documents on each shard.
+	 * Using samples improves the speed of execution and keeps exploration focused
+	 * on meaningfully-connected terms. Very small values (less than 50) might not
+	 * provide sufficient weight-of-evidence to identify significant connections
+	 * between terms. Very large sample sizes can dilute the quality of the results
+	 * and increase execution times.
+	 * <p>
 	 * API name: {@code sample_size}
 	 */
 	@Nullable
@@ -93,6 +105,11 @@ public class ExploreControls implements JsonpSerializable {
 	}
 
 	/**
+	 * The length of time in milliseconds after which exploration will be halted and
+	 * the results gathered so far are returned. This timeout is honored on a
+	 * best-effort basis. Execution might overrun this timeout if, for example, a
+	 * long pause is encountered while FieldData is loaded for a field.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -101,7 +118,10 @@ public class ExploreControls implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code use_significance}
+	 * Required - Filters associated terms so only those that are significantly
+	 * associated with your query are included.
+	 * <p>
+	 * API name: {@code use_significance}
 	 */
 	public final boolean useSignificance() {
 		return this.useSignificance;
@@ -162,6 +182,11 @@ public class ExploreControls implements JsonpSerializable {
 		private Boolean useSignificance;
 
 		/**
+		 * To avoid the top-matching documents sample being dominated by a single source
+		 * of results, it is sometimes necessary to request diversity in the sample. You
+		 * can do this by selecting a single-value field and setting a maximum number of
+		 * documents per value for that field.
+		 * <p>
 		 * API name: {@code sample_diversity}
 		 */
 		public final Builder sampleDiversity(@Nullable SampleDiversity value) {
@@ -170,6 +195,11 @@ public class ExploreControls implements JsonpSerializable {
 		}
 
 		/**
+		 * To avoid the top-matching documents sample being dominated by a single source
+		 * of results, it is sometimes necessary to request diversity in the sample. You
+		 * can do this by selecting a single-value field and setting a maximum number of
+		 * documents per value for that field.
+		 * <p>
 		 * API name: {@code sample_diversity}
 		 */
 		public final Builder sampleDiversity(Function<SampleDiversity.Builder, ObjectBuilder<SampleDiversity>> fn) {
@@ -177,6 +207,13 @@ public class ExploreControls implements JsonpSerializable {
 		}
 
 		/**
+		 * Each hop considers a sample of the best-matching documents on each shard.
+		 * Using samples improves the speed of execution and keeps exploration focused
+		 * on meaningfully-connected terms. Very small values (less than 50) might not
+		 * provide sufficient weight-of-evidence to identify significant connections
+		 * between terms. Very large sample sizes can dilute the quality of the results
+		 * and increase execution times.
+		 * <p>
 		 * API name: {@code sample_size}
 		 */
 		public final Builder sampleSize(@Nullable Integer value) {
@@ -185,6 +222,11 @@ public class ExploreControls implements JsonpSerializable {
 		}
 
 		/**
+		 * The length of time in milliseconds after which exploration will be halted and
+		 * the results gathered so far are returned. This timeout is honored on a
+		 * best-effort basis. Execution might overrun this timeout if, for example, a
+		 * long pause is encountered while FieldData is loaded for a field.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(@Nullable Time value) {
@@ -193,6 +235,11 @@ public class ExploreControls implements JsonpSerializable {
 		}
 
 		/**
+		 * The length of time in milliseconds after which exploration will be halted and
+		 * the results gathered so far are returned. This timeout is honored on a
+		 * best-effort basis. Execution might overrun this timeout if, for example, a
+		 * long pause is encountered while FieldData is loaded for a field.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -200,7 +247,10 @@ public class ExploreControls implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code use_significance}
+		 * Required - Filters associated terms so only those that are significantly
+		 * associated with your query are included.
+		 * <p>
+		 * API name: {@code use_significance}
 		 */
 		public final Builder useSignificance(boolean value) {
 			this.useSignificance = value;

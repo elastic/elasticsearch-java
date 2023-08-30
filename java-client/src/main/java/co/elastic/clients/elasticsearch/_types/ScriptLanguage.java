@@ -34,12 +34,24 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum ScriptLanguage implements JsonEnum {
+	/**
+	 * Painless scripting language, purpose-built for Elasticsearch.
+	 */
 	Painless("painless"),
 
+	/**
+	 * Lucene’s expressions language, compiles a JavaScript expression to bytecode.
+	 */
 	Expression("expression"),
 
+	/**
+	 * Mustache templated, used for templates.
+	 */
 	Mustache("mustache"),
 
+	/**
+	 * Expert Java API
+	 */
 	Java("java"),
 
 	;

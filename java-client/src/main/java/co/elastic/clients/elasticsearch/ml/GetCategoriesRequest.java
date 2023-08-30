@@ -346,6 +346,28 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _categoryId = 1 << 0;
+				final int _jobId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.categoryId() != null)
+					propsSet |= _categoryId;
+				propsSet |= _jobId;
+
+				if (propsSet == (_jobId | _categoryId)) {
+					params.put("jobId", request.jobId);
+					params.put("categoryId", request.categoryId);
+				}
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

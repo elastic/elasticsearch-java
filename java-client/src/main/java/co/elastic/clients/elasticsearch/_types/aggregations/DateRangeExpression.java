@@ -72,6 +72,8 @@ public class DateRangeExpression implements JsonpSerializable {
 	}
 
 	/**
+	 * Start of the range.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -80,6 +82,8 @@ public class DateRangeExpression implements JsonpSerializable {
 	}
 
 	/**
+	 * Custom key to return the range with.
+	 * <p>
 	 * API name: {@code key}
 	 */
 	@Nullable
@@ -88,6 +92,8 @@ public class DateRangeExpression implements JsonpSerializable {
 	}
 
 	/**
+	 * End of the range.
+	 * <p>
 	 * API name: {@code to}
 	 */
 	@Nullable
@@ -148,6 +154,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		private FieldDateMath to;
 
 		/**
+		 * Start of the range.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(@Nullable FieldDateMath value) {
@@ -156,6 +164,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
+		 * Start of the range.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
@@ -163,6 +173,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom key to return the range with.
+		 * <p>
 		 * API name: {@code key}
 		 */
 		public final Builder key(@Nullable String value) {
@@ -171,6 +183,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
+		 * End of the range.
+		 * <p>
 		 * API name: {@code to}
 		 */
 		public final Builder to(@Nullable FieldDateMath value) {
@@ -179,6 +193,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
+		 * End of the range.
+		 * <p>
 		 * API name: {@code to}
 		 */
 		public final Builder to(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {

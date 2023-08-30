@@ -83,6 +83,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The clause (query) must appear in matching documents. However, unlike
+	 * <code>must</code>, the score of the query will be ignored.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	public final List<Query> filter() {
@@ -90,6 +93,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Specifies the number or percentage of <code>should</code> clauses returned
+	 * documents must match.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -98,6 +104,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The clause (query) must appear in matching documents and will contribute to
+	 * the score.
+	 * <p>
 	 * API name: {@code must}
 	 */
 	public final List<Query> must() {
@@ -105,6 +114,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The clause (query) must not appear in the matching documents. Because scoring
+	 * is ignored, a score of <code>0</code> is returned for all documents.
+	 * <p>
 	 * API name: {@code must_not}
 	 */
 	public final List<Query> mustNot() {
@@ -112,6 +124,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The clause (query) should appear in the matching document.
+	 * <p>
 	 * API name: {@code should}
 	 */
 	public final List<Query> should() {
@@ -192,6 +206,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		private List<Query> should;
 
 		/**
+		 * The clause (query) must appear in matching documents. However, unlike
+		 * <code>must</code>, the score of the query will be ignored.
+		 * <p>
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
@@ -202,6 +219,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must appear in matching documents. However, unlike
+		 * <code>must</code>, the score of the query will be ignored.
+		 * <p>
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds one or more values to <code>filter</code>.
@@ -212,6 +232,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must appear in matching documents. However, unlike
+		 * <code>must</code>, the score of the query will be ignored.
+		 * <p>
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds a value to <code>filter</code> using a builder lambda.
@@ -221,6 +244,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Specifies the number or percentage of <code>should</code> clauses returned
+		 * documents must match.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -229,6 +255,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must appear in matching documents and will contribute to
+		 * the score.
+		 * <p>
 		 * API name: {@code must}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>must</code>.
@@ -239,6 +268,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must appear in matching documents and will contribute to
+		 * the score.
+		 * <p>
 		 * API name: {@code must}
 		 * <p>
 		 * Adds one or more values to <code>must</code>.
@@ -249,6 +281,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must appear in matching documents and will contribute to
+		 * the score.
+		 * <p>
 		 * API name: {@code must}
 		 * <p>
 		 * Adds a value to <code>must</code> using a builder lambda.
@@ -258,6 +293,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must not appear in the matching documents. Because scoring
+		 * is ignored, a score of <code>0</code> is returned for all documents.
+		 * <p>
 		 * API name: {@code must_not}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mustNot</code>.
@@ -268,6 +306,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must not appear in the matching documents. Because scoring
+		 * is ignored, a score of <code>0</code> is returned for all documents.
+		 * <p>
 		 * API name: {@code must_not}
 		 * <p>
 		 * Adds one or more values to <code>mustNot</code>.
@@ -278,6 +319,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) must not appear in the matching documents. Because scoring
+		 * is ignored, a score of <code>0</code> is returned for all documents.
+		 * <p>
 		 * API name: {@code must_not}
 		 * <p>
 		 * Adds a value to <code>mustNot</code> using a builder lambda.
@@ -287,6 +331,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) should appear in the matching document.
+		 * <p>
 		 * API name: {@code should}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>should</code>.
@@ -297,6 +343,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) should appear in the matching document.
+		 * <p>
 		 * API name: {@code should}
 		 * <p>
 		 * Adds one or more values to <code>should</code>.
@@ -307,6 +355,8 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The clause (query) should appear in the matching document.
+		 * <p>
 		 * API name: {@code should}
 		 * <p>
 		 * Adds a value to <code>should</code> using a builder lambda.

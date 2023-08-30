@@ -127,6 +127,9 @@ public class InnerHits implements JsonpSerializable {
 	}
 
 	/**
+	 * The name for the particular inner hit definition in the response. Useful when
+	 * a search request contains multiple inner hits.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -135,6 +138,8 @@ public class InnerHits implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum number of hits to return per <code>inner_hits</code>.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -143,6 +148,8 @@ public class InnerHits implements JsonpSerializable {
 	}
 
 	/**
+	 * Inner hit starting document offset.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -212,6 +219,9 @@ public class InnerHits implements JsonpSerializable {
 	}
 
 	/**
+	 * How the inner hits should be sorted per <code>inner_hits</code>. By default,
+	 * inner hits are sorted by score.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public final List<SortOptions> sort() {
@@ -430,6 +440,9 @@ public class InnerHits implements JsonpSerializable {
 		private Boolean version;
 
 		/**
+		 * The name for the particular inner hit definition in the response. Useful when
+		 * a search request contains multiple inner hits.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public final Builder name(@Nullable String value) {
@@ -438,6 +451,8 @@ public class InnerHits implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum number of hits to return per <code>inner_hits</code>.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -446,6 +461,8 @@ public class InnerHits implements JsonpSerializable {
 		}
 
 		/**
+		 * Inner hit starting document offset.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(@Nullable Integer value) {
@@ -586,6 +603,9 @@ public class InnerHits implements JsonpSerializable {
 		}
 
 		/**
+		 * How the inner hits should be sorted per <code>inner_hits</code>. By default,
+		 * inner hits are sorted by score.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
@@ -596,6 +616,9 @@ public class InnerHits implements JsonpSerializable {
 		}
 
 		/**
+		 * How the inner hits should be sorted per <code>inner_hits</code>. By default,
+		 * inner hits are sorted by score.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
@@ -606,6 +629,9 @@ public class InnerHits implements JsonpSerializable {
 		}
 
 		/**
+		 * How the inner hits should be sorted per <code>inner_hits</code>. By default,
+		 * inner hits are sorted by score.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.

@@ -34,12 +34,28 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum GeoShapeRelation implements JsonEnum {
+	/**
+	 * Return all documents whose <code>geo_shape</code> or <code>geo_point</code>
+	 * field intersects the query geometry.
+	 */
 	Intersects("intersects"),
 
+	/**
+	 * Return all documents whose <code>geo_shape</code> or <code>geo_point</code>
+	 * field has nothing in common with the query geometry.
+	 */
 	Disjoint("disjoint"),
 
+	/**
+	 * Return all documents whose <code>geo_shape</code> or <code>geo_point</code>
+	 * field is within the query geometry. Line geometries are not supported.
+	 */
 	Within("within"),
 
+	/**
+	 * Return all documents whose <code>geo_shape</code> or <code>geo_point</code>
+	 * field contains the query geometry.
+	 */
 	Contains("contains"),
 
 	;

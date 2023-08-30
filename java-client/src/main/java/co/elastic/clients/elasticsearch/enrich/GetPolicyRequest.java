@@ -36,7 +36,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -45,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: enrich.get_policy.Request
 
 /**
- * Gets information about an enrich policy.
+ * Returns information about an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.get_policy.Request">API
  *      specification</a>
@@ -67,7 +69,8 @@ public class GetPolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of enrich policy names
+	 * Comma-separated list of enrich policy names used to limit the request. To
+	 * return information for all enrich policies, omit this parameter.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -88,7 +91,8 @@ public class GetPolicyRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * A comma-separated list of enrich policy names
+		 * Comma-separated list of enrich policy names used to limit the request. To
+		 * return information for all enrich policies, omit this parameter.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -100,7 +104,8 @@ public class GetPolicyRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of enrich policy names
+		 * Comma-separated list of enrich policy names used to limit the request. To
+		 * return information for all enrich policies, omit this parameter.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -168,6 +173,24 @@ public class GetPolicyRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.name()))
+					propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == 0) {
+				}
+				return params;
 			},
 
 			// Request parameters

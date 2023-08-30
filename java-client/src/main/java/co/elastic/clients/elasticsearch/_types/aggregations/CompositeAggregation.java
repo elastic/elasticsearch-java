@@ -81,6 +81,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * When paginating, use the <code>after_key</code> value returned in the
+	 * previous response to retrieve the next page.
+	 * <p>
 	 * API name: {@code after}
 	 */
 	public final Map<String, FieldValue> after() {
@@ -88,6 +91,8 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The number of composite buckets that should be returned.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -96,6 +101,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The value sources used to build composite buckets. Keys are returned in the
+	 * order of the <code>sources</code> definition.
+	 * <p>
 	 * API name: {@code sources}
 	 */
 	public final List<Map<String, CompositeAggregationSource>> sources() {
@@ -161,6 +169,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		private List<Map<String, CompositeAggregationSource>> sources;
 
 		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
 		 * API name: {@code after}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>after</code>.
@@ -171,6 +182,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
 		 * API name: {@code after}
 		 * <p>
 		 * Adds an entry to <code>after</code>.
@@ -181,6 +195,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
 		 * API name: {@code after}
 		 * <p>
 		 * Adds an entry to <code>after</code> using a builder lambda.
@@ -190,6 +207,8 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The number of composite buckets that should be returned.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -198,6 +217,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value sources used to build composite buckets. Keys are returned in the
+		 * order of the <code>sources</code> definition.
+		 * <p>
 		 * API name: {@code sources}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sources</code>.
@@ -208,6 +230,9 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value sources used to build composite buckets. Keys are returned in the
+		 * order of the <code>sources</code> definition.
+		 * <p>
 		 * API name: {@code sources}
 		 * <p>
 		 * Adds one or more values to <code>sources</code>.

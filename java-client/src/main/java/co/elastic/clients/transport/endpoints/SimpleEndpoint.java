@@ -35,12 +35,13 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
+        Function<RequestT, Map<String, String>> pathParameters,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         Function<RequestT, Object> body,
         JsonpDeserializer<ResponseT> responseParser
     ) {
-        super(id, method, requestUrl, queryParameters, headers, body);
+        super(id, method, requestUrl, pathParameters, queryParameters, headers, body);
         this.responseParser = responseParser;
     }
 
@@ -48,6 +49,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
+        Function<RequestT, Map<String, String>> pathParameters,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         boolean hasResponseBody,
@@ -57,6 +59,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             id,
             method,
             requestUrl,
+            pathParameters,
             queryParameters,
             headers,
             hasResponseBody ? returnSelf() : returnNull(),
@@ -81,6 +84,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             id,
             method,
             requestUrl,
+            pathParameters,
             queryParameters,
             headers,
             body,

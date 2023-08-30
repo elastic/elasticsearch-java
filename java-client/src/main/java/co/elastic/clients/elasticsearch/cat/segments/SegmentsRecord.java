@@ -119,7 +119,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * index name
+	 * The index name.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -129,7 +129,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * shard name
+	 * The shard name.
 	 * <p>
 	 * API name: {@code shard}
 	 */
@@ -139,7 +139,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * primary or replica
+	 * The shard type: <code>primary</code> or <code>replica</code>.
 	 * <p>
 	 * API name: {@code prirep}
 	 */
@@ -149,7 +149,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ip of node where it lives
+	 * The IP address of the node where it lives.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -159,7 +159,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * unique id of node where it lives
+	 * The unique identifier of the node where it lives.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -169,7 +169,8 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * segment name
+	 * The segment name, which is derived from the segment generation and used
+	 * internally to create file names in the directory of the shard.
 	 * <p>
 	 * API name: {@code segment}
 	 */
@@ -179,7 +180,9 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * segment generation
+	 * The segment generation number. Elasticsearch increments this generation
+	 * number for each segment written then uses this number to derive the segment
+	 * name.
 	 * <p>
 	 * API name: {@code generation}
 	 */
@@ -189,7 +192,9 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of docs in segment
+	 * The number of documents in the segment. This excludes deleted documents and
+	 * counts any nested documents separately from their parents. It also excludes
+	 * documents which were indexed recently and do not yet belong to a segment.
 	 * <p>
 	 * API name: {@code docs.count}
 	 */
@@ -199,7 +204,12 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of deleted docs in segment
+	 * The number of deleted documents in the segment, which might be higher or
+	 * lower than the number of delete operations you have performed. This number
+	 * excludes deletes that were performed recently and do not yet belong to a
+	 * segment. Deleted documents are cleaned up by the automatic merge process if
+	 * it makes sense to do so. Also, Elasticsearch creates extra deleted documents
+	 * to internally track the recent history of operations on a shard.
 	 * <p>
 	 * API name: {@code docs.deleted}
 	 */
@@ -209,7 +219,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * segment size in bytes
+	 * The segment size in bytes.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -219,7 +229,8 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * segment memory in bytes
+	 * The segment memory in bytes. A value of <code>-1</code> indicates
+	 * Elasticsearch was unable to compute this number.
 	 * <p>
 	 * API name: {@code size.memory}
 	 */
@@ -229,7 +240,10 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * is segment committed
+	 * If <code>true</code>, the segment is synced to disk. Segments that are synced
+	 * can survive a hard reboot. If <code>false</code>, the data from uncommitted
+	 * segments is also stored in the transaction log so that Elasticsearch is able
+	 * to replay changes on the next start.
 	 * <p>
 	 * API name: {@code committed}
 	 */
@@ -239,7 +253,9 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * is segment searched
+	 * If <code>true</code>, the segment is searchable. If <code>false</code>, the
+	 * segment has most likely been written to disk but needs a refresh to be
+	 * searchable.
 	 * <p>
 	 * API name: {@code searchable}
 	 */
@@ -249,7 +265,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * version
+	 * The version of Lucene used to write the segment.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -259,7 +275,9 @@ public class SegmentsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * is segment compound
+	 * If <code>true</code>, the segment is stored in a compound file. This means
+	 * Lucene merged all files from the segment in a single file to save file
+	 * descriptors.
 	 * <p>
 	 * API name: {@code compound}
 	 */
@@ -415,7 +433,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		private String compound;
 
 		/**
-		 * index name
+		 * The index name.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -425,7 +443,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * shard name
+		 * The shard name.
 		 * <p>
 		 * API name: {@code shard}
 		 */
@@ -435,7 +453,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * primary or replica
+		 * The shard type: <code>primary</code> or <code>replica</code>.
 		 * <p>
 		 * API name: {@code prirep}
 		 */
@@ -445,7 +463,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ip of node where it lives
+		 * The IP address of the node where it lives.
 		 * <p>
 		 * API name: {@code ip}
 		 */
@@ -455,7 +473,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * unique id of node where it lives
+		 * The unique identifier of the node where it lives.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -465,7 +483,8 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * segment name
+		 * The segment name, which is derived from the segment generation and used
+		 * internally to create file names in the directory of the shard.
 		 * <p>
 		 * API name: {@code segment}
 		 */
@@ -475,7 +494,9 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * segment generation
+		 * The segment generation number. Elasticsearch increments this generation
+		 * number for each segment written then uses this number to derive the segment
+		 * name.
 		 * <p>
 		 * API name: {@code generation}
 		 */
@@ -485,7 +506,9 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of docs in segment
+		 * The number of documents in the segment. This excludes deleted documents and
+		 * counts any nested documents separately from their parents. It also excludes
+		 * documents which were indexed recently and do not yet belong to a segment.
 		 * <p>
 		 * API name: {@code docs.count}
 		 */
@@ -495,7 +518,12 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of deleted docs in segment
+		 * The number of deleted documents in the segment, which might be higher or
+		 * lower than the number of delete operations you have performed. This number
+		 * excludes deletes that were performed recently and do not yet belong to a
+		 * segment. Deleted documents are cleaned up by the automatic merge process if
+		 * it makes sense to do so. Also, Elasticsearch creates extra deleted documents
+		 * to internally track the recent history of operations on a shard.
 		 * <p>
 		 * API name: {@code docs.deleted}
 		 */
@@ -505,7 +533,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * segment size in bytes
+		 * The segment size in bytes.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -515,7 +543,8 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * segment memory in bytes
+		 * The segment memory in bytes. A value of <code>-1</code> indicates
+		 * Elasticsearch was unable to compute this number.
 		 * <p>
 		 * API name: {@code size.memory}
 		 */
@@ -525,7 +554,10 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * is segment committed
+		 * If <code>true</code>, the segment is synced to disk. Segments that are synced
+		 * can survive a hard reboot. If <code>false</code>, the data from uncommitted
+		 * segments is also stored in the transaction log so that Elasticsearch is able
+		 * to replay changes on the next start.
 		 * <p>
 		 * API name: {@code committed}
 		 */
@@ -535,7 +567,9 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * is segment searched
+		 * If <code>true</code>, the segment is searchable. If <code>false</code>, the
+		 * segment has most likely been written to disk but needs a refresh to be
+		 * searchable.
 		 * <p>
 		 * API name: {@code searchable}
 		 */
@@ -545,7 +579,7 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * version
+		 * The version of Lucene used to write the segment.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -555,7 +589,9 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * is segment compound
+		 * If <code>true</code>, the segment is stored in a compound file. This means
+		 * Lucene merged all files from the segment in a single file to save file
+		 * descriptors.
 		 * <p>
 		 * API name: {@code compound}
 		 */

@@ -63,7 +63,9 @@ public class DownsampleConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code fixed_interval}
+	 * Required - The interval at which to aggregate the original time series index.
+	 * <p>
+	 * API name: {@code fixed_interval}
 	 */
 	public final Time fixedInterval() {
 		return this.fixedInterval;
@@ -100,7 +102,9 @@ public class DownsampleConfig implements JsonpSerializable {
 		private Time fixedInterval;
 
 		/**
-		 * Required - API name: {@code fixed_interval}
+		 * Required - The interval at which to aggregate the original time series index.
+		 * <p>
+		 * API name: {@code fixed_interval}
 		 */
 		public final Builder fixedInterval(Time value) {
 			this.fixedInterval = value;
@@ -108,7 +112,9 @@ public class DownsampleConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code fixed_interval}
+		 * Required - The interval at which to aggregate the original time series index.
+		 * <p>
+		 * API name: {@code fixed_interval}
 		 */
 		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.fixedInterval(fn.apply(new Time.Builder()).build());

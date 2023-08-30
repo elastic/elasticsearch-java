@@ -34,8 +34,16 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum GrantType implements JsonEnum {
+	/**
+	 * In this type of grant, you must supply the user ID and password for which you
+	 * want to create the API key.
+	 */
 	Password("password"),
 
+	/**
+	 * In this type of grant, you must supply an access token that was created by
+	 * the Elasticsearch token service.
+	 */
 	AccessToken("access_token"),
 
 	;

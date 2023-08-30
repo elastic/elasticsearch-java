@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 // typedef: indices.get_data_stream.Request
 
 /**
- * Returns data streams.
+ * Retrieves information about one or more data streams.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
  *      specification</a>
@@ -77,8 +77,8 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -97,8 +97,9 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of data streams to get; use <code>*</code> to get all
-	 * data streams
+	 * Comma-separated list of data stream names used to limit the request. Wildcard
+	 * (<code>*</code>) expressions are supported. If omitted, all data streams are
+	 * returned.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -125,8 +126,8 @@ public class GetDataStreamRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -138,8 +139,8 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -161,8 +162,9 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * Comma-separated list of data stream names used to limit the request. Wildcard
+		 * (<code>*</code>) expressions are supported. If omitted, all data streams are
+		 * returned.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -174,8 +176,9 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to get; use <code>*</code> to get all
-		 * data streams
+		 * Comma-separated list of data stream names used to limit the request. Wildcard
+		 * (<code>*</code>) expressions are supported. If omitted, all data streams are
+		 * returned.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -241,6 +244,24 @@ public class GetDataStreamRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.name()))
+					propsSet |= _name;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_name)) {
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -39,6 +39,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -253,6 +255,24 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _snapshotId;
+				propsSet |= _jobId;
+
+				if (propsSet == (_jobId | _snapshotId)) {
+					params.put("jobId", request.jobId);
+					params.put("snapshotId", request.snapshotId);
+				}
+				return params;
 			},
 
 			// Request parameters

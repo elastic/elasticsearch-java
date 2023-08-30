@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: indices.data_streams_stats.Request
 
 /**
- * Provides statistics on operations happening in a data stream.
+ * Retrieves statistics for one or more data streams.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.data_streams_stats.Request">API
@@ -74,6 +74,9 @@ public class DataStreamsStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
@@ -81,8 +84,9 @@ public class DataStreamsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of data stream names; use <code>_all</code> or empty
-	 * string to perform the operation on all data streams
+	 * Comma-separated list of data streams used to limit the request. Wildcard
+	 * expressions (<code>*</code>) are supported. To target all data streams in a
+	 * cluster, omit this parameter or use <code>*</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -107,6 +111,9 @@ public class DataStreamsStatsRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
@@ -117,6 +124,9 @@ public class DataStreamsStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds one or more values to <code>expandWildcards</code>.
@@ -127,8 +137,9 @@ public class DataStreamsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data stream names; use <code>_all</code> or empty
-		 * string to perform the operation on all data streams
+		 * Comma-separated list of data streams used to limit the request. Wildcard
+		 * expressions (<code>*</code>) are supported. To target all data streams in a
+		 * cluster, omit this parameter or use <code>*</code>.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -194,6 +205,24 @@ public class DataStreamsStatsRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= _name;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

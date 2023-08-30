@@ -75,13 +75,17 @@ public class FieldLookup implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - <code>id</code> of the document.
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
+	 * Index from which to retrieve the document.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -90,6 +94,8 @@ public class FieldLookup implements JsonpSerializable {
 	}
 
 	/**
+	 * Name of the field.
+	 * <p>
 	 * API name: {@code path}
 	 */
 	@Nullable
@@ -98,6 +104,8 @@ public class FieldLookup implements JsonpSerializable {
 	}
 
 	/**
+	 * Custom routing value.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -161,7 +169,9 @@ public class FieldLookup implements JsonpSerializable {
 		private String routing;
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - <code>id</code> of the document.
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -169,6 +179,8 @@ public class FieldLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * Index from which to retrieve the document.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -177,6 +189,8 @@ public class FieldLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * Name of the field.
+		 * <p>
 		 * API name: {@code path}
 		 */
 		public final Builder path(@Nullable String value) {
@@ -185,6 +199,8 @@ public class FieldLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom routing value.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {

@@ -86,13 +86,19 @@ public class TermQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code value}
+	 * Required - Term you wish to find in the provided field.
+	 * <p>
+	 * API name: {@code value}
 	 */
 	public final FieldValue value() {
 		return this.value;
 	}
 
 	/**
+	 * Allows ASCII case insensitive matching of the value with the indexed field
+	 * values when set to <code>true</code>. When <code>false</code>, the case
+	 * sensitivity of matching depends on the underlying field’s mapping.
+	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
@@ -140,7 +146,9 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		private Boolean caseInsensitive;
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(FieldValue value) {
 			this.value = value;
@@ -148,14 +156,18 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
 			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(String value) {
 			this.value = FieldValue.of(value);
@@ -163,7 +175,9 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(long value) {
 			this.value = FieldValue.of(value);
@@ -171,7 +185,9 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(double value) {
 			this.value = FieldValue.of(value);
@@ -179,7 +195,9 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(boolean value) {
 			this.value = FieldValue.of(value);
@@ -187,6 +205,10 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Allows ASCII case insensitive matching of the value with the indexed field
+		 * values when set to <code>true</code>. When <code>false</code>, the case
+		 * sensitivity of matching depends on the underlying field’s mapping.
+		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
 		public final Builder caseInsensitive(@Nullable Boolean value) {

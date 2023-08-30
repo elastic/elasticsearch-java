@@ -46,8 +46,11 @@ import javax.annotation.Nullable;
 // typedef: cat.thread_pool.Request
 
 /**
- * Returns cluster-wide thread pool statistics per node. By default the active,
- * queue and rejected statistics are returned for all thread pools.
+ * Returns thread pool statistics for each node in a cluster. Returned
+ * information includes all built-in thread pools and custom thread pools.
+ * IMPORTANT: cat APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
+ * application consumption, use the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.thread_pool.Request">API
  *      specification</a>
@@ -73,8 +76,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of thread pool names used to limit the request. Accepts wildcard
-	 * expressions.
+	 * A comma-separated list of thread pool names used to limit the request.
+	 * Accepts wildcard expressions.
 	 * <p>
 	 * API name: {@code thread_pool_patterns}
 	 */
@@ -83,7 +86,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Unit used to display time values.
+	 * The unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -108,8 +111,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 		private TimeUnit time;
 
 		/**
-		 * List of thread pool names used to limit the request. Accepts wildcard
-		 * expressions.
+		 * A comma-separated list of thread pool names used to limit the request.
+		 * Accepts wildcard expressions.
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
@@ -121,8 +124,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of thread pool names used to limit the request. Accepts wildcard
-		 * expressions.
+		 * A comma-separated list of thread pool names used to limit the request.
+		 * Accepts wildcard expressions.
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
@@ -134,7 +137,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Unit used to display time values.
+		 * The unit used to display time values.
 		 * <p>
 		 * API name: {@code time}
 		 */
@@ -201,6 +204,25 @@ public class ThreadPoolRequest extends CatRequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _threadPoolPatterns = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.threadPoolPatterns()))
+					propsSet |= _threadPoolPatterns;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_threadPoolPatterns)) {
+					params.put("threadPoolPatterns",
+							request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

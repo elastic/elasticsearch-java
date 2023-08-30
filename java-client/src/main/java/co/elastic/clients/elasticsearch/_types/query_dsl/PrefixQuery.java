@@ -89,6 +89,8 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Method used to rewrite the query.
+	 * <p>
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
@@ -97,13 +99,21 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code value}
+	 * Required - Beginning characters of terms you wish to find in the provided
+	 * field.
+	 * <p>
+	 * API name: {@code value}
 	 */
 	public final String value() {
 		return this.value;
 	}
 
 	/**
+	 * Allows ASCII case insensitive matching of the value with the indexed field
+	 * values when set to <code>true</code>. Default is <code>false</code> which
+	 * means the case sensitivity of matching depends on the underlying field’s
+	 * mapping.
+	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
@@ -159,6 +169,8 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 		private Boolean caseInsensitive;
 
 		/**
+		 * Method used to rewrite the query.
+		 * <p>
 		 * API name: {@code rewrite}
 		 */
 		public final Builder rewrite(@Nullable String value) {
@@ -167,7 +179,10 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Beginning characters of terms you wish to find in the provided
+		 * field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(String value) {
 			this.value = value;
@@ -175,6 +190,11 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Allows ASCII case insensitive matching of the value with the indexed field
+		 * values when set to <code>true</code>. Default is <code>false</code> which
+		 * means the case sensitivity of matching depends on the underlying field’s
+		 * mapping.
+		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
 		public final Builder caseInsensitive(@Nullable Boolean value) {

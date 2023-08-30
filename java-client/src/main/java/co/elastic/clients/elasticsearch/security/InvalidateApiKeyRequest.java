@@ -47,8 +47,19 @@ import javax.annotation.Nullable;
 // typedef: security.invalidate_api_key.Request
 
 /**
- * Invalidates one or more API keys.
- * 
+ * Invalidates one or more API keys. The <code>manage_api_key</code> privilege
+ * allows deleting any API keys. The <code>manage_own_api_key</code> only allows
+ * deleting API keys that are owned by the user. In addition, with the
+ * <code>manage_own_api_key</code> privilege, an invalidation request must be
+ * issued in one of the three formats:
+ * <ul>
+ * <li>Set the parameter <code>owner=true</code>.</li>
+ * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
+ * the user’s identity.</li>
+ * <li>Or, if the request is issued by an API key, i.e. an API key invalidates
+ * itself, specify its ID in the <code>ids</code> field.</li>
+ * </ul>
+ *
  * @see <a href=
  *      "../doc-files/api-spec.html#security.invalidate_api_key.Request">API
  *      specification</a>
@@ -98,6 +109,9 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * A list of API key ids. This parameter cannot be used with any of
+	 * <code>name</code>, <code>realm_name</code>, or <code>username</code>.
+	 * <p>
 	 * API name: {@code ids}
 	 */
 	public final List<String> ids() {
@@ -105,6 +119,9 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * An API key name. This parameter cannot be used with any of <code>ids</code>,
+	 * <code>realm_name</code> or <code>username</code>.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -113,6 +130,11 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * Can be used to query API keys owned by the currently authenticated user. The
+	 * <code>realm_name</code> or <code>username</code> parameters cannot be
+	 * specified when this parameter is set to <code>true</code> as they are assumed
+	 * to be the currently authenticated ones.
+	 * <p>
 	 * API name: {@code owner}
 	 */
 	@Nullable
@@ -121,6 +143,10 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * The name of an authentication realm. This parameter cannot be used with
+	 * either <code>ids</code> or <code>name</code>, or when <code>owner</code> flag
+	 * is set to <code>true</code>.
+	 * <p>
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
@@ -129,6 +155,10 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * The username of a user. This parameter cannot be used with either
+	 * <code>ids</code> or <code>name</code>, or when <code>owner</code> flag is set
+	 * to <code>true</code>.
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -221,6 +251,9 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * A list of API key ids. This parameter cannot be used with any of
+		 * <code>name</code>, <code>realm_name</code>, or <code>username</code>.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
@@ -231,6 +264,9 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * A list of API key ids. This parameter cannot be used with any of
+		 * <code>name</code>, <code>realm_name</code>, or <code>username</code>.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds one or more values to <code>ids</code>.
@@ -241,6 +277,9 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * An API key name. This parameter cannot be used with any of <code>ids</code>,
+		 * <code>realm_name</code> or <code>username</code>.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public final Builder name(@Nullable String value) {
@@ -249,6 +288,11 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * Can be used to query API keys owned by the currently authenticated user. The
+		 * <code>realm_name</code> or <code>username</code> parameters cannot be
+		 * specified when this parameter is set to <code>true</code> as they are assumed
+		 * to be the currently authenticated ones.
+		 * <p>
 		 * API name: {@code owner}
 		 */
 		public final Builder owner(@Nullable Boolean value) {
@@ -257,6 +301,10 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * The name of an authentication realm. This parameter cannot be used with
+		 * either <code>ids</code> or <code>name</code>, or when <code>owner</code> flag
+		 * is set to <code>true</code>.
+		 * <p>
 		 * API name: {@code realm_name}
 		 */
 		public final Builder realmName(@Nullable String value) {
@@ -265,6 +313,10 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * The username of a user. This parameter cannot be used with either
+		 * <code>ids</code> or <code>name</code>, or when <code>owner</code> flag is set
+		 * to <code>true</code>.
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {
@@ -328,6 +380,11 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return "/_security/api_key";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

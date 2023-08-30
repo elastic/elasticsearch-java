@@ -295,6 +295,11 @@ public class SamlCompleteLogoutRequest extends RequestBase implements JsonpSeria
 
 			},
 
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
+
 			// Request parameters
 			request -> {
 				return Collections.emptyMap();

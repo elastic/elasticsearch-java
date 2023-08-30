@@ -95,9 +95,10 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -107,8 +108,12 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -117,8 +122,8 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -128,7 +133,8 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma separated list of indices to close
+	 * Required - Comma-separated list or wildcard expression of index names used to
+	 * limit the request.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -137,7 +143,8 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -147,7 +154,8 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -157,7 +165,9 @@ public class CloseIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Sets the number of active shards to wait for before the operation returns.
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to <code>all</code> or any positive integer up to the total
+	 * number of shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -196,9 +206,10 @@ public class CloseIndexRequest extends RequestBase {
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -208,8 +219,12 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -221,8 +236,12 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -234,8 +253,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -245,7 +264,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma separated list of indices to close
+		 * Required - Comma-separated list or wildcard expression of index names used to
+		 * limit the request.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -257,7 +277,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma separated list of indices to close
+		 * Required - Comma-separated list or wildcard expression of index names used to
+		 * limit the request.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -269,7 +290,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -279,7 +301,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -288,7 +311,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -298,7 +322,8 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -307,7 +332,9 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Sets the number of active shards to wait for before the operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -317,7 +344,9 @@ public class CloseIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Sets the number of active shards to wait for before the operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -375,6 +404,21 @@ public class CloseIndexRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+
+				if (propsSet == (_index)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

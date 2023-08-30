@@ -86,13 +86,19 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - <code>rank_feature</code> or <code>rank_features</code> field used
+	 * to boost relevance scores.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * Saturation function used to boost relevance scores based on the value of the
+	 * rank feature <code>field</code>.
+	 * <p>
 	 * API name: {@code saturation}
 	 */
 	@Nullable
@@ -101,6 +107,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Logarithmic function used to boost relevance scores based on the value of the
+	 * rank feature <code>field</code>.
+	 * <p>
 	 * API name: {@code log}
 	 */
 	@Nullable
@@ -109,6 +118,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Linear function used to boost relevance scores based on the value of the rank
+	 * feature <code>field</code>.
+	 * <p>
 	 * API name: {@code linear}
 	 */
 	@Nullable
@@ -117,6 +129,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Sigmoid function used to boost relevance scores based on the value of the
+	 * rank feature <code>field</code>.
+	 * <p>
 	 * API name: {@code sigmoid}
 	 */
 	@Nullable
@@ -175,7 +190,10 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		private RankFeatureFunctionSigmoid sigmoid;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - <code>rank_feature</code> or <code>rank_features</code> field used
+		 * to boost relevance scores.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -183,6 +201,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Saturation function used to boost relevance scores based on the value of the
+		 * rank feature <code>field</code>.
+		 * <p>
 		 * API name: {@code saturation}
 		 */
 		public final Builder saturation(@Nullable RankFeatureFunctionSaturation value) {
@@ -191,6 +212,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Saturation function used to boost relevance scores based on the value of the
+		 * rank feature <code>field</code>.
+		 * <p>
 		 * API name: {@code saturation}
 		 */
 		public final Builder saturation(
@@ -199,6 +223,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Logarithmic function used to boost relevance scores based on the value of the
+		 * rank feature <code>field</code>.
+		 * <p>
 		 * API name: {@code log}
 		 */
 		public final Builder log(@Nullable RankFeatureFunctionLogarithm value) {
@@ -207,6 +234,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Logarithmic function used to boost relevance scores based on the value of the
+		 * rank feature <code>field</code>.
+		 * <p>
 		 * API name: {@code log}
 		 */
 		public final Builder log(
@@ -215,6 +245,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Linear function used to boost relevance scores based on the value of the rank
+		 * feature <code>field</code>.
+		 * <p>
 		 * API name: {@code linear}
 		 */
 		public final Builder linear(@Nullable RankFeatureFunctionLinear value) {
@@ -223,6 +256,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Linear function used to boost relevance scores based on the value of the rank
+		 * feature <code>field</code>.
+		 * <p>
 		 * API name: {@code linear}
 		 */
 		public final Builder linear(
@@ -231,6 +267,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Sigmoid function used to boost relevance scores based on the value of the
+		 * rank feature <code>field</code>.
+		 * <p>
 		 * API name: {@code sigmoid}
 		 */
 		public final Builder sigmoid(@Nullable RankFeatureFunctionSigmoid value) {
@@ -239,6 +278,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Sigmoid function used to boost relevance scores based on the value of the
+		 * rank feature <code>field</code>.
+		 * <p>
 		 * API name: {@code sigmoid}
 		 */
 		public final Builder sigmoid(

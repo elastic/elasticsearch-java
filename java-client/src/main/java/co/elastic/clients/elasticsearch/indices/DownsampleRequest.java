@@ -39,6 +39,8 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,7 +48,10 @@ import javax.annotation.Nullable;
 // typedef: indices.downsample.Request
 
 /**
- * Downsample an index
+ * Aggregates a time series (TSDS) index and stores pre-computed statistical
+ * summaries (<code>min</code>, <code>max</code>, <code>sum</code>,
+ * <code>value_count</code> and <code>avg</code>) for each metric field grouped
+ * by a configured time interval.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.downsample.Request">API
  *      specification</a>
@@ -74,7 +79,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The index to downsample
+	 * Required - Name of the time series index to downsample.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -83,7 +88,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The name of the target index to store downsampled data
+	 * Required - Name of the index to create.
 	 * <p>
 	 * API name: {@code target_index}
 	 */
@@ -122,7 +127,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 		private DownsampleConfig config;
 
 		/**
-		 * Required - The index to downsample
+		 * Required - Name of the time series index to downsample.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -132,7 +137,7 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - The name of the target index to store downsampled data
+		 * Required - Name of the index to create.
 		 * <p>
 		 * API name: {@code target_index}
 		 */
@@ -226,6 +231,24 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _targetIndex = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _targetIndex;
+				propsSet |= _index;
+
+				if (propsSet == (_index | _targetIndex)) {
+					params.put("index", request.index);
+					params.put("targetIndex", request.targetIndex);
+				}
+				return params;
 			},
 
 			// Request parameters

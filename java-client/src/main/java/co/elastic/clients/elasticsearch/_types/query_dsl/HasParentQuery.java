@@ -87,6 +87,10 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether to ignore an unmapped <code>parent_type</code> and not
+	 * return any documents instead of an error. You can use this parameter to query
+	 * multiple indices that may not contain the <code>parent_type</code>.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -95,6 +99,8 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If defined, each search hit will contain inner hits.
+	 * <p>
 	 * API name: {@code inner_hits}
 	 */
 	@Nullable
@@ -103,20 +109,30 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code parent_type}
+	 * Required - Name of the parent relationship mapped for the <code>join</code>
+	 * field.
+	 * <p>
+	 * API name: {@code parent_type}
 	 */
 	public final String parentType() {
 		return this.parentType;
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query you wish to run on parent documents of the
+	 * <code>parent_type</code> field. If a parent document matches the search, the
+	 * query returns its child documents.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final Query query() {
 		return this.query;
 	}
 
 	/**
+	 * Indicates whether the relevance score of a matching parent document is
+	 * aggregated into its child documents.
+	 * <p>
 	 * API name: {@code score}
 	 */
 	@Nullable
@@ -172,6 +188,10 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		private Boolean score;
 
 		/**
+		 * Indicates whether to ignore an unmapped <code>parent_type</code> and not
+		 * return any documents instead of an error. You can use this parameter to query
+		 * multiple indices that may not contain the <code>parent_type</code>.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {
@@ -180,6 +200,8 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
 		 * API name: {@code inner_hits}
 		 */
 		public final Builder innerHits(@Nullable InnerHits value) {
@@ -188,6 +210,8 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
 		 * API name: {@code inner_hits}
 		 */
 		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
@@ -195,7 +219,10 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code parent_type}
+		 * Required - Name of the parent relationship mapped for the <code>join</code>
+		 * field.
+		 * <p>
+		 * API name: {@code parent_type}
 		 */
 		public final Builder parentType(String value) {
 			this.parentType = value;
@@ -203,7 +230,11 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query you wish to run on parent documents of the
+		 * <code>parent_type</code> field. If a parent document matches the search, the
+		 * query returns its child documents.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -211,13 +242,20 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query you wish to run on parent documents of the
+		 * <code>parent_type</code> field. If a parent document matches the search, the
+		 * query returns its child documents.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
+		 * Indicates whether the relevance score of a matching parent document is
+		 * aggregated into its child documents.
+		 * <p>
 		 * API name: {@code score}
 		 */
 		public final Builder score(@Nullable Boolean value) {

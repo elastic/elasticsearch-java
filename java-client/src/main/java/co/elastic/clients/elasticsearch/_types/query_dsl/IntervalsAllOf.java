@@ -94,13 +94,19 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
-	 * Required - API name: {@code intervals}
+	 * Required - An array of rules to combine. All rules must produce a match in a
+	 * document for the overall source to match.
+	 * <p>
+	 * API name: {@code intervals}
 	 */
 	public final List<Intervals> intervals() {
 		return this.intervals;
 	}
 
 	/**
+	 * Maximum number of positions between the matching terms. Intervals produced by
+	 * the rules further apart than this are not considered matches.
+	 * <p>
 	 * API name: {@code max_gaps}
 	 */
 	@Nullable
@@ -109,6 +115,9 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * If <code>true</code>, intervals produced by the rules should appear in the
+	 * order in which they are specified.
+	 * <p>
 	 * API name: {@code ordered}
 	 */
 	@Nullable
@@ -117,6 +126,8 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 	}
 
 	/**
+	 * Rule used to filter returned intervals.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -187,7 +198,10 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		private IntervalsFilter filter;
 
 		/**
-		 * Required - API name: {@code intervals}
+		 * Required - An array of rules to combine. All rules must produce a match in a
+		 * document for the overall source to match.
+		 * <p>
+		 * API name: {@code intervals}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>intervals</code>.
 		 */
@@ -197,7 +211,10 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
-		 * Required - API name: {@code intervals}
+		 * Required - An array of rules to combine. All rules must produce a match in a
+		 * document for the overall source to match.
+		 * <p>
+		 * API name: {@code intervals}
 		 * <p>
 		 * Adds one or more values to <code>intervals</code>.
 		 */
@@ -207,7 +224,10 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
-		 * Required - API name: {@code intervals}
+		 * Required - An array of rules to combine. All rules must produce a match in a
+		 * document for the overall source to match.
+		 * <p>
+		 * API name: {@code intervals}
 		 * <p>
 		 * Adds a value to <code>intervals</code> using a builder lambda.
 		 */
@@ -216,6 +236,9 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Maximum number of positions between the matching terms. Intervals produced by
+		 * the rules further apart than this are not considered matches.
+		 * <p>
 		 * API name: {@code max_gaps}
 		 */
 		public final Builder maxGaps(@Nullable Integer value) {
@@ -224,6 +247,9 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * If <code>true</code>, intervals produced by the rules should appear in the
+		 * order in which they are specified.
+		 * <p>
 		 * API name: {@code ordered}
 		 */
 		public final Builder ordered(@Nullable Boolean value) {
@@ -232,6 +258,8 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Rule used to filter returned intervals.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable IntervalsFilter value) {
@@ -240,6 +268,8 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 
 		/**
+		 * Rule used to filter returned intervals.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {

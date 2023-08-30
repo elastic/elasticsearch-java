@@ -169,6 +169,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, the wildcard characters <code>*</code> and
+	 * <code>?</code> are allowed as the first character of the query string.
+	 * <p>
 	 * API name: {@code allow_leading_wildcard}
 	 */
 	@Nullable
@@ -177,6 +180,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Analyzer used to convert text in the query string into tokens.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -185,6 +190,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, the query attempts to analyze wildcard terms in the
+	 * query string.
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -193,6 +201,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, match phrase queries are automatically created for
+	 * multi-term synonyms.
+	 * <p>
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
@@ -201,6 +212,11 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Default field to search if no field is provided in the query string. Supports
+	 * wildcards (<code>*</code>). Defaults to the
+	 * <code>index.query.default_field</code> index setting, which has a default
+	 * value of <code>*</code>.
+	 * <p>
 	 * API name: {@code default_field}
 	 */
 	@Nullable
@@ -209,6 +225,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Default boolean logic used to interpret text in the query string if no
+	 * operators are specified.
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -217,6 +236,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, enable position increments in queries constructed from
+	 * a <code>query_string</code> search.
+	 * <p>
 	 * API name: {@code enable_position_increments}
 	 */
 	@Nullable
@@ -233,6 +255,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Array of fields to search. Supports wildcards (<code>*</code>).
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
@@ -240,6 +264,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum edit distance allowed for fuzzy matching.
+	 * <p>
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
@@ -248,6 +274,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of terms to which the query expands for fuzzy matching.
+	 * <p>
 	 * API name: {@code fuzzy_max_expansions}
 	 */
 	@Nullable
@@ -256,6 +284,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Number of beginning characters left unchanged for fuzzy matching.
+	 * <p>
 	 * API name: {@code fuzzy_prefix_length}
 	 */
 	@Nullable
@@ -264,6 +294,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Method used to rewrite the query.
+	 * <p>
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
@@ -272,6 +304,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+	 * adjacent characters (for example, <code>ab</code> to <code>ba</code>).
+	 * <p>
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
@@ -280,6 +315,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, format-based errors, such as providing a text value for
+	 * a numeric field, are ignored.
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -288,6 +326,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of automaton states required for the query.
+	 * <p>
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
@@ -296,6 +336,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Minimum number of clauses that must match for a document to be returned.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -304,6 +346,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of positions allowed between matching tokens for phrases.
+	 * <p>
 	 * API name: {@code phrase_slop}
 	 */
 	@Nullable
@@ -312,13 +356,19 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query string you wish to parse and use for search.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * Analyzer used to convert quoted text in the query string into tokens. For
+	 * quoted text, this parameter overrides the analyzer specified in the
+	 * <code>analyzer</code> parameter.
+	 * <p>
 	 * API name: {@code quote_analyzer}
 	 */
 	@Nullable
@@ -327,6 +377,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Suffix appended to quoted text in the query string. You can use this suffix
+	 * to use a different analysis method for exact matches.
+	 * <p>
 	 * API name: {@code quote_field_suffix}
 	 */
 	@Nullable
@@ -335,6 +388,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Method used to rewrite the query.
+	 * <p>
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
@@ -343,6 +398,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * How to combine the queries generated from the individual search terms in the
+	 * resulting <code>dis_max</code> query.
+	 * <p>
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
@@ -351,6 +409,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
+	 * date values in the query string to UTC.
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -359,6 +420,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Determines how the query matches and scores documents.
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -580,6 +643,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		private TextQueryType type;
 
 		/**
+		 * If <code>true</code>, the wildcard characters <code>*</code> and
+		 * <code>?</code> are allowed as the first character of the query string.
+		 * <p>
 		 * API name: {@code allow_leading_wildcard}
 		 */
 		public final Builder allowLeadingWildcard(@Nullable Boolean value) {
@@ -588,6 +654,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Analyzer used to convert text in the query string into tokens.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -596,6 +664,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, the query attempts to analyze wildcard terms in the
+		 * query string.
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public final Builder analyzeWildcard(@Nullable Boolean value) {
@@ -604,6 +675,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, match phrase queries are automatically created for
+		 * multi-term synonyms.
+		 * <p>
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
 		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
@@ -612,6 +686,11 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Default field to search if no field is provided in the query string. Supports
+		 * wildcards (<code>*</code>). Defaults to the
+		 * <code>index.query.default_field</code> index setting, which has a default
+		 * value of <code>*</code>.
+		 * <p>
 		 * API name: {@code default_field}
 		 */
 		public final Builder defaultField(@Nullable String value) {
@@ -620,6 +699,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Default boolean logic used to interpret text in the query string if no
+		 * operators are specified.
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public final Builder defaultOperator(@Nullable Operator value) {
@@ -628,6 +710,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, enable position increments in queries constructed from
+		 * a <code>query_string</code> search.
+		 * <p>
 		 * API name: {@code enable_position_increments}
 		 */
 		public final Builder enablePositionIncrements(@Nullable Boolean value) {
@@ -644,6 +729,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Array of fields to search. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -654,6 +741,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Array of fields to search. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
@@ -664,6 +753,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum edit distance allowed for fuzzy matching.
+		 * <p>
 		 * API name: {@code fuzziness}
 		 */
 		public final Builder fuzziness(@Nullable String value) {
@@ -672,6 +763,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of terms to which the query expands for fuzzy matching.
+		 * <p>
 		 * API name: {@code fuzzy_max_expansions}
 		 */
 		public final Builder fuzzyMaxExpansions(@Nullable Integer value) {
@@ -680,6 +773,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Number of beginning characters left unchanged for fuzzy matching.
+		 * <p>
 		 * API name: {@code fuzzy_prefix_length}
 		 */
 		public final Builder fuzzyPrefixLength(@Nullable Integer value) {
@@ -688,6 +783,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Method used to rewrite the query.
+		 * <p>
 		 * API name: {@code fuzzy_rewrite}
 		 */
 		public final Builder fuzzyRewrite(@Nullable String value) {
@@ -696,6 +793,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+		 * adjacent characters (for example, <code>ab</code> to <code>ba</code>).
+		 * <p>
 		 * API name: {@code fuzzy_transpositions}
 		 */
 		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
@@ -704,6 +804,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, format-based errors, such as providing a text value for
+		 * a numeric field, are ignored.
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public final Builder lenient(@Nullable Boolean value) {
@@ -712,6 +815,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of automaton states required for the query.
+		 * <p>
 		 * API name: {@code max_determinized_states}
 		 */
 		public final Builder maxDeterminizedStates(@Nullable Integer value) {
@@ -720,6 +825,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Minimum number of clauses that must match for a document to be returned.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -728,6 +835,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of positions allowed between matching tokens for phrases.
+		 * <p>
 		 * API name: {@code phrase_slop}
 		 */
 		public final Builder phraseSlop(@Nullable Double value) {
@@ -736,7 +845,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query string you wish to parse and use for search.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -744,6 +855,10 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Analyzer used to convert quoted text in the query string into tokens. For
+		 * quoted text, this parameter overrides the analyzer specified in the
+		 * <code>analyzer</code> parameter.
+		 * <p>
 		 * API name: {@code quote_analyzer}
 		 */
 		public final Builder quoteAnalyzer(@Nullable String value) {
@@ -752,6 +867,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Suffix appended to quoted text in the query string. You can use this suffix
+		 * to use a different analysis method for exact matches.
+		 * <p>
 		 * API name: {@code quote_field_suffix}
 		 */
 		public final Builder quoteFieldSuffix(@Nullable String value) {
@@ -760,6 +878,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Method used to rewrite the query.
+		 * <p>
 		 * API name: {@code rewrite}
 		 */
 		public final Builder rewrite(@Nullable String value) {
@@ -768,6 +888,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * How to combine the queries generated from the individual search terms in the
+		 * resulting <code>dis_max</code> query.
+		 * <p>
 		 * API name: {@code tie_breaker}
 		 */
 		public final Builder tieBreaker(@Nullable Double value) {
@@ -776,6 +899,9 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
+		 * date values in the query string to UTC.
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public final Builder timeZone(@Nullable String value) {
@@ -784,6 +910,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Determines how the query matches and scores documents.
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public final Builder type(@Nullable TextQueryType value) {

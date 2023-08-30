@@ -49,16 +49,16 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializable {
-	private final String index;
-
 	private final String dataStream;
+
+	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexAndDataStreamAction(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.dataStream = ApiTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
@@ -75,17 +75,21 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 	}
 
 	/**
-	 * Required - API name: {@code index}
-	 */
-	public final String index() {
-		return this.index;
-	}
-
-	/**
-	 * Required - API name: {@code data_stream}
+	 * Required - Data stream targeted by the action.
+	 * <p>
+	 * API name: {@code data_stream}
 	 */
 	public final String dataStream() {
 		return this.dataStream;
+	}
+
+	/**
+	 * Required - Index for the action.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final String index() {
+		return this.index;
 	}
 
 	/**
@@ -99,11 +103,11 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
-
 		generator.writeKey("data_stream");
 		generator.write(this.dataStream);
+
+		generator.writeKey("index");
+		generator.write(this.index);
 
 	}
 
@@ -121,23 +125,27 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<IndexAndDataStreamAction> {
-		private String index;
-
 		private String dataStream;
 
+		private String index;
+
 		/**
-		 * Required - API name: {@code index}
+		 * Required - Data stream targeted by the action.
+		 * <p>
+		 * API name: {@code data_stream}
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder dataStream(String value) {
+			this.dataStream = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code data_stream}
+		 * Required - Index for the action.
+		 * <p>
+		 * API name: {@code index}
 		 */
-		public final Builder dataStream(String value) {
-			this.dataStream = value;
+		public final Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -170,8 +178,8 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 	protected static void setupIndexAndDataStreamActionDeserializer(
 			ObjectDeserializer<IndexAndDataStreamAction.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
 	}
 

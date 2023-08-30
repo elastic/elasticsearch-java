@@ -242,6 +242,21 @@ public class DeleteJobRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _jobId;
+
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

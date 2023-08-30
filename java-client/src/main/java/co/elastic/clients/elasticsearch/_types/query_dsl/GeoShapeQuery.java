@@ -92,6 +92,10 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Set to <code>true</code> to ignore an unmapped field and not match any
+	 * documents for this query. Set to <code>false</code> to throw an exception if
+	 * the field is not mapped.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -150,6 +154,10 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 		private Boolean ignoreUnmapped;
 
 		/**
+		 * Set to <code>true</code> to ignore an unmapped field and not match any
+		 * documents for this query. Set to <code>false</code> to throw an exception if
+		 * the field is not mapped.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {

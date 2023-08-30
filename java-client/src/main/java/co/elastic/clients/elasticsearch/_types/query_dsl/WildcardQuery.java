@@ -107,7 +107,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Method used to rewrite the query
+	 * Method used to rewrite the query.
 	 * <p>
 	 * API name: {@code rewrite}
 	 */
@@ -209,7 +209,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Method used to rewrite the query
+		 * Method used to rewrite the query.
 		 * <p>
 		 * API name: {@code rewrite}
 		 */

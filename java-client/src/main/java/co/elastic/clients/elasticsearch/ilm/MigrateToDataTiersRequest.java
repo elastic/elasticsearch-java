@@ -37,6 +37,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -231,6 +232,11 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 			request -> {
 				return "/_ilm/migrate_to_data_tiers";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

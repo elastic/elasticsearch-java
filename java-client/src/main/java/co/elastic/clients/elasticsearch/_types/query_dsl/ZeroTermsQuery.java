@@ -35,8 +35,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum ZeroTermsQuery implements JsonEnum {
+	/**
+	 * Returns all documents, similar to a <code>match_all</code> query.
+	 */
 	All("all"),
 
+	/**
+	 * No documents are returned if the <code>analyzer</code> removes all tokens.
+	 */
 	None("none"),
 
 	;

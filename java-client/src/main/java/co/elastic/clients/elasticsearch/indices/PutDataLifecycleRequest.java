@@ -88,6 +88,11 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * If defined, every document added to this data stream will be stored at least
+	 * for this time frame. Any time after this duration the document could be
+	 * deleted. When empty, every document in this data stream will be stored
+	 * indefinitely.
+	 * <p>
 	 * API name: {@code data_retention}
 	 */
 	@Nullable
@@ -96,8 +101,10 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+	 * <code>all</code>, <code>hidden</code>, <code>open</code>,
+	 * <code>closed</code>, <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -106,7 +113,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -116,8 +124,9 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - A comma-separated list of data streams whose lifecycle will be
-	 * updated; use <code>*</code> to set the lifecycle to all data streams
+	 * Required - Comma-separated list of data streams used to limit the request.
+	 * Supports wildcards (<code>*</code>). To target all data streams use
+	 * <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -126,7 +135,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Explicit timestamp for the document
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -178,6 +188,11 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		private Time timeout;
 
 		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
 		 * API name: {@code data_retention}
 		 */
 		public final Builder dataRetention(@Nullable Time value) {
@@ -186,6 +201,11 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
 		 * API name: {@code data_retention}
 		 */
 		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -193,8 +213,10 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>hidden</code>, <code>open</code>,
+		 * <code>closed</code>, <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -206,8 +228,10 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>hidden</code>, <code>open</code>,
+		 * <code>closed</code>, <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -219,7 +243,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -229,7 +254,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -238,8 +264,9 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams whose lifecycle will be
-		 * updated; use <code>*</code> to set the lifecycle to all data streams
+		 * Required - Comma-separated list of data streams used to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams use
+		 * <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -251,8 +278,9 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams whose lifecycle will be
-		 * updated; use <code>*</code> to set the lifecycle to all data streams
+		 * Required - Comma-separated list of data streams used to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams use
+		 * <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -264,7 +292,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -274,7 +303,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -347,6 +377,21 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

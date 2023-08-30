@@ -121,7 +121,10 @@ public class PinnedQuery extends QueryBase
 	}
 
 	/**
-	 * Required - API name: {@code organic}
+	 * Required - Any choice of query used to rank documents which will be ranked
+	 * below the &quot;pinned&quot; documents.
+	 * <p>
+	 * API name: {@code organic}
 	 */
 	public final Query organic() {
 		return this.organic;
@@ -213,7 +216,10 @@ public class PinnedQuery extends QueryBase
 		private Query organic;
 
 		/**
-		 * Required - API name: {@code organic}
+		 * Required - Any choice of query used to rank documents which will be ranked
+		 * below the &quot;pinned&quot; documents.
+		 * <p>
+		 * API name: {@code organic}
 		 */
 		public final Builder organic(Query value) {
 			this.organic = value;
@@ -221,7 +227,10 @@ public class PinnedQuery extends QueryBase
 		}
 
 		/**
-		 * Required - API name: {@code organic}
+		 * Required - Any choice of query used to rank documents which will be ranked
+		 * below the &quot;pinned&quot; documents.
+		 * <p>
+		 * API name: {@code organic}
 		 */
 		public final Builder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.organic(fn.apply(new Query.Builder()).build());
@@ -251,7 +260,10 @@ public class PinnedQuery extends QueryBase
 		public class ContainerBuilder implements ObjectBuilder<PinnedQuery> {
 
 			/**
-			 * Required - API name: {@code organic}
+			 * Required - Any choice of query used to rank documents which will be ranked
+			 * below the &quot;pinned&quot; documents.
+			 * <p>
+			 * API name: {@code organic}
 			 */
 			public final ContainerBuilder organic(Query value) {
 				Builder.this.organic = value;
@@ -259,7 +271,10 @@ public class PinnedQuery extends QueryBase
 			}
 
 			/**
-			 * Required - API name: {@code organic}
+			 * Required - Any choice of query used to rank documents which will be ranked
+			 * below the &quot;pinned&quot; documents.
+			 * <p>
+			 * API name: {@code organic}
 			 */
 			public final ContainerBuilder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 				return this.organic(fn.apply(new Query.Builder()).build());

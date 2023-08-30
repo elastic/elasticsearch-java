@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
 // typedef: eql.get.Request
 
 /**
- * Returns async results from previously executed Event Query Language (EQL)
- * search
+ * Returns the current status and available results for an async EQL search or a
+ * stored synchronous EQL search.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.get.Request">API
  *      specification</a>
@@ -222,6 +222,21 @@ public class EqlGetRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _id = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _id;
+
+				if (propsSet == (_id)) {
+					params.put("id", request.id);
+				}
+				return params;
 			},
 
 			// Request parameters

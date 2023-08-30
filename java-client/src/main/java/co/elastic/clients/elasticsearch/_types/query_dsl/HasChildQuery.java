@@ -96,6 +96,9 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether to ignore an unmapped <code>type</code> and not return any
+	 * documents instead of an error.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -104,6 +107,8 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If defined, each search hit will contain inner hits.
+	 * <p>
 	 * API name: {@code inner_hits}
 	 */
 	@Nullable
@@ -112,6 +117,10 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of child documents that match the query allowed for a returned
+	 * parent document. If the parent document exceeds this limit, it is excluded
+	 * from the search results.
+	 * <p>
 	 * API name: {@code max_children}
 	 */
 	@Nullable
@@ -120,6 +129,10 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Minimum number of child documents that match the query required to match the
+	 * query for a returned parent document. If the parent document does not meet
+	 * this limit, it is excluded from the search results.
+	 * <p>
 	 * API name: {@code min_children}
 	 */
 	@Nullable
@@ -128,13 +141,20 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query you wish to run on child documents of the <code>type</code>
+	 * field. If a child document matches the search, the query returns the parent
+	 * document.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final Query query() {
 		return this.query;
 	}
 
 	/**
+	 * Indicates how scores for matching child documents affect the root parent
+	 * document’s relevance score.
+	 * <p>
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
@@ -143,7 +163,10 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - Name of the child relationship mapped for the <code>join</code>
+	 * field.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final String type() {
 		return this.type;
@@ -211,6 +234,9 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		private String type;
 
 		/**
+		 * Indicates whether to ignore an unmapped <code>type</code> and not return any
+		 * documents instead of an error.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {
@@ -219,6 +245,8 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
 		 * API name: {@code inner_hits}
 		 */
 		public final Builder innerHits(@Nullable InnerHits value) {
@@ -227,6 +255,8 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
 		 * API name: {@code inner_hits}
 		 */
 		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
@@ -234,6 +264,10 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of child documents that match the query allowed for a returned
+		 * parent document. If the parent document exceeds this limit, it is excluded
+		 * from the search results.
+		 * <p>
 		 * API name: {@code max_children}
 		 */
 		public final Builder maxChildren(@Nullable Integer value) {
@@ -242,6 +276,10 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Minimum number of child documents that match the query required to match the
+		 * query for a returned parent document. If the parent document does not meet
+		 * this limit, it is excluded from the search results.
+		 * <p>
 		 * API name: {@code min_children}
 		 */
 		public final Builder minChildren(@Nullable Integer value) {
@@ -250,7 +288,11 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query you wish to run on child documents of the <code>type</code>
+		 * field. If a child document matches the search, the query returns the parent
+		 * document.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -258,13 +300,20 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query you wish to run on child documents of the <code>type</code>
+		 * field. If a child document matches the search, the query returns the parent
+		 * document.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
+		 * Indicates how scores for matching child documents affect the root parent
+		 * document’s relevance score.
+		 * <p>
 		 * API name: {@code score_mode}
 		 */
 		public final Builder scoreMode(@Nullable ChildScoreMode value) {
@@ -273,7 +322,10 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - Name of the child relationship mapped for the <code>join</code>
+		 * field.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(String value) {
 			this.type = value;

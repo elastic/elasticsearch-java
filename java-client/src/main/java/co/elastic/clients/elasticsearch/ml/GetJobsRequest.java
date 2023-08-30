@@ -261,6 +261,24 @@ public class GetJobsRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.jobId()))
+					propsSet |= _jobId;
+
+				if (propsSet == (_jobId)) {
+					params.put("jobId", request.jobId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == 0) {
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

@@ -72,6 +72,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String description;
 
+	@Nullable
 	private final InferenceConfigCreate inferenceConfig;
 
 	@Nullable
@@ -98,7 +99,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.deferDefinitionDecompression = builder.deferDefinitionDecompression;
 		this.definition = builder.definition;
 		this.description = builder.description;
-		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
+		this.inferenceConfig = builder.inferenceConfig;
 		this.input = builder.input;
 		this.metadata = builder.metadata;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
@@ -158,12 +159,14 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Required - The default configuration for inference. This can be either a
-	 * regression or classification configuration. It must match the underlying
-	 * definition.trained_model's target_type.
+	 * The default configuration for inference. This can be either a regression or
+	 * classification configuration. It must match the underlying
+	 * definition.trained_model's target_type. For pre-packaged models such as ELSER
+	 * the config is not required.
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
+	@Nullable
 	public final InferenceConfigCreate inferenceConfig() {
 		return this.inferenceConfig;
 	}
@@ -254,9 +257,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			generator.write(this.description);
 
 		}
-		generator.writeKey("inference_config");
-		this.inferenceConfig.serialize(generator, mapper);
+		if (this.inferenceConfig != null) {
+			generator.writeKey("inference_config");
+			this.inferenceConfig.serialize(generator, mapper);
 
+		}
 		if (this.input != null) {
 			generator.writeKey("input");
 			this.input.serialize(generator, mapper);
@@ -310,6 +315,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private String description;
 
+		@Nullable
 		private InferenceConfigCreate inferenceConfig;
 
 		@Nullable
@@ -385,21 +391,23 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Required - The default configuration for inference. This can be either a
-		 * regression or classification configuration. It must match the underlying
-		 * definition.trained_model's target_type.
+		 * The default configuration for inference. This can be either a regression or
+		 * classification configuration. It must match the underlying
+		 * definition.trained_model's target_type. For pre-packaged models such as ELSER
+		 * the config is not required.
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(InferenceConfigCreate value) {
+		public final Builder inferenceConfig(@Nullable InferenceConfigCreate value) {
 			this.inferenceConfig = value;
 			return this;
 		}
 
 		/**
-		 * Required - The default configuration for inference. This can be either a
-		 * regression or classification configuration. It must match the underlying
-		 * definition.trained_model's target_type.
+		 * The default configuration for inference. This can be either a regression or
+		 * classification configuration. It must match the underlying
+		 * definition.trained_model's target_type. For pre-packaged models such as ELSER
+		 * the config is not required.
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
@@ -566,6 +574,21 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _modelId = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _modelId;
+
+				if (propsSet == (_modelId)) {
+					params.put("modelId", request.modelId);
+				}
+				return params;
 			},
 
 			// Request parameters

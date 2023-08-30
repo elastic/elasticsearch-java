@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_template.Request
 
 /**
- * Deletes an index template.
+ * Deletes a legacy index template.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_template.Request">API
  *      specification</a>
@@ -75,7 +75,8 @@ public class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -85,7 +86,8 @@ public class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the template
+	 * Required - The name of the legacy index template to delete. Wildcard
+	 * (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -94,7 +96,8 @@ public class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -121,7 +124,8 @@ public class DeleteTemplateRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -131,7 +135,8 @@ public class DeleteTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -140,7 +145,8 @@ public class DeleteTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the template
+		 * Required - The name of the legacy index template to delete. Wildcard
+		 * (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -150,7 +156,8 @@ public class DeleteTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -160,7 +167,8 @@ public class DeleteTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -217,6 +225,21 @@ public class DeleteTemplateRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -74,13 +74,20 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code queries}
+	 * Required - One or more query clauses. Returned documents must match one or
+	 * more of these queries. If a document matches multiple queries, Elasticsearch
+	 * uses the highest relevance score.
+	 * <p>
+	 * API name: {@code queries}
 	 */
 	public final List<Query> queries() {
 		return this.queries;
 	}
 
 	/**
+	 * Floating point number between 0 and 1.0 used to increase the relevance scores
+	 * of documents matching multiple query clauses.
+	 * <p>
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
@@ -122,7 +129,11 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		private Double tieBreaker;
 
 		/**
-		 * Required - API name: {@code queries}
+		 * Required - One or more query clauses. Returned documents must match one or
+		 * more of these queries. If a document matches multiple queries, Elasticsearch
+		 * uses the highest relevance score.
+		 * <p>
+		 * API name: {@code queries}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queries</code>.
 		 */
@@ -132,7 +143,11 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code queries}
+		 * Required - One or more query clauses. Returned documents must match one or
+		 * more of these queries. If a document matches multiple queries, Elasticsearch
+		 * uses the highest relevance score.
+		 * <p>
+		 * API name: {@code queries}
 		 * <p>
 		 * Adds one or more values to <code>queries</code>.
 		 */
@@ -142,7 +157,11 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code queries}
+		 * Required - One or more query clauses. Returned documents must match one or
+		 * more of these queries. If a document matches multiple queries, Elasticsearch
+		 * uses the highest relevance score.
+		 * <p>
+		 * API name: {@code queries}
 		 * <p>
 		 * Adds a value to <code>queries</code> using a builder lambda.
 		 */
@@ -151,6 +170,9 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Floating point number between 0 and 1.0 used to increase the relevance scores
+		 * of documents matching multiple query clauses.
+		 * <p>
 		 * API name: {@code tie_breaker}
 		 */
 		public final Builder tieBreaker(@Nullable Double value) {

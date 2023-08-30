@@ -21,8 +21,8 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.instrumentation.Instrumentation;
 import org.elasticsearch.client.RestClient;
-
 
 public class RestClientTransport extends ElasticsearchTransportBase {
 
@@ -33,7 +33,12 @@ public class RestClientTransport extends ElasticsearchTransportBase {
     }
 
     public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options) {
-        super(new RestClientHttpClient(restClient), options, jsonpMapper);
+        super(new RestClientHttpClient(restClient), options, jsonpMapper, null);
+        this.restClient = restClient;
+    }
+
+    public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper, RestClientOptions options, Instrumentation instrumentation) {
+        super(new RestClientHttpClient(restClient), options, jsonpMapper, instrumentation);
         this.restClient = restClient;
     }
 

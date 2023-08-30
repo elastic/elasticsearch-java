@@ -79,6 +79,8 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * ID of the parent document.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -87,6 +89,9 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether to ignore an unmapped <code>type</code> and not return any
+	 * documents instead of an error.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -95,6 +100,8 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Name of the child relationship mapped for the <code>join</code> field.
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -140,6 +147,8 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 		private String type;
 
 		/**
+		 * ID of the parent document.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public final Builder id(@Nullable String value) {
@@ -148,6 +157,9 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Indicates whether to ignore an unmapped <code>type</code> and not return any
+		 * documents instead of an error.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {
@@ -156,6 +168,8 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Name of the child relationship mapped for the <code>join</code> field.
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public final Builder type(@Nullable String value) {

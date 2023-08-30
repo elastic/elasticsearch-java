@@ -94,6 +94,8 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Analyzer used to convert the text in the query value into tokens.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -102,13 +104,17 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query terms that are analyzed and turned into a phrase query.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * Maximum number of positions allowed between matching tokens.
+	 * <p>
 	 * API name: {@code slop}
 	 */
 	@Nullable
@@ -117,6 +123,9 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether no documents are returned if the <code>analyzer</code>
+	 * removes all tokens, such as when using a <code>stop</code> filter.
+	 * <p>
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
@@ -179,6 +188,8 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		private ZeroTermsQuery zeroTermsQuery;
 
 		/**
+		 * Analyzer used to convert the text in the query value into tokens.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -187,7 +198,9 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query terms that are analyzed and turned into a phrase query.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -195,6 +208,8 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of positions allowed between matching tokens.
+		 * <p>
 		 * API name: {@code slop}
 		 */
 		public final Builder slop(@Nullable Integer value) {
@@ -203,6 +218,9 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Indicates whether no documents are returned if the <code>analyzer</code>
+		 * removes all tokens, such as when using a <code>stop</code> filter.
+		 * <p>
 		 * API name: {@code zero_terms_query}
 		 */
 		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {

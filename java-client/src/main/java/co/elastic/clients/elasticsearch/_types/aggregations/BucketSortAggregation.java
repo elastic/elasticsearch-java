@@ -84,6 +84,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	}
 
 	/**
+	 * Buckets in positions prior to <code>from</code> will be truncated.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -92,6 +94,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	}
 
 	/**
+	 * The policy to apply when gaps are found in the data.
+	 * <p>
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
@@ -100,6 +104,9 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	}
 
 	/**
+	 * The number of buckets to return. Defaults to all buckets of the parent
+	 * aggregation.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -108,6 +115,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	}
 
 	/**
+	 * The list of fields to sort on.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public final List<SortOptions> sort() {
@@ -166,6 +175,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		private List<SortOptions> sort;
 
 		/**
+		 * Buckets in positions prior to <code>from</code> will be truncated.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(@Nullable Integer value) {
@@ -174,6 +185,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		}
 
 		/**
+		 * The policy to apply when gaps are found in the data.
+		 * <p>
 		 * API name: {@code gap_policy}
 		 */
 		public final Builder gapPolicy(@Nullable GapPolicy value) {
@@ -182,6 +195,9 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		}
 
 		/**
+		 * The number of buckets to return. Defaults to all buckets of the parent
+		 * aggregation.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -190,6 +206,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		}
 
 		/**
+		 * The list of fields to sort on.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
@@ -200,6 +218,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		}
 
 		/**
+		 * The list of fields to sort on.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
@@ -210,6 +230,8 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		}
 
 		/**
+		 * The list of fields to sort on.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.

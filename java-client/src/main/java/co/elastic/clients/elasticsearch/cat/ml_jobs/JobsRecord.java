@@ -302,7 +302,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the job_id
+	 * The anomaly detection job identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -312,7 +312,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the job state
+	 * The status of the anomaly detection job.
 	 * <p>
 	 * API name: {@code state}
 	 */
@@ -322,7 +322,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the amount of time the job has been opened
+	 * For open jobs only, the amount of time the job has been opened.
 	 * <p>
 	 * API name: {@code opened_time}
 	 */
@@ -332,7 +332,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * why the job is or is not assigned to a node
+	 * For open anomaly detection jobs only, contains messages relating to the
+	 * selection of a node to run the job.
 	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
@@ -342,7 +343,11 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of processed records
+	 * The number of input documents that have been processed by the anomaly
+	 * detection job. This value includes documents with missing fields, since they
+	 * are nonetheless analyzed. If you use datafeeds and have aggregations in your
+	 * search query, the <code>processed_record_count</code> is the number of
+	 * aggregation results processed, not the number of Elasticsearch documents.
 	 * <p>
 	 * API name: {@code data.processed_records}
 	 */
@@ -352,7 +357,10 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of processed fields
+	 * The total number of fields in all the documents that have been processed by
+	 * the anomaly detection job. Only fields that are specified in the detector
+	 * configuration object contribute to this count. The timestamp is not included
+	 * in this count.
 	 * <p>
 	 * API name: {@code data.processed_fields}
 	 */
@@ -362,7 +370,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total input bytes
+	 * The number of bytes of input data posted to the anomaly detection job.
 	 * <p>
 	 * API name: {@code data.input_bytes}
 	 */
@@ -372,7 +380,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total record count
+	 * The number of input documents posted to the anomaly detection job.
 	 * <p>
 	 * API name: {@code data.input_records}
 	 */
@@ -382,7 +390,10 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total field count
+	 * The total number of fields in input documents posted to the anomaly detection
+	 * job. This count includes fields that are not used in the analysis. However,
+	 * be aware that if you are using a datafeed, it extracts only the required
+	 * fields from the documents it retrieves before posting them to the job.
 	 * <p>
 	 * API name: {@code data.input_fields}
 	 */
@@ -392,7 +403,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of records with invalid dates
+	 * The number of input documents with either a missing date field or a date that
+	 * could not be parsed.
 	 * <p>
 	 * API name: {@code data.invalid_dates}
 	 */
@@ -402,7 +414,12 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of records with missing fields
+	 * The number of input documents that are missing a field that the anomaly
+	 * detection job is configured to analyze. Input documents with missing fields
+	 * are still processed because it is possible that not all fields are missing.
+	 * If you are using datafeeds or posting data to the job in JSON format, a high
+	 * <code>missing_field_count</code> is often not an indication of data issues.
+	 * It is not necessarily a cause for concern.
 	 * <p>
 	 * API name: {@code data.missing_fields}
 	 */
@@ -412,7 +429,12 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of records handled out of order
+	 * The number of input documents that have a timestamp chronologically preceding
+	 * the start of the current anomaly detection bucket offset by the latency
+	 * window. This information is applicable only when you provide data to the
+	 * anomaly detection job by using the post data API. These out of order
+	 * documents are discarded, since jobs require time series data to be in
+	 * ascending chronological order.
 	 * <p>
 	 * API name: {@code data.out_of_order_timestamps}
 	 */
@@ -422,7 +444,10 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of empty buckets
+	 * The number of buckets which did not contain any data. If your data contains
+	 * many empty buckets, consider increasing your <code>bucket_span</code> or
+	 * using functions that are tolerant to gaps in data such as mean,
+	 * <code>non_null_sum</code> or <code>non_zero_count</code>.
 	 * <p>
 	 * API name: {@code data.empty_buckets}
 	 */
@@ -432,7 +457,9 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of sparse buckets
+	 * The number of buckets that contained few data points compared to the expected
+	 * number of data points. If your data contains many sparse buckets, consider
+	 * using a longer <code>bucket_span</code>.
 	 * <p>
 	 * API name: {@code data.sparse_buckets}
 	 */
@@ -442,7 +469,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total bucket count
+	 * The total number of buckets processed.
 	 * <p>
 	 * API name: {@code data.buckets}
 	 */
@@ -452,7 +479,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * earliest record time
+	 * The timestamp of the earliest chronologically input document.
 	 * <p>
 	 * API name: {@code data.earliest_record}
 	 */
@@ -462,7 +489,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * latest record time
+	 * The timestamp of the latest chronologically input document.
 	 * <p>
 	 * API name: {@code data.latest_record}
 	 */
@@ -472,7 +499,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * last time data was seen
+	 * The timestamp at which data was last analyzed, according to server time.
 	 * <p>
 	 * API name: {@code data.last}
 	 */
@@ -482,7 +509,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * last time an empty bucket occurred
+	 * The timestamp of the last bucket that did not contain any data.
 	 * <p>
 	 * API name: {@code data.last_empty_bucket}
 	 */
@@ -492,7 +519,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * last time a sparse bucket occurred
+	 * The timestamp of the last bucket that was considered sparse.
 	 * <p>
 	 * API name: {@code data.last_sparse_bucket}
 	 */
@@ -502,7 +529,9 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * model size
+	 * The number of bytes of memory used by the models. This is the maximum value
+	 * since the last time the model was persisted. If the job is closed, this value
+	 * indicates the latest size.
 	 * <p>
 	 * API name: {@code model.bytes}
 	 */
@@ -512,7 +541,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * current memory status
+	 * The status of the mathematical models.
 	 * <p>
 	 * API name: {@code model.memory_status}
 	 */
@@ -522,7 +551,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * how much the model has exceeded the limit
+	 * The number of bytes over the high limit for memory usage at the last
+	 * allocation failure.
 	 * <p>
 	 * API name: {@code model.bytes_exceeded}
 	 */
@@ -532,7 +562,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * model memory limit
+	 * The upper limit for model memory usage, checked on increasing values.
 	 * <p>
 	 * API name: {@code model.memory_limit}
 	 */
@@ -542,7 +572,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of 'by' fields
+	 * The number of <code>by</code> field values that were analyzed by the models.
+	 * This value is cumulative for all detectors in the job.
 	 * <p>
 	 * API name: {@code model.by_fields}
 	 */
@@ -552,7 +583,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of 'over' fields
+	 * The number of <code>over</code> field values that were analyzed by the
+	 * models. This value is cumulative for all detectors in the job.
 	 * <p>
 	 * API name: {@code model.over_fields}
 	 */
@@ -562,7 +594,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of 'partition' fields
+	 * The number of <code>partition</code> field values that were analyzed by the
+	 * models. This value is cumulative for all detectors in the job.
 	 * <p>
 	 * API name: {@code model.partition_fields}
 	 */
@@ -572,7 +605,9 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of bucket allocation failures
+	 * The number of buckets for which new entities in incoming data were not
+	 * processed due to insufficient model memory. This situation is also signified
+	 * by a <code>hard_limit: memory_status</code> property value.
 	 * <p>
 	 * API name: {@code model.bucket_allocation_failures}
 	 */
@@ -582,7 +617,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * current categorization status
+	 * The status of categorization for the job.
 	 * <p>
 	 * API name: {@code model.categorization_status}
 	 */
@@ -592,7 +627,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of categorized documents
+	 * The number of documents that have had a field categorized.
 	 * <p>
 	 * API name: {@code model.categorized_doc_count}
 	 */
@@ -602,7 +637,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of categories
+	 * The number of categories created by categorization.
 	 * <p>
 	 * API name: {@code model.total_category_count}
 	 */
@@ -612,7 +647,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of frequent categories
+	 * The number of categories that match more than 1% of categorized documents.
 	 * <p>
 	 * API name: {@code model.frequent_category_count}
 	 */
@@ -622,7 +657,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of rare categories
+	 * The number of categories that match just one categorized document.
 	 * <p>
 	 * API name: {@code model.rare_category_count}
 	 */
@@ -632,7 +667,10 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of dead categories
+	 * The number of categories created by categorization that will never be
+	 * assigned again because another category’s definition makes it a superset of
+	 * the dead category. Dead categories are a side effect of the way
+	 * categorization has no prior training.
 	 * <p>
 	 * API name: {@code model.dead_category_count}
 	 */
@@ -642,7 +680,11 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * count of failed categories
+	 * The number of times that categorization wanted to create a new category but
+	 * couldn’t because the job had hit its <code>model_memory_limit</code>. This
+	 * count does not track which specific categories failed to be created.
+	 * Therefore you cannot use this value to determine the number of unique
+	 * categories that were missed.
 	 * <p>
 	 * API name: {@code model.failed_category_count}
 	 */
@@ -652,7 +694,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * when the model stats were gathered
+	 * The timestamp when the model stats were gathered, according to server time.
 	 * <p>
 	 * API name: {@code model.log_time}
 	 */
@@ -662,7 +704,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the time of the last record when the model stats were gathered
+	 * The timestamp of the last record when the model stats were gathered.
 	 * <p>
 	 * API name: {@code model.timestamp}
 	 */
@@ -672,7 +714,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total number of forecasts
+	 * The number of individual forecasts currently available for the job. A value
+	 * of one or more indicates that forecasts exist.
 	 * <p>
 	 * API name: {@code forecasts.total}
 	 */
@@ -682,7 +725,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * minimum memory used by forecasts
+	 * The minimum memory usage in bytes for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.memory.min}
 	 */
@@ -692,7 +736,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * maximum memory used by forecasts
+	 * The maximum memory usage in bytes for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.memory.max}
 	 */
@@ -702,7 +747,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * average memory used by forecasts
+	 * The average memory usage in bytes for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.memory.avg}
 	 */
@@ -712,7 +758,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total memory used by all forecasts
+	 * The total memory usage in bytes for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.memory.total}
 	 */
@@ -722,7 +769,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * minimum record count for forecasts
+	 * The minimum number of <code>model_forecast</code> documents written for
+	 * forecasts related to the anomaly detection job.
 	 * <p>
 	 * API name: {@code forecasts.records.min}
 	 */
@@ -732,7 +780,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * maximum record count for forecasts
+	 * The maximum number of <code>model_forecast</code> documents written for
+	 * forecasts related to the anomaly detection job.
 	 * <p>
 	 * API name: {@code forecasts.records.max}
 	 */
@@ -742,7 +791,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * average record count for forecasts
+	 * The average number of <code>model_forecast</code> documents written for
+	 * forecasts related to the anomaly detection job.
 	 * <p>
 	 * API name: {@code forecasts.records.avg}
 	 */
@@ -752,7 +802,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total record count for all forecasts
+	 * The total number of <code>model_forecast</code> documents written for
+	 * forecasts related to the anomaly detection job.
 	 * <p>
 	 * API name: {@code forecasts.records.total}
 	 */
@@ -762,7 +813,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * minimum runtime for forecasts
+	 * The minimum runtime in milliseconds for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.time.min}
 	 */
@@ -772,7 +824,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * maximum run time for forecasts
+	 * The maximum runtime in milliseconds for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.time.max}
 	 */
@@ -782,7 +835,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * average runtime for all forecasts (milliseconds)
+	 * The average runtime in milliseconds for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.time.avg}
 	 */
@@ -792,7 +846,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total runtime for all forecasts
+	 * The total runtime in milliseconds for forecasts related to the anomaly
+	 * detection job.
 	 * <p>
 	 * API name: {@code forecasts.time.total}
 	 */
@@ -802,7 +857,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * id of the assigned node
+	 * The uniqe identifier of the assigned node.
 	 * <p>
 	 * API name: {@code node.id}
 	 */
@@ -812,7 +867,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * name of the assigned node
+	 * The name of the assigned node.
 	 * <p>
 	 * API name: {@code node.name}
 	 */
@@ -822,7 +877,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ephemeral id of the assigned node
+	 * The ephemeral identifier of the assigned node.
 	 * <p>
 	 * API name: {@code node.ephemeral_id}
 	 */
@@ -832,7 +887,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * network address of the assigned node
+	 * The network address of the assigned node.
 	 * <p>
 	 * API name: {@code node.address}
 	 */
@@ -842,7 +897,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * bucket count
+	 * The number of bucket results produced by the job.
 	 * <p>
 	 * API name: {@code buckets.count}
 	 */
@@ -852,7 +907,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * total bucket processing time
+	 * The sum of all bucket processing times, in milliseconds.
 	 * <p>
 	 * API name: {@code buckets.time.total}
 	 */
@@ -862,7 +917,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * minimum bucket processing time
+	 * The minimum of all bucket processing times, in milliseconds.
 	 * <p>
 	 * API name: {@code buckets.time.min}
 	 */
@@ -872,7 +927,7 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * maximum bucket processing time
+	 * The maximum of all bucket processing times, in milliseconds.
 	 * <p>
 	 * API name: {@code buckets.time.max}
 	 */
@@ -882,7 +937,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * exponential average bucket processing time (milliseconds)
+	 * The exponential moving average of all bucket processing times, in
+	 * milliseconds.
 	 * <p>
 	 * API name: {@code buckets.time.exp_avg}
 	 */
@@ -892,7 +948,8 @@ public class JobsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * exponential average bucket processing time by hour (milliseconds)
+	 * The exponential moving average of bucket processing times calculated in a one
+	 * hour time window, in milliseconds.
 	 * <p>
 	 * API name: {@code buckets.time.exp_avg_hour}
 	 */
@@ -1405,7 +1462,7 @@ public class JobsRecord implements JsonpSerializable {
 		private String bucketsTimeExpAvgHour;
 
 		/**
-		 * the job_id
+		 * The anomaly detection job identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -1415,7 +1472,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the job state
+		 * The status of the anomaly detection job.
 		 * <p>
 		 * API name: {@code state}
 		 */
@@ -1425,7 +1482,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the amount of time the job has been opened
+		 * For open jobs only, the amount of time the job has been opened.
 		 * <p>
 		 * API name: {@code opened_time}
 		 */
@@ -1435,7 +1492,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * why the job is or is not assigned to a node
+		 * For open anomaly detection jobs only, contains messages relating to the
+		 * selection of a node to run the job.
 		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
@@ -1445,7 +1503,11 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of processed records
+		 * The number of input documents that have been processed by the anomaly
+		 * detection job. This value includes documents with missing fields, since they
+		 * are nonetheless analyzed. If you use datafeeds and have aggregations in your
+		 * search query, the <code>processed_record_count</code> is the number of
+		 * aggregation results processed, not the number of Elasticsearch documents.
 		 * <p>
 		 * API name: {@code data.processed_records}
 		 */
@@ -1455,7 +1517,10 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of processed fields
+		 * The total number of fields in all the documents that have been processed by
+		 * the anomaly detection job. Only fields that are specified in the detector
+		 * configuration object contribute to this count. The timestamp is not included
+		 * in this count.
 		 * <p>
 		 * API name: {@code data.processed_fields}
 		 */
@@ -1465,7 +1530,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total input bytes
+		 * The number of bytes of input data posted to the anomaly detection job.
 		 * <p>
 		 * API name: {@code data.input_bytes}
 		 */
@@ -1475,7 +1540,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total record count
+		 * The number of input documents posted to the anomaly detection job.
 		 * <p>
 		 * API name: {@code data.input_records}
 		 */
@@ -1485,7 +1550,10 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total field count
+		 * The total number of fields in input documents posted to the anomaly detection
+		 * job. This count includes fields that are not used in the analysis. However,
+		 * be aware that if you are using a datafeed, it extracts only the required
+		 * fields from the documents it retrieves before posting them to the job.
 		 * <p>
 		 * API name: {@code data.input_fields}
 		 */
@@ -1495,7 +1563,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of records with invalid dates
+		 * The number of input documents with either a missing date field or a date that
+		 * could not be parsed.
 		 * <p>
 		 * API name: {@code data.invalid_dates}
 		 */
@@ -1505,7 +1574,12 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of records with missing fields
+		 * The number of input documents that are missing a field that the anomaly
+		 * detection job is configured to analyze. Input documents with missing fields
+		 * are still processed because it is possible that not all fields are missing.
+		 * If you are using datafeeds or posting data to the job in JSON format, a high
+		 * <code>missing_field_count</code> is often not an indication of data issues.
+		 * It is not necessarily a cause for concern.
 		 * <p>
 		 * API name: {@code data.missing_fields}
 		 */
@@ -1515,7 +1589,12 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of records handled out of order
+		 * The number of input documents that have a timestamp chronologically preceding
+		 * the start of the current anomaly detection bucket offset by the latency
+		 * window. This information is applicable only when you provide data to the
+		 * anomaly detection job by using the post data API. These out of order
+		 * documents are discarded, since jobs require time series data to be in
+		 * ascending chronological order.
 		 * <p>
 		 * API name: {@code data.out_of_order_timestamps}
 		 */
@@ -1525,7 +1604,10 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of empty buckets
+		 * The number of buckets which did not contain any data. If your data contains
+		 * many empty buckets, consider increasing your <code>bucket_span</code> or
+		 * using functions that are tolerant to gaps in data such as mean,
+		 * <code>non_null_sum</code> or <code>non_zero_count</code>.
 		 * <p>
 		 * API name: {@code data.empty_buckets}
 		 */
@@ -1535,7 +1617,9 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of sparse buckets
+		 * The number of buckets that contained few data points compared to the expected
+		 * number of data points. If your data contains many sparse buckets, consider
+		 * using a longer <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code data.sparse_buckets}
 		 */
@@ -1545,7 +1629,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total bucket count
+		 * The total number of buckets processed.
 		 * <p>
 		 * API name: {@code data.buckets}
 		 */
@@ -1555,7 +1639,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * earliest record time
+		 * The timestamp of the earliest chronologically input document.
 		 * <p>
 		 * API name: {@code data.earliest_record}
 		 */
@@ -1565,7 +1649,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * latest record time
+		 * The timestamp of the latest chronologically input document.
 		 * <p>
 		 * API name: {@code data.latest_record}
 		 */
@@ -1575,7 +1659,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * last time data was seen
+		 * The timestamp at which data was last analyzed, according to server time.
 		 * <p>
 		 * API name: {@code data.last}
 		 */
@@ -1585,7 +1669,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * last time an empty bucket occurred
+		 * The timestamp of the last bucket that did not contain any data.
 		 * <p>
 		 * API name: {@code data.last_empty_bucket}
 		 */
@@ -1595,7 +1679,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * last time a sparse bucket occurred
+		 * The timestamp of the last bucket that was considered sparse.
 		 * <p>
 		 * API name: {@code data.last_sparse_bucket}
 		 */
@@ -1605,7 +1689,9 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * model size
+		 * The number of bytes of memory used by the models. This is the maximum value
+		 * since the last time the model was persisted. If the job is closed, this value
+		 * indicates the latest size.
 		 * <p>
 		 * API name: {@code model.bytes}
 		 */
@@ -1615,7 +1701,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * current memory status
+		 * The status of the mathematical models.
 		 * <p>
 		 * API name: {@code model.memory_status}
 		 */
@@ -1625,7 +1711,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * how much the model has exceeded the limit
+		 * The number of bytes over the high limit for memory usage at the last
+		 * allocation failure.
 		 * <p>
 		 * API name: {@code model.bytes_exceeded}
 		 */
@@ -1635,7 +1722,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * model memory limit
+		 * The upper limit for model memory usage, checked on increasing values.
 		 * <p>
 		 * API name: {@code model.memory_limit}
 		 */
@@ -1645,7 +1732,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of 'by' fields
+		 * The number of <code>by</code> field values that were analyzed by the models.
+		 * This value is cumulative for all detectors in the job.
 		 * <p>
 		 * API name: {@code model.by_fields}
 		 */
@@ -1655,7 +1743,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of 'over' fields
+		 * The number of <code>over</code> field values that were analyzed by the
+		 * models. This value is cumulative for all detectors in the job.
 		 * <p>
 		 * API name: {@code model.over_fields}
 		 */
@@ -1665,7 +1754,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of 'partition' fields
+		 * The number of <code>partition</code> field values that were analyzed by the
+		 * models. This value is cumulative for all detectors in the job.
 		 * <p>
 		 * API name: {@code model.partition_fields}
 		 */
@@ -1675,7 +1765,9 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of bucket allocation failures
+		 * The number of buckets for which new entities in incoming data were not
+		 * processed due to insufficient model memory. This situation is also signified
+		 * by a <code>hard_limit: memory_status</code> property value.
 		 * <p>
 		 * API name: {@code model.bucket_allocation_failures}
 		 */
@@ -1685,7 +1777,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * current categorization status
+		 * The status of categorization for the job.
 		 * <p>
 		 * API name: {@code model.categorization_status}
 		 */
@@ -1695,7 +1787,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of categorized documents
+		 * The number of documents that have had a field categorized.
 		 * <p>
 		 * API name: {@code model.categorized_doc_count}
 		 */
@@ -1705,7 +1797,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of categories
+		 * The number of categories created by categorization.
 		 * <p>
 		 * API name: {@code model.total_category_count}
 		 */
@@ -1715,7 +1807,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of frequent categories
+		 * The number of categories that match more than 1% of categorized documents.
 		 * <p>
 		 * API name: {@code model.frequent_category_count}
 		 */
@@ -1725,7 +1817,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of rare categories
+		 * The number of categories that match just one categorized document.
 		 * <p>
 		 * API name: {@code model.rare_category_count}
 		 */
@@ -1735,7 +1827,10 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of dead categories
+		 * The number of categories created by categorization that will never be
+		 * assigned again because another category’s definition makes it a superset of
+		 * the dead category. Dead categories are a side effect of the way
+		 * categorization has no prior training.
 		 * <p>
 		 * API name: {@code model.dead_category_count}
 		 */
@@ -1745,7 +1840,11 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * count of failed categories
+		 * The number of times that categorization wanted to create a new category but
+		 * couldn’t because the job had hit its <code>model_memory_limit</code>. This
+		 * count does not track which specific categories failed to be created.
+		 * Therefore you cannot use this value to determine the number of unique
+		 * categories that were missed.
 		 * <p>
 		 * API name: {@code model.failed_category_count}
 		 */
@@ -1755,7 +1854,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * when the model stats were gathered
+		 * The timestamp when the model stats were gathered, according to server time.
 		 * <p>
 		 * API name: {@code model.log_time}
 		 */
@@ -1765,7 +1864,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the time of the last record when the model stats were gathered
+		 * The timestamp of the last record when the model stats were gathered.
 		 * <p>
 		 * API name: {@code model.timestamp}
 		 */
@@ -1775,7 +1874,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total number of forecasts
+		 * The number of individual forecasts currently available for the job. A value
+		 * of one or more indicates that forecasts exist.
 		 * <p>
 		 * API name: {@code forecasts.total}
 		 */
@@ -1785,7 +1885,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * minimum memory used by forecasts
+		 * The minimum memory usage in bytes for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.memory.min}
 		 */
@@ -1795,7 +1896,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * maximum memory used by forecasts
+		 * The maximum memory usage in bytes for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.memory.max}
 		 */
@@ -1805,7 +1907,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * average memory used by forecasts
+		 * The average memory usage in bytes for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.memory.avg}
 		 */
@@ -1815,7 +1918,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total memory used by all forecasts
+		 * The total memory usage in bytes for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.memory.total}
 		 */
@@ -1825,7 +1929,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * minimum record count for forecasts
+		 * The minimum number of <code>model_forecast</code> documents written for
+		 * forecasts related to the anomaly detection job.
 		 * <p>
 		 * API name: {@code forecasts.records.min}
 		 */
@@ -1835,7 +1940,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * maximum record count for forecasts
+		 * The maximum number of <code>model_forecast</code> documents written for
+		 * forecasts related to the anomaly detection job.
 		 * <p>
 		 * API name: {@code forecasts.records.max}
 		 */
@@ -1845,7 +1951,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * average record count for forecasts
+		 * The average number of <code>model_forecast</code> documents written for
+		 * forecasts related to the anomaly detection job.
 		 * <p>
 		 * API name: {@code forecasts.records.avg}
 		 */
@@ -1855,7 +1962,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total record count for all forecasts
+		 * The total number of <code>model_forecast</code> documents written for
+		 * forecasts related to the anomaly detection job.
 		 * <p>
 		 * API name: {@code forecasts.records.total}
 		 */
@@ -1865,7 +1973,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * minimum runtime for forecasts
+		 * The minimum runtime in milliseconds for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.time.min}
 		 */
@@ -1875,7 +1984,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * maximum run time for forecasts
+		 * The maximum runtime in milliseconds for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.time.max}
 		 */
@@ -1885,7 +1995,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * average runtime for all forecasts (milliseconds)
+		 * The average runtime in milliseconds for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.time.avg}
 		 */
@@ -1895,7 +2006,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total runtime for all forecasts
+		 * The total runtime in milliseconds for forecasts related to the anomaly
+		 * detection job.
 		 * <p>
 		 * API name: {@code forecasts.time.total}
 		 */
@@ -1905,7 +2017,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * id of the assigned node
+		 * The uniqe identifier of the assigned node.
 		 * <p>
 		 * API name: {@code node.id}
 		 */
@@ -1915,7 +2027,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * name of the assigned node
+		 * The name of the assigned node.
 		 * <p>
 		 * API name: {@code node.name}
 		 */
@@ -1925,7 +2037,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ephemeral id of the assigned node
+		 * The ephemeral identifier of the assigned node.
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
@@ -1935,7 +2047,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * network address of the assigned node
+		 * The network address of the assigned node.
 		 * <p>
 		 * API name: {@code node.address}
 		 */
@@ -1945,7 +2057,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * bucket count
+		 * The number of bucket results produced by the job.
 		 * <p>
 		 * API name: {@code buckets.count}
 		 */
@@ -1955,7 +2067,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total bucket processing time
+		 * The sum of all bucket processing times, in milliseconds.
 		 * <p>
 		 * API name: {@code buckets.time.total}
 		 */
@@ -1965,7 +2077,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * minimum bucket processing time
+		 * The minimum of all bucket processing times, in milliseconds.
 		 * <p>
 		 * API name: {@code buckets.time.min}
 		 */
@@ -1975,7 +2087,7 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * maximum bucket processing time
+		 * The maximum of all bucket processing times, in milliseconds.
 		 * <p>
 		 * API name: {@code buckets.time.max}
 		 */
@@ -1985,7 +2097,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * exponential average bucket processing time (milliseconds)
+		 * The exponential moving average of all bucket processing times, in
+		 * milliseconds.
 		 * <p>
 		 * API name: {@code buckets.time.exp_avg}
 		 */
@@ -1995,7 +2108,8 @@ public class JobsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * exponential average bucket processing time by hour (milliseconds)
+		 * The exponential moving average of bucket processing times calculated in a one
+		 * hour time window, in milliseconds.
 		 * <p>
 		 * API name: {@code buckets.time.exp_avg_hour}
 		 */

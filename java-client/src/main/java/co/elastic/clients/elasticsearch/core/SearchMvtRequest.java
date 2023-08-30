@@ -49,6 +49,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -990,6 +991,33 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _field = 1 << 0;
+				final int _x = 1 << 1;
+				final int _index = 1 << 2;
+				final int _y = 1 << 3;
+				final int _zoom = 1 << 4;
+
+				int propsSet = 0;
+
+				propsSet |= _field;
+				propsSet |= _x;
+				propsSet |= _index;
+				propsSet |= _y;
+				propsSet |= _zoom;
+
+				if (propsSet == (_index | _field | _zoom | _x | _y)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("field", request.field);
+					params.put("zoom", String.valueOf(request.zoom));
+					params.put("x", String.valueOf(request.x));
+					params.put("y", String.valueOf(request.y));
+				}
+				return params;
 			},
 
 			// Request parameters

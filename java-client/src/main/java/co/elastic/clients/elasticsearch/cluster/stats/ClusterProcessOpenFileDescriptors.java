@@ -70,21 +70,30 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code avg}
+	 * Required - Average number of concurrently open file descriptors. Returns
+	 * <code>-1</code> if not supported.
+	 * <p>
+	 * API name: {@code avg}
 	 */
 	public final long avg() {
 		return this.avg;
 	}
 
 	/**
-	 * Required - API name: {@code max}
+	 * Required - Maximum number of concurrently open file descriptors allowed
+	 * across all selected nodes. Returns <code>-1</code> if not supported.
+	 * <p>
+	 * API name: {@code max}
 	 */
 	public final long max() {
 		return this.max;
 	}
 
 	/**
-	 * Required - API name: {@code min}
+	 * Required - Minimum number of concurrently open file descriptors across all
+	 * selected nodes. Returns -1 if not supported.
+	 * <p>
+	 * API name: {@code min}
 	 */
 	public final long min() {
 		return this.min;
@@ -133,7 +142,10 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 		private Long min;
 
 		/**
-		 * Required - API name: {@code avg}
+		 * Required - Average number of concurrently open file descriptors. Returns
+		 * <code>-1</code> if not supported.
+		 * <p>
+		 * API name: {@code avg}
 		 */
 		public final Builder avg(long value) {
 			this.avg = value;
@@ -141,7 +153,10 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code max}
+		 * Required - Maximum number of concurrently open file descriptors allowed
+		 * across all selected nodes. Returns <code>-1</code> if not supported.
+		 * <p>
+		 * API name: {@code max}
 		 */
 		public final Builder max(long value) {
 			this.max = value;
@@ -149,7 +164,10 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code min}
+		 * Required - Minimum number of concurrently open file descriptors across all
+		 * selected nodes. Returns -1 if not supported.
+		 * <p>
+		 * API name: {@code min}
 		 */
 		public final Builder min(long value) {
 			this.min = value;

@@ -39,8 +39,8 @@ import java.util.Objects;
 // typedef: enrich.stats.Request
 
 /**
- * Gets enrich coordinator statistics and information about enrich policies that
- * are currently executing.
+ * Returns enrich coordinator statistics and information about enrich policies
+ * that are currently executing.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.stats.Request">API
  *      specification</a>
@@ -73,6 +73,11 @@ public class EnrichStatsRequest extends RequestBase {
 			request -> {
 				return "/_enrich/_stats";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

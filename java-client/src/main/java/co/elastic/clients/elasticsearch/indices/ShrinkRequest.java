@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: indices.shrink.Request
 
 /**
- * Allow to shrink an existing index into a new index with fewer primary shards.
+ * Shrinks an existing index into a new index with fewer primary shards.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.shrink.Request">API
  *      specification</a>
@@ -92,6 +92,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The key is the alias name. Index alias names support date math.
+	 * <p>
 	 * API name: {@code aliases}
 	 */
 	public final Map<String, Alias> aliases() {
@@ -99,7 +101,7 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the source index to shrink
+	 * Required - Name of the source index to shrink.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -108,7 +110,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -118,6 +121,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Configuration options for the target index.
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	public final Map<String, JsonData> settings() {
@@ -125,7 +130,7 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the target index to shrink into
+	 * Required - Name of the target index to create.
 	 * <p>
 	 * API name: {@code target}
 	 */
@@ -134,7 +139,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -144,8 +150,9 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Set the number of active shards to wait for on the shrunken index before the
-	 * operation returns.
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to <code>all</code> or any positive integer up to the total
+	 * number of shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -217,6 +224,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
+		 * The key is the alias name. Index alias names support date math.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
@@ -227,6 +236,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The key is the alias name. Index alias names support date math.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code>.
@@ -237,6 +248,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The key is the alias name. Index alias names support date math.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds an entry to <code>aliases</code> using a builder lambda.
@@ -246,7 +259,7 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the source index to shrink
+		 * Required - Name of the source index to shrink.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -256,7 +269,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -266,7 +280,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -275,6 +290,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Configuration options for the target index.
+		 * <p>
 		 * API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
@@ -285,6 +302,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Configuration options for the target index.
+		 * <p>
 		 * API name: {@code settings}
 		 * <p>
 		 * Adds an entry to <code>settings</code>.
@@ -295,7 +314,7 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the target index to shrink into
+		 * Required - Name of the target index to create.
 		 * <p>
 		 * API name: {@code target}
 		 */
@@ -305,7 +324,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -315,7 +335,8 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -324,8 +345,9 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Set the number of active shards to wait for on the shrunken index before the
-		 * operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -335,8 +357,9 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Set the number of active shards to wait for on the shrunken index before the
-		 * operation returns.
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -413,6 +436,24 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+				final int _target = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+				propsSet |= _target;
+
+				if (propsSet == (_index | _target)) {
+					params.put("index", request.index);
+					params.put("target", request.target);
+				}
+				return params;
 			},
 
 			// Request parameters

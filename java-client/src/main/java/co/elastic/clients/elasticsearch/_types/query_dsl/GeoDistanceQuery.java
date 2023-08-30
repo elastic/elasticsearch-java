@@ -52,7 +52,6 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	private final GeoLocation location;
 
-	@Nullable
 	private final String distance;
 
 	@Nullable
@@ -68,7 +67,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 
-		this.distance = builder.distance;
+		this.distance = ApiTypeHelper.requireNonNull(builder.distance, this, "distance");
 		this.distanceType = builder.distanceType;
 		this.validationMethod = builder.validationMethod;
 
@@ -101,14 +100,19 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Required - The radius of the circle centred on the specified location. Points
+	 * which fall into this circle are considered to be matches.
+	 * <p>
 	 * API name: {@code distance}
 	 */
-	@Nullable
 	public final String distance() {
 		return this.distance;
 	}
 
 	/**
+	 * How to compute the distance. Set to <code>plane</code> for a faster
+	 * calculation that's inaccurate on long distances and close to the poles.
+	 * <p>
 	 * API name: {@code distance_type}
 	 */
 	@Nullable
@@ -117,6 +121,10 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Set to <code>IGNORE_MALFORMED</code> to accept geo points with invalid
+	 * latitude or longitude. Set to <code>COERCE</code> to also try to infer
+	 * correct latitude or longitude.
+	 * <p>
 	 * API name: {@code validation_method}
 	 */
 	@Nullable
@@ -129,11 +137,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		this.location.serialize(generator, mapper);
 
 		super.serializeInternal(generator, mapper);
-		if (this.distance != null) {
-			generator.writeKey("distance");
-			generator.write(this.distance);
+		generator.writeKey("distance");
+		generator.write(this.distance);
 
-		}
 		if (this.distanceType != null) {
 			generator.writeKey("distance_type");
 			this.distanceType.serialize(generator, mapper);
@@ -179,7 +185,6 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
-		@Nullable
 		private String distance;
 
 		@Nullable
@@ -189,14 +194,20 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		private GeoValidationMethod validationMethod;
 
 		/**
+		 * Required - The radius of the circle centred on the specified location. Points
+		 * which fall into this circle are considered to be matches.
+		 * <p>
 		 * API name: {@code distance}
 		 */
-		public final Builder distance(@Nullable String value) {
+		public final Builder distance(String value) {
 			this.distance = value;
 			return this;
 		}
 
 		/**
+		 * How to compute the distance. Set to <code>plane</code> for a faster
+		 * calculation that's inaccurate on long distances and close to the poles.
+		 * <p>
 		 * API name: {@code distance_type}
 		 */
 		public final Builder distanceType(@Nullable GeoDistanceType value) {
@@ -205,6 +216,10 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Set to <code>IGNORE_MALFORMED</code> to accept geo points with invalid
+		 * latitude or longitude. Set to <code>COERCE</code> to also try to infer
+		 * correct latitude or longitude.
+		 * <p>
 		 * API name: {@code validation_method}
 		 */
 		public final Builder validationMethod(@Nullable GeoValidationMethod value) {

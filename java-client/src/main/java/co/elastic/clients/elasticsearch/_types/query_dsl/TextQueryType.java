@@ -35,16 +35,40 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum TextQueryType implements JsonEnum {
+	/**
+	 * Finds documents that match any field, but uses the <code>_score</code> from
+	 * the best field.
+	 */
 	BestFields("best_fields"),
 
+	/**
+	 * Finds documents that match any field and combines the <code>_score</code>
+	 * from each field.
+	 */
 	MostFields("most_fields"),
 
+	/**
+	 * Treats fields with the same analyzer as though they were one big field. Looks
+	 * for each word in any field.
+	 */
 	CrossFields("cross_fields"),
 
+	/**
+	 * Runs a <code>match_phrase</code> query on each field and uses the
+	 * <code>_score</code> from the best field.
+	 */
 	Phrase("phrase"),
 
+	/**
+	 * Runs a <code>match_phrase_prefix</code> query on each field and uses the
+	 * <code>_score</code> from the best field.
+	 */
 	PhrasePrefix("phrase_prefix"),
 
+	/**
+	 * Creates a <code>match_bool_prefix</code> query on each field and combines the
+	 * <code>_score</code> from each field.
+	 */
 	BoolPrefix("bool_prefix"),
 
 	;

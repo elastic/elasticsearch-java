@@ -109,7 +109,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the datafeed_id
+	 * The datafeed identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -119,7 +119,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the datafeed state
+	 * The status of the datafeed.
 	 * <p>
 	 * API name: {@code state}
 	 */
@@ -129,7 +129,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * why the datafeed is or is not assigned to a node
+	 * For started datafeeds only, contains messages relating to the selection of a
+	 * node.
 	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
@@ -139,7 +140,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * bucket count
+	 * The number of buckets processed.
 	 * <p>
 	 * API name: {@code buckets.count}
 	 */
@@ -149,7 +150,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * number of searches ran by the datafeed
+	 * The number of searches run by the datafeed.
 	 * <p>
 	 * API name: {@code search.count}
 	 */
@@ -159,7 +160,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the total search time
+	 * The total time the datafeed spent searching, in milliseconds.
 	 * <p>
 	 * API name: {@code search.time}
 	 */
@@ -169,7 +170,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the average search time per bucket (millisecond)
+	 * The average search time per bucket, in milliseconds.
 	 * <p>
 	 * API name: {@code search.bucket_avg}
 	 */
@@ -179,7 +180,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * the exponential average search time per hour (millisecond)
+	 * The exponential average search time per hour, in milliseconds.
 	 * <p>
 	 * API name: {@code search.exp_avg_hour}
 	 */
@@ -189,7 +190,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * id of the assigned node
+	 * The unique identifier of the assigned node. For started datafeeds only, this
+	 * information pertains to the node upon which the datafeed is started.
 	 * <p>
 	 * API name: {@code node.id}
 	 */
@@ -199,7 +201,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * name of the assigned node
+	 * The name of the assigned node. For started datafeeds only, this information
+	 * pertains to the node upon which the datafeed is started.
 	 * <p>
 	 * API name: {@code node.name}
 	 */
@@ -209,7 +212,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * ephemeral id of the assigned node
+	 * The ephemeral identifier of the assigned node. For started datafeeds only,
+	 * this information pertains to the node upon which the datafeed is started.
 	 * <p>
 	 * API name: {@code node.ephemeral_id}
 	 */
@@ -219,7 +223,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * network address of the assigned node
+	 * The network address of the assigned node. For started datafeeds only, this
+	 * information pertains to the node upon which the datafeed is started.
 	 * <p>
 	 * API name: {@code node.address}
 	 */
@@ -350,7 +355,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		private String nodeAddress;
 
 		/**
-		 * the datafeed_id
+		 * The datafeed identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -360,7 +365,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the datafeed state
+		 * The status of the datafeed.
 		 * <p>
 		 * API name: {@code state}
 		 */
@@ -370,7 +375,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * why the datafeed is or is not assigned to a node
+		 * For started datafeeds only, contains messages relating to the selection of a
+		 * node.
 		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
@@ -380,7 +386,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * bucket count
+		 * The number of buckets processed.
 		 * <p>
 		 * API name: {@code buckets.count}
 		 */
@@ -390,7 +396,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * number of searches ran by the datafeed
+		 * The number of searches run by the datafeed.
 		 * <p>
 		 * API name: {@code search.count}
 		 */
@@ -400,7 +406,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the total search time
+		 * The total time the datafeed spent searching, in milliseconds.
 		 * <p>
 		 * API name: {@code search.time}
 		 */
@@ -410,7 +416,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the average search time per bucket (millisecond)
+		 * The average search time per bucket, in milliseconds.
 		 * <p>
 		 * API name: {@code search.bucket_avg}
 		 */
@@ -420,7 +426,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * the exponential average search time per hour (millisecond)
+		 * The exponential average search time per hour, in milliseconds.
 		 * <p>
 		 * API name: {@code search.exp_avg_hour}
 		 */
@@ -430,7 +436,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * id of the assigned node
+		 * The unique identifier of the assigned node. For started datafeeds only, this
+		 * information pertains to the node upon which the datafeed is started.
 		 * <p>
 		 * API name: {@code node.id}
 		 */
@@ -440,7 +447,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * name of the assigned node
+		 * The name of the assigned node. For started datafeeds only, this information
+		 * pertains to the node upon which the datafeed is started.
 		 * <p>
 		 * API name: {@code node.name}
 		 */
@@ -450,7 +458,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * ephemeral id of the assigned node
+		 * The ephemeral identifier of the assigned node. For started datafeeds only,
+		 * this information pertains to the node upon which the datafeed is started.
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
@@ -460,7 +469,8 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * network address of the assigned node
+		 * The network address of the assigned node. For started datafeeds only, this
+		 * information pertains to the node upon which the datafeed is started.
 		 * <p>
 		 * API name: {@code node.address}
 		 */

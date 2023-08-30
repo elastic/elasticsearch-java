@@ -78,6 +78,9 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Documents with a score lower than this floating point number are excluded
+	 * from the search results.
+	 * <p>
 	 * API name: {@code min_score}
 	 */
 	@Nullable
@@ -86,14 +89,20 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Query used to return documents.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final Query query() {
 		return this.query;
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - Script used to compute the score of documents returned by the
+	 * query. Important: final relevance scores from the <code>script_score</code>
+	 * query cannot be negative.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final Script script() {
 		return this.script;
@@ -130,6 +139,9 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		private Script script;
 
 		/**
+		 * Documents with a score lower than this floating point number are excluded
+		 * from the search results.
+		 * <p>
 		 * API name: {@code min_score}
 		 */
 		public final Builder minScore(@Nullable Float value) {
@@ -138,7 +150,9 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query used to return documents.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -146,14 +160,20 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Query used to return documents.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Script used to compute the score of documents returned by the
+		 * query. Important: final relevance scores from the <code>script_score</code>
+		 * query cannot be negative.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Script value) {
 			this.script = value;
@@ -161,7 +181,11 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Script used to compute the score of documents returned by the
+		 * query. Important: final relevance scores from the <code>script_score</code>
+		 * query cannot be negative.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());

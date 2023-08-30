@@ -327,6 +327,24 @@ public class MlDatafeedsRequest extends CatRequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= _datafeedId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_datafeedId)) {
+					params.put("datafeedId", request.datafeedId);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

@@ -73,20 +73,29 @@ public class EnrichStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code coordinator_stats}
+	 * Required - Objects containing information about each coordinating ingest node
+	 * for configured enrich processors.
+	 * <p>
+	 * API name: {@code coordinator_stats}
 	 */
 	public final List<CoordinatorStats> coordinatorStats() {
 		return this.coordinatorStats;
 	}
 
 	/**
-	 * Required - API name: {@code executing_policies}
+	 * Required - Objects containing information about each enrich policy that is
+	 * currently executing.
+	 * <p>
+	 * API name: {@code executing_policies}
 	 */
 	public final List<ExecutingPolicy> executingPolicies() {
 		return this.executingPolicies;
 	}
 
 	/**
+	 * Objects containing information about the enrich cache stats on each ingest
+	 * node.
+	 * <p>
 	 * API name: {@code cache_stats}
 	 */
 	public final List<CacheStats> cacheStats() {
@@ -159,7 +168,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		private List<CacheStats> cacheStats;
 
 		/**
-		 * Required - API name: {@code coordinator_stats}
+		 * Required - Objects containing information about each coordinating ingest node
+		 * for configured enrich processors.
+		 * <p>
+		 * API name: {@code coordinator_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>coordinatorStats</code>.
 		 */
@@ -169,7 +181,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code coordinator_stats}
+		 * Required - Objects containing information about each coordinating ingest node
+		 * for configured enrich processors.
+		 * <p>
+		 * API name: {@code coordinator_stats}
 		 * <p>
 		 * Adds one or more values to <code>coordinatorStats</code>.
 		 */
@@ -179,7 +194,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code coordinator_stats}
+		 * Required - Objects containing information about each coordinating ingest node
+		 * for configured enrich processors.
+		 * <p>
+		 * API name: {@code coordinator_stats}
 		 * <p>
 		 * Adds a value to <code>coordinatorStats</code> using a builder lambda.
 		 */
@@ -188,7 +206,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code executing_policies}
+		 * Required - Objects containing information about each enrich policy that is
+		 * currently executing.
+		 * <p>
+		 * API name: {@code executing_policies}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>executingPolicies</code>.
 		 */
@@ -198,7 +219,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code executing_policies}
+		 * Required - Objects containing information about each enrich policy that is
+		 * currently executing.
+		 * <p>
+		 * API name: {@code executing_policies}
 		 * <p>
 		 * Adds one or more values to <code>executingPolicies</code>.
 		 */
@@ -208,7 +232,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code executing_policies}
+		 * Required - Objects containing information about each enrich policy that is
+		 * currently executing.
+		 * <p>
+		 * API name: {@code executing_policies}
 		 * <p>
 		 * Adds a value to <code>executingPolicies</code> using a builder lambda.
 		 */
@@ -217,6 +244,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Objects containing information about the enrich cache stats on each ingest
+		 * node.
+		 * <p>
 		 * API name: {@code cache_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cacheStats</code>.
@@ -227,6 +257,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Objects containing information about the enrich cache stats on each ingest
+		 * node.
+		 * <p>
 		 * API name: {@code cache_stats}
 		 * <p>
 		 * Adds one or more values to <code>cacheStats</code>.
@@ -237,6 +270,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Objects containing information about the enrich cache stats on each ingest
+		 * node.
+		 * <p>
 		 * API name: {@code cache_stats}
 		 * <p>
 		 * Adds a value to <code>cacheStats</code> using a builder lambda.

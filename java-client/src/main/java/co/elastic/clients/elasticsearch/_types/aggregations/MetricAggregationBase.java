@@ -70,6 +70,8 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The field on which to run the aggregation.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -78,6 +80,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -140,6 +145,8 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		private Script script;
 
 		/**
+		 * The field on which to run the aggregation.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final BuilderT field(@Nullable String value) {
@@ -148,6 +155,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final BuilderT missing(@Nullable FieldValue value) {
@@ -156,6 +166,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final BuilderT missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
@@ -163,6 +176,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final BuilderT missing(String value) {
@@ -171,6 +187,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final BuilderT missing(long value) {
@@ -179,6 +198,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final BuilderT missing(double value) {
@@ -187,6 +209,9 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final BuilderT missing(boolean value) {

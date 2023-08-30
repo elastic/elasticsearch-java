@@ -88,6 +88,8 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 	}
 
 	/**
+	 * Analyzer used to analyze the <code>prefix</code>.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -96,13 +98,20 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 	}
 
 	/**
-	 * Required - API name: {@code prefix}
+	 * Required - Beginning characters of terms you wish to find in the top-level
+	 * field.
+	 * <p>
+	 * API name: {@code prefix}
 	 */
 	public final String prefix() {
 		return this.prefix;
 	}
 
 	/**
+	 * If specified, match intervals from this field rather than the top-level
+	 * field. The <code>prefix</code> is normalized using the search analyzer from
+	 * this field, unless <code>analyzer</code> is specified separately.
+	 * <p>
 	 * API name: {@code use_field}
 	 */
 	@Nullable
@@ -158,6 +167,8 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 		private String useField;
 
 		/**
+		 * Analyzer used to analyze the <code>prefix</code>.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -166,7 +177,10 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 		}
 
 		/**
-		 * Required - API name: {@code prefix}
+		 * Required - Beginning characters of terms you wish to find in the top-level
+		 * field.
+		 * <p>
+		 * API name: {@code prefix}
 		 */
 		public final Builder prefix(String value) {
 			this.prefix = value;
@@ -174,6 +188,10 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 		}
 
 		/**
+		 * If specified, match intervals from this field rather than the top-level
+		 * field. The <code>prefix</code> is normalized using the search analyzer from
+		 * this field, unless <code>analyzer</code> is specified separately.
+		 * <p>
 		 * API name: {@code use_field}
 		 */
 		public final Builder useField(@Nullable String value) {

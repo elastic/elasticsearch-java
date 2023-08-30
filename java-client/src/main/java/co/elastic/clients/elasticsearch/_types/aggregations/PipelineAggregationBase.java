@@ -62,6 +62,9 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 	}
 
 	/**
+	 * DecimalFormat pattern for the output value. If specified, the formatted value
+	 * is returned in the aggregation’s <code>value_as_string</code> property.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -70,6 +73,8 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 	}
 
 	/**
+	 * Policy to apply when gaps are found in the data.
+	 * <p>
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
@@ -102,6 +107,9 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 		private GapPolicy gapPolicy;
 
 		/**
+		 * DecimalFormat pattern for the output value. If specified, the formatted value
+		 * is returned in the aggregation’s <code>value_as_string</code> property.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final BuilderT format(@Nullable String value) {
@@ -110,6 +118,8 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 		}
 
 		/**
+		 * Policy to apply when gaps are found in the data.
+		 * <p>
 		 * API name: {@code gap_policy}
 		 */
 		public final BuilderT gapPolicy(@Nullable GapPolicy value) {

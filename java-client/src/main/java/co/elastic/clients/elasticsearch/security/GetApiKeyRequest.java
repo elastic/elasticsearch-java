@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -44,7 +45,12 @@ import javax.annotation.Nullable;
 // typedef: security.get_api_key.Request
 
 /**
- * Retrieves information for one or more API keys.
+ * Retrieves information for one or more API keys. NOTE: If you have only the
+ * <code>manage_own_api_key</code> privilege, this API returns only the API keys
+ * that you own. If you have <code>read_security</code>,
+ * <code>manage_api_key</code> or greater privileges (including
+ * <code>manage_security</code>), this API returns all API keys regardless of
+ * ownership.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_api_key.Request">API
  *      specification</a>
@@ -87,7 +93,8 @@ public class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
-	 * API key id of the API key to be retrieved
+	 * An API key id. This parameter cannot be used with any of <code>name</code>,
+	 * <code>realm_name</code> or <code>username</code>.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -97,7 +104,9 @@ public class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
-	 * API key name of the API key to be retrieved
+	 * An API key name. This parameter cannot be used with any of <code>id</code>,
+	 * <code>realm_name</code> or <code>username</code>. It supports prefix search
+	 * with wildcard.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -107,7 +116,10 @@ public class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
-	 * flag to query API keys owned by the currently authenticated user
+	 * A boolean flag that can be used to query API keys owned by the currently
+	 * authenticated user. The <code>realm_name</code> or <code>username</code>
+	 * parameters cannot be specified when this parameter is set to
+	 * <code>true</code> as they are assumed to be the currently authenticated ones.
 	 * <p>
 	 * API name: {@code owner}
 	 */
@@ -117,7 +129,9 @@ public class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
-	 * realm name of the user who created this API key to be retrieved
+	 * The name of an authentication realm. This parameter cannot be used with
+	 * either <code>id</code> or <code>name</code> or when <code>owner</code> flag
+	 * is set to <code>true</code>.
 	 * <p>
 	 * API name: {@code realm_name}
 	 */
@@ -127,7 +141,9 @@ public class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
-	 * user name of the user who created this API key to be retrieved
+	 * The username of a user. This parameter cannot be used with either
+	 * <code>id</code> or <code>name</code> or when <code>owner</code> flag is set
+	 * to <code>true</code>.
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -176,7 +192,8 @@ public class GetApiKeyRequest extends RequestBase {
 		private Boolean withLimitedBy;
 
 		/**
-		 * API key id of the API key to be retrieved
+		 * An API key id. This parameter cannot be used with any of <code>name</code>,
+		 * <code>realm_name</code> or <code>username</code>.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -186,7 +203,9 @@ public class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
-		 * API key name of the API key to be retrieved
+		 * An API key name. This parameter cannot be used with any of <code>id</code>,
+		 * <code>realm_name</code> or <code>username</code>. It supports prefix search
+		 * with wildcard.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -196,7 +215,10 @@ public class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
-		 * flag to query API keys owned by the currently authenticated user
+		 * A boolean flag that can be used to query API keys owned by the currently
+		 * authenticated user. The <code>realm_name</code> or <code>username</code>
+		 * parameters cannot be specified when this parameter is set to
+		 * <code>true</code> as they are assumed to be the currently authenticated ones.
 		 * <p>
 		 * API name: {@code owner}
 		 */
@@ -206,7 +228,9 @@ public class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
-		 * realm name of the user who created this API key to be retrieved
+		 * The name of an authentication realm. This parameter cannot be used with
+		 * either <code>id</code> or <code>name</code> or when <code>owner</code> flag
+		 * is set to <code>true</code>.
 		 * <p>
 		 * API name: {@code realm_name}
 		 */
@@ -216,7 +240,9 @@ public class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
-		 * user name of the user who created this API key to be retrieved
+		 * The username of a user. This parameter cannot be used with either
+		 * <code>id</code> or <code>name</code> or when <code>owner</code> flag is set
+		 * to <code>true</code>.
 		 * <p>
 		 * API name: {@code username}
 		 */
@@ -273,6 +299,11 @@ public class GetApiKeyRequest extends RequestBase {
 			request -> {
 				return "/_security/api_key";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

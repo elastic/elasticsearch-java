@@ -39,6 +39,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,7 +48,24 @@ import javax.annotation.Nullable;
 // typedef: security.update_api_key.Request
 
 /**
- * Updates attributes of an existing API key.
+ * Updates attributes of an existing API key. Users can only update API keys
+ * that they created or that were granted to them. Use this API to update API
+ * keys created by the create API Key or grant API Key APIs. If you need to
+ * apply the same update to many API keys, you can use bulk update API Keys to
+ * reduce overhead. It’s not possible to update expired API keys, or API keys
+ * that have been invalidated by invalidate API Key. This API supports updates
+ * to an API key’s access scope and metadata. The access scope of an API key is
+ * derived from the <code>role_descriptors</code> you specify in the request,
+ * and a snapshot of the owner user’s permissions at the time of the request.
+ * The snapshot of the owner’s permissions is updated automatically on every
+ * call. If you don’t specify <code>role_descriptors</code> in the request, a
+ * call to this API might still change the API key’s access scope. This change
+ * can occur if the owner user’s permissions have changed since the API key was
+ * created or last modified. To update another user’s API key, use the
+ * <code>run_as</code> feature to submit a request on behalf of another user.
+ * IMPORTANT: It’s not possible to use an API key as the authentication
+ * credential for this API. To update an API key, the owner user’s credentials
+ * are required.
  * 
  * @see <a href="../doc-files/api-spec.html#security.update_api_key.Request">API
  *      specification</a>
@@ -324,6 +342,21 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _id = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _id;
+
+				if (propsSet == (_id)) {
+					params.put("id", request.id);
+				}
+				return params;
 			},
 
 			// Request parameters

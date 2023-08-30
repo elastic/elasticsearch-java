@@ -486,6 +486,24 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+				propsSet |= _id;
+
+				if (propsSet == (_index | _id)) {
+					params.put("index", request.index);
+					params.put("id", request.id);
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();

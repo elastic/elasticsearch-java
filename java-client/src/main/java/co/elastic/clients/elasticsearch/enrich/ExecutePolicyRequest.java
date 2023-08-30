@@ -71,7 +71,7 @@ public class ExecutePolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the enrich policy
+	 * Required - Enrich policy to execute.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -80,7 +80,8 @@ public class ExecutePolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Should the request should block until the execution is complete.
+	 * If <code>true</code>, the request blocks other enrich policy execution
+	 * requests until complete.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -104,7 +105,7 @@ public class ExecutePolicyRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Required - The name of the enrich policy
+		 * Required - Enrich policy to execute.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -114,7 +115,8 @@ public class ExecutePolicyRequest extends RequestBase {
 		}
 
 		/**
-		 * Should the request should block until the execution is complete.
+		 * If <code>true</code>, the request blocks other enrich policy execution
+		 * requests until complete.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
@@ -174,6 +176,21 @@ public class ExecutePolicyRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

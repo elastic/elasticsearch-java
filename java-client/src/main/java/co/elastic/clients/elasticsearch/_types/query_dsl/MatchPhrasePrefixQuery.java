@@ -98,6 +98,8 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Analyzer used to convert text in the query value into tokens.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -106,6 +108,9 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of terms to which the last provided term of the query value
+	 * will expand.
+	 * <p>
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
@@ -114,13 +119,17 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Text you wish to find in the provided field.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * Maximum number of positions allowed between matching tokens.
+	 * <p>
 	 * API name: {@code slop}
 	 */
 	@Nullable
@@ -129,6 +138,9 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether no documents are returned if the analyzer removes all
+	 * tokens, such as when using a <code>stop</code> filter.
+	 * <p>
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
@@ -201,6 +213,8 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		private ZeroTermsQuery zeroTermsQuery;
 
 		/**
+		 * Analyzer used to convert text in the query value into tokens.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -209,6 +223,9 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of terms to which the last provided term of the query value
+		 * will expand.
+		 * <p>
 		 * API name: {@code max_expansions}
 		 */
 		public final Builder maxExpansions(@Nullable Integer value) {
@@ -217,7 +234,9 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Text you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -225,6 +244,8 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of positions allowed between matching tokens.
+		 * <p>
 		 * API name: {@code slop}
 		 */
 		public final Builder slop(@Nullable Integer value) {
@@ -233,6 +254,9 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Indicates whether no documents are returned if the analyzer removes all
+		 * tokens, such as when using a <code>stop</code> filter.
+		 * <p>
 		 * API name: {@code zero_terms_query}
 		 */
 		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {

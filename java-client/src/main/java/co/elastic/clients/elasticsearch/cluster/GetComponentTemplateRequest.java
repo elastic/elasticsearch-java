@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.get_component_template.Request
 
 /**
- * Returns one or more component templates
+ * Retrieves information about component templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.get_component_template.Request">API
@@ -85,6 +85,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code>, returns settings in flat format.
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -103,8 +105,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * If <code>true</code>, the request retrieves information from the local node
+	 * only. If <code>false</code>, information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -114,7 +116,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -124,7 +127,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * The comma separated names of the component templates
+	 * Comma-separated list of component template names used to limit the request.
+	 * Wildcard (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -158,6 +162,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * If <code>true</code>, returns settings in flat format.
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public final Builder flatSettings(@Nullable Boolean value) {
@@ -176,8 +182,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * If <code>true</code>, the request retrieves information from the local node
+		 * only. If <code>false</code>, information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -187,7 +193,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -197,7 +204,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -206,7 +214,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * The comma separated names of the component templates
+		 * Comma-separated list of component template names used to limit the request.
+		 * Wildcard (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -270,6 +279,24 @@ public class GetComponentTemplateRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= _name;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

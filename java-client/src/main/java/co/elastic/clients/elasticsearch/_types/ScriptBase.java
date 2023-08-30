@@ -60,6 +60,9 @@ public abstract class ScriptBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies any named parameters that are passed into the script as variables.
+	 * Use parameters instead of hard-coded values to decrease compile time.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -103,6 +106,9 @@ public abstract class ScriptBase implements JsonpSerializable {
 		private Map<String, JsonData> params;
 
 		/**
+		 * Specifies any named parameters that are passed into the script as variables.
+		 * Use parameters instead of hard-coded values to decrease compile time.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -113,6 +119,9 @@ public abstract class ScriptBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies any named parameters that are passed into the script as variables.
+		 * Use parameters instead of hard-coded values to decrease compile time.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.

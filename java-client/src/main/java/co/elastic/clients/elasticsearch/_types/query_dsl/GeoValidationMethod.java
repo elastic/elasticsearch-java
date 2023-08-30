@@ -35,8 +35,15 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum GeoValidationMethod implements JsonEnum {
+	/**
+	 * Accept geo points with invalid latitude or longitude and additionally try and
+	 * infer correct coordinates.
+	 */
 	Coerce("coerce"),
 
+	/**
+	 * Accept geo points with invalid latitude or longitude.
+	 */
 	IgnoreMalformed("ignore_malformed"),
 
 	Strict("strict"),

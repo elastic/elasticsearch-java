@@ -52,16 +52,12 @@ public class SlowlogTresholds implements JsonpSerializable {
 	@Nullable
 	private final SlowlogTresholdLevels fetch;
 
-	@Nullable
-	private final SlowlogTresholdLevels index;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private SlowlogTresholds(Builder builder) {
 
 		this.query = builder.query;
 		this.fetch = builder.fetch;
-		this.index = builder.index;
 
 	}
 
@@ -86,18 +82,6 @@ public class SlowlogTresholds implements JsonpSerializable {
 	}
 
 	/**
-	 * The indexing slow log, similar in functionality to the search slow log. The
-	 * log file name ends with <code>_index_indexing_slowlog.json</code>. Log and
-	 * the thresholds are configured in the same way as the search slowlog.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final SlowlogTresholdLevels index() {
-		return this.index;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -116,11 +100,6 @@ public class SlowlogTresholds implements JsonpSerializable {
 		if (this.fetch != null) {
 			generator.writeKey("fetch");
 			this.fetch.serialize(generator, mapper);
-
-		}
-		if (this.index != null) {
-			generator.writeKey("index");
-			this.index.serialize(generator, mapper);
 
 		}
 
@@ -143,9 +122,6 @@ public class SlowlogTresholds implements JsonpSerializable {
 
 		@Nullable
 		private SlowlogTresholdLevels fetch;
-
-		@Nullable
-		private SlowlogTresholdLevels index;
 
 		/**
 		 * API name: {@code query}
@@ -175,29 +151,6 @@ public class SlowlogTresholds implements JsonpSerializable {
 		 */
 		public final Builder fetch(Function<SlowlogTresholdLevels.Builder, ObjectBuilder<SlowlogTresholdLevels>> fn) {
 			return this.fetch(fn.apply(new SlowlogTresholdLevels.Builder()).build());
-		}
-
-		/**
-		 * The indexing slow log, similar in functionality to the search slow log. The
-		 * log file name ends with <code>_index_indexing_slowlog.json</code>. Log and
-		 * the thresholds are configured in the same way as the search slowlog.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public final Builder index(@Nullable SlowlogTresholdLevels value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The indexing slow log, similar in functionality to the search slow log. The
-		 * log file name ends with <code>_index_indexing_slowlog.json</code>. Log and
-		 * the thresholds are configured in the same way as the search slowlog.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public final Builder index(Function<SlowlogTresholdLevels.Builder, ObjectBuilder<SlowlogTresholdLevels>> fn) {
-			return this.index(fn.apply(new SlowlogTresholdLevels.Builder()).build());
 		}
 
 		@Override
@@ -230,7 +183,6 @@ public class SlowlogTresholds implements JsonpSerializable {
 
 		op.add(Builder::query, SlowlogTresholdLevels._DESERIALIZER, "query");
 		op.add(Builder::fetch, SlowlogTresholdLevels._DESERIALIZER, "fetch");
-		op.add(Builder::index, SlowlogTresholdLevels._DESERIALIZER, "index");
 
 	}
 

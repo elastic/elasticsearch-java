@@ -46,7 +46,8 @@ import javax.annotation.Nullable;
 // typedef: indices.modify_data_stream.Request
 
 /**
- * Modifies a data stream
+ * Performs one or more data stream modification actions in a single atomic
+ * operation.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.modify_data_stream.Request">API
@@ -198,6 +199,11 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return "/_data_stream/_modify";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

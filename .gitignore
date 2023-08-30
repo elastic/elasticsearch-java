@@ -24,3 +24,8 @@ html_docs
 
 # Local Makefile
 Makefile
+
+# Temp files and directories
+temp/
+*Temp.java
+*TempTest.java

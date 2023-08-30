@@ -137,6 +137,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Analyzer used to convert the text in the query value into tokens.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -145,6 +147,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, match phrase queries are automatically created for
+	 * multi-term synonyms.
+	 * <p>
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
@@ -164,6 +169,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The fields to be queried. Defaults to the
+	 * <code>index.query.default_field</code> index settings, which in turn defaults
+	 * to <code>*</code>.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
@@ -171,6 +180,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum edit distance allowed for matching.
+	 * <p>
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
@@ -179,6 +190,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Method used to rewrite the query.
+	 * <p>
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
@@ -187,6 +200,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+	 * adjacent characters (for example, <code>ab</code> to <code>ba</code>). Can be
+	 * applied to the term subqueries constructed for all terms but the final term.
+	 * <p>
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
@@ -195,6 +212,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * If <code>true</code>, format-based errors, such as providing a text query
+	 * value for a numeric field, are ignored.
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -203,6 +223,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of terms to which the query will expand.
+	 * <p>
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
@@ -211,6 +233,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Minimum number of clauses that must match for a document to be returned.
+	 * <p>
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
@@ -219,6 +243,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Boolean logic used to interpret text in the query value.
+	 * <p>
 	 * API name: {@code operator}
 	 */
 	@Nullable
@@ -227,6 +253,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Number of beginning characters left unchanged for fuzzy matching.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -235,13 +263,18 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Text, number, boolean value or date you wish to find in the
+	 * provided field.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * Maximum number of positions allowed between matching tokens.
+	 * <p>
 	 * API name: {@code slop}
 	 */
 	@Nullable
@@ -250,6 +283,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Determines how scores for each per-term blended query and scores across
+	 * groups are combined.
+	 * <p>
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
@@ -258,6 +294,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * How <code>the</code> multi_match query is executed internally.
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -266,6 +304,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether no documents are returned if the <code>analyzer</code>
+	 * removes all tokens, such as when using a <code>stop</code> filter.
+	 * <p>
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
@@ -422,6 +463,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		private ZeroTermsQuery zeroTermsQuery;
 
 		/**
+		 * Analyzer used to convert the text in the query value into tokens.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -430,6 +473,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, match phrase queries are automatically created for
+		 * multi-term synonyms.
+		 * <p>
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
 		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
@@ -449,6 +495,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The fields to be queried. Defaults to the
+		 * <code>index.query.default_field</code> index settings, which in turn defaults
+		 * to <code>*</code>.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -459,6 +509,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The fields to be queried. Defaults to the
+		 * <code>index.query.default_field</code> index settings, which in turn defaults
+		 * to <code>*</code>.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
@@ -469,6 +523,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum edit distance allowed for matching.
+		 * <p>
 		 * API name: {@code fuzziness}
 		 */
 		public final Builder fuzziness(@Nullable String value) {
@@ -477,6 +533,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Method used to rewrite the query.
+		 * <p>
 		 * API name: {@code fuzzy_rewrite}
 		 */
 		public final Builder fuzzyRewrite(@Nullable String value) {
@@ -485,6 +543,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, edits for fuzzy matching include transpositions of two
+		 * adjacent characters (for example, <code>ab</code> to <code>ba</code>). Can be
+		 * applied to the term subqueries constructed for all terms but the final term.
+		 * <p>
 		 * API name: {@code fuzzy_transpositions}
 		 */
 		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
@@ -493,6 +555,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * If <code>true</code>, format-based errors, such as providing a text query
+		 * value for a numeric field, are ignored.
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public final Builder lenient(@Nullable Boolean value) {
@@ -501,6 +566,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of terms to which the query will expand.
+		 * <p>
 		 * API name: {@code max_expansions}
 		 */
 		public final Builder maxExpansions(@Nullable Integer value) {
@@ -509,6 +576,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Minimum number of clauses that must match for a document to be returned.
+		 * <p>
 		 * API name: {@code minimum_should_match}
 		 */
 		public final Builder minimumShouldMatch(@Nullable String value) {
@@ -517,6 +586,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Boolean logic used to interpret text in the query value.
+		 * <p>
 		 * API name: {@code operator}
 		 */
 		public final Builder operator(@Nullable Operator value) {
@@ -525,6 +596,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Number of beginning characters left unchanged for fuzzy matching.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -533,7 +606,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Text, number, boolean value or date you wish to find in the
+		 * provided field.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -541,6 +617,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum number of positions allowed between matching tokens.
+		 * <p>
 		 * API name: {@code slop}
 		 */
 		public final Builder slop(@Nullable Integer value) {
@@ -549,6 +627,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Determines how scores for each per-term blended query and scores across
+		 * groups are combined.
+		 * <p>
 		 * API name: {@code tie_breaker}
 		 */
 		public final Builder tieBreaker(@Nullable Double value) {
@@ -557,6 +638,8 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * How <code>the</code> multi_match query is executed internally.
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public final Builder type(@Nullable TextQueryType value) {
@@ -565,6 +648,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Indicates whether no documents are returned if the <code>analyzer</code>
+		 * removes all tokens, such as when using a <code>stop</code> filter.
+		 * <p>
 		 * API name: {@code zero_terms_query}
 		 */
 		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {

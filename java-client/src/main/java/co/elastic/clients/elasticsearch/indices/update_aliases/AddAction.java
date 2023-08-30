@@ -114,6 +114,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Alias for the action. Index alias names support date math.
+	 * <p>
 	 * API name: {@code alias}
 	 */
 	@Nullable
@@ -122,6 +124,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Aliases for the action. Index alias names support date math.
+	 * <p>
 	 * API name: {@code aliases}
 	 */
 	public final List<String> aliases() {
@@ -129,6 +133,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Query used to limit documents the alias can access.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -137,6 +143,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Data stream or index for the action. Supports wildcards (<code>*</code>).
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -145,6 +153,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	public final List<String> indices() {
@@ -152,6 +162,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route indexing operations to a specific shard. If specified,
+	 * this overwrites the <code>routing</code> value for indexing operations. Data
+	 * stream aliases don’t support this parameter.
+	 * <p>
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
@@ -160,6 +174,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the alias is hidden.
+	 * <p>
 	 * API name: {@code is_hidden}
 	 */
 	@Nullable
@@ -168,6 +184,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, sets the write index or data stream for the alias.
+	 * <p>
 	 * API name: {@code is_write_index}
 	 */
 	@Nullable
@@ -176,6 +194,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route indexing and search operations to a specific shard. Data
+	 * stream aliases don’t support this parameter.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -184,6 +205,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route search operations to a specific shard. If specified, this
+	 * overwrites the <code>routing</code> value for search operations. Data stream
+	 * aliases don’t support this parameter.
+	 * <p>
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
@@ -192,6 +217,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the alias must exist to perform the action.
+	 * <p>
 	 * API name: {@code must_exist}
 	 */
 	@Nullable
@@ -324,6 +351,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		private Boolean mustExist;
 
 		/**
+		 * Alias for the action. Index alias names support date math.
+		 * <p>
 		 * API name: {@code alias}
 		 */
 		public final Builder alias(@Nullable String value) {
@@ -332,6 +361,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Aliases for the action. Index alias names support date math.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>aliases</code>.
@@ -342,6 +373,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Aliases for the action. Index alias names support date math.
+		 * <p>
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds one or more values to <code>aliases</code>.
@@ -352,6 +385,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Query used to limit documents the alias can access.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable Query value) {
@@ -360,6 +395,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Query used to limit documents the alias can access.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -367,6 +404,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Data stream or index for the action. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -375,6 +414,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
@@ -385,6 +426,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+		 * <p>
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
@@ -395,6 +438,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route indexing operations to a specific shard. If specified,
+		 * this overwrites the <code>routing</code> value for indexing operations. Data
+		 * stream aliases don’t support this parameter.
+		 * <p>
 		 * API name: {@code index_routing}
 		 */
 		public final Builder indexRouting(@Nullable String value) {
@@ -403,6 +450,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the alias is hidden.
+		 * <p>
 		 * API name: {@code is_hidden}
 		 */
 		public final Builder isHidden(@Nullable Boolean value) {
@@ -411,6 +460,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, sets the write index or data stream for the alias.
+		 * <p>
 		 * API name: {@code is_write_index}
 		 */
 		public final Builder isWriteIndex(@Nullable Boolean value) {
@@ -419,6 +470,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route indexing and search operations to a specific shard. Data
+		 * stream aliases don’t support this parameter.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -427,6 +481,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route search operations to a specific shard. If specified, this
+		 * overwrites the <code>routing</code> value for search operations. Data stream
+		 * aliases don’t support this parameter.
+		 * <p>
 		 * API name: {@code search_routing}
 		 */
 		public final Builder searchRouting(@Nullable String value) {
@@ -435,6 +493,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the alias must exist to perform the action.
+		 * <p>
 		 * API name: {@code must_exist}
 		 */
 		public final Builder mustExist(@Nullable Boolean value) {

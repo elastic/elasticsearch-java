@@ -152,6 +152,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * A string that contains each boundary character.
+	 * <p>
 	 * API name: {@code boundary_chars}
 	 */
 	@Nullable
@@ -160,6 +162,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * How far to scan for boundary characters.
+	 * <p>
 	 * API name: {@code boundary_max_scan}
 	 */
 	@Nullable
@@ -168,6 +172,11 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies how to break the highlighted fragments: chars, sentence, or word.
+	 * Only valid for the unified and fvh highlighters. Defaults to
+	 * <code>sentence</code> for the <code>unified</code> highlighter. Defaults to
+	 * <code>chars</code> for the <code>fvh</code> highlighter.
+	 * <p>
 	 * API name: {@code boundary_scanner}
 	 */
 	@Nullable
@@ -176,6 +185,11 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Controls which locale is used to search for sentence and word boundaries.
+	 * This parameter takes a form of a language tag, for example:
+	 * <code>&quot;en-US&quot;</code>, <code>&quot;fr-FR&quot;</code>,
+	 * <code>&quot;ja-JP&quot;</code>.
+	 * <p>
 	 * API name: {@code boundary_scanner_locale}
 	 */
 	@Nullable
@@ -185,13 +199,20 @@ public abstract class HighlightBase implements JsonpSerializable {
 
 	/**
 	 * API name: {@code force_source}
+	 * 
+	 * @deprecated 8.8.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean forceSource() {
 		return this.forceSource;
 	}
 
 	/**
+	 * Specifies how text should be broken up in highlight snippets:
+	 * <code>simple</code> or <code>span</code>. Only valid for the
+	 * <code>plain</code> highlighter.
+	 * <p>
 	 * API name: {@code fragmenter}
 	 */
 	@Nullable
@@ -200,6 +221,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The size of the highlighted fragment in characters.
+	 * <p>
 	 * API name: {@code fragment_size}
 	 */
 	@Nullable
@@ -216,6 +239,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Highlight matches for a query other than the search query. This is especially
+	 * useful if you use a rescore query because those are not taken into account by
+	 * highlighting by default.
+	 * <p>
 	 * API name: {@code highlight_query}
 	 */
 	@Nullable
@@ -232,6 +259,12 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If set to a non-negative value, highlighting stops at this defined maximum
+	 * limit. The rest of the text is not processed, thus not highlighted and no
+	 * error is returned The <code>max_analyzed_offset</code> query setting does not
+	 * override the <code>index.highlight.max_analyzed_offset</code> setting, which
+	 * prevails when it’s set to lower value than the query setting.
+	 * <p>
 	 * API name: {@code max_analyzed_offset}
 	 */
 	@Nullable
@@ -240,6 +273,9 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The amount of text you want to return from the beginning of the field if
+	 * there are no matching fragments to highlight.
+	 * <p>
 	 * API name: {@code no_match_size}
 	 */
 	@Nullable
@@ -248,6 +284,13 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum number of fragments to return. If the number of fragments is set
+	 * to <code>0</code>, no fragments are returned. Instead, the entire field
+	 * contents are highlighted and returned. This can be handy when you need to
+	 * highlight short texts such as a title or address, but fragmentation is not
+	 * required. If <code>number_of_fragments</code> is <code>0</code>,
+	 * <code>fragment_size</code> is ignored.
+	 * <p>
 	 * API name: {@code number_of_fragments}
 	 */
 	@Nullable
@@ -263,6 +306,12 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Sorts highlighted fragments by score when set to <code>score</code>. By
+	 * default, fragments will be output in the order they appear in the field
+	 * (order: <code>none</code>). Setting this option to <code>score</code> will
+	 * output the most relevant fragments first. Each highlighter applies its own
+	 * logic to compute relevancy scores.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	@Nullable
@@ -271,6 +320,13 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Controls the number of matching phrases in a document that are considered.
+	 * Prevents the <code>fvh</code> highlighter from analyzing too many phrases and
+	 * consuming too much memory. When using <code>matched_fields</code>,
+	 * <code>phrase_limit</code> phrases per matched field are considered. Raising
+	 * the limit increases query time and consumes more memory. Only supported by
+	 * the <code>fvh</code> highlighter.
+	 * <p>
 	 * API name: {@code phrase_limit}
 	 */
 	@Nullable
@@ -279,6 +335,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Use in conjunction with <code>pre_tags</code> to define the HTML tags to use
+	 * for the highlighted text. By default, highlighted text is wrapped in
+	 * <code>&lt;em&gt;</code> and <code>&lt;/em&gt;</code> tags.
+	 * <p>
 	 * API name: {@code post_tags}
 	 */
 	public final List<String> postTags() {
@@ -286,6 +346,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Use in conjunction with <code>post_tags</code> to define the HTML tags to use
+	 * for the highlighted text. By default, highlighted text is wrapped in
+	 * <code>&lt;em&gt;</code> and <code>&lt;/em&gt;</code> tags.
+	 * <p>
 	 * API name: {@code pre_tags}
 	 */
 	public final List<String> preTags() {
@@ -293,6 +357,9 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * By default, only fields that contains a query match are highlighted. Set to
+	 * <code>false</code> to highlight all fields.
+	 * <p>
 	 * API name: {@code require_field_match}
 	 */
 	@Nullable
@@ -301,6 +368,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Set to <code>styled</code> to use the built-in tag schema.
+	 * <p>
 	 * API name: {@code tags_schema}
 	 */
 	@Nullable
@@ -527,6 +596,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A string that contains each boundary character.
+		 * <p>
 		 * API name: {@code boundary_chars}
 		 */
 		public final BuilderT boundaryChars(@Nullable String value) {
@@ -535,6 +606,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * How far to scan for boundary characters.
+		 * <p>
 		 * API name: {@code boundary_max_scan}
 		 */
 		public final BuilderT boundaryMaxScan(@Nullable Integer value) {
@@ -543,6 +616,11 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies how to break the highlighted fragments: chars, sentence, or word.
+		 * Only valid for the unified and fvh highlighters. Defaults to
+		 * <code>sentence</code> for the <code>unified</code> highlighter. Defaults to
+		 * <code>chars</code> for the <code>fvh</code> highlighter.
+		 * <p>
 		 * API name: {@code boundary_scanner}
 		 */
 		public final BuilderT boundaryScanner(@Nullable BoundaryScanner value) {
@@ -551,6 +629,11 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Controls which locale is used to search for sentence and word boundaries.
+		 * This parameter takes a form of a language tag, for example:
+		 * <code>&quot;en-US&quot;</code>, <code>&quot;fr-FR&quot;</code>,
+		 * <code>&quot;ja-JP&quot;</code>.
+		 * <p>
 		 * API name: {@code boundary_scanner_locale}
 		 */
 		public final BuilderT boundaryScannerLocale(@Nullable String value) {
@@ -560,13 +643,20 @@ public abstract class HighlightBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code force_source}
+		 * 
+		 * @deprecated 8.8.0
 		 */
+		@Deprecated
 		public final BuilderT forceSource(@Nullable Boolean value) {
 			this.forceSource = value;
 			return self();
 		}
 
 		/**
+		 * Specifies how text should be broken up in highlight snippets:
+		 * <code>simple</code> or <code>span</code>. Only valid for the
+		 * <code>plain</code> highlighter.
+		 * <p>
 		 * API name: {@code fragmenter}
 		 */
 		public final BuilderT fragmenter(@Nullable HighlighterFragmenter value) {
@@ -575,6 +665,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The size of the highlighted fragment in characters.
+		 * <p>
 		 * API name: {@code fragment_size}
 		 */
 		public final BuilderT fragmentSize(@Nullable Integer value) {
@@ -591,6 +683,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Highlight matches for a query other than the search query. This is especially
+		 * useful if you use a rescore query because those are not taken into account by
+		 * highlighting by default.
+		 * <p>
 		 * API name: {@code highlight_query}
 		 */
 		public final BuilderT highlightQuery(@Nullable Query value) {
@@ -599,6 +695,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Highlight matches for a query other than the search query. This is especially
+		 * useful if you use a rescore query because those are not taken into account by
+		 * highlighting by default.
+		 * <p>
 		 * API name: {@code highlight_query}
 		 */
 		public final BuilderT highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -614,6 +714,12 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If set to a non-negative value, highlighting stops at this defined maximum
+		 * limit. The rest of the text is not processed, thus not highlighted and no
+		 * error is returned The <code>max_analyzed_offset</code> query setting does not
+		 * override the <code>index.highlight.max_analyzed_offset</code> setting, which
+		 * prevails when it’s set to lower value than the query setting.
+		 * <p>
 		 * API name: {@code max_analyzed_offset}
 		 */
 		public final BuilderT maxAnalyzedOffset(@Nullable Integer value) {
@@ -622,6 +728,9 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The amount of text you want to return from the beginning of the field if
+		 * there are no matching fragments to highlight.
+		 * <p>
 		 * API name: {@code no_match_size}
 		 */
 		public final BuilderT noMatchSize(@Nullable Integer value) {
@@ -630,6 +739,13 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum number of fragments to return. If the number of fragments is set
+		 * to <code>0</code>, no fragments are returned. Instead, the entire field
+		 * contents are highlighted and returned. This can be handy when you need to
+		 * highlight short texts such as a title or address, but fragmentation is not
+		 * required. If <code>number_of_fragments</code> is <code>0</code>,
+		 * <code>fragment_size</code> is ignored.
+		 * <p>
 		 * API name: {@code number_of_fragments}
 		 */
 		public final BuilderT numberOfFragments(@Nullable Integer value) {
@@ -658,6 +774,12 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorts highlighted fragments by score when set to <code>score</code>. By
+		 * default, fragments will be output in the order they appear in the field
+		 * (order: <code>none</code>). Setting this option to <code>score</code> will
+		 * output the most relevant fragments first. Each highlighter applies its own
+		 * logic to compute relevancy scores.
+		 * <p>
 		 * API name: {@code order}
 		 */
 		public final BuilderT order(@Nullable HighlighterOrder value) {
@@ -666,6 +788,13 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Controls the number of matching phrases in a document that are considered.
+		 * Prevents the <code>fvh</code> highlighter from analyzing too many phrases and
+		 * consuming too much memory. When using <code>matched_fields</code>,
+		 * <code>phrase_limit</code> phrases per matched field are considered. Raising
+		 * the limit increases query time and consumes more memory. Only supported by
+		 * the <code>fvh</code> highlighter.
+		 * <p>
 		 * API name: {@code phrase_limit}
 		 */
 		public final BuilderT phraseLimit(@Nullable Integer value) {
@@ -674,6 +803,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Use in conjunction with <code>pre_tags</code> to define the HTML tags to use
+		 * for the highlighted text. By default, highlighted text is wrapped in
+		 * <code>&lt;em&gt;</code> and <code>&lt;/em&gt;</code> tags.
+		 * <p>
 		 * API name: {@code post_tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>postTags</code>.
@@ -684,6 +817,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Use in conjunction with <code>pre_tags</code> to define the HTML tags to use
+		 * for the highlighted text. By default, highlighted text is wrapped in
+		 * <code>&lt;em&gt;</code> and <code>&lt;/em&gt;</code> tags.
+		 * <p>
 		 * API name: {@code post_tags}
 		 * <p>
 		 * Adds one or more values to <code>postTags</code>.
@@ -694,6 +831,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Use in conjunction with <code>post_tags</code> to define the HTML tags to use
+		 * for the highlighted text. By default, highlighted text is wrapped in
+		 * <code>&lt;em&gt;</code> and <code>&lt;/em&gt;</code> tags.
+		 * <p>
 		 * API name: {@code pre_tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preTags</code>.
@@ -704,6 +845,10 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Use in conjunction with <code>post_tags</code> to define the HTML tags to use
+		 * for the highlighted text. By default, highlighted text is wrapped in
+		 * <code>&lt;em&gt;</code> and <code>&lt;/em&gt;</code> tags.
+		 * <p>
 		 * API name: {@code pre_tags}
 		 * <p>
 		 * Adds one or more values to <code>preTags</code>.
@@ -714,6 +859,9 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * By default, only fields that contains a query match are highlighted. Set to
+		 * <code>false</code> to highlight all fields.
+		 * <p>
 		 * API name: {@code require_field_match}
 		 */
 		public final BuilderT requireFieldMatch(@Nullable Boolean value) {
@@ -722,6 +870,8 @@ public abstract class HighlightBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Set to <code>styled</code> to use the built-in tag schema.
+		 * <p>
 		 * API name: {@code tags_schema}
 		 */
 		public final BuilderT tagsSchema(@Nullable HighlighterTagsSchema value) {

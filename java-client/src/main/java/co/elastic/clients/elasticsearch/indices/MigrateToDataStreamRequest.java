@@ -36,6 +36,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -43,7 +45,15 @@ import javax.annotation.Nullable;
 // typedef: indices.migrate_to_data_stream.Request
 
 /**
- * Migrates an alias to a data stream
+ * Converts an index alias to a data stream. You must have a matching index
+ * template that is data stream enabled. The alias must meet the following
+ * criteria: The alias must have a write index; All indices for the alias must
+ * have a <code>@timestamp</code> field mapping of a <code>date</code> or
+ * <code>date_nanos</code> field type; The alias must not have any filters; The
+ * alias must not use custom routing. If successful, the request removes the
+ * alias and creates a data stream with the same name. The indices for the alias
+ * become hidden backing indices for the stream. The write index for the alias
+ * becomes the write index for the stream.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.migrate_to_data_stream.Request">API
@@ -66,7 +76,7 @@ public class MigrateToDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the alias to migrate
+	 * Required - Name of the index alias to convert to a data stream.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -86,7 +96,7 @@ public class MigrateToDataStreamRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Required - The name of the alias to migrate
+		 * Required - Name of the index alias to convert to a data stream.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -145,6 +155,21 @@ public class MigrateToDataStreamRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

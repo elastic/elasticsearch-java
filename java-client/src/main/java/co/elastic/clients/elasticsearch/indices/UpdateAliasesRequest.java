@@ -38,6 +38,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: indices.update_aliases.Request
 
 /**
- * Updates index aliases.
+ * Adds a data stream or index to an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.update_aliases.Request">API
  *      specification</a>
@@ -78,6 +79,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Actions to perform.
+	 * <p>
 	 * API name: {@code actions}
 	 */
 	public final List<Action> actions() {
@@ -85,7 +88,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -95,7 +99,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Request timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -147,6 +152,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		private Time timeout;
 
 		/**
+		 * Actions to perform.
+		 * <p>
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
@@ -157,6 +164,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Actions to perform.
+		 * <p>
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds one or more values to <code>actions</code>.
@@ -167,6 +176,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Actions to perform.
+		 * <p>
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds a value to <code>actions</code> using a builder lambda.
@@ -176,7 +187,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -186,7 +198,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -195,7 +208,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Request timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -205,7 +219,8 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Request timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -263,6 +278,11 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				return "/_aliases";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

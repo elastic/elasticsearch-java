@@ -86,20 +86,29 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cluster}
+	 * Required - A list of cluster privileges. These privileges define the cluster
+	 * level actions that API keys are able to execute.
+	 * <p>
+	 * API name: {@code cluster}
 	 */
 	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * Required - A list of indices permissions entries.
+	 * <p>
+	 * API name: {@code indices}
 	 */
 	public final List<IndicesPrivileges> indices() {
 		return this.indices;
 	}
 
 	/**
+	 * An object defining global privileges. A global privilege is a form of cluster
+	 * privilege that is request-aware. Support for global privileges is currently
+	 * limited to the management of application privileges.
+	 * <p>
 	 * API name: {@code global}
 	 */
 	public final List<GlobalPrivilege> global() {
@@ -107,6 +116,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
+	 * A list of application privilege entries
+	 * <p>
 	 * API name: {@code applications}
 	 */
 	public final List<ApplicationPrivileges> applications() {
@@ -114,6 +125,9 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
+	 * Optional meta-data. Within the metadata object, keys that begin with
+	 * <code>_</code> are reserved for system usage.
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	public final Map<String, JsonData> metadata() {
@@ -121,6 +135,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
+	 * A list of users that the API keys can impersonate.
+	 * <p>
 	 * API name: {@code run_as}
 	 */
 	public final List<String> runAs() {
@@ -249,7 +265,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		private TransientMetadataConfig transientMetadata;
 
 		/**
-		 * Required - API name: {@code cluster}
+		 * Required - A list of cluster privileges. These privileges define the cluster
+		 * level actions that API keys are able to execute.
+		 * <p>
+		 * API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
@@ -259,7 +278,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code cluster}
+		 * Required - A list of cluster privileges. These privileges define the cluster
+		 * level actions that API keys are able to execute.
+		 * <p>
+		 * API name: {@code cluster}
 		 * <p>
 		 * Adds one or more values to <code>cluster</code>.
 		 */
@@ -269,7 +291,9 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - A list of indices permissions entries.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
@@ -279,7 +303,9 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - A list of indices permissions entries.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
@@ -289,7 +315,9 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - A list of indices permissions entries.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
@@ -298,6 +326,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
 		 * API name: {@code global}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>global</code>.
@@ -308,6 +340,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
 		 * API name: {@code global}
 		 * <p>
 		 * Adds one or more values to <code>global</code>.
@@ -318,6 +354,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
 		 * API name: {@code global}
 		 * <p>
 		 * Adds a value to <code>global</code> using a builder lambda.
@@ -327,6 +367,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of application privilege entries
+		 * <p>
 		 * API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
@@ -337,6 +379,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of application privilege entries
+		 * <p>
 		 * API name: {@code applications}
 		 * <p>
 		 * Adds one or more values to <code>applications</code>.
@@ -347,6 +391,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of application privilege entries
+		 * <p>
 		 * API name: {@code applications}
 		 * <p>
 		 * Adds a value to <code>applications</code> using a builder lambda.
@@ -357,6 +403,9 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * Optional meta-data. Within the metadata object, keys that begin with
+		 * <code>_</code> are reserved for system usage.
+		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
@@ -367,6 +416,9 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * Optional meta-data. Within the metadata object, keys that begin with
+		 * <code>_</code> are reserved for system usage.
+		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds an entry to <code>metadata</code>.
@@ -377,6 +429,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of users that the API keys can impersonate.
+		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
@@ -387,6 +441,8 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of users that the API keys can impersonate.
+		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds one or more values to <code>runAs</code>.

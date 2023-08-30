@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 // typedef: indices.put_alias.Request
 
 /**
- * Creates or updates an alias.
+ * Adds a data stream or index to an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_alias.Request">API
  *      specification</a>
@@ -104,6 +104,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Query used to limit documents the alias can access.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -112,9 +114,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A comma-separated list of index names the alias should point to
-	 * (supports wildcards); use <code>_all</code> to perform the operation on all
-	 * indices.
+	 * Required - Comma-separated list of data streams or indices to add. Supports
+	 * wildcards (<code>*</code>). Wildcard patterns that match both data streams
+	 * and indices return an error.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -123,6 +125,10 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route indexing operations to a specific shard. If specified,
+	 * this overwrites the <code>routing</code> value for indexing operations. Data
+	 * stream aliases don’t support this parameter.
+	 * <p>
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
@@ -131,6 +137,14 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, sets the write index or data stream for the alias. If
+	 * an alias points to multiple indices or data streams and
+	 * <code>is_write_index</code> isn’t set, the alias rejects write requests. If
+	 * an index alias points to one index and <code>is_write_index</code> isn’t set,
+	 * the index automatically acts as the write index. Data stream aliases don’t
+	 * automatically set a write data stream, even if the alias points to one data
+	 * stream.
+	 * <p>
 	 * API name: {@code is_write_index}
 	 */
 	@Nullable
@@ -139,7 +153,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -149,7 +164,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the alias to be created or updated
+	 * Required - Alias to update. If the alias doesn’t exist, the request creates
+	 * it. Index alias names support date math.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -158,6 +174,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route indexing and search operations to a specific shard. Data
+	 * stream aliases don’t support this parameter.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -166,6 +185,10 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to route search operations to a specific shard. If specified, this
+	 * overwrites the <code>routing</code> value for search operations. Data stream
+	 * aliases don’t support this parameter.
+	 * <p>
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
@@ -174,7 +197,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Explicit timestamp for the document
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -255,6 +279,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
+		 * Query used to limit documents the alias can access.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable Query value) {
@@ -263,6 +289,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Query used to limit documents the alias can access.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -270,9 +298,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names the alias should point to
-		 * (supports wildcards); use <code>_all</code> to perform the operation on all
-		 * indices.
+		 * Required - Comma-separated list of data streams or indices to add. Supports
+		 * wildcards (<code>*</code>). Wildcard patterns that match both data streams
+		 * and indices return an error.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -284,9 +312,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A comma-separated list of index names the alias should point to
-		 * (supports wildcards); use <code>_all</code> to perform the operation on all
-		 * indices.
+		 * Required - Comma-separated list of data streams or indices to add. Supports
+		 * wildcards (<code>*</code>). Wildcard patterns that match both data streams
+		 * and indices return an error.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -298,6 +326,10 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route indexing operations to a specific shard. If specified,
+		 * this overwrites the <code>routing</code> value for indexing operations. Data
+		 * stream aliases don’t support this parameter.
+		 * <p>
 		 * API name: {@code index_routing}
 		 */
 		public final Builder indexRouting(@Nullable String value) {
@@ -306,6 +338,14 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, sets the write index or data stream for the alias. If
+		 * an alias points to multiple indices or data streams and
+		 * <code>is_write_index</code> isn’t set, the alias rejects write requests. If
+		 * an index alias points to one index and <code>is_write_index</code> isn’t set,
+		 * the index automatically acts as the write index. Data stream aliases don’t
+		 * automatically set a write data stream, even if the alias points to one data
+		 * stream.
+		 * <p>
 		 * API name: {@code is_write_index}
 		 */
 		public final Builder isWriteIndex(@Nullable Boolean value) {
@@ -314,7 +354,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -324,7 +365,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -333,7 +375,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the alias to be created or updated
+		 * Required - Alias to update. If the alias doesn’t exist, the request creates
+		 * it. Index alias names support date math.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -343,6 +386,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route indexing and search operations to a specific shard. Data
+		 * stream aliases don’t support this parameter.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -351,6 +397,10 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to route search operations to a specific shard. If specified, this
+		 * overwrites the <code>routing</code> value for search operations. Data stream
+		 * aliases don’t support this parameter.
+		 * <p>
 		 * API name: {@code search_routing}
 		 */
 		public final Builder searchRouting(@Nullable String value) {
@@ -359,7 +409,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -369,7 +420,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -457,6 +509,28 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+				propsSet |= _index;
+
+				if (propsSet == (_index | _name)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name);
+				}
+				if (propsSet == (_index | _name)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name);
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -51,6 +51,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, JsonpSerializable {
 	@Nullable
+	private final String maskToken;
+
+	@Nullable
 	private final Integer numTopClasses;
 
 	@Nullable
@@ -63,6 +66,7 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 
 	private FillMaskInferenceOptions(Builder builder) {
 
+		this.maskToken = builder.maskToken;
 		this.numTopClasses = builder.numTopClasses;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
@@ -79,6 +83,22 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 	@Override
 	public InferenceConfigCreate.Kind _inferenceConfigCreateKind() {
 		return InferenceConfigCreate.Kind.FillMask;
+	}
+
+	/**
+	 * The string/token which will be removed from incoming documents and replaced
+	 * with the inference prediction(s). In a response, this field contains the mask
+	 * token for the specified model/tokenizer. Each model and tokenizer has a
+	 * predefined mask token which cannot be changed. Thus, it is recommended not to
+	 * set this value in requests. However, if this field is present in a request,
+	 * its value must match the predefined value for that model/tokenizer, otherwise
+	 * the request will fail.
+	 * <p>
+	 * API name: {@code mask_token}
+	 */
+	@Nullable
+	public final String maskToken() {
+		return this.maskToken;
 	}
 
 	/**
@@ -123,6 +143,11 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.maskToken != null) {
+			generator.writeKey("mask_token");
+			generator.write(this.maskToken);
+
+		}
 		if (this.numTopClasses != null) {
 			generator.writeKey("num_top_classes");
 			generator.write(this.numTopClasses);
@@ -156,6 +181,9 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 			implements
 				ObjectBuilder<FillMaskInferenceOptions> {
 		@Nullable
+		private String maskToken;
+
+		@Nullable
 		private Integer numTopClasses;
 
 		@Nullable
@@ -163,6 +191,22 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 
 		@Nullable
 		private String resultsField;
+
+		/**
+		 * The string/token which will be removed from incoming documents and replaced
+		 * with the inference prediction(s). In a response, this field contains the mask
+		 * token for the specified model/tokenizer. Each model and tokenizer has a
+		 * predefined mask token which cannot be changed. Thus, it is recommended not to
+		 * set this value in requests. However, if this field is present in a request,
+		 * its value must match the predefined value for that model/tokenizer, otherwise
+		 * the request will fail.
+		 * <p>
+		 * API name: {@code mask_token}
+		 */
+		public final Builder maskToken(@Nullable String value) {
+			this.maskToken = value;
+			return this;
+		}
 
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
@@ -233,6 +277,7 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 	protected static void setupFillMaskInferenceOptionsDeserializer(
 			ObjectDeserializer<FillMaskInferenceOptions.Builder> op) {
 
+		op.add(Builder::maskToken, JsonpDeserializer.stringDeserializer(), "mask_token");
 		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");
 		op.add(Builder::tokenization, TokenizationConfig._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");

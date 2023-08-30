@@ -77,6 +77,8 @@ public class DecayPlacement implements JsonpSerializable {
 	}
 
 	/**
+	 * Defines how documents are scored at the distance given at scale.
+	 * <p>
 	 * API name: {@code decay}
 	 */
 	@Nullable
@@ -85,6 +87,9 @@ public class DecayPlacement implements JsonpSerializable {
 	}
 
 	/**
+	 * If defined, the decay function will only compute the decay function for
+	 * documents with a distance greater than the defined <code>offset</code>.
+	 * <p>
 	 * API name: {@code offset}
 	 */
 	@Nullable
@@ -93,6 +98,9 @@ public class DecayPlacement implements JsonpSerializable {
 	}
 
 	/**
+	 * Defines the distance from origin + offset at which the computed score will
+	 * equal <code>decay</code> parameter.
+	 * <p>
 	 * API name: {@code scale}
 	 */
 	@Nullable
@@ -101,6 +109,9 @@ public class DecayPlacement implements JsonpSerializable {
 	}
 
 	/**
+	 * The point of origin used for calculating distance. Must be given as a number
+	 * for numeric field, date for date fields and geo point for geo fields.
+	 * <p>
 	 * API name: {@code origin}
 	 */
 	@Nullable
@@ -167,6 +178,8 @@ public class DecayPlacement implements JsonpSerializable {
 		private JsonData origin;
 
 		/**
+		 * Defines how documents are scored at the distance given at scale.
+		 * <p>
 		 * API name: {@code decay}
 		 */
 		public final Builder decay(@Nullable Double value) {
@@ -175,6 +188,9 @@ public class DecayPlacement implements JsonpSerializable {
 		}
 
 		/**
+		 * If defined, the decay function will only compute the decay function for
+		 * documents with a distance greater than the defined <code>offset</code>.
+		 * <p>
 		 * API name: {@code offset}
 		 */
 		public final Builder offset(@Nullable JsonData value) {
@@ -183,6 +199,9 @@ public class DecayPlacement implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the distance from origin + offset at which the computed score will
+		 * equal <code>decay</code> parameter.
+		 * <p>
 		 * API name: {@code scale}
 		 */
 		public final Builder scale(@Nullable JsonData value) {
@@ -191,6 +210,9 @@ public class DecayPlacement implements JsonpSerializable {
 		}
 
 		/**
+		 * The point of origin used for calculating distance. Must be given as a number
+		 * for numeric field, date for date fields and geo point for geo fields.
+		 * <p>
 		 * API name: {@code origin}
 		 */
 		public final Builder origin(@Nullable JsonData value) {

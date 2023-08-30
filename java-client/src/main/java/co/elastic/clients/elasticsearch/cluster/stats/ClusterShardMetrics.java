@@ -69,21 +69,30 @@ public class ClusterShardMetrics implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code avg}
+	 * Required - Mean number of shards in an index, counting only shards assigned
+	 * to selected nodes.
+	 * <p>
+	 * API name: {@code avg}
 	 */
 	public final double avg() {
 		return this.avg;
 	}
 
 	/**
-	 * Required - API name: {@code max}
+	 * Required - Maximum number of shards in an index, counting only shards
+	 * assigned to selected nodes.
+	 * <p>
+	 * API name: {@code max}
 	 */
 	public final double max() {
 		return this.max;
 	}
 
 	/**
-	 * Required - API name: {@code min}
+	 * Required - Minimum number of shards in an index, counting only shards
+	 * assigned to selected nodes.
+	 * <p>
+	 * API name: {@code min}
 	 */
 	public final double min() {
 		return this.min;
@@ -132,7 +141,10 @@ public class ClusterShardMetrics implements JsonpSerializable {
 		private Double min;
 
 		/**
-		 * Required - API name: {@code avg}
+		 * Required - Mean number of shards in an index, counting only shards assigned
+		 * to selected nodes.
+		 * <p>
+		 * API name: {@code avg}
 		 */
 		public final Builder avg(double value) {
 			this.avg = value;
@@ -140,7 +152,10 @@ public class ClusterShardMetrics implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code max}
+		 * Required - Maximum number of shards in an index, counting only shards
+		 * assigned to selected nodes.
+		 * <p>
+		 * API name: {@code max}
 		 */
 		public final Builder max(double value) {
 			this.max = value;
@@ -148,7 +163,10 @@ public class ClusterShardMetrics implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code min}
+		 * Required - Minimum number of shards in an index, counting only shards
+		 * assigned to selected nodes.
+		 * <p>
+		 * API name: {@code min}
 		 */
 		public final Builder min(double value) {
 			this.min = value;

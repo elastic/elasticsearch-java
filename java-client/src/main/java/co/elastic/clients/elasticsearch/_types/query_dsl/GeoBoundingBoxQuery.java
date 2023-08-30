@@ -112,6 +112,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Set to <code>IGNORE_MALFORMED</code> to accept geo points with invalid
+	 * latitude or longitude. Set to <code>COERCE</code> to also try to infer
+	 * correct latitude or longitude.
+	 * <p>
 	 * API name: {@code validation_method}
 	 */
 	@Nullable
@@ -120,6 +124,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Set to <code>true</code> to ignore an unmapped field and not match any
+	 * documents for this query. Set to <code>false</code> to throw an exception if
+	 * the field is not mapped.
+	 * <p>
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
@@ -205,6 +213,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Set to <code>IGNORE_MALFORMED</code> to accept geo points with invalid
+		 * latitude or longitude. Set to <code>COERCE</code> to also try to infer
+		 * correct latitude or longitude.
+		 * <p>
 		 * API name: {@code validation_method}
 		 */
 		public final Builder validationMethod(@Nullable GeoValidationMethod value) {
@@ -213,6 +225,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Set to <code>true</code> to ignore an unmapped field and not match any
+		 * documents for this query. Set to <code>false</code> to throw an exception if
+		 * the field is not mapped.
+		 * <p>
 		 * API name: {@code ignore_unmapped}
 		 */
 		public final Builder ignoreUnmapped(@Nullable Boolean value) {

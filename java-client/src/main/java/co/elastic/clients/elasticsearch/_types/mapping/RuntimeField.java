@@ -97,6 +97,8 @@ public class RuntimeField implements JsonpSerializable {
 	}
 
 	/**
+	 * A custom format for <code>date</code> type runtime fields.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -135,6 +137,8 @@ public class RuntimeField implements JsonpSerializable {
 	}
 
 	/**
+	 * Painless script executed at query time.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -143,7 +147,12 @@ public class RuntimeField implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - Field type, which can be: <code>boolean</code>,
+	 * <code>composite</code>, <code>date</code>, <code>double</code>,
+	 * <code>geo_point</code>, <code>ip</code>,<code>keyword</code>,
+	 * <code>long</code>, or <code>lookup</code>.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final RuntimeFieldType type() {
 		return this.type;
@@ -269,6 +278,8 @@ public class RuntimeField implements JsonpSerializable {
 		}
 
 		/**
+		 * A custom format for <code>date</code> type runtime fields.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
@@ -307,6 +318,8 @@ public class RuntimeField implements JsonpSerializable {
 		}
 
 		/**
+		 * Painless script executed at query time.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable Script value) {
@@ -315,6 +328,8 @@ public class RuntimeField implements JsonpSerializable {
 		}
 
 		/**
+		 * Painless script executed at query time.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -322,7 +337,12 @@ public class RuntimeField implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - Field type, which can be: <code>boolean</code>,
+		 * <code>composite</code>, <code>date</code>, <code>double</code>,
+		 * <code>geo_point</code>, <code>ip</code>,<code>keyword</code>,
+		 * <code>long</code>, or <code>lookup</code>.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(RuntimeFieldType value) {
 			this.type = value;

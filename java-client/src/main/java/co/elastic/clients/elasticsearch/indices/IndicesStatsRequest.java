@@ -49,7 +49,8 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.Request
 
 /**
- * Provides statistics on operations happening in an index.
+ * Returns statistics for one or more indices. For data streams, the API
+ * retrieves statistics for the stream’s backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.stats.Request">API
  *      specification</a>
@@ -560,6 +561,34 @@ public class IndicesStatsRequest extends RequestBase {
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _metric = 1 << 0;
+				final int _index = 1 << 1;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.metric()))
+					propsSet |= _metric;
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_metric)) {
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index | _metric)) {
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
 			},
 
 			// Request parameters

@@ -77,21 +77,43 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code origin}
+	 * Required - Date or point of origin used to calculate distances. If the
+	 * <code>field</code> value is a <code>date</code> or <code>date_nanos</code>
+	 * field, the <code>origin</code> value must be a date. Date Math, such as
+	 * <code>now-1h</code>, is supported. If the field value is a
+	 * <code>geo_point</code> field, the <code>origin</code> value must be a
+	 * geopoint.
+	 * <p>
+	 * API name: {@code origin}
 	 */
 	public final JsonData origin() {
 		return this.origin;
 	}
 
 	/**
-	 * Required - API name: {@code pivot}
+	 * Required - Distance from the <code>origin</code> at which relevance scores
+	 * receive half of the <code>boost</code> value. If the <code>field</code> value
+	 * is a <code>date</code> or <code>date_nanos</code> field, the
+	 * <code>pivot</code> value must be a time unit, such as <code>1h</code> or
+	 * <code>10d</code>. If the <code>field</code> value is a <code>geo_point</code>
+	 * field, the <code>pivot</code> value must be a distance unit, such as
+	 * <code>1km</code> or <code>12m</code>.
+	 * <p>
+	 * API name: {@code pivot}
 	 */
 	public final JsonData pivot() {
 		return this.pivot;
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Name of the field used to calculate distances. This field must
+	 * meet the following criteria: be a <code>date</code>, <code>date_nanos</code>
+	 * or <code>geo_point</code> field; have an <code>index</code> mapping parameter
+	 * value of <code>true</code>, which is the default; have an
+	 * <code>doc_values</code> mapping parameter value of <code>true</code>, which
+	 * is the default.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
@@ -127,7 +149,14 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 		private String field;
 
 		/**
-		 * Required - API name: {@code origin}
+		 * Required - Date or point of origin used to calculate distances. If the
+		 * <code>field</code> value is a <code>date</code> or <code>date_nanos</code>
+		 * field, the <code>origin</code> value must be a date. Date Math, such as
+		 * <code>now-1h</code>, is supported. If the field value is a
+		 * <code>geo_point</code> field, the <code>origin</code> value must be a
+		 * geopoint.
+		 * <p>
+		 * API name: {@code origin}
 		 */
 		public final Builder origin(JsonData value) {
 			this.origin = value;
@@ -135,7 +164,15 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code pivot}
+		 * Required - Distance from the <code>origin</code> at which relevance scores
+		 * receive half of the <code>boost</code> value. If the <code>field</code> value
+		 * is a <code>date</code> or <code>date_nanos</code> field, the
+		 * <code>pivot</code> value must be a time unit, such as <code>1h</code> or
+		 * <code>10d</code>. If the <code>field</code> value is a <code>geo_point</code>
+		 * field, the <code>pivot</code> value must be a distance unit, such as
+		 * <code>1km</code> or <code>12m</code>.
+		 * <p>
+		 * API name: {@code pivot}
 		 */
 		public final Builder pivot(JsonData value) {
 			this.pivot = value;
@@ -143,7 +180,14 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Name of the field used to calculate distances. This field must
+		 * meet the following criteria: be a <code>date</code>, <code>date_nanos</code>
+		 * or <code>geo_point</code> field; have an <code>index</code> mapping parameter
+		 * value of <code>true</code>, which is the default; have an
+		 * <code>doc_values</code> mapping parameter value of <code>true</code>, which
+		 * is the default.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;

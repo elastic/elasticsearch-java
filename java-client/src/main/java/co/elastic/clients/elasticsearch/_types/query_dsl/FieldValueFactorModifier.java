@@ -35,24 +35,59 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum FieldValueFactorModifier implements JsonEnum {
+	/**
+	 * Do not apply any multiplier to the field value.
+	 */
 	None("none"),
 
+	/**
+	 * Take the common logarithm of the field value. Because this function will
+	 * return a negative value and cause an error if used on values between 0 and 1,
+	 * it is recommended to use <code>log1p</code> instead.
+	 */
 	Log("log"),
 
+	/**
+	 * Add 1 to the field value and take the common logarithm.
+	 */
 	Log1p("log1p"),
 
+	/**
+	 * Add 2 to the field value and take the common logarithm.
+	 */
 	Log2p("log2p"),
 
+	/**
+	 * Take the natural logarithm of the field value. Because this function will
+	 * return a negative value and cause an error if used on values between 0 and 1,
+	 * it is recommended to use <code>ln1p</code> instead.
+	 */
 	Ln("ln"),
 
+	/**
+	 * Add 1 to the field value and take the natural logarithm.
+	 */
 	Ln1p("ln1p"),
 
+	/**
+	 * Add 2 to the field value and take the natural logarithm.
+	 */
 	Ln2p("ln2p"),
 
+	/**
+	 * Square the field value (multiply it by itself).
+	 */
 	Square("square"),
 
+	/**
+	 * Take the square root of the field value.
+	 */
 	Sqrt("sqrt"),
 
+	/**
+	 * Reciprocate the field value, same as <code>1/x</code> where <code>x</code> is
+	 * the field’s value.
+	 */
 	Reciprocal("reciprocal"),
 
 	;

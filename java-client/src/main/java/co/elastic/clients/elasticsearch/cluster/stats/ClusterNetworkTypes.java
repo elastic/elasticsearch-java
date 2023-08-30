@@ -69,14 +69,20 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code http_types}
+	 * Required - Contains statistics about the HTTP network types used by selected
+	 * nodes.
+	 * <p>
+	 * API name: {@code http_types}
 	 */
 	public final Map<String, Integer> httpTypes() {
 		return this.httpTypes;
 	}
 
 	/**
-	 * Required - API name: {@code transport_types}
+	 * Required - Contains statistics about the transport network types used by
+	 * selected nodes.
+	 * <p>
+	 * API name: {@code transport_types}
 	 */
 	public final Map<String, Integer> transportTypes() {
 		return this.transportTypes;
@@ -137,7 +143,10 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		private Map<String, Integer> transportTypes;
 
 		/**
-		 * Required - API name: {@code http_types}
+		 * Required - Contains statistics about the HTTP network types used by selected
+		 * nodes.
+		 * <p>
+		 * API name: {@code http_types}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>httpTypes</code>.
 		 */
@@ -147,7 +156,10 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code http_types}
+		 * Required - Contains statistics about the HTTP network types used by selected
+		 * nodes.
+		 * <p>
+		 * API name: {@code http_types}
 		 * <p>
 		 * Adds an entry to <code>httpTypes</code>.
 		 */
@@ -157,7 +169,10 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport_types}
+		 * Required - Contains statistics about the transport network types used by
+		 * selected nodes.
+		 * <p>
+		 * API name: {@code transport_types}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transportTypes</code>.
 		 */
@@ -167,7 +182,10 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport_types}
+		 * Required - Contains statistics about the transport network types used by
+		 * selected nodes.
+		 * <p>
+		 * API name: {@code transport_types}
 		 * <p>
 		 * Adds an entry to <code>transportTypes</code>.
 		 */

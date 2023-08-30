@@ -78,6 +78,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 	}
 
 	/**
+	 * Values to exclude. Can be regular expression strings or arrays of strings of
+	 * exact terms.
+	 * <p>
 	 * API name: {@code exclude}
 	 */
 	public final List<String> exclude() {
@@ -85,6 +88,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 	}
 
 	/**
+	 * Values to include. Can be regular expression strings or arrays of strings of
+	 * exact terms.
+	 * <p>
 	 * API name: {@code include}
 	 */
 	public final List<String> include() {
@@ -159,6 +165,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		}
 
 		/**
+		 * Values to exclude. Can be regular expression strings or arrays of strings of
+		 * exact terms.
+		 * <p>
 		 * API name: {@code exclude}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>exclude</code>.
@@ -169,6 +178,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		}
 
 		/**
+		 * Values to exclude. Can be regular expression strings or arrays of strings of
+		 * exact terms.
+		 * <p>
 		 * API name: {@code exclude}
 		 * <p>
 		 * Adds one or more values to <code>exclude</code>.
@@ -179,6 +191,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		}
 
 		/**
+		 * Values to include. Can be regular expression strings or arrays of strings of
+		 * exact terms.
+		 * <p>
 		 * API name: {@code include}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>include</code>.
@@ -189,6 +204,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		}
 
 		/**
+		 * Values to include. Can be regular expression strings or arrays of strings of
+		 * exact terms.
+		 * <p>
 		 * API name: {@code include}
 		 * <p>
 		 * Adds one or more values to <code>include</code>.

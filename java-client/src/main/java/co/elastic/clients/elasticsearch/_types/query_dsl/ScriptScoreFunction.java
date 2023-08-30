@@ -72,7 +72,9 @@ public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializa
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - A script that computes a score.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final Script script() {
 		return this.script;
@@ -111,7 +113,9 @@ public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializa
 		private Script script;
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - A script that computes a score.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Script value) {
 			this.script = value;
@@ -119,7 +123,9 @@ public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializa
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - A script that computes a score.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());

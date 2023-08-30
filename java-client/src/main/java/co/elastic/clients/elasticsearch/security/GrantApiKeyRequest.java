@@ -47,7 +47,26 @@ import javax.annotation.Nullable;
 // typedef: security.grant_api_key.Request
 
 /**
- * Creates an API key on behalf of another user.
+ * Creates an API key on behalf of another user. This API is similar to Create
+ * API keys, however it creates the API key for a user that is different than
+ * the user that runs the API. The caller must have authentication credentials
+ * (either an access token, or a username and password) for the user on whose
+ * behalf the API key will be created. It is not possible to use this API to
+ * create an API key without that user’s credentials. The user, for whom the
+ * authentication credentials is provided, can optionally &quot;run as&quot;
+ * (impersonate) another user. In this case, the API key will be created on
+ * behalf of the impersonated user.
+ * <p>
+ * This API is intended be used by applications that need to create and manage
+ * API keys for end users, but cannot guarantee that those users have permission
+ * to create API keys on their own behalf.
+ * <p>
+ * A successful grant API key API call returns a JSON structure that contains
+ * the API key, its unique id, and its name. If applicable, it also returns
+ * expiration information for the API key in milliseconds.
+ * <p>
+ * By default, API keys never expire. You can specify expiration information
+ * when you create the API keys.
  * 
  * @see <a href="../doc-files/api-spec.html#security.grant_api_key.Request">API
  *      specification</a>
@@ -88,6 +107,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The user’s access token. If you specify the <code>access_token</code> grant
+	 * type, this parameter is required. It is not valid with other grant types.
+	 * <p>
 	 * API name: {@code access_token}
 	 */
 	@Nullable
@@ -96,20 +118,28 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - API name: {@code api_key}
+	 * Required - Defines the API key.
+	 * <p>
+	 * API name: {@code api_key}
 	 */
 	public final GrantApiKey apiKey() {
 		return this.apiKey;
 	}
 
 	/**
-	 * Required - API name: {@code grant_type}
+	 * Required - The type of grant. Supported grant types are:
+	 * <code>access_token</code>, <code>password</code>.
+	 * <p>
+	 * API name: {@code grant_type}
 	 */
 	public final ApiKeyGrantType grantType() {
 		return this.grantType;
 	}
 
 	/**
+	 * The user’s password. If you specify the <code>password</code> grant type,
+	 * this parameter is required. It is not valid with other grant types.
+	 * <p>
 	 * API name: {@code password}
 	 */
 	@Nullable
@@ -118,6 +148,8 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The name of the user to be impersonated.
+	 * <p>
 	 * API name: {@code run_as}
 	 */
 	@Nullable
@@ -126,6 +158,10 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The user name that identifies the user. If you specify the
+	 * <code>password</code> grant type, this parameter is required. It is not valid
+	 * with other grant types.
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -198,6 +234,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		private String username;
 
 		/**
+		 * The user’s access token. If you specify the <code>access_token</code> grant
+		 * type, this parameter is required. It is not valid with other grant types.
+		 * <p>
 		 * API name: {@code access_token}
 		 */
 		public final Builder accessToken(@Nullable String value) {
@@ -206,7 +245,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Required - API name: {@code api_key}
+		 * Required - Defines the API key.
+		 * <p>
+		 * API name: {@code api_key}
 		 */
 		public final Builder apiKey(GrantApiKey value) {
 			this.apiKey = value;
@@ -214,14 +255,19 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Required - API name: {@code api_key}
+		 * Required - Defines the API key.
+		 * <p>
+		 * API name: {@code api_key}
 		 */
 		public final Builder apiKey(Function<GrantApiKey.Builder, ObjectBuilder<GrantApiKey>> fn) {
 			return this.apiKey(fn.apply(new GrantApiKey.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code grant_type}
+		 * Required - The type of grant. Supported grant types are:
+		 * <code>access_token</code>, <code>password</code>.
+		 * <p>
+		 * API name: {@code grant_type}
 		 */
 		public final Builder grantType(ApiKeyGrantType value) {
 			this.grantType = value;
@@ -229,6 +275,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * The user’s password. If you specify the <code>password</code> grant type,
+		 * this parameter is required. It is not valid with other grant types.
+		 * <p>
 		 * API name: {@code password}
 		 */
 		public final Builder password(@Nullable String value) {
@@ -237,6 +286,8 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * The name of the user to be impersonated.
+		 * <p>
 		 * API name: {@code run_as}
 		 */
 		public final Builder runAs(@Nullable String value) {
@@ -245,6 +296,10 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * The user name that identifies the user. If you specify the
+		 * <code>password</code> grant type, this parameter is required. It is not valid
+		 * with other grant types.
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {
@@ -307,6 +362,11 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				return "/_security/api_key/grant";
 
+			},
+
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

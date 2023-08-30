@@ -65,6 +65,9 @@ public class Indicators implements JsonpSerializable {
 	@Nullable
 	private final SlmIndicator slm;
 
+	@Nullable
+	private final ShardsCapacityIndicator shardsCapacity;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Indicators(Builder builder) {
@@ -75,6 +78,7 @@ public class Indicators implements JsonpSerializable {
 		this.repositoryIntegrity = builder.repositoryIntegrity;
 		this.ilm = builder.ilm;
 		this.slm = builder.slm;
+		this.shardsCapacity = builder.shardsCapacity;
 
 	}
 
@@ -131,6 +135,14 @@ public class Indicators implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code shards_capacity}
+	 */
+	@Nullable
+	public final ShardsCapacityIndicator shardsCapacity() {
+		return this.shardsCapacity;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -171,6 +183,11 @@ public class Indicators implements JsonpSerializable {
 			this.slm.serialize(generator, mapper);
 
 		}
+		if (this.shardsCapacity != null) {
+			generator.writeKey("shards_capacity");
+			this.shardsCapacity.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -203,6 +220,9 @@ public class Indicators implements JsonpSerializable {
 
 		@Nullable
 		private SlmIndicator slm;
+
+		@Nullable
+		private ShardsCapacityIndicator shardsCapacity;
 
 		/**
 		 * API name: {@code master_is_stable}
@@ -297,6 +317,22 @@ public class Indicators implements JsonpSerializable {
 			return this.slm(fn.apply(new SlmIndicator.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code shards_capacity}
+		 */
+		public final Builder shardsCapacity(@Nullable ShardsCapacityIndicator value) {
+			this.shardsCapacity = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards_capacity}
+		 */
+		public final Builder shardsCapacity(
+				Function<ShardsCapacityIndicator.Builder, ObjectBuilder<ShardsCapacityIndicator>> fn) {
+			return this.shardsCapacity(fn.apply(new ShardsCapacityIndicator.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -331,6 +367,7 @@ public class Indicators implements JsonpSerializable {
 		op.add(Builder::repositoryIntegrity, RepositoryIntegrityIndicator._DESERIALIZER, "repository_integrity");
 		op.add(Builder::ilm, IlmIndicator._DESERIALIZER, "ilm");
 		op.add(Builder::slm, SlmIndicator._DESERIALIZER, "slm");
+		op.add(Builder::shardsCapacity, ShardsCapacityIndicator._DESERIALIZER, "shards_capacity");
 
 	}
 

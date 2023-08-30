@@ -103,6 +103,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum number of variations created.
+	 * <p>
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
@@ -111,6 +113,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Number of beginning characters left unchanged when creating expansions.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -119,6 +123,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Number of beginning characters left unchanged when creating expansions.
+	 * <p>
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
@@ -127,6 +133,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Indicates whether edits include transpositions of two adjacent characters
+	 * (for example <code>ab</code> to <code>ba</code>).
+	 * <p>
 	 * API name: {@code transpositions}
 	 */
 	@Nullable
@@ -135,6 +144,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Maximum edit distance allowed for matching.
+	 * <p>
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
@@ -143,7 +154,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code value}
+	 * Required - Term you wish to find in the provided field.
+	 * <p>
+	 * API name: {@code value}
 	 */
 	public final FieldValue value() {
 		return this.value;
@@ -220,6 +233,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		private FieldValue value;
 
 		/**
+		 * Maximum number of variations created.
+		 * <p>
 		 * API name: {@code max_expansions}
 		 */
 		public final Builder maxExpansions(@Nullable Integer value) {
@@ -228,6 +243,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Number of beginning characters left unchanged when creating expansions.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -236,6 +253,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Number of beginning characters left unchanged when creating expansions.
+		 * <p>
 		 * API name: {@code rewrite}
 		 */
 		public final Builder rewrite(@Nullable String value) {
@@ -244,6 +263,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Indicates whether edits include transpositions of two adjacent characters
+		 * (for example <code>ab</code> to <code>ba</code>).
+		 * <p>
 		 * API name: {@code transpositions}
 		 */
 		public final Builder transpositions(@Nullable Boolean value) {
@@ -252,6 +274,8 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Maximum edit distance allowed for matching.
+		 * <p>
 		 * API name: {@code fuzziness}
 		 */
 		public final Builder fuzziness(@Nullable String value) {
@@ -260,7 +284,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(FieldValue value) {
 			this.value = value;
@@ -268,14 +294,18 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
 			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(String value) {
 			this.value = FieldValue.of(value);
@@ -283,7 +313,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(long value) {
 			this.value = FieldValue.of(value);
@@ -291,7 +323,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(double value) {
 			this.value = FieldValue.of(value);
@@ -299,7 +333,9 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - Term you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(boolean value) {
 			this.value = FieldValue.of(value);

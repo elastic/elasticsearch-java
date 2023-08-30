@@ -227,6 +227,24 @@ public class GetFiltersRequest extends RequestBase {
 
 			},
 
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _filterId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.filterId()))
+					propsSet |= _filterId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_filterId)) {
+					params.put("filterId", request.filterId.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
