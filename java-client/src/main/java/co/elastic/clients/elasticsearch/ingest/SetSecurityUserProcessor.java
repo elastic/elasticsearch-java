@@ -74,13 +74,17 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to store the user information into.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * Controls what user related properties are added to the field.
+	 * <p>
 	 * API name: {@code properties}
 	 */
 	public final List<String> properties() {
@@ -121,7 +125,9 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		private List<String> properties;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to store the user information into.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -129,6 +135,8 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
+		 * Controls what user related properties are added to the field.
+		 * <p>
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>properties</code>.
@@ -139,6 +147,8 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
+		 * Controls what user related properties are added to the field.
+		 * <p>
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds one or more values to <code>properties</code>.

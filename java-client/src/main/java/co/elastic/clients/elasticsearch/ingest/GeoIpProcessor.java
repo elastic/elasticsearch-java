@@ -90,6 +90,10 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The database filename referring to a database the module ships with
+	 * (GeoLite2-City.mmdb, GeoLite2-Country.mmdb, or GeoLite2-ASN.mmdb) or a custom
+	 * database in the ingest-geoip config directory.
+	 * <p>
 	 * API name: {@code database_file}
 	 */
 	@Nullable
@@ -98,13 +102,18 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to get the ip address from for the geographical lookup.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code>, only the first found geoip data will be returned, even
+	 * if the field contains an array.
+	 * <p>
 	 * API name: {@code first_only}
 	 */
 	@Nullable
@@ -113,6 +122,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -121,6 +133,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * Controls what properties are added to the <code>target_field</code> based on
+	 * the geoip lookup.
+	 * <p>
 	 * API name: {@code properties}
 	 */
 	public final List<String> properties() {
@@ -128,6 +143,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The field that will hold the geographical information looked up from the
+	 * MaxMind database.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -201,6 +219,10 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
+		 * The database filename referring to a database the module ships with
+		 * (GeoLite2-City.mmdb, GeoLite2-Country.mmdb, or GeoLite2-ASN.mmdb) or a custom
+		 * database in the ingest-geoip config directory.
+		 * <p>
 		 * API name: {@code database_file}
 		 */
 		public final Builder databaseFile(@Nullable String value) {
@@ -209,7 +231,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to get the ip address from for the geographical lookup.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -217,6 +241,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code>, only the first found geoip data will be returned, even
+		 * if the field contains an array.
+		 * <p>
 		 * API name: {@code first_only}
 		 */
 		public final Builder firstOnly(@Nullable Boolean value) {
@@ -225,6 +252,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -233,6 +263,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * Controls what properties are added to the <code>target_field</code> based on
+		 * the geoip lookup.
+		 * <p>
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>properties</code>.
@@ -243,6 +276,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * Controls what properties are added to the <code>target_field</code> based on
+		 * the geoip lookup.
+		 * <p>
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds one or more values to <code>properties</code>.
@@ -253,6 +289,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field that will hold the geographical information looked up from the
+		 * MaxMind database.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

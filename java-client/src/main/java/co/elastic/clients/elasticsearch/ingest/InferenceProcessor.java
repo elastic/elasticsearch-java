@@ -83,13 +83,18 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * Required - API name: {@code model_id}
+	 * Required - The ID or alias for the trained model, or the ID of the
+	 * deployment.
+	 * <p>
+	 * API name: {@code model_id}
 	 */
 	public final String modelId() {
 		return this.modelId;
 	}
 
 	/**
+	 * Field added to incoming documents to contain results objects.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -98,6 +103,10 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
+	 * Maps the document field names to the known field names of the model. This
+	 * mapping takes precedence over any default mappings provided in the model
+	 * configuration.
+	 * <p>
 	 * API name: {@code field_map}
 	 */
 	public final Map<String, JsonData> fieldMap() {
@@ -105,6 +114,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
+	 * Contains the inference type and its options.
+	 * <p>
 	 * API name: {@code inference_config}
 	 */
 	@Nullable
@@ -163,7 +174,10 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		private InferenceConfig inferenceConfig;
 
 		/**
-		 * Required - API name: {@code model_id}
+		 * Required - The ID or alias for the trained model, or the ID of the
+		 * deployment.
+		 * <p>
+		 * API name: {@code model_id}
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
@@ -171,6 +185,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * Field added to incoming documents to contain results objects.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {
@@ -179,6 +195,10 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * Maps the document field names to the known field names of the model. This
+		 * mapping takes precedence over any default mappings provided in the model
+		 * configuration.
+		 * <p>
 		 * API name: {@code field_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fieldMap</code>.
@@ -189,6 +209,10 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * Maps the document field names to the known field names of the model. This
+		 * mapping takes precedence over any default mappings provided in the model
+		 * configuration.
+		 * <p>
 		 * API name: {@code field_map}
 		 * <p>
 		 * Adds an entry to <code>fieldMap</code>.
@@ -199,6 +223,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * Contains the inference type and its options.
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
 		public final Builder inferenceConfig(@Nullable InferenceConfig value) {
@@ -207,6 +233,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * Contains the inference type and its options.
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
 		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {

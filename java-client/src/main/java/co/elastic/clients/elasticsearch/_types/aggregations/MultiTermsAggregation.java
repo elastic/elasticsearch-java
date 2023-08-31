@@ -102,6 +102,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * Specifies the strategy for data collection.
+	 * <p>
 	 * API name: {@code collect_mode}
 	 */
 	@Nullable
@@ -110,6 +112,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * Specifies the sort order of the buckets. Defaults to sorting by descending
+	 * document count.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	public final List<NamedValue<SortOrder>> order() {
@@ -117,6 +122,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * The minimum number of documents in a bucket for it to be returned.
+	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
@@ -125,6 +132,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * The minimum number of documents in a bucket on each shard for it to be
+	 * returned.
+	 * <p>
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
@@ -133,6 +143,10 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * The number of candidate terms produced by each shard. By default,
+	 * <code>shard_size</code> will be automatically estimated based on the number
+	 * of shards and the <code>size</code> parameter.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -141,6 +155,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * Calculates the doc count error on per term basis.
+	 * <p>
 	 * API name: {@code show_term_doc_count_error}
 	 */
 	@Nullable
@@ -149,6 +165,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
+	 * The number of term buckets should be returned out of the overall terms list.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -157,7 +175,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
-	 * Required - API name: {@code terms}
+	 * Required - The field from which to generate sets of terms.
+	 * <p>
+	 * API name: {@code terms}
 	 */
 	public final List<MultiTermLookup> terms() {
 		return this.terms;
@@ -254,6 +274,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		private List<MultiTermLookup> terms;
 
 		/**
+		 * Specifies the strategy for data collection.
+		 * <p>
 		 * API name: {@code collect_mode}
 		 */
 		public final Builder collectMode(@Nullable TermsAggregationCollectMode value) {
@@ -262,6 +284,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * Specifies the sort order of the buckets. Defaults to sorting by descending
+		 * document count.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
@@ -272,6 +297,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * Specifies the sort order of the buckets. Defaults to sorting by descending
+		 * document count.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
@@ -282,6 +310,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * The minimum number of documents in a bucket for it to be returned.
+		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
 		public final Builder minDocCount(@Nullable Long value) {
@@ -290,6 +320,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * The minimum number of documents in a bucket on each shard for it to be
+		 * returned.
+		 * <p>
 		 * API name: {@code shard_min_doc_count}
 		 */
 		public final Builder shardMinDocCount(@Nullable Long value) {
@@ -298,6 +331,10 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * The number of candidate terms produced by each shard. By default,
+		 * <code>shard_size</code> will be automatically estimated based on the number
+		 * of shards and the <code>size</code> parameter.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -306,6 +343,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * Calculates the doc count error on per term basis.
+		 * <p>
 		 * API name: {@code show_term_doc_count_error}
 		 */
 		public final Builder showTermDocCountError(@Nullable Boolean value) {
@@ -314,6 +353,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
+		 * The number of term buckets should be returned out of the overall terms list.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -322,7 +363,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
-		 * Required - API name: {@code terms}
+		 * Required - The field from which to generate sets of terms.
+		 * <p>
+		 * API name: {@code terms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 */
@@ -332,7 +375,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
-		 * Required - API name: {@code terms}
+		 * Required - The field from which to generate sets of terms.
+		 * <p>
+		 * API name: {@code terms}
 		 * <p>
 		 * Adds one or more values to <code>terms</code>.
 		 */
@@ -342,7 +387,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 
 		/**
-		 * Required - API name: {@code terms}
+		 * Required - The field from which to generate sets of terms.
+		 * <p>
+		 * API name: {@code terms}
 		 * <p>
 		 * Adds a value to <code>terms</code> using a builder lambda.
 		 */

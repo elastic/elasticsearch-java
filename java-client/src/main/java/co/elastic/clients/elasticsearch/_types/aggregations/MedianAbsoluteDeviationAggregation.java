@@ -71,6 +71,10 @@ public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationB
 	}
 
 	/**
+	 * Limits the maximum number of nodes used by the underlying TDigest algorithm
+	 * to <code>20 * compression</code>, enabling control of memory usage and
+	 * approximation error.
+	 * <p>
 	 * API name: {@code compression}
 	 */
 	@Nullable
@@ -102,6 +106,10 @@ public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationB
 		private Double compression;
 
 		/**
+		 * Limits the maximum number of nodes used by the underlying TDigest algorithm
+		 * to <code>20 * compression</code>, enabling control of memory usage and
+		 * approximation error.
+		 * <p>
 		 * API name: {@code compression}
 		 */
 		public final Builder compression(@Nullable Double value) {

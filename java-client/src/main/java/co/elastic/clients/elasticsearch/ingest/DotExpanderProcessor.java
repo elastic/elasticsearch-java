@@ -74,13 +74,20 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to expand into an object field. If set to
+	 * <code>*</code>, all top-level fields will be expanded.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The field that contains the field to expand. Only required if the field to
+	 * expand is part another object field, because the <code>field</code> option
+	 * can only understand leaf fields.
+	 * <p>
 	 * API name: {@code path}
 	 */
 	@Nullable
@@ -117,7 +124,10 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		private String path;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to expand into an object field. If set to
+		 * <code>*</code>, all top-level fields will be expanded.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -125,6 +135,10 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
+		 * The field that contains the field to expand. Only required if the field to
+		 * expand is part another object field, because the <code>field</code> option
+		 * can only understand leaf fields.
+		 * <p>
 		 * API name: {@code path}
 		 */
 		public final Builder path(@Nullable String value) {

@@ -70,6 +70,9 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Limits how many top-scoring documents are collected in the sample processed
+	 * on each shard.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -101,6 +104,9 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 		private Integer shardSize;
 
 		/**
+		 * Limits how many top-scoring documents are collected in the sample processed
+		 * on each shard.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {

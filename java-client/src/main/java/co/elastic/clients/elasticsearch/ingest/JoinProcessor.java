@@ -76,20 +76,27 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Field containing array values to join.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code separator}
+	 * Required - The separator character.
+	 * <p>
+	 * API name: {@code separator}
 	 */
 	public final String separator() {
 		return this.separator;
 	}
 
 	/**
+	 * The field to assign the joined value to. By default, the field is updated
+	 * in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -129,7 +136,9 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Field containing array values to join.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -137,7 +146,9 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code separator}
+		 * Required - The separator character.
+		 * <p>
+		 * API name: {@code separator}
 		 */
 		public final Builder separator(String value) {
 			this.separator = value;
@@ -145,6 +156,9 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field to assign the joined value to. By default, the field is updated
+		 * in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

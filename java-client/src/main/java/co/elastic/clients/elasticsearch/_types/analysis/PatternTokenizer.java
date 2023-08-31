@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -47,10 +46,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+	@Nullable
 	private final String flags;
 
-	private final int group;
+	@Nullable
+	private final Integer group;
 
+	@Nullable
 	private final String pattern;
 
 	// ---------------------------------------------------------------------------------------------
@@ -58,9 +60,9 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	private PatternTokenizer(Builder builder) {
 		super(builder);
 
-		this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
-		this.group = ApiTypeHelper.requireNonNull(builder.group, this, "group");
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.flags = builder.flags;
+		this.group = builder.group;
+		this.pattern = builder.pattern;
 
 	}
 
@@ -77,22 +79,25 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	}
 
 	/**
-	 * Required - API name: {@code flags}
+	 * API name: {@code flags}
 	 */
+	@Nullable
 	public final String flags() {
 		return this.flags;
 	}
 
 	/**
-	 * Required - API name: {@code group}
+	 * API name: {@code group}
 	 */
-	public final int group() {
+	@Nullable
+	public final Integer group() {
 		return this.group;
 	}
 
 	/**
-	 * Required - API name: {@code pattern}
+	 * API name: {@code pattern}
 	 */
+	@Nullable
 	public final String pattern() {
 		return this.pattern;
 	}
@@ -101,14 +106,21 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 
 		generator.write("type", "pattern");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("flags");
-		generator.write(this.flags);
+		if (this.flags != null) {
+			generator.writeKey("flags");
+			generator.write(this.flags);
 
-		generator.writeKey("group");
-		generator.write(this.group);
+		}
+		if (this.group != null) {
+			generator.writeKey("group");
+			generator.write(this.group);
 
-		generator.writeKey("pattern");
-		generator.write(this.pattern);
+		}
+		if (this.pattern != null) {
+			generator.writeKey("pattern");
+			generator.write(this.pattern);
+
+		}
 
 	}
 
@@ -121,32 +133,35 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PatternTokenizer> {
+		@Nullable
 		private String flags;
 
+		@Nullable
 		private Integer group;
 
+		@Nullable
 		private String pattern;
 
 		/**
-		 * Required - API name: {@code flags}
+		 * API name: {@code flags}
 		 */
-		public final Builder flags(String value) {
+		public final Builder flags(@Nullable String value) {
 			this.flags = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code group}
+		 * API name: {@code group}
 		 */
-		public final Builder group(int value) {
+		public final Builder group(@Nullable Integer value) {
 			this.group = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code pattern}
+		 * API name: {@code pattern}
 		 */
-		public final Builder pattern(String value) {
+		public final Builder pattern(@Nullable String value) {
 			this.pattern = value;
 			return this;
 		}

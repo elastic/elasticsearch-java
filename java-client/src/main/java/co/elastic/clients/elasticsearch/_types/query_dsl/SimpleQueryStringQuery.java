@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnums;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,8 +64,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 
 	private final List<String> fields;
 
-	@Nullable
-	private final SimpleQueryStringFlags flags;
+	private final List<SimpleQueryStringFlag> flags;
 
 	@Nullable
 	private final Integer fuzzyMaxExpansions;
@@ -96,7 +96,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.defaultOperator = builder.defaultOperator;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-		this.flags = builder.flags;
+		this.flags = ApiTypeHelper.unmodifiable(builder.flags);
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
@@ -180,8 +180,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	 * <p>
 	 * API name: {@code flags}
 	 */
-	@Nullable
-	public final SimpleQueryStringFlags flags() {
+	public final List<SimpleQueryStringFlag> flags() {
 		return this.flags;
 	}
 
@@ -289,10 +288,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (this.flags != null) {
+		if (ApiTypeHelper.isDefined(this.flags)) {
 			generator.writeKey("flags");
-			this.flags.serialize(generator, mapper);
-
+			JsonEnums.serializePipeSeparated(this.flags, generator);
 		}
 		if (this.fuzzyMaxExpansions != null) {
 			generator.writeKey("fuzzy_max_expansions");
@@ -355,7 +353,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		private List<String> fields;
 
 		@Nullable
-		private SimpleQueryStringFlags flags;
+		private List<SimpleQueryStringFlag> flags;
 
 		@Nullable
 		private Integer fuzzyMaxExpansions;
@@ -456,9 +454,11 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		 * List of enabled operators for the simple query string syntax.
 		 * <p>
 		 * API name: {@code flags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>flags</code>.
 		 */
-		public final Builder flags(@Nullable SimpleQueryStringFlags value) {
-			this.flags = value;
+		public final Builder flags(List<SimpleQueryStringFlag> list) {
+			this.flags = _listAddAll(this.flags, list);
 			return this;
 		}
 
@@ -466,9 +466,12 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		 * List of enabled operators for the simple query string syntax.
 		 * <p>
 		 * API name: {@code flags}
+		 * <p>
+		 * Adds one or more values to <code>flags</code>.
 		 */
-		public final Builder flags(Function<SimpleQueryStringFlags.Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
-			return this.flags(fn.apply(new SimpleQueryStringFlags.Builder()).build());
+		public final Builder flags(SimpleQueryStringFlag value, SimpleQueryStringFlag... values) {
+			this.flags = _listAdd(this.flags, value, values);
+			return this;
 		}
 
 		/**
@@ -579,7 +582,8 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 				"auto_generate_synonyms_phrase_query");
 		op.add(Builder::defaultOperator, Operator._DESERIALIZER, "default_operator");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::flags, SimpleQueryStringFlags._DESERIALIZER, "flags");
+		op.add(Builder::flags, JsonpDeserializer.pipeSeparatedDeserializer(SimpleQueryStringFlag._DESERIALIZER),
+				"flags");
 		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.integerDeserializer(), "fuzzy_max_expansions");
 		op.add(Builder::fuzzyPrefixLength, JsonpDeserializer.integerDeserializer(), "fuzzy_prefix_length");
 		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");

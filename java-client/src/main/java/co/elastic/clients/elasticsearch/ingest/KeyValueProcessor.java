@@ -107,6 +107,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * List of keys to exclude from document.
+	 * <p>
 	 * API name: {@code exclude_keys}
 	 */
 	public final List<String> excludeKeys() {
@@ -114,20 +116,28 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to be parsed. Supports template snippets.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code field_split}
+	 * Required - Regex pattern to use for splitting key-value pairs.
+	 * <p>
+	 * API name: {@code field_split}
 	 */
 	public final String fieldSplit() {
 		return this.fieldSplit;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -136,6 +146,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * List of keys to filter and insert into document. Defaults to including all
+	 * keys.
+	 * <p>
 	 * API name: {@code include_keys}
 	 */
 	public final List<String> includeKeys() {
@@ -143,6 +156,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * Prefix to be added to extracted keys.
+	 * <p>
 	 * API name: {@code prefix}
 	 */
 	@Nullable
@@ -151,6 +166,10 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * If <code>true</code>. strip brackets <code>()</code>, <code>&lt;&gt;</code>,
+	 * <code>[]</code> as well as quotes <code>'</code> and <code>&quot;</code> from
+	 * extracted values.
+	 * <p>
 	 * API name: {@code strip_brackets}
 	 */
 	@Nullable
@@ -159,6 +178,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * The field to insert the extracted keys into. Defaults to the root of the
+	 * document. Supports template snippets.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -167,6 +189,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * String of characters to trim from extracted keys.
+	 * <p>
 	 * API name: {@code trim_key}
 	 */
 	@Nullable
@@ -175,6 +199,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
+	 * String of characters to trim from extracted values.
+	 * <p>
 	 * API name: {@code trim_value}
 	 */
 	@Nullable
@@ -183,7 +209,10 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
-	 * Required - API name: {@code value_split}
+	 * Required - Regex pattern to use for splitting the key from the value within a
+	 * key-value pair.
+	 * <p>
+	 * API name: {@code value_split}
 	 */
 	public final String valueSplit() {
 		return this.valueSplit;
@@ -293,6 +322,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		private String valueSplit;
 
 		/**
+		 * List of keys to exclude from document.
+		 * <p>
 		 * API name: {@code exclude_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>excludeKeys</code>.
@@ -303,6 +334,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * List of keys to exclude from document.
+		 * <p>
 		 * API name: {@code exclude_keys}
 		 * <p>
 		 * Adds one or more values to <code>excludeKeys</code>.
@@ -313,7 +346,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to be parsed. Supports template snippets.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -321,7 +356,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
-		 * Required - API name: {@code field_split}
+		 * Required - Regex pattern to use for splitting key-value pairs.
+		 * <p>
+		 * API name: {@code field_split}
 		 */
 		public final Builder fieldSplit(String value) {
 			this.fieldSplit = value;
@@ -329,6 +366,10 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -337,6 +378,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * List of keys to filter and insert into document. Defaults to including all
+		 * keys.
+		 * <p>
 		 * API name: {@code include_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>includeKeys</code>.
@@ -347,6 +391,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * List of keys to filter and insert into document. Defaults to including all
+		 * keys.
+		 * <p>
 		 * API name: {@code include_keys}
 		 * <p>
 		 * Adds one or more values to <code>includeKeys</code>.
@@ -357,6 +404,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * Prefix to be added to extracted keys.
+		 * <p>
 		 * API name: {@code prefix}
 		 */
 		public final Builder prefix(@Nullable String value) {
@@ -365,6 +414,10 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * If <code>true</code>. strip brackets <code>()</code>, <code>&lt;&gt;</code>,
+		 * <code>[]</code> as well as quotes <code>'</code> and <code>&quot;</code> from
+		 * extracted values.
+		 * <p>
 		 * API name: {@code strip_brackets}
 		 */
 		public final Builder stripBrackets(@Nullable Boolean value) {
@@ -373,6 +426,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * The field to insert the extracted keys into. Defaults to the root of the
+		 * document. Supports template snippets.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {
@@ -381,6 +437,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * String of characters to trim from extracted keys.
+		 * <p>
 		 * API name: {@code trim_key}
 		 */
 		public final Builder trimKey(@Nullable String value) {
@@ -389,6 +447,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * String of characters to trim from extracted values.
+		 * <p>
 		 * API name: {@code trim_value}
 		 */
 		public final Builder trimValue(@Nullable String value) {
@@ -397,7 +457,10 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
-		 * Required - API name: {@code value_split}
+		 * Required - Regex pattern to use for splitting the key from the value within a
+		 * key-value pair.
+		 * <p>
+		 * API name: {@code value_split}
 		 */
 		public final Builder valueSplit(String value) {
 			this.valueSplit = value;

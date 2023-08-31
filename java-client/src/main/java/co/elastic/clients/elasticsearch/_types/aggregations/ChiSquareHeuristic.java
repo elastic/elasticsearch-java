@@ -67,14 +67,21 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code background_is_superset}
+	 * Required - Set to <code>false</code> if you defined a custom background
+	 * filter that represents a different set of documents that you want to compare
+	 * to.
+	 * <p>
+	 * API name: {@code background_is_superset}
 	 */
 	public final boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
-	 * Required - API name: {@code include_negatives}
+	 * Required - Set to <code>false</code> to filter out the terms that appear less
+	 * often in the subset than in documents outside the subset.
+	 * <p>
+	 * API name: {@code include_negatives}
 	 */
 	public final boolean includeNegatives() {
 		return this.includeNegatives;
@@ -118,7 +125,11 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 		private Boolean includeNegatives;
 
 		/**
-		 * Required - API name: {@code background_is_superset}
+		 * Required - Set to <code>false</code> if you defined a custom background
+		 * filter that represents a different set of documents that you want to compare
+		 * to.
+		 * <p>
+		 * API name: {@code background_is_superset}
 		 */
 		public final Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
@@ -126,7 +137,10 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code include_negatives}
+		 * Required - Set to <code>false</code> to filter out the terms that appear less
+		 * often in the subset than in documents outside the subset.
+		 * <p>
+		 * API name: {@code include_negatives}
 		 */
 		public final Builder includeNegatives(boolean value) {
 			this.includeNegatives = value;

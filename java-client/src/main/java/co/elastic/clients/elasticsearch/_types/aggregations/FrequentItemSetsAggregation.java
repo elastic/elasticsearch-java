@@ -91,7 +91,7 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 	}
 
 	/**
-	 * Required - Fields to analyze
+	 * Required - Fields to analyze.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -212,7 +212,7 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 		private Query filter;
 
 		/**
-		 * Required - Fields to analyze
+		 * Required - Fields to analyze.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -224,7 +224,7 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 		}
 
 		/**
-		 * Required - Fields to analyze
+		 * Required - Fields to analyze.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -236,7 +236,7 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 		}
 
 		/**
-		 * Required - Fields to analyze
+		 * Required - Fields to analyze.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>

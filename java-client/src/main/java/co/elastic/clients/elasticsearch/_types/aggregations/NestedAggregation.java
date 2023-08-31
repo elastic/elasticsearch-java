@@ -70,6 +70,8 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
 	}
 
 	/**
+	 * The path to the field of type <code>nested</code>.
+	 * <p>
 	 * API name: {@code path}
 	 */
 	@Nullable
@@ -101,6 +103,8 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
 		private String path;
 
 		/**
+		 * The path to the field of type <code>nested</code>.
+		 * <p>
 		 * API name: {@code path}
 		 */
 		public final Builder path(@Nullable String value) {

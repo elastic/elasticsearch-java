@@ -74,13 +74,17 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - The name of the pipeline to execute. Supports template snippets.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
 	}
 
 	/**
+	 * Whether to ignore missing pipelines instead of failing.
+	 * <p>
 	 * API name: {@code ignore_missing_pipeline}
 	 */
 	@Nullable
@@ -117,7 +121,9 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 		private Boolean ignoreMissingPipeline;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - The name of the pipeline to execute. Supports template snippets.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
@@ -125,6 +131,8 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 		}
 
 		/**
+		 * Whether to ignore missing pipelines instead of failing.
+		 * <p>
 		 * API name: {@code ignore_missing_pipeline}
 		 */
 		public final Builder ignoreMissingPipeline(@Nullable Boolean value) {

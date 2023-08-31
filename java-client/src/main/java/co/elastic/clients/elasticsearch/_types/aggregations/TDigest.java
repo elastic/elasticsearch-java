@@ -63,6 +63,10 @@ public class TDigest implements JsonpSerializable {
 	}
 
 	/**
+	 * Limits the maximum number of nodes used by the underlying TDigest algorithm
+	 * to <code>20 * compression</code>, enabling control of memory usage and
+	 * approximation error.
+	 * <p>
 	 * API name: {@code compression}
 	 */
 	@Nullable
@@ -105,6 +109,10 @@ public class TDigest implements JsonpSerializable {
 		private Integer compression;
 
 		/**
+		 * Limits the maximum number of nodes used by the underlying TDigest algorithm
+		 * to <code>20 * compression</code>, enabling control of memory usage and
+		 * approximation error.
+		 * <p>
 		 * API name: {@code compression}
 		 */
 		public final Builder compression(@Nullable Integer value) {

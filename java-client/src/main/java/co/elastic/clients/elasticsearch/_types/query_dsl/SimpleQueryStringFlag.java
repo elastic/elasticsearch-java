@@ -46,14 +46,14 @@ public enum SimpleQueryStringFlag implements JsonEnum {
 	And("AND"),
 
 	/**
-	 * Enables the <code>\|</code> OR operator.
-	 */
-	Or("OR"),
-
-	/**
 	 * Enables the <code>-</code> NOT operator.
 	 */
 	Not("NOT"),
+
+	/**
+	 * Enables the <code>\|</code> OR operator.
+	 */
+	Or("OR"),
 
 	/**
 	 * Enables the <code>*</code> prefix operator.

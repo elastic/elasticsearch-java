@@ -70,6 +70,9 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 	}
 
 	/**
+	 * The historical bucket to subtract from the current value. Must be a positive,
+	 * non-zero integer.
+	 * <p>
 	 * API name: {@code lag}
 	 */
 	@Nullable
@@ -101,6 +104,9 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 		private Integer lag;
 
 		/**
+		 * The historical bucket to subtract from the current value. Must be a positive,
+		 * non-zero integer.
+		 * <p>
 		 * API name: {@code lag}
 		 */
 		public final Builder lag(@Nullable Integer value) {

@@ -81,6 +81,8 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
+	 * The character(s) that separate the appended fields.
+	 * <p>
 	 * API name: {@code append_separator}
 	 */
 	@Nullable
@@ -89,13 +91,19 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to dissect.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -104,7 +112,9 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code pattern}
+	 * Required - The pattern to apply to the field.
+	 * <p>
+	 * API name: {@code pattern}
 	 */
 	public final String pattern() {
 		return this.pattern;
@@ -151,6 +161,8 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		private String pattern;
 
 		/**
+		 * The character(s) that separate the appended fields.
+		 * <p>
 		 * API name: {@code append_separator}
 		 */
 		public final Builder appendSeparator(@Nullable String value) {
@@ -159,7 +171,9 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to dissect.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -167,6 +181,10 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -175,7 +193,9 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code pattern}
+		 * Required - The pattern to apply to the field.
+		 * <p>
+		 * API name: {@code pattern}
 		 */
 		public final Builder pattern(String value) {
 			this.pattern = value;

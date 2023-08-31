@@ -95,6 +95,10 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * Value used to fill empty fields. Empty fields are skipped if this is not
+	 * provided. An empty field is one with no value (2 consecutive separators) or
+	 * empty quotes (<code>&quot;&quot;</code>).
+	 * <p>
 	 * API name: {@code empty_value}
 	 */
 	@Nullable
@@ -103,13 +107,18 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to extract data from.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -118,6 +127,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * Quote used in CSV, has to be single character string.
+	 * <p>
 	 * API name: {@code quote}
 	 */
 	@Nullable
@@ -126,6 +137,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * Separator used in CSV, has to be single character string.
+	 * <p>
 	 * API name: {@code separator}
 	 */
 	@Nullable
@@ -134,13 +147,17 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code target_fields}
+	 * Required - The array of fields to assign extracted values to.
+	 * <p>
+	 * API name: {@code target_fields}
 	 */
 	public final List<String> targetFields() {
 		return this.targetFields;
 	}
 
 	/**
+	 * Trim whitespaces in unquoted fields.
+	 * <p>
 	 * API name: {@code trim}
 	 */
 	@Nullable
@@ -219,6 +236,10 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		private Boolean trim;
 
 		/**
+		 * Value used to fill empty fields. Empty fields are skipped if this is not
+		 * provided. An empty field is one with no value (2 consecutive separators) or
+		 * empty quotes (<code>&quot;&quot;</code>).
+		 * <p>
 		 * API name: {@code empty_value}
 		 */
 		public final Builder emptyValue(@Nullable JsonData value) {
@@ -227,7 +248,9 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to extract data from.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -235,6 +258,9 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -243,6 +269,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * Quote used in CSV, has to be single character string.
+		 * <p>
 		 * API name: {@code quote}
 		 */
 		public final Builder quote(@Nullable String value) {
@@ -251,6 +279,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * Separator used in CSV, has to be single character string.
+		 * <p>
 		 * API name: {@code separator}
 		 */
 		public final Builder separator(@Nullable String value) {
@@ -259,7 +289,9 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_fields}
+		 * Required - The array of fields to assign extracted values to.
+		 * <p>
+		 * API name: {@code target_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>targetFields</code>.
 		 */
@@ -269,7 +301,9 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_fields}
+		 * Required - The array of fields to assign extracted values to.
+		 * <p>
+		 * API name: {@code target_fields}
 		 * <p>
 		 * Adds one or more values to <code>targetFields</code>.
 		 */
@@ -279,6 +313,8 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * Trim whitespaces in unquoted fields.
+		 * <p>
 		 * API name: {@code trim}
 		 */
 		public final Builder trim(@Nullable Boolean value) {

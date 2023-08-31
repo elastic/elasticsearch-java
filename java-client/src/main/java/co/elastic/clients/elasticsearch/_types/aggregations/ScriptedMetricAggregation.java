@@ -89,6 +89,9 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 	}
 
 	/**
+	 * Runs once on each shard after document collection is complete. Allows the
+	 * aggregation to consolidate the state returned from each shard.
+	 * <p>
 	 * API name: {@code combine_script}
 	 */
 	@Nullable
@@ -97,6 +100,9 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 	}
 
 	/**
+	 * Runs prior to any collection of documents. Allows the aggregation to set up
+	 * any initial state.
+	 * <p>
 	 * API name: {@code init_script}
 	 */
 	@Nullable
@@ -105,6 +111,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 	}
 
 	/**
+	 * Run once per document collected. If no <code>combine_script</code> is
+	 * specified, the resulting state needs to be stored in the <code>state</code>
+	 * object.
+	 * <p>
 	 * API name: {@code map_script}
 	 */
 	@Nullable
@@ -113,6 +123,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 	}
 
 	/**
+	 * A global object with script parameters for <code>init</code>,
+	 * <code>map</code> and <code>combine</code> scripts. It is shared between the
+	 * scripts.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -120,6 +134,11 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 	}
 
 	/**
+	 * Runs once on the coordinating node after all shards have returned their
+	 * results. The script is provided with access to a variable
+	 * <code>states</code>, which is an array of the result of the
+	 * <code>combine_script</code> on each shard.
+	 * <p>
 	 * API name: {@code reduce_script}
 	 */
 	@Nullable
@@ -189,6 +208,9 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		private Script reduceScript;
 
 		/**
+		 * Runs once on each shard after document collection is complete. Allows the
+		 * aggregation to consolidate the state returned from each shard.
+		 * <p>
 		 * API name: {@code combine_script}
 		 */
 		public final Builder combineScript(@Nullable Script value) {
@@ -197,6 +219,9 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Runs once on each shard after document collection is complete. Allows the
+		 * aggregation to consolidate the state returned from each shard.
+		 * <p>
 		 * API name: {@code combine_script}
 		 */
 		public final Builder combineScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -204,6 +229,9 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Runs prior to any collection of documents. Allows the aggregation to set up
+		 * any initial state.
+		 * <p>
 		 * API name: {@code init_script}
 		 */
 		public final Builder initScript(@Nullable Script value) {
@@ -212,6 +240,9 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Runs prior to any collection of documents. Allows the aggregation to set up
+		 * any initial state.
+		 * <p>
 		 * API name: {@code init_script}
 		 */
 		public final Builder initScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -219,6 +250,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Run once per document collected. If no <code>combine_script</code> is
+		 * specified, the resulting state needs to be stored in the <code>state</code>
+		 * object.
+		 * <p>
 		 * API name: {@code map_script}
 		 */
 		public final Builder mapScript(@Nullable Script value) {
@@ -227,6 +262,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Run once per document collected. If no <code>combine_script</code> is
+		 * specified, the resulting state needs to be stored in the <code>state</code>
+		 * object.
+		 * <p>
 		 * API name: {@code map_script}
 		 */
 		public final Builder mapScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -234,6 +273,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * A global object with script parameters for <code>init</code>,
+		 * <code>map</code> and <code>combine</code> scripts. It is shared between the
+		 * scripts.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -244,6 +287,10 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * A global object with script parameters for <code>init</code>,
+		 * <code>map</code> and <code>combine</code> scripts. It is shared between the
+		 * scripts.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.
@@ -254,6 +301,11 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Runs once on the coordinating node after all shards have returned their
+		 * results. The script is provided with access to a variable
+		 * <code>states</code>, which is an array of the result of the
+		 * <code>combine_script</code> on each shard.
+		 * <p>
 		 * API name: {@code reduce_script}
 		 */
 		public final Builder reduceScript(@Nullable Script value) {
@@ -262,6 +314,11 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 
 		/**
+		 * Runs once on the coordinating node after all shards have returned their
+		 * results. The script is provided with access to a variable
+		 * <code>states</code>, which is an array of the result of the
+		 * <code>combine_script</code> on each shard.
+		 * <p>
 		 * API name: {@code reduce_script}
 		 */
 		public final Builder reduceScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {

@@ -66,14 +66,18 @@ public class TermsPartition implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code num_partitions}
+	 * Required - The number of partitions.
+	 * <p>
+	 * API name: {@code num_partitions}
 	 */
 	public final long numPartitions() {
 		return this.numPartitions;
 	}
 
 	/**
-	 * Required - API name: {@code partition}
+	 * Required - The partition number for this request.
+	 * <p>
+	 * API name: {@code partition}
 	 */
 	public final long partition() {
 		return this.partition;
@@ -115,7 +119,9 @@ public class TermsPartition implements JsonpSerializable {
 		private Long partition;
 
 		/**
-		 * Required - API name: {@code num_partitions}
+		 * Required - The number of partitions.
+		 * <p>
+		 * API name: {@code num_partitions}
 		 */
 		public final Builder numPartitions(long value) {
 			this.numPartitions = value;
@@ -123,7 +129,9 @@ public class TermsPartition implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code partition}
+		 * Required - The partition number for this request.
+		 * <p>
+		 * API name: {@code partition}
 		 */
 		public final Builder partition(long value) {
 			this.partition = value;

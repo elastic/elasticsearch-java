@@ -214,7 +214,7 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 	}
 
 	/**
-	 * The minimum number of documents for a bucket to be returned to the results.
+	 * The minimum number of documents in a bucket to be returned to the results.
 	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
@@ -224,7 +224,7 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 	}
 
 	/**
-	 * The minimum number of documents for a bucket to be returned from the shard
+	 * The minimum number of documents in a bucket to be returned from the shard
 	 * before merging.
 	 * <p>
 	 * API name: {@code shard_min_doc_count}
@@ -475,7 +475,7 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 		}
 
 		/**
-		 * The minimum number of documents for a bucket to be returned to the results.
+		 * The minimum number of documents in a bucket to be returned to the results.
 		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
@@ -485,7 +485,7 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 		}
 
 		/**
-		 * The minimum number of documents for a bucket to be returned from the shard
+		 * The minimum number of documents in a bucket to be returned from the shard
 		 * before merging.
 		 * <p>
 		 * API name: {@code shard_min_doc_count}

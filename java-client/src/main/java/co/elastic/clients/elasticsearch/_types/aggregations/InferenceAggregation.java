@@ -74,13 +74,17 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	}
 
 	/**
-	 * Required - API name: {@code model_id}
+	 * Required - The ID or alias for the trained model.
+	 * <p>
+	 * API name: {@code model_id}
 	 */
 	public final String modelId() {
 		return this.modelId;
 	}
 
 	/**
+	 * Contains the inference type and its options.
+	 * <p>
 	 * API name: {@code inference_config}
 	 */
 	@Nullable
@@ -117,7 +121,9 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		private InferenceConfig inferenceConfig;
 
 		/**
-		 * Required - API name: {@code model_id}
+		 * Required - The ID or alias for the trained model.
+		 * <p>
+		 * API name: {@code model_id}
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
@@ -125,6 +131,8 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		}
 
 		/**
+		 * Contains the inference type and its options.
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
 		public final Builder inferenceConfig(@Nullable InferenceConfig value) {
@@ -133,6 +141,8 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		}
 
 		/**
+		 * Contains the inference type and its options.
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
 		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {

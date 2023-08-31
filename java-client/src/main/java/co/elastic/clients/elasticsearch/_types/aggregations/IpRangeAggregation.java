@@ -75,6 +75,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * The date field whose values are used to build ranges.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -83,6 +85,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Array of IP ranges.
+	 * <p>
 	 * API name: {@code ranges}
 	 */
 	public final List<IpRangeAggregationRange> ranges() {
@@ -126,6 +130,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		private List<IpRangeAggregationRange> ranges;
 
 		/**
+		 * The date field whose values are used to build ranges.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -134,6 +140,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Array of IP ranges.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
@@ -144,6 +152,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Array of IP ranges.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds one or more values to <code>ranges</code>.
@@ -154,6 +164,8 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Array of IP ranges.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds a value to <code>ranges</code> using a builder lambda.

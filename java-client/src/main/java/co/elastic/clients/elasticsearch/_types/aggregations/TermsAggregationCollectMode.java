@@ -35,8 +35,16 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum TermsAggregationCollectMode implements JsonEnum {
+	/**
+	 * Expands all branches of the aggregation tree in one depth-first pass, before
+	 * any pruning occurs.
+	 */
 	DepthFirst("depth_first"),
 
+	/**
+	 * Caches the set of documents that fall into the uppermost buckets for
+	 * subsequent replay.
+	 */
 	BreadthFirst("breadth_first"),
 
 	;

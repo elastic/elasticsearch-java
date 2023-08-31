@@ -34,8 +34,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum RateMode implements JsonEnum {
+	/**
+	 * Calculates the sum of all values of the field.
+	 */
 	Sum("sum"),
 
+	/**
+	 * Uses the number of values of the field.
+	 */
 	ValueCount("value_count"),
 
 	;

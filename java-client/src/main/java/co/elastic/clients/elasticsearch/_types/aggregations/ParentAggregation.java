@@ -70,6 +70,8 @@ public class ParentAggregation extends BucketAggregationBase implements Aggregat
 	}
 
 	/**
+	 * The child type that should be selected.
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -101,6 +103,8 @@ public class ParentAggregation extends BucketAggregationBase implements Aggregat
 		private String type;
 
 		/**
+		 * The child type that should be selected.
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public final Builder type(@Nullable String value) {

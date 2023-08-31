@@ -91,6 +91,11 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The origin field which will be copied to <code>field</code>, cannot set
+	 * <code>value</code> simultaneously. Supported data types are
+	 * <code>boolean</code>, <code>number</code>, <code>array</code>,
+	 * <code>object</code>, <code>string</code>, <code>date</code>, etc.
+	 * <p>
 	 * API name: {@code copy_from}
 	 */
 	@Nullable
@@ -99,13 +104,20 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to insert, upsert, or update. Supports template
+	 * snippets.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>value</code> is a template snippet that
+	 * evaluates to <code>null</code> or the empty string, the processor quietly
+	 * exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_empty_value}
 	 */
 	@Nullable
@@ -114,6 +126,10 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The media type for encoding <code>value</code>. Applies only when value is a
+	 * template snippet. Must be one of <code>application/json</code>,
+	 * <code>text/plain</code>, or <code>application/x-www-form-urlencoded</code>.
+	 * <p>
 	 * API name: {@code media_type}
 	 */
 	@Nullable
@@ -122,6 +138,10 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * If <code>true</code> processor will update fields with pre-existing
+	 * non-null-valued field. When set to <code>false</code>, such fields will not
+	 * be touched.
+	 * <p>
 	 * API name: {@code override}
 	 */
 	@Nullable
@@ -130,6 +150,9 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The value to be set for the field. Supports template snippets. May specify
+	 * only one of <code>value</code> or <code>copy_from</code>.
+	 * <p>
 	 * API name: {@code value}
 	 */
 	@Nullable
@@ -196,6 +219,11 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		private JsonData value;
 
 		/**
+		 * The origin field which will be copied to <code>field</code>, cannot set
+		 * <code>value</code> simultaneously. Supported data types are
+		 * <code>boolean</code>, <code>number</code>, <code>array</code>,
+		 * <code>object</code>, <code>string</code>, <code>date</code>, etc.
+		 * <p>
 		 * API name: {@code copy_from}
 		 */
 		public final Builder copyFrom(@Nullable String value) {
@@ -204,7 +232,10 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to insert, upsert, or update. Supports template
+		 * snippets.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -212,6 +243,10 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>value</code> is a template snippet that
+		 * evaluates to <code>null</code> or the empty string, the processor quietly
+		 * exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_empty_value}
 		 */
 		public final Builder ignoreEmptyValue(@Nullable Boolean value) {
@@ -220,6 +255,10 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The media type for encoding <code>value</code>. Applies only when value is a
+		 * template snippet. Must be one of <code>application/json</code>,
+		 * <code>text/plain</code>, or <code>application/x-www-form-urlencoded</code>.
+		 * <p>
 		 * API name: {@code media_type}
 		 */
 		public final Builder mediaType(@Nullable String value) {
@@ -228,6 +267,10 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> processor will update fields with pre-existing
+		 * non-null-valued field. When set to <code>false</code>, such fields will not
+		 * be touched.
+		 * <p>
 		 * API name: {@code override}
 		 */
 		public final Builder override(@Nullable Boolean value) {
@@ -236,6 +279,9 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The value to be set for the field. Supports template snippets. May specify
+		 * only one of <code>value</code> or <code>copy_from</code>.
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public final Builder value(@Nullable JsonData value) {

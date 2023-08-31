@@ -72,6 +72,9 @@ public class Document implements JsonpSerializable {
 	}
 
 	/**
+	 * Unique identifier for the document. This ID must be unique within the
+	 * <code>_index</code>.
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	@Nullable
@@ -80,6 +83,8 @@ public class Document implements JsonpSerializable {
 	}
 
 	/**
+	 * Name of the index containing the document.
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	@Nullable
@@ -88,7 +93,9 @@ public class Document implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _source}
+	 * Required - JSON body for the document.
+	 * <p>
+	 * API name: {@code _source}
 	 */
 	public final JsonData source() {
 		return this.source;
@@ -141,6 +148,9 @@ public class Document implements JsonpSerializable {
 		private JsonData source;
 
 		/**
+		 * Unique identifier for the document. This ID must be unique within the
+		 * <code>_index</code>.
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public final Builder id(@Nullable String value) {
@@ -149,6 +159,8 @@ public class Document implements JsonpSerializable {
 		}
 
 		/**
+		 * Name of the index containing the document.
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -157,7 +169,9 @@ public class Document implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * Required - JSON body for the document.
+		 * <p>
+		 * API name: {@code _source}
 		 */
 		public final Builder source(JsonData value) {
 			this.source = value;

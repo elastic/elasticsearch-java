@@ -72,6 +72,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 	}
 
 	/**
+	 * Start of the range.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -80,6 +82,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 	}
 
 	/**
+	 * IP range defined as a CIDR mask.
+	 * <p>
 	 * API name: {@code mask}
 	 */
 	@Nullable
@@ -88,6 +92,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 	}
 
 	/**
+	 * End of the range.
+	 * <p>
 	 * API name: {@code to}
 	 */
 	@Nullable
@@ -148,6 +154,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 		private String to;
 
 		/**
+		 * Start of the range.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(@Nullable String value) {
@@ -156,6 +164,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 		}
 
 		/**
+		 * IP range defined as a CIDR mask.
+		 * <p>
 		 * API name: {@code mask}
 		 */
 		public final Builder mask(@Nullable String value) {
@@ -164,6 +174,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 		}
 
 		/**
+		 * End of the range.
+		 * <p>
 		 * API name: {@code to}
 		 */
 		public final Builder to(@Nullable String value) {

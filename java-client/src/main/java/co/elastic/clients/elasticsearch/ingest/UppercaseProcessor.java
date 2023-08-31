@@ -79,13 +79,19 @@ public class UppercaseProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to make uppercase.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -94,6 +100,9 @@ public class UppercaseProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
+	 * The field to assign the converted value to. By default, the field is updated
+	 * in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -138,7 +147,9 @@ public class UppercaseProcessor extends ProcessorBase implements ProcessorVarian
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to make uppercase.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -146,6 +157,10 @@ public class UppercaseProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -154,6 +169,9 @@ public class UppercaseProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * The field to assign the converted value to. By default, the field is updated
+		 * in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

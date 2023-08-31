@@ -70,6 +70,9 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 	}
 
 	/**
+	 * Specifies whether the bounding box should be allowed to overlap the
+	 * international date line.
+	 * <p>
 	 * API name: {@code wrap_longitude}
 	 */
 	@Nullable
@@ -101,6 +104,9 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 		private Boolean wrapLongitude;
 
 		/**
+		 * Specifies whether the bounding box should be allowed to overlap the
+		 * international date line.
+		 * <p>
 		 * API name: {@code wrap_longitude}
 		 */
 		public final Builder wrapLongitude(@Nullable Boolean value) {

@@ -72,6 +72,8 @@ public class AggregationRange implements JsonpSerializable {
 	}
 
 	/**
+	 * Start of the range (inclusive).
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -80,6 +82,8 @@ public class AggregationRange implements JsonpSerializable {
 	}
 
 	/**
+	 * Custom key to return the range with.
+	 * <p>
 	 * API name: {@code key}
 	 */
 	@Nullable
@@ -88,6 +92,8 @@ public class AggregationRange implements JsonpSerializable {
 	}
 
 	/**
+	 * End of the range (exclusive).
+	 * <p>
 	 * API name: {@code to}
 	 */
 	@Nullable
@@ -146,6 +152,8 @@ public class AggregationRange implements JsonpSerializable {
 		private String to;
 
 		/**
+		 * Start of the range (inclusive).
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(@Nullable String value) {
@@ -154,6 +162,8 @@ public class AggregationRange implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom key to return the range with.
+		 * <p>
 		 * API name: {@code key}
 		 */
 		public final Builder key(@Nullable String value) {
@@ -162,6 +172,8 @@ public class AggregationRange implements JsonpSerializable {
 		}
 
 		/**
+		 * End of the range (exclusive).
+		 * <p>
 		 * API name: {@code to}
 		 */
 		public final Builder to(@Nullable String value) {

@@ -64,7 +64,10 @@ public class GeoLineSort implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The name of the numeric field to use as the sort key for ordering
+	 * the points.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
@@ -101,7 +104,10 @@ public class GeoLineSort implements JsonpSerializable {
 		private String field;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The name of the numeric field to use as the sort key for ordering
+		 * the points.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;

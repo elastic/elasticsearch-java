@@ -82,6 +82,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 	}
 
 	/**
+	 * A numeric response formatter.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -90,6 +92,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 	}
 
 	/**
+	 * Configuration for the field that provides the values.
+	 * <p>
 	 * API name: {@code value}
 	 */
 	@Nullable
@@ -106,6 +110,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 	}
 
 	/**
+	 * Configuration for the field or script that provides the weights.
+	 * <p>
 	 * API name: {@code weight}
 	 */
 	@Nullable
@@ -160,6 +166,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		private WeightedAverageValue weight;
 
 		/**
+		 * A numeric response formatter.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public final Builder format(@Nullable String value) {
@@ -168,6 +176,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		}
 
 		/**
+		 * Configuration for the field that provides the values.
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public final Builder value(@Nullable WeightedAverageValue value) {
@@ -176,6 +186,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		}
 
 		/**
+		 * Configuration for the field that provides the values.
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public final Builder value(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
@@ -191,6 +203,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		}
 
 		/**
+		 * Configuration for the field or script that provides the weights.
+		 * <p>
 		 * API name: {@code weight}
 		 */
 		public final Builder weight(@Nullable WeightedAverageValue value) {
@@ -199,6 +213,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		}
 
 		/**
+		 * Configuration for the field or script that provides the weights.
+		 * <p>
 		 * API name: {@code weight}
 		 */
 		public final Builder weight(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {

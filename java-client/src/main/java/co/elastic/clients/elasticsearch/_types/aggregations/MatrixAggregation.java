@@ -64,6 +64,8 @@ public abstract class MatrixAggregation extends AggregationBase {
 	}
 
 	/**
+	 * An array of fields for computing the statistics.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
@@ -71,6 +73,9 @@ public abstract class MatrixAggregation extends AggregationBase {
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	public final Map<String, Double> missing() {
@@ -114,6 +119,8 @@ public abstract class MatrixAggregation extends AggregationBase {
 		private Map<String, Double> missing;
 
 		/**
+		 * An array of fields for computing the statistics.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -124,6 +131,8 @@ public abstract class MatrixAggregation extends AggregationBase {
 		}
 
 		/**
+		 * An array of fields for computing the statistics.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
@@ -134,6 +143,9 @@ public abstract class MatrixAggregation extends AggregationBase {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>missing</code>.
@@ -144,6 +156,9 @@ public abstract class MatrixAggregation extends AggregationBase {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 * <p>
 		 * Adds an entry to <code>missing</code>.

@@ -69,7 +69,10 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code message}
+	 * Required - The error message thrown by the processor. Supports template
+	 * snippets.
+	 * <p>
+	 * API name: {@code message}
 	 */
 	public final String message() {
 		return this.message;
@@ -93,7 +96,10 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 		private String message;
 
 		/**
-		 * Required - API name: {@code message}
+		 * Required - The error message thrown by the processor. Supports template
+		 * snippets.
+		 * <p>
+		 * API name: {@code message}
 		 */
 		public final Builder message(String value) {
 			this.message = value;

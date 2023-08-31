@@ -39,7 +39,7 @@ import java.util.Objects;
 // typedef: ingest.geo_ip_stats.Request
 
 /**
- * Returns statistical information about geoip databases
+ * Gets download statistics for GeoIP2 databases used with the geoip processor.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.geo_ip_stats.Request">API
  *      specification</a>

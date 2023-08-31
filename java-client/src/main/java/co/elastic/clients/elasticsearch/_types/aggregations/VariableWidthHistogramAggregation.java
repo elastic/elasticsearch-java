@@ -86,6 +86,8 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	}
 
 	/**
+	 * The name of the field.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -94,6 +96,8 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	}
 
 	/**
+	 * The target number of buckets.
+	 * <p>
 	 * API name: {@code buckets}
 	 */
 	@Nullable
@@ -102,6 +106,9 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	}
 
 	/**
+	 * The number of buckets that the coordinating node will request from each
+	 * shard. Defaults to <code>buckets * 50</code>.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -110,6 +117,10 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	}
 
 	/**
+	 * Specifies the number of individual documents that will be stored in memory on
+	 * a shard before the initial bucketing algorithm is run. Defaults to
+	 * <code>min(10 * shard_size, 50000)</code>.
+	 * <p>
 	 * API name: {@code initial_buffer}
 	 */
 	@Nullable
@@ -178,6 +189,8 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		private Integer initialBuffer;
 
 		/**
+		 * The name of the field.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -186,6 +199,8 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		}
 
 		/**
+		 * The target number of buckets.
+		 * <p>
 		 * API name: {@code buckets}
 		 */
 		public final Builder buckets(@Nullable Integer value) {
@@ -194,6 +209,9 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		}
 
 		/**
+		 * The number of buckets that the coordinating node will request from each
+		 * shard. Defaults to <code>buckets * 50</code>.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -202,6 +220,10 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		}
 
 		/**
+		 * Specifies the number of individual documents that will be stored in memory on
+		 * a shard before the initial bucketing algorithm is run. Defaults to
+		 * <code>min(10 * shard_size, 50000)</code>.
+		 * <p>
 		 * API name: {@code initial_buffer}
 		 */
 		public final Builder initialBuffer(@Nullable Integer value) {

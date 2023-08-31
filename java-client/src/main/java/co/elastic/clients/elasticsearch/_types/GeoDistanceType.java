@@ -34,8 +34,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum GeoDistanceType implements JsonEnum {
+	/**
+	 * The <code>arc</code> calculation is the most accurate.
+	 */
 	Arc("arc"),
 
+	/**
+	 * The <code>plane</code> calculation is faster but less accurate.
+	 */
 	Plane("plane"),
 
 	;

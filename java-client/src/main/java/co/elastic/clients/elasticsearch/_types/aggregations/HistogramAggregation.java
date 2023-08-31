@@ -127,6 +127,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Enables extending the bounds of the histogram beyond the data itself.
+	 * <p>
 	 * API name: {@code extended_bounds}
 	 */
 	@Nullable
@@ -135,6 +137,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Limits the range of buckets in the histogram. It is particularly useful in
+	 * the case of open data ranges that can result in a very large number of
+	 * buckets.
+	 * <p>
 	 * API name: {@code hard_bounds}
 	 */
 	@Nullable
@@ -143,6 +149,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The name of the field to aggregate on.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -151,6 +159,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The interval for the buckets. Must be a positive decimal.
+	 * <p>
 	 * API name: {@code interval}
 	 */
 	@Nullable
@@ -159,6 +169,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Only returns buckets that have <code>min_doc_count</code> number of
+	 * documents. By default, the response will fill gaps in the histogram with
+	 * empty buckets.
+	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
@@ -167,6 +181,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -175,6 +192,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * By default, the bucket keys start with 0 and then continue in even spaced
+	 * steps of <code>interval</code>. The bucket boundaries can be shifted by using
+	 * the <code>offset</code> option.
+	 * <p>
 	 * API name: {@code offset}
 	 */
 	@Nullable
@@ -183,6 +204,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The sort order of the returned buckets. By default, the returned buckets are
+	 * sorted by their key ascending.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	public final List<NamedValue<SortOrder>> order() {
@@ -206,6 +230,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * If <code>true</code>, returns buckets as a hash instead of an array, keyed by
+	 * the bucket keys.
+	 * <p>
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -325,6 +352,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		private Boolean keyed;
 
 		/**
+		 * Enables extending the bounds of the histogram beyond the data itself.
+		 * <p>
 		 * API name: {@code extended_bounds}
 		 */
 		public final Builder extendedBounds(@Nullable ExtendedBounds<Double> value) {
@@ -333,6 +362,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Enables extending the bounds of the histogram beyond the data itself.
+		 * <p>
 		 * API name: {@code extended_bounds}
 		 */
 		public final Builder extendedBounds(
@@ -341,6 +372,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Limits the range of buckets in the histogram. It is particularly useful in
+		 * the case of open data ranges that can result in a very large number of
+		 * buckets.
+		 * <p>
 		 * API name: {@code hard_bounds}
 		 */
 		public final Builder hardBounds(@Nullable ExtendedBounds<Double> value) {
@@ -349,6 +384,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Limits the range of buckets in the histogram. It is particularly useful in
+		 * the case of open data ranges that can result in a very large number of
+		 * buckets.
+		 * <p>
 		 * API name: {@code hard_bounds}
 		 */
 		public final Builder hardBounds(
@@ -357,6 +396,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The name of the field to aggregate on.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -365,6 +406,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The interval for the buckets. Must be a positive decimal.
+		 * <p>
 		 * API name: {@code interval}
 		 */
 		public final Builder interval(@Nullable Double value) {
@@ -373,6 +416,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Only returns buckets that have <code>min_doc_count</code> number of
+		 * documents. By default, the response will fill gaps in the histogram with
+		 * empty buckets.
+		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
 		public final Builder minDocCount(@Nullable Integer value) {
@@ -381,6 +428,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable Double value) {
@@ -389,6 +439,10 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * By default, the bucket keys start with 0 and then continue in even spaced
+		 * steps of <code>interval</code>. The bucket boundaries can be shifted by using
+		 * the <code>offset</code> option.
+		 * <p>
 		 * API name: {@code offset}
 		 */
 		public final Builder offset(@Nullable Double value) {
@@ -397,6 +451,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The sort order of the returned buckets. By default, the returned buckets are
+		 * sorted by their key ascending.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
@@ -407,6 +464,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The sort order of the returned buckets. By default, the returned buckets are
+		 * sorted by their key ascending.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
@@ -440,6 +500,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * If <code>true</code>, returns buckets as a hash instead of an array, keyed by
+		 * the bucket keys.
+		 * <p>
 		 * API name: {@code keyed}
 		 */
 		public final Builder keyed(@Nullable Boolean value) {

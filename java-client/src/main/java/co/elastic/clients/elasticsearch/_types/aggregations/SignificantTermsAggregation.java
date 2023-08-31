@@ -130,6 +130,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * A background filter that can be used to focus in on significant terms within
+	 * a narrower context, instead of the entire index.
+	 * <p>
 	 * API name: {@code background_filter}
 	 */
 	@Nullable
@@ -138,6 +141,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Use Chi square, as described in &quot;Information Retrieval&quot;, Manning et
+	 * al., Chapter 13.5.2, as the significance score.
+	 * <p>
 	 * API name: {@code chi_square}
 	 */
 	@Nullable
@@ -146,6 +152,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Terms to exclude.
+	 * <p>
 	 * API name: {@code exclude}
 	 */
 	@Nullable
@@ -154,6 +162,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Mechanism by which the aggregation should be executed: using field values
+	 * directly or using global ordinals.
+	 * <p>
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
@@ -162,6 +173,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * The field from which to return significant terms.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -170,6 +183,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Use Google normalized distance as described in &quot;The Google Similarity
+	 * Distance&quot;, Cilibrasi and Vitanyi, 2007, as the significance score.
+	 * <p>
 	 * API name: {@code gnd}
 	 */
 	@Nullable
@@ -178,6 +194,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Terms to include.
+	 * <p>
 	 * API name: {@code include}
 	 */
 	@Nullable
@@ -186,6 +204,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Use JLH score as the significance score.
+	 * <p>
 	 * API name: {@code jlh}
 	 */
 	@Nullable
@@ -194,6 +214,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Only return terms that are found in more than <code>min_doc_count</code>
+	 * hits.
+	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
@@ -202,6 +225,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Use mutual information as described in &quot;Information Retrieval&quot;,
+	 * Manning et al., Chapter 13.5.1, as the significance score.
+	 * <p>
 	 * API name: {@code mutual_information}
 	 */
 	@Nullable
@@ -210,6 +236,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * A simple calculation of the number of documents in the foreground sample with
+	 * a term divided by the number of documents in the background with the term.
+	 * <p>
 	 * API name: {@code percentage}
 	 */
 	@Nullable
@@ -218,6 +247,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Customized score, implemented via a script.
+	 * <p>
 	 * API name: {@code script_heuristic}
 	 */
 	@Nullable
@@ -226,6 +257,11 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Regulates the certainty a shard has if the term should actually be added to
+	 * the candidate list or not with respect to the <code>min_doc_count</code>.
+	 * Terms will only be considered if their local shard frequency within the set
+	 * is higher than the <code>shard_min_doc_count</code>.
+	 * <p>
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
@@ -234,6 +270,10 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * Can be used to control the volumes of candidate terms produced by each shard.
+	 * By default, <code>shard_size</code> will be automatically estimated based on
+	 * the number of shards and the <code>size</code> parameter.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -242,6 +282,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
+	 * The number of buckets returned out of the overall terms list.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -384,6 +426,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		private Integer size;
 
 		/**
+		 * A background filter that can be used to focus in on significant terms within
+		 * a narrower context, instead of the entire index.
+		 * <p>
 		 * API name: {@code background_filter}
 		 */
 		public final Builder backgroundFilter(@Nullable Query value) {
@@ -392,6 +437,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * A background filter that can be used to focus in on significant terms within
+		 * a narrower context, instead of the entire index.
+		 * <p>
 		 * API name: {@code background_filter}
 		 */
 		public final Builder backgroundFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -399,6 +447,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use Chi square, as described in &quot;Information Retrieval&quot;, Manning et
+		 * al., Chapter 13.5.2, as the significance score.
+		 * <p>
 		 * API name: {@code chi_square}
 		 */
 		public final Builder chiSquare(@Nullable ChiSquareHeuristic value) {
@@ -407,6 +458,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use Chi square, as described in &quot;Information Retrieval&quot;, Manning et
+		 * al., Chapter 13.5.2, as the significance score.
+		 * <p>
 		 * API name: {@code chi_square}
 		 */
 		public final Builder chiSquare(Function<ChiSquareHeuristic.Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
@@ -414,6 +468,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Terms to exclude.
+		 * <p>
 		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(@Nullable TermsExclude value) {
@@ -422,6 +478,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Terms to exclude.
+		 * <p>
 		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
@@ -429,6 +487,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Mechanism by which the aggregation should be executed: using field values
+		 * directly or using global ordinals.
+		 * <p>
 		 * API name: {@code execution_hint}
 		 */
 		public final Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
@@ -437,6 +498,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * The field from which to return significant terms.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -445,6 +508,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use Google normalized distance as described in &quot;The Google Similarity
+		 * Distance&quot;, Cilibrasi and Vitanyi, 2007, as the significance score.
+		 * <p>
 		 * API name: {@code gnd}
 		 */
 		public final Builder gnd(@Nullable GoogleNormalizedDistanceHeuristic value) {
@@ -453,6 +519,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use Google normalized distance as described in &quot;The Google Similarity
+		 * Distance&quot;, Cilibrasi and Vitanyi, 2007, as the significance score.
+		 * <p>
 		 * API name: {@code gnd}
 		 */
 		public final Builder gnd(
@@ -461,6 +530,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Terms to include.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(@Nullable TermsInclude value) {
@@ -469,6 +540,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Terms to include.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
@@ -476,6 +549,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use JLH score as the significance score.
+		 * <p>
 		 * API name: {@code jlh}
 		 */
 		public final Builder jlh(@Nullable EmptyObject value) {
@@ -484,6 +559,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use JLH score as the significance score.
+		 * <p>
 		 * API name: {@code jlh}
 		 */
 		public final Builder jlh(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
@@ -491,6 +568,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Only return terms that are found in more than <code>min_doc_count</code>
+		 * hits.
+		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
 		public final Builder minDocCount(@Nullable Long value) {
@@ -499,6 +579,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use mutual information as described in &quot;Information Retrieval&quot;,
+		 * Manning et al., Chapter 13.5.1, as the significance score.
+		 * <p>
 		 * API name: {@code mutual_information}
 		 */
 		public final Builder mutualInformation(@Nullable MutualInformationHeuristic value) {
@@ -507,6 +590,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Use mutual information as described in &quot;Information Retrieval&quot;,
+		 * Manning et al., Chapter 13.5.1, as the significance score.
+		 * <p>
 		 * API name: {@code mutual_information}
 		 */
 		public final Builder mutualInformation(
@@ -515,6 +601,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * A simple calculation of the number of documents in the foreground sample with
+		 * a term divided by the number of documents in the background with the term.
+		 * <p>
 		 * API name: {@code percentage}
 		 */
 		public final Builder percentage(@Nullable PercentageScoreHeuristic value) {
@@ -523,6 +612,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * A simple calculation of the number of documents in the foreground sample with
+		 * a term divided by the number of documents in the background with the term.
+		 * <p>
 		 * API name: {@code percentage}
 		 */
 		public final Builder percentage(
@@ -531,6 +623,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Customized score, implemented via a script.
+		 * <p>
 		 * API name: {@code script_heuristic}
 		 */
 		public final Builder scriptHeuristic(@Nullable ScriptedHeuristic value) {
@@ -539,6 +633,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Customized score, implemented via a script.
+		 * <p>
 		 * API name: {@code script_heuristic}
 		 */
 		public final Builder scriptHeuristic(Function<ScriptedHeuristic.Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
@@ -546,6 +642,11 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Regulates the certainty a shard has if the term should actually be added to
+		 * the candidate list or not with respect to the <code>min_doc_count</code>.
+		 * Terms will only be considered if their local shard frequency within the set
+		 * is higher than the <code>shard_min_doc_count</code>.
+		 * <p>
 		 * API name: {@code shard_min_doc_count}
 		 */
 		public final Builder shardMinDocCount(@Nullable Long value) {
@@ -554,6 +655,10 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * Can be used to control the volumes of candidate terms produced by each shard.
+		 * By default, <code>shard_size</code> will be automatically estimated based on
+		 * the number of shards and the <code>size</code> parameter.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -562,6 +667,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
+		 * The number of buckets returned out of the overall terms list.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {

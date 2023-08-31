@@ -79,6 +79,8 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 	}
 
 	/**
+	 * The size of window to &quot;slide&quot; across the histogram.
+	 * <p>
 	 * API name: {@code window}
 	 */
 	@Nullable
@@ -87,6 +89,10 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 	}
 
 	/**
+	 * By default, the window consists of the last n values excluding the current
+	 * bucket. Increasing <code>shift</code> by 1, moves the starting window
+	 * position by 1 to the right.
+	 * <p>
 	 * API name: {@code shift}
 	 */
 	@Nullable
@@ -142,6 +148,8 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 		private Boolean keyed;
 
 		/**
+		 * The size of window to &quot;slide&quot; across the histogram.
+		 * <p>
 		 * API name: {@code window}
 		 */
 		public final Builder window(@Nullable Integer value) {
@@ -150,6 +158,10 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 		}
 
 		/**
+		 * By default, the window consists of the last n values excluding the current
+		 * bucket. Increasing <code>shift</code> by 1, moves the starting window
+		 * position by 1 to the right.
+		 * <p>
 		 * API name: {@code shift}
 		 */
 		public final Builder shift(@Nullable Integer value) {

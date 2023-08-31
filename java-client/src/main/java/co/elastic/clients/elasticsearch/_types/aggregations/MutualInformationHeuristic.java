@@ -68,6 +68,9 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 	}
 
 	/**
+	 * Set to <code>false</code> if you defined a custom background filter that
+	 * represents a different set of documents that you want to compare to.
+	 * <p>
 	 * API name: {@code background_is_superset}
 	 */
 	@Nullable
@@ -76,6 +79,9 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 	}
 
 	/**
+	 * Set to <code>false</code> to filter out the terms that appear less often in
+	 * the subset than in documents outside the subset.
+	 * <p>
 	 * API name: {@code include_negatives}
 	 */
 	@Nullable
@@ -128,6 +134,9 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 		private Boolean includeNegatives;
 
 		/**
+		 * Set to <code>false</code> if you defined a custom background filter that
+		 * represents a different set of documents that you want to compare to.
+		 * <p>
 		 * API name: {@code background_is_superset}
 		 */
 		public final Builder backgroundIsSuperset(@Nullable Boolean value) {
@@ -136,6 +145,9 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 		}
 
 		/**
+		 * Set to <code>false</code> to filter out the terms that appear less often in
+		 * the subset than in documents outside the subset.
+		 * <p>
 		 * API name: {@code include_negatives}
 		 */
 		public final Builder includeNegatives(@Nullable Boolean value) {

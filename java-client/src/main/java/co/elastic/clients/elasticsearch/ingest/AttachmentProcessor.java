@@ -96,13 +96,18 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to get the base64 encoded field from.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and field does not exist, the processor quietly exits
+	 * without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -111,6 +116,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
+	 * The number of chars being used for extraction to prevent huge fields. Use
+	 * <code>-1</code> for no limit.
+	 * <p>
 	 * API name: {@code indexed_chars}
 	 */
 	@Nullable
@@ -119,6 +127,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
+	 * Field name from which you can overwrite the number of chars being used for
+	 * extraction.
+	 * <p>
 	 * API name: {@code indexed_chars_field}
 	 */
 	@Nullable
@@ -127,6 +138,11 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
+	 * Array of properties to select to be stored. Can be <code>content</code>,
+	 * <code>title</code>, <code>name</code>, <code>author</code>,
+	 * <code>keywords</code>, <code>date</code>, <code>content_type</code>,
+	 * <code>content_length</code>, <code>language</code>.
+	 * <p>
 	 * API name: {@code properties}
 	 */
 	public final List<String> properties() {
@@ -134,6 +150,8 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
+	 * The field that will hold the attachment information.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -142,6 +160,10 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
+	 * Field containing the name of the resource to decode. If specified, the
+	 * processor passes this resource name to the underlying Tika library to enable
+	 * Resource Name Based Detection.
+	 * <p>
 	 * API name: {@code resource_name}
 	 */
 	@Nullable
@@ -223,7 +245,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		private String resourceName;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to get the base64 encoded field from.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -231,6 +255,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * If <code>true</code> and field does not exist, the processor quietly exits
+		 * without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -239,6 +266,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * The number of chars being used for extraction to prevent huge fields. Use
+		 * <code>-1</code> for no limit.
+		 * <p>
 		 * API name: {@code indexed_chars}
 		 */
 		public final Builder indexedChars(@Nullable Long value) {
@@ -247,6 +277,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * Field name from which you can overwrite the number of chars being used for
+		 * extraction.
+		 * <p>
 		 * API name: {@code indexed_chars_field}
 		 */
 		public final Builder indexedCharsField(@Nullable String value) {
@@ -255,6 +288,11 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * Array of properties to select to be stored. Can be <code>content</code>,
+		 * <code>title</code>, <code>name</code>, <code>author</code>,
+		 * <code>keywords</code>, <code>date</code>, <code>content_type</code>,
+		 * <code>content_length</code>, <code>language</code>.
+		 * <p>
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>properties</code>.
@@ -265,6 +303,11 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * Array of properties to select to be stored. Can be <code>content</code>,
+		 * <code>title</code>, <code>name</code>, <code>author</code>,
+		 * <code>keywords</code>, <code>date</code>, <code>content_type</code>,
+		 * <code>content_length</code>, <code>language</code>.
+		 * <p>
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds one or more values to <code>properties</code>.
@@ -275,6 +318,8 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * The field that will hold the attachment information.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {
@@ -283,6 +328,10 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * Field containing the name of the resource to decode. If specified, the
+		 * processor passes this resource name to the underlying Tika library to enable
+		 * Resource Name Based Detection.
+		 * <p>
 		 * API name: {@code resource_name}
 		 */
 		public final Builder resourceName(@Nullable String value) {

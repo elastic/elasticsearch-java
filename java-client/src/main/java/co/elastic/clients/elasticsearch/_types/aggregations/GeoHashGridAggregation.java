@@ -89,6 +89,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * The bounding box to filter the points in each bucket.
+	 * <p>
 	 * API name: {@code bounds}
 	 */
 	@Nullable
@@ -97,6 +99,10 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * Field containing indexed <code>geo_point</code> or <code>geo_shape</code>
+	 * values. If the field contains an array, <code>geohash_grid</code> aggregates
+	 * all array values.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -105,6 +111,9 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * The string length of the geohashes used to define cells/buckets in the
+	 * results.
+	 * <p>
 	 * API name: {@code precision}
 	 */
 	@Nullable
@@ -113,6 +122,10 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * Allows for more accurate counting of the top cells returned in the final
+	 * result the aggregation. Defaults to returning
+	 * <code>max(10,(size x number-of-shards))</code> buckets from each shard.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -121,6 +134,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * The maximum number of geohash buckets to return.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -184,6 +199,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		private Integer size;
 
 		/**
+		 * The bounding box to filter the points in each bucket.
+		 * <p>
 		 * API name: {@code bounds}
 		 */
 		public final Builder bounds(@Nullable GeoBounds value) {
@@ -192,6 +209,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The bounding box to filter the points in each bucket.
+		 * <p>
 		 * API name: {@code bounds}
 		 */
 		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
@@ -199,6 +218,10 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * Field containing indexed <code>geo_point</code> or <code>geo_shape</code>
+		 * values. If the field contains an array, <code>geohash_grid</code> aggregates
+		 * all array values.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -207,6 +230,9 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The string length of the geohashes used to define cells/buckets in the
+		 * results.
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(@Nullable GeoHashPrecision value) {
@@ -215,6 +241,9 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The string length of the geohashes used to define cells/buckets in the
+		 * results.
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(Function<GeoHashPrecision.Builder, ObjectBuilder<GeoHashPrecision>> fn) {
@@ -222,6 +251,10 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * Allows for more accurate counting of the top cells returned in the final
+		 * result the aggregation. Defaults to returning
+		 * <code>max(10,(size x number-of-shards))</code> buckets from each shard.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -230,6 +263,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The maximum number of geohash buckets to return.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {

@@ -75,13 +75,19 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Fields to be removed. Supports template snippets.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final List<String> field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -125,7 +131,9 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		private Boolean ignoreMissing;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Fields to be removed. Supports template snippets.
+		 * <p>
+		 * API name: {@code field}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>field</code>.
 		 */
@@ -135,7 +143,9 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Fields to be removed. Supports template snippets.
+		 * <p>
+		 * API name: {@code field}
 		 * <p>
 		 * Adds one or more values to <code>field</code>.
 		 */
@@ -145,6 +155,10 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {

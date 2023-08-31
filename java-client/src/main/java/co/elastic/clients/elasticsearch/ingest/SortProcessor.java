@@ -78,13 +78,18 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to be sorted.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The sort order to use. Accepts <code>&quot;asc&quot;</code> or
+	 * <code>&quot;desc&quot;</code>.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	@Nullable
@@ -93,6 +98,9 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The field to assign the sorted value to. By default, the field is updated
+	 * in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -134,7 +142,9 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to be sorted.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -142,6 +152,9 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The sort order to use. Accepts <code>&quot;asc&quot;</code> or
+		 * <code>&quot;desc&quot;</code>.
+		 * <p>
 		 * API name: {@code order}
 		 */
 		public final Builder order(@Nullable SortOrder value) {
@@ -150,6 +163,9 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field to assign the sorted value to. By default, the field is updated
+		 * in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

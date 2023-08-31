@@ -79,6 +79,8 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 	}
 
 	/**
+	 * The script that should be executed on each window of data.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -87,6 +89,10 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 	}
 
 	/**
+	 * By default, the window consists of the last n values excluding the current
+	 * bucket. Increasing <code>shift</code> by 1, moves the starting window
+	 * position by 1 to the right.
+	 * <p>
 	 * API name: {@code shift}
 	 */
 	@Nullable
@@ -95,6 +101,8 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 	}
 
 	/**
+	 * The size of window to &quot;slide&quot; across the histogram.
+	 * <p>
 	 * API name: {@code window}
 	 */
 	@Nullable
@@ -142,6 +150,8 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 		private Integer window;
 
 		/**
+		 * The script that should be executed on each window of data.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable String value) {
@@ -150,6 +160,10 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 		}
 
 		/**
+		 * By default, the window consists of the last n values excluding the current
+		 * bucket. Increasing <code>shift</code> by 1, moves the starting window
+		 * position by 1 to the right.
+		 * <p>
 		 * API name: {@code shift}
 		 */
 		public final Builder shift(@Nullable Integer value) {
@@ -158,6 +172,8 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 		}
 
 		/**
+		 * The size of window to &quot;slide&quot; across the histogram.
+		 * <p>
 		 * API name: {@code window}
 		 */
 		public final Builder window(@Nullable Integer value) {

@@ -93,7 +93,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Returns statistical information about geoip databases
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/geoip-processor.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GeoIpStatsResponse> geoIpStats() {
@@ -153,7 +153,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Returns a list of the built-in patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/grok-processor.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ProcessorGrokResponse> processorGrok() {
@@ -167,7 +167,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Creates or updates a pipeline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/ingest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -185,7 +185,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/ingest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
