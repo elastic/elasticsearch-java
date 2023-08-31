@@ -68,6 +68,8 @@ public class Ingest implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics about ingest pipelines for the node.
+	 * <p>
 	 * API name: {@code pipelines}
 	 */
 	public final Map<String, IngestTotal> pipelines() {
@@ -75,6 +77,8 @@ public class Ingest implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics about ingest operations for the node.
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -131,6 +135,8 @@ public class Ingest implements JsonpSerializable {
 		private IngestTotal total;
 
 		/**
+		 * Contains statistics about ingest pipelines for the node.
+		 * <p>
 		 * API name: {@code pipelines}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>pipelines</code>.
@@ -141,6 +147,8 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about ingest pipelines for the node.
+		 * <p>
 		 * API name: {@code pipelines}
 		 * <p>
 		 * Adds an entry to <code>pipelines</code>.
@@ -151,6 +159,8 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about ingest pipelines for the node.
+		 * <p>
 		 * API name: {@code pipelines}
 		 * <p>
 		 * Adds an entry to <code>pipelines</code> using a builder lambda.
@@ -160,6 +170,8 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about ingest operations for the node.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(@Nullable IngestTotal value) {
@@ -168,6 +180,8 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about ingest operations for the node.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {

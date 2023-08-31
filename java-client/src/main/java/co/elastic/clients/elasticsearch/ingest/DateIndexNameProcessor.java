@@ -93,7 +93,11 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * Required - API name: {@code date_formats}
+	 * Required - An array of the expected date formats for parsing dates /
+	 * timestamps in the document being preprocessed. Can be a java time pattern or
+	 * one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+	 * <p>
+	 * API name: {@code date_formats}
 	 */
 	public final List<String> dateFormats() {
 		return this.dateFormats;
@@ -113,13 +117,18 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to get the date or timestamp from.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The format to be used when printing the parsed date into the index name. A
+	 * valid java time pattern is expected here. Supports template snippets.
+	 * <p>
 	 * API name: {@code index_name_format}
 	 */
 	@Nullable
@@ -128,6 +137,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
+	 * A prefix of the index name to be prepended before the printed date. Supports
+	 * template snippets.
+	 * <p>
 	 * API name: {@code index_name_prefix}
 	 */
 	@Nullable
@@ -136,6 +148,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
+	 * The locale to use when parsing the date from the document being preprocessed,
+	 * relevant when parsing month names or week days.
+	 * <p>
 	 * API name: {@code locale}
 	 */
 	@Nullable
@@ -144,6 +159,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
+	 * The timezone to use when parsing the date and when date math index supports
+	 * resolves expressions into concrete index names.
+	 * <p>
 	 * API name: {@code timezone}
 	 */
 	@Nullable
@@ -221,7 +239,11 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		private String timezone;
 
 		/**
-		 * Required - API name: {@code date_formats}
+		 * Required - An array of the expected date formats for parsing dates /
+		 * timestamps in the document being preprocessed. Can be a java time pattern or
+		 * one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+		 * <p>
+		 * API name: {@code date_formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dateFormats</code>.
 		 */
@@ -231,7 +253,11 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * Required - API name: {@code date_formats}
+		 * Required - An array of the expected date formats for parsing dates /
+		 * timestamps in the document being preprocessed. Can be a java time pattern or
+		 * one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+		 * <p>
+		 * API name: {@code date_formats}
 		 * <p>
 		 * Adds one or more values to <code>dateFormats</code>.
 		 */
@@ -255,7 +281,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to get the date or timestamp from.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -263,6 +291,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
+		 * The format to be used when printing the parsed date into the index name. A
+		 * valid java time pattern is expected here. Supports template snippets.
+		 * <p>
 		 * API name: {@code index_name_format}
 		 */
 		public final Builder indexNameFormat(@Nullable String value) {
@@ -271,6 +302,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
+		 * A prefix of the index name to be prepended before the printed date. Supports
+		 * template snippets.
+		 * <p>
 		 * API name: {@code index_name_prefix}
 		 */
 		public final Builder indexNamePrefix(@Nullable String value) {
@@ -279,6 +313,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
+		 * The locale to use when parsing the date from the document being preprocessed,
+		 * relevant when parsing month names or week days.
+		 * <p>
 		 * API name: {@code locale}
 		 */
 		public final Builder locale(@Nullable String value) {
@@ -287,6 +324,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
+		 * The timezone to use when parsing the date and when date math index supports
+		 * resolves expressions into concrete index names.
+		 * <p>
 		 * API name: {@code timezone}
 		 */
 		public final Builder timezone(@Nullable String value) {

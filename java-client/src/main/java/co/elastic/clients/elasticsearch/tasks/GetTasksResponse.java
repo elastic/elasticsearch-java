@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,7 +55,7 @@ public class GetTasksResponse implements JsonpSerializable {
 	private final TaskInfo task;
 
 	@Nullable
-	private final TaskStatus response;
+	private final JsonData response;
 
 	@Nullable
 	private final ErrorCause error;
@@ -92,7 +93,7 @@ public class GetTasksResponse implements JsonpSerializable {
 	 * API name: {@code response}
 	 */
 	@Nullable
-	public final TaskStatus response() {
+	public final JsonData response() {
 		return this.response;
 	}
 
@@ -151,7 +152,7 @@ public class GetTasksResponse implements JsonpSerializable {
 		private TaskInfo task;
 
 		@Nullable
-		private TaskStatus response;
+		private JsonData response;
 
 		@Nullable
 		private ErrorCause error;
@@ -182,16 +183,9 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code response}
 		 */
-		public final Builder response(@Nullable TaskStatus value) {
+		public final Builder response(@Nullable JsonData value) {
 			this.response = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code response}
-		 */
-		public final Builder response(Function<TaskStatus.Builder, ObjectBuilder<TaskStatus>> fn) {
-			return this.response(fn.apply(new TaskStatus.Builder()).build());
 		}
 
 		/**
@@ -239,7 +233,7 @@ public class GetTasksResponse implements JsonpSerializable {
 
 		op.add(Builder::completed, JsonpDeserializer.booleanDeserializer(), "completed");
 		op.add(Builder::task, TaskInfo._DESERIALIZER, "task");
-		op.add(Builder::response, TaskStatus._DESERIALIZER, "response");
+		op.add(Builder::response, JsonData._DESERIALIZER, "response");
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}

@@ -90,6 +90,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * The distance calculation type.
+	 * <p>
 	 * API name: {@code distance_type}
 	 */
 	@Nullable
@@ -98,6 +100,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * A field of type <code>geo_point</code> used to evaluate the distance.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -106,6 +110,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * The origin used to evaluate the distance.
+	 * <p>
 	 * API name: {@code origin}
 	 */
 	@Nullable
@@ -114,6 +120,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * An array of ranges used to bucket documents.
+	 * <p>
 	 * API name: {@code ranges}
 	 */
 	public final List<AggregationRange> ranges() {
@@ -121,6 +129,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	}
 
 	/**
+	 * The distance unit.
+	 * <p>
 	 * API name: {@code unit}
 	 */
 	@Nullable
@@ -187,6 +197,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		private DistanceUnit unit;
 
 		/**
+		 * The distance calculation type.
+		 * <p>
 		 * API name: {@code distance_type}
 		 */
 		public final Builder distanceType(@Nullable GeoDistanceType value) {
@@ -195,6 +207,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * A field of type <code>geo_point</code> used to evaluate the distance.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -203,6 +217,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The origin used to evaluate the distance.
+		 * <p>
 		 * API name: {@code origin}
 		 */
 		public final Builder origin(@Nullable GeoLocation value) {
@@ -211,6 +227,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The origin used to evaluate the distance.
+		 * <p>
 		 * API name: {@code origin}
 		 */
 		public final Builder origin(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
@@ -218,6 +236,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * An array of ranges used to bucket documents.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
@@ -228,6 +248,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * An array of ranges used to bucket documents.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds one or more values to <code>ranges</code>.
@@ -238,6 +260,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * An array of ranges used to bucket documents.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds a value to <code>ranges</code> using a builder lambda.
@@ -247,6 +271,8 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
+		 * The distance unit.
+		 * <p>
 		 * API name: {@code unit}
 		 */
 		public final Builder unit(@Nullable DistanceUnit value) {

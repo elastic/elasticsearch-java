@@ -66,6 +66,8 @@ public class ExtendedMemoryStats extends MemoryStats {
 	}
 
 	/**
+	 * Percentage of free memory.
+	 * <p>
 	 * API name: {@code free_percent}
 	 */
 	@Nullable
@@ -74,6 +76,8 @@ public class ExtendedMemoryStats extends MemoryStats {
 	}
 
 	/**
+	 * Percentage of used memory.
+	 * <p>
 	 * API name: {@code used_percent}
 	 */
 	@Nullable
@@ -113,6 +117,8 @@ public class ExtendedMemoryStats extends MemoryStats {
 		private Integer usedPercent;
 
 		/**
+		 * Percentage of free memory.
+		 * <p>
 		 * API name: {@code free_percent}
 		 */
 		public final Builder freePercent(@Nullable Integer value) {
@@ -121,6 +127,8 @@ public class ExtendedMemoryStats extends MemoryStats {
 		}
 
 		/**
+		 * Percentage of used memory.
+		 * <p>
 		 * API name: {@code used_percent}
 		 */
 		public final Builder usedPercent(@Nullable Integer value) {

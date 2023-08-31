@@ -36,19 +36,19 @@ import co.elastic.clients.json.JsonpDeserializer;
 @JsonpDeserializable
 public enum CardinalityExecutionMode implements JsonEnum {
 	/**
-	 * Run aggregation by using global ordinals of the field and resolving those
+	 * Run the aggregation by using global ordinals of the field and resolving those
 	 * values after finishing a shard.
 	 */
 	GlobalOrdinals("global_ordinals"),
 
 	/**
-	 * Run aggregation by using segment ordinal values and resolving those values
-	 * after each segment.
+	 * Run the aggregation by using segment ordinal values and resolving those
+	 * values after each segment.
 	 */
 	SegmentOrdinals("segment_ordinals"),
 
 	/**
-	 * Run aggregation by using field values directly.
+	 * Run the aggregation by using field values directly.
 	 */
 	Direct("direct"),
 

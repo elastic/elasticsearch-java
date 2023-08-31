@@ -64,6 +64,8 @@ public class GarbageCollector implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics about JVM garbage collectors for the node.
+	 * <p>
 	 * API name: {@code collectors}
 	 */
 	public final Map<String, GarbageCollectorTotal> collectors() {
@@ -111,6 +113,8 @@ public class GarbageCollector implements JsonpSerializable {
 		private Map<String, GarbageCollectorTotal> collectors;
 
 		/**
+		 * Contains statistics about JVM garbage collectors for the node.
+		 * <p>
 		 * API name: {@code collectors}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>collectors</code>.
@@ -121,6 +125,8 @@ public class GarbageCollector implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about JVM garbage collectors for the node.
+		 * <p>
 		 * API name: {@code collectors}
 		 * <p>
 		 * Adds an entry to <code>collectors</code>.
@@ -131,6 +137,8 @@ public class GarbageCollector implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about JVM garbage collectors for the node.
+		 * <p>
 		 * API name: {@code collectors}
 		 * <p>
 		 * Adds an entry to <code>collectors</code> using a builder lambda.

@@ -94,6 +94,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * The date field whose values are use to build ranges.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -102,6 +104,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -110,6 +115,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * An array of ranges used to bucket documents.
+	 * <p>
 	 * API name: {@code ranges}
 	 */
 	public final List<AggregationRange> ranges() {
@@ -125,6 +132,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Set to <code>true</code> to associate a unique string key with each bucket
+	 * and return the ranges as a hash rather than an array.
+	 * <p>
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -209,6 +219,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		private String format;
 
 		/**
+		 * The date field whose values are use to build ranges.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -217,6 +229,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable Integer value) {
@@ -225,6 +240,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * An array of ranges used to bucket documents.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
@@ -235,6 +252,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * An array of ranges used to bucket documents.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds one or more values to <code>ranges</code>.
@@ -245,6 +264,8 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * An array of ranges used to bucket documents.
+		 * <p>
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds a value to <code>ranges</code> using a builder lambda.
@@ -269,6 +290,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Set to <code>true</code> to associate a unique string key with each bucket
+		 * and return the ranges as a hash rather than an array.
+		 * <p>
 		 * API name: {@code keyed}
 		 */
 		public final Builder keyed(@Nullable Boolean value) {

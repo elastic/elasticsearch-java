@@ -89,6 +89,8 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 	}
 
 	/**
+	 * Specifies the number of top class predictions to return.
+	 * <p>
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
@@ -97,6 +99,8 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 	}
 
 	/**
+	 * Specifies the maximum number of feature importance values per document.
+	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
@@ -105,6 +109,9 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 	}
 
 	/**
+	 * The field that is added to incoming documents to contain the inference
+	 * prediction.
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	@Nullable
@@ -113,6 +120,8 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 	}
 
 	/**
+	 * Specifies the field to which the top classes are written.
+	 * <p>
 	 * API name: {@code top_classes_results_field}
 	 */
 	@Nullable
@@ -121,6 +130,9 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 	}
 
 	/**
+	 * Specifies the type of the predicted field to write. Valid values are:
+	 * <code>string</code>, <code>number</code>, <code>boolean</code>.
+	 * <p>
 	 * API name: {@code prediction_field_type}
 	 */
 	@Nullable
@@ -197,6 +209,8 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		private String predictionFieldType;
 
 		/**
+		 * Specifies the number of top class predictions to return.
+		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
 		public final Builder numTopClasses(@Nullable Integer value) {
@@ -205,6 +219,8 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		}
 
 		/**
+		 * Specifies the maximum number of feature importance values per document.
+		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
 		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
@@ -213,6 +229,9 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		}
 
 		/**
+		 * The field that is added to incoming documents to contain the inference
+		 * prediction.
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public final Builder resultsField(@Nullable String value) {
@@ -221,6 +240,8 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		}
 
 		/**
+		 * Specifies the field to which the top classes are written.
+		 * <p>
 		 * API name: {@code top_classes_results_field}
 		 */
 		public final Builder topClassesResultsField(@Nullable String value) {
@@ -229,6 +250,9 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		}
 
 		/**
+		 * Specifies the type of the predicted field to write. Valid values are:
+		 * <code>string</code>, <code>number</code>, <code>boolean</code>.
+		 * <p>
 		 * API name: {@code prediction_field_type}
 		 */
 		public final Builder predictionFieldType(@Nullable String value) {

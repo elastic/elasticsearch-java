@@ -87,6 +87,8 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies whether the feature influence calculation is enabled.
+	 * <p>
 	 * API name: {@code compute_feature_influence}
 	 */
 	@Nullable
@@ -95,6 +97,9 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * The minimum outlier score that a document needs to have in order to calculate
+	 * its feature influence score. Value range: 0-1
+	 * <p>
 	 * API name: {@code feature_influence_threshold}
 	 */
 	@Nullable
@@ -103,6 +108,13 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * The method that outlier detection uses. Available methods are
+	 * <code>lof</code>, <code>ldof</code>, <code>distance_kth_nn</code>,
+	 * <code>distance_knn</code>, and <code>ensemble</code>. The default value is
+	 * ensemble, which means that outlier detection uses an ensemble of different
+	 * methods and normalises and combines their individual outlier scores to obtain
+	 * the overall outlier score.
+	 * <p>
 	 * API name: {@code method}
 	 */
 	@Nullable
@@ -111,6 +123,12 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Defines the value for how many nearest neighbors each method of outlier
+	 * detection uses to calculate its outlier score. When the value is not set,
+	 * different values are used for different ensemble members. This default
+	 * behavior helps improve the diversity in the ensemble; only override it if you
+	 * are confident that the value you choose is appropriate for the data set.
+	 * <p>
 	 * API name: {@code n_neighbors}
 	 */
 	@Nullable
@@ -119,6 +137,10 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * The proportion of the data set that is assumed to be outlying prior to
+	 * outlier detection. For example, 0.05 means it is assumed that 5% of values
+	 * are real outliers and 95% are inliers.
+	 * <p>
 	 * API name: {@code outlier_fraction}
 	 */
 	@Nullable
@@ -127,6 +149,9 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the following operation is performed on the columns
+	 * before computing outlier scores: (x_i - mean(x_i)) / sd(x_i).
+	 * <p>
 	 * API name: {@code standardization_enabled}
 	 */
 	@Nullable
@@ -211,6 +236,8 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		private Boolean standardizationEnabled;
 
 		/**
+		 * Specifies whether the feature influence calculation is enabled.
+		 * <p>
 		 * API name: {@code compute_feature_influence}
 		 */
 		public final Builder computeFeatureInfluence(@Nullable Boolean value) {
@@ -219,6 +246,9 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		}
 
 		/**
+		 * The minimum outlier score that a document needs to have in order to calculate
+		 * its feature influence score. Value range: 0-1
+		 * <p>
 		 * API name: {@code feature_influence_threshold}
 		 */
 		public final Builder featureInfluenceThreshold(@Nullable Double value) {
@@ -227,6 +257,13 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		}
 
 		/**
+		 * The method that outlier detection uses. Available methods are
+		 * <code>lof</code>, <code>ldof</code>, <code>distance_kth_nn</code>,
+		 * <code>distance_knn</code>, and <code>ensemble</code>. The default value is
+		 * ensemble, which means that outlier detection uses an ensemble of different
+		 * methods and normalises and combines their individual outlier scores to obtain
+		 * the overall outlier score.
+		 * <p>
 		 * API name: {@code method}
 		 */
 		public final Builder method(@Nullable String value) {
@@ -235,6 +272,12 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the value for how many nearest neighbors each method of outlier
+		 * detection uses to calculate its outlier score. When the value is not set,
+		 * different values are used for different ensemble members. This default
+		 * behavior helps improve the diversity in the ensemble; only override it if you
+		 * are confident that the value you choose is appropriate for the data set.
+		 * <p>
 		 * API name: {@code n_neighbors}
 		 */
 		public final Builder nNeighbors(@Nullable Integer value) {
@@ -243,6 +286,10 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		}
 
 		/**
+		 * The proportion of the data set that is assumed to be outlying prior to
+		 * outlier detection. For example, 0.05 means it is assumed that 5% of values
+		 * are real outliers and 95% are inliers.
+		 * <p>
 		 * API name: {@code outlier_fraction}
 		 */
 		public final Builder outlierFraction(@Nullable Double value) {
@@ -251,6 +298,9 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the following operation is performed on the columns
+		 * before computing outlier scores: (x_i - mean(x_i)) / sd(x_i).
+		 * <p>
 		 * API name: {@code standardization_enabled}
 		 */
 		public final Builder standardizationEnabled(@Nullable Boolean value) {

@@ -87,13 +87,18 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field containing the user agent string.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -109,6 +114,12 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
+	 * The name of the file in the <code>config/ingest-user-agent</code> directory
+	 * containing the regular expressions for parsing the user agent string. Both
+	 * the directory and the file have to be created before starting Elasticsearch.
+	 * If not specified, ingest-user-agent will use the <code>regexes.yaml</code>
+	 * from uap-core it ships with.
+	 * <p>
 	 * API name: {@code regex_file}
 	 */
 	@Nullable
@@ -117,6 +128,8 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
+	 * The field that will be filled with the user agent details.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -181,7 +194,9 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field containing the user agent string.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -189,6 +204,9 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -217,6 +235,12 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * The name of the file in the <code>config/ingest-user-agent</code> directory
+		 * containing the regular expressions for parsing the user agent string. Both
+		 * the directory and the file have to be created before starting Elasticsearch.
+		 * If not specified, ingest-user-agent will use the <code>regexes.yaml</code>
+		 * from uap-core it ships with.
+		 * <p>
 		 * API name: {@code regex_file}
 		 */
 		public final Builder regexFile(@Nullable String value) {
@@ -225,6 +249,8 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
+		 * The field that will be filled with the user agent details.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

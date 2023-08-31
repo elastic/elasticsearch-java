@@ -97,6 +97,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Terms that should be excluded from the aggregation.
+	 * <p>
 	 * API name: {@code exclude}
 	 */
 	@Nullable
@@ -105,6 +107,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The field from which to return rare terms.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -113,6 +117,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * Terms that should be included in the aggregation.
+	 * <p>
 	 * API name: {@code include}
 	 */
 	@Nullable
@@ -121,6 +127,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The maximum number of documents a term should appear in.
+	 * <p>
 	 * API name: {@code max_doc_count}
 	 */
 	@Nullable
@@ -129,6 +137,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -137,6 +148,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	}
 
 	/**
+	 * The precision of the internal CuckooFilters. Smaller precision leads to
+	 * better approximation, but higher memory usage.
+	 * <p>
 	 * API name: {@code precision}
 	 */
 	@Nullable
@@ -224,6 +238,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		private String valueType;
 
 		/**
+		 * Terms that should be excluded from the aggregation.
+		 * <p>
 		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(@Nullable TermsExclude value) {
@@ -232,6 +248,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Terms that should be excluded from the aggregation.
+		 * <p>
 		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
@@ -239,6 +257,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The field from which to return rare terms.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -247,6 +267,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Terms that should be included in the aggregation.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(@Nullable TermsInclude value) {
@@ -255,6 +277,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * Terms that should be included in the aggregation.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
@@ -262,6 +286,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The maximum number of documents a term should appear in.
+		 * <p>
 		 * API name: {@code max_doc_count}
 		 */
 		public final Builder maxDocCount(@Nullable Long value) {
@@ -270,6 +296,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable FieldValue value) {
@@ -278,6 +307,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
@@ -285,6 +317,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(String value) {
@@ -293,6 +328,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(long value) {
@@ -301,6 +339,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(double value) {
@@ -309,6 +350,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(boolean value) {
@@ -317,6 +361,9 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * The precision of the internal CuckooFilters. Smaller precision leads to
+		 * better approximation, but higher memory usage.
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(@Nullable Double value) {

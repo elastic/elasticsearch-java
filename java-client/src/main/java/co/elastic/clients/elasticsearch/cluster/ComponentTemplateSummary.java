@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
-import co.elastic.clients.elasticsearch.indices.DataLifecycleWithRollover;
+import co.elastic.clients.elasticsearch.indices.DataStreamLifecycleWithRollover;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -69,7 +69,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;
 
 	@Nullable
-	private final DataLifecycleWithRollover lifecycle;
+	private final DataStreamLifecycleWithRollover lifecycle;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -129,7 +129,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	 * API name: {@code lifecycle}
 	 */
 	@Nullable
-	public final DataLifecycleWithRollover lifecycle() {
+	public final DataStreamLifecycleWithRollover lifecycle() {
 		return this.lifecycle;
 	}
 
@@ -225,7 +225,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		private Map<String, AliasDefinition> aliases;
 
 		@Nullable
-		private DataLifecycleWithRollover lifecycle;
+		private DataStreamLifecycleWithRollover lifecycle;
 
 		/**
 		 * API name: {@code _meta}
@@ -331,7 +331,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
+		public final Builder lifecycle(@Nullable DataStreamLifecycleWithRollover value) {
 			this.lifecycle = value;
 			return this;
 		}
@@ -340,8 +340,8 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		 * API name: {@code lifecycle}
 		 */
 		public final Builder lifecycle(
-				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
-			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+				Function<DataStreamLifecycleWithRollover.Builder, ObjectBuilder<DataStreamLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataStreamLifecycleWithRollover.Builder()).build());
 		}
 
 		@Override
@@ -378,7 +378,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings._DESERIALIZER), "settings");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
-		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
 
 	}
 

@@ -68,8 +68,8 @@ public class GetRollupCapsRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the index to check rollup capabilities on, or left blank for all
-	 * jobs
+	 * Index, indices or index-pattern to return rollup capabilities for.
+	 * <code>_all</code> may be used to fetch rollup capabilities from all jobs.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -91,8 +91,8 @@ public class GetRollupCapsRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * The ID of the index to check rollup capabilities on, or left blank for all
-		 * jobs
+		 * Index, indices or index-pattern to return rollup capabilities for.
+		 * <code>_all</code> may be used to fetch rollup capabilities from all jobs.
 		 * <p>
 		 * API name: {@code id}
 		 */

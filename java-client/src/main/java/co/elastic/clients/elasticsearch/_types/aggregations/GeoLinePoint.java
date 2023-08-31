@@ -64,7 +64,9 @@ public class GeoLinePoint implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The name of the geo_point field.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
@@ -101,7 +103,9 @@ public class GeoLinePoint implements JsonpSerializable {
 		private String field;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The name of the geo_point field.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;

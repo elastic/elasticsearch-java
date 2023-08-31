@@ -68,13 +68,19 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to fetch the candidate suggestions from. Needs to be set
+	 * globally or per suggestion.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The analyzer to analyze the suggest text with. Defaults to the search
+	 * analyzer of the suggest field.
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -83,6 +89,8 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum corrections to be returned per suggest text token.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -134,7 +142,10 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		private Integer size;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to fetch the candidate suggestions from. Needs to be set
+		 * globally or per suggestion.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final BuilderT field(String value) {
 			this.field = value;
@@ -142,6 +153,9 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The analyzer to analyze the suggest text with. Defaults to the search
+		 * analyzer of the suggest field.
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public final BuilderT analyzer(@Nullable String value) {
@@ -150,6 +164,8 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum corrections to be returned per suggest text token.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final BuilderT size(@Nullable Integer value) {

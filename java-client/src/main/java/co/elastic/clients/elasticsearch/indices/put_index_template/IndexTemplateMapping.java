@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.indices.put_index_template;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
-import co.elastic.clients.elasticsearch.indices.DataLifecycle;
+import co.elastic.clients.elasticsearch.indices.DataStreamLifecycle;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -63,7 +63,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	private final IndexSettings settings;
 
 	@Nullable
-	private final DataLifecycle lifecycle;
+	private final DataStreamLifecycle lifecycle;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	 * API name: {@code lifecycle}
 	 */
 	@Nullable
-	public final DataLifecycle lifecycle() {
+	public final DataStreamLifecycle lifecycle() {
 		return this.lifecycle;
 	}
 
@@ -185,7 +185,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		private IndexSettings settings;
 
 		@Nullable
-		private DataLifecycle lifecycle;
+		private DataStreamLifecycle lifecycle;
 
 		/**
 		 * Aliases to add. If the index template includes a <code>data_stream</code>
@@ -274,7 +274,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(@Nullable DataLifecycle value) {
+		public final Builder lifecycle(@Nullable DataStreamLifecycle value) {
 			this.lifecycle = value;
 			return this;
 		}
@@ -282,8 +282,8 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(Function<DataLifecycle.Builder, ObjectBuilder<DataLifecycle>> fn) {
-			return this.lifecycle(fn.apply(new DataLifecycle.Builder()).build());
+		public final Builder lifecycle(Function<DataStreamLifecycle.Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
+			return this.lifecycle(fn.apply(new DataStreamLifecycle.Builder()).build());
 		}
 
 		@Override
@@ -317,7 +317,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
-		op.add(Builder::lifecycle, DataLifecycle._DESERIALIZER, "lifecycle");
+		op.add(Builder::lifecycle, DataStreamLifecycle._DESERIALIZER, "lifecycle");
 
 	}
 

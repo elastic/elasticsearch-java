@@ -172,6 +172,9 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * Configures pagination. This parameter has the <code>from</code> and
+	 * <code>size</code> properties.
+	 * <p>
 	 * API name: {@code page}
 	 */
 	@Nullable
@@ -331,6 +334,9 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * Configures pagination. This parameter has the <code>from</code> and
+		 * <code>size</code> properties.
+		 * <p>
 		 * API name: {@code page}
 		 */
 		public final Builder page(@Nullable Page value) {
@@ -339,6 +345,9 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * Configures pagination. This parameter has the <code>from</code> and
+		 * <code>size</code> properties.
+		 * <p>
 		 * API name: {@code page}
 		 */
 		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {

@@ -77,6 +77,9 @@ public class InferenceConfigRegression implements InferenceConfigVariant, JsonpS
 	}
 
 	/**
+	 * The field that is added to incoming documents to contain the inference
+	 * prediction.
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	@Nullable
@@ -85,6 +88,8 @@ public class InferenceConfigRegression implements InferenceConfigVariant, JsonpS
 	}
 
 	/**
+	 * Specifies the maximum number of feature importance values per document.
+	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
@@ -137,6 +142,9 @@ public class InferenceConfigRegression implements InferenceConfigVariant, JsonpS
 		private Integer numTopFeatureImportanceValues;
 
 		/**
+		 * The field that is added to incoming documents to contain the inference
+		 * prediction.
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public final Builder resultsField(@Nullable String value) {
@@ -145,6 +153,8 @@ public class InferenceConfigRegression implements InferenceConfigVariant, JsonpS
 		}
 
 		/**
+		 * Specifies the maximum number of feature importance values per document.
+		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
 		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {

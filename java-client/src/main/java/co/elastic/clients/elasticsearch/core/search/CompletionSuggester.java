@@ -85,6 +85,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	}
 
 	/**
+	 * A value, geo point object, or a geo hash string to filter or boost the
+	 * suggestion on.
+	 * <p>
 	 * API name: {@code contexts}
 	 */
 	public final Map<String, List<CompletionContext>> contexts() {
@@ -92,6 +95,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	}
 
 	/**
+	 * Enables fuzziness, meaning you can have a typo in your search and still get
+	 * results back.
+	 * <p>
 	 * API name: {@code fuzzy}
 	 */
 	@Nullable
@@ -100,6 +106,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	}
 
 	/**
+	 * A regex query that expresses a prefix as a regular expression.
+	 * <p>
 	 * API name: {@code regex}
 	 */
 	@Nullable
@@ -108,6 +116,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	}
 
 	/**
+	 * Whether duplicate suggestions should be filtered out.
+	 * <p>
 	 * API name: {@code skip_duplicates}
 	 */
 	@Nullable
@@ -176,6 +186,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		private Boolean skipDuplicates;
 
 		/**
+		 * A value, geo point object, or a geo hash string to filter or boost the
+		 * suggestion on.
+		 * <p>
 		 * API name: {@code contexts}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>contexts</code>.
@@ -186,6 +199,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
+		 * A value, geo point object, or a geo hash string to filter or boost the
+		 * suggestion on.
+		 * <p>
 		 * API name: {@code contexts}
 		 * <p>
 		 * Adds an entry to <code>contexts</code>.
@@ -196,6 +212,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
+		 * Enables fuzziness, meaning you can have a typo in your search and still get
+		 * results back.
+		 * <p>
 		 * API name: {@code fuzzy}
 		 */
 		public final Builder fuzzy(@Nullable SuggestFuzziness value) {
@@ -204,6 +223,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
+		 * Enables fuzziness, meaning you can have a typo in your search and still get
+		 * results back.
+		 * <p>
 		 * API name: {@code fuzzy}
 		 */
 		public final Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
@@ -211,6 +233,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
+		 * A regex query that expresses a prefix as a regular expression.
+		 * <p>
 		 * API name: {@code regex}
 		 */
 		public final Builder regex(@Nullable RegexOptions value) {
@@ -219,6 +243,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
+		 * A regex query that expresses a prefix as a regular expression.
+		 * <p>
 		 * API name: {@code regex}
 		 */
 		public final Builder regex(Function<RegexOptions.Builder, ObjectBuilder<RegexOptions>> fn) {
@@ -226,6 +252,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 
 		/**
+		 * Whether duplicate suggestions should be filtered out.
+		 * <p>
 		 * API name: {@code skip_duplicates}
 		 */
 		public final Builder skipDuplicates(@Nullable Boolean value) {

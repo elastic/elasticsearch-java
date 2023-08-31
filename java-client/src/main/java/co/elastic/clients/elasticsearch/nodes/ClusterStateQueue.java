@@ -71,6 +71,8 @@ public class ClusterStateQueue implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of cluster states in queue.
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -79,6 +81,8 @@ public class ClusterStateQueue implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of pending cluster states in queue.
+	 * <p>
 	 * API name: {@code pending}
 	 */
 	@Nullable
@@ -87,6 +91,8 @@ public class ClusterStateQueue implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of committed cluster states in queue.
+	 * <p>
 	 * API name: {@code committed}
 	 */
 	@Nullable
@@ -145,6 +151,8 @@ public class ClusterStateQueue implements JsonpSerializable {
 		private Long committed;
 
 		/**
+		 * Total number of cluster states in queue.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(@Nullable Long value) {
@@ -153,6 +161,8 @@ public class ClusterStateQueue implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of pending cluster states in queue.
+		 * <p>
 		 * API name: {@code pending}
 		 */
 		public final Builder pending(@Nullable Long value) {
@@ -161,6 +171,8 @@ public class ClusterStateQueue implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of committed cluster states in queue.
+		 * <p>
 		 * API name: {@code committed}
 		 */
 		public final Builder committed(@Nullable Long value) {

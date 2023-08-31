@@ -75,6 +75,8 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Pseudo Huber loss function.
+	 * <p>
 	 * API name: {@code huber}
 	 */
 	@Nullable
@@ -83,6 +85,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Average squared difference between the predicted values and the actual
+	 * (<code>ground truth</code>) value.
+	 * <p>
 	 * API name: {@code mse}
 	 */
 	@Nullable
@@ -91,6 +96,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Average squared difference between the logarithm of the predicted values and
+	 * the logarithm of the actual (<code>ground truth</code>) value.
+	 * <p>
 	 * API name: {@code msle}
 	 */
 	@Nullable
@@ -99,6 +107,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Proportion of the variance in the dependent variable that is predictable from
+	 * the independent variables.
+	 * <p>
 	 * API name: {@code r_squared}
 	 */
 	@Nullable
@@ -167,6 +178,8 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		private DataframeEvaluationValue rSquared;
 
 		/**
+		 * Pseudo Huber loss function.
+		 * <p>
 		 * API name: {@code huber}
 		 */
 		public final Builder huber(@Nullable DataframeEvaluationValue value) {
@@ -175,6 +188,8 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Pseudo Huber loss function.
+		 * <p>
 		 * API name: {@code huber}
 		 */
 		public final Builder huber(
@@ -183,6 +198,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Average squared difference between the predicted values and the actual
+		 * (<code>ground truth</code>) value.
+		 * <p>
 		 * API name: {@code mse}
 		 */
 		public final Builder mse(@Nullable DataframeEvaluationValue value) {
@@ -191,6 +209,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Average squared difference between the predicted values and the actual
+		 * (<code>ground truth</code>) value.
+		 * <p>
 		 * API name: {@code mse}
 		 */
 		public final Builder mse(
@@ -199,6 +220,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Average squared difference between the logarithm of the predicted values and
+		 * the logarithm of the actual (<code>ground truth</code>) value.
+		 * <p>
 		 * API name: {@code msle}
 		 */
 		public final Builder msle(@Nullable DataframeEvaluationValue value) {
@@ -207,6 +231,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Average squared difference between the logarithm of the predicted values and
+		 * the logarithm of the actual (<code>ground truth</code>) value.
+		 * <p>
 		 * API name: {@code msle}
 		 */
 		public final Builder msle(
@@ -215,6 +242,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Proportion of the variance in the dependent variable that is predictable from
+		 * the independent variables.
+		 * <p>
 		 * API name: {@code r_squared}
 		 */
 		public final Builder rSquared(@Nullable DataframeEvaluationValue value) {
@@ -223,6 +253,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Proportion of the variance in the dependent variable that is predictable from
+		 * the independent variables.
+		 * <p>
 		 * API name: {@code r_squared}
 		 */
 		public final Builder rSquared(

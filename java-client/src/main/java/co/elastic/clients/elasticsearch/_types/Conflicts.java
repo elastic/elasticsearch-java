@@ -34,8 +34,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum Conflicts implements JsonEnum {
+	/**
+	 * Stop reindexing if there are conflicts.
+	 */
 	Abort("abort"),
 
+	/**
+	 * Continue reindexing even if there are conflicts.
+	 */
 	Proceed("proceed"),
 
 	;

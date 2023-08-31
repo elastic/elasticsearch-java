@@ -82,6 +82,8 @@ public class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
+	 * The fuzziness factor.
+	 * <p>
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
@@ -90,6 +92,8 @@ public class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
+	 * Minimum length of the input before fuzzy suggestions are returned.
+	 * <p>
 	 * API name: {@code min_length}
 	 */
 	@Nullable
@@ -98,6 +102,8 @@ public class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
+	 * Minimum length of the input, which is not checked for fuzzy alternatives.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -106,6 +112,9 @@ public class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
+	 * If set to <code>true</code>, transpositions are counted as one change instead
+	 * of two.
+	 * <p>
 	 * API name: {@code transpositions}
 	 */
 	@Nullable
@@ -114,6 +123,10 @@ public class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, all measurements (like fuzzy edit distance,
+	 * transpositions, and lengths) are measured in Unicode code points instead of
+	 * in bytes. This is slightly slower than raw bytes.
+	 * <p>
 	 * API name: {@code unicode_aware}
 	 */
 	@Nullable
@@ -188,6 +201,8 @@ public class SuggestFuzziness implements JsonpSerializable {
 		private Boolean unicodeAware;
 
 		/**
+		 * The fuzziness factor.
+		 * <p>
 		 * API name: {@code fuzziness}
 		 */
 		public final Builder fuzziness(@Nullable String value) {
@@ -196,6 +211,8 @@ public class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
+		 * Minimum length of the input before fuzzy suggestions are returned.
+		 * <p>
 		 * API name: {@code min_length}
 		 */
 		public final Builder minLength(@Nullable Integer value) {
@@ -204,6 +221,8 @@ public class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
+		 * Minimum length of the input, which is not checked for fuzzy alternatives.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -212,6 +231,9 @@ public class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
+		 * If set to <code>true</code>, transpositions are counted as one change instead
+		 * of two.
+		 * <p>
 		 * API name: {@code transpositions}
 		 */
 		public final Builder transpositions(@Nullable Boolean value) {
@@ -220,6 +242,10 @@ public class SuggestFuzziness implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, all measurements (like fuzzy edit distance,
+		 * transpositions, and lengths) are measured in Unicode code points instead of
+		 * in bytes. This is slightly slower than raw bytes.
+		 * <p>
 		 * API name: {@code unicode_aware}
 		 */
 		public final Builder unicodeAware(@Nullable Boolean value) {

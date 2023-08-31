@@ -138,6 +138,8 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 	}
 
 	/**
+	 * Prefix used to search for suggestions.
+	 * <p>
 	 * API name: {@code prefix}
 	 */
 	@Nullable
@@ -146,6 +148,8 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 	}
 
 	/**
+	 * A prefix expressed as a regular expression.
+	 * <p>
 	 * API name: {@code regex}
 	 */
 	@Nullable
@@ -154,6 +158,9 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 	}
 
 	/**
+	 * The text to use as input for the suggester. Needs to be set globally or per
+	 * suggestion.
+	 * <p>
 	 * API name: {@code text}
 	 */
 	@Nullable
@@ -292,6 +299,8 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 		private String text;
 
 		/**
+		 * Prefix used to search for suggestions.
+		 * <p>
 		 * API name: {@code prefix}
 		 */
 		public final Builder prefix(@Nullable String value) {
@@ -300,6 +309,8 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 		}
 
 		/**
+		 * A prefix expressed as a regular expression.
+		 * <p>
 		 * API name: {@code regex}
 		 */
 		public final Builder regex(@Nullable String value) {
@@ -308,6 +319,9 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 		}
 
 		/**
+		 * The text to use as input for the suggester. Needs to be set globally or per
+		 * suggestion.
+		 * <p>
 		 * API name: {@code text}
 		 */
 		public final Builder text(@Nullable String value) {
@@ -374,6 +388,8 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 		public class ContainerBuilder implements ObjectBuilder<FieldSuggester> {
 
 			/**
+			 * Prefix used to search for suggestions.
+			 * <p>
 			 * API name: {@code prefix}
 			 */
 			public final ContainerBuilder prefix(@Nullable String value) {
@@ -382,6 +398,8 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 			}
 
 			/**
+			 * A prefix expressed as a regular expression.
+			 * <p>
 			 * API name: {@code regex}
 			 */
 			public final ContainerBuilder regex(@Nullable String value) {
@@ -390,6 +408,9 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 			}
 
 			/**
+			 * The text to use as input for the suggester. Needs to be set globally or per
+			 * suggestion.
+			 * <p>
 			 * API name: {@code text}
 			 */
 			public final ContainerBuilder text(@Nullable String value) {

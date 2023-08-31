@@ -72,6 +72,8 @@ public class PublishedClusterStates implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of published cluster states.
+	 * <p>
 	 * API name: {@code full_states}
 	 */
 	@Nullable
@@ -80,6 +82,8 @@ public class PublishedClusterStates implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of incompatible differences between published cluster states.
+	 * <p>
 	 * API name: {@code incompatible_diffs}
 	 */
 	@Nullable
@@ -88,6 +92,8 @@ public class PublishedClusterStates implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of compatible differences between published cluster states.
+	 * <p>
 	 * API name: {@code compatible_diffs}
 	 */
 	@Nullable
@@ -148,6 +154,8 @@ public class PublishedClusterStates implements JsonpSerializable {
 		private Long compatibleDiffs;
 
 		/**
+		 * Number of published cluster states.
+		 * <p>
 		 * API name: {@code full_states}
 		 */
 		public final Builder fullStates(@Nullable Long value) {
@@ -156,6 +164,8 @@ public class PublishedClusterStates implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of incompatible differences between published cluster states.
+		 * <p>
 		 * API name: {@code incompatible_diffs}
 		 */
 		public final Builder incompatibleDiffs(@Nullable Long value) {
@@ -164,6 +174,8 @@ public class PublishedClusterStates implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of compatible differences between published cluster states.
+		 * <p>
 		 * API name: {@code compatible_diffs}
 		 */
 		public final Builder compatibleDiffs(@Nullable Long value) {

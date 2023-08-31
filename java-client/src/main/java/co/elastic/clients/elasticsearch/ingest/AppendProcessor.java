@@ -79,20 +79,27 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to be appended to. Supports template snippets.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code value}
+	 * Required - The value to be appended. Supports template snippets.
+	 * <p>
+	 * API name: {@code value}
 	 */
 	public final List<JsonData> value() {
 		return this.value;
 	}
 
 	/**
+	 * If <code>false</code>, the processor does not append values already present
+	 * in the field.
+	 * <p>
 	 * API name: {@code allow_duplicates}
 	 */
 	@Nullable
@@ -141,7 +148,9 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		private Boolean allowDuplicates;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to be appended to. Supports template snippets.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -149,7 +158,9 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - The value to be appended. Supports template snippets.
+		 * <p>
+		 * API name: {@code value}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>value</code>.
 		 */
@@ -159,7 +170,9 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - The value to be appended. Supports template snippets.
+		 * <p>
+		 * API name: {@code value}
 		 * <p>
 		 * Adds one or more values to <code>value</code>.
 		 */
@@ -169,6 +182,9 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>false</code>, the processor does not append values already present
+		 * in the field.
+		 * <p>
 		 * API name: {@code allow_duplicates}
 		 */
 		public final Builder allowDuplicates(@Nullable Boolean value) {

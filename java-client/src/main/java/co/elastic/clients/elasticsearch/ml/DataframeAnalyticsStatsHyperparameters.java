@@ -86,7 +86,10 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 	}
 
 	/**
-	 * Required - API name: {@code hyperparameters}
+	 * Required - An object containing the parameters of the classification analysis
+	 * job.
+	 * <p>
+	 * API name: {@code hyperparameters}
 	 */
 	public final Hyperparameters hyperparameters() {
 		return this.hyperparameters;
@@ -102,21 +105,29 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * Required - The timestamp when the statistics were reported in milliseconds
+	 * since the epoch.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
 	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * Required - API name: {@code timing_stats}
+	 * Required - An object containing time statistics about the data frame
+	 * analytics job.
+	 * <p>
+	 * API name: {@code timing_stats}
 	 */
 	public final TimingStats timingStats() {
 		return this.timingStats;
 	}
 
 	/**
-	 * Required - API name: {@code validation_loss}
+	 * Required - An object containing information about validation loss.
+	 * <p>
+	 * API name: {@code validation_loss}
 	 */
 	public final ValidationLoss validationLoss() {
 		return this.validationLoss;
@@ -175,7 +186,10 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		private ValidationLoss validationLoss;
 
 		/**
-		 * Required - API name: {@code hyperparameters}
+		 * Required - An object containing the parameters of the classification analysis
+		 * job.
+		 * <p>
+		 * API name: {@code hyperparameters}
 		 */
 		public final Builder hyperparameters(Hyperparameters value) {
 			this.hyperparameters = value;
@@ -183,7 +197,10 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		}
 
 		/**
-		 * Required - API name: {@code hyperparameters}
+		 * Required - An object containing the parameters of the classification analysis
+		 * job.
+		 * <p>
+		 * API name: {@code hyperparameters}
 		 */
 		public final Builder hyperparameters(Function<Hyperparameters.Builder, ObjectBuilder<Hyperparameters>> fn) {
 			return this.hyperparameters(fn.apply(new Hyperparameters.Builder()).build());
@@ -200,7 +217,10 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * Required - The timestamp when the statistics were reported in milliseconds
+		 * since the epoch.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
 		public final Builder timestamp(long value) {
 			this.timestamp = value;
@@ -208,7 +228,10 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		}
 
 		/**
-		 * Required - API name: {@code timing_stats}
+		 * Required - An object containing time statistics about the data frame
+		 * analytics job.
+		 * <p>
+		 * API name: {@code timing_stats}
 		 */
 		public final Builder timingStats(TimingStats value) {
 			this.timingStats = value;
@@ -216,14 +239,19 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		}
 
 		/**
-		 * Required - API name: {@code timing_stats}
+		 * Required - An object containing time statistics about the data frame
+		 * analytics job.
+		 * <p>
+		 * API name: {@code timing_stats}
 		 */
 		public final Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
 			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code validation_loss}
+		 * Required - An object containing information about validation loss.
+		 * <p>
+		 * API name: {@code validation_loss}
 		 */
 		public final Builder validationLoss(ValidationLoss value) {
 			this.validationLoss = value;
@@ -231,7 +259,9 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		}
 
 		/**
-		 * Required - API name: {@code validation_loss}
+		 * Required - An object containing information about validation loss.
+		 * <p>
+		 * API name: {@code validation_loss}
 		 */
 		public final Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
 			return this.validationLoss(fn.apply(new ValidationLoss.Builder()).build());

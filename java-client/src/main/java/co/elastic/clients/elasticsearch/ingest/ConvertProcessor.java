@@ -81,13 +81,19 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field whose value is to be converted.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -96,6 +102,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
+	 * The field to assign the converted value to. By default, the
+	 * <code>field</code> is updated in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -104,7 +113,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - The type to convert the existing value to.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final ConvertType type() {
 		return this.type;
@@ -151,7 +162,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		private ConvertType type;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field whose value is to be converted.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -159,6 +172,10 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -167,6 +184,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
+		 * The field to assign the converted value to. By default, the
+		 * <code>field</code> is updated in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {
@@ -175,7 +195,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - The type to convert the existing value to.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(ConvertType value) {
 			this.type = value;

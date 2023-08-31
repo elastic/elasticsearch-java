@@ -48,7 +48,8 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_lifecycle.Request
 
 /**
- * Removes the data lifecycle from a data stream rendering it not managed by DLM
+ * Removes the data lifecycle from a data stream rendering it not managed by the
+ * data stream lifecycle
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_lifecycle.Request">API
@@ -102,8 +103,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of data streams of which the data lifecycle
-	 * will be deleted; use <code>*</code> to get all data streams
+	 * Required - A comma-separated list of data streams of which the data stream
+	 * lifecycle will be deleted; use <code>*</code> to get all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -187,8 +188,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams of which the data lifecycle
-		 * will be deleted; use <code>*</code> to get all data streams
+		 * Required - A comma-separated list of data streams of which the data stream
+		 * lifecycle will be deleted; use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -200,8 +201,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams of which the data lifecycle
-		 * will be deleted; use <code>*</code> to get all data streams
+		 * Required - A comma-separated list of data streams of which the data stream
+		 * lifecycle will be deleted; use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

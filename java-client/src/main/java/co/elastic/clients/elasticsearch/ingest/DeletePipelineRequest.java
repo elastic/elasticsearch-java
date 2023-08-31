@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: ingest.delete_pipeline.Request
 
 /**
- * Deletes a pipeline.
+ * Deletes one or more existing ingest pipeline.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.delete_pipeline.Request">API
  *      specification</a>
@@ -75,7 +75,9 @@ public class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Pipeline ID
+	 * Required - Pipeline ID or wildcard expression of pipeline IDs used to limit
+	 * the request. To delete all ingest pipelines in a cluster, use a value of
+	 * <code>*</code>.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -84,7 +86,8 @@ public class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -94,7 +97,8 @@ public class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -121,7 +125,9 @@ public class DeletePipelineRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - Pipeline ID
+		 * Required - Pipeline ID or wildcard expression of pipeline IDs used to limit
+		 * the request. To delete all ingest pipelines in a cluster, use a value of
+		 * <code>*</code>.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -131,7 +137,8 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -141,7 +148,8 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -150,7 +158,8 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -160,7 +169,8 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

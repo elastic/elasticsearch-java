@@ -45,7 +45,8 @@ import javax.annotation.Nullable;
 // typedef: ingest.get_pipeline.Request
 
 /**
- * Returns a pipeline.
+ * Returns information about one or more ingest pipelines. This API returns a
+ * local reference of the pipeline.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.get_pipeline.Request">API
  *      specification</a>
@@ -76,7 +77,9 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma separated list of pipeline ids. Wildcards supported
+	 * Comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>)
+	 * expressions are supported. To get all ingest pipelines, omit this parameter
+	 * or use <code>*</code>.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,7 +89,8 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -124,7 +128,9 @@ public class GetPipelineRequest extends RequestBase {
 		private Boolean summary;
 
 		/**
-		 * Comma separated list of pipeline ids. Wildcards supported
+		 * Comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>)
+		 * expressions are supported. To get all ingest pipelines, omit this parameter
+		 * or use <code>*</code>.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -134,7 +140,8 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -144,7 +151,8 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

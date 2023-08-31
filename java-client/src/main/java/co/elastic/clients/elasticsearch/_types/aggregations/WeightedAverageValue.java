@@ -74,6 +74,8 @@ public class WeightedAverageValue implements JsonpSerializable {
 	}
 
 	/**
+	 * The field from which to extract the values or weights.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -82,6 +84,8 @@ public class WeightedAverageValue implements JsonpSerializable {
 	}
 
 	/**
+	 * A value or weight to use if the field is missing.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -150,6 +154,8 @@ public class WeightedAverageValue implements JsonpSerializable {
 		private Script script;
 
 		/**
+		 * The field from which to extract the values or weights.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -158,6 +164,8 @@ public class WeightedAverageValue implements JsonpSerializable {
 		}
 
 		/**
+		 * A value or weight to use if the field is missing.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable Double value) {

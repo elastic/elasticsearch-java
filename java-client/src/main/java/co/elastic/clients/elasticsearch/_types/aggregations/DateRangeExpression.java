@@ -72,7 +72,7 @@ public class DateRangeExpression implements JsonpSerializable {
 	}
 
 	/**
-	 * Start of the range.
+	 * Start of the range (inclusive).
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -92,7 +92,7 @@ public class DateRangeExpression implements JsonpSerializable {
 	}
 
 	/**
-	 * End of the range.
+	 * End of the range (exclusive).
 	 * <p>
 	 * API name: {@code to}
 	 */
@@ -154,7 +154,7 @@ public class DateRangeExpression implements JsonpSerializable {
 		private FieldDateMath to;
 
 		/**
-		 * Start of the range.
+		 * Start of the range (inclusive).
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -164,7 +164,7 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
-		 * Start of the range.
+		 * Start of the range (inclusive).
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -183,7 +183,7 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
-		 * End of the range.
+		 * End of the range (exclusive).
 		 * <p>
 		 * API name: {@code to}
 		 */
@@ -193,7 +193,7 @@ public class DateRangeExpression implements JsonpSerializable {
 		}
 
 		/**
-		 * End of the range.
+		 * End of the range (exclusive).
 		 * <p>
 		 * API name: {@code to}
 		 */

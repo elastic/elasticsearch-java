@@ -79,21 +79,30 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 	}
 
 	/**
-	 * Required - API name: {@code parameters}
+	 * Required - The list of job parameters specified by the user or determined by
+	 * algorithmic heuristics.
+	 * <p>
+	 * API name: {@code parameters}
 	 */
 	public final OutlierDetectionParameters parameters() {
 		return this.parameters;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * Required - The timestamp when the statistics were reported in milliseconds
+	 * since the epoch.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
 	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * Required - API name: {@code timing_stats}
+	 * Required - An object containing time statistics about the data frame
+	 * analytics job.
+	 * <p>
+	 * API name: {@code timing_stats}
 	 */
 	public final TimingStats timingStats() {
 		return this.timingStats;
@@ -142,7 +151,10 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		private TimingStats timingStats;
 
 		/**
-		 * Required - API name: {@code parameters}
+		 * Required - The list of job parameters specified by the user or determined by
+		 * algorithmic heuristics.
+		 * <p>
+		 * API name: {@code parameters}
 		 */
 		public final Builder parameters(OutlierDetectionParameters value) {
 			this.parameters = value;
@@ -150,7 +162,10 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		}
 
 		/**
-		 * Required - API name: {@code parameters}
+		 * Required - The list of job parameters specified by the user or determined by
+		 * algorithmic heuristics.
+		 * <p>
+		 * API name: {@code parameters}
 		 */
 		public final Builder parameters(
 				Function<OutlierDetectionParameters.Builder, ObjectBuilder<OutlierDetectionParameters>> fn) {
@@ -158,7 +173,10 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * Required - The timestamp when the statistics were reported in milliseconds
+		 * since the epoch.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
 		public final Builder timestamp(long value) {
 			this.timestamp = value;
@@ -166,7 +184,10 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		}
 
 		/**
-		 * Required - API name: {@code timing_stats}
+		 * Required - An object containing time statistics about the data frame
+		 * analytics job.
+		 * <p>
+		 * API name: {@code timing_stats}
 		 */
 		public final Builder timingStats(TimingStats value) {
 			this.timingStats = value;
@@ -174,7 +195,10 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		}
 
 		/**
-		 * Required - API name: {@code timing_stats}
+		 * Required - An object containing time statistics about the data frame
+		 * analytics job.
+		 * <p>
+		 * API name: {@code timing_stats}
 		 */
 		public final Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
 			return this.timingStats(fn.apply(new TimingStats.Builder()).build());

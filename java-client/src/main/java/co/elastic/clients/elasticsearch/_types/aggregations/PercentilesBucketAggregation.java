@@ -71,6 +71,8 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	}
 
 	/**
+	 * The list of percentiles to calculate.
+	 * <p>
 	 * API name: {@code percents}
 	 */
 	public final List<Double> percents() {
@@ -106,6 +108,8 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 		private List<Double> percents;
 
 		/**
+		 * The list of percentiles to calculate.
+		 * <p>
 		 * API name: {@code percents}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>percents</code>.
@@ -116,6 +120,8 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 		}
 
 		/**
+		 * The list of percentiles to calculate.
+		 * <p>
 		 * API name: {@code percents}
 		 * <p>
 		 * Adds one or more values to <code>percents</code>.

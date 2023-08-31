@@ -35,16 +35,40 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum NormalizeMethod implements JsonEnum {
+	/**
+	 * This method rescales the data such that the minimum number is 0, and the
+	 * maximum number is 1, with the rest normalized linearly in-between.
+	 */
 	Rescale_0_1("rescale_0_1"),
 
+	/**
+	 * This method rescales the data such that the minimum number is 0, and the
+	 * maximum number is 100, with the rest normalized linearly in-between.
+	 */
 	Rescale_0_100("rescale_0_100"),
 
+	/**
+	 * This method normalizes each value so that it represents a percentage of the
+	 * total sum it attributes to.
+	 */
 	PercentOfSum("percent_of_sum"),
 
+	/**
+	 * This method normalizes such that each value is normalized by how much it
+	 * differs from the average.
+	 */
 	Mean("mean"),
 
+	/**
+	 * This method normalizes such that each value represents how far it is from the
+	 * mean relative to the standard deviation.
+	 */
 	ZScore("z-score"),
 
+	/**
+	 * This method normalizes such that each value is exponentiated and relative to
+	 * the sum of the exponents of the original values.
+	 */
 	Softmax("softmax"),
 
 	;

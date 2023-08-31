@@ -77,6 +77,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * The AUC ROC (area under the curve of the receiver operating characteristic)
+	 * score and optionally the curve.
+	 * <p>
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
@@ -85,6 +88,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Set the different thresholds of the outlier score at where the metric is
+	 * calculated.
+	 * <p>
 	 * API name: {@code precision}
 	 */
 	public final Map<String, Double> precision() {
@@ -92,6 +98,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Set the different thresholds of the outlier score at where the metric is
+	 * calculated.
+	 * <p>
 	 * API name: {@code recall}
 	 */
 	public final Map<String, Double> recall() {
@@ -99,6 +108,11 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Set the different thresholds of the outlier score at where the metrics
+	 * (<code>tp</code> - true positive, <code>fp</code> - false positive,
+	 * <code>tn</code> - true negative, <code>fn</code> - false negative) are
+	 * calculated.
+	 * <p>
 	 * API name: {@code confusion_matrix}
 	 */
 	public final Map<String, ConfusionMatrixThreshold> confusionMatrix() {
@@ -184,6 +198,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		private Map<String, ConfusionMatrixThreshold> confusionMatrix;
 
 		/**
+		 * The AUC ROC (area under the curve of the receiver operating characteristic)
+		 * score and optionally the curve.
+		 * <p>
 		 * API name: {@code auc_roc}
 		 */
 		public final Builder aucRoc(@Nullable DataframeEvaluationSummaryAucRoc value) {
@@ -192,6 +209,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * The AUC ROC (area under the curve of the receiver operating characteristic)
+		 * score and optionally the curve.
+		 * <p>
 		 * API name: {@code auc_roc}
 		 */
 		public final Builder aucRoc(
@@ -200,6 +220,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metric is
+		 * calculated.
+		 * <p>
 		 * API name: {@code precision}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>precision</code>.
@@ -210,6 +233,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metric is
+		 * calculated.
+		 * <p>
 		 * API name: {@code precision}
 		 * <p>
 		 * Adds an entry to <code>precision</code>.
@@ -220,6 +246,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metric is
+		 * calculated.
+		 * <p>
 		 * API name: {@code recall}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>recall</code>.
@@ -230,6 +259,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metric is
+		 * calculated.
+		 * <p>
 		 * API name: {@code recall}
 		 * <p>
 		 * Adds an entry to <code>recall</code>.
@@ -240,6 +272,11 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metrics
+		 * (<code>tp</code> - true positive, <code>fp</code> - false positive,
+		 * <code>tn</code> - true negative, <code>fn</code> - false negative) are
+		 * calculated.
+		 * <p>
 		 * API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
@@ -250,6 +287,11 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metrics
+		 * (<code>tp</code> - true positive, <code>fp</code> - false positive,
+		 * <code>tn</code> - true negative, <code>fn</code> - false negative) are
+		 * calculated.
+		 * <p>
 		 * API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds an entry to <code>confusionMatrix</code>.
@@ -260,6 +302,11 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Set the different thresholds of the outlier score at where the metrics
+		 * (<code>tp</code> - true positive, <code>fp</code> - false positive,
+		 * <code>tn</code> - true negative, <code>fn</code> - false negative) are
+		 * calculated.
+		 * <p>
 		 * API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds an entry to <code>confusionMatrix</code> using a builder lambda.

@@ -82,6 +82,8 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of documents ingested during the lifetime of this node.
+	 * <p>
 	 * API name: {@code count}
 	 */
 	@Nullable
@@ -90,6 +92,8 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of documents currently being ingested.
+	 * <p>
 	 * API name: {@code current}
 	 */
 	@Nullable
@@ -98,6 +102,8 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of failed ingest operations during the lifetime of this node.
+	 * <p>
 	 * API name: {@code failed}
 	 */
 	@Nullable
@@ -106,6 +112,8 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of ingest processors.
+	 * <p>
 	 * API name: {@code processors}
 	 */
 	public final List<Map<String, KeyedProcessor>> processors() {
@@ -113,6 +121,9 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total time, in milliseconds, spent preprocessing ingest documents during the
+	 * lifetime of this node.
+	 * <p>
 	 * API name: {@code time_in_millis}
 	 */
 	@Nullable
@@ -200,6 +211,8 @@ public class IngestTotal implements JsonpSerializable {
 		private Long timeInMillis;
 
 		/**
+		 * Total number of documents ingested during the lifetime of this node.
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public final Builder count(@Nullable Long value) {
@@ -208,6 +221,8 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of documents currently being ingested.
+		 * <p>
 		 * API name: {@code current}
 		 */
 		public final Builder current(@Nullable Long value) {
@@ -216,6 +231,8 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of failed ingest operations during the lifetime of this node.
+		 * <p>
 		 * API name: {@code failed}
 		 */
 		public final Builder failed(@Nullable Long value) {
@@ -224,6 +241,8 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of ingest processors.
+		 * <p>
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
@@ -234,6 +253,8 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of ingest processors.
+		 * <p>
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds one or more values to <code>processors</code>.
@@ -244,6 +265,9 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total time, in milliseconds, spent preprocessing ingest documents during the
+		 * lifetime of this node.
+		 * <p>
 		 * API name: {@code time_in_millis}
 		 */
 		public final Builder timeInMillis(@Nullable Long value) {

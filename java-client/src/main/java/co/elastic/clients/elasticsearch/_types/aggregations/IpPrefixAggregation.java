@@ -92,8 +92,8 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 	}
 
 	/**
-	 * Required - The document IP address field to aggregation on. The field mapping
-	 * type must be <code>ip</code>
+	 * Required - The IP address field to aggregation on. The field mapping type
+	 * must be <code>ip</code>.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -144,7 +144,8 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 	}
 
 	/**
-	 * Minimum number of documents for buckets to be included in the response.
+	 * Minimum number of documents in a bucket for it to be included in the
+	 * response.
 	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
@@ -211,8 +212,8 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 		private Long minDocCount;
 
 		/**
-		 * Required - The document IP address field to aggregation on. The field mapping
-		 * type must be <code>ip</code>
+		 * Required - The IP address field to aggregation on. The field mapping type
+		 * must be <code>ip</code>.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -265,7 +266,8 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 		}
 
 		/**
-		 * Minimum number of documents for buckets to be included in the response.
+		 * Minimum number of documents in a bucket for it to be included in the
+		 * response.
 		 * <p>
 		 * API name: {@code min_doc_count}
 		 */

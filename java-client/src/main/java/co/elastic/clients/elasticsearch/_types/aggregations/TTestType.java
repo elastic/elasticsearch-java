@@ -35,10 +35,19 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum TTestType implements JsonEnum {
+	/**
+	 * Performs paired t-test.
+	 */
 	Paired("paired"),
 
+	/**
+	 * Performs two-sample equal variance test.
+	 */
 	Homoscedastic("homoscedastic"),
 
+	/**
+	 * Performs two-sample unequal variance test.
+	 */
 	Heteroscedastic("heteroscedastic"),
 
 	;

@@ -67,7 +67,7 @@ public class StartJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to start
+	 * Required - Identifier for the rollup job.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -85,7 +85,7 @@ public class StartJobRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - The ID of the job to start
+		 * Required - Identifier for the rollup job.
 		 * <p>
 		 * API name: {@code id}
 		 */

@@ -89,6 +89,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory, in bytes, currently in use by the heap.
+	 * <p>
 	 * API name: {@code heap_used_in_bytes}
 	 */
 	@Nullable
@@ -97,6 +99,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Percentage of memory currently in use by the heap.
+	 * <p>
 	 * API name: {@code heap_used_percent}
 	 */
 	@Nullable
@@ -105,6 +109,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Amount of memory, in bytes, available for use by the heap.
+	 * <p>
 	 * API name: {@code heap_committed_in_bytes}
 	 */
 	@Nullable
@@ -113,6 +119,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum amount of memory, in bytes, available for use by the heap.
+	 * <p>
 	 * API name: {@code heap_max_in_bytes}
 	 */
 	@Nullable
@@ -121,6 +129,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Non-heap memory used, in bytes.
+	 * <p>
 	 * API name: {@code non_heap_used_in_bytes}
 	 */
 	@Nullable
@@ -129,6 +139,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Amount of non-heap memory available, in bytes.
+	 * <p>
 	 * API name: {@code non_heap_committed_in_bytes}
 	 */
 	@Nullable
@@ -137,6 +149,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics about heap memory usage for the node.
+	 * <p>
 	 * API name: {@code pools}
 	 */
 	public final Map<String, Pool> pools() {
@@ -232,6 +246,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		private Map<String, Pool> pools;
 
 		/**
+		 * Memory, in bytes, currently in use by the heap.
+		 * <p>
 		 * API name: {@code heap_used_in_bytes}
 		 */
 		public final Builder heapUsedInBytes(@Nullable Long value) {
@@ -240,6 +256,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Percentage of memory currently in use by the heap.
+		 * <p>
 		 * API name: {@code heap_used_percent}
 		 */
 		public final Builder heapUsedPercent(@Nullable Long value) {
@@ -248,6 +266,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Amount of memory, in bytes, available for use by the heap.
+		 * <p>
 		 * API name: {@code heap_committed_in_bytes}
 		 */
 		public final Builder heapCommittedInBytes(@Nullable Long value) {
@@ -256,6 +276,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Maximum amount of memory, in bytes, available for use by the heap.
+		 * <p>
 		 * API name: {@code heap_max_in_bytes}
 		 */
 		public final Builder heapMaxInBytes(@Nullable Long value) {
@@ -264,6 +286,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Non-heap memory used, in bytes.
+		 * <p>
 		 * API name: {@code non_heap_used_in_bytes}
 		 */
 		public final Builder nonHeapUsedInBytes(@Nullable Long value) {
@@ -272,6 +296,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Amount of non-heap memory available, in bytes.
+		 * <p>
 		 * API name: {@code non_heap_committed_in_bytes}
 		 */
 		public final Builder nonHeapCommittedInBytes(@Nullable Long value) {
@@ -280,6 +306,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about heap memory usage for the node.
+		 * <p>
 		 * API name: {@code pools}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>pools</code>.
@@ -290,6 +318,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about heap memory usage for the node.
+		 * <p>
 		 * API name: {@code pools}
 		 * <p>
 		 * Adds an entry to <code>pools</code>.
@@ -300,6 +330,8 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about heap memory usage for the node.
+		 * <p>
 		 * API name: {@code pools}
 		 * <p>
 		 * Adds an entry to <code>pools</code> using a builder lambda.

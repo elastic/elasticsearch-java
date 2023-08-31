@@ -73,6 +73,8 @@ public class Http implements JsonpSerializable {
 	}
 
 	/**
+	 * Current number of open HTTP connections for the node.
+	 * <p>
 	 * API name: {@code current_open}
 	 */
 	@Nullable
@@ -81,6 +83,8 @@ public class Http implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of HTTP connections opened for the node.
+	 * <p>
 	 * API name: {@code total_opened}
 	 */
 	@Nullable
@@ -89,6 +93,11 @@ public class Http implements JsonpSerializable {
 	}
 
 	/**
+	 * Information on current and recently-closed HTTP client connections. Clients
+	 * that have been closed longer than the
+	 * <code>http.client_stats.closed_channels.max_age</code> setting will not be
+	 * represented here.
+	 * <p>
 	 * API name: {@code clients}
 	 */
 	public final List<Client> clients() {
@@ -151,6 +160,8 @@ public class Http implements JsonpSerializable {
 		private List<Client> clients;
 
 		/**
+		 * Current number of open HTTP connections for the node.
+		 * <p>
 		 * API name: {@code current_open}
 		 */
 		public final Builder currentOpen(@Nullable Integer value) {
@@ -159,6 +170,8 @@ public class Http implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of HTTP connections opened for the node.
+		 * <p>
 		 * API name: {@code total_opened}
 		 */
 		public final Builder totalOpened(@Nullable Long value) {
@@ -167,6 +180,11 @@ public class Http implements JsonpSerializable {
 		}
 
 		/**
+		 * Information on current and recently-closed HTTP client connections. Clients
+		 * that have been closed longer than the
+		 * <code>http.client_stats.closed_channels.max_age</code> setting will not be
+		 * represented here.
+		 * <p>
 		 * API name: {@code clients}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>clients</code>.
@@ -177,6 +195,11 @@ public class Http implements JsonpSerializable {
 		}
 
 		/**
+		 * Information on current and recently-closed HTTP client connections. Clients
+		 * that have been closed longer than the
+		 * <code>http.client_stats.closed_channels.max_age</code> setting will not be
+		 * represented here.
+		 * <p>
 		 * API name: {@code clients}
 		 * <p>
 		 * Adds one or more values to <code>clients</code>.
@@ -187,6 +210,11 @@ public class Http implements JsonpSerializable {
 		}
 
 		/**
+		 * Information on current and recently-closed HTTP client connections. Clients
+		 * that have been closed longer than the
+		 * <code>http.client_stats.closed_channels.max_age</code> setting will not be
+		 * represented here.
+		 * <p>
 		 * API name: {@code clients}
 		 * <p>
 		 * Adds a value to <code>clients</code> using a builder lambda.

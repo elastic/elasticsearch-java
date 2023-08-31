@@ -34,10 +34,20 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SuggestMode implements JsonEnum {
+	/**
+	 * Only generate suggestions for terms that are not in the shard.
+	 */
 	Missing("missing"),
 
+	/**
+	 * Only suggest terms that occur in more docs on the shard than the original
+	 * term.
+	 */
 	Popular("popular"),
 
+	/**
+	 * Suggest any matching suggestions based on terms in the suggest text.
+	 */
 	Always("always"),
 
 	;

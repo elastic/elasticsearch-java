@@ -112,6 +112,9 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed by indexing requests in the coordinating, primary, or replica
+	 * stage.
+	 * <p>
 	 * API name: {@code all}
 	 */
 	@Nullable
@@ -120,6 +123,9 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed, in bytes, by indexing requests in the coordinating, primary,
+	 * or replica stage.
+	 * <p>
 	 * API name: {@code all_in_bytes}
 	 */
 	@Nullable
@@ -128,6 +134,10 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed by indexing requests in the coordinating or primary stage.
+	 * This value is not the sum of coordinating and primary as a node can reuse the
+	 * coordinating memory if the primary stage is executed locally.
+	 * <p>
 	 * API name: {@code combined_coordinating_and_primary}
 	 */
 	@Nullable
@@ -136,6 +146,11 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed, in bytes, by indexing requests in the coordinating or
+	 * primary stage. This value is not the sum of coordinating and primary as a
+	 * node can reuse the coordinating memory if the primary stage is executed
+	 * locally.
+	 * <p>
 	 * API name: {@code combined_coordinating_and_primary_in_bytes}
 	 */
 	@Nullable
@@ -144,6 +159,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed by indexing requests in the coordinating stage.
+	 * <p>
 	 * API name: {@code coordinating}
 	 */
 	@Nullable
@@ -152,6 +169,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed, in bytes, by indexing requests in the coordinating stage.
+	 * <p>
 	 * API name: {@code coordinating_in_bytes}
 	 */
 	@Nullable
@@ -160,6 +179,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed by indexing requests in the primary stage.
+	 * <p>
 	 * API name: {@code primary}
 	 */
 	@Nullable
@@ -168,6 +189,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed, in bytes, by indexing requests in the primary stage.
+	 * <p>
 	 * API name: {@code primary_in_bytes}
 	 */
 	@Nullable
@@ -176,6 +199,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed by indexing requests in the replica stage.
+	 * <p>
 	 * API name: {@code replica}
 	 */
 	@Nullable
@@ -184,6 +209,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory consumed, in bytes, by indexing requests in the replica stage.
+	 * <p>
 	 * API name: {@code replica_in_bytes}
 	 */
 	@Nullable
@@ -192,6 +219,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of indexing requests rejected in the coordinating stage.
+	 * <p>
 	 * API name: {@code coordinating_rejections}
 	 */
 	@Nullable
@@ -200,6 +229,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of indexing requests rejected in the primary stage.
+	 * <p>
 	 * API name: {@code primary_rejections}
 	 */
 	@Nullable
@@ -208,6 +239,8 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of indexing requests rejected in the replica stage.
+	 * <p>
 	 * API name: {@code replica_rejections}
 	 */
 	@Nullable
@@ -346,6 +379,9 @@ public class PressureMemory implements JsonpSerializable {
 		private Long replicaRejections;
 
 		/**
+		 * Memory consumed by indexing requests in the coordinating, primary, or replica
+		 * stage.
+		 * <p>
 		 * API name: {@code all}
 		 */
 		public final Builder all(@Nullable String value) {
@@ -354,6 +390,9 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed, in bytes, by indexing requests in the coordinating, primary,
+		 * or replica stage.
+		 * <p>
 		 * API name: {@code all_in_bytes}
 		 */
 		public final Builder allInBytes(@Nullable Long value) {
@@ -362,6 +401,10 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed by indexing requests in the coordinating or primary stage.
+		 * This value is not the sum of coordinating and primary as a node can reuse the
+		 * coordinating memory if the primary stage is executed locally.
+		 * <p>
 		 * API name: {@code combined_coordinating_and_primary}
 		 */
 		public final Builder combinedCoordinatingAndPrimary(@Nullable String value) {
@@ -370,6 +413,11 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed, in bytes, by indexing requests in the coordinating or
+		 * primary stage. This value is not the sum of coordinating and primary as a
+		 * node can reuse the coordinating memory if the primary stage is executed
+		 * locally.
+		 * <p>
 		 * API name: {@code combined_coordinating_and_primary_in_bytes}
 		 */
 		public final Builder combinedCoordinatingAndPrimaryInBytes(@Nullable Long value) {
@@ -378,6 +426,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed by indexing requests in the coordinating stage.
+		 * <p>
 		 * API name: {@code coordinating}
 		 */
 		public final Builder coordinating(@Nullable String value) {
@@ -386,6 +436,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed, in bytes, by indexing requests in the coordinating stage.
+		 * <p>
 		 * API name: {@code coordinating_in_bytes}
 		 */
 		public final Builder coordinatingInBytes(@Nullable Long value) {
@@ -394,6 +446,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed by indexing requests in the primary stage.
+		 * <p>
 		 * API name: {@code primary}
 		 */
 		public final Builder primary(@Nullable String value) {
@@ -402,6 +456,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed, in bytes, by indexing requests in the primary stage.
+		 * <p>
 		 * API name: {@code primary_in_bytes}
 		 */
 		public final Builder primaryInBytes(@Nullable Long value) {
@@ -410,6 +466,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed by indexing requests in the replica stage.
+		 * <p>
 		 * API name: {@code replica}
 		 */
 		public final Builder replica(@Nullable String value) {
@@ -418,6 +476,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory consumed, in bytes, by indexing requests in the replica stage.
+		 * <p>
 		 * API name: {@code replica_in_bytes}
 		 */
 		public final Builder replicaInBytes(@Nullable Long value) {
@@ -426,6 +486,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of indexing requests rejected in the coordinating stage.
+		 * <p>
 		 * API name: {@code coordinating_rejections}
 		 */
 		public final Builder coordinatingRejections(@Nullable Long value) {
@@ -434,6 +496,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of indexing requests rejected in the primary stage.
+		 * <p>
 		 * API name: {@code primary_rejections}
 		 */
 		public final Builder primaryRejections(@Nullable Long value) {
@@ -442,6 +506,8 @@ public class PressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of indexing requests rejected in the replica stage.
+		 * <p>
 		 * API name: {@code replica_rejections}
 		 */
 		public final Builder replicaRejections(@Nullable Long value) {

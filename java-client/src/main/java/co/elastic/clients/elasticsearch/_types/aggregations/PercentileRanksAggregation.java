@@ -84,6 +84,10 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 	}
 
 	/**
+	 * By default, the aggregation associates a unique string key with each bucket
+	 * and returns the ranges as a hash rather than an array. Set to
+	 * <code>false</code> to disable this behavior.
+	 * <p>
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -92,6 +96,8 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 	}
 
 	/**
+	 * An array of values for which to calculate the percentile ranks.
+	 * <p>
 	 * API name: {@code values}
 	 */
 	public final List<Double> values() {
@@ -99,6 +105,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 	}
 
 	/**
+	 * Uses the alternative High Dynamic Range Histogram algorithm to calculate
+	 * percentile ranks.
+	 * <p>
 	 * API name: {@code hdr}
 	 */
 	@Nullable
@@ -107,6 +116,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 	}
 
 	/**
+	 * Sets parameters for the default TDigest algorithm used to calculate
+	 * percentile ranks.
+	 * <p>
 	 * API name: {@code tdigest}
 	 */
 	@Nullable
@@ -167,6 +179,10 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		private TDigest tdigest;
 
 		/**
+		 * By default, the aggregation associates a unique string key with each bucket
+		 * and returns the ranges as a hash rather than an array. Set to
+		 * <code>false</code> to disable this behavior.
+		 * <p>
 		 * API name: {@code keyed}
 		 */
 		public final Builder keyed(@Nullable Boolean value) {
@@ -175,6 +191,8 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 
 		/**
+		 * An array of values for which to calculate the percentile ranks.
+		 * <p>
 		 * API name: {@code values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>values</code>.
@@ -185,6 +203,8 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 
 		/**
+		 * An array of values for which to calculate the percentile ranks.
+		 * <p>
 		 * API name: {@code values}
 		 * <p>
 		 * Adds one or more values to <code>values</code>.
@@ -195,6 +215,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 
 		/**
+		 * Uses the alternative High Dynamic Range Histogram algorithm to calculate
+		 * percentile ranks.
+		 * <p>
 		 * API name: {@code hdr}
 		 */
 		public final Builder hdr(@Nullable HdrMethod value) {
@@ -203,6 +226,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 
 		/**
+		 * Uses the alternative High Dynamic Range Histogram algorithm to calculate
+		 * percentile ranks.
+		 * <p>
 		 * API name: {@code hdr}
 		 */
 		public final Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
@@ -210,6 +236,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 
 		/**
+		 * Sets parameters for the default TDigest algorithm used to calculate
+		 * percentile ranks.
+		 * <p>
 		 * API name: {@code tdigest}
 		 */
 		public final Builder tdigest(@Nullable TDigest value) {
@@ -218,6 +247,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 
 		/**
+		 * Sets parameters for the default TDigest algorithm used to calculate
+		 * percentile ranks.
+		 * <p>
 		 * API name: {@code tdigest}
 		 */
 		public final Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {

@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: ingest.simulate.Request
 
 /**
- * Allows to simulate a pipeline with example documents.
+ * Executes an ingest pipeline against a set of provided documents.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.simulate.Request">API
  *      specification</a>
@@ -83,6 +83,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Sample documents to test in the pipeline.
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	public final List<Document> docs() {
@@ -90,7 +92,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Pipeline ID
+	 * Pipeline to test. If you don’t specify a <code>pipeline</code> in the request
+	 * body, this parameter is required.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -100,6 +103,10 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Pipeline to test. If you don’t specify the <code>pipeline</code> request path
+	 * parameter, this parameter is required. If you specify both this and the
+	 * request path parameter, the API only uses the request path parameter.
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -108,7 +115,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Verbose mode. Display data output for each processor in executed pipeline
+	 * If <code>true</code>, the response includes output data for each processor in
+	 * the executed pipeline.
 	 * <p>
 	 * API name: {@code verbose}
 	 */
@@ -166,6 +174,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		private Boolean verbose;
 
 		/**
+		 * Sample documents to test in the pipeline.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
@@ -176,6 +186,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Sample documents to test in the pipeline.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
@@ -186,6 +198,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Sample documents to test in the pipeline.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.
@@ -195,7 +209,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Pipeline ID
+		 * Pipeline to test. If you don’t specify a <code>pipeline</code> in the request
+		 * body, this parameter is required.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -205,6 +220,10 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Pipeline to test. If you don’t specify the <code>pipeline</code> request path
+		 * parameter, this parameter is required. If you specify both this and the
+		 * request path parameter, the API only uses the request path parameter.
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public final Builder pipeline(@Nullable Pipeline value) {
@@ -213,6 +232,10 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Pipeline to test. If you don’t specify the <code>pipeline</code> request path
+		 * parameter, this parameter is required. If you specify both this and the
+		 * request path parameter, the API only uses the request path parameter.
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
@@ -220,7 +243,8 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Verbose mode. Display data output for each processor in executed pipeline
+		 * If <code>true</code>, the response includes output data for each processor in
+		 * the executed pipeline.
 		 * <p>
 		 * API name: {@code verbose}
 		 */

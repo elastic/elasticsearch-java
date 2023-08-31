@@ -76,7 +76,7 @@ public class StopJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The ID of the job to stop
+	 * Required - Identifier for the rollup job.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -85,8 +85,10 @@ public class StopJobRequest extends RequestBase {
 	}
 
 	/**
-	 * Block for (at maximum) the specified duration while waiting for the job to
-	 * stop. Defaults to 30s.
+	 * If <code>wait_for_completion</code> is <code>true</code>, the API blocks for
+	 * (at maximum) the specified duration while waiting for the job to stop. If
+	 * more than <code>timeout</code> time has passed, the API throws a timeout
+	 * exception.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -96,8 +98,9 @@ public class StopJobRequest extends RequestBase {
 	}
 
 	/**
-	 * True if the API should block until the job has fully stopped, false if should
-	 * be executed async. Defaults to false.
+	 * If set to <code>true</code>, causes the API to block until the indexer state
+	 * completely stops. If set to <code>false</code>, the API returns immediately
+	 * and the indexer is stopped asynchronously in the background.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -122,7 +125,7 @@ public class StopJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Required - The ID of the job to stop
+		 * Required - Identifier for the rollup job.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -132,8 +135,10 @@ public class StopJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Block for (at maximum) the specified duration while waiting for the job to
-		 * stop. Defaults to 30s.
+		 * If <code>wait_for_completion</code> is <code>true</code>, the API blocks for
+		 * (at maximum) the specified duration while waiting for the job to stop. If
+		 * more than <code>timeout</code> time has passed, the API throws a timeout
+		 * exception.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -143,8 +148,10 @@ public class StopJobRequest extends RequestBase {
 		}
 
 		/**
-		 * Block for (at maximum) the specified duration while waiting for the job to
-		 * stop. Defaults to 30s.
+		 * If <code>wait_for_completion</code> is <code>true</code>, the API blocks for
+		 * (at maximum) the specified duration while waiting for the job to stop. If
+		 * more than <code>timeout</code> time has passed, the API throws a timeout
+		 * exception.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -153,8 +160,9 @@ public class StopJobRequest extends RequestBase {
 		}
 
 		/**
-		 * True if the API should block until the job has fully stopped, false if should
-		 * be executed async. Defaults to false.
+		 * If set to <code>true</code>, causes the API to block until the indexer state
+		 * completely stops. If set to <code>false</code>, the API returns immediately
+		 * and the indexer is stopped asynchronously in the background.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

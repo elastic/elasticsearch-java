@@ -75,6 +75,8 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 	}
 
 	/**
+	 * The name of the field.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -122,6 +124,8 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 		private FieldValue missing;
 
 		/**
+		 * The name of the field.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {

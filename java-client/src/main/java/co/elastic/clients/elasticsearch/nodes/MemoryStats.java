@@ -100,6 +100,11 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * If the amount of physical memory has been overridden using the
+	 * <code>es</code>.<code>total_memory_bytes</code> system property then this
+	 * reports the overridden value in bytes. Otherwise it reports the same value as
+	 * <code>total_in_bytes</code>.
+	 * <p>
 	 * API name: {@code adjusted_total_in_bytes}
 	 */
 	@Nullable
@@ -156,6 +161,8 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Total amount of physical memory in bytes.
+	 * <p>
 	 * API name: {@code total_in_bytes}
 	 */
 	@Nullable
@@ -164,6 +171,8 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Amount of free physical memory in bytes.
+	 * <p>
 	 * API name: {@code free_in_bytes}
 	 */
 	@Nullable
@@ -172,6 +181,8 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Amount of used physical memory in bytes.
+	 * <p>
 	 * API name: {@code used_in_bytes}
 	 */
 	@Nullable
@@ -307,6 +318,11 @@ public class MemoryStats implements JsonpSerializable {
 		private Long usedInBytes;
 
 		/**
+		 * If the amount of physical memory has been overridden using the
+		 * <code>es</code>.<code>total_memory_bytes</code> system property then this
+		 * reports the overridden value in bytes. Otherwise it reports the same value as
+		 * <code>total_in_bytes</code>.
+		 * <p>
 		 * API name: {@code adjusted_total_in_bytes}
 		 */
 		public final BuilderT adjustedTotalInBytes(@Nullable Long value) {
@@ -363,6 +379,8 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Total amount of physical memory in bytes.
+		 * <p>
 		 * API name: {@code total_in_bytes}
 		 */
 		public final BuilderT totalInBytes(@Nullable Long value) {
@@ -371,6 +389,8 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Amount of free physical memory in bytes.
+		 * <p>
 		 * API name: {@code free_in_bytes}
 		 */
 		public final BuilderT freeInBytes(@Nullable Long value) {
@@ -379,6 +399,8 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Amount of used physical memory in bytes.
+		 * <p>
 		 * API name: {@code used_in_bytes}
 		 */
 		public final BuilderT usedInBytes(@Nullable Long value) {

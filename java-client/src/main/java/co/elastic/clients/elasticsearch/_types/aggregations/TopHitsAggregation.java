@@ -119,6 +119,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Fields for which to return doc values.
+	 * <p>
 	 * API name: {@code docvalue_fields}
 	 */
 	public final List<String> docvalueFields() {
@@ -126,6 +128,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * If <code>true</code>, returns detailed information about score computation as
+	 * part of a hit.
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -134,6 +139,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Starting document offset.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -142,6 +149,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Specifies the highlighter to use for retrieving highlighted snippets from one
+	 * or more fields in the search results.
+	 * <p>
 	 * API name: {@code highlight}
 	 */
 	@Nullable
@@ -150,6 +160,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Returns the result of one or more script evaluations for each hit.
+	 * <p>
 	 * API name: {@code script_fields}
 	 */
 	public final Map<String, ScriptField> scriptFields() {
@@ -157,6 +169,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * The maximum number of top matching hits to return per bucket.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -165,6 +179,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Sort order of the top matching hits. By default, the hits are sorted by the
+	 * score of the main query.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public final List<SortOptions> sort() {
@@ -172,6 +189,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Selects the fields of the source that are returned.
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -180,6 +199,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * Returns values for the specified stored fields (fields that use the
+	 * <code>store</code> mapping option).
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	public final List<String> storedFields() {
@@ -187,6 +209,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * If <code>true</code>, calculates and returns document scores, even if the
+	 * scores are not used for sorting.
+	 * <p>
 	 * API name: {@code track_scores}
 	 */
 	@Nullable
@@ -195,6 +220,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * If <code>true</code>, returns document version as part of a hit.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -203,6 +230,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	}
 
 	/**
+	 * If <code>true</code>, returns sequence number and primary term of the last
+	 * modification of each hit.
+	 * <p>
 	 * API name: {@code seq_no_primary_term}
 	 */
 	@Nullable
@@ -343,6 +373,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		private Boolean seqNoPrimaryTerm;
 
 		/**
+		 * Fields for which to return doc values.
+		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
@@ -353,6 +385,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Fields for which to return doc values.
+		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
 		 * Adds one or more values to <code>docvalueFields</code>.
@@ -363,6 +397,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * If <code>true</code>, returns detailed information about score computation as
+		 * part of a hit.
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public final Builder explain(@Nullable Boolean value) {
@@ -371,6 +408,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Starting document offset.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public final Builder from(@Nullable Integer value) {
@@ -379,6 +418,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Specifies the highlighter to use for retrieving highlighted snippets from one
+		 * or more fields in the search results.
+		 * <p>
 		 * API name: {@code highlight}
 		 */
 		public final Builder highlight(@Nullable Highlight value) {
@@ -387,6 +429,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Specifies the highlighter to use for retrieving highlighted snippets from one
+		 * or more fields in the search results.
+		 * <p>
 		 * API name: {@code highlight}
 		 */
 		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
@@ -394,6 +439,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Returns the result of one or more script evaluations for each hit.
+		 * <p>
 		 * API name: {@code script_fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
@@ -404,6 +451,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Returns the result of one or more script evaluations for each hit.
+		 * <p>
 		 * API name: {@code script_fields}
 		 * <p>
 		 * Adds an entry to <code>scriptFields</code>.
@@ -414,6 +463,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Returns the result of one or more script evaluations for each hit.
+		 * <p>
 		 * API name: {@code script_fields}
 		 * <p>
 		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
@@ -423,6 +474,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * The maximum number of top matching hits to return per bucket.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -431,6 +484,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Sort order of the top matching hits. By default, the hits are sorted by the
+		 * score of the main query.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
@@ -441,6 +497,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Sort order of the top matching hits. By default, the hits are sorted by the
+		 * score of the main query.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
@@ -451,6 +510,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Sort order of the top matching hits. By default, the hits are sorted by the
+		 * score of the main query.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.
@@ -460,6 +522,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Selects the fields of the source that are returned.
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public final Builder source(@Nullable SourceConfig value) {
@@ -468,6 +532,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Selects the fields of the source that are returned.
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
@@ -475,6 +541,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Returns values for the specified stored fields (fields that use the
+		 * <code>store</code> mapping option).
+		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
@@ -485,6 +554,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * Returns values for the specified stored fields (fields that use the
+		 * <code>store</code> mapping option).
+		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds one or more values to <code>storedFields</code>.
@@ -495,6 +567,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * If <code>true</code>, calculates and returns document scores, even if the
+		 * scores are not used for sorting.
+		 * <p>
 		 * API name: {@code track_scores}
 		 */
 		public final Builder trackScores(@Nullable Boolean value) {
@@ -503,6 +578,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * If <code>true</code>, returns document version as part of a hit.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public final Builder version(@Nullable Boolean value) {
@@ -511,6 +588,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 
 		/**
+		 * If <code>true</code>, returns sequence number and primary term of the last
+		 * modification of each hit.
+		 * <p>
 		 * API name: {@code seq_no_primary_term}
 		 */
 		public final Builder seqNoPrimaryTerm(@Nullable Boolean value) {

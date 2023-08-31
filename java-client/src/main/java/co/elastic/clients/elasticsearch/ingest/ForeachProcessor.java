@@ -77,13 +77,18 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - Field containing array or object values.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code>, the processor silently exits without changing the
+	 * document if the <code>field</code> is <code>null</code> or missing.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -92,7 +97,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code processor}
+	 * Required - Ingest processor to run on each element.
+	 * <p>
+	 * API name: {@code processor}
 	 */
 	public final Processor processor() {
 		return this.processor;
@@ -131,7 +138,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 		private Processor processor;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - Field containing array or object values.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -139,6 +148,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
+		 * If <code>true</code>, the processor silently exits without changing the
+		 * document if the <code>field</code> is <code>null</code> or missing.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -147,7 +159,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code processor}
+		 * Required - Ingest processor to run on each element.
+		 * <p>
+		 * API name: {@code processor}
 		 */
 		public final Builder processor(Processor value) {
 			this.processor = value;
@@ -155,7 +169,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code processor}
+		 * Required - Ingest processor to run on each element.
+		 * <p>
+		 * API name: {@code processor}
 		 */
 		public final Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.processor(fn.apply(new Processor.Builder()).build());

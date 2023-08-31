@@ -85,49 +85,70 @@ public class PipelineSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code pipeline.workers}
+	 * Required - The number of workers that will, in parallel, execute the filter
+	 * and output stages of the pipeline.
+	 * <p>
+	 * API name: {@code pipeline.workers}
 	 */
 	public final int pipelineWorkers() {
 		return this.pipelineWorkers;
 	}
 
 	/**
-	 * Required - API name: {@code pipeline.batch.size}
+	 * Required - The maximum number of events an individual worker thread will
+	 * collect from inputs before attempting to execute its filters and outputs.
+	 * <p>
+	 * API name: {@code pipeline.batch.size}
 	 */
 	public final int pipelineBatchSize() {
 		return this.pipelineBatchSize;
 	}
 
 	/**
-	 * Required - API name: {@code pipeline.batch.delay}
+	 * Required - When creating pipeline event batches, how long in milliseconds to
+	 * wait for each event before dispatching an undersized batch to pipeline
+	 * workers.
+	 * <p>
+	 * API name: {@code pipeline.batch.delay}
 	 */
 	public final int pipelineBatchDelay() {
 		return this.pipelineBatchDelay;
 	}
 
 	/**
-	 * Required - API name: {@code queue.type}
+	 * Required - The internal queuing model to use for event buffering.
+	 * <p>
+	 * API name: {@code queue.type}
 	 */
 	public final String queueType() {
 		return this.queueType;
 	}
 
 	/**
-	 * Required - API name: {@code queue.max_bytes.number}
+	 * Required - The total capacity of the queue
+	 * (<code>queue.type: persisted</code>) in number of bytes.
+	 * <p>
+	 * API name: {@code queue.max_bytes.number}
 	 */
 	public final int queueMaxBytesNumber() {
 		return this.queueMaxBytesNumber;
 	}
 
 	/**
-	 * Required - API name: {@code queue.max_bytes.units}
+	 * Required - The total capacity of the queue
+	 * (<code>queue.type: persisted</code>) in terms of units of bytes.
+	 * <p>
+	 * API name: {@code queue.max_bytes.units}
 	 */
 	public final String queueMaxBytesUnits() {
 		return this.queueMaxBytesUnits;
 	}
 
 	/**
-	 * Required - API name: {@code queue.checkpoint.writes}
+	 * Required - The maximum number of written events before forcing a checkpoint
+	 * when persistent queues are enabled (<code>queue.type: persisted</code>).
+	 * <p>
+	 * API name: {@code queue.checkpoint.writes}
 	 */
 	public final int queueCheckpointWrites() {
 		return this.queueCheckpointWrites;
@@ -194,7 +215,10 @@ public class PipelineSettings implements JsonpSerializable {
 		private Integer queueCheckpointWrites;
 
 		/**
-		 * Required - API name: {@code pipeline.workers}
+		 * Required - The number of workers that will, in parallel, execute the filter
+		 * and output stages of the pipeline.
+		 * <p>
+		 * API name: {@code pipeline.workers}
 		 */
 		public final Builder pipelineWorkers(int value) {
 			this.pipelineWorkers = value;
@@ -202,7 +226,10 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline.batch.size}
+		 * Required - The maximum number of events an individual worker thread will
+		 * collect from inputs before attempting to execute its filters and outputs.
+		 * <p>
+		 * API name: {@code pipeline.batch.size}
 		 */
 		public final Builder pipelineBatchSize(int value) {
 			this.pipelineBatchSize = value;
@@ -210,7 +237,11 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline.batch.delay}
+		 * Required - When creating pipeline event batches, how long in milliseconds to
+		 * wait for each event before dispatching an undersized batch to pipeline
+		 * workers.
+		 * <p>
+		 * API name: {@code pipeline.batch.delay}
 		 */
 		public final Builder pipelineBatchDelay(int value) {
 			this.pipelineBatchDelay = value;
@@ -218,7 +249,9 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code queue.type}
+		 * Required - The internal queuing model to use for event buffering.
+		 * <p>
+		 * API name: {@code queue.type}
 		 */
 		public final Builder queueType(String value) {
 			this.queueType = value;
@@ -226,7 +259,10 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code queue.max_bytes.number}
+		 * Required - The total capacity of the queue
+		 * (<code>queue.type: persisted</code>) in number of bytes.
+		 * <p>
+		 * API name: {@code queue.max_bytes.number}
 		 */
 		public final Builder queueMaxBytesNumber(int value) {
 			this.queueMaxBytesNumber = value;
@@ -234,7 +270,10 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code queue.max_bytes.units}
+		 * Required - The total capacity of the queue
+		 * (<code>queue.type: persisted</code>) in terms of units of bytes.
+		 * <p>
+		 * API name: {@code queue.max_bytes.units}
 		 */
 		public final Builder queueMaxBytesUnits(String value) {
 			this.queueMaxBytesUnits = value;
@@ -242,7 +281,10 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code queue.checkpoint.writes}
+		 * Required - The maximum number of written events before forcing a checkpoint
+		 * when persistent queues are enabled (<code>queue.type: persisted</code>).
+		 * <p>
+		 * API name: {@code queue.checkpoint.writes}
 		 */
 		public final Builder queueCheckpointWrites(int value) {
 			this.queueCheckpointWrites = value;

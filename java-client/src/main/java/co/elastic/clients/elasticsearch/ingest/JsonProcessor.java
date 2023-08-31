@@ -86,6 +86,10 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * Flag that forces the parsed JSON to be added at the top level of the
+	 * document. <code>target_field</code> must not be set when this option is
+	 * chosen.
+	 * <p>
 	 * API name: {@code add_to_root}
 	 */
 	@Nullable
@@ -94,6 +98,11 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * When set to <code>replace</code>, root fields that conflict with fields from
+	 * the parsed JSON will be overridden. When set to <code>merge</code>,
+	 * conflicting fields will be merged. Only applicable
+	 * <code>if add_to_root</code> is set to true.
+	 * <p>
 	 * API name: {@code add_to_root_conflict_strategy}
 	 */
 	@Nullable
@@ -102,6 +111,10 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * When set to <code>true</code>, the JSON parser will not fail if the JSON
+	 * contains duplicate keys. Instead, the last encountered value for any
+	 * duplicate key wins.
+	 * <p>
 	 * API name: {@code allow_duplicate_keys}
 	 */
 	@Nullable
@@ -110,13 +123,18 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to be parsed.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The field that the converted structured object will be written into. Any
+	 * existing content in this field will be overwritten.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -174,6 +192,10 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
+		 * Flag that forces the parsed JSON to be added at the top level of the
+		 * document. <code>target_field</code> must not be set when this option is
+		 * chosen.
+		 * <p>
 		 * API name: {@code add_to_root}
 		 */
 		public final Builder addToRoot(@Nullable Boolean value) {
@@ -182,6 +204,11 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * When set to <code>replace</code>, root fields that conflict with fields from
+		 * the parsed JSON will be overridden. When set to <code>merge</code>,
+		 * conflicting fields will be merged. Only applicable
+		 * <code>if add_to_root</code> is set to true.
+		 * <p>
 		 * API name: {@code add_to_root_conflict_strategy}
 		 */
 		public final Builder addToRootConflictStrategy(@Nullable JsonProcessorConflictStrategy value) {
@@ -190,6 +217,10 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * When set to <code>true</code>, the JSON parser will not fail if the JSON
+		 * contains duplicate keys. Instead, the last encountered value for any
+		 * duplicate key wins.
+		 * <p>
 		 * API name: {@code allow_duplicate_keys}
 		 */
 		public final Builder allowDuplicateKeys(@Nullable Boolean value) {
@@ -198,7 +229,9 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to be parsed.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -206,6 +239,9 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field that the converted structured object will be written into. Any
+		 * existing content in this field will be overwritten.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

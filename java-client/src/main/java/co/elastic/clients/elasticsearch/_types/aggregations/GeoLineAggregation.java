@@ -89,20 +89,30 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 	}
 
 	/**
-	 * Required - API name: {@code point}
+	 * Required - The name of the geo_point field.
+	 * <p>
+	 * API name: {@code point}
 	 */
 	public final GeoLinePoint point() {
 		return this.point;
 	}
 
 	/**
-	 * Required - API name: {@code sort}
+	 * Required - The name of the numeric field to use as the sort key for ordering
+	 * the points. When the <code>geo_line</code> aggregation is nested inside a
+	 * <code>time_series</code> aggregation, this field defaults to
+	 * <code>@timestamp</code>, and any other value will result in error.
+	 * <p>
+	 * API name: {@code sort}
 	 */
 	public final GeoLineSort sort() {
 		return this.sort;
 	}
 
 	/**
+	 * When <code>true</code>, returns an additional array of the sort values in the
+	 * feature properties.
+	 * <p>
 	 * API name: {@code include_sort}
 	 */
 	@Nullable
@@ -111,6 +121,8 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 	}
 
 	/**
+	 * The order in which the line is sorted (ascending or descending).
+	 * <p>
 	 * API name: {@code sort_order}
 	 */
 	@Nullable
@@ -119,6 +131,9 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 	}
 
 	/**
+	 * The maximum length of the line represented in the aggregation. Valid sizes
+	 * are between 1 and 10000.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -188,7 +203,9 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		private Integer size;
 
 		/**
-		 * Required - API name: {@code point}
+		 * Required - The name of the geo_point field.
+		 * <p>
+		 * API name: {@code point}
 		 */
 		public final Builder point(GeoLinePoint value) {
 			this.point = value;
@@ -196,14 +213,21 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 
 		/**
-		 * Required - API name: {@code point}
+		 * Required - The name of the geo_point field.
+		 * <p>
+		 * API name: {@code point}
 		 */
 		public final Builder point(Function<GeoLinePoint.Builder, ObjectBuilder<GeoLinePoint>> fn) {
 			return this.point(fn.apply(new GeoLinePoint.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code sort}
+		 * Required - The name of the numeric field to use as the sort key for ordering
+		 * the points. When the <code>geo_line</code> aggregation is nested inside a
+		 * <code>time_series</code> aggregation, this field defaults to
+		 * <code>@timestamp</code>, and any other value will result in error.
+		 * <p>
+		 * API name: {@code sort}
 		 */
 		public final Builder sort(GeoLineSort value) {
 			this.sort = value;
@@ -211,13 +235,21 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 
 		/**
-		 * Required - API name: {@code sort}
+		 * Required - The name of the numeric field to use as the sort key for ordering
+		 * the points. When the <code>geo_line</code> aggregation is nested inside a
+		 * <code>time_series</code> aggregation, this field defaults to
+		 * <code>@timestamp</code>, and any other value will result in error.
+		 * <p>
+		 * API name: {@code sort}
 		 */
 		public final Builder sort(Function<GeoLineSort.Builder, ObjectBuilder<GeoLineSort>> fn) {
 			return this.sort(fn.apply(new GeoLineSort.Builder()).build());
 		}
 
 		/**
+		 * When <code>true</code>, returns an additional array of the sort values in the
+		 * feature properties.
+		 * <p>
 		 * API name: {@code include_sort}
 		 */
 		public final Builder includeSort(@Nullable Boolean value) {
@@ -226,6 +258,8 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 
 		/**
+		 * The order in which the line is sorted (ascending or descending).
+		 * <p>
 		 * API name: {@code sort_order}
 		 */
 		public final Builder sortOrder(@Nullable SortOrder value) {
@@ -234,6 +268,9 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 
 		/**
+		 * The maximum length of the line represented in the aggregation. Valid sizes
+		 * are between 1 and 10000.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {

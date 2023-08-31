@@ -60,7 +60,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	private final IndexSettings settings;
 
 	@Nullable
-	private final DataLifecycleWithRollover lifecycle;
+	private final DataStreamLifecycleWithRollover lifecycle;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -114,7 +114,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	 * API name: {@code lifecycle}
 	 */
 	@Nullable
-	public final DataLifecycleWithRollover lifecycle() {
+	public final DataStreamLifecycleWithRollover lifecycle() {
 		return this.lifecycle;
 	}
 
@@ -182,7 +182,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		private IndexSettings settings;
 
 		@Nullable
-		private DataLifecycleWithRollover lifecycle;
+		private DataStreamLifecycleWithRollover lifecycle;
 
 		/**
 		 * Aliases to add. If the index template includes a <code>data_stream</code>
@@ -271,7 +271,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
+		public final Builder lifecycle(@Nullable DataStreamLifecycleWithRollover value) {
 			this.lifecycle = value;
 			return this;
 		}
@@ -280,8 +280,8 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		 * API name: {@code lifecycle}
 		 */
 		public final Builder lifecycle(
-				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
-			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+				Function<DataStreamLifecycleWithRollover.Builder, ObjectBuilder<DataStreamLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataStreamLifecycleWithRollover.Builder()).build());
 		}
 
 		@Override
@@ -315,7 +315,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
-		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
 
 	}
 

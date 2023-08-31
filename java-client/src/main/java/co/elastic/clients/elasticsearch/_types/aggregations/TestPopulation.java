@@ -74,7 +74,9 @@ public class TestPopulation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to aggregate.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
@@ -89,6 +91,8 @@ public class TestPopulation implements JsonpSerializable {
 	}
 
 	/**
+	 * A filter used to define a set of records to run unpaired t-test on.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -144,7 +148,9 @@ public class TestPopulation implements JsonpSerializable {
 		private Query filter;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to aggregate.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -167,6 +173,8 @@ public class TestPopulation implements JsonpSerializable {
 		}
 
 		/**
+		 * A filter used to define a set of records to run unpaired t-test on.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable Query value) {
@@ -175,6 +183,8 @@ public class TestPopulation implements JsonpSerializable {
 		}
 
 		/**
+		 * A filter used to define a set of records to run unpaired t-test on.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {

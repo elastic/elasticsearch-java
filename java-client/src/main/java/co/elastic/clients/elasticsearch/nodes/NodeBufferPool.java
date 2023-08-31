@@ -80,6 +80,8 @@ public class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of buffer pools.
+	 * <p>
 	 * API name: {@code count}
 	 */
 	@Nullable
@@ -88,6 +90,8 @@ public class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
+	 * Total capacity of buffer pools.
+	 * <p>
 	 * API name: {@code total_capacity}
 	 */
 	@Nullable
@@ -96,6 +100,8 @@ public class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
+	 * Total capacity of buffer pools in bytes.
+	 * <p>
 	 * API name: {@code total_capacity_in_bytes}
 	 */
 	@Nullable
@@ -104,6 +110,8 @@ public class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
+	 * Size of buffer pools.
+	 * <p>
 	 * API name: {@code used}
 	 */
 	@Nullable
@@ -112,6 +120,8 @@ public class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
+	 * Size of buffer pools in bytes.
+	 * <p>
 	 * API name: {@code used_in_bytes}
 	 */
 	@Nullable
@@ -186,6 +196,8 @@ public class NodeBufferPool implements JsonpSerializable {
 		private Long usedInBytes;
 
 		/**
+		 * Number of buffer pools.
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public final Builder count(@Nullable Long value) {
@@ -194,6 +206,8 @@ public class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
+		 * Total capacity of buffer pools.
+		 * <p>
 		 * API name: {@code total_capacity}
 		 */
 		public final Builder totalCapacity(@Nullable String value) {
@@ -202,6 +216,8 @@ public class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
+		 * Total capacity of buffer pools in bytes.
+		 * <p>
 		 * API name: {@code total_capacity_in_bytes}
 		 */
 		public final Builder totalCapacityInBytes(@Nullable Long value) {
@@ -210,6 +226,8 @@ public class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
+		 * Size of buffer pools.
+		 * <p>
 		 * API name: {@code used}
 		 */
 		public final Builder used(@Nullable String value) {
@@ -218,6 +236,8 @@ public class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
+		 * Size of buffer pools in bytes.
+		 * <p>
 		 * API name: {@code used_in_bytes}
 		 */
 		public final Builder usedInBytes(@Nullable Long value) {

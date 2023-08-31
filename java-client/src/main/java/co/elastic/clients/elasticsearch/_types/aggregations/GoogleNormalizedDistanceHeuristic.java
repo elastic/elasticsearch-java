@@ -65,6 +65,9 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	}
 
 	/**
+	 * Set to <code>false</code> if you defined a custom background filter that
+	 * represents a different set of documents that you want to compare to.
+	 * <p>
 	 * API name: {@code background_is_superset}
 	 */
 	@Nullable
@@ -109,6 +112,9 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 		private Boolean backgroundIsSuperset;
 
 		/**
+		 * Set to <code>false</code> if you defined a custom background filter that
+		 * represents a different set of documents that you want to compare to.
+		 * <p>
 		 * API name: {@code background_is_superset}
 		 */
 		public final Builder backgroundIsSuperset(@Nullable Boolean value) {

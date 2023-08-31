@@ -70,6 +70,9 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
+	 * Defines the nested object field that should be joined back to. The default is
+	 * empty, which means that it joins back to the root/main document level.
+	 * <p>
 	 * API name: {@code path}
 	 */
 	@Nullable
@@ -101,6 +104,9 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 		private String path;
 
 		/**
+		 * Defines the nested object field that should be joined back to. The default is
+		 * empty, which means that it joins back to the root/main document level.
+		 * <p>
 		 * API name: {@code path}
 		 */
 		public final Builder path(@Nullable String value) {

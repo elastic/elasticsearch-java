@@ -82,41 +82,53 @@ public class DatafeedTimingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code bucket_count}
+	 * Required - The number of buckets processed.
+	 * <p>
+	 * API name: {@code bucket_count}
 	 */
 	public final long bucketCount() {
 		return this.bucketCount;
 	}
 
 	/**
-	 * Required - API name: {@code exponential_average_search_time_per_hour_ms}
+	 * Required - The exponential average search time per hour, in milliseconds.
+	 * <p>
+	 * API name: {@code exponential_average_search_time_per_hour_ms}
 	 */
 	public final double exponentialAverageSearchTimePerHourMs() {
 		return this.exponentialAverageSearchTimePerHourMs;
 	}
 
 	/**
-	 * Required - API name: {@code job_id}
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
 	 */
 	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * Required - API name: {@code search_count}
+	 * Required - The number of searches run by the datafeed.
+	 * <p>
+	 * API name: {@code search_count}
 	 */
 	public final long searchCount() {
 		return this.searchCount;
 	}
 
 	/**
-	 * Required - API name: {@code total_search_time_ms}
+	 * Required - The total time the datafeed spent searching, in milliseconds.
+	 * <p>
+	 * API name: {@code total_search_time_ms}
 	 */
 	public final double totalSearchTimeMs() {
 		return this.totalSearchTimeMs;
 	}
 
 	/**
+	 * The average search time per bucket, in milliseconds.
+	 * <p>
 	 * API name: {@code average_search_time_per_bucket_ms}
 	 */
 	@Nullable
@@ -186,7 +198,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		private Double averageSearchTimePerBucketMs;
 
 		/**
-		 * Required - API name: {@code bucket_count}
+		 * Required - The number of buckets processed.
+		 * <p>
+		 * API name: {@code bucket_count}
 		 */
 		public final Builder bucketCount(long value) {
 			this.bucketCount = value;
@@ -194,7 +208,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code exponential_average_search_time_per_hour_ms}
+		 * Required - The exponential average search time per hour, in milliseconds.
+		 * <p>
+		 * API name: {@code exponential_average_search_time_per_hour_ms}
 		 */
 		public final Builder exponentialAverageSearchTimePerHourMs(double value) {
 			this.exponentialAverageSearchTimePerHourMs = value;
@@ -202,7 +218,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_id}
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
 		 */
 		public final Builder jobId(String value) {
 			this.jobId = value;
@@ -210,7 +228,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code search_count}
+		 * Required - The number of searches run by the datafeed.
+		 * <p>
+		 * API name: {@code search_count}
 		 */
 		public final Builder searchCount(long value) {
 			this.searchCount = value;
@@ -218,7 +238,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_search_time_ms}
+		 * Required - The total time the datafeed spent searching, in milliseconds.
+		 * <p>
+		 * API name: {@code total_search_time_ms}
 		 */
 		public final Builder totalSearchTimeMs(double value) {
 			this.totalSearchTimeMs = value;
@@ -226,6 +248,8 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
+		 * The average search time per bucket, in milliseconds.
+		 * <p>
 		 * API name: {@code average_search_time_per_bucket_ms}
 		 */
 		public final Builder averageSearchTimePerBucketMs(@Nullable Double value) {

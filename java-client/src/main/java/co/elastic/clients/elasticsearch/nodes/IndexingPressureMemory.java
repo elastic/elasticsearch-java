@@ -77,6 +77,9 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Configured memory limit for the indexing requests. Replica requests have an
+	 * automatic limit that is 1.5x this value.
+	 * <p>
 	 * API name: {@code limit}
 	 */
 	@Nullable
@@ -85,6 +88,9 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Configured memory limit, in bytes, for the indexing requests. Replica
+	 * requests have an automatic limit that is 1.5x this value.
+	 * <p>
 	 * API name: {@code limit_in_bytes}
 	 */
 	@Nullable
@@ -93,6 +99,8 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics for current indexing load.
+	 * <p>
 	 * API name: {@code current}
 	 */
 	@Nullable
@@ -101,6 +109,8 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics for the cumulative indexing load since the node started.
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -169,6 +179,9 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		private PressureMemory total;
 
 		/**
+		 * Configured memory limit for the indexing requests. Replica requests have an
+		 * automatic limit that is 1.5x this value.
+		 * <p>
 		 * API name: {@code limit}
 		 */
 		public final Builder limit(@Nullable String value) {
@@ -177,6 +190,9 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Configured memory limit, in bytes, for the indexing requests. Replica
+		 * requests have an automatic limit that is 1.5x this value.
+		 * <p>
 		 * API name: {@code limit_in_bytes}
 		 */
 		public final Builder limitInBytes(@Nullable Long value) {
@@ -185,6 +201,8 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics for current indexing load.
+		 * <p>
 		 * API name: {@code current}
 		 */
 		public final Builder current(@Nullable PressureMemory value) {
@@ -193,6 +211,8 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics for current indexing load.
+		 * <p>
 		 * API name: {@code current}
 		 */
 		public final Builder current(Function<PressureMemory.Builder, ObjectBuilder<PressureMemory>> fn) {
@@ -200,6 +220,8 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics for the cumulative indexing load since the node started.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(@Nullable PressureMemory value) {
@@ -208,6 +230,8 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics for the cumulative indexing load since the node started.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(Function<PressureMemory.Builder, ObjectBuilder<PressureMemory>> fn) {

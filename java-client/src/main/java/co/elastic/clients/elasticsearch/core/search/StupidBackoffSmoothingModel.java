@@ -71,7 +71,10 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 	}
 
 	/**
-	 * Required - API name: {@code discount}
+	 * Required - A constant factor that the lower order n-gram model is discounted
+	 * by.
+	 * <p>
+	 * API name: {@code discount}
 	 */
 	public final double discount() {
 		return this.discount;
@@ -110,7 +113,10 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 		private Double discount;
 
 		/**
-		 * Required - API name: {@code discount}
+		 * Required - A constant factor that the lower order n-gram model is discounted
+		 * by.
+		 * <p>
+		 * API name: {@code discount}
 		 */
 		public final Builder discount(double value) {
 			this.discount = value;

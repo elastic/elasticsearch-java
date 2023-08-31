@@ -67,8 +67,8 @@ public class GetJobsRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job(s) to fetch. Accepts glob patterns, or left blank for all
-	 * jobs
+	 * Identifier for the rollup job. If it is <code>_all</code> or omitted, the API
+	 * returns all rollup jobs.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -88,8 +88,8 @@ public class GetJobsRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * The ID of the job(s) to fetch. Accepts glob patterns, or left blank for all
-		 * jobs
+		 * Identifier for the rollup job. If it is <code>_all</code> or omitted, the API
+		 * returns all rollup jobs.
 		 * <p>
 		 * API name: {@code id}
 		 */

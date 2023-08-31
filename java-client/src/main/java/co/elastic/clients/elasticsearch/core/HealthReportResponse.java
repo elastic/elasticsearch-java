@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
+import co.elastic.clients.elasticsearch.core.health_report.IndicatorHealthStatus;
 import co.elastic.clients.elasticsearch.core.health_report.Indicators;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -53,12 +54,16 @@ public class HealthReportResponse implements JsonpSerializable {
 
 	private final Indicators indicators;
 
+	@Nullable
+	private final IndicatorHealthStatus status;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HealthReportResponse(Builder builder) {
 
 		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
 		this.indicators = ApiTypeHelper.requireNonNull(builder.indicators, this, "indicators");
+		this.status = builder.status;
 
 	}
 
@@ -81,6 +86,14 @@ public class HealthReportResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code status}
+	 */
+	@Nullable
+	public final IndicatorHealthStatus status() {
+		return this.status;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -96,6 +109,11 @@ public class HealthReportResponse implements JsonpSerializable {
 
 		generator.writeKey("indicators");
 		this.indicators.serialize(generator, mapper);
+
+		if (this.status != null) {
+			generator.writeKey("status");
+			this.status.serialize(generator, mapper);
+		}
 
 	}
 
@@ -116,6 +134,9 @@ public class HealthReportResponse implements JsonpSerializable {
 		private String clusterName;
 
 		private Indicators indicators;
+
+		@Nullable
+		private IndicatorHealthStatus status;
 
 		/**
 		 * Required - API name: {@code cluster_name}
@@ -138,6 +159,14 @@ public class HealthReportResponse implements JsonpSerializable {
 		 */
 		public final Builder indicators(Function<Indicators.Builder, ObjectBuilder<Indicators>> fn) {
 			return this.indicators(fn.apply(new Indicators.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code status}
+		 */
+		public final Builder status(@Nullable IndicatorHealthStatus value) {
+			this.status = value;
+			return this;
 		}
 
 		@Override
@@ -170,6 +199,7 @@ public class HealthReportResponse implements JsonpSerializable {
 
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::indicators, Indicators._DESERIALIZER, "indicators");
+		op.add(Builder::status, IndicatorHealthStatus._DESERIALIZER, "status");
 
 	}
 

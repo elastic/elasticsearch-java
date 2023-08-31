@@ -69,13 +69,18 @@ public class MultiTermLookup implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - A fields from which to retrieve terms.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -123,7 +128,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		private FieldValue missing;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - A fields from which to retrieve terms.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -131,6 +138,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable FieldValue value) {
@@ -139,6 +149,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
@@ -146,6 +159,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(String value) {
@@ -154,6 +170,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(long value) {
@@ -162,6 +181,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(double value) {
@@ -170,6 +192,9 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(boolean value) {

@@ -70,6 +70,8 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 	}
 
 	/**
+	 * Array value the aggregation will use for array or multi-valued fields.
+	 * <p>
 	 * API name: {@code mode}
 	 */
 	@Nullable
@@ -100,6 +102,8 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 		private SortMode mode;
 
 		/**
+		 * Array value the aggregation will use for array or multi-valued fields.
+		 * <p>
 		 * API name: {@code mode}
 		 */
 		public final Builder mode(@Nullable SortMode value) {

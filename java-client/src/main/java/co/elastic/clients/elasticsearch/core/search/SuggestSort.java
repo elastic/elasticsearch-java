@@ -35,8 +35,15 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SuggestSort implements JsonEnum {
+	/**
+	 * Sort by score first, then document frequency and then the term itself.
+	 */
 	Score("score"),
 
+	/**
+	 * Sort by document frequency first, then similarity score and then the term
+	 * itself.
+	 */
 	Frequency("frequency"),
 
 	;

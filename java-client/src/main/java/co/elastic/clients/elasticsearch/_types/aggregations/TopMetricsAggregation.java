@@ -79,6 +79,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	}
 
 	/**
+	 * The fields of the top document to return.
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	public final List<TopMetricsValue> metrics() {
@@ -86,6 +88,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	}
 
 	/**
+	 * The number of top documents from which to return metrics.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -94,6 +98,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	}
 
 	/**
+	 * The sort order of the documents.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public final List<SortOptions> sort() {
@@ -150,6 +156,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		private List<SortOptions> sort;
 
 		/**
+		 * The fields of the top document to return.
+		 * <p>
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
@@ -160,6 +168,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * The fields of the top document to return.
+		 * <p>
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds one or more values to <code>metrics</code>.
@@ -170,6 +180,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * The fields of the top document to return.
+		 * <p>
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds a value to <code>metrics</code> using a builder lambda.
@@ -179,6 +191,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * The number of top documents from which to return metrics.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -187,6 +201,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * The sort order of the documents.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
@@ -197,6 +213,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * The sort order of the documents.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
@@ -207,6 +225,8 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * The sort order of the documents.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.

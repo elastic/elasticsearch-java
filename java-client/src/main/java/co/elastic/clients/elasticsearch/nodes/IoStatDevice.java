@@ -84,6 +84,8 @@ public class IoStatDevice implements JsonpSerializable {
 	}
 
 	/**
+	 * The Linux device name.
+	 * <p>
 	 * API name: {@code device_name}
 	 */
 	@Nullable
@@ -92,6 +94,9 @@ public class IoStatDevice implements JsonpSerializable {
 	}
 
 	/**
+	 * The total number of read and write operations for the device completed since
+	 * starting Elasticsearch.
+	 * <p>
 	 * API name: {@code operations}
 	 */
 	@Nullable
@@ -100,6 +105,9 @@ public class IoStatDevice implements JsonpSerializable {
 	}
 
 	/**
+	 * The total number of kilobytes read for the device since starting
+	 * Elasticsearch.
+	 * <p>
 	 * API name: {@code read_kilobytes}
 	 */
 	@Nullable
@@ -108,6 +116,9 @@ public class IoStatDevice implements JsonpSerializable {
 	}
 
 	/**
+	 * The total number of read operations for the device completed since starting
+	 * Elasticsearch.
+	 * <p>
 	 * API name: {@code read_operations}
 	 */
 	@Nullable
@@ -116,6 +127,9 @@ public class IoStatDevice implements JsonpSerializable {
 	}
 
 	/**
+	 * The total number of kilobytes written for the device since starting
+	 * Elasticsearch.
+	 * <p>
 	 * API name: {@code write_kilobytes}
 	 */
 	@Nullable
@@ -124,6 +138,9 @@ public class IoStatDevice implements JsonpSerializable {
 	}
 
 	/**
+	 * The total number of write operations for the device completed since starting
+	 * Elasticsearch.
+	 * <p>
 	 * API name: {@code write_operations}
 	 */
 	@Nullable
@@ -206,6 +223,8 @@ public class IoStatDevice implements JsonpSerializable {
 		private Long writeOperations;
 
 		/**
+		 * The Linux device name.
+		 * <p>
 		 * API name: {@code device_name}
 		 */
 		public final Builder deviceName(@Nullable String value) {
@@ -214,6 +233,9 @@ public class IoStatDevice implements JsonpSerializable {
 		}
 
 		/**
+		 * The total number of read and write operations for the device completed since
+		 * starting Elasticsearch.
+		 * <p>
 		 * API name: {@code operations}
 		 */
 		public final Builder operations(@Nullable Long value) {
@@ -222,6 +244,9 @@ public class IoStatDevice implements JsonpSerializable {
 		}
 
 		/**
+		 * The total number of kilobytes read for the device since starting
+		 * Elasticsearch.
+		 * <p>
 		 * API name: {@code read_kilobytes}
 		 */
 		public final Builder readKilobytes(@Nullable Long value) {
@@ -230,6 +255,9 @@ public class IoStatDevice implements JsonpSerializable {
 		}
 
 		/**
+		 * The total number of read operations for the device completed since starting
+		 * Elasticsearch.
+		 * <p>
 		 * API name: {@code read_operations}
 		 */
 		public final Builder readOperations(@Nullable Long value) {
@@ -238,6 +266,9 @@ public class IoStatDevice implements JsonpSerializable {
 		}
 
 		/**
+		 * The total number of kilobytes written for the device since starting
+		 * Elasticsearch.
+		 * <p>
 		 * API name: {@code write_kilobytes}
 		 */
 		public final Builder writeKilobytes(@Nullable Long value) {
@@ -246,6 +277,9 @@ public class IoStatDevice implements JsonpSerializable {
 		}
 
 		/**
+		 * The total number of write operations for the device completed since starting
+		 * Elasticsearch.
+		 * <p>
 		 * API name: {@code write_operations}
 		 */
 		public final Builder writeOperations(@Nullable Long value) {

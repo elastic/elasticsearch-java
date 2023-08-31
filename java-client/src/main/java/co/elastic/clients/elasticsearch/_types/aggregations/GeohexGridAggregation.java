@@ -88,8 +88,8 @@ public class GeohexGridAggregation extends BucketAggregationBase implements Aggr
 	}
 
 	/**
-	 * Required - Field containing indexed geo-point values. Must be explicitly
-	 * mapped as a <code>geo_point</code> field. If the field contains an array
+	 * Required - Field containing indexed <code>geo_point</code> or
+	 * <code>geo_shape</code> values. If the field contains an array,
 	 * <code>geohex_grid</code> aggregates all array values.
 	 * <p>
 	 * API name: {@code field}
@@ -192,8 +192,8 @@ public class GeohexGridAggregation extends BucketAggregationBase implements Aggr
 		private Integer shardSize;
 
 		/**
-		 * Required - Field containing indexed geo-point values. Must be explicitly
-		 * mapped as a <code>geo_point</code> field. If the field contains an array
+		 * Required - Field containing indexed <code>geo_point</code> or
+		 * <code>geo_shape</code> values. If the field contains an array,
 		 * <code>geohex_grid</code> aggregates all array values.
 		 * <p>
 		 * API name: {@code field}

@@ -151,20 +151,33 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code allow_lazy_open}
+	 * Required - Advanced configuration option. Specifies whether this job can open
+	 * when there is insufficient machine learning node capacity for it to be
+	 * immediately assigned to a node.
+	 * <p>
+	 * API name: {@code allow_lazy_open}
 	 */
 	public final boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
 	/**
-	 * Required - API name: {@code analysis_config}
+	 * Required - The analysis configuration, which specifies how to analyze the
+	 * data. After you create a job, you cannot change the analysis configuration;
+	 * all the properties are informational.
+	 * <p>
+	 * API name: {@code analysis_config}
 	 */
 	public final AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
 	}
 
 	/**
+	 * Limits can be applied for the resources required to hold the mathematical
+	 * models in memory. These limits are approximate and can be set per job. They
+	 * do not control the memory used by other processes, for example the
+	 * Elasticsearch Java processes.
+	 * <p>
 	 * API name: {@code analysis_limits}
 	 */
 	@Nullable
@@ -173,6 +186,11 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. The time between each periodic persistence of
+	 * the model. The default value is a randomized value between 3 to 4 hours,
+	 * which avoids all jobs persisting at exactly the same time. The smallest
+	 * allowed value is 1 hour.
+	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
@@ -197,6 +215,8 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Contains custom metadata about the job.
+	 * <p>
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
@@ -205,6 +225,12 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option, which affects the automatic removal of old
+	 * model snapshots for this job. It specifies a period of time (in days) after
+	 * which only the first snapshot per day is retained. This period is relative to
+	 * the timestamp of the most recent snapshot for this job. Valid values range
+	 * from 0 to <code>model_snapshot_retention_days</code>.
+	 * <p>
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	@Nullable
@@ -213,13 +239,22 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code data_description}
+	 * Required - The data description defines the format of the input data when you
+	 * send data to the job by using the post data API. Note that when configuring a
+	 * datafeed, these properties are automatically set. When data is received via
+	 * the post data API, it is not stored in Elasticsearch. Only the results for
+	 * anomaly detection are retained.
+	 * <p>
+	 * API name: {@code data_description}
 	 */
 	public final DataDescription dataDescription() {
 		return this.dataDescription;
 	}
 
 	/**
+	 * The datafeed, which retrieves data from Elasticsearch for analysis by the
+	 * job. You can associate only one datafeed with each anomaly detection job.
+	 * <p>
 	 * API name: {@code datafeed_config}
 	 */
 	@Nullable
@@ -228,6 +263,9 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates that the process of deleting the job is in progress but not yet
+	 * completed. It is only reported when <code>true</code>.
+	 * <p>
 	 * API name: {@code deleting}
 	 */
 	@Nullable
@@ -236,6 +274,8 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * A description of the job.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -244,6 +284,10 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * If the job closed or failed, this is the time the job finished, otherwise it
+	 * is <code>null</code>. This property is informational; you cannot change its
+	 * value.
+	 * <p>
 	 * API name: {@code finished_time}
 	 */
 	@Nullable
@@ -252,6 +296,8 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * A list of job groups. A job can belong to no groups or many.
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	public final List<String> groups() {
@@ -259,13 +305,19 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code job_id}
+	 * Required - Identifier for the anomaly detection job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
+	 * API name: {@code job_id}
 	 */
 	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
+	 * Reserved for future use, currently set to <code>anomaly_detector</code>.
+	 * <p>
 	 * API name: {@code job_type}
 	 */
 	@Nullable
@@ -274,6 +326,9 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * The machine learning configuration version number at which the the job was
+	 * created.
+	 * <p>
 	 * API name: {@code job_version}
 	 */
 	@Nullable
@@ -282,6 +337,10 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
+	 * This advanced configuration option stores model information along with the
+	 * results. It provides a more detailed view into anomaly detection. Model plot
+	 * provides a simplified and indicative view of the model and its bounds.
+	 * <p>
 	 * API name: {@code model_plot_config}
 	 */
 	@Nullable
@@ -298,13 +357,23 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code model_snapshot_retention_days}
+	 * Required - Advanced configuration option, which affects the automatic removal
+	 * of old model snapshots for this job. It specifies the maximum period of time
+	 * (in days) that snapshots are retained. This period is relative to the
+	 * timestamp of the most recent snapshot for this job. By default, snapshots ten
+	 * days older than the newest snapshot are deleted.
+	 * <p>
+	 * API name: {@code model_snapshot_retention_days}
 	 */
 	public final long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
 	/**
+	 * Advanced configuration option. The period over which adjustments to the score
+	 * are applied, as new data is seen. The default value is the longer of 30 days
+	 * or 100 <code>bucket_spans</code>.
+	 * <p>
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
@@ -313,13 +382,26 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code results_index_name}
+	 * Required - A text string that affects the name of the machine learning
+	 * results index. The default value is <code>shared</code>, which generates an
+	 * index named <code>.ml-anomalies-shared</code>.
+	 * <p>
+	 * API name: {@code results_index_name}
 	 */
 	public final String resultsIndexName() {
 		return this.resultsIndexName;
 	}
 
 	/**
+	 * Advanced configuration option. The period of time (in days) that results are
+	 * retained. Age is calculated relative to the timestamp of the latest bucket
+	 * result. If this property has a non-null value, once per day at 00:30 (server
+	 * time), results that are the specified number of days older than the latest
+	 * bucket result are deleted from Elasticsearch. The default value is null,
+	 * which means all results are retained. Annotations generated by the system
+	 * also count as results for retention purposes; they are deleted after the same
+	 * number of days as results. Annotations added by users are retained forever.
+	 * <p>
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
@@ -523,7 +605,11 @@ public class Job implements JsonpSerializable {
 		private Long resultsRetentionDays;
 
 		/**
-		 * Required - API name: {@code allow_lazy_open}
+		 * Required - Advanced configuration option. Specifies whether this job can open
+		 * when there is insufficient machine learning node capacity for it to be
+		 * immediately assigned to a node.
+		 * <p>
+		 * API name: {@code allow_lazy_open}
 		 */
 		public final Builder allowLazyOpen(boolean value) {
 			this.allowLazyOpen = value;
@@ -531,7 +617,11 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code analysis_config}
+		 * Required - The analysis configuration, which specifies how to analyze the
+		 * data. After you create a job, you cannot change the analysis configuration;
+		 * all the properties are informational.
+		 * <p>
+		 * API name: {@code analysis_config}
 		 */
 		public final Builder analysisConfig(AnalysisConfig value) {
 			this.analysisConfig = value;
@@ -539,13 +629,22 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code analysis_config}
+		 * Required - The analysis configuration, which specifies how to analyze the
+		 * data. After you create a job, you cannot change the analysis configuration;
+		 * all the properties are informational.
+		 * <p>
+		 * API name: {@code analysis_config}
 		 */
 		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
+		 * Limits can be applied for the resources required to hold the mathematical
+		 * models in memory. These limits are approximate and can be set per job. They
+		 * do not control the memory used by other processes, for example the
+		 * Elasticsearch Java processes.
+		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
 		public final Builder analysisLimits(@Nullable AnalysisLimits value) {
@@ -554,6 +653,11 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Limits can be applied for the resources required to hold the mathematical
+		 * models in memory. These limits are approximate and can be set per job. They
+		 * do not control the memory used by other processes, for example the
+		 * Elasticsearch Java processes.
+		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
 		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
@@ -561,6 +665,11 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. The time between each periodic persistence of
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour.
+		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
 		public final Builder backgroundPersistInterval(@Nullable Time value) {
@@ -569,6 +678,11 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. The time between each periodic persistence of
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour.
+		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
 		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -599,6 +713,8 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Contains custom metadata about the job.
+		 * <p>
 		 * API name: {@code custom_settings}
 		 */
 		public final Builder customSettings(@Nullable JsonData value) {
@@ -607,6 +723,12 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option, which affects the automatic removal of old
+		 * model snapshots for this job. It specifies a period of time (in days) after
+		 * which only the first snapshot per day is retained. This period is relative to
+		 * the timestamp of the most recent snapshot for this job. Valid values range
+		 * from 0 to <code>model_snapshot_retention_days</code>.
+		 * <p>
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
 		public final Builder dailyModelSnapshotRetentionAfterDays(@Nullable Long value) {
@@ -615,7 +737,13 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_description}
+		 * Required - The data description defines the format of the input data when you
+		 * send data to the job by using the post data API. Note that when configuring a
+		 * datafeed, these properties are automatically set. When data is received via
+		 * the post data API, it is not stored in Elasticsearch. Only the results for
+		 * anomaly detection are retained.
+		 * <p>
+		 * API name: {@code data_description}
 		 */
 		public final Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
@@ -623,13 +751,22 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_description}
+		 * Required - The data description defines the format of the input data when you
+		 * send data to the job by using the post data API. Note that when configuring a
+		 * datafeed, these properties are automatically set. When data is received via
+		 * the post data API, it is not stored in Elasticsearch. Only the results for
+		 * anomaly detection are retained.
+		 * <p>
+		 * API name: {@code data_description}
 		 */
 		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
+		 * The datafeed, which retrieves data from Elasticsearch for analysis by the
+		 * job. You can associate only one datafeed with each anomaly detection job.
+		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
 		public final Builder datafeedConfig(@Nullable Datafeed value) {
@@ -638,6 +775,9 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * The datafeed, which retrieves data from Elasticsearch for analysis by the
+		 * job. You can associate only one datafeed with each anomaly detection job.
+		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
 		public final Builder datafeedConfig(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
@@ -645,6 +785,9 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates that the process of deleting the job is in progress but not yet
+		 * completed. It is only reported when <code>true</code>.
+		 * <p>
 		 * API name: {@code deleting}
 		 */
 		public final Builder deleting(@Nullable Boolean value) {
@@ -653,6 +796,8 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * A description of the job.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public final Builder description(@Nullable String value) {
@@ -661,6 +806,10 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * If the job closed or failed, this is the time the job finished, otherwise it
+		 * is <code>null</code>. This property is informational; you cannot change its
+		 * value.
+		 * <p>
 		 * API name: {@code finished_time}
 		 */
 		public final Builder finishedTime(@Nullable DateTime value) {
@@ -669,6 +818,8 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of job groups. A job can belong to no groups or many.
+		 * <p>
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>groups</code>.
@@ -679,6 +830,8 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of job groups. A job can belong to no groups or many.
+		 * <p>
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds one or more values to <code>groups</code>.
@@ -689,7 +842,11 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_id}
+		 * Required - Identifier for the anomaly detection job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code job_id}
 		 */
 		public final Builder jobId(String value) {
 			this.jobId = value;
@@ -697,6 +854,8 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Reserved for future use, currently set to <code>anomaly_detector</code>.
+		 * <p>
 		 * API name: {@code job_type}
 		 */
 		public final Builder jobType(@Nullable String value) {
@@ -705,6 +864,9 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * The machine learning configuration version number at which the the job was
+		 * created.
+		 * <p>
 		 * API name: {@code job_version}
 		 */
 		public final Builder jobVersion(@Nullable String value) {
@@ -713,6 +875,10 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * This advanced configuration option stores model information along with the
+		 * results. It provides a more detailed view into anomaly detection. Model plot
+		 * provides a simplified and indicative view of the model and its bounds.
+		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
 		public final Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
@@ -721,6 +887,10 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * This advanced configuration option stores model information along with the
+		 * results. It provides a more detailed view into anomaly detection. Model plot
+		 * provides a simplified and indicative view of the model and its bounds.
+		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
 		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
@@ -736,7 +906,13 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code model_snapshot_retention_days}
+		 * Required - Advanced configuration option, which affects the automatic removal
+		 * of old model snapshots for this job. It specifies the maximum period of time
+		 * (in days) that snapshots are retained. This period is relative to the
+		 * timestamp of the most recent snapshot for this job. By default, snapshots ten
+		 * days older than the newest snapshot are deleted.
+		 * <p>
+		 * API name: {@code model_snapshot_retention_days}
 		 */
 		public final Builder modelSnapshotRetentionDays(long value) {
 			this.modelSnapshotRetentionDays = value;
@@ -744,6 +920,10 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. The period over which adjustments to the score
+		 * are applied, as new data is seen. The default value is the longer of 30 days
+		 * or 100 <code>bucket_spans</code>.
+		 * <p>
 		 * API name: {@code renormalization_window_days}
 		 */
 		public final Builder renormalizationWindowDays(@Nullable Long value) {
@@ -752,7 +932,11 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code results_index_name}
+		 * Required - A text string that affects the name of the machine learning
+		 * results index. The default value is <code>shared</code>, which generates an
+		 * index named <code>.ml-anomalies-shared</code>.
+		 * <p>
+		 * API name: {@code results_index_name}
 		 */
 		public final Builder resultsIndexName(String value) {
 			this.resultsIndexName = value;
@@ -760,6 +944,15 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. The period of time (in days) that results are
+		 * retained. Age is calculated relative to the timestamp of the latest bucket
+		 * result. If this property has a non-null value, once per day at 00:30 (server
+		 * time), results that are the specified number of days older than the latest
+		 * bucket result are deleted from Elasticsearch. The default value is null,
+		 * which means all results are retained. Annotations generated by the system
+		 * also count as results for retention purposes; they are deleted after the same
+		 * number of days as results. Annotations added by users are retained forever.
+		 * <p>
 		 * API name: {@code results_retention_days}
 		 */
 		public final Builder resultsRetentionDays(@Nullable Long value) {

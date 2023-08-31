@@ -62,8 +62,9 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 	}
 
 	/**
-	 * DecimalFormat pattern for the output value. If specified, the formatted value
-	 * is returned in the aggregation’s <code>value_as_string</code> property.
+	 * <code>DecimalFormat</code> pattern for the output value. If specified, the
+	 * formatted value is returned in the aggregation’s <code>value_as_string</code>
+	 * property.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -107,8 +108,9 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 		private GapPolicy gapPolicy;
 
 		/**
-		 * DecimalFormat pattern for the output value. If specified, the formatted value
-		 * is returned in the aggregation’s <code>value_as_string</code> property.
+		 * <code>DecimalFormat</code> pattern for the output value. If specified, the
+		 * formatted value is returned in the aggregation’s <code>value_as_string</code>
+		 * property.
 		 * <p>
 		 * API name: {@code format}
 		 */

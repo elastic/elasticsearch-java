@@ -75,6 +75,8 @@ public class Pool implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory, in bytes, used by the heap.
+	 * <p>
 	 * API name: {@code used_in_bytes}
 	 */
 	@Nullable
@@ -83,6 +85,8 @@ public class Pool implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum amount of memory, in bytes, available for use by the heap.
+	 * <p>
 	 * API name: {@code max_in_bytes}
 	 */
 	@Nullable
@@ -91,6 +95,8 @@ public class Pool implements JsonpSerializable {
 	}
 
 	/**
+	 * Largest amount of memory, in bytes, historically used by the heap.
+	 * <p>
 	 * API name: {@code peak_used_in_bytes}
 	 */
 	@Nullable
@@ -99,6 +105,8 @@ public class Pool implements JsonpSerializable {
 	}
 
 	/**
+	 * Largest amount of memory, in bytes, historically used by the heap.
+	 * <p>
 	 * API name: {@code peak_max_in_bytes}
 	 */
 	@Nullable
@@ -165,6 +173,8 @@ public class Pool implements JsonpSerializable {
 		private Long peakMaxInBytes;
 
 		/**
+		 * Memory, in bytes, used by the heap.
+		 * <p>
 		 * API name: {@code used_in_bytes}
 		 */
 		public final Builder usedInBytes(@Nullable Long value) {
@@ -173,6 +183,8 @@ public class Pool implements JsonpSerializable {
 		}
 
 		/**
+		 * Maximum amount of memory, in bytes, available for use by the heap.
+		 * <p>
 		 * API name: {@code max_in_bytes}
 		 */
 		public final Builder maxInBytes(@Nullable Long value) {
@@ -181,6 +193,8 @@ public class Pool implements JsonpSerializable {
 		}
 
 		/**
+		 * Largest amount of memory, in bytes, historically used by the heap.
+		 * <p>
 		 * API name: {@code peak_used_in_bytes}
 		 */
 		public final Builder peakUsedInBytes(@Nullable Long value) {
@@ -189,6 +203,8 @@ public class Pool implements JsonpSerializable {
 		}
 
 		/**
+		 * Largest amount of memory, in bytes, historically used by the heap.
+		 * <p>
 		 * API name: {@code peak_max_in_bytes}
 		 */
 		public final Builder peakMaxInBytes(@Nullable Long value) {

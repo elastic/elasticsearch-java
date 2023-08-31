@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: logstash.get_pipeline.Request
 
 /**
- * Retrieves Logstash Pipelines used by Central Management
+ * Retrieves pipelines used for Logstash Central Management.
  * 
  * @see <a href="../doc-files/api-spec.html#logstash.get_pipeline.Request">API
  *      specification</a>
@@ -69,7 +69,7 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of Pipeline IDs
+	 * Required - Comma-separated list of pipeline identifiers.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -89,7 +89,7 @@ public class GetPipelineRequest extends RequestBase {
 		private List<String> id;
 
 		/**
-		 * Required - A comma-separated list of Pipeline IDs
+		 * Required - Comma-separated list of pipeline identifiers.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -101,7 +101,7 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of Pipeline IDs
+		 * Required - Comma-separated list of pipeline identifiers.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>

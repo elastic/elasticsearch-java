@@ -101,6 +101,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * The distribution of the time spent handling each inbound message on a
+	 * transport thread, represented as a histogram.
+	 * <p>
 	 * API name: {@code inbound_handling_time_histogram}
 	 */
 	public final List<TransportHistogram> inboundHandlingTimeHistogram() {
@@ -108,6 +111,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * The distribution of the time spent sending each outbound transport message on
+	 * a transport thread, represented as a histogram.
+	 * <p>
 	 * API name: {@code outbound_handling_time_histogram}
 	 */
 	public final List<TransportHistogram> outboundHandlingTimeHistogram() {
@@ -115,6 +121,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of RX (receive) packets received by the node during internal
+	 * cluster communication.
+	 * <p>
 	 * API name: {@code rx_count}
 	 */
 	@Nullable
@@ -123,6 +132,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Size of RX packets received by the node during internal cluster
+	 * communication.
+	 * <p>
 	 * API name: {@code rx_size}
 	 */
 	@Nullable
@@ -131,6 +143,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Size, in bytes, of RX packets received by the node during internal cluster
+	 * communication.
+	 * <p>
 	 * API name: {@code rx_size_in_bytes}
 	 */
 	@Nullable
@@ -139,6 +154,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Current number of inbound TCP connections used for internal communication
+	 * between nodes.
+	 * <p>
 	 * API name: {@code server_open}
 	 */
 	@Nullable
@@ -147,6 +165,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of TX (transmit) packets sent by the node during internal
+	 * cluster communication.
+	 * <p>
 	 * API name: {@code tx_count}
 	 */
 	@Nullable
@@ -155,6 +176,8 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Size of TX packets sent by the node during internal cluster communication.
+	 * <p>
 	 * API name: {@code tx_size}
 	 */
 	@Nullable
@@ -163,6 +186,9 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Size, in bytes, of TX packets sent by the node during internal cluster
+	 * communication.
+	 * <p>
 	 * API name: {@code tx_size_in_bytes}
 	 */
 	@Nullable
@@ -171,6 +197,12 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * The cumulative number of outbound transport connections that this node has
+	 * opened since it started. Each transport connection may comprise multiple TCP
+	 * connections but is only counted once in this statistic. Transport connections
+	 * are typically long-lived so this statistic should remain constant in a stable
+	 * cluster.
+	 * <p>
 	 * API name: {@code total_outbound_connections}
 	 */
 	@Nullable
@@ -295,6 +327,9 @@ public class Transport implements JsonpSerializable {
 		private Long totalOutboundConnections;
 
 		/**
+		 * The distribution of the time spent handling each inbound message on a
+		 * transport thread, represented as a histogram.
+		 * <p>
 		 * API name: {@code inbound_handling_time_histogram}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
@@ -306,6 +341,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * The distribution of the time spent handling each inbound message on a
+		 * transport thread, represented as a histogram.
+		 * <p>
 		 * API name: {@code inbound_handling_time_histogram}
 		 * <p>
 		 * Adds one or more values to <code>inboundHandlingTimeHistogram</code>.
@@ -316,6 +354,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * The distribution of the time spent handling each inbound message on a
+		 * transport thread, represented as a histogram.
+		 * <p>
 		 * API name: {@code inbound_handling_time_histogram}
 		 * <p>
 		 * Adds a value to <code>inboundHandlingTimeHistogram</code> using a builder
@@ -327,6 +368,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * The distribution of the time spent sending each outbound transport message on
+		 * a transport thread, represented as a histogram.
+		 * <p>
 		 * API name: {@code outbound_handling_time_histogram}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
@@ -338,6 +382,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * The distribution of the time spent sending each outbound transport message on
+		 * a transport thread, represented as a histogram.
+		 * <p>
 		 * API name: {@code outbound_handling_time_histogram}
 		 * <p>
 		 * Adds one or more values to <code>outboundHandlingTimeHistogram</code>.
@@ -348,6 +395,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * The distribution of the time spent sending each outbound transport message on
+		 * a transport thread, represented as a histogram.
+		 * <p>
 		 * API name: {@code outbound_handling_time_histogram}
 		 * <p>
 		 * Adds a value to <code>outboundHandlingTimeHistogram</code> using a builder
@@ -359,6 +409,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of RX (receive) packets received by the node during internal
+		 * cluster communication.
+		 * <p>
 		 * API name: {@code rx_count}
 		 */
 		public final Builder rxCount(@Nullable Long value) {
@@ -367,6 +420,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Size of RX packets received by the node during internal cluster
+		 * communication.
+		 * <p>
 		 * API name: {@code rx_size}
 		 */
 		public final Builder rxSize(@Nullable String value) {
@@ -375,6 +431,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Size, in bytes, of RX packets received by the node during internal cluster
+		 * communication.
+		 * <p>
 		 * API name: {@code rx_size_in_bytes}
 		 */
 		public final Builder rxSizeInBytes(@Nullable Long value) {
@@ -383,6 +442,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Current number of inbound TCP connections used for internal communication
+		 * between nodes.
+		 * <p>
 		 * API name: {@code server_open}
 		 */
 		public final Builder serverOpen(@Nullable Integer value) {
@@ -391,6 +453,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of TX (transmit) packets sent by the node during internal
+		 * cluster communication.
+		 * <p>
 		 * API name: {@code tx_count}
 		 */
 		public final Builder txCount(@Nullable Long value) {
@@ -399,6 +464,8 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Size of TX packets sent by the node during internal cluster communication.
+		 * <p>
 		 * API name: {@code tx_size}
 		 */
 		public final Builder txSize(@Nullable String value) {
@@ -407,6 +474,9 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * Size, in bytes, of TX packets sent by the node during internal cluster
+		 * communication.
+		 * <p>
 		 * API name: {@code tx_size_in_bytes}
 		 */
 		public final Builder txSizeInBytes(@Nullable Long value) {
@@ -415,6 +485,12 @@ public class Transport implements JsonpSerializable {
 		}
 
 		/**
+		 * The cumulative number of outbound transport connections that this node has
+		 * opened since it started. Each transport connection may comprise multiple TCP
+		 * connections but is only counted once in this statistic. Transport connections
+		 * are typically long-lived so this statistic should remain constant in a stable
+		 * cluster.
+		 * <p>
 		 * API name: {@code total_outbound_connections}
 		 */
 		public final Builder totalOutboundConnections(@Nullable Long value) {

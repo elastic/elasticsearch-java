@@ -67,6 +67,8 @@ public class JvmThreads implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of active threads in use by JVM.
+	 * <p>
 	 * API name: {@code count}
 	 */
 	@Nullable
@@ -75,6 +77,8 @@ public class JvmThreads implements JsonpSerializable {
 	}
 
 	/**
+	 * Highest number of threads used by JVM.
+	 * <p>
 	 * API name: {@code peak_count}
 	 */
 	@Nullable
@@ -125,6 +129,8 @@ public class JvmThreads implements JsonpSerializable {
 		private Long peakCount;
 
 		/**
+		 * Number of active threads in use by JVM.
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public final Builder count(@Nullable Long value) {
@@ -133,6 +139,8 @@ public class JvmThreads implements JsonpSerializable {
 		}
 
 		/**
+		 * Highest number of threads used by JVM.
+		 * <p>
 		 * API name: {@code peak_count}
 		 */
 		public final Builder peakCount(@Nullable Long value) {

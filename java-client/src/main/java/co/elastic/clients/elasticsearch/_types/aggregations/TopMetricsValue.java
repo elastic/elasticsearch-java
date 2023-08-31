@@ -64,7 +64,9 @@ public class TopMetricsValue implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - A field to return as a metric.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
@@ -101,7 +103,9 @@ public class TopMetricsValue implements JsonpSerializable {
 		private String field;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - A field to return as a metric.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;

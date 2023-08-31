@@ -80,6 +80,10 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * The AUC ROC (area under the curve of the receiver operating characteristic)
+	 * score and optionally the curve. It is calculated for a specific class
+	 * (provided as &quot;class_name&quot;) treated as positive.
+	 * <p>
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
@@ -88,6 +92,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Accuracy of predictions (per-class and overall).
+	 * <p>
 	 * API name: {@code accuracy}
 	 */
 	@Nullable
@@ -96,6 +102,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Multiclass confusion matrix.
+	 * <p>
 	 * API name: {@code multiclass_confusion_matrix}
 	 */
 	@Nullable
@@ -104,6 +112,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Precision of predictions (per-class and average).
+	 * <p>
 	 * API name: {@code precision}
 	 */
 	@Nullable
@@ -112,6 +122,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Recall of predictions (per-class and average).
+	 * <p>
 	 * API name: {@code recall}
 	 */
 	@Nullable
@@ -188,6 +200,10 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		private DataframeClassificationSummaryRecall recall;
 
 		/**
+		 * The AUC ROC (area under the curve of the receiver operating characteristic)
+		 * score and optionally the curve. It is calculated for a specific class
+		 * (provided as &quot;class_name&quot;) treated as positive.
+		 * <p>
 		 * API name: {@code auc_roc}
 		 */
 		public final Builder aucRoc(@Nullable DataframeEvaluationSummaryAucRoc value) {
@@ -196,6 +212,10 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * The AUC ROC (area under the curve of the receiver operating characteristic)
+		 * score and optionally the curve. It is calculated for a specific class
+		 * (provided as &quot;class_name&quot;) treated as positive.
+		 * <p>
 		 * API name: {@code auc_roc}
 		 */
 		public final Builder aucRoc(
@@ -204,6 +224,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Accuracy of predictions (per-class and overall).
+		 * <p>
 		 * API name: {@code accuracy}
 		 */
 		public final Builder accuracy(@Nullable DataframeClassificationSummaryAccuracy value) {
@@ -212,6 +234,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Accuracy of predictions (per-class and overall).
+		 * <p>
 		 * API name: {@code accuracy}
 		 */
 		public final Builder accuracy(
@@ -220,6 +244,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Multiclass confusion matrix.
+		 * <p>
 		 * API name: {@code multiclass_confusion_matrix}
 		 */
 		public final Builder multiclassConfusionMatrix(
@@ -229,6 +255,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Multiclass confusion matrix.
+		 * <p>
 		 * API name: {@code multiclass_confusion_matrix}
 		 */
 		public final Builder multiclassConfusionMatrix(
@@ -238,6 +266,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Precision of predictions (per-class and average).
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(@Nullable DataframeClassificationSummaryPrecision value) {
@@ -246,6 +276,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Precision of predictions (per-class and average).
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(
@@ -254,6 +286,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Recall of predictions (per-class and average).
+		 * <p>
 		 * API name: {@code recall}
 		 */
 		public final Builder recall(@Nullable DataframeClassificationSummaryRecall value) {
@@ -262,6 +296,8 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Recall of predictions (per-class and average).
+		 * <p>
 		 * API name: {@code recall}
 		 */
 		public final Builder recall(

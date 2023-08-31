@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch.indices.explain_data_lifecycle.DataLifecycleExplain;
+import co.elastic.clients.elasticsearch.indices.explain_data_lifecycle.DataStreamLifecycleExplain;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ExplainDataLifecycleResponse implements JsonpSerializable {
-	private final Map<String, DataLifecycleExplain> indices;
+	private final Map<String, DataStreamLifecycleExplain> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ public class ExplainDataLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public final Map<String, DataLifecycleExplain> indices() {
+	public final Map<String, DataStreamLifecycleExplain> indices() {
 		return this.indices;
 	}
 
@@ -86,7 +86,7 @@ public class ExplainDataLifecycleResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
-			for (Map.Entry<String, DataLifecycleExplain> item0 : this.indices.entrySet()) {
+			for (Map.Entry<String, DataStreamLifecycleExplain> item0 : this.indices.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -111,14 +111,14 @@ public class ExplainDataLifecycleResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ExplainDataLifecycleResponse> {
-		private Map<String, DataLifecycleExplain> indices;
+		private Map<String, DataStreamLifecycleExplain> indices;
 
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(Map<String, DataLifecycleExplain> map) {
+		public final Builder indices(Map<String, DataStreamLifecycleExplain> map) {
 			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
@@ -128,7 +128,7 @@ public class ExplainDataLifecycleResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>indices</code>.
 		 */
-		public final Builder indices(String key, DataLifecycleExplain value) {
+		public final Builder indices(String key, DataStreamLifecycleExplain value) {
 			this.indices = _mapPut(this.indices, key, value);
 			return this;
 		}
@@ -139,8 +139,8 @@ public class ExplainDataLifecycleResponse implements JsonpSerializable {
 		 * Adds an entry to <code>indices</code> using a builder lambda.
 		 */
 		public final Builder indices(String key,
-				Function<DataLifecycleExplain.Builder, ObjectBuilder<DataLifecycleExplain>> fn) {
-			return indices(key, fn.apply(new DataLifecycleExplain.Builder()).build());
+				Function<DataStreamLifecycleExplain.Builder, ObjectBuilder<DataStreamLifecycleExplain>> fn) {
+			return indices(key, fn.apply(new DataStreamLifecycleExplain.Builder()).build());
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class ExplainDataLifecycleResponse implements JsonpSerializable {
 	protected static void setupExplainDataLifecycleResponseDeserializer(
 			ObjectDeserializer<ExplainDataLifecycleResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(DataLifecycleExplain._DESERIALIZER),
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(DataStreamLifecycleExplain._DESERIALIZER),
 				"indices");
 
 	}

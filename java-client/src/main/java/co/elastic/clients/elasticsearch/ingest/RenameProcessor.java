@@ -77,13 +77,18 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to be renamed. Supports template snippets.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -92,7 +97,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * Required - The new name of the field. Supports template snippets.
+	 * <p>
+	 * API name: {@code target_field}
 	 */
 	public final String targetField() {
 		return this.targetField;
@@ -131,7 +138,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to be renamed. Supports template snippets.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -139,6 +148,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -147,7 +159,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * Required - The new name of the field. Supports template snippets.
+		 * <p>
+		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(String value) {
 			this.targetField = value;

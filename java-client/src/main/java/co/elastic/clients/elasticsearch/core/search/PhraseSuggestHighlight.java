@@ -67,14 +67,20 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code post_tag}
+	 * Required - Use in conjunction with <code>pre_tag</code> to define the HTML
+	 * tags to use for the highlighted text.
+	 * <p>
+	 * API name: {@code post_tag}
 	 */
 	public final String postTag() {
 		return this.postTag;
 	}
 
 	/**
-	 * Required - API name: {@code pre_tag}
+	 * Required - Use in conjunction with <code>post_tag</code> to define the HTML
+	 * tags to use for the highlighted text.
+	 * <p>
+	 * API name: {@code pre_tag}
 	 */
 	public final String preTag() {
 		return this.preTag;
@@ -118,7 +124,10 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 		private String preTag;
 
 		/**
-		 * Required - API name: {@code post_tag}
+		 * Required - Use in conjunction with <code>pre_tag</code> to define the HTML
+		 * tags to use for the highlighted text.
+		 * <p>
+		 * API name: {@code post_tag}
 		 */
 		public final Builder postTag(String value) {
 			this.postTag = value;
@@ -126,7 +135,10 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pre_tag}
+		 * Required - Use in conjunction with <code>post_tag</code> to define the HTML
+		 * tags to use for the highlighted text.
+		 * <p>
+		 * API name: {@code pre_tag}
 		 */
 		public final Builder preTag(String value) {
 			this.preTag = value;

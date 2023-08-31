@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.info.Request
 
 /**
- * Returns information about nodes in the cluster.
+ * Returns cluster nodes information.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.info.Request">API
  *      specification</a>

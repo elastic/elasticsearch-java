@@ -85,13 +85,18 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to split.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -100,6 +105,8 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * Preserves empty trailing fields, if any.
+	 * <p>
 	 * API name: {@code preserve_trailing}
 	 */
 	@Nullable
@@ -108,13 +115,19 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code separator}
+	 * Required - A regex which matches the separator, for example, <code>,</code>
+	 * or <code>\s+</code>.
+	 * <p>
+	 * API name: {@code separator}
 	 */
 	public final String separator() {
 		return this.separator;
 	}
 
 	/**
+	 * The field to assign the split value to. By default, the field is updated
+	 * in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -172,7 +185,9 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to split.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -180,6 +195,9 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -188,6 +206,8 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * Preserves empty trailing fields, if any.
+		 * <p>
 		 * API name: {@code preserve_trailing}
 		 */
 		public final Builder preserveTrailing(@Nullable Boolean value) {
@@ -196,7 +216,10 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code separator}
+		 * Required - A regex which matches the separator, for example, <code>,</code>
+		 * or <code>\s+</code>.
+		 * <p>
+		 * API name: {@code separator}
 		 */
 		public final Builder separator(String value) {
 			this.separator = value;
@@ -204,6 +227,9 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field to assign the split value to. By default, the field is updated
+		 * in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

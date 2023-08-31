@@ -75,6 +75,8 @@ public class Processor implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of documents transformed by the processor.
+	 * <p>
 	 * API name: {@code count}
 	 */
 	@Nullable
@@ -83,6 +85,8 @@ public class Processor implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of documents currently being transformed by the processor.
+	 * <p>
 	 * API name: {@code current}
 	 */
 	@Nullable
@@ -91,6 +95,8 @@ public class Processor implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of failed operations for the processor.
+	 * <p>
 	 * API name: {@code failed}
 	 */
 	@Nullable
@@ -99,6 +105,8 @@ public class Processor implements JsonpSerializable {
 	}
 
 	/**
+	 * Time, in milliseconds, spent by the processor transforming documents.
+	 * <p>
 	 * API name: {@code time_in_millis}
 	 */
 	@Nullable
@@ -165,6 +173,8 @@ public class Processor implements JsonpSerializable {
 		private Long timeInMillis;
 
 		/**
+		 * Number of documents transformed by the processor.
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public final Builder count(@Nullable Long value) {
@@ -173,6 +183,8 @@ public class Processor implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of documents currently being transformed by the processor.
+		 * <p>
 		 * API name: {@code current}
 		 */
 		public final Builder current(@Nullable Long value) {
@@ -181,6 +193,8 @@ public class Processor implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of failed operations for the processor.
+		 * <p>
 		 * API name: {@code failed}
 		 */
 		public final Builder failed(@Nullable Long value) {
@@ -189,6 +203,8 @@ public class Processor implements JsonpSerializable {
 		}
 
 		/**
+		 * Time, in milliseconds, spent by the processor transforming documents.
+		 * <p>
 		 * API name: {@code time_in_millis}
 		 */
 		public final Builder timeInMillis(@Nullable Long value) {

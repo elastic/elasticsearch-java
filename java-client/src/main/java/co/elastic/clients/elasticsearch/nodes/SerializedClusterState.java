@@ -67,6 +67,8 @@ public class SerializedClusterState implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of published cluster states.
+	 * <p>
 	 * API name: {@code full_states}
 	 */
 	@Nullable
@@ -127,6 +129,8 @@ public class SerializedClusterState implements JsonpSerializable {
 		private SerializedClusterStateDetail diffs;
 
 		/**
+		 * Number of published cluster states.
+		 * <p>
 		 * API name: {@code full_states}
 		 */
 		public final Builder fullStates(@Nullable SerializedClusterStateDetail value) {
@@ -135,6 +139,8 @@ public class SerializedClusterState implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of published cluster states.
+		 * <p>
 		 * API name: {@code full_states}
 		 */
 		public final Builder fullStates(

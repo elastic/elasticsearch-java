@@ -84,13 +84,19 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to apply the replacement to.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -99,20 +105,27 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code pattern}
+	 * Required - The pattern to be replaced.
+	 * <p>
+	 * API name: {@code pattern}
 	 */
 	public final String pattern() {
 		return this.pattern;
 	}
 
 	/**
-	 * Required - API name: {@code replacement}
+	 * Required - The string to replace the matching patterns with.
+	 * <p>
+	 * API name: {@code replacement}
 	 */
 	public final String replacement() {
 		return this.replacement;
 	}
 
 	/**
+	 * The field to assign the converted value to By default, the <code>field</code>
+	 * is updated in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -165,7 +178,9 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to apply the replacement to.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -173,6 +188,10 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -181,7 +200,9 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code pattern}
+		 * Required - The pattern to be replaced.
+		 * <p>
+		 * API name: {@code pattern}
 		 */
 		public final Builder pattern(String value) {
 			this.pattern = value;
@@ -189,7 +210,9 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code replacement}
+		 * Required - The string to replace the matching patterns with.
+		 * <p>
+		 * API name: {@code replacement}
 		 */
 		public final Builder replacement(String value) {
 			this.replacement = value;
@@ -197,6 +220,9 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field to assign the converted value to By default, the <code>field</code>
+		 * is updated in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

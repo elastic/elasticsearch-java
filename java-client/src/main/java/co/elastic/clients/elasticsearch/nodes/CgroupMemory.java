@@ -71,6 +71,9 @@ public class CgroupMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * The <code>memory</code> control group to which the Elasticsearch process
+	 * belongs.
+	 * <p>
 	 * API name: {@code control_group}
 	 */
 	@Nullable
@@ -79,6 +82,14 @@ public class CgroupMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum amount of user memory (including file cache) allowed for all
+	 * tasks in the same cgroup as the Elasticsearch process. This value can be too
+	 * big to store in a <code>long</code>, so is returned as a string so that the
+	 * value returned can exactly match what the underlying operating system
+	 * interface returns. Any value that is too large to parse into a
+	 * <code>long</code> almost certainly means no limit has been set for the
+	 * cgroup.
+	 * <p>
 	 * API name: {@code limit_in_bytes}
 	 */
 	@Nullable
@@ -87,6 +98,10 @@ public class CgroupMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * The total current memory usage by processes in the cgroup, in bytes, by all
+	 * tasks in the same cgroup as the Elasticsearch process. This value is stored
+	 * as a string for consistency with <code>limit_in_bytes</code>.
+	 * <p>
 	 * API name: {@code usage_in_bytes}
 	 */
 	@Nullable
@@ -145,6 +160,9 @@ public class CgroupMemory implements JsonpSerializable {
 		private String usageInBytes;
 
 		/**
+		 * The <code>memory</code> control group to which the Elasticsearch process
+		 * belongs.
+		 * <p>
 		 * API name: {@code control_group}
 		 */
 		public final Builder controlGroup(@Nullable String value) {
@@ -153,6 +171,14 @@ public class CgroupMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum amount of user memory (including file cache) allowed for all
+		 * tasks in the same cgroup as the Elasticsearch process. This value can be too
+		 * big to store in a <code>long</code>, so is returned as a string so that the
+		 * value returned can exactly match what the underlying operating system
+		 * interface returns. Any value that is too large to parse into a
+		 * <code>long</code> almost certainly means no limit has been set for the
+		 * cgroup.
+		 * <p>
 		 * API name: {@code limit_in_bytes}
 		 */
 		public final Builder limitInBytes(@Nullable String value) {
@@ -161,6 +187,10 @@ public class CgroupMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * The total current memory usage by processes in the cgroup, in bytes, by all
+		 * tasks in the same cgroup as the Elasticsearch process. This value is stored
+		 * as a string for consistency with <code>limit_in_bytes</code>.
+		 * <p>
 		 * API name: {@code usage_in_bytes}
 		 */
 		public final Builder usageInBytes(@Nullable String value) {

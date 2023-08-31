@@ -69,6 +69,8 @@ public class RegexOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * Optional operators for the regular expression.
+	 * <p>
 	 * API name: {@code flags}
 	 */
 	@Nullable
@@ -77,6 +79,8 @@ public class RegexOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum number of automaton states required for the query.
+	 * <p>
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
@@ -127,6 +131,8 @@ public class RegexOptions implements JsonpSerializable {
 		private Integer maxDeterminizedStates;
 
 		/**
+		 * Optional operators for the regular expression.
+		 * <p>
 		 * API name: {@code flags}
 		 */
 		public final Builder flags(@Nullable String value) {
@@ -135,6 +141,8 @@ public class RegexOptions implements JsonpSerializable {
 		}
 
 		/**
+		 * Maximum number of automaton states required for the query.
+		 * <p>
 		 * API name: {@code max_determinized_states}
 		 */
 		public final Builder maxDeterminizedStates(@Nullable Integer value) {

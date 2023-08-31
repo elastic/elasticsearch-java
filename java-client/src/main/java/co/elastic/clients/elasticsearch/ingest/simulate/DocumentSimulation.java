@@ -102,14 +102,19 @@ public class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * Required - Unique identifier for the document. This ID must be unique within
+	 * the <code>_index</code>.
+	 * <p>
+	 * API name: {@code _id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code _index}
+	 * Required - Name of the index containing the document.
+	 * <p>
+	 * API name: {@code _index}
 	 */
 	public final String index() {
 		return this.index;
@@ -123,6 +128,8 @@ public class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
+	 * Value used to send the document to a specific primary shard.
+	 * <p>
 	 * API name: {@code _routing}
 	 */
 	@Nullable
@@ -131,7 +138,9 @@ public class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _source}
+	 * Required - JSON body for the document.
+	 * <p>
+	 * API name: {@code _source}
 	 */
 	public final Map<String, JsonData> source() {
 		return this.source;
@@ -262,7 +271,10 @@ public class DocumentSimulation implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * Required - Unique identifier for the document. This ID must be unique within
+		 * the <code>_index</code>.
+		 * <p>
+		 * API name: {@code _id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -270,7 +282,9 @@ public class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _index}
+		 * Required - Name of the index containing the document.
+		 * <p>
+		 * API name: {@code _index}
 		 */
 		public final Builder index(String value) {
 			this.index = value;
@@ -293,6 +307,8 @@ public class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
+		 * Value used to send the document to a specific primary shard.
+		 * <p>
 		 * API name: {@code _routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -301,7 +317,9 @@ public class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * Required - JSON body for the document.
+		 * <p>
+		 * API name: {@code _source}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>source</code>.
 		 */
@@ -311,7 +329,9 @@ public class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * Required - JSON body for the document.
+		 * <p>
+		 * API name: {@code _source}
 		 * <p>
 		 * Adds an entry to <code>source</code>.
 		 */

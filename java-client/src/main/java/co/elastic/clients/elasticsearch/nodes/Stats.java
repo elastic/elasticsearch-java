@@ -146,6 +146,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Statistics about adaptive replica selection.
+	 * <p>
 	 * API name: {@code adaptive_selection}
 	 */
 	public final Map<String, AdaptiveSelection> adaptiveSelection() {
@@ -153,6 +155,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Statistics about the field data circuit breaker.
+	 * <p>
 	 * API name: {@code breakers}
 	 */
 	public final Map<String, Breaker> breakers() {
@@ -160,6 +164,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * File system information, data path, free disk space, read/write stats.
+	 * <p>
 	 * API name: {@code fs}
 	 */
 	@Nullable
@@ -168,6 +174,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Network host for the node, based on the network host setting.
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -176,6 +184,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * HTTP connection information.
+	 * <p>
 	 * API name: {@code http}
 	 */
 	@Nullable
@@ -184,6 +194,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Statistics about ingest preprocessing.
+	 * <p>
 	 * API name: {@code ingest}
 	 */
 	@Nullable
@@ -192,6 +204,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * IP address and port for the node.
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	public final List<String> ip() {
@@ -199,6 +213,9 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * JVM stats, memory pool information, garbage collection, buffer pools, number
+	 * of loaded/unloaded classes.
+	 * <p>
 	 * API name: {@code jvm}
 	 */
 	@Nullable
@@ -207,6 +224,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Human-readable identifier for the node. Based on the node name setting.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -215,6 +234,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Operating system stats, load average, mem, swap.
+	 * <p>
 	 * API name: {@code os}
 	 */
 	@Nullable
@@ -223,6 +244,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Process statistics, memory consumption, cpu usage, open file descriptors.
+	 * <p>
 	 * API name: {@code process}
 	 */
 	@Nullable
@@ -231,6 +254,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Roles assigned to the node.
+	 * <p>
 	 * API name: {@code roles}
 	 */
 	public final List<NodeRole> roles() {
@@ -238,6 +263,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains script statistics for the node.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -253,6 +280,9 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Statistics about each thread pool, including current size, queue and rejected
+	 * tasks.
+	 * <p>
 	 * API name: {@code thread_pool}
 	 */
 	public final Map<String, ThreadCount> threadPool() {
@@ -268,6 +298,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Transport statistics about sent and received bytes in cluster communication.
+	 * <p>
 	 * API name: {@code transport}
 	 */
 	@Nullable
@@ -276,6 +308,9 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Host and port for the transport layer, used for internal communication
+	 * between nodes in a cluster.
+	 * <p>
 	 * API name: {@code transport_address}
 	 */
 	@Nullable
@@ -284,6 +319,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains a list of attributes for the node.
+	 * <p>
 	 * API name: {@code attributes}
 	 */
 	public final Map<String, String> attributes() {
@@ -291,6 +328,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains node discovery statistics for the node.
+	 * <p>
 	 * API name: {@code discovery}
 	 */
 	@Nullable
@@ -299,6 +338,8 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains indexing pressure statistics for the node.
+	 * <p>
 	 * API name: {@code indexing_pressure}
 	 */
 	@Nullable
@@ -307,6 +348,9 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Indices stats about size, document count, indexing and deletion times, search
+	 * times, field cache size, merges and flushes.
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	@Nullable
@@ -563,6 +607,8 @@ public class Stats implements JsonpSerializable {
 		private ShardStats indices;
 
 		/**
+		 * Statistics about adaptive replica selection.
+		 * <p>
 		 * API name: {@code adaptive_selection}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>adaptiveSelection</code>.
@@ -573,6 +619,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about adaptive replica selection.
+		 * <p>
 		 * API name: {@code adaptive_selection}
 		 * <p>
 		 * Adds an entry to <code>adaptiveSelection</code>.
@@ -583,6 +631,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about adaptive replica selection.
+		 * <p>
 		 * API name: {@code adaptive_selection}
 		 * <p>
 		 * Adds an entry to <code>adaptiveSelection</code> using a builder lambda.
@@ -593,6 +643,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about the field data circuit breaker.
+		 * <p>
 		 * API name: {@code breakers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>breakers</code>.
@@ -603,6 +655,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about the field data circuit breaker.
+		 * <p>
 		 * API name: {@code breakers}
 		 * <p>
 		 * Adds an entry to <code>breakers</code>.
@@ -613,6 +667,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about the field data circuit breaker.
+		 * <p>
 		 * API name: {@code breakers}
 		 * <p>
 		 * Adds an entry to <code>breakers</code> using a builder lambda.
@@ -622,6 +678,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * File system information, data path, free disk space, read/write stats.
+		 * <p>
 		 * API name: {@code fs}
 		 */
 		public final Builder fs(@Nullable FileSystem value) {
@@ -630,6 +688,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * File system information, data path, free disk space, read/write stats.
+		 * <p>
 		 * API name: {@code fs}
 		 */
 		public final Builder fs(Function<FileSystem.Builder, ObjectBuilder<FileSystem>> fn) {
@@ -637,6 +697,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Network host for the node, based on the network host setting.
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public final Builder host(@Nullable String value) {
@@ -645,6 +707,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * HTTP connection information.
+		 * <p>
 		 * API name: {@code http}
 		 */
 		public final Builder http(@Nullable Http value) {
@@ -653,6 +717,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * HTTP connection information.
+		 * <p>
 		 * API name: {@code http}
 		 */
 		public final Builder http(Function<Http.Builder, ObjectBuilder<Http>> fn) {
@@ -660,6 +726,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about ingest preprocessing.
+		 * <p>
 		 * API name: {@code ingest}
 		 */
 		public final Builder ingest(@Nullable Ingest value) {
@@ -668,6 +736,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about ingest preprocessing.
+		 * <p>
 		 * API name: {@code ingest}
 		 */
 		public final Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
@@ -675,6 +745,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * IP address and port for the node.
+		 * <p>
 		 * API name: {@code ip}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ip</code>.
@@ -685,6 +757,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * IP address and port for the node.
+		 * <p>
 		 * API name: {@code ip}
 		 * <p>
 		 * Adds one or more values to <code>ip</code>.
@@ -695,6 +769,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * JVM stats, memory pool information, garbage collection, buffer pools, number
+		 * of loaded/unloaded classes.
+		 * <p>
 		 * API name: {@code jvm}
 		 */
 		public final Builder jvm(@Nullable Jvm value) {
@@ -703,6 +780,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * JVM stats, memory pool information, garbage collection, buffer pools, number
+		 * of loaded/unloaded classes.
+		 * <p>
 		 * API name: {@code jvm}
 		 */
 		public final Builder jvm(Function<Jvm.Builder, ObjectBuilder<Jvm>> fn) {
@@ -710,6 +790,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Human-readable identifier for the node. Based on the node name setting.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public final Builder name(@Nullable String value) {
@@ -718,6 +800,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Operating system stats, load average, mem, swap.
+		 * <p>
 		 * API name: {@code os}
 		 */
 		public final Builder os(@Nullable OperatingSystem value) {
@@ -726,6 +810,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Operating system stats, load average, mem, swap.
+		 * <p>
 		 * API name: {@code os}
 		 */
 		public final Builder os(Function<OperatingSystem.Builder, ObjectBuilder<OperatingSystem>> fn) {
@@ -733,6 +819,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Process statistics, memory consumption, cpu usage, open file descriptors.
+		 * <p>
 		 * API name: {@code process}
 		 */
 		public final Builder process(@Nullable Process value) {
@@ -741,6 +829,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Process statistics, memory consumption, cpu usage, open file descriptors.
+		 * <p>
 		 * API name: {@code process}
 		 */
 		public final Builder process(Function<Process.Builder, ObjectBuilder<Process>> fn) {
@@ -748,6 +838,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Roles assigned to the node.
+		 * <p>
 		 * API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
@@ -758,6 +850,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Roles assigned to the node.
+		 * <p>
 		 * API name: {@code roles}
 		 * <p>
 		 * Adds one or more values to <code>roles</code>.
@@ -768,6 +862,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains script statistics for the node.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable Scripting value) {
@@ -776,6 +872,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains script statistics for the node.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Scripting.Builder, ObjectBuilder<Scripting>> fn) {
@@ -803,6 +901,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about each thread pool, including current size, queue and rejected
+		 * tasks.
+		 * <p>
 		 * API name: {@code thread_pool}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>threadPool</code>.
@@ -813,6 +914,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about each thread pool, including current size, queue and rejected
+		 * tasks.
+		 * <p>
 		 * API name: {@code thread_pool}
 		 * <p>
 		 * Adds an entry to <code>threadPool</code>.
@@ -823,6 +927,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Statistics about each thread pool, including current size, queue and rejected
+		 * tasks.
+		 * <p>
 		 * API name: {@code thread_pool}
 		 * <p>
 		 * Adds an entry to <code>threadPool</code> using a builder lambda.
@@ -840,6 +947,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Transport statistics about sent and received bytes in cluster communication.
+		 * <p>
 		 * API name: {@code transport}
 		 */
 		public final Builder transport(@Nullable Transport value) {
@@ -848,6 +957,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Transport statistics about sent and received bytes in cluster communication.
+		 * <p>
 		 * API name: {@code transport}
 		 */
 		public final Builder transport(Function<Transport.Builder, ObjectBuilder<Transport>> fn) {
@@ -855,6 +966,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Host and port for the transport layer, used for internal communication
+		 * between nodes in a cluster.
+		 * <p>
 		 * API name: {@code transport_address}
 		 */
 		public final Builder transportAddress(@Nullable String value) {
@@ -863,6 +977,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains a list of attributes for the node.
+		 * <p>
 		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
@@ -873,6 +989,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains a list of attributes for the node.
+		 * <p>
 		 * API name: {@code attributes}
 		 * <p>
 		 * Adds an entry to <code>attributes</code>.
@@ -883,6 +1001,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains node discovery statistics for the node.
+		 * <p>
 		 * API name: {@code discovery}
 		 */
 		public final Builder discovery(@Nullable Discovery value) {
@@ -891,6 +1011,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains node discovery statistics for the node.
+		 * <p>
 		 * API name: {@code discovery}
 		 */
 		public final Builder discovery(Function<Discovery.Builder, ObjectBuilder<Discovery>> fn) {
@@ -898,6 +1020,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains indexing pressure statistics for the node.
+		 * <p>
 		 * API name: {@code indexing_pressure}
 		 */
 		public final Builder indexingPressure(@Nullable IndexingPressure value) {
@@ -906,6 +1030,8 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains indexing pressure statistics for the node.
+		 * <p>
 		 * API name: {@code indexing_pressure}
 		 */
 		public final Builder indexingPressure(Function<IndexingPressure.Builder, ObjectBuilder<IndexingPressure>> fn) {
@@ -913,6 +1039,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Indices stats about size, document count, indexing and deletion times, search
+		 * times, field cache size, merges and flushes.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public final Builder indices(@Nullable ShardStats value) {
@@ -921,6 +1050,9 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
+		 * Indices stats about size, document count, indexing and deletion times, search
+		 * times, field cache size, merges and flushes.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public final Builder indices(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {

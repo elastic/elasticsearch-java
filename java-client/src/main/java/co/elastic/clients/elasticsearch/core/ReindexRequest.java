@@ -131,6 +131,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Set to proceed to continue reindexing even if there are conflicts.
+	 * <p>
 	 * API name: {@code conflicts}
 	 */
 	@Nullable
@@ -139,13 +141,17 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code dest}
+	 * Required - The destination you are copying to.
+	 * <p>
+	 * API name: {@code dest}
 	 */
 	public final Destination dest() {
 		return this.dest;
 	}
 
 	/**
+	 * The maximum number of documents to reindex.
+	 * <p>
 	 * API name: {@code max_docs}
 	 */
 	@Nullable
@@ -154,7 +160,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Should the affected indexes be refreshed?
+	 * If <code>true</code>, the request refreshes affected shards to make this
+	 * operation visible to search.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -164,7 +171,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The throttle to set on this request in sub-requests per second. -1 means no
+	 * The throttle for this request in sub-requests per second. Defaults to no
 	 * throttle.
 	 * <p>
 	 * API name: {@code requests_per_second}
@@ -175,6 +182,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the destination must be an index alias.
+	 * <p>
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
@@ -183,6 +192,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The script to run to update the document source or metadata when reindexing.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -191,7 +202,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Control how long to keep the search context alive
+	 * Specifies how long a consistent view of the index should be maintained for
+	 * scrolled search.
 	 * <p>
 	 * API name: {@code scroll}
 	 */
@@ -209,8 +221,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of slices this task should be divided into. Defaults to 1, meaning
-	 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+	 * The number of slices this task should be divided into. Defaults to 1 slice,
+	 * meaning the task isn’t sliced into subtasks.
 	 * <p>
 	 * API name: {@code slices}
 	 */
@@ -220,15 +232,17 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code source}
+	 * Required - The source you are copying from.
+	 * <p>
+	 * API name: {@code source}
 	 */
 	public final Source source() {
 		return this.source;
 	}
 
 	/**
-	 * Time each individual bulk request should wait for shards that are
-	 * unavailable.
+	 * Period each indexing waits for automatic index creation, dynamic mapping
+	 * updates, and waiting for active shards.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -238,11 +252,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Sets the number of shard copies that must be active before proceeding with
-	 * the reindex operation. Defaults to 1, meaning the primary shard only. Set to
-	 * <code>all</code> for all shard copies, otherwise set to any non-negative
-	 * value less than or equal to the total number of copies for the shard (number
-	 * of replicas + 1)
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to <code>all</code> or any positive integer up to the total
+	 * number of shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -252,7 +264,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Should the request should block until the reindex is complete.
+	 * If <code>true</code>, the request blocks until the operation is complete.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -347,6 +359,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		private Boolean waitForCompletion;
 
 		/**
+		 * Set to proceed to continue reindexing even if there are conflicts.
+		 * <p>
 		 * API name: {@code conflicts}
 		 */
 		public final Builder conflicts(@Nullable Conflicts value) {
@@ -355,7 +369,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code dest}
+		 * Required - The destination you are copying to.
+		 * <p>
+		 * API name: {@code dest}
 		 */
 		public final Builder dest(Destination value) {
 			this.dest = value;
@@ -363,13 +379,17 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code dest}
+		 * Required - The destination you are copying to.
+		 * <p>
+		 * API name: {@code dest}
 		 */
 		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
 		/**
+		 * The maximum number of documents to reindex.
+		 * <p>
 		 * API name: {@code max_docs}
 		 */
 		public final Builder maxDocs(@Nullable Long value) {
@@ -378,7 +398,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Should the affected indexes be refreshed?
+		 * If <code>true</code>, the request refreshes affected shards to make this
+		 * operation visible to search.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -388,7 +409,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The throttle to set on this request in sub-requests per second. -1 means no
+		 * The throttle for this request in sub-requests per second. Defaults to no
 		 * throttle.
 		 * <p>
 		 * API name: {@code requests_per_second}
@@ -399,6 +420,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the destination must be an index alias.
+		 * <p>
 		 * API name: {@code require_alias}
 		 */
 		public final Builder requireAlias(@Nullable Boolean value) {
@@ -407,6 +430,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The script to run to update the document source or metadata when reindexing.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable Script value) {
@@ -415,6 +440,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The script to run to update the document source or metadata when reindexing.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -422,7 +449,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Control how long to keep the search context alive
+		 * Specifies how long a consistent view of the index should be maintained for
+		 * scrolled search.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -432,7 +460,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Control how long to keep the search context alive
+		 * Specifies how long a consistent view of the index should be maintained for
+		 * scrolled search.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -449,8 +478,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of slices this task should be divided into. Defaults to 1, meaning
-		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * The number of slices this task should be divided into. Defaults to 1 slice,
+		 * meaning the task isn’t sliced into subtasks.
 		 * <p>
 		 * API name: {@code slices}
 		 */
@@ -460,8 +489,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of slices this task should be divided into. Defaults to 1, meaning
-		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * The number of slices this task should be divided into. Defaults to 1 slice,
+		 * meaning the task isn’t sliced into subtasks.
 		 * <p>
 		 * API name: {@code slices}
 		 */
@@ -470,7 +499,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code source}
+		 * Required - The source you are copying from.
+		 * <p>
+		 * API name: {@code source}
 		 */
 		public final Builder source(Source value) {
 			this.source = value;
@@ -478,15 +509,17 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code source}
+		 * Required - The source you are copying from.
+		 * <p>
+		 * API name: {@code source}
 		 */
 		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
 			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
 		/**
-		 * Time each individual bulk request should wait for shards that are
-		 * unavailable.
+		 * Period each indexing waits for automatic index creation, dynamic mapping
+		 * updates, and waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -496,8 +529,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Time each individual bulk request should wait for shards that are
-		 * unavailable.
+		 * Period each indexing waits for automatic index creation, dynamic mapping
+		 * updates, and waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -506,11 +539,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the reindex operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -520,11 +551,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the reindex operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -534,7 +563,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Should the request should block until the reindex is complete.
+		 * If <code>true</code>, the request blocks until the operation is complete.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

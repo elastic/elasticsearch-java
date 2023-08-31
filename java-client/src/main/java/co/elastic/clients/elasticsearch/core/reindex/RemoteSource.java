@@ -84,6 +84,8 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
+	 * The remote connection timeout. Defaults to 30 seconds.
+	 * <p>
 	 * API name: {@code connect_timeout}
 	 */
 	@Nullable
@@ -92,6 +94,8 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
+	 * An object containing the headers of the request.
+	 * <p>
 	 * API name: {@code headers}
 	 */
 	public final Map<String, String> headers() {
@@ -99,13 +103,18 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code host}
+	 * Required - The URL for the remote instance of Elasticsearch that you want to
+	 * index from.
+	 * <p>
+	 * API name: {@code host}
 	 */
 	public final String host() {
 		return this.host;
 	}
 
 	/**
+	 * The username to use for authentication with the remote host.
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -114,6 +123,8 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
+	 * The password to use for authentication with the remote host.
+	 * <p>
 	 * API name: {@code password}
 	 */
 	@Nullable
@@ -122,6 +133,8 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
+	 * The remote socket read timeout. Defaults to 30 seconds.
+	 * <p>
 	 * API name: {@code socket_timeout}
 	 */
 	@Nullable
@@ -207,6 +220,8 @@ public class RemoteSource implements JsonpSerializable {
 		private Time socketTimeout;
 
 		/**
+		 * The remote connection timeout. Defaults to 30 seconds.
+		 * <p>
 		 * API name: {@code connect_timeout}
 		 */
 		public final Builder connectTimeout(@Nullable Time value) {
@@ -215,6 +230,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * The remote connection timeout. Defaults to 30 seconds.
+		 * <p>
 		 * API name: {@code connect_timeout}
 		 */
 		public final Builder connectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -222,6 +239,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * An object containing the headers of the request.
+		 * <p>
 		 * API name: {@code headers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
@@ -232,6 +251,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * An object containing the headers of the request.
+		 * <p>
 		 * API name: {@code headers}
 		 * <p>
 		 * Adds an entry to <code>headers</code>.
@@ -242,7 +263,10 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code host}
+		 * Required - The URL for the remote instance of Elasticsearch that you want to
+		 * index from.
+		 * <p>
+		 * API name: {@code host}
 		 */
 		public final Builder host(String value) {
 			this.host = value;
@@ -250,6 +274,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * The username to use for authentication with the remote host.
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {
@@ -258,6 +284,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * The password to use for authentication with the remote host.
+		 * <p>
 		 * API name: {@code password}
 		 */
 		public final Builder password(@Nullable String value) {
@@ -266,6 +294,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * The remote socket read timeout. Defaults to 30 seconds.
+		 * <p>
 		 * API name: {@code socket_timeout}
 		 */
 		public final Builder socketTimeout(@Nullable Time value) {
@@ -274,6 +304,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
+		 * The remote socket read timeout. Defaults to 30 seconds.
+		 * <p>
 		 * API name: {@code socket_timeout}
 		 */
 		public final Builder socketTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {

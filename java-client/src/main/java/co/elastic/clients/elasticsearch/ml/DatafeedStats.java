@@ -81,6 +81,9 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
+	 * For started datafeeds only, contains messages relating to the selection of a
+	 * node.
+	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
@@ -89,13 +92,21 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code datafeed_id}
+	 * Required - A numerical character string that uniquely identifies the
+	 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+	 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+	 * characters.
+	 * <p>
+	 * API name: {@code datafeed_id}
 	 */
 	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
+	 * For started datafeeds only, this information pertains to the node upon which
+	 * the datafeed is started.
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -104,20 +115,30 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code state}
+	 * Required - The status of the datafeed, which can be one of the following
+	 * values: <code>starting</code>, <code>started</code>, <code>stopping</code>,
+	 * <code>stopped</code>.
+	 * <p>
+	 * API name: {@code state}
 	 */
 	public final DatafeedState state() {
 		return this.state;
 	}
 
 	/**
-	 * Required - API name: {@code timing_stats}
+	 * Required - An object that provides statistical information about timing
+	 * aspect of this datafeed.
+	 * <p>
+	 * API name: {@code timing_stats}
 	 */
 	public final DatafeedTimingStats timingStats() {
 		return this.timingStats;
 	}
 
 	/**
+	 * An object containing the running state for this datafeed. It is only provided
+	 * if the datafeed is started.
+	 * <p>
 	 * API name: {@code running_state}
 	 */
 	@Nullable
@@ -190,6 +211,9 @@ public class DatafeedStats implements JsonpSerializable {
 		private DatafeedRunningState runningState;
 
 		/**
+		 * For started datafeeds only, contains messages relating to the selection of a
+		 * node.
+		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
 		public final Builder assignmentExplanation(@Nullable String value) {
@@ -198,7 +222,12 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code datafeed_id}
+		 * Required - A numerical character string that uniquely identifies the
+		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+		 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+		 * characters.
+		 * <p>
+		 * API name: {@code datafeed_id}
 		 */
 		public final Builder datafeedId(String value) {
 			this.datafeedId = value;
@@ -206,6 +235,9 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
+		 * For started datafeeds only, this information pertains to the node upon which
+		 * the datafeed is started.
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public final Builder node(@Nullable DiscoveryNode value) {
@@ -214,6 +246,9 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
+		 * For started datafeeds only, this information pertains to the node upon which
+		 * the datafeed is started.
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
@@ -221,7 +256,11 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code state}
+		 * Required - The status of the datafeed, which can be one of the following
+		 * values: <code>starting</code>, <code>started</code>, <code>stopping</code>,
+		 * <code>stopped</code>.
+		 * <p>
+		 * API name: {@code state}
 		 */
 		public final Builder state(DatafeedState value) {
 			this.state = value;
@@ -229,7 +268,10 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timing_stats}
+		 * Required - An object that provides statistical information about timing
+		 * aspect of this datafeed.
+		 * <p>
+		 * API name: {@code timing_stats}
 		 */
 		public final Builder timingStats(DatafeedTimingStats value) {
 			this.timingStats = value;
@@ -237,13 +279,19 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timing_stats}
+		 * Required - An object that provides statistical information about timing
+		 * aspect of this datafeed.
+		 * <p>
+		 * API name: {@code timing_stats}
 		 */
 		public final Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
 			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());
 		}
 
 		/**
+		 * An object containing the running state for this datafeed. It is only provided
+		 * if the datafeed is started.
+		 * <p>
 		 * API name: {@code running_state}
 		 */
 		public final Builder runningState(@Nullable DatafeedRunningState value) {
@@ -252,6 +300,9 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
+		 * An object containing the running state for this datafeed. It is only provided
+		 * if the datafeed is started.
+		 * <p>
 		 * API name: {@code running_state}
 		 */
 		public final Builder runningState(

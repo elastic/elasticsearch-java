@@ -47,8 +47,8 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_rollup_index_caps.Request
 
 /**
- * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
- * the index where rollup data is stored).
+ * Returns the rollup capabilities of all jobs inside of a rollup index (for
+ * example, the index where rollup data is stored).
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#rollup.get_rollup_index_caps.Request">API
@@ -71,8 +71,8 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The rollup index or index pattern to obtain rollup capabilities
-	 * from.
+	 * Required - Data stream or index to check for rollup capabilities. Wildcard
+	 * (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -92,8 +92,8 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 		private List<String> index;
 
 		/**
-		 * Required - The rollup index or index pattern to obtain rollup capabilities
-		 * from.
+		 * Required - Data stream or index to check for rollup capabilities. Wildcard
+		 * (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -105,8 +105,8 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The rollup index or index pattern to obtain rollup capabilities
-		 * from.
+		 * Required - Data stream or index to check for rollup capabilities. Wildcard
+		 * (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

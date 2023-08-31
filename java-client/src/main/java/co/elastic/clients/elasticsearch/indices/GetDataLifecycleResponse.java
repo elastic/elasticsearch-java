@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch.indices.get_data_lifecycle.DataStreamLifecycle;
+import co.elastic.clients.elasticsearch.indices.get_data_lifecycle.DataStreamWithLifecycle;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetDataLifecycleResponse implements JsonpSerializable {
-	private final List<DataStreamLifecycle> dataStreams;
+	private final List<DataStreamWithLifecycle> dataStreams;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public final List<DataStreamLifecycle> dataStreams() {
+	public final List<DataStreamWithLifecycle> dataStreams() {
 		return this.dataStreams;
 	}
 
@@ -85,7 +85,7 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.dataStreams)) {
 			generator.writeKey("data_streams");
 			generator.writeStartArray();
-			for (DataStreamLifecycle item0 : this.dataStreams) {
+			for (DataStreamWithLifecycle item0 : this.dataStreams) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -109,14 +109,14 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetDataLifecycleResponse> {
-		private List<DataStreamLifecycle> dataStreams;
+		private List<DataStreamWithLifecycle> dataStreams;
 
 		/**
 		 * Required - API name: {@code data_streams}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(List<DataStreamLifecycle> list) {
+		public final Builder dataStreams(List<DataStreamWithLifecycle> list) {
 			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
@@ -126,7 +126,7 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(DataStreamLifecycle value, DataStreamLifecycle... values) {
+		public final Builder dataStreams(DataStreamWithLifecycle value, DataStreamWithLifecycle... values) {
 			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
@@ -136,8 +136,9 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
-		public final Builder dataStreams(Function<DataStreamLifecycle.Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
-			return dataStreams(fn.apply(new DataStreamLifecycle.Builder()).build());
+		public final Builder dataStreams(
+				Function<DataStreamWithLifecycle.Builder, ObjectBuilder<DataStreamWithLifecycle>> fn) {
+			return dataStreams(fn.apply(new DataStreamWithLifecycle.Builder()).build());
 		}
 
 		@Override
@@ -169,7 +170,7 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 	protected static void setupGetDataLifecycleResponseDeserializer(
 			ObjectDeserializer<GetDataLifecycleResponse.Builder> op) {
 
-		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(DataStreamLifecycle._DESERIALIZER),
+		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(DataStreamWithLifecycle._DESERIALIZER),
 				"data_streams");
 
 	}

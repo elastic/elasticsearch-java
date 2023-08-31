@@ -33,8 +33,14 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum OpType implements JsonEnum {
+	/**
+	 * Overwrite any documents that already exist.
+	 */
 	Index("index"),
 
+	/**
+	 * Only index documents that do not already exist.
+	 */
 	Create("create"),
 
 	;

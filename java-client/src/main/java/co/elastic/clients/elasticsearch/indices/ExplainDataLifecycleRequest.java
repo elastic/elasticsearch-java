@@ -48,8 +48,8 @@ import javax.annotation.Nullable;
 // typedef: indices.explain_data_lifecycle.Request
 
 /**
- * Retrieves information about the index's current DLM lifecycle, such as any
- * potential encountered error, time since creation etc.
+ * Retrieves information about the index's current data stream lifecycle, such
+ * as any potential encountered error, time since creation etc.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.explain_data_lifecycle.Request">API

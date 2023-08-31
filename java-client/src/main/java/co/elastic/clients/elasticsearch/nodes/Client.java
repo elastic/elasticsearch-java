@@ -104,6 +104,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Unique ID for the HTTP client.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -112,6 +114,9 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Reported agent for the HTTP client. If unavailable, this property is not
+	 * included in the response.
+	 * <p>
 	 * API name: {@code agent}
 	 */
 	@Nullable
@@ -120,6 +125,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Local address for the HTTP connection.
+	 * <p>
 	 * API name: {@code local_address}
 	 */
 	@Nullable
@@ -128,6 +135,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Remote address for the HTTP connection.
+	 * <p>
 	 * API name: {@code remote_address}
 	 */
 	@Nullable
@@ -136,6 +145,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * The URI of the client’s most recent request.
+	 * <p>
 	 * API name: {@code last_uri}
 	 */
 	@Nullable
@@ -144,6 +155,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Time at which the client opened the connection.
+	 * <p>
 	 * API name: {@code opened_time_millis}
 	 */
 	@Nullable
@@ -152,6 +165,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Time at which the client closed the connection if the connection is closed.
+	 * <p>
 	 * API name: {@code closed_time_millis}
 	 */
 	@Nullable
@@ -160,6 +175,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Time of the most recent request from this client.
+	 * <p>
 	 * API name: {@code last_request_time_millis}
 	 */
 	@Nullable
@@ -168,6 +185,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of requests from this client.
+	 * <p>
 	 * API name: {@code request_count}
 	 */
 	@Nullable
@@ -176,6 +195,8 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Cumulative size in bytes of all requests from this client.
+	 * <p>
 	 * API name: {@code request_size_bytes}
 	 */
 	@Nullable
@@ -184,6 +205,9 @@ public class Client implements JsonpSerializable {
 	}
 
 	/**
+	 * Value from the client’s <code>x-opaque-id</code> HTTP header. If unavailable,
+	 * this property is not included in the response.
+	 * <p>
 	 * API name: {@code x_opaque_id}
 	 */
 	@Nullable
@@ -306,6 +330,8 @@ public class Client implements JsonpSerializable {
 		private String xOpaqueId;
 
 		/**
+		 * Unique ID for the HTTP client.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public final Builder id(@Nullable Long value) {
@@ -314,6 +340,9 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Reported agent for the HTTP client. If unavailable, this property is not
+		 * included in the response.
+		 * <p>
 		 * API name: {@code agent}
 		 */
 		public final Builder agent(@Nullable String value) {
@@ -322,6 +351,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Local address for the HTTP connection.
+		 * <p>
 		 * API name: {@code local_address}
 		 */
 		public final Builder localAddress(@Nullable String value) {
@@ -330,6 +361,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Remote address for the HTTP connection.
+		 * <p>
 		 * API name: {@code remote_address}
 		 */
 		public final Builder remoteAddress(@Nullable String value) {
@@ -338,6 +371,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * The URI of the client’s most recent request.
+		 * <p>
 		 * API name: {@code last_uri}
 		 */
 		public final Builder lastUri(@Nullable String value) {
@@ -346,6 +381,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Time at which the client opened the connection.
+		 * <p>
 		 * API name: {@code opened_time_millis}
 		 */
 		public final Builder openedTimeMillis(@Nullable Long value) {
@@ -354,6 +391,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Time at which the client closed the connection if the connection is closed.
+		 * <p>
 		 * API name: {@code closed_time_millis}
 		 */
 		public final Builder closedTimeMillis(@Nullable Long value) {
@@ -362,6 +401,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Time of the most recent request from this client.
+		 * <p>
 		 * API name: {@code last_request_time_millis}
 		 */
 		public final Builder lastRequestTimeMillis(@Nullable Long value) {
@@ -370,6 +411,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of requests from this client.
+		 * <p>
 		 * API name: {@code request_count}
 		 */
 		public final Builder requestCount(@Nullable Long value) {
@@ -378,6 +421,8 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Cumulative size in bytes of all requests from this client.
+		 * <p>
 		 * API name: {@code request_size_bytes}
 		 */
 		public final Builder requestSizeBytes(@Nullable Long value) {
@@ -386,6 +431,9 @@ public class Client implements JsonpSerializable {
 		}
 
 		/**
+		 * Value from the client’s <code>x-opaque-id</code> HTTP header. If unavailable,
+		 * this property is not included in the response.
+		 * <p>
 		 * API name: {@code x_opaque_id}
 		 */
 		public final Builder xOpaqueId(@Nullable String value) {

@@ -83,6 +83,8 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of active threads in the thread pool.
+	 * <p>
 	 * API name: {@code active}
 	 */
 	@Nullable
@@ -91,6 +93,8 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of tasks completed by the thread pool executor.
+	 * <p>
 	 * API name: {@code completed}
 	 */
 	@Nullable
@@ -99,6 +103,8 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
+	 * Highest number of active threads in the thread pool.
+	 * <p>
 	 * API name: {@code largest}
 	 */
 	@Nullable
@@ -107,6 +113,8 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of tasks in queue for the thread pool.
+	 * <p>
 	 * API name: {@code queue}
 	 */
 	@Nullable
@@ -115,6 +123,8 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of tasks rejected by the thread pool executor.
+	 * <p>
 	 * API name: {@code rejected}
 	 */
 	@Nullable
@@ -123,6 +133,8 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of threads in the thread pool.
+	 * <p>
 	 * API name: {@code threads}
 	 */
 	@Nullable
@@ -205,6 +217,8 @@ public class ThreadCount implements JsonpSerializable {
 		private Long threads;
 
 		/**
+		 * Number of active threads in the thread pool.
+		 * <p>
 		 * API name: {@code active}
 		 */
 		public final Builder active(@Nullable Long value) {
@@ -213,6 +227,8 @@ public class ThreadCount implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of tasks completed by the thread pool executor.
+		 * <p>
 		 * API name: {@code completed}
 		 */
 		public final Builder completed(@Nullable Long value) {
@@ -221,6 +237,8 @@ public class ThreadCount implements JsonpSerializable {
 		}
 
 		/**
+		 * Highest number of active threads in the thread pool.
+		 * <p>
 		 * API name: {@code largest}
 		 */
 		public final Builder largest(@Nullable Long value) {
@@ -229,6 +247,8 @@ public class ThreadCount implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of tasks in queue for the thread pool.
+		 * <p>
 		 * API name: {@code queue}
 		 */
 		public final Builder queue(@Nullable Long value) {
@@ -237,6 +257,8 @@ public class ThreadCount implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of tasks rejected by the thread pool executor.
+		 * <p>
 		 * API name: {@code rejected}
 		 */
 		public final Builder rejected(@Nullable Long value) {
@@ -245,6 +267,8 @@ public class ThreadCount implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of threads in the thread pool.
+		 * <p>
 		 * API name: {@code threads}
 		 */
 		public final Builder threads(@Nullable Long value) {

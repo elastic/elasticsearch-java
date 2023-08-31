@@ -73,6 +73,8 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of JVM garbage collectors that collect objects.
+	 * <p>
 	 * API name: {@code collection_count}
 	 */
 	@Nullable
@@ -81,6 +83,8 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total time spent by JVM collecting objects.
+	 * <p>
 	 * API name: {@code collection_time}
 	 */
 	@Nullable
@@ -89,6 +93,8 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total time, in milliseconds, spent by JVM collecting objects.
+	 * <p>
 	 * API name: {@code collection_time_in_millis}
 	 */
 	@Nullable
@@ -149,6 +155,8 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		private Long collectionTimeInMillis;
 
 		/**
+		 * Total number of JVM garbage collectors that collect objects.
+		 * <p>
 		 * API name: {@code collection_count}
 		 */
 		public final Builder collectionCount(@Nullable Long value) {
@@ -157,6 +165,8 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total time spent by JVM collecting objects.
+		 * <p>
 		 * API name: {@code collection_time}
 		 */
 		public final Builder collectionTime(@Nullable String value) {
@@ -165,6 +175,8 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		}
 
 		/**
+		 * Total time, in milliseconds, spent by JVM collecting objects.
+		 * <p>
 		 * API name: {@code collection_time_in_millis}
 		 */
 		public final Builder collectionTimeInMillis(@Nullable Long value) {

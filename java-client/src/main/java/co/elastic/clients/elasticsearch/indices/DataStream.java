@@ -69,7 +69,7 @@ public class DataStream implements JsonpSerializable {
 	private final List<DataStreamIndex> indices;
 
 	@Nullable
-	private final DataLifecycleWithRollover lifecycle;
+	private final DataStreamLifecycleWithRollover lifecycle;
 
 	private final String name;
 
@@ -183,7 +183,7 @@ public class DataStream implements JsonpSerializable {
 	 * API name: {@code lifecycle}
 	 */
 	@Nullable
-	public final DataLifecycleWithRollover lifecycle() {
+	public final DataStreamLifecycleWithRollover lifecycle() {
 		return this.lifecycle;
 	}
 
@@ -354,7 +354,7 @@ public class DataStream implements JsonpSerializable {
 		private List<DataStreamIndex> indices;
 
 		@Nullable
-		private DataLifecycleWithRollover lifecycle;
+		private DataStreamLifecycleWithRollover lifecycle;
 
 		private String name;
 
@@ -492,7 +492,7 @@ public class DataStream implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(@Nullable DataLifecycleWithRollover value) {
+		public final Builder lifecycle(@Nullable DataStreamLifecycleWithRollover value) {
 			this.lifecycle = value;
 			return this;
 		}
@@ -504,8 +504,8 @@ public class DataStream implements JsonpSerializable {
 		 * API name: {@code lifecycle}
 		 */
 		public final Builder lifecycle(
-				Function<DataLifecycleWithRollover.Builder, ObjectBuilder<DataLifecycleWithRollover>> fn) {
-			return this.lifecycle(fn.apply(new DataLifecycleWithRollover.Builder()).build());
+				Function<DataStreamLifecycleWithRollover.Builder, ObjectBuilder<DataStreamLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataStreamLifecycleWithRollover.Builder()).build());
 		}
 
 		/**
@@ -620,7 +620,7 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(DataStreamIndex._DESERIALIZER), "indices");
-		op.add(Builder::lifecycle, DataLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::replicated, JsonpDeserializer.booleanDeserializer(), "replicated");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");

@@ -85,20 +85,28 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to get the date from.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code formats}
+	 * Required - An array of the expected date formats. Can be a java time pattern
+	 * or one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+	 * <p>
+	 * API name: {@code formats}
 	 */
 	public final List<String> formats() {
 		return this.formats;
 	}
 
 	/**
+	 * The locale to use when parsing the date, relevant when parsing month names or
+	 * week days. Supports template snippets.
+	 * <p>
 	 * API name: {@code locale}
 	 */
 	@Nullable
@@ -107,6 +115,8 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The field that will hold the parsed date.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -115,6 +125,8 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The timezone to use when parsing the date. Supports template snippets.
+	 * <p>
 	 * API name: {@code timezone}
 	 */
 	@Nullable
@@ -177,7 +189,9 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		private String timezone;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to get the date from.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -185,7 +199,10 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code formats}
+		 * Required - An array of the expected date formats. Can be a java time pattern
+		 * or one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+		 * <p>
+		 * API name: {@code formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>formats</code>.
 		 */
@@ -195,7 +212,10 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code formats}
+		 * Required - An array of the expected date formats. Can be a java time pattern
+		 * or one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+		 * <p>
+		 * API name: {@code formats}
 		 * <p>
 		 * Adds one or more values to <code>formats</code>.
 		 */
@@ -205,6 +225,9 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The locale to use when parsing the date, relevant when parsing month names or
+		 * week days. Supports template snippets.
+		 * <p>
 		 * API name: {@code locale}
 		 */
 		public final Builder locale(@Nullable String value) {
@@ -213,6 +236,8 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field that will hold the parsed date.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {
@@ -221,6 +246,8 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The timezone to use when parsing the date. Supports template snippets.
+		 * <p>
 		 * API name: {@code timezone}
 		 */
 		public final Builder timezone(@Nullable String value) {

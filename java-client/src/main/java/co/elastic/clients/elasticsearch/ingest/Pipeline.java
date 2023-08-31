@@ -76,6 +76,8 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
+	 * Description of the ingest pipeline.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -84,6 +86,8 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
+	 * Processors to run immediately after a processor failure.
+	 * <p>
 	 * API name: {@code on_failure}
 	 */
 	public final List<Processor> onFailure() {
@@ -91,6 +95,9 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
+	 * Processors used to perform transformations on documents before indexing.
+	 * Processors run sequentially in the order specified.
+	 * <p>
 	 * API name: {@code processors}
 	 */
 	public final List<Processor> processors() {
@@ -98,6 +105,8 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
+	 * Version number used by external systems to track ingest pipelines.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -174,6 +183,8 @@ public class Pipeline implements JsonpSerializable {
 		private Long version;
 
 		/**
+		 * Description of the ingest pipeline.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public final Builder description(@Nullable String value) {
@@ -182,6 +193,8 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Processors to run immediately after a processor failure.
+		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
@@ -192,6 +205,8 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Processors to run immediately after a processor failure.
+		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds one or more values to <code>onFailure</code>.
@@ -202,6 +217,8 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Processors to run immediately after a processor failure.
+		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds a value to <code>onFailure</code> using a builder lambda.
@@ -211,6 +228,9 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Processors used to perform transformations on documents before indexing.
+		 * Processors run sequentially in the order specified.
+		 * <p>
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
@@ -221,6 +241,9 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Processors used to perform transformations on documents before indexing.
+		 * Processors run sequentially in the order specified.
+		 * <p>
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds one or more values to <code>processors</code>.
@@ -231,6 +254,9 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Processors used to perform transformations on documents before indexing.
+		 * Processors run sequentially in the order specified.
+		 * <p>
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds a value to <code>processors</code> using a builder lambda.
@@ -240,6 +266,8 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
+		 * Version number used by external systems to track ingest pipelines.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public final Builder version(@Nullable Long value) {

@@ -64,6 +64,9 @@ public class HdrMethod implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies the resolution of values for the histogram in number of significant
+	 * digits.
+	 * <p>
 	 * API name: {@code number_of_significant_value_digits}
 	 */
 	@Nullable
@@ -106,6 +109,9 @@ public class HdrMethod implements JsonpSerializable {
 		private Integer numberOfSignificantValueDigits;
 
 		/**
+		 * Specifies the resolution of values for the histogram in number of significant
+		 * digits.
+		 * <p>
 		 * API name: {@code number_of_significant_value_digits}
 		 */
 		public final Builder numberOfSignificantValueDigits(@Nullable Integer value) {

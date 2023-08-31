@@ -76,6 +76,8 @@ public class ScriptCache implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of times the script cache has evicted old data.
+	 * <p>
 	 * API name: {@code cache_evictions}
 	 */
 	@Nullable
@@ -84,6 +86,9 @@ public class ScriptCache implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of times the script compilation circuit breaker has limited
+	 * inline script compilations.
+	 * <p>
 	 * API name: {@code compilation_limit_triggered}
 	 */
 	@Nullable
@@ -92,6 +97,8 @@ public class ScriptCache implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of inline script compilations performed by the node.
+	 * <p>
 	 * API name: {@code compilations}
 	 */
 	@Nullable
@@ -166,6 +173,8 @@ public class ScriptCache implements JsonpSerializable {
 		private String context;
 
 		/**
+		 * Total number of times the script cache has evicted old data.
+		 * <p>
 		 * API name: {@code cache_evictions}
 		 */
 		public final Builder cacheEvictions(@Nullable Long value) {
@@ -174,6 +183,9 @@ public class ScriptCache implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of times the script compilation circuit breaker has limited
+		 * inline script compilations.
+		 * <p>
 		 * API name: {@code compilation_limit_triggered}
 		 */
 		public final Builder compilationLimitTriggered(@Nullable Long value) {
@@ -182,6 +194,8 @@ public class ScriptCache implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of inline script compilations performed by the node.
+		 * <p>
 		 * API name: {@code compilations}
 		 */
 		public final Builder compilations(@Nullable Long value) {

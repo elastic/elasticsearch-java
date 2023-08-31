@@ -68,6 +68,9 @@ public class CpuAcct implements JsonpSerializable {
 	}
 
 	/**
+	 * The <code>cpuacct</code> control group to which the Elasticsearch process
+	 * belongs.
+	 * <p>
 	 * API name: {@code control_group}
 	 */
 	@Nullable
@@ -76,6 +79,9 @@ public class CpuAcct implements JsonpSerializable {
 	}
 
 	/**
+	 * The total CPU time, in nanoseconds, consumed by all tasks in the same cgroup
+	 * as the Elasticsearch process.
+	 * <p>
 	 * API name: {@code usage_nanos}
 	 */
 	@Nullable
@@ -126,6 +132,9 @@ public class CpuAcct implements JsonpSerializable {
 		private Long usageNanos;
 
 		/**
+		 * The <code>cpuacct</code> control group to which the Elasticsearch process
+		 * belongs.
+		 * <p>
 		 * API name: {@code control_group}
 		 */
 		public final Builder controlGroup(@Nullable String value) {
@@ -134,6 +143,9 @@ public class CpuAcct implements JsonpSerializable {
 		}
 
 		/**
+		 * The total CPU time, in nanoseconds, consumed by all tasks in the same cgroup
+		 * as the Elasticsearch process.
+		 * <p>
 		 * API name: {@code usage_nanos}
 		 */
 		public final Builder usageNanos(@Nullable Long value) {

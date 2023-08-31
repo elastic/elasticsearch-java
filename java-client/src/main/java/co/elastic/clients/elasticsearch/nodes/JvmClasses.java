@@ -71,6 +71,8 @@ public class JvmClasses implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of classes currently loaded by JVM.
+	 * <p>
 	 * API name: {@code current_loaded_count}
 	 */
 	@Nullable
@@ -79,6 +81,8 @@ public class JvmClasses implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of classes loaded since the JVM started.
+	 * <p>
 	 * API name: {@code total_loaded_count}
 	 */
 	@Nullable
@@ -87,6 +91,8 @@ public class JvmClasses implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of classes unloaded since the JVM started.
+	 * <p>
 	 * API name: {@code total_unloaded_count}
 	 */
 	@Nullable
@@ -145,6 +151,8 @@ public class JvmClasses implements JsonpSerializable {
 		private Long totalUnloadedCount;
 
 		/**
+		 * Number of classes currently loaded by JVM.
+		 * <p>
 		 * API name: {@code current_loaded_count}
 		 */
 		public final Builder currentLoadedCount(@Nullable Long value) {
@@ -153,6 +161,8 @@ public class JvmClasses implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of classes loaded since the JVM started.
+		 * <p>
 		 * API name: {@code total_loaded_count}
 		 */
 		public final Builder totalLoadedCount(@Nullable Long value) {
@@ -161,6 +171,8 @@ public class JvmClasses implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of classes unloaded since the JVM started.
+		 * <p>
 		 * API name: {@code total_unloaded_count}
 		 */
 		public final Builder totalUnloadedCount(@Nullable Long value) {

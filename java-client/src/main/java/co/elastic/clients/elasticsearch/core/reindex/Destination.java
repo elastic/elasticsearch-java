@@ -81,13 +81,20 @@ public class Destination implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * Required - The name of the data stream, index, or index alias you are copying
+	 * to.
+	 * <p>
+	 * API name: {@code index}
 	 */
 	public final String index() {
 		return this.index;
 	}
 
 	/**
+	 * Set to <code>create</code> to only index documents that do not already exist.
+	 * Important: To reindex to a data stream destination, this argument must be
+	 * <code>create</code>.
+	 * <p>
 	 * API name: {@code op_type}
 	 */
 	@Nullable
@@ -96,6 +103,8 @@ public class Destination implements JsonpSerializable {
 	}
 
 	/**
+	 * The name of the pipeline to use.
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -104,6 +113,10 @@ public class Destination implements JsonpSerializable {
 	}
 
 	/**
+	 * By default, a document's routing is preserved unless it’s changed by the
+	 * script. Set to <code>discard</code> to set routing to <code>null</code>, or
+	 * <code>=value</code> to route using the specified <code>value</code>.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -112,6 +125,8 @@ public class Destination implements JsonpSerializable {
 	}
 
 	/**
+	 * The versioning to use for the indexing operation.
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -181,7 +196,10 @@ public class Destination implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - The name of the data stream, index, or index alias you are copying
+		 * to.
+		 * <p>
+		 * API name: {@code index}
 		 */
 		public final Builder index(String value) {
 			this.index = value;
@@ -189,6 +207,10 @@ public class Destination implements JsonpSerializable {
 		}
 
 		/**
+		 * Set to <code>create</code> to only index documents that do not already exist.
+		 * Important: To reindex to a data stream destination, this argument must be
+		 * <code>create</code>.
+		 * <p>
 		 * API name: {@code op_type}
 		 */
 		public final Builder opType(@Nullable OpType value) {
@@ -197,6 +219,8 @@ public class Destination implements JsonpSerializable {
 		}
 
 		/**
+		 * The name of the pipeline to use.
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public final Builder pipeline(@Nullable String value) {
@@ -205,6 +229,10 @@ public class Destination implements JsonpSerializable {
 		}
 
 		/**
+		 * By default, a document's routing is preserved unless it’s changed by the
+		 * script. Set to <code>discard</code> to set routing to <code>null</code>, or
+		 * <code>=value</code> to route using the specified <code>value</code>.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -213,6 +241,8 @@ public class Destination implements JsonpSerializable {
 		}
 
 		/**
+		 * The versioning to use for the indexing operation.
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public final Builder versionType(@Nullable VersionType value) {

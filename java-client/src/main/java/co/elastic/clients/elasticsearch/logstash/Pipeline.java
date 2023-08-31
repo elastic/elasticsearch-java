@@ -79,42 +79,58 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code description}
+	 * Required - Description of the pipeline. This description is not used by
+	 * Elasticsearch or Logstash.
+	 * <p>
+	 * API name: {@code description}
 	 */
 	public final String description() {
 		return this.description;
 	}
 
 	/**
-	 * Required - API name: {@code last_modified}
+	 * Required - Date the pipeline was last updated. Must be in the
+	 * <code>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</code> strict_date_time format.
+	 * <p>
+	 * API name: {@code last_modified}
 	 */
 	public final DateTime lastModified() {
 		return this.lastModified;
 	}
 
 	/**
-	 * Required - API name: {@code pipeline_metadata}
+	 * Required - Optional metadata about the pipeline. May have any contents. This
+	 * metadata is not generated or used by Elasticsearch or Logstash.
+	 * <p>
+	 * API name: {@code pipeline_metadata}
 	 */
 	public final PipelineMetadata pipelineMetadata() {
 		return this.pipelineMetadata;
 	}
 
 	/**
-	 * Required - API name: {@code username}
+	 * Required - User who last updated the pipeline.
+	 * <p>
+	 * API name: {@code username}
 	 */
 	public final String username() {
 		return this.username;
 	}
 
 	/**
-	 * Required - API name: {@code pipeline}
+	 * Required - Configuration for the pipeline.
+	 * <p>
+	 * API name: {@code pipeline}
 	 */
 	public final String pipeline() {
 		return this.pipeline;
 	}
 
 	/**
-	 * Required - API name: {@code pipeline_settings}
+	 * Required - Settings for the pipeline. Supports only flat keys in dot
+	 * notation.
+	 * <p>
+	 * API name: {@code pipeline_settings}
 	 */
 	public final PipelineSettings pipelineSettings() {
 		return this.pipelineSettings;
@@ -175,7 +191,10 @@ public class Pipeline implements JsonpSerializable {
 		private PipelineSettings pipelineSettings;
 
 		/**
-		 * Required - API name: {@code description}
+		 * Required - Description of the pipeline. This description is not used by
+		 * Elasticsearch or Logstash.
+		 * <p>
+		 * API name: {@code description}
 		 */
 		public final Builder description(String value) {
 			this.description = value;
@@ -183,7 +202,10 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code last_modified}
+		 * Required - Date the pipeline was last updated. Must be in the
+		 * <code>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</code> strict_date_time format.
+		 * <p>
+		 * API name: {@code last_modified}
 		 */
 		public final Builder lastModified(DateTime value) {
 			this.lastModified = value;
@@ -191,7 +213,10 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline_metadata}
+		 * Required - Optional metadata about the pipeline. May have any contents. This
+		 * metadata is not generated or used by Elasticsearch or Logstash.
+		 * <p>
+		 * API name: {@code pipeline_metadata}
 		 */
 		public final Builder pipelineMetadata(PipelineMetadata value) {
 			this.pipelineMetadata = value;
@@ -199,14 +224,19 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline_metadata}
+		 * Required - Optional metadata about the pipeline. May have any contents. This
+		 * metadata is not generated or used by Elasticsearch or Logstash.
+		 * <p>
+		 * API name: {@code pipeline_metadata}
 		 */
 		public final Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
 			return this.pipelineMetadata(fn.apply(new PipelineMetadata.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code username}
+		 * Required - User who last updated the pipeline.
+		 * <p>
+		 * API name: {@code username}
 		 */
 		public final Builder username(String value) {
 			this.username = value;
@@ -214,7 +244,9 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline}
+		 * Required - Configuration for the pipeline.
+		 * <p>
+		 * API name: {@code pipeline}
 		 */
 		public final Builder pipeline(String value) {
 			this.pipeline = value;
@@ -222,7 +254,10 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline_settings}
+		 * Required - Settings for the pipeline. Supports only flat keys in dot
+		 * notation.
+		 * <p>
+		 * API name: {@code pipeline_settings}
 		 */
 		public final Builder pipelineSettings(PipelineSettings value) {
 			this.pipelineSettings = value;
@@ -230,7 +265,10 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipeline_settings}
+		 * Required - Settings for the pipeline. Supports only flat keys in dot
+		 * notation.
+		 * <p>
+		 * API name: {@code pipeline_settings}
 		 */
 		public final Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
 			return this.pipelineSettings(fn.apply(new PipelineSettings.Builder()).build());

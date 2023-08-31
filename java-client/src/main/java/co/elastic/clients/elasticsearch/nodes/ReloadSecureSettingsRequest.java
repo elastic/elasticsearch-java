@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.reload_secure_settings.Request
 
 /**
- * Reloads secure settings.
+ * Reloads the keystore on nodes in the cluster.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#nodes.reload_secure_settings.Request">API
@@ -80,8 +80,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * A comma-separated list of node IDs to span the reload/reinit call. Should
-	 * stay empty because reloading usually involves all cluster nodes.
+	 * The names of particular nodes in the cluster to target.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -90,6 +89,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * The password for the Elasticsearch keystore.
+	 * <p>
 	 * API name: {@code secure_settings_password}
 	 */
 	@Nullable
@@ -98,7 +99,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -145,8 +147,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		private Time timeout;
 
 		/**
-		 * A comma-separated list of node IDs to span the reload/reinit call. Should
-		 * stay empty because reloading usually involves all cluster nodes.
+		 * The names of particular nodes in the cluster to target.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -158,8 +159,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * A comma-separated list of node IDs to span the reload/reinit call. Should
-		 * stay empty because reloading usually involves all cluster nodes.
+		 * The names of particular nodes in the cluster to target.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -171,6 +171,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * The password for the Elasticsearch keystore.
+		 * <p>
 		 * API name: {@code secure_settings_password}
 		 */
 		public final Builder secureSettingsPassword(@Nullable String value) {
@@ -179,7 +181,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -189,7 +192,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

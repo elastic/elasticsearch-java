@@ -126,6 +126,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The maximum edit distance candidate suggestions can have in order to be
+	 * considered as a suggestion. Can only be <code>1</code> or <code>2</code>.
+	 * <p>
 	 * API name: {@code max_edits}
 	 */
 	@Nullable
@@ -134,6 +137,10 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * A factor that is used to multiply with the shard_size in order to inspect
+	 * more candidate spelling corrections on the shard level. Can improve accuracy
+	 * at the cost of performance.
+	 * <p>
 	 * API name: {@code max_inspections}
 	 */
 	@Nullable
@@ -142,6 +149,12 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The maximum threshold in number of documents in which a suggest text token
+	 * can exist in order to be included. Can be a relative percentage number (for
+	 * example <code>0.4</code>) or an absolute number to represent document
+	 * frequencies. If a value higher than 1 is specified, then fractional can not
+	 * be specified.
+	 * <p>
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
@@ -150,6 +163,12 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The minimal threshold in number of documents a suggestion should appear in.
+	 * This can improve quality by only suggesting high frequency terms. Can be
+	 * specified as an absolute number or as a relative percentage of number of
+	 * documents. If a value higher than 1 is specified, then the number cannot be
+	 * fractional.
+	 * <p>
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
@@ -158,6 +177,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The minimum length a suggest text term must have in order to be included.
+	 * <p>
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
@@ -166,6 +187,10 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The number of minimal prefix characters that must match in order be a
+	 * candidate for suggestions. Increasing this number improves spellcheck
+	 * performance.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -174,6 +199,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * Sets the maximum number of suggestions to be retrieved from each individual
+	 * shard.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -182,6 +210,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * Defines how suggestions should be sorted per suggest text term.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
@@ -190,6 +220,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The string distance implementation to use for comparing how similar suggested
+	 * terms are.
+	 * <p>
 	 * API name: {@code string_distance}
 	 */
 	@Nullable
@@ -198,6 +231,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * Controls what suggestions are included or controls for what suggest text
+	 * terms, suggestions should be suggested.
+	 * <p>
 	 * API name: {@code suggest_mode}
 	 */
 	@Nullable
@@ -206,6 +242,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	}
 
 	/**
+	 * The suggest text. Needs to be set globally or per suggestion.
+	 * <p>
 	 * API name: {@code text}
 	 */
 	@Nullable
@@ -328,6 +366,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The maximum edit distance candidate suggestions can have in order to be
+		 * considered as a suggestion. Can only be <code>1</code> or <code>2</code>.
+		 * <p>
 		 * API name: {@code max_edits}
 		 */
 		public final Builder maxEdits(@Nullable Integer value) {
@@ -336,6 +377,10 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * A factor that is used to multiply with the shard_size in order to inspect
+		 * more candidate spelling corrections on the shard level. Can improve accuracy
+		 * at the cost of performance.
+		 * <p>
 		 * API name: {@code max_inspections}
 		 */
 		public final Builder maxInspections(@Nullable Integer value) {
@@ -344,6 +389,12 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The maximum threshold in number of documents in which a suggest text token
+		 * can exist in order to be included. Can be a relative percentage number (for
+		 * example <code>0.4</code>) or an absolute number to represent document
+		 * frequencies. If a value higher than 1 is specified, then fractional can not
+		 * be specified.
+		 * <p>
 		 * API name: {@code max_term_freq}
 		 */
 		public final Builder maxTermFreq(@Nullable Float value) {
@@ -352,6 +403,12 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The minimal threshold in number of documents a suggestion should appear in.
+		 * This can improve quality by only suggesting high frequency terms. Can be
+		 * specified as an absolute number or as a relative percentage of number of
+		 * documents. If a value higher than 1 is specified, then the number cannot be
+		 * fractional.
+		 * <p>
 		 * API name: {@code min_doc_freq}
 		 */
 		public final Builder minDocFreq(@Nullable Float value) {
@@ -360,6 +417,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The minimum length a suggest text term must have in order to be included.
+		 * <p>
 		 * API name: {@code min_word_length}
 		 */
 		public final Builder minWordLength(@Nullable Integer value) {
@@ -368,6 +427,10 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The number of minimal prefix characters that must match in order be a
+		 * candidate for suggestions. Increasing this number improves spellcheck
+		 * performance.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -376,6 +439,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * Sets the maximum number of suggestions to be retrieved from each individual
+		 * shard.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -384,6 +450,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * Defines how suggestions should be sorted per suggest text term.
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public final Builder sort(@Nullable SuggestSort value) {
@@ -392,6 +460,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The string distance implementation to use for comparing how similar suggested
+		 * terms are.
+		 * <p>
 		 * API name: {@code string_distance}
 		 */
 		public final Builder stringDistance(@Nullable StringDistance value) {
@@ -400,6 +471,9 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * Controls what suggestions are included or controls for what suggest text
+		 * terms, suggestions should be suggested.
+		 * <p>
 		 * API name: {@code suggest_mode}
 		 */
 		public final Builder suggestMode(@Nullable SuggestMode value) {
@@ -408,6 +482,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 
 		/**
+		 * The suggest text. Needs to be set globally or per suggestion.
+		 * <p>
 		 * API name: {@code text}
 		 */
 		public final Builder text(@Nullable String value) {

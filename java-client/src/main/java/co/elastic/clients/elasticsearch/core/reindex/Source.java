@@ -95,13 +95,18 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * Required - The name of the data stream, index, or alias you are copying from.
+	 * Accepts a comma-separated list to reindex from multiple sources.
+	 * <p>
+	 * API name: {@code index}
 	 */
 	public final List<String> index() {
 		return this.index;
 	}
 
 	/**
+	 * Specifies the documents to reindex using the Query DSL.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -110,6 +115,8 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
+	 * A remote instance of Elasticsearch that you want to index from.
+	 * <p>
 	 * API name: {@code remote}
 	 */
 	@Nullable
@@ -118,6 +125,10 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents to index per batch. Use when indexing from remote to
+	 * ensure that the batches fit within the on-heap buffer, which defaults to a
+	 * maximum size of 100 MB.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -126,6 +137,9 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
+	 * Slice the reindex request manually using the provided slice ID and total
+	 * number of slices.
+	 * <p>
 	 * API name: {@code slice}
 	 */
 	@Nullable
@@ -141,6 +155,9 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code> reindexes all source fields. Set to a list to reindex
+	 * select fields.
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	public final List<String> sourceFields() {
@@ -265,7 +282,10 @@ public class Source implements JsonpSerializable {
 		private Map<String, RuntimeField> runtimeMappings;
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - The name of the data stream, index, or alias you are copying from.
+		 * Accepts a comma-separated list to reindex from multiple sources.
+		 * <p>
+		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
@@ -275,7 +295,10 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - The name of the data stream, index, or alias you are copying from.
+		 * Accepts a comma-separated list to reindex from multiple sources.
+		 * <p>
+		 * API name: {@code index}
 		 * <p>
 		 * Adds one or more values to <code>index</code>.
 		 */
@@ -285,6 +308,8 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies the documents to reindex using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -293,6 +318,8 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies the documents to reindex using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -300,6 +327,8 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * A remote instance of Elasticsearch that you want to index from.
+		 * <p>
 		 * API name: {@code remote}
 		 */
 		public final Builder remote(@Nullable RemoteSource value) {
@@ -308,6 +337,8 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * A remote instance of Elasticsearch that you want to index from.
+		 * <p>
 		 * API name: {@code remote}
 		 */
 		public final Builder remote(Function<RemoteSource.Builder, ObjectBuilder<RemoteSource>> fn) {
@@ -315,6 +346,10 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents to index per batch. Use when indexing from remote to
+		 * ensure that the batches fit within the on-heap buffer, which defaults to a
+		 * maximum size of 100 MB.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -323,6 +358,9 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * Slice the reindex request manually using the provided slice ID and total
+		 * number of slices.
+		 * <p>
 		 * API name: {@code slice}
 		 */
 		public final Builder slice(@Nullable SlicedScroll value) {
@@ -331,6 +369,9 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * Slice the reindex request manually using the provided slice ID and total
+		 * number of slices.
+		 * <p>
 		 * API name: {@code slice}
 		 */
 		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
@@ -367,6 +408,9 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code> reindexes all source fields. Set to a list to reindex
+		 * select fields.
+		 * <p>
 		 * API name: {@code _source}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceFields</code>.
@@ -377,6 +421,9 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code> reindexes all source fields. Set to a list to reindex
+		 * select fields.
+		 * <p>
 		 * API name: {@code _source}
 		 * <p>
 		 * Adds one or more values to <code>sourceFields</code>.

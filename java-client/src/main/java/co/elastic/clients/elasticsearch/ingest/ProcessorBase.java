@@ -77,6 +77,9 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Description of the processor. Useful for describing the purpose of the
+	 * processor or its configuration.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -85,6 +88,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Conditionally execute the processor.
+	 * <p>
 	 * API name: {@code if}
 	 */
 	@Nullable
@@ -93,6 +98,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Ignore failures for the processor.
+	 * <p>
 	 * API name: {@code ignore_failure}
 	 */
 	@Nullable
@@ -101,6 +108,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Handle failures for the processor.
+	 * <p>
 	 * API name: {@code on_failure}
 	 */
 	public final List<Processor> onFailure() {
@@ -108,6 +117,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Identifier for the processor. Useful for debugging and metrics.
+	 * <p>
 	 * API name: {@code tag}
 	 */
 	@Nullable
@@ -183,6 +194,9 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		private String tag;
 
 		/**
+		 * Description of the processor. Useful for describing the purpose of the
+		 * processor or its configuration.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public final BuilderT description(@Nullable String value) {
@@ -191,6 +205,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Conditionally execute the processor.
+		 * <p>
 		 * API name: {@code if}
 		 */
 		public final BuilderT if_(@Nullable String value) {
@@ -199,6 +215,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Ignore failures for the processor.
+		 * <p>
 		 * API name: {@code ignore_failure}
 		 */
 		public final BuilderT ignoreFailure(@Nullable Boolean value) {
@@ -207,6 +225,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Handle failures for the processor.
+		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
@@ -217,6 +237,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Handle failures for the processor.
+		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds one or more values to <code>onFailure</code>.
@@ -227,6 +249,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Handle failures for the processor.
+		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds a value to <code>onFailure</code> using a builder lambda.
@@ -236,6 +260,8 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Identifier for the processor. Useful for debugging and metrics.
+		 * <p>
 		 * API name: {@code tag}
 		 */
 		public final BuilderT tag(@Nullable String value) {

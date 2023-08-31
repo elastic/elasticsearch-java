@@ -74,6 +74,8 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 	}
 
 	/**
+	 * Parameters to use if the query is templated.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -81,6 +83,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 	}
 
 	/**
+	 * Returns all suggestions with an extra <code>collate_match</code> option
+	 * indicating whether the generated phrase matched any document.
+	 * <p>
 	 * API name: {@code prune}
 	 */
 	@Nullable
@@ -89,7 +94,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - A collate query that is run once for every suggestion.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final PhraseSuggestCollateQuery query() {
 		return this.query;
@@ -150,6 +157,8 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		private PhraseSuggestCollateQuery query;
 
 		/**
+		 * Parameters to use if the query is templated.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -160,6 +169,8 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		}
 
 		/**
+		 * Parameters to use if the query is templated.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.
@@ -170,6 +181,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		}
 
 		/**
+		 * Returns all suggestions with an extra <code>collate_match</code> option
+		 * indicating whether the generated phrase matched any document.
+		 * <p>
 		 * API name: {@code prune}
 		 */
 		public final Builder prune(@Nullable Boolean value) {
@@ -178,7 +192,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - A collate query that is run once for every suggestion.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(PhraseSuggestCollateQuery value) {
 			this.query = value;
@@ -186,7 +202,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - A collate query that is run once for every suggestion.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(
 				Function<PhraseSuggestCollateQuery.Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {

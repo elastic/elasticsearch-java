@@ -147,6 +147,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Determines how child aggregations should be calculated: breadth-first or
+	 * depth-first.
+	 * <p>
 	 * API name: {@code collect_mode}
 	 */
 	@Nullable
@@ -155,6 +158,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Values to exclude. Accepts regular expressions and partitions.
+	 * <p>
 	 * API name: {@code exclude}
 	 */
 	@Nullable
@@ -163,6 +168,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Determines whether the aggregation will use field values directly or global
+	 * ordinals.
+	 * <p>
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
@@ -171,6 +179,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * The field from which to return terms.
+	 * <p>
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -179,6 +189,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Values to include. Accepts regular expressions and partitions.
+	 * <p>
 	 * API name: {@code include}
 	 */
 	@Nullable
@@ -187,6 +199,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Only return values that are found in more than <code>min_doc_count</code>
+	 * hits.
+	 * <p>
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
@@ -195,6 +210,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * The value to apply to documents that do not have a value. By default,
+	 * documents without a value are ignored.
+	 * <p>
 	 * API name: {@code missing}
 	 */
 	@Nullable
@@ -219,6 +237,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Coerced unmapped fields into the specified type.
+	 * <p>
 	 * API name: {@code value_type}
 	 */
 	@Nullable
@@ -227,6 +247,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Specifies the sort order of the buckets. Defaults to sorting by descending
+	 * document count.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	public final List<NamedValue<SortOrder>> order() {
@@ -242,6 +265,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * The number of candidate terms produced by each shard. By default,
+	 * <code>shard_size</code> will be automatically estimated based on the number
+	 * of shards and the <code>size</code> parameter.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -250,6 +277,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Set to <code>true</code> to return the
+	 * <code>doc_count_error_upper_bound</code>, which is an upper bound to the
+	 * error on the <code>doc_count</code> returned by each shard.
+	 * <p>
 	 * API name: {@code show_term_doc_count_error}
 	 */
 	@Nullable
@@ -258,6 +289,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * The number of buckets returned out of the overall terms list.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -422,6 +455,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private String format;
 
 		/**
+		 * Determines how child aggregations should be calculated: breadth-first or
+		 * depth-first.
+		 * <p>
 		 * API name: {@code collect_mode}
 		 */
 		public final Builder collectMode(@Nullable TermsAggregationCollectMode value) {
@@ -430,6 +466,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Values to exclude. Accepts regular expressions and partitions.
+		 * <p>
 		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(@Nullable TermsExclude value) {
@@ -438,6 +476,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Values to exclude. Accepts regular expressions and partitions.
+		 * <p>
 		 * API name: {@code exclude}
 		 */
 		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
@@ -445,6 +485,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Determines whether the aggregation will use field values directly or global
+		 * ordinals.
+		 * <p>
 		 * API name: {@code execution_hint}
 		 */
 		public final Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
@@ -453,6 +496,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The field from which to return terms.
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(@Nullable String value) {
@@ -461,6 +506,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Values to include. Accepts regular expressions and partitions.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(@Nullable TermsInclude value) {
@@ -469,6 +516,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Values to include. Accepts regular expressions and partitions.
+		 * <p>
 		 * API name: {@code include}
 		 */
 		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
@@ -476,6 +525,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Only return values that are found in more than <code>min_doc_count</code>
+		 * hits.
+		 * <p>
 		 * API name: {@code min_doc_count}
 		 */
 		public final Builder minDocCount(@Nullable Integer value) {
@@ -484,6 +536,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(@Nullable FieldValue value) {
@@ -492,6 +547,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
@@ -499,6 +557,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(String value) {
@@ -507,6 +568,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(long value) {
@@ -515,6 +579,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(double value) {
@@ -523,6 +590,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The value to apply to documents that do not have a value. By default,
+		 * documents without a value are ignored.
+		 * <p>
 		 * API name: {@code missing}
 		 */
 		public final Builder missing(boolean value) {
@@ -547,6 +617,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Coerced unmapped fields into the specified type.
+		 * <p>
 		 * API name: {@code value_type}
 		 */
 		public final Builder valueType(@Nullable String value) {
@@ -555,6 +627,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Specifies the sort order of the buckets. Defaults to sorting by descending
+		 * document count.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
@@ -565,6 +640,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Specifies the sort order of the buckets. Defaults to sorting by descending
+		 * document count.
+		 * <p>
 		 * API name: {@code order}
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
@@ -590,6 +668,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The number of candidate terms produced by each shard. By default,
+		 * <code>shard_size</code> will be automatically estimated based on the number
+		 * of shards and the <code>size</code> parameter.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -598,6 +680,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Set to <code>true</code> to return the
+		 * <code>doc_count_error_upper_bound</code>, which is an upper bound to the
+		 * error on the <code>doc_count</code> returned by each shard.
+		 * <p>
 		 * API name: {@code show_term_doc_count_error}
 		 */
 		public final Builder showTermDocCountError(@Nullable Boolean value) {
@@ -606,6 +692,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * The number of buckets returned out of the overall terms list.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {

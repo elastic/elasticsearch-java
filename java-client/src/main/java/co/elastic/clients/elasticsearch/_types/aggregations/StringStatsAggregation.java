@@ -70,6 +70,8 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 	}
 
 	/**
+	 * Shows the probability distribution for all characters.
+	 * <p>
 	 * API name: {@code show_distribution}
 	 */
 	@Nullable
@@ -101,6 +103,8 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 		private Boolean showDistribution;
 
 		/**
+		 * Shows the probability distribution for all characters.
+		 * <p>
 		 * API name: {@code show_distribution}
 		 */
 		public final Builder showDistribution(@Nullable Boolean value) {

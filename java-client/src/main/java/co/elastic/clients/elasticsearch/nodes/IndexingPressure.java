@@ -62,6 +62,8 @@ public class IndexingPressure implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics for memory consumption from indexing load.
+	 * <p>
 	 * API name: {@code memory}
 	 */
 	@Nullable
@@ -104,6 +106,8 @@ public class IndexingPressure implements JsonpSerializable {
 		private IndexingPressureMemory memory;
 
 		/**
+		 * Contains statistics for memory consumption from indexing load.
+		 * <p>
 		 * API name: {@code memory}
 		 */
 		public final Builder memory(@Nullable IndexingPressureMemory value) {
@@ -112,6 +116,8 @@ public class IndexingPressure implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics for memory consumption from indexing load.
+		 * <p>
 		 * API name: {@code memory}
 		 */
 		public final Builder memory(

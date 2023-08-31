@@ -34,10 +34,24 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum VersionType implements JsonEnum {
+	/**
+	 * Use internal versioning that starts at 1 and increments with each update or
+	 * delete.
+	 */
 	Internal("internal"),
 
+	/**
+	 * Only index the document if the given version is strictly higher than the
+	 * version of the stored document or if there is no existing document.
+	 */
 	External("external"),
 
+	/**
+	 * Only index the document if the given version is equal or higher than the
+	 * version of the stored document or if there is no existing document. Note: the
+	 * external_gte version type is meant for special use cases and should be used
+	 * with care. If used incorrectly, it can result in loss of data.
+	 */
 	ExternalGte("external_gte"),
 
 	Force("force"),

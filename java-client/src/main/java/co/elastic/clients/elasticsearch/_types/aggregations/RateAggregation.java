@@ -73,6 +73,9 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 	}
 
 	/**
+	 * The interval used to calculate the rate. By default, the interval of the
+	 * <code>date_histogram</code> is used.
+	 * <p>
 	 * API name: {@code unit}
 	 */
 	@Nullable
@@ -81,6 +84,8 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 	}
 
 	/**
+	 * How the rate is calculated.
+	 * <p>
 	 * API name: {@code mode}
 	 */
 	@Nullable
@@ -118,6 +123,9 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 		private RateMode mode;
 
 		/**
+		 * The interval used to calculate the rate. By default, the interval of the
+		 * <code>date_histogram</code> is used.
+		 * <p>
 		 * API name: {@code unit}
 		 */
 		public final Builder unit(@Nullable CalendarInterval value) {
@@ -126,6 +134,8 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 		}
 
 		/**
+		 * How the rate is calculated.
+		 * <p>
 		 * API name: {@code mode}
 		 */
 		public final Builder mode(@Nullable RateMode value) {

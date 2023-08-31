@@ -116,6 +116,13 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Machine learning uses loss guided tree
+	 * growing, which means that the decision trees grow where the regularized loss
+	 * decreases most quickly. This parameter affects loss calculations by acting as
+	 * a multiplier of the tree depth. Higher alpha values result in shallower trees
+	 * and faster training times. By default, this value is calculated during
+	 * hyperparameter optimization. It must be greater than or equal to zero.
+	 * <p>
 	 * API name: {@code alpha}
 	 */
 	@Nullable
@@ -124,6 +131,16 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Regularization parameter to prevent
+	 * overfitting on the training data set. Multiplies an L2 regularization term
+	 * which applies to leaf weights of the individual trees in the forest. A high
+	 * lambda value causes training to favor small leaf weights. This behavior makes
+	 * the prediction function smoother at the expense of potentially not being able
+	 * to capture relevant relationships between the features and the dependent
+	 * variable. A small lambda value results in large individual trees and slower
+	 * training. By default, this value is calculated during hyperparameter
+	 * optimization. It must be a nonnegative value.
+	 * <p>
 	 * API name: {@code lambda}
 	 */
 	@Nullable
@@ -132,6 +149,13 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Regularization parameter to prevent
+	 * overfitting on the training data set. Multiplies a linear penalty associated
+	 * with the size of individual trees in the forest. A high gamma value causes
+	 * training to prefer small trees. A small gamma value results in larger
+	 * individual trees and slower training. By default, this value is calculated
+	 * during hyperparameter optimization. It must be a nonnegative value.
+	 * <p>
 	 * API name: {@code gamma}
 	 */
 	@Nullable
@@ -140,6 +164,12 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. The shrinkage applied to the weights. Smaller
+	 * values result in larger forests which have a better generalization error.
+	 * However, larger forests cause slower training. By default, this value is
+	 * calculated during hyperparameter optimization. It must be a value between
+	 * <code>0.001</code> and <code>1</code>.
+	 * <p>
 	 * API name: {@code eta}
 	 */
 	@Nullable
@@ -148,6 +178,12 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Specifies the rate at which <code>eta</code>
+	 * increases for each new tree that is added to the forest. For example, a rate
+	 * of 1.05 increases <code>eta</code> by 5% for each extra tree. By default,
+	 * this value is calculated during hyperparameter optimization. It must be
+	 * between <code>0.5</code> and <code>2</code>.
+	 * <p>
 	 * API name: {@code eta_growth_rate_per_tree}
 	 */
 	@Nullable
@@ -156,6 +192,10 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Defines the fraction of features that will be
+	 * used when selecting a random bag for each candidate split. By default, this
+	 * value is calculated during hyperparameter optimization.
+	 * <p>
 	 * API name: {@code feature_bag_fraction}
 	 */
 	@Nullable
@@ -164,6 +204,14 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Controls the fraction of data that is used to
+	 * compute the derivatives of the loss function for tree training. A small value
+	 * results in the use of a small fraction of the data. If this value is set to
+	 * be less than 1, accuracy typically improves. However, too small a value may
+	 * result in poor convergence for the ensemble and so require more trees. By
+	 * default, this value is calculated during hyperparameter optimization. It must
+	 * be greater than zero and less than or equal to 1.
+	 * <p>
 	 * API name: {@code downsample_factor}
 	 */
 	@Nullable
@@ -172,6 +220,11 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * If the algorithm fails to determine a non-trivial tree (more than a single
+	 * leaf), this parameter determines how many of such consecutive failures are
+	 * tolerated. Once the number of attempts exceeds the threshold, the forest
+	 * training stops.
+	 * <p>
 	 * API name: {@code max_attempts_to_add_tree}
 	 */
 	@Nullable
@@ -180,6 +233,13 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. A multiplier responsible for determining the
+	 * maximum number of hyperparameter optimization steps in the Bayesian
+	 * optimization procedure. The maximum number of steps is determined based on
+	 * the number of undefined hyperparameters times the maximum optimization rounds
+	 * per hyperparameter. By default, this value is calculated during
+	 * hyperparameter optimization.
+	 * <p>
 	 * API name: {@code max_optimization_rounds_per_hyperparameter}
 	 */
 	@Nullable
@@ -188,6 +248,10 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Defines the maximum number of decision trees
+	 * in the forest. The maximum value is 2000. By default, this value is
+	 * calculated during hyperparameter optimization.
+	 * <p>
 	 * API name: {@code max_trees}
 	 */
 	@Nullable
@@ -196,6 +260,8 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum number of folds for the cross-validation procedure.
+	 * <p>
 	 * API name: {@code num_folds}
 	 */
 	@Nullable
@@ -204,6 +270,9 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Determines the maximum number of splits for every feature that can occur in a
+	 * decision tree when the tree is trained.
+	 * <p>
 	 * API name: {@code num_splits_per_feature}
 	 */
 	@Nullable
@@ -212,6 +281,14 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. Machine learning uses loss guided tree
+	 * growing, which means that the decision trees grow where the regularized loss
+	 * decreases most quickly. This soft limit combines with the
+	 * <code>soft_tree_depth_tolerance</code> to penalize trees that exceed the
+	 * specified depth; the regularized loss increases quickly beyond this depth. By
+	 * default, this value is calculated during hyperparameter optimization. It must
+	 * be greater than or equal to 0.
+	 * <p>
 	 * API name: {@code soft_tree_depth_limit}
 	 */
 	@Nullable
@@ -220,6 +297,11 @@ public class Hyperparameters implements JsonpSerializable {
 	}
 
 	/**
+	 * Advanced configuration option. This option controls how quickly the
+	 * regularized loss increases when the tree depth exceeds
+	 * <code>soft_tree_depth_limit</code>. By default, this value is calculated
+	 * during hyperparameter optimization. It must be greater than or equal to 0.01.
+	 * <p>
 	 * API name: {@code soft_tree_depth_tolerance}
 	 */
 	@Nullable
@@ -366,6 +448,13 @@ public class Hyperparameters implements JsonpSerializable {
 		private Double softTreeDepthTolerance;
 
 		/**
+		 * Advanced configuration option. Machine learning uses loss guided tree
+		 * growing, which means that the decision trees grow where the regularized loss
+		 * decreases most quickly. This parameter affects loss calculations by acting as
+		 * a multiplier of the tree depth. Higher alpha values result in shallower trees
+		 * and faster training times. By default, this value is calculated during
+		 * hyperparameter optimization. It must be greater than or equal to zero.
+		 * <p>
 		 * API name: {@code alpha}
 		 */
 		public final Builder alpha(@Nullable Double value) {
@@ -374,6 +463,16 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Regularization parameter to prevent
+		 * overfitting on the training data set. Multiplies an L2 regularization term
+		 * which applies to leaf weights of the individual trees in the forest. A high
+		 * lambda value causes training to favor small leaf weights. This behavior makes
+		 * the prediction function smoother at the expense of potentially not being able
+		 * to capture relevant relationships between the features and the dependent
+		 * variable. A small lambda value results in large individual trees and slower
+		 * training. By default, this value is calculated during hyperparameter
+		 * optimization. It must be a nonnegative value.
+		 * <p>
 		 * API name: {@code lambda}
 		 */
 		public final Builder lambda(@Nullable Double value) {
@@ -382,6 +481,13 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Regularization parameter to prevent
+		 * overfitting on the training data set. Multiplies a linear penalty associated
+		 * with the size of individual trees in the forest. A high gamma value causes
+		 * training to prefer small trees. A small gamma value results in larger
+		 * individual trees and slower training. By default, this value is calculated
+		 * during hyperparameter optimization. It must be a nonnegative value.
+		 * <p>
 		 * API name: {@code gamma}
 		 */
 		public final Builder gamma(@Nullable Double value) {
@@ -390,6 +496,12 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. The shrinkage applied to the weights. Smaller
+		 * values result in larger forests which have a better generalization error.
+		 * However, larger forests cause slower training. By default, this value is
+		 * calculated during hyperparameter optimization. It must be a value between
+		 * <code>0.001</code> and <code>1</code>.
+		 * <p>
 		 * API name: {@code eta}
 		 */
 		public final Builder eta(@Nullable Double value) {
@@ -398,6 +510,12 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Specifies the rate at which <code>eta</code>
+		 * increases for each new tree that is added to the forest. For example, a rate
+		 * of 1.05 increases <code>eta</code> by 5% for each extra tree. By default,
+		 * this value is calculated during hyperparameter optimization. It must be
+		 * between <code>0.5</code> and <code>2</code>.
+		 * <p>
 		 * API name: {@code eta_growth_rate_per_tree}
 		 */
 		public final Builder etaGrowthRatePerTree(@Nullable Double value) {
@@ -406,6 +524,10 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Defines the fraction of features that will be
+		 * used when selecting a random bag for each candidate split. By default, this
+		 * value is calculated during hyperparameter optimization.
+		 * <p>
 		 * API name: {@code feature_bag_fraction}
 		 */
 		public final Builder featureBagFraction(@Nullable Double value) {
@@ -414,6 +536,14 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Controls the fraction of data that is used to
+		 * compute the derivatives of the loss function for tree training. A small value
+		 * results in the use of a small fraction of the data. If this value is set to
+		 * be less than 1, accuracy typically improves. However, too small a value may
+		 * result in poor convergence for the ensemble and so require more trees. By
+		 * default, this value is calculated during hyperparameter optimization. It must
+		 * be greater than zero and less than or equal to 1.
+		 * <p>
 		 * API name: {@code downsample_factor}
 		 */
 		public final Builder downsampleFactor(@Nullable Double value) {
@@ -422,6 +552,11 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * If the algorithm fails to determine a non-trivial tree (more than a single
+		 * leaf), this parameter determines how many of such consecutive failures are
+		 * tolerated. Once the number of attempts exceeds the threshold, the forest
+		 * training stops.
+		 * <p>
 		 * API name: {@code max_attempts_to_add_tree}
 		 */
 		public final Builder maxAttemptsToAddTree(@Nullable Integer value) {
@@ -430,6 +565,13 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. A multiplier responsible for determining the
+		 * maximum number of hyperparameter optimization steps in the Bayesian
+		 * optimization procedure. The maximum number of steps is determined based on
+		 * the number of undefined hyperparameters times the maximum optimization rounds
+		 * per hyperparameter. By default, this value is calculated during
+		 * hyperparameter optimization.
+		 * <p>
 		 * API name: {@code max_optimization_rounds_per_hyperparameter}
 		 */
 		public final Builder maxOptimizationRoundsPerHyperparameter(@Nullable Integer value) {
@@ -438,6 +580,10 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Defines the maximum number of decision trees
+		 * in the forest. The maximum value is 2000. By default, this value is
+		 * calculated during hyperparameter optimization.
+		 * <p>
 		 * API name: {@code max_trees}
 		 */
 		public final Builder maxTrees(@Nullable Integer value) {
@@ -446,6 +592,8 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum number of folds for the cross-validation procedure.
+		 * <p>
 		 * API name: {@code num_folds}
 		 */
 		public final Builder numFolds(@Nullable Integer value) {
@@ -454,6 +602,9 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Determines the maximum number of splits for every feature that can occur in a
+		 * decision tree when the tree is trained.
+		 * <p>
 		 * API name: {@code num_splits_per_feature}
 		 */
 		public final Builder numSplitsPerFeature(@Nullable Integer value) {
@@ -462,6 +613,14 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. Machine learning uses loss guided tree
+		 * growing, which means that the decision trees grow where the regularized loss
+		 * decreases most quickly. This soft limit combines with the
+		 * <code>soft_tree_depth_tolerance</code> to penalize trees that exceed the
+		 * specified depth; the regularized loss increases quickly beyond this depth. By
+		 * default, this value is calculated during hyperparameter optimization. It must
+		 * be greater than or equal to 0.
+		 * <p>
 		 * API name: {@code soft_tree_depth_limit}
 		 */
 		public final Builder softTreeDepthLimit(@Nullable Integer value) {
@@ -470,6 +629,11 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 
 		/**
+		 * Advanced configuration option. This option controls how quickly the
+		 * regularized loss increases when the tree depth exceeds
+		 * <code>soft_tree_depth_limit</code>. By default, this value is calculated
+		 * during hyperparameter optimization. It must be greater than or equal to 0.01.
+		 * <p>
 		 * API name: {@code soft_tree_depth_tolerance}
 		 */
 		public final Builder softTreeDepthTolerance(@Nullable Double value) {

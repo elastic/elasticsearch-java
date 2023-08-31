@@ -113,9 +113,10 @@ public class DetectorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Custom rules enable you to customize the way detectors operate. For example,
-	 * a rule may dictate conditions under which results should be skipped. Kibana
-	 * refers to custom rules as job rules.
+	 * An array of custom rule objects, which enable you to customize the way
+	 * detectors operate. For example, a rule may dictate to the detector conditions
+	 * under which results should be skipped. Kibana refers to custom rules as job
+	 * rules.
 	 * <p>
 	 * API name: {@code custom_rules}
 	 */
@@ -135,8 +136,7 @@ public class DetectorRead implements JsonpSerializable {
 
 	/**
 	 * A unique identifier for the detector. This identifier is based on the order
-	 * of the detectors in the <code>analysis_config</code>, starting at zero. If
-	 * you specify a value for this property, it is ignored.
+	 * of the detectors in the <code>analysis_config</code>, starting at zero.
 	 * <p>
 	 * API name: {@code detector_index}
 	 */
@@ -146,11 +146,12 @@ public class DetectorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * If set, frequent entities are excluded from influencing the anomaly results.
-	 * Entities can be considered frequent over time or frequent in a population. If
-	 * you are working with both over and by fields, you can set
-	 * <code>exclude_frequent</code> to <code>all</code> for both fields, or to
-	 * <code>by</code> or <code>over</code> for those specific fields.
+	 * Contains one of the following values: <code>all</code>, <code>none</code>,
+	 * <code>by</code>, or <code>over</code>. If set, frequent entities are excluded
+	 * from influencing the anomaly results. Entities can be considered frequent
+	 * over time or frequent in a population. If you are working with both over and
+	 * by fields, then you can set <code>exclude_frequent</code> to all for both
+	 * fields, or to <code>by</code> or <code>over</code> for those specific fields.
 	 * <p>
 	 * API name: {@code exclude_frequent}
 	 */
@@ -161,8 +162,8 @@ public class DetectorRead implements JsonpSerializable {
 
 	/**
 	 * The field that the detector uses in the function. If you use an event rate
-	 * function such as count or rare, do not specify this field. The
-	 * <code>field_name</code> cannot contain double quotes or backslashes.
+	 * function such as <code>count</code> or <code>rare</code>, do not specify this
+	 * field.
 	 * <p>
 	 * API name: {@code field_name}
 	 */
@@ -174,7 +175,7 @@ public class DetectorRead implements JsonpSerializable {
 	/**
 	 * Required - The analysis function that is used. For example,
 	 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
-	 * <code>max</code>, or <code>sum</code>.
+	 * <code>max</code>, and <code>sum</code>.
 	 * <p>
 	 * API name: {@code function}
 	 */
@@ -336,9 +337,10 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom rules enable you to customize the way detectors operate. For example,
-		 * a rule may dictate conditions under which results should be skipped. Kibana
-		 * refers to custom rules as job rules.
+		 * An array of custom rule objects, which enable you to customize the way
+		 * detectors operate. For example, a rule may dictate to the detector conditions
+		 * under which results should be skipped. Kibana refers to custom rules as job
+		 * rules.
 		 * <p>
 		 * API name: {@code custom_rules}
 		 * <p>
@@ -350,9 +352,10 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom rules enable you to customize the way detectors operate. For example,
-		 * a rule may dictate conditions under which results should be skipped. Kibana
-		 * refers to custom rules as job rules.
+		 * An array of custom rule objects, which enable you to customize the way
+		 * detectors operate. For example, a rule may dictate to the detector conditions
+		 * under which results should be skipped. Kibana refers to custom rules as job
+		 * rules.
 		 * <p>
 		 * API name: {@code custom_rules}
 		 * <p>
@@ -364,9 +367,10 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom rules enable you to customize the way detectors operate. For example,
-		 * a rule may dictate conditions under which results should be skipped. Kibana
-		 * refers to custom rules as job rules.
+		 * An array of custom rule objects, which enable you to customize the way
+		 * detectors operate. For example, a rule may dictate to the detector conditions
+		 * under which results should be skipped. Kibana refers to custom rules as job
+		 * rules.
 		 * <p>
 		 * API name: {@code custom_rules}
 		 * <p>
@@ -388,8 +392,7 @@ public class DetectorRead implements JsonpSerializable {
 
 		/**
 		 * A unique identifier for the detector. This identifier is based on the order
-		 * of the detectors in the <code>analysis_config</code>, starting at zero. If
-		 * you specify a value for this property, it is ignored.
+		 * of the detectors in the <code>analysis_config</code>, starting at zero.
 		 * <p>
 		 * API name: {@code detector_index}
 		 */
@@ -399,11 +402,12 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * If set, frequent entities are excluded from influencing the anomaly results.
-		 * Entities can be considered frequent over time or frequent in a population. If
-		 * you are working with both over and by fields, you can set
-		 * <code>exclude_frequent</code> to <code>all</code> for both fields, or to
-		 * <code>by</code> or <code>over</code> for those specific fields.
+		 * Contains one of the following values: <code>all</code>, <code>none</code>,
+		 * <code>by</code>, or <code>over</code>. If set, frequent entities are excluded
+		 * from influencing the anomaly results. Entities can be considered frequent
+		 * over time or frequent in a population. If you are working with both over and
+		 * by fields, then you can set <code>exclude_frequent</code> to all for both
+		 * fields, or to <code>by</code> or <code>over</code> for those specific fields.
 		 * <p>
 		 * API name: {@code exclude_frequent}
 		 */
@@ -414,8 +418,8 @@ public class DetectorRead implements JsonpSerializable {
 
 		/**
 		 * The field that the detector uses in the function. If you use an event rate
-		 * function such as count or rare, do not specify this field. The
-		 * <code>field_name</code> cannot contain double quotes or backslashes.
+		 * function such as <code>count</code> or <code>rare</code>, do not specify this
+		 * field.
 		 * <p>
 		 * API name: {@code field_name}
 		 */
@@ -427,7 +431,7 @@ public class DetectorRead implements JsonpSerializable {
 		/**
 		 * Required - The analysis function that is used. For example,
 		 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
-		 * <code>max</code>, or <code>sum</code>.
+		 * <code>max</code>, and <code>sum</code>.
 		 * <p>
 		 * API name: {@code function}
 		 */

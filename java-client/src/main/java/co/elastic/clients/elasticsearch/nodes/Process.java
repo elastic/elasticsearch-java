@@ -80,6 +80,8 @@ public class Process implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains CPU statistics for the node.
+	 * <p>
 	 * API name: {@code cpu}
 	 */
 	@Nullable
@@ -88,6 +90,8 @@ public class Process implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains virtual memory statistics for the node.
+	 * <p>
 	 * API name: {@code mem}
 	 */
 	@Nullable
@@ -96,6 +100,9 @@ public class Process implements JsonpSerializable {
 	}
 
 	/**
+	 * Number of opened file descriptors associated with the current or
+	 * <code>-1</code> if not supported.
+	 * <p>
 	 * API name: {@code open_file_descriptors}
 	 */
 	@Nullable
@@ -104,6 +111,9 @@ public class Process implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum number of file descriptors allowed on the system, or <code>-1</code>
+	 * if not supported.
+	 * <p>
 	 * API name: {@code max_file_descriptors}
 	 */
 	@Nullable
@@ -112,6 +122,9 @@ public class Process implements JsonpSerializable {
 	}
 
 	/**
+	 * Last time the statistics were refreshed. Recorded in milliseconds since the
+	 * Unix Epoch.
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -186,6 +199,8 @@ public class Process implements JsonpSerializable {
 		private Long timestamp;
 
 		/**
+		 * Contains CPU statistics for the node.
+		 * <p>
 		 * API name: {@code cpu}
 		 */
 		public final Builder cpu(@Nullable Cpu value) {
@@ -194,6 +209,8 @@ public class Process implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains CPU statistics for the node.
+		 * <p>
 		 * API name: {@code cpu}
 		 */
 		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
@@ -201,6 +218,8 @@ public class Process implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains virtual memory statistics for the node.
+		 * <p>
 		 * API name: {@code mem}
 		 */
 		public final Builder mem(@Nullable MemoryStats value) {
@@ -209,6 +228,8 @@ public class Process implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains virtual memory statistics for the node.
+		 * <p>
 		 * API name: {@code mem}
 		 */
 		public final Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
@@ -216,6 +237,9 @@ public class Process implements JsonpSerializable {
 		}
 
 		/**
+		 * Number of opened file descriptors associated with the current or
+		 * <code>-1</code> if not supported.
+		 * <p>
 		 * API name: {@code open_file_descriptors}
 		 */
 		public final Builder openFileDescriptors(@Nullable Integer value) {
@@ -224,6 +248,9 @@ public class Process implements JsonpSerializable {
 		}
 
 		/**
+		 * Maximum number of file descriptors allowed on the system, or <code>-1</code>
+		 * if not supported.
+		 * <p>
 		 * API name: {@code max_file_descriptors}
 		 */
 		public final Builder maxFileDescriptors(@Nullable Integer value) {
@@ -232,6 +259,9 @@ public class Process implements JsonpSerializable {
 		}
 
 		/**
+		 * Last time the statistics were refreshed. Recorded in milliseconds since the
+		 * Unix Epoch.
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public final Builder timestamp(@Nullable Long value) {

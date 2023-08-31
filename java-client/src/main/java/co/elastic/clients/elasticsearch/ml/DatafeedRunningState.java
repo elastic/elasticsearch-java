@@ -70,20 +70,30 @@ public class DatafeedRunningState implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code real_time_configured}
+	 * Required - Indicates if the datafeed is &quot;real-time&quot;; meaning that
+	 * the datafeed has no configured <code>end</code> time.
+	 * <p>
+	 * API name: {@code real_time_configured}
 	 */
 	public final boolean realTimeConfigured() {
 		return this.realTimeConfigured;
 	}
 
 	/**
-	 * Required - API name: {@code real_time_running}
+	 * Required - Indicates whether the datafeed has finished running on the
+	 * available past data. For datafeeds without a configured <code>end</code>
+	 * time, this means that the datafeed is now running on &quot;real-time&quot;
+	 * data.
+	 * <p>
+	 * API name: {@code real_time_running}
 	 */
 	public final boolean realTimeRunning() {
 		return this.realTimeRunning;
 	}
 
 	/**
+	 * Provides the latest time interval the datafeed has searched.
+	 * <p>
 	 * API name: {@code search_interval}
 	 */
 	@Nullable
@@ -138,7 +148,10 @@ public class DatafeedRunningState implements JsonpSerializable {
 		private RunningStateSearchInterval searchInterval;
 
 		/**
-		 * Required - API name: {@code real_time_configured}
+		 * Required - Indicates if the datafeed is &quot;real-time&quot;; meaning that
+		 * the datafeed has no configured <code>end</code> time.
+		 * <p>
+		 * API name: {@code real_time_configured}
 		 */
 		public final Builder realTimeConfigured(boolean value) {
 			this.realTimeConfigured = value;
@@ -146,7 +159,12 @@ public class DatafeedRunningState implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code real_time_running}
+		 * Required - Indicates whether the datafeed has finished running on the
+		 * available past data. For datafeeds without a configured <code>end</code>
+		 * time, this means that the datafeed is now running on &quot;real-time&quot;
+		 * data.
+		 * <p>
+		 * API name: {@code real_time_running}
 		 */
 		public final Builder realTimeRunning(boolean value) {
 			this.realTimeRunning = value;
@@ -154,6 +172,8 @@ public class DatafeedRunningState implements JsonpSerializable {
 		}
 
 		/**
+		 * Provides the latest time interval the datafeed has searched.
+		 * <p>
 		 * API name: {@code search_interval}
 		 */
 		public final Builder searchInterval(@Nullable RunningStateSearchInterval value) {
@@ -162,6 +182,8 @@ public class DatafeedRunningState implements JsonpSerializable {
 		}
 
 		/**
+		 * Provides the latest time interval the datafeed has searched.
+		 * <p>
 		 * API name: {@code search_interval}
 		 */
 		public final Builder searchInterval(

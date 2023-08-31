@@ -71,7 +71,9 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
 	}
 
 	/**
-	 * Required - API name: {@code alpha}
+	 * Required - A constant that is added to all counts to balance weights.
+	 * <p>
+	 * API name: {@code alpha}
 	 */
 	public final double alpha() {
 		return this.alpha;
@@ -110,7 +112,9 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
 		private Double alpha;
 
 		/**
-		 * Required - API name: {@code alpha}
+		 * Required - A constant that is added to all counts to balance weights.
+		 * <p>
+		 * API name: {@code alpha}
 		 */
 		public final Builder alpha(double value) {
 			this.alpha = value;

@@ -435,10 +435,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.delete_data_lifecycle
 
 	/**
-	 * Deletes the data lifecycle of the selected data streams.
+	 * Deletes the data stream lifecycle of the selected data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-delete-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -451,13 +451,13 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes the data lifecycle of the selected data streams.
+	 * Deletes the data stream lifecycle of the selected data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-delete-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -776,11 +776,11 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.explain_data_lifecycle
 
 	/**
-	 * Retrieves information about the index's current DLM lifecycle, such as any
-	 * potential encountered error, time since creation etc.
+	 * Retrieves information about the index's current data stream lifecycle, such
+	 * as any potential encountered error, time since creation etc.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/dlm-explain-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -793,14 +793,14 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves information about the index's current DLM lifecycle, such as any
-	 * potential encountered error, time since creation etc.
+	 * Retrieves information about the index's current data stream lifecycle, such
+	 * as any potential encountered error, time since creation etc.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/dlm-explain-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1019,10 +1019,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.get_data_lifecycle
 
 	/**
-	 * Returns the data lifecycle of the selected data streams.
+	 * Returns the data stream lifecycle of the selected data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-get-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1035,13 +1035,13 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns the data lifecycle of the selected data streams.
+	 * Returns the data stream lifecycle of the selected data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-get-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1499,10 +1499,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.put_data_lifecycle
 
 	/**
-	 * Updates the data lifecycle of the selected data streams.
+	 * Updates the data stream lifecycle of the selected data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-put-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1515,13 +1515,13 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Updates the data lifecycle of the selected data streams.
+	 * Updates the data stream lifecycle of the selected data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/dlm-put-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -68,6 +68,8 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * The search template ID.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -76,6 +78,8 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * The query source.
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -128,6 +132,8 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		private String source;
 
 		/**
+		 * The search template ID.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public final Builder id(@Nullable String value) {
@@ -136,6 +142,8 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		}
 
 		/**
+		 * The query source.
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public final Builder source(@Nullable String value) {

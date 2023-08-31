@@ -64,7 +64,10 @@ public class TermsGrouping implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code fields}
+	 * Required - The set of fields that you wish to collect terms for. This array
+	 * can contain fields that are both keyword and numerics. Order does not matter.
+	 * <p>
+	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
 		return this.fields;
@@ -109,7 +112,10 @@ public class TermsGrouping implements JsonpSerializable {
 		private List<String> fields;
 
 		/**
-		 * Required - API name: {@code fields}
+		 * Required - The set of fields that you wish to collect terms for. This array
+		 * can contain fields that are both keyword and numerics. Order does not matter.
+		 * <p>
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
@@ -119,7 +125,10 @@ public class TermsGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * Required - The set of fields that you wish to collect terms for. This array
+		 * can contain fields that are both keyword and numerics. Order does not matter.
+		 * <p>
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
 		 */

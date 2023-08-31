@@ -85,20 +85,30 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code error_distance}
+	 * Required - The difference between the resulting inscribed distance from
+	 * center to side and the circle’s radius (measured in meters for
+	 * <code>geo_shape</code>, unit-less for <code>shape</code>).
+	 * <p>
+	 * API name: {@code error_distance}
 	 */
 	public final double errorDistance() {
 		return this.errorDistance;
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to interpret as a circle. Either a string in WKT format
+	 * or a map for GeoJSON.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -107,13 +117,19 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code shape_type}
+	 * Required - Which field mapping type is to be used when processing the circle:
+	 * <code>geo_shape</code> or <code>shape</code>.
+	 * <p>
+	 * API name: {@code shape_type}
 	 */
 	public final ShapeType shapeType() {
 		return this.shapeType;
 	}
 
 	/**
+	 * The field to assign the polygon shape to By default, the field is updated
+	 * in-place.
+	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
@@ -167,7 +183,11 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code error_distance}
+		 * Required - The difference between the resulting inscribed distance from
+		 * center to side and the circle’s radius (measured in meters for
+		 * <code>geo_shape</code>, unit-less for <code>shape</code>).
+		 * <p>
+		 * API name: {@code error_distance}
 		 */
 		public final Builder errorDistance(double value) {
 			this.errorDistance = value;
@@ -175,7 +195,10 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to interpret as a circle. Either a string in WKT format
+		 * or a map for GeoJSON.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -183,6 +206,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -191,7 +217,10 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code shape_type}
+		 * Required - Which field mapping type is to be used when processing the circle:
+		 * <code>geo_shape</code> or <code>shape</code>.
+		 * <p>
+		 * API name: {@code shape_type}
 		 */
 		public final Builder shapeType(ShapeType value) {
 			this.shapeType = value;
@@ -199,6 +228,9 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The field to assign the polygon shape to By default, the field is updated
+		 * in-place.
+		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {

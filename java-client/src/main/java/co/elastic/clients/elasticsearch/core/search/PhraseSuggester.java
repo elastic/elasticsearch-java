@@ -122,6 +122,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * Checks each suggestion against the specified query to prune suggestions for
+	 * which no matching docs exist in the index.
+	 * <p>
 	 * API name: {@code collate}
 	 */
 	@Nullable
@@ -130,6 +133,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * Defines a factor applied to the input phrases score, which is used as a
+	 * threshold for other suggest candidates. Only candidates that score higher
+	 * than the threshold will be included in the result.
+	 * <p>
 	 * API name: {@code confidence}
 	 */
 	@Nullable
@@ -138,6 +145,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * A list of candidate generators that produce a list of possible terms per term
+	 * in the given text.
+	 * <p>
 	 * API name: {@code direct_generator}
 	 */
 	public final List<DirectGenerator> directGenerator() {
@@ -153,6 +163,11 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * Sets max size of the n-grams (shingles) in the field. If the field doesn’t
+	 * contain n-grams (shingles), this should be omitted or set to <code>1</code>.
+	 * If the field uses a shingle filter, the <code>gram_size</code> is set to the
+	 * <code>max_shingle_size</code> if not explicitly set.
+	 * <p>
 	 * API name: {@code gram_size}
 	 */
 	@Nullable
@@ -161,6 +176,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * Sets up suggestion highlighting. If not provided, no highlighted field is
+	 * returned.
+	 * <p>
 	 * API name: {@code highlight}
 	 */
 	@Nullable
@@ -169,6 +187,11 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * The maximum percentage of the terms considered to be misspellings in order to
+	 * form a correction. This method accepts a float value in the range
+	 * <code>[0..1)</code> as a fraction of the actual query terms or a number
+	 * <code>&gt;=1</code> as an absolute number of query terms.
+	 * <p>
 	 * API name: {@code max_errors}
 	 */
 	@Nullable
@@ -177,6 +200,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * The likelihood of a term being misspelled even if the term exists in the
+	 * dictionary.
+	 * <p>
 	 * API name: {@code real_word_error_likelihood}
 	 */
 	@Nullable
@@ -185,6 +211,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * The separator that is used to separate terms in the bigram field. If not set,
+	 * the whitespace character is used as a separator.
+	 * <p>
 	 * API name: {@code separator}
 	 */
 	@Nullable
@@ -193,6 +222,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * Sets the maximum number of suggested terms to be retrieved from each
+	 * individual shard.
+	 * <p>
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
@@ -201,6 +233,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * The smoothing model used to balance weight between infrequent grams (grams
+	 * (shingles) are not existing in the index) and frequent grams (appear at least
+	 * once in the index). The default model is Stupid Backoff.
+	 * <p>
 	 * API name: {@code smoothing}
 	 */
 	@Nullable
@@ -209,6 +245,8 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
+	 * The text/query to provide suggestions for.
+	 * <p>
 	 * API name: {@code text}
 	 */
 	@Nullable
@@ -349,6 +387,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		private Integer tokenLimit;
 
 		/**
+		 * Checks each suggestion against the specified query to prune suggestions for
+		 * which no matching docs exist in the index.
+		 * <p>
 		 * API name: {@code collate}
 		 */
 		public final Builder collate(@Nullable PhraseSuggestCollate value) {
@@ -357,6 +398,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * Checks each suggestion against the specified query to prune suggestions for
+		 * which no matching docs exist in the index.
+		 * <p>
 		 * API name: {@code collate}
 		 */
 		public final Builder collate(Function<PhraseSuggestCollate.Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
@@ -364,6 +408,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * Defines a factor applied to the input phrases score, which is used as a
+		 * threshold for other suggest candidates. Only candidates that score higher
+		 * than the threshold will be included in the result.
+		 * <p>
 		 * API name: {@code confidence}
 		 */
 		public final Builder confidence(@Nullable Double value) {
@@ -372,6 +420,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * A list of candidate generators that produce a list of possible terms per term
+		 * in the given text.
+		 * <p>
 		 * API name: {@code direct_generator}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>directGenerator</code>.
@@ -382,6 +433,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * A list of candidate generators that produce a list of possible terms per term
+		 * in the given text.
+		 * <p>
 		 * API name: {@code direct_generator}
 		 * <p>
 		 * Adds one or more values to <code>directGenerator</code>.
@@ -392,6 +446,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * A list of candidate generators that produce a list of possible terms per term
+		 * in the given text.
+		 * <p>
 		 * API name: {@code direct_generator}
 		 * <p>
 		 * Adds a value to <code>directGenerator</code> using a builder lambda.
@@ -409,6 +466,11 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * Sets max size of the n-grams (shingles) in the field. If the field doesn’t
+		 * contain n-grams (shingles), this should be omitted or set to <code>1</code>.
+		 * If the field uses a shingle filter, the <code>gram_size</code> is set to the
+		 * <code>max_shingle_size</code> if not explicitly set.
+		 * <p>
 		 * API name: {@code gram_size}
 		 */
 		public final Builder gramSize(@Nullable Integer value) {
@@ -417,6 +479,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * Sets up suggestion highlighting. If not provided, no highlighted field is
+		 * returned.
+		 * <p>
 		 * API name: {@code highlight}
 		 */
 		public final Builder highlight(@Nullable PhraseSuggestHighlight value) {
@@ -425,6 +490,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * Sets up suggestion highlighting. If not provided, no highlighted field is
+		 * returned.
+		 * <p>
 		 * API name: {@code highlight}
 		 */
 		public final Builder highlight(
@@ -433,6 +501,11 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The maximum percentage of the terms considered to be misspellings in order to
+		 * form a correction. This method accepts a float value in the range
+		 * <code>[0..1)</code> as a fraction of the actual query terms or a number
+		 * <code>&gt;=1</code> as an absolute number of query terms.
+		 * <p>
 		 * API name: {@code max_errors}
 		 */
 		public final Builder maxErrors(@Nullable Double value) {
@@ -441,6 +514,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The likelihood of a term being misspelled even if the term exists in the
+		 * dictionary.
+		 * <p>
 		 * API name: {@code real_word_error_likelihood}
 		 */
 		public final Builder realWordErrorLikelihood(@Nullable Double value) {
@@ -449,6 +525,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The separator that is used to separate terms in the bigram field. If not set,
+		 * the whitespace character is used as a separator.
+		 * <p>
 		 * API name: {@code separator}
 		 */
 		public final Builder separator(@Nullable String value) {
@@ -457,6 +536,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * Sets the maximum number of suggested terms to be retrieved from each
+		 * individual shard.
+		 * <p>
 		 * API name: {@code shard_size}
 		 */
 		public final Builder shardSize(@Nullable Integer value) {
@@ -465,6 +547,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The smoothing model used to balance weight between infrequent grams (grams
+		 * (shingles) are not existing in the index) and frequent grams (appear at least
+		 * once in the index). The default model is Stupid Backoff.
+		 * <p>
 		 * API name: {@code smoothing}
 		 */
 		public final Builder smoothing(@Nullable SmoothingModel value) {
@@ -473,6 +559,10 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The smoothing model used to balance weight between infrequent grams (grams
+		 * (shingles) are not existing in the index) and frequent grams (appear at least
+		 * once in the index). The default model is Stupid Backoff.
+		 * <p>
 		 * API name: {@code smoothing}
 		 */
 		public final Builder smoothing(Function<SmoothingModel.Builder, ObjectBuilder<SmoothingModel>> fn) {
@@ -480,6 +570,8 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The text/query to provide suggestions for.
+		 * <p>
 		 * API name: {@code text}
 		 */
 		public final Builder text(@Nullable String value) {

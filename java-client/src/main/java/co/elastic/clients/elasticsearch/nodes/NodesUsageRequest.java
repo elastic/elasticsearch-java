@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.usage.Request
 
 /**
- * Returns low-level information about REST actions usage on nodes.
+ * Returns information on the usage of features.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.usage.Request">API
  *      specification</a>
@@ -76,7 +76,8 @@ public class NodesUsageRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned to the specified metrics
+	 * Limits the information returned to the specific metrics. A comma-separated
+	 * list of the following options: <code>_all</code>, <code>rest_actions</code>.
 	 * <p>
 	 * API name: {@code metric}
 	 */
@@ -96,7 +97,8 @@ public class NodesUsageRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -124,7 +126,8 @@ public class NodesUsageRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limits the information returned to the specific metrics. A comma-separated
+		 * list of the following options: <code>_all</code>, <code>rest_actions</code>.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
@@ -136,7 +139,8 @@ public class NodesUsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limits the information returned to the specific metrics. A comma-separated
+		 * list of the following options: <code>_all</code>, <code>rest_actions</code>.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
@@ -176,7 +180,8 @@ public class NodesUsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -186,7 +191,8 @@ public class NodesUsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

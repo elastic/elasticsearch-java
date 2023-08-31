@@ -82,6 +82,9 @@ public class CompletionContext implements JsonpSerializable {
 	}
 
 	/**
+	 * The factor by which the score of the suggestion should be boosted. The score
+	 * is computed by multiplying the boost with the suggestion weight.
+	 * <p>
 	 * API name: {@code boost}
 	 */
 	@Nullable
@@ -90,13 +93,21 @@ public class CompletionContext implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code context}
+	 * Required - The value of the category to filter/boost on.
+	 * <p>
+	 * API name: {@code context}
 	 */
 	public final Context context() {
 		return this.context;
 	}
 
 	/**
+	 * An array of precision values at which neighboring geohashes should be taken
+	 * into account. Precision value can be a distance value (<code>5m</code>,
+	 * <code>10km</code>, etc.) or a raw geohash precision
+	 * (<code>1</code>..<code>12</code>). Defaults to generating neighbors for index
+	 * time precision level.
+	 * <p>
 	 * API name: {@code neighbours}
 	 */
 	public final List<GeoHashPrecision> neighbours() {
@@ -104,6 +115,11 @@ public class CompletionContext implements JsonpSerializable {
 	}
 
 	/**
+	 * The precision of the geohash to encode the query geo point. Can be specified
+	 * as a distance value (<code>5m</code>, <code>10km</code>, etc.), or as a raw
+	 * geohash precision (<code>1</code>..<code>12</code>). Defaults to index time
+	 * precision level.
+	 * <p>
 	 * API name: {@code precision}
 	 */
 	@Nullable
@@ -112,6 +128,8 @@ public class CompletionContext implements JsonpSerializable {
 	}
 
 	/**
+	 * Whether the category value should be treated as a prefix or not.
+	 * <p>
 	 * API name: {@code prefix}
 	 */
 	@Nullable
@@ -188,6 +206,9 @@ public class CompletionContext implements JsonpSerializable {
 		private Boolean prefix;
 
 		/**
+		 * The factor by which the score of the suggestion should be boosted. The score
+		 * is computed by multiplying the boost with the suggestion weight.
+		 * <p>
 		 * API name: {@code boost}
 		 */
 		public final Builder boost(@Nullable Double value) {
@@ -196,7 +217,9 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code context}
+		 * Required - The value of the category to filter/boost on.
+		 * <p>
+		 * API name: {@code context}
 		 */
 		public final Builder context(Context value) {
 			this.context = value;
@@ -204,13 +227,21 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code context}
+		 * Required - The value of the category to filter/boost on.
+		 * <p>
+		 * API name: {@code context}
 		 */
 		public final Builder context(Function<Context.Builder, ObjectBuilder<Context>> fn) {
 			return this.context(fn.apply(new Context.Builder()).build());
 		}
 
 		/**
+		 * An array of precision values at which neighboring geohashes should be taken
+		 * into account. Precision value can be a distance value (<code>5m</code>,
+		 * <code>10km</code>, etc.) or a raw geohash precision
+		 * (<code>1</code>..<code>12</code>). Defaults to generating neighbors for index
+		 * time precision level.
+		 * <p>
 		 * API name: {@code neighbours}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>neighbours</code>.
@@ -221,6 +252,12 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
+		 * An array of precision values at which neighboring geohashes should be taken
+		 * into account. Precision value can be a distance value (<code>5m</code>,
+		 * <code>10km</code>, etc.) or a raw geohash precision
+		 * (<code>1</code>..<code>12</code>). Defaults to generating neighbors for index
+		 * time precision level.
+		 * <p>
 		 * API name: {@code neighbours}
 		 * <p>
 		 * Adds one or more values to <code>neighbours</code>.
@@ -231,6 +268,12 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
+		 * An array of precision values at which neighboring geohashes should be taken
+		 * into account. Precision value can be a distance value (<code>5m</code>,
+		 * <code>10km</code>, etc.) or a raw geohash precision
+		 * (<code>1</code>..<code>12</code>). Defaults to generating neighbors for index
+		 * time precision level.
+		 * <p>
 		 * API name: {@code neighbours}
 		 * <p>
 		 * Adds a value to <code>neighbours</code> using a builder lambda.
@@ -240,6 +283,11 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
+		 * The precision of the geohash to encode the query geo point. Can be specified
+		 * as a distance value (<code>5m</code>, <code>10km</code>, etc.), or as a raw
+		 * geohash precision (<code>1</code>..<code>12</code>). Defaults to index time
+		 * precision level.
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(@Nullable GeoHashPrecision value) {
@@ -248,6 +296,11 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
+		 * The precision of the geohash to encode the query geo point. Can be specified
+		 * as a distance value (<code>5m</code>, <code>10km</code>, etc.), or as a raw
+		 * geohash precision (<code>1</code>..<code>12</code>). Defaults to index time
+		 * precision level.
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(Function<GeoHashPrecision.Builder, ObjectBuilder<GeoHashPrecision>> fn) {
@@ -255,6 +308,8 @@ public class CompletionContext implements JsonpSerializable {
 		}
 
 		/**
+		 * Whether the category value should be treated as a prefix or not.
+		 * <p>
 		 * API name: {@code prefix}
 		 */
 		public final Builder prefix(@Nullable Boolean value) {

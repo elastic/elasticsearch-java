@@ -86,13 +86,19 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to use for grok expression parsing.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -101,6 +107,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * A map of pattern-name and pattern tuples defining custom patterns to be used
+	 * by the current processor. Patterns matching existing names will override the
+	 * pre-existing definition.
+	 * <p>
 	 * API name: {@code pattern_definitions}
 	 */
 	public final Map<String, String> patternDefinitions() {
@@ -108,13 +118,20 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code patterns}
+	 * Required - An ordered list of grok expression to match and extract named
+	 * captures with. Returns on the first expression in the list that matches.
+	 * <p>
+	 * API name: {@code patterns}
 	 */
 	public final List<String> patterns() {
 		return this.patterns;
 	}
 
 	/**
+	 * When <code>true</code>, <code>_ingest._grok_match_index</code> will be
+	 * inserted into your matched document’s metadata with the index into the
+	 * pattern found in <code>patterns</code> that matched.
+	 * <p>
 	 * API name: {@code trace_match}
 	 */
 	@Nullable
@@ -183,7 +200,9 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		private Boolean traceMatch;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to use for grok expression parsing.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -191,6 +210,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -199,6 +222,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * A map of pattern-name and pattern tuples defining custom patterns to be used
+		 * by the current processor. Patterns matching existing names will override the
+		 * pre-existing definition.
+		 * <p>
 		 * API name: {@code pattern_definitions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>.
@@ -209,6 +236,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * A map of pattern-name and pattern tuples defining custom patterns to be used
+		 * by the current processor. Patterns matching existing names will override the
+		 * pre-existing definition.
+		 * <p>
 		 * API name: {@code pattern_definitions}
 		 * <p>
 		 * Adds an entry to <code>patternDefinitions</code>.
@@ -219,7 +250,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code patterns}
+		 * Required - An ordered list of grok expression to match and extract named
+		 * captures with. Returns on the first expression in the list that matches.
+		 * <p>
+		 * API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
 		 */
@@ -229,7 +263,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code patterns}
+		 * Required - An ordered list of grok expression to match and extract named
+		 * captures with. Returns on the first expression in the list that matches.
+		 * <p>
+		 * API name: {@code patterns}
 		 * <p>
 		 * Adds one or more values to <code>patterns</code>.
 		 */
@@ -239,6 +276,10 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * When <code>true</code>, <code>_ingest._grok_match_index</code> will be
+		 * inserted into your matched document’s metadata with the index into the
+		 * pattern found in <code>patterns</code> that matched.
+		 * <p>
 		 * API name: {@code trace_match}
 		 */
 		public final Builder traceMatch(@Nullable Boolean value) {

@@ -94,13 +94,19 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field in the input document that matches the policies
+	 * match_field used to retrieve the enrichment data. Supports template snippets.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * If <code>true</code> and <code>field</code> does not exist, the processor
+	 * quietly exits without modifying the document.
+	 * <p>
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
@@ -109,6 +115,12 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The maximum number of matched documents to include under the configured
+	 * target field. The <code>target_field</code> will be turned into a json array
+	 * if <code>max_matches</code> is higher than 1, otherwise
+	 * <code>target_field</code> will become a json object. In order to avoid
+	 * documents getting too large, the maximum allowed value is 128.
+	 * <p>
 	 * API name: {@code max_matches}
 	 */
 	@Nullable
@@ -117,6 +129,9 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * If processor will update fields with pre-existing non-null-valued field. When
+	 * set to <code>false</code>, such fields will not be touched.
+	 * <p>
 	 * API name: {@code override}
 	 */
 	@Nullable
@@ -125,13 +140,19 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code policy_name}
+	 * Required - The name of the enrich policy to use.
+	 * <p>
+	 * API name: {@code policy_name}
 	 */
 	public final String policyName() {
 		return this.policyName;
 	}
 
 	/**
+	 * A spatial relation operator used to match the geoshape of incoming documents
+	 * to documents in the enrich index. This option is only used for
+	 * <code>geo_match</code> enrich policy types.
+	 * <p>
 	 * API name: {@code shape_relation}
 	 */
 	@Nullable
@@ -140,7 +161,12 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * Required - Field added to incoming documents to contain enrich data. This
+	 * field contains both the <code>match_field</code> and
+	 * <code>enrich_fields</code> specified in the enrich policy. Supports template
+	 * snippets.
+	 * <p>
+	 * API name: {@code target_field}
 	 */
 	public final String targetField() {
 		return this.targetField;
@@ -207,7 +233,10 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field in the input document that matches the policies
+		 * match_field used to retrieve the enrichment data. Supports template snippets.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -215,6 +244,9 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If <code>true</code> and <code>field</code> does not exist, the processor
+		 * quietly exits without modifying the document.
+		 * <p>
 		 * API name: {@code ignore_missing}
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
@@ -223,6 +255,12 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The maximum number of matched documents to include under the configured
+		 * target field. The <code>target_field</code> will be turned into a json array
+		 * if <code>max_matches</code> is higher than 1, otherwise
+		 * <code>target_field</code> will become a json object. In order to avoid
+		 * documents getting too large, the maximum allowed value is 128.
+		 * <p>
 		 * API name: {@code max_matches}
 		 */
 		public final Builder maxMatches(@Nullable Integer value) {
@@ -231,6 +269,9 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * If processor will update fields with pre-existing non-null-valued field. When
+		 * set to <code>false</code>, such fields will not be touched.
+		 * <p>
 		 * API name: {@code override}
 		 */
 		public final Builder override(@Nullable Boolean value) {
@@ -239,7 +280,9 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code policy_name}
+		 * Required - The name of the enrich policy to use.
+		 * <p>
+		 * API name: {@code policy_name}
 		 */
 		public final Builder policyName(String value) {
 			this.policyName = value;
@@ -247,6 +290,10 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * A spatial relation operator used to match the geoshape of incoming documents
+		 * to documents in the enrich index. This option is only used for
+		 * <code>geo_match</code> enrich policy types.
+		 * <p>
 		 * API name: {@code shape_relation}
 		 */
 		public final Builder shapeRelation(@Nullable GeoShapeRelation value) {
@@ -255,7 +302,12 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * Required - Field added to incoming documents to contain enrich data. This
+		 * field contains both the <code>match_field</code> and
+		 * <code>enrich_fields</code> specified in the enrich policy. Supports template
+		 * snippets.
+		 * <p>
+		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(String value) {
 			this.targetField = value;

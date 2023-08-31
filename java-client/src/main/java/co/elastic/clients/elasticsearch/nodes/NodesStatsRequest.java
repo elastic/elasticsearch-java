@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.stats.Request
 
 /**
- * Returns statistical information about nodes in the cluster.
+ * Returns cluster nodes statistics.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.stats.Request">API
  *      specification</a>
@@ -164,8 +164,8 @@ public class NodesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If set to true segment stats will include stats for segments that are not
-	 * currently loaded into memory
+	 * If <code>true</code>, the response includes information from segments that
+	 * are not loaded into memory.
 	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
@@ -392,8 +392,8 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * If set to true segment stats will include stats for segments that are not
-		 * currently loaded into memory
+		 * If <code>true</code>, the response includes information from segments that
+		 * are not loaded into memory.
 		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */

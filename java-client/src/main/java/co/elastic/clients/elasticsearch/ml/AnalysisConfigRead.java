@@ -104,11 +104,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	/**
 	 * Required - The size of the interval that the analysis is aggregated into,
-	 * typically between <code>5m</code> and <code>1h</code>. This value should be
-	 * either a whole number of days or equate to a whole number of buckets in one
-	 * day. If the anomaly detection job uses a datafeed with aggregations, this
-	 * value must also be divisible by the interval of the date histogram
-	 * aggregation.
+	 * typically between <code>5m</code> and <code>1h</code>.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -122,9 +118,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * property cannot be used at the same time as
 	 * <code>categorization_filters</code>. The categorization analyzer specifies
 	 * how the <code>categorization_field</code> is interpreted by the
-	 * categorization process. The <code>categorization_analyzer</code> field can be
-	 * specified either as a string or as an object. If it is a string, it must
-	 * refer to a built-in analyzer or one added by another plugin.
+	 * categorization process.
 	 * <p>
 	 * API name: {@code categorization_analyzer}
 	 */
@@ -150,16 +144,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * If <code>categorization_field_name</code> is specified, you can also define
 	 * optional filters. This property expects an array of regular expressions. The
 	 * expressions are used to filter out matching sequences from the categorization
-	 * field values. You can use this functionality to fine tune the categorization
-	 * by excluding sequences from consideration when categories are defined. For
-	 * example, you can exclude SQL statements that appear in your log files. This
-	 * property cannot be used at the same time as
-	 * <code>categorization_analyzer</code>. If you only want to define simple
-	 * regular expression filters that are applied prior to tokenization, setting
-	 * this property is the easiest method. If you also want to customize the
-	 * tokenizer or post-tokenization filtering, use the
-	 * <code>categorization_analyzer</code> property instead and include the filters
-	 * as pattern_replace character filters. The effect is exactly the same.
+	 * field values.
 	 * <p>
 	 * API name: {@code categorization_filters}
 	 */
@@ -168,10 +153,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Detector configuration objects specify which data fields a job
-	 * analyzes. They also specify which analytical functions are used. You can
-	 * specify multiple detectors for a job. If the detectors array does not contain
-	 * at least one detector, no analysis can occur and an error is returned.
+	 * Required - An array of detector configuration objects. Detector configuration
+	 * objects specify which data fields a job analyzes. They also specify which
+	 * analytical functions are used. You can specify multiple detectors for a job.
 	 * <p>
 	 * API name: {@code detectors}
 	 */
@@ -197,7 +181,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * Advanced configuration option. Affects the pruning of models that have not
 	 * been updated for the given time duration. The value must be set to a multiple
 	 * of the <code>bucket_span</code>. If set too low, important information may be
-	 * removed from the model. For jobs created in 8.1 and later, the default value
+	 * removed from the model. Typically, set to <code>30d</code> or longer. If not
+	 * set, model pruning only occurs if the model memory status reaches the soft
+	 * limit or the hard limit. For jobs created in 8.1 and later, the default value
 	 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 	 * <p>
 	 * API name: {@code model_prune_window}
@@ -208,10 +194,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	}
 
 	/**
-	 * The size of the window in which to expect data that is out of time order. If
-	 * you specify a non-zero value, it must be greater than or equal to one second.
-	 * NOTE: Latency is applicable only when you send data by using the post data
-	 * API.
+	 * The size of the window in which to expect data that is out of time order.
+	 * Defaults to no latency. If you specify a non-zero value, it must be greater
+	 * than or equal to one second.
 	 * <p>
 	 * API name: {@code latency}
 	 */
@@ -225,15 +210,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * in customer environments and is not subject to the support SLA of official GA
 	 * features. If set to <code>true</code>, the analysis will automatically find
 	 * correlations between metrics for a given by field value and report anomalies
-	 * when those correlations cease to hold. For example, suppose CPU and memory
-	 * usage on host A is usually highly correlated with the same metrics on host B.
-	 * Perhaps this correlation occurs because they are running a load-balanced
-	 * application. If you enable this property, anomalies will be reported when,
-	 * for example, CPU usage on host A is high and the value of CPU usage on host B
-	 * is low. That is to say, you’ll see an anomaly when the CPU of host A is
-	 * unusual given the CPU of host B. To use the
-	 * <code>multivariate_by_fields</code> property, you must also specify
-	 * <code>by_field_name</code> in your detector.
+	 * when those correlations cease to hold.
 	 * <p>
 	 * API name: {@code multivariate_by_fields}
 	 */
@@ -257,8 +234,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * be pre-summarized. This property value is the name of the field that contains
 	 * the count of raw data points that have been summarized. The same
 	 * <code>summary_count_field_name</code> applies to all detectors in the job.
-	 * NOTE: The <code>summary_count_field_name</code> property cannot be used with
-	 * the <code>metric</code> function.
 	 * <p>
 	 * API name: {@code summary_count_field_name}
 	 */
@@ -395,11 +370,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 		/**
 		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>. This value should be
-		 * either a whole number of days or equate to a whole number of buckets in one
-		 * day. If the anomaly detection job uses a datafeed with aggregations, this
-		 * value must also be divisible by the interval of the date histogram
-		 * aggregation.
+		 * typically between <code>5m</code> and <code>1h</code>.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -410,11 +381,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 		/**
 		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>. This value should be
-		 * either a whole number of days or equate to a whole number of buckets in one
-		 * day. If the anomaly detection job uses a datafeed with aggregations, this
-		 * value must also be divisible by the interval of the date histogram
-		 * aggregation.
+		 * typically between <code>5m</code> and <code>1h</code>.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -428,9 +395,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * property cannot be used at the same time as
 		 * <code>categorization_filters</code>. The categorization analyzer specifies
 		 * how the <code>categorization_field</code> is interpreted by the
-		 * categorization process. The <code>categorization_analyzer</code> field can be
-		 * specified either as a string or as an object. If it is a string, it must
-		 * refer to a built-in analyzer or one added by another plugin.
+		 * categorization process.
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
@@ -445,9 +410,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * property cannot be used at the same time as
 		 * <code>categorization_filters</code>. The categorization analyzer specifies
 		 * how the <code>categorization_field</code> is interpreted by the
-		 * categorization process. The <code>categorization_analyzer</code> field can be
-		 * specified either as a string or as an object. If it is a string, it must
-		 * refer to a built-in analyzer or one added by another plugin.
+		 * categorization process.
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
@@ -473,16 +436,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * If <code>categorization_field_name</code> is specified, you can also define
 		 * optional filters. This property expects an array of regular expressions. The
 		 * expressions are used to filter out matching sequences from the categorization
-		 * field values. You can use this functionality to fine tune the categorization
-		 * by excluding sequences from consideration when categories are defined. For
-		 * example, you can exclude SQL statements that appear in your log files. This
-		 * property cannot be used at the same time as
-		 * <code>categorization_analyzer</code>. If you only want to define simple
-		 * regular expression filters that are applied prior to tokenization, setting
-		 * this property is the easiest method. If you also want to customize the
-		 * tokenizer or post-tokenization filtering, use the
-		 * <code>categorization_analyzer</code> property instead and include the filters
-		 * as pattern_replace character filters. The effect is exactly the same.
+		 * field values.
 		 * <p>
 		 * API name: {@code categorization_filters}
 		 * <p>
@@ -497,16 +451,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * If <code>categorization_field_name</code> is specified, you can also define
 		 * optional filters. This property expects an array of regular expressions. The
 		 * expressions are used to filter out matching sequences from the categorization
-		 * field values. You can use this functionality to fine tune the categorization
-		 * by excluding sequences from consideration when categories are defined. For
-		 * example, you can exclude SQL statements that appear in your log files. This
-		 * property cannot be used at the same time as
-		 * <code>categorization_analyzer</code>. If you only want to define simple
-		 * regular expression filters that are applied prior to tokenization, setting
-		 * this property is the easiest method. If you also want to customize the
-		 * tokenizer or post-tokenization filtering, use the
-		 * <code>categorization_analyzer</code> property instead and include the filters
-		 * as pattern_replace character filters. The effect is exactly the same.
+		 * field values.
 		 * <p>
 		 * API name: {@code categorization_filters}
 		 * <p>
@@ -518,10 +463,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Detector configuration objects specify which data fields a job
-		 * analyzes. They also specify which analytical functions are used. You can
-		 * specify multiple detectors for a job. If the detectors array does not contain
-		 * at least one detector, no analysis can occur and an error is returned.
+		 * Required - An array of detector configuration objects. Detector configuration
+		 * objects specify which data fields a job analyzes. They also specify which
+		 * analytical functions are used. You can specify multiple detectors for a job.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -533,10 +477,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Detector configuration objects specify which data fields a job
-		 * analyzes. They also specify which analytical functions are used. You can
-		 * specify multiple detectors for a job. If the detectors array does not contain
-		 * at least one detector, no analysis can occur and an error is returned.
+		 * Required - An array of detector configuration objects. Detector configuration
+		 * objects specify which data fields a job analyzes. They also specify which
+		 * analytical functions are used. You can specify multiple detectors for a job.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -548,10 +491,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Detector configuration objects specify which data fields a job
-		 * analyzes. They also specify which analytical functions are used. You can
-		 * specify multiple detectors for a job. If the detectors array does not contain
-		 * at least one detector, no analysis can occur and an error is returned.
+		 * Required - An array of detector configuration objects. Detector configuration
+		 * objects specify which data fields a job analyzes. They also specify which
+		 * analytical functions are used. You can specify multiple detectors for a job.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -599,7 +541,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * Advanced configuration option. Affects the pruning of models that have not
 		 * been updated for the given time duration. The value must be set to a multiple
 		 * of the <code>bucket_span</code>. If set too low, important information may be
-		 * removed from the model. For jobs created in 8.1 and later, the default value
+		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
+		 * set, model pruning only occurs if the model memory status reaches the soft
+		 * limit or the hard limit. For jobs created in 8.1 and later, the default value
 		 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code model_prune_window}
@@ -613,7 +557,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * Advanced configuration option. Affects the pruning of models that have not
 		 * been updated for the given time duration. The value must be set to a multiple
 		 * of the <code>bucket_span</code>. If set too low, important information may be
-		 * removed from the model. For jobs created in 8.1 and later, the default value
+		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
+		 * set, model pruning only occurs if the model memory status reaches the soft
+		 * limit or the hard limit. For jobs created in 8.1 and later, the default value
 		 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code model_prune_window}
@@ -623,10 +569,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * The size of the window in which to expect data that is out of time order. If
-		 * you specify a non-zero value, it must be greater than or equal to one second.
-		 * NOTE: Latency is applicable only when you send data by using the post data
-		 * API.
+		 * The size of the window in which to expect data that is out of time order.
+		 * Defaults to no latency. If you specify a non-zero value, it must be greater
+		 * than or equal to one second.
 		 * <p>
 		 * API name: {@code latency}
 		 */
@@ -636,10 +581,9 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * The size of the window in which to expect data that is out of time order. If
-		 * you specify a non-zero value, it must be greater than or equal to one second.
-		 * NOTE: Latency is applicable only when you send data by using the post data
-		 * API.
+		 * The size of the window in which to expect data that is out of time order.
+		 * Defaults to no latency. If you specify a non-zero value, it must be greater
+		 * than or equal to one second.
 		 * <p>
 		 * API name: {@code latency}
 		 */
@@ -652,15 +596,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * in customer environments and is not subject to the support SLA of official GA
 		 * features. If set to <code>true</code>, the analysis will automatically find
 		 * correlations between metrics for a given by field value and report anomalies
-		 * when those correlations cease to hold. For example, suppose CPU and memory
-		 * usage on host A is usually highly correlated with the same metrics on host B.
-		 * Perhaps this correlation occurs because they are running a load-balanced
-		 * application. If you enable this property, anomalies will be reported when,
-		 * for example, CPU usage on host A is high and the value of CPU usage on host B
-		 * is low. That is to say, you’ll see an anomaly when the CPU of host A is
-		 * unusual given the CPU of host B. To use the
-		 * <code>multivariate_by_fields</code> property, you must also specify
-		 * <code>by_field_name</code> in your detector.
+		 * when those correlations cease to hold.
 		 * <p>
 		 * API name: {@code multivariate_by_fields}
 		 */
@@ -694,8 +630,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * be pre-summarized. This property value is the name of the field that contains
 		 * the count of raw data points that have been summarized. The same
 		 * <code>summary_count_field_name</code> applies to all detectors in the job.
-		 * NOTE: The <code>summary_count_field_name</code> property cannot be used with
-		 * the <code>metric</code> function.
 		 * <p>
 		 * API name: {@code summary_count_field_name}
 		 */

@@ -255,7 +255,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	}
 
 	/**
-	 * The order of the returned buckets.
+	 * The sort order of the returned buckets.
 	 * <p>
 	 * API name: {@code order}
 	 */
@@ -291,7 +291,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 	/**
 	 * Set to <code>true</code> to associate a unique string key with each bucket
-	 * and returns the ranges as a hash rather than an array.
+	 * and return the ranges as a hash rather than an array.
 	 * <p>
 	 * API name: {@code keyed}
 	 */
@@ -609,7 +609,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
-		 * The order of the returned buckets.
+		 * The sort order of the returned buckets.
 		 * <p>
 		 * API name: {@code order}
 		 * <p>
@@ -621,7 +621,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
-		 * The order of the returned buckets.
+		 * The sort order of the returned buckets.
 		 * <p>
 		 * API name: {@code order}
 		 * <p>
@@ -680,7 +680,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		/**
 		 * Set to <code>true</code> to associate a unique string key with each bucket
-		 * and returns the ranges as a hash rather than an array.
+		 * and return the ranges as a hash rather than an array.
 		 * <p>
 		 * API name: {@code keyed}
 		 */

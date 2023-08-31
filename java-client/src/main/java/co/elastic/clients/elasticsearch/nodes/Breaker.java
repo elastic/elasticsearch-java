@@ -85,6 +85,8 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
+	 * Estimated memory used for the operation.
+	 * <p>
 	 * API name: {@code estimated_size}
 	 */
 	@Nullable
@@ -93,6 +95,8 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
+	 * Estimated memory used, in bytes, for the operation.
+	 * <p>
 	 * API name: {@code estimated_size_in_bytes}
 	 */
 	@Nullable
@@ -101,6 +105,8 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory limit for the circuit breaker.
+	 * <p>
 	 * API name: {@code limit_size}
 	 */
 	@Nullable
@@ -109,6 +115,8 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
+	 * Memory limit, in bytes, for the circuit breaker.
+	 * <p>
 	 * API name: {@code limit_size_in_bytes}
 	 */
 	@Nullable
@@ -117,6 +125,9 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
+	 * A constant that all estimates for the circuit breaker are multiplied with to
+	 * calculate a final estimate.
+	 * <p>
 	 * API name: {@code overhead}
 	 */
 	@Nullable
@@ -125,6 +136,9 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
+	 * Total number of times the circuit breaker has been triggered and prevented an
+	 * out of memory error.
+	 * <p>
 	 * API name: {@code tripped}
 	 */
 	@Nullable
@@ -207,6 +221,8 @@ public class Breaker implements JsonpSerializable {
 		private Float tripped;
 
 		/**
+		 * Estimated memory used for the operation.
+		 * <p>
 		 * API name: {@code estimated_size}
 		 */
 		public final Builder estimatedSize(@Nullable String value) {
@@ -215,6 +231,8 @@ public class Breaker implements JsonpSerializable {
 		}
 
 		/**
+		 * Estimated memory used, in bytes, for the operation.
+		 * <p>
 		 * API name: {@code estimated_size_in_bytes}
 		 */
 		public final Builder estimatedSizeInBytes(@Nullable Long value) {
@@ -223,6 +241,8 @@ public class Breaker implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory limit for the circuit breaker.
+		 * <p>
 		 * API name: {@code limit_size}
 		 */
 		public final Builder limitSize(@Nullable String value) {
@@ -231,6 +251,8 @@ public class Breaker implements JsonpSerializable {
 		}
 
 		/**
+		 * Memory limit, in bytes, for the circuit breaker.
+		 * <p>
 		 * API name: {@code limit_size_in_bytes}
 		 */
 		public final Builder limitSizeInBytes(@Nullable Long value) {
@@ -239,6 +261,9 @@ public class Breaker implements JsonpSerializable {
 		}
 
 		/**
+		 * A constant that all estimates for the circuit breaker are multiplied with to
+		 * calculate a final estimate.
+		 * <p>
 		 * API name: {@code overhead}
 		 */
 		public final Builder overhead(@Nullable Float value) {
@@ -247,6 +272,9 @@ public class Breaker implements JsonpSerializable {
 		}
 
 		/**
+		 * Total number of times the circuit breaker has been triggered and prevented an
+		 * out of memory error.
+		 * <p>
 		 * API name: {@code tripped}
 		 */
 		public final Builder tripped(@Nullable Float value) {

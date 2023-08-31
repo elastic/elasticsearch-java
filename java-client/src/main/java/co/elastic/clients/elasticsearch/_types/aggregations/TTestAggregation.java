@@ -77,6 +77,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	}
 
 	/**
+	 * Test population A.
+	 * <p>
 	 * API name: {@code a}
 	 */
 	@Nullable
@@ -85,6 +87,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	}
 
 	/**
+	 * Test population B.
+	 * <p>
 	 * API name: {@code b}
 	 */
 	@Nullable
@@ -93,6 +97,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	}
 
 	/**
+	 * The type of test.
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -139,6 +145,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		private TTestType type;
 
 		/**
+		 * Test population A.
+		 * <p>
 		 * API name: {@code a}
 		 */
 		public final Builder a(@Nullable TestPopulation value) {
@@ -147,6 +155,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		}
 
 		/**
+		 * Test population A.
+		 * <p>
 		 * API name: {@code a}
 		 */
 		public final Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
@@ -154,6 +164,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		}
 
 		/**
+		 * Test population B.
+		 * <p>
 		 * API name: {@code b}
 		 */
 		public final Builder b(@Nullable TestPopulation value) {
@@ -162,6 +174,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		}
 
 		/**
+		 * Test population B.
+		 * <p>
 		 * API name: {@code b}
 		 */
 		public final Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
@@ -169,6 +183,8 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		}
 
 		/**
+		 * The type of test.
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public final Builder type(@Nullable TTestType value) {

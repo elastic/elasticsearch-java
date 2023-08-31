@@ -35,14 +35,30 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum StringDistance implements JsonEnum {
+	/**
+	 * Based on the Damerau-Levenshtein algorithm, but highly optimized for
+	 * comparing string distance for terms inside the index.
+	 */
 	Internal("internal"),
 
+	/**
+	 * String distance algorithm based on Damerau-Levenshtein algorithm.
+	 */
 	DamerauLevenshtein("damerau_levenshtein"),
 
+	/**
+	 * String distance algorithm based on the Levenshtein edit distance algorithm.
+	 */
 	Levenshtein("levenshtein"),
 
+	/**
+	 * String distance algorithm based on Jaro-Winkler algorithm.
+	 */
 	JaroWinkler("jaro_winkler"),
 
+	/**
+	 * String distance algorithm based on character n-grams.
+	 */
 	Ngram("ngram"),
 
 	;

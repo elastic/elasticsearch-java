@@ -69,6 +69,8 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 	}
 
 	/**
+	 * The specific method to apply.
+	 * <p>
 	 * API name: {@code method}
 	 */
 	@Nullable
@@ -99,6 +101,8 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 		private NormalizeMethod method;
 
 		/**
+		 * The specific method to apply.
+		 * <p>
 		 * API name: {@code method}
 		 */
 		public final Builder method(@Nullable NormalizeMethod value) {

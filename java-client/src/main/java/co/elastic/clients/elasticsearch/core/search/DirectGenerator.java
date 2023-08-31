@@ -107,13 +107,19 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to fetch the candidate suggestions from. Needs to be set
+	 * globally or per suggestion.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
+	 * The maximum edit distance candidate suggestions can have in order to be
+	 * considered as a suggestion. Can only be <code>1</code> or <code>2</code>.
+	 * <p>
 	 * API name: {@code max_edits}
 	 */
 	@Nullable
@@ -122,6 +128,10 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * A factor that is used to multiply with the shard_size in order to inspect
+	 * more candidate spelling corrections on the shard level. Can improve accuracy
+	 * at the cost of performance.
+	 * <p>
 	 * API name: {@code max_inspections}
 	 */
 	@Nullable
@@ -130,6 +140,13 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum threshold in number of documents in which a suggest text token
+	 * can exist in order to be included. This can be used to exclude high frequency
+	 * terms — which are usually spelled correctly — from being spellchecked. Can be
+	 * a relative percentage number (for example <code>0.4</code>) or an absolute
+	 * number to represent document frequencies. If a value higher than 1 is
+	 * specified, then fractional can not be specified.
+	 * <p>
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
@@ -138,6 +155,12 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * The minimal threshold in number of documents a suggestion should appear in.
+	 * This can improve quality by only suggesting high frequency terms. Can be
+	 * specified as an absolute number or as a relative percentage of number of
+	 * documents. If a value higher than 1 is specified, the number cannot be
+	 * fractional.
+	 * <p>
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
@@ -146,6 +169,8 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * The minimum length a suggest text term must have in order to be included.
+	 * <p>
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
@@ -154,6 +179,9 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * A filter (analyzer) that is applied to each of the generated tokens before
+	 * they are passed to the actual phrase scorer.
+	 * <p>
 	 * API name: {@code post_filter}
 	 */
 	@Nullable
@@ -162,6 +190,10 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * A filter (analyzer) that is applied to each of the tokens passed to this
+	 * candidate generator. This filter is applied to the original token before
+	 * candidates are generated.
+	 * <p>
 	 * API name: {@code pre_filter}
 	 */
 	@Nullable
@@ -170,6 +202,10 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of minimal prefix characters that must match in order be a
+	 * candidate suggestions. Increasing this number improves spellcheck
+	 * performance.
+	 * <p>
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
@@ -178,6 +214,8 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum corrections to be returned per suggest text token.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -186,6 +224,9 @@ public class DirectGenerator implements JsonpSerializable {
 	}
 
 	/**
+	 * Controls what suggestions are included on the suggestions generated on each
+	 * shard.
+	 * <p>
 	 * API name: {@code suggest_mode}
 	 */
 	@Nullable
@@ -304,7 +345,10 @@ public class DirectGenerator implements JsonpSerializable {
 		private SuggestMode suggestMode;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to fetch the candidate suggestions from. Needs to be set
+		 * globally or per suggestion.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -312,6 +356,9 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum edit distance candidate suggestions can have in order to be
+		 * considered as a suggestion. Can only be <code>1</code> or <code>2</code>.
+		 * <p>
 		 * API name: {@code max_edits}
 		 */
 		public final Builder maxEdits(@Nullable Integer value) {
@@ -320,6 +367,10 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * A factor that is used to multiply with the shard_size in order to inspect
+		 * more candidate spelling corrections on the shard level. Can improve accuracy
+		 * at the cost of performance.
+		 * <p>
 		 * API name: {@code max_inspections}
 		 */
 		public final Builder maxInspections(@Nullable Float value) {
@@ -328,6 +379,13 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum threshold in number of documents in which a suggest text token
+		 * can exist in order to be included. This can be used to exclude high frequency
+		 * terms — which are usually spelled correctly — from being spellchecked. Can be
+		 * a relative percentage number (for example <code>0.4</code>) or an absolute
+		 * number to represent document frequencies. If a value higher than 1 is
+		 * specified, then fractional can not be specified.
+		 * <p>
 		 * API name: {@code max_term_freq}
 		 */
 		public final Builder maxTermFreq(@Nullable Float value) {
@@ -336,6 +394,12 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * The minimal threshold in number of documents a suggestion should appear in.
+		 * This can improve quality by only suggesting high frequency terms. Can be
+		 * specified as an absolute number or as a relative percentage of number of
+		 * documents. If a value higher than 1 is specified, the number cannot be
+		 * fractional.
+		 * <p>
 		 * API name: {@code min_doc_freq}
 		 */
 		public final Builder minDocFreq(@Nullable Float value) {
@@ -344,6 +408,8 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * The minimum length a suggest text term must have in order to be included.
+		 * <p>
 		 * API name: {@code min_word_length}
 		 */
 		public final Builder minWordLength(@Nullable Integer value) {
@@ -352,6 +418,9 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * A filter (analyzer) that is applied to each of the generated tokens before
+		 * they are passed to the actual phrase scorer.
+		 * <p>
 		 * API name: {@code post_filter}
 		 */
 		public final Builder postFilter(@Nullable String value) {
@@ -360,6 +429,10 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * A filter (analyzer) that is applied to each of the tokens passed to this
+		 * candidate generator. This filter is applied to the original token before
+		 * candidates are generated.
+		 * <p>
 		 * API name: {@code pre_filter}
 		 */
 		public final Builder preFilter(@Nullable String value) {
@@ -368,6 +441,10 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of minimal prefix characters that must match in order be a
+		 * candidate suggestions. Increasing this number improves spellcheck
+		 * performance.
+		 * <p>
 		 * API name: {@code prefix_length}
 		 */
 		public final Builder prefixLength(@Nullable Integer value) {
@@ -376,6 +453,8 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum corrections to be returned per suggest text token.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
@@ -384,6 +463,9 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 
 		/**
+		 * Controls what suggestions are included on the suggestions generated on each
+		 * shard.
+		 * <p>
 		 * API name: {@code suggest_mode}
 		 */
 		public final Builder suggestMode(@Nullable SuggestMode value) {

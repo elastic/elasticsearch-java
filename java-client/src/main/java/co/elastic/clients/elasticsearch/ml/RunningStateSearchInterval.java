@@ -76,6 +76,8 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	}
 
 	/**
+	 * The end time.
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
@@ -84,13 +86,17 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code end_ms}
+	 * Required - The end time as an epoch in milliseconds.
+	 * <p>
+	 * API name: {@code end_ms}
 	 */
 	public final long endMs() {
 		return this.endMs;
 	}
 
 	/**
+	 * The start time.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -99,7 +105,9 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code start_ms}
+	 * Required - The start time as an epoch in milliseconds.
+	 * <p>
+	 * API name: {@code start_ms}
 	 */
 	public final long startMs() {
 		return this.startMs;
@@ -159,6 +167,8 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		private Long startMs;
 
 		/**
+		 * The end time.
+		 * <p>
 		 * API name: {@code end}
 		 */
 		public final Builder end(@Nullable Time value) {
@@ -167,6 +177,8 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		}
 
 		/**
+		 * The end time.
+		 * <p>
 		 * API name: {@code end}
 		 */
 		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -174,7 +186,9 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code end_ms}
+		 * Required - The end time as an epoch in milliseconds.
+		 * <p>
+		 * API name: {@code end_ms}
 		 */
 		public final Builder endMs(long value) {
 			this.endMs = value;
@@ -182,6 +196,8 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		}
 
 		/**
+		 * The start time.
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public final Builder start(@Nullable Time value) {
@@ -190,6 +206,8 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		}
 
 		/**
+		 * The start time.
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -197,7 +215,9 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code start_ms}
+		 * Required - The start time as an epoch in milliseconds.
+		 * <p>
+		 * API name: {@code start_ms}
 		 */
 		public final Builder startMs(long value) {
 			this.startMs = value;
