@@ -227,6 +227,10 @@ public interface JsonpDeserializer<V> {
         return new JsonpDeserializerBase.EnumMapDeserializer<>(keyDeserializer, valueDeserializer);
     }
 
+    static <T extends JsonEnum> JsonpDeserializer<List<T>> pipeSeparatedDeserializer(JsonEnum.Deserializer<T> enumDeserializer) {
+        return new JsonEnums.PipeSeparatedDeserializer<>(enumDeserializer);
+    }
+
     /**
      * Creates a deserializer that will accept a value both as regular JSON and as JSON-in-a-string.
      */

@@ -21,15 +21,9 @@ package co.elastic.clients.json;
 
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import jakarta.json.stream.JsonParsingException;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
-
-import static jakarta.json.stream.JsonParser.Event;
 
 /**
  * Base interface for enumerations in API types. Members have a JSON representation and also accept
@@ -48,99 +42,14 @@ public interface JsonEnum extends JsonpSerializable {
         generator.write(jsonValue());
     }
 
-    class Deserializer<T extends JsonEnum> extends JsonpDeserializerBase<T> {
-
-        private static final EnumSet<Event> acceptedEvents = EnumSet.of(Event.VALUE_STRING, Event.KEY_NAME);
-        private static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_STRING);
-
-        private final Map<String, T> lookupTable;
-
+    // Moved to JsonEnums. Will be deprecated at some point.
+    class Deserializer<T extends JsonEnum> extends JsonEnums.Deserializer<T> {
         public Deserializer(T[] values) {
-            this(values, acceptedEvents);
+            super(values);
         }
 
-        protected Deserializer(T[] values, EnumSet<Event> acceptedEvents) {
-            super(acceptedEvents, nativeEvents);
-
-            // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
-            this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);
-            for (T member : values) {
-                String jsonValue = member.jsonValue();
-                if (jsonValue != null) { // _Custom enum members have a null jsonValue
-                    this.lookupTable.put(jsonValue, member);
-                }
-                String[] aliases = member.aliases();
-                if (aliases != null) {
-                    for (String alias: aliases) {
-                        this.lookupTable.put(alias, member);
-                    }
-                }
-            }
-        }
-
-        @Override
-        public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-            String value = parser.getString();
-            return deserialize(value, parser);
-        }
-
-        /**
-         * Get the enum member for a JSON string value
-         *
-         * @param value the JSON value
-         * @param parser parsing context
-         * @return the enum member
-         * @throws JsonParsingException if no matching enum was found
-         */
-        public T deserialize(String value, JsonParser parser) {
-            T result = this.lookupTable.get(value);
-            if (result == null) {
-                throw new JsonpMappingException("Invalid enum '" + value + "'", parser.getLocation());
-            }
-            return result;
-        }
-
-        /**
-         * Get the enum member for a JSON string value
-         *
-         * @param value the JSON value
-         * @return the enum member
-         * @throws IllegalArgumentException if no matching enum was found
-         */
-        public T parse(String value) {
-            T result = this.lookupTable.get(value);
-            if (result == null) {
-                throw new NoSuchElementException("Invalid enum '" + value + "'");
-            }
-            return result;
-        }
-
-        /**
-         * An enum deserializer that also accepts boolean values. Used for a few properties that started as two-state booleans
-         * and evolved into enums over time.
-         */
-        public static class AllowingBooleans<T extends JsonEnum> extends Deserializer<T> {
-
-            private static final EnumSet<Event> acceptedEventsAndBoolean =
-                EnumSet.of(Event.VALUE_STRING, Event.KEY_NAME, Event.VALUE_TRUE, Event.VALUE_FALSE);
-
-            public AllowingBooleans(T[] values) {
-                super(values, acceptedEventsAndBoolean);
-            }
-
-            @Override
-            public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                String value;
-                if (event == Event.VALUE_TRUE) {
-                    value = "true";
-                } else if (event == Event.VALUE_FALSE) {
-                    value = "false";
-                } else {
-                    value = parser.getString();
-                }
-
-                return deserialize(value, parser);
-            }
+        Deserializer(T[] values, EnumSet<JsonParser.Event> acceptedEvents) {
+            super(values, acceptedEvents);
         }
     }
 }
