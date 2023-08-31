@@ -100,7 +100,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
 	 */
 
 	public <TEvent> EqlGetResponse<TEvent> get(EqlGetRequest request, Class<TEvent> tEventClass)
@@ -123,7 +123,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
 	 */
 
 	public final <TEvent> EqlGetResponse<TEvent> get(Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn,
@@ -138,7 +138,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
 	 */
 
 	public <TEvent> EqlGetResponse<TEvent> get(EqlGetRequest request, Type tEventType)
@@ -161,7 +161,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
 	 */
 
 	public final <TEvent> EqlGetResponse<TEvent> get(Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn,
@@ -178,7 +178,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-status-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html</a>)
 	 */
 
 	public GetEqlStatusResponse getStatus(GetEqlStatusRequest request) throws IOException, ElasticsearchException {
@@ -198,7 +198,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.10/get-async-eql-status-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html</a>)
 	 */
 
 	public final GetEqlStatusResponse getStatus(
