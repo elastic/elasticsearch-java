@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;

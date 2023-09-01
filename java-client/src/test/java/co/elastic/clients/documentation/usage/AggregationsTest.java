@@ -26,7 +26,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.json.JsonData;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

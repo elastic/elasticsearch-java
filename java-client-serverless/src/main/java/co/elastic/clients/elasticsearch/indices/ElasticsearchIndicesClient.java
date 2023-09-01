@@ -1,0 +1,1524 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.indices;
+
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.util.ObjectBuilder;
+import java.io.IOException;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+/**
+ * Client for the indices namespace.
+ */
+public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport, ElasticsearchIndicesClient> {
+
+	public ElasticsearchIndicesClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchIndicesClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchIndicesClient(this.transport, transportOptions);
+	}
+
+	// ----- Endpoint: indices.analyze
+
+	/**
+	 * Performs the analysis process on a text and return the tokens breakdown of
+	 * the text.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-analyze.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> endpoint = (JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse>) AnalyzeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Performs the analysis process on a text and return the tokens breakdown of
+	 * the text.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link AnalyzeRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-analyze.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final AnalyzeResponse analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the analysis process on a text and return the tokens breakdown of
+	 * the text.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-analyze.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public AnalyzeResponse analyze() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.create
+
+	/**
+	 * Creates an index with optional settings and mappings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-create-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CreateIndexResponse create(CreateIndexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse>) CreateIndexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates an index with optional settings and mappings.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateIndexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-create-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CreateIndexResponse create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return create(fn.apply(new CreateIndexRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.create_data_stream
+
+	/**
+	 * Creates a data stream
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse>) CreateDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates a data stream
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateDataStreamRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CreateDataStreamResponse createDataStream(
+			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.data_streams_stats
+
+	/**
+	 * Provides statistics on operations happening in a data stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse>) DataStreamsStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Provides statistics on operations happening in a data stream.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DataStreamsStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DataStreamsStatsResponse dataStreamsStats(
+			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides statistics on operations happening in a data stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DataStreamsStatsResponse dataStreamsStats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new DataStreamsStatsRequest.Builder().build(),
+				DataStreamsStatsRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.delete
+
+	/**
+	 * Deletes an index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse>) DeleteIndexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteIndexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.delete_alias
+
+	/**
+	 * Deletes an alias.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse>) DeleteAliasRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an alias.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteAliasRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteAliasResponse deleteAlias(
+			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.delete_data_lifecycle
+
+	/**
+	 * Deletes the data stream lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDataLifecycleResponse deleteDataLifecycle(DeleteDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse>) DeleteDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes the data stream lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDataLifecycleResponse deleteDataLifecycle(
+			Function<DeleteDataLifecycleRequest.Builder, ObjectBuilder<DeleteDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataLifecycle(fn.apply(new DeleteDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.delete_data_stream
+
+	/**
+	 * Deletes a data stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse>) DeleteDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes a data stream.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataStreamRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDataStreamResponse deleteDataStream(
+			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.delete_index_template
+
+	/**
+	 * Deletes an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse>) DeleteIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an index template.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteIndexTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteIndexTemplateResponse deleteIndexTemplate(
+			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.delete_template
+
+	/**
+	 * Deletes an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an index template.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteTemplateResponse deleteTemplate(
+			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.disk_usage
+
+	/**
+	 * Analyzes the disk usage of each field of an index or data stream
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse>) DiskUsageRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Analyzes the disk usage of each field of an index or data stream
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DiskUsageRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DiskUsageResponse diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.exists
+
+	/**
+	 * Returns information about whether a particular index exists.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about whether a particular index exists.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return exists(fn.apply(new ExistsRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.exists_alias
+
+	/**
+	 * Returns information about whether a particular alias exists.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse>) ExistsAliasRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about whether a particular alias exists.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsAliasRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BooleanResponse existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.exists_index_template
+
+	/**
+	 * Returns information about whether a particular index template exists.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse>) ExistsIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about whether a particular index template exists.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsIndexTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BooleanResponse existsIndexTemplate(
+			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.exists_template
+
+	/**
+	 * Returns information about whether a particular index template exists.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about whether a particular index template exists.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BooleanResponse existsTemplate(
+			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.explain_data_lifecycle
+
+	/**
+	 * Retrieves information about the index's current data stream lifecycle, such
+	 * as any potential encountered error, time since creation etc.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ExplainDataLifecycleResponse explainDataLifecycle(ExplainDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<ExplainDataLifecycleRequest, ExplainDataLifecycleResponse, ErrorResponse>) ExplainDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves information about the index's current data stream lifecycle, such
+	 * as any potential encountered error, time since creation etc.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ExplainDataLifecycleResponse explainDataLifecycle(
+			Function<ExplainDataLifecycleRequest.Builder, ObjectBuilder<ExplainDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return explainDataLifecycle(fn.apply(new ExplainDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.get
+
+	/**
+	 * Returns information about one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIndexResponse get(GetIndexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse>) GetIndexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more indices.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIndexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return get(fn.apply(new GetIndexRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.get_alias
+
+	/**
+	 * Returns an alias.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse>) GetAliasRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns an alias.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAliasRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetAliasResponse getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns an alias.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetAliasResponse getAlias() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_data_lifecycle
+
+	/**
+	 * Returns the data stream lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataLifecycleResponse getDataLifecycle(GetDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataLifecycleRequest, GetDataLifecycleResponse, ErrorResponse>) GetDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the data stream lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataLifecycleResponse getDataLifecycle(
+			Function<GetDataLifecycleRequest.Builder, ObjectBuilder<GetDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataLifecycle(fn.apply(new GetDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.get_data_stream
+
+	/**
+	 * Returns data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamResponse getDataStream(GetDataStreamRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse>) GetDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataStreamResponse getDataStream(
+			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamResponse getDataStream() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetDataStreamRequest.Builder().build(), GetDataStreamRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_index_template
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse>) GetIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIndexTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetIndexTemplateResponse getIndexTemplate(
+			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIndexTemplateResponse getIndexTemplate() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetIndexTemplateRequest.Builder().build(),
+				GetIndexTemplateRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_mapping
+
+	/**
+	 * Returns mappings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse>) GetMappingRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns mappings for one or more indices.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetMappingRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetMappingResponse getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns mappings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetMappingResponse getMapping() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_settings
+
+	/**
+	 * Returns settings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIndicesSettingsResponse getSettings(GetIndicesSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse>) GetIndicesSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns settings for one or more indices.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIndicesSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetIndicesSettingsResponse getSettings(
+			Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns settings for one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIndicesSettingsResponse getSettings() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetIndicesSettingsRequest.Builder().build(),
+				GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_template
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse>) GetTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetTemplateResponse getTemplate(
+			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetTemplateResponse getTemplate() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.migrate_to_data_stream
+
+	/**
+	 * Migrates an alias to a data stream
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse>) MigrateToDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Migrates an alias to a data stream
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MigrateToDataStreamRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final MigrateToDataStreamResponse migrateToDataStream(
+			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.modify_data_stream
+
+	/**
+	 * Modifies a data stream
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ModifyDataStreamResponse modifyDataStream(ModifyDataStreamRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ModifyDataStreamRequest, ModifyDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<ModifyDataStreamRequest, ModifyDataStreamResponse, ErrorResponse>) ModifyDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Modifies a data stream
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ModifyDataStreamRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ModifyDataStreamResponse modifyDataStream(
+			Function<ModifyDataStreamRequest.Builder, ObjectBuilder<ModifyDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return modifyDataStream(fn.apply(new ModifyDataStreamRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_alias
+
+	/**
+	 * Creates or updates an alias.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse>) PutAliasRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates or updates an alias.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAliasRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutAliasResponse putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_lifecycle
+
+	/**
+	 * Updates the data stream lifecycle of the selected data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataLifecycleResponse putDataLifecycle(PutDataLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse>) PutDataLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates the data stream lifecycle of the selected data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataLifecycleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataLifecycleResponse putDataLifecycle(
+			Function<PutDataLifecycleRequest.Builder, ObjectBuilder<PutDataLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_index_template
+
+	/**
+	 * Creates or updates an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse>) PutIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates or updates an index template.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutIndexTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutIndexTemplateResponse putIndexTemplate(
+			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_mapping
+
+	/**
+	 * Updates the index mappings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse>) PutMappingRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates the index mappings.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutMappingRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutMappingResponse putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_settings
+
+	/**
+	 * Updates the index settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutIndicesSettingsResponse putSettings(PutIndicesSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse>) PutIndicesSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates the index settings.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutIndicesSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutIndicesSettingsResponse putSettings(
+			Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
+	}
+
+	/**
+	 * Updates the index settings.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutIndicesSettingsResponse putSettings() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new PutIndicesSettingsRequest.Builder().build(),
+				PutIndicesSettingsRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.put_template
+
+	/**
+	 * Creates or updates an index template.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse>) PutTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates or updates an index template.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutTemplateResponse putTemplate(
+			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.resolve_index
+
+	/**
+	 * Returns information about any matching indices, aliases, and data streams
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse>) ResolveIndexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about any matching indices, aliases, and data streams
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ResolveIndexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ResolveIndexResponse resolveIndex(
+			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.rollover
+
+	/**
+	 * Updates an alias to point to a new index when the existing index is
+	 * considered to be too large or too old.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-rollover-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RolloverResponse rollover(RolloverRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse> endpoint = (JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse>) RolloverRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates an alias to point to a new index when the existing index is
+	 * considered to be too large or too old.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RolloverRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-rollover-index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final RolloverResponse rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return rollover(fn.apply(new RolloverRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.simulate_index_template
+
+	/**
+	 * Simulate matching the given index name against the index templates in the
+	 * system
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse>) SimulateIndexTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Simulate matching the given index name against the index templates in the
+	 * system
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SimulateIndexTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final SimulateIndexTemplateResponse simulateIndexTemplate(
+			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.simulate_template
+
+	/**
+	 * Simulate resolving the given template name or body
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse>) SimulateTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Simulate resolving the given template name or body
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SimulateTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final SimulateTemplateResponse simulateTemplate(
+			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
+	}
+
+	/**
+	 * Simulate resolving the given template name or body
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SimulateTemplateResponse simulateTemplate() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new SimulateTemplateRequest.Builder().build(),
+				SimulateTemplateRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.update_aliases
+
+	/**
+	 * Updates index aliases.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse>) UpdateAliasesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates index aliases.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateAliasesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final UpdateAliasesResponse updateAliases(
+			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
+	}
+
+	/**
+	 * Updates index aliases.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateAliasesResponse updateAliases() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new UpdateAliasesRequest.Builder().build(), UpdateAliasesRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.validate_query
+
+	/**
+	 * Allows a user to validate a potentially expensive query without executing it.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ValidateQueryResponse validateQuery(ValidateQueryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse>) ValidateQueryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows a user to validate a potentially expensive query without executing it.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ValidateQueryRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ValidateQueryResponse validateQuery(
+			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows a user to validate a potentially expensive query without executing it.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ValidateQueryResponse validateQuery() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ValidateQueryRequest.Builder().build(), ValidateQueryRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+}

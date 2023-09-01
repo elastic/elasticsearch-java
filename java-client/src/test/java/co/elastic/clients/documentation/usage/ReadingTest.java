@@ -22,7 +22,7 @@ package co.elastic.clients.documentation.usage;
 import co.elastic.clients.documentation.DocTestsTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.GetResponse;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

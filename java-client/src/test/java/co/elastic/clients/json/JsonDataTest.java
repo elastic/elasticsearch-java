@@ -21,7 +21,7 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonString;

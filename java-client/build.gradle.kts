@@ -27,7 +27,7 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.1"
+    id("com.github.jk1.dependency-license-report") version "2.2"
     id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
@@ -37,6 +37,12 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+}
+
+sourceSets {
+    main {
+        java.srcDir("src/main-flavored/java")
+    }
 }
 
 forbiddenApis {
@@ -286,26 +292,18 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                 val depVersion = dep.version
                 val depName = dep.group + ":" + dep.name
 
-                //--------------
-                // FIXME: restore section below once 2.2 is released
-                // See https://github.com/jk1/Gradle-License-Report/issues/251
-                val (depUrl, licenseId, licenseUrl) = LicenseDataCollector.singleModuleLicenseInfo(dep)
-                checkNotNull(spdxIds[licenseId]) { "No SPDX identifier for $licenseId" }
+                val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
+                val depUrl = info.moduleUrls.first()
 
-                //--------------
-                // val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
-                // val depUrl = info.moduleUrls.first()
-                //
-                // val licenseIds = info.licenses.mapNotNull { license ->
-                //     license.name?.let {
-                //         checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
-                //     }
-                // }.toSet()
-                //
-                // // Combine multiple licenses.
-                // // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
-                // val licenseId = licenseIds.joinToString(" OR ")
-                //--------------
+                val licenseIds = info.licenses.mapNotNull { license ->
+                    license.name?.let {
+                        checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
+                    }
+                }.toSet()
+
+                // Combine multiple licenses.
+                // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
+                val licenseId = licenseIds.joinToString(" OR ")
 
                 out.append("${quote(depName)},${quote(depUrl)},${quote(depVersion)},,${quote(licenseId)}\n")
             }

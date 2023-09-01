@@ -28,7 +28,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.PutIndicesSettingsRequest;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;

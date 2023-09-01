@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
 import org.junit.jupiter.api.Test;
 

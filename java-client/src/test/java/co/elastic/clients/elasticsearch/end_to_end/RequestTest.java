@@ -42,7 +42,7 @@ import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.ContentType;

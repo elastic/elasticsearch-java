@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.IndexRoutingAllocationDisk;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.testkit.ModelTestCase;
 import jakarta.json.stream.JsonParser;
 import org.junit.jupiter.api.Test;
 

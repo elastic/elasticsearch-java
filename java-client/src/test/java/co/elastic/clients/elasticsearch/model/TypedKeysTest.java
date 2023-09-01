@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperFeatures;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
 import jakarta.json.spi.JsonProvider;
