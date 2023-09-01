@@ -37,6 +37,7 @@ import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.NamedValue;

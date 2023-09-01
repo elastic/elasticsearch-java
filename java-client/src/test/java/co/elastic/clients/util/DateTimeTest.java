@@ -19,7 +19,7 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;

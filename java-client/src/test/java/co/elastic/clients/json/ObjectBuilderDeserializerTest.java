@@ -20,7 +20,7 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch._types.mapping.TextProperty;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.elasticsearch.transform.UpdateTransformRequest;
 import org.junit.jupiter.api.Test;
 

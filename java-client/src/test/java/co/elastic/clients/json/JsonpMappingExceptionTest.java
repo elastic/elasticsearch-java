@@ -21,7 +21,7 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;

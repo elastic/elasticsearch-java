@@ -20,7 +20,7 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.elasticsearch.security.IndexPrivilege;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.elasticsearch.security.RoleTemplateScript;

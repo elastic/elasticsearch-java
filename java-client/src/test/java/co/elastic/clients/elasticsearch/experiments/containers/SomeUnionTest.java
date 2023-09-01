@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments.containers;
 
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;

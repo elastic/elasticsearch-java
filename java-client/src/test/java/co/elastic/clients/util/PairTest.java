@@ -20,7 +20,7 @@
 package co.elastic.clients.util;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.elasticsearch.watcher.Condition;
 import co.elastic.clients.elasticsearch.watcher.ConditionOp;
 import org.junit.jupiter.api.Test;

@@ -19,8 +19,7 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.testkit.ModelTestCase;
 import jakarta.json.stream.JsonParser;
 import org.junit.jupiter.api.Test;
 

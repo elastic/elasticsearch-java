@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlag;
 import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlags;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.testkit.ModelTestCase;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;
