@@ -32,7 +32,8 @@ plugins {
     id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
-version = "1.0.0+20231031-SNAPSHOT"
+// GitHub Maven repo doesn't like 1.0.0+20231031-SNAPSHOT
+version = "1.0.0-20231031-SNAPSHOT"
 
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -131,7 +132,7 @@ publishing {
     }
 
     publications {
-        create<MavenPublication>("maven") {
+        register<MavenPublication>("maven") {
             from(components["java"])
             pom {
                 name.set("Elasticsearch Java API Client (Serverless edition)")
