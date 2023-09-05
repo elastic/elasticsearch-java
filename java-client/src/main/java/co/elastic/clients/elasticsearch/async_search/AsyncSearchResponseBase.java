@@ -68,6 +68,12 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 	private final long startTimeInMillis;
 
+	@Nullable
+	private final DateTime completionTime;
+
+	@Nullable
+	private final Long completionTimeInMillis;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected AsyncSearchResponseBase(AbstractBuilder<?> builder) {
@@ -80,6 +86,8 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 				"expirationTimeInMillis");
 		this.startTime = builder.startTime;
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.completionTime = builder.completionTime;
+		this.completionTimeInMillis = builder.completionTimeInMillis;
 
 	}
 
@@ -148,6 +156,25 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates when the async search completed. Only present when the search has
+	 * completed.
+	 * <p>
+	 * API name: {@code completion_time}
+	 */
+	@Nullable
+	public final DateTime completionTime() {
+		return this.completionTime;
+	}
+
+	/**
+	 * API name: {@code completion_time_in_millis}
+	 */
+	@Nullable
+	public final Long completionTimeInMillis() {
+		return this.completionTimeInMillis;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -183,6 +210,16 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		generator.writeKey("start_time_in_millis");
 		generator.write(this.startTimeInMillis);
 
+		if (this.completionTime != null) {
+			generator.writeKey("completion_time");
+			this.completionTime.serialize(generator, mapper);
+		}
+		if (this.completionTimeInMillis != null) {
+			generator.writeKey("completion_time_in_millis");
+			generator.write(this.completionTimeInMillis);
+
+		}
+
 	}
 
 	@Override
@@ -209,6 +246,12 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		private DateTime startTime;
 
 		private Long startTimeInMillis;
+
+		@Nullable
+		private DateTime completionTime;
+
+		@Nullable
+		private Long completionTimeInMillis;
 
 		/**
 		 * API name: {@code id}
@@ -278,6 +321,25 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * Indicates when the async search completed. Only present when the search has
+		 * completed.
+		 * <p>
+		 * API name: {@code completion_time}
+		 */
+		public final BuilderT completionTime(@Nullable DateTime value) {
+			this.completionTime = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code completion_time_in_millis}
+		 */
+		public final BuilderT completionTimeInMillis(@Nullable Long value) {
+			this.completionTimeInMillis = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -294,6 +356,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 				"expiration_time_in_millis");
 		op.add(AbstractBuilder::startTime, DateTime._DESERIALIZER, "start_time");
 		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(AbstractBuilder::completionTime, DateTime._DESERIALIZER, "completion_time");
+		op.add(AbstractBuilder::completionTimeInMillis, JsonpDeserializer.longDeserializer(),
+				"completion_time_in_millis");
 
 	}
 
