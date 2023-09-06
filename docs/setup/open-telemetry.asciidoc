@@ -19,6 +19,18 @@ image::../images/otel-waterfall-retries.jpg[alt="Distributed trace with request 
 
 The first node is unavailable and results in an HTTP error, while the retry to the second node succeeds. Both HTTP requests are subsumed by the logical Elasticsearch request span (in blue).
 
+[[opentelemetry-setup]]
+==== Setup the OpenTelemetry instrumentation
+When using the https://opentelemetry.io/docs/instrumentation/java/manual[OpenTelemetry Java SDK manually] or using the https://opentelemetry.io/docs/instrumentation/java/automatic/[OpenTelemetry Java Agent], the Java API Client's OpenTelemetry instrumentation is enabled by default and uses the _globally_ registered OpenTelemetry SDK instance (i.e. `GlobalOpenTelemetry`). So, if you don't use a custom, local OpenTelemetry SDK instance, there is no explicit setup required to use the Java API Client's OpenTelemetry instrumentation.
+
+===== Using a custom OpenTelemetry instance
+In case you are using https://opentelemetry.io/docs/instrumentation/java/manual/#example[manual OpenTelemetry instrumentation] with a custom OpenTelemetry SDK instance that is _not registered globally_, you can create the Java API Client using a custom OpenTelemetry instance. The following code snippet shows an example of using a custom OpenTelemetry instance.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/getting_started/ConnectingTest.java[create-client-otel]
+--------------------------------------------------
+
 [[opentelemetry-config]]
 ==== Configuring the OpenTelemetry instrumentation
 
@@ -27,7 +39,7 @@ The following configuration options are available.
 
 [float]
 [[opentelemetry-config-enable]]
-===== Enable / Disable OpenTelemetry Instrumentation
+===== Enable / Disable the OpenTelemetry instrumentation
 
 [options="header"]
 |============
@@ -41,7 +53,7 @@ With this configuration option you can enable (default) or disable the built-in 
 
 [float]
 [[opentelemetry-config-capture-search-query]]
-===== Capture Search Request Bodies
+===== Capture search request bodies
 
 [options="header"]
 |============
