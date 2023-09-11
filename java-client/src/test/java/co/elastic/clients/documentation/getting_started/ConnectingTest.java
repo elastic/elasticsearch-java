@@ -95,22 +95,23 @@ public class ConnectingTest {
 
         // Create the low-level client
         RestClient restClient = RestClient
-                .builder(HttpHost.create(serverUrl))
-                .setDefaultHeaders(new Header[]{
-                        new BasicHeader("Authorization", "ApiKey " + apiKey)
-                })
-                .build();
+            .builder(HttpHost.create(serverUrl))
+            .setDefaultHeaders(new Header[]{
+                    new BasicHeader("Authorization", "ApiKey " + apiKey)
+            })
+            .build();
         // Create and configure custom OpenTelemetry instance
         OpenTelemetry customOtel = OpenTelemetrySdk.builder().build();
 
         // Create Instrumentation instance using the custom OpenTelemetry instance
         // Second constructor argument allows to enable/disable search body capturing
-        OpenTelemetryForElasticsearch esOtelInstrumentation = new OpenTelemetryForElasticsearch(
-                customOtel, false);
+        OpenTelemetryForElasticsearch esOtelInstrumentation =
+            new OpenTelemetryForElasticsearch(customOtel, false);
 
         // Create the transport with the custom Instrumentation instance
         ElasticsearchTransport transport = new RestClientTransport(
-                restClient, new JacksonJsonpMapper(), null, esOtelInstrumentation);
+            restClient, new JacksonJsonpMapper(), null, esOtelInstrumentation
+        );
 
         // And create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
