@@ -1,0 +1,73 @@
+[[opentelemetry]]
+=== Using OpenTelemetry
+
+You can use https://opentelemetry.io/[OpenTelemetry] to monitor the performance and behavior of your Elasticsearch requests through the Java API Client.
+The Java API Client comes with built-in OpenTelemetry instrumentation that emits https://www.elastic.co/guide/en/apm/guide/current/apm-distributed-tracing.html[distributed tracing spans] by default.
+With that, applications https://opentelemetry.io/docs/instrumentation/java/manual/[instrumented with OpenTelemetry] or running the https://opentelemetry.io/docs/instrumentation/java/automatic/[OpenTelemetry Java Agent] are inherently enriched with additional spans that contain insightful information about the execution of the Elasticsearch requests. 
+
+The native instrumentation in the Java API Client follows the https://opentelemetry.io/docs/specs/semconv/database/elasticsearch/[OpenTelemetry Semantic Conventions for Elasticsearch]. In particular, the instrumentation in the client covers the logical Elasticsearch request layer, thus, creates a single span per request the service executes against the Java API Client. The following image shows a resulting trace in which three different Elasticsearch requests are executed, i.e. an `index`, `get` and a search `request`:
+
+[role="screenshot"]
+image::images/otel-waterfall-instrumented-without-http.jpg[alt="Distributed trace with Elasticsearch spans",align="center"]
+
+Usually, OpenTelemetry agents and auto-instrumentation modules come with instrumentation support for HTTP-level communication. In this case, in addition to the logical Elasticsearch client requests, spans will be captured for the physical HTTP requests emitted by the client. The following image shows a trace with both, Elasticsearch spans (in blue) and the corresponding HTTP-level spans (in red):
+
+[role="screenshot"]
+image::images/otel-waterfall-instrumented.jpg[alt="Distributed trace with Elasticsearch and HTTP spans",align="center"]
+
+Advanced Java API Client behavior such as nodes round-robin and request retries are revealed through the combination of logical Elasticsearch spans and the physical HTTP spans. The following example shows an `index` request in a scenario with two Elasticsearch nodes:
+
+[role="screenshot"]
+image::images/otel-waterfall-retries.jpg[alt="Distributed trace with request retries",align="center"]
+
+The first node is unavailable and results in an HTTP error, while the retry to the second node succeeds. Both HTTP requests are subsumed by the logical Elasticsearch request span (in blue).
+
+[discrete]
+==== Setup the OpenTelemetry instrumentation
+When using the https://opentelemetry.io/docs/instrumentation/java/manual[OpenTelemetry Java SDK manually] or using the https://opentelemetry.io/docs/instrumentation/java/automatic/[OpenTelemetry Java Agent], the Java API Client's OpenTelemetry instrumentation is enabled by default and uses the _globally_ registered OpenTelemetry SDK instance (i.e. `GlobalOpenTelemetry`). So, if you don't use a custom, local OpenTelemetry SDK instance, there is no explicit setup required to use the Java API Client's OpenTelemetry instrumentation.
+
+[discrete]
+===== Using a custom OpenTelemetry instance
+In case you are using https://opentelemetry.io/docs/instrumentation/java/manual/#example[manual OpenTelemetry instrumentation] with a custom OpenTelemetry SDK instance that is _not registered globally_, you can create the Java API Client using a custom OpenTelemetry instance. The following code snippet shows an example of using a custom OpenTelemetry instance.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/getting_started/ConnectingTest.java[create-client-otel]
+--------------------------------------------------
+
+[discrete]
+==== Configuring the OpenTelemetry instrumentation
+
+You can configure the OpenTelemetry instrumentation either through Java System properties or Environment Variables. 
+The following configuration options are available.
+
+[discrete]
+[[opentelemetry-config-enable]]
+===== Enable / Disable the OpenTelemetry instrumentation
+
+With this configuration option you can enable (default) or disable the built-in OpenTelemetry instrumentation.
+
+**Default:** `true`
+
+|============
+| Java System Property | `otel.instrumentation.elasticsearch.enabled`
+| Environment Variable | `OTEL_INSTRUMENTATION_ELASTICSEARCH_ENABLED`
+|============
+
+[discrete]
+===== Capture search request bodies
+
+Per default, the built-in OpenTelemetry instrumentation does not capture request bodies because of data privacy reasons. You can use this option to enable capturing of search queries from the the request bodies of Elasticsearch search requests in case you wish to capture this information, regardless.
+
+**Default:** `false`
+
+|============
+| Java System Property |   `otel.instrumentation.elasticsearch.capture-search-query`
+| Environment Variable | `OTEL_INSTRUMENTATION_ELASTICSEARCH_CAPTURE_SEARCH_QUERY`
+|============
+
+[discrete]
+==== Overhead
+The OpenTelemetry instrumentation (as any other monitoring approach) may come with a little overhead on CPU, memory and/or latency. The overhead may only occur when the instrumentation is enabled (default) and an OpenTelemetry SDK (or an OpenTelemetry Agent) is active in the target application. In case that either the instrumentation is disabled or no OpenTelemetry SDK (or OpenTelemetry Agent) is active with the target application, there is no monitoring overhead expected when using the client. 
+
+Even when the instrumentation is enabled and is being actively used (by an OpenTelemetry SDK), in the vast majority of cases the overhead is very small and negligible. In edge cases in which there is a noticable overhead the <<opentelemetry-config-enable,instrumentation can be explicitly disabled>> to eliminate any potential overhead effect of the instrumentation. 

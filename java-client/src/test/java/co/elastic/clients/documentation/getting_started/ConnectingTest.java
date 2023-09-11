@@ -26,7 +26,10 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.TransportUtils;
+import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.sdk.OpenTelemetrySdk;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -80,6 +83,39 @@ public class ConnectingTest {
             processProduct(hit.source());
         }
         //end::first-request
+    }
+
+    @Disabled // we don't have a running ES
+    @Test
+    public void createClientWithOpenTelemetry() throws Exception {
+        //tag::create-client-otel
+        // URL and API key
+        String serverUrl = "https://localhost:9200";
+        String apiKey = "VnVhQ2ZHY0JDZGJrU...";
+
+        // Create the low-level client
+        RestClient restClient = RestClient
+            .builder(HttpHost.create(serverUrl))
+            .setDefaultHeaders(new Header[]{
+                    new BasicHeader("Authorization", "ApiKey " + apiKey)
+            })
+            .build();
+        // Create and configure custom OpenTelemetry instance
+        OpenTelemetry customOtel = OpenTelemetrySdk.builder().build();
+
+        // Create Instrumentation instance using the custom OpenTelemetry instance
+        // Second constructor argument allows to enable/disable search body capturing
+        OpenTelemetryForElasticsearch esOtelInstrumentation =
+            new OpenTelemetryForElasticsearch(customOtel, false);
+
+        // Create the transport with the custom Instrumentation instance
+        ElasticsearchTransport transport = new RestClientTransport(
+            restClient, new JacksonJsonpMapper(), null, esOtelInstrumentation
+        );
+
+        // And create the API client
+        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+        //end::create-client-otel
     }
 
     @Disabled // we don't have a running ES
