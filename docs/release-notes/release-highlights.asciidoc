@@ -6,6 +6,20 @@ These are the important new features and changes in minor releases. Every releas
 For a list of detailed changes, including bug fixes, please see the https://github.com/elastic/elasticsearch-java/releases[GitHub project realease notes].
 
 [discrete]
+==== Version 8.9
+
+* Refactor RestClientTransport to allow using other http client libraries - https://github.com/elastic/elasticsearch-java/pull/584[#584]
+
+[discrete]
+==== Version 8.8
+
+* Throw a TransportException when an error response cannot be parsed - https://github.com/elastic/elasticsearch-java/pull/579[#579]
+* Speed up URL path encoding and remove dependency on httpclient - https://github.com/elastic/elasticsearch-java/pull/576[#576]
+* Add buffered lookahead and JsonData implementation for Jackson - https://github.com/elastic/elasticsearch-java/pull/489[#489], https://github.com/elastic/elasticsearch-java/pull/567[#567]
+* Expose additional BulkIngester metrics - https://github.com/elastic/elasticsearch-java/pull/513[#513]
+* Allow unparsed binary data to be used for ingestion - https://github.com/elastic/elasticsearch-java/pull/508[#508]
+
+[discrete]
 ==== Version 8.7
 
 * Add `BulkIngester` helper -  https://github.com/elastic/elasticsearch-java/pull/474[#474], https://github.com/elastic/elasticsearch-java/pull/513[#513], <<indexing-bulk,docs>>
