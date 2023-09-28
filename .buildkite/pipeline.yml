@@ -1,0 +1,11 @@
+steps:
+  - label: ":java: :elasticsearch: Elasticsearch Java API client - {{matrix.workflow}}"
+    agents:
+      provider: "gcp"
+    branches: [ "main", "8.10" ]
+    matrix:
+      setup:
+        workflow:
+          - "snapshot"
+          - "staging"
+    command: ".ci/release.sh {{matrix.workflow}}"
