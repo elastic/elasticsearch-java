@@ -7,31 +7,77 @@ date: 2023-06-27
 tags: ['serverless','Java client','docs', 'getting started', 'Java']
 ---
 
-This page guides you through the installation process of the Serverless Java 
+This page guides you through the installation process of the Serverless Java
 client, shows you how to instantiate the client, and how to perform basic 
 Elasticsearch operations with it.
 
 ## Requirements
 
-[TO DO]
+* Java 8 or later.
+* A JSON object mapping library to allow seamless integration of
+your application classes with the Elasticsearch API. The examples below
+show usage with Jackson.
 
 ## Installation
 
-### Using the command line
+You can add the Elasticsearch Serverless Java client to your Java project using either Gradle or Maven.
 
-You can install the Elasticsearch Serverless Java client with the following 
-commands:
+### Using Gradle
 
-```bash
+```groovy
+dependencies {
+    implementation 'co.elastic.clients:elasticsearch-java-serverless:1.0.0-20231031'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+}
 ```
 
+### Using Maven
+
+In the `pom.xml` of your project, add the following dependencies:
+
+```xml
+<project>
+    <dependencies>
+
+        <dependency>
+            <groupId>co.elastic.clients</groupId>
+            <artifactId>elasticsearch-java-serverless</artifactId>
+            <version>1.0.0-20231031</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.3</version>
+        </dependency>
+
+    </dependencies>
+</project>
+```
 
 ## Instantiate a client
 
-You can instantiate a client by running the following command:
+You can connect to the Elasticsearch Service using an API key and the Elasticsearch endpoint:
 
 ```java
+// URL and API key
+String serverUrl = "https://...elastic.cloud";
+String apiKey = "VnVhQ2ZHY0JDZGJrU...";
 
+// Create the low-level client
+RestClient restClient = RestClient
+    .builder(HttpHost.create(serverUrl))
+    .setDefaultHeaders(new Header[]{
+        new BasicHeader("Authorization", "ApiKey " + apiKey)
+    })
+    .build();
+
+// Create the transport with a Jackson mapper
+ElasticsearchTransport transport = new RestClientTransport(
+    restClient, new JacksonJsonpMapper());
+
+// And create the API client
+ElasticsearchClient esClient = new ElasticsearchClient(transport);
 ```
 
 You can find the Elasticsearch endpoint on the Cloud deployment management page.
@@ -46,9 +92,7 @@ You can create a new API Key under **Stack Management** > **Security**:
 ## Using the API
 
 After you instantiated a client with your API key and Elasticsearch endpoint, 
-you can start ingesting documents into the Elasticsearch Service. You can use 
-the Bulk API for this. This API enables you to index, update, and delete several 
-documents in one request.
+you can start ingesting documents into the Elasticsearch Service.
 
 
 ### Creating an index and ingesting documents
@@ -56,19 +100,20 @@ documents in one request.
 You can call the `bulk` API with a body parameter, an array of hashes that 
 define the action, and a document. 
 
-The following is an example of indexing some classic books into the `books` 
-index:
+The following is an example of indexing a document, here a `Product` application object
+in the `products` index:
 
 ```java
+Product product = new Product("bk-1", "City bike", 123.0);
 
+IndexResponse response = esClient.index(i -> i
+    .index("products")
+    .id(product.getSku())
+    .document(product)
+);
+
+logger.info("Indexed with version " + response.version());
 ```
-
-When you use the client to make a request to Elasticsearch, it returns an API 
-response object. You can check the HTTP return code by calling `status` and the 
-HTTP headers by calling `headers` on the response object. The response object 
-also behaves as a Hash, so you can access the body values directly as seen on 
-the previous example with ``.
-
 
 ### Searching
 
@@ -76,13 +121,40 @@ Now that some data is available, you can search your documents using the
 **Search API**:
 
 ```java
+String searchText = "bike";
+
+SearchResponse<Product> response = esClient.search(s -> s
+    .index("products")
+    .query(q -> q
+        .match(t -> t
+            .field("name")
+            .query(searchText)
+        )
+    ),
+    Product.class
+);
 ```
+
+A few things to note in the above example:
+* the search query is built using a hierarchy of lambda expressions that closely follows the
+  Elasticsearch JSON API. Lambda expressions allows you to be guided by your IDE's autocompletion, without
+  having to import (or even know!) the actual classes representing a query.
+* The last parameter `Product.class` instructs the client to return results as `Product` application objects
+  instead of raw JSON.
 
 ### Updating
 
-You can update your documents using the Bulk API:
+You can update your documents using the Update API:
 
 ```java
+Product product = new Product("bk-1", "City bike", 123.0);
+
+esClient.update(u -> u
+        .index("products")
+        .id("bk-1")
+        .upsert(product),
+    Product.class
+);
 ```
 
 ### Delete 
@@ -90,4 +162,5 @@ You can update your documents using the Bulk API:
 You can also delete documents:
 
 ```java
+esClient.delete(d -> d.index("products").id("bk-1"));
 ```
