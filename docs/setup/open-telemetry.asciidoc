@@ -5,7 +5,7 @@ You can use https://opentelemetry.io/[OpenTelemetry] to monitor the performance 
 The Java API Client comes with built-in OpenTelemetry instrumentation that emits https://www.elastic.co/guide/en/apm/guide/current/apm-distributed-tracing.html[distributed tracing spans] by default.
 With that, applications https://opentelemetry.io/docs/instrumentation/java/manual/[instrumented with OpenTelemetry] or running the https://opentelemetry.io/docs/instrumentation/java/automatic/[OpenTelemetry Java Agent] are inherently enriched with additional spans that contain insightful information about the execution of the {es} requests.
 
-The native instrumentation in the Java API Client follows the https://opentelemetry.io/docs/specs/semconv/database/elasticsearch/[OpenTelemetry Semantic Conventions for {es}]. In particular, the instrumentation in the client covers the logical {es} request layer, thus, creates a single span per request the service executes against the Java API Client. The following image shows a resulting trace in which three different {es} requests are executed, i.e. an `index`, `get` and a search `request`:
+The native instrumentation in the Java API Client follows the https://opentelemetry.io/docs/specs/semconv/database/elasticsearch/[OpenTelemetry Semantic Conventions for {es}]. In particular, the instrumentation in the client covers the logical layer of {es} requests. A single span per request is created that is processed by the service through the Java API Client. The following image shows a trace that records the handling of three different {es} requests: an `index`, `get` and a search `request`:
 
 [role="screenshot"]
 image::images/otel-waterfall-instrumented-without-http.jpg[alt="Distributed trace with {es} spans",align="center"]
@@ -24,6 +24,7 @@ The first node is unavailable and results in an HTTP error, while the retry to t
 
 [discrete]
 ==== Setup the OpenTelemetry instrumentation
+
 When using the https://opentelemetry.io/docs/instrumentation/java/manual[OpenTelemetry Java SDK manually] or using the https://opentelemetry.io/docs/instrumentation/java/automatic/[OpenTelemetry Java Agent], the Java API Client's OpenTelemetry instrumentation is enabled by default and uses the _globally_ registered OpenTelemetry SDK instance (i.e. `GlobalOpenTelemetry`). So, if you don't use a custom, local OpenTelemetry SDK instance, there is no explicit setup required to use the Java API Client's OpenTelemetry instrumentation.
 
 [discrete]
@@ -57,7 +58,7 @@ With this configuration option you can enable (default) or disable the built-in 
 [discrete]
 ===== Capture search request bodies
 
-Per default, the built-in OpenTelemetry instrumentation does not capture request bodies because of data privacy reasons. You can use this option to enable capturing of search queries from the the request bodies of {es} search requests in case you wish to capture this information, regardless.
+Per default, the built-in OpenTelemetry instrumentation does not capture request bodies due to data privacy considerations. You can use this option to enable capturing of search queries from the the request bodies of {es} search requests in case you wish to gather this information regardless.
 
 **Default:** `false`
 
@@ -68,6 +69,7 @@ Per default, the built-in OpenTelemetry instrumentation does not capture request
 
 [discrete]
 ==== Overhead
+
 The OpenTelemetry instrumentation (as any other monitoring approach) may come with a little overhead on CPU, memory and/or latency. The overhead may only occur when the instrumentation is enabled (default) and an OpenTelemetry SDK (or an OpenTelemetry Agent) is active in the target application. In case that either the instrumentation is disabled or no OpenTelemetry SDK (or OpenTelemetry Agent) is active with the target application, there is no monitoring overhead expected when using the client. 
 
 Even when the instrumentation is enabled and is being actively used (by an OpenTelemetry SDK), in the vast majority of cases the overhead is very small and negligible. In edge cases in which there is a noticable overhead the <<opentelemetry-config-enable,instrumentation can be explicitly disabled>> to eliminate any potential overhead effect of the instrumentation. 
