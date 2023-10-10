@@ -36,7 +36,7 @@ allprojects {
 
 // Find git information.
 // The ".git" directory may not exist when resolving dependencies in the Docker image build
-if (File(rootProject.rootDir, ".git").exists()) {
+if (File(rootProject.rootDir, ".git").isDirectory()) {
     val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to rootProject.rootDir))
     rootProject.extra["gitHashFull"] = grgit.head().id
     rootProject.extra["gitCommitTime"] = grgit.head().dateTime.withZoneSameLocal(java.time.ZoneOffset.UTC)
