@@ -72,7 +72,8 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	@Nullable
 	private final GoogleNormalizedDistanceHeuristic gnd;
 
-	private final List<String> include;
+	@Nullable
+	private final TermsInclude include;
 
 	@Nullable
 	private final Long minDocCount;
@@ -109,7 +110,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		this.field = builder.field;
 		this.filterDuplicateText = builder.filterDuplicateText;
 		this.gnd = builder.gnd;
-		this.include = ApiTypeHelper.unmodifiable(builder.include);
+		this.include = builder.include;
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -192,7 +193,8 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	/**
 	 * API name: {@code include}
 	 */
-	public final List<String> include() {
+	@Nullable
+	public final TermsInclude include() {
 		return this.include;
 	}
 
@@ -296,14 +298,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.include)) {
+		if (this.include != null) {
 			generator.writeKey("include");
-			generator.writeStartArray();
-			for (String item0 : this.include) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.include.serialize(generator, mapper);
 
 		}
 		if (this.minDocCount != null) {
@@ -385,7 +382,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		private GoogleNormalizedDistanceHeuristic gnd;
 
 		@Nullable
-		private List<String> include;
+		private TermsInclude include;
 
 		@Nullable
 		private Long minDocCount;
@@ -498,22 +495,17 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 
 		/**
 		 * API name: {@code include}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 */
-		public final Builder include(List<String> list) {
-			this.include = _listAddAll(this.include, list);
+		public final Builder include(@Nullable TermsInclude value) {
+			this.include = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code include}
-		 * <p>
-		 * Adds one or more values to <code>include</code>.
 		 */
-		public final Builder include(String value, String... values) {
-			this.include = _listAdd(this.include, value, values);
-			return this;
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -651,8 +643,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::filterDuplicateText, JsonpDeserializer.booleanDeserializer(), "filter_duplicate_text");
 		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic._DESERIALIZER, "gnd");
-		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"include");
+		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
 		op.add(Builder::mutualInformation, MutualInformationHeuristic._DESERIALIZER, "mutual_information");
 		op.add(Builder::percentage, PercentageScoreHeuristic._DESERIALIZER, "percentage");
