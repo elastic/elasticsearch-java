@@ -251,8 +251,11 @@ dependencies {
     testImplementation("org.testcontainers", "testcontainers", "1.17.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
 
-
     testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
+
+    // Apache-2.0
+    // https://github.com/awaitility/awaitility
+    testImplementation("org.awaitility", "awaitility", "4.2.0")
 }
 
 
