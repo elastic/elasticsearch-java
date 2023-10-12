@@ -188,7 +188,7 @@ public class RestClientOptions implements TransportOptions {
     }
 
     static RestClientOptions initialOptions() {
-        return new RestClientOptions(RequestOptions.DEFAULT);
+        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {

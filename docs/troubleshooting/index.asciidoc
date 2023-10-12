@@ -9,6 +9,7 @@
 
 * <<missing-required-property>>
 * <<no-such-method-request-options>>
+* <<io-reactor-errors>>
 
 [discrete]
 === Miscellaneous
@@ -23,4 +24,6 @@
 
 include::missing-required-property.asciidoc[]
 include::no-such-method-request-options.asciidoc[]
+include::io-reactor-errors.asciidoc[]
+
 include::serialize-without-typed-keys.asciidoc[]
