@@ -191,7 +191,7 @@ publishing {
 }
 
 dependencies {
-    val elasticsearchVersion = "8.9.0"
+    val elasticsearchVersion = "8.10.0"
     val jacksonVersion = "2.13.3"
     val openTelemetryVersion = "1.29.0"
 

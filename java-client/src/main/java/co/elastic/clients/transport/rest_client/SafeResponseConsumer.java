@@ -47,13 +47,10 @@ public class SafeResponseConsumer<T> implements HttpAsyncResponseConsumer<T> {
     /**
      * Same as {@code RequestOptions.DEFAULT} with a safe consumer factory
      */
-    public static final RequestOptions DEFAULT_REQUEST_OPTIONS;
-
-    static {
-        RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
-        builder.setHttpAsyncResponseConsumerFactory(DEFAULT_FACTORY);
-        DEFAULT_REQUEST_OPTIONS = builder.build();
-    }
+    public static final RequestOptions DEFAULT_REQUEST_OPTIONS = RequestOptions.DEFAULT
+            .toBuilder()
+            .setHttpAsyncResponseConsumerFactory(DEFAULT_FACTORY)
+            .build();
 
     public SafeResponseConsumer(HttpAsyncResponseConsumer<T> delegate) {
         this.delegate = delegate;
