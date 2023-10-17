@@ -112,7 +112,9 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
+import co.elastic.clients.util.DuplicateResourceFinder;
 import co.elastic.clients.util.ObjectBuilder;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.function.Function;
@@ -122,6 +124,12 @@ import javax.annotation.Nullable;
  * Client for the namespace.
  */
 public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, ElasticsearchClient> {
+
+	static {
+		// Make sure we don't have several versions of this class. This may happen if
+		// several flavors of the client (Stack and Serverless) are present in the classpath.
+		DuplicateResourceFinder.ensureClassUniqueness(ElasticsearchClient.class);
+	}
 
 	public ElasticsearchClient(ElasticsearchTransport transport) {
 		super(transport, null);
