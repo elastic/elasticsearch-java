@@ -94,9 +94,12 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+	 * error if an index starts with <code>foo</code> but no index starts with
+	 * <code>bar</code>.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -106,8 +109,12 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -116,8 +123,8 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -127,8 +134,8 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names to search; use <code>_all</code> or
-	 * empty string to perform the operation on all indices
+	 * Returns the indices and shards that a search request would be executed
+	 * against.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -137,8 +144,8 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * If <code>true</code>, the request retrieves information from the local node
+	 * only.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -148,8 +155,8 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -159,7 +166,7 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -199,9 +206,12 @@ public class SearchShardsRequest extends RequestBase {
 		private String routing;
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+		 * error if an index starts with <code>foo</code> but no index starts with
+		 * <code>bar</code>.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -211,8 +221,12 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -224,8 +238,12 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -237,8 +255,8 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -248,8 +266,8 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Returns the indices and shards that a search request would be executed
+		 * against.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -261,8 +279,8 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Returns the indices and shards that a search request would be executed
+		 * against.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -274,8 +292,8 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * If <code>true</code>, the request retrieves information from the local node
+		 * only.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -285,8 +303,8 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -296,7 +314,7 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */

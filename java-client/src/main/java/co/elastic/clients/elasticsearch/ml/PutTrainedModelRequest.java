@@ -89,6 +89,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final TrainedModelType modelType;
 
+	@Nullable
+	private final String platformArchitecture;
+
 	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
@@ -105,6 +108,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.modelSizeBytes = builder.modelSizeBytes;
 		this.modelType = builder.modelType;
+		this.platformArchitecture = builder.platformArchitecture;
 		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
 
 	}
@@ -223,6 +227,24 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * The platform architecture (if applicable) of the trained mode. If the model
+	 * only works on one platform, because it is heavily optimized for a particular
+	 * processor architecture and OS combination, then this field specifies which.
+	 * The format of the string must match the platform identifiers used by
+	 * Elasticsearch, so one of, <code>linux-x86_64</code>,
+	 * <code>linux-aarch64</code>, <code>darwin-x86_64</code>,
+	 * <code>darwin-aarch64</code>, or <code>windows-x86_64</code>. For portable
+	 * models (those that work independent of processor architecture or OS
+	 * features), leave this field unset.
+	 * <p>
+	 * API name: {@code platform_architecture}
+	 */
+	@Nullable
+	public final String platformArchitecture() {
+		return this.platformArchitecture;
+	}
+
+	/**
 	 * An array of tags to organize the model.
 	 * <p>
 	 * API name: {@code tags}
@@ -281,6 +303,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			generator.writeKey("model_type");
 			this.modelType.serialize(generator, mapper);
 		}
+		if (this.platformArchitecture != null) {
+			generator.writeKey("platform_architecture");
+			generator.write(this.platformArchitecture);
+
+		}
 		if (ApiTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
@@ -331,6 +358,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private TrainedModelType modelType;
+
+		@Nullable
+		private String platformArchitecture;
 
 		@Nullable
 		private List<String> tags;
@@ -478,6 +508,24 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * The platform architecture (if applicable) of the trained mode. If the model
+		 * only works on one platform, because it is heavily optimized for a particular
+		 * processor architecture and OS combination, then this field specifies which.
+		 * The format of the string must match the platform identifiers used by
+		 * Elasticsearch, so one of, <code>linux-x86_64</code>,
+		 * <code>linux-aarch64</code>, <code>darwin-x86_64</code>,
+		 * <code>darwin-aarch64</code>, or <code>windows-x86_64</code>. For portable
+		 * models (those that work independent of processor architecture or OS
+		 * features), leave this field unset.
+		 * <p>
+		 * API name: {@code platform_architecture}
+		 */
+		public final Builder platformArchitecture(@Nullable String value) {
+			this.platformArchitecture = value;
+			return this;
+		}
+
+		/**
 		 * An array of tags to organize the model.
 		 * <p>
 		 * API name: {@code tags}
@@ -538,6 +586,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
 		op.add(Builder::modelSizeBytes, JsonpDeserializer.longDeserializer(), "model_size_bytes");
 		op.add(Builder::modelType, TrainedModelType._DESERIALIZER, "model_type");
+		op.add(Builder::platformArchitecture, JsonpDeserializer.stringDeserializer(), "platform_architecture");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}

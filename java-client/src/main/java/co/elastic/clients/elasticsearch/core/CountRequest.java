@@ -135,9 +135,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -147,8 +148,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether wildcard and prefix queries should be analyzed (default:
-	 * false)
+	 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+	 * parameter can only be used when the <code>q</code> query string parameter is
+	 * specified.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -158,7 +160,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The analyzer to use for the query string
+	 * Analyzer to use for the query string. This parameter can only be used when
+	 * the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -168,7 +171,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The default operator for query string query (AND or OR)
+	 * The default operator for query string query: <code>AND</code> or
+	 * <code>OR</code>. This parameter can only be used when the <code>q</code>
+	 * query string parameter is specified.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -178,8 +183,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The field to use as default where no field prefix is given in the query
-	 * string
+	 * Field to use as default where no field prefix is given in the query string.
+	 * This parameter can only be used when the <code>q</code> query string
+	 * parameter is specified.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -189,8 +195,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -199,8 +207,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Whether specified concrete, expanded or aliased indices should be ignored
-	 * when throttled
+	 * If <code>true</code>, concrete, expanded or aliased indices are ignored when
+	 * frozen.
 	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
@@ -210,8 +218,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -221,7 +229,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of indices to restrict the results
+	 * Comma-separated list of data streams, indices, and aliases to search.
+	 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+	 * omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -230,8 +240,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether format-based query failures (such as providing text to a
-	 * numeric field) should be ignored
+	 * If <code>true</code>, format-based query failures (such as providing text to
+	 * a numeric field) in the query string will be ignored.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -241,8 +251,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Include only documents with a specific <code>_score</code> value in the
-	 * result
+	 * Sets the minimum <code>_score</code> value that documents must have to be
+	 * included in the result.
 	 * <p>
 	 * API name: {@code min_score}
 	 */
@@ -252,8 +262,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -263,7 +273,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Query in the Lucene query string syntax
+	 * Query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -273,6 +283,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Defines the search definition using the Query DSL.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -281,7 +293,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of specific routing values
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -291,8 +303,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum count for each shard, upon reaching which the query execution
-	 * will terminate early
+	 * Maximum number of documents to collect for each shard. If a query reaches
+	 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+	 * documents before sorting.
 	 * <p>
 	 * API name: {@code terminate_after}
 	 */
@@ -376,9 +389,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private Long terminateAfter;
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -388,8 +402,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether wildcard and prefix queries should be analyzed (default:
-		 * false)
+		 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+		 * parameter can only be used when the <code>q</code> query string parameter is
+		 * specified.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -399,7 +414,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The analyzer to use for the query string
+		 * Analyzer to use for the query string. This parameter can only be used when
+		 * the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -409,7 +425,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The default operator for query string query (AND or OR)
+		 * The default operator for query string query: <code>AND</code> or
+		 * <code>OR</code>. This parameter can only be used when the <code>q</code>
+		 * query string parameter is specified.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -419,8 +437,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The field to use as default where no field prefix is given in the query
-		 * string
+		 * Field to use as default where no field prefix is given in the query string.
+		 * This parameter can only be used when the <code>q</code> query string
+		 * parameter is specified.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -430,8 +449,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -443,8 +464,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -456,8 +479,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Whether specified concrete, expanded or aliased indices should be ignored
-		 * when throttled
+		 * If <code>true</code>, concrete, expanded or aliased indices are ignored when
+		 * frozen.
 		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
@@ -467,8 +490,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -478,7 +501,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of indices to restrict the results
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -490,7 +515,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of indices to restrict the results
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -502,8 +529,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether format-based query failures (such as providing text to a
-		 * numeric field) should be ignored
+		 * If <code>true</code>, format-based query failures (such as providing text to
+		 * a numeric field) in the query string will be ignored.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -513,8 +540,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Include only documents with a specific <code>_score</code> value in the
-		 * result
+		 * Sets the minimum <code>_score</code> value that documents must have to be
+		 * included in the result.
 		 * <p>
 		 * API name: {@code min_score}
 		 */
@@ -524,8 +551,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -535,7 +562,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query in the Lucene query string syntax
+		 * Query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -545,6 +572,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -553,6 +582,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -560,7 +591,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of specific routing values
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -570,8 +601,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum count for each shard, upon reaching which the query execution
-		 * will terminate early
+		 * Maximum number of documents to collect for each shard. If a query reaches
+		 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+		 * documents before sorting.
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */

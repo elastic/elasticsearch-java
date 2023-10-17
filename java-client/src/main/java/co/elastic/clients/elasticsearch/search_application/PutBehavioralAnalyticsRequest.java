@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: search_application.put_behavioral_analytics.Request
 
 /**
- * Creates a behavioral analytics collection
+ * Creates a behavioral analytics collection.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.put_behavioral_analytics.Request">API
@@ -68,7 +68,7 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the analytics collection to be created or updated
+	 * Required - The name of the analytics collection to be created or updated.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -88,7 +88,7 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Required - The name of the analytics collection to be created or updated
+		 * Required - The name of the analytics collection to be created or updated.
 		 * <p>
 		 * API name: {@code name}
 		 */

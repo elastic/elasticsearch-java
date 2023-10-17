@@ -160,6 +160,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Cursor used to retrieve a set of paginated results. If you specify a cursor,
+	 * the API only uses the <code>columnar</code> and <code>time_zone</code>
+	 * request body parameters. It ignores other request body parameters.
+	 * <p>
 	 * API name: {@code cursor}
 	 */
 	@Nullable
@@ -190,7 +194,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Optional Elasticsearch query DSL for additional filtering.
+	 * Elasticsearch query DSL for additional filtering.
 	 * <p>
 	 * API name: {@code filter}
 	 */
@@ -200,7 +204,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * a short version of the Accept header, e.g. json, yaml
+	 * Format for the response.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -261,7 +265,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * SQL query to execute
+	 * SQL query to run.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -291,8 +295,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Time-zone in ISO 8601 used for executing the query on the server. More
-	 * information available here.
+	 * ISO-8601 time zone ID for the search.
 	 * <p>
 	 * API name: {@code time_zone}
 	 */
@@ -500,6 +503,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Cursor used to retrieve a set of paginated results. If you specify a cursor,
+		 * the API only uses the <code>columnar</code> and <code>time_zone</code>
+		 * request body parameters. It ignores other request body parameters.
+		 * <p>
 		 * API name: {@code cursor}
 		 */
 		public final Builder cursor(@Nullable String value) {
@@ -530,7 +537,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Optional Elasticsearch query DSL for additional filtering.
+		 * Elasticsearch query DSL for additional filtering.
 		 * <p>
 		 * API name: {@code filter}
 		 */
@@ -540,7 +547,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Optional Elasticsearch query DSL for additional filtering.
+		 * Elasticsearch query DSL for additional filtering.
 		 * <p>
 		 * API name: {@code filter}
 		 */
@@ -549,7 +556,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * a short version of the Accept header, e.g. json, yaml
+		 * Format for the response.
 		 * <p>
 		 * API name: {@code format}
 		 */
@@ -643,7 +650,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * SQL query to execute
+		 * SQL query to run.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -711,8 +718,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Time-zone in ISO 8601 used for executing the query on the server. More
-		 * information available here.
+		 * ISO-8601 time zone ID for the search.
 		 * <p>
 		 * API name: {@code time_zone}
 		 */

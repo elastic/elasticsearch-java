@@ -64,7 +64,9 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - The associated mustache template.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final InlineScript script() {
 		return this.script;
@@ -103,7 +105,9 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 		private InlineScript script;
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - The associated mustache template.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(InlineScript value) {
 			this.script = value;
@@ -111,7 +115,9 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - The associated mustache template.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
 			return this.script(fn.apply(new InlineScript.Builder()).build());

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 // typedef: _global.scripts_painless_execute.Request
 
 /**
- * Allows an arbitrary script to be executed and a result to be returned
+ * Runs a script and returns a result.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.scripts_painless_execute.Request">API
@@ -78,6 +78,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	}
 
 	/**
+	 * The context that the script should run in.
+	 * <p>
 	 * API name: {@code context}
 	 */
 	@Nullable
@@ -86,6 +88,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	}
 
 	/**
+	 * Additional parameters for the <code>context</code>.
+	 * <p>
 	 * API name: {@code context_setup}
 	 */
 	@Nullable
@@ -94,6 +98,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	}
 
 	/**
+	 * The Painless script to execute.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -149,6 +155,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		private InlineScript script;
 
 		/**
+		 * The context that the script should run in.
+		 * <p>
 		 * API name: {@code context}
 		 */
 		public final Builder context(@Nullable String value) {
@@ -157,6 +165,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		}
 
 		/**
+		 * Additional parameters for the <code>context</code>.
+		 * <p>
 		 * API name: {@code context_setup}
 		 */
 		public final Builder contextSetup(@Nullable PainlessContextSetup value) {
@@ -165,6 +175,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		}
 
 		/**
+		 * Additional parameters for the <code>context</code>.
+		 * <p>
 		 * API name: {@code context_setup}
 		 */
 		public final Builder contextSetup(
@@ -173,6 +185,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		}
 
 		/**
+		 * The Painless script to execute.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable InlineScript value) {
@@ -181,6 +195,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		}
 
 		/**
+		 * The Painless script to execute.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {

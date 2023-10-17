@@ -68,7 +68,7 @@ public class GetAsyncStatusRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The async search ID
+	 * Required - Identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -88,7 +88,7 @@ public class GetAsyncStatusRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - The async search ID
+		 * Required - Identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */

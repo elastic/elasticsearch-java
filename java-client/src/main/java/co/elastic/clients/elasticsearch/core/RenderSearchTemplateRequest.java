@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 // typedef: _global.render_search_template.Request
 
 /**
- * Allows to use the Mustache language to pre-render a search definition.
+ * Renders a search template as a search request body.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.render_search_template.Request">API
@@ -91,7 +91,8 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * The id of the stored search template
+	 * ID of the search template to render. If no <code>source</code> is specified,
+	 * this or the <code>id</code> request body parameter is required.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -101,6 +102,9 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * Key-value pairs used to replace Mustache variables in the template. The key
+	 * is the variable name. The value is the variable value.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -108,6 +112,11 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
+	 * An inline search template. Supports the same parameters as the search API's
+	 * request body. These parameters also support Mustache variables. If no
+	 * <code>id</code> or <code>&lt;templated-id&gt;</code> is specified, this
+	 * parameter is required.
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -180,7 +189,8 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * The id of the stored search template
+		 * ID of the search template to render. If no <code>source</code> is specified,
+		 * this or the <code>id</code> request body parameter is required.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -190,6 +200,9 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * Key-value pairs used to replace Mustache variables in the template. The key
+		 * is the variable name. The value is the variable value.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -200,6 +213,9 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * Key-value pairs used to replace Mustache variables in the template. The key
+		 * is the variable name. The value is the variable value.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.
@@ -210,6 +226,11 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
+		 * An inline search template. Supports the same parameters as the search API's
+		 * request body. These parameters also support Mustache variables. If no
+		 * <code>id</code> or <code>&lt;templated-id&gt;</code> is specified, this
+		 * parameter is required.
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public final Builder source(@Nullable String value) {

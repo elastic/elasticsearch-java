@@ -81,6 +81,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum number of rows (or entries) to return in one response.
+	 * <p>
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
@@ -89,6 +91,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Elasticsearch query DSL for additional filtering.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -97,13 +101,17 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - SQL query to run.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
 	}
 
 	/**
+	 * ISO-8601 time zone ID for the search.
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -164,6 +172,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		private String timeZone;
 
 		/**
+		 * The maximum number of rows (or entries) to return in one response.
+		 * <p>
 		 * API name: {@code fetch_size}
 		 */
 		public final Builder fetchSize(@Nullable Integer value) {
@@ -172,6 +182,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Elasticsearch query DSL for additional filtering.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable Query value) {
@@ -180,6 +192,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Elasticsearch query DSL for additional filtering.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -187,7 +201,9 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - SQL query to run.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
@@ -195,6 +211,8 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * ISO-8601 time zone ID for the search.
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public final Builder timeZone(@Nullable String value) {

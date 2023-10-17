@@ -52,7 +52,8 @@ import javax.annotation.Nullable;
 // typedef: _global.explain.Request
 
 /**
- * Returns information about why a specific matches (or doesn't match) a query.
+ * Returns information about why a specific document matches (or doesn’t match)
+ * a query.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.explain.Request">API
  *      specification</a>
@@ -126,8 +127,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return
+	 * True or false to return the <code>_source</code> field or not, or a list of
+	 * fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -137,7 +138,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of fields to exclude from the returned _source field
+	 * A comma-separated list of source fields to exclude from the response.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -146,7 +147,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of fields to extract and return from the _source field
+	 * A comma-separated list of source fields to include in the response.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -155,8 +156,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether wildcards and prefix queries in the query string query should
-	 * be analyzed (default: false)
+	 * If <code>true</code>, wildcard and prefix queries are analyzed.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -166,7 +166,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The analyzer for the query string query
+	 * Analyzer to use for the query string. This parameter can only be used when
+	 * the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -176,7 +177,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The default operator for query string query (AND or OR)
+	 * The default operator for query string query: <code>AND</code> or
+	 * <code>OR</code>.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -186,7 +188,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The default field for query string query (default: _all)
+	 * Field to use as default where no field prefix is given in the query string.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -196,7 +198,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The document ID
+	 * Required - Defines the document ID.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -205,7 +207,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the index
+	 * Required - Index names used to limit the request. Only a single index name
+	 * can be provided to this parameter.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -214,8 +217,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether format-based query failures (such as providing text to a
-	 * numeric field) should be ignored
+	 * If <code>true</code>, format-based query failures (such as providing text to
+	 * a numeric field) in the query string will be ignored.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -225,8 +228,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -236,7 +239,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Query in the Lucene query string syntax
+	 * Query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -246,6 +249,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Defines the search definition using the Query DSL.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -254,7 +259,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -264,7 +269,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of stored fields to return in the response
+	 * A comma-separated list of stored fields to return in the response.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -342,8 +347,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		private List<String> storedFields;
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
+		 * True or false to return the <code>_source</code> field or not, or a list of
+		 * fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -353,8 +358,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
+		 * True or false to return the <code>_source</code> field or not, or a list of
+		 * fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -363,7 +368,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned _source field
+		 * A comma-separated list of source fields to exclude from the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -375,7 +380,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned _source field
+		 * A comma-separated list of source fields to exclude from the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -387,7 +392,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to extract and return from the _source field
+		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -399,7 +404,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to extract and return from the _source field
+		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -411,8 +416,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether wildcards and prefix queries in the query string query should
-		 * be analyzed (default: false)
+		 * If <code>true</code>, wildcard and prefix queries are analyzed.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -422,7 +426,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The analyzer for the query string query
+		 * Analyzer to use for the query string. This parameter can only be used when
+		 * the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -432,7 +437,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The default operator for query string query (AND or OR)
+		 * The default operator for query string query: <code>AND</code> or
+		 * <code>OR</code>.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -442,7 +448,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The default field for query string query (default: _all)
+		 * Field to use as default where no field prefix is given in the query string.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -452,7 +458,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The document ID
+		 * Required - Defines the document ID.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -462,7 +468,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index
+		 * Required - Index names used to limit the request. Only a single index name
+		 * can be provided to this parameter.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -472,8 +479,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether format-based query failures (such as providing text to a
-		 * numeric field) should be ignored
+		 * If <code>true</code>, format-based query failures (such as providing text to
+		 * a numeric field) in the query string will be ignored.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -483,8 +490,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -494,7 +501,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query in the Lucene query string syntax
+		 * Query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -504,6 +511,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -512,6 +521,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -519,7 +530,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -529,7 +540,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * A comma-separated list of stored fields to return in the response.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -541,7 +552,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * A comma-separated list of stored fields to return in the response.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>

@@ -96,8 +96,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		return this.searchTemplates.iterator();
 	}
 	/**
-	 * Indicates whether network round-trips should be minimized as part of
-	 * cross-cluster search requests execution
+	 * If <code>true</code>, network round-trips are minimized for cross-cluster
+	 * search requests.
 	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
@@ -107,7 +107,9 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * A comma-separated list of index names to use as default
+	 * Comma-separated list of data streams, indices, and aliases to search.
+	 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+	 * omit this parameter or use <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -116,8 +118,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * Controls the maximum number of concurrent searches the multi search api will
-	 * execute
+	 * Maximum number of concurrent searches the API can run.
 	 * <p>
 	 * API name: {@code max_concurrent_searches}
 	 */
@@ -127,7 +128,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * Search operation type
+	 * The type of the search operation. Available options:
+	 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
 	 * <p>
 	 * API name: {@code search_type}
 	 */
@@ -180,8 +182,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		private List<RequestItem> searchTemplates;
 
 		/**
-		 * Indicates whether network round-trips should be minimized as part of
-		 * cross-cluster search requests execution
+		 * If <code>true</code>, network round-trips are minimized for cross-cluster
+		 * search requests.
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
@@ -191,7 +193,9 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * A comma-separated list of index names to use as default
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -203,7 +207,9 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * A comma-separated list of index names to use as default
+		 * Comma-separated list of data streams, indices, and aliases to search.
+		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -215,8 +221,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * Controls the maximum number of concurrent searches the multi search api will
-		 * execute
+		 * Maximum number of concurrent searches the API can run.
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
@@ -226,7 +231,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * Search operation type
+		 * The type of the search operation. Available options:
+		 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
 		 * <p>
 		 * API name: {@code search_type}
 		 */
