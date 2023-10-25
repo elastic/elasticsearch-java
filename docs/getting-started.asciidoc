@@ -158,7 +158,7 @@ include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-delete]
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests-src}/usage/IndexingTest.java[create-products-index]
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[delete-products-index]
 --------------------------------------------------
 
 
