@@ -115,7 +115,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	private Hit(Builder<TDocument> builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = builder.id;
 		this.score = builder.score;
 		this.explanation = builder.explanation;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
