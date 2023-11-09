@@ -300,8 +300,10 @@ public class Hit<TDocument> implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+		if (this.id != null) {
+			generator.writeKey("_id");
+			generator.write(this.id);
+		}
 
 		if (this.score != null) {
 			generator.writeKey("_score");
@@ -459,6 +461,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 				ObjectBuilder<Hit<TDocument>> {
 		private String index;
 
+		@Nullable
 		private String id;
 
 		@Nullable
