@@ -60,6 +60,7 @@ import javax.annotation.Nullable;
 public class Hit<TDocument> implements JsonpSerializable {
 	private final String index;
 
+	@Nullable
 	private final String id;
 
 	@Nullable
