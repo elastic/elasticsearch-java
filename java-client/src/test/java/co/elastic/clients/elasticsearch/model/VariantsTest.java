@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
+import co.elastic.clients.elasticsearch._types.analysis.Normalizer;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScore;
@@ -107,7 +108,7 @@ public class VariantsTest extends ModelTestCase {
     }
 
     @Test
-    public void testDefaultInternalTag() {
+    public void testDefaultInternalTagForAnalyzer() {
 
         Consumer<String> test = s -> {
             Analyzer a = fromJson(s, Analyzer.class);
@@ -122,6 +123,23 @@ public class VariantsTest extends ModelTestCase {
 
         // Default type
         test.accept("{\"filter\":[\"some-filter\"],\"tokenizer\":\"some-tokenizer\"}");
+    }
+
+    @Test
+    public void testDefaultInternalTagForNormalizer() {
+
+        Consumer<String> test = s -> {
+            Normalizer normalizer = fromJson(s, Normalizer.class);
+            assertEquals(Normalizer.Kind.Custom, normalizer._kind());
+            assertEquals("some-filter", normalizer.custom().filter().get(0));
+            assertEquals("some-char-filter", normalizer.custom().charFilter().get(0));
+        };
+
+        // Explicit type
+        test.accept("{\"type\":\"custom\",\"filter\":[\"some-filter\"],\"char_filter\":[\"some-char-filter\"]}");
+
+        // Default type
+        test.accept("{\"filter\":[\"some-filter\"],\"char_filter\":[\"some-char-filter\"]}");
     }
 
     @Test
