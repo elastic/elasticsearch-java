@@ -17,12 +17,12 @@ spec:
     apiVersion: buildkite.elastic.dev/v1
     kind: Pipeline
     metadata:
+      description: Elasticsearch Java Client
       name: elasticsearch-java
     spec:
       repository: elastic/elasticsearch-java
       pipeline_file: ".buildkite/pipeline.yml"
       teams:
-        # your-team:
-        #  access_level: MANAGE_BUILD_AND_READ
+        clients-team: {}
         everyone:
           access_level: READ_ONLY
