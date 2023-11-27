@@ -14,6 +14,11 @@ The `docs/design` folder contains records of the major decisions in the design o
 
 ## Installation
 
+**[Download the latest version of Elasticsearch](https://www.elastic.co/downloads/elasticsearch)**
+or
+**[sign-up](https://cloud.elastic.co/registration?elektra=en-ess-sign-up-page)**
+**for a free trial of Elastic Cloud**.
+
 Refer to the [Installation section](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_installation)
 of the getting started documentation.
 
