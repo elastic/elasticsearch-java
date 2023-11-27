@@ -2,11 +2,6 @@
 
 # Elasticsearch Java Client
 
-**[Download the latest version of Elasticsearch](https://www.elastic.co/downloads/elasticsearch)**
-or
-**[sign-up](https://cloud.elastic.co/registration?elektra=en-ess-sign-up-page)**
-**for a free trial of Elastic Cloud**.
-
 The official Java client for [Elasticsearch](https://github.com/elastic/elasticsearch).
 
 The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
@@ -16,6 +11,11 @@ The `docs/design` folder contains records of the major decisions in the design o
 - Object construction is based on the [builder pattern](https://www.informit.com/articles/article.aspx?p=1216151).
 - Nested objects can be constructed with builder lambdas, allowing for clean and expressive DSL-like code.
 - Optional values are represented as `null` with `@Nullable` annotations instead of the newer  `Optional`, the Java ecosystem being still very null-based.
+
+**[Download the latest version of Elasticsearch](https://www.elastic.co/downloads/elasticsearch)**
+or
+**[sign-up](https://cloud.elastic.co/registration?elektra=en-ess-sign-up-page)**
+**for a free trial of Elastic Cloud**.
 
 ## Installation
 
