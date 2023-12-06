@@ -2,7 +2,7 @@ steps:
   - label: ":java: :elasticsearch: Elasticsearch Java API client - {{matrix.workflow}}"
     agents:
       provider: "gcp"
-    branches: [ "main", "7.17", "8.10", "8.11" ]
+    branches: [ "main", "7.17", "8.11", "8.12" ]
     matrix:
       setup:
         workflow:
