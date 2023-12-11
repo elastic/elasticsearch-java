@@ -61,7 +61,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 * an index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/graph-explore-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/graph-explore-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -80,7 +80,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ExploreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/graph-explore-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/graph-explore-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

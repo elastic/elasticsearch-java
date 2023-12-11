@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  * Mapping Limit Settings
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/mapping-settings-limit.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/mapping-settings-limit.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../doc-files/api-spec.html#indices._types.MappingLimitSettings">API

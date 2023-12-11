@@ -99,7 +99,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html</a>)
 	 */
 
 	public <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(EqlGetRequest request, Class<TEvent> tEventClass) {
@@ -121,7 +121,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html</a>)
 	 */
 
 	public final <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(
@@ -136,7 +136,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html</a>)
 	 */
 
 	public <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(EqlGetRequest request, Type tEventType) {
@@ -158,7 +158,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-search-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html</a>)
 	 */
 
 	public final <TEvent> CompletableFuture<EqlGetResponse<TEvent>> get(
@@ -175,7 +175,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-status-api.html</a>)
 	 */
 
 	public CompletableFuture<GetEqlStatusResponse> getStatus(GetEqlStatusRequest request) {
@@ -195,7 +195,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * @see [Documentation on
 	 *      elastic.co](<a href="https://www.elastic.co">https://www.elastic.co</a>
 	 *      <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.11/get-async-eql-status-api.html</a>)
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-status-api.html">https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-status-api.html</a>)
 	 */
 
 	public final CompletableFuture<GetEqlStatusResponse> getStatus(

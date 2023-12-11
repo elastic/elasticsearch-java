@@ -97,7 +97,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the text.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -116,7 +116,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +130,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the text.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -224,7 +224,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Closes an index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -242,7 +242,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -257,7 +257,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Creates an index with optional settings and mappings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-create-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -275,7 +275,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-create-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -567,7 +567,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Analyzes the disk usage of each field of an index or data stream
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -585,7 +585,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DiskUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -600,7 +600,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Downsample an index
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-downsample-data-stream.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-downsample-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -618,7 +618,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DownsampleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-downsample-data-stream.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-downsample-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -833,7 +833,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Performs the flush operation on one or more indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -851,7 +851,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -864,7 +864,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Performs the flush operation on one or more indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1804,7 +1804,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * considered to be too large or too old.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-rollover-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1823,7 +1823,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RolloverRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-rollover-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1930,7 +1930,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Allow to shrink an existing index into a new index with fewer primary shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-shrink-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1948,7 +1948,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-shrink-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2046,7 +2046,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-split-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2065,7 +2065,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-split-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
