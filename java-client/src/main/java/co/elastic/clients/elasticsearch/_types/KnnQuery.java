@@ -68,6 +68,9 @@ public class KnnQuery implements JsonpSerializable {
 
 	private final List<Query> filter;
 
+	@Nullable
+	private final Float similarity;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private KnnQuery(Builder builder) {
@@ -79,6 +82,7 @@ public class KnnQuery implements JsonpSerializable {
 		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
 		this.boost = builder.boost;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+		this.similarity = builder.similarity;
 
 	}
 
@@ -153,6 +157,16 @@ public class KnnQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * The minimum similarity for a vector to be considered a match
+	 * <p>
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final Float similarity() {
+		return this.similarity;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -202,6 +216,11 @@ public class KnnQuery implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			generator.write(this.similarity);
+
+		}
 
 	}
 
@@ -234,6 +253,9 @@ public class KnnQuery implements JsonpSerializable {
 
 		@Nullable
 		private List<Query> filter;
+
+		@Nullable
+		private Float similarity;
 
 		/**
 		 * Required - The name of the vector field to search against
@@ -356,6 +378,16 @@ public class KnnQuery implements JsonpSerializable {
 			return filter(fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * The minimum similarity for a vector to be considered a match
+		 * <p>
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable Float value) {
+			this.similarity = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -392,6 +424,7 @@ public class KnnQuery implements JsonpSerializable {
 		op.add(Builder::numCandidates, JsonpDeserializer.longDeserializer(), "num_candidates");
 		op.add(Builder::boost, JsonpDeserializer.floatDeserializer(), "boost");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
 
 	}
 

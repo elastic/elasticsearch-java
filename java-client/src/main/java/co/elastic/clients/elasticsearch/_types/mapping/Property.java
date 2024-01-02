@@ -143,6 +143,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		Short("short"),
 
+		SparseVector("sparse_vector"),
+
 		Text("text"),
 
 		TokenCount("token_count"),
@@ -916,6 +918,23 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	}
 
 	/**
+	 * Is this variant instance of kind {@code sparse_vector}?
+	 */
+	public boolean isSparseVector() {
+		return _kind == Kind.SparseVector;
+	}
+
+	/**
+	 * Get the {@code sparse_vector} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code sparse_vector} kind.
+	 */
+	public SparseVectorProperty sparseVector() {
+		return TaggedUnionUtils.get(this, Kind.SparseVector);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code text}?
 	 */
 	public boolean isText() {
@@ -1490,6 +1509,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.short_(fn.apply(new ShortNumberProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> sparseVector(SparseVectorProperty v) {
+			this._kind = Kind.SparseVector;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> sparseVector(
+				Function<SparseVectorProperty.Builder, ObjectBuilder<SparseVectorProperty>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> text(TextProperty v) {
 			this._kind = Kind.Text;
 			this._value = v;
@@ -1609,6 +1639,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
 		op.add(Builder::shape, ShapeProperty._DESERIALIZER, "shape");
 		op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
+		op.add(Builder::sparseVector, SparseVectorProperty._DESERIALIZER, "sparse_vector");
 		op.add(Builder::text, TextProperty._DESERIALIZER, "text");
 		op.add(Builder::tokenCount, TokenCountProperty._DESERIALIZER, "token_count");
 		op.add(Builder::unsignedLong, UnsignedLongNumberProperty._DESERIALIZER, "unsigned_long");

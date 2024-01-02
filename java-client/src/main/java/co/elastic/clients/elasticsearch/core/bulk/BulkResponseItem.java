@@ -122,6 +122,8 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
+	 * The document ID associated with the operation.
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	@Nullable
@@ -130,20 +132,29 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _index}
+	 * Required - Name of the index associated with the operation. If the operation
+	 * targeted a data stream, this is the backing index into which the document was
+	 * written.
+	 * <p>
+	 * API name: {@code _index}
 	 */
 	public final String index() {
 		return this.index;
 	}
 
 	/**
-	 * Required - API name: {@code status}
+	 * Required - HTTP status code returned for the operation.
+	 * <p>
+	 * API name: {@code status}
 	 */
 	public final int status() {
 		return this.status;
 	}
 
 	/**
+	 * Contains additional information about the failed operation. The parameter is
+	 * only returned for failed operations.
+	 * <p>
 	 * API name: {@code error}
 	 */
 	@Nullable
@@ -152,6 +163,8 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
+	 * The primary term assigned to the document for the operation.
+	 * <p>
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
@@ -160,6 +173,9 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
+	 * Result of the operation. Successful values are <code>created</code>,
+	 * <code>deleted</code>, and <code>updated</code>.
+	 * <p>
 	 * API name: {@code result}
 	 */
 	@Nullable
@@ -168,6 +184,10 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
+	 * The sequence number assigned to the document for the operation. Sequence
+	 * numbers are used to ensure an older version of a document doesn’t overwrite a
+	 * newer version.
+	 * <p>
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
@@ -176,6 +196,8 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains shard information for the operation.
+	 * <p>
 	 * API name: {@code _shards}
 	 */
 	@Nullable
@@ -184,6 +206,9 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
+	 * The document version associated with the operation. The document version is
+	 * incremented each time the document is updated.
+	 * <p>
 	 * API name: {@code _version}
 	 */
 	@Nullable
@@ -329,6 +354,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		private InlineGet<Map<String, JsonData>> get;
 
 		/**
+		 * The document ID associated with the operation.
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public final Builder id(@Nullable String value) {
@@ -337,7 +364,11 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _index}
+		 * Required - Name of the index associated with the operation. If the operation
+		 * targeted a data stream, this is the backing index into which the document was
+		 * written.
+		 * <p>
+		 * API name: {@code _index}
 		 */
 		public final Builder index(String value) {
 			this.index = value;
@@ -345,7 +376,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code status}
+		 * Required - HTTP status code returned for the operation.
+		 * <p>
+		 * API name: {@code status}
 		 */
 		public final Builder status(int value) {
 			this.status = value;
@@ -353,6 +386,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains additional information about the failed operation. The parameter is
+		 * only returned for failed operations.
+		 * <p>
 		 * API name: {@code error}
 		 */
 		public final Builder error(@Nullable ErrorCause value) {
@@ -361,6 +397,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains additional information about the failed operation. The parameter is
+		 * only returned for failed operations.
+		 * <p>
 		 * API name: {@code error}
 		 */
 		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
@@ -368,6 +407,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * The primary term assigned to the document for the operation.
+		 * <p>
 		 * API name: {@code _primary_term}
 		 */
 		public final Builder primaryTerm(@Nullable Long value) {
@@ -376,6 +417,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * Result of the operation. Successful values are <code>created</code>,
+		 * <code>deleted</code>, and <code>updated</code>.
+		 * <p>
 		 * API name: {@code result}
 		 */
 		public final Builder result(@Nullable String value) {
@@ -384,6 +428,10 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * The sequence number assigned to the document for the operation. Sequence
+		 * numbers are used to ensure an older version of a document doesn’t overwrite a
+		 * newer version.
+		 * <p>
 		 * API name: {@code _seq_no}
 		 */
 		public final Builder seqNo(@Nullable Long value) {
@@ -392,6 +440,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains shard information for the operation.
+		 * <p>
 		 * API name: {@code _shards}
 		 */
 		public final Builder shards(@Nullable ShardStatistics value) {
@@ -400,6 +450,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains shard information for the operation.
+		 * <p>
 		 * API name: {@code _shards}
 		 */
 		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
@@ -407,6 +459,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
+		 * The document version associated with the operation. The document version is
+		 * incremented each time the document is updated.
+		 * <p>
 		 * API name: {@code _version}
 		 */
 		public final Builder version(@Nullable Long value) {

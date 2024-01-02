@@ -77,8 +77,8 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, requires that a search application with the specified resource_id
-	 * does not already exist. (default: false)
+	 * If <code>true</code>, this request cannot replace or update existing Search
+	 * Applications.
 	 * <p>
 	 * API name: {@code create}
 	 */
@@ -88,7 +88,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the search application to be created or updated
+	 * Required - The name of the search application to be created or updated.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -126,8 +126,8 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		private SearchApplication searchApplication;
 
 		/**
-		 * If true, requires that a search application with the specified resource_id
-		 * does not already exist. (default: false)
+		 * If <code>true</code>, this request cannot replace or update existing Search
+		 * Applications.
 		 * <p>
 		 * API name: {@code create}
 		 */
@@ -137,7 +137,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the search application to be created or updated
+		 * Required - The name of the search application to be created or updated.
 		 * <p>
 		 * API name: {@code name}
 		 */

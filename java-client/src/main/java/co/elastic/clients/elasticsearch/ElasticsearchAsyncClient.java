@@ -117,11 +117,13 @@ import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesAsyncClient;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichAsyncClient;
 import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlAsyncClient;
+import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
 import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesAsyncClient;
 import co.elastic.clients.elasticsearch.fleet.ElasticsearchFleetAsyncClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphAsyncClient;
 import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmAsyncClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.inference.ElasticsearchInferenceAsyncClient;
 import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestAsyncClient;
 import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseAsyncClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashAsyncClient;
@@ -210,6 +212,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchEqlAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchEsqlAsyncClient esql() {
+		return new ElasticsearchEsqlAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchFeaturesAsyncClient features() {
 		return new ElasticsearchFeaturesAsyncClient(this.transport, this.transportOptions);
 	}
@@ -228,6 +234,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchIndicesAsyncClient indices() {
 		return new ElasticsearchIndicesAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchInferenceAsyncClient inference() {
+		return new ElasticsearchInferenceAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIngestAsyncClient ingest() {
@@ -325,7 +335,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -344,7 +354,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -357,7 +367,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -372,7 +382,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Explicitly clears the search context for a scroll.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -390,7 +400,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -403,7 +413,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Explicitly clears the search context for a scroll.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -418,7 +428,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Close a point in time
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -436,7 +446,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1474,7 +1484,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Open a point in time that can be used in subsequent searches
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1492,7 +1502,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.12/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

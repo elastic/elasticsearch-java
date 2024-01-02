@@ -123,6 +123,19 @@ public class ElasticsearchLogstashAsyncClient
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
+	/**
+	 * Retrieves Logstash Pipelines used by Central Management
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetPipelineResponse> getPipeline() {
+		return this.transport.performRequestAsync(new GetPipelineRequest.Builder().build(),
+				GetPipelineRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: logstash.put_pipeline
 
 	/**

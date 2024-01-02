@@ -106,7 +106,7 @@ public class GetAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The async search ID
+	 * Required - Identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -180,7 +180,7 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The async search ID
+		 * Required - Identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */

@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,12 +39,11 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: security.get_role.RoleTemplate
+// typedef: security._types.RoleTemplate
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.RoleTemplate">API
+ * @see <a href="../doc-files/api-spec.html#security._types.RoleTemplate">API
  *      specification</a>
  */
 @JsonpDeserializable

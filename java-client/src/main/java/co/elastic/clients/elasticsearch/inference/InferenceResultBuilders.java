@@ -21,36 +21,21 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
- *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.TemplateFormat">API
- *      specification</a>
+ * Builders for {@link InferenceResult} variants.
+ * <p>
+ * Variants <code>text_embedding</code>, <code>sparse_embedding</code> are not
+ * available here as they don't have a dedicated class. Use
+ * {@link InferenceResult}'s builder for these.
+ * 
  */
-@JsonpDeserializable
-public enum TemplateFormat implements JsonEnum {
-	String("string"),
-
-	Json("json"),
-
-	;
-
-	private final String jsonValue;
-
-	TemplateFormat(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class InferenceResultBuilders {
+	private InferenceResultBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<TemplateFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TemplateFormat.values());
 }

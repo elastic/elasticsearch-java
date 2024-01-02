@@ -29,6 +29,7 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -40,6 +41,9 @@ import org.testcontainers.utility.DockerImageName;
 
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 public class ElasticsearchTestServer implements AutoCloseable {
@@ -55,9 +59,14 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     public static synchronized ElasticsearchTestServer global() {
         if (global == null) {
-            System.out.println("Starting global ES test server.");
-            global = new ElasticsearchTestServer();
-            global.start();
+            global = tryLocalServer();
+
+            if (global == null) {
+                System.out.println("Starting global ES test server.");
+                global = new ElasticsearchTestServer();
+                global.start();
+            }
+
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("Stopping global ES test server.");
                 global.close();
@@ -68,6 +77,31 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     public ElasticsearchTestServer(String... plugins) {
         this.plugins = plugins;
+    }
+
+    /**
+     * Try contacting an Elasticsearch server running on http://localhost:9200 and use it if available
+     */
+    private static ElasticsearchTestServer tryLocalServer() {
+
+        try {
+            String url = "http://localhost:9200";
+            try (InputStream in = new URL(url).openConnection().getInputStream()) {
+                if (!IOUtils.toString(in, StandardCharsets.UTF_8).contains("You Know, for Search")) {
+                    return null;
+                }
+            }
+
+            ElasticsearchTestServer localServer = new ElasticsearchTestServer();
+            localServer.restClient = RestClient.builder(HttpHost.create(url)).build();
+            localServer.transport = new RestClientTransport(localServer.restClient, localServer.mapper);
+            localServer.client = new ElasticsearchClient(localServer.transport);
+            System.out.println("Using locally running Elasticsearch server as global ES test server.");
+            return localServer;
+
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public synchronized ElasticsearchTestServer start() {

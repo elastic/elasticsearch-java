@@ -60,7 +60,7 @@ public class GetPipelineRequest extends RequestBase {
 
 	private GetPipelineRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.unmodifiableRequired(builder.id, this, "id");
+		this.id = ApiTypeHelper.unmodifiable(builder.id);
 
 	}
 
@@ -69,7 +69,7 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of pipeline identifiers.
+	 * Comma-separated list of pipeline identifiers.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,10 +86,11 @@ public class GetPipelineRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetPipelineRequest> {
+		@Nullable
 		private List<String> id;
 
 		/**
-		 * Required - Comma-separated list of pipeline identifiers.
+		 * Comma-separated list of pipeline identifiers.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -101,7 +102,7 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of pipeline identifiers.
+		 * Comma-separated list of pipeline identifiers.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -150,7 +151,8 @@ public class GetPipelineRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _id;
+				if (ApiTypeHelper.isDefined(request.id()))
+					propsSet |= _id;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -177,7 +179,8 @@ public class GetPipelineRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _id;
+				if (ApiTypeHelper.isDefined(request.id()))
+					propsSet |= _id;
 
 				if (propsSet == 0) {
 				}

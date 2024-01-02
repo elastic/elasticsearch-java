@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,63 +30,50 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: indices._types.DataLifecycle
+// typedef: inference.inference.Response
 
 /**
- * Data lifecycle denotes that a data stream is managed by DLM and contains the
- * configuration.
- * 
- * @see <a href="../doc-files/api-spec.html#indices._types.DataLifecycle">API
+ *
+ * @see <a href="../doc-files/api-spec.html#inference.inference.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataLifecycle implements JsonpSerializable {
-	@Nullable
-	private final Time dataRetention;
+public class InferenceResponse implements JsonpSerializable {
+	private final InferenceResult valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataLifecycle(Builder builder) {
+	private InferenceResponse(Builder builder) {
 
-		this.dataRetention = builder.dataRetention;
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static DataLifecycle of(Function<Builder, ObjectBuilder<DataLifecycle>> fn) {
+	public static InferenceResponse of(Function<Builder, ObjectBuilder<InferenceResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code data_retention}
+	 * Required - Response value.
 	 */
-	@Nullable
-	public final Time dataRetention() {
-		return this.dataRetention;
+	public final InferenceResult valueBody() {
+		return this.valueBody;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.dataRetention != null) {
-			generator.writeKey("data_retention");
-			this.dataRetention.serialize(generator, mapper);
-
-		}
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -99,26 +85,33 @@ public class DataLifecycle implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataLifecycle}.
+	 * Builder for {@link InferenceResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DataLifecycle> {
-		@Nullable
-		private Time dataRetention;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InferenceResponse> {
+		private InferenceResult valueBody;
 
 		/**
-		 * API name: {@code data_retention}
+		 * Required - Response value.
 		 */
-		public final Builder dataRetention(@Nullable Time value) {
-			this.dataRetention = value;
+		public final Builder valueBody(InferenceResult value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code data_retention}
+		 * Required - Response value.
 		 */
-		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		public final Builder valueBody(Function<InferenceResult.Builder, ObjectBuilder<InferenceResult>> fn) {
+			return this.valueBody(fn.apply(new InferenceResult.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			InferenceResult value = (InferenceResult) InferenceResult._DESERIALIZER.deserialize(parser, mapper);
+			return this.valueBody(value);
 		}
 
 		@Override
@@ -127,30 +120,25 @@ public class DataLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataLifecycle}.
+		 * Builds a {@link InferenceResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataLifecycle build() {
+		public InferenceResponse build() {
 			_checkSingleUse();
 
-			return new DataLifecycle(this);
+			return new InferenceResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<InferenceResponse> _DESERIALIZER = createInferenceResponseDeserializer();
+	protected static JsonpDeserializer<InferenceResponse> createInferenceResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link DataLifecycle}
-	 */
-	public static final JsonpDeserializer<DataLifecycle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataLifecycle::setupDataLifecycleDeserializer);
+		JsonpDeserializer<InferenceResult> valueDeserializer = InferenceResult._DESERIALIZER;
 
-	protected static void setupDataLifecycleDeserializer(ObjectDeserializer<DataLifecycle.Builder> op) {
-
-		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

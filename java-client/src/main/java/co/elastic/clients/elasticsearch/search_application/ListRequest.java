@@ -76,7 +76,7 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Starting offset (default: 0)
+	 * Starting offset.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -86,7 +86,7 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Query in the Lucene query string syntax&quot;
+	 * Query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -96,7 +96,7 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * specifies a max number of results to get
+	 * Specifies a max number of results to get.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -122,7 +122,7 @@ public class ListRequest extends RequestBase {
 		private Integer size;
 
 		/**
-		 * Starting offset (default: 0)
+		 * Starting offset.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -132,7 +132,7 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Query in the Lucene query string syntax&quot;
+		 * Query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -142,7 +142,7 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * specifies a max number of results to get
+		 * Specifies a max number of results to get.
 		 * <p>
 		 * API name: {@code size}
 		 */

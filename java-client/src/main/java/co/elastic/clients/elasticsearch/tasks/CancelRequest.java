@@ -84,8 +84,8 @@ public class CancelRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of actions that should be cancelled. Leave empty to
-	 * cancel all.
+	 * Comma-separated list or wildcard expression of actions used to limit the
+	 * request.
 	 * <p>
 	 * API name: {@code actions}
 	 */
@@ -94,9 +94,7 @@ public class CancelRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
+	 * Comma-separated list of node IDs or names used to limit the request.
 	 * <p>
 	 * API name: {@code nodes}
 	 */
@@ -105,8 +103,7 @@ public class CancelRequest extends RequestBase {
 	}
 
 	/**
-	 * Cancel tasks with specified parent task id (node_id:task_number). Set to -1
-	 * to cancel all.
+	 * Parent task ID used to limit the tasks.
 	 * <p>
 	 * API name: {@code parent_task_id}
 	 */
@@ -116,7 +113,7 @@ public class CancelRequest extends RequestBase {
 	}
 
 	/**
-	 * Cancel the task with specified task id (node_id:task_number)
+	 * ID of the task.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -159,8 +156,8 @@ public class CancelRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * A comma-separated list of actions that should be cancelled. Leave empty to
-		 * cancel all.
+		 * Comma-separated list or wildcard expression of actions used to limit the
+		 * request.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -172,8 +169,8 @@ public class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of actions that should be cancelled. Leave empty to
-		 * cancel all.
+		 * Comma-separated list or wildcard expression of actions used to limit the
+		 * request.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -185,9 +182,7 @@ public class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * Comma-separated list of node IDs or names used to limit the request.
 		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
@@ -199,9 +194,7 @@ public class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * Comma-separated list of node IDs or names used to limit the request.
 		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
@@ -213,8 +206,7 @@ public class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * Cancel tasks with specified parent task id (node_id:task_number). Set to -1
-		 * to cancel all.
+		 * Parent task ID used to limit the tasks.
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
@@ -224,7 +216,7 @@ public class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * Cancel the task with specified task id (node_id:task_number)
+		 * ID of the task.
 		 * <p>
 		 * API name: {@code task_id}
 		 */

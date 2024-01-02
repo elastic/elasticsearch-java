@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: _global.close_point_in_time.Request
 
 /**
- * Close a point in time
+ * Closes a point-in-time.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.close_point_in_time.Request">API
@@ -68,7 +68,9 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - The ID of the point-in-time.
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
@@ -102,7 +104,9 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		private String id;
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - The ID of the point-in-time.
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;

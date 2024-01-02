@@ -64,7 +64,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	 * Deletes a search application.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -82,7 +82,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSearchApplicationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

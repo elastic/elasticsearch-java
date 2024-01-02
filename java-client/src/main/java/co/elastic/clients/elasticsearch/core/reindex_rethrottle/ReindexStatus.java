@@ -106,42 +106,58 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code batches}
+	 * Required - The number of scroll responses pulled back by the reindex.
+	 * <p>
+	 * API name: {@code batches}
 	 */
 	public final long batches() {
 		return this.batches;
 	}
 
 	/**
-	 * Required - API name: {@code created}
+	 * Required - The number of documents that were successfully created.
+	 * <p>
+	 * API name: {@code created}
 	 */
 	public final long created() {
 		return this.created;
 	}
 
 	/**
-	 * Required - API name: {@code deleted}
+	 * Required - The number of documents that were successfully deleted.
+	 * <p>
+	 * API name: {@code deleted}
 	 */
 	public final long deleted() {
 		return this.deleted;
 	}
 
 	/**
-	 * Required - API name: {@code noops}
+	 * Required - The number of documents that were ignored because the script used
+	 * for the reindex returned a <code>noop</code> value for <code>ctx.op</code>.
+	 * <p>
+	 * API name: {@code noops}
 	 */
 	public final long noops() {
 		return this.noops;
 	}
 
 	/**
-	 * Required - API name: {@code requests_per_second}
+	 * Required - The number of requests per second effectively executed during the
+	 * reindex.
+	 * <p>
+	 * API name: {@code requests_per_second}
 	 */
 	public final float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
 	/**
-	 * Required - API name: {@code retries}
+	 * Required - The number of retries attempted by reindex. <code>bulk</code> is
+	 * the number of bulk actions retried and <code>search</code> is the number of
+	 * search actions retried.
+	 * <p>
+	 * API name: {@code retries}
 	 */
 	public final Retries retries() {
 		return this.retries;
@@ -156,7 +172,10 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code throttled_millis}
+	 * Required - Number of milliseconds the request slept to conform to
+	 * <code>requests_per_second</code>.
+	 * <p>
+	 * API name: {@code throttled_millis}
 	 */
 	public final long throttledMillis() {
 		return this.throttledMillis;
@@ -171,28 +190,42 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code throttled_until_millis}
+	 * Required - This field should always be equal to zero in a
+	 * <code>_reindex</code> response. It only has meaning when using the Task API,
+	 * where it indicates the next time (in milliseconds since epoch) a throttled
+	 * request will be executed again in order to conform to
+	 * <code>requests_per_second</code>.
+	 * <p>
+	 * API name: {@code throttled_until_millis}
 	 */
 	public final long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Required - The number of documents that were successfully processed.
+	 * <p>
+	 * API name: {@code total}
 	 */
 	public final long total() {
 		return this.total;
 	}
 
 	/**
-	 * Required - API name: {@code updated}
+	 * Required - The number of documents that were successfully updated, for
+	 * example, a document with same ID already existed prior to reindex updating
+	 * it.
+	 * <p>
+	 * API name: {@code updated}
 	 */
 	public final long updated() {
 		return this.updated;
 	}
 
 	/**
-	 * Required - API name: {@code version_conflicts}
+	 * Required - The number of version conflicts that reindex hits.
+	 * <p>
+	 * API name: {@code version_conflicts}
 	 */
 	public final long versionConflicts() {
 		return this.versionConflicts;
@@ -295,7 +328,9 @@ public class ReindexStatus implements JsonpSerializable {
 		private Long versionConflicts;
 
 		/**
-		 * Required - API name: {@code batches}
+		 * Required - The number of scroll responses pulled back by the reindex.
+		 * <p>
+		 * API name: {@code batches}
 		 */
 		public final Builder batches(long value) {
 			this.batches = value;
@@ -303,7 +338,9 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code created}
+		 * Required - The number of documents that were successfully created.
+		 * <p>
+		 * API name: {@code created}
 		 */
 		public final Builder created(long value) {
 			this.created = value;
@@ -311,7 +348,9 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code deleted}
+		 * Required - The number of documents that were successfully deleted.
+		 * <p>
+		 * API name: {@code deleted}
 		 */
 		public final Builder deleted(long value) {
 			this.deleted = value;
@@ -319,7 +358,10 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code noops}
+		 * Required - The number of documents that were ignored because the script used
+		 * for the reindex returned a <code>noop</code> value for <code>ctx.op</code>.
+		 * <p>
+		 * API name: {@code noops}
 		 */
 		public final Builder noops(long value) {
 			this.noops = value;
@@ -327,7 +369,10 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code requests_per_second}
+		 * Required - The number of requests per second effectively executed during the
+		 * reindex.
+		 * <p>
+		 * API name: {@code requests_per_second}
 		 */
 		public final Builder requestsPerSecond(float value) {
 			this.requestsPerSecond = value;
@@ -335,7 +380,11 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code retries}
+		 * Required - The number of retries attempted by reindex. <code>bulk</code> is
+		 * the number of bulk actions retried and <code>search</code> is the number of
+		 * search actions retried.
+		 * <p>
+		 * API name: {@code retries}
 		 */
 		public final Builder retries(Retries value) {
 			this.retries = value;
@@ -343,7 +392,11 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code retries}
+		 * Required - The number of retries attempted by reindex. <code>bulk</code> is
+		 * the number of bulk actions retried and <code>search</code> is the number of
+		 * search actions retried.
+		 * <p>
+		 * API name: {@code retries}
 		 */
 		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
 			return this.retries(fn.apply(new Retries.Builder()).build());
@@ -365,7 +418,10 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code throttled_millis}
+		 * Required - Number of milliseconds the request slept to conform to
+		 * <code>requests_per_second</code>.
+		 * <p>
+		 * API name: {@code throttled_millis}
 		 */
 		public final Builder throttledMillis(long value) {
 			this.throttledMillis = value;
@@ -388,7 +444,13 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code throttled_until_millis}
+		 * Required - This field should always be equal to zero in a
+		 * <code>_reindex</code> response. It only has meaning when using the Task API,
+		 * where it indicates the next time (in milliseconds since epoch) a throttled
+		 * request will be executed again in order to conform to
+		 * <code>requests_per_second</code>.
+		 * <p>
+		 * API name: {@code throttled_until_millis}
 		 */
 		public final Builder throttledUntilMillis(long value) {
 			this.throttledUntilMillis = value;
@@ -396,7 +458,9 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - The number of documents that were successfully processed.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(long value) {
 			this.total = value;
@@ -404,7 +468,11 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code updated}
+		 * Required - The number of documents that were successfully updated, for
+		 * example, a document with same ID already existed prior to reindex updating
+		 * it.
+		 * <p>
+		 * API name: {@code updated}
 		 */
 		public final Builder updated(long value) {
 			this.updated = value;
@@ -412,7 +480,9 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version_conflicts}
+		 * Required - The number of version conflicts that reindex hits.
+		 * <p>
+		 * API name: {@code version_conflicts}
 		 */
 		public final Builder versionConflicts(long value) {
 			this.versionConflicts = value;

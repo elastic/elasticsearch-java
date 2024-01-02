@@ -66,6 +66,10 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final String ilmPolicy;
 
+	private final ManagedBy nextGenerationManagedBy;
+
+	private final boolean preferIlm;
+
 	private final List<DataStreamIndex> indices;
 
 	@Nullable
@@ -94,6 +98,9 @@ public class DataStream implements JsonpSerializable {
 		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
 		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden");
 		this.ilmPolicy = builder.ilmPolicy;
+		this.nextGenerationManagedBy = ApiTypeHelper.requireNonNull(builder.nextGenerationManagedBy, this,
+				"nextGenerationManagedBy");
+		this.preferIlm = ApiTypeHelper.requireNonNull(builder.preferIlm, this, "preferIlm");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.lifecycle = builder.lifecycle;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
@@ -163,6 +170,26 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	public final String ilmPolicy() {
 		return this.ilmPolicy;
+	}
+
+	/**
+	 * Required - Name of the lifecycle system that'll manage the next generation of
+	 * the data stream.
+	 * <p>
+	 * API name: {@code next_generation_managed_by}
+	 */
+	public final ManagedBy nextGenerationManagedBy() {
+		return this.nextGenerationManagedBy;
+	}
+
+	/**
+	 * Required - Indicates if ILM should take precedence over DSL in case both are
+	 * configured to managed this data stream.
+	 * <p>
+	 * API name: {@code prefer_ilm}
+	 */
+	public final boolean preferIlm() {
+		return this.preferIlm;
 	}
 
 	/**
@@ -288,6 +315,11 @@ public class DataStream implements JsonpSerializable {
 			generator.write(this.ilmPolicy);
 
 		}
+		generator.writeKey("next_generation_managed_by");
+		this.nextGenerationManagedBy.serialize(generator, mapper);
+		generator.writeKey("prefer_ilm");
+		generator.write(this.preferIlm);
+
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
@@ -350,6 +382,10 @@ public class DataStream implements JsonpSerializable {
 
 		@Nullable
 		private String ilmPolicy;
+
+		private ManagedBy nextGenerationManagedBy;
+
+		private Boolean preferIlm;
 
 		private List<DataStreamIndex> indices;
 
@@ -442,6 +478,28 @@ public class DataStream implements JsonpSerializable {
 		 */
 		public final Builder ilmPolicy(@Nullable String value) {
 			this.ilmPolicy = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the lifecycle system that'll manage the next generation of
+		 * the data stream.
+		 * <p>
+		 * API name: {@code next_generation_managed_by}
+		 */
+		public final Builder nextGenerationManagedBy(ManagedBy value) {
+			this.nextGenerationManagedBy = value;
+			return this;
+		}
+
+		/**
+		 * Required - Indicates if ILM should take precedence over DSL in case both are
+		 * configured to managed this data stream.
+		 * <p>
+		 * API name: {@code prefer_ilm}
+		 */
+		public final Builder preferIlm(boolean value) {
+			this.preferIlm = value;
 			return this;
 		}
 
@@ -619,6 +677,8 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
+		op.add(Builder::nextGenerationManagedBy, ManagedBy._DESERIALIZER, "next_generation_managed_by");
+		op.add(Builder::preferIlm, JsonpDeserializer.booleanDeserializer(), "prefer_ilm");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(DataStreamIndex._DESERIALIZER), "indices");
 		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

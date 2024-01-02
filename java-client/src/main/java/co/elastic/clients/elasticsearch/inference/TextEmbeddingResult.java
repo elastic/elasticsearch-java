@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices.get_data_lifecycle;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch.indices.DataLifecycle;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,52 +34,42 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Float;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: indices.get_data_lifecycle.DataStreamLifecycle
+// typedef: inference._types.TextEmbeddingResult
 
 /**
- *
+ * The text embedding result object
+ * 
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.get_data_lifecycle.DataStreamLifecycle">API
+ *      "../doc-files/api-spec.html#inference._types.TextEmbeddingResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamLifecycle implements JsonpSerializable {
-	private final String name;
-
-	@Nullable
-	private final DataLifecycle lifecycle;
+public class TextEmbeddingResult implements JsonpSerializable {
+	private final List<Float> embedding;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataStreamLifecycle(Builder builder) {
+	private TextEmbeddingResult(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.lifecycle = builder.lifecycle;
+		this.embedding = ApiTypeHelper.unmodifiableRequired(builder.embedding, this, "embedding");
 
 	}
 
-	public static DataStreamLifecycle of(Function<Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
+	public static TextEmbeddingResult of(Function<Builder, ObjectBuilder<TextEmbeddingResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - API name: {@code embedding}
 	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * API name: {@code lifecycle}
-	 */
-	@Nullable
-	public final DataLifecycle lifecycle() {
-		return this.lifecycle;
+	public final List<Float> embedding() {
+		return this.embedding;
 	}
 
 	/**
@@ -94,12 +83,14 @@ public class DataStreamLifecycle implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (ApiTypeHelper.isDefined(this.embedding)) {
+			generator.writeKey("embedding");
+			generator.writeStartArray();
+			for (Float item0 : this.embedding) {
+				generator.write(item0);
 
-		if (this.lifecycle != null) {
-			generator.writeKey("lifecycle");
-			this.lifecycle.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
 
@@ -113,38 +104,32 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamLifecycle}.
+	 * Builder for {@link TextEmbeddingResult}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DataStreamLifecycle> {
-		private String name;
-
-		@Nullable
-		private DataLifecycle lifecycle;
+				ObjectBuilder<TextEmbeddingResult> {
+		private List<Float> embedding;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - API name: {@code embedding}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>embedding</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder embedding(List<Float> list) {
+			this.embedding = _listAddAll(this.embedding, list);
 			return this;
 		}
 
 		/**
-		 * API name: {@code lifecycle}
+		 * Required - API name: {@code embedding}
+		 * <p>
+		 * Adds one or more values to <code>embedding</code>.
 		 */
-		public final Builder lifecycle(@Nullable DataLifecycle value) {
-			this.lifecycle = value;
+		public final Builder embedding(Float value, Float... values) {
+			this.embedding = _listAdd(this.embedding, value, values);
 			return this;
-		}
-
-		/**
-		 * API name: {@code lifecycle}
-		 */
-		public final Builder lifecycle(Function<DataLifecycle.Builder, ObjectBuilder<DataLifecycle>> fn) {
-			return this.lifecycle(fn.apply(new DataLifecycle.Builder()).build());
 		}
 
 		@Override
@@ -153,30 +138,30 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataStreamLifecycle}.
+		 * Builds a {@link TextEmbeddingResult}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataStreamLifecycle build() {
+		public TextEmbeddingResult build() {
 			_checkSingleUse();
 
-			return new DataStreamLifecycle(this);
+			return new TextEmbeddingResult(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DataStreamLifecycle}
+	 * Json deserializer for {@link TextEmbeddingResult}
 	 */
-	public static final JsonpDeserializer<DataStreamLifecycle> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamLifecycle::setupDataStreamLifecycleDeserializer);
+	public static final JsonpDeserializer<TextEmbeddingResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TextEmbeddingResult::setupTextEmbeddingResultDeserializer);
 
-	protected static void setupDataStreamLifecycleDeserializer(ObjectDeserializer<DataStreamLifecycle.Builder> op) {
+	protected static void setupTextEmbeddingResultDeserializer(ObjectDeserializer<TextEmbeddingResult.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::lifecycle, DataLifecycle._DESERIALIZER, "lifecycle");
+		op.add(Builder::embedding, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()),
+				"embedding");
 
 	}
 

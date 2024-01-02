@@ -52,6 +52,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 
 	private final String delimiter;
 
+	@Nullable
 	private final String replacement;
 
 	private final boolean reverse;
@@ -65,7 +66,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 
 		this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
 		this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
-		this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+		this.replacement = builder.replacement;
 		this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse");
 		this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip");
 
@@ -98,8 +99,9 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 	}
 
 	/**
-	 * Required - API name: {@code replacement}
+	 * API name: {@code replacement}
 	 */
+	@Nullable
 	public final String replacement() {
 		return this.replacement;
 	}
@@ -128,9 +130,11 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 		generator.writeKey("delimiter");
 		generator.write(this.delimiter);
 
-		generator.writeKey("replacement");
-		generator.write(this.replacement);
+		if (this.replacement != null) {
+			generator.writeKey("replacement");
+			generator.write(this.replacement);
 
+		}
 		generator.writeKey("reverse");
 		generator.write(this.reverse);
 
@@ -152,6 +156,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 
 		private String delimiter;
 
+		@Nullable
 		private String replacement;
 
 		private Boolean reverse;
@@ -175,9 +180,9 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 		}
 
 		/**
-		 * Required - API name: {@code replacement}
+		 * API name: {@code replacement}
 		 */
-		public final Builder replacement(String value) {
+		public final Builder replacement(@Nullable String value) {
 			this.replacement = value;
 			return this;
 		}

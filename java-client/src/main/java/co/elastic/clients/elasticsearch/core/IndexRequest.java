@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: _global.index.Request
 
 /**
- * Creates or updates a document in an index.
+ * Adds a JSON document to the specified data stream or index and makes it
+ * searchable. If the target is an index and the document already exists, the
+ * request updates the document and increments its version.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.index.Request">API
  *      specification</a>
@@ -136,7 +138,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Document ID
+	 * Unique identifier for the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -146,8 +148,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * only perform the index operation if the last operation that has changed the
-	 * document has the specified primary term
+	 * Only perform the operation if the document has this primary term.
 	 * <p>
 	 * API name: {@code if_primary_term}
 	 */
@@ -157,8 +158,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * only perform the index operation if the last operation that has changed the
-	 * document has the specified sequence number
+	 * Only perform the operation if the document has this sequence number.
 	 * <p>
 	 * API name: {@code if_seq_no}
 	 */
@@ -168,7 +168,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - The name of the index
+	 * Required - Name of the data stream or index to target.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -177,9 +177,13 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Explicit operation type. Defaults to <code>index</code> for requests with an
-	 * explicit document ID, and to <code>create</code>for requests without an
-	 * explicit document ID
+	 * Set to create to only index the document if it does not already exist (put if
+	 * absent). If a document with the specified <code>_id</code> already exists,
+	 * the indexing operation will fail. Same as using the
+	 * <code>&lt;index&gt;/_create</code> endpoint. Valid values:
+	 * <code>index</code>, <code>create</code>. If document id is specified, it
+	 * defaults to <code>index</code>. Otherwise, it defaults to
+	 * <code>create</code>.
 	 * <p>
 	 * API name: {@code op_type}
 	 */
@@ -189,7 +193,11 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * The pipeline id to preprocess incoming documents with
+	 * ID of the pipeline to use to preprocess incoming documents. If the index has
+	 * a default ingest pipeline specified, then setting the value to
+	 * <code>_none</code> disables the default ingest pipeline for this request. If
+	 * a final pipeline is configured it will always run, regardless of the value of
+	 * this parameter.
 	 * <p>
 	 * API name: {@code pipeline}
 	 */
@@ -199,10 +207,11 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * If <code>true</code> then refresh the affected shards to make this operation
-	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-	 * this operation visible to search, if <code>false</code> (the default) then do
-	 * nothing with refreshes.
+	 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> do
+	 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
+	 * <code>wait_for</code>.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -212,7 +221,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * When true, requires destination to be an alias. Default is false
+	 * If <code>true</code>, the destination must be an index alias.
 	 * <p>
 	 * API name: {@code require_alias}
 	 */
@@ -222,7 +231,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -232,7 +241,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period the request waits for the following operations: automatic index
+	 * creation, dynamic mapping updates, waiting for active shards.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -242,7 +252,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Explicit version number for concurrency control
+	 * Explicit version number for concurrency control. The specified version must
+	 * match the current version of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -252,7 +263,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Specific version type
+	 * Specific version type: <code>external</code>, <code>external_gte</code>.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -262,11 +273,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Sets the number of shard copies that must be active before proceeding with
-	 * the index operation. Defaults to 1, meaning the primary shard only. Set to
-	 * <code>all</code> for all shard copies, otherwise set to any non-negative
-	 * value less than or equal to the total number of copies for the shard (number
-	 * of replicas + 1)
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to all or any positive integer up to the total number of
+	 * shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -343,7 +352,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Document ID
+		 * Unique identifier for the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -353,8 +362,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * only perform the index operation if the last operation that has changed the
-		 * document has the specified primary term
+		 * Only perform the operation if the document has this primary term.
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
@@ -364,8 +372,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * only perform the index operation if the last operation that has changed the
-		 * document has the specified sequence number
+		 * Only perform the operation if the document has this sequence number.
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
@@ -375,7 +382,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Required - The name of the index
+		 * Required - Name of the data stream or index to target.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -385,9 +392,13 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Explicit operation type. Defaults to <code>index</code> for requests with an
-		 * explicit document ID, and to <code>create</code>for requests without an
-		 * explicit document ID
+		 * Set to create to only index the document if it does not already exist (put if
+		 * absent). If a document with the specified <code>_id</code> already exists,
+		 * the indexing operation will fail. Same as using the
+		 * <code>&lt;index&gt;/_create</code> endpoint. Valid values:
+		 * <code>index</code>, <code>create</code>. If document id is specified, it
+		 * defaults to <code>index</code>. Otherwise, it defaults to
+		 * <code>create</code>.
 		 * <p>
 		 * API name: {@code op_type}
 		 */
@@ -397,7 +408,11 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * The pipeline id to preprocess incoming documents with
+		 * ID of the pipeline to use to preprocess incoming documents. If the index has
+		 * a default ingest pipeline specified, then setting the value to
+		 * <code>_none</code> disables the default ingest pipeline for this request. If
+		 * a final pipeline is configured it will always run, regardless of the value of
+		 * this parameter.
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
@@ -407,10 +422,11 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * If <code>true</code> then refresh the affected shards to make this operation
-		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-		 * this operation visible to search, if <code>false</code> (the default) then do
-		 * nothing with refreshes.
+		 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> do
+		 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
+		 * <code>wait_for</code>.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -420,7 +436,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * When true, requires destination to be an alias. Default is false
+		 * If <code>true</code>, the destination must be an index alias.
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
@@ -430,7 +446,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -440,7 +456,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period the request waits for the following operations: automatic index
+		 * creation, dynamic mapping updates, waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -450,7 +467,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period the request waits for the following operations: automatic index
+		 * creation, dynamic mapping updates, waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -459,7 +477,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Explicit version number for concurrency control
+		 * Explicit version number for concurrency control. The specified version must
+		 * match the current version of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -469,7 +488,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Specific version type
+		 * Specific version type: <code>external</code>, <code>external_gte</code>.
 		 * <p>
 		 * API name: {@code version_type}
 		 */
@@ -479,11 +498,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -493,11 +510,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */

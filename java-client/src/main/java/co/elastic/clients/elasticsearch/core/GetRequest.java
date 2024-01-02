@@ -170,7 +170,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Boolean) If true, the request is real-time as opposed to near-real-time.
+	 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -201,7 +201,9 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of stored fields to return in the response
+	 * List of stored fields to return as part of a hit. If no fields are specified,
+	 * no stored fields are included in the response. If this field is specified,
+	 * the <code>_source</code> parameter defaults to false.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -372,7 +374,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Boolean) If true, the request is real-time as opposed to near-real-time.
+		 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -403,7 +405,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the <code>_source</code> parameter defaults to false.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -415,7 +419,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the <code>_source</code> parameter defaults to false.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>

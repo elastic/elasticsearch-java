@@ -21,21 +21,41 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.query_dsl;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 /**
- * Builders for {@link SimpleQueryStringFlags} variants.
- * <p>
- * Variants <code>single</code>, <code>multiple</code> are not available here as
- * they don't have a dedicated class. Use {@link SimpleQueryStringFlags}'s
- * builder for these.
- * 
+ *
+ * @see <a href="../doc-files/api-spec.html#_types.ClusterSearchStatus">API
+ *      specification</a>
  */
-public class SimpleQueryStringFlagsBuilders {
-	private SimpleQueryStringFlagsBuilders() {
+@JsonpDeserializable
+public enum ClusterSearchStatus implements JsonEnum {
+	Running("running"),
+
+	Successful("successful"),
+
+	Partial("partial"),
+
+	Skipped("skipped"),
+
+	Failed("failed"),
+
+	;
+
+	private final String jsonValue;
+
+	ClusterSearchStatus(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<ClusterSearchStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ClusterSearchStatus.values());
 }

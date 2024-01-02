@@ -76,7 +76,7 @@ public class GetTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Return the task with specified id (node_id:task_number)
+	 * Required - ID of the task.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -85,7 +85,8 @@ public class GetTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -95,7 +96,7 @@ public class GetTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Wait for the matching tasks to complete (default: false)
+	 * If <code>true</code>, the request blocks until the task has completed.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -120,7 +121,7 @@ public class GetTasksRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Required - Return the task with specified id (node_id:task_number)
+		 * Required - ID of the task.
 		 * <p>
 		 * API name: {@code task_id}
 		 */
@@ -130,7 +131,8 @@ public class GetTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -140,7 +142,8 @@ public class GetTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -149,7 +152,7 @@ public class GetTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Wait for the matching tasks to complete (default: false)
+		 * If <code>true</code>, the request blocks until the task has completed.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

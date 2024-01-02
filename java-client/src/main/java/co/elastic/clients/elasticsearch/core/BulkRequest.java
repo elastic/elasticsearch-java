@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.Request
 
 /**
- * Allows to perform multiple index/update/delete operations in a single
- * request.
+ * Performs multiple indexing or delete operations in a single API call. This
+ * reduces overhead and can greatly increase indexing speed.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.bulk.Request">API
  *      specification</a>
@@ -121,8 +121,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		return this.operations.iterator();
 	}
 	/**
-	 * True or false to return the _source field or not, or default list of fields
-	 * to return, can be overridden on each sub-request
+	 * <code>true</code> or <code>false</code> to return the <code>_source</code>
+	 * field or not, or a list of fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -132,8 +132,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Default list of fields to exclude from the returned _source field, can be
-	 * overridden on each sub-request
+	 * A comma-separated list of source fields to exclude from the response.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -142,8 +141,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Default list of fields to extract and return from the _source field, can be
-	 * overridden on each sub-request
+	 * A comma-separated list of source fields to include in the response.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -152,7 +150,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Default index for items which don't provide one
+	 * Name of the data stream, index, or index alias to perform bulk actions on.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -162,7 +160,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * The pipeline id to preprocess incoming documents with
+	 * ID of the pipeline to use to preprocess incoming documents. If the index has
+	 * a default ingest pipeline specified, then setting the value to
+	 * <code>_none</code> disables the default ingest pipeline for this request. If
+	 * a final pipeline is configured it will always run, regardless of the value of
+	 * this parameter.
 	 * <p>
 	 * API name: {@code pipeline}
 	 */
@@ -172,10 +174,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * If <code>true</code> then refresh the affected shards to make this operation
-	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-	 * this operation visible to search, if <code>false</code> (the default) then do
-	 * nothing with refreshes.
+	 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> do
+	 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
+	 * <code>wait_for</code>.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -185,7 +188,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Sets require_alias for all incoming documents. Defaults to unset (false)
+	 * If <code>true</code>, the request’s actions must target an index alias.
 	 * <p>
 	 * API name: {@code require_alias}
 	 */
@@ -195,7 +198,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -205,7 +208,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period each action waits for the following operations: automatic index
+	 * creation, dynamic mapping updates, waiting for active shards.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -215,11 +219,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Sets the number of shard copies that must be active before proceeding with
-	 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
-	 * <code>all</code> for all shard copies, otherwise set to any non-negative
-	 * value less than or equal to the total number of copies for the shard (number
-	 * of replicas + 1)
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to all or any positive integer up to the total number of
+	 * shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -288,8 +290,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private List<BulkOperation> operations;
 
 		/**
-		 * True or false to return the _source field or not, or default list of fields
-		 * to return, can be overridden on each sub-request
+		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
+		 * field or not, or a list of fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -299,8 +301,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * True or false to return the _source field or not, or default list of fields
-		 * to return, can be overridden on each sub-request
+		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
+		 * field or not, or a list of fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -309,8 +311,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Default list of fields to exclude from the returned _source field, can be
-		 * overridden on each sub-request
+		 * A comma-separated list of source fields to exclude from the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -322,8 +323,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Default list of fields to exclude from the returned _source field, can be
-		 * overridden on each sub-request
+		 * A comma-separated list of source fields to exclude from the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -335,8 +335,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Default list of fields to extract and return from the _source field, can be
-		 * overridden on each sub-request
+		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -348,8 +347,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Default list of fields to extract and return from the _source field, can be
-		 * overridden on each sub-request
+		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -361,7 +359,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Default index for items which don't provide one
+		 * Name of the data stream, index, or index alias to perform bulk actions on.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -371,7 +369,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * The pipeline id to preprocess incoming documents with
+		 * ID of the pipeline to use to preprocess incoming documents. If the index has
+		 * a default ingest pipeline specified, then setting the value to
+		 * <code>_none</code> disables the default ingest pipeline for this request. If
+		 * a final pipeline is configured it will always run, regardless of the value of
+		 * this parameter.
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
@@ -381,10 +383,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * If <code>true</code> then refresh the affected shards to make this operation
-		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-		 * this operation visible to search, if <code>false</code> (the default) then do
-		 * nothing with refreshes.
+		 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> do
+		 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
+		 * <code>wait_for</code>.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -394,7 +397,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Sets require_alias for all incoming documents. Defaults to unset (false)
+		 * If <code>true</code>, the request’s actions must target an index alias.
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
@@ -404,7 +407,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -414,7 +417,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period each action waits for the following operations: automatic index
+		 * creation, dynamic mapping updates, waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -424,7 +428,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period each action waits for the following operations: automatic index
+		 * creation, dynamic mapping updates, waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -433,11 +438,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -447,11 +450,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
