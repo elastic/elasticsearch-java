@@ -19,6 +19,8 @@ import realworld.entity.user.UserDAO;
 import java.io.IOException;
 import java.util.Objects;
 
+import static realworld.utils.Utility.isNullOrBlank;
+
 
 @RestController
 @RequestMapping()
@@ -67,15 +69,10 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity<User> update(@RequestHeader("Authorization") String auth, @RequestBody UserDAO req) throws IOException {
+    public ResponseEntity<User> update(@RequestHeader("Authorization") String auth, @RequestBody User req) throws IOException {
         UserDAO res = service.updateUser(auth, req);
         logger.debug("Updated info for user {}", req.username());
         return ResponseEntity.ok(new User(res));
 
-    }
-
-    //TODO common utility class
-    private boolean isNullOrBlank(String s) {
-        return Objects.isNull(s) || s.isBlank();
     }
 }

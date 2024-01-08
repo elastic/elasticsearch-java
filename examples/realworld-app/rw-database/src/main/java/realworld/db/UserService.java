@@ -13,15 +13,18 @@ import org.springframework.stereotype.Service;
 import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.user.Profile;
+import realworld.entity.user.User;
 import realworld.entity.user.UserDAO;
 import realworld.entity.user.UserEntity;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
+import static realworld.utils.Utility.extractId;
+import static realworld.utils.Utility.extractSource;
+import static realworld.utils.Utility.isNullOrBlank;
 
 @Service
 public class UserService {
@@ -35,10 +38,12 @@ public class UserService {
 
     public UserDAO newUser(UserDAO user) throws IOException {
 
-        // checking if username or password already used.
+        // checking if username or email already used.
         // using a "term" query to match the exact strings
         // (a "match" query would also find words containing the value inserted)
         // using "should" to find documents matching either condition.
+
+        // TODO explain keyword
 
         SearchResponse<UserEntity> checkUser = esClient.search(ss -> ss
                         .index("users")
@@ -87,10 +92,8 @@ public class UserService {
         UserEntity ue = new UserEntity(user.username(), user.email(),
                 user.password(), jws, user.bio(), user.image(), new ArrayList<>());
 
-        // using the username as a document ID will help with operations that require the document ID
         IndexRequest<UserEntity> userReq = IndexRequest.of((id -> id
                 .index("users")
-                .id(ue.username())
                 .document(ue)));
 
         esClient.index(userReq);
@@ -121,11 +124,11 @@ public class UserService {
             throw new ResourceNotFoundException("Wrong email or password");
         }
 
-        return new UserDAO(getUser.hits().hits().getFirst().source());
+        return new UserDAO(extractSource(getUser));
     }
 
     public UserDAO getUserFromToken(String auth) throws IOException {
-        return new UserDAO(getUserEntityFromToken(auth).hits().hits().getFirst().source());
+        return new UserDAO(extractSource(getUserEntityFromToken(auth)));
     }
 
     private SearchResponse<UserEntity> getUserEntityFromToken(String auth) throws IOException {
@@ -154,33 +157,60 @@ public class UserService {
         return getUser;
     }
 
-    public UserDAO updateUser(String auth, UserDAO user) throws IOException {
+    public UserDAO updateUser(String auth, User user) throws IOException {
 
         SearchResponse<UserEntity> userSearch = getUserEntityFromToken(auth);
-        UserEntity userEntity = userSearch.hits().hits().getFirst().source();
+        String id = extractId(userSearch);
+        UserEntity userEntity = extractSource(userSearch);
 
-        UserEntity ue = new UserEntity(userEntity.username(), user.email(),
-                userEntity.password(), userEntity.token(), user.bio(), user.image(), userEntity.following());
+        // if the username or email are updated, checking uniqueness
+        if(!isNullOrBlank(user.username())){
+            SearchResponse<UserEntity> newUsernameSearch = findUserByUsername(user.username());
+            if(!newUsernameSearch.hits().hits().isEmpty()){
+                throw new ResourceAlreadyExistsException("Username already exists");
+            }
+        }
 
+        if(!isNullOrBlank(user.email())){
+            SearchResponse<UserEntity> newEmailSearch = findUserByEmail(user.email());
+            if(!newEmailSearch.hits().hits().isEmpty()){
+                throw new ResourceAlreadyExistsException("Email already in use");
+            }
+        }
+
+        // null/black check for every optional field
+        UserEntity ue = new UserEntity(isNullOrBlank(user.username()) ? user.username() : userEntity.username(),
+                isNullOrBlank(user.email()) ? userEntity.email() : user.email(),
+                userEntity.password(), userEntity.token(),
+                isNullOrBlank(user.bio()) ? userEntity.bio() : user.bio(),
+                isNullOrBlank(user.image()) ? userEntity.image() : user.image(),
+                userEntity.following());
+
+        updateUser(id, ue);
+        return new UserDAO(ue);
+    }
+
+    private void updateUser(String id, UserEntity ue) throws IOException {
         UpdateResponse upUser = esClient.update(up -> up
                         .index("users")
-                        .id(ue.username())
+                        .id(id)
                         .doc(ue)
                 , UserEntity.class);
-
-        return new UserDAO(ue);
+        if(!upUser.result().name().equals("Updated")){
+            throw new RuntimeException("Article update failed");
+        }
     }
 
     public Profile getUserProfile(String username, String auth) throws IOException {
 
         SearchResponse<UserEntity> getUser = findUserByUsername(username);
 
-        UserEntity targetUser = getUser.hits().hits().getFirst().source();
+        UserEntity targetUser = extractSource(getUser);
 
         // checking if the user is followed by who's asking
         SearchResponse<UserEntity> askingUser = getUserEntityFromToken(auth);
         boolean following = false;
-        if (askingUser.hits().hits().getFirst().source().following().contains(targetUser.username())) {
+        if (extractSource(askingUser).following().contains(targetUser.username())) {
             following = true;
         }
 
@@ -190,13 +220,25 @@ public class UserService {
     }
 
     private SearchResponse<UserEntity> findUserByUsername(String username) throws IOException {
-        // since the id is the unique username, using id query since it is the most efficient
+        // simple term query to match exactly the username string
         SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
                         .index("users")
                         .query(q -> q
-                                .ids(id -> id
-                                        .values(List.of(username)))
-                        )
+                                .term(t -> t
+                                        .field("username.keyword")
+                                        .value(username)))
+                , UserEntity.class);
+        return getUser;
+    }
+
+    private SearchResponse<UserEntity> findUserByEmail(String email) throws IOException {
+        // simple term query to match exactly the email string
+        SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
+                        .index("users")
+                        .query(q -> q
+                                .term(t -> t
+                                        .field("email.keyword")
+                                        .value(email)))
                 , UserEntity.class);
         return getUser;
     }
@@ -205,20 +247,16 @@ public class UserService {
 
         SearchResponse<UserEntity> getUser = findUserByUsername(username);
 
-        UserEntity targetUser = getUser.hits().hits().getFirst().source();
+        UserEntity targetUser = extractSource(getUser);
         // add followed user to list if not already present
 
         SearchResponse<UserEntity> userSearch = getUserEntityFromToken(auth);
-        UserEntity askingUser = userSearch.hits().hits().getFirst().source();
+        UserEntity askingUser = extractSource(userSearch);
 
         if (!askingUser.following().contains(targetUser.username())) {
             askingUser.following().add(targetUser.username());
 
-            UpdateResponse upUser = esClient.update(up -> up //TODO check success
-                            .index("users")
-                            .id(username)
-                            .doc(askingUser)
-                    , UserEntity.class);
+            updateUser(username, askingUser);
         }
         Profile targetUserProfile = new Profile(targetUser,true);
 
@@ -230,21 +268,17 @@ public class UserService {
 
         SearchResponse<UserEntity> getUser = findUserByUsername(username);
 
-        UserEntity targetUser = getUser.hits().hits().getFirst().source();
+        UserEntity targetUser = extractSource(getUser);
 
         // remove followed user to list if not already present
 
         SearchResponse<UserEntity> userSearch = getUserEntityFromToken(auth);
-        UserEntity askingUser = userSearch.hits().hits().getFirst().source();
+        UserEntity askingUser = extractSource(userSearch);
 
         if (askingUser.following().contains(targetUser.username())) {
             askingUser.following().remove(targetUser.username());
 
-            UpdateResponse upUser = esClient.update(up -> up //TODO check success
-                            .index("users")
-                            .id(username)
-                            .doc(askingUser)
-                    , UserEntity.class);
+            updateUser(username, askingUser);
         }
         Profile targetUserProfile = new Profile(targetUser,false);
 
