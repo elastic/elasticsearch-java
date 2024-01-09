@@ -3,10 +3,9 @@ package realworld.entity.article;
 import realworld.entity.user.Author;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
-public record ArticleEntity(
+public record ArticleForListDAO(
         String slug,
         String title,
         String description,
@@ -16,10 +15,10 @@ public record ArticleEntity(
         Instant updatedAt,
         boolean favorited,
         int favoritesCount,
-        List<String> favoritedBy,
         Author author) {
 
-    public ArticleEntity(ArticleCreationDAO article, String slug, Instant createdAt, Instant updatedAt, Author author) {
-        this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt, updatedAt, false, 0, new ArrayList<>(), author);
+
+    public ArticleForListDAO(ArticleEntity article) {
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(), article.author());
     }
 }

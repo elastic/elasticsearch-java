@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import realworld.db.ArticleService;
-import realworld.entity.article.Article;
+import realworld.entity.article.ArticleCreationDAO;
 import realworld.entity.article.ArticleDAO;
 import realworld.entity.article.ArticleEntity;
 import realworld.entity.article.ArticleUpdateDAO;
@@ -38,7 +38,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles")
-    public ResponseEntity<ArticleDAO> createArticle(@RequestHeader("Authorization") String auth, @RequestBody Article req) throws IOException {
+    public ResponseEntity<ArticleDAO> createArticle(@RequestHeader("Authorization") String auth, @RequestBody ArticleCreationDAO req) throws IOException {
         // TODO check null
         // TODO consider adding validator
         ArticleEntity res = service.newArticle(req, auth);

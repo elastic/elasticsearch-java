@@ -11,12 +11,12 @@ import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.util.NamedValue;
 import com.github.slugify.Slugify;
-import org.elasticsearch.client.ResponseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import realworld.entity.article.Article;
+import realworld.entity.article.ArticleCreationDAO;
 import realworld.entity.article.ArticleDAO;
 import realworld.entity.article.ArticleEntity;
+import realworld.entity.article.ArticleForListDAO;
 import realworld.entity.article.ArticleUpdateDAO;
 import realworld.entity.article.Articles;
 import realworld.entity.article.Tags;
@@ -49,7 +49,7 @@ public class ArticleService {
         this.userService = userService;
     }
 
-    public ArticleEntity newArticle(Article article, String auth) throws IOException {
+    public ArticleEntity newArticle(ArticleCreationDAO article, String auth) throws IOException {
 
         // checking if slug would be unique
         String slug = generateAndCheckSlug(article.title());
@@ -159,7 +159,7 @@ public class ArticleService {
                 true, article.favoritesCount() + 1, article.favoritedBy(), article.author());
 
         updateArticle(id, updatedArticle);
-        return article;
+        return updatedArticle;
     }
 
     public ArticleEntity unfavoriteArticle(String slug, String auth) throws IOException {
@@ -237,14 +237,15 @@ public class ArticleService {
                         Collections.swap(a.tagList(), a.tagList().indexOf(tag), 0);
                     }
                 })
-                .map(ArticleDAO::new)
+                .map(ArticleForListDAO::new)
                 .collect(Collectors.toList()), getArticle.hits().hits().size());
     }
 
-    // TODO test sort by doc count
-    NamedValue<SortOrder> sort = new NamedValue<>("_key", SortOrder.Asc);
+    // since the API definition doesn't specify the return order of tags, sorting by document count using "_count"
+    // if alphabetical order is preferred, use "_key" instead
+    NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Asc);
 
-    // TODO explain
+    // using a term aggregation is the simplest way to find every distinct tag for each article
     public Tags allTags() throws IOException {
         SearchResponse<Aggregation> aggregateTags = esClient.search(s -> s
                         .index("articles")

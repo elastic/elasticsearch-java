@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeInfo(include= As.WRAPPER_OBJECT, use= Id.NAME)
 public record Profile (
      String username,
-     String email,
+     String image,
      String bio,
      boolean following){
 
     public Profile(UserEntity ue, boolean following) {
-        this(ue.username(), ue.email(), ue.bio(), following);
+        this(ue.username(), ue.image(), ue.bio(), following);
     }
 }

@@ -164,22 +164,22 @@ public class UserService {
         UserEntity userEntity = extractSource(userSearch);
 
         // if the username or email are updated, checking uniqueness
-        if(!isNullOrBlank(user.username())){
+        if(!isNullOrBlank(user.username())&&!user.username().equals(userEntity.username())){
             SearchResponse<UserEntity> newUsernameSearch = findUserByUsername(user.username());
             if(!newUsernameSearch.hits().hits().isEmpty()){
                 throw new ResourceAlreadyExistsException("Username already exists");
             }
         }
 
-        if(!isNullOrBlank(user.email())){
+        if(!isNullOrBlank(user.email())&&!user.email().equals(userEntity.email())){
             SearchResponse<UserEntity> newEmailSearch = findUserByEmail(user.email());
             if(!newEmailSearch.hits().hits().isEmpty()){
                 throw new ResourceAlreadyExistsException("Email already in use");
             }
         }
 
-        // null/black check for every optional field
-        UserEntity ue = new UserEntity(isNullOrBlank(user.username()) ? user.username() : userEntity.username(),
+        // null/blank check for every optional field
+        UserEntity ue = new UserEntity(isNullOrBlank(user.username()) ? userEntity.username() : user.username(),
                 isNullOrBlank(user.email()) ? userEntity.email() : user.email(),
                 userEntity.password(), userEntity.token(),
                 isNullOrBlank(user.bio()) ? userEntity.bio() : user.bio(),
@@ -197,13 +197,16 @@ public class UserService {
                         .doc(ue)
                 , UserEntity.class);
         if(!upUser.result().name().equals("Updated")){
-            throw new RuntimeException("Article update failed");
+            throw new RuntimeException("User update failed");
         }
     }
 
     public Profile getUserProfile(String username, String auth) throws IOException {
 
         SearchResponse<UserEntity> getUser = findUserByUsername(username);
+        if (getUser.hits().hits().isEmpty()) {
+            throw new ResourceNotFoundException("Target user not found");
+        }
 
         UserEntity targetUser = extractSource(getUser);
 
@@ -245,40 +248,45 @@ public class UserService {
 
     public Profile followUser(String username, String auth) throws IOException {
 
-        SearchResponse<UserEntity> getUser = findUserByUsername(username);
+        SearchResponse<UserEntity> targetUserSearch = findUserByUsername(username);
+        if (targetUserSearch.hits().hits().isEmpty()) {
+            throw new ResourceNotFoundException("Target user not found");
+        }
 
-        UserEntity targetUser = extractSource(getUser);
+        UserEntity targetUser = extractSource(targetUserSearch);
         // add followed user to list if not already present
 
-        SearchResponse<UserEntity> userSearch = getUserEntityFromToken(auth);
-        UserEntity askingUser = extractSource(userSearch);
+        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
+        UserEntity askingUser = extractSource(askingUserSearch);
 
         if (!askingUser.following().contains(targetUser.username())) {
             askingUser.following().add(targetUser.username());
 
-            updateUser(username, askingUser);
+            updateUser(extractId(askingUserSearch), askingUser);
         }
         Profile targetUserProfile = new Profile(targetUser,true);
 
         return targetUserProfile;
     }
 
-    // TODO merge follow and unfollow
     public Profile unfollowUser(String username, String auth) throws IOException {
 
-        SearchResponse<UserEntity> getUser = findUserByUsername(username);
+        SearchResponse<UserEntity> targetUserSearch = findUserByUsername(username);
+        if (targetUserSearch.hits().hits().isEmpty()) {
+            throw new ResourceNotFoundException("Target user not found");
+        }
 
-        UserEntity targetUser = extractSource(getUser);
+        UserEntity targetUser = extractSource(targetUserSearch);
 
         // remove followed user to list if not already present
 
-        SearchResponse<UserEntity> userSearch = getUserEntityFromToken(auth);
-        UserEntity askingUser = extractSource(userSearch);
+        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
+        UserEntity askingUser = extractSource(askingUserSearch);
 
         if (askingUser.following().contains(targetUser.username())) {
             askingUser.following().remove(targetUser.username());
 
-            updateUser(username, askingUser);
+            updateUser(extractId(askingUserSearch), askingUser);
         }
         Profile targetUserProfile = new Profile(targetUser,false);
 

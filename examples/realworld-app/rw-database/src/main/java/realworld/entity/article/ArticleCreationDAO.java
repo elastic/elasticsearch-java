@@ -9,4 +9,4 @@ import java.util.List;
 
 @JsonTypeName("article")
 @JsonTypeInfo(include= As.WRAPPER_OBJECT, use= Id.NAME)
-public record Article (String title, String description, String body,List<String> tagList){}
+public record ArticleCreationDAO(String title, String description, String body, List<String> tagList){}
