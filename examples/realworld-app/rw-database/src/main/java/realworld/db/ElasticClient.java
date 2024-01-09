@@ -73,6 +73,12 @@ public class ElasticClient {
                     .index("articles"));
         }
 
+        BooleanResponse indexResC = esClient.indices().exists(ex -> ex.index("comments")); //TODO constant
+        if (!indexResC.value()) {
+            esClient.indices().create(c -> c
+                    .index("comments"));
+        }
+
         return esClient;
 
     }

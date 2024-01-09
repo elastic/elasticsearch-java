@@ -1,10 +1,13 @@
 package realworld.db;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery.Builder;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
@@ -25,6 +28,7 @@ import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.Author;
 import realworld.entity.user.UserDAO;
+import realworld.entity.user.UserEntity;
 
 import static realworld.utils.Utility.extractId;
 import static realworld.utils.Utility.extractSource;
@@ -72,7 +76,7 @@ public class ArticleService {
 
     public SearchResponse<ArticleEntity> singleArticleBySlug(String slug) throws IOException {
 
-        // using term query to match exactly the slug and check if it already exists
+        // using term query to match exactly the slug
         SearchResponse<ArticleEntity> getArticle = esClient.search(ss -> ss
                         .index("articles")
                         .query(q -> q
@@ -88,14 +92,6 @@ public class ArticleService {
     public ArticleEntity getArticleBySlug(String slug) throws IOException {
         SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
         return extractSource(articleSearch);
-    }
-
-    private SearchResponse<ArticleEntity> getArticleEntitySearchResponse(String slug) throws IOException {
-        SearchResponse<ArticleEntity> articleSearch = singleArticleBySlug(slug);
-        if (articleSearch.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Article not found");
-        }
-        return articleSearch;
     }
 
     public ArticleDAO updateArticle(ArticleUpdateDAO article, String auth, String slug) throws IOException {
@@ -133,12 +129,41 @@ public class ArticleService {
         return new ArticleDAO(updatedArticle);
     }
 
-    private String generateAndCheckSlug(String article) throws IOException {
-        String slug = Slugify.builder().build().slugify(article);
-        if (!singleArticleBySlug(slug).hits().hits().isEmpty()) {
-            throw new ResourceAlreadyExistsException("Article slug already exists, please change the title");
+    public void deleteArticle(String auth, String slug) throws IOException {
+
+        // getting article from slug
+        SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
+        String id = extractId(articleSearch);
+        ArticleEntity articleEntity = extractSource(articleSearch);
+
+        // checking if author is the same
+        UserDAO ue = userService.getUserFromToken(auth);
+        Author author = new Author(ue, false);
+
+        if (!articleEntity.author().username().equals(author.username())) {
+            throw new UnauthorizedException("Cannot delete article from another author");
         }
-        return slug;
+
+        // the delete query is very similar to the search query
+        DeleteByQueryResponse deleteArticle = esClient.deleteByQuery(d -> d
+                .index("articles")
+                .query(q -> q
+                        .term(t -> t
+                                .field("slug.keyword")
+                                .value(slug))
+                ));
+        if (deleteArticle.deleted() < 1) {
+            throw new RuntimeException("Failed to delete article");
+        }
+
+        // also delete every comment to the article, using a term query that will match all comments with the same articleSlug
+        DeleteByQueryResponse commentsByArticle = esClient.deleteByQuery(d -> d
+                .index("comments")
+                .query(q -> q
+                        .term(t -> t
+                                .field("articleSlug")
+                                .value(slug))
+                ));
     }
 
     public ArticleEntity favoriteArticle(String slug, String auth) throws IOException {
@@ -189,21 +214,13 @@ public class ArticleService {
         return updatedArticle;
     }
 
-    private void updateArticle(String id, ArticleEntity updatedArticle) throws IOException {
-        UpdateResponse upArticle = esClient.update(up -> up
-                        .index("articles")
-                        .id(id)
-                        .doc(updatedArticle)
-                , ArticleEntity.class);
-        if (!upArticle.result().name().equals("Updated")) {
-            throw new RuntimeException("Article update failed");
-        }
-    }
-
     public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset) throws IOException {
 
+        // TODO Q in theory term, but can we showcase match?
         List<Query> match = new ArrayList<>();
         // since all the parameters for this query are optional, the query must be build conditionally
+        // using a "match" query instead of a "term" query to allow the use of substrings for search
+        // for example, filtering for articles with the "cat" tag will also return articles with the "caterpillar" tag
         if (!isNullOrBlank(tag)) {
             match.add(new Builder()
                     .field("tagList")
@@ -241,12 +258,47 @@ public class ArticleService {
                 .collect(Collectors.toList()), getArticle.hits().hits().size());
     }
 
-    // since the API definition doesn't specify the return order of tags, sorting by document count using "_count"
-    // if alphabetical order is preferred, use "_key" instead
-    NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Asc);
+    public Articles articleFeed(String auth) throws IOException {
+        SearchResponse<UserEntity> userSearch = userService.getUserEntityFromToken(auth);
+        UserEntity userEntity = extractSource(userSearch);
 
-    // using a term aggregation is the simplest way to find every distinct tag for each article
+        // preparing authors filter from user data
+        List<FieldValue> authorsFilter = userEntity.following().stream()
+                .map(FieldValue::of).toList();
+
+        // a terms query can be used to query for multiple values, like authors.
+        // the sort options is used afterward to determine which field determines the output order
+        // note how the nested class "author" is easily accessible with the use of the dot notation
+        SearchResponse<ArticleEntity> articlesByAuthors = esClient.search(ss -> ss
+                        .index("articles")
+                        .query(q -> q
+                                .bool(b -> b
+                                        .filter(f -> f
+                                                .terms(t -> t
+                                                        .field("author.username.keyword")
+                                                        .terms(TermsQueryField.of(tqf -> tqf.value(authorsFilter)))
+                                                ))))
+                        .sort(srt -> srt
+                                .field(fld -> fld
+                                        .field("updatedAt")
+                                        .order(SortOrder.Desc)))
+                , ArticleEntity.class);
+
+        return new Articles(articlesByAuthors.hits().hits()
+                .stream()
+                .map(Hit::source)
+                .map(ArticleForListDAO::new)
+                .collect(Collectors.toList()), articlesByAuthors.hits().hits().size());
+    }
+
+
     public Tags allTags() throws IOException {
+
+        // since the API definition doesn't specify the return order of tags, sorting by document count using "_count"
+        // if alphabetical order is preferred, use "_key" instead
+        NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Asc);
+
+        // using a term aggregation is the simplest way to find every distinct tag for each article
         SearchResponse<Aggregation> aggregateTags = esClient.search(s -> s
                         .index("articles")
                         .size(0) // this is to only return aggregation result, and not also search result
@@ -279,6 +331,33 @@ public class ArticleService {
                 .stream()
                 .map(Hit::source)
                 .collect(Collectors.toList());
+    }
+
+    private String generateAndCheckSlug(String title) throws IOException {
+        String slug = Slugify.builder().build().slugify(title);
+        if (!singleArticleBySlug(slug).hits().hits().isEmpty()) {
+            throw new ResourceAlreadyExistsException("Article slug already exists, please change the title");
+        }
+        return slug;
+    }
+
+    private SearchResponse<ArticleEntity> getArticleEntitySearchResponse(String slug) throws IOException {
+        SearchResponse<ArticleEntity> articleSearch = singleArticleBySlug(slug);
+        if (articleSearch.hits().hits().isEmpty()) {
+            throw new ResourceNotFoundException("Article not found");
+        }
+        return articleSearch;
+    }
+
+    private void updateArticle(String id, ArticleEntity updatedArticle) throws IOException {
+        UpdateResponse upArticle = esClient.update(up -> up
+                        .index("articles")
+                        .id(id)
+                        .doc(updatedArticle)
+                , ArticleEntity.class);
+        if (!upArticle.result().name().equals("Updated")) {
+            throw new RuntimeException("Article update failed");
+        }
     }
 
 }

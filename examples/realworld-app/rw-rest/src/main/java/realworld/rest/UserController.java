@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,11 +18,10 @@ import realworld.entity.user.User;
 import realworld.entity.user.UserDAO;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import static realworld.utils.Utility.isNullOrBlank;
 
-
+@CrossOrigin()
 @RestController
 @RequestMapping()
 public class UserController {

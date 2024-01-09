@@ -131,7 +131,7 @@ public class UserService {
         return new UserDAO(extractSource(getUserEntityFromToken(auth)));
     }
 
-    private SearchResponse<UserEntity> getUserEntityFromToken(String auth) throws IOException {
+    public SearchResponse<UserEntity> getUserEntityFromToken(String auth) throws IOException {
         String token;
         try {
             token = auth.split(" ")[1];
@@ -165,7 +165,7 @@ public class UserService {
 
         // if the username or email are updated, checking uniqueness
         if(!isNullOrBlank(user.username())&&!user.username().equals(userEntity.username())){
-            SearchResponse<UserEntity> newUsernameSearch = findUserByUsername(user.username());
+            SearchResponse<UserEntity> newUsernameSearch = findUserSearchByUsername(user.username());
             if(!newUsernameSearch.hits().hits().isEmpty()){
                 throw new ResourceAlreadyExistsException("Username already exists");
             }
@@ -203,12 +203,7 @@ public class UserService {
 
     public Profile getUserProfile(String username, String auth) throws IOException {
 
-        SearchResponse<UserEntity> getUser = findUserByUsername(username);
-        if (getUser.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Target user not found");
-        }
-
-        UserEntity targetUser = extractSource(getUser);
+        UserEntity targetUser = findUserByUsername(username);
 
         // checking if the user is followed by who's asking
         SearchResponse<UserEntity> askingUser = getUserEntityFromToken(auth);
@@ -222,7 +217,55 @@ public class UserService {
         return targetUserProfile;
     }
 
-    private SearchResponse<UserEntity> findUserByUsername(String username) throws IOException {
+    public Profile followUser(String username, String auth) throws IOException {
+
+        UserEntity targetUser = findUserByUsername(username);
+
+        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
+        UserEntity askingUser = extractSource(askingUserSearch);
+
+        if(askingUser.username().equals(targetUser.username())){
+            throw new RuntimeException("Cannot follow yourself!");
+        }
+
+        // add followed user to list if not already present
+        if (!askingUser.following().contains(targetUser.username())) {
+            askingUser.following().add(targetUser.username());
+
+            updateUser(extractId(askingUserSearch), askingUser);
+        }
+        Profile targetUserProfile = new Profile(targetUser,true);
+
+        return targetUserProfile;
+    }
+
+    public Profile unfollowUser(String username, String auth) throws IOException {
+
+        UserEntity targetUser = findUserByUsername(username);
+
+        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
+        UserEntity askingUser = extractSource(askingUserSearch);
+
+        // remove followed user to list if not already present
+        if (askingUser.following().contains(targetUser.username())) {
+            askingUser.following().remove(targetUser.username());
+
+            updateUser(extractId(askingUserSearch), askingUser);
+        }
+        Profile targetUserProfile = new Profile(targetUser,false);
+
+        return targetUserProfile;
+    }
+
+    private UserEntity findUserByUsername(String username) throws IOException {
+        SearchResponse<UserEntity> getUser = findUserSearchByUsername(username);
+        if (getUser.hits().hits().isEmpty()) {
+            throw new ResourceNotFoundException("Target user not found");
+        }
+        return extractSource(getUser);
+    }
+
+    private SearchResponse<UserEntity> findUserSearchByUsername(String username) throws IOException {
         // simple term query to match exactly the username string
         SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
                         .index("users")
@@ -244,52 +287,5 @@ public class UserService {
                                         .value(email)))
                 , UserEntity.class);
         return getUser;
-    }
-
-    public Profile followUser(String username, String auth) throws IOException {
-
-        SearchResponse<UserEntity> targetUserSearch = findUserByUsername(username);
-        if (targetUserSearch.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Target user not found");
-        }
-
-        UserEntity targetUser = extractSource(targetUserSearch);
-        // add followed user to list if not already present
-
-        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
-        UserEntity askingUser = extractSource(askingUserSearch);
-
-        if (!askingUser.following().contains(targetUser.username())) {
-            askingUser.following().add(targetUser.username());
-
-            updateUser(extractId(askingUserSearch), askingUser);
-        }
-        Profile targetUserProfile = new Profile(targetUser,true);
-
-        return targetUserProfile;
-    }
-
-    public Profile unfollowUser(String username, String auth) throws IOException {
-
-        SearchResponse<UserEntity> targetUserSearch = findUserByUsername(username);
-        if (targetUserSearch.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Target user not found");
-        }
-
-        UserEntity targetUser = extractSource(targetUserSearch);
-
-        // remove followed user to list if not already present
-
-        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
-        UserEntity askingUser = extractSource(askingUserSearch);
-
-        if (askingUser.following().contains(targetUser.username())) {
-            askingUser.following().remove(targetUser.username());
-
-            updateUser(extractId(askingUserSearch), askingUser);
-        }
-        Profile targetUserProfile = new Profile(targetUser,false);
-
-        return targetUserProfile;
     }
 }
