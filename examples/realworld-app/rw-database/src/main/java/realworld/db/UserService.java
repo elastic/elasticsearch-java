@@ -1,6 +1,7 @@
 package realworld.db;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
@@ -43,7 +44,7 @@ public class UserService {
         // (a "match" query would also find words containing the value inserted)
         // using "should" to find documents matching either condition.
 
-        // TODO explain keyword
+        // TODO explain keyword -> no tokenizer, stored as is. not important here since everything is a single word
 
         SearchResponse<UserEntity> checkUser = esClient.search(ss -> ss
                         .index("users")
@@ -94,6 +95,7 @@ public class UserService {
 
         IndexRequest<UserEntity> userReq = IndexRequest.of((id -> id
                 .index("users")
+                .refresh(Refresh.WaitFor)
                 .document(ue)));
 
         esClient.index(userReq);

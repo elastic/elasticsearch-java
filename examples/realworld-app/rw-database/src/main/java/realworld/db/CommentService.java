@@ -1,13 +1,12 @@
 package realworld.db;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch.core.DeleteByQueryResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import realworld.entity.article.ArticleCreationDAO;
-import realworld.entity.article.ArticleEntity;
 import realworld.entity.comment.CommentCreationDAO;
 import realworld.entity.comment.CommentEntity;
 import realworld.entity.comment.CommentForListDAO;
@@ -15,7 +14,6 @@ import realworld.entity.comment.Comments;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.Author;
-import realworld.entity.user.UserDAO;
 import realworld.entity.user.UserEntity;
 
 import java.io.IOException;
@@ -56,6 +54,7 @@ public class CommentService {
 
         IndexRequest<CommentEntity> commentReq = IndexRequest.of((id -> id
                 .index("comments")
+                .refresh(Refresh.WaitFor)
                 .document(commentEntity)));
 
         esClient.index(commentReq);
@@ -95,6 +94,8 @@ public class CommentService {
         // deleting comment by id
         DeleteByQueryResponse deleteComment = esClient.deleteByQuery(ss -> ss
                 .index("comments")
+                .waitForCompletion(true)
+                .refresh(true)
                 .query(q -> q
                         .term(t -> t
                                 .field("id")
@@ -106,11 +107,11 @@ public class CommentService {
     }
 
     public Comments allCommentsByArticle(String slug) throws IOException {
-        SearchResponse<CommentEntity> commentsByArticle = esClient.search(d -> d
+        SearchResponse<CommentEntity> commentsByArticle = esClient.search(s -> s
                 .index("comments")
                 .query(q -> q
                         .term(t -> t
-                                .field("articleSlug")
+                                .field("articleSlug.keyword")
                                 .value(slug))
                 )
                 , CommentEntity.class);

@@ -2,6 +2,7 @@ package realworld.db;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery.Builder;
@@ -67,6 +68,7 @@ public class ArticleService {
 
         IndexRequest<ArticleEntity> articleReq = IndexRequest.of((id -> id
                 .index("articles")
+                .refresh(Refresh.WaitFor)
                 .document(articleEntity)));
 
         esClient.index(articleReq);
@@ -111,7 +113,7 @@ public class ArticleService {
 
         String newSlug = slug;
         // if title is being changed, checking if new slug would be unique
-        if (!isNullOrBlank(article.title())) {
+        if (!isNullOrBlank(article.title())&&!article.title().equals(oldArticle.title())) {
             newSlug = generateAndCheckSlug(article.title());
         }
 
@@ -147,6 +149,8 @@ public class ArticleService {
         // the delete query is very similar to the search query
         DeleteByQueryResponse deleteArticle = esClient.deleteByQuery(d -> d
                 .index("articles")
+                .waitForCompletion(true)
+                .refresh(true)
                 .query(q -> q
                         .term(t -> t
                                 .field("slug.keyword")
@@ -159,6 +163,8 @@ public class ArticleService {
         // also delete every comment to the article, using a term query that will match all comments with the same articleSlug
         DeleteByQueryResponse commentsByArticle = esClient.deleteByQuery(d -> d
                 .index("comments")
+                .waitForCompletion(true)
+                .refresh(true)
                 .query(q -> q
                         .term(t -> t
                                 .field("articleSlug")
@@ -243,7 +249,12 @@ public class ArticleService {
                 .index("articles")
                 .size(limit)
                 .from(offset)
-                .query(query), ArticleEntity.class);
+                .query(query)
+                .sort(srt -> srt
+                        .field(fld -> fld
+                                .field("updatedAt")
+                                .order(SortOrder.Desc)))
+                , ArticleEntity.class);
 
         return new Articles(getArticle.hits().hits()
                 .stream()
@@ -296,7 +307,7 @@ public class ArticleService {
 
         // since the API definition doesn't specify the return order of tags, sorting by document count using "_count"
         // if alphabetical order is preferred, use "_key" instead
-        NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Asc);
+        NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Desc);
 
         // using a term aggregation is the simplest way to find every distinct tag for each article
         SearchResponse<Aggregation> aggregateTags = esClient.search(s -> s
