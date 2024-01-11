@@ -17,22 +17,11 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.constant;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+public class Constants {
 
-@JsonTypeName("profile")
-@JsonTypeInfo(include= As.WRAPPER_OBJECT, use= Id.NAME)
-public record Profile (
-     String username,
-     String image,
-     String bio,
-     boolean following){
-
-    public Profile(UserEntity ue, boolean following) {
-        this(ue.username(), ue.image(), ue.bio(), following);
-    }
+    public static final String ARTICLES = "articles";
+    public static final String USERS = "users";
+    public static final String COMMENTS = "comments";
 }

@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package realworld.db;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
@@ -10,6 +29,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
@@ -31,6 +51,9 @@ import static realworld.utils.Utility.isNullOrBlank;
 public class UserService {
 
     private ElasticsearchClient esClient;
+
+    @Value("jwt.signing.key")
+    private String jwtSigningKey;
 
     @Autowired
     public UserService(ElasticsearchClient esClient) {
@@ -83,10 +106,9 @@ public class UserService {
                 .claim("name", user.username())
                 .claim("scope", "user")
                 .setIssuedAt(Date.from(Instant.now()))
-                //.setExpiration(Date.from(Instant.now().plus(5, ChronoUnit.MINUTES)))
                 .signWith(
                         SignatureAlgorithm.HS256,
-                        TextCodec.BASE64.decode("c3VjaGFteXN0ZXJ5b3Vyc3VwZXJzZWNyZXR3b3c=")
+                        TextCodec.BASE64.decode(jwtSigningKey)
                 )
                 .compact();
 
@@ -133,12 +155,18 @@ public class UserService {
         return new UserDAO(extractSource(getUserEntityFromToken(auth)));
     }
 
+    /**
+     *
+     * @param auth
+     * @return
+     * @throws IOException
+     */
     public SearchResponse<UserEntity> getUserEntityFromToken(String auth) throws IOException {
         String token;
         try {
             token = auth.split(" ")[1];
             Jwts.parser()
-                    .setSigningKey(TextCodec.BASE64.decode("c3VjaGFteXN0ZXJ5b3Vyc3VwZXJzZWNyZXR3b3c="))
+                    .setSigningKey(TextCodec.BASE64.decode(jwtSigningKey))
                     .parse(token);
         } catch (Exception e) {
             throw new RuntimeException("Token not recognised",e);

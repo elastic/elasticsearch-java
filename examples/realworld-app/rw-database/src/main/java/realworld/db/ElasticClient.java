@@ -1,3 +1,22 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package realworld.db;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
@@ -18,6 +37,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
+import static realworld.constant.Constants.ARTICLES;
+import static realworld.constant.Constants.COMMENTS;
+import static realworld.constant.Constants.USERS;
+
 @Configuration
 public class ElasticClient {
 
@@ -27,6 +50,11 @@ public class ElasticClient {
     @Value("${elasticsearch.api.key}")
     private String apiKey;
 
+    /**
+     * Creates the ElasticsearchClient and the indexes needed
+     * @return a configured ElasticsearchClient
+     * @throws IOException
+     */
     @Bean
     public ElasticsearchClient elasticRestClient() throws IOException {
 
@@ -38,9 +66,8 @@ public class ElasticClient {
                 })
                 .build();
 
-        ObjectMapper mapper = JsonMapper.builder() // or different mapper for other format
-                .addModule(new JavaTimeModule())
-                // and possibly other configuration, modules, then:
+        ObjectMapper mapper = JsonMapper.builder()
+                .addModule(new JavaTimeModule()) // other modules can be added here
                 .build();
 
         // Create the transport with a Jackson mapper
@@ -49,8 +76,6 @@ public class ElasticClient {
 
         // And create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
-
-        // check and/or create indexes
 
         // TODO remove, for testing
 //        esClient.indices().delete(del -> del
@@ -61,25 +86,45 @@ public class ElasticClient {
 //                .ignoreUnavailable(true)
 //                .index("articles"));
 
-        BooleanResponse indexResU = esClient.indices().exists(ex -> ex.index("users")); //TODO constant
-        if (!indexResU.value()) {
-            esClient.indices().create(c -> c
-                    .index("users"));
-        }
-
-        BooleanResponse indexResA = esClient.indices().exists(ex -> ex.index("articles")); //TODO constant
-        if (!indexResA.value()) {
-            esClient.indices().create(c -> c
-                    .index("articles"));
-        }
-
-        BooleanResponse indexResC = esClient.indices().exists(ex -> ex.index("comments")); //TODO constant
-        if (!indexResC.value()) {
-            esClient.indices().create(c -> c
-                    .index("comments"));
-        }
+        // Creating the indexes
+        createSimpleIndex(esClient, USERS);
+        createIndexWithDateMapping(esClient, ARTICLES);
+        createIndexWithDateMapping(esClient, COMMENTS);
 
         return esClient;
 
+    }
+
+    /**
+     * Plain simple <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html">index</a>
+     * creation with an <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-exists.html">
+     * exists</a> check
+     */
+    private void createSimpleIndex(ElasticsearchClient esClient, String index) throws IOException {
+        BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));
+        if (!indexRes.value()) {
+            esClient.indices().create(c -> c
+                    .index(index));
+        }
+    }
+
+    /**
+     * If no explicit mapping is defined, elasticsearch will dynamically map types when converting data to the json format.
+     * Adding explicit mapping to the date fields assures that no precision will be lost.
+     * More information about <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html">dynamic field mapping</a>,
+     * more on <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html">mapping date format </a>
+     */
+    private void createIndexWithDateMapping(ElasticsearchClient esClient, String index) throws IOException {
+        BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));
+        if (!indexRes.value()) {
+            esClient.indices().create(c -> c
+                    .index(index)
+                    .mappings(m -> m
+                            .properties("createdAt", p -> p
+                                    .date(d -> d.format("epoch_millis")))
+                            .properties("updatedAt", p -> p
+                                    .date(d -> d.format("epoch_millis")))));
+
+        }
     }
 }
