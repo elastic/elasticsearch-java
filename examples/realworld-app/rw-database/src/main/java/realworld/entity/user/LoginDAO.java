@@ -19,5 +19,7 @@
 
 package realworld.entity.user;
 
-public class LoginDAO {
+import jakarta.validation.constraints.NotNull;
+
+public record LoginDAO(@NotNull String email, @NotNull String password) {
 }

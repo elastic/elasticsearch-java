@@ -55,6 +55,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static realworld.utils.Utility.extractId;
@@ -77,7 +78,7 @@ public class ArticleService {
      * Creates a new article and saves it into the articles index.
      * @param article
      * @param auth
-     * @return {@link realworld.entity.article.ArticleEntity}
+     * @return {@link ArticleEntity}
      * @throws IOException
      */
     public ArticleEntity newArticle(ArticleCreationDAO article, String auth) throws IOException {
@@ -86,9 +87,9 @@ public class ArticleService {
         String slug = generateAndCheckSlug(article.title());
 
         // Getting the author
-        UserDAO ue = userService.getUserFromToken(auth);
+        UserEntity ue = userService.getUserEntityFromToken(auth);
         Author author = new Author(ue, false);
-        Instant now = Instant.now();
+        Long now = Instant.now().toEpochMilli();
 
         ArticleEntity articleEntity = new ArticleEntity(article, slug, now, now, author);
 
@@ -130,7 +131,7 @@ public class ArticleService {
         ArticleEntity oldArticle = extractSource(articleSearch);
 
         // checking if author is the same
-        UserDAO ue = userService.getUserFromToken(auth);
+        UserEntity ue = userService.getUserEntityFromToken(auth);
         Author author = new Author(ue, false);
 
         if (!oldArticle.author().username().equals(author.username())) {
@@ -143,7 +144,7 @@ public class ArticleService {
             newSlug = generateAndCheckSlug(article.title());
         }
 
-        Instant updatedAt = Instant.now();
+        Long updatedAt = Instant.now().toEpochMilli();
 
         ArticleEntity updatedArticle = new ArticleEntity(newSlug,
                 isNullOrBlank(article.title()) ? oldArticle.title() : article.title(),
@@ -161,11 +162,10 @@ public class ArticleService {
 
         // getting article from slug
         SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
-        String id = extractId(articleSearch);
         ArticleEntity articleEntity = extractSource(articleSearch);
 
         // checking if author is the same
-        UserDAO ue = userService.getUserFromToken(auth);
+        UserEntity ue = userService.getUserEntityFromToken(auth);
         Author author = new Author(ue, false);
 
         if (!articleEntity.author().username().equals(author.username())) {
@@ -193,13 +193,13 @@ public class ArticleService {
                 .refresh(true)
                 .query(q -> q
                         .term(t -> t
-                                .field("articleSlug")
+                                .field("articleSlug.keyword")
                                 .value(slug))
                 ));
     }
 
     public ArticleEntity favoriteArticle(String slug, String auth) throws IOException {
-        UserDAO user = userService.getUserFromToken(auth);
+        UserEntity user = userService.getUserEntityFromToken(auth);
 
         SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
         String id = extractId(articleSearch);
@@ -220,7 +220,7 @@ public class ArticleService {
     }
 
     public ArticleEntity unfavoriteArticle(String slug, String auth) throws IOException {
-        UserDAO user = userService.getUserFromToken(auth);
+        UserEntity user = userService.getUserEntityFromToken(auth);
 
         SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
         String id = extractId(articleSearch);
@@ -246,13 +246,15 @@ public class ArticleService {
         return updatedArticle;
     }
 
-    public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset) throws IOException {
-
-        // TODO Q in theory term, but can we showcase match?
+    public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset, String auth) throws IOException {
+        UserEntity user = null;
+        if(!isNullOrBlank(auth)){
+            user = userService.getUserEntityFromToken(auth);
+        }
         List<Query> match = new ArrayList<>();
         // since all the parameters for this query are optional, the query must be build conditionally
-        // using a "match" query instead of a "term" query to allow the use of substrings for search
-        // for example, filtering for articles with the "cat" tag will also return articles with the "caterpillar" tag
+        // using a "match" query instead of a "term" query to allow the use a single word for searching phrases
+        // for example, filtering for articles with the "cat" tag will also return articles with the "cat food" tag
         if (!isNullOrBlank(tag)) {
             match.add(new Builder()
                     .field("tagList")
@@ -260,7 +262,7 @@ public class ArticleService {
         }
         if (!isNullOrBlank(author)) {
             match.add(new Builder()
-                    .field("author")
+                    .field("author.username")
                     .query(author).build()._toQuery());
         }
         if (!isNullOrBlank(favorited)) {
@@ -282,6 +284,7 @@ public class ArticleService {
                                 .order(SortOrder.Desc)))
                 , ArticleEntity.class);
 
+        UserEntity finalUser = user;
         return new Articles(getArticle.hits().hits()
                 .stream()
                 .map(Hit::source)
@@ -292,12 +295,19 @@ public class ArticleService {
                     }
                 })
                 .map(ArticleForListDAO::new)
+                // if auth provided, filling the "following" field of "Author" accordingly
+                .map(a -> {
+                    if(Objects.nonNull(finalUser)){
+                        boolean following = finalUser.following().contains(a.author().username());
+                        return new ArticleForListDAO(a, new Author(a.author().username(), a.author().email(), a.author().bio(), following));
+                    }
+                    return a;
+                })
                 .collect(Collectors.toList()), getArticle.hits().hits().size());
     }
 
     public Articles articleFeed(String auth) throws IOException {
-        SearchResponse<UserEntity> userSearch = userService.getUserEntityFromToken(auth);
-        UserEntity userEntity = extractSource(userSearch);
+        UserEntity userEntity = userService.getUserEntityFromToken(auth);
 
         // preparing authors filter from user data
         List<FieldValue> authorsFilter = userEntity.following().stream()
@@ -353,21 +363,6 @@ public class ArticleService {
                 .map(st -> st.key().stringValue())
                 .collect(Collectors.toList())
         );
-    }
-
-    // TODO remove
-    public List<ArticleEntity> allArticles() throws IOException {
-        SearchResponse<ArticleEntity> getArticle = esClient.search(ss -> ss
-                        .index("articles")
-                        .query(q -> q
-                                .matchAll(m -> m)
-                        )
-                , ArticleEntity.class);
-
-        return getArticle.hits().hits()
-                .stream()
-                .map(Hit::source)
-                .collect(Collectors.toList());
     }
 
     private String generateAndCheckSlug(String title) throws IOException {

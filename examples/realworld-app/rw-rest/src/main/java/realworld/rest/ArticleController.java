@@ -84,8 +84,9 @@ public class ArticleController {
     @GetMapping()
     public ResponseEntity<Articles> getArticles(@RequestParam(required = false) String tag, @RequestParam(required = false) String author,
                                                 @RequestParam(required = false) String favorited, @RequestParam(required = false) Integer limit,
-                                                @RequestParam(required = false) Integer offset) throws IOException {
-        Articles res = articleService.getArticles(tag, author, favorited, limit, offset);
+                                                @RequestParam(required = false) Integer offset,
+                                                @RequestHeader(value = "Authorization", required = false) String auth) throws IOException {
+        Articles res = articleService.getArticles(tag, author, favorited, limit, offset, auth);
         logger.debug("Returned article list");
         return ResponseEntity.ok(res);
     }
@@ -144,13 +145,5 @@ public class ArticleController {
         commentService.deleteComment(commentId,slug,auth);
         logger.debug("Deleted comment: {} from article {}", commentId, slug);
         return ResponseEntity.ok().build();
-    }
-
-    //TODO REMOVE, JUST FOR TEST
-    @GetMapping("/allarticles")
-    public ResponseEntity<List<ArticleEntity>> getAllArticlesTest() throws IOException {
-        List<ArticleEntity> res = articleService.allArticles();
-        logger.debug("Returned article list");
-        return ResponseEntity.ok(res);
     }
 }

@@ -33,8 +33,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
+import realworld.entity.exception.UnauthorizedException;
+import realworld.entity.user.LoginDAO;
 import realworld.entity.user.Profile;
-import realworld.entity.user.User;
+import realworld.entity.user.RegisterDAO;
 import realworld.entity.user.UserDAO;
 import realworld.entity.user.UserEntity;
 
@@ -52,7 +54,7 @@ public class UserService {
 
     private ElasticsearchClient esClient;
 
-    @Value("jwt.signing.key")
+    @Value("${jwt.signing.key}")
     private String jwtSigningKey;
 
     @Autowired
@@ -60,7 +62,7 @@ public class UserService {
         this.esClient = esClient;
     }
 
-    public UserDAO newUser(UserDAO user) throws IOException {
+    public UserEntity newUser(RegisterDAO user) throws IOException {
 
         // checking if username or email already used.
         // using a "term" query to match the exact strings
@@ -113,7 +115,7 @@ public class UserService {
                 .compact();
 
         UserEntity ue = new UserEntity(user.username(), user.email(),
-                user.password(), jws, user.bio(), user.image(), new ArrayList<>());
+                user.password(), jws, "", "", new ArrayList<>());
 
         IndexRequest<UserEntity> userReq = IndexRequest.of((id -> id
                 .index("users")
@@ -122,10 +124,10 @@ public class UserService {
 
         esClient.index(userReq);
 
-        return user;
+        return ue;
     }
 
-    public UserDAO login(UserDAO user) throws IOException {
+    public UserEntity login(LoginDAO user) throws IOException {
 
         // term query to match exactly the email and password strings,
         // using "must" to match both
@@ -148,11 +150,12 @@ public class UserService {
             throw new ResourceNotFoundException("Wrong email or password");
         }
 
-        return new UserDAO(extractSource(getUser));
+        return extractSource(getUser);
     }
 
-    public UserDAO getUserFromToken(String auth) throws IOException {
-        return new UserDAO(extractSource(getUserEntityFromToken(auth)));
+
+    public UserEntity getUserEntityFromToken(String auth) throws IOException {
+        return extractSource(getUserSearchFromToken(auth));
     }
 
     /**
@@ -161,7 +164,7 @@ public class UserService {
      * @return
      * @throws IOException
      */
-    public SearchResponse<UserEntity> getUserEntityFromToken(String auth) throws IOException {
+    private SearchResponse<UserEntity> getUserSearchFromToken(String auth) throws IOException {
         String token;
         try {
             token = auth.split(" ")[1];
@@ -169,7 +172,7 @@ public class UserService {
                     .setSigningKey(TextCodec.BASE64.decode(jwtSigningKey))
                     .parse(token);
         } catch (Exception e) {
-            throw new RuntimeException("Token not recognised",e);
+            throw new UnauthorizedException("Token missing or not recognised");
         }
 
         SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
@@ -187,9 +190,9 @@ public class UserService {
         return getUser;
     }
 
-    public UserDAO updateUser(String auth, User user) throws IOException {
+    public UserEntity updateUser(String auth, UserDAO user) throws IOException {
 
-        SearchResponse<UserEntity> userSearch = getUserEntityFromToken(auth);
+        SearchResponse<UserEntity> userSearch = getUserSearchFromToken(auth);
         String id = extractId(userSearch);
         UserEntity userEntity = extractSource(userSearch);
 
@@ -217,7 +220,7 @@ public class UserService {
                 userEntity.following());
 
         updateUser(id, ue);
-        return new UserDAO(ue);
+        return ue;
     }
 
     private void updateUser(String id, UserEntity ue) throws IOException {
@@ -236,9 +239,9 @@ public class UserService {
         UserEntity targetUser = findUserByUsername(username);
 
         // checking if the user is followed by who's asking
-        SearchResponse<UserEntity> askingUser = getUserEntityFromToken(auth);
+        UserEntity askingUser = getUserEntityFromToken(auth);
         boolean following = false;
-        if (extractSource(askingUser).following().contains(targetUser.username())) {
+        if (askingUser.following().contains(targetUser.username())) {
             following = true;
         }
 
@@ -251,7 +254,7 @@ public class UserService {
 
         UserEntity targetUser = findUserByUsername(username);
 
-        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
+        SearchResponse<UserEntity> askingUserSearch = getUserSearchFromToken(auth);
         UserEntity askingUser = extractSource(askingUserSearch);
 
         if(askingUser.username().equals(targetUser.username())){
@@ -273,7 +276,7 @@ public class UserService {
 
         UserEntity targetUser = findUserByUsername(username);
 
-        SearchResponse<UserEntity> askingUserSearch = getUserEntityFromToken(auth);
+        SearchResponse<UserEntity> askingUserSearch = getUserSearchFromToken(auth);
         UserEntity askingUser = extractSource(askingUserSearch);
 
         // remove followed user to list if not already present

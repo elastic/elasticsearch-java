@@ -85,6 +85,10 @@ public class ElasticClient {
 //                esClient.indices().delete(del -> del
 //                .ignoreUnavailable(true)
 //                .index("articles"));
+//
+//        esClient.indices().delete(del -> del
+//                .ignoreUnavailable(true)
+//                .index("comments"));
 
         // Creating the indexes
         createSimpleIndex(esClient, USERS);
@@ -121,9 +125,9 @@ public class ElasticClient {
                     .index(index)
                     .mappings(m -> m
                             .properties("createdAt", p -> p
-                                    .date(d -> d.format("epoch_millis")))
+                                    .date(d -> d)) // epoch_millis is already present by default
                             .properties("updatedAt", p -> p
-                                    .date(d -> d.format("epoch_millis")))));
+                                    .date(d -> d))));
 
         }
     }

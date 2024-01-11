@@ -22,7 +22,6 @@ package realworld.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +32,12 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import realworld.db.UserService;
-import realworld.entity.user.User;
+import realworld.entity.user.LoginDAO;
+import realworld.entity.user.RegisterDAO;
 import realworld.entity.user.UserDAO;
+import realworld.entity.user.UserEntity;
 
 import java.io.IOException;
-
-import static realworld.utils.Utility.isNullOrBlank;
 
 @CrossOrigin()
 @RestController
@@ -55,43 +54,32 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> register(@RequestBody UserDAO req) throws IOException {
-        // TODO consider adding validator
-        if (isNullOrBlank(req.email()) || isNullOrBlank(req.username()) || isNullOrBlank(req.password())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .header("EXCEPTION", "missing required field(s)")
-                    .body(null);
-        }
-        UserDAO res = service.newUser(req);
+    public ResponseEntity<UserDAO> register(@RequestBody RegisterDAO req) throws IOException {
+        UserEntity res = service.newUser(req);
         logger.debug("Registered new user {}", req.username());
-        return ResponseEntity.ok(new User(res));
+        return ResponseEntity.ok(new UserDAO(res));
     }
 
     @PostMapping("users/login")
-    public ResponseEntity<User> login(@RequestBody UserDAO req) throws IOException {
-        if (isNullOrBlank(req.email()) || isNullOrBlank(req.password())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .header("EXCEPTION", "missing required field(s)")
-                    .body(null);
-        }
-        UserDAO res = service.login(req);
-        logger.debug("User {} logged in", req.username());
-        return ResponseEntity.ok(new User(res));
+    public ResponseEntity<UserDAO> login(@RequestBody LoginDAO req) throws IOException {
+        UserEntity res = service.login(req);
+        logger.debug("User {} logged in", res.username());
+        return ResponseEntity.ok(new UserDAO(res));
     }
 
     @GetMapping("/user")
-    public ResponseEntity<User> get(@RequestHeader("Authorization") String auth) throws IOException {
-        UserDAO res = service.getUserFromToken(auth);
+    public ResponseEntity<UserDAO> get(@RequestHeader("Authorization") String auth) throws IOException {
+        UserEntity res = service.getUserEntityFromToken(auth);
         logger.debug("Returning info about user {}", res.username());
-        return ResponseEntity.ok(new User(res));
+        return ResponseEntity.ok(new UserDAO(res));
 
     }
 
     @PutMapping("/user")
-    public ResponseEntity<User> update(@RequestHeader("Authorization") String auth, @RequestBody User req) throws IOException {
-        UserDAO res = service.updateUser(auth, req);
+    public ResponseEntity<UserDAO> update(@RequestHeader("Authorization") String auth, @RequestBody UserDAO req) throws IOException {
+        UserEntity res = service.updateUser(auth, req);
         logger.debug("Updated info for user {}", req.username());
-        return ResponseEntity.ok(new User(res));
+        return ResponseEntity.ok(new UserDAO(res));
 
     }
 }

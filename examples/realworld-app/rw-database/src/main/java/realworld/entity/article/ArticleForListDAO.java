@@ -22,6 +22,7 @@ package realworld.entity.article;
 import realworld.entity.user.Author;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public record ArticleForListDAO(
@@ -38,6 +39,10 @@ public record ArticleForListDAO(
 
 
     public ArticleForListDAO(ArticleEntity article) {
-        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(), article.author());
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()), article.favorited(), article.favoritesCount(), article.author());
+    }
+
+    public ArticleForListDAO(ArticleForListDAO article, Author author) {
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(), author);
     }
 }

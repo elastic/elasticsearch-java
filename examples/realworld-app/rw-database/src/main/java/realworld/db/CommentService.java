@@ -62,10 +62,10 @@ public class CommentService {
         articleService.getArticleBySlug(slug);
 
         // getting the comment's author
-        SearchResponse<UserEntity> commentUser = userService.getUserEntityFromToken(auth);
+        UserEntity commentUser = userService.getUserEntityFromToken(auth);
         // assuming you cannot follow yourself
-        Author commentAuthor = new Author(extractSource(commentUser), false);
-        Instant now = Instant.now();
+        Author commentAuthor = new Author(commentUser, false);
+        Long now = Instant.now().toEpochMilli();
 
         // pre-generating id since it's a field in the comment class
         Integer commentId = UUID.randomUUID().hashCode();
@@ -100,8 +100,8 @@ public class CommentService {
         CommentEntity comment = extractSource(getComment);
 
         // checking if the comment is from the same author
-        SearchResponse<UserEntity> askingUser = userService.getUserEntityFromToken(auth);
-        if(!extractSource(askingUser).username().equals(comment.author().username())){
+        UserEntity askingUser = userService.getUserEntityFromToken(auth);
+        if(!askingUser.username().equals(comment.author().username())){
             throw new UnauthorizedException("Cannot delete someone else's comment");
         }
 

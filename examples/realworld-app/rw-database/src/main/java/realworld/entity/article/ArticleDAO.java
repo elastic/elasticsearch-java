@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import realworld.entity.user.Author;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @JsonTypeName("article")
@@ -44,6 +45,6 @@ public record ArticleDAO(
 
 
     public ArticleDAO(ArticleEntity article) {
-        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(), article.author());
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()), article.favorited(), article.favoritesCount(), article.author());
     }
 }

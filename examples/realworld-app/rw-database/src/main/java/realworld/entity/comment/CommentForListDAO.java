@@ -25,6 +25,6 @@ import java.time.Instant;
 
 public record CommentForListDAO(Integer id, Instant createdAt, Instant updatedAt, String body, Author author) {
     public CommentForListDAO(CommentEntity commentEntity) {
-        this(commentEntity.id(), commentEntity.createdAt(),commentEntity.updatedAt(), commentEntity.body(), commentEntity.author());
+        this(commentEntity.id(), Instant.ofEpochMilli(commentEntity.createdAt()),Instant.ofEpochMilli(commentEntity.updatedAt()), commentEntity.body(), commentEntity.author());
     }
 }

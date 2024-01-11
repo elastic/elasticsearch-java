@@ -30,12 +30,11 @@ public record UserDAO(
 
      String username,
      String email,
-     String password,
      String token,
      String bio,
      String image){
 
     public UserDAO(UserEntity ue){
-        this(ue.username(), ue.email(), ue.password(), ue.token(), ue.bio(), ue.image());
+        this(ue.username(), ue.email(), ue.token(), ue.bio(), ue.image());
     }
 }

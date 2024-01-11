@@ -28,6 +28,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
+import realworld.entity.exception.UnauthorizedException;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,5 +59,21 @@ public class RestExceptionHandler
             RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value
+            = { UnauthorizedException.class})
+    protected ResponseEntity<Object> handleUnauthorized(
+            RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
+                new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(value
+            = { RuntimeException.class})
+    protected ResponseEntity<Object> handleUnexpected(
+            RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
+                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }
