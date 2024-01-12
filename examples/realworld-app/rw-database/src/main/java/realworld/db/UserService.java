@@ -298,6 +298,12 @@ public class UserService {
         return extractSource(getUser);
     }
 
+    /**
+     *
+     * @param username
+     * @return the result of the term query
+     * @throws IOException
+     */
     private SearchResponse<UserEntity> findUserSearchByUsername(String username) throws IOException {
         // simple term query to match exactly the username string
         SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
