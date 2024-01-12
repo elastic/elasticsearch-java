@@ -37,10 +37,12 @@ import realworld.entity.user.UserEntity;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static realworld.utils.Utility.extractSource;
+import static realworld.utils.Utility.isNullOrBlank;
 
 @Service
 public class CommentService {
@@ -101,7 +103,7 @@ public class CommentService {
 
         // checking if the comment is from the same author
         UserEntity askingUser = userService.getUserEntityFromToken(auth);
-        if(!askingUser.username().equals(comment.author().username())){
+        if (!askingUser.username().equals(comment.author().username())) {
             throw new UnauthorizedException("Cannot delete someone else's comment");
         }
 
@@ -125,18 +127,31 @@ public class CommentService {
         }
     }
 
-    public Comments allCommentsByArticle(String slug) throws IOException {
+    public Comments allCommentsByArticle(String slug, String auth) throws IOException {
+        UserEntity user = null;
+        if (!isNullOrBlank(auth)) {
+            user = userService.getUserEntityFromToken(auth);
+        }
         SearchResponse<CommentEntity> commentsByArticle = esClient.search(s -> s
-                .index("comments")
-                .query(q -> q
-                        .term(t -> t
-                                .field("articleSlug.keyword")
-                                .value(slug))
-                )
+                        .index("comments")
+                        .query(q -> q
+                                .term(t -> t
+                                        .field("articleSlug.keyword")
+                                        .value(slug))
+                        )
                 , CommentEntity.class);
 
+        UserEntity finalUser = user;
         return new Comments(commentsByArticle.hits().hits().stream()
                 .map(x -> new CommentForListDAO(x.source()))
+                .map(c -> {
+                    if (Objects.nonNull(finalUser)) {
+                        boolean following = finalUser.following().contains(c.author().username());
+                        return new CommentForListDAO(c.id(),c.createdAt(),c.updatedAt(),c.body(),
+                                new Author(c.author().username(), c.author().email(), c.author().bio(), following));
+                    }
+                    return c;
+                })
                 .collect(Collectors.toList()));
     }
 }

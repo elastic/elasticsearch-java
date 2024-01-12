@@ -21,8 +21,6 @@ package realworld.entity.article;
 
 import realworld.entity.user.Author;
 
-import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

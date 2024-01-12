@@ -47,7 +47,6 @@ import realworld.entity.comment.CommentEntity;
 import realworld.entity.comment.Comments;
 
 import java.io.IOException;
-import java.util.List;
 
 @CrossOrigin()
 @RestController
@@ -67,8 +66,6 @@ public class ArticleController {
 
     @PostMapping()
     public ResponseEntity<ArticleDAO> createArticle(@RequestHeader("Authorization") String auth, @RequestBody ArticleCreationDAO req) throws IOException {
-        // TODO check null
-        // TODO consider adding validator
         ArticleEntity res = articleService.newArticle(req, auth);
         logger.debug("Created new article: {}", res.slug());
         return ResponseEntity.ok(new ArticleDAO(res));
@@ -128,21 +125,21 @@ public class ArticleController {
 
     @PostMapping("/{slug}/comments")
     public ResponseEntity<CommentDAO> commentArticle(@RequestHeader("Authorization") String auth, @PathVariable String slug, @RequestBody CommentCreationDAO comment) throws IOException {
-        CommentEntity res = commentService.newComment(comment,slug,auth);
+        CommentEntity res = commentService.newComment(comment, slug, auth);
         logger.debug("Commented article: {}", slug);
         return ResponseEntity.ok(new CommentDAO(res));
     }
 
     @GetMapping("/{slug}/comments")
     public ResponseEntity<Comments> allCommentsByArticle(@RequestHeader("Authorization") String auth, @PathVariable String slug) throws IOException {
-        Comments res = commentService.allCommentsByArticle(slug);
+        Comments res = commentService.allCommentsByArticle(slug, auth);
         logger.debug("Commented article: {}", slug);
         return ResponseEntity.ok(res);
     }
 
     @DeleteMapping("/{slug}/comments/{commentId}")
     public ResponseEntity<Void> deleteComment(@RequestHeader("Authorization") String auth, @PathVariable String slug, @PathVariable String commentId) throws IOException {
-        commentService.deleteComment(commentId,slug,auth);
+        commentService.deleteComment(commentId, slug, auth);
         logger.debug("Deleted comment: {} from article {}", commentId, slug);
         return ResponseEntity.ok().build();
     }

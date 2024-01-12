@@ -22,6 +22,7 @@ package realworld.config;
 import java.util.Properties;
 
 public class DefaultProperties {
+
     private DefaultProperties() {
     }
 

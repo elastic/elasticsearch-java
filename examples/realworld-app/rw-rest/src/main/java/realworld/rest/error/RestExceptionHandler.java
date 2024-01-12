@@ -38,7 +38,7 @@ public class RestExceptionHandler
         extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
-            = { IOException.class})
+            = {IOException.class})
     protected ResponseEntity<Object> handleIo(
             RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of("Connection Error with the Database")),
@@ -46,7 +46,7 @@ public class RestExceptionHandler
     }
 
     @ExceptionHandler(value
-            = { ResourceAlreadyExistsException.class})
+            = {ResourceAlreadyExistsException.class})
     protected ResponseEntity<Object> handleConflict(
             RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
@@ -54,7 +54,7 @@ public class RestExceptionHandler
     }
 
     @ExceptionHandler(value
-            = { ResourceNotFoundException.class})
+            = {ResourceNotFoundException.class})
     protected ResponseEntity<Object> handleNotFound(
             RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
@@ -62,7 +62,7 @@ public class RestExceptionHandler
     }
 
     @ExceptionHandler(value
-            = { UnauthorizedException.class})
+            = {UnauthorizedException.class})
     protected ResponseEntity<Object> handleUnauthorized(
             RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
@@ -70,7 +70,7 @@ public class RestExceptionHandler
     }
 
     @ExceptionHandler(value
-            = { RuntimeException.class})
+            = {RuntimeException.class})
     protected ResponseEntity<Object> handleUnexpected(
             RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),

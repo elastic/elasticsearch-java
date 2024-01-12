@@ -21,4 +21,5 @@ package realworld.entity.comment;
 
 import realworld.entity.user.Author;
 
-public record CommentEntity(Integer id, Long createdAt, Long updatedAt, String body, Author author, String articleSlug) {}
+public record CommentEntity(Integer id, Long createdAt, Long updatedAt, String body, Author author,
+                            String articleSlug) {}

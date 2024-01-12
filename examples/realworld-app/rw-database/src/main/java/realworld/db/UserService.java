@@ -146,7 +146,7 @@ public class UserService {
                         )
                 , UserEntity.class);
 
-        if(getUser.hits().hits().isEmpty()){
+        if (getUser.hits().hits().isEmpty()) {
             throw new ResourceNotFoundException("Wrong email or password");
         }
 
@@ -160,9 +160,6 @@ public class UserService {
 
     /**
      *
-     * @param auth
-     * @return
-     * @throws IOException
      */
     private SearchResponse<UserEntity> getUserSearchFromToken(String auth) throws IOException {
         String token;
@@ -197,16 +194,16 @@ public class UserService {
         UserEntity userEntity = extractSource(userSearch);
 
         // if the username or email are updated, checking uniqueness
-        if(!isNullOrBlank(user.username())&&!user.username().equals(userEntity.username())){
+        if (!isNullOrBlank(user.username()) && !user.username().equals(userEntity.username())) {
             SearchResponse<UserEntity> newUsernameSearch = findUserSearchByUsername(user.username());
-            if(!newUsernameSearch.hits().hits().isEmpty()){
+            if (!newUsernameSearch.hits().hits().isEmpty()) {
                 throw new ResourceAlreadyExistsException("Username already exists");
             }
         }
 
-        if(!isNullOrBlank(user.email())&&!user.email().equals(userEntity.email())){
+        if (!isNullOrBlank(user.email()) && !user.email().equals(userEntity.email())) {
             SearchResponse<UserEntity> newEmailSearch = findUserByEmail(user.email());
-            if(!newEmailSearch.hits().hits().isEmpty()){
+            if (!newEmailSearch.hits().hits().isEmpty()) {
                 throw new ResourceAlreadyExistsException("Email already in use");
             }
         }
@@ -229,7 +226,7 @@ public class UserService {
                         .id(id)
                         .doc(ue)
                 , UserEntity.class);
-        if(!upUser.result().name().equals("Updated")){
+        if (!upUser.result().name().equals("Updated")) {
             throw new RuntimeException("User update failed");
         }
     }
@@ -257,7 +254,7 @@ public class UserService {
         SearchResponse<UserEntity> askingUserSearch = getUserSearchFromToken(auth);
         UserEntity askingUser = extractSource(askingUserSearch);
 
-        if(askingUser.username().equals(targetUser.username())){
+        if (askingUser.username().equals(targetUser.username())) {
             throw new RuntimeException("Cannot follow yourself!");
         }
 
@@ -267,7 +264,7 @@ public class UserService {
 
             updateUser(extractId(askingUserSearch), askingUser);
         }
-        Profile targetUserProfile = new Profile(targetUser,true);
+        Profile targetUserProfile = new Profile(targetUser, true);
 
         return targetUserProfile;
     }
@@ -285,7 +282,7 @@ public class UserService {
 
             updateUser(extractId(askingUserSearch), askingUser);
         }
-        Profile targetUserProfile = new Profile(targetUser,false);
+        Profile targetUserProfile = new Profile(targetUser, false);
 
         return targetUserProfile;
     }
@@ -299,10 +296,10 @@ public class UserService {
     }
 
     /**
-     *
-     * @param username
-     * @return the result of the term query
-     * @throws IOException
+     * Searches the "users" index for a document containing the exact same username.
+     * A <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term query</a> means that it will find only results that match character by character.
+     * Using the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html"> keyword </a> property of the field allows to use the original value of the string while querying, instead of the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html"> processed/tokenized</a> value.
+     * @return the result of the term query, a single user.
      */
     private SearchResponse<UserEntity> findUserSearchByUsername(String username) throws IOException {
         // simple term query to match exactly the username string

@@ -47,7 +47,6 @@ import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.Author;
-import realworld.entity.user.UserDAO;
 import realworld.entity.user.UserEntity;
 
 import java.io.IOException;
@@ -76,10 +75,8 @@ public class ArticleService {
 
     /**
      * Creates a new article and saves it into the articles index.
-     * @param article
-     * @param auth
+     *
      * @return {@link ArticleEntity}
-     * @throws IOException
      */
     public ArticleEntity newArticle(ArticleCreationDAO article, String auth) throws IOException {
 
@@ -140,7 +137,7 @@ public class ArticleService {
 
         String newSlug = slug;
         // if title is being changed, checking if new slug would be unique
-        if (!isNullOrBlank(article.title())&&!article.title().equals(oldArticle.title())) {
+        if (!isNullOrBlank(article.title()) && !article.title().equals(oldArticle.title())) {
             newSlug = generateAndCheckSlug(article.title());
         }
 
@@ -248,7 +245,7 @@ public class ArticleService {
 
     public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset, String auth) throws IOException {
         UserEntity user = null;
-        if(!isNullOrBlank(auth)){
+        if (!isNullOrBlank(auth)) {
             user = userService.getUserEntityFromToken(auth);
         }
         List<Query> match = new ArrayList<>();
@@ -274,14 +271,14 @@ public class ArticleService {
         Query query = new Query.Builder().bool(b -> b.should(match)).build();
 
         SearchResponse<ArticleEntity> getArticle = esClient.search(ss -> ss
-                .index("articles")
-                .size(limit)
-                .from(offset)
-                .query(query)
-                .sort(srt -> srt
-                        .field(fld -> fld
-                                .field("updatedAt")
-                                .order(SortOrder.Desc)))
+                        .index("articles")
+                        .size(limit)
+                        .from(offset)
+                        .query(query)
+                        .sort(srt -> srt
+                                .field(fld -> fld
+                                        .field("updatedAt")
+                                        .order(SortOrder.Desc)))
                 , ArticleEntity.class);
 
         UserEntity finalUser = user;
@@ -297,7 +294,7 @@ public class ArticleService {
                 .map(ArticleForListDAO::new)
                 // if auth provided, filling the "following" field of "Author" accordingly
                 .map(a -> {
-                    if(Objects.nonNull(finalUser)){
+                    if (Objects.nonNull(finalUser)) {
                         boolean following = finalUser.following().contains(a.author().username());
                         return new ArticleForListDAO(a, new Author(a.author().username(), a.author().email(), a.author().bio(), following));
                     }

@@ -52,8 +52,8 @@ public class ElasticClient {
 
     /**
      * Creates the ElasticsearchClient and the indexes needed
+     *
      * @return a configured ElasticsearchClient
-     * @throws IOException
      */
     @Bean
     public ElasticsearchClient elasticRestClient() throws IOException {
@@ -76,19 +76,6 @@ public class ElasticClient {
 
         // And create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
-
-        // TODO remove, for testing
-//        esClient.indices().delete(del -> del
-//                .ignoreUnavailable(true)
-//                .index("users"));
-//
-//                esClient.indices().delete(del -> del
-//                .ignoreUnavailable(true)
-//                .index("articles"));
-//
-//        esClient.indices().delete(del -> del
-//                .ignoreUnavailable(true)
-//                .index("comments"));
 
         // Creating the indexes
         createSimpleIndex(esClient, USERS);
@@ -113,10 +100,12 @@ public class ElasticClient {
     }
 
     /**
-     * If no explicit mapping is defined, elasticsearch will dynamically map types when converting data to the json format.
-     * Adding explicit mapping to the date fields assures that no precision will be lost.
-     * More information about <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html">dynamic field mapping</a>,
-     * more on <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html">mapping date format </a>
+     * If no explicit mapping is defined, elasticsearch will dynamically map types when converting data to the json
+     * format. Adding explicit mapping to the date fields assures that no precision will be lost. More information about
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html">dynamic
+     * field mapping</a>, more on <a
+     * href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html">mapping date
+     * format </a>
      */
     private void createIndexWithDateMapping(ElasticsearchClient esClient, String index) throws IOException {
         BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));

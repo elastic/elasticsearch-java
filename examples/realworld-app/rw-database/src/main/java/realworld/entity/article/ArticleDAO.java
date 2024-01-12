@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import realworld.entity.user.Author;
 
 import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @JsonTypeName("article")

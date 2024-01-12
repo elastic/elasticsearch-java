@@ -27,6 +27,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 @JsonTypeName("errors")
-@JsonTypeInfo(include= As.WRAPPER_OBJECT, use= Id.NAME)
-public record RestError (List<String> body){}
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
+public record RestError(List<String> body) {}
 

@@ -28,9 +28,10 @@ import realworld.entity.user.Author;
 import java.time.Instant;
 
 @JsonTypeName("comment")
-@JsonTypeInfo(include= As.WRAPPER_OBJECT, use= Id.NAME)
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
 public record CommentDAO(Integer id, Instant createdAt, Instant updatedAt, String body, Author author) {
+
     public CommentDAO(CommentEntity commentEntity) {
-        this(commentEntity.id(), Instant.ofEpochMilli(commentEntity.createdAt()),Instant.ofEpochMilli(commentEntity.updatedAt()), commentEntity.body(), commentEntity.author());
+        this(commentEntity.id(), Instant.ofEpochMilli(commentEntity.createdAt()), Instant.ofEpochMilli(commentEntity.updatedAt()), commentEntity.body(), commentEntity.author());
     }
 }
