@@ -37,7 +37,7 @@ import java.io.IOException;
 @RequestMapping("/tags")
 public class TagsController {
 
-    private ArticleService service;
+    private final ArticleService service;
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -49,6 +49,7 @@ public class TagsController {
     @GetMapping()
     public ResponseEntity<Tags> get() throws IOException {
         Tags res = service.allTags();
+        logger.debug("Retrieved all tags");
         return ResponseEntity.ok(res);
     }
 }

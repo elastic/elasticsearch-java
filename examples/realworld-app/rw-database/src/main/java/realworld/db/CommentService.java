@@ -41,15 +41,16 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static realworld.constant.Constants.COMMENTS;
 import static realworld.utils.Utility.extractSource;
 import static realworld.utils.Utility.isNullOrBlank;
 
 @Service
 public class CommentService {
 
-    private ElasticsearchClient esClient;
-    private UserService userService;
-    private ArticleService articleService;
+    private final ElasticsearchClient esClient;
+    private final UserService userService;
+    private final ArticleService articleService;
 
     @Autowired
     public CommentService(ElasticsearchClient esClient, UserService userService, ArticleService articleService) {
@@ -74,7 +75,7 @@ public class CommentService {
         CommentEntity commentEntity = new CommentEntity(commentId, now, now, comment.body(), commentAuthor, slug);
 
         IndexRequest<CommentEntity> commentReq = IndexRequest.of((id -> id
-                .index("comments")
+                .index(COMMENTS)
                 .refresh(Refresh.WaitFor)
                 .document(commentEntity)));
 
@@ -88,7 +89,7 @@ public class CommentService {
         // getting comment by id
         // using term query to match exactly the id
         SearchResponse<CommentEntity> getComment = esClient.search(ss -> ss
-                        .index("comments")
+                        .index(COMMENTS)
                         .query(q -> q
                                 .term(t -> t
                                         .field("id")
@@ -114,7 +115,7 @@ public class CommentService {
 
         // deleting comment by id
         DeleteByQueryResponse deleteComment = esClient.deleteByQuery(ss -> ss
-                .index("comments")
+                .index(COMMENTS)
                 .waitForCompletion(true)
                 .refresh(true)
                 .query(q -> q
@@ -133,7 +134,7 @@ public class CommentService {
             user = userService.getUserEntityFromToken(auth);
         }
         SearchResponse<CommentEntity> commentsByArticle = esClient.search(s -> s
-                        .index("comments")
+                        .index(COMMENTS)
                         .query(q -> q
                                 .term(t -> t
                                         .field("articleSlug.keyword")

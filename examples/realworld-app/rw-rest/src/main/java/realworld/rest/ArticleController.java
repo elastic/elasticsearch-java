@@ -53,8 +53,8 @@ import java.io.IOException;
 @RequestMapping("/articles")
 public class ArticleController {
 
-    private ArticleService articleService;
-    private CommentService commentService;
+    private final ArticleService articleService;
+    private final CommentService commentService;
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -133,7 +133,7 @@ public class ArticleController {
     @GetMapping("/{slug}/comments")
     public ResponseEntity<Comments> allCommentsByArticle(@RequestHeader("Authorization") String auth, @PathVariable String slug) throws IOException {
         Comments res = commentService.allCommentsByArticle(slug, auth);
-        logger.debug("Commented article: {}", slug);
+        logger.debug("Comments for article: {}", slug);
         return ResponseEntity.ok(res);
     }
 

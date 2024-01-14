@@ -57,6 +57,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static realworld.constant.Constants.ARTICLES;
+import static realworld.constant.Constants.COMMENTS;
 import static realworld.utils.Utility.extractId;
 import static realworld.utils.Utility.extractSource;
 import static realworld.utils.Utility.isNullOrBlank;
@@ -64,8 +66,8 @@ import static realworld.utils.Utility.isNullOrBlank;
 @Service
 public class ArticleService {
 
-    private ElasticsearchClient esClient;
-    private UserService userService;
+    private final ElasticsearchClient esClient;
+    private final UserService userService;
 
     @Autowired
     public ArticleService(ElasticsearchClient esClient, UserService userService) {
@@ -91,7 +93,7 @@ public class ArticleService {
         ArticleEntity articleEntity = new ArticleEntity(article, slug, now, now, author);
 
         IndexRequest<ArticleEntity> articleReq = IndexRequest.of((id -> id
-                .index("articles")
+                .index(ARTICLES)
                 .refresh(Refresh.WaitFor)
                 .document(articleEntity)));
 
@@ -103,16 +105,14 @@ public class ArticleService {
     public SearchResponse<ArticleEntity> singleArticleBySlug(String slug) throws IOException {
 
         // using term query to match exactly the slug
-        SearchResponse<ArticleEntity> getArticle = esClient.search(ss -> ss
-                        .index("articles")
+        return esClient.search(ss -> ss
+                        .index(ARTICLES)
                         .query(q -> q
                                 .term(t -> t
                                         .field("slug.keyword")
                                         .value(slug))
                         )
                 , ArticleEntity.class);
-
-        return getArticle;
     }
 
     public ArticleEntity getArticleBySlug(String slug) throws IOException {
@@ -171,7 +171,7 @@ public class ArticleService {
 
         // the delete query is very similar to the search query
         DeleteByQueryResponse deleteArticle = esClient.deleteByQuery(d -> d
-                .index("articles")
+                .index(ARTICLES)
                 .waitForCompletion(true)
                 .refresh(true)
                 .query(q -> q
@@ -184,8 +184,8 @@ public class ArticleService {
         }
 
         // also delete every comment to the article, using a term query that will match all comments with the same articleSlug
-        DeleteByQueryResponse commentsByArticle = esClient.deleteByQuery(d -> d
-                .index("comments")
+        DeleteByQueryResponse deleteCommentsByArticle = esClient.deleteByQuery(d -> d
+                .index(COMMENTS)
                 .waitForCompletion(true)
                 .refresh(true)
                 .query(q -> q
@@ -193,6 +193,9 @@ public class ArticleService {
                                 .field("articleSlug.keyword")
                                 .value(slug))
                 ));
+        if (deleteCommentsByArticle.deleted() < 1) {
+            throw new RuntimeException("Failed to delete comments after article deletion");
+        }
     }
 
     public ArticleEntity favoriteArticle(String slug, String auth) throws IOException {
@@ -271,7 +274,7 @@ public class ArticleService {
         Query query = new Query.Builder().bool(b -> b.should(match)).build();
 
         SearchResponse<ArticleEntity> getArticle = esClient.search(ss -> ss
-                        .index("articles")
+                        .index(ARTICLES)
                         .size(limit)
                         .from(offset)
                         .query(query)
@@ -314,7 +317,7 @@ public class ArticleService {
         // the sort options is used afterward to determine which field determines the output order
         // note how the nested class "author" is easily accessible with the use of the dot notation
         SearchResponse<ArticleEntity> articlesByAuthors = esClient.search(ss -> ss
-                        .index("articles")
+                        .index(ARTICLES)
                         .query(q -> q
                                 .bool(b -> b
                                         .filter(f -> f
@@ -344,7 +347,7 @@ public class ArticleService {
 
         // using a term aggregation is the simplest way to find every distinct tag for each article
         SearchResponse<Aggregation> aggregateTags = esClient.search(s -> s
-                        .index("articles")
+                        .index(ARTICLES)
                         .size(0) // this is to only return aggregation result, and not also search result
                         .aggregations("tags", agg -> agg
                                 .terms(ter -> ter
@@ -379,8 +382,8 @@ public class ArticleService {
     }
 
     private void updateArticle(String id, ArticleEntity updatedArticle) throws IOException {
-        UpdateResponse upArticle = esClient.update(up -> up
-                        .index("articles")
+        UpdateResponse<ArticleEntity> upArticle = esClient.update(up -> up
+                        .index(ARTICLES)
                         .id(id)
                         .doc(updatedArticle)
                 , ArticleEntity.class);

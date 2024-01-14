@@ -45,6 +45,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static realworld.constant.Constants.USERS;
 import static realworld.utils.Utility.extractId;
 import static realworld.utils.Utility.extractSource;
 import static realworld.utils.Utility.isNullOrBlank;
@@ -52,7 +53,7 @@ import static realworld.utils.Utility.isNullOrBlank;
 @Service
 public class UserService {
 
-    private ElasticsearchClient esClient;
+    private final ElasticsearchClient esClient;
 
     @Value("${jwt.signing.key}")
     private String jwtSigningKey;
@@ -62,17 +63,21 @@ public class UserService {
         this.esClient = esClient;
     }
 
+    /**
+     * Inserts a new UserEntity into the "users" index, checking beforehand whether the username and email are unique.
+     * <br>
+     * See {@link UserService#findUserSearchByUsername(String)} for details on how the term query works.
+     * <br>
+     * Combining multiple term queries into a single <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html"> boolean query with "should" occur</a>
+     * to match documents fulfilling either conditions.
+     * <br>
+     * When the new user document is created, it is left up to elasticsearch to create a unique <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html"> id field </a>, since there's no user field that is guaranteed not to be updated/modified.
+     * @return The newly registered user.
+     */
     public UserEntity newUser(RegisterDAO user) throws IOException {
 
-        // checking if username or email already used.
-        // using a "term" query to match the exact strings
-        // (a "match" query would also find words containing the value inserted)
-        // using "should" to find documents matching either condition.
-
-        // TODO explain keyword -> no tokenizer, stored as is. not important here since everything is a single word
-
         SearchResponse<UserEntity> checkUser = esClient.search(ss -> ss
-                        .index("users")
+                        .index(USERS)
                         .query(q -> q
                                 .bool(b -> b
                                         .should(m -> m
@@ -117,22 +122,26 @@ public class UserService {
         UserEntity ue = new UserEntity(user.username(), user.email(),
                 user.password(), jws, "", "", new ArrayList<>());
 
+        // creating the index request
         IndexRequest<UserEntity> userReq = IndexRequest.of((id -> id
-                .index("users")
+                .index(USERS)
                 .refresh(Refresh.WaitFor)
                 .document(ue)));
 
+        // indexing the request (inserting it into to database)
         esClient.index(userReq);
 
         return ue;
     }
 
+    /**
+     * To identify a user based on their email and passoword, a boolean query similar to the one used in {@link UserService#newUser(RegisterDAO)} is used, with a difference: here "must" is used instead of "should", meaning that the documents must match both conditions at the same time.
+     * @return The authenticated user.
+     */
     public UserEntity login(LoginDAO user) throws IOException {
 
-        // term query to match exactly the email and password strings,
-        // using "must" to match both
         SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
-                        .index("users")
+                        .index(USERS)
                         .query(q -> q
                                 .bool(b -> b
                                         .must(m -> m
@@ -159,7 +168,8 @@ public class UserService {
     }
 
     /**
-     *
+     * Deserializing and checking the token, then performing a term query (see {@link UserService#findUserSearchByUsername(String)} for details) using the token string to retrieve the corresponding user.
+     * @return the result of the term query, a single user.
      */
     private SearchResponse<UserEntity> getUserSearchFromToken(String auth) throws IOException {
         String token;
@@ -173,7 +183,7 @@ public class UserService {
         }
 
         SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
-                        .index("users")
+                        .index(USERS)
                         .query(q -> q
                                 .term(m -> m
                                         .field("token.keyword")
@@ -187,6 +197,12 @@ public class UserService {
         return getUser;
     }
 
+    /**
+     * See {@link UserService#updateUser(String, UserEntity)}
+     * <br>
+     * Updated a user, checking before if the new username or email would be unique.
+     * @return the updated user.
+     */
     public UserEntity updateUser(String auth, UserDAO user) throws IOException {
 
         SearchResponse<UserEntity> userSearch = getUserSearchFromToken(auth);
@@ -202,7 +218,7 @@ public class UserService {
         }
 
         if (!isNullOrBlank(user.email()) && !user.email().equals(userEntity.email())) {
-            SearchResponse<UserEntity> newEmailSearch = findUserByEmail(user.email());
+            SearchResponse<UserEntity> newEmailSearch = findUserSearchByEmail(user.email());
             if (!newEmailSearch.hits().hits().isEmpty()) {
                 throw new ResourceAlreadyExistsException("Email already in use");
             }
@@ -220,9 +236,13 @@ public class UserService {
         return ue;
     }
 
+    /**
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html
+     * "> Updates</a> a user, given the updated object and its unique id.
+     */
     private void updateUser(String id, UserEntity ue) throws IOException {
-        UpdateResponse upUser = esClient.update(up -> up
-                        .index("users")
+        UpdateResponse<UserEntity> upUser = esClient.update(up -> up
+                        .index(USERS)
                         .id(id)
                         .doc(ue)
                 , UserEntity.class);
@@ -237,14 +257,9 @@ public class UserService {
 
         // checking if the user is followed by who's asking
         UserEntity askingUser = getUserEntityFromToken(auth);
-        boolean following = false;
-        if (askingUser.following().contains(targetUser.username())) {
-            following = true;
-        }
+        boolean following = askingUser.following().contains(targetUser.username());
 
-        Profile targetUserProfile = new Profile(targetUser, following);
-
-        return targetUserProfile;
+        return new Profile(targetUser, following);
     }
 
     public Profile followUser(String username, String auth) throws IOException {
@@ -264,9 +279,8 @@ public class UserService {
 
             updateUser(extractId(askingUserSearch), askingUser);
         }
-        Profile targetUserProfile = new Profile(targetUser, true);
 
-        return targetUserProfile;
+        return new Profile(targetUser, true);
     }
 
     public Profile unfollowUser(String username, String auth) throws IOException {
@@ -282,9 +296,8 @@ public class UserService {
 
             updateUser(extractId(askingUserSearch), askingUser);
         }
-        Profile targetUserProfile = new Profile(targetUser, false);
 
-        return targetUserProfile;
+        return new Profile(targetUser, false);
     }
 
     private UserEntity findUserByUsername(String username) throws IOException {
@@ -296,32 +309,38 @@ public class UserService {
     }
 
     /**
-     * Searches the "users" index for a document containing the exact same username.
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
+     * ">Searches </a> the "users" index for a document containing the exact same username.
+     * <br>
      * A <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term query</a> means that it will find only results that match character by character.
+     * <br>
      * Using the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html"> keyword </a> property of the field allows to use the original value of the string while querying, instead of the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html"> processed/tokenized</a> value.
      * @return the result of the term query, a single user.
      */
     private SearchResponse<UserEntity> findUserSearchByUsername(String username) throws IOException {
         // simple term query to match exactly the username string
-        SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
-                        .index("users")
+        return esClient.search(ss -> ss
+                        .index(USERS)
                         .query(q -> q
                                 .term(t -> t
                                         .field("username.keyword")
                                         .value(username)))
                 , UserEntity.class);
-        return getUser;
     }
 
-    private SearchResponse<UserEntity> findUserByEmail(String email) throws IOException {
+    /**
+     * Searches the "users" index for a document containing the exact same email.
+     * See {@link UserService#findUserSearchByUsername(String)} for details.
+     * @return the result of the term query, a single user.
+     */
+    private SearchResponse<UserEntity> findUserSearchByEmail(String email) throws IOException {
         // simple term query to match exactly the email string
-        SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
-                        .index("users")
+        return esClient.search(ss -> ss
+                        .index(USERS)
                         .query(q -> q
                                 .term(t -> t
                                         .field("email.keyword")
                                         .value(email)))
                 , UserEntity.class);
-        return getUser;
     }
 }
