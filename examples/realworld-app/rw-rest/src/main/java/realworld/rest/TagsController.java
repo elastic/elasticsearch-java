@@ -48,7 +48,7 @@ public class TagsController {
 
     @GetMapping()
     public ResponseEntity<TagsDTO> get() throws IOException {
-        TagsDTO res = service.allTags();
+        TagsDTO res = service.findAllTags();
         logger.debug("Retrieved all tags");
         return ResponseEntity.ok(res);
     }
