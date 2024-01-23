@@ -37,9 +37,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
-import static realworld.constant.Constants.ARTICLES;
-import static realworld.constant.Constants.COMMENTS;
-import static realworld.constant.Constants.USERS;
+import static realworld.constant.Constants.*;
 
 @Configuration
 public class ElasticClient {
@@ -61,7 +59,7 @@ public class ElasticClient {
         // Create the low-level client
         RestClient restClient = RestClient
                 .builder(HttpHost.create(serverUrl))
-                .setDefaultHeaders(new Header[] {
+                .setDefaultHeaders(new Header[]{
                         new BasicHeader("Authorization", "ApiKey " + apiKey)
                 })
                 .build();
@@ -87,8 +85,10 @@ public class ElasticClient {
     }
 
     /**
-     * Plain simple <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html">index</a>
-     * creation with an <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-exists.html">
+     * Plain simple
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html">index</a>
+     * creation with an
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-exists.html">
      * exists</a> check
      */
     private void createSimpleIndex(ElasticsearchClient esClient, String index) throws IOException {
@@ -100,11 +100,14 @@ public class ElasticClient {
     }
 
     /**
-     * If no explicit mapping is defined, elasticsearch will dynamically map types when converting data to the json
-     * format. Adding explicit mapping to the date fields assures that no precision will be lost. More information about
+     * If no explicit mapping is defined, elasticsearch will dynamically map types when converting data to
+     * the json
+     * format. Adding explicit mapping to the date fields assures that no precision will be lost. More
+     * information about
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html">dynamic
      * field mapping</a>, more on <a
-     * href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html">mapping date
+     * href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format
+     * .html">mapping date
      * format </a>
      */
     private void createIndexWithDateMapping(ElasticsearchClient esClient, String index) throws IOException {

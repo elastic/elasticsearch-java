@@ -34,11 +34,7 @@ import org.springframework.stereotype.Service;
 import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
-import realworld.entity.user.LoginDAO;
-import realworld.entity.user.Profile;
-import realworld.entity.user.RegisterDAO;
-import realworld.entity.user.UserDAO;
-import realworld.entity.user.UserEntity;
+import realworld.entity.user.*;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -46,9 +42,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static realworld.constant.Constants.USERS;
-import static realworld.utils.Utility.extractId;
-import static realworld.utils.Utility.extractSource;
-import static realworld.utils.Utility.isNullOrBlank;
+import static realworld.utils.Utility.*;
 
 @Service
 public class UserService {
@@ -64,14 +58,18 @@ public class UserService {
     }
 
     /**
-     * Inserts a new UserEntity into the "users" index, checking beforehand whether the username and email are unique.
+     * Inserts a new UserEntity into the "users" index, checking beforehand whether the username and email
+     * are unique.
      * <br>
      * See {@link UserService#findUserSearchByUsername(String)} for details on how the term query works.
      * <br>
-     * Combining multiple term queries into a single <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html"> boolean query with "should" occur</a>
+     * Combining multiple term queries into a single
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html"> boolean query with "should" occur</a>
      * to match documents fulfilling either conditions.
      * <br>
-     * When the new user document is created, it is left up to elasticsearch to create a unique <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html"> id field </a>, since there's no user field that is guaranteed not to be updated/modified.
+     * When the new user document is created, it is left up to elasticsearch to create a unique
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html"> id field </a>, since there's no user field that is guaranteed not to be updated/modified.
+     *
      * @return The newly registered user.
      */
     public UserEntity newUser(RegisterDAO user) throws IOException {
@@ -135,7 +133,10 @@ public class UserService {
     }
 
     /**
-     * To identify a user based on their email and passoword, a boolean query similar to the one used in {@link UserService#newUser(RegisterDAO)} is used, with a difference: here "must" is used instead of "should", meaning that the documents must match both conditions at the same time.
+     * To identify a user based on their email and passoword, a boolean query similar to the one used in
+     * {@link UserService#newUser(RegisterDAO)} is used, with a difference: here "must" is used instead of
+     * "should", meaning that the documents must match both conditions at the same time.
+     *
      * @return The authenticated user.
      */
     public UserEntity login(LoginDAO user) throws IOException {
@@ -168,7 +169,10 @@ public class UserService {
     }
 
     /**
-     * Deserializing and checking the token, then performing a term query (see {@link UserService#findUserSearchByUsername(String)} for details) using the token string to retrieve the corresponding user.
+     * Deserializing and checking the token, then performing a term query (see
+     * {@link UserService#findUserSearchByUsername(String)} for details) using the token string to retrieve
+     * the corresponding user.
+     *
      * @return the result of the term query, a single user.
      */
     private SearchResponse<UserEntity> getUserSearchFromToken(String auth) throws IOException {
@@ -201,6 +205,7 @@ public class UserService {
      * See {@link UserService#updateUser(String, UserEntity)}
      * <br>
      * Updated a user, checking before if the new username or email would be unique.
+     *
      * @return the updated user.
      */
     public UserEntity updateUser(String auth, UserDAO user) throws IOException {
@@ -225,7 +230,8 @@ public class UserService {
         }
 
         // null/blank check for every optional field
-        UserEntity ue = new UserEntity(isNullOrBlank(user.username()) ? userEntity.username() : user.username(),
+        UserEntity ue = new UserEntity(isNullOrBlank(user.username()) ? userEntity.username() :
+                user.username(),
                 isNullOrBlank(user.email()) ? userEntity.email() : user.email(),
                 userEntity.password(), userEntity.token(),
                 isNullOrBlank(user.bio()) ? userEntity.bio() : user.bio(),
@@ -312,9 +318,14 @@ public class UserService {
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
      * ">Searches </a> the "users" index for a document containing the exact same username.
      * <br>
-     * A <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term query</a> means that it will find only results that match character by character.
+     * A
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term query</a> means that it will find only results that match character by character.
      * <br>
-     * Using the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html"> keyword </a> property of the field allows to use the original value of the string while querying, instead of the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html"> processed/tokenized</a> value.
+     * Using the
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html"> keyword </a>
+     * property of the field allows to use the original value of the string while querying, instead of the
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html"> processed/tokenized</a> value.
+     *
      * @return the result of the term query, a single user.
      */
     private SearchResponse<UserEntity> findUserSearchByUsername(String username) throws IOException {
@@ -331,6 +342,7 @@ public class UserService {
     /**
      * Searches the "users" index for a document containing the exact same email.
      * See {@link UserService#findUserSearchByUsername(String)} for details.
+     *
      * @return the result of the term query, a single user.
      */
     private SearchResponse<UserEntity> findUserSearchByEmail(String email) throws IOException {

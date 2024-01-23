@@ -36,13 +36,7 @@ import co.elastic.clients.util.NamedValue;
 import com.github.slugify.Slugify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import realworld.entity.article.ArticleCreationDAO;
-import realworld.entity.article.ArticleDAO;
-import realworld.entity.article.ArticleEntity;
-import realworld.entity.article.ArticleForListDAO;
-import realworld.entity.article.ArticleUpdateDAO;
-import realworld.entity.article.Articles;
-import realworld.entity.article.Tags;
+import realworld.entity.article.*;
 import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
@@ -59,9 +53,7 @@ import java.util.stream.Collectors;
 
 import static realworld.constant.Constants.ARTICLES;
 import static realworld.constant.Constants.COMMENTS;
-import static realworld.utils.Utility.extractId;
-import static realworld.utils.Utility.extractSource;
-import static realworld.utils.Utility.isNullOrBlank;
+import static realworld.utils.Utility.*;
 
 @Service
 public class ArticleService {
@@ -183,7 +175,8 @@ public class ArticleService {
             throw new RuntimeException("Failed to delete article");
         }
 
-        // also delete every comment to the article, using a term query that will match all comments with the same articleSlug
+        // also delete every comment to the article, using a term query that will match all comments with
+        // the same articleSlug
         DeleteByQueryResponse deleteCommentsByArticle = esClient.deleteByQuery(d -> d
                 .index(COMMENTS)
                 .waitForCompletion(true)
@@ -211,7 +204,8 @@ public class ArticleService {
         }
 
         article.favoritedBy().add(user.username());
-        ArticleEntity updatedArticle = new ArticleEntity(article.slug(), article.title(), article.description(),
+        ArticleEntity updatedArticle = new ArticleEntity(article.slug(), article.title(),
+                article.description(),
                 article.body(), article.tagList(), article.createdAt(), article.updatedAt(),
                 true, article.favoritesCount() + 1, article.favoritedBy(), article.author());
 
@@ -238,7 +232,8 @@ public class ArticleService {
             favorited = false;
         }
 
-        ArticleEntity updatedArticle = new ArticleEntity(article.slug(), article.title(), article.description(),
+        ArticleEntity updatedArticle = new ArticleEntity(article.slug(), article.title(),
+                article.description(),
                 article.body(), article.tagList(), article.createdAt(), article.updatedAt(), favorited,
                 favoriteCount, article.favoritedBy(), article.author());
 
@@ -246,15 +241,18 @@ public class ArticleService {
         return updatedArticle;
     }
 
-    public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset, String auth) throws IOException {
+    public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset,
+                                String auth) throws IOException {
         UserEntity user = null;
         if (!isNullOrBlank(auth)) {
             user = userService.getUserEntityFromToken(auth);
         }
         List<Query> match = new ArrayList<>();
         // since all the parameters for this query are optional, the query must be build conditionally
-        // using a "match" query instead of a "term" query to allow the use a single word for searching phrases
-        // for example, filtering for articles with the "cat" tag will also return articles with the "cat food" tag
+        // using a "match" query instead of a "term" query to allow the use a single word for searching
+        // phrases
+        // for example, filtering for articles with the "cat" tag will also return articles with the "cat
+        // food" tag
         if (!isNullOrBlank(tag)) {
             match.add(new Builder()
                     .field("tagList")
@@ -299,7 +297,8 @@ public class ArticleService {
                 .map(a -> {
                     if (Objects.nonNull(finalUser)) {
                         boolean following = finalUser.following().contains(a.author().username());
-                        return new ArticleForListDAO(a, new Author(a.author().username(), a.author().email(), a.author().bio(), following));
+                        return new ArticleForListDAO(a, new Author(a.author().username(),
+                                a.author().email(), a.author().bio(), following));
                     }
                     return a;
                 })
@@ -341,7 +340,8 @@ public class ArticleService {
 
     public Tags allTags() throws IOException {
 
-        // since the API definition doesn't specify the return order of tags, sorting by document count using "_count"
+        // since the API definition doesn't specify the return order of tags, sorting by document count
+        // using "_count"
         // if alphabetical order is preferred, use "_key" instead
         NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Desc);
 

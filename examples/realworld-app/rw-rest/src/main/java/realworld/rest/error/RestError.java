@@ -28,5 +28,6 @@ import java.util.List;
 
 @JsonTypeName("errors")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record RestError(List<String> body) {}
+public record RestError(List<String> body) {
+}
 

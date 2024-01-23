@@ -53,7 +53,8 @@ public class CommentService {
     private final ArticleService articleService;
 
     @Autowired
-    public CommentService(ElasticsearchClient esClient, UserService userService, ArticleService articleService) {
+    public CommentService(ElasticsearchClient esClient, UserService userService,
+                          ArticleService articleService) {
         this.esClient = esClient;
         this.userService = userService;
         this.articleService = articleService;
@@ -72,7 +73,8 @@ public class CommentService {
 
         // pre-generating id since it's a field in the comment class
         Integer commentId = UUID.randomUUID().hashCode();
-        CommentEntity commentEntity = new CommentEntity(commentId, now, now, comment.body(), commentAuthor, slug);
+        CommentEntity commentEntity = new CommentEntity(commentId, now, now, comment.body(), commentAuthor,
+                slug);
 
         IndexRequest<CommentEntity> commentReq = IndexRequest.of((id -> id
                 .index(COMMENTS)
@@ -148,8 +150,9 @@ public class CommentService {
                 .map(c -> {
                     if (Objects.nonNull(finalUser)) {
                         boolean following = finalUser.following().contains(c.author().username());
-                        return new CommentForListDAO(c.id(),c.createdAt(),c.updatedAt(),c.body(),
-                                new Author(c.author().username(), c.author().email(), c.author().bio(), following));
+                        return new CommentForListDAO(c.id(), c.createdAt(), c.updatedAt(), c.body(),
+                                new Author(c.author().username(), c.author().email(), c.author().bio(),
+                                        following));
                     }
                     return c;
                 })

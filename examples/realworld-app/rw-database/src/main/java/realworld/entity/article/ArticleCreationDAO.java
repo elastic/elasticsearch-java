@@ -30,4 +30,5 @@ import java.util.List;
 @JsonTypeName("article")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
 public record ArticleCreationDAO(@NotNull String title, @NotNull String description, @NotNull String body,
-                                 List<String> tagList) {}
+                                 List<String> tagList) {
+}

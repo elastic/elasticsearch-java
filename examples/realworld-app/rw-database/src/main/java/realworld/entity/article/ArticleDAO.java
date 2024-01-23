@@ -44,6 +44,8 @@ public record ArticleDAO(
 
 
     public ArticleDAO(ArticleEntity article) {
-        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(), Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()), article.favorited(), article.favoritesCount(), article.author());
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
+                Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()),
+                article.favorited(), article.favoritesCount(), article.author());
     }
 }

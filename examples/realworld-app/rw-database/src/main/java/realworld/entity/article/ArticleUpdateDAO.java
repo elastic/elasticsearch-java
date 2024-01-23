@@ -26,4 +26,5 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("article")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record ArticleUpdateDAO(String title, String description, String body) {}
+public record ArticleUpdateDAO(String title, String description, String body) {
+}

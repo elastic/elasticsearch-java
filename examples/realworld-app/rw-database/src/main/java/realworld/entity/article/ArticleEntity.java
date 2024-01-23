@@ -37,7 +37,9 @@ public record ArticleEntity(
         List<String> favoritedBy,
         Author author) {
 
-    public ArticleEntity(ArticleCreationDAO article, String slug, Long createdAt, Long updatedAt, Author author) {
-        this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt, updatedAt, false, 0, new ArrayList<>(), author);
+    public ArticleEntity(ArticleCreationDAO article, String slug, Long createdAt, Long updatedAt,
+                         Author author) {
+        this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt,
+                updatedAt, false, 0, new ArrayList<>(), author);
     }
 }

@@ -41,9 +41,7 @@ import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.time.Duration;
 
-import static realworld.constant.Constants.ARTICLES;
-import static realworld.constant.Constants.COMMENTS;
-import static realworld.constant.Constants.USERS;
+import static realworld.constant.Constants.*;
 
 @Configuration
 public class ElasticClientTest {
@@ -77,7 +75,8 @@ public class ElasticClientTest {
         ObjectMapper mapper = JsonMapper.builder()
                 .addModule(new JavaTimeModule()) // other modules can be added here
                 .build();
-        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(mapper));
+        ElasticsearchTransport transport = new RestClientTransport(restClient,
+                new JacksonJsonpMapper(mapper));
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         // Creating the indexes

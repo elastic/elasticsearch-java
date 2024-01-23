@@ -23,14 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import realworld.db.UserService;
 import realworld.entity.user.LoginDAO;
 import realworld.entity.user.RegisterDAO;
@@ -76,7 +69,8 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity<UserDAO> update(@RequestHeader("Authorization") String auth, @RequestBody UserDAO req) throws IOException {
+    public ResponseEntity<UserDAO> update(@RequestHeader("Authorization") String auth,
+                                          @RequestBody UserDAO req) throws IOException {
         UserEntity res = service.updateUser(auth, req);
         logger.debug("Updated info for user {}", req.username());
         return ResponseEntity.ok(new UserDAO(res));

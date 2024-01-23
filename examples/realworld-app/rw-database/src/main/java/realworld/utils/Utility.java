@@ -31,6 +31,7 @@ public class Utility {
 
     /**
      * Utility method to be used for single result queries.
+     *
      * @return The document id.
      */
     public static <TDocument> String extractId(SearchResponse<TDocument> searchResponse) {
@@ -39,6 +40,7 @@ public class Utility {
 
     /**
      * Utility method to be used for single result queries.
+     *
      * @return An object of the class that was specified in the query definition.
      */
     public static <TDocument> TDocument extractSource(SearchResponse<TDocument> searchResponse) {
