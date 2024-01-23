@@ -26,13 +26,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import realworld.db.ArticleService;
 import realworld.db.CommentService;
+import realworld.db.UserService;
 import realworld.entity.article.*;
-import realworld.entity.comment.CommentCreationDAO;
-import realworld.entity.comment.CommentDAO;
-import realworld.entity.comment.CommentEntity;
-import realworld.entity.comment.Comments;
+import realworld.entity.comment.Comment;
+import realworld.entity.comment.CommentCreationDTO;
+import realworld.entity.comment.CommentDTO;
+import realworld.entity.comment.CommentsDTO;
+import realworld.entity.exception.ResourceNotFoundException;
+import realworld.entity.user.Author;
+import realworld.entity.user.User;
+import realworld.utils.UserIdPair;
 
 import java.io.IOException;
+import java.util.Optional;
+
+import static realworld.utils.Utility.isNullOrBlank;
 
 @CrossOrigin()
 @RestController
@@ -40,104 +48,140 @@ import java.io.IOException;
 public class ArticleController {
 
     private final ArticleService articleService;
+    private final UserService userService;
     private final CommentService commentService;
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    public ArticleController(ArticleService articleService, CommentService commentService) {
+    public ArticleController(ArticleService articleService, UserService userService,
+                             CommentService commentService) {
         this.articleService = articleService;
+        this.userService = userService;
         this.commentService = commentService;
     }
 
     @PostMapping()
-    public ResponseEntity<ArticleDAO> createArticle(@RequestHeader("Authorization") String auth,
-                                                    @RequestBody ArticleCreationDAO req) throws IOException {
-        ArticleEntity res = articleService.newArticle(req, auth);
+    public ResponseEntity<ArticleDTO> newArticle(@RequestBody ArticleCreationDTO req, @RequestHeader(
+            "Authorization") String auth) throws IOException {
+        UserIdPair userPair = userService.findUserByToken(auth);
+        Author author = new Author(userPair.user(), false);
+
+        Article res = articleService.newArticle(req, author);
         logger.debug("Created new article: {}", res.slug());
-        return ResponseEntity.ok(new ArticleDAO(res));
+        return ResponseEntity.ok(new ArticleDTO(res));
     }
 
     @GetMapping("/{slug}")
-    public ResponseEntity<ArticleDAO> getArticleBySlug(@PathVariable String slug) throws IOException {
-        ArticleEntity res = articleService.getArticleBySlug(slug);
+    public ResponseEntity<ArticleDTO> findArticleBySlug(@PathVariable String slug) throws IOException {
+        Article res = Optional.ofNullable(articleService.findArticleBySlug(slug))
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"))
+                .article();
         logger.debug("Retrieved article: {}", slug);
-        return ResponseEntity.ok(new ArticleDAO(res));
+        return ResponseEntity.ok(new ArticleDTO(res));
     }
 
     @GetMapping()
-    public ResponseEntity<Articles> getArticles(@RequestParam(required = false) String tag,
-                                                @RequestParam(required = false) String author,
-                                                @RequestParam(required = false) String favorited,
-                                                @RequestParam(required = false) Integer limit,
-                                                @RequestParam(required = false) Integer offset,
-                                                @RequestHeader(value = "Authorization", required = false) String auth) throws IOException {
-        Articles res = articleService.getArticles(tag, author, favorited, limit, offset, auth);
+    public ResponseEntity<ArticlesDTO> findArticles(@RequestParam(required = false) String tag,
+                                                    @RequestParam(required = false) String author,
+                                                    @RequestParam(required = false) String favorited,
+                                                    @RequestParam(required = false) Integer limit,
+                                                    @RequestParam(required = false) Integer offset,
+                                                    @RequestHeader(value = "Authorization", required =
+                                                            false) String auth) throws IOException {
+        Optional<User> user = Optional.empty();
+        if (!isNullOrBlank(auth)) {
+            user = Optional.of(userService.findUserByToken(auth).user());
+        }
+        ArticlesDTO res = articleService.findArticles(tag, author, favorited, limit, offset, user);
         logger.debug("Returned article list");
         return ResponseEntity.ok(res);
     }
 
     @GetMapping("/feed")
-    public ResponseEntity<Articles> getFeed(@RequestHeader("Authorization") String auth) throws IOException {
-        Articles res = articleService.articleFeed(auth);
+    public ResponseEntity<ArticlesDTO> generateFeed(@RequestHeader("Authorization") String auth) throws IOException {
+        User user = userService.findUserByToken(auth).user();
+
+        ArticlesDTO res = articleService.generateArticleFeed(user);
         logger.debug("Generated feed");
         return ResponseEntity.ok(res);
     }
 
     @PostMapping("/{slug}/favorite")
-    public ResponseEntity<ArticleDAO> favoriteArticle(@RequestHeader("Authorization") String auth,
-                                                      @PathVariable String slug) throws IOException {
-        ArticleEntity res = articleService.favoriteArticle(slug, auth);
+    public ResponseEntity<ArticleDTO> markArticleAsFavorite(@PathVariable String slug, @RequestHeader(
+            "Authorization") String auth) throws IOException {
+        String username = userService.findUserByToken(auth).user().username();
+
+        Article res = articleService.markArticleAsFavorite(slug, username);
         logger.debug("Set article: {} as favorite", slug);
-        return ResponseEntity.ok(new ArticleDAO(res));
+        return ResponseEntity.ok(new ArticleDTO(res));
     }
 
     @DeleteMapping("/{slug}/favorite")
-    public ResponseEntity<ArticleDAO> unfavoriteArticle(@RequestHeader("Authorization") String auth,
-                                                        @PathVariable String slug) throws IOException {
-        ArticleEntity res = articleService.unfavoriteArticle(slug, auth);
+    public ResponseEntity<ArticleDTO> removeArticleFromFavorite(@PathVariable String slug, @RequestHeader(
+            "Authorization") String auth) throws IOException {
+        String username = userService.findUserByToken(auth).user().username();
+
+        Article res = articleService.removeArticleFromFavorite(slug, username);
         logger.debug("Removed article: {} from favorites", slug);
-        return ResponseEntity.ok(new ArticleDAO(res));
+        return ResponseEntity.ok(new ArticleDTO(res));
     }
 
     @PutMapping("/{slug}")
-    public ResponseEntity<ArticleDAO> updateArticle(@RequestHeader("Authorization") String auth,
-                                                    @RequestBody ArticleUpdateDAO req,
-                                                    @PathVariable String slug) throws IOException {
-        ArticleDAO res = articleService.updateArticle(req, auth, slug);
+    public ResponseEntity<ArticleDTO> updateArticle(@RequestBody ArticleUpdateDTO req,
+                                                    @PathVariable String slug, @RequestHeader(
+            "Authorization") String auth) throws IOException {
+        UserIdPair userPair = userService.findUserByToken(auth);
+        Author author = new Author(userPair.user(), false);
+
+        ArticleDTO res = articleService.updateArticle(req, slug, author);
         logger.debug("Updated article: {}", slug);
         return ResponseEntity.ok(res);
     }
 
     @DeleteMapping("/{slug}")
-    public ResponseEntity<Void> deleteArticle(@RequestHeader("Authorization") String auth,
-                                              @PathVariable String slug) throws IOException {
-        articleService.deleteArticle(auth, slug);
+    public ResponseEntity<Void> deleteArticle(@PathVariable String slug,
+                                              @RequestHeader("Authorization") String auth) throws IOException {
+        UserIdPair userPair = userService.findUserByToken(auth);
+        Author author = new Author(userPair.user(), false);
+
+        articleService.deleteArticle(slug, author);
         logger.debug("Deleted article: {}", slug);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{slug}/comments")
-    public ResponseEntity<CommentDAO> commentArticle(@RequestHeader("Authorization") String auth,
-                                                     @PathVariable String slug,
-                                                     @RequestBody CommentCreationDAO comment) throws IOException {
-        CommentEntity res = commentService.newComment(comment, slug, auth);
+    public ResponseEntity<CommentDTO> commentArticle(@PathVariable String slug,
+                                                     @RequestBody CommentCreationDTO comment,
+                                                     @RequestHeader("Authorization") String auth) throws IOException {
+        // checking if the article exists
+        articleService.findArticleBySlug(slug);
+        // getting the comment's author
+        User user = userService.findUserByToken(auth).user();
+
+        Comment res = commentService.newComment(comment, slug, user);
         logger.debug("Commented article: {}", slug);
-        return ResponseEntity.ok(new CommentDAO(res));
+        return ResponseEntity.ok(new CommentDTO(res));
     }
 
     @GetMapping("/{slug}/comments")
-    public ResponseEntity<Comments> allCommentsByArticle(@RequestHeader("Authorization") String auth,
-                                                         @PathVariable String slug) throws IOException {
-        Comments res = commentService.allCommentsByArticle(slug, auth);
+    public ResponseEntity<CommentsDTO> allCommentsByArticle(@PathVariable String slug, @RequestHeader(
+            value = "Authorization", required = false) String auth) throws IOException {
+        Optional<User> user = Optional.empty();
+        if (!isNullOrBlank(auth)) {
+            user = Optional.of(userService.findUserByToken(auth).user());
+        }
+        CommentsDTO res = commentService.findAllCommentsByArticle(slug, user);
         logger.debug("Comments for article: {}", slug);
         return ResponseEntity.ok(res);
     }
 
     @DeleteMapping("/{slug}/comments/{commentId}")
-    public ResponseEntity<Void> deleteComment(@RequestHeader("Authorization") String auth,
-                                              @PathVariable String slug, @PathVariable String commentId) throws IOException {
-        commentService.deleteComment(commentId, slug, auth);
+    public ResponseEntity<Void> deleteComment(@PathVariable String slug, @PathVariable String commentId,
+                                              @RequestHeader("Authorization") String auth) throws IOException {
+        String username = userService.findUserByToken(auth).user().username();
+
+        commentService.deleteComment(commentId, slug, username);
         logger.debug("Deleted comment: {} from article {}", commentId, slug);
         return ResponseEntity.ok().build();
     }

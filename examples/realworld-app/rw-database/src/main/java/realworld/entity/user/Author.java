@@ -25,11 +25,11 @@ public record Author(
         String bio,
         boolean following) {
 
-    public Author(UserEntity ue, boolean following) {
+    public Author(User ue, boolean following) {
         this(ue.username(), ue.email(), ue.bio(), following);
     }
 
-    public Author(UserDAO ue, boolean following) {
+    public Author(UserDTO ue, boolean following) {
         this(ue.username(), ue.email(), ue.bio(), following);
     }
 }

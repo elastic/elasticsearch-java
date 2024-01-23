@@ -21,5 +21,5 @@ package realworld.entity.user;
 
 import jakarta.validation.constraints.NotNull;
 
-public record RegisterDAO(@NotNull String username, @NotNull String email, @NotNull String password) {
+public record RegisterDTO(@NotNull String username, @NotNull String email, @NotNull String password) {
 }

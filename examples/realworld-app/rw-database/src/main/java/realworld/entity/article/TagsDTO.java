@@ -17,17 +17,9 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.entity.article;
 
 import java.util.List;
 
-public record UserEntity(
-
-        String username,
-        String email,
-        String password,
-        String token,
-        String bio,
-        String image,
-        List<String> following) {
+public record TagsDTO(List<String> tags) {
 }

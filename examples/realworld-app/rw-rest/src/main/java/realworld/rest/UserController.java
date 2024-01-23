@@ -25,10 +25,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import realworld.db.UserService;
-import realworld.entity.user.LoginDAO;
-import realworld.entity.user.RegisterDAO;
-import realworld.entity.user.UserDAO;
-import realworld.entity.user.UserEntity;
+import realworld.entity.user.LoginDTO;
+import realworld.entity.user.RegisterDTO;
+import realworld.entity.user.User;
+import realworld.entity.user.UserDTO;
 
 import java.io.IOException;
 
@@ -47,33 +47,33 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserDAO> register(@RequestBody RegisterDAO req) throws IOException {
-        UserEntity res = service.newUser(req);
+    public ResponseEntity<UserDTO> register(@RequestBody RegisterDTO req) throws IOException {
+        User res = service.newUser(req);
         logger.debug("Registered new user {}", req.username());
-        return ResponseEntity.ok(new UserDAO(res));
+        return ResponseEntity.ok(new UserDTO(res));
     }
 
     @PostMapping("users/login")
-    public ResponseEntity<UserDAO> login(@RequestBody LoginDAO req) throws IOException {
-        UserEntity res = service.login(req);
+    public ResponseEntity<UserDTO> login(@RequestBody LoginDTO req) throws IOException {
+        User res = service.authenticateUser(req);
         logger.debug("User {} logged in", res.username());
-        return ResponseEntity.ok(new UserDAO(res));
+        return ResponseEntity.ok(new UserDTO(res));
     }
 
     @GetMapping("/user")
-    public ResponseEntity<UserDAO> get(@RequestHeader("Authorization") String auth) throws IOException {
-        UserEntity res = service.getUserEntityFromToken(auth);
+    public ResponseEntity<UserDTO> find(@RequestHeader("Authorization") String auth) throws IOException {
+        User res = service.findUserByToken(auth).user();
         logger.debug("Returning info about user {}", res.username());
-        return ResponseEntity.ok(new UserDAO(res));
+        return ResponseEntity.ok(new UserDTO(res));
 
     }
 
     @PutMapping("/user")
-    public ResponseEntity<UserDAO> update(@RequestHeader("Authorization") String auth,
-                                          @RequestBody UserDAO req) throws IOException {
-        UserEntity res = service.updateUser(auth, req);
+    public ResponseEntity<UserDTO> update(@RequestBody UserDTO req,
+                                          @RequestHeader("Authorization") String auth) throws IOException {
+        User res = service.updateUser(req, auth);
         logger.debug("Updated info for user {}", req.username());
-        return ResponseEntity.ok(new UserDAO(res));
+        return ResponseEntity.ok(new UserDTO(res));
 
     }
 }

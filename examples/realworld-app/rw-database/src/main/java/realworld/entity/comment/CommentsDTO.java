@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.entity.comment;
 
-import jakarta.validation.constraints.NotNull;
+import java.util.List;
 
-public record LoginDAO(@NotNull String email, @NotNull String password) {
+public record CommentsDTO(List<CommentForListDTO> comments) {
 }

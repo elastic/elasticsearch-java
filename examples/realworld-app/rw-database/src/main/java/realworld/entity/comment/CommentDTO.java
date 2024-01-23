@@ -17,9 +17,23 @@
  * under the License.
  */
 
-package realworld.entity.article;
+package realworld.entity.comment;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import realworld.entity.user.Author;
 
-public record Articles(List<ArticleForListDAO> articles, int articlesCount) {
+import java.time.Instant;
+
+@JsonTypeName("comment")
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
+public record CommentDTO(Integer id, Instant createdAt, Instant updatedAt, String body, Author author) {
+
+    public CommentDTO(Comment comment) {
+        this(comment.id(), Instant.ofEpochMilli(comment.createdAt()),
+                Instant.ofEpochMilli(comment.updatedAt()), comment.body(),
+                comment.author());
+    }
 }

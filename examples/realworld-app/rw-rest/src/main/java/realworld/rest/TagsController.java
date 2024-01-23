@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import realworld.db.ArticleService;
-import realworld.entity.article.Tags;
+import realworld.entity.article.TagsDTO;
 
 import java.io.IOException;
 
@@ -47,8 +47,8 @@ public class TagsController {
     }
 
     @GetMapping()
-    public ResponseEntity<Tags> get() throws IOException {
-        Tags res = service.allTags();
+    public ResponseEntity<TagsDTO> get() throws IOException {
+        TagsDTO res = service.allTags();
         logger.debug("Retrieved all tags");
         return ResponseEntity.ok(res);
     }

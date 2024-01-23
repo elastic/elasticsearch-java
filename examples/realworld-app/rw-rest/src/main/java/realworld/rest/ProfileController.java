@@ -46,7 +46,7 @@ public class ProfileController {
     @GetMapping("/{username}")
     public ResponseEntity<Profile> get(@PathVariable String username,
                                        @RequestHeader("Authorization") String auth) throws IOException {
-        Profile res = service.getUserProfile(username, auth);
+        Profile res = service.findUserProfile(username, auth);
         logger.debug("Returning profile for user {}", res.username());
         return ResponseEntity.ok(res);
     }

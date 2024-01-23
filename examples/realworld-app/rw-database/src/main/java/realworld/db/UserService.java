@@ -35,11 +35,14 @@ import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.*;
+import realworld.utils.UserIdPair;
 
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
+import java.util.Optional;
 
 import static realworld.constant.Constants.USERS;
 import static realworld.utils.Utility.*;
@@ -58,10 +61,10 @@ public class UserService {
     }
 
     /**
-     * Inserts a new UserEntity into the "users" index, checking beforehand whether the username and email
+     * Inserts a new Userinto the "users" index, checking beforehand whether the username and email
      * are unique.
      * <br>
-     * See {@link UserService#findUserSearchByUsername(String)} for details on how the term query works.
+     * See {@link UserService#findUserByUsername(String)} for details on how the term query works.
      * <br>
      * Combining multiple term queries into a single
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html"> boolean query with "should" occur</a>
@@ -72,9 +75,9 @@ public class UserService {
      *
      * @return The newly registered user.
      */
-    public UserEntity newUser(RegisterDAO user) throws IOException {
+    public User newUser(RegisterDTO user) throws IOException {
 
-        SearchResponse<UserEntity> checkUser = esClient.search(ss -> ss
+        SearchResponse<User> checkUser = esClient.search(ss -> ss
                         .index(USERS)
                         .query(q -> q
                                 .bool(b -> b
@@ -86,7 +89,7 @@ public class UserService {
                                                 .term(mc -> mc
                                                         .field("username.keyword")
                                                         .value(user.username())))))
-                , UserEntity.class);
+                , User.class);
 
         checkUser.hits().hits().stream()
                 .map(Hit::source)
@@ -117,11 +120,11 @@ public class UserService {
                 )
                 .compact();
 
-        UserEntity ue = new UserEntity(user.username(), user.email(),
+        User ue = new User(user.username(), user.email(),
                 user.password(), jws, "", "", new ArrayList<>());
 
         // creating the index request
-        IndexRequest<UserEntity> userReq = IndexRequest.of((id -> id
+        IndexRequest<User> userReq = IndexRequest.of((id -> id
                 .index(USERS)
                 .refresh(Refresh.WaitFor)
                 .document(ue)));
@@ -134,14 +137,14 @@ public class UserService {
 
     /**
      * To identify a user based on their email and passoword, a boolean query similar to the one used in
-     * {@link UserService#newUser(RegisterDAO)} is used, with a difference: here "must" is used instead of
+     * {@link UserService#newUser(RegisterDTO)} is used, with a difference: here "must" is used instead of
      * "should", meaning that the documents must match both conditions at the same time.
      *
      * @return The authenticated user.
      */
-    public UserEntity login(LoginDAO user) throws IOException {
+    public User authenticateUser(LoginDTO user) throws IOException {
 
-        SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
+        SearchResponse<User> getUser = esClient.search(ss -> ss
                         .index(USERS)
                         .query(q -> q
                                 .bool(b -> b
@@ -154,7 +157,7 @@ public class UserService {
                                                         .field("password.keyword")
                                                         .value(user.password()))))
                         )
-                , UserEntity.class);
+                , User.class);
 
         if (getUser.hits().hits().isEmpty()) {
             throw new ResourceNotFoundException("Wrong email or password");
@@ -163,19 +166,14 @@ public class UserService {
         return extractSource(getUser);
     }
 
-
-    public UserEntity getUserEntityFromToken(String auth) throws IOException {
-        return extractSource(getUserSearchFromToken(auth));
-    }
-
     /**
      * Deserializing and checking the token, then performing a term query (see
-     * {@link UserService#findUserSearchByUsername(String)} for details) using the token string to retrieve
+     * {@link UserService#findUserByUsername(String)} for details) using the token string to retrieve
      * the corresponding user.
      *
-     * @return the result of the term query, a single user.
+     * @return a pair containing the result of the term query, a single user, with its id.
      */
-    private SearchResponse<UserEntity> getUserSearchFromToken(String auth) throws IOException {
+    public UserIdPair findUserByToken(String auth) throws IOException {
         String token;
         try {
             token = auth.split(" ")[1];
@@ -186,59 +184,58 @@ public class UserService {
             throw new UnauthorizedException("Token missing or not recognised");
         }
 
-        SearchResponse<UserEntity> getUser = esClient.search(ss -> ss
+        SearchResponse<User> getUser = esClient.search(ss -> ss
                         .index(USERS)
                         .query(q -> q
                                 .term(m -> m
                                         .field("token.keyword")
                                         .value(token))
                         )
-                , UserEntity.class);
+                , User.class);
 
         if (getUser.hits().hits().isEmpty()) {
             throw new ResourceNotFoundException("Token not assigned to any user");
         }
-        return getUser;
+        return new UserIdPair(extractSource(getUser), extractId(getUser));
     }
 
     /**
-     * See {@link UserService#updateUser(String, UserEntity)}
+     * See {@link UserService#updateUser(String, User)}
      * <br>
      * Updated a user, checking before if the new username or email would be unique.
      *
      * @return the updated user.
      */
-    public UserEntity updateUser(String auth, UserDAO user) throws IOException {
+    public User updateUser(UserDTO userDTO, String auth) throws IOException {
 
-        SearchResponse<UserEntity> userSearch = getUserSearchFromToken(auth);
-        String id = extractId(userSearch);
-        UserEntity userEntity = extractSource(userSearch);
+        UserIdPair userPair = findUserByToken(auth);
+        User user = userPair.user();
 
         // if the username or email are updated, checking uniqueness
-        if (!isNullOrBlank(user.username()) && !user.username().equals(userEntity.username())) {
-            SearchResponse<UserEntity> newUsernameSearch = findUserSearchByUsername(user.username());
-            if (!newUsernameSearch.hits().hits().isEmpty()) {
+        if (!isNullOrBlank(userDTO.username()) && !userDTO.username().equals(user.username())) {
+            UserIdPair newUsernameSearch = findUserByUsername(userDTO.username());
+            if (Objects.nonNull(newUsernameSearch)) {
                 throw new ResourceAlreadyExistsException("Username already exists");
             }
         }
 
-        if (!isNullOrBlank(user.email()) && !user.email().equals(userEntity.email())) {
-            SearchResponse<UserEntity> newEmailSearch = findUserSearchByEmail(user.email());
-            if (!newEmailSearch.hits().hits().isEmpty()) {
+        if (!isNullOrBlank(userDTO.email()) && !userDTO.email().equals(user.email())) {
+            UserIdPair newUsernameSearch = findUserByEmail(userDTO.username());
+            if (Objects.nonNull(newUsernameSearch)) {
                 throw new ResourceAlreadyExistsException("Email already in use");
             }
         }
 
         // null/blank check for every optional field
-        UserEntity ue = new UserEntity(isNullOrBlank(user.username()) ? userEntity.username() :
-                user.username(),
-                isNullOrBlank(user.email()) ? userEntity.email() : user.email(),
-                userEntity.password(), userEntity.token(),
-                isNullOrBlank(user.bio()) ? userEntity.bio() : user.bio(),
-                isNullOrBlank(user.image()) ? userEntity.image() : user.image(),
-                userEntity.following());
+        User ue = new User(isNullOrBlank(userDTO.username()) ? user.username() :
+                userDTO.username(),
+                isNullOrBlank(userDTO.email()) ? user.email() : userDTO.email(),
+                user.password(), user.token(),
+                isNullOrBlank(userDTO.bio()) ? user.bio() : userDTO.bio(),
+                isNullOrBlank(userDTO.image()) ? user.image() : userDTO.image(),
+                user.following());
 
-        updateUser(id, ue);
+        updateUser(userPair.id(), ue);
         return ue;
     }
 
@@ -246,34 +243,38 @@ public class UserService {
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html
      * "> Updates</a> a user, given the updated object and its unique id.
      */
-    private void updateUser(String id, UserEntity ue) throws IOException {
-        UpdateResponse<UserEntity> upUser = esClient.update(up -> up
+    private void updateUser(String id, User ue) throws IOException {
+        UpdateResponse<User> upUser = esClient.update(up -> up
                         .index(USERS)
                         .id(id)
                         .doc(ue)
-                , UserEntity.class);
+                , User.class);
         if (!upUser.result().name().equals("Updated")) {
             throw new RuntimeException("User update failed");
         }
     }
 
-    public Profile getUserProfile(String username, String auth) throws IOException {
+    public Profile findUserProfile(String username, String auth) throws IOException {
 
-        UserEntity targetUser = findUserByUsername(username);
+        UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User targetUser = targetUserPair.user();
 
         // checking if the user is followed by who's asking
-        UserEntity askingUser = getUserEntityFromToken(auth);
-        boolean following = askingUser.following().contains(targetUser.username());
+        UserIdPair askingUserPair = findUserByToken(auth);
+        boolean following = askingUserPair.user().following().contains(targetUser.username());
 
         return new Profile(targetUser, following);
     }
 
     public Profile followUser(String username, String auth) throws IOException {
 
-        UserEntity targetUser = findUserByUsername(username);
+        UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User targetUser = targetUserPair.user();
 
-        SearchResponse<UserEntity> askingUserSearch = getUserSearchFromToken(auth);
-        UserEntity askingUser = extractSource(askingUserSearch);
+        UserIdPair askingUserPair = findUserByToken(auth);
+        User askingUser = askingUserPair.user();
 
         if (askingUser.username().equals(targetUser.username())) {
             throw new RuntimeException("Cannot follow yourself!");
@@ -283,35 +284,28 @@ public class UserService {
         if (!askingUser.following().contains(targetUser.username())) {
             askingUser.following().add(targetUser.username());
 
-            updateUser(extractId(askingUserSearch), askingUser);
+            updateUser(askingUserPair.id(), askingUser);
         }
 
         return new Profile(targetUser, true);
     }
 
     public Profile unfollowUser(String username, String auth) throws IOException {
+        UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User targetUser = targetUserPair.user();
 
-        UserEntity targetUser = findUserByUsername(username);
-
-        SearchResponse<UserEntity> askingUserSearch = getUserSearchFromToken(auth);
-        UserEntity askingUser = extractSource(askingUserSearch);
+        UserIdPair askingUserPair = findUserByToken(auth);
+        User askingUser = askingUserPair.user();
 
         // remove followed user to list if not already present
         if (askingUser.following().contains(targetUser.username())) {
             askingUser.following().remove(targetUser.username());
 
-            updateUser(extractId(askingUserSearch), askingUser);
+            updateUser(askingUserPair.id(), askingUser);
         }
 
         return new Profile(targetUser, false);
-    }
-
-    private UserEntity findUserByUsername(String username) throws IOException {
-        SearchResponse<UserEntity> getUser = findUserSearchByUsername(username);
-        if (getUser.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Target user not found");
-        }
-        return extractSource(getUser);
     }
 
     /**
@@ -326,33 +320,41 @@ public class UserService {
      * property of the field allows to use the original value of the string while querying, instead of the
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html"> processed/tokenized</a> value.
      *
-     * @return the result of the term query, a single user.
+     * @return a pair containing the result of the term query, a single user, with its id.
      */
-    private SearchResponse<UserEntity> findUserSearchByUsername(String username) throws IOException {
+    private UserIdPair findUserByUsername(String username) throws IOException {
         // simple term query to match exactly the username string
-        return esClient.search(ss -> ss
+        SearchResponse<User> getUser = esClient.search(ss -> ss
                         .index(USERS)
                         .query(q -> q
                                 .term(t -> t
                                         .field("username.keyword")
                                         .value(username)))
-                , UserEntity.class);
+                , User.class);
+        if (getUser.hits().hits().isEmpty()) {
+            return null;
+        }
+        return new UserIdPair(extractSource(getUser), extractId(getUser));
     }
 
     /**
      * Searches the "users" index for a document containing the exact same email.
-     * See {@link UserService#findUserSearchByUsername(String)} for details.
+     * See {@link UserService#findUserByUsername(String)} for details.
      *
      * @return the result of the term query, a single user.
      */
-    private SearchResponse<UserEntity> findUserSearchByEmail(String email) throws IOException {
+    private UserIdPair findUserByEmail(String email) throws IOException {
         // simple term query to match exactly the email string
-        return esClient.search(ss -> ss
+        SearchResponse<User> getUser = esClient.search(ss -> ss
                         .index(USERS)
                         .query(q -> q
                                 .term(t -> t
                                         .field("email.keyword")
                                         .value(email)))
-                , UserEntity.class);
+                , User.class);
+        if (getUser.hits().hits().isEmpty()) {
+            return null;
+        }
+        return new UserIdPair(extractSource(getUser), extractId(getUser));
     }
 }

@@ -17,18 +17,24 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.entity.user;
 
-import realworld.entity.user.Author;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import java.time.Instant;
+@JsonTypeName("user")
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
+public record UserDTO(
 
-public record CommentForListDAO(Integer id, Instant createdAt, Instant updatedAt, String body,
-                                Author author) {
+        String username,
+        String email,
+        String token,
+        String bio,
+        String image) {
 
-    public CommentForListDAO(CommentEntity commentEntity) {
-        this(commentEntity.id(), Instant.ofEpochMilli(commentEntity.createdAt()),
-                Instant.ofEpochMilli(commentEntity.updatedAt()), commentEntity.body(),
-                commentEntity.author());
+    public UserDTO(User ue) {
+        this(ue.username(), ue.email(), ue.token(), ue.bio(), ue.image());
     }
 }

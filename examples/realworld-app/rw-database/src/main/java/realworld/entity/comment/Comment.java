@@ -17,24 +17,10 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.entity.comment;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import realworld.entity.user.Author;
 
-@JsonTypeName("user")
-@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record UserDAO(
-
-        String username,
-        String email,
-        String token,
-        String bio,
-        String image) {
-
-    public UserDAO(UserEntity ue) {
-        this(ue.username(), ue.email(), ue.token(), ue.bio(), ue.image());
-    }
+public record Comment(Integer id, Long createdAt, Long updatedAt, String body, Author author,
+                      String articleSlug) {
 }

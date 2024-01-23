@@ -41,14 +41,12 @@ import realworld.entity.exception.ResourceAlreadyExistsException;
 import realworld.entity.exception.ResourceNotFoundException;
 import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.Author;
-import realworld.entity.user.UserEntity;
+import realworld.entity.user.User;
+import realworld.utils.ArticleIdPair;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static realworld.constant.Constants.ARTICLES;
@@ -59,70 +57,64 @@ import static realworld.utils.Utility.*;
 public class ArticleService {
 
     private final ElasticsearchClient esClient;
-    private final UserService userService;
 
     @Autowired
-    public ArticleService(ElasticsearchClient esClient, UserService userService) {
+    public ArticleService(ElasticsearchClient esClient) {
         this.esClient = esClient;
-        this.userService = userService;
     }
 
     /**
      * Creates a new article and saves it into the articles index.
      *
-     * @return {@link ArticleEntity}
+     * @return {@link Article}
      */
-    public ArticleEntity newArticle(ArticleCreationDAO article, String auth) throws IOException {
+    public Article newArticle(ArticleCreationDTO articleDTO, Author author) throws IOException {
 
         // Checking if slug would be unique
-        String slug = generateAndCheckSlug(article.title());
+        String slug = generateAndCheckSlug(articleDTO.title());
 
         // Getting the author
-        UserEntity ue = userService.getUserEntityFromToken(auth);
-        Author author = new Author(ue, false);
         Long now = Instant.now().toEpochMilli();
 
-        ArticleEntity articleEntity = new ArticleEntity(article, slug, now, now, author);
+        Article article = new Article(articleDTO, slug, now, now, author);
 
-        IndexRequest<ArticleEntity> articleReq = IndexRequest.of((id -> id
+        IndexRequest<Article> articleReq = IndexRequest.of((id -> id
                 .index(ARTICLES)
                 .refresh(Refresh.WaitFor)
-                .document(articleEntity)));
+                .document(article)));
 
         esClient.index(articleReq);
 
-        return articleEntity;
+        return article;
     }
 
-    public SearchResponse<ArticleEntity> singleArticleBySlug(String slug) throws IOException {
+    public ArticleIdPair findArticleBySlug(String slug) throws IOException {
 
         // using term query to match exactly the slug
-        return esClient.search(ss -> ss
+        SearchResponse<Article> getArticle = esClient.search(ss -> ss
                         .index(ARTICLES)
                         .query(q -> q
                                 .term(t -> t
                                         .field("slug.keyword")
                                         .value(slug))
                         )
-                , ArticleEntity.class);
+                , Article.class);
+
+        if (getArticle.hits().hits().isEmpty()) {
+            return null;
+        }
+        return new ArticleIdPair(extractSource(getArticle), extractId(getArticle));
     }
 
-    public ArticleEntity getArticleBySlug(String slug) throws IOException {
-        SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
-        return extractSource(articleSearch);
-    }
-
-    public ArticleDAO updateArticle(ArticleUpdateDAO article, String auth, String slug) throws IOException {
+    public ArticleDTO updateArticle(ArticleUpdateDTO article, String slug, Author author) throws IOException {
 
         // getting original article from slug
-        SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
-        String id = extractId(articleSearch);
-        ArticleEntity oldArticle = extractSource(articleSearch);
+        ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+        String id = articlePair.id();
+        Article oldArticle = articlePair.article();
 
         // checking if author is the same
-        UserEntity ue = userService.getUserEntityFromToken(auth);
-        Author author = new Author(ue, false);
-
         if (!oldArticle.author().username().equals(author.username())) {
             throw new UnauthorizedException("Cannot modify article from another author");
         }
@@ -135,7 +127,7 @@ public class ArticleService {
 
         Long updatedAt = Instant.now().toEpochMilli();
 
-        ArticleEntity updatedArticle = new ArticleEntity(newSlug,
+        Article updatedArticle = new Article(newSlug,
                 isNullOrBlank(article.title()) ? oldArticle.title() : article.title(),
                 isNullOrBlank(article.description()) ? oldArticle.description() : article.description(),
                 isNullOrBlank(article.body()) ? oldArticle.body() : article.body(),
@@ -144,20 +136,18 @@ public class ArticleService {
                 oldArticle.favoritedBy(), oldArticle.author());
 
         updateArticle(id, updatedArticle);
-        return new ArticleDAO(updatedArticle);
+        return new ArticleDTO(updatedArticle);
     }
 
-    public void deleteArticle(String auth, String slug) throws IOException {
+    public void deleteArticle(String slug, Author author) throws IOException {
 
         // getting article from slug
-        SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
-        ArticleEntity articleEntity = extractSource(articleSearch);
+        ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+        Article article = articlePair.article();
 
         // checking if author is the same
-        UserEntity ue = userService.getUserEntityFromToken(auth);
-        Author author = new Author(ue, false);
-
-        if (!articleEntity.author().username().equals(author.username())) {
+        if (!article.author().username().equals(author.username())) {
             throw new UnauthorizedException("Cannot delete article from another author");
         }
 
@@ -191,20 +181,19 @@ public class ArticleService {
         }
     }
 
-    public ArticleEntity favoriteArticle(String slug, String auth) throws IOException {
-        UserEntity user = userService.getUserEntityFromToken(auth);
-
-        SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
-        String id = extractId(articleSearch);
-        ArticleEntity article = extractSource(articleSearch);
+    public Article markArticleAsFavorite(String slug, String username) throws IOException {
+        ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+        String id = articlePair.id();
+        Article article = articlePair.article();
 
         // checking if article was already favorited
-        if (article.favoritedBy().contains(user.username())) {
+        if (article.favoritedBy().contains(username)) {
             return article;
         }
 
-        article.favoritedBy().add(user.username());
-        ArticleEntity updatedArticle = new ArticleEntity(article.slug(), article.title(),
+        article.favoritedBy().add(username);
+        Article updatedArticle = new Article(article.slug(), article.title(),
                 article.description(),
                 article.body(), article.tagList(), article.createdAt(), article.updatedAt(),
                 true, article.favoritesCount() + 1, article.favoritedBy(), article.author());
@@ -213,26 +202,25 @@ public class ArticleService {
         return updatedArticle;
     }
 
-    public ArticleEntity unfavoriteArticle(String slug, String auth) throws IOException {
-        UserEntity user = userService.getUserEntityFromToken(auth);
+    public Article removeArticleFromFavorite(String slug, String username) throws IOException {
+        ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
+                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+        String id = articlePair.id();
+        Article article = articlePair.article();
 
-        SearchResponse<ArticleEntity> articleSearch = getArticleEntitySearchResponse(slug);
-        String id = extractId(articleSearch);
-        ArticleEntity article = extractSource(articleSearch);
-
-        // checking if article wasn't favorited before
-        if (!article.favoritedBy().contains(user.username())) {
+        // checking if article was not marked as favorite before
+        if (!article.favoritedBy().contains(username)) {
             return article;
         }
 
-        article.favoritedBy().remove(user.username());
+        article.favoritedBy().remove(username);
         int favoriteCount = article.favoritesCount() - 1;
         boolean favorited = article.favorited();
         if (favoriteCount == 0) {
             favorited = false;
         }
 
-        ArticleEntity updatedArticle = new ArticleEntity(article.slug(), article.title(),
+        Article updatedArticle = new Article(article.slug(), article.title(),
                 article.description(),
                 article.body(), article.tagList(), article.createdAt(), article.updatedAt(), favorited,
                 favoriteCount, article.favoritedBy(), article.author());
@@ -241,12 +229,9 @@ public class ArticleService {
         return updatedArticle;
     }
 
-    public Articles getArticles(String tag, String author, String favorited, Integer limit, Integer offset,
-                                String auth) throws IOException {
-        UserEntity user = null;
-        if (!isNullOrBlank(auth)) {
-            user = userService.getUserEntityFromToken(auth);
-        }
+    public ArticlesDTO findArticles(String tag, String author, String favorited, Integer limit,
+                                    Integer offset,
+                                    Optional<User> user) throws IOException {
         List<Query> match = new ArrayList<>();
         // since all the parameters for this query are optional, the query must be build conditionally
         // using a "match" query instead of a "term" query to allow the use a single word for searching
@@ -271,7 +256,7 @@ public class ArticleService {
 
         Query query = new Query.Builder().bool(b -> b.should(match)).build();
 
-        SearchResponse<ArticleEntity> getArticle = esClient.search(ss -> ss
+        SearchResponse<Article> getArticle = esClient.search(ss -> ss
                         .index(ARTICLES)
                         .size(limit)
                         .from(offset)
@@ -280,10 +265,9 @@ public class ArticleService {
                                 .field(fld -> fld
                                         .field("updatedAt")
                                         .order(SortOrder.Desc)))
-                , ArticleEntity.class);
+                , Article.class);
 
-        UserEntity finalUser = user;
-        return new Articles(getArticle.hits().hits()
+        return new ArticlesDTO(getArticle.hits().hits()
                 .stream()
                 .map(Hit::source)
                 // if tag specified, put that tag first in the array
@@ -292,12 +276,12 @@ public class ArticleService {
                         Collections.swap(a.tagList(), a.tagList().indexOf(tag), 0);
                     }
                 })
-                .map(ArticleForListDAO::new)
+                .map(ArticleForListDTO::new)
                 // if auth provided, filling the "following" field of "Author" accordingly
                 .map(a -> {
-                    if (Objects.nonNull(finalUser)) {
-                        boolean following = finalUser.following().contains(a.author().username());
-                        return new ArticleForListDAO(a, new Author(a.author().username(),
+                    if (user.isPresent()) {
+                        boolean following = user.get().following().contains(a.author().username());
+                        return new ArticleForListDTO(a, new Author(a.author().username(),
                                 a.author().email(), a.author().bio(), following));
                     }
                     return a;
@@ -305,17 +289,15 @@ public class ArticleService {
                 .collect(Collectors.toList()), getArticle.hits().hits().size());
     }
 
-    public Articles articleFeed(String auth) throws IOException {
-        UserEntity userEntity = userService.getUserEntityFromToken(auth);
-
+    public ArticlesDTO generateArticleFeed(User user) throws IOException {
         // preparing authors filter from user data
-        List<FieldValue> authorsFilter = userEntity.following().stream()
+        List<FieldValue> authorsFilter = user.following().stream()
                 .map(FieldValue::of).toList();
 
         // a terms query can be used to query for multiple values, like authors.
         // the sort options is used afterward to determine which field determines the output order
         // note how the nested class "author" is easily accessible with the use of the dot notation
-        SearchResponse<ArticleEntity> articlesByAuthors = esClient.search(ss -> ss
+        SearchResponse<Article> articlesByAuthors = esClient.search(ss -> ss
                         .index(ARTICLES)
                         .query(q -> q
                                 .bool(b -> b
@@ -328,17 +310,17 @@ public class ArticleService {
                                 .field(fld -> fld
                                         .field("updatedAt")
                                         .order(SortOrder.Desc)))
-                , ArticleEntity.class);
+                , Article.class);
 
-        return new Articles(articlesByAuthors.hits().hits()
+        return new ArticlesDTO(articlesByAuthors.hits().hits()
                 .stream()
                 .map(Hit::source)
-                .map(ArticleForListDAO::new)
+                .map(ArticleForListDTO::new)
                 .collect(Collectors.toList()), articlesByAuthors.hits().hits().size());
     }
 
 
-    public Tags allTags() throws IOException {
+    public TagsDTO findAllTags() throws IOException {
 
         // since the API definition doesn't specify the return order of tags, sorting by document count
         // using "_count"
@@ -357,7 +339,7 @@ public class ArticleService {
                 Aggregation.class
         );
 
-        return new Tags(aggregateTags.aggregations().get("tags")
+        return new TagsDTO(aggregateTags.aggregations().get("tags")
                 .sterms().buckets()
                 .array().stream()
                 .map(st -> st.key().stringValue())
@@ -367,26 +349,18 @@ public class ArticleService {
 
     private String generateAndCheckSlug(String title) throws IOException {
         String slug = Slugify.builder().build().slugify(title);
-        if (!singleArticleBySlug(slug).hits().hits().isEmpty()) {
+        if (Objects.nonNull(findArticleBySlug(slug))) {
             throw new ResourceAlreadyExistsException("Article slug already exists, please change the title");
         }
         return slug;
     }
 
-    private SearchResponse<ArticleEntity> getArticleEntitySearchResponse(String slug) throws IOException {
-        SearchResponse<ArticleEntity> articleSearch = singleArticleBySlug(slug);
-        if (articleSearch.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Article not found");
-        }
-        return articleSearch;
-    }
-
-    private void updateArticle(String id, ArticleEntity updatedArticle) throws IOException {
-        UpdateResponse<ArticleEntity> upArticle = esClient.update(up -> up
+    private void updateArticle(String id, Article updatedArticle) throws IOException {
+        UpdateResponse<Article> upArticle = esClient.update(up -> up
                         .index(ARTICLES)
                         .id(id)
                         .doc(updatedArticle)
-                , ArticleEntity.class);
+                , Article.class);
         if (!upArticle.result().name().equals("Updated")) {
             throw new RuntimeException("Article update failed");
         }

@@ -32,7 +32,7 @@ public record Profile(
         String bio,
         boolean following) {
 
-    public Profile(UserEntity ue, boolean following) {
+    public Profile(User ue, boolean following) {
         this(ue.username(), ue.image(), ue.bio(), following);
     }
 }

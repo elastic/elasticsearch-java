@@ -19,7 +19,16 @@
 
 package realworld.entity.comment;
 
-import java.util.List;
+import realworld.entity.user.Author;
 
-public record Comments(List<CommentForListDAO> comments) {
+import java.time.Instant;
+
+public record CommentForListDTO(Integer id, Instant createdAt, Instant updatedAt, String body,
+                                Author author) {
+
+    public CommentForListDTO(Comment comment) {
+        this(comment.id(), Instant.ofEpochMilli(comment.createdAt()),
+                Instant.ofEpochMilli(comment.updatedAt()), comment.body(),
+                comment.author());
+    }
 }

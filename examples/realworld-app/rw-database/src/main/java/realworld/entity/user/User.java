@@ -17,9 +17,17 @@
  * under the License.
  */
 
-package realworld.entity.article;
+package realworld.entity.user;
 
 import java.util.List;
 
-public record Tags(List<String> tags) {
+public record User(
+
+        String username,
+        String email,
+        String password,
+        String token,
+        String bio,
+        String image,
+        List<String> following) {
 }

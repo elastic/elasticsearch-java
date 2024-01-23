@@ -19,12 +19,18 @@
 
 package realworld.entity.article;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import realworld.entity.user.Author;
 
 import java.time.Instant;
 import java.util.List;
 
-public record ArticleForListDAO(
+@JsonTypeName("article")
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
+public record ArticleDTO(
         String slug,
         String title,
         String description,
@@ -37,15 +43,9 @@ public record ArticleForListDAO(
         Author author) {
 
 
-    public ArticleForListDAO(ArticleEntity article) {
+    public ArticleDTO(Article article) {
         this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
                 Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()),
                 article.favorited(), article.favoritesCount(), article.author());
-    }
-
-    public ArticleForListDAO(ArticleForListDAO article, Author author) {
-        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-                article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(),
-                author);
     }
 }

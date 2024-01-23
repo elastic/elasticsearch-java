@@ -21,25 +21,31 @@ package realworld.entity.article;
 
 import realworld.entity.user.Author;
 
-import java.util.ArrayList;
+import java.time.Instant;
 import java.util.List;
 
-public record ArticleEntity(
+public record ArticleForListDTO(
         String slug,
         String title,
         String description,
         String body,
         List<String> tagList,
-        Long createdAt,
-        Long updatedAt,
+        Instant createdAt,
+        Instant updatedAt,
         boolean favorited,
         int favoritesCount,
-        List<String> favoritedBy,
         Author author) {
 
-    public ArticleEntity(ArticleCreationDAO article, String slug, Long createdAt, Long updatedAt,
-                         Author author) {
-        this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt,
-                updatedAt, false, 0, new ArrayList<>(), author);
+
+    public ArticleForListDTO(Article article) {
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
+                Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()),
+                article.favorited(), article.favoritesCount(), article.author());
+    }
+
+    public ArticleForListDTO(ArticleForListDTO article, Author author) {
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
+                article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(),
+                author);
     }
 }

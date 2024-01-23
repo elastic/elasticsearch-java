@@ -17,15 +17,14 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.entity.article;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import jakarta.validation.constraints.NotNull;
 
-@JsonTypeName("comment")
+@JsonTypeName("article")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record CommentCreationDAO(@NotNull String body) {
+public record ArticleUpdateDTO(String title, String description, String body) {
 }

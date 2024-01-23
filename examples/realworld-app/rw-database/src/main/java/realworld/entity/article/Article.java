@@ -17,10 +17,29 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.entity.article;
 
 import realworld.entity.user.Author;
 
-public record CommentEntity(Integer id, Long createdAt, Long updatedAt, String body, Author author,
-                            String articleSlug) {
+import java.util.ArrayList;
+import java.util.List;
+
+public record Article(
+        String slug,
+        String title,
+        String description,
+        String body,
+        List<String> tagList,
+        Long createdAt,
+        Long updatedAt,
+        boolean favorited,
+        int favoritesCount,
+        List<String> favoritedBy,
+        Author author) {
+
+    public Article(ArticleCreationDTO article, String slug, Long createdAt, Long updatedAt,
+                   Author author) {
+        this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt,
+                updatedAt, false, 0, new ArrayList<>(), author);
+    }
 }
