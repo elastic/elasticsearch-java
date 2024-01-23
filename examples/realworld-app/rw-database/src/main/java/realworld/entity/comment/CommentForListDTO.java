@@ -19,16 +19,23 @@
 
 package realworld.entity.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import realworld.entity.user.Author;
 
 import java.time.Instant;
 
-public record CommentForListDTO(Integer id, Instant createdAt, Instant updatedAt, String body,
-                                Author author) {
+public record CommentForListDTO(
+        Integer id,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+        Instant createdAt,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+        Instant updatedAt,
+        String body,
+        Author author) {
 
     public CommentForListDTO(Comment comment) {
-        this(comment.id(), Instant.ofEpochMilli(comment.createdAt()),
-                Instant.ofEpochMilli(comment.updatedAt()), comment.body(),
+        this(comment.id(), comment.createdAt(),
+                comment.updatedAt(), comment.body(),
                 comment.author());
     }
 }

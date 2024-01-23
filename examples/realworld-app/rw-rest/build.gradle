@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-web:3.2.0")
-  implementation("realworldapp:rw-database")
+  implementation('org.springframework.boot:spring-boot-starter-web:3.2.0')
+  implementation('realworldapp:rw-database')
 }
+

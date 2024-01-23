@@ -19,6 +19,7 @@
 
 package realworld.entity.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
@@ -29,11 +30,18 @@ import java.time.Instant;
 
 @JsonTypeName("comment")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record CommentDTO(Integer id, Instant createdAt, Instant updatedAt, String body, Author author) {
+public record CommentDTO(
+        Integer id,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+        Instant createdAt,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+        Instant updatedAt,
+        String body,
+        Author author) {
 
     public CommentDTO(Comment comment) {
-        this(comment.id(), Instant.ofEpochMilli(comment.createdAt()),
-                Instant.ofEpochMilli(comment.updatedAt()), comment.body(),
+        this(comment.id(), comment.createdAt(),
+                comment.updatedAt(), comment.body(),
                 comment.author());
     }
 }

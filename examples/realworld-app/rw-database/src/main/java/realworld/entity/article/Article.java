@@ -19,8 +19,10 @@
 
 package realworld.entity.article;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import realworld.entity.user.Author;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +32,16 @@ public record Article(
         String description,
         String body,
         List<String> tagList,
-        Long createdAt,
-        Long updatedAt,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+        Instant createdAt,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+        Instant updatedAt,
         boolean favorited,
         int favoritesCount,
         List<String> favoritedBy,
         Author author) {
 
-    public Article(ArticleCreationDTO article, String slug, Long createdAt, Long updatedAt,
+    public Article(ArticleCreationDTO article, String slug, Instant createdAt, Instant updatedAt,
                    Author author) {
         this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt,
                 updatedAt, false, 0, new ArrayList<>(), author);

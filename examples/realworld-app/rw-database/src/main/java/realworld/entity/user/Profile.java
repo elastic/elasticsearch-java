@@ -26,11 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("profile")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record Profile(
-        String username,
-        String image,
-        String bio,
-        boolean following) {
+public record Profile(String username, String image, String bio, boolean following) {
 
     public Profile(User ue, boolean following) {
         this(ue.username(), ue.image(), ue.bio(), following);

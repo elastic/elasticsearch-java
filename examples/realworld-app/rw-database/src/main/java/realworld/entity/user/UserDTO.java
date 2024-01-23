@@ -27,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("user")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
 public record UserDTO(
-
         String username,
         String email,
         String token,

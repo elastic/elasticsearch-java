@@ -22,7 +22,6 @@ package realworld.entity.user;
 import java.util.List;
 
 public record User(
-
         String username,
         String email,
         String password,

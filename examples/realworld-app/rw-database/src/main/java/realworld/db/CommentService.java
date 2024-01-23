@@ -57,7 +57,7 @@ public class CommentService {
     public Comment newComment(CommentCreationDTO commentDTO, String slug, User user) throws IOException {
         // assuming you cannot follow yourself
         Author commentAuthor = new Author(user, false);
-        Long now = Instant.now().toEpochMilli();
+        Instant now = Instant.now();
 
         // pre-generating id since it's a field in the comment class
         Integer commentId = UUID.randomUUID().hashCode();

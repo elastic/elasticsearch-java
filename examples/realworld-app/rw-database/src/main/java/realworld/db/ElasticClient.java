@@ -117,9 +117,9 @@ public class ElasticClient {
                     .index(index)
                     .mappings(m -> m
                             .properties("createdAt", p -> p
-                                    .date(d -> d)) // epoch_millis is already present by default
+                                    .date(d -> d.format("strict_date_optional_time")))
                             .properties("updatedAt", p -> p
-                                    .date(d -> d))));
+                                    .date(d -> d.format("strict_date_optional_time")))));
 
         }
     }

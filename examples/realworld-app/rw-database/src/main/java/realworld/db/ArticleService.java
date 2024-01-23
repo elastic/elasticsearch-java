@@ -73,9 +73,7 @@ public class ArticleService {
         // Checking if slug would be unique
         String slug = generateAndCheckSlug(articleDTO.title());
 
-        // Getting the author
-        Long now = Instant.now().toEpochMilli();
-
+        Instant now = Instant.now();
         Article article = new Article(articleDTO, slug, now, now, author);
 
         IndexRequest<Article> articleReq = IndexRequest.of((id -> id
@@ -125,7 +123,7 @@ public class ArticleService {
             newSlug = generateAndCheckSlug(article.title());
         }
 
-        Long updatedAt = Instant.now().toEpochMilli();
+        Instant updatedAt = Instant.now();
 
         Article updatedArticle = new Article(newSlug,
                 isNullOrBlank(article.title()) ? oldArticle.title() : article.title(),

@@ -19,6 +19,7 @@
 
 package realworld.entity.article;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
@@ -36,7 +37,9 @@ public record ArticleDTO(
         String description,
         String body,
         List<String> tagList,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
         Instant createdAt,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
         Instant updatedAt,
         boolean favorited,
         int favoritesCount,
@@ -45,7 +48,7 @@ public record ArticleDTO(
 
     public ArticleDTO(Article article) {
         this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-                Instant.ofEpochMilli(article.createdAt()), Instant.ofEpochMilli(article.updatedAt()),
+                article.createdAt(), article.updatedAt(),
                 article.favorited(), article.favoritesCount(), article.author());
     }
 }
