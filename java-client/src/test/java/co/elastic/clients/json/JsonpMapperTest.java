@@ -19,15 +19,18 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonNumber;
+import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import org.eclipse.parsson.JsonProviderImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -46,16 +49,18 @@ public class JsonpMapperTest extends Assertions {
 
     @Test
     public void testJsonb() {
-        JsonpMapper mapper = new JsonbJsonpMapper();
+        JsonpMapper mapper = new JsonbJsonpMapper(new JsonProviderImpl(), JsonbProvider.provider());
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
+        testLargeNumber(mapper);
     }
 
     @Test
     public void testJackson() {
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
-        testSerialize(new JacksonJsonpMapper(), json);
-        testDeserialize(new JacksonJsonpMapper(), json);
+        testSerialize(mapper, json);
+        testDeserialize(mapper, json);
+        testLargeNumber(mapper);
     }
 
     @Test
@@ -147,6 +152,20 @@ public class JsonpMapperTest extends Assertions {
         assertEquals(3.2, child.getDoubleValue(), 0.0);
         assertNull(child.getStringValue());
         assertNull(child.getChildren());
+    }
+
+    private void testLargeNumber(JsonpMapper mapper) {
+        String json = "[1e999999]";
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        parser.next();
+
+        JsonArray array = parser.getValue().asJsonArray();
+
+        JsonNumber number = array.getJsonNumber(0);
+
+        assertTrue(Double.isInfinite(number.doubleValue()));
+
+        Assertions.assertThrows(Exception.class, number::bigIntegerValue);
     }
 
     public static class SomeClass {
