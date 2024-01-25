@@ -58,19 +58,20 @@ public class ElasticClient {
 
         // Create the low-level client
         RestClient restClient = RestClient
-                .builder(HttpHost.create(serverUrl))
-                .setDefaultHeaders(new Header[]{
-                        new BasicHeader("Authorization", "ApiKey " + apiKey)
-                })
-                .build();
+            .builder(HttpHost.create(serverUrl))
+            .setDefaultHeaders(new Header[]{
+                new BasicHeader("Authorization", "ApiKey " + apiKey)
+            })
+            .build();
 
+        // TODO explain
         ObjectMapper mapper = JsonMapper.builder()
-                .addModule(new JavaTimeModule()) // other modules can be added here
-                .build();
+            .addModule(new JavaTimeModule()) // other modules can be added here
+            .build();
 
         // Create the transport with a Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(
-                restClient, new JacksonJsonpMapper(mapper));
+            restClient, new JacksonJsonpMapper(mapper));
 
         // And create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
@@ -95,7 +96,7 @@ public class ElasticClient {
         BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));
         if (!indexRes.value()) {
             esClient.indices().create(c -> c
-                    .index(index));
+                .index(index));
         }
     }
 
@@ -114,12 +115,12 @@ public class ElasticClient {
         BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));
         if (!indexRes.value()) {
             esClient.indices().create(c -> c
-                    .index(index)
-                    .mappings(m -> m
-                            .properties("createdAt", p -> p
-                                    .date(d -> d.format("strict_date_optional_time")))
-                            .properties("updatedAt", p -> p
-                                    .date(d -> d.format("strict_date_optional_time")))));
+                .index(index)
+                .mappings(m -> m
+                    .properties("createdAt", p -> p
+                        .date(d -> d.format("strict_date_optional_time")))
+                    .properties("updatedAt", p -> p
+                        .date(d -> d.format("strict_date_optional_time")))));
 
         }
     }

@@ -50,10 +50,10 @@ public class ElasticClientTest {
     public ElasticsearchClient elasticRestClient() throws IOException {
         String image = "docker.elastic.co/elasticsearch/elasticsearch:8.11.4";
         ElasticsearchContainer container = new ElasticsearchContainer(image)
-                .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
-                .withEnv("path.repo", "/tmp") // for snapshots
-                .withStartupTimeout(Duration.ofSeconds(30))
-                .withPassword("changeme");
+            .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
+            .withEnv("path.repo", "/tmp") // for snapshots
+            .withStartupTimeout(Duration.ofSeconds(30))
+            .withPassword("changeme");
         container.start();
 
         int port = container.getMappedPort(9200);
@@ -64,19 +64,19 @@ public class ElasticClientTest {
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(
-                AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
+            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
         );
         RestClient restClient = RestClient.builder(host)
-                .setHttpClientConfigCallback(hc -> hc
-                        .setDefaultCredentialsProvider(credsProv)
-                        .setSSLContext(sslContext)
-                )
-                .build();
+            .setHttpClientConfigCallback(hc -> hc
+                .setDefaultCredentialsProvider(credsProv)
+                .setSSLContext(sslContext)
+            )
+            .build();
         ObjectMapper mapper = JsonMapper.builder()
-                .addModule(new JavaTimeModule()) // other modules can be added here
-                .build();
+            .addModule(new JavaTimeModule()) // other modules can be added here
+            .build();
         ElasticsearchTransport transport = new RestClientTransport(restClient,
-                new JacksonJsonpMapper(mapper));
+            new JacksonJsonpMapper(mapper));
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         // Creating the indexes
@@ -91,7 +91,7 @@ public class ElasticClientTest {
         BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));
         if (!indexRes.value()) {
             esClient.indices().create(c -> c
-                    .index(index));
+                .index(index));
         }
     }
 
@@ -99,12 +99,12 @@ public class ElasticClientTest {
         BooleanResponse indexRes = esClient.indices().exists(ex -> ex.index(index));
         if (!indexRes.value()) {
             esClient.indices().create(c -> c
-                    .index(index)
-                    .mappings(m -> m
-                            .properties("createdAt", p -> p
-                                    .date(d -> d))
-                            .properties("updatedAt", p -> p
-                                    .date(d -> d))));
+                .index(index)
+                .mappings(m -> m
+                    .properties("createdAt", p -> p
+                        .date(d -> d))
+                    .properties("updatedAt", p -> p
+                        .date(d -> d))));
 
         }
     }

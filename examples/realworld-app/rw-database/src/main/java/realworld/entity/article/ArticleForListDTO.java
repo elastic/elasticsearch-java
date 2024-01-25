@@ -26,29 +26,29 @@ import java.time.Instant;
 import java.util.List;
 
 public record ArticleForListDTO(
-        String slug,
-        String title,
-        String description,
-        String body,
-        List<String> tagList,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant createdAt,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant updatedAt,
-        boolean favorited,
-        int favoritesCount,
-        Author author) {
+    String slug,
+    String title,
+    String description,
+    String body,
+    List<String> tagList,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    boolean favorited,
+    int favoritesCount,
+    Author author) {
 
 
     public ArticleForListDTO(Article article) {
         this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-                article.createdAt(), article.updatedAt(),
-                article.favorited(), article.favoritesCount(), article.author());
+            article.createdAt(), article.updatedAt(),
+            article.favorited(), article.favoritesCount(), article.author());
     }
 
     public ArticleForListDTO(ArticleForListDTO article, Author author) {
         this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-                article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(),
-                author);
+            article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(),
+            author);
     }
 }

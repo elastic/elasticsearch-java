@@ -63,7 +63,7 @@ public class ArticleController {
 
     @PostMapping()
     public ResponseEntity<ArticleDTO> newArticle(@RequestBody ArticleCreationDTO req, @RequestHeader(
-            "Authorization") String auth) throws IOException {
+        "Authorization") String auth) throws IOException {
         UserIdPair userPair = userService.findUserByToken(auth);
         Author author = new Author(userPair.user(), false);
 
@@ -75,8 +75,8 @@ public class ArticleController {
     @GetMapping("/{slug}")
     public ResponseEntity<ArticleDTO> findArticleBySlug(@PathVariable String slug) throws IOException {
         Article res = Optional.ofNullable(articleService.findArticleBySlug(slug))
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found"))
-                .article();
+            .orElseThrow(() -> new ResourceNotFoundException("Article not found"))
+            .article();
         logger.debug("Retrieved article: {}", slug);
         return ResponseEntity.ok(new ArticleDTO(res));
     }
@@ -88,7 +88,7 @@ public class ArticleController {
                                                     @RequestParam(required = false) Integer limit,
                                                     @RequestParam(required = false) Integer offset,
                                                     @RequestHeader(value = "Authorization", required =
-                                                            false) String auth) throws IOException {
+                                                        false) String auth) throws IOException {
         Optional<User> user = Optional.empty();
         if (!isNullOrBlank(auth)) {
             user = Optional.of(userService.findUserByToken(auth).user());
@@ -109,7 +109,7 @@ public class ArticleController {
 
     @PostMapping("/{slug}/favorite")
     public ResponseEntity<ArticleDTO> markArticleAsFavorite(@PathVariable String slug, @RequestHeader(
-            "Authorization") String auth) throws IOException {
+        "Authorization") String auth) throws IOException {
         String username = userService.findUserByToken(auth).user().username();
 
         Article res = articleService.markArticleAsFavorite(slug, username);
@@ -119,7 +119,7 @@ public class ArticleController {
 
     @DeleteMapping("/{slug}/favorite")
     public ResponseEntity<ArticleDTO> removeArticleFromFavorite(@PathVariable String slug, @RequestHeader(
-            "Authorization") String auth) throws IOException {
+        "Authorization") String auth) throws IOException {
         String username = userService.findUserByToken(auth).user().username();
 
         Article res = articleService.removeArticleFromFavorite(slug, username);
@@ -130,7 +130,7 @@ public class ArticleController {
     @PutMapping("/{slug}")
     public ResponseEntity<ArticleDTO> updateArticle(@RequestBody ArticleUpdateDTO req,
                                                     @PathVariable String slug, @RequestHeader(
-            "Authorization") String auth) throws IOException {
+        "Authorization") String auth) throws IOException {
         UserIdPair userPair = userService.findUserByToken(auth);
         Author author = new Author(userPair.user(), false);
 
@@ -166,7 +166,7 @@ public class ArticleController {
 
     @GetMapping("/{slug}/comments")
     public ResponseEntity<CommentsDTO> allCommentsByArticle(@PathVariable String slug, @RequestHeader(
-            value = "Authorization", required = false) String auth) throws IOException {
+        value = "Authorization", required = false) String auth) throws IOException {
         Optional<User> user = Optional.empty();
         if (!isNullOrBlank(auth)) {
             user = Optional.of(userService.findUserByToken(auth).user());
@@ -181,7 +181,7 @@ public class ArticleController {
                                               @RequestHeader("Authorization") String auth) throws IOException {
         String username = userService.findUserByToken(auth).user().username();
 
-        commentService.deleteComment(commentId, slug, username);
+        commentService.deleteComment(commentId, username);
         logger.debug("Deleted comment: {} from article {}", commentId, slug);
         return ResponseEntity.ok().build();
     }

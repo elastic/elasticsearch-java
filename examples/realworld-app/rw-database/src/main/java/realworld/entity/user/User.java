@@ -22,11 +22,12 @@ package realworld.entity.user;
 import java.util.List;
 
 public record User(
-        String username,
-        String email,
-        String password,
-        String token,
-        String bio,
-        String image,
-        List<String> following) {
+    String username,
+    String email,
+    String password,
+    String token,
+    String bio,
+    String image,
+    byte[] salt,
+    List<String> following) {
 }

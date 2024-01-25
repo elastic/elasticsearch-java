@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery.Builder;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
@@ -77,9 +78,9 @@ public class ArticleService {
         Article article = new Article(articleDTO, slug, now, now, author);
 
         IndexRequest<Article> articleReq = IndexRequest.of((id -> id
-                .index(ARTICLES)
-                .refresh(Refresh.WaitFor)
-                .document(article)));
+            .index(ARTICLES)
+            .refresh(Refresh.WaitFor) // TODO explain
+            .document(article)));
 
         esClient.index(articleReq);
 
@@ -90,13 +91,13 @@ public class ArticleService {
 
         // using term query to match exactly the slug
         SearchResponse<Article> getArticle = esClient.search(ss -> ss
-                        .index(ARTICLES)
-                        .query(q -> q
-                                .term(t -> t
-                                        .field("slug.keyword")
-                                        .value(slug))
-                        )
-                , Article.class);
+                .index(ARTICLES)
+                .query(q -> q
+                    .term(t -> t
+                        .field("slug.keyword")
+                        .value(slug))
+                )
+            , Article.class);
 
         if (getArticle.hits().hits().isEmpty()) {
             return null;
@@ -108,7 +109,7 @@ public class ArticleService {
 
         // getting original article from slug
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         String id = articlePair.id();
         Article oldArticle = articlePair.article();
 
@@ -126,12 +127,12 @@ public class ArticleService {
         Instant updatedAt = Instant.now();
 
         Article updatedArticle = new Article(newSlug,
-                isNullOrBlank(article.title()) ? oldArticle.title() : article.title(),
-                isNullOrBlank(article.description()) ? oldArticle.description() : article.description(),
-                isNullOrBlank(article.body()) ? oldArticle.body() : article.body(),
-                oldArticle.tagList(), oldArticle.createdAt(),
-                updatedAt, oldArticle.favorited(), oldArticle.favoritesCount(),
-                oldArticle.favoritedBy(), oldArticle.author());
+            isNullOrBlank(article.title()) ? oldArticle.title() : article.title(),
+            isNullOrBlank(article.description()) ? oldArticle.description() : article.description(),
+            isNullOrBlank(article.body()) ? oldArticle.body() : article.body(),
+            oldArticle.tagList(), oldArticle.createdAt(),
+            updatedAt, oldArticle.favorited(), oldArticle.favoritesCount(),
+            oldArticle.favoritedBy(), oldArticle.author());
 
         updateArticle(id, updatedArticle);
         return new ArticleDTO(updatedArticle);
@@ -141,7 +142,7 @@ public class ArticleService {
 
         // getting article from slug
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         Article article = articlePair.article();
 
         // checking if author is the same
@@ -151,14 +152,14 @@ public class ArticleService {
 
         // the delete query is very similar to the search query
         DeleteByQueryResponse deleteArticle = esClient.deleteByQuery(d -> d
-                .index(ARTICLES)
-                .waitForCompletion(true)
-                .refresh(true)
-                .query(q -> q
-                        .term(t -> t
-                                .field("slug.keyword")
-                                .value(slug))
-                ));
+            .index(ARTICLES)
+            .waitForCompletion(true)
+            .refresh(true)
+            .query(q -> q
+                .term(t -> t
+                    .field("slug.keyword")
+                    .value(slug))
+            ));
         if (deleteArticle.deleted() < 1) {
             throw new RuntimeException("Failed to delete article");
         }
@@ -166,22 +167,19 @@ public class ArticleService {
         // also delete every comment to the article, using a term query that will match all comments with
         // the same articleSlug
         DeleteByQueryResponse deleteCommentsByArticle = esClient.deleteByQuery(d -> d
-                .index(COMMENTS)
-                .waitForCompletion(true)
-                .refresh(true)
-                .query(q -> q
-                        .term(t -> t
-                                .field("articleSlug.keyword")
-                                .value(slug))
-                ));
-        if (deleteCommentsByArticle.deleted() < 1) {
-            throw new RuntimeException("Failed to delete comments after article deletion");
-        }
+            .index(COMMENTS)
+            .waitForCompletion(true)
+            .refresh(true)
+            .query(q -> q
+                .term(t -> t
+                    .field("articleSlug.keyword")
+                    .value(slug))
+            ));
     }
 
     public Article markArticleAsFavorite(String slug, String username) throws IOException {
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         String id = articlePair.id();
         Article article = articlePair.article();
 
@@ -192,9 +190,9 @@ public class ArticleService {
 
         article.favoritedBy().add(username);
         Article updatedArticle = new Article(article.slug(), article.title(),
-                article.description(),
-                article.body(), article.tagList(), article.createdAt(), article.updatedAt(),
-                true, article.favoritesCount() + 1, article.favoritedBy(), article.author());
+            article.description(),
+            article.body(), article.tagList(), article.createdAt(), article.updatedAt(),
+            true, article.favoritesCount() + 1, article.favoritedBy(), article.author());
 
         updateArticle(id, updatedArticle);
         return updatedArticle;
@@ -202,7 +200,7 @@ public class ArticleService {
 
     public Article removeArticleFromFavorite(String slug, String username) throws IOException {
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         String id = articlePair.id();
         Article article = articlePair.article();
 
@@ -219,9 +217,9 @@ public class ArticleService {
         }
 
         Article updatedArticle = new Article(article.slug(), article.title(),
-                article.description(),
-                article.body(), article.tagList(), article.createdAt(), article.updatedAt(), favorited,
-                favoriteCount, article.favoritedBy(), article.author());
+            article.description(),
+            article.body(), article.tagList(), article.createdAt(), article.updatedAt(), favorited,
+            favoriteCount, article.favoritedBy(), article.author());
 
         updateArticle(id, updatedArticle);
         return updatedArticle;
@@ -238,83 +236,84 @@ public class ArticleService {
         // food" tag
         if (!isNullOrBlank(tag)) {
             match.add(new Builder()
-                    .field("tagList")
-                    .query(tag).build()._toQuery());
+                .field("tagList")
+                .query(tag).build()._toQuery());
         }
         if (!isNullOrBlank(author)) {
             match.add(new Builder()
-                    .field("author.username")
-                    .query(author).build()._toQuery());
+                .field("author.username")
+                .query(author).build()._toQuery());
         }
+        // alternative syntax with builder
         if (!isNullOrBlank(favorited)) {
-            match.add(new Builder()
-                    .field("favoritedBy")
-                    .query(favorited).build()._toQuery());
+            match.add(MatchQuery.of(mq -> mq.field("favoritedBy")
+                    .query(favorited))
+                ._toQuery());
         }
 
         Query query = new Query.Builder().bool(b -> b.should(match)).build();
 
         SearchResponse<Article> getArticle = esClient.search(ss -> ss
-                        .index(ARTICLES)
-                        .size(limit)
-                        .from(offset)
-                        .query(query)
-                        .sort(srt -> srt
-                                .field(fld -> fld
-                                        .field("updatedAt")
-                                        .order(SortOrder.Desc)))
-                , Article.class);
+                .index(ARTICLES)
+                .size(limit)
+                .from(offset)
+                .query(query)
+                .sort(srt -> srt
+                    .field(fld -> fld
+                        .field("updatedAt")
+                        .order(SortOrder.Desc)))
+            , Article.class);
 
         return new ArticlesDTO(getArticle.hits().hits()
-                .stream()
-                .map(Hit::source)
-                // if tag specified, put that tag first in the array
-                .peek(a -> {
-                    if (!isNullOrBlank(tag) && a.tagList().contains(tag)) {
-                        Collections.swap(a.tagList(), a.tagList().indexOf(tag), 0);
-                    }
-                })
-                .map(ArticleForListDTO::new)
-                // if auth provided, filling the "following" field of "Author" accordingly
-                .map(a -> {
-                    if (user.isPresent()) {
-                        boolean following = user.get().following().contains(a.author().username());
-                        return new ArticleForListDTO(a, new Author(a.author().username(),
-                                a.author().email(), a.author().bio(), following));
-                    }
-                    return a;
-                })
-                .collect(Collectors.toList()), getArticle.hits().hits().size());
+            .stream()
+            .map(Hit::source)
+            // if tag specified, put that tag first in the array
+            .peek(a -> {
+                if (!isNullOrBlank(tag) && a.tagList().contains(tag)) {
+                    Collections.swap(a.tagList(), a.tagList().indexOf(tag), 0);
+                }
+            })
+            .map(ArticleForListDTO::new)
+            // if auth provided, filling the "following" field of "Author" accordingly
+            .map(a -> {
+                if (user.isPresent()) {
+                    boolean following = user.get().following().contains(a.author().username());
+                    return new ArticleForListDTO(a, new Author(a.author().username(),
+                        a.author().email(), a.author().bio(), following));
+                }
+                return a;
+            })
+            .collect(Collectors.toList()), getArticle.hits().hits().size());
     }
 
     public ArticlesDTO generateArticleFeed(User user) throws IOException {
         // preparing authors filter from user data
         List<FieldValue> authorsFilter = user.following().stream()
-                .map(FieldValue::of).toList();
+            .map(FieldValue::of).toList();
 
         // a terms query can be used to query for multiple values, like authors.
         // the sort options is used afterward to determine which field determines the output order
         // note how the nested class "author" is easily accessible with the use of the dot notation
         SearchResponse<Article> articlesByAuthors = esClient.search(ss -> ss
-                        .index(ARTICLES)
-                        .query(q -> q
-                                .bool(b -> b
-                                        .filter(f -> f
-                                                .terms(t -> t
-                                                        .field("author.username.keyword")
-                                                        .terms(TermsQueryField.of(tqf -> tqf.value(authorsFilter)))
-                                                ))))
-                        .sort(srt -> srt
-                                .field(fld -> fld
-                                        .field("updatedAt")
-                                        .order(SortOrder.Desc)))
-                , Article.class);
+                .index(ARTICLES)
+                .query(q -> q
+                    .bool(b -> b
+                        .filter(f -> f
+                            .terms(t -> t
+                                .field("author.username.keyword")
+                                .terms(TermsQueryField.of(tqf -> tqf.value(authorsFilter)))
+                            ))))
+                .sort(srt -> srt
+                    .field(fld -> fld
+                        .field("updatedAt")
+                        .order(SortOrder.Desc)))
+            , Article.class);
 
         return new ArticlesDTO(articlesByAuthors.hits().hits()
-                .stream()
-                .map(Hit::source)
-                .map(ArticleForListDTO::new)
-                .collect(Collectors.toList()), articlesByAuthors.hits().hits().size());
+            .stream()
+            .map(Hit::source)
+            .map(ArticleForListDTO::new)
+            .collect(Collectors.toList()), articlesByAuthors.hits().hits().size());
     }
 
 
@@ -327,21 +326,21 @@ public class ArticleService {
 
         // using a term aggregation is the simplest way to find every distinct tag for each article
         SearchResponse<Aggregation> aggregateTags = esClient.search(s -> s
-                        .index(ARTICLES)
-                        .size(0) // this is to only return aggregation result, and not also search result
-                        .aggregations("tags", agg -> agg
-                                .terms(ter -> ter
-                                        .field("tagList.keyword")
-                                        .order(sort))
-                        ),
-                Aggregation.class
+                .index(ARTICLES)
+                .size(0) // this is to only return aggregation result, and not also search result
+                .aggregations("tags", agg -> agg
+                    .terms(ter -> ter
+                        .field("tagList.keyword")
+                        .order(sort))
+                ),
+            Aggregation.class
         );
 
         return new TagsDTO(aggregateTags.aggregations().get("tags")
-                .sterms().buckets()
-                .array().stream()
-                .map(st -> st.key().stringValue())
-                .collect(Collectors.toList())
+            .sterms().buckets()
+            .array().stream()
+            .map(st -> st.key().stringValue())
+            .collect(Collectors.toList())
         );
     }
 
@@ -355,10 +354,10 @@ public class ArticleService {
 
     private void updateArticle(String id, Article updatedArticle) throws IOException {
         UpdateResponse<Article> upArticle = esClient.update(up -> up
-                        .index(ARTICLES)
-                        .id(id)
-                        .doc(updatedArticle)
-                , Article.class);
+                .index(ARTICLES)
+                .id(id)
+                .doc(updatedArticle)
+            , Article.class);
         if (!upArticle.result().name().equals("Updated")) {
             throw new RuntimeException("Article update failed");
         }

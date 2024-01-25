@@ -37,12 +37,15 @@ import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.*;
 import realworld.utils.UserIdPair;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static realworld.constant.Constants.USERS;
 import static realworld.utils.Utility.*;
@@ -78,61 +81,67 @@ public class UserService {
     public User newUser(RegisterDTO user) throws IOException {
 
         SearchResponse<User> checkUser = esClient.search(ss -> ss
-                        .index(USERS)
-                        .query(q -> q
-                                .bool(b -> b
-                                        .should(m -> m
-                                                .term(mc -> mc
-                                                        .field("email.keyword")
-                                                        .value(user.email()))
-                                        ).should(m -> m
-                                                .term(mc -> mc
-                                                        .field("username.keyword")
-                                                        .value(user.username())))))
-                , User.class);
+                .index(USERS)
+                .query(q -> q
+                    .bool(b -> b
+                        .should(s -> s
+                            .term(t -> t
+                                .field("email.keyword")
+                                .value(user.email()))
+                        ).should(s -> s
+                            .term(t -> t
+                                .field("username.keyword")
+                                .value(user.username())))))
+            , User.class);
 
         checkUser.hits().hits().stream()
-                .map(Hit::source)
-                .filter(x -> x.username().equals(user.username()))
-                .findFirst()
-                .ifPresent(x -> {
-                    throw new ResourceAlreadyExistsException("Username already exists");
-                });
+            .map(Hit::source)
+            .filter(x -> x.username().equals(user.username()))
+            .findFirst()
+            .ifPresent(x -> {
+                throw new ResourceAlreadyExistsException("Username already exists");
+            });
 
         checkUser.hits().hits().stream()
-                .map(Hit::source)
-                .filter(x -> x.email().equals(user.email()))
-                .findFirst()
-                .ifPresent(x -> {
-                    throw new ResourceAlreadyExistsException("Email already used");
-                });
+            .map(Hit::source)
+            .filter(x -> x.email().equals(user.email()))
+            .findFirst()
+            .ifPresent(x -> {
+                throw new ResourceAlreadyExistsException("Email already used");
+            });
 
-        // building user's JWT
+        // building user's JWT, with no expiration since it's not requested
         String jws = Jwts.builder()
-                .setIssuer("rw-backend")
-                .setSubject(user.email())
-                .claim("name", user.username())
-                .claim("scope", "user")
-                .setIssuedAt(Date.from(Instant.now()))
-                .signWith(
-                        SignatureAlgorithm.HS256,
-                        TextCodec.BASE64.decode(jwtSigningKey)
-                )
-                .compact();
+            .setIssuer("rw-backend")
+            .setSubject(user.email())
+            .claim("name", user.username())
+            .claim("scope", "user")
+            .setIssuedAt(Date.from(Instant.now()))
+            .signWith(
+                SignatureAlgorithm.HS256,
+                TextCodec.BASE64.decode(jwtSigningKey)
+            )
+            .compact();
 
-        User ue = new User(user.username(), user.email(),
-                user.password(), jws, "", "", new ArrayList<>());
+        // hashing the password, storing the salt with the user
+        SecureRandom secureRandom = new SecureRandom();
+        byte[] salt = new byte[16];
+        secureRandom.nextBytes(salt);
+        String hashedPw = hashUserPw(user.password(), salt);
+
+        User newUser = new User(user.username(), user.email(),
+            hashedPw, jws, "", "", salt, new ArrayList<>());
 
         // creating the index request
         IndexRequest<User> userReq = IndexRequest.of((id -> id
-                .index(USERS)
-                .refresh(Refresh.WaitFor)
-                .document(ue)));
+            .index(USERS)
+            .refresh(Refresh.WaitFor)
+            .document(newUser)));
 
         // indexing the request (inserting it into to database)
         esClient.index(userReq);
 
-        return ue;
+        return newUser;
     }
 
     /**
@@ -142,28 +151,29 @@ public class UserService {
      *
      * @return The authenticated user.
      */
-    public User authenticateUser(LoginDTO user) throws IOException {
+    public User authenticateUser(LoginDTO login) throws IOException {
 
         SearchResponse<User> getUser = esClient.search(ss -> ss
-                        .index(USERS)
-                        .query(q -> q
-                                .bool(b -> b
-                                        .must(m -> m
-                                                .term(mc -> mc
-                                                        .field("email.keyword")
-                                                        .value(user.email()))
-                                        ).must(m -> m
-                                                .term(mc -> mc
-                                                        .field("password.keyword")
-                                                        .value(user.password()))))
-                        )
-                , User.class);
+                .index(USERS)
+                .query(q -> q
+                    .term(t -> t
+                        .field("email.keyword")
+                        .value(login.email())))
+            , User.class);
+
 
         if (getUser.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Wrong email or password");
+            throw new ResourceNotFoundException("Email not found");
         }
 
-        return extractSource(getUser);
+        // check if the hashed password matches the one provided
+        User user = extractSource(getUser);
+        String hashedPw = hashUserPw(login.password(), user.salt());
+
+        if (!hashedPw.equals(user.password())) {
+            throw new UnauthorizedException("Wrong password");
+        }
+        return user;
     }
 
     /**
@@ -178,20 +188,20 @@ public class UserService {
         try {
             token = auth.split(" ")[1];
             Jwts.parser()
-                    .setSigningKey(TextCodec.BASE64.decode(jwtSigningKey))
-                    .parse(token);
+                .setSigningKey(TextCodec.BASE64.decode(jwtSigningKey))
+                .parse(token);
         } catch (Exception e) {
             throw new UnauthorizedException("Token missing or not recognised");
         }
 
         SearchResponse<User> getUser = esClient.search(ss -> ss
-                        .index(USERS)
-                        .query(q -> q
-                                .term(m -> m
-                                        .field("token.keyword")
-                                        .value(token))
-                        )
-                , User.class);
+                .index(USERS)
+                .query(q -> q
+                    .term(m -> m
+                        .field("token.keyword")
+                        .value(token))
+                )
+            , User.class);
 
         if (getUser.hits().hits().isEmpty()) {
             throw new ResourceNotFoundException("Token not assigned to any user");
@@ -227,28 +237,28 @@ public class UserService {
         }
 
         // null/blank check for every optional field
-        User ue = new User(isNullOrBlank(userDTO.username()) ? user.username() :
-                userDTO.username(),
-                isNullOrBlank(userDTO.email()) ? user.email() : userDTO.email(),
-                user.password(), user.token(),
-                isNullOrBlank(userDTO.bio()) ? user.bio() : userDTO.bio(),
-                isNullOrBlank(userDTO.image()) ? user.image() : userDTO.image(),
-                user.following());
+        User updatedUser = new User(isNullOrBlank(userDTO.username()) ? user.username() :
+            userDTO.username(),
+            isNullOrBlank(userDTO.email()) ? user.email() : userDTO.email(),
+            user.password(), user.token(),
+            isNullOrBlank(userDTO.bio()) ? user.bio() : userDTO.bio(),
+            isNullOrBlank(userDTO.image()) ? user.image() : userDTO.image(),
+            user.salt(), user.following());
 
-        updateUser(userPair.id(), ue);
-        return ue;
+        updateUser(userPair.id(), updatedUser);
+        return updatedUser;
     }
 
     /**
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html
      * "> Updates</a> a user, given the updated object and its unique id.
      */
-    private void updateUser(String id, User ue) throws IOException {
+    private void updateUser(String id, User user) throws IOException {
         UpdateResponse<User> upUser = esClient.update(up -> up
-                        .index(USERS)
-                        .id(id)
-                        .doc(ue)
-                , User.class);
+                .index(USERS)
+                .id(id)
+                .doc(user)
+            , User.class);
         if (!upUser.result().name().equals("Updated")) {
             throw new RuntimeException("User update failed");
         }
@@ -257,7 +267,7 @@ public class UserService {
     public Profile findUserProfile(String username, String auth) throws IOException {
 
         UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         User targetUser = targetUserPair.user();
 
         // checking if the user is followed by who's asking
@@ -270,7 +280,7 @@ public class UserService {
     public Profile followUser(String username, String auth) throws IOException {
 
         UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         User targetUser = targetUserPair.user();
 
         UserIdPair askingUserPair = findUserByToken(auth);
@@ -292,7 +302,7 @@ public class UserService {
 
     public Profile unfollowUser(String username, String auth) throws IOException {
         UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         User targetUser = targetUserPair.user();
 
         UserIdPair askingUserPair = findUserByToken(auth);
@@ -325,12 +335,12 @@ public class UserService {
     private UserIdPair findUserByUsername(String username) throws IOException {
         // simple term query to match exactly the username string
         SearchResponse<User> getUser = esClient.search(ss -> ss
-                        .index(USERS)
-                        .query(q -> q
-                                .term(t -> t
-                                        .field("username.keyword")
-                                        .value(username)))
-                , User.class);
+                .index(USERS)
+                .query(q -> q
+                    .term(t -> t
+                        .field("username.keyword")
+                        .value(username)))
+            , User.class);
         if (getUser.hits().hits().isEmpty()) {
             return null;
         }
@@ -346,15 +356,30 @@ public class UserService {
     private UserIdPair findUserByEmail(String email) throws IOException {
         // simple term query to match exactly the email string
         SearchResponse<User> getUser = esClient.search(ss -> ss
-                        .index(USERS)
-                        .query(q -> q
-                                .term(t -> t
-                                        .field("email.keyword")
-                                        .value(email)))
-                , User.class);
+                .index(USERS)
+                .query(q -> q
+                    .term(t -> t
+                        .field("email.keyword")
+                        .value(email)))
+            , User.class);
         if (getUser.hits().hits().isEmpty()) {
             return null;
         }
         return new UserIdPair(extractSource(getUser), extractId(getUser));
+    }
+
+    private String hashUserPw(String password, byte[] salt) {
+
+        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+        String hashedPw = null;
+        try {
+            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            byte[] hash = secretKeyFactory.generateSecret(keySpec).getEncoded();
+            Base64.Encoder encoder = Base64.getUrlEncoder().withoutPadding();
+            hashedPw = encoder.encodeToString(hash);
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
+        return hashedPw;
     }
 }

@@ -25,12 +25,12 @@ import realworld.entity.user.Author;
 import java.time.Instant;
 
 public record Comment(
-        Integer id,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant createdAt,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant updatedAt,
-        String body,
-        Author author,
-        String articleSlug) {
+    Long id,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    String body,
+    Author author,
+    String articleSlug) {
 }

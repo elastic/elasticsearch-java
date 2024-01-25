@@ -31,17 +31,17 @@ import java.time.Instant;
 @JsonTypeName("comment")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
 public record CommentDTO(
-        Integer id,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant createdAt,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant updatedAt,
-        String body,
-        Author author) {
+    Long id,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    String body,
+    Author author) {
 
     public CommentDTO(Comment comment) {
         this(comment.id(), comment.createdAt(),
-                comment.updatedAt(), comment.body(),
-                comment.author());
+            comment.updatedAt(), comment.body(),
+            comment.author());
     }
 }

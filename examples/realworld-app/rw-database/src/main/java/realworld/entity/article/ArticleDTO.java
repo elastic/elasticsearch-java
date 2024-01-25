@@ -32,23 +32,23 @@ import java.util.List;
 @JsonTypeName("article")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
 public record ArticleDTO(
-        String slug,
-        String title,
-        String description,
-        String body,
-        List<String> tagList,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant createdAt,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant updatedAt,
-        boolean favorited,
-        int favoritesCount,
-        Author author) {
+    String slug,
+    String title,
+    String description,
+    String body,
+    List<String> tagList,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    boolean favorited,
+    int favoritesCount,
+    Author author) {
 
 
     public ArticleDTO(Article article) {
         this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-                article.createdAt(), article.updatedAt(),
-                article.favorited(), article.favoritesCount(), article.author());
+            article.createdAt(), article.updatedAt(),
+            article.favorited(), article.favoritesCount(), article.author());
     }
 }

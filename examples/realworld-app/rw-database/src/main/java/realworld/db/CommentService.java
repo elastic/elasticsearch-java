@@ -30,19 +30,16 @@ import realworld.entity.comment.Comment;
 import realworld.entity.comment.CommentCreationDTO;
 import realworld.entity.comment.CommentForListDTO;
 import realworld.entity.comment.CommentsDTO;
-import realworld.entity.exception.ResourceNotFoundException;
-import realworld.entity.exception.UnauthorizedException;
 import realworld.entity.user.Author;
 import realworld.entity.user.User;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static realworld.constant.Constants.COMMENTS;
-import static realworld.utils.Utility.extractSource;
 
 @Service
 public class CommentService {
@@ -60,14 +57,14 @@ public class CommentService {
         Instant now = Instant.now();
 
         // pre-generating id since it's a field in the comment class
-        Integer commentId = UUID.randomUUID().hashCode();
+        Long commentId = new SecureRandom().nextLong();
         Comment comment = new Comment(commentId, now, now, commentDTO.body(), commentAuthor,
-                slug);
+            slug);
 
         IndexRequest<Comment> commentReq = IndexRequest.of((id -> id
-                .index(COMMENTS)
-                .refresh(Refresh.WaitFor)
-                .document(comment)));
+            .index(COMMENTS)
+            .refresh(Refresh.WaitFor)
+            .document(comment)));
 
 
         esClient.index(commentReq);
@@ -75,70 +72,50 @@ public class CommentService {
         return comment;
     }
 
-    public void deleteComment(String commentId, String slug, String username) throws IOException {
+    public void deleteComment(String commentId, String username) throws IOException {
 
-        // getting comment by id
-        // using term query to match exactly the id
-        SearchResponse<Comment> getComment = esClient.search(ss -> ss
-                        .index(COMMENTS)
-                        .query(q -> q
-                                .term(t -> t
-                                        .field("id")
-                                        .value(commentId))
-                        )
-                , Comment.class);
-
-        if (getComment.hits().hits().isEmpty()) {
-            throw new ResourceNotFoundException("Comment not found");
-        }
-        Comment comment = extractSource(getComment);
-
-        // checking if the comment is from the same author
-        if (!username.equals(comment.author().username())) {
-            throw new UnauthorizedException("Cannot delete someone else's comment");
-        }
-
-        // checking that the slug matches the one received
-        if (!extractSource(getComment).articleSlug().equals(slug)) {
-            throw new RuntimeException("Incorrect article slug");
-        }
-
-        // deleting comment by id
+        // deleting comment, finding only comments with same id and same author username
         DeleteByQueryResponse deleteComment = esClient.deleteByQuery(ss -> ss
-                .index(COMMENTS)
-                .waitForCompletion(true)
-                .refresh(true)
-                .query(q -> q
-                        .term(t -> t
-                                .field("id")
-                                .value(commentId))
-                ));
+            .index(COMMENTS)
+            .waitForCompletion(true)
+            .refresh(true)
+            .query(q -> q
+                .bool(b -> b
+                    .must(m -> m
+                        .term(mc -> mc
+                            .field("id")
+                            .value(commentId))
+                    ).must(m -> m
+                        .term(mc -> mc
+                            .field("author.username.keyword")
+                            .value(username))))
+            ));
         if (deleteComment.deleted() < 1) {
-            throw new RuntimeException("Failed to delete article");
+            throw new RuntimeException("Failed to delete comment");
         }
     }
 
     public CommentsDTO findAllCommentsByArticle(String slug, Optional<User> user) throws IOException {
         SearchResponse<Comment> commentsByArticle = esClient.search(s -> s
-                        .index(COMMENTS)
-                        .query(q -> q
-                                .term(t -> t
-                                        .field("articleSlug.keyword")
-                                        .value(slug))
-                        )
-                , Comment.class);
+                .index(COMMENTS)
+                .query(q -> q
+                    .term(t -> t
+                        .field("articleSlug.keyword")
+                        .value(slug))
+                )
+            , Comment.class);
 
         return new CommentsDTO(commentsByArticle.hits().hits().stream()
-                .map(x -> new CommentForListDTO(x.source()))
-                .map(c -> {
-                    if (user.isPresent()) {
-                        boolean following = user.get().following().contains(c.author().username());
-                        return new CommentForListDTO(c.id(), c.createdAt(), c.updatedAt(), c.body(),
-                                new Author(c.author().username(), c.author().email(), c.author().bio(),
-                                        following));
-                    }
-                    return c;
-                })
-                .collect(Collectors.toList()));
+            .map(x -> new CommentForListDTO(x.source()))
+            .map(c -> {
+                if (user.isPresent()) {
+                    boolean following = user.get().following().contains(c.author().username());
+                    return new CommentForListDTO(c.id(), c.createdAt(), c.updatedAt(), c.body(),
+                        new Author(c.author().username(), c.author().email(), c.author().bio(),
+                            following));
+                }
+                return c;
+            })
+            .collect(Collectors.toList()));
     }
 }

@@ -27,23 +27,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record Article(
-        String slug,
-        String title,
-        String description,
-        String body,
-        List<String> tagList,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant createdAt,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-        Instant updatedAt,
-        boolean favorited,
-        int favoritesCount,
-        List<String> favoritedBy,
-        Author author) {
+    String slug,
+    String title,
+    String description,
+    String body,
+    List<String> tagList,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    boolean favorited,
+    int favoritesCount,
+    List<String> favoritedBy,
+    Author author) {
 
     public Article(ArticleCreationDTO article, String slug, Instant createdAt, Instant updatedAt,
                    Author author) {
         this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt,
-                updatedAt, false, 0, new ArrayList<>(), author);
+            updatedAt, false, 0, new ArrayList<>(), author);
     }
 }

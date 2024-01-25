@@ -27,13 +27,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("user")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
 public record UserDTO(
-        String username,
-        String email,
-        String token,
-        String bio,
-        String image) {
+    String username,
+    String email,
+    String token,
+    String bio,
+    String image) {
 
-    public UserDTO(User ue) {
-        this(ue.username(), ue.email(), ue.token(), ue.bio(), ue.image());
+    public UserDTO(User user) {
+        this(user.username(), user.email(), user.token(), user.bio(), user.image());
     }
 }

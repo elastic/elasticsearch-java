@@ -35,45 +35,45 @@ import java.util.List;
 
 @ControllerAdvice
 public class RestExceptionHandler
-        extends ResponseEntityExceptionHandler {
+    extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
-            = {IOException.class})
+        = {IOException.class})
     protected ResponseEntity<Object> handleIo(
-            RuntimeException ex, WebRequest request) {
+        RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of("Connection Error with the Database")),
-                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+            new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     @ExceptionHandler(value
-            = {ResourceAlreadyExistsException.class})
+        = {ResourceAlreadyExistsException.class})
     protected ResponseEntity<Object> handleConflict(
-            RuntimeException ex, WebRequest request) {
+        RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
+            new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
     @ExceptionHandler(value
-            = {ResourceNotFoundException.class})
+        = {ResourceNotFoundException.class})
     protected ResponseEntity<Object> handleNotFound(
-            RuntimeException ex, WebRequest request) {
+        RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
-                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+            new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value
-            = {UnauthorizedException.class})
+        = {UnauthorizedException.class})
     protected ResponseEntity<Object> handleUnauthorized(
-            RuntimeException ex, WebRequest request) {
+        RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
-                new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+            new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 
     @ExceptionHandler(value
-            = {RuntimeException.class})
+        = {RuntimeException.class})
     protected ResponseEntity<Object> handleUnexpected(
-            RuntimeException ex, WebRequest request) {
+        RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, new RestError(List.of(ex.getLocalizedMessage())),
-                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+            new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }
