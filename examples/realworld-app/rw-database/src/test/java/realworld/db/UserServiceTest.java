@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+import realworld.entity.user.LoginDTO;
 import realworld.entity.user.RegisterDTO;
 import realworld.entity.user.User;
 import realworld.entity.user.UserDTO;
@@ -45,9 +46,12 @@ public class UserServiceTest {
         User result = service.newUser(register);
         assert (result.username().equals(register.username()));
         assert (result.email().equals(register.email()));
-        assert (result.password().equals(register.password()));
         assert (Objects.nonNull(result.token()));
         String token = "Token " + result.token();
+
+        LoginDTO login = new LoginDTO("mail","pw");
+        result = service.authenticateUser(login);
+        assert (result.username().equals(register.username()));
 
         UserDTO update = new UserDTO("new-user", "mail", "", "bio", "image");
         result = service.updateUser(update, token);
