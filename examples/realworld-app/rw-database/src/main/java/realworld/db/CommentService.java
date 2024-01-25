@@ -31,6 +31,7 @@ import realworld.entity.comment.CommentCreationDTO;
 import realworld.entity.comment.CommentForListDTO;
 import realworld.entity.comment.CommentsDTO;
 import realworld.entity.user.Author;
+import realworld.entity.user.RegisterDTO;
 import realworld.entity.user.User;
 
 import java.io.IOException;
@@ -72,9 +73,18 @@ public class CommentService {
         return comment;
     }
 
+    /**
+     * Deletes a specific comment making sure that the user performing the operation is the author of the
+     * comment itself.
+     * <p>
+     * A boolean query similar to the one used in {@link UserService#newUser(RegisterDTO)} is used,
+     * matching both the comment id and the author's username, with a difference: here "must" is used
+     * instead of "should", meaning that the documents must match both conditions at the same time.
+     *
+     * @return The authenticated user.
+     */
     public void deleteComment(String commentId, String username) throws IOException {
 
-        // deleting comment, finding only comments with same id and same author username
         DeleteByQueryResponse deleteComment = esClient.deleteByQuery(ss -> ss
             .index(COMMENTS)
             .waitForCompletion(true)
@@ -82,11 +92,11 @@ public class CommentService {
             .query(q -> q
                 .bool(b -> b
                     .must(m -> m
-                        .term(mc -> mc
+                        .term(t -> t
                             .field("id")
                             .value(commentId))
                     ).must(m -> m
-                        .term(mc -> mc
+                        .term(t -> t
                             .field("author.username.keyword")
                             .value(username))))
             ));

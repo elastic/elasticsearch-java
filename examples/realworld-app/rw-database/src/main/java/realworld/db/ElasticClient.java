@@ -64,16 +64,20 @@ public class ElasticClient {
             })
             .build();
 
-        // TODO explain
+        // The transport layer of the Elasticsearch client requires a json object mapper to
+        // define how to serialize/deserialize java objects. The mapper can be customized by adding
+        // modules, for example since the Article and Comment object both have Instant fields, the
+        // JavaTimeModule is added to provide support for java 8 Time classes, which the mapper itself does
+        // not support.
         ObjectMapper mapper = JsonMapper.builder()
-            .addModule(new JavaTimeModule()) // other modules can be added here
+            .addModule(new JavaTimeModule())
             .build();
 
-        // Create the transport with a Jackson mapper
+        // Create the transport with the Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(
             restClient, new JacksonJsonpMapper(mapper));
 
-        // And create the API client
+        // Create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         // Creating the indexes
@@ -82,7 +86,6 @@ public class ElasticClient {
         createIndexWithDateMapping(esClient, COMMENTS);
 
         return esClient;
-
     }
 
     /**

@@ -64,15 +64,15 @@ public class UserService {
     }
 
     /**
-     * Inserts a new Userinto the "users" index, checking beforehand whether the username and email
+     * Inserts a new User into the "users" index, checking beforehand whether the username and email
      * are unique.
-     * <br>
+     * <p>
      * See {@link UserService#findUserByUsername(String)} for details on how the term query works.
-     * <br>
+     * <p>
      * Combining multiple term queries into a single
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html"> boolean query with "should" occur</a>
      * to match documents fulfilling either conditions.
-     * <br>
+     * <p>
      * When the new user document is created, it is left up to elasticsearch to create a unique
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html"> id field </a>, since there's no user field that is guaranteed not to be updated/modified.
      *
@@ -145,9 +145,9 @@ public class UserService {
     }
 
     /**
-     * To identify a user based on their email and passoword, a boolean query similar to the one used in
-     * {@link UserService#newUser(RegisterDTO)} is used, with a difference: here "must" is used instead of
-     * "should", meaning that the documents must match both conditions at the same time.
+     * Using a simple term query (see {@link UserService#findUserByUsername(String)} for details)
+     * to find the user using the same unique email as the one provided. The password is then hashed and
+     * checked after the search.
      *
      * @return The authenticated user.
      */
@@ -197,7 +197,7 @@ public class UserService {
         SearchResponse<User> getUser = esClient.search(ss -> ss
                 .index(USERS)
                 .query(q -> q
-                    .term(m -> m
+                    .term(t -> t
                         .field("token.keyword")
                         .value(token))
                 )
@@ -211,8 +211,8 @@ public class UserService {
 
     /**
      * See {@link UserService#updateUser(String, User)}
-     * <br>
-     * Updated a user, checking before if the new username or email would be unique.
+     * <p>
+     * Updates a user, checking before if the new username or email would be unique.
      *
      * @return the updated user.
      */
@@ -321,10 +321,11 @@ public class UserService {
     /**
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
      * ">Searches </a> the "users" index for a document containing the exact same username.
-     * <br>
+     * <p>
      * A
-     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term query</a> means that it will find only results that match character by character.
-     * <br>
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term query</a>
+     * means that it will find only results that match character by character.
+     * <p>
      * Using the
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html"> keyword </a>
      * property of the field allows to use the original value of the string while querying, instead of the
