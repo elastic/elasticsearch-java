@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package realworld.entity.exception;
+package realworld.document.user;
 
-public class ResourceNotFoundException extends RuntimeException {
+public record Author(String username, String email, String bio, boolean following) {
 
-    public ResourceNotFoundException(String message) {
-        super(message);
+    public Author(User user, boolean following) {
+        this(user.username(), user.email(), user.bio(), following);
     }
 }

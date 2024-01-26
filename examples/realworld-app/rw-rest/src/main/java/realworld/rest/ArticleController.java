@@ -27,14 +27,14 @@ import org.springframework.web.bind.annotation.*;
 import realworld.db.ArticleService;
 import realworld.db.CommentService;
 import realworld.db.UserService;
-import realworld.entity.article.*;
-import realworld.entity.comment.Comment;
-import realworld.entity.comment.CommentCreationDTO;
-import realworld.entity.comment.CommentDTO;
-import realworld.entity.comment.CommentsDTO;
-import realworld.entity.exception.ResourceNotFoundException;
-import realworld.entity.user.Author;
-import realworld.entity.user.User;
+import realworld.document.article.*;
+import realworld.document.comment.Comment;
+import realworld.document.comment.CommentCreationDTO;
+import realworld.document.comment.CommentDTO;
+import realworld.document.comment.CommentsDTO;
+import realworld.document.exception.ResourceNotFoundException;
+import realworld.document.user.Author;
+import realworld.document.user.User;
 import realworld.utils.UserIdPair;
 
 import java.io.IOException;
@@ -154,9 +154,9 @@ public class ArticleController {
     public ResponseEntity<CommentDTO> commentArticle(@PathVariable String slug,
                                                      @RequestBody CommentCreationDTO comment,
                                                      @RequestHeader("Authorization") String auth) throws IOException {
-        // checking if the article exists
+        // Checking if the article exists
         articleService.findArticleBySlug(slug);
-        // getting the comment's author
+        // Getting the comment's author
         User user = userService.findUserByToken(auth).user();
 
         Comment res = commentService.newComment(comment, slug, user);

@@ -17,25 +17,9 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.document.article;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import realworld.entity.user.Author;
+import java.util.List;
 
-import java.time.Instant;
-
-public record CommentForListDTO(
-    Long id,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-    Instant createdAt,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-    Instant updatedAt,
-    String body,
-    Author author) {
-
-    public CommentForListDTO(Comment comment) {
-        this(comment.id(), comment.createdAt(),
-            comment.updatedAt(), comment.body(),
-            comment.author());
-    }
+public record ArticlesDTO(List<ArticleForListDTO> articles, int articlesCount) {
 }

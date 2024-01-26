@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import realworld.entity.exception.ResourceAlreadyExistsException;
-import realworld.entity.exception.ResourceNotFoundException;
-import realworld.entity.exception.UnauthorizedException;
+import realworld.document.exception.ResourceAlreadyExistsException;
+import realworld.document.exception.ResourceNotFoundException;
+import realworld.document.exception.UnauthorizedException;
 
 import java.io.IOException;
 import java.util.List;

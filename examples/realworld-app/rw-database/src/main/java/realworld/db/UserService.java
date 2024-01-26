@@ -31,10 +31,10 @@ import io.jsonwebtoken.impl.TextCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import realworld.entity.exception.ResourceAlreadyExistsException;
-import realworld.entity.exception.ResourceNotFoundException;
-import realworld.entity.exception.UnauthorizedException;
-import realworld.entity.user.*;
+import realworld.document.exception.ResourceAlreadyExistsException;
+import realworld.document.exception.ResourceNotFoundException;
+import realworld.document.exception.UnauthorizedException;
+import realworld.document.user.*;
 import realworld.utils.UserIdPair;
 
 import javax.crypto.SecretKeyFactory;
@@ -71,7 +71,7 @@ public class UserService {
      * <p>
      * Combining multiple term queries into a single
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html"> boolean query with "should" occur</a>
-     * to match documents fulfilling either conditions.
+     * to match documents fulfilling either conditions to check the uniqueness of the new email and username.
      * <p>
      * When the new user document is created, it is left up to elasticsearch to create a unique
      * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html"> id field </a>, since there's no user field that is guaranteed not to be updated/modified.
@@ -80,6 +80,7 @@ public class UserService {
      */
     public User newUser(RegisterDTO user) throws IOException {
 
+        // Checking uniqueness of both email and username
         SearchResponse<User> checkUser = esClient.search(ss -> ss
                 .index(USERS)
                 .query(q -> q
@@ -110,7 +111,7 @@ public class UserService {
                 throw new ResourceAlreadyExistsException("Email already used");
             });
 
-        // building user's JWT, with no expiration since it's not requested
+        // Building user's JWT, with no expiration since it's not requested
         String jws = Jwts.builder()
             .setIssuer("rw-backend")
             .setSubject(user.email())
@@ -123,7 +124,7 @@ public class UserService {
             )
             .compact();
 
-        // hashing the password, storing the salt with the user
+        // Hashing the password, storing the salt with the user
         SecureRandom secureRandom = new SecureRandom();
         byte[] salt = new byte[16];
         secureRandom.nextBytes(salt);
@@ -132,13 +133,13 @@ public class UserService {
         User newUser = new User(user.username(), user.email(),
             hashedPw, jws, "", "", salt, new ArrayList<>());
 
-        // creating the index request
+        // Creating the index request
         IndexRequest<User> userReq = IndexRequest.of((id -> id
             .index(USERS)
             .refresh(Refresh.WaitFor)
             .document(newUser)));
 
-        // indexing the request (inserting it into to database)
+        // Indexing the request (inserting it into to database)
         esClient.index(userReq);
 
         return newUser;
@@ -166,7 +167,7 @@ public class UserService {
             throw new ResourceNotFoundException("Email not found");
         }
 
-        // check if the hashed password matches the one provided
+        // Check if the hashed password matches the one provided
         User user = extractSource(getUser);
         String hashedPw = hashUserPw(login.password(), user.salt());
 
@@ -177,8 +178,8 @@ public class UserService {
     }
 
     /**
-     * Deserializing and checking the token, then performing a term query (see
-     * {@link UserService#findUserByUsername(String)} for details) using the token string to retrieve
+     * Deserializing and checking the token, then performing a term query
+     * (see {@link UserService#findUserByUsername(String)} for details) using the token string to retrieve
      * the corresponding user.
      *
      * @return a pair containing the result of the term query, a single user, with its id.
@@ -221,7 +222,7 @@ public class UserService {
         UserIdPair userPair = findUserByToken(auth);
         User user = userPair.user();
 
-        // if the username or email are updated, checking uniqueness
+        // If the username or email are updated, checking uniqueness
         if (!isNullOrBlank(userDTO.username()) && !userDTO.username().equals(user.username())) {
             UserIdPair newUsernameSearch = findUserByUsername(userDTO.username());
             if (Objects.nonNull(newUsernameSearch)) {
@@ -236,7 +237,7 @@ public class UserService {
             }
         }
 
-        // null/blank check for every optional field
+        // Null/blank check for every optional field
         User updatedUser = new User(isNullOrBlank(userDTO.username()) ? user.username() :
             userDTO.username(),
             isNullOrBlank(userDTO.email()) ? user.email() : userDTO.email(),
@@ -264,19 +265,29 @@ public class UserService {
         }
     }
 
+    /**
+     * Retrieves data for the requested user and the asking user to provide profile information.
+     *
+     * @return the requested user's profile.
+     */
     public Profile findUserProfile(String username, String auth) throws IOException {
 
         UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
             .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         User targetUser = targetUserPair.user();
 
-        // checking if the user is followed by who's asking
+        // Checking if the user is followed by who's asking
         UserIdPair askingUserPair = findUserByToken(auth);
         boolean following = askingUserPair.user().following().contains(targetUser.username());
 
         return new Profile(targetUser, following);
     }
 
+    /**
+     * Adds the targed user to the asking user's list of followed profiles.
+     *
+     * @return the target user's profile.
+     */
     public Profile followUser(String username, String auth) throws IOException {
 
         UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
@@ -290,7 +301,7 @@ public class UserService {
             throw new RuntimeException("Cannot follow yourself!");
         }
 
-        // add followed user to list if not already present
+        // Add followed user to list if not already present
         if (!askingUser.following().contains(targetUser.username())) {
             askingUser.following().add(targetUser.username());
 
@@ -300,6 +311,11 @@ public class UserService {
         return new Profile(targetUser, true);
     }
 
+    /**
+     * Removes the targed user from the asking user's list of followed profiles.
+     *
+     * @return the target user's profile.
+     */
     public Profile unfollowUser(String username, String auth) throws IOException {
         UserIdPair targetUserPair = Optional.ofNullable(findUserByUsername(username))
             .orElseThrow(() -> new ResourceNotFoundException("User not found"));
@@ -308,7 +324,7 @@ public class UserService {
         UserIdPair askingUserPair = findUserByToken(auth);
         User askingUser = askingUserPair.user();
 
-        // remove followed user to list if not already present
+        // Remove followed user to list if not already present
         if (askingUser.following().contains(targetUser.username())) {
             askingUser.following().remove(targetUser.username());
 
@@ -333,8 +349,8 @@ public class UserService {
      *
      * @return a pair containing the result of the term query, a single user, with its id.
      */
-    private UserIdPair findUserByUsername(String username) throws IOException {
-        // simple term query to match exactly the username string
+    public UserIdPair findUserByUsername(String username) throws IOException {
+        // Simple term query to match exactly the username string
         SearchResponse<User> getUser = esClient.search(ss -> ss
                 .index(USERS)
                 .query(q -> q
@@ -352,10 +368,10 @@ public class UserService {
      * Searches the "users" index for a document containing the exact same email.
      * See {@link UserService#findUserByUsername(String)} for details.
      *
-     * @return the result of the term query, a single user.
+     * @return the result of the term query, a single user, with its id.
      */
     private UserIdPair findUserByEmail(String email) throws IOException {
-        // simple term query to match exactly the email string
+        // Simple term query to match exactly the email string
         SearchResponse<User> getUser = esClient.search(ss -> ss
                 .index(USERS)
                 .query(q -> q
@@ -369,6 +385,11 @@ public class UserService {
         return new UserIdPair(extractSource(getUser), extractId(getUser));
     }
 
+    /**
+     * Hashes a string using the PBKDF2 method.
+     *
+     * @return the hashed string.
+     */
     private String hashUserPw(String password, byte[] salt) {
 
         KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);

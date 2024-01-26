@@ -17,11 +17,18 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.document.article;
 
-public record Author(String username, String email, String bio, boolean following) {
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import jakarta.validation.constraints.NotNull;
 
-    public Author(User user, boolean following) {
-        this(user.username(), user.email(), user.bio(), following);
-    }
+import java.util.List;
+
+@JsonTypeName("article")
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
+public record ArticleCreationDTO(@NotNull String title, @NotNull String description, @NotNull String body,
+                                 List<String> tagList) {
 }

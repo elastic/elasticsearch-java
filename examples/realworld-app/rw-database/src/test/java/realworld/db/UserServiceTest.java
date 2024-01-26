@@ -24,15 +24,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import realworld.entity.user.LoginDTO;
-import realworld.entity.user.RegisterDTO;
-import realworld.entity.user.User;
-import realworld.entity.user.UserDTO;
+import realworld.document.user.LoginDTO;
+import realworld.document.user.RegisterDTO;
+import realworld.document.user.User;
+import realworld.document.user.UserDTO;
 
 import java.io.IOException;
 import java.util.Objects;
 
 // This test uses test container, therefore the Docker engine needs to be installed to run it
+// The testcontainer will take ~30 seconds to start
 @TestPropertySource(locations = "classpath:test.properties")
 @SpringBootTest(classes = {UserService.class, UserServiceTest.class, ElasticClientTest.class})
 public class UserServiceTest {
@@ -42,14 +43,14 @@ public class UserServiceTest {
 
     @Test
     public void testCreateUpdateUser() throws IOException {
-        RegisterDTO register = new RegisterDTO("userr", "mail", "pw");
+        RegisterDTO register = new RegisterDTO("user", "mail", "pw");
         User result = service.newUser(register);
         assert (result.username().equals(register.username()));
         assert (result.email().equals(register.email()));
         assert (Objects.nonNull(result.token()));
         String token = "Token " + result.token();
 
-        LoginDTO login = new LoginDTO("mail","pw");
+        LoginDTO login = new LoginDTO("mail", "pw");
         result = service.authenticateUser(login);
         assert (result.username().equals(register.username()));
 

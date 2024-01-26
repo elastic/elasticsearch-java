@@ -25,10 +25,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import realworld.db.UserService;
-import realworld.entity.user.LoginDTO;
-import realworld.entity.user.RegisterDTO;
-import realworld.entity.user.User;
-import realworld.entity.user.UserDTO;
+import realworld.document.user.LoginDTO;
+import realworld.document.user.RegisterDTO;
+import realworld.document.user.User;
+import realworld.document.user.UserDTO;
 
 import java.io.IOException;
 

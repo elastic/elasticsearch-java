@@ -26,13 +26,14 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import realworld.entity.comment.Comment;
-import realworld.entity.comment.CommentCreationDTO;
-import realworld.entity.comment.CommentForListDTO;
-import realworld.entity.comment.CommentsDTO;
-import realworld.entity.user.Author;
-import realworld.entity.user.RegisterDTO;
-import realworld.entity.user.User;
+import realworld.document.article.ArticleCreationDTO;
+import realworld.document.comment.Comment;
+import realworld.document.comment.CommentCreationDTO;
+import realworld.document.comment.CommentForListDTO;
+import realworld.document.comment.CommentsDTO;
+import realworld.document.user.Author;
+import realworld.document.user.RegisterDTO;
+import realworld.document.user.User;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -52,6 +53,13 @@ public class CommentService {
         this.esClient = esClient;
     }
 
+    /**
+     * Creates a new comment and saves it into the comment index.
+     * The refresh value is specified for the same reason explained in
+     * {@link ArticleService#newArticle(ArticleCreationDTO, Author)}
+     *
+     * @return the newly created comment.
+     */
     public Comment newComment(CommentCreationDTO commentDTO, String slug, User user) throws IOException {
         // assuming you cannot follow yourself
         Author commentAuthor = new Author(user, false);
@@ -105,6 +113,12 @@ public class CommentService {
         }
     }
 
+    /**
+     * Retrieves all comments with the same articleSlug value using a term query
+     * (see {@link UserService#findUserByUsername(String)}).
+     *
+     * @return a list of comment belonging to a single article.
+     */
     public CommentsDTO findAllCommentsByArticle(String slug, Optional<User> user) throws IOException {
         SearchResponse<Comment> commentsByArticle = esClient.search(s -> s
                 .index(COMMENTS)

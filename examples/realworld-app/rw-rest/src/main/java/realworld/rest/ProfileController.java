@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import realworld.db.UserService;
-import realworld.entity.user.Profile;
+import realworld.document.user.Profile;
 
 import java.io.IOException;
 

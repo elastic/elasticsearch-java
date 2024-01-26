@@ -17,16 +17,15 @@
  * under the License.
  */
 
-package realworld.entity.article;
+package realworld.document.article;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import realworld.entity.user.Author;
+import realworld.document.user.Author;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
-public record Article(
+public record ArticleForListDTO(
     String slug,
     String title,
     String description,
@@ -38,12 +37,18 @@ public record Article(
     Instant updatedAt,
     boolean favorited,
     int favoritesCount,
-    List<String> favoritedBy,
     Author author) {
 
-    public Article(ArticleCreationDTO article, String slug, Instant createdAt, Instant updatedAt,
-                   Author author) {
-        this(slug, article.title(), article.description(), article.body(), article.tagList(), createdAt,
-            updatedAt, false, 0, new ArrayList<>(), author);
+
+    public ArticleForListDTO(Article article) {
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
+            article.createdAt(), article.updatedAt(),
+            article.favorited(), article.favoritesCount(), article.author());
+    }
+
+    public ArticleForListDTO(ArticleForListDTO article, Author author) {
+        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
+            article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(),
+            author);
     }
 }

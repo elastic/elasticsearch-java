@@ -17,15 +17,18 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.document.user;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import jakarta.validation.constraints.NotNull;
 
-@JsonTypeName("comment")
+@JsonTypeName("profile")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record CommentCreationDTO(@NotNull String body) {
+public record Profile(String username, String image, String bio, boolean following) {
+
+    public Profile(User user, boolean following) {
+        this(user.username(), user.image(), user.bio(), following);
+    }
 }

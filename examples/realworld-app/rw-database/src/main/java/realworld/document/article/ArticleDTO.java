@@ -17,15 +17,21 @@
  * under the License.
  */
 
-package realworld.entity.article;
+package realworld.document.article;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import realworld.entity.user.Author;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import realworld.document.user.Author;
 
 import java.time.Instant;
 import java.util.List;
 
-public record ArticleForListDTO(
+@JsonTypeName("article")
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
+public record ArticleDTO(
     String slug,
     String title,
     String description,
@@ -40,15 +46,9 @@ public record ArticleForListDTO(
     Author author) {
 
 
-    public ArticleForListDTO(Article article) {
+    public ArticleDTO(Article article) {
         this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
             article.createdAt(), article.updatedAt(),
             article.favorited(), article.favoritesCount(), article.author());
-    }
-
-    public ArticleForListDTO(ArticleForListDTO article, Author author) {
-        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-            article.createdAt(), article.updatedAt(), article.favorited(), article.favoritesCount(),
-            author);
     }
 }

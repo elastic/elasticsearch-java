@@ -17,13 +17,11 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.document.exception;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import jakarta.validation.constraints.NotNull;
+public class UnauthorizedException extends RuntimeException {
 
-@JsonTypeName("user")
-@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
-public record LoginDTO(@NotNull String email, @NotNull String password) {
+    public UnauthorizedException(String message) {
+        super(message);
+    }
 }

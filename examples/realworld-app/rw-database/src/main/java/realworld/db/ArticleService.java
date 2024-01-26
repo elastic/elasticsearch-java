@@ -37,12 +37,12 @@ import co.elastic.clients.util.NamedValue;
 import com.github.slugify.Slugify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import realworld.entity.article.*;
-import realworld.entity.exception.ResourceAlreadyExistsException;
-import realworld.entity.exception.ResourceNotFoundException;
-import realworld.entity.exception.UnauthorizedException;
-import realworld.entity.user.Author;
-import realworld.entity.user.User;
+import realworld.document.article.*;
+import realworld.document.exception.ResourceAlreadyExistsException;
+import realworld.document.exception.ResourceNotFoundException;
+import realworld.document.exception.UnauthorizedException;
+import realworld.document.user.Author;
+import realworld.document.user.User;
 import realworld.utils.ArticleIdPair;
 
 import java.io.IOException;
@@ -129,25 +129,26 @@ public class ArticleService {
      */
     public ArticleDTO updateArticle(ArticleUpdateDTO article, String slug, Author author) throws IOException {
 
-        // getting original article from slug
+        // Getting original article from slug
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
             .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         String id = articlePair.id();
         Article oldArticle = articlePair.article();
 
-        // checking if author is the same
+        // Checking if author is the same
         if (!oldArticle.author().username().equals(author.username())) {
             throw new UnauthorizedException("Cannot modify article from another author");
         }
 
         String newSlug = slug;
-        // if title is being changed, checking if new slug would be unique
+        // If title is being changed, checking if new slug would be unique
         if (!isNullOrBlank(article.title()) && !article.title().equals(oldArticle.title())) {
             newSlug = generateAndCheckSlug(article.title());
         }
 
         Instant updatedAt = Instant.now();
 
+        // Null/blank check for every optional field
         Article updatedArticle = new Article(newSlug,
             isNullOrBlank(article.title()) ? oldArticle.title() : article.title(),
             isNullOrBlank(article.description()) ? oldArticle.description() : article.description(),
@@ -183,18 +184,19 @@ public class ArticleService {
      * here a term query (see {@link UserService#findUserByUsername(String)}) is used to match the
      * correct article.
      * <p>
-     * The refresh value (see {@link ArticleService#newArticle(ArticleCreationDTO, Author)}) is again
-     * set as "wait_for" for both delete queries, since the frontend will again perform a get operation
-     * immediately after.
+     * The refresh value (see {@link ArticleService#newArticle(ArticleCreationDTO, Author)}) is
+     * set as "wait_for" for both delete queries, since the frontend will perform a get operation
+     * immediately after. The syntax for setting it as "wait_for" is different from the index operation,
+     * but the result is the same.
      */
     public void deleteArticle(String slug, Author author) throws IOException {
 
-        // getting article from slug
+        // Getting article from slug
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
             .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         Article article = articlePair.article();
 
-        // checking if author is the same
+        // Checking if author is the same
         if (!article.author().username().equals(author.username())) {
             throw new UnauthorizedException("Cannot delete article from another author");
         }
@@ -212,7 +214,7 @@ public class ArticleService {
             throw new RuntimeException("Failed to delete article");
         }
 
-        // delete every comment to the article, using a term query
+        // Delete every comment to the article, using a term query
         // that will match all comments with the same articleSlug
         DeleteByQueryResponse deleteCommentsByArticle = esClient.deleteByQuery(d -> d
             .index(COMMENTS)
@@ -225,13 +227,18 @@ public class ArticleService {
             ));
     }
 
+    /**
+     * Adds the requesting user to the article's favoritedBy list.
+     *
+     * @return the target article.
+     */
     public Article markArticleAsFavorite(String slug, String username) throws IOException {
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
             .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         String id = articlePair.id();
         Article article = articlePair.article();
 
-        // checking if article was already marked as favorite
+        // Checking if article was already marked as favorite
         if (article.favoritedBy().contains(username)) {
             return article;
         }
@@ -246,13 +253,18 @@ public class ArticleService {
         return updatedArticle;
     }
 
+    /**
+     * Removes the requesting user from the article's favoritedBy list.
+     *
+     * @return the target article.
+     */
     public Article removeArticleFromFavorite(String slug, String username) throws IOException {
         ArticleIdPair articlePair = Optional.ofNullable(findArticleBySlug(slug))
             .orElseThrow(() -> new ResourceNotFoundException("Article not found"));
         String id = articlePair.id();
         Article article = articlePair.article();
 
-        // checking if article was not marked as favorite before
+        // Checking if article was not marked as favorite before
         if (!article.favoritedBy().contains(username)) {
             return article;
         }
@@ -305,7 +317,7 @@ public class ArticleService {
                 .field("author.username")
                 .query(author).build()._toQuery());
         }
-        // alternative equivalent syntax to build the match query without using the Builder explicitly
+        // Alternative equivalent syntax to build the match query without using the Builder explicitly
         if (!isNullOrBlank(favorited)) {
             conditions.add(MatchQuery.of(mq -> mq
                     .field("favoritedBy")
@@ -326,18 +338,18 @@ public class ArticleService {
                         .order(SortOrder.Desc))) // last updated first
             , Article.class);
 
-        // making the output adhere to the API specification
+        // Making the output adhere to the API specification
         return new ArticlesDTO(getArticle.hits().hits()
             .stream()
             .map(Hit::source)
-            // if tag specified, put that tag first in the array
+            // If tag specified, put that tag first in the array
             .peek(a -> {
                 if (!isNullOrBlank(tag) && a.tagList().contains(tag)) {
                     Collections.swap(a.tagList(), a.tagList().indexOf(tag), 0);
                 }
             })
             .map(ArticleForListDTO::new)
-            // if auth was provided, filling the "following" field of "Author" accordingly
+            // If auth was provided, filling the "following" field of "Author" accordingly
             .map(a -> {
                 if (user.isPresent()) {
                     boolean following = user.get().following().contains(a.author().username());
@@ -350,17 +362,25 @@ public class ArticleService {
     }
 
     /**
-     * TODO resume here
+     * Searches the article index for articles created by multiple users,
+     * using a
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html"> terms </a> query,
+     * which works like a
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html"> term </a> query
+     * that can match multiple values for the same field.
+     * <p>
+     * The fields of the nested object "author" are easily accessible using the dot notation, for example
+     * "author.username".
+     * <p>
+     * The articles are sorted by the time they were last updated.
+     *
      * @return a list of articles from followed users.
      */
     public ArticlesDTO generateArticleFeed(User user) throws IOException {
-        // preparing authors filter from user data
+        // Preparing authors filter from user data
         List<FieldValue> authorsFilter = user.following().stream()
             .map(FieldValue::of).toList();
 
-        // a terms query can be used to query for multiple values, like authors.
-        // the sort options is used afterward to determine which field determines the output order
-        // note how the nested class "author" is easily accessible with the use of the dot notation
         SearchResponse<Article> articlesByAuthors = esClient.search(ss -> ss
                 .index(ARTICLES)
                 .query(q -> q
@@ -384,17 +404,25 @@ public class ArticleService {
     }
 
 
+    /**
+     * Searches the article index to retrieve a list of each distinct tag, using an
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html"> aggregation </a>,
+     * more specifically a
+     * <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html"> terms aggregation </a>
+     * <p>
+     * The resulting list of tags is sorted by document count (how many times they appear in different
+     * documents).
+     *
+     * @return a list of all tags.
+     */
     public TagsDTO findAllTags() throws IOException {
 
-        // since the API definition doesn't specify the return order of tags, sorting by document count
-        // using "_count"
-        // if alphabetical order is preferred, use "_key" instead
+        // If alphabetical order is preferred, use "_key" instead
         NamedValue<SortOrder> sort = new NamedValue<>("_count", SortOrder.Desc);
 
-        // using a term aggregation is the simplest way to find every distinct tag for each article
         SearchResponse<Aggregation> aggregateTags = esClient.search(s -> s
                 .index(ARTICLES)
-                .size(0) // this is to only return aggregation result, and not also search result
+                .size(0) // this is needed avoid returning the search result, which is not necessary here
                 .aggregations("tags", agg -> agg
                     .terms(ter -> ter
                         .field("tagList.keyword")
@@ -411,6 +439,11 @@ public class ArticleService {
         );
     }
 
+    /**
+     * Uses the Slugify library to generate the slug of the input string, then checks its uniqueness.
+     *
+     * @return the "slugified" string.
+     */
     private String generateAndCheckSlug(String title) throws IOException {
         String slug = Slugify.builder().build().slugify(title);
         if (Objects.nonNull(findArticleBySlug(slug))) {

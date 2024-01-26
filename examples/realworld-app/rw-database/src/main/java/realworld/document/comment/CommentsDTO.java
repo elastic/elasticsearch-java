@@ -17,11 +17,9 @@
  * under the License.
  */
 
-package realworld.entity.exception;
+package realworld.document.comment;
 
-public class ResourceAlreadyExistsException extends RuntimeException {
+import java.util.List;
 
-    public ResourceAlreadyExistsException(String message) {
-        super(message);
-    }
+public record CommentsDTO(List<CommentForListDTO> comments) {
 }

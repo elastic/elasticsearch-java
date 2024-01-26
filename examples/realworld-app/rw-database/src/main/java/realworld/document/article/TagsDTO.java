@@ -17,23 +17,9 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.document.article;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
-@JsonTypeName("user")
-@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record UserDTO(
-    String username,
-    String email,
-    String token,
-    String bio,
-    String image) {
-
-    public UserDTO(User user) {
-        this(user.username(), user.email(), user.token(), user.bio(), user.image());
-    }
+public record TagsDTO(List<String> tags) {
 }

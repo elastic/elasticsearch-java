@@ -17,17 +17,20 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.document.comment;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import realworld.document.user.Author;
 
-public record User(
-    String username,
-    String email,
-    String password,
-    String token,
-    String bio,
-    String image,
-    byte[] salt,
-    List<String> following) {
+import java.time.Instant;
+
+public record Comment(
+    Long id,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    String body,
+    Author author,
+    String articleSlug) {
 }

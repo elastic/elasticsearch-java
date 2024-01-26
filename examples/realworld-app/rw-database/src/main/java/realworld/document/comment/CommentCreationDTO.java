@@ -17,38 +17,15 @@
  * under the License.
  */
 
-package realworld.entity.article;
+package realworld.document.comment;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import realworld.entity.user.Author;
+import jakarta.validation.constraints.NotNull;
 
-import java.time.Instant;
-import java.util.List;
-
-@JsonTypeName("article")
+@JsonTypeName("comment")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record ArticleDTO(
-    String slug,
-    String title,
-    String description,
-    String body,
-    List<String> tagList,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-    Instant createdAt,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-    Instant updatedAt,
-    boolean favorited,
-    int favoritesCount,
-    Author author) {
-
-
-    public ArticleDTO(Article article) {
-        this(article.slug(), article.title(), article.description(), article.body(), article.tagList(),
-            article.createdAt(), article.updatedAt(),
-            article.favorited(), article.favoritesCount(), article.author());
-    }
+public record CommentCreationDTO(@NotNull String body) {
 }

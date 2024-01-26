@@ -17,14 +17,31 @@
  * under the License.
  */
 
-package realworld.entity.article;
+package realworld.document.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import realworld.document.user.Author;
 
-@JsonTypeName("article")
+import java.time.Instant;
+
+@JsonTypeName("comment")
 @JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record ArticleUpdateDTO(String title, String description, String body) {
+public record CommentDTO(
+    Long id,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    String body,
+    Author author) {
+
+    public CommentDTO(Comment comment) {
+        this(comment.id(), comment.createdAt(),
+            comment.updatedAt(), comment.body(),
+            comment.author());
+    }
 }

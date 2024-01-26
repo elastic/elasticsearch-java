@@ -17,18 +17,25 @@
  * under the License.
  */
 
-package realworld.entity.user;
+package realworld.document.comment;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import realworld.document.user.Author;
 
-@JsonTypeName("profile")
-@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME)
-public record Profile(String username, String image, String bio, boolean following) {
+import java.time.Instant;
 
-    public Profile(User user, boolean following) {
-        this(user.username(), user.image(), user.bio(), following);
+public record CommentForListDTO(
+    Long id,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant createdAt,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
+    Instant updatedAt,
+    String body,
+    Author author) {
+
+    public CommentForListDTO(Comment comment) {
+        this(comment.id(), comment.createdAt(),
+            comment.updatedAt(), comment.body(),
+            comment.author());
     }
 }

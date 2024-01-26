@@ -17,20 +17,13 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.document.user;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import realworld.entity.user.Author;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import jakarta.validation.constraints.NotNull;
 
-import java.time.Instant;
-
-public record Comment(
-    Long id,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-    Instant createdAt,
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "UTC")
-    Instant updatedAt,
-    String body,
-    Author author,
-    String articleSlug) {
+@JsonTypeName("user")
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
+public record LoginDTO(@NotNull String email, @NotNull String password) {
 }

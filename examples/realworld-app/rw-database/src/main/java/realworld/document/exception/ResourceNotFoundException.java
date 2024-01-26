@@ -17,9 +17,11 @@
  * under the License.
  */
 
-package realworld.entity.comment;
+package realworld.document.exception;
 
-import java.util.List;
+public class ResourceNotFoundException extends RuntimeException {
 
-public record CommentsDTO(List<CommentForListDTO> comments) {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
 }

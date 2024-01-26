@@ -48,6 +48,7 @@ public class ElasticClientTest {
 
     @Bean
     public ElasticsearchClient elasticRestClient() throws IOException {
+        // Creating the testcontainer
         String image = "docker.elastic.co/elasticsearch/elasticsearch:8.11.4";
         ElasticsearchContainer container = new ElasticsearchContainer(image)
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
@@ -56,16 +57,17 @@ public class ElasticClientTest {
             .withPassword("changeme");
         container.start();
 
+        // Connection settings
         int port = container.getMappedPort(9200);
-
         HttpHost host = new HttpHost("localhost", port, "https");
-
         SSLContext sslContext = container.createSslContextFromCa();
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(
             AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
         );
+
+        // Building the rest client
         RestClient restClient = RestClient.builder(host)
             .setHttpClientConfigCallback(hc -> hc
                 .setDefaultCredentialsProvider(credsProv)
@@ -73,7 +75,7 @@ public class ElasticClientTest {
             )
             .build();
         ObjectMapper mapper = JsonMapper.builder()
-            .addModule(new JavaTimeModule()) // other modules can be added here
+            .addModule(new JavaTimeModule())
             .build();
         ElasticsearchTransport transport = new RestClientTransport(restClient,
             new JacksonJsonpMapper(mapper));
