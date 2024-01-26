@@ -43,7 +43,7 @@ This is a multimodule gradle project:
 - rw-rest
     - Spring rest controllers
 - rw-server
-    - Configuration and entrypoint. Main class: SpringBootApp.java
+    - Configuration and entrypoint. Main class: [SpringBootApp.java](rw-server/src/main/java/realworld/SpringBootApp.java)
 
 # Getting started
 
