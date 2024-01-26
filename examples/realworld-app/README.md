@@ -55,7 +55,7 @@ A version of the JVM has to be installed, openjdk version "21.0.2" was used duri
 
 An Elasticsearch instance needs to be running for the application to start successfully.
 To start one easily, a [docker-compose](docker-compose.yaml) is provided, it will start Elasticsearch on port 9200 and
-Kibana on [5601](http://localhost:5601/app/home#/).
+Kibana on [5601](http://localhost:5601/app/home#/); otherwise, the connection properties can be changed in [application.properties](rw-server/src/main/resources/application.properties).
 
 ### Build:
 
