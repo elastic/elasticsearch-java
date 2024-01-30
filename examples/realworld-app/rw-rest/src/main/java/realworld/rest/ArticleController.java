@@ -42,7 +42,7 @@ import java.util.Optional;
 
 import static realworld.utils.Utility.isNullOrBlank;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 @RequestMapping("/articles")
 public class ArticleController {

@@ -32,7 +32,7 @@ import realworld.document.user.UserDTO;
 
 import java.io.IOException;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 @RequestMapping()
 public class UserController {

@@ -400,6 +400,12 @@ public class ArticleService {
             .stream()
             .map(Hit::source)
             .map(ArticleForListDTO::new)
+            // Filling the "following" field of "Author" accordingly
+            .map(a -> {
+                boolean following = user.following().contains(a.author().username());
+                return new ArticleForListDTO(a, new Author(a.author().username(),
+                    a.author().email(), a.author().bio(), following));
+            })
             .collect(Collectors.toList()), articlesByAuthors.hits().hits().size());
     }
 

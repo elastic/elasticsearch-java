@@ -32,7 +32,7 @@ import realworld.document.article.TagsDTO;
 
 import java.io.IOException;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 @RequestMapping("/tags")
 public class TagsController {

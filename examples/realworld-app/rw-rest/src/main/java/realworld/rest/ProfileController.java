@@ -29,7 +29,7 @@ import realworld.document.user.Profile;
 
 import java.io.IOException;
 
-@CrossOrigin()
+@CrossOrigin
 @RestController
 @RequestMapping("/profiles")
 public class ProfileController {

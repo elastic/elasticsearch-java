@@ -66,7 +66,7 @@ public class CommentService {
         Instant now = Instant.now();
 
         // pre-generating id since it's a field in the comment class
-        Long commentId = new SecureRandom().nextLong();
+        Long commentId = Long.valueOf(String.valueOf(new SecureRandom().nextLong()).substring(0, 15));
         Comment comment = new Comment(commentId, now, now, commentDTO.body(), commentAuthor,
             slug);
 
