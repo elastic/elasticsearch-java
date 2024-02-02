@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.core.search.InnerHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +40,6 @@ import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -64,6 +64,9 @@ public class KnnQuery implements JsonpSerializable {
 	private final long numCandidates;
 
 	@Nullable
+	private final InnerHits innerHits;
+
+	@Nullable
 	private final Float boost;
 
 	private final List<Query> filter;
@@ -76,6 +79,7 @@ public class KnnQuery implements JsonpSerializable {
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
+		this.innerHits = builder.innerHits;
 		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
 		this.boost = builder.boost;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
@@ -187,6 +191,11 @@ public class KnnQuery implements JsonpSerializable {
 		generator.writeKey("num_candidates");
 		generator.write(this.numCandidates);
 
+		if (this.innerHits != null) {
+			generator.writeKey("inner_hits");
+			this.innerHits.serialize(generator, mapper);
+		}
+
 		if (this.boost != null) {
 			generator.writeKey("boost");
 			generator.write(this.boost);
@@ -228,6 +237,9 @@ public class KnnQuery implements JsonpSerializable {
 		private Long k;
 
 		private Long numCandidates;
+
+		@Nullable
+		private InnerHits innerHits;
 
 		@Nullable
 		private Float boost;
@@ -308,6 +320,16 @@ public class KnnQuery implements JsonpSerializable {
 		 */
 		public final Builder numCandidates(long value) {
 			this.numCandidates = value;
+			return this;
+		}
+
+		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
+		 * API name: {@code inner_hits}
+		 */
+		public final Builder innerHits(@Nullable InnerHits value) {
+			this.innerHits = value;
 			return this;
 		}
 
