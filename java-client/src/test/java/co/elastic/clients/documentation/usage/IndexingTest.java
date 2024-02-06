@@ -200,7 +200,8 @@ public class IndexingTest extends ModelTestCase {
         esClient.update(u -> u
                 .index("products")
                 .id("bk-1")
-                .upsert(product),
+                .doc(product)
+                .docAsUpsert(true),
             Product.class
         );
         //end::single-doc-update
