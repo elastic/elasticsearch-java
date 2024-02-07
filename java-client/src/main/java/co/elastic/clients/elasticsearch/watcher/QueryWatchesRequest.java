@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -40,11 +36,27 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: watcher.query_watches.Request
 
@@ -256,6 +268,74 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder searchAfter(FieldValue value, FieldValue... values) {
 			this.searchAfter = _listAdd(this.searchAfter, value, values);
+			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(long value, long... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(double value, double... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(boolean value, boolean... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
