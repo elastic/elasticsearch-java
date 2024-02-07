@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
@@ -34,10 +30,26 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.aggregations.MultiTermsBucket
 
@@ -155,6 +167,66 @@ public class MultiTermsBucket extends MultiBucketBase {
 		 */
 		public final Builder key(FieldValue value, FieldValue... values) {
 			this.key = _listAdd(this.key, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all passed values to <code>key</code>.
+		 */
+		public final Builder key(String value, String... values) {
+			this.key = _listAdd(this.key, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.key = _listAddAll(this.key, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all passed values to <code>key</code>.
+		 */
+		public final Builder key(long value, long... values) {
+			this.key = _listAdd(this.key, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.key = _listAddAll(this.key, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all passed values to <code>key</code>.
+		 */
+		public final Builder key(double value, double... values) {
+			this.key = _listAdd(this.key, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.key = _listAddAll(this.key, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all passed values to <code>key</code>.
+		 */
+		public final Builder key(boolean value, boolean... values) {
+			this.key = _listAdd(this.key, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.key = _listAddAll(this.key, fieldValues);
 			return this;
 		}
 
