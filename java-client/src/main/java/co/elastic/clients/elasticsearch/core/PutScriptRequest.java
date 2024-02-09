@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: _global.put_script.Request
 
 /**
- * Creates or updates a script.
+ * Creates or updates a stored script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.put_script.Request">API
  *      specification</a>
@@ -96,7 +96,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Script context
+	 * Context in which the script or search template should run. To prevent errors,
+	 * the API immediately compiles the script or template in this context.
 	 * <p>
 	 * API name: {@code context}
 	 */
@@ -106,7 +107,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Script ID
+	 * Required - Identifier for the stored script or search template. Must be
+	 * unique within the cluster.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -115,7 +117,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -125,14 +128,18 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - Contains the script or search template, its parameters, and its
+	 * language.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final StoredScript script() {
 		return this.script;
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -180,7 +187,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
-		 * Script context
+		 * Context in which the script or search template should run. To prevent errors,
+		 * the API immediately compiles the script or template in this context.
 		 * <p>
 		 * API name: {@code context}
 		 */
@@ -190,7 +198,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Script ID
+		 * Required - Identifier for the stored script or search template. Must be
+		 * unique within the cluster.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -200,7 +209,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -210,7 +220,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -219,7 +230,10 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Contains the script or search template, its parameters, and its
+		 * language.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(StoredScript value) {
 			this.script = value;
@@ -227,14 +241,18 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Contains the script or search template, its parameters, and its
+		 * language.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
 			return this.script(fn.apply(new StoredScript.Builder()).build());
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -244,7 +262,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

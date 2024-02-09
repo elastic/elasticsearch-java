@@ -108,8 +108,12 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -118,8 +122,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -139,7 +143,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Specific the time to live for the point in time
+	 * Required - Extends the time to live of the corresponding point in time.
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
@@ -148,8 +152,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -159,7 +163,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -194,8 +198,12 @@ public class OpenPointInTimeRequest extends RequestBase {
 		private String routing;
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -207,8 +215,12 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -220,8 +232,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -257,7 +269,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Specific the time to live for the point in time
+		 * Required - Extends the time to live of the corresponding point in time.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -267,7 +279,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Specific the time to live for the point in time
+		 * Required - Extends the time to live of the corresponding point in time.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -276,8 +288,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -287,7 +299,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */

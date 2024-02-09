@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: search_application.search.Request
 
 /**
- * Perform a search against a search application
+ * Perform a search against a search application.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.search.Request">API
@@ -86,7 +86,7 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Required - The name of the search application to be searched
+	 * Required - The name of the search application to be searched.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -95,6 +95,9 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Query parameters specific to this request, which will override any defaults
+	 * specified in the template.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -141,7 +144,7 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		private Map<String, JsonData> params;
 
 		/**
-		 * Required - The name of the search application to be searched
+		 * Required - The name of the search application to be searched.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -151,6 +154,9 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Query parameters specific to this request, which will override any defaults
+		 * specified in the template.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -161,6 +167,9 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Query parameters specific to this request, which will override any defaults
+		 * specified in the template.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.

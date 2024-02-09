@@ -785,6 +785,25 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link SparseVectorProperty sparse_vector}
+	 * {@code Property} variant.
+	 */
+	public static SparseVectorProperty.Builder sparseVector() {
+		return new SparseVectorProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link SparseVectorProperty sparse_vector}
+	 * {@code Property} variant.
+	 */
+	public static Property sparseVector(
+			Function<SparseVectorProperty.Builder, ObjectBuilder<SparseVectorProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.sparseVector(fn.apply(new SparseVectorProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TextProperty text} {@code Property} variant.
 	 */
 	public static TextProperty.Builder text() {

@@ -137,6 +137,8 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 	}
 
 	/**
+	 * If <code>true</code>, the request’s actions must target an index alias.
+	 * <p>
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
@@ -231,6 +233,8 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
+		 * If <code>true</code>, the request’s actions must target an index alias.
+		 * <p>
 		 * API name: {@code require_alias}
 		 */
 		public final Builder<TDocument, TPartialDocument> requireAlias(@Nullable Boolean value) {

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: _global.get_script.Request
 
 /**
- * Returns a script.
+ * Retrieves a stored script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.get_script.Request">API
  *      specification</a>
@@ -82,7 +82,7 @@ public class GetScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Script ID
+	 * Required - Identifier for the stored script or search template.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -115,7 +115,7 @@ public class GetScriptRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Required - Script ID
+		 * Required - Identifier for the stored script or search template.
 		 * <p>
 		 * API name: {@code id}
 		 */

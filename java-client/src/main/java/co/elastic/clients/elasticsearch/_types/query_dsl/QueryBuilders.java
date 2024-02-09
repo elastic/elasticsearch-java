@@ -960,6 +960,24 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link WeightedTokensQuery weighted_tokens}
+	 * {@code Query} variant.
+	 */
+	public static WeightedTokensQuery.Builder weightedTokens() {
+		return new WeightedTokensQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link WeightedTokensQuery weighted_tokens}
+	 * {@code Query} variant.
+	 */
+	public static Query weightedTokens(Function<WeightedTokensQuery.Builder, ObjectBuilder<WeightedTokensQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.weightedTokens(fn.apply(new WeightedTokensQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link WildcardQuery wildcard} {@code Query}
 	 * variant.
 	 */

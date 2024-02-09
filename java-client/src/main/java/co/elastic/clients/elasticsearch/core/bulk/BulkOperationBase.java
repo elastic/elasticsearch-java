@@ -95,6 +95,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The document ID.
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	@Nullable
@@ -103,6 +105,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Name of the index or index alias to perform the action on.
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	@Nullable
@@ -111,6 +115,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Custom value used to route operations to a specific shard.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -228,6 +234,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
+		 * The document ID.
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public final BuilderT id(@Nullable String value) {
@@ -236,6 +244,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Name of the index or index alias to perform the action on.
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public final BuilderT index(@Nullable String value) {
@@ -244,6 +254,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom value used to route operations to a specific shard.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final BuilderT routing(@Nullable String value) {

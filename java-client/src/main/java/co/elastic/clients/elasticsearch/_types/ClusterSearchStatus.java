@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,21 +40,26 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.TemplateFormat">API
+ * @see <a href="../doc-files/api-spec.html#_types.ClusterSearchStatus">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum TemplateFormat implements JsonEnum {
-	String("string"),
+public enum ClusterSearchStatus implements JsonEnum {
+	Running("running"),
 
-	Json("json"),
+	Successful("successful"),
+
+	Partial("partial"),
+
+	Skipped("skipped"),
+
+	Failed("failed"),
 
 	;
 
 	private final String jsonValue;
 
-	TemplateFormat(String jsonValue) {
+	ClusterSearchStatus(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -62,6 +67,6 @@ public enum TemplateFormat implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<TemplateFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TemplateFormat.values());
+	public static final JsonEnum.Deserializer<ClusterSearchStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ClusterSearchStatus.values());
 }

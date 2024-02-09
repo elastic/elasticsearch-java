@@ -64,6 +64,9 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 	private final String modelText;
 
+	@Nullable
+	private final TokenPruningConfig pruningConfig;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TextExpansionQuery(Builder builder) {
@@ -72,6 +75,7 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
+		this.pruningConfig = builder.pruningConfig;
 
 	}
 
@@ -112,6 +116,16 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 		return this.modelText;
 	}
 
+	/**
+	 * Token pruning configurations
+	 * <p>
+	 * API name: {@code pruning_config}
+	 */
+	@Nullable
+	public final TokenPruningConfig pruningConfig() {
+		return this.pruningConfig;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject(this.field);
 
@@ -121,6 +135,12 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 		generator.writeKey("model_text");
 		generator.write(this.modelText);
+
+		if (this.pruningConfig != null) {
+			generator.writeKey("pruning_config");
+			this.pruningConfig.serialize(generator, mapper);
+
+		}
 
 		generator.writeEnd();
 
@@ -149,6 +169,9 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 		private String modelText;
 
+		@Nullable
+		private TokenPruningConfig pruningConfig;
+
 		/**
 		 * Required - The text expansion NLP model to use
 		 * <p>
@@ -167,6 +190,25 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 		public final Builder modelText(String value) {
 			this.modelText = value;
 			return this;
+		}
+
+		/**
+		 * Token pruning configurations
+		 * <p>
+		 * API name: {@code pruning_config}
+		 */
+		public final Builder pruningConfig(@Nullable TokenPruningConfig value) {
+			this.pruningConfig = value;
+			return this;
+		}
+
+		/**
+		 * Token pruning configurations
+		 * <p>
+		 * API name: {@code pruning_config}
+		 */
+		public final Builder pruningConfig(Function<TokenPruningConfig.Builder, ObjectBuilder<TokenPruningConfig>> fn) {
+			return this.pruningConfig(fn.apply(new TokenPruningConfig.Builder()).build());
 		}
 
 		@Override
@@ -199,6 +241,7 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::modelText, JsonpDeserializer.stringDeserializer(), "model_text");
+		op.add(Builder::pruningConfig, TokenPruningConfig._DESERIALIZER, "pruning_config");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 

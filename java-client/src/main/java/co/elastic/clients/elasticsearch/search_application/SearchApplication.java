@@ -91,7 +91,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Search Application name
+	 * Required - Search Application name.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -100,7 +100,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Indices that are part of the Search Application
+	 * Required - Indices that are part of the Search Application.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -109,7 +109,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Last time the Search Application was updated
+	 * Required - Last time the Search Application was updated.
 	 * <p>
 	 * API name: {@code updated_at_millis}
 	 */
@@ -118,7 +118,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Analytics collection associated to the Search Application
+	 * Analytics collection associated to the Search Application.
 	 * <p>
 	 * API name: {@code analytics_collection_name}
 	 */
@@ -128,7 +128,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Search template to use on search operations
+	 * Search template to use on search operations.
 	 * <p>
 	 * API name: {@code template}
 	 */
@@ -225,7 +225,7 @@ public class SearchApplication implements JsonpSerializable {
 		private SearchApplicationTemplate template;
 
 		/**
-		 * Required - Search Application name
+		 * Required - Search Application name.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -235,7 +235,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Indices that are part of the Search Application
+		 * Required - Indices that are part of the Search Application.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -247,7 +247,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Indices that are part of the Search Application
+		 * Required - Indices that are part of the Search Application.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -259,7 +259,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Last time the Search Application was updated
+		 * Required - Last time the Search Application was updated.
 		 * <p>
 		 * API name: {@code updated_at_millis}
 		 */
@@ -269,7 +269,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Analytics collection associated to the Search Application
+		 * Analytics collection associated to the Search Application.
 		 * <p>
 		 * API name: {@code analytics_collection_name}
 		 */
@@ -279,7 +279,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Search template to use on search operations
+		 * Search template to use on search operations.
 		 * <p>
 		 * API name: {@code template}
 		 */
@@ -289,7 +289,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Search template to use on search operations
+		 * Search template to use on search operations.
 		 * <p>
 		 * API name: {@code template}
 		 */

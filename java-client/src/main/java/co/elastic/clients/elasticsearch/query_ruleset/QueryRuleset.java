@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#query_ruleset._types.QueryRuleset">API
  *      specification</a>
  */
-@JsonpDeserializable
-public class QueryRuleset implements JsonpSerializable {
+
+public abstract class QueryRuleset implements JsonpSerializable {
 	private final String rulesetId;
 
 	private final List<QueryRule> rules;
@@ -72,10 +72,6 @@ public class QueryRuleset implements JsonpSerializable {
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 		this.rules = ApiTypeHelper.unmodifiableRequired(builder.rules, this, "rules");
 
-	}
-
-	public static QueryRuleset queryRulesetOf(Function<Builder, ObjectBuilder<QueryRuleset>> fn) {
-		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,31 +122,6 @@ public class QueryRuleset implements JsonpSerializable {
 	@Override
 	public String toString() {
 		return JsonpUtils.toString(this);
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link QueryRuleset}.
-	 */
-
-	public static class Builder extends QueryRuleset.AbstractBuilder<Builder> implements ObjectBuilder<QueryRuleset> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link QueryRuleset}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public QueryRuleset build() {
-			_checkSingleUse();
-
-			return new QueryRuleset(this);
-		}
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
@@ -210,13 +181,6 @@ public class QueryRuleset implements JsonpSerializable {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link QueryRuleset}
-	 */
-	public static final JsonpDeserializer<QueryRuleset> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryRuleset::setupQueryRulesetDeserializer);
-
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupQueryRulesetDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 

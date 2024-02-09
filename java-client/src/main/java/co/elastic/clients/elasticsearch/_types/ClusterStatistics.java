@@ -31,8 +31,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -64,6 +67,14 @@ public class ClusterStatistics implements JsonpSerializable {
 
 	private final int total;
 
+	private final int running;
+
+	private final int partial;
+
+	private final int failed;
+
+	private final Map<String, ClusterDetails> details;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ClusterStatistics(Builder builder) {
@@ -71,6 +82,10 @@ public class ClusterStatistics implements JsonpSerializable {
 		this.skipped = ApiTypeHelper.requireNonNull(builder.skipped, this, "skipped");
 		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.running = ApiTypeHelper.requireNonNull(builder.running, this, "running");
+		this.partial = ApiTypeHelper.requireNonNull(builder.partial, this, "partial");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.details = ApiTypeHelper.unmodifiable(builder.details);
 
 	}
 
@@ -100,6 +115,34 @@ public class ClusterStatistics implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code running}
+	 */
+	public final int running() {
+		return this.running;
+	}
+
+	/**
+	 * Required - API name: {@code partial}
+	 */
+	public final int partial() {
+		return this.partial;
+	}
+
+	/**
+	 * Required - API name: {@code failed}
+	 */
+	public final int failed() {
+		return this.failed;
+	}
+
+	/**
+	 * API name: {@code details}
+	 */
+	public final Map<String, ClusterDetails> details() {
+		return this.details;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -118,6 +161,27 @@ public class ClusterStatistics implements JsonpSerializable {
 
 		generator.writeKey("total");
 		generator.write(this.total);
+
+		generator.writeKey("running");
+		generator.write(this.running);
+
+		generator.writeKey("partial");
+		generator.write(this.partial);
+
+		generator.writeKey("failed");
+		generator.write(this.failed);
+
+		if (ApiTypeHelper.isDefined(this.details)) {
+			generator.writeKey("details");
+			generator.writeStartObject();
+			for (Map.Entry<String, ClusterDetails> item0 : this.details.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -138,6 +202,15 @@ public class ClusterStatistics implements JsonpSerializable {
 		private Integer successful;
 
 		private Integer total;
+
+		private Integer running;
+
+		private Integer partial;
+
+		private Integer failed;
+
+		@Nullable
+		private Map<String, ClusterDetails> details;
 
 		/**
 		 * Required - API name: {@code skipped}
@@ -161,6 +234,59 @@ public class ClusterStatistics implements JsonpSerializable {
 		public final Builder total(int value) {
 			this.total = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code running}
+		 */
+		public final Builder running(int value) {
+			this.running = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code partial}
+		 */
+		public final Builder partial(int value) {
+			this.partial = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code failed}
+		 */
+		public final Builder failed(int value) {
+			this.failed = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code details}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>details</code>.
+		 */
+		public final Builder details(Map<String, ClusterDetails> map) {
+			this.details = _mapPutAll(this.details, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code details}
+		 * <p>
+		 * Adds an entry to <code>details</code>.
+		 */
+		public final Builder details(String key, ClusterDetails value) {
+			this.details = _mapPut(this.details, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code details}
+		 * <p>
+		 * Adds an entry to <code>details</code> using a builder lambda.
+		 */
+		public final Builder details(String key, Function<ClusterDetails.Builder, ObjectBuilder<ClusterDetails>> fn) {
+			return details(key, fn.apply(new ClusterDetails.Builder()).build());
 		}
 
 		@Override
@@ -194,6 +320,10 @@ public class ClusterStatistics implements JsonpSerializable {
 		op.add(Builder::skipped, JsonpDeserializer.integerDeserializer(), "skipped");
 		op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
 		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+		op.add(Builder::running, JsonpDeserializer.integerDeserializer(), "running");
+		op.add(Builder::partial, JsonpDeserializer.integerDeserializer(), "partial");
+		op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
+		op.add(Builder::details, JsonpDeserializer.stringMapDeserializer(ClusterDetails._DESERIALIZER), "details");
 
 	}
 

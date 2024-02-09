@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.async_search.status;
 
+import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.async_search.AsyncSearchResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -63,6 +64,9 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 	private final ShardStatistics shards;
 
 	@Nullable
+	private final ClusterStatistics clusters;
+
+	@Nullable
 	private final Integer completionStatus;
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +75,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		super(builder);
 
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.clusters = builder.clusters;
 		this.completionStatus = builder.completionStatus;
 
 	}
@@ -82,6 +87,17 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 	 */
 	public final ShardStatistics shards() {
 		return this.shards;
+	}
+
+	/**
+	 * Metadata about clusters involved in the cross-cluster search. Not shown for
+	 * local-only searches.
+	 * <p>
+	 * API name: {@code _clusters}
+	 */
+	@Nullable
+	public final ClusterStatistics clusters() {
+		return this.clusters;
 	}
 
 	/**
@@ -102,6 +118,11 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
+		if (this.clusters != null) {
+			generator.writeKey("_clusters");
+			this.clusters.serialize(generator, mapper);
+
+		}
 		if (this.completionStatus != null) {
 			generator.writeKey("completion_status");
 			generator.write(this.completionStatus);
@@ -114,6 +135,9 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 			extends
 				AsyncSearchResponseBase.AbstractBuilder<BuilderT> {
 		private ShardStatistics shards;
+
+		@Nullable
+		private ClusterStatistics clusters;
 
 		@Nullable
 		private Integer completionStatus;
@@ -138,6 +162,27 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		}
 
 		/**
+		 * Metadata about clusters involved in the cross-cluster search. Not shown for
+		 * local-only searches.
+		 * <p>
+		 * API name: {@code _clusters}
+		 */
+		public final BuilderT clusters(@Nullable ClusterStatistics value) {
+			this.clusters = value;
+			return self();
+		}
+
+		/**
+		 * Metadata about clusters involved in the cross-cluster search. Not shown for
+		 * local-only searches.
+		 * <p>
+		 * API name: {@code _clusters}
+		 */
+		public final BuilderT clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
+			return this.clusters(fn.apply(new ClusterStatistics.Builder()).build());
+		}
+
+		/**
 		 * If the async search completed, this field shows the status code of the
 		 * search. For example, 200 indicates that the async search was successfully
 		 * completed. 503 indicates that the async search was completed with an error.
@@ -156,6 +201,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 			ObjectDeserializer<BuilderT> op) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
 		op.add(AbstractBuilder::completionStatus, JsonpDeserializer.integerDeserializer(), "completion_status");
 
 	}

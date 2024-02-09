@@ -135,6 +135,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Array of existing or artificial documents.
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	public final List<MultiTermVectorsOperation> docs() {
@@ -142,9 +144,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies if document count, sum of document frequencies and sum of total
-	 * term frequencies should be returned. Applies to all returned documents unless
-	 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * If <code>true</code>, the response includes the document count, sum of
+	 * document frequencies, and sum of total term frequencies.
 	 * <p>
 	 * API name: {@code field_statistics}
 	 */
@@ -154,8 +155,10 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * A comma-separated list of fields to return. Applies to all returned documents
-	 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * Comma-separated list or wildcard expressions of fields to include in the
+	 * statistics. Used as the default list unless a specific field list is provided
+	 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
+	 * parameters.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -164,6 +167,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Simplified syntax to specify documents by their ID if they're in the same
+	 * index.
+	 * <p>
 	 * API name: {@code ids}
 	 */
 	public final List<String> ids() {
@@ -171,7 +177,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The index in which the document resides.
+	 * Name of the index that contains the documents.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -181,9 +187,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies if term offsets should be returned. Applies to all returned
-	 * documents unless otherwise specified in body &quot;params&quot; or
-	 * &quot;docs&quot;.
+	 * If <code>true</code>, the response includes term offsets.
 	 * <p>
 	 * API name: {@code offsets}
 	 */
@@ -193,9 +197,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies if term payloads should be returned. Applies to all returned
-	 * documents unless otherwise specified in body &quot;params&quot; or
-	 * &quot;docs&quot;.
+	 * If <code>true</code>, the response includes term payloads.
 	 * <p>
 	 * API name: {@code payloads}
 	 */
@@ -205,9 +207,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies if term positions should be returned. Applies to all returned
-	 * documents unless otherwise specified in body &quot;params&quot; or
-	 * &quot;docs&quot;.
+	 * If <code>true</code>, the response includes term positions.
 	 * <p>
 	 * API name: {@code positions}
 	 */
@@ -217,9 +217,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random) .Applies to all returned documents unless otherwise specified in body
-	 * &quot;params&quot; or &quot;docs&quot;.
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -229,8 +228,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies if requests are real-time as opposed to near-real-time (default:
-	 * true).
+	 * If true, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -240,8 +238,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specific routing value. Applies to all returned documents unless otherwise
-	 * specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -251,9 +248,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies if total term frequency and document frequency should be returned.
-	 * Applies to all returned documents unless otherwise specified in body
-	 * &quot;params&quot; or &quot;docs&quot;.
+	 * If true, the response includes term frequency and document frequency.
 	 * <p>
 	 * API name: {@code term_statistics}
 	 */
@@ -263,7 +258,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Explicit version number for concurrency control
+	 * If <code>true</code>, returns the document version as part of a hit.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -273,7 +268,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specific version type
+	 * Specific version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -368,6 +363,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		private VersionType versionType;
 
 		/**
+		 * Array of existing or artificial documents.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
@@ -378,6 +375,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Array of existing or artificial documents.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
@@ -388,6 +387,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Array of existing or artificial documents.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.
@@ -398,9 +399,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies if document count, sum of document frequencies and sum of total
-		 * term frequencies should be returned. Applies to all returned documents unless
-		 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * If <code>true</code>, the response includes the document count, sum of
+		 * document frequencies, and sum of total term frequencies.
 		 * <p>
 		 * API name: {@code field_statistics}
 		 */
@@ -410,8 +410,10 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * A comma-separated list of fields to return. Applies to all returned documents
-		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics. Used as the default list unless a specific field list is provided
+		 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
+		 * parameters.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -423,8 +425,10 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * A comma-separated list of fields to return. Applies to all returned documents
-		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics. Used as the default list unless a specific field list is provided
+		 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
+		 * parameters.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -436,6 +440,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Simplified syntax to specify documents by their ID if they're in the same
+		 * index.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
@@ -446,6 +453,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Simplified syntax to specify documents by their ID if they're in the same
+		 * index.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds one or more values to <code>ids</code>.
@@ -456,7 +466,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The index in which the document resides.
+		 * Name of the index that contains the documents.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -466,9 +476,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies if term offsets should be returned. Applies to all returned
-		 * documents unless otherwise specified in body &quot;params&quot; or
-		 * &quot;docs&quot;.
+		 * If <code>true</code>, the response includes term offsets.
 		 * <p>
 		 * API name: {@code offsets}
 		 */
@@ -478,9 +486,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies if term payloads should be returned. Applies to all returned
-		 * documents unless otherwise specified in body &quot;params&quot; or
-		 * &quot;docs&quot;.
+		 * If <code>true</code>, the response includes term payloads.
 		 * <p>
 		 * API name: {@code payloads}
 		 */
@@ -490,9 +496,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies if term positions should be returned. Applies to all returned
-		 * documents unless otherwise specified in body &quot;params&quot; or
-		 * &quot;docs&quot;.
+		 * If <code>true</code>, the response includes term positions.
 		 * <p>
 		 * API name: {@code positions}
 		 */
@@ -502,9 +506,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random) .Applies to all returned documents unless otherwise specified in body
-		 * &quot;params&quot; or &quot;docs&quot;.
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -514,8 +517,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies if requests are real-time as opposed to near-real-time (default:
-		 * true).
+		 * If true, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -525,8 +527,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specific routing value. Applies to all returned documents unless otherwise
-		 * specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -536,9 +537,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies if total term frequency and document frequency should be returned.
-		 * Applies to all returned documents unless otherwise specified in body
-		 * &quot;params&quot; or &quot;docs&quot;.
+		 * If true, the response includes term frequency and document frequency.
 		 * <p>
 		 * API name: {@code term_statistics}
 		 */
@@ -548,7 +547,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Explicit version number for concurrency control
+		 * If <code>true</code>, returns the document version as part of a hit.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -558,7 +557,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specific version type
+		 * Specific version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security;
+package co.elastic.clients.elasticsearch.text_structure;
 
+import co.elastic.clients.elasticsearch.text_structure.test_grok_pattern.MatchedText;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,42 +51,35 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security._types.Realm
+// typedef: text_structure.test_grok_pattern.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#security._types.Realm">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#text_structure.test_grok_pattern.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Realm implements FieldRuleVariant, JsonpSerializable {
-	private final String name;
+public class TestGrokPatternResponse implements JsonpSerializable {
+	private final List<MatchedText> matches;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Realm(Builder builder) {
+	private TestGrokPatternResponse(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.matches = ApiTypeHelper.unmodifiableRequired(builder.matches, this, "matches");
 
 	}
 
-	public static Realm of(Function<Builder, ObjectBuilder<Realm>> fn) {
+	public static TestGrokPatternResponse of(Function<Builder, ObjectBuilder<TestGrokPatternResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * FieldRule variant kind.
+	 * Required - API name: {@code matches}
 	 */
-	@Override
-	public FieldRule.Kind _fieldRuleKind() {
-		return FieldRule.Kind.Realm;
-	}
-
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
+	public final List<MatchedText> matches() {
+		return this.matches;
 	}
 
 	/**
@@ -99,8 +93,16 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (ApiTypeHelper.isDefined(this.matches)) {
+			generator.writeKey("matches");
+			generator.writeStartArray();
+			for (MatchedText item0 : this.matches) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -112,18 +114,41 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Realm}.
+	 * Builder for {@link TestGrokPatternResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Realm> {
-		private String name;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TestGrokPatternResponse> {
+		private List<MatchedText> matches;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - API name: {@code matches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>matches</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder matches(List<MatchedText> list) {
+			this.matches = _listAddAll(this.matches, list);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code matches}
+		 * <p>
+		 * Adds one or more values to <code>matches</code>.
+		 */
+		public final Builder matches(MatchedText value, MatchedText... values) {
+			this.matches = _listAdd(this.matches, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code matches}
+		 * <p>
+		 * Adds a value to <code>matches</code> using a builder lambda.
+		 */
+		public final Builder matches(Function<MatchedText.Builder, ObjectBuilder<MatchedText>> fn) {
+			return matches(fn.apply(new MatchedText.Builder()).build());
 		}
 
 		@Override
@@ -132,29 +157,30 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Realm}.
+		 * Builds a {@link TestGrokPatternResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Realm build() {
+		public TestGrokPatternResponse build() {
 			_checkSingleUse();
 
-			return new Realm(this);
+			return new TestGrokPatternResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Realm}
+	 * Json deserializer for {@link TestGrokPatternResponse}
 	 */
-	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Realm::setupRealmDeserializer);
+	public static final JsonpDeserializer<TestGrokPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TestGrokPatternResponse::setupTestGrokPatternResponseDeserializer);
 
-	protected static void setupRealmDeserializer(ObjectDeserializer<Realm.Builder> op) {
+	protected static void setupTestGrokPatternResponseDeserializer(
+			ObjectDeserializer<TestGrokPatternResponse.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::matches, JsonpDeserializer.arrayDeserializer(MatchedText._DESERIALIZER), "matches");
 
 	}
 

@@ -59,6 +59,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -2212,6 +2213,78 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder searchAfter(FieldValue value, FieldValue... values) {
 			this.searchAfter = _listAdd(this.searchAfter, value, values);
+			return this;
+		}
+
+		/**
+		 * Used to retrieve the next page of hits using a set of sort values from the
+		 * previous page.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Used to retrieve the next page of hits using a set of sort values from the
+		 * previous page.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(long value, long... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Used to retrieve the next page of hits using a set of sort values from the
+		 * previous page.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(double value, double... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Used to retrieve the next page of hits using a set of sort values from the
+		 * previous page.
+		 * <p>
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(boolean value, boolean... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

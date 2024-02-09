@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -162,6 +163,66 @@ public class TopMetrics implements JsonpSerializable {
 		 */
 		public final Builder sort(FieldValue value, FieldValue... values) {
 			this.sort = _listAdd(this.sort, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder sort(long value, long... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder sort(double value, double... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder sort(boolean value, boolean... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
 			return this;
 		}
 

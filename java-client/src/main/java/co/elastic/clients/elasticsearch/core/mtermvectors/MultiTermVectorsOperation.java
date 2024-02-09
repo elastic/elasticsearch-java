@@ -128,13 +128,17 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * Required - The ID of the document.
+	 * <p>
+	 * API name: {@code _id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
+	 * The index of the document.
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	@Nullable
@@ -143,6 +147,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * An artificial document (a document not present in the index) for which you
+	 * want to retrieve term vectors.
+	 * <p>
 	 * API name: {@code doc}
 	 */
 	@Nullable
@@ -151,6 +158,11 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * Comma-separated list or wildcard expressions of fields to include in the
+	 * statistics. Used as the default list unless a specific field list is provided
+	 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
+	 * parameters.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
@@ -158,6 +170,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes the document count, sum of
+	 * document frequencies, and sum of total term frequencies.
+	 * <p>
 	 * API name: {@code field_statistics}
 	 */
 	@Nullable
@@ -166,6 +181,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * Filter terms based on their tf-idf scores.
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -174,6 +191,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes term offsets.
+	 * <p>
 	 * API name: {@code offsets}
 	 */
 	@Nullable
@@ -182,6 +201,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes term payloads.
+	 * <p>
 	 * API name: {@code payloads}
 	 */
 	@Nullable
@@ -190,6 +211,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes term positions.
+	 * <p>
 	 * API name: {@code positions}
 	 */
 	@Nullable
@@ -198,6 +221,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * Custom value used to route operations to a specific shard.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -206,6 +231,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If true, the response includes term frequency and document frequency.
+	 * <p>
 	 * API name: {@code term_statistics}
 	 */
 	@Nullable
@@ -214,6 +241,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, returns the document version as part of a hit.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -222,6 +251,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * Specific version type.
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -363,7 +394,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * Required - The ID of the document.
+		 * <p>
+		 * API name: {@code _id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -371,6 +404,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * The index of the document.
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -379,6 +414,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * An artificial document (a document not present in the index) for which you
+		 * want to retrieve term vectors.
+		 * <p>
 		 * API name: {@code doc}
 		 */
 		public final Builder doc(@Nullable JsonData value) {
@@ -387,6 +425,11 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics. Used as the default list unless a specific field list is provided
+		 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
+		 * parameters.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
@@ -397,6 +440,11 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics. Used as the default list unless a specific field list is provided
+		 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
+		 * parameters.
+		 * <p>
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
@@ -407,6 +455,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes the document count, sum of
+		 * document frequencies, and sum of total term frequencies.
+		 * <p>
 		 * API name: {@code field_statistics}
 		 */
 		public final Builder fieldStatistics(@Nullable Boolean value) {
@@ -415,6 +466,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * Filter terms based on their tf-idf scores.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(@Nullable Filter value) {
@@ -423,6 +476,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * Filter terms based on their tf-idf scores.
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public final Builder filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
@@ -430,6 +485,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes term offsets.
+		 * <p>
 		 * API name: {@code offsets}
 		 */
 		public final Builder offsets(@Nullable Boolean value) {
@@ -438,6 +495,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes term payloads.
+		 * <p>
 		 * API name: {@code payloads}
 		 */
 		public final Builder payloads(@Nullable Boolean value) {
@@ -446,6 +505,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes term positions.
+		 * <p>
 		 * API name: {@code positions}
 		 */
 		public final Builder positions(@Nullable Boolean value) {
@@ -454,6 +515,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom value used to route operations to a specific shard.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -462,6 +525,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If true, the response includes term frequency and document frequency.
+		 * <p>
 		 * API name: {@code term_statistics}
 		 */
 		public final Builder termStatistics(@Nullable Boolean value) {
@@ -470,6 +535,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, returns the document version as part of a hit.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public final Builder version(@Nullable Long value) {
@@ -478,6 +545,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * Specific version type.
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public final Builder versionType(@Nullable VersionType value) {

@@ -78,7 +78,9 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - API name: {@code cursor}
+	 * Required - Cursor to clear.
+	 * <p>
+	 * API name: {@code cursor}
 	 */
 	public final String cursor() {
 		return this.cursor;
@@ -112,7 +114,9 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 		private String cursor;
 
 		/**
-		 * Required - API name: {@code cursor}
+		 * Required - Cursor to clear.
+		 * <p>
+		 * API name: {@code cursor}
 		 */
 		public final Builder cursor(String value) {
 			this.cursor = value;

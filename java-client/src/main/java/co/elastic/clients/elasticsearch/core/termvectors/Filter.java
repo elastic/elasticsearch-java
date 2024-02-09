@@ -98,6 +98,8 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * Ignore words which occur in more than this many docs. Defaults to unbounded.
+	 * <p>
 	 * API name: {@code max_doc_freq}
 	 */
 	@Nullable
@@ -106,6 +108,8 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum number of terms that must be returned per field.
+	 * <p>
 	 * API name: {@code max_num_terms}
 	 */
 	@Nullable
@@ -114,6 +118,9 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * Ignore words with more than this frequency in the source doc. Defaults to
+	 * unbounded.
+	 * <p>
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
@@ -122,6 +129,9 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum word length above which words will be ignored. Defaults to
+	 * unbounded.
+	 * <p>
 	 * API name: {@code max_word_length}
 	 */
 	@Nullable
@@ -130,6 +140,8 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * Ignore terms which do not occur in at least this many docs.
+	 * <p>
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
@@ -138,6 +150,8 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * Ignore words with less than this frequency in the source doc.
+	 * <p>
 	 * API name: {@code min_term_freq}
 	 */
 	@Nullable
@@ -146,6 +160,8 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * The minimum word length below which words will be ignored.
+	 * <p>
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
@@ -236,6 +252,8 @@ public class Filter implements JsonpSerializable {
 		private Integer minWordLength;
 
 		/**
+		 * Ignore words which occur in more than this many docs. Defaults to unbounded.
+		 * <p>
 		 * API name: {@code max_doc_freq}
 		 */
 		public final Builder maxDocFreq(@Nullable Integer value) {
@@ -244,6 +262,8 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
+		 * Maximum number of terms that must be returned per field.
+		 * <p>
 		 * API name: {@code max_num_terms}
 		 */
 		public final Builder maxNumTerms(@Nullable Integer value) {
@@ -252,6 +272,9 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
+		 * Ignore words with more than this frequency in the source doc. Defaults to
+		 * unbounded.
+		 * <p>
 		 * API name: {@code max_term_freq}
 		 */
 		public final Builder maxTermFreq(@Nullable Integer value) {
@@ -260,6 +283,9 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum word length above which words will be ignored. Defaults to
+		 * unbounded.
+		 * <p>
 		 * API name: {@code max_word_length}
 		 */
 		public final Builder maxWordLength(@Nullable Integer value) {
@@ -268,6 +294,8 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
+		 * Ignore terms which do not occur in at least this many docs.
+		 * <p>
 		 * API name: {@code min_doc_freq}
 		 */
 		public final Builder minDocFreq(@Nullable Integer value) {
@@ -276,6 +304,8 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
+		 * Ignore words with less than this frequency in the source doc.
+		 * <p>
 		 * API name: {@code min_term_freq}
 		 */
 		public final Builder minTermFreq(@Nullable Integer value) {
@@ -284,6 +314,8 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
+		 * The minimum word length below which words will be ignored.
+		 * <p>
 		 * API name: {@code min_word_length}
 		 */
 		public final Builder minWordLength(@Nullable Integer value) {

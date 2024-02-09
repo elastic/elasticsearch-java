@@ -113,11 +113,13 @@ import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesAsyncClient;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichAsyncClient;
 import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlAsyncClient;
+import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
 import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesAsyncClient;
 import co.elastic.clients.elasticsearch.fleet.ElasticsearchFleetAsyncClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphAsyncClient;
 import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmAsyncClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.inference.ElasticsearchInferenceAsyncClient;
 import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestAsyncClient;
 import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseAsyncClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashAsyncClient;
@@ -137,6 +139,7 @@ import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
 import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslAsyncClient;
 import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsAsyncClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksAsyncClient;
+import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureAsyncClient;
 import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformAsyncClient;
 import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherAsyncClient;
 import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackAsyncClient;
@@ -221,6 +224,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchEqlAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchEsqlAsyncClient esql() {
+		return new ElasticsearchEsqlAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchFeaturesAsyncClient features() {
 		return new ElasticsearchFeaturesAsyncClient(this.transport, this.transportOptions);
 	}
@@ -239,6 +246,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchIndicesAsyncClient indices() {
 		return new ElasticsearchIndicesAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchInferenceAsyncClient inference() {
+		return new ElasticsearchInferenceAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIngestAsyncClient ingest() {
@@ -315,6 +326,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchTasksAsyncClient tasks() {
 		return new ElasticsearchTasksAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchTextStructureAsyncClient textStructure() {
+		return new ElasticsearchTextStructureAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTransformAsyncClient transform() {

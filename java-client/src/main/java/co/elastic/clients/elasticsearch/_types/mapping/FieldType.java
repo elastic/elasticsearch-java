@@ -127,6 +127,8 @@ public enum FieldType implements JsonEnum {
 
 	DenseVector("dense_vector"),
 
+	SparseVector("sparse_vector"),
+
 	MatchOnlyText("match_only_text"),
 
 	;

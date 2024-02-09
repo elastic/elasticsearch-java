@@ -185,6 +185,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		TextExpansion("text_expansion"),
 
+		WeightedTokens("weighted_tokens"),
+
 		Wildcard("wildcard"),
 
 		Wrapper("wrapper"),
@@ -1159,6 +1161,24 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
+	 * Is this variant instance of kind {@code weighted_tokens}?
+	 */
+	public boolean isWeightedTokens() {
+		return _kind == Kind.WeightedTokens;
+	}
+
+	/**
+	 * Get the {@code weighted_tokens} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code weighted_tokens}
+	 *             kind.
+	 */
+	public WeightedTokensQuery weightedTokens() {
+		return TaggedUnionUtils.get(this, Kind.WeightedTokens);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code wildcard}?
 	 */
 	public boolean isWildcard() {
@@ -1815,6 +1835,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.textExpansion(fn.apply(new TextExpansionQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> weightedTokens(WeightedTokensQuery v) {
+			this._kind = Kind.WeightedTokens;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> weightedTokens(
+				Function<WeightedTokensQuery.Builder, ObjectBuilder<WeightedTokensQuery>> fn) {
+			return this.weightedTokens(fn.apply(new WeightedTokensQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
@@ -1923,6 +1954,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
 		op.add(Builder::textExpansion, TextExpansionQuery._DESERIALIZER, "text_expansion");
+		op.add(Builder::weightedTokens, WeightedTokensQuery._DESERIALIZER, "weighted_tokens");
 		op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
 		op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
 		op.add(Builder::type, TypeQuery._DESERIALIZER, "type");

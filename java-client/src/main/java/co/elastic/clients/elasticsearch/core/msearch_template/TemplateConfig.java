@@ -94,6 +94,9 @@ public class TemplateConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, returns detailed information about score calculation as
+	 * part of each hit.
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -113,6 +116,9 @@ public class TemplateConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * Key-value pairs used to replace Mustache variables in the template. The key
+	 * is the variable name. The value is the variable value.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -120,6 +126,8 @@ public class TemplateConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the query execution is profiled.
+	 * <p>
 	 * API name: {@code profile}
 	 */
 	@Nullable
@@ -212,6 +220,9 @@ public class TemplateConfig implements JsonpSerializable {
 		private String source;
 
 		/**
+		 * If <code>true</code>, returns detailed information about score calculation as
+		 * part of each hit.
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public final Builder explain(@Nullable Boolean value) {
@@ -231,6 +242,9 @@ public class TemplateConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * Key-value pairs used to replace Mustache variables in the template. The key
+		 * is the variable name. The value is the variable value.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -241,6 +255,9 @@ public class TemplateConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * Key-value pairs used to replace Mustache variables in the template. The key
+		 * is the variable name. The value is the variable value.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.
@@ -251,6 +268,8 @@ public class TemplateConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the query execution is profiled.
+		 * <p>
 		 * API name: {@code profile}
 		 */
 		public final Builder profile(@Nullable Boolean value) {

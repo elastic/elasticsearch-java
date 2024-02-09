@@ -74,7 +74,7 @@ public class AnalyticsCollection implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Data stream for the collection
+	 * Required - Data stream for the collection.
 	 * <p>
 	 * API name: {@code event_data_stream}
 	 */
@@ -115,7 +115,7 @@ public class AnalyticsCollection implements JsonpSerializable {
 		private EventDataStream eventDataStream;
 
 		/**
-		 * Required - Data stream for the collection
+		 * Required - Data stream for the collection.
 		 * <p>
 		 * API name: {@code event_data_stream}
 		 */
@@ -125,7 +125,7 @@ public class AnalyticsCollection implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Data stream for the collection
+		 * Required - Data stream for the collection.
 		 * <p>
 		 * API name: {@code event_data_stream}
 		 */

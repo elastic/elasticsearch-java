@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -67,7 +68,7 @@ public class EnrichPolicy implements JsonpSerializable {
 	private final String matchField;
 
 	@Nullable
-	private final String query;
+	private final Query query;
 
 	@Nullable
 	private final String name;
@@ -117,7 +118,7 @@ public class EnrichPolicy implements JsonpSerializable {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public final String query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -173,7 +174,7 @@ public class EnrichPolicy implements JsonpSerializable {
 
 		if (this.query != null) {
 			generator.writeKey("query");
-			generator.write(this.query);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.name != null) {
@@ -208,7 +209,7 @@ public class EnrichPolicy implements JsonpSerializable {
 		private String matchField;
 
 		@Nullable
-		private String query;
+		private Query query;
 
 		@Nullable
 		private String name;
@@ -267,9 +268,16 @@ public class EnrichPolicy implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(@Nullable String value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -321,7 +329,7 @@ public class EnrichPolicy implements JsonpSerializable {
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::matchField, JsonpDeserializer.stringDeserializer(), "match_field");
-		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::elasticsearchVersion, JsonpDeserializer.stringDeserializer(), "elasticsearch_version");
 

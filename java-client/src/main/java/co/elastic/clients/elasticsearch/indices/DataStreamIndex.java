@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -63,12 +64,22 @@ public class DataStreamIndex implements JsonpSerializable {
 
 	private final String indexUuid;
 
+	@Nullable
+	private final String ilmPolicy;
+
+	private final ManagedBy managedBy;
+
+	private final boolean preferIlm;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamIndex(Builder builder) {
 
 		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.ilmPolicy = builder.ilmPolicy;
+		this.managedBy = ApiTypeHelper.requireNonNull(builder.managedBy, this, "managedBy");
+		this.preferIlm = ApiTypeHelper.requireNonNull(builder.preferIlm, this, "preferIlm");
 
 	}
 
@@ -95,6 +106,36 @@ public class DataStreamIndex implements JsonpSerializable {
 	}
 
 	/**
+	 * Name of the current ILM lifecycle policy configured for this backing index.
+	 * <p>
+	 * API name: {@code ilm_policy}
+	 */
+	@Nullable
+	public final String ilmPolicy() {
+		return this.ilmPolicy;
+	}
+
+	/**
+	 * Required - Name of the lifecycle system that's currently managing this
+	 * backing index.
+	 * <p>
+	 * API name: {@code managed_by}
+	 */
+	public final ManagedBy managedBy() {
+		return this.managedBy;
+	}
+
+	/**
+	 * Required - Indicates if ILM should take precedence over DSL in case both are
+	 * configured to manage this index.
+	 * <p>
+	 * API name: {@code prefer_ilm}
+	 */
+	public final boolean preferIlm() {
+		return this.preferIlm;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -110,6 +151,16 @@ public class DataStreamIndex implements JsonpSerializable {
 
 		generator.writeKey("index_uuid");
 		generator.write(this.indexUuid);
+
+		if (this.ilmPolicy != null) {
+			generator.writeKey("ilm_policy");
+			generator.write(this.ilmPolicy);
+
+		}
+		generator.writeKey("managed_by");
+		this.managedBy.serialize(generator, mapper);
+		generator.writeKey("prefer_ilm");
+		generator.write(this.preferIlm);
 
 	}
 
@@ -129,6 +180,13 @@ public class DataStreamIndex implements JsonpSerializable {
 
 		private String indexUuid;
 
+		@Nullable
+		private String ilmPolicy;
+
+		private ManagedBy managedBy;
+
+		private Boolean preferIlm;
+
 		/**
 		 * Required - Name of the backing index.
 		 * <p>
@@ -146,6 +204,38 @@ public class DataStreamIndex implements JsonpSerializable {
 		 */
 		public final Builder indexUuid(String value) {
 			this.indexUuid = value;
+			return this;
+		}
+
+		/**
+		 * Name of the current ILM lifecycle policy configured for this backing index.
+		 * <p>
+		 * API name: {@code ilm_policy}
+		 */
+		public final Builder ilmPolicy(@Nullable String value) {
+			this.ilmPolicy = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the lifecycle system that's currently managing this
+		 * backing index.
+		 * <p>
+		 * API name: {@code managed_by}
+		 */
+		public final Builder managedBy(ManagedBy value) {
+			this.managedBy = value;
+			return this;
+		}
+
+		/**
+		 * Required - Indicates if ILM should take precedence over DSL in case both are
+		 * configured to manage this index.
+		 * <p>
+		 * API name: {@code prefer_ilm}
+		 */
+		public final Builder preferIlm(boolean value) {
+			this.preferIlm = value;
 			return this;
 		}
 
@@ -179,6 +269,9 @@ public class DataStreamIndex implements JsonpSerializable {
 
 		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
 		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
+		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
+		op.add(Builder::managedBy, ManagedBy._DESERIALIZER, "managed_by");
+		op.add(Builder::preferIlm, JsonpDeserializer.booleanDeserializer(), "prefer_ilm");
 
 	}
 

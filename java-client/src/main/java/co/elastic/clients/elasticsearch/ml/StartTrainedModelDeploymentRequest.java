@@ -69,6 +69,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	@Nullable
 	private final String cacheSize;
 
+	@Nullable
+	private final String deploymentId;
+
 	private final String modelId;
 
 	@Nullable
@@ -94,6 +97,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	private StartTrainedModelDeploymentRequest(Builder builder) {
 
 		this.cacheSize = builder.cacheSize;
+		this.deploymentId = builder.deploymentId;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numberOfAllocations = builder.numberOfAllocations;
 		this.priority = builder.priority;
@@ -120,6 +124,16 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	@Nullable
 	public final String cacheSize() {
 		return this.cacheSize;
+	}
+
+	/**
+	 * A unique identifier for the deployment of the model.
+	 * <p>
+	 * API name: {@code deployment_id}
+	 */
+	@Nullable
+	public final String deploymentId() {
+		return this.deploymentId;
 	}
 
 	/**
@@ -216,6 +230,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		@Nullable
 		private String cacheSize;
 
+		@Nullable
+		private String deploymentId;
+
 		private String modelId;
 
 		@Nullable
@@ -246,6 +263,16 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		 */
 		public final Builder cacheSize(@Nullable String value) {
 			this.cacheSize = value;
+			return this;
+		}
+
+		/**
+		 * A unique identifier for the deployment of the model.
+		 * <p>
+		 * API name: {@code deployment_id}
+		 */
+		public final Builder deploymentId(@Nullable String value) {
+			this.deploymentId = value;
 			return this;
 		}
 
@@ -418,6 +445,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 				}
 				if (request.threadsPerAllocation != null) {
 					params.put("threads_per_allocation", String.valueOf(request.threadsPerAllocation));
+				}
+				if (request.deploymentId != null) {
+					params.put("deployment_id", request.deploymentId);
 				}
 				if (request.waitFor != null) {
 					params.put("wait_for", request.waitFor.jsonValue());

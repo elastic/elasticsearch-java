@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,47 +50,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security.get_role.RoleTemplate
+// typedef: inference.get_model.Response
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.RoleTemplate">API
+ * @see <a href="../doc-files/api-spec.html#inference.get_model.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RoleTemplate implements JsonpSerializable {
-	@Nullable
-	private final TemplateFormat format;
-
-	private final Script template;
+public class GetModelResponse implements JsonpSerializable {
+	private final List<ModelConfigContainer> models;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RoleTemplate(Builder builder) {
+	private GetModelResponse(Builder builder) {
 
-		this.format = builder.format;
-		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.models = ApiTypeHelper.unmodifiableRequired(builder.models, this, "models");
 
 	}
 
-	public static RoleTemplate of(Function<Builder, ObjectBuilder<RoleTemplate>> fn) {
+	public static GetModelResponse of(Function<Builder, ObjectBuilder<GetModelResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code format}
+	 * Required - API name: {@code models}
 	 */
-	@Nullable
-	public final TemplateFormat format() {
-		return this.format;
-	}
-
-	/**
-	 * Required - API name: {@code template}
-	 */
-	public final Script template() {
-		return this.template;
+	public final List<ModelConfigContainer> models() {
+		return this.models;
 	}
 
 	/**
@@ -104,12 +91,16 @@ public class RoleTemplate implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.format != null) {
-			generator.writeKey("format");
-			this.format.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.models)) {
+			generator.writeKey("models");
+			generator.writeStartArray();
+			for (ModelConfigContainer item0 : this.models) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
 		}
-		generator.writeKey("template");
-		this.template.serialize(generator, mapper);
 
 	}
 
@@ -121,36 +112,39 @@ public class RoleTemplate implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RoleTemplate}.
+	 * Builder for {@link GetModelResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleTemplate> {
-		@Nullable
-		private TemplateFormat format;
-
-		private Script template;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetModelResponse> {
+		private List<ModelConfigContainer> models;
 
 		/**
-		 * API name: {@code format}
+		 * Required - API name: {@code models}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>models</code>.
 		 */
-		public final Builder format(@Nullable TemplateFormat value) {
-			this.format = value;
+		public final Builder models(List<ModelConfigContainer> list) {
+			this.models = _listAddAll(this.models, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code template}
+		 * Required - API name: {@code models}
+		 * <p>
+		 * Adds one or more values to <code>models</code>.
 		 */
-		public final Builder template(Script value) {
-			this.template = value;
+		public final Builder models(ModelConfigContainer value, ModelConfigContainer... values) {
+			this.models = _listAdd(this.models, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code template}
+		 * Required - API name: {@code models}
+		 * <p>
+		 * Adds a value to <code>models</code> using a builder lambda.
 		 */
-		public final Builder template(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.template(fn.apply(new Script.Builder()).build());
+		public final Builder models(Function<ModelConfigContainer.Builder, ObjectBuilder<ModelConfigContainer>> fn) {
+			return models(fn.apply(new ModelConfigContainer.Builder()).build());
 		}
 
 		@Override
@@ -159,30 +153,29 @@ public class RoleTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RoleTemplate}.
+		 * Builds a {@link GetModelResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RoleTemplate build() {
+		public GetModelResponse build() {
 			_checkSingleUse();
 
-			return new RoleTemplate(this);
+			return new GetModelResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RoleTemplate}
+	 * Json deserializer for {@link GetModelResponse}
 	 */
-	public static final JsonpDeserializer<RoleTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleTemplate::setupRoleTemplateDeserializer);
+	public static final JsonpDeserializer<GetModelResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetModelResponse::setupGetModelResponseDeserializer);
 
-	protected static void setupRoleTemplateDeserializer(ObjectDeserializer<RoleTemplate.Builder> op) {
+	protected static void setupGetModelResponseDeserializer(ObjectDeserializer<GetModelResponse.Builder> op) {
 
-		op.add(Builder::format, TemplateFormat._DESERIALIZER, "format");
-		op.add(Builder::template, Script._DESERIALIZER, "template");
+		op.add(Builder::models, JsonpDeserializer.arrayDeserializer(ModelConfigContainer._DESERIALIZER), "models");
 
 	}
 

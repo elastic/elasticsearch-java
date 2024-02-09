@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: _global.delete_script.Request
 
 /**
- * Deletes a script.
+ * Deletes a stored script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.delete_script.Request">API
  *      specification</a>
@@ -86,7 +86,7 @@ public class DeleteScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Script ID
+	 * Required - Identifier for the stored script or search template.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -95,7 +95,8 @@ public class DeleteScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -105,7 +106,8 @@ public class DeleteScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -132,7 +134,7 @@ public class DeleteScriptRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - Script ID
+		 * Required - Identifier for the stored script or search template.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -142,7 +144,8 @@ public class DeleteScriptRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -152,7 +155,8 @@ public class DeleteScriptRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -161,7 +165,8 @@ public class DeleteScriptRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -171,7 +176,8 @@ public class DeleteScriptRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

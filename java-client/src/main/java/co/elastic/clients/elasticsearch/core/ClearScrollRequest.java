@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: _global.clear_scroll.Request
 
 /**
- * Explicitly clears the search context for a scroll.
+ * Clears the search context and results for a scrolling search.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.clear_scroll.Request">API
  *      specification</a>
@@ -79,6 +79,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
+	 * <p>
 	 * API name: {@code scroll_id}
 	 */
 	public final List<String> scrollId() {
@@ -122,6 +124,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		private List<String> scrollId;
 
 		/**
+		 * Scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
+		 * <p>
 		 * API name: {@code scroll_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>scrollId</code>.
@@ -132,6 +136,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
+		 * <p>
 		 * API name: {@code scroll_id}
 		 * <p>
 		 * Adds one or more values to <code>scrollId</code>.

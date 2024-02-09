@@ -85,8 +85,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * The throttle to set on this request in floating sub-requests per second. -1
-	 * means set no throttle.
+	 * The throttle for this request in sub-requests per second.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -96,7 +95,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The task id to rethrottle
+	 * Required - The ID for the task.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -119,8 +118,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 		private String taskId;
 
 		/**
-		 * The throttle to set on this request in floating sub-requests per second. -1
-		 * means set no throttle.
+		 * The throttle for this request in sub-requests per second.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
@@ -130,7 +128,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The task id to rethrottle
+		 * Required - The ID for the task.
 		 * <p>
 		 * API name: {@code task_id}
 		 */
