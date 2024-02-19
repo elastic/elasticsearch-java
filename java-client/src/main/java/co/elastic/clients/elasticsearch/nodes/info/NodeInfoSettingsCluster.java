@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,8 +69,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 
 	private final NodeInfoSettingsClusterElection election;
 
-	@Nullable
-	private final String initialMasterNodes;
+	private final List<String> initialMasterNodes;
 
 	@Nullable
 	private final DeprecationIndexing deprecationIndexing;
@@ -81,7 +81,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
 		this.election = ApiTypeHelper.requireNonNull(builder.election, this, "election");
-		this.initialMasterNodes = builder.initialMasterNodes;
+		this.initialMasterNodes = ApiTypeHelper.unmodifiable(builder.initialMasterNodes);
 		this.deprecationIndexing = builder.deprecationIndexing;
 
 	}
@@ -115,8 +115,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 	/**
 	 * API name: {@code initial_master_nodes}
 	 */
-	@Nullable
-	public final String initialMasterNodes() {
+	public final List<String> initialMasterNodes() {
 		return this.initialMasterNodes;
 	}
 
@@ -150,9 +149,14 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		generator.writeKey("election");
 		this.election.serialize(generator, mapper);
 
-		if (this.initialMasterNodes != null) {
+		if (ApiTypeHelper.isDefined(this.initialMasterNodes)) {
 			generator.writeKey("initial_master_nodes");
-			generator.write(this.initialMasterNodes);
+			generator.writeStartArray();
+			for (String item0 : this.initialMasterNodes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.deprecationIndexing != null) {
@@ -185,7 +189,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		private NodeInfoSettingsClusterElection election;
 
 		@Nullable
-		private String initialMasterNodes;
+		private List<String> initialMasterNodes;
 
 		@Nullable
 		private DeprecationIndexing deprecationIndexing;
@@ -231,9 +235,21 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 
 		/**
 		 * API name: {@code initial_master_nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>initialMasterNodes</code>.
 		 */
-		public final Builder initialMasterNodes(@Nullable String value) {
-			this.initialMasterNodes = value;
+		public final Builder initialMasterNodes(List<String> list) {
+			this.initialMasterNodes = _listAddAll(this.initialMasterNodes, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code initial_master_nodes}
+		 * <p>
+		 * Adds one or more values to <code>initialMasterNodes</code>.
+		 */
+		public final Builder initialMasterNodes(String value, String... values) {
+			this.initialMasterNodes = _listAdd(this.initialMasterNodes, value, values);
 			return this;
 		}
 
@@ -285,7 +301,8 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing");
 		op.add(Builder::election, NodeInfoSettingsClusterElection._DESERIALIZER, "election");
-		op.add(Builder::initialMasterNodes, JsonpDeserializer.stringDeserializer(), "initial_master_nodes");
+		op.add(Builder::initialMasterNodes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"initial_master_nodes");
 		op.add(Builder::deprecationIndexing, DeprecationIndexing._DESERIALIZER, "deprecation_indexing");
 
 	}
