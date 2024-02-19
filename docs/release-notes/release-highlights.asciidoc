@@ -6,6 +6,11 @@ These are the important new features and changes in minor releases. Every releas
 For a list of detailed changes, including bug fixes, please see the https://github.com/elastic/elasticsearch-java/releases[GitHub project realease notes].
 
 [discrete]
+==== Version 8.12
+
+* No new feature.
+
+[discrete]
 ==== Version 8.11
 
 * No new feature.
