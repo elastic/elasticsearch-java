@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * searching with arbitrary geo shapes such as rectangles and polygons.
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/geo-shape.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/geo-shape.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_types.mapping.GeoShapeProperty">API

@@ -109,7 +109,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * search
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/get-async-eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -131,7 +131,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/get-async-eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -145,7 +145,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * search
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/get-async-eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -167,7 +167,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/get-async-eql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -183,7 +183,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * Language (EQL) search
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-status-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/get-async-eql-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -202,7 +202,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetEqlStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.13/get-async-eql-status-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/get-async-eql-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
