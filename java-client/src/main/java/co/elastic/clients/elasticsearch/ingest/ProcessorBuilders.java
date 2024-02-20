@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
 
@@ -407,18 +406,20 @@ public class ProcessorBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link Script script} {@code Processor} variant.
+	 * Creates a builder for the {@link ScriptProcessor script} {@code Processor}
+	 * variant.
 	 */
-	public static Script.Builder script() {
-		return new Script.Builder();
+	public static ScriptProcessor.Builder script() {
+		return new ScriptProcessor.Builder();
 	}
 
 	/**
-	 * Creates a Processor of the {@link Script script} {@code Processor} variant.
+	 * Creates a Processor of the {@link ScriptProcessor script} {@code Processor}
+	 * variant.
 	 */
-	public static Processor script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+	public static Processor script(Function<ScriptProcessor.Builder, ObjectBuilder<ScriptProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
-		builder.script(fn.apply(new Script.Builder()).build());
+		builder.script(fn.apply(new ScriptProcessor.Builder()).build());
 		return builder.build();
 	}
 

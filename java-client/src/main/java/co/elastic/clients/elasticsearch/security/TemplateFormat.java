@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,8 +40,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.TemplateFormat">API
+ * @see <a href="../doc-files/api-spec.html#security._types.TemplateFormat">API
  *      specification</a>
  */
 @JsonpDeserializable

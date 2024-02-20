@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
+import co.elastic.clients.elasticsearch.security.RoleTemplate;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;

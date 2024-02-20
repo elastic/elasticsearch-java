@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodeInfoPath implements JsonpSerializable {
+	@Nullable
 	private final String logs;
 
+	@Nullable
 	private final String home;
 
 	private final List<String> repo;
@@ -72,9 +74,9 @@ public class NodeInfoPath implements JsonpSerializable {
 
 	private NodeInfoPath(Builder builder) {
 
-		this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
-		this.home = ApiTypeHelper.requireNonNull(builder.home, this, "home");
-		this.repo = ApiTypeHelper.unmodifiableRequired(builder.repo, this, "repo");
+		this.logs = builder.logs;
+		this.home = builder.home;
+		this.repo = ApiTypeHelper.unmodifiable(builder.repo);
 		this.data = ApiTypeHelper.unmodifiable(builder.data);
 
 	}
@@ -84,21 +86,23 @@ public class NodeInfoPath implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code logs}
+	 * API name: {@code logs}
 	 */
+	@Nullable
 	public final String logs() {
 		return this.logs;
 	}
 
 	/**
-	 * Required - API name: {@code home}
+	 * API name: {@code home}
 	 */
+	@Nullable
 	public final String home() {
 		return this.home;
 	}
 
 	/**
-	 * Required - API name: {@code repo}
+	 * API name: {@code repo}
 	 */
 	public final List<String> repo() {
 		return this.repo;
@@ -122,12 +126,16 @@ public class NodeInfoPath implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("logs");
-		generator.write(this.logs);
+		if (this.logs != null) {
+			generator.writeKey("logs");
+			generator.write(this.logs);
 
-		generator.writeKey("home");
-		generator.write(this.home);
+		}
+		if (this.home != null) {
+			generator.writeKey("home");
+			generator.write(this.home);
 
+		}
 		if (ApiTypeHelper.isDefined(this.repo)) {
 			generator.writeKey("repo");
 			generator.writeStartArray();
@@ -163,33 +171,36 @@ public class NodeInfoPath implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoPath> {
+		@Nullable
 		private String logs;
 
+		@Nullable
 		private String home;
 
+		@Nullable
 		private List<String> repo;
 
 		@Nullable
 		private List<String> data;
 
 		/**
-		 * Required - API name: {@code logs}
+		 * API name: {@code logs}
 		 */
-		public final Builder logs(String value) {
+		public final Builder logs(@Nullable String value) {
 			this.logs = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code home}
+		 * API name: {@code home}
 		 */
-		public final Builder home(String value) {
+		public final Builder home(@Nullable String value) {
 			this.home = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code repo}
+		 * API name: {@code repo}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>repo</code>.
 		 */
@@ -199,7 +210,7 @@ public class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code repo}
+		 * API name: {@code repo}
 		 * <p>
 		 * Adds one or more values to <code>repo</code>.
 		 */

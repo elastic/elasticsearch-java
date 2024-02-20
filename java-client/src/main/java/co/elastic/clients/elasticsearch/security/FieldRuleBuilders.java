@@ -41,29 +41,13 @@ import java.util.function.Function;
 /**
  * Builders for {@link FieldRule} variants.
  * <p>
- * Variants <code>username</code>, <code>dn</code>, <code>groups</code>,
- * <code>metadata</code> are not available here as they don't have a dedicated
- * class. Use {@link FieldRule}'s builder for these.
+ * Variants <code>username</code>, <code>dn</code>, <code>groups</code> are not
+ * available here as they don't have a dedicated class. Use {@link FieldRule}'s
+ * builder for these.
  * 
  */
 public class FieldRuleBuilders {
 	private FieldRuleBuilders() {
-	}
-
-	/**
-	 * Creates a builder for the {@link Realm realm} {@code FieldRule} variant.
-	 */
-	public static Realm.Builder realm() {
-		return new Realm.Builder();
-	}
-
-	/**
-	 * Creates a FieldRule of the {@link Realm realm} {@code FieldRule} variant.
-	 */
-	public static FieldRule realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
-		FieldRule.Builder builder = new FieldRule.Builder();
-		builder.realm(fn.apply(new Realm.Builder()).build());
-		return builder.build();
 	}
 
 }

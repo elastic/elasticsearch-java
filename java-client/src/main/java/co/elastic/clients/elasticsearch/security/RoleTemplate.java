@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,42 +50,46 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security._types.Realm
+// typedef: security._types.RoleTemplate
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#security._types.Realm">API
+ * @see <a href="../doc-files/api-spec.html#security._types.RoleTemplate">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Realm implements FieldRuleVariant, JsonpSerializable {
-	private final String name;
+public class RoleTemplate implements JsonpSerializable {
+	@Nullable
+	private final TemplateFormat format;
+
+	private final Script template;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Realm(Builder builder) {
+	private RoleTemplate(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.format = builder.format;
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 
-	public static Realm of(Function<Builder, ObjectBuilder<Realm>> fn) {
+	public static RoleTemplate of(Function<Builder, ObjectBuilder<RoleTemplate>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * FieldRule variant kind.
+	 * API name: {@code format}
 	 */
-	@Override
-	public FieldRule.Kind _fieldRuleKind() {
-		return FieldRule.Kind.Realm;
+	@Nullable
+	public final TemplateFormat format() {
+		return this.format;
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - API name: {@code template}
 	 */
-	public final String name() {
-		return this.name;
+	public final Script template() {
+		return this.template;
 	}
 
 	/**
@@ -99,8 +103,12 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (this.format != null) {
+			generator.writeKey("format");
+			this.format.serialize(generator, mapper);
+		}
+		generator.writeKey("template");
+		this.template.serialize(generator, mapper);
 
 	}
 
@@ -112,18 +120,36 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Realm}.
+	 * Builder for {@link RoleTemplate}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Realm> {
-		private String name;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleTemplate> {
+		@Nullable
+		private TemplateFormat format;
+
+		private Script template;
 
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code format}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder format(@Nullable TemplateFormat value) {
+			this.format = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template}
+		 */
+		public final Builder template(Script value) {
+			this.template = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template}
+		 */
+		public final Builder template(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.template(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -132,29 +158,30 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Realm}.
+		 * Builds a {@link RoleTemplate}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Realm build() {
+		public RoleTemplate build() {
 			_checkSingleUse();
 
-			return new Realm(this);
+			return new RoleTemplate(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Realm}
+	 * Json deserializer for {@link RoleTemplate}
 	 */
-	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Realm::setupRealmDeserializer);
+	public static final JsonpDeserializer<RoleTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RoleTemplate::setupRoleTemplateDeserializer);
 
-	protected static void setupRealmDeserializer(ObjectDeserializer<Realm.Builder> op) {
+	protected static void setupRoleTemplateDeserializer(ObjectDeserializer<RoleTemplate.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::format, TemplateFormat._DESERIALIZER, "format");
+		op.add(Builder::template, Script._DESERIALIZER, "template");
 
 	}
 
