@@ -58,7 +58,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarityLmd implements JsonpSerializable {
+public class SettingsSimilarityLmd implements SettingsSimilarityVariant, JsonpSerializable {
 	private final int mu;
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +71,14 @@ public class SettingsSimilarityLmd implements JsonpSerializable {
 
 	public static SettingsSimilarityLmd of(Function<Builder, ObjectBuilder<SettingsSimilarityLmd>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * SettingsSimilarity variant kind.
+	 */
+	@Override
+	public SettingsSimilarity.Kind _settingsSimilarityKind() {
+		return SettingsSimilarity.Kind.Lmd;
 	}
 
 	/**
