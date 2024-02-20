@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarityScriptedTfidf implements JsonpSerializable {
+public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVariant, JsonpSerializable {
 	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
@@ -73,6 +73,14 @@ public class SettingsSimilarityScriptedTfidf implements JsonpSerializable {
 	public static SettingsSimilarityScriptedTfidf of(
 			Function<Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * SettingsSimilarity variant kind.
+	 */
+	@Override
+	public SettingsSimilarity.Kind _settingsSimilarityKind() {
+		return SettingsSimilarity.Kind.ScriptedTfidf;
 	}
 
 	/**
