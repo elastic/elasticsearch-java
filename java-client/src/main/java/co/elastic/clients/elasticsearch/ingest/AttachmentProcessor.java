@@ -77,6 +77,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	private final String targetField;
 
 	@Nullable
+	private final Boolean removeBinary;
+
+	@Nullable
 	private final String resourceName;
 
 	// ---------------------------------------------------------------------------------------------
@@ -90,6 +93,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		this.indexedCharsField = builder.indexedCharsField;
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.targetField = builder.targetField;
+		this.removeBinary = builder.removeBinary;
 		this.resourceName = builder.resourceName;
 
 	}
@@ -171,6 +175,16 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
+	 * If true, the binary field will be removed from the document
+	 * <p>
+	 * API name: {@code remove_binary}
+	 */
+	@Nullable
+	public final Boolean removeBinary() {
+		return this.removeBinary;
+	}
+
+	/**
 	 * Field containing the name of the resource to decode. If specified, the
 	 * processor passes this resource name to the underlying Tika library to enable
 	 * Resource Name Based Detection.
@@ -218,6 +232,11 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 			generator.write(this.targetField);
 
 		}
+		if (this.removeBinary != null) {
+			generator.writeKey("remove_binary");
+			generator.write(this.removeBinary);
+
+		}
 		if (this.resourceName != null) {
 			generator.writeKey("resource_name");
 			generator.write(this.resourceName);
@@ -251,6 +270,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 
 		@Nullable
 		private String targetField;
+
+		@Nullable
+		private Boolean removeBinary;
 
 		@Nullable
 		private String resourceName;
@@ -339,6 +361,16 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
+		 * If true, the binary field will be removed from the document
+		 * <p>
+		 * API name: {@code remove_binary}
+		 */
+		public final Builder removeBinary(@Nullable Boolean value) {
+			this.removeBinary = value;
+			return this;
+		}
+
+		/**
 		 * Field containing the name of the resource to decode. If specified, the
 		 * processor passes this resource name to the underlying Tika library to enable
 		 * Resource Name Based Detection.
@@ -385,6 +417,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"properties");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::removeBinary, JsonpDeserializer.booleanDeserializer(), "remove_binary");
 		op.add(Builder::resourceName, JsonpDeserializer.stringDeserializer(), "resource_name");
 
 	}

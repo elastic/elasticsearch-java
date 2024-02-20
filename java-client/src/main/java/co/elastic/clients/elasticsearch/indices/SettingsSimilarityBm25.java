@@ -59,7 +59,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarityBm25 implements JsonpSerializable {
+public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpSerializable {
 	private final double b;
 
 	private final boolean discountOverlaps;
@@ -78,6 +78,14 @@ public class SettingsSimilarityBm25 implements JsonpSerializable {
 
 	public static SettingsSimilarityBm25 of(Function<Builder, ObjectBuilder<SettingsSimilarityBm25>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * SettingsSimilarity variant kind.
+	 */
+	@Override
+	public SettingsSimilarity.Kind _settingsSimilarityKind() {
+		return SettingsSimilarity.Kind.Bm25;
 	}
 
 	/**
