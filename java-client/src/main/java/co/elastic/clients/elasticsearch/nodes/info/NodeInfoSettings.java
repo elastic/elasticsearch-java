@@ -62,6 +62,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 	private final NodeInfoSettingsNode node;
 
+	@Nullable
 	private final NodeInfoPath path;
 
 	@Nullable
@@ -103,7 +104,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 		this.cluster = ApiTypeHelper.requireNonNull(builder.cluster, this, "cluster");
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.path = builder.path;
 		this.repositories = builder.repositories;
 		this.discovery = builder.discovery;
 		this.action = builder.action;
@@ -138,8 +139,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code path}
+	 * API name: {@code path}
 	 */
+	@Nullable
 	public final NodeInfoPath path() {
 		return this.path;
 	}
@@ -254,9 +256,11 @@ public class NodeInfoSettings implements JsonpSerializable {
 		generator.writeKey("node");
 		this.node.serialize(generator, mapper);
 
-		generator.writeKey("path");
-		this.path.serialize(generator, mapper);
+		if (this.path != null) {
+			generator.writeKey("path");
+			this.path.serialize(generator, mapper);
 
+		}
 		if (this.repositories != null) {
 			generator.writeKey("repositories");
 			this.repositories.serialize(generator, mapper);
@@ -330,6 +334,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 		private NodeInfoSettingsNode node;
 
+		@Nullable
 		private NodeInfoPath path;
 
 		@Nullable
@@ -397,15 +402,15 @@ public class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code path}
+		 * API name: {@code path}
 		 */
-		public final Builder path(NodeInfoPath value) {
+		public final Builder path(@Nullable NodeInfoPath value) {
 			this.path = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code path}
+		 * API name: {@code path}
 		 */
 		public final Builder path(Function<NodeInfoPath.Builder, ObjectBuilder<NodeInfoPath>> fn) {
 			return this.path(fn.apply(new NodeInfoPath.Builder()).build());

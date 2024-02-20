@@ -88,6 +88,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final Boolean includeEmptyFields;
+
+	@Nullable
 	private final Boolean includeUnmapped;
 
 	private final List<String> index;
@@ -108,6 +111,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filters = builder.filters;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeEmptyFields = builder.includeEmptyFields;
 		this.includeUnmapped = builder.includeUnmapped;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
@@ -176,6 +180,16 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * If false, empty fields are not included in the response.
+	 * <p>
+	 * API name: {@code include_empty_fields}
+	 */
+	@Nullable
+	public final Boolean includeEmptyFields() {
+		return this.includeEmptyFields;
 	}
 
 	/**
@@ -295,6 +309,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private Boolean includeEmptyFields;
+
+		@Nullable
 		private Boolean includeUnmapped;
 
 		@Nullable
@@ -398,6 +415,16 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * If false, empty fields are not included in the response.
+		 * <p>
+		 * API name: {@code include_empty_fields}
+		 */
+		public final Builder includeEmptyFields(@Nullable Boolean value) {
+			this.includeEmptyFields = value;
 			return this;
 		}
 
@@ -633,6 +660,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.includeEmptyFields != null) {
+					params.put("include_empty_fields", String.valueOf(request.includeEmptyFields));
 				}
 				if (request.filters != null) {
 					params.put("filters", request.filters);
