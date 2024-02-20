@@ -19,9 +19,9 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.lang.String;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,15 +39,28 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link FieldRule} variants.
- * <p>
- * Variants <code>username</code>, <code>dn</code>, <code>groups</code> are not
- * available here as they don't have a dedicated class. Use {@link FieldRule}'s
- * builder for these.
- * 
+ *
+ * @see <a href="../doc-files/api-spec.html#security._types.TemplateFormat">API
+ *      specification</a>
  */
-public class FieldRuleBuilders {
-	private FieldRuleBuilders() {
+@JsonpDeserializable
+public enum TemplateFormat implements JsonEnum {
+	String("string"),
+
+	Json("json"),
+
+	;
+
+	private final String jsonValue;
+
+	TemplateFormat(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<TemplateFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			TemplateFormat.values());
 }

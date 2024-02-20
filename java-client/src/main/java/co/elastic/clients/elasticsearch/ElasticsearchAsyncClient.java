@@ -2083,7 +2083,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: update_by_query
 
 	/**
-	 * Performs an update on every document in the index without changing the
+	 * Updates documents that match the specified query. If no query is specified,
+	 * performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @see <a href=
@@ -2099,7 +2100,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs an update on every document in the index without changing the
+	 * Updates documents that match the specified query. If no query is specified,
+	 * performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @param fn

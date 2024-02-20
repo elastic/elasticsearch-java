@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -547,7 +546,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code script} kind.
 	 */
-	public Script script() {
+	public ScriptProcessor script() {
 		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
@@ -1038,14 +1037,14 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.rename(fn.apply(new RenameProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> script(Script v) {
+		public ObjectBuilder<Processor> script(ScriptProcessor v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Processor> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public ObjectBuilder<Processor> script(Function<ScriptProcessor.Builder, ObjectBuilder<ScriptProcessor>> fn) {
+			return this.script(fn.apply(new ScriptProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> set(SetProcessor v) {
@@ -1229,7 +1228,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
-		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::script, ScriptProcessor._DESERIALIZER, "script");
 		op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
 		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
 		op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");
