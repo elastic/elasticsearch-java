@@ -115,6 +115,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Rename("rename"),
 
+		Reroute("reroute"),
+
 		Script("script"),
 
 		Set("set"),
@@ -532,6 +534,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public RenameProcessor rename() {
 		return TaggedUnionUtils.get(this, Kind.Rename);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code reroute}?
+	 */
+	public boolean isReroute() {
+		return _kind == Kind.Reroute;
+	}
+
+	/**
+	 * Get the {@code reroute} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code reroute} kind.
+	 */
+	public RerouteProcessor reroute() {
+		return TaggedUnionUtils.get(this, Kind.Reroute);
 	}
 
 	/**
@@ -1038,6 +1057,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.rename(fn.apply(new RenameProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> reroute(RerouteProcessor v) {
+			this._kind = Kind.Reroute;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> reroute(
+				Function<RerouteProcessor.Builder, ObjectBuilder<RerouteProcessor>> fn) {
+			return this.reroute(fn.apply(new RerouteProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> script(Script v) {
 			this._kind = Kind.Script;
 			this._value = v;
@@ -1229,6 +1259,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
+		op.add(Builder::reroute, RerouteProcessor._DESERIALIZER, "reroute");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
 		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");

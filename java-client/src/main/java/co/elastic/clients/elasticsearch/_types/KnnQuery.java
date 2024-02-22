@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,7 +63,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class KnnQuery implements JsonpSerializable {
+public class KnnQuery implements QueryVariant, JsonpSerializable {
 	private final String field;
 
 	private final List<Float> queryVector;
@@ -99,6 +100,14 @@ public class KnnQuery implements JsonpSerializable {
 
 	public static KnnQuery of(Function<Builder, ObjectBuilder<KnnQuery>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.Knn;
 	}
 
 	/**

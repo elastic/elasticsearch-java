@@ -407,6 +407,24 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RerouteProcessor reroute} {@code Processor}
+	 * variant.
+	 */
+	public static RerouteProcessor.Builder reroute() {
+		return new RerouteProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link RerouteProcessor reroute} {@code Processor}
+	 * variant.
+	 */
+	public static Processor reroute(Function<RerouteProcessor.Builder, ObjectBuilder<RerouteProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.reroute(fn.apply(new RerouteProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Script script} {@code Processor} variant.
 	 */
 	public static Script.Builder script() {

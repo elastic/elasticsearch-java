@@ -24,7 +24,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -59,27 +58,31 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	private final int bufferSize;
+	@Nullable
+	private final Integer bufferSize;
 
+	@Nullable
 	private final String delimiter;
 
 	@Nullable
 	private final String replacement;
 
-	private final boolean reverse;
+	@Nullable
+	private final Boolean reverse;
 
-	private final int skip;
+	@Nullable
+	private final Integer skip;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PathHierarchyTokenizer(Builder builder) {
 		super(builder);
 
-		this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
-		this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+		this.bufferSize = builder.bufferSize;
+		this.delimiter = builder.delimiter;
 		this.replacement = builder.replacement;
-		this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse");
-		this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip");
+		this.reverse = builder.reverse;
+		this.skip = builder.skip;
 
 	}
 
@@ -96,15 +99,17 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 	}
 
 	/**
-	 * Required - API name: {@code buffer_size}
+	 * API name: {@code buffer_size}
 	 */
-	public final int bufferSize() {
+	@Nullable
+	public final Integer bufferSize() {
 		return this.bufferSize;
 	}
 
 	/**
-	 * Required - API name: {@code delimiter}
+	 * API name: {@code delimiter}
 	 */
+	@Nullable
 	public final String delimiter() {
 		return this.delimiter;
 	}
@@ -118,16 +123,18 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 	}
 
 	/**
-	 * Required - API name: {@code reverse}
+	 * API name: {@code reverse}
 	 */
-	public final boolean reverse() {
+	@Nullable
+	public final Boolean reverse() {
 		return this.reverse;
 	}
 
 	/**
-	 * Required - API name: {@code skip}
+	 * API name: {@code skip}
 	 */
-	public final int skip() {
+	@Nullable
+	public final Integer skip() {
 		return this.skip;
 	}
 
@@ -135,22 +142,31 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 
 		generator.write("type", "path_hierarchy");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("buffer_size");
-		generator.write(this.bufferSize);
+		if (this.bufferSize != null) {
+			generator.writeKey("buffer_size");
+			generator.write(this.bufferSize);
 
-		generator.writeKey("delimiter");
-		generator.write(this.delimiter);
+		}
+		if (this.delimiter != null) {
+			generator.writeKey("delimiter");
+			generator.write(this.delimiter);
 
+		}
 		if (this.replacement != null) {
 			generator.writeKey("replacement");
 			generator.write(this.replacement);
 
 		}
-		generator.writeKey("reverse");
-		generator.write(this.reverse);
+		if (this.reverse != null) {
+			generator.writeKey("reverse");
+			generator.write(this.reverse);
 
-		generator.writeKey("skip");
-		generator.write(this.skip);
+		}
+		if (this.skip != null) {
+			generator.writeKey("skip");
+			generator.write(this.skip);
+
+		}
 
 	}
 
@@ -163,29 +179,33 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PathHierarchyTokenizer> {
+		@Nullable
 		private Integer bufferSize;
 
+		@Nullable
 		private String delimiter;
 
 		@Nullable
 		private String replacement;
 
+		@Nullable
 		private Boolean reverse;
 
+		@Nullable
 		private Integer skip;
 
 		/**
-		 * Required - API name: {@code buffer_size}
+		 * API name: {@code buffer_size}
 		 */
-		public final Builder bufferSize(int value) {
+		public final Builder bufferSize(@Nullable Integer value) {
 			this.bufferSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code delimiter}
+		 * API name: {@code delimiter}
 		 */
-		public final Builder delimiter(String value) {
+		public final Builder delimiter(@Nullable String value) {
 			this.delimiter = value;
 			return this;
 		}
@@ -199,17 +219,17 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 		}
 
 		/**
-		 * Required - API name: {@code reverse}
+		 * API name: {@code reverse}
 		 */
-		public final Builder reverse(boolean value) {
+		public final Builder reverse(@Nullable Boolean value) {
 			this.reverse = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code skip}
+		 * API name: {@code skip}
 		 */
-		public final Builder skip(int value) {
+		public final Builder skip(@Nullable Integer value) {
 			this.skip = value;
 			return this;
 		}

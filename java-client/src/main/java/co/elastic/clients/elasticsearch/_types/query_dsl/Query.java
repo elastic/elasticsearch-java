@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.json.JsonData;
@@ -114,6 +115,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		Ids("ids"),
 
 		Intervals("intervals"),
+
+		Knn("knn"),
 
 		Match("match"),
 
@@ -556,6 +559,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public IntervalsQuery intervals() {
 		return TaggedUnionUtils.get(this, Kind.Intervals);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code knn}?
+	 */
+	public boolean isKnn() {
+		return _kind == Kind.Knn;
+	}
+
+	/**
+	 * Get the {@code knn} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code knn} kind.
+	 */
+	public KnnQuery knn() {
+		return TaggedUnionUtils.get(this, Kind.Knn);
 	}
 
 	/**
@@ -1453,6 +1473,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.intervals(fn.apply(new IntervalsQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> knn(KnnQuery v) {
+			this._kind = Kind.Knn;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+			return this.knn(fn.apply(new KnnQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> match(MatchQuery v) {
 			this._kind = Kind.Match;
 			this._value = v;
@@ -1888,6 +1918,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::hasParent, HasParentQuery._DESERIALIZER, "has_parent");
 		op.add(Builder::ids, IdsQuery._DESERIALIZER, "ids");
 		op.add(Builder::intervals, IntervalsQuery._DESERIALIZER, "intervals");
+		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
 		op.add(Builder::match, MatchQuery._DESERIALIZER, "match");
 		op.add(Builder::matchAll, MatchAllQuery._DESERIALIZER, "match_all");
 		op.add(Builder::matchBoolPrefix, MatchBoolPrefixQuery._DESERIALIZER, "match_bool_prefix");
