@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -29,9 +29,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -49,37 +48,32 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security.get_role.TransientMetadata
+// typedef: snapshot._types.RepositoryBase
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.TransientMetadata">API
+ * @see <a href="../doc-files/api-spec.html#snapshot._types.RepositoryBase">API
  *      specification</a>
  */
-@JsonpDeserializable
-public class TransientMetadata implements JsonpSerializable {
+
+public abstract class RepositoryBase implements JsonpSerializable {
 	@Nullable
-	private final Boolean enabled;
+	private final String uuid;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TransientMetadata(Builder builder) {
+	protected RepositoryBase(AbstractBuilder<?> builder) {
 
-		this.enabled = builder.enabled;
+		this.uuid = builder.uuid;
 
-	}
-
-	public static TransientMetadata of(Function<Builder, ObjectBuilder<TransientMetadata>> fn) {
-		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * API name: {@code uuid}
 	 */
 	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
+	public final String uuid() {
+		return this.uuid;
 	}
 
 	/**
@@ -93,9 +87,9 @@ public class TransientMetadata implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
+		if (this.uuid != null) {
+			generator.writeKey("uuid");
+			generator.write(this.uuid);
 
 		}
 
@@ -106,53 +100,29 @@ public class TransientMetadata implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link TransientMetadata}.
-	 */
-
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TransientMetadata> {
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
-		private Boolean enabled;
+		private String uuid;
 
 		/**
-		 * API name: {@code enabled}
+		 * API name: {@code uuid}
 		 */
-		public final Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
-			return this;
+		public final BuilderT uuid(@Nullable String value) {
+			this.uuid = value;
+			return self();
 		}
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+		protected abstract BuilderT self();
 
-		/**
-		 * Builds a {@link TransientMetadata}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TransientMetadata build() {
-			_checkSingleUse();
-
-			return new TransientMetadata(this);
-		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRepositoryBaseDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-	/**
-	 * Json deserializer for {@link TransientMetadata}
-	 */
-	public static final JsonpDeserializer<TransientMetadata> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer);
-
-	protected static void setupTransientMetadataDeserializer(ObjectDeserializer<TransientMetadata.Builder> op) {
-
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(AbstractBuilder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 
 	}
 
