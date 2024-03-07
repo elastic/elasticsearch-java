@@ -17,19 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,79 +46,79 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security.get_role.TransientMetadata
+// typedef: snapshot._types.AzureRepository
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.TransientMetadata">API
+ * @see <a href="../doc-files/api-spec.html#snapshot._types.AzureRepository">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TransientMetadata implements JsonpSerializable {
-	@Nullable
-	private final Boolean enabled;
+public class AzureRepository extends RepositoryBase implements RepositoryVariant {
+	private final AzureRepositorySettings settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TransientMetadata(Builder builder) {
+	private AzureRepository(Builder builder) {
+		super(builder);
 
-		this.enabled = builder.enabled;
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public static TransientMetadata of(Function<Builder, ObjectBuilder<TransientMetadata>> fn) {
+	public static AzureRepository of(Function<Builder, ObjectBuilder<AzureRepository>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Repository variant kind.
 	 */
-	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
+	@Override
+	public Repository.Kind _repositoryKind() {
+		return Repository.Kind.Azure;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Required - API name: {@code settings}
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	public final AzureRepositorySettings settings() {
+		return this.settings;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
+		generator.write("type", "azure");
+		super.serializeInternal(generator, mapper);
+		generator.writeKey("settings");
+		this.settings.serialize(generator, mapper);
 
-		}
-
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TransientMetadata}.
+	 * Builder for {@link AzureRepository}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TransientMetadata> {
-		@Nullable
-		private Boolean enabled;
+	public static class Builder extends RepositoryBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<AzureRepository> {
+		private AzureRepositorySettings settings;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code settings}
 		 */
-		public final Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
+		public final Builder settings(AzureRepositorySettings value) {
+			this.settings = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 */
+		public final Builder settings(
+				Function<AzureRepositorySettings.Builder, ObjectBuilder<AzureRepositorySettings>> fn) {
+			return this.settings(fn.apply(new AzureRepositorySettings.Builder()).build());
 		}
 
 		@Override
@@ -130,30 +127,31 @@ public class TransientMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TransientMetadata}.
+		 * Builds a {@link AzureRepository}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TransientMetadata build() {
+		public AzureRepository build() {
 			_checkSingleUse();
 
-			return new TransientMetadata(this);
+			return new AzureRepository(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TransientMetadata}
+	 * Json deserializer for {@link AzureRepository}
 	 */
-	public static final JsonpDeserializer<TransientMetadata> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer);
+	public static final JsonpDeserializer<AzureRepository> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AzureRepository::setupAzureRepositoryDeserializer);
 
-	protected static void setupTransientMetadataDeserializer(ObjectDeserializer<TransientMetadata.Builder> op) {
+	protected static void setupAzureRepositoryDeserializer(ObjectDeserializer<AzureRepository.Builder> op) {
+		RepositoryBase.setupRepositoryBaseDeserializer(op);
+		op.add(Builder::settings, AzureRepositorySettings._DESERIALIZER, "settings");
 
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-
+		op.ignore("type");
 	}
 
 }

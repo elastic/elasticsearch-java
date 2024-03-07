@@ -73,6 +73,7 @@ public class Role implements JsonpSerializable {
 
 	private final List<String> runAs;
 
+	@Nullable
 	private final TransientMetadata transientMetadata;
 
 	private final List<ApplicationPrivileges> applications;
@@ -87,7 +88,7 @@ public class Role implements JsonpSerializable {
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.runAs = ApiTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
-		this.transientMetadata = ApiTypeHelper.requireNonNull(builder.transientMetadata, this, "transientMetadata");
+		this.transientMetadata = builder.transientMetadata;
 		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
 
@@ -126,8 +127,9 @@ public class Role implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code transient_metadata}
+	 * API name: {@code transient_metadata}
 	 */
+	@Nullable
 	public final TransientMetadata transientMetadata() {
 		return this.transientMetadata;
 	}
@@ -198,9 +200,11 @@ public class Role implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("transient_metadata");
-		this.transientMetadata.serialize(generator, mapper);
+		if (this.transientMetadata != null) {
+			generator.writeKey("transient_metadata");
+			this.transientMetadata.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
@@ -244,6 +248,7 @@ public class Role implements JsonpSerializable {
 
 		private List<String> runAs;
 
+		@Nullable
 		private TransientMetadata transientMetadata;
 
 		private List<ApplicationPrivileges> applications;
@@ -341,15 +346,15 @@ public class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transient_metadata}
+		 * API name: {@code transient_metadata}
 		 */
-		public final Builder transientMetadata(TransientMetadata value) {
+		public final Builder transientMetadata(@Nullable TransientMetadata value) {
 			this.transientMetadata = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code transient_metadata}
+		 * API name: {@code transient_metadata}
 		 */
 		public final Builder transientMetadata(
 				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
