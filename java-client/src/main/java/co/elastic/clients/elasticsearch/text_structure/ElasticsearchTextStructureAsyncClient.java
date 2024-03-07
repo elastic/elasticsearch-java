@@ -73,7 +73,7 @@ public class ElasticsearchTextStructureAsyncClient
 	 * Tests a Grok pattern on some text.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,7 +91,7 @@ public class ElasticsearchTextStructureAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link TestGrokPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

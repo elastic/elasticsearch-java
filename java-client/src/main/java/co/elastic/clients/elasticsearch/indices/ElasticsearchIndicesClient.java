@@ -1819,6 +1819,43 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.resolve_cluster
+
+	/**
+	 * Resolves the specified index expressions to return information about each
+	 * cluster, including the local cluster, if included.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-cluster-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ResolveClusterResponse resolveCluster(ResolveClusterRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ResolveClusterRequest, ResolveClusterResponse, ErrorResponse> endpoint = (JsonEndpoint<ResolveClusterRequest, ResolveClusterResponse, ErrorResponse>) ResolveClusterRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Resolves the specified index expressions to return information about each
+	 * cluster, including the local cluster, if included.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ResolveClusterRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-cluster-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ResolveClusterResponse resolveCluster(
+			Function<ResolveClusterRequest.Builder, ObjectBuilder<ResolveClusterRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return resolveCluster(fn.apply(new ResolveClusterRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.resolve_index
 
 	/**

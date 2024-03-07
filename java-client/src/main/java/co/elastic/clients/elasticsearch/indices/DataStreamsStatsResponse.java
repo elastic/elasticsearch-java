@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -75,7 +76,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	@Nullable
 	private final String totalStoreSizes;
 
-	private final int totalStoreSizeBytes;
+	private final long totalStoreSizeBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -148,7 +149,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total_store_size_bytes}
 	 */
-	public final int totalStoreSizeBytes() {
+	public final long totalStoreSizeBytes() {
 		return this.totalStoreSizeBytes;
 	}
 
@@ -217,7 +218,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		@Nullable
 		private String totalStoreSizes;
 
-		private Integer totalStoreSizeBytes;
+		private Long totalStoreSizeBytes;
 
 		/**
 		 * Required - Contains information about shards that attempted to execute the
@@ -312,7 +313,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_store_size_bytes}
 		 */
-		public final Builder totalStoreSizeBytes(int value) {
+		public final Builder totalStoreSizeBytes(long value) {
 			this.totalStoreSizeBytes = value;
 			return this;
 		}
@@ -352,7 +353,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(DataStreamsStatsItem._DESERIALIZER),
 				"data_streams");
 		op.add(Builder::totalStoreSizes, JsonpDeserializer.stringDeserializer(), "total_store_sizes");
-		op.add(Builder::totalStoreSizeBytes, JsonpDeserializer.integerDeserializer(), "total_store_size_bytes");
+		op.add(Builder::totalStoreSizeBytes, JsonpDeserializer.longDeserializer(), "total_store_size_bytes");
 
 	}
 

@@ -71,7 +71,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	@Nullable
 	private final String storeSize;
 
-	private final int storeSizeBytes;
+	private final long storeSizeBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -139,7 +139,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code store_size_bytes}
 	 */
-	public final int storeSizeBytes() {
+	public final long storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
@@ -196,7 +196,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		@Nullable
 		private String storeSize;
 
-		private Integer storeSizeBytes;
+		private Long storeSizeBytes;
 
 		/**
 		 * Required - Current number of backing indices for the data stream.
@@ -251,7 +251,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store_size_bytes}
 		 */
-		public final Builder storeSizeBytes(int value) {
+		public final Builder storeSizeBytes(long value) {
 			this.storeSizeBytes = value;
 			return this;
 		}
@@ -288,7 +288,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 		op.add(Builder::maximumTimestamp, JsonpDeserializer.longDeserializer(), "maximum_timestamp");
 		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store_size");
-		op.add(Builder::storeSizeBytes, JsonpDeserializer.integerDeserializer(), "store_size_bytes");
+		op.add(Builder::storeSizeBytes, JsonpDeserializer.longDeserializer(), "store_size_bytes");
 
 	}
 
