@@ -1775,6 +1775,41 @@ public class ElasticsearchIndicesAsyncClient
 		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.resolve_cluster
+
+	/**
+	 * Resolves the specified index expressions to return information about each
+	 * cluster, including the local cluster, if included.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-cluster-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ResolveClusterResponse> resolveCluster(ResolveClusterRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ResolveClusterRequest, ResolveClusterResponse, ErrorResponse> endpoint = (JsonEndpoint<ResolveClusterRequest, ResolveClusterResponse, ErrorResponse>) ResolveClusterRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Resolves the specified index expressions to return information about each
+	 * cluster, including the local cluster, if included.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ResolveClusterRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-cluster-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ResolveClusterResponse> resolveCluster(
+			Function<ResolveClusterRequest.Builder, ObjectBuilder<ResolveClusterRequest>> fn) {
+		return resolveCluster(fn.apply(new ResolveClusterRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.resolve_index
 
 	/**

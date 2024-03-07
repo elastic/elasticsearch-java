@@ -86,8 +86,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> runAs;
 
-	@Nullable
-	private final TransientMetadataConfig transientMetadata;
+	private final Map<String, JsonData> transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -101,7 +100,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
-		this.transientMetadata = builder.transientMetadata;
+		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
 	}
 
@@ -199,8 +198,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code transient_metadata}
 	 */
-	@Nullable
-	public final TransientMetadataConfig transientMetadata() {
+	public final Map<String, JsonData> transientMetadata() {
 		return this.transientMetadata;
 	}
 
@@ -277,9 +275,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.transientMetadata != null) {
+		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
 			generator.writeKey("transient_metadata");
-			this.transientMetadata.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.transientMetadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -316,7 +320,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		private List<String> runAs;
 
 		@Nullable
-		private TransientMetadataConfig transientMetadata;
+		private Map<String, JsonData> transientMetadata;
 
 		/**
 		 * A list of application privilege entries.
@@ -525,9 +529,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * listed in the response from the authenticate API.
 		 * <p>
 		 * API name: {@code transient_metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(@Nullable TransientMetadataConfig value) {
-			this.transientMetadata = value;
+		public final Builder transientMetadata(Map<String, JsonData> map) {
+			this.transientMetadata = _mapPutAll(this.transientMetadata, map);
 			return this;
 		}
 
@@ -540,10 +546,12 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * listed in the response from the authenticate API.
 		 * <p>
 		 * API name: {@code transient_metadata}
+		 * <p>
+		 * Adds an entry to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(
-				Function<TransientMetadataConfig.Builder, ObjectBuilder<TransientMetadataConfig>> fn) {
-			return this.transientMetadata(fn.apply(new TransientMetadataConfig.Builder()).build());
+		public final Builder transientMetadata(String key, JsonData value) {
+			this.transientMetadata = _mapPut(this.transientMetadata, key, value);
+			return this;
 		}
 
 		@Override
@@ -582,7 +590,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadataConfig._DESERIALIZER, "transient_metadata");
+		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"transient_metadata");
 
 	}
 
