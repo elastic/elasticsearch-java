@@ -17,16 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,78 +46,76 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.mapping.RankFeaturesProperty
+// typedef: snapshot._types.S3Repository
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.RankFeaturesProperty">API
+ * @see <a href="../doc-files/api-spec.html#snapshot._types.S3Repository">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean positiveScoreImpact;
+public class S3Repository extends RepositoryBase implements RepositoryVariant {
+	private final S3RepositorySettings settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RankFeaturesProperty(Builder builder) {
+	private S3Repository(Builder builder) {
 		super(builder);
 
-		this.positiveScoreImpact = builder.positiveScoreImpact;
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public static RankFeaturesProperty of(Function<Builder, ObjectBuilder<RankFeaturesProperty>> fn) {
+	public static S3Repository of(Function<Builder, ObjectBuilder<S3Repository>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Property variant kind.
+	 * Repository variant kind.
 	 */
 	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.RankFeatures;
+	public Repository.Kind _repositoryKind() {
+		return Repository.Kind.S3;
 	}
 
 	/**
-	 * API name: {@code positive_score_impact}
+	 * Required - API name: {@code settings}
 	 */
-	@Nullable
-	public final Boolean positiveScoreImpact() {
-		return this.positiveScoreImpact;
+	public final S3RepositorySettings settings() {
+		return this.settings;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "rank_features");
+		generator.write("type", "s3");
 		super.serializeInternal(generator, mapper);
-		if (this.positiveScoreImpact != null) {
-			generator.writeKey("positive_score_impact");
-			generator.write(this.positiveScoreImpact);
-
-		}
+		generator.writeKey("settings");
+		this.settings.serialize(generator, mapper);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RankFeaturesProperty}.
+	 * Builder for {@link S3Repository}.
 	 */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankFeaturesProperty> {
-		@Nullable
-		private Boolean positiveScoreImpact;
+	public static class Builder extends RepositoryBase.AbstractBuilder<Builder> implements ObjectBuilder<S3Repository> {
+		private S3RepositorySettings settings;
 
 		/**
-		 * API name: {@code positive_score_impact}
+		 * Required - API name: {@code settings}
 		 */
-		public final Builder positiveScoreImpact(@Nullable Boolean value) {
-			this.positiveScoreImpact = value;
+		public final Builder settings(S3RepositorySettings value) {
+			this.settings = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 */
+		public final Builder settings(Function<S3RepositorySettings.Builder, ObjectBuilder<S3RepositorySettings>> fn) {
+			return this.settings(fn.apply(new S3RepositorySettings.Builder()).build());
 		}
 
 		@Override
@@ -126,29 +124,29 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 		}
 
 		/**
-		 * Builds a {@link RankFeaturesProperty}.
+		 * Builds a {@link S3Repository}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RankFeaturesProperty build() {
+		public S3Repository build() {
 			_checkSingleUse();
 
-			return new RankFeaturesProperty(this);
+			return new S3Repository(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RankFeaturesProperty}
+	 * Json deserializer for {@link S3Repository}
 	 */
-	public static final JsonpDeserializer<RankFeaturesProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeaturesProperty::setupRankFeaturesPropertyDeserializer);
+	public static final JsonpDeserializer<S3Repository> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			S3Repository::setupS3RepositoryDeserializer);
 
-	protected static void setupRankFeaturesPropertyDeserializer(ObjectDeserializer<RankFeaturesProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(Builder::positiveScoreImpact, JsonpDeserializer.booleanDeserializer(), "positive_score_impact");
+	protected static void setupS3RepositoryDeserializer(ObjectDeserializer<S3Repository.Builder> op) {
+		RepositoryBase.setupRepositoryBaseDeserializer(op);
+		op.add(Builder::settings, S3RepositorySettings._DESERIALIZER, "settings");
 
 		op.ignore("type");
 	}

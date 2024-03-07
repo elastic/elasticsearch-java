@@ -63,16 +63,17 @@ import javax.annotation.Nullable;
  */
 
 public class GetModelRequest extends RequestBase {
-	private final String modelId;
+	private final String inferenceId;
 
+	@Nullable
 	private final TaskType taskType;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetModelRequest(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.taskType = builder.taskType;
 
 	}
 
@@ -81,19 +82,20 @@ public class GetModelRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The unique identifier of the inference model.
+	 * Required - The inference Id
 	 * <p>
-	 * API name: {@code model_id}
+	 * API name: {@code inference_id}
 	 */
-	public final String modelId() {
-		return this.modelId;
+	public final String inferenceId() {
+		return this.inferenceId;
 	}
 
 	/**
-	 * Required - The model task type
+	 * The task type
 	 * <p>
 	 * API name: {@code task_type}
 	 */
+	@Nullable
 	public final TaskType taskType() {
 		return this.taskType;
 	}
@@ -105,26 +107,27 @@ public class GetModelRequest extends RequestBase {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetModelRequest> {
-		private String modelId;
+		private String inferenceId;
 
+		@Nullable
 		private TaskType taskType;
 
 		/**
-		 * Required - The unique identifier of the inference model.
+		 * Required - The inference Id
 		 * <p>
-		 * API name: {@code model_id}
+		 * API name: {@code inference_id}
 		 */
-		public final Builder modelId(String value) {
-			this.modelId = value;
+		public final Builder inferenceId(String value) {
+			this.inferenceId = value;
 			return this;
 		}
 
 		/**
-		 * Required - The model task type
+		 * The task type
 		 * <p>
 		 * API name: {@code task_type}
 		 */
-		public final Builder taskType(TaskType value) {
+		public final Builder taskType(@Nullable TaskType value) {
 			this.taskType = value;
 			return this;
 		}
@@ -163,21 +166,29 @@ public class GetModelRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _modelId = 1 << 0;
+				final int _inferenceId = 1 << 0;
 				final int _taskType = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _modelId;
-				propsSet |= _taskType;
+				propsSet |= _inferenceId;
+				if (request.taskType() != null)
+					propsSet |= _taskType;
 
-				if (propsSet == (_taskType | _modelId)) {
+				if (propsSet == (_inferenceId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_inference");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.inferenceId, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_taskType | _inferenceId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_inference");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.taskType.jsonValue(), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId, buf);
+					SimpleEndpoint.pathEncode(request.inferenceId, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -187,17 +198,21 @@ public class GetModelRequest extends RequestBase {
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _modelId = 1 << 0;
+				final int _inferenceId = 1 << 0;
 				final int _taskType = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _modelId;
-				propsSet |= _taskType;
+				propsSet |= _inferenceId;
+				if (request.taskType() != null)
+					propsSet |= _taskType;
 
-				if (propsSet == (_taskType | _modelId)) {
+				if (propsSet == (_inferenceId)) {
+					params.put("inferenceId", request.inferenceId);
+				}
+				if (propsSet == (_taskType | _inferenceId)) {
 					params.put("taskType", request.taskType.jsonValue());
-					params.put("modelId", request.modelId);
+					params.put("inferenceId", request.inferenceId);
 				}
 				return params;
 			},

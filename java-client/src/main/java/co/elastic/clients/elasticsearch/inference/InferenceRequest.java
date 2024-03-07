@@ -67,28 +67,38 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class InferenceRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> input;
+	private final String inferenceId;
 
-	private final String modelId;
+	private final List<String> input;
 
 	@Nullable
 	private final JsonData taskSettings;
 
+	@Nullable
 	private final TaskType taskType;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private InferenceRequest(Builder builder) {
 
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = builder.taskType;
 
 	}
 
 	public static InferenceRequest of(Function<Builder, ObjectBuilder<InferenceRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - The inference Id
+	 * <p>
+	 * API name: {@code inference_id}
+	 */
+	public final String inferenceId() {
+		return this.inferenceId;
 	}
 
 	/**
@@ -98,15 +108,6 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> input() {
 		return this.input;
-	}
-
-	/**
-	 * Required - The unique identifier of the inference model.
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	public final String modelId() {
-		return this.modelId;
 	}
 
 	/**
@@ -120,10 +121,11 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The model task type
+	 * The task type
 	 * <p>
 	 * API name: {@code task_type}
 	 */
+	@Nullable
 	public final TaskType taskType() {
 		return this.taskType;
 	}
@@ -166,14 +168,25 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceRequest> {
-		private List<String> input;
+		private String inferenceId;
 
-		private String modelId;
+		private List<String> input;
 
 		@Nullable
 		private JsonData taskSettings;
 
+		@Nullable
 		private TaskType taskType;
+
+		/**
+		 * Required - The inference Id
+		 * <p>
+		 * API name: {@code inference_id}
+		 */
+		public final Builder inferenceId(String value) {
+			this.inferenceId = value;
+			return this;
+		}
 
 		/**
 		 * Required - Text input to the model. Either a string or an array of strings.
@@ -200,16 +213,6 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The unique identifier of the inference model.
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public final Builder modelId(String value) {
-			this.modelId = value;
-			return this;
-		}
-
-		/**
 		 * Optional task settings
 		 * <p>
 		 * API name: {@code task_settings}
@@ -220,11 +223,11 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The model task type
+		 * The task type
 		 * <p>
 		 * API name: {@code task_type}
 		 */
-		public final Builder taskType(TaskType value) {
+		public final Builder taskType(@Nullable TaskType value) {
 			this.taskType = value;
 			return this;
 		}
@@ -278,21 +281,29 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 
 			// Request path
 			request -> {
-				final int _modelId = 1 << 0;
+				final int _inferenceId = 1 << 0;
 				final int _taskType = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _modelId;
-				propsSet |= _taskType;
+				propsSet |= _inferenceId;
+				if (request.taskType() != null)
+					propsSet |= _taskType;
 
-				if (propsSet == (_taskType | _modelId)) {
+				if (propsSet == (_inferenceId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_inference");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.inferenceId, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_taskType | _inferenceId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_inference");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.taskType.jsonValue(), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId, buf);
+					SimpleEndpoint.pathEncode(request.inferenceId, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -302,17 +313,21 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _modelId = 1 << 0;
+				final int _inferenceId = 1 << 0;
 				final int _taskType = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _modelId;
-				propsSet |= _taskType;
+				propsSet |= _inferenceId;
+				if (request.taskType() != null)
+					propsSet |= _taskType;
 
-				if (propsSet == (_taskType | _modelId)) {
+				if (propsSet == (_inferenceId)) {
+					params.put("inferenceId", request.inferenceId);
+				}
+				if (propsSet == (_taskType | _inferenceId)) {
 					params.put("taskType", request.taskType.jsonValue());
-					params.put("modelId", request.modelId);
+					params.put("inferenceId", request.inferenceId);
 				}
 				return params;
 			},
