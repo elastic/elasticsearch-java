@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.GeoBounds;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,7 +28,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -47,89 +47,64 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.analysis.PatternTokenizer
+// typedef: _types.aggregations.CompositeGeoTileGridAggregation
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.PatternTokenizer">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.CompositeGeoTileGridAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class CompositeGeoTileGridAggregation extends CompositeAggregationBase {
 	@Nullable
-	private final String flags;
+	private final Integer precision;
 
 	@Nullable
-	private final Integer group;
-
-	@Nullable
-	private final String pattern;
+	private final GeoBounds bounds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private PatternTokenizer(Builder builder) {
+	private CompositeGeoTileGridAggregation(Builder builder) {
 		super(builder);
 
-		this.flags = builder.flags;
-		this.group = builder.group;
-		this.pattern = builder.pattern;
+		this.precision = builder.precision;
+		this.bounds = builder.bounds;
 
 	}
 
-	public static PatternTokenizer of(Function<Builder, ObjectBuilder<PatternTokenizer>> fn) {
+	public static CompositeGeoTileGridAggregation of(
+			Function<Builder, ObjectBuilder<CompositeGeoTileGridAggregation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * TokenizerDefinition variant kind.
+	 * API name: {@code precision}
 	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Pattern;
+	@Nullable
+	public final Integer precision() {
+		return this.precision;
 	}
 
 	/**
-	 * API name: {@code flags}
+	 * API name: {@code bounds}
 	 */
 	@Nullable
-	public final String flags() {
-		return this.flags;
-	}
-
-	/**
-	 * API name: {@code group}
-	 */
-	@Nullable
-	public final Integer group() {
-		return this.group;
-	}
-
-	/**
-	 * API name: {@code pattern}
-	 */
-	@Nullable
-	public final String pattern() {
-		return this.pattern;
+	public final GeoBounds bounds() {
+		return this.bounds;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "pattern");
 		super.serializeInternal(generator, mapper);
-		if (this.flags != null) {
-			generator.writeKey("flags");
-			generator.write(this.flags);
+		if (this.precision != null) {
+			generator.writeKey("precision");
+			generator.write(this.precision);
 
 		}
-		if (this.group != null) {
-			generator.writeKey("group");
-			generator.write(this.group);
-
-		}
-		if (this.pattern != null) {
-			generator.writeKey("pattern");
-			generator.write(this.pattern);
+		if (this.bounds != null) {
+			generator.writeKey("bounds");
+			this.bounds.serialize(generator, mapper);
 
 		}
 
@@ -138,43 +113,39 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PatternTokenizer}.
+	 * Builder for {@link CompositeGeoTileGridAggregation}.
 	 */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
+	public static class Builder extends CompositeAggregationBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<PatternTokenizer> {
+				ObjectBuilder<CompositeGeoTileGridAggregation> {
 		@Nullable
-		private String flags;
+		private Integer precision;
 
 		@Nullable
-		private Integer group;
-
-		@Nullable
-		private String pattern;
+		private GeoBounds bounds;
 
 		/**
-		 * API name: {@code flags}
+		 * API name: {@code precision}
 		 */
-		public final Builder flags(@Nullable String value) {
-			this.flags = value;
+		public final Builder precision(@Nullable Integer value) {
+			this.precision = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code group}
+		 * API name: {@code bounds}
 		 */
-		public final Builder group(@Nullable Integer value) {
-			this.group = value;
+		public final Builder bounds(@Nullable GeoBounds value) {
+			this.bounds = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * API name: {@code bounds}
 		 */
-		public final Builder pattern(@Nullable String value) {
-			this.pattern = value;
-			return this;
+		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		@Override
@@ -183,33 +154,32 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 		}
 
 		/**
-		 * Builds a {@link PatternTokenizer}.
+		 * Builds a {@link CompositeGeoTileGridAggregation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PatternTokenizer build() {
+		public CompositeGeoTileGridAggregation build() {
 			_checkSingleUse();
 
-			return new PatternTokenizer(this);
+			return new CompositeGeoTileGridAggregation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link PatternTokenizer}
+	 * Json deserializer for {@link CompositeGeoTileGridAggregation}
 	 */
-	public static final JsonpDeserializer<PatternTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PatternTokenizer::setupPatternTokenizerDeserializer);
+	public static final JsonpDeserializer<CompositeGeoTileGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CompositeGeoTileGridAggregation::setupCompositeGeoTileGridAggregationDeserializer);
 
-	protected static void setupPatternTokenizerDeserializer(ObjectDeserializer<PatternTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
-		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
-		op.add(Builder::group, JsonpDeserializer.integerDeserializer(), "group");
-		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
+	protected static void setupCompositeGeoTileGridAggregationDeserializer(
+			ObjectDeserializer<CompositeGeoTileGridAggregation.Builder> op) {
+		CompositeAggregationBase.setupCompositeAggregationBaseDeserializer(op);
+		op.add(Builder::precision, JsonpDeserializer.integerDeserializer(), "precision");
+		op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
 
-		op.ignore("type");
 	}
 
 }

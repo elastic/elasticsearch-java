@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -71,7 +72,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	@Nullable
 	private final String memorySize;
 
-	private final int memorySizeInBytes;
+	private final long memorySizeInBytes;
 
 	private final int missCount;
 
@@ -135,7 +136,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code memory_size_in_bytes}
 	 */
-	public final int memorySizeInBytes() {
+	public final long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
@@ -215,7 +216,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		@Nullable
 		private String memorySize;
 
-		private Integer memorySizeInBytes;
+		private Long memorySizeInBytes;
 
 		private Integer missCount;
 
@@ -264,7 +265,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_size_in_bytes}
 		 */
-		public final Builder memorySizeInBytes(int value) {
+		public final Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -318,7 +319,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		op.add(Builder::evictions, JsonpDeserializer.integerDeserializer(), "evictions");
 		op.add(Builder::hitCount, JsonpDeserializer.integerDeserializer(), "hit_count");
 		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.integerDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
 		op.add(Builder::missCount, JsonpDeserializer.integerDeserializer(), "miss_count");
 		op.add(Builder::totalCount, JsonpDeserializer.integerDeserializer(), "total_count");
 

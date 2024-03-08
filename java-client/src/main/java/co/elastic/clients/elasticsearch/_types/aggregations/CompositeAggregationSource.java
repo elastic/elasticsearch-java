@@ -59,16 +59,16 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class CompositeAggregationSource implements JsonpSerializable {
 	@Nullable
-	private final TermsAggregation terms;
+	private final CompositeTermsAggregation terms;
 
 	@Nullable
-	private final HistogramAggregation histogram;
+	private final CompositeHistogramAggregation histogram;
 
 	@Nullable
-	private final DateHistogramAggregation dateHistogram;
+	private final CompositeDateHistogramAggregation dateHistogram;
 
 	@Nullable
-	private final GeoTileGridAggregation geotileGrid;
+	private final CompositeGeoTileGridAggregation geotileGrid;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code terms}
 	 */
 	@Nullable
-	public final TermsAggregation terms() {
+	public final CompositeTermsAggregation terms() {
 		return this.terms;
 	}
 
@@ -97,7 +97,7 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code histogram}
 	 */
 	@Nullable
-	public final HistogramAggregation histogram() {
+	public final CompositeHistogramAggregation histogram() {
 		return this.histogram;
 	}
 
@@ -105,7 +105,7 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code date_histogram}
 	 */
 	@Nullable
-	public final DateHistogramAggregation dateHistogram() {
+	public final CompositeDateHistogramAggregation dateHistogram() {
 		return this.dateHistogram;
 	}
 
@@ -113,7 +113,7 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	 * API name: {@code geotile_grid}
 	 */
 	@Nullable
-	public final GeoTileGridAggregation geotileGrid() {
+	public final CompositeGeoTileGridAggregation geotileGrid() {
 		return this.geotileGrid;
 	}
 
@@ -166,21 +166,21 @@ public class CompositeAggregationSource implements JsonpSerializable {
 			implements
 				ObjectBuilder<CompositeAggregationSource> {
 		@Nullable
-		private TermsAggregation terms;
+		private CompositeTermsAggregation terms;
 
 		@Nullable
-		private HistogramAggregation histogram;
+		private CompositeHistogramAggregation histogram;
 
 		@Nullable
-		private DateHistogramAggregation dateHistogram;
+		private CompositeDateHistogramAggregation dateHistogram;
 
 		@Nullable
-		private GeoTileGridAggregation geotileGrid;
+		private CompositeGeoTileGridAggregation geotileGrid;
 
 		/**
 		 * API name: {@code terms}
 		 */
-		public final Builder terms(@Nullable TermsAggregation value) {
+		public final Builder terms(@Nullable CompositeTermsAggregation value) {
 			this.terms = value;
 			return this;
 		}
@@ -188,14 +188,15 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code terms}
 		 */
-		public final Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
-			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
+		public final Builder terms(
+				Function<CompositeTermsAggregation.Builder, ObjectBuilder<CompositeTermsAggregation>> fn) {
+			return this.terms(fn.apply(new CompositeTermsAggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code histogram}
 		 */
-		public final Builder histogram(@Nullable HistogramAggregation value) {
+		public final Builder histogram(@Nullable CompositeHistogramAggregation value) {
 			this.histogram = value;
 			return this;
 		}
@@ -203,14 +204,15 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code histogram}
 		 */
-		public final Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
-			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
+		public final Builder histogram(
+				Function<CompositeHistogramAggregation.Builder, ObjectBuilder<CompositeHistogramAggregation>> fn) {
+			return this.histogram(fn.apply(new CompositeHistogramAggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public final Builder dateHistogram(@Nullable DateHistogramAggregation value) {
+		public final Builder dateHistogram(@Nullable CompositeDateHistogramAggregation value) {
 			this.dateHistogram = value;
 			return this;
 		}
@@ -219,14 +221,14 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		 * API name: {@code date_histogram}
 		 */
 		public final Builder dateHistogram(
-				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
-			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
+				Function<CompositeDateHistogramAggregation.Builder, ObjectBuilder<CompositeDateHistogramAggregation>> fn) {
+			return this.dateHistogram(fn.apply(new CompositeDateHistogramAggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code geotile_grid}
 		 */
-		public final Builder geotileGrid(@Nullable GeoTileGridAggregation value) {
+		public final Builder geotileGrid(@Nullable CompositeGeoTileGridAggregation value) {
 			this.geotileGrid = value;
 			return this;
 		}
@@ -235,8 +237,8 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		 * API name: {@code geotile_grid}
 		 */
 		public final Builder geotileGrid(
-				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
-			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
+				Function<CompositeGeoTileGridAggregation.Builder, ObjectBuilder<CompositeGeoTileGridAggregation>> fn) {
+			return this.geotileGrid(fn.apply(new CompositeGeoTileGridAggregation.Builder()).build());
 		}
 
 		@Override
@@ -268,10 +270,10 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	protected static void setupCompositeAggregationSourceDeserializer(
 			ObjectDeserializer<CompositeAggregationSource.Builder> op) {
 
-		op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
-		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
-		op.add(Builder::dateHistogram, DateHistogramAggregation._DESERIALIZER, "date_histogram");
-		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
+		op.add(Builder::terms, CompositeTermsAggregation._DESERIALIZER, "terms");
+		op.add(Builder::histogram, CompositeHistogramAggregation._DESERIALIZER, "histogram");
+		op.add(Builder::dateHistogram, CompositeDateHistogramAggregation._DESERIALIZER, "date_histogram");
+		op.add(Builder::geotileGrid, CompositeGeoTileGridAggregation._DESERIALIZER, "geotile_grid");
 
 	}
 
