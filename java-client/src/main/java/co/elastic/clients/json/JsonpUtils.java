@@ -412,10 +412,10 @@ public class JsonpUtils {
         return dest;
     }
 
-    public static String toJsonString(JsonpSerializable value, JsonpMapper mapper) {
+    public static String toJsonString(Object value, JsonpMapper mapper) {
         StringWriter writer = new StringWriter();
         JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
-        value.serialize(generator, mapper);
+        mapper.serialize(value, generator);
         generator.close();
         return writer.toString();
     }

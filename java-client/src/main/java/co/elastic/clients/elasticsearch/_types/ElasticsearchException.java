@@ -19,6 +19,10 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.transport.http.TransportHttpClient;
+
+import javax.annotation.Nullable;
+
 /**
  * Exception thrown by API client methods when Elasticsearch could not accept or
  * process a request.
@@ -31,11 +35,18 @@ public class ElasticsearchException extends RuntimeException {
 
 	private final ErrorResponse response;
 	private final String endpointId;
+	@Nullable
+	private final TransportHttpClient.Response httpResponse;
 
-	public ElasticsearchException(String endpointId, ErrorResponse response) {
+	public ElasticsearchException(String endpointId, ErrorResponse response, @Nullable TransportHttpClient.Response httpResponse) {
 		super("[" + endpointId + "] failed: [" + response.error().type() + "] " + response.error().reason());
 		this.response = response;
 		this.endpointId = endpointId;
+		this.httpResponse = httpResponse;
+	}
+
+	public ElasticsearchException(String endpointId, ErrorResponse response) {
+		this(endpointId, response, null);
 	}
 
 	/**
@@ -65,5 +76,13 @@ public class ElasticsearchException extends RuntimeException {
 	 */
 	public int status() {
 		return this.response.status();
+	}
+
+	/**
+	 * The underlying http response, if available.
+	 */
+	@Nullable
+	public TransportHttpClient.Response httpResponse() {
+		return this.httpResponse;
 	}
 }

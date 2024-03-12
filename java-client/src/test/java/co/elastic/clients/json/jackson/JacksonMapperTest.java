@@ -23,14 +23,19 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 public class JacksonMapperTest extends ModelTestCase {
 
@@ -71,5 +76,27 @@ public class JacksonMapperTest extends ModelTestCase {
                 return res;
             }
         }
+    }
+
+    @Test
+    public void testSingleValueAsList() {
+        JsonpMapper jsonpMapper = new JacksonJsonpMapper();
+
+        String json = "{\"_index\":\"foo\",\"_id\":\"1\",\"_source\":{\"emp_no\":42,\"job_positions\":\"SWE\"}}";
+
+        Hit<EmpData> testDataHit = fromJson(json,
+            Hit.createHitDeserializer(JsonpDeserializer.of(EmpData.class)),
+            jsonpMapper
+        );
+        EmpData data = testDataHit.source();
+        assertEquals(42, data.empNo);
+        assertEquals(Collections.singletonList("SWE"), data.jobPositions);
+    }
+
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class EmpData {
+        public int empNo;
+        public List<String> jobPositions;
     }
 }

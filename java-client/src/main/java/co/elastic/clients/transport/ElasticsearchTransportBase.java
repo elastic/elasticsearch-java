@@ -342,7 +342,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
                         // TODO: have the endpoint provide the exception constructor
-                        throw new ElasticsearchException(endpoint.id(), (ErrorResponse) error);
+                        throw new ElasticsearchException(endpoint.id(), (ErrorResponse) error, clientResp);
                     }
                 } catch(JsonException | MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type
