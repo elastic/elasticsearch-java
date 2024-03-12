@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -36,6 +32,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.analysis.IcuTokenizer
 
 /**
@@ -44,7 +55,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
+public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final String ruleFiles;
 
 	// ---------------------------------------------------------------------------------------------
@@ -66,14 +77,6 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 	@Override
 	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
 		return TokenizerDefinition.Kind.IcuTokenizer;
-	}
-
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.IcuTokenizer;
 	}
 
 	/**

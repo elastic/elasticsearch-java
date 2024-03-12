@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.json.JsonData;
@@ -42,6 +38,21 @@ import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.analysis.TokenFilterDefinition
 
@@ -88,8 +99,6 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		IcuFolding("icu_folding"),
 
 		IcuNormalizer("icu_normalizer"),
-
-		IcuTokenizer("icu_tokenizer"),
 
 		IcuTransform("icu_transform"),
 
@@ -441,23 +450,6 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	 */
 	public IcuNormalizationTokenFilter icuNormalizer() {
 		return TaggedUnionUtils.get(this, Kind.IcuNormalizer);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code icu_tokenizer}?
-	 */
-	public boolean isIcuTokenizer() {
-		return _kind == Kind.IcuTokenizer;
-	}
-
-	/**
-	 * Get the {@code icu_tokenizer} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code icu_tokenizer} kind.
-	 */
-	public IcuTokenizer icuTokenizer() {
-		return TaggedUnionUtils.get(this, Kind.IcuTokenizer);
 	}
 
 	/**
@@ -1243,17 +1235,6 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 			return this.icuNormalizer(fn.apply(new IcuNormalizationTokenFilter.Builder()).build());
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(IcuTokenizer v) {
-			this._kind = Kind.IcuTokenizer;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(
-				Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> fn) {
-			return this.icuTokenizer(fn.apply(new IcuTokenizer.Builder()).build());
-		}
-
 		public ObjectBuilder<TokenFilterDefinition> icuTransform(IcuTransformTokenFilter v) {
 			this._kind = Kind.IcuTransform;
 			this._value = v;
@@ -1668,7 +1649,6 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		op.add(Builder::icuCollation, IcuCollationTokenFilter._DESERIALIZER, "icu_collation");
 		op.add(Builder::icuFolding, IcuFoldingTokenFilter._DESERIALIZER, "icu_folding");
 		op.add(Builder::icuNormalizer, IcuNormalizationTokenFilter._DESERIALIZER, "icu_normalizer");
-		op.add(Builder::icuTokenizer, IcuTokenizer._DESERIALIZER, "icu_tokenizer");
 		op.add(Builder::icuTransform, IcuTransformTokenFilter._DESERIALIZER, "icu_transform");
 		op.add(Builder::kstem, KStemTokenFilter._DESERIALIZER, "kstem");
 		op.add(Builder::keepTypes, KeepTypesTokenFilter._DESERIALIZER, "keep_types");

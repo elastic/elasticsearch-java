@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.ApiClient;
@@ -35,6 +31,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the security namespace.
@@ -67,41 +78,6 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	public AuthenticateResponse authenticate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(AuthenticateRequest._INSTANCE, AuthenticateRequest._ENDPOINT,
 				this.transportOptions);
-	}
-
-	// ----- Endpoint: security.clear_api_key_cache
-
-	/**
-	 * Clear a subset or all entries from the API key cache.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public ClearApiKeyCacheResponse clearApiKeyCache(ClearApiKeyCacheRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ErrorResponse>) ClearApiKeyCacheRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Clear a subset or all entries from the API key cache.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ClearApiKeyCacheRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final ClearApiKeyCacheResponse clearApiKeyCache(
-			Function<ClearApiKeyCacheRequest.Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return clearApiKeyCache(fn.apply(new ClearApiKeyCacheRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.create_api_key
@@ -194,6 +170,54 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 
 	public GetApiKeyResponse getApiKey() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: security.has_privileges
+
+	/**
+	 * Determines whether the specified user has a specified list of privileges.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HasPrivilegesResponse hasPrivileges(HasPrivilegesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse>) HasPrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Determines whether the specified user has a specified list of privileges.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link HasPrivilegesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final HasPrivilegesResponse hasPrivileges(
+			Function<HasPrivilegesRequest.Builder, ObjectBuilder<HasPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return hasPrivileges(fn.apply(new HasPrivilegesRequest.Builder()).build());
+	}
+
+	/**
+	 * Determines whether the specified user has a specified list of privileges.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public HasPrivilegesResponse hasPrivileges() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new HasPrivilegesRequest.Builder().build(), HasPrivilegesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

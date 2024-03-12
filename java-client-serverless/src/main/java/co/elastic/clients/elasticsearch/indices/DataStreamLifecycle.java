@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.Time;
@@ -38,6 +34,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: indices._types.DataStreamLifecycle
 
 /**
@@ -53,11 +64,15 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	private final Time dataRetention;
 
+	@Nullable
+	private final DataStreamLifecycleDownsampling downsampling;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamLifecycle(Builder builder) {
 
 		this.dataRetention = builder.dataRetention;
+		this.downsampling = builder.downsampling;
 
 	}
 
@@ -74,6 +89,14 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code downsampling}
+	 */
+	@Nullable
+	public final DataStreamLifecycleDownsampling downsampling() {
+		return this.downsampling;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -87,6 +110,11 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		if (this.dataRetention != null) {
 			generator.writeKey("data_retention");
 			this.dataRetention.serialize(generator, mapper);
+
+		}
+		if (this.downsampling != null) {
+			generator.writeKey("downsampling");
+			this.downsampling.serialize(generator, mapper);
 
 		}
 
@@ -109,6 +137,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		@Nullable
 		private Time dataRetention;
 
+		@Nullable
+		private DataStreamLifecycleDownsampling downsampling;
+
 		/**
 		 * API name: {@code data_retention}
 		 */
@@ -122,6 +153,22 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		 */
 		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
+			this.downsampling = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(
+				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
 		}
 
 		@Override
@@ -153,6 +200,7 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	protected static void setupDataStreamLifecycleDeserializer(ObjectDeserializer<DataStreamLifecycle.Builder> op) {
 
 		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
 
 	}
 

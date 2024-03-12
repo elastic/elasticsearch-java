@@ -17,14 +17,26 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Builders for {@link Query} variants.
@@ -341,6 +353,22 @@ public class QueryBuilders {
 	public static Query intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
 		builder.intervals(fn.apply(new IntervalsQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link KnnQuery knn} {@code Query} variant.
+	 */
+	public static KnnQuery.Builder knn() {
+		return new KnnQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link KnnQuery knn} {@code Query} variant.
+	 */
+	public static Query knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.knn(fn.apply(new KnnQuery.Builder()).build());
 		return builder.build();
 	}
 
@@ -945,6 +973,24 @@ public class QueryBuilders {
 	public static Query textExpansion(Function<TextExpansionQuery.Builder, ObjectBuilder<TextExpansionQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
 		builder.textExpansion(fn.apply(new TextExpansionQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link WeightedTokensQuery weighted_tokens}
+	 * {@code Query} variant.
+	 */
+	public static WeightedTokensQuery.Builder weightedTokens() {
+		return new WeightedTokensQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link WeightedTokensQuery weighted_tokens}
+	 * {@code Query} variant.
+	 */
+	public static Query weightedTokens(Function<WeightedTokensQuery.Builder, ObjectBuilder<WeightedTokensQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.weightedTokens(fn.apply(new WeightedTokensQuery.Builder()).build());
 		return builder.build();
 	}
 

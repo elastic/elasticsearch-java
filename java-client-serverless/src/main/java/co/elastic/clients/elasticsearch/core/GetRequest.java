@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -46,6 +42,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.get.Request
 
@@ -170,7 +181,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Boolean) If true, the request is real-time as opposed to near-real-time.
+	 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -201,7 +212,9 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of stored fields to return in the response
+	 * List of stored fields to return as part of a hit. If no fields are specified,
+	 * no stored fields are included in the response. If this field is specified,
+	 * the <code>_source</code> parameter defaults to false.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -372,7 +385,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Boolean) If true, the request is real-time as opposed to near-real-time.
+		 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -403,7 +416,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the <code>_source</code> parameter defaults to false.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -415,7 +430,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the <code>_source</code> parameter defaults to false.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>

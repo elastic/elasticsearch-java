@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -42,6 +38,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: security.get_api_key.Request
 
 /**
@@ -57,6 +68,9 @@ import javax.annotation.Nullable;
  */
 
 public class GetApiKeyRequest extends RequestBase {
+	@Nullable
+	private final Boolean activeOnly;
+
 	@Nullable
 	private final String id;
 
@@ -79,6 +93,7 @@ public class GetApiKeyRequest extends RequestBase {
 
 	private GetApiKeyRequest(Builder builder) {
 
+		this.activeOnly = builder.activeOnly;
 		this.id = builder.id;
 		this.name = builder.name;
 		this.owner = builder.owner;
@@ -90,6 +105,21 @@ public class GetApiKeyRequest extends RequestBase {
 
 	public static GetApiKeyRequest of(Function<Builder, ObjectBuilder<GetApiKeyRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * A boolean flag that can be used to query API keys that are currently active.
+	 * An API key is considered active if it is neither invalidated, nor expired at
+	 * query time. You can specify this together with other parameters such as
+	 * <code>owner</code> or <code>name</code>. If <code>active_only</code> is
+	 * false, the response will include both active and inactive (expired or
+	 * invalidated) keys.
+	 * <p>
+	 * API name: {@code active_only}
+	 */
+	@Nullable
+	public final Boolean activeOnly() {
+		return this.activeOnly;
 	}
 
 	/**
@@ -174,6 +204,9 @@ public class GetApiKeyRequest extends RequestBase {
 			implements
 				ObjectBuilder<GetApiKeyRequest> {
 		@Nullable
+		private Boolean activeOnly;
+
+		@Nullable
 		private String id;
 
 		@Nullable
@@ -190,6 +223,21 @@ public class GetApiKeyRequest extends RequestBase {
 
 		@Nullable
 		private Boolean withLimitedBy;
+
+		/**
+		 * A boolean flag that can be used to query API keys that are currently active.
+		 * An API key is considered active if it is neither invalidated, nor expired at
+		 * query time. You can specify this together with other parameters such as
+		 * <code>owner</code> or <code>name</code>. If <code>active_only</code> is
+		 * false, the response will include both active and inactive (expired or
+		 * invalidated) keys.
+		 * <p>
+		 * API name: {@code active_only}
+		 */
+		public final Builder activeOnly(@Nullable Boolean value) {
+			this.activeOnly = value;
+			return this;
+		}
 
 		/**
 		 * An API key id. This parameter cannot be used with any of <code>name</code>,
@@ -311,6 +359,9 @@ public class GetApiKeyRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.owner != null) {
 					params.put("owner", String.valueOf(request.owner));
+				}
+				if (request.activeOnly != null) {
+					params.put("active_only", String.valueOf(request.activeOnly));
 				}
 				if (request.name != null) {
 					params.put("name", request.name);

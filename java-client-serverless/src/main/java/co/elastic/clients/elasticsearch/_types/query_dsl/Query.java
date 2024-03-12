@@ -17,12 +17,9 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.json.JsonData;
@@ -44,6 +41,21 @@ import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.query_dsl.QueryContainer
 
@@ -103,6 +115,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		Ids("ids"),
 
 		Intervals("intervals"),
+
+		Knn("knn"),
 
 		Match("match"),
 
@@ -173,6 +187,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		TermsSet("terms_set"),
 
 		TextExpansion("text_expansion"),
+
+		WeightedTokens("weighted_tokens"),
 
 		Wildcard("wildcard"),
 
@@ -545,6 +561,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public IntervalsQuery intervals() {
 		return TaggedUnionUtils.get(this, Kind.Intervals);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code knn}?
+	 */
+	public boolean isKnn() {
+		return _kind == Kind.Knn;
+	}
+
+	/**
+	 * Get the {@code knn} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code knn} kind.
+	 */
+	public KnnQuery knn() {
+		return TaggedUnionUtils.get(this, Kind.Knn);
 	}
 
 	/**
@@ -1148,6 +1181,24 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
+	 * Is this variant instance of kind {@code weighted_tokens}?
+	 */
+	public boolean isWeightedTokens() {
+		return _kind == Kind.WeightedTokens;
+	}
+
+	/**
+	 * Get the {@code weighted_tokens} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code weighted_tokens}
+	 *             kind.
+	 */
+	public WeightedTokensQuery weightedTokens() {
+		return TaggedUnionUtils.get(this, Kind.WeightedTokens);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code wildcard}?
 	 */
 	public boolean isWildcard() {
@@ -1440,6 +1491,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
 			return this.intervals(fn.apply(new IntervalsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> knn(KnnQuery v) {
+			this._kind = Kind.Knn;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+			return this.knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> match(MatchQuery v) {
@@ -1804,6 +1865,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.textExpansion(fn.apply(new TextExpansionQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> weightedTokens(WeightedTokensQuery v) {
+			this._kind = Kind.WeightedTokens;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> weightedTokens(
+				Function<WeightedTokensQuery.Builder, ObjectBuilder<WeightedTokensQuery>> fn) {
+			return this.weightedTokens(fn.apply(new WeightedTokensQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
@@ -1877,6 +1949,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::hasParent, HasParentQuery._DESERIALIZER, "has_parent");
 		op.add(Builder::ids, IdsQuery._DESERIALIZER, "ids");
 		op.add(Builder::intervals, IntervalsQuery._DESERIALIZER, "intervals");
+		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
 		op.add(Builder::match, MatchQuery._DESERIALIZER, "match");
 		op.add(Builder::matchAll, MatchAllQuery._DESERIALIZER, "match_all");
 		op.add(Builder::matchBoolPrefix, MatchBoolPrefixQuery._DESERIALIZER, "match_bool_prefix");
@@ -1912,6 +1985,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
 		op.add(Builder::textExpansion, TextExpansionQuery._DESERIALIZER, "text_expansion");
+		op.add(Builder::weightedTokens, WeightedTokensQuery._DESERIALIZER, "weighted_tokens");
 		op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
 		op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
 		op.add(Builder::type, TypeQuery._DESERIALIZER, "type");

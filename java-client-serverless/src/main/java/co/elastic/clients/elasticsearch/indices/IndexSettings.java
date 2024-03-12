@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.Time;
@@ -47,6 +43,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: indices._types.IndexSettings
 
@@ -212,9 +223,6 @@ public class IndexSettings implements JsonpSerializable {
 	private final IndexSettingsTimeSeries timeSeries;
 
 	@Nullable
-	private final Integer shards;
-
-	@Nullable
 	private final Queries queries;
 
 	@Nullable
@@ -288,7 +296,6 @@ public class IndexSettings implements JsonpSerializable {
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
 		this.timeSeries = builder.timeSeries;
-		this.shards = builder.shards;
 		this.queries = builder.queries;
 		this.similarity = builder.similarity;
 		this.mapping = builder.mapping;
@@ -715,14 +722,6 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shards}
-	 */
-	@Nullable
-	public final Integer shards() {
-		return this.shards;
-	}
-
-	/**
 	 * API name: {@code queries}
 	 */
 	@Nullable
@@ -1050,11 +1049,6 @@ public class IndexSettings implements JsonpSerializable {
 			this.timeSeries.serialize(generator, mapper);
 
 		}
-		if (this.shards != null) {
-			generator.writeKey("shards");
-			generator.write(this.shards);
-
-		}
 		if (this.queries != null) {
 			generator.writeKey("queries");
 			this.queries.serialize(generator, mapper);
@@ -1278,9 +1272,6 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettingsTimeSeries timeSeries;
-
-		@Nullable
-		private Integer shards;
 
 		@Nullable
 		private Queries queries;
@@ -1848,14 +1839,6 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
-		 */
-		public final Builder shards(@Nullable Integer value) {
-			this.shards = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code queries}
 		 */
 		public final Builder queries(@Nullable Queries value) {
@@ -2046,7 +2029,6 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::timeSeries, IndexSettingsTimeSeries._DESERIALIZER, "time_series");
-		op.add(Builder::shards, JsonpDeserializer.integerDeserializer(), "shards");
 		op.add(Builder::queries, Queries._DESERIALIZER, "queries");
 		op.add(Builder::similarity, SettingsSimilarity._DESERIALIZER, "similarity");
 		op.add(Builder::mapping, MappingLimitSettings._DESERIALIZER, "mapping");

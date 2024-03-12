@@ -17,14 +17,25 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Builders for {@link Property} variants.
@@ -770,6 +781,25 @@ public class PropertyBuilders {
 	public static Property short_(Function<ShortNumberProperty.Builder, ObjectBuilder<ShortNumberProperty>> fn) {
 		Property.Builder builder = new Property.Builder();
 		builder.short_(fn.apply(new ShortNumberProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SparseVectorProperty sparse_vector}
+	 * {@code Property} variant.
+	 */
+	public static SparseVectorProperty.Builder sparseVector() {
+		return new SparseVectorProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link SparseVectorProperty sparse_vector}
+	 * {@code Property} variant.
+	 */
+	public static Property sparseVector(
+			Function<SparseVectorProperty.Builder, ObjectBuilder<SparseVectorProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.sparseVector(fn.apply(new SparseVectorProperty.Builder()).build());
 		return builder.build();
 	}
 

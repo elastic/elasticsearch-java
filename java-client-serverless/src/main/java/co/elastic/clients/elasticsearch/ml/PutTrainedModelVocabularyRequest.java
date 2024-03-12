@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -36,6 +32,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,6 +41,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: ml.put_trained_model_vocabulary.Request
 
@@ -63,6 +75,8 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 	private final String modelId;
 
+	private final List<Double> scores;
+
 	private final List<String> vocabulary;
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +85,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 		this.merges = ApiTypeHelper.unmodifiable(builder.merges);
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.scores = ApiTypeHelper.unmodifiable(builder.scores);
 		this.vocabulary = ApiTypeHelper.unmodifiableRequired(builder.vocabulary, this, "vocabulary");
 
 	}
@@ -96,6 +111,15 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	 */
 	public final String modelId() {
 		return this.modelId;
+	}
+
+	/**
+	 * The optional vocabulary value scores if required by the tokenizer.
+	 * <p>
+	 * API name: {@code scores}
+	 */
+	public final List<Double> scores() {
+		return this.scores;
 	}
 
 	/**
@@ -128,6 +152,16 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.scores)) {
+			generator.writeKey("scores");
+			generator.writeStartArray();
+			for (Double item0 : this.scores) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.vocabulary)) {
 			generator.writeKey("vocabulary");
 			generator.writeStartArray();
@@ -154,6 +188,9 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		private List<String> merges;
 
 		private String modelId;
+
+		@Nullable
+		private List<Double> scores;
 
 		private List<String> vocabulary;
 
@@ -188,6 +225,30 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * The optional vocabulary value scores if required by the tokenizer.
+		 * <p>
+		 * API name: {@code scores}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>scores</code>.
+		 */
+		public final Builder scores(List<Double> list) {
+			this.scores = _listAddAll(this.scores, list);
+			return this;
+		}
+
+		/**
+		 * The optional vocabulary value scores if required by the tokenizer.
+		 * <p>
+		 * API name: {@code scores}
+		 * <p>
+		 * Adds one or more values to <code>scores</code>.
+		 */
+		public final Builder scores(Double value, Double... values) {
+			this.scores = _listAdd(this.scores, value, values);
 			return this;
 		}
 
@@ -245,6 +306,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 			ObjectDeserializer<PutTrainedModelVocabularyRequest.Builder> op) {
 
 		op.add(Builder::merges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "merges");
+		op.add(Builder::scores, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "scores");
 		op.add(Builder::vocabulary, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"vocabulary");
 

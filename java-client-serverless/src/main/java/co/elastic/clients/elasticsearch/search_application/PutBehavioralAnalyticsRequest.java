@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -42,10 +38,25 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: search_application.put_behavioral_analytics.Request
 
 /**
- * Creates a behavioral analytics collection
+ * Creates a behavioral analytics collection.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.put_behavioral_analytics.Request">API
@@ -68,7 +79,7 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the analytics collection to be created or updated
+	 * Required - The name of the analytics collection to be created or updated.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -88,7 +99,7 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Required - The name of the analytics collection to be created or updated
+		 * Required - The name of the analytics collection to be created or updated.
 		 * <p>
 		 * API name: {@code name}
 		 */

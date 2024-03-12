@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -37,6 +33,21 @@ import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: indices._types.MappingLimitSettingsDimensionFields
 
@@ -66,9 +77,9 @@ public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 
 	/**
 	 * [preview] This functionality is in technical preview and may be changed or
-	 * removed in a future release. Elastic will apply best effort to fix any
-	 * issues, but features in technical preview are not subject to the support SLA
-	 * of official GA features.
+	 * removed in a future release. Elastic will work to fix any issues, but
+	 * features in technical preview are not subject to the support SLA of official
+	 * GA features.
 	 * <p>
 	 * API name: {@code limit}
 	 */
@@ -115,9 +126,9 @@ public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 
 		/**
 		 * [preview] This functionality is in technical preview and may be changed or
-		 * removed in a future release. Elastic will apply best effort to fix any
-		 * issues, but features in technical preview are not subject to the support SLA
-		 * of official GA features.
+		 * removed in a future release. Elastic will work to fix any issues, but
+		 * features in technical preview are not subject to the support SLA of official
+		 * GA features.
 		 * <p>
 		 * API name: {@code limit}
 		 */

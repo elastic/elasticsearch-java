@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.ApiClient;
@@ -35,6 +31,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the cluster namespace.
@@ -170,52 +181,6 @@ public class ElasticsearchClusterAsyncClient
 				GetComponentTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
-	// ----- Endpoint: cluster.get_settings
-
-	/**
-	 * Returns cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetClusterSettingsResponse> getSettings(GetClusterSettingsRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse>) GetClusterSettingsRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns cluster settings.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetClusterSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetClusterSettingsResponse> getSettings(
-			Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn) {
-		return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetClusterSettingsResponse> getSettings() {
-		return this.transport.performRequestAsync(new GetClusterSettingsRequest.Builder().build(),
-				GetClusterSettingsRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: cluster.info
 
 	/**
@@ -249,55 +214,6 @@ public class ElasticsearchClusterAsyncClient
 		return info(fn.apply(new ClusterInfoRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: cluster.pending_tasks
-
-	/**
-	 * Returns a list of any cluster-level changes (e.g. create index, update
-	 * mapping, allocate or fail shard) which have not yet been executed.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse>) PendingTasksRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns a list of any cluster-level changes (e.g. create index, update
-	 * mapping, allocate or fail shard) which have not yet been executed.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PendingTasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<PendingTasksResponse> pendingTasks(
-			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn) {
-		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns a list of any cluster-level changes (e.g. create index, update
-	 * mapping, allocate or fail shard) which have not yet been executed.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PendingTasksResponse> pendingTasks() {
-		return this.transport.performRequestAsync(new PendingTasksRequest.Builder().build(),
-				PendingTasksRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: cluster.put_component_template
 
 	/**
@@ -329,98 +245,6 @@ public class ElasticsearchClusterAsyncClient
 	public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
 			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn) {
 		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: cluster.put_settings
-
-	/**
-	 * Updates the cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PutClusterSettingsResponse> putSettings(PutClusterSettingsRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse>) PutClusterSettingsRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Updates the cluster settings.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PutClusterSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<PutClusterSettingsResponse> putSettings(
-			Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn) {
-		return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
-	}
-
-	/**
-	 * Updates the cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PutClusterSettingsResponse> putSettings() {
-		return this.transport.performRequestAsync(new PutClusterSettingsRequest.Builder().build(),
-				PutClusterSettingsRequest._ENDPOINT, this.transportOptions);
-	}
-
-	// ----- Endpoint: cluster.stats
-
-	/**
-	 * Returns high-level overview of cluster statistics.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse>) ClusterStatsRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns high-level overview of cluster statistics.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ClusterStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<ClusterStatsResponse> stats(
-			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn) {
-		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns high-level overview of cluster statistics.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<ClusterStatsResponse> stats() {
-		return this.transport.performRequestAsync(new ClusterStatsRequest.Builder().build(),
-				ClusterStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

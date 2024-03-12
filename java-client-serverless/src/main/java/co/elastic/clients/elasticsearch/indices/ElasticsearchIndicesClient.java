@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.ApiClient;
@@ -36,6 +32,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the indices namespace.
@@ -53,6 +64,39 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	@Override
 	public ElasticsearchIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
 		return new ElasticsearchIndicesClient(this.transport, transportOptions);
+	}
+
+	// ----- Endpoint: indices.add_block
+
+	/**
+	 * Adds a block to an index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse>) AddBlockRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Adds a block to an index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link AddBlockRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final AddBlockResponse addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.analyze
@@ -363,7 +407,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Deletes an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -382,7 +426,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -390,74 +434,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.delete_template
-
-	/**
-	 * Deletes an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Deletes an index template.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final DeleteTemplateResponse deleteTemplate(
-			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.disk_usage
-
-	/**
-	 * Analyzes the disk usage of each field of an index or data stream
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse>) DiskUsageRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Analyzes the disk usage of each field of an index or data stream
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DiskUsageRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final DiskUsageResponse diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists
@@ -532,7 +508,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Returns information about whether a particular index template exists.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -551,7 +527,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -559,40 +535,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.exists_template
-
-	/**
-	 * Returns information about whether a particular index template exists.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns information about whether a particular index template exists.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ExistsTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final BooleanResponse existsTemplate(
-			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.explain_data_lifecycle
@@ -800,7 +742,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Returns an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -819,7 +761,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -833,7 +775,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Returns an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -934,53 +876,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	public GetIndicesSettingsResponse getSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetIndicesSettingsRequest.Builder().build(),
 				GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
-	}
-
-	// ----- Endpoint: indices.get_template
-
-	/**
-	 * Returns an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse>) GetTemplateRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns an index template.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetTemplateResponse getTemplate(
-			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetTemplateResponse getTemplate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest._ENDPOINT,
-				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1127,7 +1022,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Creates or updates an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1146,7 +1041,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1243,7 +1138,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Creates or updates an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1261,7 +1156,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1269,6 +1164,52 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.refresh
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RefreshResponse refresh(RefreshRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse> endpoint = (JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse>) RefreshRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RefreshRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return refresh(fn.apply(new RefreshRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RefreshResponse refresh() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.resolve_index
@@ -1347,7 +1288,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * system
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1367,7 +1308,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1383,7 +1324,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Simulate resolving the given template name or body
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1402,7 +1343,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1416,7 +1357,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Simulate resolving the given template name or body
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

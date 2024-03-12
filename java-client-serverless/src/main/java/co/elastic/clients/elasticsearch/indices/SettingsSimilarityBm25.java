@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,6 +35,21 @@ import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: indices._types.SettingsSimilarityBm25
 
 /**
@@ -48,7 +59,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarityBm25 implements JsonpSerializable {
+public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpSerializable {
 	private final double b;
 
 	private final boolean discountOverlaps;
@@ -67,6 +78,14 @@ public class SettingsSimilarityBm25 implements JsonpSerializable {
 
 	public static SettingsSimilarityBm25 of(Function<Builder, ObjectBuilder<SettingsSimilarityBm25>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * SettingsSimilarity variant kind.
+	 */
+	@Override
+	public SettingsSimilarity.Kind _settingsSimilarityKind() {
+		return SettingsSimilarity.Kind.Bm25;
 	}
 
 	/**

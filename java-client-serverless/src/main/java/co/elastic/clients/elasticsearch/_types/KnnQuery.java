@@ -17,13 +17,11 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
+import co.elastic.clients.elasticsearch.core.search.InnerHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,6 +41,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.KnnQuery
 
 /**
@@ -51,7 +64,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class KnnQuery implements JsonpSerializable {
+public class KnnQuery implements QueryVariant, JsonpSerializable {
 	private final String field;
 
 	private final List<Float> queryVector;
@@ -68,6 +81,12 @@ public class KnnQuery implements JsonpSerializable {
 
 	private final List<Query> filter;
 
+	@Nullable
+	private final Float similarity;
+
+	@Nullable
+	private final InnerHits innerHits;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private KnnQuery(Builder builder) {
@@ -79,11 +98,21 @@ public class KnnQuery implements JsonpSerializable {
 		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
 		this.boost = builder.boost;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+		this.similarity = builder.similarity;
+		this.innerHits = builder.innerHits;
 
 	}
 
 	public static KnnQuery of(Function<Builder, ObjectBuilder<KnnQuery>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.Knn;
 	}
 
 	/**
@@ -153,6 +182,26 @@ public class KnnQuery implements JsonpSerializable {
 	}
 
 	/**
+	 * The minimum similarity for a vector to be considered a match
+	 * <p>
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final Float similarity() {
+		return this.similarity;
+	}
+
+	/**
+	 * If defined, each search hit will contain inner hits.
+	 * <p>
+	 * API name: {@code inner_hits}
+	 */
+	@Nullable
+	public final InnerHits innerHits() {
+		return this.innerHits;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -202,6 +251,16 @@ public class KnnQuery implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			generator.write(this.similarity);
+
+		}
+		if (this.innerHits != null) {
+			generator.writeKey("inner_hits");
+			this.innerHits.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -234,6 +293,12 @@ public class KnnQuery implements JsonpSerializable {
 
 		@Nullable
 		private List<Query> filter;
+
+		@Nullable
+		private Float similarity;
+
+		@Nullable
+		private InnerHits innerHits;
 
 		/**
 		 * Required - The name of the vector field to search against
@@ -356,6 +421,35 @@ public class KnnQuery implements JsonpSerializable {
 			return filter(fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * The minimum similarity for a vector to be considered a match
+		 * <p>
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable Float value) {
+			this.similarity = value;
+			return this;
+		}
+
+		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
+		 * API name: {@code inner_hits}
+		 */
+		public final Builder innerHits(@Nullable InnerHits value) {
+			this.innerHits = value;
+			return this;
+		}
+
+		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
+		 * API name: {@code inner_hits}
+		 */
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -392,6 +486,8 @@ public class KnnQuery implements JsonpSerializable {
 		op.add(Builder::numCandidates, JsonpDeserializer.longDeserializer(), "num_candidates");
 		op.add(Builder::boost, JsonpDeserializer.floatDeserializer(), "boost");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
+		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
 
 	}
 

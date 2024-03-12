@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -28,7 +24,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +32,21 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.mapping.DenseVectorProperty
 
@@ -48,7 +58,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DenseVectorProperty extends PropertyBase implements PropertyVariant {
-	private final int dims;
+	@Nullable
+	private final Integer dims;
 
 	@Nullable
 	private final String similarity;
@@ -64,7 +75,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	private DenseVectorProperty(Builder builder) {
 		super(builder);
 
-		this.dims = ApiTypeHelper.requireNonNull(builder.dims, this, "dims");
+		this.dims = builder.dims;
 		this.similarity = builder.similarity;
 		this.index = builder.index;
 		this.indexOptions = builder.indexOptions;
@@ -84,9 +95,10 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	}
 
 	/**
-	 * Required - API name: {@code dims}
+	 * API name: {@code dims}
 	 */
-	public final int dims() {
+	@Nullable
+	public final Integer dims() {
 		return this.dims;
 	}
 
@@ -118,9 +130,11 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 
 		generator.write("type", "dense_vector");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("dims");
-		generator.write(this.dims);
+		if (this.dims != null) {
+			generator.writeKey("dims");
+			generator.write(this.dims);
 
+		}
 		if (this.similarity != null) {
 			generator.writeKey("similarity");
 			generator.write(this.similarity);
@@ -148,6 +162,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DenseVectorProperty> {
+		@Nullable
 		private Integer dims;
 
 		@Nullable
@@ -160,9 +175,9 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 		private DenseVectorIndexOptions indexOptions;
 
 		/**
-		 * Required - API name: {@code dims}
+		 * API name: {@code dims}
 		 */
-		public final Builder dims(int value) {
+		public final Builder dims(@Nullable Integer value) {
 			this.dims = value;
 			return this;
 		}

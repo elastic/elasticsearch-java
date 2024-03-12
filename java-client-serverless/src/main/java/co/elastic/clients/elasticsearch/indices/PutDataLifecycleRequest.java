@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -47,6 +43,21 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: indices.put_data_lifecycle.Request
 
 /**
@@ -60,6 +71,9 @@ import javax.annotation.Nullable;
 public class PutDataLifecycleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time dataRetention;
+
+	@Nullable
+	private final DataStreamLifecycleDownsampling downsampling;
 
 	private final List<ExpandWildcard> expandWildcards;
 
@@ -76,6 +90,7 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	private PutDataLifecycleRequest(Builder builder) {
 
 		this.dataRetention = builder.dataRetention;
+		this.downsampling = builder.downsampling;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
@@ -98,6 +113,18 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	public final Time dataRetention() {
 		return this.dataRetention;
+	}
+
+	/**
+	 * If defined, every backing index will execute the configured downsampling
+	 * configuration after the backing index is not the data stream write index
+	 * anymore.
+	 * <p>
+	 * API name: {@code downsampling}
+	 */
+	@Nullable
+	public final DataStreamLifecycleDownsampling downsampling() {
+		return this.downsampling;
 	}
 
 	/**
@@ -161,6 +188,11 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 			this.dataRetention.serialize(generator, mapper);
 
 		}
+		if (this.downsampling != null) {
+			generator.writeKey("downsampling");
+			this.downsampling.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -175,6 +207,9 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 				ObjectBuilder<PutDataLifecycleRequest> {
 		@Nullable
 		private Time dataRetention;
+
+		@Nullable
+		private DataStreamLifecycleDownsampling downsampling;
 
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
@@ -210,6 +245,30 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * If defined, every backing index will execute the configured downsampling
+		 * configuration after the backing index is not the data stream write index
+		 * anymore.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
+			this.downsampling = value;
+			return this;
+		}
+
+		/**
+		 * If defined, every backing index will execute the configured downsampling
+		 * configuration after the backing index is not the data stream write index
+		 * anymore.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(
+				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
 		}
 
 		/**
@@ -342,6 +401,7 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 			ObjectDeserializer<PutDataLifecycleRequest.Builder> op) {
 
 		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
 
 	}
 

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -53,13 +49,27 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.create.Request
 
 /**
- * Creates a new document in the index.
- * <p>
- * Returns a 409 response when a document with a same ID already exists in the
- * index.
+ * Adds a JSON document to the specified data stream or index and makes it
+ * searchable. If the target is an index and the document already exists, the
+ * request updates the document and increments its version.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.create.Request">API
  *      specification</a>
@@ -120,7 +130,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - Document ID
+	 * Required - Unique identifier for the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -129,7 +139,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - The name of the index
+	 * Required - Name of the data stream or index to target. If the target doesn’t
+	 * exist and matches the name or wildcard (<code>*</code>) pattern of an index
+	 * template with a <code>data_stream</code> definition, this request creates the
+	 * data stream. If the target doesn’t exist and doesn’t match a data stream
+	 * template, this request creates the index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -138,7 +152,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The pipeline id to preprocess incoming documents with
+	 * ID of the pipeline to use to preprocess incoming documents. If the index has
+	 * a default ingest pipeline specified, then setting the value to
+	 * <code>_none</code> disables the default ingest pipeline for this request. If
+	 * a final pipeline is configured it will always run, regardless of the value of
+	 * this parameter.
 	 * <p>
 	 * API name: {@code pipeline}
 	 */
@@ -148,10 +166,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * If <code>true</code> then refresh the affected shards to make this operation
-	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-	 * this operation visible to search, if <code>false</code> (the default) then do
-	 * nothing with refreshes.
+	 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> do
+	 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
+	 * <code>wait_for</code>.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -161,7 +180,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -171,7 +190,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period the request waits for the following operations: automatic index
+	 * creation, dynamic mapping updates, waiting for active shards.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -181,7 +201,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Explicit version number for concurrency control
+	 * Explicit version number for concurrency control. The specified version must
+	 * match the current version of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -191,7 +212,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Specific version type
+	 * Specific version type: <code>external</code>, <code>external_gte</code>.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -201,11 +222,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Sets the number of shard copies that must be active before proceeding with
-	 * the index operation. Defaults to 1, meaning the primary shard only. Set to
-	 * <code>all</code> for all shard copies, otherwise set to any non-negative
-	 * value less than or equal to the total number of copies for the shard (number
-	 * of replicas + 1)
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to <code>all</code> or any positive integer up to the total
+	 * number of shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -269,7 +288,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Required - Document ID
+		 * Required - Unique identifier for the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -279,7 +298,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Required - The name of the index
+		 * Required - Name of the data stream or index to target. If the target doesn’t
+		 * exist and matches the name or wildcard (<code>*</code>) pattern of an index
+		 * template with a <code>data_stream</code> definition, this request creates the
+		 * data stream. If the target doesn’t exist and doesn’t match a data stream
+		 * template, this request creates the index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -289,7 +312,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * The pipeline id to preprocess incoming documents with
+		 * ID of the pipeline to use to preprocess incoming documents. If the index has
+		 * a default ingest pipeline specified, then setting the value to
+		 * <code>_none</code> disables the default ingest pipeline for this request. If
+		 * a final pipeline is configured it will always run, regardless of the value of
+		 * this parameter.
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
@@ -299,10 +326,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * If <code>true</code> then refresh the affected shards to make this operation
-		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
-		 * this operation visible to search, if <code>false</code> (the default) then do
-		 * nothing with refreshes.
+		 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> do
+		 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
+		 * <code>wait_for</code>.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -312,7 +340,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -322,7 +350,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period the request waits for the following operations: automatic index
+		 * creation, dynamic mapping updates, waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -332,7 +361,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period the request waits for the following operations: automatic index
+		 * creation, dynamic mapping updates, waiting for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -341,7 +371,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Explicit version number for concurrency control
+		 * Explicit version number for concurrency control. The specified version must
+		 * match the current version of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -351,7 +382,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Specific version type
+		 * Specific version type: <code>external</code>, <code>external_gte</code>.
 		 * <p>
 		 * API name: {@code version_type}
 		 */
@@ -361,11 +392,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -375,11 +404,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
-		 * <code>all</code> for all shard copies, otherwise set to any non-negative
-		 * value less than or equal to the total number of copies for the shard (number
-		 * of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to <code>all</code> or any positive integer up to the total
+		 * number of shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */

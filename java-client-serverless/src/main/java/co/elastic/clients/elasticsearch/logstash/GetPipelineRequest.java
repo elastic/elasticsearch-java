@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -44,6 +40,21 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: logstash.get_pipeline.Request
 
 /**
@@ -60,7 +71,7 @@ public class GetPipelineRequest extends RequestBase {
 
 	private GetPipelineRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.unmodifiableRequired(builder.id, this, "id");
+		this.id = ApiTypeHelper.unmodifiable(builder.id);
 
 	}
 
@@ -69,7 +80,7 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of pipeline identifiers.
+	 * Comma-separated list of pipeline identifiers.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,10 +97,11 @@ public class GetPipelineRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetPipelineRequest> {
+		@Nullable
 		private List<String> id;
 
 		/**
-		 * Required - Comma-separated list of pipeline identifiers.
+		 * Comma-separated list of pipeline identifiers.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -101,7 +113,7 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of pipeline identifiers.
+		 * Comma-separated list of pipeline identifiers.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -150,7 +162,8 @@ public class GetPipelineRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _id;
+				if (ApiTypeHelper.isDefined(request.id()))
+					propsSet |= _id;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -177,7 +190,8 @@ public class GetPipelineRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _id;
+				if (ApiTypeHelper.isDefined(request.id()))
+					propsSet |= _id;
 
 				if (propsSet == 0) {
 				}

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -43,6 +39,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: transform.delete_transform.Request
 
 /**
@@ -55,6 +66,9 @@ import javax.annotation.Nullable;
 
 public class DeleteTransformRequest extends RequestBase {
 	@Nullable
+	private final Boolean deleteDestIndex;
+
+	@Nullable
 	private final Boolean force;
 
 	@Nullable
@@ -66,6 +80,7 @@ public class DeleteTransformRequest extends RequestBase {
 
 	private DeleteTransformRequest(Builder builder) {
 
+		this.deleteDestIndex = builder.deleteDestIndex;
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
@@ -74,6 +89,17 @@ public class DeleteTransformRequest extends RequestBase {
 
 	public static DeleteTransformRequest of(Function<Builder, ObjectBuilder<DeleteTransformRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If this value is true, the destination index is deleted together with the
+	 * transform. If false, the destination index will not be deleted
+	 * <p>
+	 * API name: {@code delete_dest_index}
+	 */
+	@Nullable
+	public final Boolean deleteDestIndex() {
+		return this.deleteDestIndex;
 	}
 
 	/**
@@ -117,12 +143,26 @@ public class DeleteTransformRequest extends RequestBase {
 			implements
 				ObjectBuilder<DeleteTransformRequest> {
 		@Nullable
+		private Boolean deleteDestIndex;
+
+		@Nullable
 		private Boolean force;
 
 		@Nullable
 		private Time timeout;
 
 		private String transformId;
+
+		/**
+		 * If this value is true, the destination index is deleted together with the
+		 * transform. If false, the destination index will not be deleted
+		 * <p>
+		 * API name: {@code delete_dest_index}
+		 */
+		public final Builder deleteDestIndex(@Nullable Boolean value) {
+			this.deleteDestIndex = value;
+			return this;
+		}
 
 		/**
 		 * If this value is false, the transform must be stopped before it can be
@@ -235,6 +275,9 @@ public class DeleteTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.deleteDestIndex != null) {
+					params.put("delete_dest_index", String.valueOf(request.deleteDestIndex));
+				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
 				}

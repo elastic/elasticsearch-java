@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
@@ -33,10 +29,26 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.query_dsl.GeoDistanceQuery
 
@@ -60,6 +72,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final GeoValidationMethod validationMethod;
 
+	@Nullable
+	private final Boolean ignoreUnmapped;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoDistanceQuery(Builder builder) {
@@ -70,6 +85,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		this.distance = ApiTypeHelper.requireNonNull(builder.distance, this, "distance");
 		this.distanceType = builder.distanceType;
 		this.validationMethod = builder.validationMethod;
+		this.ignoreUnmapped = builder.ignoreUnmapped;
 
 	}
 
@@ -132,6 +148,18 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		return this.validationMethod;
 	}
 
+	/**
+	 * Set to <code>true</code> to ignore an unmapped field and not match any
+	 * documents for this query. Set to <code>false</code> to throw an exception if
+	 * the field is not mapped.
+	 * <p>
+	 * API name: {@code ignore_unmapped}
+	 */
+	@Nullable
+	public final Boolean ignoreUnmapped() {
+		return this.ignoreUnmapped;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeKey(this.field);
 		this.location.serialize(generator, mapper);
@@ -147,6 +175,11 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		if (this.validationMethod != null) {
 			generator.writeKey("validation_method");
 			this.validationMethod.serialize(generator, mapper);
+		}
+		if (this.ignoreUnmapped != null) {
+			generator.writeKey("ignore_unmapped");
+			generator.write(this.ignoreUnmapped);
+
 		}
 
 	}
@@ -193,6 +226,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private GeoValidationMethod validationMethod;
 
+		@Nullable
+		private Boolean ignoreUnmapped;
+
 		/**
 		 * Required - The radius of the circle centred on the specified location. Points
 		 * which fall into this circle are considered to be matches.
@@ -227,6 +263,18 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 			return this;
 		}
 
+		/**
+		 * Set to <code>true</code> to ignore an unmapped field and not match any
+		 * documents for this query. Set to <code>false</code> to throw an exception if
+		 * the field is not mapped.
+		 * <p>
+		 * API name: {@code ignore_unmapped}
+		 */
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
+			this.ignoreUnmapped = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -258,6 +306,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
 		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
 		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);

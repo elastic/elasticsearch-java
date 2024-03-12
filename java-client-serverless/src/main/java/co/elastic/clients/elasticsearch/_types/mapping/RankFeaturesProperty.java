@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -30,8 +26,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.mapping.RankFeaturesProperty
 
@@ -43,10 +56,15 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
+	@Nullable
+	private final Boolean positiveScoreImpact;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RankFeaturesProperty(Builder builder) {
 		super(builder);
+
+		this.positiveScoreImpact = builder.positiveScoreImpact;
 
 	}
 
@@ -62,10 +80,23 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 		return Property.Kind.RankFeatures;
 	}
 
+	/**
+	 * API name: {@code positive_score_impact}
+	 */
+	@Nullable
+	public final Boolean positiveScoreImpact() {
+		return this.positiveScoreImpact;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "rank_features");
 		super.serializeInternal(generator, mapper);
+		if (this.positiveScoreImpact != null) {
+			generator.writeKey("positive_score_impact");
+			generator.write(this.positiveScoreImpact);
+
+		}
 
 	}
 
@@ -78,6 +109,17 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankFeaturesProperty> {
+		@Nullable
+		private Boolean positiveScoreImpact;
+
+		/**
+		 * API name: {@code positive_score_impact}
+		 */
+		public final Builder positiveScoreImpact(@Nullable Boolean value) {
+			this.positiveScoreImpact = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -106,6 +148,7 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 
 	protected static void setupRankFeaturesPropertyDeserializer(ObjectDeserializer<RankFeaturesProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
+		op.add(Builder::positiveScoreImpact, JsonpDeserializer.booleanDeserializer(), "positive_score_impact");
 
 		op.ignore("type");
 	}

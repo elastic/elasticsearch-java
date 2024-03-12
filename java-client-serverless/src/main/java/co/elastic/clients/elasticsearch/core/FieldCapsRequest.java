@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -48,6 +44,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.field_caps.Request
 
@@ -77,6 +88,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
+	private final Boolean includeEmptyFields;
+
+	@Nullable
 	private final Boolean includeUnmapped;
 
 	private final List<String> index;
@@ -97,6 +111,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filters = builder.filters;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeEmptyFields = builder.includeEmptyFields;
 		this.includeUnmapped = builder.includeUnmapped;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
@@ -165,6 +180,16 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * If false, empty fields are not included in the response.
+	 * <p>
+	 * API name: {@code include_empty_fields}
+	 */
+	@Nullable
+	public final Boolean includeEmptyFields() {
+		return this.includeEmptyFields;
 	}
 
 	/**
@@ -284,6 +309,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private Boolean includeEmptyFields;
+
+		@Nullable
 		private Boolean includeUnmapped;
 
 		@Nullable
@@ -387,6 +415,16 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * If false, empty fields are not included in the response.
+		 * <p>
+		 * API name: {@code include_empty_fields}
+		 */
+		public final Builder includeEmptyFields(@Nullable Boolean value) {
+			this.includeEmptyFields = value;
 			return this;
 		}
 
@@ -622,6 +660,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.includeEmptyFields != null) {
+					params.put("include_empty_fields", String.valueOf(request.includeEmptyFields));
 				}
 				if (request.filters != null) {
 					params.put("filters", request.filters);

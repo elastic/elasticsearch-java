@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -43,10 +39,25 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.clear_scroll.Request
 
 /**
- * Explicitly clears the search context for a scroll.
+ * Clears the search context and results for a scrolling search.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.clear_scroll.Request">API
  *      specification</a>
@@ -68,6 +79,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * Scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
+	 * <p>
 	 * API name: {@code scroll_id}
 	 */
 	public final List<String> scrollId() {
@@ -111,6 +124,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		private List<String> scrollId;
 
 		/**
+		 * Scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
+		 * <p>
 		 * API name: {@code scroll_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>scrollId</code>.
@@ -121,6 +136,8 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
+		 * <p>
 		 * API name: {@code scroll_id}
 		 * <p>
 		 * Adds one or more values to <code>scrollId</code>.

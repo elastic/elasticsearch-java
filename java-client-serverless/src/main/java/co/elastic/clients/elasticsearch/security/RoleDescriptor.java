@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.JsonData;
@@ -41,6 +37,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: security._types.RoleDescriptor
 
@@ -63,8 +74,7 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private final List<String> runAs;
 
-	@Nullable
-	private final TransientMetadataConfig transientMetadata;
+	private final Map<String, JsonData> transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +86,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
-		this.transientMetadata = builder.transientMetadata;
+		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
 	}
 
@@ -145,8 +155,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * API name: {@code transient_metadata}
 	 */
-	@Nullable
-	public final TransientMetadataConfig transientMetadata() {
+	public final Map<String, JsonData> transientMetadata() {
 		return this.transientMetadata;
 	}
 
@@ -222,9 +231,15 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.transientMetadata != null) {
+		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
 			generator.writeKey("transient_metadata");
-			this.transientMetadata.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.transientMetadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -261,7 +276,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		private List<String> runAs;
 
 		@Nullable
-		private TransientMetadataConfig transientMetadata;
+		private Map<String, JsonData> transientMetadata;
 
 		/**
 		 * A list of cluster privileges. These privileges define the cluster level
@@ -453,18 +468,22 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		/**
 		 * API name: {@code transient_metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(@Nullable TransientMetadataConfig value) {
-			this.transientMetadata = value;
+		public final Builder transientMetadata(Map<String, JsonData> map) {
+			this.transientMetadata = _mapPutAll(this.transientMetadata, map);
 			return this;
 		}
 
 		/**
 		 * API name: {@code transient_metadata}
+		 * <p>
+		 * Adds an entry to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(
-				Function<TransientMetadataConfig.Builder, ObjectBuilder<TransientMetadataConfig>> fn) {
-			return this.transientMetadata(fn.apply(new TransientMetadataConfig.Builder()).build());
+		public final Builder transientMetadata(String key, JsonData value) {
+			this.transientMetadata = _mapPut(this.transientMetadata, key, value);
+			return this;
 		}
 
 		@Override
@@ -504,7 +523,8 @@ public class RoleDescriptor implements JsonpSerializable {
 				"applications");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadataConfig._DESERIALIZER, "transient_metadata");
+		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"transient_metadata");
 
 	}
 

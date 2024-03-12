@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.ApiClient;
@@ -35,6 +31,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the indices namespace.
@@ -55,6 +66,39 @@ public class ElasticsearchIndicesAsyncClient
 	@Override
 	public ElasticsearchIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
 		return new ElasticsearchIndicesAsyncClient(this.transport, transportOptions);
+	}
+
+	// ----- Endpoint: indices.add_block
+
+	/**
+	 * Adds a block to an index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse>) AddBlockRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Adds a block to an index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link AddBlockRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<AddBlockResponse> addBlock(
+			Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn) {
+		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.analyze
@@ -356,7 +400,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Deletes an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -374,79 +418,13 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(
 			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn) {
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.delete_template
-
-	/**
-	 * Deletes an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Deletes an index template.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
-			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn) {
-		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.disk_usage
-
-	/**
-	 * Analyzes the disk usage of each field of an index or data stream
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse>) DiskUsageRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Analyzes the disk usage of each field of an index or data stream
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DiskUsageRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<DiskUsageResponse> diskUsage(
-			Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn) {
-		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.exists
@@ -521,7 +499,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Returns information about whether a particular index template exists.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -539,46 +517,13 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsIndexTemplate(
 			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn) {
 		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.exists_template
-
-	/**
-	 * Returns information about whether a particular index template exists.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request) {
-		@SuppressWarnings("unchecked")
-		Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns information about whether a particular index template exists.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ExistsTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<BooleanResponse> existsTemplate(
-			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn) {
-		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.explain_data_lifecycle
@@ -780,7 +725,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Returns an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -798,7 +743,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -811,7 +756,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Returns an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -910,52 +855,6 @@ public class ElasticsearchIndicesAsyncClient
 	public CompletableFuture<GetIndicesSettingsResponse> getSettings() {
 		return this.transport.performRequestAsync(new GetIndicesSettingsRequest.Builder().build(),
 				GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
-	}
-
-	// ----- Endpoint: indices.get_template
-
-	/**
-	 * Returns an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse>) GetTemplateRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns an index template.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetTemplateResponse> getTemplate(
-			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) {
-		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetTemplateResponse> getTemplate() {
-		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(),
-				GetTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1096,7 +995,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Creates or updates an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1114,7 +1013,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1208,7 +1107,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Creates or updates an index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1226,13 +1125,59 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutTemplateResponse> putTemplate(
 			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn) {
 		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.refresh
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RefreshResponse> refresh(RefreshRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse> endpoint = (JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse>) RefreshRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RefreshRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<RefreshResponse> refresh(
+			Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn) {
+		return refresh(fn.apply(new RefreshRequest.Builder()).build());
+	}
+
+	/**
+	 * Performs the refresh operation in one or more indices.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RefreshResponse> refresh() {
+		return this.transport.performRequestAsync(new RefreshRequest.Builder().build(), RefreshRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.resolve_index
@@ -1310,7 +1255,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * system
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1330,7 +1275,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1345,7 +1290,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Simulate resolving the given template name or body
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1363,7 +1308,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1376,7 +1321,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Simulate resolving the given template name or body
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -45,10 +41,25 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: search_application.search.Request
 
 /**
- * Perform a search against a search application
+ * Perform a search against a search application.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.search.Request">API
@@ -75,7 +86,7 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Required - The name of the search application to be searched
+	 * Required - The name of the search application to be searched.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -84,6 +95,9 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Query parameters specific to this request, which will override any defaults
+	 * specified in the template.
+	 * <p>
 	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
@@ -130,7 +144,7 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		private Map<String, JsonData> params;
 
 		/**
-		 * Required - The name of the search application to be searched
+		 * Required - The name of the search application to be searched.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -140,6 +154,9 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Query parameters specific to this request, which will override any defaults
+		 * specified in the template.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
@@ -150,6 +167,9 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Query parameters specific to this request, which will override any defaults
+		 * specified in the template.
+		 * <p>
 		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.

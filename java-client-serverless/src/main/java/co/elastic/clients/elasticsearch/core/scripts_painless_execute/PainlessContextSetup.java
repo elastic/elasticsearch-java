@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core.scripts_painless_execute;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -40,6 +36,21 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.scripts_painless_execute.PainlessContextSetup
 
@@ -72,21 +83,30 @@ public class PainlessContextSetup implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code document}
+	 * Required - Document that’s temporarily indexed in-memory and accessible from
+	 * the script.
+	 * <p>
+	 * API name: {@code document}
 	 */
 	public final JsonData document() {
 		return this.document;
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * Required - Index containing a mapping that’s compatible with the indexed
+	 * document. You may specify a remote index by prefixing the index with the
+	 * remote cluster alias.
+	 * <p>
+	 * API name: {@code index}
 	 */
 	public final String index() {
 		return this.index;
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Use this parameter to specify a query for computing a score.
+	 * <p>
+	 * API name: {@code query}
 	 */
 	public final Query query() {
 		return this.query;
@@ -135,7 +155,10 @@ public class PainlessContextSetup implements JsonpSerializable {
 		private Query query;
 
 		/**
-		 * Required - API name: {@code document}
+		 * Required - Document that’s temporarily indexed in-memory and accessible from
+		 * the script.
+		 * <p>
+		 * API name: {@code document}
 		 */
 		public final Builder document(JsonData value) {
 			this.document = value;
@@ -143,7 +166,11 @@ public class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - Index containing a mapping that’s compatible with the indexed
+		 * document. You may specify a remote index by prefixing the index with the
+		 * remote cluster alias.
+		 * <p>
+		 * API name: {@code index}
 		 */
 		public final Builder index(String value) {
 			this.index = value;
@@ -151,7 +178,9 @@ public class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Use this parameter to specify a query for computing a score.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Query value) {
 			this.query = value;
@@ -159,7 +188,9 @@ public class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Use this parameter to specify a query for computing a score.
+		 * <p>
+		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());

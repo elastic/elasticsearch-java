@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -45,6 +41,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.open_point_in_time.Request
 
@@ -97,8 +108,12 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -107,8 +122,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -128,7 +143,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Specific the time to live for the point in time
+	 * Required - Extends the time to live of the corresponding point in time.
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
@@ -137,8 +152,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -148,7 +163,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -183,8 +198,12 @@ public class OpenPointInTimeRequest extends RequestBase {
 		private String routing;
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -196,8 +215,12 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -209,8 +232,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -246,7 +269,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Specific the time to live for the point in time
+		 * Required - Extends the time to live of the corresponding point in time.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -256,7 +279,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Specific the time to live for the point in time
+		 * Required - Extends the time to live of the corresponding point in time.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -265,8 +288,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -276,7 +299,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */

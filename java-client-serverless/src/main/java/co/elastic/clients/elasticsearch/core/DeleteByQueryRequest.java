@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.Conflicts;
@@ -57,10 +53,25 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.delete_by_query.Request
 
 /**
- * Deletes documents matching the provided query.
+ * Deletes documents that match the specified query.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.delete_by_query.Request">API
  *      specification</a>
@@ -203,9 +214,12 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+	 * error if an index starts with <code>foo</code> but no index starts with
+	 * <code>bar</code>.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -215,8 +229,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify whether wildcard and prefix queries should be analyzed (default:
-	 * false)
+	 * If <code>true</code>, wildcard and prefix queries are analyzed.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -226,7 +239,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The analyzer to use for the query string
+	 * Analyzer to use for the query string.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -236,7 +249,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * What to do when the delete by query hits version conflicts?
+	 * What to do if delete by query hits version conflicts: <code>abort</code> or
+	 * <code>proceed</code>.
 	 * <p>
 	 * API name: {@code conflicts}
 	 */
@@ -246,7 +260,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The default operator for query string query (AND or OR)
+	 * The default operator for query string query: <code>AND</code> or
+	 * <code>OR</code>.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -256,8 +271,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The field to use as default where no field prefix is given in the query
-	 * string
+	 * Field to use as default where no field prefix is given in the query string.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -267,8 +281,12 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+	 * <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -287,8 +305,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -298,8 +316,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - A comma-separated list of index names to search; use
-	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * Required - Comma-separated list of data streams, indices, and aliases to
+	 * search. Supports wildcards (<code>*</code>). To search all data streams or
+	 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -308,8 +327,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify whether format-based query failures (such as providing text to a
-	 * numeric field) should be ignored
+	 * If <code>true</code>, format-based query failures (such as providing text to
+	 * a numeric field) in the query string will be ignored.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -319,6 +338,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * The maximum number of documents to delete.
+	 * <p>
 	 * API name: {@code max_docs}
 	 */
 	@Nullable
@@ -327,8 +348,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -338,7 +359,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Query in the Lucene query string syntax
+	 * Query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -348,6 +369,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Specifies the documents to delete using the Query DSL.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -356,7 +379,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Should the affected indexes be refreshed?
+	 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
+	 * delete by query after the request completes.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -366,8 +390,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify if request cache should be used for this request or not, defaults to
-	 * index level setting
+	 * If <code>true</code>, the request cache is used for this request. Defaults to
+	 * the index-level setting.
 	 * <p>
 	 * API name: {@code request_cache}
 	 */
@@ -377,8 +401,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second. -1 means no
-	 * throttle.
+	 * The throttle for this request in sub-requests per second.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -388,7 +411,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of specific routing values
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -398,8 +421,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify how long a consistent view of the index should be maintained for
-	 * scrolled search
+	 * Period to retain the search context for scrolling.
 	 * <p>
 	 * API name: {@code scroll}
 	 */
@@ -409,7 +431,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Size on the scroll request powering the delete by query
+	 * Size of the scroll request that powers the operation.
 	 * <p>
 	 * API name: {@code scroll_size}
 	 */
@@ -429,7 +451,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Search operation type
+	 * The type of the search operation. Available options:
+	 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
 	 * <p>
 	 * API name: {@code search_type}
 	 */
@@ -439,6 +462,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Slice the request manually using the provided slice ID and total number of
+	 * slices.
+	 * <p>
 	 * API name: {@code slice}
 	 */
 	@Nullable
@@ -447,8 +473,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The number of slices this task should be divided into. Defaults to 1, meaning
-	 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+	 * The number of slices this task should be divided into.
 	 * <p>
 	 * API name: {@code slices}
 	 */
@@ -458,7 +483,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+	 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -467,7 +492,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specific 'tag' of the request for logging and statistical purposes
+	 * Specific <code>tag</code> of the request for logging and statistical
+	 * purposes.
 	 * <p>
 	 * API name: {@code stats}
 	 */
@@ -476,8 +502,13 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The maximum number of documents to collect for each shard, upon reaching
-	 * which the query execution will terminate early.
+	 * Maximum number of documents to collect for each shard. If a query reaches
+	 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+	 * documents before sorting. Use with caution. Elasticsearch applies this
+	 * parameter to each shard handling the request. When possible, let
+	 * Elasticsearch perform early termination automatically. Avoid specifying this
+	 * parameter for requests that target data streams with backing indices across
+	 * multiple data tiers.
 	 * <p>
 	 * API name: {@code terminate_after}
 	 */
@@ -487,8 +518,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Time each individual bulk request should wait for shards that are
-	 * unavailable.
+	 * Period each deletion request waits for active shards.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -498,7 +528,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specify whether to return document version as part of a hit
+	 * If <code>true</code>, returns the document version as part of a hit.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -508,11 +538,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Sets the number of shard copies that must be active before proceeding with
-	 * the delete by query operation. Defaults to 1, meaning the primary shard only.
-	 * Set to <code>all</code> for all shard copies, otherwise set to any
-	 * non-negative value less than or equal to the total number of copies for the
-	 * shard (number of replicas + 1)
+	 * The number of shard copies that must be active before proceeding with the
+	 * operation. Set to all or any positive integer up to the total number of
+	 * shards in the index (<code>number_of_replicas+1</code>).
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -522,7 +550,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Should the request should block until the delete by query is complete.
+	 * If <code>true</code>, the request blocks until the operation is complete.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -665,9 +693,12 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private Boolean waitForCompletion;
 
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+		 * error if an index starts with <code>foo</code> but no index starts with
+		 * <code>bar</code>.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -677,8 +708,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify whether wildcard and prefix queries should be analyzed (default:
-		 * false)
+		 * If <code>true</code>, wildcard and prefix queries are analyzed.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -688,7 +718,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The analyzer to use for the query string
+		 * Analyzer to use for the query string.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -698,7 +728,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * What to do when the delete by query hits version conflicts?
+		 * What to do if delete by query hits version conflicts: <code>abort</code> or
+		 * <code>proceed</code>.
 		 * <p>
 		 * API name: {@code conflicts}
 		 */
@@ -708,7 +739,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The default operator for query string query (AND or OR)
+		 * The default operator for query string query: <code>AND</code> or
+		 * <code>OR</code>.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -718,8 +750,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The field to use as default where no field prefix is given in the query
-		 * string
+		 * Field to use as default where no field prefix is given in the query string.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -729,8 +760,12 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -742,8 +777,12 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
+		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
+		 * <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -765,8 +804,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -776,8 +815,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - A comma-separated list of index names to search; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Required - Comma-separated list of data streams, indices, and aliases to
+		 * search. Supports wildcards (<code>*</code>). To search all data streams or
+		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -789,8 +829,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - A comma-separated list of index names to search; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Required - Comma-separated list of data streams, indices, and aliases to
+		 * search. Supports wildcards (<code>*</code>). To search all data streams or
+		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -802,8 +843,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify whether format-based query failures (such as providing text to a
-		 * numeric field) should be ignored
+		 * If <code>true</code>, format-based query failures (such as providing text to
+		 * a numeric field) in the query string will be ignored.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -813,6 +854,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * The maximum number of documents to delete.
+		 * <p>
 		 * API name: {@code max_docs}
 		 */
 		public final Builder maxDocs(@Nullable Long value) {
@@ -821,8 +864,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -832,7 +875,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Query in the Lucene query string syntax
+		 * Query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -842,6 +885,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Specifies the documents to delete using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(@Nullable Query value) {
@@ -850,6 +895,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Specifies the documents to delete using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -857,7 +904,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Should the affected indexes be refreshed?
+		 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
+		 * delete by query after the request completes.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -867,8 +915,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify if request cache should be used for this request or not, defaults to
-		 * index level setting
+		 * If <code>true</code>, the request cache is used for this request. Defaults to
+		 * the index-level setting.
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
@@ -878,8 +926,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The throttle for this request in sub-requests per second. -1 means no
-		 * throttle.
+		 * The throttle for this request in sub-requests per second.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
@@ -889,7 +936,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of specific routing values
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -899,8 +946,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify how long a consistent view of the index should be maintained for
-		 * scrolled search
+		 * Period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -910,8 +956,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify how long a consistent view of the index should be maintained for
-		 * scrolled search
+		 * Period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -920,7 +965,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Size on the scroll request powering the delete by query
+		 * Size of the scroll request that powers the operation.
 		 * <p>
 		 * API name: {@code scroll_size}
 		 */
@@ -949,7 +994,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Search operation type
+		 * The type of the search operation. Available options:
+		 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
 		 * <p>
 		 * API name: {@code search_type}
 		 */
@@ -959,6 +1005,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Slice the request manually using the provided slice ID and total number of
+		 * slices.
+		 * <p>
 		 * API name: {@code slice}
 		 */
 		public final Builder slice(@Nullable SlicedScroll value) {
@@ -967,6 +1016,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * Slice the request manually using the provided slice ID and total number of
+		 * slices.
+		 * <p>
 		 * API name: {@code slice}
 		 */
 		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
@@ -974,8 +1026,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The number of slices this task should be divided into. Defaults to 1, meaning
-		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * The number of slices this task should be divided into.
 		 * <p>
 		 * API name: {@code slices}
 		 */
@@ -985,8 +1036,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The number of slices this task should be divided into. Defaults to 1, meaning
-		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * The number of slices this task should be divided into.
 		 * <p>
 		 * API name: {@code slices}
 		 */
@@ -995,7 +1045,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -1007,7 +1057,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
+		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -1019,7 +1069,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specific 'tag' of the request for logging and statistical purposes
+		 * Specific <code>tag</code> of the request for logging and statistical
+		 * purposes.
 		 * <p>
 		 * API name: {@code stats}
 		 * <p>
@@ -1031,7 +1082,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specific 'tag' of the request for logging and statistical purposes
+		 * Specific <code>tag</code> of the request for logging and statistical
+		 * purposes.
 		 * <p>
 		 * API name: {@code stats}
 		 * <p>
@@ -1043,8 +1095,13 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The maximum number of documents to collect for each shard, upon reaching
-		 * which the query execution will terminate early.
+		 * Maximum number of documents to collect for each shard. If a query reaches
+		 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+		 * documents before sorting. Use with caution. Elasticsearch applies this
+		 * parameter to each shard handling the request. When possible, let
+		 * Elasticsearch perform early termination automatically. Avoid specifying this
+		 * parameter for requests that target data streams with backing indices across
+		 * multiple data tiers.
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
@@ -1054,8 +1111,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Time each individual bulk request should wait for shards that are
-		 * unavailable.
+		 * Period each deletion request waits for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -1065,8 +1121,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Time each individual bulk request should wait for shards that are
-		 * unavailable.
+		 * Period each deletion request waits for active shards.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -1075,7 +1130,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specify whether to return document version as part of a hit
+		 * If <code>true</code>, returns the document version as part of a hit.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -1085,11 +1140,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the delete by query operation. Defaults to 1, meaning the primary shard only.
-		 * Set to <code>all</code> for all shard copies, otherwise set to any
-		 * non-negative value less than or equal to the total number of copies for the
-		 * shard (number of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -1099,11 +1152,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Sets the number of shard copies that must be active before proceeding with
-		 * the delete by query operation. Defaults to 1, meaning the primary shard only.
-		 * Set to <code>all</code> for all shard copies, otherwise set to any
-		 * non-negative value less than or equal to the total number of copies for the
-		 * shard (number of replicas + 1)
+		 * The number of shard copies that must be active before proceeding with the
+		 * operation. Set to all or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas+1</code>).
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -1113,7 +1164,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Should the request should block until the delete by query is complete.
+		 * If <code>true</code>, the request blocks until the operation is complete.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

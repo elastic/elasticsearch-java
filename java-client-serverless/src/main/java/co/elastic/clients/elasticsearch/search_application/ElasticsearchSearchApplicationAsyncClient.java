@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.ApiClient;
@@ -36,6 +32,21 @@ import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the search_application namespace.
@@ -64,7 +75,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	 * Deletes a search application.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -82,7 +93,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSearchApplicationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

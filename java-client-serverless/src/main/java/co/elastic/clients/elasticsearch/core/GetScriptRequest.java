@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -42,10 +38,25 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.get_script.Request
 
 /**
- * Returns a script.
+ * Retrieves a stored script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.get_script.Request">API
  *      specification</a>
@@ -71,7 +82,7 @@ public class GetScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Script ID
+	 * Required - Identifier for the stored script or search template.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -104,7 +115,7 @@ public class GetScriptRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Required - Script ID
+		 * Required - Identifier for the stored script or search template.
 		 * <p>
 		 * API name: {@code id}
 		 */

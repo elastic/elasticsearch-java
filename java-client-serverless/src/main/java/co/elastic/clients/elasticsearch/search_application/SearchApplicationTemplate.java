@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.elasticsearch._types.InlineScript;
@@ -38,6 +34,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: search_application._types.SearchApplicationTemplate
 
@@ -64,7 +75,9 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - The associated mustache template.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final InlineScript script() {
 		return this.script;
@@ -103,7 +116,9 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 		private InlineScript script;
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - The associated mustache template.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(InlineScript value) {
 			this.script = value;
@@ -111,7 +126,9 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - The associated mustache template.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
 			return this.script(fn.apply(new InlineScript.Builder()).build());

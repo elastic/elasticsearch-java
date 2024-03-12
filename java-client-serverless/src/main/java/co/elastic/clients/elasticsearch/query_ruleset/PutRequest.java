@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.query_ruleset;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -36,14 +32,29 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: query_ruleset.put.Request
 
@@ -55,21 +66,28 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutRequest extends RequestBase implements JsonpSerializable {
-	private final String rulesetId;
+	private final List<QueryRule> rules;
 
-	private final QueryRuleset queryRuleset;
+	private final String rulesetId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PutRequest(Builder builder) {
 
+		this.rules = ApiTypeHelper.unmodifiableRequired(builder.rules, this, "rules");
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
-		this.queryRuleset = ApiTypeHelper.requireNonNull(builder.queryRuleset, this, "queryRuleset");
 
 	}
 
 	public static PutRequest of(Function<Builder, ObjectBuilder<PutRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code rules}
+	 */
+	public final List<QueryRule> rules() {
+		return this.rules;
 	}
 
 	/**
@@ -83,17 +101,26 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Request body.
-	 */
-	public final QueryRuleset queryRuleset() {
-		return this.queryRuleset;
-	}
-
-	/**
-	 * Serialize this value to JSON.
+	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.queryRuleset.serialize(generator, mapper);
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (ApiTypeHelper.isDefined(this.rules)) {
+			generator.writeKey("rules");
+			generator.writeStartArray();
+			for (QueryRule item0 : this.rules) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -104,9 +131,38 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutRequest> {
+		private List<QueryRule> rules;
+
 		private String rulesetId;
 
-		private QueryRuleset queryRuleset;
+		/**
+		 * Required - API name: {@code rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rules</code>.
+		 */
+		public final Builder rules(List<QueryRule> list) {
+			this.rules = _listAddAll(this.rules, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code rules}
+		 * <p>
+		 * Adds one or more values to <code>rules</code>.
+		 */
+		public final Builder rules(QueryRule value, QueryRule... values) {
+			this.rules = _listAdd(this.rules, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code rules}
+		 * <p>
+		 * Adds a value to <code>rules</code> using a builder lambda.
+		 */
+		public final Builder rules(Function<QueryRule.Builder, ObjectBuilder<QueryRule>> fn) {
+			return rules(fn.apply(new QueryRule.Builder()).build());
+		}
 
 		/**
 		 * Required - The unique identifier of the query ruleset to be created or
@@ -117,29 +173,6 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		public final Builder rulesetId(String value) {
 			this.rulesetId = value;
 			return this;
-		}
-
-		/**
-		 * Required - Request body.
-		 */
-		public final Builder queryRuleset(QueryRuleset value) {
-			this.queryRuleset = value;
-			return this;
-		}
-
-		/**
-		 * Required - Request body.
-		 */
-		public final Builder queryRuleset(Function<QueryRuleset.Builder, ObjectBuilder<QueryRuleset>> fn) {
-			return this.queryRuleset(fn.apply(new QueryRuleset.Builder()).build());
-		}
-
-		@Override
-		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
-
-			@SuppressWarnings("unchecked")
-			QueryRuleset value = (QueryRuleset) QueryRuleset._DESERIALIZER.deserialize(parser, mapper);
-			return this.queryRuleset(value);
 		}
 
 		@Override
@@ -160,13 +193,18 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
-	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
-	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
+	// ---------------------------------------------------------------------------------------------
 
-		JsonpDeserializer<QueryRuleset> valueDeserializer = QueryRuleset._DESERIALIZER;
+	/**
+	 * Json deserializer for {@link PutRequest}
+	 */
+	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutRequest::setupPutRequestDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.queryRuleset(valueDeserializer.deserialize(parser, mapper, event)).build());
+	protected static void setupPutRequestDeserializer(ObjectDeserializer<PutRequest.Builder> op) {
+
+		op.add(Builder::rules, JsonpDeserializer.arrayDeserializer(QueryRule._DESERIALIZER), "rules");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

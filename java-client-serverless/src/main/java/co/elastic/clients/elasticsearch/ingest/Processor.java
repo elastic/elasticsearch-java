@@ -17,13 +17,8 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -43,6 +38,21 @@ import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: ingest._types.ProcessorContainer
 
@@ -103,6 +113,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		Remove("remove"),
 
 		Rename("rename"),
+
+		Reroute("reroute"),
 
 		Script("script"),
 
@@ -524,6 +536,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code reroute}?
+	 */
+	public boolean isReroute() {
+		return _kind == Kind.Reroute;
+	}
+
+	/**
+	 * Get the {@code reroute} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code reroute} kind.
+	 */
+	public RerouteProcessor reroute() {
+		return TaggedUnionUtils.get(this, Kind.Reroute);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code script}?
 	 */
 	public boolean isScript() {
@@ -536,7 +565,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code script} kind.
 	 */
-	public Script script() {
+	public ScriptProcessor script() {
 		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
@@ -1027,14 +1056,25 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.rename(fn.apply(new RenameProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> script(Script v) {
+		public ObjectBuilder<Processor> reroute(RerouteProcessor v) {
+			this._kind = Kind.Reroute;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> reroute(
+				Function<RerouteProcessor.Builder, ObjectBuilder<RerouteProcessor>> fn) {
+			return this.reroute(fn.apply(new RerouteProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> script(ScriptProcessor v) {
 			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Processor> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
+		public ObjectBuilder<Processor> script(Function<ScriptProcessor.Builder, ObjectBuilder<ScriptProcessor>> fn) {
+			return this.script(fn.apply(new ScriptProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> set(SetProcessor v) {
@@ -1218,7 +1258,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
-		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::reroute, RerouteProcessor._DESERIALIZER, "reroute");
+		op.add(Builder::script, ScriptProcessor._DESERIALIZER, "script");
 		op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
 		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
 		op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");

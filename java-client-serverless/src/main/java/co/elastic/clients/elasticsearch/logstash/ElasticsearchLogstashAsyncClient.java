@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.ApiClient;
@@ -35,6 +31,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the logstash namespace.
@@ -121,6 +132,19 @@ public class ElasticsearchLogstashAsyncClient
 	public final CompletableFuture<GetPipelineResponse> getPipeline(
 			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves Logstash Pipelines used by Central Management
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetPipelineResponse> getPipeline() {
+		return this.transport.performRequestAsync(new GetPipelineRequest.Builder().build(),
+				GetPipelineRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: logstash.put_pipeline

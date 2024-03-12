@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch;
 
 import co.elastic.clients.ApiClient;
@@ -47,6 +43,8 @@ import co.elastic.clients.elasticsearch.core.DeleteScriptRequest;
 import co.elastic.clients.elasticsearch.core.DeleteScriptResponse;
 import co.elastic.clients.elasticsearch.core.ExistsRequest;
 import co.elastic.clients.elasticsearch.core.ExistsSourceRequest;
+import co.elastic.clients.elasticsearch.core.ExplainRequest;
+import co.elastic.clients.elasticsearch.core.ExplainResponse;
 import co.elastic.clients.elasticsearch.core.FieldCapsRequest;
 import co.elastic.clients.elasticsearch.core.FieldCapsResponse;
 import co.elastic.clients.elasticsearch.core.GetRequest;
@@ -74,6 +72,8 @@ import co.elastic.clients.elasticsearch.core.PutScriptRequest;
 import co.elastic.clients.elasticsearch.core.PutScriptResponse;
 import co.elastic.clients.elasticsearch.core.RankEvalRequest;
 import co.elastic.clients.elasticsearch.core.RankEvalResponse;
+import co.elastic.clients.elasticsearch.core.ReindexRequest;
+import co.elastic.clients.elasticsearch.core.ReindexResponse;
 import co.elastic.clients.elasticsearch.core.RenderSearchTemplateRequest;
 import co.elastic.clients.elasticsearch.core.RenderSearchTemplateResponse;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteRequest;
@@ -94,15 +94,20 @@ import co.elastic.clients.elasticsearch.core.UpdateByQueryResponse;
 import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichClient;
+import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesClient;
+import co.elastic.clients.elasticsearch.inference.ElasticsearchInferenceClient;
 import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestClient;
+import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
 import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
+import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
 import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsClient;
+import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
 import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformClient;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -112,24 +117,31 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
-import co.elastic.clients.util.DuplicateResourceFinder;
 import co.elastic.clients.util.ObjectBuilder;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 /**
  * Client for the namespace.
  */
 public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, ElasticsearchClient> {
-
-	static {
-		// Make sure we don't have several versions of this class. This may happen if
-		// several flavors of the client (Stack and Serverless) are present in the classpath.
-		DuplicateResourceFinder.ensureClassUniqueness(ElasticsearchClient.class);
-	}
 
 	public ElasticsearchClient(ElasticsearchTransport transport) {
 		super(transport, null);
@@ -162,6 +174,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchEnrichClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchEqlClient eql() {
+		return new ElasticsearchEqlClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchGraphClient graph() {
 		return new ElasticsearchGraphClient(this.transport, this.transportOptions);
 	}
@@ -170,8 +186,16 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchIndicesClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchInferenceClient inference() {
+		return new ElasticsearchInferenceClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchIngestClient ingest() {
 		return new ElasticsearchIngestClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchLicenseClient license() {
+		return new ElasticsearchLicenseClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchLogstashClient logstash() {
@@ -194,8 +218,16 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchSecurityClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchSqlClient sql() {
+		return new ElasticsearchSqlClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchSynonymsClient synonyms() {
 		return new ElasticsearchSynonymsClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchTasksClient tasks() {
+		return new ElasticsearchTasksClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTransformClient transform() {
@@ -587,6 +619,78 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: explain
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> ExplainResponse<TDocument> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> ExplainResponse<TDocument> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Type tDocumentType)
+			throws IOException, ElasticsearchException {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: field_caps
@@ -1237,6 +1341,43 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: reindex
+
+	/**
+	 * Allows to copy documents from one index to another, optionally filtering the
+	 * source documents by a query, changing the destination index settings, or
+	 * fetching the documents from a remote cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ReindexResponse reindex(ReindexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse>) ReindexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to copy documents from one index to another, optionally filtering the
+	 * source documents by a query, changing the destination index settings, or
+	 * fetching the documents from a remote cluster.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return reindex(fn.apply(new ReindexRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: render_search_template
 
 	/**
@@ -1762,7 +1903,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: update_by_query
 
 	/**
-	 * Performs an update on every document in the index without changing the
+	 * Updates documents that match the specified query. If no query is specified,
+	 * performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @see <a href=
@@ -1779,7 +1921,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Performs an update on every document in the index without changing the
+	 * Updates documents that match the specified query. If no query is specified,
+	 * performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @param fn

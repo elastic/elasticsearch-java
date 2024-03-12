@@ -17,13 +17,10 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch._types.GeoLocation;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,6 +32,21 @@ import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.mapping.GeoPointProperty
 
@@ -55,6 +67,15 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 	@Nullable
 	private final GeoLocation nullValue;
 
+	@Nullable
+	private final Boolean index;
+
+	@Nullable
+	private final OnScriptError onScriptError;
+
+	@Nullable
+	private final Script script;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoPointProperty(Builder builder) {
@@ -63,6 +84,9 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		this.ignoreMalformed = builder.ignoreMalformed;
 		this.ignoreZValue = builder.ignoreZValue;
 		this.nullValue = builder.nullValue;
+		this.index = builder.index;
+		this.onScriptError = builder.onScriptError;
+		this.script = builder.script;
 
 	}
 
@@ -102,6 +126,30 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		return this.nullValue;
 	}
 
+	/**
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final Boolean index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code on_script_error}
+	 */
+	@Nullable
+	public final OnScriptError onScriptError() {
+		return this.onScriptError;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public final Script script() {
+		return this.script;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "geo_point");
@@ -119,6 +167,20 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
 			this.nullValue.serialize(generator, mapper);
+
+		}
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
+		if (this.onScriptError != null) {
+			generator.writeKey("on_script_error");
+			this.onScriptError.serialize(generator, mapper);
+		}
+		if (this.script != null) {
+			generator.writeKey("script");
+			this.script.serialize(generator, mapper);
 
 		}
 
@@ -141,6 +203,15 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 
 		@Nullable
 		private GeoLocation nullValue;
+
+		@Nullable
+		private Boolean index;
+
+		@Nullable
+		private OnScriptError onScriptError;
+
+		@Nullable
+		private Script script;
 
 		/**
 		 * API name: {@code ignore_malformed}
@@ -171,6 +242,37 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		 */
 		public final Builder nullValue(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
 			return this.nullValue(fn.apply(new GeoLocation.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable Boolean value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code on_script_error}
+		 */
+		public final Builder onScriptError(@Nullable OnScriptError value) {
+			this.onScriptError = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(@Nullable Script value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -204,6 +306,9 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
 		op.add(Builder::nullValue, GeoLocation._DESERIALIZER, "null_value");
+		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
+		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 		op.ignore("type");
 	}

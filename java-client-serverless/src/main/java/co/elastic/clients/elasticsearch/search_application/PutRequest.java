@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -44,6 +40,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: search_application.put.Request
 
@@ -77,8 +88,8 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, requires that a search application with the specified resource_id
-	 * does not already exist. (default: false)
+	 * If <code>true</code>, this request cannot replace or update existing Search
+	 * Applications.
 	 * <p>
 	 * API name: {@code create}
 	 */
@@ -88,7 +99,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the search application to be created or updated
+	 * Required - The name of the search application to be created or updated.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -126,8 +137,8 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		private SearchApplication searchApplication;
 
 		/**
-		 * If true, requires that a search application with the specified resource_id
-		 * does not already exist. (default: false)
+		 * If <code>true</code>, this request cannot replace or update existing Search
+		 * Applications.
 		 * <p>
 		 * API name: {@code create}
 		 */
@@ -137,7 +148,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the search application to be created or updated
+		 * Required - The name of the search application to be created or updated.
 		 * <p>
 		 * API name: {@code name}
 		 */

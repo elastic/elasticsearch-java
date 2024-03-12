@@ -17,14 +17,25 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Builders for {@link TokenFilterDefinition} variants.
@@ -279,24 +290,6 @@ public class TokenFilterDefinitionBuilders {
 			Function<IcuNormalizationTokenFilter.Builder, ObjectBuilder<IcuNormalizationTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.icuNormalizer(fn.apply(new IcuNormalizationTokenFilter.Builder()).build());
-		return builder.build();
-	}
-
-	/**
-	 * Creates a builder for the {@link IcuTokenizer icu_tokenizer}
-	 * {@code TokenFilterDefinition} variant.
-	 */
-	public static IcuTokenizer.Builder icuTokenizer() {
-		return new IcuTokenizer.Builder();
-	}
-
-	/**
-	 * Creates a TokenFilterDefinition of the {@link IcuTokenizer icu_tokenizer}
-	 * {@code TokenFilterDefinition} variant.
-	 */
-	public static TokenFilterDefinition icuTokenizer(Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> fn) {
-		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
-		builder.icuTokenizer(fn.apply(new IcuTokenizer.Builder()).build());
 		return builder.build();
 	}
 

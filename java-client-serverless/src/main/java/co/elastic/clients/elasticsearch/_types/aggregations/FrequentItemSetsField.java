@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -35,10 +31,24 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.aggregations.FrequentItemSetsField
 
@@ -52,17 +62,19 @@ import javax.annotation.Nullable;
 public class FrequentItemSetsField implements JsonpSerializable {
 	private final String field;
 
-	private final List<String> exclude;
+	@Nullable
+	private final TermsExclude exclude;
 
-	private final List<String> include;
+	@Nullable
+	private final TermsInclude include;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FrequentItemSetsField(Builder builder) {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.exclude = ApiTypeHelper.unmodifiable(builder.exclude);
-		this.include = ApiTypeHelper.unmodifiable(builder.include);
+		this.exclude = builder.exclude;
+		this.include = builder.include;
 
 	}
 
@@ -83,7 +95,8 @@ public class FrequentItemSetsField implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code exclude}
 	 */
-	public final List<String> exclude() {
+	@Nullable
+	public final TermsExclude exclude() {
 		return this.exclude;
 	}
 
@@ -93,7 +106,8 @@ public class FrequentItemSetsField implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code include}
 	 */
-	public final List<String> include() {
+	@Nullable
+	public final TermsInclude include() {
 		return this.include;
 	}
 
@@ -111,24 +125,14 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ApiTypeHelper.isDefined(this.exclude)) {
+		if (this.exclude != null) {
 			generator.writeKey("exclude");
-			generator.writeStartArray();
-			for (String item0 : this.exclude) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.exclude.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.include)) {
+		if (this.include != null) {
 			generator.writeKey("include");
-			generator.writeStartArray();
-			for (String item0 : this.include) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.include.serialize(generator, mapper);
 
 		}
 
@@ -151,10 +155,10 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		private String field;
 
 		@Nullable
-		private List<String> exclude;
+		private TermsExclude exclude;
 
 		@Nullable
-		private List<String> include;
+		private TermsInclude include;
 
 		/**
 		 * Required - API name: {@code field}
@@ -169,11 +173,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		 * exact terms.
 		 * <p>
 		 * API name: {@code exclude}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>exclude</code>.
 		 */
-		public final Builder exclude(List<String> list) {
-			this.exclude = _listAddAll(this.exclude, list);
+		public final Builder exclude(@Nullable TermsExclude value) {
+			this.exclude = value;
 			return this;
 		}
 
@@ -182,11 +184,19 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		 * exact terms.
 		 * <p>
 		 * API name: {@code exclude}
-		 * <p>
-		 * Adds one or more values to <code>exclude</code>.
 		 */
-		public final Builder exclude(String value, String... values) {
-			this.exclude = _listAdd(this.exclude, value, values);
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
+		}
+
+		/**
+		 * Values to include. Can be regular expression strings or arrays of strings of
+		 * exact terms.
+		 * <p>
+		 * API name: {@code include}
+		 */
+		public final Builder include(@Nullable TermsInclude value) {
+			this.include = value;
 			return this;
 		}
 
@@ -195,25 +205,9 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		 * exact terms.
 		 * <p>
 		 * API name: {@code include}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 */
-		public final Builder include(List<String> list) {
-			this.include = _listAddAll(this.include, list);
-			return this;
-		}
-
-		/**
-		 * Values to include. Can be regular expression strings or arrays of strings of
-		 * exact terms.
-		 * <p>
-		 * API name: {@code include}
-		 * <p>
-		 * Adds one or more values to <code>include</code>.
-		 */
-		public final Builder include(String value, String... values) {
-			this.include = _listAdd(this.include, value, values);
-			return this;
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		@Override
@@ -245,10 +239,8 @@ public class FrequentItemSetsField implements JsonpSerializable {
 	protected static void setupFrequentItemSetsFieldDeserializer(ObjectDeserializer<FrequentItemSetsField.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"exclude");
-		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"include");
+		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
+		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 
 	}
 

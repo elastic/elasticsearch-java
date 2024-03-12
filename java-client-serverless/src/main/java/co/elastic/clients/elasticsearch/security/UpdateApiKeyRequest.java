@@ -17,14 +17,11 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -44,6 +41,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: security.update_api_key.Request
 
@@ -72,6 +84,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Time expiration;
+
 	private final String id;
 
 	private final Map<String, JsonData> metadata;
@@ -82,6 +97,7 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	private UpdateApiKeyRequest(Builder builder) {
 
+		this.expiration = builder.expiration;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
@@ -90,6 +106,16 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	public static UpdateApiKeyRequest of(Function<Builder, ObjectBuilder<UpdateApiKeyRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Expiration time for the API key.
+	 * <p>
+	 * API name: {@code expiration}
+	 */
+	@Nullable
+	public final Time expiration() {
+		return this.expiration;
 	}
 
 	/**
@@ -139,6 +165,11 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.expiration != null) {
+			generator.writeKey("expiration");
+			this.expiration.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
@@ -173,6 +204,9 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateApiKeyRequest> {
+		@Nullable
+		private Time expiration;
+
 		private String id;
 
 		@Nullable
@@ -180,6 +214,25 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
+
+		/**
+		 * Expiration time for the API key.
+		 * <p>
+		 * API name: {@code expiration}
+		 */
+		public final Builder expiration(@Nullable Time value) {
+			this.expiration = value;
+			return this;
+		}
+
+		/**
+		 * Expiration time for the API key.
+		 * <p>
+		 * API name: {@code expiration}
+		 */
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Required - The ID of the API key to update.
@@ -304,6 +357,7 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupUpdateApiKeyRequestDeserializer(ObjectDeserializer<UpdateApiKeyRequest.Builder> op) {
 
+		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");

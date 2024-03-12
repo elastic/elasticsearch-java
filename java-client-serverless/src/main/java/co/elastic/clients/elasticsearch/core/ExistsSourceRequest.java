@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -49,10 +45,25 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.exists_source.Request
 
 /**
- * Returns information about whether a document source exists in an index.
+ * Checks if a document's <code>_source</code> is stored.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.exists_source.Request">API
  *      specification</a>
@@ -111,8 +122,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return
+	 * <code>true</code> or <code>false</code> to return the <code>_source</code>
+	 * field or not, or a list of fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -122,7 +133,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * A list of fields to exclude from the returned _source field
+	 * A comma-separated list of source fields to exclude in the response.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -131,7 +142,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * A list of fields to extract and return from the _source field
+	 * A comma-separated list of source fields to include in the response.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -140,7 +151,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The document ID
+	 * Required - Identifier of the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -149,7 +160,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the index
+	 * Required - Comma-separated list of data streams, indices, and aliases.
+	 * Supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -158,8 +170,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -169,7 +181,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify whether to perform the operation in realtime or search mode
+	 * If true, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -179,7 +191,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Refresh the shard containing the document before performing the operation
+	 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
+	 * delete by query after the request completes.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -189,7 +202,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific routing value
+	 * Target the specified primary shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -199,7 +212,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit version number for concurrency control
+	 * Explicit version number for concurrency control. The specified version must
+	 * match the current version of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -209,7 +223,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific version type
+	 * Specific version type: <code>external</code>, <code>external_gte</code>.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -259,8 +273,8 @@ public class ExistsSourceRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
+		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
+		 * field or not, or a list of fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -270,8 +284,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
+		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
+		 * field or not, or a list of fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -280,7 +294,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned _source field
+		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -292,7 +306,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned _source field
+		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -304,7 +318,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * A list of fields to extract and return from the _source field
+		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -316,7 +330,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * A list of fields to extract and return from the _source field
+		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -328,7 +342,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The document ID
+		 * Required - Identifier of the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -338,7 +352,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the index
+		 * Required - Comma-separated list of data streams, indices, and aliases.
+		 * Supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -348,8 +363,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -359,7 +374,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify whether to perform the operation in realtime or search mode
+		 * If true, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -369,7 +384,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Refresh the shard containing the document before performing the operation
+		 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
+		 * delete by query after the request completes.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -379,7 +395,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific routing value
+		 * Target the specified primary shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -389,7 +405,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit version number for concurrency control
+		 * Explicit version number for concurrency control. The specified version must
+		 * match the current version of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -399,7 +416,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific version type
+		 * Specific version type: <code>external</code>, <code>external_gte</code>.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

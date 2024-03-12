@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core.bulk;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -37,6 +33,21 @@ import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.bulk.WriteOperation
 
@@ -67,6 +78,12 @@ public abstract class WriteOperation extends BulkOperationBase {
 	}
 
 	/**
+	 * A map from the full name of fields to the name of dynamic templates. Defaults
+	 * to an empty map. If a name matches a dynamic template, then that template
+	 * will be applied regardless of other match predicates defined in the template.
+	 * If a field is already defined in the mapping, then this parameter won’t be
+	 * used.
+	 * <p>
 	 * API name: {@code dynamic_templates}
 	 */
 	public final Map<String, String> dynamicTemplates() {
@@ -74,6 +91,12 @@ public abstract class WriteOperation extends BulkOperationBase {
 	}
 
 	/**
+	 * ID of the pipeline to use to preprocess incoming documents. If the index has
+	 * a default ingest pipeline specified, then setting the value to
+	 * <code>_none</code> disables the default ingest pipeline for this request. If
+	 * a final pipeline is configured it will always run, regardless of the value of
+	 * this parameter.
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -82,6 +105,8 @@ public abstract class WriteOperation extends BulkOperationBase {
 	}
 
 	/**
+	 * If <code>true</code>, the request’s actions must target an index alias.
+	 * <p>
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
@@ -129,6 +154,12 @@ public abstract class WriteOperation extends BulkOperationBase {
 		private Boolean requireAlias;
 
 		/**
+		 * A map from the full name of fields to the name of dynamic templates. Defaults
+		 * to an empty map. If a name matches a dynamic template, then that template
+		 * will be applied regardless of other match predicates defined in the template.
+		 * If a field is already defined in the mapping, then this parameter won’t be
+		 * used.
+		 * <p>
 		 * API name: {@code dynamic_templates}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>dynamicTemplates</code>.
@@ -139,6 +170,12 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
+		 * A map from the full name of fields to the name of dynamic templates. Defaults
+		 * to an empty map. If a name matches a dynamic template, then that template
+		 * will be applied regardless of other match predicates defined in the template.
+		 * If a field is already defined in the mapping, then this parameter won’t be
+		 * used.
+		 * <p>
 		 * API name: {@code dynamic_templates}
 		 * <p>
 		 * Adds an entry to <code>dynamicTemplates</code>.
@@ -149,6 +186,12 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
+		 * ID of the pipeline to use to preprocess incoming documents. If the index has
+		 * a default ingest pipeline specified, then setting the value to
+		 * <code>_none</code> disables the default ingest pipeline for this request. If
+		 * a final pipeline is configured it will always run, regardless of the value of
+		 * this parameter.
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public final BuilderT pipeline(@Nullable String value) {
@@ -157,6 +200,8 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
+		 * If <code>true</code>, the request’s actions must target an index alias.
+		 * <p>
 		 * API name: {@code require_alias}
 		 */
 		public final BuilderT requireAlias(@Nullable Boolean value) {

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,6 +36,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: search_application._types.SearchApplication
 
@@ -80,7 +91,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Search Application name
+	 * Required - Search Application name.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -89,7 +100,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Indices that are part of the Search Application
+	 * Required - Indices that are part of the Search Application.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -98,7 +109,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Last time the Search Application was updated
+	 * Required - Last time the Search Application was updated.
 	 * <p>
 	 * API name: {@code updated_at_millis}
 	 */
@@ -107,7 +118,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Analytics collection associated to the Search Application
+	 * Analytics collection associated to the Search Application.
 	 * <p>
 	 * API name: {@code analytics_collection_name}
 	 */
@@ -117,7 +128,7 @@ public class SearchApplication implements JsonpSerializable {
 	}
 
 	/**
-	 * Search template to use on search operations
+	 * Search template to use on search operations.
 	 * <p>
 	 * API name: {@code template}
 	 */
@@ -214,7 +225,7 @@ public class SearchApplication implements JsonpSerializable {
 		private SearchApplicationTemplate template;
 
 		/**
-		 * Required - Search Application name
+		 * Required - Search Application name.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -224,7 +235,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Indices that are part of the Search Application
+		 * Required - Indices that are part of the Search Application.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -236,7 +247,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Indices that are part of the Search Application
+		 * Required - Indices that are part of the Search Application.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -248,7 +259,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Last time the Search Application was updated
+		 * Required - Last time the Search Application was updated.
 		 * <p>
 		 * API name: {@code updated_at_millis}
 		 */
@@ -258,7 +269,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Analytics collection associated to the Search Application
+		 * Analytics collection associated to the Search Application.
 		 * <p>
 		 * API name: {@code analytics_collection_name}
 		 */
@@ -268,7 +279,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Search template to use on search operations
+		 * Search template to use on search operations.
 		 * <p>
 		 * API name: {@code template}
 		 */
@@ -278,7 +289,7 @@ public class SearchApplication implements JsonpSerializable {
 		}
 
 		/**
-		 * Search template to use on search operations
+		 * Search template to use on search operations.
 		 * <p>
 		 * API name: {@code template}
 		 */

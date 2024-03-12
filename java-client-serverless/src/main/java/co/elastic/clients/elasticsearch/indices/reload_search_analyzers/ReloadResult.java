@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices.reload_search_analyzers;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
@@ -40,6 +36,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: indices.reload_search_analyzers.ReloadResult
 
 /**
@@ -56,14 +67,14 @@ public class ReloadResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadResult(AbstractBuilder<?> builder) {
+	private ReloadResult(Builder builder) {
 
 		this.reloadDetails = ApiTypeHelper.unmodifiableRequired(builder.reloadDetails, this, "reloadDetails");
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public static ReloadResult reloadResultOf(Function<Builder, ObjectBuilder<ReloadResult>> fn) {
+	public static ReloadResult of(Function<Builder, ObjectBuilder<ReloadResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -118,7 +129,55 @@ public class ReloadResult implements JsonpSerializable {
 	 * Builder for {@link ReloadResult}.
 	 */
 
-	public static class Builder extends ReloadResult.AbstractBuilder<Builder> implements ObjectBuilder<ReloadResult> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReloadResult> {
+		private List<ReloadDetails> reloadDetails;
+
+		private ShardStatistics shards;
+
+		/**
+		 * Required - API name: {@code reload_details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reloadDetails</code>.
+		 */
+		public final Builder reloadDetails(List<ReloadDetails> list) {
+			this.reloadDetails = _listAddAll(this.reloadDetails, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code reload_details}
+		 * <p>
+		 * Adds one or more values to <code>reloadDetails</code>.
+		 */
+		public final Builder reloadDetails(ReloadDetails value, ReloadDetails... values) {
+			this.reloadDetails = _listAdd(this.reloadDetails, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code reload_details}
+		 * <p>
+		 * Adds a value to <code>reloadDetails</code> using a builder lambda.
+		 */
+		public final Builder reloadDetails(Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>> fn) {
+			return reloadDetails(fn.apply(new ReloadDetails.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code _shards}
+		 */
+		public final Builder shards(ShardStatistics value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code _shards}
+		 */
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -137,61 +196,6 @@ public class ReloadResult implements JsonpSerializable {
 		}
 	}
 
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
-		private List<ReloadDetails> reloadDetails;
-
-		private ShardStatistics shards;
-
-		/**
-		 * Required - API name: {@code reload_details}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>reloadDetails</code>.
-		 */
-		public final BuilderT reloadDetails(List<ReloadDetails> list) {
-			this.reloadDetails = _listAddAll(this.reloadDetails, list);
-			return self();
-		}
-
-		/**
-		 * Required - API name: {@code reload_details}
-		 * <p>
-		 * Adds one or more values to <code>reloadDetails</code>.
-		 */
-		public final BuilderT reloadDetails(ReloadDetails value, ReloadDetails... values) {
-			this.reloadDetails = _listAdd(this.reloadDetails, value, values);
-			return self();
-		}
-
-		/**
-		 * Required - API name: {@code reload_details}
-		 * <p>
-		 * Adds a value to <code>reloadDetails</code> using a builder lambda.
-		 */
-		public final BuilderT reloadDetails(Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>> fn) {
-			return reloadDetails(fn.apply(new ReloadDetails.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final BuilderT shards(ShardStatistics value) {
-			this.shards = value;
-			return self();
-		}
-
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
-
-		protected abstract BuilderT self();
-
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -200,12 +204,11 @@ public class ReloadResult implements JsonpSerializable {
 	public static final JsonpDeserializer<ReloadResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			ReloadResult::setupReloadResultDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupReloadResultDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static void setupReloadResultDeserializer(ObjectDeserializer<ReloadResult.Builder> op) {
 
-		op.add(AbstractBuilder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails._DESERIALIZER),
+		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails._DESERIALIZER),
 				"reload_details");
-		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
 	}
 

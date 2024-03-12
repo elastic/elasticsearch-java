@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch;
 
 import co.elastic.clients.ApiClient;
@@ -46,6 +42,8 @@ import co.elastic.clients.elasticsearch.core.DeleteScriptRequest;
 import co.elastic.clients.elasticsearch.core.DeleteScriptResponse;
 import co.elastic.clients.elasticsearch.core.ExistsRequest;
 import co.elastic.clients.elasticsearch.core.ExistsSourceRequest;
+import co.elastic.clients.elasticsearch.core.ExplainRequest;
+import co.elastic.clients.elasticsearch.core.ExplainResponse;
 import co.elastic.clients.elasticsearch.core.FieldCapsRequest;
 import co.elastic.clients.elasticsearch.core.FieldCapsResponse;
 import co.elastic.clients.elasticsearch.core.GetRequest;
@@ -73,6 +71,8 @@ import co.elastic.clients.elasticsearch.core.PutScriptRequest;
 import co.elastic.clients.elasticsearch.core.PutScriptResponse;
 import co.elastic.clients.elasticsearch.core.RankEvalRequest;
 import co.elastic.clients.elasticsearch.core.RankEvalResponse;
+import co.elastic.clients.elasticsearch.core.ReindexRequest;
+import co.elastic.clients.elasticsearch.core.ReindexResponse;
 import co.elastic.clients.elasticsearch.core.RenderSearchTemplateRequest;
 import co.elastic.clients.elasticsearch.core.RenderSearchTemplateResponse;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteRequest;
@@ -93,15 +93,20 @@ import co.elastic.clients.elasticsearch.core.UpdateByQueryResponse;
 import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichAsyncClient;
+import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlAsyncClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphAsyncClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.inference.ElasticsearchInferenceAsyncClient;
 import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestAsyncClient;
+import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseAsyncClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashAsyncClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlAsyncClient;
 import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetAsyncClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationAsyncClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityAsyncClient;
+import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
 import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsAsyncClient;
+import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksAsyncClient;
 import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformAsyncClient;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -116,6 +121,21 @@ import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the namespace.
@@ -153,6 +173,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchEnrichAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchEqlAsyncClient eql() {
+		return new ElasticsearchEqlAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchGraphAsyncClient graph() {
 		return new ElasticsearchGraphAsyncClient(this.transport, this.transportOptions);
 	}
@@ -161,8 +185,16 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchIndicesAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchInferenceAsyncClient inference() {
+		return new ElasticsearchInferenceAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchIngestAsyncClient ingest() {
 		return new ElasticsearchIngestAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchLicenseAsyncClient license() {
+		return new ElasticsearchLicenseAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchLogstashAsyncClient logstash() {
@@ -185,8 +217,16 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchSecurityAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchSqlAsyncClient sql() {
+		return new ElasticsearchSqlAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchSynonymsAsyncClient synonyms() {
 		return new ElasticsearchSynonymsAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchTasksAsyncClient tasks() {
+		return new ElasticsearchTasksAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTransformAsyncClient transform() {
@@ -568,6 +608,76 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final CompletableFuture<BooleanResponse> existsSource(
 			Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn) {
 		return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: explain
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request,
+			Class<TDocument> tDocumentClass) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Class<TDocument> tDocumentClass) {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Type tDocumentType) {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: field_caps
@@ -1207,6 +1317,43 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: reindex
+
+	/**
+	 * Allows to copy documents from one index to another, optionally filtering the
+	 * source documents by a query, changing the destination index settings, or
+	 * fetching the documents from a remote cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ReindexResponse> reindex(ReindexRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse>) ReindexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to copy documents from one index to another, optionally filtering the
+	 * source documents by a query, changing the destination index settings, or
+	 * fetching the documents from a remote cluster.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ReindexResponse> reindex(
+			Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn) {
+		return reindex(fn.apply(new ReindexRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: render_search_template
 
 	/**
@@ -1718,7 +1865,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: update_by_query
 
 	/**
-	 * Performs an update on every document in the index without changing the
+	 * Updates documents that match the specified query. If no query is specified,
+	 * performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @see <a href=
@@ -1734,7 +1882,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs an update on every document in the index without changing the
+	 * Updates documents that match the specified query. If no query is specified,
+	 * performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @param fn

@@ -17,12 +17,10 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,12 +28,31 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.OpenTaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: indices._types.SettingsSimilarity
 
@@ -46,39 +63,74 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarity implements JsonpSerializable {
-	@Nullable
-	private final SettingsSimilarityBm25 bm25;
+public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Kind, Object>, JsonpSerializable {
 
-	@Nullable
-	private final SettingsSimilarityDfi dfi;
+	/**
+	 * {@link SettingsSimilarity} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#indices._types.SettingsSimilarity">API
+	 *      specification</a>
+	 */
 
-	@Nullable
-	private final SettingsSimilarityDfr dfr;
+	public enum Kind implements JsonEnum {
+		Bm25("bm25"),
 
-	@Nullable
-	private final SettingsSimilarityIb ib;
+		Dfi("dfi"),
 
-	@Nullable
-	private final SettingsSimilarityLmd lmd;
+		Dfr("dfr"),
 
-	@Nullable
-	private final SettingsSimilarityLmj lmj;
+		Ib("ib"),
 
-	@Nullable
-	private final SettingsSimilarityScriptedTfidf scriptedTfidf;
+		Lmd("lmd"),
 
-	// ---------------------------------------------------------------------------------------------
+		Lmj("lmj"),
+
+		ScriptedTfidf("scripted_tfidf"),
+
+		/** A custom {@code SettingsSimilarity} defined by a plugin */
+		_Custom(null)
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final Object _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
+	public SettingsSimilarity(SettingsSimilarityVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._settingsSimilarityKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
+
+	}
 
 	private SettingsSimilarity(Builder builder) {
 
-		this.bm25 = builder.bm25;
-		this.dfi = builder.dfi;
-		this.dfr = builder.dfr;
-		this.ib = builder.ib;
-		this.lmd = builder.lmd;
-		this.lmj = builder.lmj;
-		this.scriptedTfidf = builder.scriptedTfidf;
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 	}
 
@@ -87,107 +139,165 @@ public class SettingsSimilarity implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bm25}
+	 * Is this variant instance of kind {@code bm25}?
 	 */
-	@Nullable
-	public final SettingsSimilarityBm25 bm25() {
-		return this.bm25;
+	public boolean isBm25() {
+		return _kind == Kind.Bm25;
 	}
 
 	/**
-	 * API name: {@code dfi}
+	 * Get the {@code bm25} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bm25} kind.
 	 */
-	@Nullable
-	public final SettingsSimilarityDfi dfi() {
-		return this.dfi;
+	public SettingsSimilarityBm25 bm25() {
+		return TaggedUnionUtils.get(this, Kind.Bm25);
 	}
 
 	/**
-	 * API name: {@code dfr}
+	 * Is this variant instance of kind {@code dfi}?
 	 */
-	@Nullable
-	public final SettingsSimilarityDfr dfr() {
-		return this.dfr;
+	public boolean isDfi() {
+		return _kind == Kind.Dfi;
 	}
 
 	/**
-	 * API name: {@code ib}
+	 * Get the {@code dfi} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dfi} kind.
 	 */
-	@Nullable
-	public final SettingsSimilarityIb ib() {
-		return this.ib;
+	public SettingsSimilarityDfi dfi() {
+		return TaggedUnionUtils.get(this, Kind.Dfi);
 	}
 
 	/**
-	 * API name: {@code lmd}
+	 * Is this variant instance of kind {@code dfr}?
 	 */
-	@Nullable
-	public final SettingsSimilarityLmd lmd() {
-		return this.lmd;
+	public boolean isDfr() {
+		return _kind == Kind.Dfr;
 	}
 
 	/**
-	 * API name: {@code lmj}
+	 * Get the {@code dfr} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dfr} kind.
 	 */
-	@Nullable
-	public final SettingsSimilarityLmj lmj() {
-		return this.lmj;
+	public SettingsSimilarityDfr dfr() {
+		return TaggedUnionUtils.get(this, Kind.Dfr);
 	}
 
 	/**
-	 * API name: {@code scripted_tfidf}
+	 * Is this variant instance of kind {@code ib}?
 	 */
-	@Nullable
-	public final SettingsSimilarityScriptedTfidf scriptedTfidf() {
-		return this.scriptedTfidf;
+	public boolean isIb() {
+		return _kind == Kind.Ib;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Get the {@code ib} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ib} kind.
 	 */
+	public SettingsSimilarityIb ib() {
+		return TaggedUnionUtils.get(this, Kind.Ib);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lmd}?
+	 */
+	public boolean isLmd() {
+		return _kind == Kind.Lmd;
+	}
+
+	/**
+	 * Get the {@code lmd} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code lmd} kind.
+	 */
+	public SettingsSimilarityLmd lmd() {
+		return TaggedUnionUtils.get(this, Kind.Lmd);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lmj}?
+	 */
+	public boolean isLmj() {
+		return _kind == Kind.Lmj;
+	}
+
+	/**
+	 * Get the {@code lmj} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code lmj} kind.
+	 */
+	public SettingsSimilarityLmj lmj() {
+		return TaggedUnionUtils.get(this, Kind.Lmj);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code scripted_tfidf}?
+	 */
+	public boolean isScriptedTfidf() {
+		return _kind == Kind.ScriptedTfidf;
+	}
+
+	/**
+	 * Get the {@code scripted_tfidf} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code scripted_tfidf} kind.
+	 */
+	public SettingsSimilarityScriptedTfidf scriptedTfidf() {
+		return TaggedUnionUtils.get(this, Kind.ScriptedTfidf);
+	}
+
+	@Nullable
+	private final String _customKind;
+
+	/**
+	 * Is this a custom {@code SettingsSimilarity} defined by a plugin?
+	 */
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
+	}
+
+	/**
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not {@link Kind#_Custom}.
+	 */
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
-		serializeInternal(generator, mapper);
+
+		generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		}
+
 		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.bm25 != null) {
-			generator.writeKey("bm25");
-			this.bm25.serialize(generator, mapper);
-
-		}
-		if (this.dfi != null) {
-			generator.writeKey("dfi");
-			this.dfi.serialize(generator, mapper);
-
-		}
-		if (this.dfr != null) {
-			generator.writeKey("dfr");
-			this.dfr.serialize(generator, mapper);
-
-		}
-		if (this.ib != null) {
-			generator.writeKey("ib");
-			this.ib.serialize(generator, mapper);
-
-		}
-		if (this.lmd != null) {
-			generator.writeKey("lmd");
-			this.lmd.serialize(generator, mapper);
-
-		}
-		if (this.lmj != null) {
-			generator.writeKey("lmj");
-			this.lmj.serialize(generator, mapper);
-
-		}
-		if (this.scriptedTfidf != null) {
-			generator.writeKey("scripted_tfidf");
-			this.scriptedTfidf.serialize(generator, mapper);
-
-		}
 
 	}
 
@@ -196,169 +306,118 @@ public class SettingsSimilarity implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link SettingsSimilarity}.
-	 */
-
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SettingsSimilarity> {
-		@Nullable
-		private SettingsSimilarityBm25 bm25;
-
-		@Nullable
-		private SettingsSimilarityDfi dfi;
-
-		@Nullable
-		private SettingsSimilarityDfr dfr;
-
-		@Nullable
-		private SettingsSimilarityIb ib;
-
-		@Nullable
-		private SettingsSimilarityLmd lmd;
-
-		@Nullable
-		private SettingsSimilarityLmj lmj;
-
-		@Nullable
-		private SettingsSimilarityScriptedTfidf scriptedTfidf;
-
-		/**
-		 * API name: {@code bm25}
-		 */
-		public final Builder bm25(@Nullable SettingsSimilarityBm25 value) {
-			this.bm25 = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code bm25}
-		 */
-		public final Builder bm25(Function<SettingsSimilarityBm25.Builder, ObjectBuilder<SettingsSimilarityBm25>> fn) {
-			return this.bm25(fn.apply(new SettingsSimilarityBm25.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code dfi}
-		 */
-		public final Builder dfi(@Nullable SettingsSimilarityDfi value) {
-			this.dfi = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code dfi}
-		 */
-		public final Builder dfi(Function<SettingsSimilarityDfi.Builder, ObjectBuilder<SettingsSimilarityDfi>> fn) {
-			return this.dfi(fn.apply(new SettingsSimilarityDfi.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code dfr}
-		 */
-		public final Builder dfr(@Nullable SettingsSimilarityDfr value) {
-			this.dfr = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code dfr}
-		 */
-		public final Builder dfr(Function<SettingsSimilarityDfr.Builder, ObjectBuilder<SettingsSimilarityDfr>> fn) {
-			return this.dfr(fn.apply(new SettingsSimilarityDfr.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code ib}
-		 */
-		public final Builder ib(@Nullable SettingsSimilarityIb value) {
-			this.ib = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code ib}
-		 */
-		public final Builder ib(Function<SettingsSimilarityIb.Builder, ObjectBuilder<SettingsSimilarityIb>> fn) {
-			return this.ib(fn.apply(new SettingsSimilarityIb.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code lmd}
-		 */
-		public final Builder lmd(@Nullable SettingsSimilarityLmd value) {
-			this.lmd = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code lmd}
-		 */
-		public final Builder lmd(Function<SettingsSimilarityLmd.Builder, ObjectBuilder<SettingsSimilarityLmd>> fn) {
-			return this.lmd(fn.apply(new SettingsSimilarityLmd.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code lmj}
-		 */
-		public final Builder lmj(@Nullable SettingsSimilarityLmj value) {
-			this.lmj = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code lmj}
-		 */
-		public final Builder lmj(Function<SettingsSimilarityLmj.Builder, ObjectBuilder<SettingsSimilarityLmj>> fn) {
-			return this.lmj(fn.apply(new SettingsSimilarityLmj.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code scripted_tfidf}
-		 */
-		public final Builder scriptedTfidf(@Nullable SettingsSimilarityScriptedTfidf value) {
-			this.scriptedTfidf = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code scripted_tfidf}
-		 */
-		public final Builder scriptedTfidf(
-				Function<SettingsSimilarityScriptedTfidf.Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
-			return this.scriptedTfidf(fn.apply(new SettingsSimilarityScriptedTfidf.Builder()).build());
-		}
+		private Kind _kind;
+		private Object _value;
+		private String _customKind;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<SettingsSimilarity> bm25(SettingsSimilarityBm25 v) {
+			this._kind = Kind.Bm25;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> bm25(
+				Function<SettingsSimilarityBm25.Builder, ObjectBuilder<SettingsSimilarityBm25>> fn) {
+			return this.bm25(fn.apply(new SettingsSimilarityBm25.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> dfi(SettingsSimilarityDfi v) {
+			this._kind = Kind.Dfi;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> dfi(
+				Function<SettingsSimilarityDfi.Builder, ObjectBuilder<SettingsSimilarityDfi>> fn) {
+			return this.dfi(fn.apply(new SettingsSimilarityDfi.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> dfr(SettingsSimilarityDfr v) {
+			this._kind = Kind.Dfr;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> dfr(
+				Function<SettingsSimilarityDfr.Builder, ObjectBuilder<SettingsSimilarityDfr>> fn) {
+			return this.dfr(fn.apply(new SettingsSimilarityDfr.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> ib(SettingsSimilarityIb v) {
+			this._kind = Kind.Ib;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> ib(
+				Function<SettingsSimilarityIb.Builder, ObjectBuilder<SettingsSimilarityIb>> fn) {
+			return this.ib(fn.apply(new SettingsSimilarityIb.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> lmd(SettingsSimilarityLmd v) {
+			this._kind = Kind.Lmd;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> lmd(
+				Function<SettingsSimilarityLmd.Builder, ObjectBuilder<SettingsSimilarityLmd>> fn) {
+			return this.lmd(fn.apply(new SettingsSimilarityLmd.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> lmj(SettingsSimilarityLmj v) {
+			this._kind = Kind.Lmj;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> lmj(
+				Function<SettingsSimilarityLmj.Builder, ObjectBuilder<SettingsSimilarityLmj>> fn) {
+			return this.lmj(fn.apply(new SettingsSimilarityLmj.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> scriptedTfidf(SettingsSimilarityScriptedTfidf v) {
+			this._kind = Kind.ScriptedTfidf;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> scriptedTfidf(
+				Function<SettingsSimilarityScriptedTfidf.Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
+			return this.scriptedTfidf(fn.apply(new SettingsSimilarityScriptedTfidf.Builder()).build());
+		}
 
 		/**
-		 * Builds a {@link SettingsSimilarity}.
+		 * Define this {@code SettingsSimilarity} as a plugin-defined variant.
 		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code SettingsSimilarity}. It is
+		 *            converted internally to {@link JsonData}.
 		 */
+		public ObjectBuilder<SettingsSimilarity> _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
+			return this;
+		}
+
 		public SettingsSimilarity build() {
 			_checkSingleUse();
-
 			return new SettingsSimilarity(this);
 		}
+
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link SettingsSimilarity}
-	 */
-	public static final JsonpDeserializer<SettingsSimilarity> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SettingsSimilarity::setupSettingsSimilarityDeserializer);
-
-	protected static void setupSettingsSimilarityDeserializer(ObjectDeserializer<SettingsSimilarity.Builder> op) {
+	protected static void setupSettingsSimilarityDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::bm25, SettingsSimilarityBm25._DESERIALIZER, "bm25");
 		op.add(Builder::dfi, SettingsSimilarityDfi._DESERIALIZER, "dfi");
@@ -368,6 +427,13 @@ public class SettingsSimilarity implements JsonpSerializable {
 		op.add(Builder::lmj, SettingsSimilarityLmj._DESERIALIZER, "lmj");
 		op.add(Builder::scriptedTfidf, SettingsSimilarityScriptedTfidf._DESERIALIZER, "scripted_tfidf");
 
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
+
 	}
 
+	public static final JsonpDeserializer<SettingsSimilarity> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SettingsSimilarity::setupSettingsSimilarityDeserializer, Builder::build);
 }

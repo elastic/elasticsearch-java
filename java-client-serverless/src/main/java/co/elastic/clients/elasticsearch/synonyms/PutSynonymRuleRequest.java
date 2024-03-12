@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.synonyms;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -39,11 +35,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: synonyms.put_synonym_rule.Request
 
@@ -60,7 +70,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 	private final String setId;
 
-	private final List<String> synonyms;
+	private final String synonyms;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +78,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 		this.setId = ApiTypeHelper.requireNonNull(builder.setId, this, "setId");
-		this.synonyms = ApiTypeHelper.unmodifiableRequired(builder.synonyms, this, "synonyms");
+		this.synonyms = ApiTypeHelper.requireNonNull(builder.synonyms, this, "synonyms");
 
 	}
 
@@ -97,7 +107,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Required - API name: {@code synonyms}
 	 */
-	public final List<String> synonyms() {
+	public final String synonyms() {
 		return this.synonyms;
 	}
 
@@ -112,16 +122,8 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.synonyms)) {
-			generator.writeKey("synonyms");
-			generator.writeStartArray();
-			for (String item0 : this.synonyms) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("synonyms");
+		generator.write(this.synonyms);
 
 	}
 
@@ -138,7 +140,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 		private String setId;
 
-		private List<String> synonyms;
+		private String synonyms;
 
 		/**
 		 * Required - The id of the synonym rule to be updated or created
@@ -162,21 +164,9 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * Required - API name: {@code synonyms}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>synonyms</code>.
 		 */
-		public final Builder synonyms(List<String> list) {
-			this.synonyms = _listAddAll(this.synonyms, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code synonyms}
-		 * <p>
-		 * Adds one or more values to <code>synonyms</code>.
-		 */
-		public final Builder synonyms(String value, String... values) {
-			this.synonyms = _listAdd(this.synonyms, value, values);
+		public final Builder synonyms(String value) {
+			this.synonyms = value;
 			return this;
 		}
 
@@ -208,8 +198,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 	protected static void setupPutSynonymRuleRequestDeserializer(ObjectDeserializer<PutSynonymRuleRequest.Builder> op) {
 
-		op.add(Builder::synonyms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"synonyms");
+		op.add(Builder::synonyms, JsonpDeserializer.stringDeserializer(), "synonyms");
 
 	}
 

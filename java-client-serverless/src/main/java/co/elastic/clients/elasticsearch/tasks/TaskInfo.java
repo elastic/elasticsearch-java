@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.Time;
@@ -43,6 +39,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: tasks._types.TaskInfo
 
@@ -86,7 +97,7 @@ public class TaskInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TaskInfo(AbstractBuilder<?> builder) {
+	private TaskInfo(Builder builder) {
 
 		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
 		this.cancelled = builder.cancelled;
@@ -104,7 +115,7 @@ public class TaskInfo implements JsonpSerializable {
 
 	}
 
-	public static TaskInfo taskInfoOf(Function<Builder, ObjectBuilder<TaskInfo>> fn) {
+	public static TaskInfo of(Function<Builder, ObjectBuilder<TaskInfo>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -288,28 +299,7 @@ public class TaskInfo implements JsonpSerializable {
 	 * Builder for {@link TaskInfo}.
 	 */
 
-	public static class Builder extends TaskInfo.AbstractBuilder<Builder> implements ObjectBuilder<TaskInfo> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link TaskInfo}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TaskInfo build() {
-			_checkSingleUse();
-
-			return new TaskInfo(this);
-		}
-	}
-
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TaskInfo> {
 		private String action;
 
 		@Nullable
@@ -344,33 +334,33 @@ public class TaskInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code action}
 		 */
-		public final BuilderT action(String value) {
+		public final Builder action(String value) {
 			this.action = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code cancelled}
 		 */
-		public final BuilderT cancelled(@Nullable Boolean value) {
+		public final Builder cancelled(@Nullable Boolean value) {
 			this.cancelled = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cancellable}
 		 */
-		public final BuilderT cancellable(boolean value) {
+		public final Builder cancellable(boolean value) {
 			this.cancellable = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code description}
 		 */
-		public final BuilderT description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -378,9 +368,9 @@ public class TaskInfo implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public final BuilderT headers(Map<String, String> map) {
+		public final Builder headers(Map<String, String> map) {
 			this.headers = _mapPutAll(this.headers, map);
-			return self();
+			return this;
 		}
 
 		/**
@@ -388,56 +378,56 @@ public class TaskInfo implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>headers</code>.
 		 */
-		public final BuilderT headers(String key, String value) {
+		public final Builder headers(String key, String value) {
 			this.headers = _mapPut(this.headers, key, value);
-			return self();
+			return this;
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public final BuilderT id(long value) {
+		public final Builder id(long value) {
 			this.id = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final BuilderT node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code running_time}
 		 */
-		public final BuilderT runningTime(@Nullable Time value) {
+		public final Builder runningTime(@Nullable Time value) {
 			this.runningTime = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code running_time}
 		 */
-		public final BuilderT runningTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+		public final Builder runningTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.runningTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code running_time_in_nanos}
 		 */
-		public final BuilderT runningTimeInNanos(long value) {
+		public final Builder runningTimeInNanos(long value) {
 			this.runningTimeInNanos = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public final BuilderT startTimeInMillis(long value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -445,29 +435,43 @@ public class TaskInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public final BuilderT status(@Nullable JsonData value) {
+		public final Builder status(@Nullable JsonData value) {
 			this.status = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final BuilderT type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
-			return self();
+			return this;
 		}
 
 		/**
 		 * API name: {@code parent_task_id}
 		 */
-		public final BuilderT parentTaskId(@Nullable String value) {
+		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
-			return self();
+			return this;
 		}
 
-		protected abstract BuilderT self();
+		@Override
+		protected Builder self() {
+			return this;
+		}
 
+		/**
+		 * Builds a {@link TaskInfo}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TaskInfo build() {
+			_checkSingleUse();
+
+			return new TaskInfo(this);
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -478,23 +482,22 @@ public class TaskInfo implements JsonpSerializable {
 	public static final JsonpDeserializer<TaskInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			TaskInfo::setupTaskInfoDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTaskInfoDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static void setupTaskInfoDeserializer(ObjectDeserializer<TaskInfo.Builder> op) {
 
-		op.add(AbstractBuilder::action, JsonpDeserializer.stringDeserializer(), "action");
-		op.add(AbstractBuilder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
-		op.add(AbstractBuilder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
-		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(AbstractBuilder::headers,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
-		op.add(AbstractBuilder::id, JsonpDeserializer.longDeserializer(), "id");
-		op.add(AbstractBuilder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(AbstractBuilder::runningTime, Time._DESERIALIZER, "running_time");
-		op.add(AbstractBuilder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
-		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-		op.add(AbstractBuilder::status, JsonData._DESERIALIZER, "status");
-		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(AbstractBuilder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
+		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
+		op.add(Builder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
+		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"headers");
+		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::runningTime, Time._DESERIALIZER, "running_time");
+		op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::status, JsonData._DESERIALIZER, "status");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
 
 	}
 

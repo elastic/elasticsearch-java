@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.Time;
@@ -38,6 +34,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: indices._types.DataStreamLifecycleWithRollover
 
 /**
@@ -54,6 +65,9 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 	private final Time dataRetention;
 
 	@Nullable
+	private final DataStreamLifecycleDownsampling downsampling;
+
+	@Nullable
 	private final DataStreamLifecycleRolloverConditions rollover;
 
 	// ---------------------------------------------------------------------------------------------
@@ -61,6 +75,7 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 	private DataStreamLifecycleWithRollover(Builder builder) {
 
 		this.dataRetention = builder.dataRetention;
+		this.downsampling = builder.downsampling;
 		this.rollover = builder.rollover;
 
 	}
@@ -81,6 +96,17 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 	@Nullable
 	public final Time dataRetention() {
 		return this.dataRetention;
+	}
+
+	/**
+	 * The downsampling configuration to execute for the managed backing index after
+	 * rollover.
+	 * <p>
+	 * API name: {@code downsampling}
+	 */
+	@Nullable
+	public final DataStreamLifecycleDownsampling downsampling() {
+		return this.downsampling;
 	}
 
 	/**
@@ -114,6 +140,11 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 			this.dataRetention.serialize(generator, mapper);
 
 		}
+		if (this.downsampling != null) {
+			generator.writeKey("downsampling");
+			this.downsampling.serialize(generator, mapper);
+
+		}
 		if (this.rollover != null) {
 			generator.writeKey("rollover");
 			this.rollover.serialize(generator, mapper);
@@ -138,6 +169,9 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 				ObjectBuilder<DataStreamLifecycleWithRollover> {
 		@Nullable
 		private Time dataRetention;
+
+		@Nullable
+		private DataStreamLifecycleDownsampling downsampling;
 
 		@Nullable
 		private DataStreamLifecycleRolloverConditions rollover;
@@ -165,6 +199,28 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 		 */
 		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
+			this.downsampling = value;
+			return this;
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(
+				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
 		}
 
 		/**
@@ -227,6 +283,7 @@ public class DataStreamLifecycleWithRollover implements JsonpSerializable {
 			ObjectDeserializer<DataStreamLifecycleWithRollover.Builder> op) {
 
 		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
 		op.add(Builder::rollover, DataStreamLifecycleRolloverConditions._DESERIALIZER, "rollover");
 
 	}

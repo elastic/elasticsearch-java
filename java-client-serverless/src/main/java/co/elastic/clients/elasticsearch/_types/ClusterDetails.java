@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -42,6 +38,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.ClusterDetails
 
 /**
@@ -51,7 +62,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ClusterDetails implements JsonpSerializable {
-	private final ClusterSearchStatusEnum status;
+	private final ClusterSearchStatus status;
 
 	private final String indices;
 
@@ -85,7 +96,7 @@ public class ClusterDetails implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public final ClusterSearchStatusEnum status() {
+	public final ClusterSearchStatus status() {
 		return this.status;
 	}
 
@@ -180,7 +191,7 @@ public class ClusterDetails implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterDetails> {
-		private ClusterSearchStatusEnum status;
+		private ClusterSearchStatus status;
 
 		private String indices;
 
@@ -198,7 +209,7 @@ public class ClusterDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(ClusterSearchStatusEnum value) {
+		public final Builder status(ClusterSearchStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -299,7 +310,7 @@ public class ClusterDetails implements JsonpSerializable {
 
 	protected static void setupClusterDetailsDeserializer(ObjectDeserializer<ClusterDetails.Builder> op) {
 
-		op.add(Builder::status, ClusterSearchStatusEnum._DESERIALIZER, "status");
+		op.add(Builder::status, ClusterSearchStatus._DESERIALIZER, "status");
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");

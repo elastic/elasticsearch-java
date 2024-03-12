@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.EmptyObject;
@@ -41,6 +37,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.aggregations.SignificantTextAggregation
 
@@ -73,7 +84,8 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	@Nullable
 	private final GoogleNormalizedDistanceHeuristic gnd;
 
-	private final List<String> include;
+	@Nullable
+	private final TermsInclude include;
 
 	@Nullable
 	private final EmptyObject jlh;
@@ -113,7 +125,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		this.field = builder.field;
 		this.filterDuplicateText = builder.filterDuplicateText;
 		this.gnd = builder.gnd;
-		this.include = ApiTypeHelper.unmodifiable(builder.include);
+		this.include = builder.include;
 		this.jlh = builder.jlh;
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
@@ -217,7 +229,8 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	 * <p>
 	 * API name: {@code include}
 	 */
-	public final List<String> include() {
+	@Nullable
+	public final TermsInclude include() {
 		return this.include;
 	}
 
@@ -356,14 +369,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.include)) {
+		if (this.include != null) {
 			generator.writeKey("include");
-			generator.writeStartArray();
-			for (String item0 : this.include) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.include.serialize(generator, mapper);
 
 		}
 		if (this.jlh != null) {
@@ -450,7 +458,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		private GoogleNormalizedDistanceHeuristic gnd;
 
 		@Nullable
-		private List<String> include;
+		private TermsInclude include;
 
 		@Nullable
 		private EmptyObject jlh;
@@ -597,11 +605,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		 * Values to include.
 		 * <p>
 		 * API name: {@code include}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 */
-		public final Builder include(List<String> list) {
-			this.include = _listAddAll(this.include, list);
+		public final Builder include(@Nullable TermsInclude value) {
+			this.include = value;
 			return this;
 		}
 
@@ -609,12 +615,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		 * Values to include.
 		 * <p>
 		 * API name: {@code include}
-		 * <p>
-		 * Adds one or more values to <code>include</code>.
 		 */
-		public final Builder include(String value, String... values) {
-			this.include = _listAdd(this.include, value, values);
-			return this;
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -807,8 +810,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::filterDuplicateText, JsonpDeserializer.booleanDeserializer(), "filter_duplicate_text");
 		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic._DESERIALIZER, "gnd");
-		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"include");
+		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::jlh, EmptyObject._DESERIALIZER, "jlh");
 		op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
 		op.add(Builder::mutualInformation, MutualInformationHeuristic._DESERIALIZER, "mutual_information");

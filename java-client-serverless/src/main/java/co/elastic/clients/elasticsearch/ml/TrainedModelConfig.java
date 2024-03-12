@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -43,6 +39,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: ml._types.TrainedModelConfig
 
@@ -103,6 +114,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 	@Nullable
 	private final TrainedModelLocation location;
 
+	@Nullable
+	private final TrainedModelPrefixStrings prefixStrings;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected TrainedModelConfig(AbstractBuilder<?> builder) {
@@ -125,6 +139,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.metadata = builder.metadata;
 		this.modelSizeBytes = builder.modelSizeBytes;
 		this.location = builder.location;
+		this.prefixStrings = builder.prefixStrings;
 
 	}
 
@@ -308,6 +323,14 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code prefix_strings}
+	 */
+	@Nullable
+	public final TrainedModelPrefixStrings prefixStrings() {
+		return this.prefixStrings;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -413,6 +436,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 			this.location.serialize(generator, mapper);
 
 		}
+		if (this.prefixStrings != null) {
+			generator.writeKey("prefix_strings");
+			this.prefixStrings.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -501,6 +529,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 		@Nullable
 		private TrainedModelLocation location;
+
+		@Nullable
+		private TrainedModelPrefixStrings prefixStrings;
 
 		/**
 		 * Required - Identifier for the trained model.
@@ -751,6 +782,22 @@ public class TrainedModelConfig implements JsonpSerializable {
 			return this.location(fn.apply(new TrainedModelLocation.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code prefix_strings}
+		 */
+		public final BuilderT prefixStrings(@Nullable TrainedModelPrefixStrings value) {
+			this.prefixStrings = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code prefix_strings}
+		 */
+		public final BuilderT prefixStrings(
+				Function<TrainedModelPrefixStrings.Builder, ObjectBuilder<TrainedModelPrefixStrings>> fn) {
+			return this.prefixStrings(fn.apply(new TrainedModelPrefixStrings.Builder()).build());
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -787,6 +834,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
 		op.add(AbstractBuilder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
 		op.add(AbstractBuilder::location, TrainedModelLocation._DESERIALIZER, "location");
+		op.add(AbstractBuilder::prefixStrings, TrainedModelPrefixStrings._DESERIALIZER, "prefix_strings");
 
 	}
 

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core.bulk;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
@@ -38,6 +34,21 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.bulk.OperationBase
 
@@ -84,6 +95,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The document ID.
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	@Nullable
@@ -92,6 +105,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Name of the index or index alias to perform the action on.
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	@Nullable
@@ -100,6 +115,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Custom value used to route operations to a specific shard.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -217,6 +234,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
+		 * The document ID.
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public final BuilderT id(@Nullable String value) {
@@ -225,6 +244,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Name of the index or index alias to perform the action on.
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public final BuilderT index(@Nullable String value) {
@@ -233,6 +254,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Custom value used to route operations to a specific shard.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final BuilderT routing(@Nullable String value) {

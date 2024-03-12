@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -42,10 +38,25 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.close_point_in_time.Request
 
 /**
- * Close a point in time
+ * Closes a point-in-time.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.close_point_in_time.Request">API
@@ -68,7 +79,9 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - The ID of the point-in-time.
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
@@ -102,7 +115,9 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		private String id;
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - The ID of the point-in-time.
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
