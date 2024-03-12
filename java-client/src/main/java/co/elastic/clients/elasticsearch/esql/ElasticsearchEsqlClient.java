@@ -20,12 +20,12 @@
 package co.elastic.clients.elasticsearch.esql;
 
 import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._helpers.esql.EsqlAdapter;
+import co.elastic.clients.elasticsearch._helpers.esql.EsqlHelper;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.JsonEndpoint;
-import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
@@ -97,6 +97,14 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	public final BinaryResponse query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return query(fn.apply(new QueryRequest.Builder()).build());
+	}
+
+	public final <T> T query(EsqlAdapter<T> adapter, String query, Object... parameters) throws IOException, ElasticsearchException {
+		return EsqlHelper.query(this, adapter, query, parameters);
+	}
+
+	public final <T> T query(EsqlAdapter<T> adapter, QueryRequest request) throws IOException, ElasticsearchException {
+		return EsqlHelper.query(this, adapter, request);
 	}
 
 }
