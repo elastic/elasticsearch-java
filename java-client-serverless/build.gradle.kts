@@ -28,12 +28,17 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
+    signing
     id("com.github.jk1.dependency-license-report") version "2.2"
     id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
 // GitHub Maven repo doesn't like 1.0.0+20231031-SNAPSHOT
 version = "1.0.0-20231031-SNAPSHOT"
+
+signing {
+    sign(publishing.publications)
+}
 
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -115,6 +120,7 @@ tasks.withType<Javadoc> {
     }
 }
 
+
 publishing {
     repositories {
         maven {
@@ -129,6 +135,15 @@ publishing {
             name = "Build"
             url = uri("${rootProject.buildDir}/repository")
         }
+
+	maven {
+            name = "MavenCentralSnapshot"
+            setUrl("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            credentials {
+                 username = providers.gradleProperty("ossrhUsername").getOrNull()
+                 password = providers.gradleProperty("ossrhPassword").getOrNull()
+           }
+       }
     }
 
     publications {
