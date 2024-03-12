@@ -19,12 +19,16 @@
 
 package co.elastic.clients.json.jackson;
 
+import co.elastic.clients.json.BufferingJsonGenerator;
+import co.elastic.clients.json.JsonData;
 import com.fasterxml.jackson.core.JsonStreamContext;
+import com.fasterxml.jackson.databind.util.TokenBuffer;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -40,6 +44,43 @@ public class JacksonJsonpGenerator implements JsonGenerator {
 
     public JacksonJsonpGenerator(com.fasterxml.jackson.core.JsonGenerator generator) {
         this.generator = generator;
+    }
+
+    public static class Buffering extends JacksonJsonpGenerator implements BufferingJsonGenerator {
+
+        private final JacksonJsonpMapper mapper;
+
+        public Buffering(JacksonJsonpMapper mapper) {
+            super(new TokenBuffer(mapper.objectMapper(), false));
+            this.mapper = mapper;
+        }
+
+        @Override
+        public JsonData getJsonData() {
+            this.close();
+            return new JacksonJsonBuffer((TokenBuffer)jacksonGenerator(), mapper);
+        }
+
+        @Override
+        public JsonParser getParser() {
+            this.close();
+            TokenBuffer tokenBuffer = (TokenBuffer) jacksonGenerator();
+            return new JacksonJsonpParser(tokenBuffer.asParser(), mapper);
+        }
+
+        @Override
+        public void copyValue(JsonParser parser) {
+            if (!(parser instanceof JacksonJsonpGenerator)) {
+                throw new IllegalArgumentException("Can only be used with a JacksonJsonpGenerator");
+            }
+
+            com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser) parser).jacksonParser();
+            try {
+                jacksonGenerator().copyCurrentStructure(jkParser);
+            } catch (IOException e) {
+                throw JacksonUtils.convertException(e);
+            }
+        }
     }
 
     /**

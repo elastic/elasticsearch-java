@@ -61,23 +61,44 @@ public abstract class JsonpMapperBase implements JsonpMapper {
         return this;
     }
 
+    //----- Deserialization
+
     @Override
     public <T> T deserialize(JsonParser parser, Type type) {
-        JsonpDeserializer<T> deserializer = findDeserializer(type);
-        if (deserializer != null) {
-            return deserializer.deserialize(parser, this);
-        }
-
         @SuppressWarnings("unchecked")
-        T result = (T)getDefaultDeserializer(type).deserialize(parser, this);
+        T result = (T)getDeserializer(type).deserialize(parser, this);
         return result;
     }
 
+    @Override
+    public <T> T deserialize(JsonParser parser, Type type, JsonParser.Event event) {
+        @SuppressWarnings("unchecked")
+        T result = (T)getDeserializer(type).deserialize(parser, this, event);
+        return result;
+    }
+
+    private <T> JsonpDeserializer<T> getDeserializer(Type type) {
+        JsonpDeserializer<T> deserializer = findDeserializer(type);
+        if (deserializer != null) {
+            return deserializer;
+        }
+
+        @SuppressWarnings("unchecked")
+        JsonpDeserializer<T> result = getDefaultDeserializer(type);
+        return result;
+    }
+
+    /**
+     * Find a built-in deserializer for a given class, if any.
+     */
     @Nullable
     public static <T> JsonpDeserializer<T> findDeserializer(Class<T> clazz) {
         return findDeserializer((Type)clazz);
     }
 
+    /**
+     * Find a built-in deserializer for a given type, if any.
+     */
     @Nullable
     @SuppressWarnings("unchecked")
     public static <T> JsonpDeserializer<T> findDeserializer(Type type) {
@@ -100,6 +121,8 @@ public abstract class JsonpMapperBase implements JsonpMapper {
 
         return null;
     }
+
+    //----- Serialization
 
     @Nullable
     @SuppressWarnings("unchecked")

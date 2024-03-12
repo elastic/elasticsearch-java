@@ -45,6 +45,11 @@ public abstract class DelegatingJsonpMapper implements JsonpMapper {
     }
 
     @Override
+    public <T> T deserialize(JsonParser parser, Type type, JsonParser.Event event) {
+        return mapper.deserialize(parser, type, event);
+    }
+
+    @Override
     public <T> void serialize(T value, JsonGenerator generator) {
         mapper.serialize(value, generator);
     }

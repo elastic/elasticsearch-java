@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.Json;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
@@ -67,6 +68,10 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 
 	public static FieldValue of(JsonData value) {
 		return new FieldValue(Kind.Any, value);
+	}
+
+	public static FieldValue of(Object value) {
+		return of(JsonData.of(value));
 	}
 
 	public static final FieldValue NULL = new FieldValue(Kind.Null, null);

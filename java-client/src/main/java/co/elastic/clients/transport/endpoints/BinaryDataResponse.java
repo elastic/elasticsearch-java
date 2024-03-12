@@ -20,6 +20,7 @@
 package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.util.BinaryData;
+import co.elastic.clients.util.ByteArrayBinaryData;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,5 +50,9 @@ public class BinaryDataResponse implements BinaryResponse {
 
     @Override
     public void close() throws IOException {
+    }
+
+    public static BinaryDataResponse of(byte[] data, String contentType) {
+        return new BinaryDataResponse(new ByteArrayBinaryData(data, contentType));
     }
 }
