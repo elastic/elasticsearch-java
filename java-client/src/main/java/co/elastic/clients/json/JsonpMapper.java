@@ -55,6 +55,18 @@ public interface JsonpMapper {
     <T> T deserialize(JsonParser parser, Type type);
 
     /**
+     * Deserialize an object, given its class and the current event the parser is at.
+     */
+    default <T> T deserialize(JsonParser parser, Class<T> clazz, JsonParser.Event event) {
+        return deserialize(parser, (Type)clazz, event);
+    }
+
+    /**
+     * Deserialize an object, given its type and the current event the parser is at.
+     */
+    <T> T deserialize(JsonParser parser, Type type, JsonParser.Event event);
+
+    /**
      * Serialize an object.
      */
     <T> void serialize(T value, JsonGenerator generator);

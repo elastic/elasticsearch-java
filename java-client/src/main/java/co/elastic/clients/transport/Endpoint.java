@@ -19,12 +19,15 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * An endpoint links requests and responses to HTTP protocol encoding. It also defines the error response
@@ -117,5 +120,21 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
           this::body,
           null
       );
+  }
+
+  default ResponseT call(RequestT request, Transport transport) throws IOException {
+      return transport.performRequest(request, this, null);
+  }
+
+  default ResponseT call(RequestT request, ApiClient<?, ?> client) throws IOException {
+    return client._transport().performRequest(request, this, null);
+  }
+
+  default CompletableFuture<ResponseT> callAsync(RequestT request, Transport transport) throws IOException {
+    return transport.performRequestAsync(request, this, null);
+  }
+
+  default CompletableFuture<ResponseT> callAsync(RequestT request, ApiClient<?, ?> client) throws IOException {
+    return client._transport().performRequestAsync(request, this, null);
   }
 }

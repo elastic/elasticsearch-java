@@ -19,12 +19,15 @@
 
 package co.elastic.clients.json.jackson;
 
+import co.elastic.clients.json.BufferingJsonGenerator;
+import co.elastic.clients.json.BufferingJsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.json.spi.JsonProvider;
@@ -35,18 +38,20 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.EnumSet;
 
-public class JacksonJsonpMapper extends JsonpMapperBase {
+public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJsonpMapper {
 
     private final JacksonJsonProvider provider;
     private final ObjectMapper objectMapper;
 
     private JacksonJsonpMapper(ObjectMapper objectMapper, JacksonJsonProvider provider) {
+        // No need to configure here, as this constructor is only called with the objectMapper
+        // of an existing JacksonJsonpMapper, and has therefore alredy been configured.
         this.objectMapper = objectMapper;
         this.provider = provider;
     }
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+        this.objectMapper = configure(objectMapper);
         // Order is important as JacksonJsonProvider(this) will get ObjectMapper
         this.provider = new JacksonJsonProvider(this);
     }
@@ -56,6 +61,13 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
             .configure(SerializationFeature.INDENT_OUTPUT, false)
             .setSerializationInclusion(JsonInclude.Include.NON_NULL)
         );
+    }
+
+    private static ObjectMapper configure(ObjectMapper objectMapper) {
+        // Accept single objects as collections. This is useful in the context of Elasticsearch since
+        // Lucene has no concept of multivalued field and fields with a single value will be returned
+        // as a single object even if other instances of the same field have multiple values.
+        return objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
     }
 
     @Override
@@ -99,6 +111,11 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
         } catch (IOException ioe) {
             throw JacksonUtils.convertException(ioe);
         }
+    }
+
+    @Override
+    public BufferingJsonGenerator createBufferingGenerator() {
+        return new JacksonJsonpGenerator.Buffering(this);
     }
 
     private class JacksonValueParser<T> extends JsonpDeserializerBase<T> {

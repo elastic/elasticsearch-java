@@ -36,11 +36,17 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
+import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
 import org.testcontainers.utility.DockerImageName;
 
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Base64;
 
 public class ElasticsearchTestServer implements AutoCloseable {
 
@@ -55,9 +61,30 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     public static synchronized ElasticsearchTestServer global() {
         if (global == null) {
-            System.out.println("Starting global ES test server.");
-            global = new ElasticsearchTestServer();
-            global.start();
+
+            // Try localhost:9200
+            try {
+                String localUrl = "http://localhost:9200";
+                HttpURLConnection connection = (HttpURLConnection) new URL(localUrl).openConnection();
+                connection.setRequestProperty("Authorization", "Basic " +
+                    Base64.getEncoder().encodeToString("elastic:changeme".getBytes(StandardCharsets.UTF_8)));
+
+                try (InputStream input = connection.getInputStream()) {
+                    String content = IOUtils.toString(input, StandardCharsets.UTF_8);
+                    if (content.contains("You Know, for Search")) {
+                        System.out.println("Found a running ES server at http://localhost:9200/");
+
+                        global = new ElasticsearchTestServer();
+                        global.setup(localUrl, null);
+                    }
+                }
+            } catch (Exception e) {
+                // Create container
+                System.out.println("Starting global ES test server.");
+                global = new ElasticsearchTestServer();
+                global.start();
+            }
+
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("Stopping global ES test server.");
                 global.close();
@@ -70,8 +97,27 @@ public class ElasticsearchTestServer implements AutoCloseable {
         this.plugins = plugins;
     }
 
+    protected void setup(String url, SSLContext sslContext) {
+        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
+        credsProv.setCredentials(
+            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
+        );
+        restClient = RestClient.builder(HttpHost.create(url))
+            .setHttpClientConfigCallback(hc -> hc
+                .setDefaultCredentialsProvider(credsProv)
+                .setSSLContext(sslContext)
+            )
+            .build();
+        transport = new RestClientTransport(restClient, mapper);
+        client = new ElasticsearchClient(transport);
+    }
+
     public synchronized ElasticsearchTestServer start() {
-        Version version = Version.VERSION.major() < 8 ? new Version(7,17,5,false) : new Version(8,3,3,false);
+        if (this.client != null) {
+            return this;
+        }
+
+        Version version = Version.VERSION.major() < 8 ? new Version(7,17,5,false) : new Version(8,12,0,false);
 
         // Note we could use version.major() + "." + version.minor() + "-SNAPSHOT" but plugins won't install on a snapshot version
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
@@ -101,25 +147,12 @@ public class ElasticsearchTestServer implements AutoCloseable {
             .withPassword("changeme");
         container.start();
 
-        int port = container.getMappedPort(9200);
-
         boolean useTLS = version.major() >= 8;
-        HttpHost host = new HttpHost("localhost", port, useTLS ? "https": "http");
 
         SSLContext sslContext = useTLS ? container.createSslContextFromCa() : null;
+        String url = (useTLS ? "https://" : "http://") + container.getHttpHostAddress();
 
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        restClient = RestClient.builder(host)
-            .setHttpClientConfigCallback(hc -> hc
-                .setDefaultCredentialsProvider(credsProv)
-                .setSSLContext(sslContext)
-            )
-            .build();
-        transport = new RestClientTransport(restClient, mapper);
-        client = new ElasticsearchClient(transport);
+        setup(url, sslContext);
 
         return this;
     }
