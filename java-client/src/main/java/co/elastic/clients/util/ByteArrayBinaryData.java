@@ -43,14 +43,14 @@ public class ByteArrayBinaryData implements BinaryData {
     private final int length;
     private final String contentType;
 
-    ByteArrayBinaryData(byte[] bytes, int offset, int length, String contentType) {
+    public ByteArrayBinaryData(byte[] bytes, int offset, int length, String contentType) {
         this.contentType = contentType;
         this.bytes = bytes;
         this.offset = offset;
         this.length = length;
     }
 
-    ByteArrayBinaryData(byte[] bytes, String contentType) {
+    public ByteArrayBinaryData(byte[] bytes, String contentType) {
         this.contentType = contentType;
         this.bytes = bytes;
         this.offset = 0;
