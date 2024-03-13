@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,16 +59,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelPrefixStrings implements JsonpSerializable {
+	@Nullable
 	private final String ingest;
 
+	@Nullable
 	private final String search;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TrainedModelPrefixStrings(Builder builder) {
 
-		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+		this.ingest = builder.ingest;
+		this.search = builder.search;
 
 	}
 
@@ -78,19 +79,21 @@ public class TrainedModelPrefixStrings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - String prepended to input at ingest
+	 * String prepended to input at ingest
 	 * <p>
 	 * API name: {@code ingest}
 	 */
+	@Nullable
 	public final String ingest() {
 		return this.ingest;
 	}
 
 	/**
-	 * Required - String prepended to input at search
+	 * String prepended to input at search
 	 * <p>
 	 * API name: {@code search}
 	 */
+	@Nullable
 	public final String search() {
 		return this.search;
 	}
@@ -106,11 +109,16 @@ public class TrainedModelPrefixStrings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("ingest");
-		generator.write(this.ingest);
+		if (this.ingest != null) {
+			generator.writeKey("ingest");
+			generator.write(this.ingest);
 
-		generator.writeKey("search");
-		generator.write(this.search);
+		}
+		if (this.search != null) {
+			generator.writeKey("search");
+			generator.write(this.search);
+
+		}
 
 	}
 
@@ -128,26 +136,28 @@ public class TrainedModelPrefixStrings implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelPrefixStrings> {
+		@Nullable
 		private String ingest;
 
+		@Nullable
 		private String search;
 
 		/**
-		 * Required - String prepended to input at ingest
+		 * String prepended to input at ingest
 		 * <p>
 		 * API name: {@code ingest}
 		 */
-		public final Builder ingest(String value) {
+		public final Builder ingest(@Nullable String value) {
 			this.ingest = value;
 			return this;
 		}
 
 		/**
-		 * Required - String prepended to input at search
+		 * String prepended to input at search
 		 * <p>
 		 * API name: {@code search}
 		 */
-		public final Builder search(String value) {
+		public final Builder search(@Nullable String value) {
 			this.search = value;
 			return this;
 		}

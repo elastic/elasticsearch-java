@@ -103,6 +103,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String platformArchitecture;
 
+	@Nullable
+	private final TrainedModelPrefixStrings prefixStrings;
+
 	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
@@ -120,6 +123,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.modelSizeBytes = builder.modelSizeBytes;
 		this.modelType = builder.modelType;
 		this.platformArchitecture = builder.platformArchitecture;
+		this.prefixStrings = builder.prefixStrings;
 		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
 
 	}
@@ -256,6 +260,16 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Optional prefix strings applied at inference
+	 * <p>
+	 * API name: {@code prefix_strings}
+	 */
+	@Nullable
+	public final TrainedModelPrefixStrings prefixStrings() {
+		return this.prefixStrings;
+	}
+
+	/**
 	 * An array of tags to organize the model.
 	 * <p>
 	 * API name: {@code tags}
@@ -319,6 +333,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			generator.write(this.platformArchitecture);
 
 		}
+		if (this.prefixStrings != null) {
+			generator.writeKey("prefix_strings");
+			this.prefixStrings.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
@@ -372,6 +391,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private String platformArchitecture;
+
+		@Nullable
+		private TrainedModelPrefixStrings prefixStrings;
 
 		@Nullable
 		private List<String> tags;
@@ -537,6 +559,26 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Optional prefix strings applied at inference
+		 * <p>
+		 * API name: {@code prefix_strings}
+		 */
+		public final Builder prefixStrings(@Nullable TrainedModelPrefixStrings value) {
+			this.prefixStrings = value;
+			return this;
+		}
+
+		/**
+		 * Optional prefix strings applied at inference
+		 * <p>
+		 * API name: {@code prefix_strings}
+		 */
+		public final Builder prefixStrings(
+				Function<TrainedModelPrefixStrings.Builder, ObjectBuilder<TrainedModelPrefixStrings>> fn) {
+			return this.prefixStrings(fn.apply(new TrainedModelPrefixStrings.Builder()).build());
+		}
+
+		/**
 		 * An array of tags to organize the model.
 		 * <p>
 		 * API name: {@code tags}
@@ -598,6 +640,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::modelSizeBytes, JsonpDeserializer.longDeserializer(), "model_size_bytes");
 		op.add(Builder::modelType, TrainedModelType._DESERIALIZER, "model_type");
 		op.add(Builder::platformArchitecture, JsonpDeserializer.stringDeserializer(), "platform_architecture");
+		op.add(Builder::prefixStrings, TrainedModelPrefixStrings._DESERIALIZER, "prefix_strings");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}

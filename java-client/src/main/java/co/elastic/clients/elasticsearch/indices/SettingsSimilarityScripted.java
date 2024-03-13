@@ -50,28 +50,31 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.SettingsSimilarityScriptedTfidf
+// typedef: indices._types.SettingsSimilarityScripted
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.SettingsSimilarityScriptedTfidf">API
+ *      "../doc-files/api-spec.html#indices._types.SettingsSimilarityScripted">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVariant, JsonpSerializable {
+public class SettingsSimilarityScripted implements SettingsSimilarityVariant, JsonpSerializable {
 	private final Script script;
+
+	@Nullable
+	private final Script weightScript;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private SettingsSimilarityScriptedTfidf(Builder builder) {
+	private SettingsSimilarityScripted(Builder builder) {
 
 		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+		this.weightScript = builder.weightScript;
 
 	}
 
-	public static SettingsSimilarityScriptedTfidf of(
-			Function<Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
+	public static SettingsSimilarityScripted of(Function<Builder, ObjectBuilder<SettingsSimilarityScripted>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -80,7 +83,7 @@ public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVarian
 	 */
 	@Override
 	public SettingsSimilarity.Kind _settingsSimilarityKind() {
-		return SettingsSimilarity.Kind.ScriptedTfidf;
+		return SettingsSimilarity.Kind.Scripted;
 	}
 
 	/**
@@ -88,6 +91,14 @@ public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVarian
 	 */
 	public final Script script() {
 		return this.script;
+	}
+
+	/**
+	 * API name: {@code weight_script}
+	 */
+	@Nullable
+	public final Script weightScript() {
+		return this.weightScript;
 	}
 
 	/**
@@ -101,8 +112,16 @@ public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVarian
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.write("type", "scripted");
+
 		generator.writeKey("script");
 		this.script.serialize(generator, mapper);
+
+		if (this.weightScript != null) {
+			generator.writeKey("weight_script");
+			this.weightScript.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -114,13 +133,16 @@ public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVarian
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SettingsSimilarityScriptedTfidf}.
+	 * Builder for {@link SettingsSimilarityScripted}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<SettingsSimilarityScriptedTfidf> {
+				ObjectBuilder<SettingsSimilarityScripted> {
 		private Script script;
+
+		@Nullable
+		private Script weightScript;
 
 		/**
 		 * Required - API name: {@code script}
@@ -137,37 +159,54 @@ public class SettingsSimilarityScriptedTfidf implements SettingsSimilarityVarian
 			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code weight_script}
+		 */
+		public final Builder weightScript(@Nullable Script value) {
+			this.weightScript = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code weight_script}
+		 */
+		public final Builder weightScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.weightScript(fn.apply(new Script.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link SettingsSimilarityScriptedTfidf}.
+		 * Builds a {@link SettingsSimilarityScripted}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public SettingsSimilarityScriptedTfidf build() {
+		public SettingsSimilarityScripted build() {
 			_checkSingleUse();
 
-			return new SettingsSimilarityScriptedTfidf(this);
+			return new SettingsSimilarityScripted(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SettingsSimilarityScriptedTfidf}
+	 * Json deserializer for {@link SettingsSimilarityScripted}
 	 */
-	public static final JsonpDeserializer<SettingsSimilarityScriptedTfidf> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SettingsSimilarityScriptedTfidf::setupSettingsSimilarityScriptedTfidfDeserializer);
+	public static final JsonpDeserializer<SettingsSimilarityScripted> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SettingsSimilarityScripted::setupSettingsSimilarityScriptedDeserializer);
 
-	protected static void setupSettingsSimilarityScriptedTfidfDeserializer(
-			ObjectDeserializer<SettingsSimilarityScriptedTfidf.Builder> op) {
+	protected static void setupSettingsSimilarityScriptedDeserializer(
+			ObjectDeserializer<SettingsSimilarityScripted.Builder> op) {
 
 		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::weightScript, Script._DESERIALIZER, "weight_script");
 
+		op.ignore("type");
 	}
 
 }
