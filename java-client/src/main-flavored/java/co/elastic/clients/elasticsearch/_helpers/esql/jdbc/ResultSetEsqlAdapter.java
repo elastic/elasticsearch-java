@@ -19,11 +19,12 @@
 
 package co.elastic.clients.elasticsearch._helpers.esql.jdbc;
 
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._helpers.esql.EsqlAdapterBase;
 import co.elastic.clients.elasticsearch._helpers.esql.EsqlMetadata;
-import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import jakarta.json.stream.JsonParser;
 
@@ -46,7 +47,8 @@ public class ResultSetEsqlAdapter extends EsqlAdapterBase<ResultSet> {
     }
 
     @Override
-    public ResultSet deserialize(ElasticsearchEsqlClient client, QueryRequest request, BinaryResponse response) throws IOException {
+    public ResultSet deserialize(ApiClient<ElasticsearchTransport, ?> client, QueryRequest request, BinaryResponse response)
+        throws IOException {
         JsonpMapper mapper = client._jsonpMapper();
         JsonParser parser = mapper.jsonProvider().createParser(response.content());
         EsqlMetadata metadata = EsqlAdapterBase.readHeader(parser, mapper);

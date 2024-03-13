@@ -19,8 +19,9 @@
 
 package co.elastic.clients.elasticsearch._helpers.esql;
 
-import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 
 import java.io.IOException;
@@ -42,6 +43,5 @@ public interface EsqlAdapter<Result> {
     /**
      * Deserialize the raw http response returned by the server
      */
-    Result deserialize(ElasticsearchEsqlClient client, QueryRequest request, BinaryResponse response) throws IOException;
-
+    Result deserialize(ApiClient<ElasticsearchTransport, ?> client, QueryRequest request, BinaryResponse response) throws IOException;
 }

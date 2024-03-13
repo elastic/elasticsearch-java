@@ -19,12 +19,13 @@
 
 package co.elastic.clients.elasticsearch._helpers.esql;
 
-import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
 import co.elastic.clients.json.BufferingJsonGenerator;
 import co.elastic.clients.json.BufferingJsonpMapper;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import jakarta.json.stream.JsonParser;
 
@@ -63,7 +64,8 @@ class ObjectsEsqlAdapter<T> implements EsqlAdapter<Iterable<T>> {
     }
 
     @Override
-    public Iterable<T> deserialize(ElasticsearchEsqlClient client, QueryRequest request, BinaryResponse response) throws IOException {
+    public Iterable<T> deserialize(ApiClient<ElasticsearchTransport, ?> client, QueryRequest request, BinaryResponse response)
+        throws IOException {
         JsonpMapper mapper = client._jsonpMapper();
 
         if (!(mapper instanceof BufferingJsonpMapper)) {

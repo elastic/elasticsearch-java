@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._helpers.esql;
 
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
@@ -44,6 +45,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class EsqlAdapterEndToEndTest extends Assertions {
 
@@ -140,6 +142,46 @@ public class EsqlAdapterEndToEndTest extends Assertions {
 
         assertFalse(it.hasNext());
 
+    }
+
+    @Test
+    public void asyncObjects() throws Exception {
+
+        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(esClient._transport(), esClient._transportOptions());
+
+
+        CompletableFuture<Iterable<EmpData>> future = asyncClient.esql().query(
+            ObjectsEsqlAdapter.of(EmpData.class),
+            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | SORT emp_no | LIMIT 300",
+            // Testing parameters. Note that FROM and LIMIT do not accept parameters
+            "10042", "10002"
+        );
+
+        future.thenApply(result -> {
+                Iterator<EmpData> it = result.iterator();
+
+                {
+                    EmpData emp = it.next();
+                    assertEquals("10002", emp.empNo);
+                    List<String> jobPositions = emp.jobPositions;
+                    // In addition to the value, this tests that single strings are correctly deserialized as a list
+                    assertEquals(Arrays.asList("Senior Team Lead"), emp.jobPositions);
+                }
+
+                {
+                    EmpData emp = it.next();
+                    assertEquals("10042", emp.empNo);
+                    assertEquals(Arrays.asList("Architect", "Business Analyst", "Internship", "Junior Developer"), emp.jobPositions);
+
+                    assertEquals("1993-03-21T00:00:00Z[UTC]",
+                        DateTimeFormatter.ISO_DATE_TIME.format(emp.hireDate.toInstant().atZone(ZoneId.of("UTC")))
+                    );
+                }
+
+                assertFalse(it.hasNext());
+                return null;
+            }
+        ).get();
     }
 
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

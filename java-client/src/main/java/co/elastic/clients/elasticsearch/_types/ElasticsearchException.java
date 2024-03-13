@@ -38,7 +38,8 @@ public class ElasticsearchException extends RuntimeException {
 	@Nullable
 	private final TransportHttpClient.Response httpResponse;
 
-	public ElasticsearchException(String endpointId, ErrorResponse response, @Nullable TransportHttpClient.Response httpResponse) {
+	public ElasticsearchException(String endpointId, ErrorResponse response,
+			@Nullable TransportHttpClient.Response httpResponse) {
 		super("[" + endpointId + "] failed: [" + response.error().type() + "] " + response.error().reason());
 		this.response = response;
 		this.endpointId = endpointId;
