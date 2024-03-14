@@ -36,7 +36,7 @@ public interface EsqlAdapter<Result> {
     String format();
 
     /**
-     * For JSON results, whether the result should be organized in rows or columns
+     * For JSON like results, whether the result should be organized in rows or columns
      */
     boolean columnar();
 
