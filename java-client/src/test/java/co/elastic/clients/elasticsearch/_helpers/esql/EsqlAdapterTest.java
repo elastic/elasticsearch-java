@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
+import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.testkit.MockHttpClient;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
