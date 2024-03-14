@@ -45,7 +45,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityBm25 bm25}
+	 * Creates a builder for the {@link SettingsSimilarityBm25 BM25}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarityBm25.Builder bm25() {
@@ -53,7 +53,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityBm25 bm25}
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityBm25 BM25}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarity bm25(
@@ -64,7 +64,26 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityDfi dfi}
+	 * Creates a builder for the {@link SettingsSimilarityBoolean boolean}
+	 * {@code SettingsSimilarity} variant.
+	 */
+	public static SettingsSimilarityBoolean.Builder boolean_() {
+		return new SettingsSimilarityBoolean.Builder();
+	}
+
+	/**
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityBoolean boolean}
+	 * {@code SettingsSimilarity} variant.
+	 */
+	public static SettingsSimilarity boolean_(
+			Function<SettingsSimilarityBoolean.Builder, ObjectBuilder<SettingsSimilarityBoolean>> fn) {
+		SettingsSimilarity.Builder builder = new SettingsSimilarity.Builder();
+		builder.boolean_(fn.apply(new SettingsSimilarityBoolean.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SettingsSimilarityDfi DFI}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarityDfi.Builder dfi() {
@@ -72,7 +91,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityDfi dfi}
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityDfi DFI}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarity dfi(
@@ -83,7 +102,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityDfr dfr}
+	 * Creates a builder for the {@link SettingsSimilarityDfr DFR}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarityDfr.Builder dfr() {
@@ -91,7 +110,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityDfr dfr}
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityDfr DFR}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarity dfr(
@@ -102,7 +121,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityIb ib}
+	 * Creates a builder for the {@link SettingsSimilarityIb IB}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarityIb.Builder ib() {
@@ -110,7 +129,7 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityIb ib}
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityIb IB}
 	 * {@code SettingsSimilarity} variant.
 	 */
 	public static SettingsSimilarity ib(
@@ -121,59 +140,59 @@ public class SettingsSimilarityBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityLmd lmd}
+	 * Creates a builder for the {@link SettingsSimilarityLmd LMDirichlet}
 	 * {@code SettingsSimilarity} variant.
 	 */
-	public static SettingsSimilarityLmd.Builder lmd() {
+	public static SettingsSimilarityLmd.Builder lmdirichlet() {
 		return new SettingsSimilarityLmd.Builder();
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityLmd lmd}
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityLmd LMDirichlet}
 	 * {@code SettingsSimilarity} variant.
 	 */
-	public static SettingsSimilarity lmd(
+	public static SettingsSimilarity lmdirichlet(
 			Function<SettingsSimilarityLmd.Builder, ObjectBuilder<SettingsSimilarityLmd>> fn) {
 		SettingsSimilarity.Builder builder = new SettingsSimilarity.Builder();
-		builder.lmd(fn.apply(new SettingsSimilarityLmd.Builder()).build());
+		builder.lmdirichlet(fn.apply(new SettingsSimilarityLmd.Builder()).build());
 		return builder.build();
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityLmj lmj}
+	 * Creates a builder for the {@link SettingsSimilarityLmj LMJelinekMercer}
 	 * {@code SettingsSimilarity} variant.
 	 */
-	public static SettingsSimilarityLmj.Builder lmj() {
+	public static SettingsSimilarityLmj.Builder lmjelinekmercer() {
 		return new SettingsSimilarityLmj.Builder();
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityLmj lmj}
-	 * {@code SettingsSimilarity} variant.
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityLmj
+	 * LMJelinekMercer} {@code SettingsSimilarity} variant.
 	 */
-	public static SettingsSimilarity lmj(
+	public static SettingsSimilarity lmjelinekmercer(
 			Function<SettingsSimilarityLmj.Builder, ObjectBuilder<SettingsSimilarityLmj>> fn) {
 		SettingsSimilarity.Builder builder = new SettingsSimilarity.Builder();
-		builder.lmj(fn.apply(new SettingsSimilarityLmj.Builder()).build());
+		builder.lmjelinekmercer(fn.apply(new SettingsSimilarityLmj.Builder()).build());
 		return builder.build();
 	}
 
 	/**
-	 * Creates a builder for the {@link SettingsSimilarityScriptedTfidf
-	 * scripted_tfidf} {@code SettingsSimilarity} variant.
+	 * Creates a builder for the {@link SettingsSimilarityScripted scripted}
+	 * {@code SettingsSimilarity} variant.
 	 */
-	public static SettingsSimilarityScriptedTfidf.Builder scriptedTfidf() {
-		return new SettingsSimilarityScriptedTfidf.Builder();
+	public static SettingsSimilarityScripted.Builder scripted() {
+		return new SettingsSimilarityScripted.Builder();
 	}
 
 	/**
-	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityScriptedTfidf
-	 * scripted_tfidf} {@code SettingsSimilarity} variant.
+	 * Creates a SettingsSimilarity of the {@link SettingsSimilarityScripted
+	 * scripted} {@code SettingsSimilarity} variant.
 	 */
-	public static SettingsSimilarity scriptedTfidf(
-			Function<SettingsSimilarityScriptedTfidf.Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
+	public static SettingsSimilarity scripted(
+			Function<SettingsSimilarityScripted.Builder, ObjectBuilder<SettingsSimilarityScripted>> fn) {
 		SettingsSimilarity.Builder builder = new SettingsSimilarity.Builder();
-		builder.scriptedTfidf(fn.apply(new SettingsSimilarityScriptedTfidf.Builder()).build());
+		builder.scripted(fn.apply(new SettingsSimilarityScripted.Builder()).build());
 		return builder.build();
 	}
 

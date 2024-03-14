@@ -225,8 +225,7 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final Queries queries;
 
-	@Nullable
-	private final SettingsSimilarity similarity;
+	private final Map<String, SettingsSimilarity> similarity;
 
 	@Nullable
 	private final MappingLimitSettings mapping;
@@ -297,7 +296,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.settings = builder.settings;
 		this.timeSeries = builder.timeSeries;
 		this.queries = builder.queries;
-		this.similarity = builder.similarity;
+		this.similarity = ApiTypeHelper.unmodifiable(builder.similarity);
 		this.mapping = builder.mapping;
 		this.indexingSlowlog = builder.indexingSlowlog;
 		this.indexingPressure = builder.indexingPressure;
@@ -735,8 +734,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code similarity}
 	 */
-	@Nullable
-	public final SettingsSimilarity similarity() {
+	public final Map<String, SettingsSimilarity> similarity() {
 		return this.similarity;
 	}
 
@@ -1054,9 +1052,15 @@ public class IndexSettings implements JsonpSerializable {
 			this.queries.serialize(generator, mapper);
 
 		}
-		if (this.similarity != null) {
+		if (ApiTypeHelper.isDefined(this.similarity)) {
 			generator.writeKey("similarity");
-			this.similarity.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, SettingsSimilarity> item0 : this.similarity.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.mapping != null) {
@@ -1277,7 +1281,7 @@ public class IndexSettings implements JsonpSerializable {
 		private Queries queries;
 
 		@Nullable
-		private SettingsSimilarity similarity;
+		private Map<String, SettingsSimilarity> similarity;
 
 		@Nullable
 		private MappingLimitSettings mapping;
@@ -1858,9 +1862,11 @@ public class IndexSettings implements JsonpSerializable {
 		 * scored.
 		 * <p>
 		 * API name: {@code similarity}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>similarity</code>.
 		 */
-		public final Builder similarity(@Nullable SettingsSimilarity value) {
-			this.similarity = value;
+		public final Builder similarity(Map<String, SettingsSimilarity> map) {
+			this.similarity = _mapPutAll(this.similarity, map);
 			return this;
 		}
 
@@ -1869,9 +1875,25 @@ public class IndexSettings implements JsonpSerializable {
 		 * scored.
 		 * <p>
 		 * API name: {@code similarity}
+		 * <p>
+		 * Adds an entry to <code>similarity</code>.
 		 */
-		public final Builder similarity(Function<SettingsSimilarity.Builder, ObjectBuilder<SettingsSimilarity>> fn) {
-			return this.similarity(fn.apply(new SettingsSimilarity.Builder()).build());
+		public final Builder similarity(String key, SettingsSimilarity value) {
+			this.similarity = _mapPut(this.similarity, key, value);
+			return this;
+		}
+
+		/**
+		 * Configure custom similarity settings to customize how search results are
+		 * scored.
+		 * <p>
+		 * API name: {@code similarity}
+		 * <p>
+		 * Adds an entry to <code>similarity</code> using a builder lambda.
+		 */
+		public final Builder similarity(String key,
+				Function<SettingsSimilarity.Builder, ObjectBuilder<SettingsSimilarity>> fn) {
+			return similarity(key, fn.apply(new SettingsSimilarity.Builder()).build());
 		}
 
 		/**
@@ -2030,7 +2052,8 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::timeSeries, IndexSettingsTimeSeries._DESERIALIZER, "time_series");
 		op.add(Builder::queries, Queries._DESERIALIZER, "queries");
-		op.add(Builder::similarity, SettingsSimilarity._DESERIALIZER, "similarity");
+		op.add(Builder::similarity, JsonpDeserializer.stringMapDeserializer(SettingsSimilarity._DESERIALIZER),
+				"similarity");
 		op.add(Builder::mapping, MappingLimitSettings._DESERIALIZER, "mapping");
 		op.add(Builder::indexingSlowlog, IndexingSlowlogSettings._DESERIALIZER, "indexing.slowlog");
 		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");

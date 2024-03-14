@@ -17,19 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -46,138 +47,91 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.mapping.ObjectProperty
+// typedef: indices._types.SettingsSimilarityBoolean
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.ObjectProperty">API
+ *      "../doc-files/api-spec.html#indices._types.SettingsSimilarityBoolean">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean enabled;
-
-	@Nullable
-	private final Boolean subobjects;
-
+public class SettingsSimilarityBoolean implements SettingsSimilarityVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
-	private ObjectProperty(Builder builder) {
-		super(builder);
-
-		this.enabled = builder.enabled;
-		this.subobjects = builder.subobjects;
+	private SettingsSimilarityBoolean(Builder builder) {
 
 	}
 
-	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+	public static SettingsSimilarityBoolean of(Function<Builder, ObjectBuilder<SettingsSimilarityBoolean>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Property variant kind.
+	 * SettingsSimilarity variant kind.
 	 */
 	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Object;
+	public SettingsSimilarity.Kind _settingsSimilarityKind() {
+		return SettingsSimilarity.Kind.Boolean;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Serialize this object to JSON.
 	 */
-	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
-	}
-
-	/**
-	 * API name: {@code subobjects}
-	 */
-	@Nullable
-	public final Boolean subobjects() {
-		return this.subobjects;
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "object");
-		super.serializeInternal(generator, mapper);
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
+		generator.write("type", "boolean");
 
-		}
-		if (this.subobjects != null) {
-			generator.writeKey("subobjects");
-			generator.write(this.subobjects);
+	}
 
-		}
-
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ObjectProperty}.
+	 * Builder for {@link SettingsSimilarityBoolean}.
 	 */
 
-	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<ObjectProperty> {
-		@Nullable
-		private Boolean enabled;
-
-		@Nullable
-		private Boolean subobjects;
-
-		/**
-		 * API name: {@code enabled}
-		 */
-		public final Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code subobjects}
-		 */
-		public final Builder subobjects(@Nullable Boolean value) {
-			this.subobjects = value;
-			return this;
-		}
-
+				ObjectBuilder<SettingsSimilarityBoolean> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link ObjectProperty}.
+		 * Builds a {@link SettingsSimilarityBoolean}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ObjectProperty build() {
+		public SettingsSimilarityBoolean build() {
 			_checkSingleUse();
 
-			return new ObjectProperty(this);
+			return new SettingsSimilarityBoolean(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ObjectProperty}
+	 * Json deserializer for {@link SettingsSimilarityBoolean}
 	 */
-	public static final JsonpDeserializer<ObjectProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ObjectProperty::setupObjectPropertyDeserializer);
+	public static final JsonpDeserializer<SettingsSimilarityBoolean> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SettingsSimilarityBoolean::setupSettingsSimilarityBooleanDeserializer);
 
-	protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
-		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::subobjects, JsonpDeserializer.booleanDeserializer(), "subobjects");
+	protected static void setupSettingsSimilarityBooleanDeserializer(
+			ObjectDeserializer<SettingsSimilarityBoolean.Builder> op) {
 
 		op.ignore("type");
 	}

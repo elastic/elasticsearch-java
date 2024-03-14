@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -34,6 +33,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -60,19 +60,22 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpSerializable {
-	private final double b;
+	@Nullable
+	private final Double b;
 
-	private final boolean discountOverlaps;
+	@Nullable
+	private final Boolean discountOverlaps;
 
-	private final double k1;
+	@Nullable
+	private final Double k1;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SettingsSimilarityBm25(Builder builder) {
 
-		this.b = ApiTypeHelper.requireNonNull(builder.b, this, "b");
-		this.discountOverlaps = ApiTypeHelper.requireNonNull(builder.discountOverlaps, this, "discountOverlaps");
-		this.k1 = ApiTypeHelper.requireNonNull(builder.k1, this, "k1");
+		this.b = builder.b;
+		this.discountOverlaps = builder.discountOverlaps;
+		this.k1 = builder.k1;
 
 	}
 
@@ -89,23 +92,26 @@ public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpS
 	}
 
 	/**
-	 * Required - API name: {@code b}
+	 * API name: {@code b}
 	 */
-	public final double b() {
+	@Nullable
+	public final Double b() {
 		return this.b;
 	}
 
 	/**
-	 * Required - API name: {@code discount_overlaps}
+	 * API name: {@code discount_overlaps}
 	 */
-	public final boolean discountOverlaps() {
+	@Nullable
+	public final Boolean discountOverlaps() {
 		return this.discountOverlaps;
 	}
 
 	/**
-	 * Required - API name: {@code k1}
+	 * API name: {@code k1}
 	 */
-	public final double k1() {
+	@Nullable
+	public final Double k1() {
 		return this.k1;
 	}
 
@@ -120,14 +126,23 @@ public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpS
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("b");
-		generator.write(this.b);
+		generator.write("type", "BM25");
 
-		generator.writeKey("discount_overlaps");
-		generator.write(this.discountOverlaps);
+		if (this.b != null) {
+			generator.writeKey("b");
+			generator.write(this.b);
 
-		generator.writeKey("k1");
-		generator.write(this.k1);
+		}
+		if (this.discountOverlaps != null) {
+			generator.writeKey("discount_overlaps");
+			generator.write(this.discountOverlaps);
+
+		}
+		if (this.k1 != null) {
+			generator.writeKey("k1");
+			generator.write(this.k1);
+
+		}
 
 	}
 
@@ -145,32 +160,35 @@ public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpS
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SettingsSimilarityBm25> {
+		@Nullable
 		private Double b;
 
+		@Nullable
 		private Boolean discountOverlaps;
 
+		@Nullable
 		private Double k1;
 
 		/**
-		 * Required - API name: {@code b}
+		 * API name: {@code b}
 		 */
-		public final Builder b(double value) {
+		public final Builder b(@Nullable Double value) {
 			this.b = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code discount_overlaps}
+		 * API name: {@code discount_overlaps}
 		 */
-		public final Builder discountOverlaps(boolean value) {
+		public final Builder discountOverlaps(@Nullable Boolean value) {
 			this.discountOverlaps = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code k1}
+		 * API name: {@code k1}
 		 */
-		public final Builder k1(double value) {
+		public final Builder k1(@Nullable Double value) {
 			this.k1 = value;
 			return this;
 		}
@@ -208,6 +226,7 @@ public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpS
 		op.add(Builder::discountOverlaps, JsonpDeserializer.booleanDeserializer(), "discount_overlaps");
 		op.add(Builder::k1, JsonpDeserializer.doubleDeserializer(), "k1");
 
+		op.ignore("type");
 	}
 
 }
