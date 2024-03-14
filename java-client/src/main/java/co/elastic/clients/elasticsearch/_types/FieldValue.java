@@ -69,6 +69,10 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 		return new FieldValue(Kind.Any, value);
 	}
 
+	public static FieldValue of(Object value) {
+		return of(JsonData.of(value));
+	}
+
 	public static final FieldValue NULL = new FieldValue(Kind.Null, null);
 	public static final FieldValue TRUE = new FieldValue(Kind.Boolean, Boolean.TRUE);
 	public static final FieldValue FALSE = new FieldValue(Kind.Boolean, Boolean.FALSE);

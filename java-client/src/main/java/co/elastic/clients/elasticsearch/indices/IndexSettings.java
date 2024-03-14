@@ -235,6 +235,8 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final IndexSettings settings;
 
+	private final Map<String, SettingsSimilarity> similarity;
+
 	@Nullable
 	private final MappingLimitSettings mapping;
 
@@ -308,6 +310,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
+		this.similarity = ApiTypeHelper.unmodifiable(builder.similarity);
 		this.mapping = builder.mapping;
 		this.indexingSlowlog = builder.indexingSlowlog;
 		this.indexingPressure = builder.indexingPressure;
@@ -769,6 +772,16 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * Configure custom similarity settings to customize how search results are
+	 * scored.
+	 * <p>
+	 * API name: {@code similarity}
+	 */
+	public final Map<String, SettingsSimilarity> similarity() {
+		return this.similarity;
+	}
+
+	/**
 	 * Enable or disable dynamic mapping for an index.
 	 * <p>
 	 * API name: {@code mapping}
@@ -1103,6 +1116,17 @@ public class IndexSettings implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.similarity)) {
+			generator.writeKey("similarity");
+			generator.writeStartObject();
+			for (Map.Entry<String, SettingsSimilarity> item0 : this.similarity.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.mapping != null) {
 			generator.writeKey("mapping");
 			this.mapping.serialize(generator, mapper);
@@ -1331,6 +1355,9 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettings settings;
+
+		@Nullable
+		private Map<String, SettingsSimilarity> similarity;
 
 		@Nullable
 		private MappingLimitSettings mapping;
@@ -1897,6 +1924,45 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * Configure custom similarity settings to customize how search results are
+		 * scored.
+		 * <p>
+		 * API name: {@code similarity}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>similarity</code>.
+		 */
+		public final Builder similarity(Map<String, SettingsSimilarity> map) {
+			this.similarity = _mapPutAll(this.similarity, map);
+			return this;
+		}
+
+		/**
+		 * Configure custom similarity settings to customize how search results are
+		 * scored.
+		 * <p>
+		 * API name: {@code similarity}
+		 * <p>
+		 * Adds an entry to <code>similarity</code>.
+		 */
+		public final Builder similarity(String key, SettingsSimilarity value) {
+			this.similarity = _mapPut(this.similarity, key, value);
+			return this;
+		}
+
+		/**
+		 * Configure custom similarity settings to customize how search results are
+		 * scored.
+		 * <p>
+		 * API name: {@code similarity}
+		 * <p>
+		 * Adds an entry to <code>similarity</code> using a builder lambda.
+		 */
+		public final Builder similarity(String key,
+				Function<SettingsSimilarity.Builder, ObjectBuilder<SettingsSimilarity>> fn) {
+			return similarity(key, fn.apply(new SettingsSimilarity.Builder()).build());
+		}
+
+		/**
 		 * Enable or disable dynamic mapping for an index.
 		 * <p>
 		 * API name: {@code mapping}
@@ -2084,6 +2150,8 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::topMetricsMaxSize, JsonpDeserializer.integerDeserializer(), "top_metrics_max_size");
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::similarity, JsonpDeserializer.stringMapDeserializer(SettingsSimilarity._DESERIALIZER),
+				"similarity");
 		op.add(Builder::mapping, MappingLimitSettings._DESERIALIZER, "mapping");
 		op.add(Builder::indexingSlowlog, SlowlogSettings._DESERIALIZER, "indexing.slowlog");
 		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");

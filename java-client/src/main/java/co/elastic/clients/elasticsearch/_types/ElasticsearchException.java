@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import javax.annotation.Nullable;
+
 /**
  * Exception thrown by API client methods when Elasticsearch could not accept or
  * process a request.
