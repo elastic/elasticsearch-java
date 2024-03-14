@@ -17,9 +17,12 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._helpers.esql;
+package co.elastic.clients.elasticsearch._helpers.esql.objects;
 
 import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._helpers.esql.EsqlAdapter;
+import co.elastic.clients.elasticsearch._helpers.esql.EsqlAdapterBase;
+import co.elastic.clients.elasticsearch._helpers.esql.EsqlMetadata;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
 import co.elastic.clients.json.BufferingJsonGenerator;
 import co.elastic.clients.json.BufferingJsonpMapper;
@@ -37,7 +40,7 @@ import java.util.List;
 /**
  * And ES|QL adapter that returns an iterable of domain objects
  */
-class ObjectsEsqlAdapter<T> implements EsqlAdapter<Iterable<T>> {
+public class ObjectsEsqlAdapter<T> implements EsqlAdapter<Iterable<T>> {
 
     public static <T> ObjectsEsqlAdapter<T> of(Class<T> clazz) {
         return new ObjectsEsqlAdapter<>(clazz);
@@ -49,7 +52,7 @@ class ObjectsEsqlAdapter<T> implements EsqlAdapter<Iterable<T>> {
 
     private final Type type;
 
-    ObjectsEsqlAdapter(Type type) {
+    public ObjectsEsqlAdapter(Type type) {
         this.type = type;
     }
 
