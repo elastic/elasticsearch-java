@@ -1,0 +1,52 @@
+[[updating]]
+=== Updating single documents
+
+The {java-client} offers an easy way to update parts of documents.
+
+NOTE: See the {es-docs}/docs-update.html[{es} API documentation] for a full explanation of update requests.
+
+[discrete]
+==== Using the fluent DSL
+
+The example below updates the document with identifier `bk-1` from the `products` index.
+
+We have four important concepts in the following example:
+
+* the first object represents the whole document, in this case `Product`
+* the second object represents a part of the document, here `ProductName` to indicate to only update the `name` field
+* the third parameter is the actual request, built below with the fluent DSL
+* the fourth parameter is the class we want the document's JSON from the response to be mapped to
+
+NOTE: Use the {es-docs}/docs-index_.html[{es} API documentation] for overwriting a whole document.
+
+
+["source", "java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/UpdatingTest.java[update-by-id-dsl]
+--------------------------------------------------
+<1> The `Product` object representing the corresponding document.
+<2> The `ProductName` object representing the part of the `Product`, which should be updated.
+<3> The `update` request, with the index name and the document id.
+<4> The target class, here `Product`.
+
+[discrete]
+==== Using classic builders
+
+You can also use the classic builder pattern, if you're more used to it.
+["source", "java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/UpdatingTest.java[update-by-id-builder]
+--------------------------------------------------
+<1> Note, how the first generic parameter corresponds to the full document `Product` and the second parameter, which corresponds to `ProductName`.
+
+[discrete]
+==== Using the asynchronous client
+
+The examples above used the synchronous {es} client. All {es} APIs are also available in the asynchronous client, using the same request and response types. See also <<blocking-and-async>> for additional details.
+
+["source", "java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/UpdatingTest.java[update-by-id-dsl-async]
+--------------------------------------------------
+
+{doc-tests-blurb}
