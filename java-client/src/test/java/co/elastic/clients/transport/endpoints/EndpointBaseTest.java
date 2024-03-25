@@ -19,10 +19,13 @@
 
 package co.elastic.clients.transport.endpoints;
 
-import org.junit.jupiter.api.Assertions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch.core.PingRequest;
+import co.elastic.clients.testkit.ModelTestCase;
+import co.elastic.clients.transport.Endpoint;
 import org.junit.jupiter.api.Test;
 
-public class EndpointBaseTest extends Assertions {
+public class EndpointBaseTest extends ModelTestCase {
 
     @Test
     public void testPathEncoding() {
@@ -38,5 +41,28 @@ public class EndpointBaseTest extends Assertions {
         StringBuilder sb = new StringBuilder();
         EndpointBase.pathEncode(s, sb);
         return sb.toString();
+    }
+
+    @Test
+    public void testErrorDecoding() {
+        Endpoint<PingRequest, BooleanResponse, ErrorResponse> endpoint = PingRequest._ENDPOINT;
+
+        {
+            String json = "{\"error\":\"some error\"}";
+
+            ErrorResponse response = fromJson(json, endpoint.errorDeserializer(404));
+            assertEquals(404, response.status());
+            assertEquals("some error", response.error().reason());
+            assertEquals("http_status_404", response.error().type());
+        }
+
+        {
+            String json = "{\"status\":401,\"error\":{\"type\":\"the_error_type\",\"reason\":\"some error\"}}";
+
+            ErrorResponse response = fromJson(json, endpoint.errorDeserializer(404));
+            assertEquals(401, response.status()); // value in response body has precedence
+            assertEquals("some error", response.error().reason());
+            assertEquals("the_error_type", response.error().type());
+        }
     }
 }

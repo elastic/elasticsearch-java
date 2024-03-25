@@ -19,15 +19,21 @@
 
 package co.elastic.clients.transport.endpoints;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.transport.Endpoint;
+import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -66,6 +72,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
     protected final String id;
     protected final Function<RequestT, String> method;
     protected final Function<RequestT, String> requestUrl;
+    protected final Function<RequestT, Map<String, String>> pathParameters;
     protected final Function<RequestT, Map<String, String>> queryParameters;
     protected final Function<RequestT, Map<String, String>> headers;
     protected final Function<RequestT, Object> body;
@@ -74,6 +81,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
+        Function<RequestT, Map<String, String>> pathParameters,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         Function<RequestT, Object> body
@@ -81,6 +89,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
         this.id = id;
         this.method = method;
         this.requestUrl = requestUrl;
+        this.pathParameters = pathParameters;
         this.queryParameters = queryParameters;
         this.headers = headers;
         this.body = body;
@@ -99,6 +108,11 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
     @Override
     public String requestUrl(RequestT request) {
         return this.requestUrl.apply(request);
+    }
+
+    @Override
+    public Map<String, String> pathParameters(RequestT request) {
+        return this.pathParameters.apply(request);
     }
 
     @Override
@@ -125,7 +139,37 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
 
     @Override
     public JsonpDeserializer<ErrorResponse> errorDeserializer(int statusCode) {
-        return ErrorResponse._DESERIALIZER;
+        // Some errors (typically 404) only consist of a single "error" string (which is a shortcut for ErrorCause.reason)
+        // and no "status". So we need a deserializer that will set the status value if it's not in the payload
+        return new JsonpDeserializerBase<ErrorResponse>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
+            @Override
+            public ErrorResponse deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+                ErrorResponse.Builder builder = new ErrorResponse.Builder();
+                builder.status(statusCode);
+                while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
+                    JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
+                    switch (parser.getString()) {
+                        case "error":
+                            switch (event = parser.next()) {
+                                case VALUE_STRING:
+                                    builder.error(e -> e.reason(parser.getString()).type("http_status_" + statusCode));
+                                    break;
+                                default:
+                                    JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
+                                    builder.error(ErrorCause._DESERIALIZER.deserialize(parser, mapper, event));
+                                    break;
+                            }
+                            break;
+                        case "status":
+                            JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);
+                            builder.status(parser.getInt());
+                            break;
+                    }
+                }
+
+                return builder.build();
+            }
+        };
     }
 
     public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT> withResponseDeserializer(
@@ -135,6 +179,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
             id,
             method,
             requestUrl,
+            pathParameters,
             queryParameters,
             headers,
             body,

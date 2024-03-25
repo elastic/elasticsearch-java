@@ -20,8 +20,7 @@
 package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch.core.ExistsRequest;
-import co.elastic.clients.elasticsearch.logstash.PutPipelineRequest;
-import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.elasticsearch.security.SamlCompleteLogoutRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -32,10 +31,7 @@ public class BooleanEndpointTest extends Assertions {
         ExistsRequest er = ExistsRequest.of(r -> r.index("foo").id("1"));
         assertNull(ExistsRequest._ENDPOINT.body(er));
 
-        // This type has a lot of required properties that aren't the purpose of this test
-        try (ApiTypeHelper.DisabledChecksHandle handle = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
-            PutPipelineRequest ppr = PutPipelineRequest.of(r -> r);
-            assertNotNull(PutPipelineRequest._ENDPOINT.body(ppr));
-        }
+        SamlCompleteLogoutRequest sclr = SamlCompleteLogoutRequest.of(r -> r.ids("1").realm("r"));
+        assertNotNull(SamlCompleteLogoutRequest._ENDPOINT.body(sclr));
     }
 }

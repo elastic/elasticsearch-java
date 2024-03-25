@@ -19,12 +19,15 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * An endpoint links requests and responses to HTTP protocol encoding. It also defines the error response
@@ -55,6 +58,13 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
    * Get the URL path for a request.
    */
   String requestUrl(RequestT request);
+
+  /**
+   * Get the path parameters for a request.
+   */
+  default Map<String, String> pathParameters(RequestT request)  {
+    return Collections.emptyMap();
+  }
 
   /**
    * Get the query parameters for a request.
@@ -104,10 +114,27 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
           this.id(),
           this::method,
           this::requestUrl,
+          this::pathParameters,
           this::queryParameters,
           this::headers,
           this::body,
           null
       );
+  }
+
+  default ResponseT call(RequestT request, Transport transport) throws IOException {
+      return transport.performRequest(request, this, null);
+  }
+
+  default ResponseT call(RequestT request, ApiClient<?, ?> client) throws IOException {
+    return client._transport().performRequest(request, this, null);
+  }
+
+  default CompletableFuture<ResponseT> callAsync(RequestT request, Transport transport) throws IOException {
+    return transport.performRequestAsync(request, this, null);
+  }
+
+  default CompletableFuture<ResponseT> callAsync(RequestT request, ApiClient<?, ?> client) throws IOException {
+    return client._transport().performRequestAsync(request, this, null);
   }
 }
