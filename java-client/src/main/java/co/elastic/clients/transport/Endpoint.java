@@ -60,13 +60,6 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   String requestUrl(RequestT request);
 
   /**
-   * Get the path parameters for a request.
-   */
-  default Map<String, String> pathParameters(RequestT request)  {
-    return Collections.emptyMap();
-  }
-
-  /**
    * Get the query parameters for a request.
    */
   default Map<String, String> queryParameters(RequestT request) {
@@ -110,20 +103,19 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
 
   default BinaryEndpoint<RequestT> withBinaryResponse() {
-      return new BinaryEndpoint<>(
-          this.id(),
-          this::method,
-          this::requestUrl,
-          this::pathParameters,
-          this::queryParameters,
-          this::headers,
-          this::body,
-          null
-      );
+    return new BinaryEndpoint<>(
+        this.id(),
+        this::method,
+        this::requestUrl,
+        this::queryParameters,
+        this::headers,
+        this::body,
+        null
+    );
   }
 
   default ResponseT call(RequestT request, Transport transport) throws IOException {
-      return transport.performRequest(request, this, null);
+    return transport.performRequest(request, this, null);
   }
 
   default ResponseT call(RequestT request, ApiClient<?, ?> client) throws IOException {
