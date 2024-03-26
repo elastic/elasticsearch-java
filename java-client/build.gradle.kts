@@ -178,7 +178,7 @@ dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
     val elasticsearchVersion = "7.17.18"
-    val jacksonVersion = "2.13.3"
+    val jacksonVersion = "2.17.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
