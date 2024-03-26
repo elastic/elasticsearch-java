@@ -192,7 +192,7 @@ publishing {
 
 dependencies {
     val elasticsearchVersion = "8.10.0"
-    val jacksonVersion = "2.13.3"
+    val jacksonVersion = "2.17.0"
     val openTelemetryVersion = "1.29.0"
 
     // Apache 2.0
