@@ -33,7 +33,7 @@ java {
 
 
 dependencies {
-    val jacksonVersion = "2.13.3"
+    val jacksonVersion = "2.17.0"
 
     api("io.netty", "netty-codec-http", "4.1.93.Final")
 
