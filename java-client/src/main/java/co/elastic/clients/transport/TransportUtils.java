@@ -26,7 +26,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.*;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
@@ -71,7 +75,8 @@ public class TransportUtils {
             sslContext.init(null, tmf.getTrustManagers(), null);
             return sslContext;
 
-        } catch (CertificateException | NoSuchAlgorithmException | KeyManagementException | KeyStoreException | IOException e) {
+        } catch (CertificateException | NoSuchAlgorithmException | KeyManagementException |
+                 KeyStoreException | IOException e) {
             throw new RuntimeException(e);
         }
     }

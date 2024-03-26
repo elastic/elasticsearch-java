@@ -23,7 +23,11 @@ import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.util.ObjectBuilderBase;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 /**

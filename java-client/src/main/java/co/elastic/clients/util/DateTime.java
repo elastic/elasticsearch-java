@@ -19,7 +19,11 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.*;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 

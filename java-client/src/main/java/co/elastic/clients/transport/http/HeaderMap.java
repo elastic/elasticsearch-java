@@ -20,7 +20,12 @@
 package co.elastic.clients.transport.http;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A (string, string) map with case-insensitive keys.

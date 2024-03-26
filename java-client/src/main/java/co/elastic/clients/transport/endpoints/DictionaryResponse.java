@@ -19,7 +19,12 @@
 
 package co.elastic.clients.transport.endpoints;
 
-import co.elastic.clients.json.*;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
