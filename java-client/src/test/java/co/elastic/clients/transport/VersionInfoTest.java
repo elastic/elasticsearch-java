@@ -17,25 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.endpoints;
+package co.elastic.clients.transport;
 
-import co.elastic.clients.elasticsearch.core.ExistsRequest;
-import co.elastic.clients.elasticsearch.logstash.PutPipelineRequest;
-import co.elastic.clients.util.ApiTypeHelper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class BooleanEndpointTest extends Assertions {
+public class VersionInfoTest {
+    @Test
+    public void testFlavor() {
+        Assertions.assertEquals("stack", VersionInfo.FLAVOR);
+    }
 
     @Test
-    public void testHasRequestBody() {
-        ExistsRequest er = ExistsRequest.of(r -> r.index("foo").id("1"));
-        assertNull(ExistsRequest._ENDPOINT.body(er));
-
-        // This type has a lot of required properties that aren't the purpose of this test
-        try (ApiTypeHelper.DisabledChecksHandle handle = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
-            PutPipelineRequest ppr = PutPipelineRequest.of(r -> r);
-            assertNotNull(PutPipelineRequest._ENDPOINT.body(ppr));
-        }
+    public void testClientMeta() {
+        String version = VersionInfo.VERSION;
+        Assertions.assertTrue(ElasticsearchTransportBase.getClientMeta().startsWith("es=" + version + ",jv="));
     }
 }

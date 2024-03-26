@@ -21,12 +21,15 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
+import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.VisibleForTesting;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.util.VersionInfo;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.WarningsHandler;
 
+import javax.annotation.Nullable;
 import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.List;
@@ -39,25 +42,25 @@ public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;
 
-    private static final String CLIENT_META_HEADER = "X-Elastic-Client-Meta";
-    private static final String USER_AGENT_HEADER = "User-Agent";
-
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
     @VisibleForTesting
     static final String USER_AGENT_VALUE = getUserAgent();
 
-    static RestClientOptions of(TransportOptions options) {
+    static RestClientOptions of(@Nullable TransportOptions options) {
+        if (options == null) {
+            return initialOptions();
+        }
+
         if (options instanceof RestClientOptions) {
             return (RestClientOptions)options;
-
-        } else {
-            final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
-            options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
-            options.queryParameters().forEach(builder::setParameter);
-            builder.onWarnings(options.onWarnings());
-            return builder.build();
         }
+
+        final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
+        options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
+        options.queryParameters().forEach(builder::setParameter);
+        builder.onWarnings(options.onWarnings());
+        return builder.build();
     }
 
     public RestClientOptions(RequestOptions options) {
@@ -118,22 +121,44 @@ public class RestClientOptions implements TransportOptions {
 
         @Override
         public TransportOptions.Builder addHeader(String name, String value) {
-            if (name.equalsIgnoreCase(CLIENT_META_HEADER)) {
+            if (name.equalsIgnoreCase(HeaderMap.CLIENT_META)) {
                 // Not overridable
                 return this;
             }
-            if (name.equalsIgnoreCase(USER_AGENT_HEADER)) {
+            if (name.equalsIgnoreCase(HeaderMap.USER_AGENT)) {
                 // We must remove our own user-agent from the options, or we'll end up with multiple values for the header
-                builder.removeHeader(USER_AGENT_HEADER);
+                builder.removeHeader(HeaderMap.USER_AGENT);
             }
             builder.addHeader(name, value);
             return this;
         }
 
         @Override
+        public TransportOptions.Builder setHeader(String name, String value) {
+            if (name.equalsIgnoreCase(HeaderMap.CLIENT_META)) {
+                // Not overridable
+                return this;
+            }
+            builder.removeHeader(name).addHeader(name, value);
+            return this;
+        }
+
+        @Override
+        public TransportOptions.Builder removeHeader(String name) {
+            builder.removeHeader(name);
+            return this;
+        }
+
+        @Override
         public TransportOptions.Builder setParameter(String name, String value) {
+            // Should be remove and add, but we can't remove.
             builder.addParameter(name, value);
             return this;
+        }
+
+        @Override
+        public TransportOptions.Builder removeParameter(String name) {
+            throw new UnsupportedOperationException("This implementation does not support removing parameters");
         }
 
         /**
@@ -163,17 +188,17 @@ public class RestClientOptions implements TransportOptions {
     }
 
     static RestClientOptions initialOptions() {
-        return new RestClientOptions(RequestOptions.DEFAULT);
+        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
-        builder.removeHeader(CLIENT_META_HEADER);
-        builder.addHeader(CLIENT_META_HEADER, CLIENT_META_VALUE);
-        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(USER_AGENT_HEADER))) {
-            builder.addHeader(USER_AGENT_HEADER, USER_AGENT_VALUE);
+        builder.removeHeader(HeaderMap.CLIENT_META);
+        builder.addHeader(HeaderMap.CLIENT_META, CLIENT_META_VALUE);
+        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(HeaderMap.USER_AGENT))) {
+            builder.addHeader(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
         }
-        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase("Accept"))) {
-            builder.addHeader("Accept", RestClientTransport.JsonContentType.toString());
+        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(HeaderMap.ACCEPT))) {
+            builder.addHeader(HeaderMap.ACCEPT, RestClientTransport.JSON_CONTENT_TYPE);
         }
 
         return builder;
@@ -211,9 +236,9 @@ public class RestClientOptions implements TransportOptions {
             + metaVersion
             + ",jv="
             + System.getProperty("java.specification.version")
-            + ",hl=2"
             + ",t="
             + metaVersion
+            + ",hl=2"
             + ",hc="
             + (httpClientVersion == null ? "" : httpClientVersion.getRelease())
             + LanguageRuntimeVersions.getRuntimeMetadata();

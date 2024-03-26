@@ -69,11 +69,6 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         return this.responseParser;
     }
 
-    @Override
-    public JsonpDeserializer<ErrorResponse> errorDeserializer(int statusCode) {
-        return ErrorResponse._DESERIALIZER;
-    }
-
     public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT> withResponseDeserializer(
         JsonpDeserializer<NewResponseT> newResponseParser
     ) {

@@ -27,8 +27,10 @@ import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.EnumSet;
@@ -41,20 +43,32 @@ public class ByteArrayBinaryData implements BinaryData {
     private final int length;
     private final String contentType;
 
-    ByteArrayBinaryData(byte[] bytes, int offset, int length, String contentType) {
+    public ByteArrayBinaryData(byte[] bytes, int offset, int length, String contentType) {
         this.contentType = contentType;
         this.bytes = bytes;
         this.offset = offset;
         this.length = length;
     }
 
-    ByteArrayBinaryData(byte[] bytes, String contentType) {
+    public ByteArrayBinaryData(byte[] bytes, String contentType) {
         this.contentType = contentType;
         this.bytes = bytes;
         this.offset = 0;
         this.length = bytes.length;
     }
 
+    /**
+     * Copy another {@link BinaryData}. Typically used to make a replayable {@link BinaryData}
+     * from a non-replayable one.
+     */
+    public ByteArrayBinaryData(BinaryData data) throws IOException {
+        NoCopyByteArrayOutputStream out = new NoCopyByteArrayOutputStream();
+        data.writeTo(out);
+        this.contentType = data.contentType();
+        this.bytes = out.array();
+        this.offset = 0;
+        this.length = out.size();
+    }
 
     @Override
     public String contentType() {
@@ -74,6 +88,16 @@ public class ByteArrayBinaryData implements BinaryData {
     @Override
     public ByteBuffer asByteBuffer() {
         return ByteBuffer.wrap(bytes, offset, length);
+    }
+
+    @Override
+    public InputStream asInputStream() {
+        return new ByteArrayInputStream(bytes, offset, length);
+    }
+
+    @Override
+    public boolean isRepeatable() {
+        return true;
     }
 
     private static class Deserializer extends JsonpDeserializerBase<ByteArrayBinaryData> {

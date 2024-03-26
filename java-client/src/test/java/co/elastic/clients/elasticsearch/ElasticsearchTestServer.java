@@ -174,6 +174,10 @@ public class ElasticsearchTestServer implements AutoCloseable {
         return port;
     }
 
+    public ElasticsearchContainer container() {
+        return this.container;
+    }
+
     public RestClient restClient() {
         return restClient;
     }

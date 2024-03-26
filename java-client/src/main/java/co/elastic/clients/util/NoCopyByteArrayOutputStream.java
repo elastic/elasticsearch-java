@@ -21,6 +21,7 @@ package co.elastic.clients.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
 
 /**
  * A {@code ByteArrayOutputStream} that reduces copy operations of its underlying buffer.
@@ -47,5 +48,12 @@ public class NoCopyByteArrayOutputStream extends ByteArrayOutputStream {
      */
     public ByteArrayInputStream asInputStream() {
         return new ByteArrayInputStream(this.buf, 0, this.count);
+    }
+
+    /**
+     * Get a {@code ByteBuffer} view on this object, based on the current buffer and size.
+     */
+    public ByteBuffer asByteBuffer() {
+        return ByteBuffer.wrap(this.buf, 0, this.count);
     }
 }

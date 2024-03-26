@@ -19,12 +19,8 @@
 
 package co.elastic.clients.transport;
 
-import co.elastic.clients.ApiClient;
-
 import javax.annotation.Nullable;
-import java.io.InputStream;
 import java.util.Objects;
-import java.util.Properties;
 
 /**
  * This class represents a SemVer version, with an optional patch revision.
@@ -34,7 +30,8 @@ public class Version {
     private final int major;
     private final int minor;
     private final int maintenance;
-    private final boolean isPreRelease;
+    private final String prerelease;
+    private final String build;
 
     /**
      * Parse a version string formatted using the standard Maven version format.
@@ -42,14 +39,27 @@ public class Version {
      * @return the version, or {@code null} if the version could not be parsed.
      */
     public static Version parse(String version) {
+        String prerelease = null;
+        String build = null;
+
         int hyphen = version.indexOf('-');
-        boolean isPreRelease;
         if (hyphen >= 0) {
+            // Has prerelease. May be followed buy build information
+            prerelease = version.substring(hyphen+1);
             version = version.substring(0, hyphen);
-            isPreRelease = true;
+
+            int plus = prerelease.indexOf('+');
+            if (plus >= 0) {
+                build = prerelease.substring(0, plus+1);
+                prerelease = prerelease.substring(0, plus);
+            }
         }
-        else {
-            isPreRelease = false;
+
+        int plus = version.indexOf('+');
+        if (plus >= 0) {
+            // Has build information
+            build = version.substring(0, plus+1);
+            version = version.substring(0, plus);
         }
 
         String[] bits = version.split("\\.");
@@ -57,7 +67,7 @@ public class Version {
             int major = (bits.length >= 1) ? Integer.parseInt(bits[0]) : 0;
             int minor = (bits.length >= 2) ? Integer.parseInt(bits[1]) : 0;
             int maintenance = (bits.length >= 3) ? Integer.parseInt(bits[2]) : -1;
-            return new Version(major, minor, maintenance, isPreRelease);
+            return new Version(major, minor, maintenance, prerelease, build);
         }
         catch(NumberFormatException ex) {
             return null;
@@ -65,10 +75,15 @@ public class Version {
     }
 
     public Version(int major, int minor, int maintenance, boolean isPreRelease) {
+        this(major, minor, maintenance, isPreRelease ? "p" : null, null);
+    }
+
+    public Version(int major, int minor, int maintenance, @Nullable String prerelease, @Nullable String build) {
         this.major = major;
         this.minor = minor;
         this.maintenance = maintenance;
-        this.isPreRelease = isPreRelease;
+        this.prerelease = prerelease;
+        this.build = build;
     }
 
     public int major() {
@@ -84,7 +99,7 @@ public class Version {
     }
 
     public boolean isPreRelease() {
-        return isPreRelease;
+        return prerelease != null;
     }
 
     @Override
@@ -95,12 +110,13 @@ public class Version {
         return (major == that.major &&
                 minor == that.minor &&
                 maintenance == that.maintenance &&
-                isPreRelease == that.isPreRelease);
+                Objects.equals(prerelease, that.prerelease) &&
+                Objects.equals(build, that.build));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(major, minor, maintenance, isPreRelease);
+        return Objects.hash(major, minor, maintenance, prerelease, build);
     }
 
     @Override
@@ -113,32 +129,27 @@ public class Version {
             s.append('.');
             s.append(maintenance);
         }
-        if (isPreRelease) {
-            s.append('p');
+        if (prerelease != null) {
+            s.append('-').append(prerelease);
+        }
+        if (build != null) {
+            s.append('+').append(build);
         }
         return s.toString();
     }
 
     /**
-     * This library's version, read from the classpath. Can be {@code null} if the version resource could not be read.
+     * This library's version. Can be {@code null} if the version could not be determined.
      */
     @Nullable
     public static final Version VERSION;
 
     static {
         Version version = null;
-        InputStream in = ApiClient.class.getResourceAsStream("version.properties");
-        if (in != null) {
-            Properties properties = new Properties();
-            try {
-                properties.load(in);
-                String versionStr = properties.getProperty("version");
-                if (versionStr != null) {
-                    version = Version.parse(versionStr);
-                }
-            } catch (Exception e) {
-                // Failed to read version.properties file
-            }
+        try {
+            version = Version.parse(VersionInfo.VERSION);
+        } catch (Exception e) {
+            // Failed to parse version
         }
         VERSION = version;
     }
