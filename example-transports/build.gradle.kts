@@ -29,7 +29,6 @@ tasks.withType<Test> {
 
 java {
     targetCompatibility = JavaVersion.VERSION_17
-    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 
