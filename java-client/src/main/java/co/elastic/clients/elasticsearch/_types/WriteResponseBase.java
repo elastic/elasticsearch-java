@@ -65,11 +65,11 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final String index;
 
-	private final long primaryTerm;
+	private final Long primaryTerm;
 
 	private final Result result;
 
-	private final long seqNo;
+	private final Long seqNo;
 
 	private final ShardStatistics shards;
 
