@@ -8,6 +8,7 @@ For a list of detailed changes, including bug fixes, please see the https://gith
 [discrete]
 ==== Version 8.13
 
+* Add ES|QL helpers - https://github.com/elastic/elasticsearch-java/pull/763[#763]
 * Add an example SpringBoot application - https://github.com/elastic/elasticsearch-java/pull/737[#737]
 
 [discrete]
