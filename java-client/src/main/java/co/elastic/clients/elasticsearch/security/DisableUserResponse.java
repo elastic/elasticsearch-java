@@ -60,6 +60,6 @@ public class DisableUserResponse {
 	public static final DisableUserResponse _INSTANCE = new DisableUserResponse();
 
 	public static final JsonpDeserializer<DisableUserResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(DisableUserResponse._INSTANCE);
+			.emptyObject(DisableUserResponse._INSTANCE);
 
 }

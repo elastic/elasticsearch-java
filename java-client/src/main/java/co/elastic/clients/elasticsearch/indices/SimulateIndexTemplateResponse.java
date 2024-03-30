@@ -61,6 +61,6 @@ public class SimulateIndexTemplateResponse {
 	public static final SimulateIndexTemplateResponse _INSTANCE = new SimulateIndexTemplateResponse();
 
 	public static final JsonpDeserializer<SimulateIndexTemplateResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(SimulateIndexTemplateResponse._INSTANCE);
+			.emptyObject(SimulateIndexTemplateResponse._INSTANCE);
 
 }
