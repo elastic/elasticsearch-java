@@ -321,6 +321,19 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 		return putLifecycle(fn.apply(new PutLifecycleRequest.Builder()).build());
 	}
 
+	/**
+	 * Creates a lifecycle policy
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutLifecycleResponse putLifecycle() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new PutLifecycleRequest.Builder().build(), PutLifecycleRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: ilm.remove_policy
 
 	/**
