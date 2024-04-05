@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -57,7 +59,10 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
+public class DiversifiedSamplerAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			JsonpSerializable {
 	@Nullable
 	private final SamplerAggregationExecutionHint executionHint;
 
@@ -76,7 +81,6 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	// ---------------------------------------------------------------------------------------------
 
 	private DiversifiedSamplerAggregation(Builder builder) {
-		super(builder);
 
 		this.executionHint = builder.executionHint;
 		this.maxDocsPerValue = builder.maxDocsPerValue;
@@ -147,9 +151,17 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 		return this.field;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.executionHint != null) {
 			generator.writeKey("execution_hint");
 			this.executionHint.serialize(generator, mapper);
@@ -175,6 +187,11 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -285,7 +302,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 
 	protected static void setupDiversifiedSamplerAggregationDeserializer(
 			ObjectDeserializer<DiversifiedSamplerAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::executionHint, SamplerAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");
 		op.add(Builder::script, Script._DESERIALIZER, "script");

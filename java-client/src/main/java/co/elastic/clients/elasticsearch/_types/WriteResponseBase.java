@@ -65,7 +65,8 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final String index;
 
-	private final long primaryTerm;
+	@Nullable
+	private final Long primaryTerm;
 
 	private final Result result;
 
@@ -84,7 +85,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+		this.primaryTerm = builder.primaryTerm;
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
@@ -108,9 +109,10 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _primary_term}
+	 * API name: {@code _primary_term}
 	 */
-	public final long primaryTerm() {
+	@Nullable
+	public final Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -167,9 +169,11 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		generator.writeKey("_primary_term");
-		generator.write(this.primaryTerm);
+		if (this.primaryTerm != null) {
+			generator.writeKey("_primary_term");
+			generator.write(this.primaryTerm);
 
+		}
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
 		generator.writeKey("_seq_no");
@@ -201,6 +205,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		private String index;
 
+		@Nullable
 		private Long primaryTerm;
 
 		private Result result;
@@ -231,9 +236,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _primary_term}
+		 * API name: {@code _primary_term}
 		 */
-		public final BuilderT primaryTerm(long value) {
+		public final BuilderT primaryTerm(@Nullable Long value) {
 			this.primaryTerm = value;
 			return self();
 		}

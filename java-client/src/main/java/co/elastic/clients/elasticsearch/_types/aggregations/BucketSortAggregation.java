@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -58,7 +60,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class BucketSortAggregation extends AggregationBase implements AggregationVariant {
+public class BucketSortAggregation extends AggregationBase implements AggregationVariant, JsonpSerializable {
 	@Nullable
 	private final Integer from;
 
@@ -73,7 +75,6 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	// ---------------------------------------------------------------------------------------------
 
 	private BucketSortAggregation(Builder builder) {
-		super(builder);
 
 		this.from = builder.from;
 		this.gapPolicy = builder.gapPolicy;
@@ -134,9 +135,17 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		return this.sort;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.from != null) {
 			generator.writeKey("from");
 			generator.write(this.from);
@@ -162,6 +171,11 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -278,7 +292,7 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 			.lazy(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer);
 
 	protected static void setupBucketSortAggregationDeserializer(ObjectDeserializer<BucketSortAggregation.Builder> op) {
-		AggregationBase.setupAggregationBaseDeserializer(op);
+
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

@@ -25,6 +25,8 @@ import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -60,7 +62,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant {
+public class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
 	@Nullable
 	private final GeoDistanceType distanceType;
 
@@ -78,7 +80,6 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoDistanceAggregation(Builder builder) {
-		super(builder);
 
 		this.distanceType = builder.distanceType;
 		this.field = builder.field;
@@ -149,9 +150,17 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		return this.unit;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.distanceType != null) {
 			generator.writeKey("distance_type");
 			this.distanceType.serialize(generator, mapper);
@@ -181,6 +190,11 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 			this.unit.serialize(generator, mapper);
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -319,7 +333,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 
 	protected static void setupGeoDistanceAggregationDeserializer(
 			ObjectDeserializer<GeoDistanceAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::origin, GeoLocation._DESERIALIZER, "origin");

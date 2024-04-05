@@ -28,6 +28,8 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -68,7 +70,11 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DateHistogramAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
+public class DateHistogramAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			PivotGroupByVariant,
+			JsonpSerializable {
 	@Nullable
 	private final CalendarInterval calendarInterval;
 
@@ -115,7 +121,6 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	// ---------------------------------------------------------------------------------------------
 
 	private DateHistogramAggregation(Builder builder) {
-		super(builder);
 
 		this.calendarInterval = builder.calendarInterval;
 		this.extendedBounds = builder.extendedBounds;
@@ -311,9 +316,17 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		return this.keyed;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.calendarInterval != null) {
 			generator.writeKey("calendar_interval");
 			this.calendarInterval.serialize(generator, mapper);
@@ -402,6 +415,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -728,7 +746,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 	protected static void setupDateHistogramAggregationDeserializer(
 			ObjectDeserializer<DateHistogramAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::calendarInterval, CalendarInterval._DESERIALIZER, "calendar_interval");
 		op.add(Builder::extendedBounds, ExtendedBounds.createExtendedBoundsDeserializer(FieldDateMath._DESERIALIZER),
 				"extended_bounds");
