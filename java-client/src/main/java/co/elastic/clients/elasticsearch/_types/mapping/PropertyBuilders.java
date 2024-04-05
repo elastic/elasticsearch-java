@@ -264,7 +264,7 @@ public class PropertyBuilders {
 	 * Creates a builder for the {@link DynamicProperty {dynamic_property}}
 	 * {@code Property} variant.
 	 */
-	public static DynamicProperty.Builder dynamicProperty() {
+	public static DynamicProperty.Builder dynamicType() {
 		return new DynamicProperty.Builder();
 	}
 
@@ -272,9 +272,9 @@ public class PropertyBuilders {
 	 * Creates a Property of the {@link DynamicProperty {dynamic_property}}
 	 * {@code Property} variant.
 	 */
-	public static Property dynamicProperty(Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
+	public static Property dynamicType(Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
 		Property.Builder builder = new Property.Builder();
-		builder.dynamicProperty(fn.apply(new DynamicProperty.Builder()).build());
+		builder.dynamicType(fn.apply(new DynamicProperty.Builder()).build());
 		return builder.build();
 	}
 

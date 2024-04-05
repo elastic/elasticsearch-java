@@ -100,6 +100,8 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 
 		IcuNormalizer("icu_normalizer"),
 
+		IcuTokenizer("icu_tokenizer"),
+
 		IcuTransform("icu_transform"),
 
 		Kstem("kstem"),
@@ -450,6 +452,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	 */
 	public IcuNormalizationTokenFilter icuNormalizer() {
 		return TaggedUnionUtils.get(this, Kind.IcuNormalizer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_tokenizer}?
+	 */
+	public boolean isIcuTokenizer() {
+		return _kind == Kind.IcuTokenizer;
+	}
+
+	/**
+	 * Get the {@code icu_tokenizer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_tokenizer} kind.
+	 */
+	public IcuTokenizer icuTokenizer() {
+		return TaggedUnionUtils.get(this, Kind.IcuTokenizer);
 	}
 
 	/**
@@ -1235,6 +1254,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 			return this.icuNormalizer(fn.apply(new IcuNormalizationTokenFilter.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(IcuTokenizer v) {
+			this._kind = Kind.IcuTokenizer;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(
+				Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> fn) {
+			return this.icuTokenizer(fn.apply(new IcuTokenizer.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenFilterDefinition> icuTransform(IcuTransformTokenFilter v) {
 			this._kind = Kind.IcuTransform;
 			this._value = v;
@@ -1649,6 +1679,7 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		op.add(Builder::icuCollation, IcuCollationTokenFilter._DESERIALIZER, "icu_collation");
 		op.add(Builder::icuFolding, IcuFoldingTokenFilter._DESERIALIZER, "icu_folding");
 		op.add(Builder::icuNormalizer, IcuNormalizationTokenFilter._DESERIALIZER, "icu_normalizer");
+		op.add(Builder::icuTokenizer, IcuTokenizer._DESERIALIZER, "icu_tokenizer");
 		op.add(Builder::icuTransform, IcuTransformTokenFilter._DESERIALIZER, "icu_transform");
 		op.add(Builder::kstem, KStemTokenFilter._DESERIALIZER, "kstem");
 		op.add(Builder::keepTypes, KeepTypesTokenFilter._DESERIALIZER, "keep_types");

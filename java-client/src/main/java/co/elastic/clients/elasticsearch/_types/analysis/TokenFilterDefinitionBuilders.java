@@ -294,6 +294,24 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IcuTokenizer icu_tokenizer}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static IcuTokenizer.Builder icuTokenizer() {
+		return new IcuTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link IcuTokenizer icu_tokenizer}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition icuTokenizer(Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.icuTokenizer(fn.apply(new IcuTokenizer.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link IcuTransformTokenFilter icu_transform}
 	 * {@code TokenFilterDefinition} variant.
 	 */

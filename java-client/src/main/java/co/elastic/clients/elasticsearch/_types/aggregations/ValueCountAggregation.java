@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregationVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +54,10 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
+public class ValueCountAggregation extends FormattableMetricAggregation
+		implements
+			AggregationVariant,
+			ApiKeyAggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private ValueCountAggregation(Builder builder) {
@@ -70,6 +75,14 @@ public class ValueCountAggregation extends FormattableMetricAggregation implemen
 	@Override
 	public Aggregation.Kind _aggregationKind() {
 		return Aggregation.Kind.ValueCount;
+	}
+
+	/**
+	 * ApiKeyAggregation variant kind.
+	 */
+	@Override
+	public ApiKeyAggregation.Kind _apiKeyAggregationKind() {
+		return ApiKeyAggregation.Kind.ValueCount;
 	}
 
 	// ---------------------------------------------------------------------------------------------

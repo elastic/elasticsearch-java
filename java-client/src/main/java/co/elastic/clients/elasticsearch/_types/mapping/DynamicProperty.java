@@ -166,7 +166,7 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	 */
 	@Override
 	public Property.Kind _propertyKind() {
-		return Property.Kind.DynamicProperty;
+		return Property.Kind.DynamicType;
 	}
 
 	/**

@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
 	private final String ruleFiles;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,6 +77,14 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 	@Override
 	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
 		return TokenizerDefinition.Kind.IcuTokenizer;
+	}
+
+	/**
+	 * TokenFilterDefinition variant kind.
+	 */
+	@Override
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.IcuTokenizer;
 	}
 
 	/**

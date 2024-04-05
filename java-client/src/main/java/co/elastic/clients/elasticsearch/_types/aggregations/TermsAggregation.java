@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregationVariant;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -65,7 +67,11 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
+public class TermsAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			PivotGroupByVariant,
+			ApiKeyAggregationVariant {
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
@@ -155,6 +161,14 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	@Override
 	public PivotGroupBy.Kind _pivotGroupByKind() {
 		return PivotGroupBy.Kind.Terms;
+	}
+
+	/**
+	 * ApiKeyAggregation variant kind.
+	 */
+	@Override
+	public ApiKeyAggregation.Kind _apiKeyAggregationKind() {
+		return ApiKeyAggregation.Kind.Terms;
 	}
 
 	/**

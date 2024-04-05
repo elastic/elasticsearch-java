@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -56,7 +58,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PrefixQuery extends QueryBase implements QueryVariant {
+public class PrefixQuery extends QueryBase implements ApiKeyQueryVariant, QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -82,6 +84,14 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
 
 	public static PrefixQuery of(Function<Builder, ObjectBuilder<PrefixQuery>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * ApiKeyQuery variant kind.
+	 */
+	@Override
+	public ApiKeyQuery.Kind _apiKeyQueryKind() {
+		return ApiKeyQuery.Kind.Prefix;
 	}
 
 	/**
