@@ -17,21 +17,23 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregate;
-import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregateVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -48,78 +50,73 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.CardinalityAggregate
+// typedef: inference._types.CompletionResult
 
 /**
- *
+ * The completion result object
+ * 
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.CardinalityAggregate">API
+ *      "../doc-files/api-spec.html#inference._types.CompletionResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CardinalityAggregate extends AggregateBase implements AggregateVariant, ApiKeyAggregateVariant {
-	private final long value;
+public class CompletionResult implements JsonpSerializable {
+	private final String result;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private CardinalityAggregate(Builder builder) {
-		super(builder);
+	private CompletionResult(Builder builder) {
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 
 	}
 
-	public static CardinalityAggregate of(Function<Builder, ObjectBuilder<CardinalityAggregate>> fn) {
+	public static CompletionResult of(Function<Builder, ObjectBuilder<CompletionResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Aggregate variant kind.
+	 * Required - API name: {@code result}
 	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Cardinality;
+	public final String result() {
+		return this.result;
 	}
 
 	/**
-	 * ApiKeyAggregate variant kind.
+	 * Serialize this object to JSON.
 	 */
-	@Override
-	public ApiKeyAggregate.Kind _apiKeyAggregateKind() {
-		return ApiKeyAggregate.Kind.Cardinality;
-	}
-
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final long value() {
-		return this.value;
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+		generator.writeKey("result");
+		generator.write(this.result);
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CardinalityAggregate}.
+	 * Builder for {@link CompletionResult}.
 	 */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CardinalityAggregate> {
-		private Long value;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CompletionResult> {
+		private String result;
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - API name: {@code result}
 		 */
-		public final Builder value(long value) {
-			this.value = value;
+		public final Builder result(String value) {
+			this.result = value;
 			return this;
 		}
 
@@ -129,29 +126,29 @@ public class CardinalityAggregate extends AggregateBase implements AggregateVari
 		}
 
 		/**
-		 * Builds a {@link CardinalityAggregate}.
+		 * Builds a {@link CompletionResult}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CardinalityAggregate build() {
+		public CompletionResult build() {
 			_checkSingleUse();
 
-			return new CardinalityAggregate(this);
+			return new CompletionResult(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link CardinalityAggregate}
+	 * Json deserializer for {@link CompletionResult}
 	 */
-	public static final JsonpDeserializer<CardinalityAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CardinalityAggregate::setupCardinalityAggregateDeserializer);
+	public static final JsonpDeserializer<CompletionResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CompletionResult::setupCompletionResultDeserializer);
 
-	protected static void setupCardinalityAggregateDeserializer(ObjectDeserializer<CardinalityAggregate.Builder> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
+	protected static void setupCompletionResultDeserializer(ObjectDeserializer<CompletionResult.Builder> op) {
+
+		op.add(Builder::result, JsonpDeserializer.stringDeserializer(), "result");
 
 	}
 

@@ -17,11 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
-
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+package co.elastic.clients.elasticsearch.security.query_api_keys;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,31 +35,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#inference._types.TaskType">API
- *      specification</a>
+ * Base interface for {@link ApiKeyAggregate} variants.
  */
-@JsonpDeserializable
-public enum TaskType implements JsonEnum {
-	SparseEmbedding("sparse_embedding"),
+public interface ApiKeyAggregateVariant {
 
-	TextEmbedding("text_embedding"),
+	ApiKeyAggregate.Kind _apiKeyAggregateKind();
 
-	Rerank("rerank"),
-
-	Completion("completion"),
-
-	;
-
-	private final String jsonValue;
-
-	TaskType(String jsonValue) {
-		this.jsonValue = jsonValue;
+	default ApiKeyAggregate _toApiKeyAggregate() {
+		return new ApiKeyAggregate(this);
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<TaskType> _DESERIALIZER = new JsonEnum.Deserializer<>(TaskType.values());
 }

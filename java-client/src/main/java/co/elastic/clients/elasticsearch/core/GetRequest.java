@@ -75,6 +75,9 @@ public class GetRequest extends RequestBase {
 
 	private final List<String> sourceIncludes;
 
+	@Nullable
+	private final Boolean forceSyntheticSource;
+
 	private final String id;
 
 	private final String index;
@@ -106,6 +109,7 @@ public class GetRequest extends RequestBase {
 		this.source = builder.source;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.forceSyntheticSource = builder.forceSyntheticSource;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.preference = builder.preference;
@@ -149,6 +153,19 @@ public class GetRequest extends RequestBase {
 	 */
 	public final List<String> sourceIncludes() {
 		return this.sourceIncludes;
+	}
+
+	/**
+	 * Should this request force synthetic _source? Use this to test if the mapping
+	 * supports synthetic _source and to get a sense of the worst case performance.
+	 * Fetches with this enabled will be slower the enabling synthetic source
+	 * natively in the index.
+	 * <p>
+	 * API name: {@code force_synthetic_source}
+	 */
+	@Nullable
+	public final Boolean forceSyntheticSource() {
+		return this.forceSyntheticSource;
 	}
 
 	/**
@@ -259,6 +276,9 @@ public class GetRequest extends RequestBase {
 		@Nullable
 		private List<String> sourceIncludes;
 
+		@Nullable
+		private Boolean forceSyntheticSource;
+
 		private String id;
 
 		private String index;
@@ -350,6 +370,19 @@ public class GetRequest extends RequestBase {
 		 */
 		public final Builder sourceIncludes(String value, String... values) {
 			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
+			return this;
+		}
+
+		/**
+		 * Should this request force synthetic _source? Use this to test if the mapping
+		 * supports synthetic _source and to get a sense of the worst case performance.
+		 * Fetches with this enabled will be slower the enabling synthetic source
+		 * natively in the index.
+		 * <p>
+		 * API name: {@code force_synthetic_source}
+		 */
+		public final Builder forceSyntheticSource(@Nullable Boolean value) {
+			this.forceSyntheticSource = value;
 			return this;
 		}
 
@@ -564,6 +597,9 @@ public class GetRequest extends RequestBase {
 				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.forceSyntheticSource != null) {
+					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",

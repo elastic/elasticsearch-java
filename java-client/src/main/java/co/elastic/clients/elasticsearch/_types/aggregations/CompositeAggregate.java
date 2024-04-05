@@ -20,6 +20,8 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregate;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregateVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -58,7 +60,10 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket> implements AggregateVariant {
+public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket>
+		implements
+			AggregateVariant,
+			ApiKeyAggregateVariant {
 	private final Map<String, FieldValue> afterKey;
 
 	// ---------------------------------------------------------------------------------------------
@@ -80,6 +85,14 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 	@Override
 	public Aggregate.Kind _aggregateKind() {
 		return Aggregate.Kind.Composite;
+	}
+
+	/**
+	 * ApiKeyAggregate variant kind.
+	 */
+	@Override
+	public ApiKeyAggregate.Kind _apiKeyAggregateKind() {
+		return ApiKeyAggregate.Kind.Composite;
 	}
 
 	/**

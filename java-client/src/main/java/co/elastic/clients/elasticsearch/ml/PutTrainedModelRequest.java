@@ -108,6 +108,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 	private final List<String> tags;
 
+	@Nullable
+	private final Boolean waitForCompletion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutTrainedModelRequest(Builder builder) {
@@ -125,6 +128,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.platformArchitecture = builder.platformArchitecture;
 		this.prefixStrings = builder.prefixStrings;
 		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -279,6 +283,16 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Whether to wait for all child operations (e.g. model download) to complete.
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public final Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -397,6 +411,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private List<String> tags;
+
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * The compressed (GZipped and Base64 encoded) inference definition of the
@@ -602,6 +619,16 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			return this;
 		}
 
+		/**
+		 * Whether to wait for all child operations (e.g. model download) to complete.
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public final Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -697,6 +724,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
 				if (request.deferDefinitionDecompression != null) {
 					params.put("defer_definition_decompression", String.valueOf(request.deferDefinitionDecompression));
 				}

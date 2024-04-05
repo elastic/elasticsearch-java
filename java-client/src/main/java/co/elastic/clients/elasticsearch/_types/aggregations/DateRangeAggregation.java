@@ -20,6 +20,8 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregationVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -59,7 +61,10 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
+public class DateRangeAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			ApiKeyAggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -101,6 +106,14 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	@Override
 	public Aggregation.Kind _aggregationKind() {
 		return Aggregation.Kind.DateRange;
+	}
+
+	/**
+	 * ApiKeyAggregation variant kind.
+	 */
+	@Override
+	public ApiKeyAggregation.Kind _apiKeyAggregationKind() {
+		return ApiKeyAggregation.Kind.DateRange;
 	}
 
 	/**

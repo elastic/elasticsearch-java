@@ -72,6 +72,9 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> input;
 
 	@Nullable
+	private final String query;
+
+	@Nullable
 	private final JsonData taskSettings;
 
 	@Nullable
@@ -83,6 +86,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.query = builder.query;
 		this.taskSettings = builder.taskSettings;
 		this.taskType = builder.taskType;
 
@@ -108,6 +112,16 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> input() {
 		return this.input;
+	}
+
+	/**
+	 * Query input, required for rerank task. Not required for other tasks.
+	 * <p>
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final String query() {
+		return this.query;
 	}
 
 	/**
@@ -151,6 +165,11 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.query != null) {
+			generator.writeKey("query");
+			generator.write(this.query);
+
+		}
 		if (this.taskSettings != null) {
 			generator.writeKey("task_settings");
 			this.taskSettings.serialize(generator, mapper);
@@ -171,6 +190,9 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		private String inferenceId;
 
 		private List<String> input;
+
+		@Nullable
+		private String query;
 
 		@Nullable
 		private JsonData taskSettings;
@@ -209,6 +231,16 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder input(String value, String... values) {
 			this.input = _listAdd(this.input, value, values);
+			return this;
+		}
+
+		/**
+		 * Query input, required for rerank task. Not required for other tasks.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable String value) {
+			this.query = value;
 			return this;
 		}
 
@@ -261,6 +293,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupInferenceRequestDeserializer(ObjectDeserializer<InferenceRequest.Builder> op) {
 
 		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
 
 	}

@@ -78,6 +78,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<MultiGetOperation> docs;
 
+	@Nullable
+	private final Boolean forceSyntheticSource;
+
 	private final List<String> ids;
 
 	@Nullable
@@ -105,6 +108,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
+		this.forceSyntheticSource = builder.forceSyntheticSource;
 		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
 		this.index = builder.index;
 		this.preference = builder.preference;
@@ -162,6 +166,19 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<MultiGetOperation> docs() {
 		return this.docs;
+	}
+
+	/**
+	 * Should this request force synthetic _source? Use this to test if the mapping
+	 * supports synthetic _source and to get a sense of the worst case performance.
+	 * Fetches with this enabled will be slower the enabling synthetic source
+	 * natively in the index.
+	 * <p>
+	 * API name: {@code force_synthetic_source}
+	 */
+	@Nullable
+	public final Boolean forceSyntheticSource() {
+		return this.forceSyntheticSource;
 	}
 
 	/**
@@ -290,6 +307,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<MultiGetOperation> docs;
+
+		@Nullable
+		private Boolean forceSyntheticSource;
 
 		@Nullable
 		private List<String> ids;
@@ -429,6 +449,19 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder docs(Function<MultiGetOperation.Builder, ObjectBuilder<MultiGetOperation>> fn) {
 			return docs(fn.apply(new MultiGetOperation.Builder()).build());
+		}
+
+		/**
+		 * Should this request force synthetic _source? Use this to test if the mapping
+		 * supports synthetic _source and to get a sense of the worst case performance.
+		 * Fetches with this enabled will be slower the enabling synthetic source
+		 * natively in the index.
+		 * <p>
+		 * API name: {@code force_synthetic_source}
+		 */
+		public final Builder forceSyntheticSource(@Nullable Boolean value) {
+			this.forceSyntheticSource = value;
+			return this;
 		}
 
 		/**
@@ -651,6 +684,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.forceSyntheticSource != null) {
+					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
