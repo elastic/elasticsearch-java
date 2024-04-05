@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -55,14 +57,13 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 
-public abstract class BucketPathAggregation extends AggregationBase {
+public abstract class BucketPathAggregation extends AggregationBase implements JsonpSerializable {
 	@Nullable
 	private final BucketsPath bucketsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected BucketPathAggregation(AbstractBuilder<?> builder) {
-		super(builder);
 
 		this.bucketsPath = builder.bucketsPath;
 
@@ -78,15 +79,28 @@ public abstract class BucketPathAggregation extends AggregationBase {
 		return this.bucketsPath;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.bucketsPath != null) {
 			generator.writeKey("buckets_path");
 			this.bucketsPath.serialize(generator, mapper);
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
@@ -114,12 +128,14 @@ public abstract class BucketPathAggregation extends AggregationBase {
 			return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
 		}
 
+		protected abstract BuilderT self();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketPathAggregationDeserializer(
 			ObjectDeserializer<BuilderT> op) {
-		AggregationBase.setupAggregationBaseDeserializer(op);
+
 		op.add(AbstractBuilder::bucketsPath, BucketsPath._DESERIALIZER, "buckets_path");
 
 	}

@@ -144,6 +144,8 @@ public class LikeDocument implements JsonpSerializable {
 	}
 
 	/**
+	 * Overrides the default analyzer.
+	 * <p>
 	 * API name: {@code per_field_analyzer}
 	 */
 	public final Map<String, String> perFieldAnalyzer() {
@@ -325,6 +327,8 @@ public class LikeDocument implements JsonpSerializable {
 		}
 
 		/**
+		 * Overrides the default analyzer.
+		 * <p>
 		 * API name: {@code per_field_analyzer}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
@@ -335,6 +339,8 @@ public class LikeDocument implements JsonpSerializable {
 		}
 
 		/**
+		 * Overrides the default analyzer.
+		 * <p>
 		 * API name: {@code per_field_analyzer}
 		 * <p>
 		 * Adds an entry to <code>perFieldAnalyzer</code>.

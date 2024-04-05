@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -58,7 +60,10 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ApiKeyFiltersAggregation extends BucketAggregationBase implements ApiKeyAggregationVariant {
+public class ApiKeyFiltersAggregation extends BucketAggregationBase
+		implements
+			ApiKeyAggregationVariant,
+			JsonpSerializable {
 	@Nullable
 	private final Buckets<ApiKeyQuery> filters;
 
@@ -74,7 +79,6 @@ public class ApiKeyFiltersAggregation extends BucketAggregationBase implements A
 	// ---------------------------------------------------------------------------------------------
 
 	private ApiKeyFiltersAggregation(Builder builder) {
-		super(builder);
 
 		this.filters = builder.filters;
 		this.otherBucket = builder.otherBucket;
@@ -137,9 +141,17 @@ public class ApiKeyFiltersAggregation extends BucketAggregationBase implements A
 		return this.keyed;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.filters != null) {
 			generator.writeKey("filters");
 			this.filters.serialize(generator, mapper);
@@ -161,6 +173,11 @@ public class ApiKeyFiltersAggregation extends BucketAggregationBase implements A
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -263,7 +280,7 @@ public class ApiKeyFiltersAggregation extends BucketAggregationBase implements A
 
 	protected static void setupApiKeyFiltersAggregationDeserializer(
 			ObjectDeserializer<ApiKeyFiltersAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::filters, Buckets.createBucketsDeserializer(ApiKeyQuery._DESERIALIZER), "filters");
 		op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
 		op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");

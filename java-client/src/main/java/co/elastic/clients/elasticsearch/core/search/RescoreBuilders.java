@@ -17,14 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -42,43 +38,44 @@ import jakarta.json.stream.JsonGenerator;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.GlobalAggregation">API
- *      specification</a>
+ * Builders for {@link Rescore} variants.
  */
-@JsonpDeserializable
-public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
-
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Global;
-	}
-
-	public static final class Builder implements ObjectBuilder<GlobalAggregation> {
-		@Override
-		public GlobalAggregation build() {
-			return GlobalAggregation._INSTANCE;
-		}
+public class RescoreBuilders {
+	private RescoreBuilders() {
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Creates a builder for the {@link RescoreQuery query} {@code Rescore} variant.
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
+	public static RescoreQuery.Builder query() {
+		return new RescoreQuery.Builder();
 	}
 
 	/**
-	 * Singleton instance for empty class {@link GlobalAggregation}.
+	 * Creates a Rescore of the {@link RescoreQuery query} {@code Rescore} variant.
 	 */
-	public static final GlobalAggregation _INSTANCE = new GlobalAggregation();
+	public static Rescore query(Function<RescoreQuery.Builder, ObjectBuilder<RescoreQuery>> fn) {
+		Rescore.Builder builder = new Rescore.Builder();
+		builder.query(fn.apply(new RescoreQuery.Builder()).build());
+		return builder.build();
+	}
 
-	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(GlobalAggregation._INSTANCE);
+	/**
+	 * Creates a builder for the {@link LearningToRank learning_to_rank}
+	 * {@code Rescore} variant.
+	 */
+	public static LearningToRank.Builder learningToRank() {
+		return new LearningToRank.Builder();
+	}
+
+	/**
+	 * Creates a Rescore of the {@link LearningToRank learning_to_rank}
+	 * {@code Rescore} variant.
+	 */
+	public static Rescore learningToRank(Function<LearningToRank.Builder, ObjectBuilder<LearningToRank>> fn) {
+		Rescore.Builder builder = new Rescore.Builder();
+		builder.learningToRank(fn.apply(new LearningToRank.Builder()).build());
+		return builder.build();
+	}
 
 }

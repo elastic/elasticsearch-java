@@ -17,14 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
-
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+package co.elastic.clients.elasticsearch.core.search;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -42,43 +35,14 @@ import jakarta.json.stream.JsonGenerator;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.GlobalAggregation">API
- *      specification</a>
+ * Base interface for {@link Rescore} variants.
  */
-@JsonpDeserializable
-public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
+public interface RescoreVariant {
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Global;
+	Rescore.Kind _rescoreKind();
+
+	default Rescore _toRescore() {
+		return new Rescore(this);
 	}
-
-	public static final class Builder implements ObjectBuilder<GlobalAggregation> {
-		@Override
-		public GlobalAggregation build() {
-			return GlobalAggregation._INSTANCE;
-		}
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
-	}
-
-	/**
-	 * Singleton instance for empty class {@link GlobalAggregation}.
-	 */
-	public static final GlobalAggregation _INSTANCE = new GlobalAggregation();
-
-	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(GlobalAggregation._INSTANCE);
 
 }

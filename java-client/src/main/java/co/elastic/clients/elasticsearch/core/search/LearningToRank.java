@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -26,8 +27,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -47,75 +52,58 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.TTestAggregation
+// typedef: _global.search._types.LearningToRank
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.TTestAggregation">API
+ *      "../../doc-files/api-spec.html#_global.search._types.LearningToRank">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TTestAggregation extends AggregationBase implements AggregationVariant, JsonpSerializable {
-	@Nullable
-	private final TestPopulation a;
+public class LearningToRank implements RescoreVariant, JsonpSerializable {
+	private final String modelId;
 
-	@Nullable
-	private final TestPopulation b;
-
-	@Nullable
-	private final TTestType type;
+	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TTestAggregation(Builder builder) {
+	private LearningToRank(Builder builder) {
 
-		this.a = builder.a;
-		this.b = builder.b;
-		this.type = builder.type;
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 
 	}
 
-	public static TTestAggregation of(Function<Builder, ObjectBuilder<TTestAggregation>> fn) {
+	public static LearningToRank of(Function<Builder, ObjectBuilder<LearningToRank>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Aggregation variant kind.
+	 * Rescore variant kind.
 	 */
 	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.TTest;
+	public Rescore.Kind _rescoreKind() {
+		return Rescore.Kind.LearningToRank;
 	}
 
 	/**
-	 * Test population A.
+	 * Required - The unique identifier of the trained model uploaded to
+	 * Elasticsearch
 	 * <p>
-	 * API name: {@code a}
+	 * API name: {@code model_id}
 	 */
-	@Nullable
-	public final TestPopulation a() {
-		return this.a;
+	public final String modelId() {
+		return this.modelId;
 	}
 
 	/**
-	 * Test population B.
+	 * Named parameters to be passed to the query templates used for feature
 	 * <p>
-	 * API name: {@code b}
+	 * API name: {@code params}
 	 */
-	@Nullable
-	public final TestPopulation b() {
-		return this.b;
-	}
-
-	/**
-	 * The type of test.
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final TTestType type() {
-		return this.type;
+	public final Map<String, JsonData> params() {
+		return this.params;
 	}
 
 	/**
@@ -129,19 +117,19 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.a != null) {
-			generator.writeKey("a");
-			this.a.serialize(generator, mapper);
+		generator.writeKey("model_id");
+		generator.write(this.modelId);
 
-		}
-		if (this.b != null) {
-			generator.writeKey("b");
-			this.b.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.params)) {
+			generator.writeKey("params");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		}
-		if (this.type != null) {
-			generator.writeKey("type");
-			this.type.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
 		}
 
 	}
@@ -154,66 +142,47 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TTestAggregation}.
+	 * Builder for {@link LearningToRank}.
 	 */
 
-	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TTestAggregation> {
-		@Nullable
-		private TestPopulation a;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<LearningToRank> {
+		private String modelId;
 
 		@Nullable
-		private TestPopulation b;
-
-		@Nullable
-		private TTestType type;
+		private Map<String, JsonData> params;
 
 		/**
-		 * Test population A.
+		 * Required - The unique identifier of the trained model uploaded to
+		 * Elasticsearch
 		 * <p>
-		 * API name: {@code a}
+		 * API name: {@code model_id}
 		 */
-		public final Builder a(@Nullable TestPopulation value) {
-			this.a = value;
+		public final Builder modelId(String value) {
+			this.modelId = value;
 			return this;
 		}
 
 		/**
-		 * Test population A.
+		 * Named parameters to be passed to the query templates used for feature
 		 * <p>
-		 * API name: {@code a}
-		 */
-		public final Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
-			return this.a(fn.apply(new TestPopulation.Builder()).build());
-		}
-
-		/**
-		 * Test population B.
+		 * API name: {@code params}
 		 * <p>
-		 * API name: {@code b}
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public final Builder b(@Nullable TestPopulation value) {
-			this.b = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
 			return this;
 		}
 
 		/**
-		 * Test population B.
+		 * Named parameters to be passed to the query templates used for feature
 		 * <p>
-		 * API name: {@code b}
-		 */
-		public final Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
-			return this.b(fn.apply(new TestPopulation.Builder()).build());
-		}
-
-		/**
-		 * The type of test.
+		 * API name: {@code params}
 		 * <p>
-		 * API name: {@code type}
+		 * Adds an entry to <code>params</code>.
 		 */
-		public final Builder type(@Nullable TTestType value) {
-			this.type = value;
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -223,31 +192,30 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		}
 
 		/**
-		 * Builds a {@link TTestAggregation}.
+		 * Builds a {@link LearningToRank}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TTestAggregation build() {
+		public LearningToRank build() {
 			_checkSingleUse();
 
-			return new TTestAggregation(this);
+			return new LearningToRank(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TTestAggregation}
+	 * Json deserializer for {@link LearningToRank}
 	 */
-	public static final JsonpDeserializer<TTestAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TTestAggregation::setupTTestAggregationDeserializer);
+	public static final JsonpDeserializer<LearningToRank> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LearningToRank::setupLearningToRankDeserializer);
 
-	protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
+	protected static void setupLearningToRankDeserializer(ObjectDeserializer<LearningToRank.Builder> op) {
 
-		op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
-		op.add(Builder::b, TestPopulation._DESERIALIZER, "b");
-		op.add(Builder::type, TTestType._DESERIALIZER, "type");
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}
 

@@ -24,10 +24,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -54,10 +58,14 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+	private final List<String> escapedTags;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HtmlStripCharFilter(Builder builder) {
 		super(builder);
+
+		this.escapedTags = ApiTypeHelper.unmodifiable(builder.escapedTags);
 
 	}
 
@@ -73,10 +81,27 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 		return CharFilterDefinition.Kind.HtmlStrip;
 	}
 
+	/**
+	 * API name: {@code escaped_tags}
+	 */
+	public final List<String> escapedTags() {
+		return this.escapedTags;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "html_strip");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.escapedTags)) {
+			generator.writeKey("escaped_tags");
+			generator.writeStartArray();
+			for (String item0 : this.escapedTags) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -89,6 +114,29 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HtmlStripCharFilter> {
+		@Nullable
+		private List<String> escapedTags;
+
+		/**
+		 * API name: {@code escaped_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>escapedTags</code>.
+		 */
+		public final Builder escapedTags(List<String> list) {
+			this.escapedTags = _listAddAll(this.escapedTags, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code escaped_tags}
+		 * <p>
+		 * Adds one or more values to <code>escapedTags</code>.
+		 */
+		public final Builder escapedTags(String value, String... values) {
+			this.escapedTags = _listAdd(this.escapedTags, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -117,6 +165,8 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 
 	protected static void setupHtmlStripCharFilterDeserializer(ObjectDeserializer<HtmlStripCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
+		op.add(Builder::escapedTags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"escaped_tags");
 
 		op.ignore("type");
 	}

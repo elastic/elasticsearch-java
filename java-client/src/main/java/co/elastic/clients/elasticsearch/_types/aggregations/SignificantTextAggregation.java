@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -62,7 +64,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SignificantTextAggregation extends BucketAggregationBase implements AggregationVariant {
+public class SignificantTextAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
 	@Nullable
 	private final Query backgroundFilter;
 
@@ -116,7 +118,6 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	// ---------------------------------------------------------------------------------------------
 
 	private SignificantTextAggregation(Builder builder) {
-		super(builder);
 
 		this.backgroundFilter = builder.backgroundFilter;
 		this.chiSquare = builder.chiSquare;
@@ -332,9 +333,17 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		return this.sourceFields;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.backgroundFilter != null) {
 			generator.writeKey("background_filter");
 			this.backgroundFilter.serialize(generator, mapper);
@@ -425,6 +434,11 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -802,7 +816,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 
 	protected static void setupSignificantTextAggregationDeserializer(
 			ObjectDeserializer<SignificantTextAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::backgroundFilter, Query._DESERIALIZER, "background_filter");
 		op.add(Builder::chiSquare, ChiSquareHeuristic._DESERIALIZER, "chi_square");
 		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");

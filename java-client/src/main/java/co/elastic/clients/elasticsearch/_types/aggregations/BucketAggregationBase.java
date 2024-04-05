@@ -55,22 +55,13 @@ import java.util.Objects;
  */
 
 public abstract class BucketAggregationBase extends AggregationBase {
-	// ---------------------------------------------------------------------------------------------
-
-	protected BucketAggregationBase(AbstractBuilder<?> builder) {
-		super(builder);
-
+	public BucketAggregationBase() {
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AggregationBase.AbstractBuilder<BuilderT> {
-	}
-
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		AggregationBase.setupAggregationBaseDeserializer(op);
+		protected abstract BuilderT self();
 
 	}
 
