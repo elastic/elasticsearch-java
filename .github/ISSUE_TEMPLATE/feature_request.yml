@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Please first search existing issues for the feature you are requesting. It may already exist, even as a closed issue.
-        If it exists, please add a comment: along with subcribing you to the issue, this will help us prioritize features.
+        If it exists, please add a comment: along with subscribing you to the issue, this will help us prioritize features.
   - type: textarea
     id: description
     attributes:
