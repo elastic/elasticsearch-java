@@ -96,7 +96,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		DoubleRange("double_range"),
 
-		DynamicProperty("{dynamic_property}"),
+		DynamicType("{dynamic_type}"),
 
 		Alias("alias"),
 
@@ -431,21 +431,20 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	}
 
 	/**
-	 * Is this variant instance of kind {@code {dynamic_property}}?
+	 * Is this variant instance of kind {@code {dynamic_type}}?
 	 */
-	public boolean isDynamicProperty() {
-		return _kind == Kind.DynamicProperty;
+	public boolean isDynamicType() {
+		return _kind == Kind.DynamicType;
 	}
 
 	/**
-	 * Get the {@code {dynamic_property}} variant value.
+	 * Get the {@code {dynamic_type}} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code {dynamic_property}}
-	 *             kind.
+	 *             if the current variant is not of the {@code {dynamic_type}} kind.
 	 */
-	public DynamicProperty dynamicProperty() {
-		return TaggedUnionUtils.get(this, Kind.DynamicProperty);
+	public DynamicProperty dynamicType() {
+		return TaggedUnionUtils.get(this, Kind.DynamicType);
 	}
 
 	/**
@@ -1190,15 +1189,15 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.doubleRange(fn.apply(new DoubleRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> dynamicProperty(DynamicProperty v) {
-			this._kind = Kind.DynamicProperty;
+		public ObjectBuilder<Property> dynamicType(DynamicProperty v) {
+			this._kind = Kind.DynamicType;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Property> dynamicProperty(
+		public ObjectBuilder<Property> dynamicType(
 				Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
-			return this.dynamicProperty(fn.apply(new DynamicProperty.Builder()).build());
+			return this.dynamicType(fn.apply(new DynamicProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
@@ -1591,7 +1590,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::denseVector, DenseVectorProperty._DESERIALIZER, "dense_vector");
 		op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
 		op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
-		op.add(Builder::dynamicProperty, DynamicProperty._DESERIALIZER, "{dynamic_property}");
+		op.add(Builder::dynamicType, DynamicProperty._DESERIALIZER, "{dynamic_type}");
 		op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
 		op.add(Builder::flattened, FlattenedProperty._DESERIALIZER, "flattened");
 		op.add(Builder::float_, FloatNumberProperty._DESERIALIZER, "float");
