@@ -290,7 +290,8 @@
 '_types.IndicesResponseBase': '_types/Base.ts#L87-L89',
 '_types.InlineGet': '_types/common.ts#L321-L330',
 '_types.InlineScript': '_types/Scripting.ts#L67-L79',
-'_types.KnnQuery': '_types/Knn.ts#L27-L49',
+'_types.KnnQuery': '_types/Knn.ts#L54-L67',
+'_types.KnnSearch': '_types/Knn.ts#L30-L52',
 '_types.LatLonGeoLocation': '_types/Geo.ts#L120-L129',
 '_types.Level': '_types/common.ts#L249-L253',
 '_types.LifecycleOperationMode': '_types/Lifecycle.ts#L20-L24',
@@ -304,7 +305,7 @@
 '_types.OpType': '_types/common.ts#L255-L264',
 '_types.PluginStats': '_types/Stats.ts#L180-L190',
 '_types.QueryCacheStats': '_types/Stats.ts#L192-L226',
-'_types.QueryVectorBuilder': '_types/Knn.ts#L51-L54',
+'_types.QueryVectorBuilder': '_types/Knn.ts#L69-L72',
 '_types.RankBase': '_types/Rank.ts#L30-L30',
 '_types.RankContainer': '_types/Rank.ts#L22-L28',
 '_types.RecoveryStats': '_types/Stats.ts#L228-L233',
@@ -342,7 +343,7 @@
 '_types.StoredScriptId': '_types/Scripting.ts#L81-L86',
 '_types.SuggestMode': '_types/common.ts#L282-L295',
 '_types.TaskFailure': '_types/Errors.ts#L66-L71',
-'_types.TextEmbedding': '_types/Knn.ts#L56-L59',
+'_types.TextEmbedding': '_types/Knn.ts#L74-L77',
 '_types.ThreadType': '_types/common.ts#L297-L303',
 '_types.TimeUnit': '_types/Time.ts#L69-L77',
 '_types.TopLeftBottomRightGeoBounds': '_types/Geo.ts#L161-L164',
@@ -890,7 +891,7 @@
 '_types.query_dsl.SpanNearQuery': '_types/query_dsl/span.ts#L65-L78',
 '_types.query_dsl.SpanNotQuery': '_types/query_dsl/span.ts#L80-L104',
 '_types.query_dsl.SpanOrQuery': '_types/query_dsl/span.ts#L106-L111',
-'_types.query_dsl.SpanQuery': '_types/query_dsl/span.ts#L131-L170',
+'_types.query_dsl.SpanQuery': '_types/query_dsl/span.ts#L131-L173',
 '_types.query_dsl.SpanTermQuery': '_types/query_dsl/span.ts#L113-L116',
 '_types.query_dsl.SpanWithinQuery': '_types/query_dsl/span.ts#L118-L129',
 '_types.query_dsl.TermQuery': '_types/query_dsl/term.ts#L217-L231',
@@ -2709,10 +2710,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/dd5bcf2006d752f115c89a45ed6df0871b323f66/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/f9c7e26997c3081349cb1e7b00f54005add6cbb4/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/dd5bcf2006d752f115c89a45ed6df0871b323f66/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/f9c7e26997c3081349cb1e7b00f54005add6cbb4/specification/">Elasticsearch API specification</a>.
 </body>
 </html>

@@ -30,6 +30,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -68,7 +69,6 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Time masterTimeout;
 
-	@Nullable
 	private final String name;
 
 	@Nullable
@@ -82,7 +82,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	private PutLifecycleRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = builder.name;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.policy = builder.policy;
 		this.timeout = builder.timeout;
 
@@ -104,11 +104,10 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Identifier for the policy.
+	 * Required - Identifier for the policy.
 	 * <p>
 	 * API name: {@code policy}
 	 */
-	@Nullable
 	public final String name() {
 		return this.name;
 	}
@@ -163,7 +162,6 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Time masterTimeout;
 
-		@Nullable
 		private String name;
 
 		@Nullable
@@ -194,11 +192,11 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Identifier for the policy.
+		 * Required - Identifier for the policy.
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public final Builder name(@Nullable String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -291,8 +289,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
@@ -313,8 +310,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					params.put("name", request.name);
