@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package esql.article;
+package co.elastic.clients.esql.article;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.bulk.BulkIngester;
@@ -38,7 +38,6 @@ import org.apache.http.HttpHost;
 import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -57,7 +56,8 @@ public class EsqlArticle {
     public static void main(String[] args) throws IOException, SQLException {
         String dir = System.getProperty("user.dir");
         Properties prop = new Properties();
-        Path path = Paths.get(dir,"examples","esql-article","src", "main","resources","application.conf");
+        Path path = Paths.get(dir, "examples", "esql-article", "src", "main", "resources", "application" +
+            ".conf");
         prop.load(new FileInputStream(path.toString()));
 
         String serverUrl = prop.getProperty("server-url");
@@ -157,7 +157,7 @@ public class EsqlArticle {
         ResultSet resultSet = client.esql().query(ResultSetEsqlAdapter.INSTANCE, query);
 
         System.out.println("~~~\nResultSet result:");
-        while(resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getString("title"));
         }
     }

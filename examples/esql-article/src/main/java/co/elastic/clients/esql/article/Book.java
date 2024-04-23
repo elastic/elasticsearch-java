@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package esql.article;
+package co.elastic.clients.esql.article;
 
 public record Book(
     String title,
@@ -25,4 +25,5 @@ public record Book(
     Integer year,
     String publisher,
     Float ratings
-){}
+) {
+}
