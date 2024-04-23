@@ -1,3 +1,5 @@
+import java.nio.file.Paths
+
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -20,7 +22,8 @@
 rootProject.name = "elasticsearch-java"
 
 // Include as subprojects all subdirectories that have a "build.gradle.kts" and no ".gradle-standalone"
-(rootProject.projectDir.listFiles() ?: arrayOf<File>()).
+fun listFiles(dir: File){
+    (dir.listFiles() ?: arrayOf<File>()).
     filter { File(it, "build.gradle.kts").exists() }.
     filter { !File(it, ".gradle-standalone").exists() }.
     filter { it.name != "buildSrc" }.
@@ -29,3 +32,7 @@ rootProject.name = "elasticsearch-java"
         include(dir.name)
         project(":" + dir.name).projectDir = dir
     }
+}
+
+listFiles(rootProject.projectDir)
+listFiles(Paths.get(rootProject.projectDir.path,"examples").toFile())

@@ -20,14 +20,15 @@ plugins {
     id("java")
 }
 
-group = "esql.article"
-version = "1.0-SNAPSHOT"
+java {
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("co.elastic.clients:elasticsearch-java:8.13.0")
+    implementation(project(":java-client"))
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.17.0")
 }

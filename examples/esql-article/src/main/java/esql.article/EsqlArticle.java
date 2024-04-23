@@ -57,8 +57,8 @@ public class EsqlArticle {
     public static void main(String[] args) throws IOException, SQLException {
         String dir = System.getProperty("user.dir");
         Properties prop = new Properties();
-        Path path = Paths.get("src", "main","resources","application.conf");
-        prop.load(new FileInputStream(dir+ File.separator+path));
+        Path path = Paths.get(dir,"examples","esql-article","src", "main","resources","application.conf");
+        prop.load(new FileInputStream(path.toString()));
 
         String serverUrl = prop.getProperty("server-url");
         String apiKey = prop.getProperty("api-key");
@@ -96,6 +96,7 @@ public class EsqlArticle {
         }
 
         Instant start = Instant.now();
+        System.out.println("Starting BulkIndexer... \n");
 
         CsvMapper csvMapper = new CsvMapper();
         CsvSchema schema = CsvSchema.builder()
@@ -140,7 +141,7 @@ public class EsqlArticle {
 
         Instant end = Instant.now();
 
-        System.out.println("Finished in: " + Duration.between(start, end).toMillis());
+        System.out.println("Finished in: " + Duration.between(start, end).toMillis() + "\n");
 
         String query =
             """
