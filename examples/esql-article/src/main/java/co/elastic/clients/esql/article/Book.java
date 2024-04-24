@@ -1,5 +1,3 @@
-import java.nio.file.Paths
-
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -18,21 +16,14 @@ import java.nio.file.Paths
  * specific language governing permissions and limitations
  * under the License.
  */
+package co.elastic.clients.esql.article;
 
-rootProject.name = "elasticsearch-java"
-
-// Include as subprojects all subdirectories that have a "build.gradle.kts" and no ".gradle-standalone"
-fun listFiles(dir: File){
-    (dir.listFiles() ?: arrayOf<File>()).
-    filter { File(it, "build.gradle.kts").exists() }.
-    filter { !File(it, ".gradle-standalone").exists() }.
-    filter { it.name != "buildSrc" }.
-    toTypedArray().
-    forEach { dir ->
-        include(dir.name)
-        project(":" + dir.name).projectDir = dir
-    }
+public record Book(
+    String title,
+    String description,
+    String author,
+    Integer year,
+    String publisher,
+    Float ratings
+) {
 }
-
-listFiles(rootProject.projectDir)
-listFiles(Paths.get(rootProject.projectDir.path,"examples").toFile())
