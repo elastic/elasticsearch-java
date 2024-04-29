@@ -143,22 +143,35 @@ public class EsqlArticle {
 
         System.out.println("Finished in: " + Duration.between(start, end).toMillis() + "\n");
 
-        String query =
+        String queryAuthor =
             """
-                from books 
-                | where author == "Isaac Asimov" 
-                | sort year desc 
+                from books
+                | where author == "Isaac Asimov"
+                | sort year desc
                 | limit 10
-                """;
-        List<Book> queryRes = (List<Book>) client.esql().query(ObjectsEsqlAdapter.of(Book.class), query);
+            """;
 
-        System.out.println("~~~\nObject result:\n" + queryRes.stream().map(Book::title).collect(Collectors.joining("\n")));
+        List<Book> queryRes = (List<Book>) client.esql().query(ObjectsEsqlAdapter.of(Book.class), queryAuthor);
 
-        ResultSet resultSet = client.esql().query(ResultSetEsqlAdapter.INSTANCE, query);
+        System.out.println("~~~\nObject result author:\n" + queryRes.stream().map(Book::title).collect(Collectors.joining("\n")));
 
-        System.out.println("~~~\nResultSet result:");
+        ResultSet resultSet = client.esql().query(ResultSetEsqlAdapter.INSTANCE, queryAuthor);
+
+        System.out.println("~~~\nResultSet result author:");
         while (resultSet.next()) {
             System.out.println(resultSet.getString("title"));
         }
+
+        String queryPublisher =
+            """
+                from books
+                | where publisher == "Penguin"
+                | sort ratings desc
+                | limit 10
+                | sort title asc
+            """;
+
+        queryRes = (List<Book>) client.esql().query(ObjectsEsqlAdapter.of(Book.class), queryPublisher);
+        System.out.println("~~~\nObject result publisher:\n" + queryRes.stream().map(Book::title).collect(Collectors.joining("\n")));
     }
 }
