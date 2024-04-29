@@ -1,0 +1,35 @@
+[discrete]
+[[esql]]
+=== ES|QL in the Java client
+
+This page enables you to understand and use {ref}/esql.html[ES|QL] utilizing the
+Java client.
+
+
+[discrete]
+[[esql-how-to]]
+==== How to use the ES|QL API
+
+[TO DO]
+
+// This section describes the use of the "raw" ES|QL API.
+
+
+[discrete]
+[[esql-consume-results]]
+==== Consuming ES|QL results
+
+[TO DO]
+
+// This section demonstrates the various ways to consume ES|QL results (Object,
+// Cursor, DataFrame, etc.).
+
+
+[discrete]
+[[esql-custom-mapping]]
+==== Defining your own mapping
+
+[TO DO]
+
+// This section describes how to come up with your own way of consuming ES|QL
+// results.

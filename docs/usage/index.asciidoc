@@ -7,6 +7,7 @@ For a full reference, see the {es-docs}/[Elasticsearch documentation] and in par
 
 If you're new to Elasticsearch, make sure also to read {es-docs}/getting-started.html[Elasticsearch's quick start] that provides a good introduction.
 
+* <<esql>>
 * <<indexing>>
 * <<indexing-bulk>>
 * <<reading>>
@@ -19,6 +20,7 @@ If you're new to Elasticsearch, make sure also to read {es-docs}/getting-started
 
 NOTE: This is still a work in progress, more sections will be added in the near future.
 
+include::esql.asciidoc[]
 include::indexing.asciidoc[]
 include::indexing-bulk.asciidoc[]
 include::reading.asciidoc[]
