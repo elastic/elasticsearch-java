@@ -1,4 +1,3 @@
-[discrete]
 [[esql]]
 === ES|QL in the Java client
 
