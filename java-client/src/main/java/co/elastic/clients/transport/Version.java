@@ -20,6 +20,10 @@
 package co.elastic.clients.transport;
 
 import javax.annotation.Nullable;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 /**
@@ -146,8 +150,14 @@ public class Version {
 
     static {
         Version version = null;
-        try {
-            version = Version.parse(VersionInfo.VERSION);
+        String dir = System.getProperty("user.dir");
+        String filename = "version.txt";
+        if(VersionInfo.FLAVOR.equals("serverless")){
+            filename = "version-serverless.txt";
+        }
+        Path path = Paths.get(dir, "config", filename);
+        try(BufferedReader vsReader = new BufferedReader(new FileReader(path.toFile()))) {
+            version = Version.parse(vsReader.readLine());
         } catch (Exception e) {
             // Failed to parse version
         }
