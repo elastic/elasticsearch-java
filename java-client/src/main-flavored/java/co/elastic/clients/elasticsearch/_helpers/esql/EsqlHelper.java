@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
+import co.elastic.clients.elasticsearch.esql.EsqlVersion;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
@@ -36,9 +37,9 @@ public class EsqlHelper {
     //----- Synchronous
 
     public static <T> T query(
-        ElasticsearchEsqlClient client, EsqlAdapter<T> adapter, String query, Object... params
+        ElasticsearchEsqlClient client, EsqlVersion version, EsqlAdapter<T> adapter, String query, Object... params
     ) throws IOException {
-        QueryRequest request = buildRequest(adapter, query, params);
+        QueryRequest request = buildRequest(version, adapter, query, params);
         BinaryResponse response = client.query(request);
         return adapter.deserialize(client, request, response);
     }
@@ -52,9 +53,9 @@ public class EsqlHelper {
     //----- Asynchronous
 
     public static <T> CompletableFuture<T> queryAsync(
-        ElasticsearchEsqlAsyncClient client, EsqlAdapter<T> adapter, String query, Object... params
+        ElasticsearchEsqlAsyncClient client, EsqlVersion version, EsqlAdapter<T> adapter, String query, Object... params
     ) {
-        return doQueryAsync(client, adapter, buildRequest(adapter, query, params));
+        return doQueryAsync(client, adapter, buildRequest(version, adapter, query, params));
     }
 
     public static <T> CompletableFuture<T> queryAsync(
@@ -79,9 +80,19 @@ public class EsqlHelper {
 
     //----- Utilities
 
-    private static QueryRequest buildRequest(EsqlAdapter<?> adapter, String query, Object... params) {
+    private static QueryRequest buildRequest(EsqlVersion version, EsqlAdapter<?> adapter, String query, Object... params) {
+        if (version == null) {
+            version = EsqlVersion.getDefault();
+        }
+        if (version == null) {
+            throw new IllegalStateException(
+                "ES|QL default version not set. Either specify it explicitly or set a default value");
+        }
+        EsqlVersion v = version;
+
         return QueryRequest.of(esql -> esql
             .format(adapter.format())
+            .version(v)
             .columnar(adapter.columnar())
             .query(query)
             .params(asFieldValues(params))
@@ -99,6 +110,7 @@ public class EsqlHelper {
             .locale(request.locale())
             .params(request.params())
             .query(request.query())
+            .version(request.version())
         );
     }
 

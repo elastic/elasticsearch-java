@@ -111,7 +111,24 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	 *            values for query parameters, if any
 	 */
 	public final <T> CompletableFuture<T> query(EsqlAdapter<T> adapter, String query, Object... parameters) {
-		return EsqlHelper.queryAsync(this, adapter, query, parameters);
+		return EsqlHelper.queryAsync(this, null, adapter, query, parameters);
+	}
+
+	/**
+	 * Executes an ES|QL request and adapts its result to a target type.
+	 *
+	 * @param version
+	 *            the ES|QL language version
+	 * @param adapter
+	 *            the ES|QL response adapter
+	 * @param query
+	 *            the ES|QL query
+	 * @param parameters
+	 *            values for query parameters, if any
+	 */
+	public final <T> CompletableFuture<T> query(EsqlVersion version, EsqlAdapter<T> adapter, String query,
+			Object... parameters) {
+		return EsqlHelper.queryAsync(this, version, adapter, query, parameters);
 	}
 
 	/**
