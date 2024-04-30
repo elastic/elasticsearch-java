@@ -16,7 +16,7 @@ Java client.
 
 [discrete]
 [[esql-consume-results]]
-==== Consuming ES|QL results
+==== Consume ES|QL results
 
 [TO DO]
 
@@ -26,7 +26,7 @@ Java client.
 
 [discrete]
 [[esql-custom-mapping]]
-==== Defining your own mapping
+==== Define your own mapping
 
 [TO DO]
 
