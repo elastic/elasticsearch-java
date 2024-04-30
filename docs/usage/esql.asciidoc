@@ -1,7 +1,7 @@
 [[esql]]
 === ES|QL in the Java client
 
-This page enables you to understand and use {ref}/esql.html[ES|QL] utilizing the
+This page enables you to understand and use {ref}/esql.html[ES|QL] in the
 Java client.
 
 
