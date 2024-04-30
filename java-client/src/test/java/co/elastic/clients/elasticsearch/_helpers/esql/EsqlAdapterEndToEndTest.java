@@ -134,7 +134,7 @@ public class EsqlAdapterEndToEndTest extends Assertions {
         {
             EmpData emp = it.next();
             assertEquals("10042", emp.empNo);
-            assertEquals(Arrays.asList("Architect", "Business Analyst", "Internship", "Junior Developer"), emp.jobPositions);
+            assertEquals(Arrays.asList("Architect", "Business Analyst", "Junior Developer", "Internship"), emp.jobPositions);
 
             assertEquals("1993-03-21T00:00:00Z[UTC]",
                 DateTimeFormatter.ISO_DATE_TIME.format(emp.hireDate.toInstant().atZone(ZoneId.of("UTC")))
@@ -172,7 +172,7 @@ public class EsqlAdapterEndToEndTest extends Assertions {
                 {
                     EmpData emp = it.next();
                     assertEquals("10042", emp.empNo);
-                    assertEquals(Arrays.asList("Architect", "Business Analyst", "Internship", "Junior Developer"), emp.jobPositions);
+                    assertEquals(Arrays.asList("Architect", "Business Analyst", "Junior Developer", "Internship"), emp.jobPositions);
 
                     assertEquals("1993-03-21T00:00:00Z[UTC]",
                         DateTimeFormatter.ISO_DATE_TIME.format(emp.hireDate.toInstant().atZone(ZoneId.of("UTC")))
