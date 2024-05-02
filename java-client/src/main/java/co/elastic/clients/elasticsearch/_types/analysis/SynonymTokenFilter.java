@@ -74,6 +74,9 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 	private final String synonymsPath;
 
 	@Nullable
+	private final String synonymsSet;
+
+	@Nullable
 	private final String tokenizer;
 
 	@Nullable
@@ -89,6 +92,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 		this.lenient = builder.lenient;
 		this.synonyms = ApiTypeHelper.unmodifiable(builder.synonyms);
 		this.synonymsPath = builder.synonymsPath;
+		this.synonymsSet = builder.synonymsSet;
 		this.tokenizer = builder.tokenizer;
 		this.updateable = builder.updateable;
 
@@ -146,6 +150,14 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * API name: {@code synonyms_set}
+	 */
+	@Nullable
+	public final String synonymsSet() {
+		return this.synonymsSet;
+	}
+
+	/**
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
@@ -194,6 +206,11 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 			generator.write(this.synonymsPath);
 
 		}
+		if (this.synonymsSet != null) {
+			generator.writeKey("synonyms_set");
+			generator.write(this.synonymsSet);
+
+		}
 		if (this.tokenizer != null) {
 			generator.writeKey("tokenizer");
 			generator.write(this.tokenizer);
@@ -230,6 +247,9 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		@Nullable
 		private String synonymsPath;
+
+		@Nullable
+		private String synonymsSet;
 
 		@Nullable
 		private String tokenizer;
@@ -290,6 +310,14 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * API name: {@code synonyms_set}
+		 */
+		public final Builder synonymsSet(@Nullable String value) {
+			this.synonymsSet = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code tokenizer}
 		 */
 		public final Builder tokenizer(@Nullable String value) {
@@ -339,6 +367,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 		op.add(Builder::synonyms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"synonyms");
 		op.add(Builder::synonymsPath, JsonpDeserializer.stringDeserializer(), "synonyms_path");
+		op.add(Builder::synonymsSet, JsonpDeserializer.stringDeserializer(), "synonyms_set");
 		op.add(Builder::tokenizer, JsonpDeserializer.stringDeserializer(), "tokenizer");
 		op.add(Builder::updateable, JsonpDeserializer.booleanDeserializer(), "updateable");
 
