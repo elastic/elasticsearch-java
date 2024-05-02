@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -61,7 +62,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndexSettingsLifecycle implements JsonpSerializable {
-	@Nullable
 	private final String name;
 
 	@Nullable
@@ -83,7 +83,7 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 
 	private IndexSettingsLifecycle(Builder builder) {
 
-		this.name = builder.name;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.indexingComplete = builder.indexingComplete;
 		this.originationDate = builder.originationDate;
 		this.parseOriginationDate = builder.parseOriginationDate;
@@ -97,12 +97,11 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the policy to use to manage the index. For information about how
-	 * Elasticsearch applies policy changes, see Policy updates.
+	 * Required - The name of the policy to use to manage the index. For information
+	 * about how Elasticsearch applies policy changes, see Policy updates.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
 	public final String name() {
 		return this.name;
 	}
@@ -180,11 +179,9 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.name != null) {
-			generator.writeKey("name");
-			generator.write(this.name);
+		generator.writeKey("name");
+		generator.write(this.name);
 
-		}
 		if (this.indexingComplete != null) {
 			generator.writeKey("indexing_complete");
 			generator.write(this.indexingComplete);
@@ -227,7 +224,6 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<IndexSettingsLifecycle> {
-		@Nullable
 		private String name;
 
 		@Nullable
@@ -246,12 +242,12 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 		private String rolloverAlias;
 
 		/**
-		 * The name of the policy to use to manage the index. For information about how
-		 * Elasticsearch applies policy changes, see Policy updates.
+		 * Required - The name of the policy to use to manage the index. For information
+		 * about how Elasticsearch applies policy changes, see Policy updates.
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public final Builder name(@Nullable String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}

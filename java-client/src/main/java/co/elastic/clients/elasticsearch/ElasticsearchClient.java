@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingClie
 import co.elastic.clients.elasticsearch.cat.ElasticsearchCatClient;
 import co.elastic.clients.elasticsearch.ccr.ElasticsearchCcrClient;
 import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterClient;
-import co.elastic.clients.elasticsearch.connector.ElasticsearchConnectorClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.ClearScrollRequest;
@@ -212,10 +211,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchClusterClient cluster() {
 		return new ElasticsearchClusterClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchConnectorClient connector() {
-		return new ElasticsearchConnectorClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchDanglingIndicesClient danglingIndices() {

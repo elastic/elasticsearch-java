@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SortOptions;
-import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -66,12 +65,10 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TopHitsAggregation extends MetricAggregationBase implements AggregationVariant {
-	private final List<FieldAndFormat> docvalueFields;
+	private final List<String> docvalueFields;
 
 	@Nullable
 	private final Boolean explain;
-
-	private final List<FieldAndFormat> fields;
 
 	@Nullable
 	private final Integer from;
@@ -107,7 +104,6 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 
 		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.explain = builder.explain;
-		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
@@ -138,7 +134,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	 * <p>
 	 * API name: {@code docvalue_fields}
 	 */
-	public final List<FieldAndFormat> docvalueFields() {
+	public final List<String> docvalueFields() {
 		return this.docvalueFields;
 	}
 
@@ -151,16 +147,6 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	@Nullable
 	public final Boolean explain() {
 		return this.explain;
-	}
-
-	/**
-	 * Array of wildcard (*) patterns. The request returns values for field names
-	 * matching these patterns in the hits.fields property of the response.
-	 * <p>
-	 * API name: {@code fields}
-	 */
-	public final List<FieldAndFormat> fields() {
-		return this.fields;
 	}
 
 	/**
@@ -271,8 +257,8 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
-			for (FieldAndFormat item0 : this.docvalueFields) {
-				item0.serialize(generator, mapper);
+			for (String item0 : this.docvalueFields) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -281,16 +267,6 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		if (this.explain != null) {
 			generator.writeKey("explain");
 			generator.write(this.explain);
-
-		}
-		if (ApiTypeHelper.isDefined(this.fields)) {
-			generator.writeKey("fields");
-			generator.writeStartArray();
-			for (FieldAndFormat item0 : this.fields) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
 
 		}
 		if (this.from != null) {
@@ -372,13 +348,10 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 			implements
 				ObjectBuilder<TopHitsAggregation> {
 		@Nullable
-		private List<FieldAndFormat> docvalueFields;
+		private List<String> docvalueFields;
 
 		@Nullable
 		private Boolean explain;
-
-		@Nullable
-		private List<FieldAndFormat> fields;
 
 		@Nullable
 		private Integer from;
@@ -417,7 +390,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(List<FieldAndFormat> list) {
+		public final Builder docvalueFields(List<String> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
 			return this;
 		}
@@ -429,20 +402,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		 * <p>
 		 * Adds one or more values to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+		public final Builder docvalueFields(String value, String... values) {
 			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
 			return this;
-		}
-
-		/**
-		 * Fields for which to return doc values.
-		 * <p>
-		 * API name: {@code docvalue_fields}
-		 * <p>
-		 * Adds a value to <code>docvalueFields</code> using a builder lambda.
-		 */
-		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
-			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -454,44 +416,6 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
-		}
-
-		/**
-		 * Array of wildcard (*) patterns. The request returns values for field names
-		 * matching these patterns in the hits.fields property of the response.
-		 * <p>
-		 * API name: {@code fields}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 */
-		public final Builder fields(List<FieldAndFormat> list) {
-			this.fields = _listAddAll(this.fields, list);
-			return this;
-		}
-
-		/**
-		 * Array of wildcard (*) patterns. The request returns values for field names
-		 * matching these patterns in the hits.fields property of the response.
-		 * <p>
-		 * API name: {@code fields}
-		 * <p>
-		 * Adds one or more values to <code>fields</code>.
-		 */
-		public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
-			this.fields = _listAdd(this.fields, value, values);
-			return this;
-		}
-
-		/**
-		 * Array of wildcard (*) patterns. The request returns values for field names
-		 * matching these patterns in the hits.fields property of the response.
-		 * <p>
-		 * API name: {@code fields}
-		 * <p>
-		 * Adds a value to <code>fields</code> using a builder lambda.
-		 */
-		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
-			return fields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -713,10 +637,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 
 	protected static void setupTopHitsAggregationDeserializer(ObjectDeserializer<TopHitsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
-		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
