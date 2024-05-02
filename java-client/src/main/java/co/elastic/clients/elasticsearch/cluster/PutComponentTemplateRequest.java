@@ -93,10 +93,13 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	private final Map<String, JsonData> meta;
 
 	@Nullable
-	private final Boolean allowAutoCreate;
+	private final String cause;
 
 	@Nullable
 	private final Boolean create;
+
+	@Nullable
+	private final Boolean deprecated;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -113,8 +116,9 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	private PutComponentTemplateRequest(Builder builder) {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.allowAutoCreate = builder.allowAutoCreate;
+		this.cause = builder.cause;
 		this.create = builder.create;
+		this.deprecated = builder.deprecated;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
@@ -139,18 +143,11 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * This setting overrides the value of the <code>action.auto_create_index</code>
-	 * cluster setting. If set to <code>true</code> in a template, then indices can
-	 * be automatically created using that template even if auto-creation of indices
-	 * is disabled via <code>actions.auto_create_index</code>. If set to
-	 * <code>false</code> then data streams matching the template must always be
-	 * explicitly created.
-	 * <p>
-	 * API name: {@code allow_auto_create}
+	 * API name: {@code cause}
 	 */
 	@Nullable
-	public final Boolean allowAutoCreate() {
-		return this.allowAutoCreate;
+	public final String cause() {
+		return this.cause;
 	}
 
 	/**
@@ -162,6 +159,18 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	public final Boolean create() {
 		return this.create;
+	}
+
+	/**
+	 * Marks this index template as deprecated. When creating or updating a
+	 * non-deprecated index template that uses deprecated components, Elasticsearch
+	 * will emit a deprecation warning.
+	 * <p>
+	 * API name: {@code deprecated}
+	 */
+	@Nullable
+	public final Boolean deprecated() {
+		return this.deprecated;
 	}
 
 	/**
@@ -231,9 +240,9 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 			generator.writeEnd();
 
 		}
-		if (this.allowAutoCreate != null) {
-			generator.writeKey("allow_auto_create");
-			generator.write(this.allowAutoCreate);
+		if (this.deprecated != null) {
+			generator.writeKey("deprecated");
+			generator.write(this.deprecated);
 
 		}
 		generator.writeKey("template");
@@ -260,10 +269,13 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		private Map<String, JsonData> meta;
 
 		@Nullable
-		private Boolean allowAutoCreate;
+		private String cause;
 
 		@Nullable
 		private Boolean create;
+
+		@Nullable
+		private Boolean deprecated;
 
 		@Nullable
 		private Time masterTimeout;
@@ -306,17 +318,10 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * This setting overrides the value of the <code>action.auto_create_index</code>
-		 * cluster setting. If set to <code>true</code> in a template, then indices can
-		 * be automatically created using that template even if auto-creation of indices
-		 * is disabled via <code>actions.auto_create_index</code>. If set to
-		 * <code>false</code> then data streams matching the template must always be
-		 * explicitly created.
-		 * <p>
-		 * API name: {@code allow_auto_create}
+		 * API name: {@code cause}
 		 */
-		public final Builder allowAutoCreate(@Nullable Boolean value) {
-			this.allowAutoCreate = value;
+		public final Builder cause(@Nullable String value) {
+			this.cause = value;
 			return this;
 		}
 
@@ -328,6 +333,18 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 */
 		public final Builder create(@Nullable Boolean value) {
 			this.create = value;
+			return this;
+		}
+
+		/**
+		 * Marks this index template as deprecated. When creating or updating a
+		 * non-deprecated index template that uses deprecated components, Elasticsearch
+		 * will emit a deprecation warning.
+		 * <p>
+		 * API name: {@code deprecated}
+		 */
+		public final Builder deprecated(@Nullable Boolean value) {
+			this.deprecated = value;
 			return this;
 		}
 
@@ -428,7 +445,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 			ObjectDeserializer<PutComponentTemplateRequest.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
-		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
+		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
 		op.add(Builder::template, IndexState._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
@@ -490,6 +507,9 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
+				}
+				if (request.cause != null) {
+					params.put("cause", request.cause);
 				}
 				return params;
 
