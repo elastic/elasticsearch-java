@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -36,6 +35,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -74,12 +74,6 @@ import javax.annotation.Nullable;
 public class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
 
-	@Nullable
-	private final Boolean allowAutoCreate;
-
-	@Nullable
-	private final String cause;
-
 	private final List<String> composedOf;
 
 	@Nullable
@@ -88,20 +82,12 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final DataStreamVisibility dataStream;
 
-	@Nullable
-	private final Boolean deprecated;
-
-	private final List<String> ignoreMissingComponentTemplates;
-
 	private final List<String> indexPatterns;
-
-	@Nullable
-	private final Time masterTimeout;
 
 	private final String name;
 
 	@Nullable
-	private final Long priority;
+	private final Integer priority;
 
 	@Nullable
 	private final IndexTemplateMapping template;
@@ -114,15 +100,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	private PutIndexTemplateRequest(Builder builder) {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.allowAutoCreate = builder.allowAutoCreate;
-		this.cause = builder.cause;
 		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.create = builder.create;
 		this.dataStream = builder.dataStream;
-		this.deprecated = builder.deprecated;
-		this.ignoreMissingComponentTemplates = ApiTypeHelper.unmodifiable(builder.ignoreMissingComponentTemplates);
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
-		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.priority = builder.priority;
 		this.template = builder.template;
@@ -142,31 +123,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 */
 	public final Map<String, JsonData> meta() {
 		return this.meta;
-	}
-
-	/**
-	 * This setting overrides the value of the <code>action.auto_create_index</code>
-	 * cluster setting. If set to <code>true</code> in a template, then indices can
-	 * be automatically created using that template even if auto-creation of indices
-	 * is disabled via <code>actions.auto_create_index</code>. If set to
-	 * <code>false</code>, then indices or data streams matching the template must
-	 * always be explicitly created, and may never be automatically created.
-	 * <p>
-	 * API name: {@code allow_auto_create}
-	 */
-	@Nullable
-	public final Boolean allowAutoCreate() {
-		return this.allowAutoCreate;
-	}
-
-	/**
-	 * User defined reason for creating/updating the index template
-	 * <p>
-	 * API name: {@code cause}
-	 */
-	@Nullable
-	public final String cause() {
-		return this.cause;
 	}
 
 	/**
@@ -204,45 +160,12 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Marks this index template as deprecated. When creating or updating a
-	 * non-deprecated index template that uses deprecated components, Elasticsearch
-	 * will emit a deprecation warning.
-	 * <p>
-	 * API name: {@code deprecated}
-	 */
-	@Nullable
-	public final Boolean deprecated() {
-		return this.deprecated;
-	}
-
-	/**
-	 * The configuration option ignore_missing_component_templates can be used when
-	 * an index template references a component template that might not exist
-	 * <p>
-	 * API name: {@code ignore_missing_component_templates}
-	 */
-	public final List<String> ignoreMissingComponentTemplates() {
-		return this.ignoreMissingComponentTemplates;
-	}
-
-	/**
 	 * Name of the index template to create.
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
 	public final List<String> indexPatterns() {
 		return this.indexPatterns;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -264,7 +187,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public final Long priority() {
+	public final Integer priority() {
 		return this.priority;
 	}
 
@@ -312,11 +235,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			generator.writeEnd();
 
 		}
-		if (this.allowAutoCreate != null) {
-			generator.writeKey("allow_auto_create");
-			generator.write(this.allowAutoCreate);
-
-		}
 		if (ApiTypeHelper.isDefined(this.composedOf)) {
 			generator.writeKey("composed_of");
 			generator.writeStartArray();
@@ -330,21 +248,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		if (this.dataStream != null) {
 			generator.writeKey("data_stream");
 			this.dataStream.serialize(generator, mapper);
-
-		}
-		if (this.deprecated != null) {
-			generator.writeKey("deprecated");
-			generator.write(this.deprecated);
-
-		}
-		if (ApiTypeHelper.isDefined(this.ignoreMissingComponentTemplates)) {
-			generator.writeKey("ignore_missing_component_templates");
-			generator.writeStartArray();
-			for (String item0 : this.ignoreMissingComponentTemplates) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
 
 		}
 		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
@@ -388,12 +291,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		private Map<String, JsonData> meta;
 
 		@Nullable
-		private Boolean allowAutoCreate;
-
-		@Nullable
-		private String cause;
-
-		@Nullable
 		private List<String> composedOf;
 
 		@Nullable
@@ -403,21 +300,12 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		private DataStreamVisibility dataStream;
 
 		@Nullable
-		private Boolean deprecated;
-
-		@Nullable
-		private List<String> ignoreMissingComponentTemplates;
-
-		@Nullable
 		private List<String> indexPatterns;
-
-		@Nullable
-		private Time masterTimeout;
 
 		private String name;
 
 		@Nullable
-		private Long priority;
+		private Integer priority;
 
 		@Nullable
 		private IndexTemplateMapping template;
@@ -448,31 +336,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder meta(String key, JsonData value) {
 			this.meta = _mapPut(this.meta, key, value);
-			return this;
-		}
-
-		/**
-		 * This setting overrides the value of the <code>action.auto_create_index</code>
-		 * cluster setting. If set to <code>true</code> in a template, then indices can
-		 * be automatically created using that template even if auto-creation of indices
-		 * is disabled via <code>actions.auto_create_index</code>. If set to
-		 * <code>false</code>, then indices or data streams matching the template must
-		 * always be explicitly created, and may never be automatically created.
-		 * <p>
-		 * API name: {@code allow_auto_create}
-		 */
-		public final Builder allowAutoCreate(@Nullable Boolean value) {
-			this.allowAutoCreate = value;
-			return this;
-		}
-
-		/**
-		 * User defined reason for creating/updating the index template
-		 * <p>
-		 * API name: {@code cause}
-		 */
-		public final Builder cause(@Nullable String value) {
-			this.cause = value;
 			return this;
 		}
 
@@ -540,45 +403,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Marks this index template as deprecated. When creating or updating a
-		 * non-deprecated index template that uses deprecated components, Elasticsearch
-		 * will emit a deprecation warning.
-		 * <p>
-		 * API name: {@code deprecated}
-		 */
-		public final Builder deprecated(@Nullable Boolean value) {
-			this.deprecated = value;
-			return this;
-		}
-
-		/**
-		 * The configuration option ignore_missing_component_templates can be used when
-		 * an index template references a component template that might not exist
-		 * <p>
-		 * API name: {@code ignore_missing_component_templates}
-		 * <p>
-		 * Adds all elements of <code>list</code> to
-		 * <code>ignoreMissingComponentTemplates</code>.
-		 */
-		public final Builder ignoreMissingComponentTemplates(List<String> list) {
-			this.ignoreMissingComponentTemplates = _listAddAll(this.ignoreMissingComponentTemplates, list);
-			return this;
-		}
-
-		/**
-		 * The configuration option ignore_missing_component_templates can be used when
-		 * an index template references a component template that might not exist
-		 * <p>
-		 * API name: {@code ignore_missing_component_templates}
-		 * <p>
-		 * Adds one or more values to <code>ignoreMissingComponentTemplates</code>.
-		 */
-		public final Builder ignoreMissingComponentTemplates(String value, String... values) {
-			this.ignoreMissingComponentTemplates = _listAdd(this.ignoreMissingComponentTemplates, value, values);
-			return this;
-		}
-
-		/**
 		 * Name of the index template to create.
 		 * <p>
 		 * API name: {@code index_patterns}
@@ -603,27 +427,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
 		 * Required - Index or template name
 		 * <p>
 		 * API name: {@code name}
@@ -642,7 +445,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code priority}
 		 */
-		public final Builder priority(@Nullable Long value) {
+		public final Builder priority(@Nullable Integer value) {
 			this.priority = value;
 			return this;
 		}
@@ -709,17 +512,12 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			ObjectDeserializer<PutIndexTemplateRequest.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
-		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
 		op.add(Builder::dataStream, DataStreamVisibility._DESERIALIZER, "data_stream");
-		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
-		op.add(Builder::ignoreMissingComponentTemplates,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"ignore_missing_component_templates");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
-		op.add(Builder::priority, JsonpDeserializer.longDeserializer(), "priority");
+		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
 		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
@@ -776,14 +574,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
-				}
-				if (request.cause != null) {
-					params.put("cause", request.cause);
 				}
 				return params;
 

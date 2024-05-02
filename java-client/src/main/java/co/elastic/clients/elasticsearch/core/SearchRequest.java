@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.FieldValue;
-import co.elastic.clients.elasticsearch._types.KnnSearch;
+import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.Rank;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
@@ -157,7 +157,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<Map<String, Double>> indicesBoost;
 
-	private final List<KnnSearch> knn;
+	private final List<KnnQuery> knn;
 
 	@Nullable
 	private final Boolean lenient;
@@ -578,7 +578,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code knn}
 	 */
-	public final List<KnnSearch> knn() {
+	public final List<KnnQuery> knn() {
 		return this.knn;
 	}
 
@@ -1062,7 +1062,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.knn)) {
 			generator.writeKey("knn");
 			generator.writeStartArray();
-			for (KnnSearch item0 : this.knn) {
+			for (KnnQuery item0 : this.knn) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -1296,7 +1296,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
-		private List<KnnSearch> knn;
+		private List<KnnQuery> knn;
 
 		@Nullable
 		private Boolean lenient;
@@ -1839,7 +1839,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>knn</code>.
 		 */
-		public final Builder knn(List<KnnSearch> list) {
+		public final Builder knn(List<KnnQuery> list) {
 			this.knn = _listAddAll(this.knn, list);
 			return this;
 		}
@@ -1851,7 +1851,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>knn</code>.
 		 */
-		public final Builder knn(KnnSearch value, KnnSearch... values) {
+		public final Builder knn(KnnQuery value, KnnQuery... values) {
 			this.knn = _listAdd(this.knn, value, values);
 			return this;
 		}
@@ -1863,8 +1863,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>knn</code> using a builder lambda.
 		 */
-		public final Builder knn(Function<KnnSearch.Builder, ObjectBuilder<KnnSearch>> fn) {
-			return knn(fn.apply(new KnnSearch.Builder()).build());
+		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+			return knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		/**
@@ -2621,7 +2621,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
-		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnSearch._DESERIALIZER), "knn");
+		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnQuery._DESERIALIZER), "knn");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");

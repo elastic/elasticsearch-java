@@ -49,7 +49,7 @@ import java.util.function.Function;
  * Mean Reciprocal Rank
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/search-rank-eval.html#_mean_reciprocal_rank">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.14/search-rank-eval.html#_mean_reciprocal_rank">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricMeanReciprocalRank">API

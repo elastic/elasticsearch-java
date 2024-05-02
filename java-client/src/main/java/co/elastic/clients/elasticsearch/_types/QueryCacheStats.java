@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -60,22 +61,22 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class QueryCacheStats implements JsonpSerializable {
-	private final long cacheCount;
+	private final int cacheCount;
 
-	private final long cacheSize;
+	private final int cacheSize;
 
-	private final long evictions;
+	private final int evictions;
 
-	private final long hitCount;
+	private final int hitCount;
 
 	@Nullable
 	private final String memorySize;
 
 	private final long memorySizeInBytes;
 
-	private final long missCount;
+	private final int missCount;
 
-	private final long totalCount;
+	private final int totalCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -102,7 +103,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code cache_count}
 	 */
-	public final long cacheCount() {
+	public final int cacheCount() {
 		return this.cacheCount;
 	}
 
@@ -112,7 +113,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code cache_size}
 	 */
-	public final long cacheSize() {
+	public final int cacheSize() {
 		return this.cacheSize;
 	}
 
@@ -122,7 +123,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code evictions}
 	 */
-	public final long evictions() {
+	public final int evictions() {
 		return this.evictions;
 	}
 
@@ -132,7 +133,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code hit_count}
 	 */
-	public final long hitCount() {
+	public final int hitCount() {
 		return this.hitCount;
 	}
 
@@ -163,7 +164,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code miss_count}
 	 */
-	public final long missCount() {
+	public final int missCount() {
 		return this.missCount;
 	}
 
@@ -173,7 +174,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total_count}
 	 */
-	public final long totalCount() {
+	public final int totalCount() {
 		return this.totalCount;
 	}
 
@@ -228,22 +229,22 @@ public class QueryCacheStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryCacheStats> {
-		private Long cacheCount;
+		private Integer cacheCount;
 
-		private Long cacheSize;
+		private Integer cacheSize;
 
-		private Long evictions;
+		private Integer evictions;
 
-		private Long hitCount;
+		private Integer hitCount;
 
 		@Nullable
 		private String memorySize;
 
 		private Long memorySizeInBytes;
 
-		private Long missCount;
+		private Integer missCount;
 
-		private Long totalCount;
+		private Integer totalCount;
 
 		/**
 		 * Required - Total number of entries added to the query cache across all shards
@@ -251,7 +252,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cache_count}
 		 */
-		public final Builder cacheCount(long value) {
+		public final Builder cacheCount(int value) {
 			this.cacheCount = value;
 			return this;
 		}
@@ -262,7 +263,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cache_size}
 		 */
-		public final Builder cacheSize(long value) {
+		public final Builder cacheSize(int value) {
 			this.cacheSize = value;
 			return this;
 		}
@@ -273,7 +274,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code evictions}
 		 */
-		public final Builder evictions(long value) {
+		public final Builder evictions(int value) {
 			this.evictions = value;
 			return this;
 		}
@@ -284,7 +285,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hit_count}
 		 */
-		public final Builder hitCount(long value) {
+		public final Builder hitCount(int value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -317,7 +318,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code miss_count}
 		 */
-		public final Builder missCount(long value) {
+		public final Builder missCount(int value) {
 			this.missCount = value;
 			return this;
 		}
@@ -328,7 +329,7 @@ public class QueryCacheStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_count}
 		 */
-		public final Builder totalCount(long value) {
+		public final Builder totalCount(int value) {
 			this.totalCount = value;
 			return this;
 		}
@@ -361,14 +362,14 @@ public class QueryCacheStats implements JsonpSerializable {
 
 	protected static void setupQueryCacheStatsDeserializer(ObjectDeserializer<QueryCacheStats.Builder> op) {
 
-		op.add(Builder::cacheCount, JsonpDeserializer.longDeserializer(), "cache_count");
-		op.add(Builder::cacheSize, JsonpDeserializer.longDeserializer(), "cache_size");
-		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
-		op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
+		op.add(Builder::cacheCount, JsonpDeserializer.integerDeserializer(), "cache_count");
+		op.add(Builder::cacheSize, JsonpDeserializer.integerDeserializer(), "cache_size");
+		op.add(Builder::evictions, JsonpDeserializer.integerDeserializer(), "evictions");
+		op.add(Builder::hitCount, JsonpDeserializer.integerDeserializer(), "hit_count");
 		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
 		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
-		op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
-		op.add(Builder::totalCount, JsonpDeserializer.longDeserializer(), "total_count");
+		op.add(Builder::missCount, JsonpDeserializer.integerDeserializer(), "miss_count");
+		op.add(Builder::totalCount, JsonpDeserializer.integerDeserializer(), "total_count");
 
 	}
 
