@@ -20,15 +20,17 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
+import co.elastic.clients.elasticsearch.core.search.InnerHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.Long;
@@ -53,15 +55,15 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.KnnQuery
+// typedef: _types.KnnSearch
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.KnnQuery">API
+ * @see <a href="../doc-files/api-spec.html#_types.KnnSearch">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class KnnQuery extends QueryBase implements QueryVariant {
+public class KnnSearch implements JsonpSerializable {
 	private final String field;
 
 	private final List<Float> queryVector;
@@ -70,37 +72,40 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	private final QueryVectorBuilder queryVectorBuilder;
 
 	@Nullable
+	private final Long k;
+
+	@Nullable
 	private final Long numCandidates;
+
+	@Nullable
+	private final Float boost;
 
 	private final List<Query> filter;
 
 	@Nullable
 	private final Float similarity;
 
+	@Nullable
+	private final InnerHits innerHits;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private KnnQuery(Builder builder) {
-		super(builder);
+	private KnnSearch(Builder builder) {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
+		this.k = builder.k;
 		this.numCandidates = builder.numCandidates;
+		this.boost = builder.boost;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.similarity = builder.similarity;
+		this.innerHits = builder.innerHits;
 
 	}
 
-	public static KnnQuery of(Function<Builder, ObjectBuilder<KnnQuery>> fn) {
+	public static KnnSearch of(Function<Builder, ObjectBuilder<KnnSearch>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Knn;
 	}
 
 	/**
@@ -133,6 +138,16 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The final number of nearest neighbors to return as top hits
+	 * <p>
+	 * API name: {@code k}
+	 */
+	@Nullable
+	public final Long k() {
+		return this.k;
+	}
+
+	/**
 	 * The number of nearest neighbor candidates to consider per shard
 	 * <p>
 	 * API name: {@code num_candidates}
@@ -140,6 +155,16 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	public final Long numCandidates() {
 		return this.numCandidates;
+	}
+
+	/**
+	 * Boost value to apply to kNN scores
+	 * <p>
+	 * API name: {@code boost}
+	 */
+	@Nullable
+	public final Float boost() {
+		return this.boost;
 	}
 
 	/**
@@ -161,9 +186,27 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		return this.similarity;
 	}
 
+	/**
+	 * If defined, each search hit will contain inner hits.
+	 * <p>
+	 * API name: {@code inner_hits}
+	 */
+	@Nullable
+	public final InnerHits innerHits() {
+		return this.innerHits;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -182,9 +225,19 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			this.queryVectorBuilder.serialize(generator, mapper);
 
 		}
+		if (this.k != null) {
+			generator.writeKey("k");
+			generator.write(this.k);
+
+		}
 		if (this.numCandidates != null) {
 			generator.writeKey("num_candidates");
 			generator.write(this.numCandidates);
+
+		}
+		if (this.boost != null) {
+			generator.writeKey("boost");
+			generator.write(this.boost);
 
 		}
 		if (ApiTypeHelper.isDefined(this.filter)) {
@@ -202,16 +255,26 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			generator.write(this.similarity);
 
 		}
+		if (this.innerHits != null) {
+			generator.writeKey("inner_hits");
+			this.innerHits.serialize(generator, mapper);
 
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link KnnQuery}.
+	 * Builder for {@link KnnSearch}.
 	 */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<KnnQuery> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<KnnSearch> {
 		private String field;
 
 		@Nullable
@@ -221,13 +284,22 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		private QueryVectorBuilder queryVectorBuilder;
 
 		@Nullable
+		private Long k;
+
+		@Nullable
 		private Long numCandidates;
+
+		@Nullable
+		private Float boost;
 
 		@Nullable
 		private List<Query> filter;
 
 		@Nullable
 		private Float similarity;
+
+		@Nullable
+		private InnerHits innerHits;
 
 		/**
 		 * Required - The name of the vector field to search against
@@ -286,12 +358,32 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The final number of nearest neighbors to return as top hits
+		 * <p>
+		 * API name: {@code k}
+		 */
+		public final Builder k(@Nullable Long value) {
+			this.k = value;
+			return this;
+		}
+
+		/**
 		 * The number of nearest neighbor candidates to consider per shard
 		 * <p>
 		 * API name: {@code num_candidates}
 		 */
 		public final Builder numCandidates(@Nullable Long value) {
 			this.numCandidates = value;
+			return this;
+		}
+
+		/**
+		 * Boost value to apply to kNN scores
+		 * <p>
+		 * API name: {@code boost}
+		 */
+		public final Builder boost(@Nullable Float value) {
+			this.boost = value;
 			return this;
 		}
 
@@ -340,41 +432,63 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			return this;
 		}
 
+		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
+		 * API name: {@code inner_hits}
+		 */
+		public final Builder innerHits(@Nullable InnerHits value) {
+			this.innerHits = value;
+			return this;
+		}
+
+		/**
+		 * If defined, each search hit will contain inner hits.
+		 * <p>
+		 * API name: {@code inner_hits}
+		 */
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link KnnQuery}.
+		 * Builds a {@link KnnSearch}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public KnnQuery build() {
+		public KnnSearch build() {
 			_checkSingleUse();
 
-			return new KnnQuery(this);
+			return new KnnSearch(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link KnnQuery}
+	 * Json deserializer for {@link KnnSearch}
 	 */
-	public static final JsonpDeserializer<KnnQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KnnQuery::setupKnnQueryDeserializer);
+	public static final JsonpDeserializer<KnnSearch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			KnnSearch::setupKnnSearchDeserializer);
 
-	protected static void setupKnnQueryDeserializer(ObjectDeserializer<KnnQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
+	protected static void setupKnnSearchDeserializer(ObjectDeserializer<KnnSearch.Builder> op) {
+
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()),
 				"query_vector");
 		op.add(Builder::queryVectorBuilder, QueryVectorBuilder._DESERIALIZER, "query_vector_builder");
+		op.add(Builder::k, JsonpDeserializer.longDeserializer(), "k");
 		op.add(Builder::numCandidates, JsonpDeserializer.longDeserializer(), "num_candidates");
+		op.add(Builder::boost, JsonpDeserializer.floatDeserializer(), "boost");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
+		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
 
 	}
 
