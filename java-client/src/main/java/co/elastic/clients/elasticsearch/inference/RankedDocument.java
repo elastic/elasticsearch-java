@@ -30,6 +30,8 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Float;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -63,9 +65,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RankedDocument implements JsonpSerializable {
-	private final String index;
+	private final int index;
 
-	private final String score;
+	private final float score;
 
 	@Nullable
 	private final String text;
@@ -87,14 +89,14 @@ public class RankedDocument implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public final String index() {
+	public final int index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code score}
 	 */
-	public final String score() {
+	public final float score() {
 		return this.score;
 	}
 
@@ -143,9 +145,9 @@ public class RankedDocument implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RankedDocument> {
-		private String index;
+		private Integer index;
 
-		private String score;
+		private Float score;
 
 		@Nullable
 		private String text;
@@ -153,7 +155,7 @@ public class RankedDocument implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public final Builder index(String value) {
+		public final Builder index(int value) {
 			this.index = value;
 			return this;
 		}
@@ -161,7 +163,7 @@ public class RankedDocument implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code score}
 		 */
-		public final Builder score(String value) {
+		public final Builder score(float value) {
 			this.score = value;
 			return this;
 		}
@@ -202,8 +204,8 @@ public class RankedDocument implements JsonpSerializable {
 
 	protected static void setupRankedDocumentDeserializer(ObjectDeserializer<RankedDocument.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::score, JsonpDeserializer.stringDeserializer(), "score");
+		op.add(Builder::index, JsonpDeserializer.integerDeserializer(), "index");
+		op.add(Builder::score, JsonpDeserializer.floatDeserializer(), "score");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}
