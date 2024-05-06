@@ -36,7 +36,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -86,6 +85,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final DataStreamVisibility dataStream;
 
+	@Nullable
+	private final Boolean deprecated;
+
 	private final List<String> ignoreMissingComponentTemplates;
 
 	@Nullable
@@ -100,7 +102,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	private final String name;
 
 	@Nullable
-	private final Integer priority;
+	private final Long priority;
 
 	@Nullable
 	private final IndexTemplateMapping template;
@@ -117,6 +119,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.create = builder.create;
 		this.dataStream = builder.dataStream;
+		this.deprecated = builder.deprecated;
 		this.ignoreMissingComponentTemplates = ApiTypeHelper.unmodifiable(builder.ignoreMissingComponentTemplates);
 		this.includeDefaults = builder.includeDefaults;
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
@@ -194,6 +197,18 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * Marks this index template as deprecated. When creating or updating a
+	 * non-deprecated index template that uses deprecated components, Elasticsearch
+	 * will emit a deprecation warning.
+	 * <p>
+	 * API name: {@code deprecated}
+	 */
+	@Nullable
+	public final Boolean deprecated() {
+		return this.deprecated;
+	}
+
+	/**
 	 * The configuration option ignore_missing_component_templates can be used when
 	 * an index template references a component template that might not exist
 	 * <p>
@@ -256,7 +271,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public final Integer priority() {
+	public final Long priority() {
 		return this.priority;
 	}
 
@@ -324,6 +339,11 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 			this.dataStream.serialize(generator, mapper);
 
 		}
+		if (this.deprecated != null) {
+			generator.writeKey("deprecated");
+			generator.write(this.deprecated);
+
+		}
 		if (ApiTypeHelper.isDefined(this.ignoreMissingComponentTemplates)) {
 			generator.writeKey("ignore_missing_component_templates");
 			generator.writeStartArray();
@@ -387,6 +407,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		private DataStreamVisibility dataStream;
 
 		@Nullable
+		private Boolean deprecated;
+
+		@Nullable
 		private List<String> ignoreMissingComponentTemplates;
 
 		@Nullable
@@ -402,7 +425,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		private String name;
 
 		@Nullable
-		private Integer priority;
+		private Long priority;
 
 		@Nullable
 		private IndexTemplateMapping template;
@@ -517,6 +540,18 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * Marks this index template as deprecated. When creating or updating a
+		 * non-deprecated index template that uses deprecated components, Elasticsearch
+		 * will emit a deprecation warning.
+		 * <p>
+		 * API name: {@code deprecated}
+		 */
+		public final Builder deprecated(@Nullable Boolean value) {
+			this.deprecated = value;
+			return this;
+		}
+
+		/**
 		 * The configuration option ignore_missing_component_templates can be used when
 		 * an index template references a component template that might not exist
 		 * <p>
@@ -621,7 +656,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code priority}
 		 */
-		public final Builder priority(@Nullable Integer value) {
+		public final Builder priority(@Nullable Long value) {
 			this.priority = value;
 			return this;
 		}
@@ -692,12 +727,13 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
 		op.add(Builder::dataStream, DataStreamVisibility._DESERIALIZER, "data_stream");
+		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
 		op.add(Builder::ignoreMissingComponentTemplates,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"ignore_missing_component_templates");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
-		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
+		op.add(Builder::priority, JsonpDeserializer.longDeserializer(), "priority");
 		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 

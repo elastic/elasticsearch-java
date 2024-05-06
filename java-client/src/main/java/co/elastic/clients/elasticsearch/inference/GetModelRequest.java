@@ -27,7 +27,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -63,6 +62,7 @@ import javax.annotation.Nullable;
  */
 
 public class GetModelRequest extends RequestBase {
+	@Nullable
 	private final String inferenceId;
 
 	@Nullable
@@ -72,7 +72,7 @@ public class GetModelRequest extends RequestBase {
 
 	private GetModelRequest(Builder builder) {
 
-		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.inferenceId = builder.inferenceId;
 		this.taskType = builder.taskType;
 
 	}
@@ -82,10 +82,11 @@ public class GetModelRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The inference Id
+	 * The inference Id
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
+	@Nullable
 	public final String inferenceId() {
 		return this.inferenceId;
 	}
@@ -107,17 +108,18 @@ public class GetModelRequest extends RequestBase {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetModelRequest> {
+		@Nullable
 		private String inferenceId;
 
 		@Nullable
 		private TaskType taskType;
 
 		/**
-		 * Required - The inference Id
+		 * The inference Id
 		 * <p>
 		 * API name: {@code inference_id}
 		 */
-		public final Builder inferenceId(String value) {
+		public final Builder inferenceId(@Nullable String value) {
 			this.inferenceId = value;
 			return this;
 		}
@@ -171,10 +173,16 @@ public class GetModelRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _inferenceId;
+				if (request.inferenceId() != null)
+					propsSet |= _inferenceId;
 				if (request.taskType() != null)
 					propsSet |= _taskType;
 
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_inference");
+					return buf.toString();
+				}
 				if (propsSet == (_inferenceId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_inference");
@@ -203,10 +211,13 @@ public class GetModelRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _inferenceId;
+				if (request.inferenceId() != null)
+					propsSet |= _inferenceId;
 				if (request.taskType() != null)
 					propsSet |= _taskType;
 
+				if (propsSet == 0) {
+				}
 				if (propsSet == (_inferenceId)) {
 					params.put("inferenceId", request.inferenceId);
 				}
