@@ -159,7 +159,8 @@ public class Version {
         try(BufferedReader vsReader = new BufferedReader(new FileReader(path.toFile()))) {
             version = Version.parse(vsReader.readLine());
         } catch (Exception e) {
-            // Failed to parse version
+            // Failed to parse version from file, trying from VersionInfo
+            version = Version.parse(VersionInfo.VERSION);
         }
         VERSION = version;
     }
