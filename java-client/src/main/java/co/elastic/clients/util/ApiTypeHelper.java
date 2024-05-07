@@ -194,4 +194,8 @@ public class ApiTypeHelper {
         requireNonNull(map == UNDEFINED_MAP ? null : map, obj, name);
         return Collections.unmodifiableMap(map);
     }
+
+    public static NullReset nullReset(){
+        return new NullReset();
+    }
 }
