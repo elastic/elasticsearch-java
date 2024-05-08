@@ -51,16 +51,17 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.ModelConfig
+// typedef: inference._types.InferenceEndpoint
 
 /**
- * Configuration options when storing the model config
+ * Configuration options when storing the inference endpoint
  * 
- * @see <a href="../doc-files/api-spec.html#inference._types.ModelConfig">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#inference._types.InferenceEndpoint">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ModelConfig implements JsonpSerializable {
+public class InferenceEndpoint implements JsonpSerializable {
 	private final String service;
 
 	private final JsonData serviceSettings;
@@ -69,7 +70,7 @@ public class ModelConfig implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelConfig(AbstractBuilder<?> builder) {
+	protected InferenceEndpoint(AbstractBuilder<?> builder) {
 
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
@@ -77,7 +78,7 @@ public class ModelConfig implements JsonpSerializable {
 
 	}
 
-	public static ModelConfig modelConfigOf(Function<Builder, ObjectBuilder<ModelConfig>> fn) {
+	public static InferenceEndpoint inferenceEndpointOf(Function<Builder, ObjectBuilder<InferenceEndpoint>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -100,7 +101,7 @@ public class ModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Task settings specific to the service and model
+	 * Required - Task settings specific to the service and task type
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -138,25 +139,27 @@ public class ModelConfig implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ModelConfig}.
+	 * Builder for {@link InferenceEndpoint}.
 	 */
 
-	public static class Builder extends ModelConfig.AbstractBuilder<Builder> implements ObjectBuilder<ModelConfig> {
+	public static class Builder extends InferenceEndpoint.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<InferenceEndpoint> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link ModelConfig}.
+		 * Builds a {@link InferenceEndpoint}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ModelConfig build() {
+		public InferenceEndpoint build() {
 			_checkSingleUse();
 
-			return new ModelConfig(this);
+			return new InferenceEndpoint(this);
 		}
 	}
 
@@ -190,7 +193,7 @@ public class ModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Task settings specific to the service and model
+		 * Required - Task settings specific to the service and task type
 		 * <p>
 		 * API name: {@code task_settings}
 		 */
@@ -206,12 +209,12 @@ public class ModelConfig implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ModelConfig}
+	 * Json deserializer for {@link InferenceEndpoint}
 	 */
-	public static final JsonpDeserializer<ModelConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ModelConfig::setupModelConfigDeserializer);
+	public static final JsonpDeserializer<InferenceEndpoint> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceEndpoint::setupInferenceEndpointDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupModelConfigDeserializer(
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupInferenceEndpointDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::service, JsonpDeserializer.stringDeserializer(), "service");

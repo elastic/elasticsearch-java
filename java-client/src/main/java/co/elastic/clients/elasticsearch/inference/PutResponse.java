@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -44,63 +43,63 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.delete_model.Response
+// typedef: inference.put.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#inference.delete_model.Response">API
+ * @see <a href="../doc-files/api-spec.html#inference.put.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DeleteModelResponse extends AcknowledgedResponseBase {
+public class PutResponse extends InferenceEndpointInfo {
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteModelResponse(Builder builder) {
+	private PutResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static DeleteModelResponse of(Function<Builder, ObjectBuilder<DeleteModelResponse>> fn) {
+	public static PutResponse of(Function<Builder, ObjectBuilder<PutResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteModelResponse}.
+	 * Builder for {@link PutResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DeleteModelResponse> {
+				ObjectBuilder<PutResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link DeleteModelResponse}.
+		 * Builds a {@link PutResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DeleteModelResponse build() {
+		public PutResponse build() {
 			_checkSingleUse();
 
-			return new DeleteModelResponse(this);
+			return new PutResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DeleteModelResponse}
+	 * Json deserializer for {@link PutResponse}
 	 */
-	public static final JsonpDeserializer<DeleteModelResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteModelResponse::setupDeleteModelResponseDeserializer);
+	public static final JsonpDeserializer<PutResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutResponse::setupPutResponseDeserializer);
 
-	protected static void setupDeleteModelResponseDeserializer(ObjectDeserializer<DeleteModelResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+	protected static void setupPutResponseDeserializer(ObjectDeserializer<PutResponse.Builder> op) {
+		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
 
 	}
 
