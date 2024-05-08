@@ -60,6 +60,8 @@ import javax.annotation.Nullable;
 public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> field;
 
+	private final List<String> keep;
+
 	@Nullable
 	private final Boolean ignoreMissing;
 
@@ -69,6 +71,7 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
+		this.keep = ApiTypeHelper.unmodifiable(builder.keep);
 		this.ignoreMissing = builder.ignoreMissing;
 
 	}
@@ -92,6 +95,16 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	 */
 	public final List<String> field() {
 		return this.field;
+	}
+
+	/**
+	 * Fields to be kept. When set, all fields other than those specified are
+	 * removed.
+	 * <p>
+	 * API name: {@code keep}
+	 */
+	public final List<String> keep() {
+		return this.keep;
 	}
 
 	/**
@@ -119,6 +132,16 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.keep)) {
+			generator.writeKey("keep");
+			generator.writeStartArray();
+			for (String item0 : this.keep) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.ignoreMissing != null) {
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
@@ -137,6 +160,9 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 			implements
 				ObjectBuilder<RemoveProcessor> {
 		private List<String> field;
+
+		@Nullable
+		private List<String> keep;
 
 		@Nullable
 		private Boolean ignoreMissing;
@@ -162,6 +188,32 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		 */
 		public final Builder field(String value, String... values) {
 			this.field = _listAdd(this.field, value, values);
+			return this;
+		}
+
+		/**
+		 * Fields to be kept. When set, all fields other than those specified are
+		 * removed.
+		 * <p>
+		 * API name: {@code keep}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>keep</code>.
+		 */
+		public final Builder keep(List<String> list) {
+			this.keep = _listAddAll(this.keep, list);
+			return this;
+		}
+
+		/**
+		 * Fields to be kept. When set, all fields other than those specified are
+		 * removed.
+		 * <p>
+		 * API name: {@code keep}
+		 * <p>
+		 * Adds one or more values to <code>keep</code>.
+		 */
+		public final Builder keep(String value, String... values) {
+			this.keep = _listAdd(this.keep, value, values);
 			return this;
 		}
 
@@ -206,6 +258,7 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	protected static void setupRemoveProcessorDeserializer(ObjectDeserializer<RemoveProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
+		op.add(Builder::keep, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "keep");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 
 	}

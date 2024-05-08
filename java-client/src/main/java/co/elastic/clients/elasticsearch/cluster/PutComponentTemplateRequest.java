@@ -93,9 +93,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	private final Map<String, JsonData> meta;
 
 	@Nullable
-	private final String cause;
-
-	@Nullable
 	private final Boolean create;
 
 	@Nullable
@@ -116,7 +113,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	private PutComponentTemplateRequest(Builder builder) {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.cause = builder.cause;
 		this.create = builder.create;
 		this.deprecated = builder.deprecated;
 		this.masterTimeout = builder.masterTimeout;
@@ -140,14 +136,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	 */
 	public final Map<String, JsonData> meta() {
 		return this.meta;
-	}
-
-	/**
-	 * API name: {@code cause}
-	 */
-	@Nullable
-	public final String cause() {
-		return this.cause;
 	}
 
 	/**
@@ -269,9 +257,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		private Map<String, JsonData> meta;
 
 		@Nullable
-		private String cause;
-
-		@Nullable
 		private Boolean create;
 
 		@Nullable
@@ -314,14 +299,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 */
 		public final Builder meta(String key, JsonData value) {
 			this.meta = _mapPut(this.meta, key, value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code cause}
-		 */
-		public final Builder cause(@Nullable String value) {
-			this.cause = value;
 			return this;
 		}
 
@@ -507,9 +484,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
-				}
-				if (request.cause != null) {
-					params.put("cause", request.cause);
 				}
 				return params;
 
