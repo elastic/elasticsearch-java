@@ -63,11 +63,15 @@ import javax.annotation.Nullable;
 public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
 	private final Map<String, Query> filters;
 
+	@Nullable
+	private final String separator;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AdjacencyMatrixAggregation(Builder builder) {
 
 		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
+		this.separator = builder.separator;
 
 	}
 
@@ -93,6 +97,16 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 	}
 
 	/**
+	 * Separator used to concatenate filter names. Defaults to &amp;.
+	 * <p>
+	 * API name: {@code separator}
+	 */
+	@Nullable
+	public final String separator() {
+		return this.separator;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -114,6 +128,11 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 			generator.writeEnd();
 
 		}
+		if (this.separator != null) {
+			generator.writeKey("separator");
+			generator.write(this.separator);
+
+		}
 
 	}
 
@@ -133,6 +152,9 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 				ObjectBuilder<AdjacencyMatrixAggregation> {
 		@Nullable
 		private Map<String, Query> filters;
+
+		@Nullable
+		private String separator;
 
 		/**
 		 * Filters used to create buckets. At least one filter is required.
@@ -169,6 +191,16 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 			return filters(key, fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * Separator used to concatenate filter names. Defaults to &amp;.
+		 * <p>
+		 * API name: {@code separator}
+		 */
+		public final Builder separator(@Nullable String value) {
+			this.separator = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -199,6 +231,7 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 			ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
 
 		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
 
 	}
 
