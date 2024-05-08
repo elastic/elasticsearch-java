@@ -70,7 +70,8 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final Result result;
 
-	private final long seqNo;
+	@Nullable
+	private final Long seqNo;
 
 	private final ShardStatistics shards;
 
@@ -87,7 +88,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.primaryTerm = builder.primaryTerm;
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.seqNo = builder.seqNo;
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.forcedRefresh = builder.forcedRefresh;
@@ -124,9 +125,10 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _seq_no}
+	 * API name: {@code _seq_no}
 	 */
-	public final long seqNo() {
+	@Nullable
+	public final Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -176,9 +178,11 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
-		generator.writeKey("_seq_no");
-		generator.write(this.seqNo);
+		if (this.seqNo != null) {
+			generator.writeKey("_seq_no");
+			generator.write(this.seqNo);
 
+		}
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
@@ -210,6 +214,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		private Result result;
 
+		@Nullable
 		private Long seqNo;
 
 		private ShardStatistics shards;
@@ -252,9 +257,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _seq_no}
+		 * API name: {@code _seq_no}
 		 */
-		public final BuilderT seqNo(long value) {
+		public final BuilderT seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return self();
 		}

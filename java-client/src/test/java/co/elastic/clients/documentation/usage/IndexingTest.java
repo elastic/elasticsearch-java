@@ -47,7 +47,7 @@ public class IndexingTest extends ModelTestCase {
         .id("bk-1")
         .version(1)
         .primaryTerm(1L)
-        .seqNo(1)
+        .seqNo(1L)
         .result(Result.Created)
         .shards(s -> s.total(1).successful(1).failed(0))
     );
