@@ -41,12 +41,24 @@ import java.util.stream.Collectors;
 
 public class JsonpUtils {
 
+    private static JsonProvider systemJsonProvider = null;
+
     /**
      * Get a <code>JsonProvider</code> instance. This method first calls the standard `JsonProvider.provider()` that is based on
-     * the current thread's context classloader, and in case of failure tries to find a provider in other classloaders.
+     * the current thread's context classloader, and in case of failure tries to find a provider in other classloaders. The
+     * value is cached for subsequent calls.
      */
-    @AllowForbiddenApis("Implementation of the JsonProvider lookup")
     public static JsonProvider provider() {
+        JsonProvider result = systemJsonProvider;
+        if (result == null) {
+            result = findProvider();
+            systemJsonProvider = result;
+        }
+        return result;
+    }
+
+    @AllowForbiddenApis("Implementation of the JsonProvider lookup")
+    static JsonProvider findProvider() {
         RuntimeException exception;
         try {
             return JsonProvider.provider();
