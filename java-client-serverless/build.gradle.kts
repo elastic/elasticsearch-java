@@ -33,6 +33,10 @@ plugins {
     id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
+checkstyle {
+    toolVersion = "10.16.0"
+}
+
 // GitHub Maven repo doesn't like 1.0.0+20231031-SNAPSHOT
 version = "1.0.0-20231031-SNAPSHOT"
 
@@ -269,7 +273,7 @@ dependencies {
     // https://www.testcontainers.org/
     testImplementation("org.testcontainers", "testcontainers", "1.17.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
-
+    testImplementation("org.apache.commons","commons-compress","1.26.1")
 
     testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
 }
