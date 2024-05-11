@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -42,6 +38,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: security._types.IndicesPrivileges
 
 /**
@@ -56,7 +67,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	private final List<String> names;
 
-	private final List<IndexPrivilege> privileges;
+	private final List<String> privileges;
 
 	@Nullable
 	private final Query query;
@@ -105,14 +116,16 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code privileges}
 	 */
-	public final List<IndexPrivilege> privileges() {
+	public final List<String> privileges() {
 		return this.privileges;
 	}
 
 	/**
-	 * A search query that defines the documents the owners of the role have read
-	 * access to. A document within the specified indices must match this query for
-	 * it to be accessible by the owners of the role.
+	 * A search query that defines the documents the owners of the role have access
+	 * to. A document within the specified indices must match this query for it to
+	 * be accessible by the owners of the role. Use a custom query of type
+	 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
+	 * templated queries
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -170,15 +183,16 @@ public class IndicesPrivileges implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.privileges)) {
 			generator.writeKey("privileges");
 			generator.writeStartArray();
-			for (IndexPrivilege item0 : this.privileges) {
-				item0.serialize(generator, mapper);
+			for (String item0 : this.privileges) {
+				generator.write(item0);
+
 			}
 			generator.writeEnd();
 
 		}
 		if (this.query != null) {
 			generator.writeKey("query");
-			this.query.serialize(generator, mapper);
+			generator.write(JsonpUtils.toJsonString(this.query, mapper));
 
 		}
 		if (this.allowRestrictedIndices != null) {
@@ -206,7 +220,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 		private List<String> names;
 
-		private List<IndexPrivilege> privileges;
+		private List<String> privileges;
 
 		@Nullable
 		private Query query;
@@ -283,7 +297,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
-		public final Builder privileges(List<IndexPrivilege> list) {
+		public final Builder privileges(List<String> list) {
 			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
@@ -296,15 +310,17 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public final Builder privileges(IndexPrivilege value, IndexPrivilege... values) {
+		public final Builder privileges(String value, String... values) {
 			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
 
 		/**
-		 * A search query that defines the documents the owners of the role have read
-		 * access to. A document within the specified indices must match this query for
-		 * it to be accessible by the owners of the role.
+		 * A search query that defines the documents the owners of the role have access
+		 * to. A document within the specified indices must match this query for it to
+		 * be accessible by the owners of the role. Use a custom query of type
+		 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
+		 * templated queries
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -314,9 +330,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A search query that defines the documents the owners of the role have read
-		 * access to. A document within the specified indices must match this query for
-		 * it to be accessible by the owners of the role.
+		 * A search query that defines the documents the owners of the role have access
+		 * to. A document within the specified indices must match this query for it to
+		 * be accessible by the owners of the role. Use a custom query of type
+		 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
+		 * templated queries
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -370,8 +388,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		op.add(Builder::fieldSecurity, JsonpDeserializer.arrayDeserializer(FieldSecurity._DESERIALIZER),
 				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
-		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"privileges");
+		op.add(Builder::query, JsonpDeserializer.jsonString(Query._DESERIALIZER), "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}

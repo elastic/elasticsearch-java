@@ -25,6 +25,7 @@ import jakarta.json.stream.JsonParser;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.lang.reflect.Type;
 
 class JsonDataImpl implements JsonData {
     private final Object value;
@@ -64,20 +65,21 @@ class JsonDataImpl implements JsonData {
     }
 
     @Override
-    public <T> T to(Class<T> clazz) {
+    public <T> T to(Type clazz) {
         return to(clazz, null);
     }
 
     @Override
-    public <T> T to(Class<T> clazz, JsonpMapper mapper) {
-        if (clazz.isAssignableFrom(value.getClass())) {
-            return (T) value;
+    public <T> T to(Type type, JsonpMapper mapper) {
+        if (type instanceof Class<?> && ((Class<?>)type).isAssignableFrom(value.getClass())) {
+            @SuppressWarnings("unchecked")
+            T result = (T) value;
+            return result;
         }
 
         mapper = getMapper(mapper);
-
         JsonParser parser = getParser(mapper);
-        return mapper.deserialize(parser, clazz);
+        return mapper.deserialize(parser, type);
     }
 
     @Override
@@ -96,9 +98,15 @@ class JsonDataImpl implements JsonData {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (value instanceof JsonValue) {
             generator.write((JsonValue) value);
+        } else if (this.mapper == null) {
+            mapper.serialize(value, generator);
+        } else if (this.mapper.getClass() != mapper.getClass()) {
+            // Workaround for https://github.com/elastic/elasticsearch-java/issues/424
+            // Mappers can require generators to have been created by them (see JacksonJsonpMapper), so use the mapper
+            // parameter if its class is different from the one passed at construction time.
+            mapper.serialize(value, generator);
         } else {
-            // Mapper provided at creation time has precedence
-            (this.mapper != null ? this.mapper : mapper).serialize(value, generator);
+            this.mapper.serialize(value, generator);
         }
     }
 

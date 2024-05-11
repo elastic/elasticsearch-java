@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -36,6 +32,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: ingest._types.DateIndexNameProcessor
 
@@ -53,12 +64,16 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 	private final String field;
 
+	@Nullable
 	private final String indexNameFormat;
 
+	@Nullable
 	private final String indexNamePrefix;
 
+	@Nullable
 	private final String locale;
 
+	@Nullable
 	private final String timezone;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,10 +84,10 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		this.dateFormats = ApiTypeHelper.unmodifiableRequired(builder.dateFormats, this, "dateFormats");
 		this.dateRounding = ApiTypeHelper.requireNonNull(builder.dateRounding, this, "dateRounding");
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.indexNameFormat = ApiTypeHelper.requireNonNull(builder.indexNameFormat, this, "indexNameFormat");
-		this.indexNamePrefix = ApiTypeHelper.requireNonNull(builder.indexNamePrefix, this, "indexNamePrefix");
-		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
-		this.timezone = ApiTypeHelper.requireNonNull(builder.timezone, this, "timezone");
+		this.indexNameFormat = builder.indexNameFormat;
+		this.indexNamePrefix = builder.indexNamePrefix;
+		this.locale = builder.locale;
+		this.timezone = builder.timezone;
 
 	}
 
@@ -116,29 +131,33 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * Required - API name: {@code index_name_format}
+	 * API name: {@code index_name_format}
 	 */
+	@Nullable
 	public final String indexNameFormat() {
 		return this.indexNameFormat;
 	}
 
 	/**
-	 * Required - API name: {@code index_name_prefix}
+	 * API name: {@code index_name_prefix}
 	 */
+	@Nullable
 	public final String indexNamePrefix() {
 		return this.indexNamePrefix;
 	}
 
 	/**
-	 * Required - API name: {@code locale}
+	 * API name: {@code locale}
 	 */
+	@Nullable
 	public final String locale() {
 		return this.locale;
 	}
 
 	/**
-	 * Required - API name: {@code timezone}
+	 * API name: {@code timezone}
 	 */
+	@Nullable
 	public final String timezone() {
 		return this.timezone;
 	}
@@ -162,17 +181,26 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("index_name_format");
-		generator.write(this.indexNameFormat);
+		if (this.indexNameFormat != null) {
+			generator.writeKey("index_name_format");
+			generator.write(this.indexNameFormat);
 
-		generator.writeKey("index_name_prefix");
-		generator.write(this.indexNamePrefix);
+		}
+		if (this.indexNamePrefix != null) {
+			generator.writeKey("index_name_prefix");
+			generator.write(this.indexNamePrefix);
 
-		generator.writeKey("locale");
-		generator.write(this.locale);
+		}
+		if (this.locale != null) {
+			generator.writeKey("locale");
+			generator.write(this.locale);
 
-		generator.writeKey("timezone");
-		generator.write(this.timezone);
+		}
+		if (this.timezone != null) {
+			generator.writeKey("timezone");
+			generator.write(this.timezone);
+
+		}
 
 	}
 
@@ -191,12 +219,16 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 		private String field;
 
+		@Nullable
 		private String indexNameFormat;
 
+		@Nullable
 		private String indexNamePrefix;
 
+		@Nullable
 		private String locale;
 
+		@Nullable
 		private String timezone;
 
 		/**
@@ -242,33 +274,33 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * Required - API name: {@code index_name_format}
+		 * API name: {@code index_name_format}
 		 */
-		public final Builder indexNameFormat(String value) {
+		public final Builder indexNameFormat(@Nullable String value) {
 			this.indexNameFormat = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code index_name_prefix}
+		 * API name: {@code index_name_prefix}
 		 */
-		public final Builder indexNamePrefix(String value) {
+		public final Builder indexNamePrefix(@Nullable String value) {
 			this.indexNamePrefix = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code locale}
+		 * API name: {@code locale}
 		 */
-		public final Builder locale(String value) {
+		public final Builder locale(@Nullable String value) {
 			this.locale = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code timezone}
+		 * API name: {@code timezone}
 		 */
-		public final Builder timezone(String value) {
+		public final Builder timezone(@Nullable String value) {
 			this.timezone = value;
 			return this;
 		}

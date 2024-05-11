@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.JsonData;
@@ -34,7 +30,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +41,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: security._types.FieldRule
 
 /**
@@ -53,7 +64,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappingRuleVariant, JsonpSerializable {
+public class FieldRule implements OpenTaggedUnion<FieldRule.Kind, Object>, RoleMappingRuleVariant, JsonpSerializable {
 
 	/**
 	 * {@link FieldRule} variant kinds.
@@ -69,9 +80,8 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 		Groups("groups"),
 
-		Metadata("metadata"),
-
-		Realm("realm"),
+		/** A custom {@code FieldRule} defined by a plugin */
+		_Custom(null)
 
 		;
 
@@ -112,6 +122,7 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 		this._kind = ApiTypeHelper.requireNonNull(value._fieldRuleKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
 
 	}
 
@@ -119,6 +130,7 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 	}
 
@@ -139,7 +151,7 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code username} kind.
 	 */
-	public String username() {
+	public List<String> username() {
 		return TaggedUnionUtils.get(this, Kind.Username);
 	}
 
@@ -177,38 +189,33 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 		return TaggedUnionUtils.get(this, Kind.Groups);
 	}
 
+	@Nullable
+	private final String _customKind;
+
 	/**
-	 * Is this variant instance of kind {@code metadata}?
+	 * Is this a custom {@code FieldRule} defined by a plugin?
 	 */
-	public boolean isMetadata() {
-		return _kind == Kind.Metadata;
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
 	}
 
 	/**
-	 * Get the {@code metadata} variant value.
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code metadata} kind.
+	 *             if the current variant is not {@link Kind#_Custom}.
 	 */
-	public JsonData metadata() {
-		return TaggedUnionUtils.get(this, Kind.Metadata);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code realm}?
-	 */
-	public boolean isRealm() {
-		return _kind == Kind.Realm;
-	}
-
-	/**
-	 * Get the {@code realm} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code realm} kind.
-	 */
-	public Realm realm() {
-		return TaggedUnionUtils.get(this, Kind.Realm);
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
 	}
 
 	@Override
@@ -217,13 +224,18 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 		generator.writeStartObject();
 
-		generator.writeKey(_kind.jsonValue());
+		generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_kind) {
 				case Username :
-					generator.write(((String) this._value));
+					generator.writeStartArray();
+					for (String item0 : ((List<String>) this._value)) {
+						generator.write(item0);
+
+					}
+					generator.writeEnd();
 
 					break;
 				case Dn :
@@ -244,10 +256,6 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 					generator.writeEnd();
 
 					break;
-				case Metadata :
-					((JsonData) this._value).serialize(generator, mapper);
-
-					break;
 			}
 		}
 
@@ -263,12 +271,13 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldRule> {
 		private Kind _kind;
 		private Object _value;
+		private String _customKind;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<FieldRule> username(String v) {
+		public ObjectBuilder<FieldRule> username(List<String> v) {
 			this._kind = Kind.Username;
 			this._value = v;
 			return this;
@@ -286,20 +295,20 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 			return this;
 		}
 
-		public ObjectBuilder<FieldRule> metadata(JsonData v) {
-			this._kind = Kind.Metadata;
-			this._value = v;
+		/**
+		 * Define this {@code FieldRule} as a plugin-defined variant.
+		 *
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code FieldRule}. It is converted
+		 *            internally to {@link JsonData}.
+		 */
+		public ObjectBuilder<FieldRule> _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
 			return this;
-		}
-
-		public ObjectBuilder<FieldRule> realm(Realm v) {
-			this._kind = Kind.Realm;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<FieldRule> realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
-			return this.realm(fn.apply(new Realm.Builder()).build());
 		}
 
 		public FieldRule build() {
@@ -311,11 +320,15 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 	protected static void setupFieldRuleDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
+		op.add(Builder::username, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"username");
 		op.add(Builder::dn, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "dn");
 		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
-		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
-		op.add(Builder::realm, Realm._DESERIALIZER, "realm");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

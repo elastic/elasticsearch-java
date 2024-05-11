@@ -24,6 +24,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Type;
 
 public abstract class DelegatingJsonpMapper implements JsonpMapper {
 
@@ -39,8 +40,8 @@ public abstract class DelegatingJsonpMapper implements JsonpMapper {
     }
 
     @Override
-    public <T> T deserialize(JsonParser parser, Class<T> clazz) {
-        return mapper.deserialize(parser, clazz);
+    public <T> T deserialize(JsonParser parser, Type type) {
+        return mapper.deserialize(parser, type);
     }
 
     @Override

@@ -4,11 +4,16 @@
 // * <<debugging>>
 // * <<deprecation-warnings>>
 
-.Exceptions
+[discrete]
+=== Exceptions
 
 * <<missing-required-property>>
-* <<serialize-without-typed-keys>>
+* <<no-such-method-request-options>>
 
+[discrete]
+=== Miscellaneous
+
+* <<serialize-without-typed-keys>>
 
 // [[debugging]]
 // === Debugging
@@ -17,4 +22,5 @@
 // === Elasticsearch deprecation warnings
 
 include::missing-required-property.asciidoc[]
+include::no-such-method-request-options.asciidoc[]
 include::serialize-without-typed-keys.asciidoc[]

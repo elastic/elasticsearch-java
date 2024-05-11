@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonParsingException;
 
 import javax.annotation.Nullable;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.util.AbstractMap;
 import java.util.Map;
@@ -149,6 +150,66 @@ public class JsonpUtils {
         }
     }
 
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
+    public static void copy(JsonParser parser, JsonGenerator generator) {
+        copy(parser, generator, parser.next());
+    }
+
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
+    public static void copy(JsonParser parser, JsonGenerator generator, JsonParser.Event event) {
+
+        switch (event) {
+            case START_OBJECT:
+                generator.writeStartObject();
+                while ((event = parser.next()) != Event.END_OBJECT) {
+                    expectEvent(parser, Event.KEY_NAME, event);
+                    generator.writeKey(parser.getString());
+                    copy(parser, generator, parser.next());
+                }
+                generator.writeEnd();
+                break;
+
+            case START_ARRAY:
+                generator.writeStartArray();
+                while ((event = parser.next()) != Event.END_ARRAY) {
+                    copy(parser, generator, event);
+                }
+                generator.writeEnd();
+                break;
+
+            case VALUE_STRING:
+                generator.write(parser.getString());
+                break;
+
+            case VALUE_FALSE:
+                generator.write(false);
+                break;
+
+            case VALUE_TRUE:
+                generator.write(true);
+                break;
+
+            case VALUE_NULL:
+                generator.writeNull();
+                break;
+
+            case VALUE_NUMBER:
+                if (parser.isIntegralNumber()) {
+                    generator.write(parser.getLong());
+                } else {
+                    generator.write(parser.getBigDecimal());
+                }
+                break;
+
+            default:
+                throw new UnexpectedJsonEventException(parser, event);
+        }
+    }
+
     public static <T> void serialize(T value, JsonGenerator generator, @Nullable JsonpSerializer<T> serializer, JsonpMapper mapper) {
         if (serializer != null) {
             serializer.serialize(value, generator, mapper);
@@ -162,42 +223,53 @@ public class JsonpUtils {
     /**
      * Looks ahead a field value in the Json object from the upcoming object in a parser, which should be on the
      * START_OBJECT event.
-     *
+     * <p>
      * Returns a pair containing that value and a parser that should be used to actually parse the object
      * (the object has been consumed from the original one).
      */
     public static Map.Entry<String, JsonParser> lookAheadFieldValue(
         String name, String defaultValue, JsonParser parser, JsonpMapper mapper
     ) {
-        // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
         JsonLocation location = parser.getLocation();
-        JsonObject object = parser.getObject();
-        String result = object.getString(name, null);
 
-        if (result == null) {
-            result = defaultValue;
-        }
-
-        if (result == null) {
-            throw new JsonpMappingException("Property '" + name + "' not found", location);
-        }
-
-        JsonParser newParser = objectParser(object, mapper);
-
-        // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
-        newParser = new DelegatingJsonParser(newParser) {
-            @Override
-            public JsonLocation getLocation() {
-                return new JsonLocationImpl(location.getLineNumber(), location.getColumnNumber(), location.getStreamOffset()) {
-                    @Override
-                    public String toString() {
-                        return "(in object at " + super.toString().substring(1);
-                    }
-                };
+        if (parser instanceof LookAheadJsonParser) {
+            // Fast buffered path
+            Map.Entry<String, JsonParser> result = ((LookAheadJsonParser) parser).lookAheadFieldValue(name, defaultValue);
+            if (result.getKey() == null) {
+                throw new JsonpMappingException("Property '" + name + "' not found", location);
             }
-        };
+            return result;
 
-        return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+        } else {
+            // Unbuffered path: parse the object into a JsonObject, then extract the value and parse it again
+            JsonObject object = parser.getObject();
+            String result = object.getString(name, null);
+
+            if (result == null) {
+                result = defaultValue;
+            }
+
+            if (result == null) {
+                throw new JsonpMappingException("Property '" + name + "' not found", location);
+            }
+
+            JsonParser newParser = objectParser(object, mapper);
+
+            // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
+            newParser = new DelegatingJsonParser(newParser) {
+                @Override
+                public JsonLocation getLocation() {
+                    return new JsonLocationImpl(location.getLineNumber(), location.getColumnNumber(), location.getStreamOffset()) {
+                        @Override
+                        public String toString() {
+                            return "(in object at " + super.toString().substring(1);
+                        }
+                    };
+                }
+            };
+
+            return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+        }
     }
 
     /**
@@ -338,6 +410,14 @@ public class JsonpUtils {
             // Ignore
         }
         return dest;
+    }
+
+    public static String toJsonString(JsonpSerializable value, JsonpMapper mapper) {
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        value.serialize(generator, mapper);
+        generator.close();
+        return writer.toString();
     }
 
     /**

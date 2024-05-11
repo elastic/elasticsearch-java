@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.SortOrder;
@@ -37,6 +33,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: ingest._types.SortProcessor
 
 /**
@@ -48,8 +59,10 @@ import javax.annotation.Nullable;
 public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
+	@Nullable
 	private final SortOrder order;
 
+	@Nullable
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
@@ -58,8 +71,8 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.order = builder.order;
+		this.targetField = builder.targetField;
 
 	}
 
@@ -83,15 +96,17 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code order}
+	 * API name: {@code order}
 	 */
+	@Nullable
 	public final SortOrder order() {
 		return this.order;
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -102,10 +117,15 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("order");
-		this.order.serialize(generator, mapper);
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.order != null) {
+			generator.writeKey("order");
+			this.order.serialize(generator, mapper);
+		}
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
+
+		}
 
 	}
 
@@ -118,8 +138,10 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<SortProcessor> {
 		private String field;
 
+		@Nullable
 		private SortOrder order;
 
+		@Nullable
 		private String targetField;
 
 		/**
@@ -131,17 +153,17 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code order}
+		 * API name: {@code order}
 		 */
-		public final Builder order(SortOrder value) {
+		public final Builder order(@Nullable SortOrder value) {
 			this.order = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}

@@ -19,27 +19,53 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.transport.http.TransportHttpClient;
+
 import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class TransportException extends IOException {
 
     private final String endpointId;
+    private final TransportHttpClient.Response response;
 
-    public TransportException(String message, String endpointId) {
-        this(message, endpointId, null);
+    public TransportException(TransportHttpClient.Response response, String message, String endpointId) {
+        this(response, message, endpointId, null);
     }
 
-    public TransportException(String message, String endpointId, Throwable cause) {
-        super(endpointId == null ? message : "[" + endpointId + "] " + message, cause);
+    public TransportException(TransportHttpClient.Response response, String message, String endpointId, Throwable cause) {
+        super(
+            "node: " + response.node() + ", status: " + response.statusCode() + ", " +
+            (endpointId == null ? message : "[" + endpointId + "] " + message),
+            cause
+        );
+        this.response = response;
         this.endpointId = endpointId;
+
+        // Make sure the response is closed to free up resources.
+        try {
+            response.close();
+        } catch (Exception e) {
+            this.addSuppressed(e);
+        }
+    }
+
+    /**
+     * Status code returned by the http resquest
+     */
+    public int statusCode() {
+        return response.statusCode();
     }
 
     /**
      * Identifier of the API endpoint that caused the exception, if known.
      */
     @Nullable
-    String getEndpointId() {
+    public String endpointId() {
         return endpointId;
+    }
+
+    public TransportHttpClient.Response response() {
+        return response;
     }
 }

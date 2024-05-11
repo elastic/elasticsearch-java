@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -37,6 +33,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: ingest._types.ConvertProcessor
 
 /**
@@ -51,6 +62,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	@Nullable
 	private final Boolean ignoreMissing;
 
+	@Nullable
 	private final String targetField;
 
 	private final ConvertType type;
@@ -62,7 +74,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = builder.targetField;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
@@ -95,8 +107,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -119,9 +132,11 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 			generator.write(this.ignoreMissing);
 
 		}
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
 
+		}
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -141,6 +156,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		@Nullable
 		private Boolean ignoreMissing;
 
+		@Nullable
 		private String targetField;
 
 		private ConvertType type;
@@ -162,9 +178,9 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}

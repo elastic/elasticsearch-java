@@ -17,12 +17,9 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.tasks;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,6 +39,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: tasks._types.State
 
@@ -73,7 +85,7 @@ public class State implements JsonpSerializable {
 	private final long startTimeInMillis;
 
 	@Nullable
-	private final Status status;
+	private final JsonData status;
 
 	private final String type;
 
@@ -168,7 +180,7 @@ public class State implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public final Status status() {
+	public final JsonData status() {
 		return this.status;
 	}
 
@@ -279,7 +291,7 @@ public class State implements JsonpSerializable {
 		private Long startTimeInMillis;
 
 		@Nullable
-		private Status status;
+		private JsonData status;
 
 		private String type;
 
@@ -370,16 +382,9 @@ public class State implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(@Nullable Status value) {
+		public final Builder status(@Nullable JsonData value) {
 			this.status = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code status}
-		 */
-		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-			return this.status(fn.apply(new Status.Builder()).build());
 		}
 
 		/**
@@ -428,7 +433,7 @@ public class State implements JsonpSerializable {
 		op.add(Builder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
 		op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-		op.add(Builder::status, Status._DESERIALIZER, "status");
+		op.add(Builder::status, JsonData._DESERIALIZER, "status");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

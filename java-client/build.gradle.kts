@@ -19,6 +19,7 @@
 
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
+import com.github.jk1.license.render.LicenseDataCollector
 import java.io.FileWriter
 
 plugins {
@@ -26,8 +27,8 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "1.19"
-    id("de.thetaphi.forbiddenapis") version "3.3"
+    id("com.github.jk1.dependency-license-report") version "2.1"
+    id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
 java {
@@ -88,6 +89,7 @@ tasks.withType<Javadoc> {
     // Gradle calls javadoc with a list of file and not a path. This prevents doc-files from being copied.
     opt.addStringOption("sourcepath", project.projectDir.path + "/src/main/java")
     opt.docFilesSubDirs(true)
+    opt.addBooleanOption("Xdoclint:-missing", true)
 
     doLast {
         // Javadoc adds its decoration to html doc files, including quite some JS. This slows down the api spec
@@ -175,8 +177,8 @@ publishing {
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
-    val elasticsearchVersion = "7.17.4"
-    val jacksonVersion = "2.13.3"
+    val elasticsearchVersion = "7.17.18"
+    val jacksonVersion = "2.17.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
@@ -193,7 +195,7 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.0.0")
+    api("org.eclipse.parsson:parsson:1.0.5")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonb-api
@@ -213,6 +215,9 @@ dependencies {
         // Exclude Glassfish as we use Parsson (basically Glassfish renamed in the Jakarta namespace).
         exclude(group = "org.glassfish", module = "jakarta.json")
     }
+
+    // Apache-2.0
+    testImplementation("commons-io:commons-io:2.11.0")
 
     // EPL-2.0
     // https://junit.org/junit5/
@@ -261,21 +266,31 @@ class SpdxReporter(val dest: File) : ReportRenderer {
         FileWriter(dest).use { out ->
             out.append("name,url,version,revision,license\n")
             data?.allDependencies?.forEach { dep ->
-                val info = com.github.jk1.license.render.LicenseDataCollector.multiModuleLicenseInfo(dep)
 
                 val depVersion = dep.version
                 val depName = dep.group + ":" + dep.name
-                val depUrl = info.moduleUrls.first()
 
-                val licenseIds = info.licenses.mapNotNull { license ->
-                    license.name?.let {
-                        checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
-                    }
-                }.toSet()
+                //--------------
+                // FIXME: restore section below once 2.2 is released
+                // See https://github.com/jk1/Gradle-License-Report/issues/251
+                val (depUrl, licenseId, licenseUrl) = LicenseDataCollector.singleModuleLicenseInfo(dep)
+                checkNotNull(spdxIds[licenseId]) { "No SPDX identifier for $licenseId" }
 
-                // Combine multiple licenses.
-                // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
-                val licenseId = licenseIds.joinToString(" OR ")
+                //--------------
+                // val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
+                // val depUrl = info.moduleUrls.first()
+                //
+                // val licenseIds = info.licenses.mapNotNull { license ->
+                //     license.name?.let {
+                //         checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
+                //     }
+                // }.toSet()
+                //
+                // // Combine multiple licenses.
+                // // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
+                // val licenseId = licenseIds.joinToString(" OR ")
+                //--------------
+
                 out.append("${quote(depName)},${quote(depUrl)},${quote(depVersion)},,${quote(licenseId)}\n")
             }
         }

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -42,6 +38,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: ilm.explain_lifecycle.Request
 
@@ -109,7 +120,9 @@ public class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Filters the returned indices to only indices that are managed by ILM.
+	 * Filters the returned indices to only indices that are managed by ILM and are
+	 * in an error state, either due to an encountering an error while executing the
+	 * policy, or attempting to use a policy that does not exist.
 	 * <p>
 	 * API name: {@code only_errors}
 	 */
@@ -119,9 +132,7 @@ public class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Filters the returned indices to only indices that are managed by ILM and are
-	 * in an error state, either due to an encountering an error while executing the
-	 * policy, or attempting to use a policy that does not exist.
+	 * Filters the returned indices to only indices that are managed by ILM.
 	 * <p>
 	 * API name: {@code only_managed}
 	 */
@@ -198,7 +209,9 @@ public class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Filters the returned indices to only indices that are managed by ILM.
+		 * Filters the returned indices to only indices that are managed by ILM and are
+		 * in an error state, either due to an encountering an error while executing the
+		 * policy, or attempting to use a policy that does not exist.
 		 * <p>
 		 * API name: {@code only_errors}
 		 */
@@ -208,9 +221,7 @@ public class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Filters the returned indices to only indices that are managed by ILM and are
-		 * in an error state, either due to an encountering an error while executing the
-		 * policy, or attempting to use a policy that does not exist.
+		 * Filters the returned indices to only indices that are managed by ILM.
 		 * <p>
 		 * API name: {@code only_managed}
 		 */

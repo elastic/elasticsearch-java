@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.analysis;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -28,13 +24,27 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.analysis.StemmerTokenFilter
 
@@ -46,6 +56,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
 	private final String language;
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,7 +64,7 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 	private StemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+		this.language = builder.language;
 
 	}
 
@@ -70,8 +81,9 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
-	 * Required - API name: {@code language}
+	 * API name: {@code language}
 	 */
+	@Nullable
 	public final String language() {
 		return this.language;
 	}
@@ -80,8 +92,11 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		generator.write("type", "stemmer");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("language");
-		generator.write(this.language);
+		if (this.language != null) {
+			generator.writeKey("language");
+			generator.write(this.language);
+
+		}
 
 	}
 
@@ -94,12 +109,13 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerTokenFilter> {
+		@Nullable
 		private String language;
 
 		/**
-		 * Required - API name: {@code language}
+		 * API name: {@code language}
 		 */
-		public final Builder language(String value) {
+		public final Builder language(@Nullable String value) {
 			this.language = value;
 			return this;
 		}
@@ -132,7 +148,7 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	protected static void setupStemmerTokenFilterDeserializer(ObjectDeserializer<StemmerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
+		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language", "name");
 
 		op.ignore("type");
 	}

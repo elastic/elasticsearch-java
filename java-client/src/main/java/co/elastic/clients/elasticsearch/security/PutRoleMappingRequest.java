@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -47,6 +43,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: security.put_role_mapping.Request
 
 /**
@@ -68,6 +79,8 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final Refresh refresh;
 
+	private final List<RoleTemplate> roleTemplates;
+
 	private final List<String> roles;
 
 	@Nullable
@@ -83,6 +96,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
+		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
 		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
@@ -131,6 +145,13 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * API name: {@code role_templates}
+	 */
+	public final List<RoleTemplate> roleTemplates() {
+		return this.roleTemplates;
+	}
+
+	/**
 	 * API name: {@code roles}
 	 */
 	public final List<String> roles() {
@@ -174,6 +195,16 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.roleTemplates)) {
+			generator.writeKey("role_templates");
+			generator.writeStartArray();
+			for (RoleTemplate item0 : this.roleTemplates) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -226,6 +257,9 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 
 		@Nullable
 		private Refresh refresh;
+
+		@Nullable
+		private List<RoleTemplate> roleTemplates;
 
 		@Nullable
 		private List<String> roles;
@@ -285,6 +319,35 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roleTemplates</code>.
+		 */
+		public final Builder roleTemplates(List<RoleTemplate> list) {
+			this.roleTemplates = _listAddAll(this.roleTemplates, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds one or more values to <code>roleTemplates</code>.
+		 */
+		public final Builder roleTemplates(RoleTemplate value, RoleTemplate... values) {
+			this.roleTemplates = _listAdd(this.roleTemplates, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds a value to <code>roleTemplates</code> using a builder lambda.
+		 */
+		public final Builder roleTemplates(Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>> fn) {
+			return roleTemplates(fn.apply(new RoleTemplate.Builder()).build());
 		}
 
 		/**
@@ -372,6 +435,8 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(RoleTemplate._DESERIALIZER),
+				"role_templates");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 		op.add(Builder::rules, RoleMappingRule._DESERIALIZER, "rules");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");

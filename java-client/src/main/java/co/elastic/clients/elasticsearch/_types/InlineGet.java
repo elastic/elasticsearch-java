@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonData;
@@ -47,6 +43,21 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.InlineGet
 
 /**
@@ -71,6 +82,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final String routing;
 
+	@Nullable
 	private final TDocument source;
 
 	@Nullable
@@ -87,7 +99,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = builder.source;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -143,8 +155,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _source}
+	 * API name: {@code _source}
 	 */
+	@Nullable
 	public final TDocument source() {
 		return this.source;
 	}
@@ -195,8 +208,11 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
-		generator.writeKey("_source");
-		JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
+		if (this.source != null) {
+			generator.writeKey("_source");
+			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
+
+		}
 
 	}
 
@@ -251,6 +267,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		@Nullable
 		private String routing;
 
+		@Nullable
 		private TDocument source;
 
 		@Nullable
@@ -309,9 +326,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * API name: {@code _source}
 		 */
-		public final Builder<TDocument> source(TDocument value) {
+		public final Builder<TDocument> source(@Nullable TDocument value) {
 			this.source = value;
 			return this;
 		}

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -30,13 +26,28 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: security.get_role.TransientMetadata
 
@@ -48,13 +59,14 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class TransientMetadata implements JsonpSerializable {
-	private final boolean enabled;
+	@Nullable
+	private final Boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TransientMetadata(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = builder.enabled;
 
 	}
 
@@ -63,9 +75,10 @@ public class TransientMetadata implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code enabled}
+	 * API name: {@code enabled}
 	 */
-	public final boolean enabled() {
+	@Nullable
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -80,8 +93,11 @@ public class TransientMetadata implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+		if (this.enabled != null) {
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
+
+		}
 
 	}
 
@@ -97,12 +113,13 @@ public class TransientMetadata implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TransientMetadata> {
+		@Nullable
 		private Boolean enabled;
 
 		/**
-		 * Required - API name: {@code enabled}
+		 * API name: {@code enabled}
 		 */
-		public final Builder enabled(boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}

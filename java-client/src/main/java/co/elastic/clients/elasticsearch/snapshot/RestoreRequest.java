@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
@@ -47,6 +43,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: snapshot.restore.Request
 
 /**
@@ -57,6 +68,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RestoreRequest extends RequestBase implements JsonpSerializable {
+	private final List<String> featureStates;
+
 	private final List<String> ignoreIndexSettings;
 
 	@Nullable
@@ -96,6 +109,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	private RestoreRequest(Builder builder) {
 
+		this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);
 		this.ignoreIndexSettings = ApiTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeAliases = builder.includeAliases;
@@ -114,6 +128,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	public static RestoreRequest of(Function<Builder, ObjectBuilder<RestoreRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code feature_states}
+	 */
+	public final List<String> featureStates() {
+		return this.featureStates;
 	}
 
 	/**
@@ -235,6 +256,16 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.featureStates)) {
+			generator.writeKey("feature_states");
+			generator.writeStartArray();
+			for (String item0 : this.featureStates) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.ignoreIndexSettings)) {
 			generator.writeKey("ignore_index_settings");
 			generator.writeStartArray();
@@ -301,6 +332,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<RestoreRequest> {
 		@Nullable
+		private List<String> featureStates;
+
+		@Nullable
 		private List<String> ignoreIndexSettings;
 
 		@Nullable
@@ -336,6 +370,26 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Boolean waitForCompletion;
+
+		/**
+		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
+		 */
+		public final Builder featureStates(List<String> list) {
+			this.featureStates = _listAddAll(this.featureStates, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds one or more values to <code>featureStates</code>.
+		 */
+		public final Builder featureStates(String value, String... values) {
+			this.featureStates = _listAdd(this.featureStates, value, values);
+			return this;
+		}
 
 		/**
 		 * API name: {@code ignore_index_settings}
@@ -518,6 +572,8 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupRestoreRequestDeserializer(ObjectDeserializer<RestoreRequest.Builder> op) {
 
+		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"feature_states");
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");

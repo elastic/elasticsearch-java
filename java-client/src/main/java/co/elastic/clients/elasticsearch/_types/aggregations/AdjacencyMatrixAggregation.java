@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -38,6 +34,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
 
 /**
@@ -50,12 +61,16 @@ import javax.annotation.Nullable;
 public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final Map<String, Query> filters;
 
+	@Nullable
+	private final String separator;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AdjacencyMatrixAggregation(Builder builder) {
 		super(builder);
 
 		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
+		this.separator = builder.separator;
 
 	}
 
@@ -78,6 +93,16 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		return this.filters;
 	}
 
+	/**
+	 * Separator used to concatenate filter names. Defaults to &amp;.
+	 * <p>
+	 * API name: {@code separator}
+	 */
+	@Nullable
+	public final String separator() {
+		return this.separator;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -90,6 +115,11 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.separator != null) {
+			generator.writeKey("separator");
+			generator.write(this.separator);
 
 		}
 
@@ -106,6 +136,9 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 				ObjectBuilder<AdjacencyMatrixAggregation> {
 		@Nullable
 		private Map<String, Query> filters;
+
+		@Nullable
+		private String separator;
 
 		/**
 		 * API name: {@code filters}
@@ -134,6 +167,16 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		 */
 		public final Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return filters(key, fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Separator used to concatenate filter names. Defaults to &amp;.
+		 * <p>
+		 * API name: {@code separator}
+		 */
+		public final Builder separator(@Nullable String value) {
+			this.separator = value;
+			return this;
 		}
 
 		@Override
@@ -166,6 +209,7 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 			ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
 
 	}
 

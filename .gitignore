@@ -21,3 +21,6 @@ gradle-app.setting
 
 # HTML files produced by the docs build
 html_docs
+
+# Local Makefile
+Makefile

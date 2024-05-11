@@ -24,6 +24,8 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 
+import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -87,15 +89,23 @@ public interface JsonpDeserializer<V> {
 
     //---------------------------------------------------------------------------------------------
 
+//    /**
+//     * Creates a deserializer for a class that delegates to the mapper provided to
+//     * {@link #deserialize(JsonParser, JsonpMapper)}.
+//     */
+//    static <T>JsonpDeserializer<T> of(Class<T> clazz) {
+//        return of((Type)clazz);
+//    }
+
     /**
-     * Creates a deserializer for a class that delegates to the mapper provided to
+     * Creates a deserializer for a type that delegates to the mapper provided to
      * {@link #deserialize(JsonParser, JsonpMapper)}.
      */
-    static <T>JsonpDeserializer<T> of (Class<T> clazz) {
+    static <T>JsonpDeserializer<T> of(Type type) {
         return new JsonpDeserializerBase<T>(EnumSet.allOf(JsonParser.Event.class)) {
             @Override
             public T deserialize(JsonParser parser, JsonpMapper mapper) {
-                return mapper.deserialize(parser, clazz);
+                return mapper.deserialize(parser, type);
             }
 
             @Override
@@ -215,5 +225,28 @@ public interface JsonpDeserializer<V> {
         JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
     ) {
         return new JsonpDeserializerBase.EnumMapDeserializer<>(keyDeserializer, valueDeserializer);
+    }
+
+    /**
+     * Creates a deserializer that will accept a value both as regular JSON and as JSON-in-a-string.
+     */
+    static <T> JsonpDeserializer<T> jsonString(JsonpDeserializer<T> valueDeserializer) {
+        EnumSet<Event> acceptedEvents = EnumSet.copyOf(valueDeserializer.acceptedEvents());
+        acceptedEvents.add(Event.VALUE_STRING);
+
+        EnumSet<Event> nativeEvents = EnumSet.copyOf(valueDeserializer.nativeEvents());
+        nativeEvents.add(Event.VALUE_STRING);
+
+        return new JsonpDeserializerBase<T>(acceptedEvents, nativeEvents) {
+            @Override
+            public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+                if (event == Event.VALUE_STRING) {
+                    JsonParser stringParser = mapper.jsonProvider().createParser(new StringReader(parser.getString()));
+                    return valueDeserializer.deserialize(stringParser, mapper);
+                } else {
+                    return valueDeserializer.deserialize(parser, mapper, event);
+                }
+            }
+        };
     }
 }

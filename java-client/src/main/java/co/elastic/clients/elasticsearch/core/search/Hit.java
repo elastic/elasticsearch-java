@@ -17,12 +17,9 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch.core.explain.Explanation;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,12 +38,28 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _global.search._types.Hit
 
@@ -104,7 +117,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Long version;
 
-	private final List<String> sort;
+	private final List<FieldValue> sort;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -280,7 +293,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code sort}
 	 */
-	public final List<String> sort() {
+	public final List<FieldValue> sort() {
 		return this.sort;
 	}
 
@@ -419,8 +432,8 @@ public class Hit<TDocument> implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (String item0 : this.sort) {
-				generator.write(item0);
+			for (FieldValue item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -496,7 +509,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		private Long version;
 
 		@Nullable
-		private List<String> sort;
+		private List<FieldValue> sort;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -734,7 +747,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder<TDocument> sort(List<String> list) {
+		public final Builder<TDocument> sort(List<FieldValue> list) {
 			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
@@ -744,9 +757,78 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder<TDocument> sort(String value, String... values) {
+		public final Builder<TDocument> sort(FieldValue value, FieldValue... values) {
 			this.sort = _listAdd(this.sort, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder<TDocument> sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder<TDocument> sort(long value, long... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder<TDocument> sort(double value, double... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds all passed values to <code>sort</code>.
+		 */
+		public final Builder<TDocument> sort(boolean value, boolean... values) {
+			this.sort = _listAdd(this.sort, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.sort = _listAddAll(this.sort, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
+		 */
+		public final Builder<TDocument> sort(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return sort(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -820,7 +902,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "sort");
 
 	}
 

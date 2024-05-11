@@ -25,6 +25,7 @@ import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +33,7 @@ import java.util.Map;
 public abstract class JsonpMapperBase implements JsonpMapper {
 
     /** Get a serializer when none of the builtin ones are applicable */
-    protected abstract <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz);
+    protected abstract <T> JsonpDeserializer<T> getDefaultDeserializer(Type type);
 
     private Map<String, Object> attributes;
 
@@ -61,29 +62,39 @@ public abstract class JsonpMapperBase implements JsonpMapper {
     }
 
     @Override
-    public <T> T deserialize(JsonParser parser, Class<T> clazz) {
-        JsonpDeserializer<T> deserializer = findDeserializer(clazz);
+    public <T> T deserialize(JsonParser parser, Type type) {
+        JsonpDeserializer<T> deserializer = findDeserializer(type);
         if (deserializer != null) {
             return deserializer.deserialize(parser, this);
         }
 
-        return getDefaultDeserializer(clazz).deserialize(parser, this);
+        @SuppressWarnings("unchecked")
+        T result = (T)getDefaultDeserializer(type).deserialize(parser, this);
+        return result;
+    }
+
+    @Nullable
+    public static <T> JsonpDeserializer<T> findDeserializer(Class<T> clazz) {
+        return findDeserializer((Type)clazz);
     }
 
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> JsonpDeserializer<T> findDeserializer(Class<T> clazz) {
-        JsonpDeserializable annotation = clazz.getAnnotation(JsonpDeserializable.class);
-        if (annotation != null) {
-            try {
-                Field field = clazz.getDeclaredField(annotation.field());
-                return (JsonpDeserializer<T>)field.get(null);
-            } catch (Exception e) {
-                throw new RuntimeException("No deserializer found in '" + clazz.getName() + "." + annotation.field() + "'");
+    public static <T> JsonpDeserializer<T> findDeserializer(Type type) {
+        if (type instanceof Class<?>) {
+            Class<?> clazz = (Class<?>)type;
+            JsonpDeserializable annotation = clazz.getAnnotation(JsonpDeserializable.class);
+            if (annotation != null) {
+                try {
+                    Field field = clazz.getDeclaredField(annotation.field());
+                    return (JsonpDeserializer<T>)field.get(null);
+                } catch (Exception e) {
+                    throw new RuntimeException("No deserializer found in '" + clazz.getName() + "." + annotation.field() + "'");
+                }
             }
         }
 
-        if (clazz == Void.class) {
+        if (type == Void.class) {
             return (JsonpDeserializer<T>)JsonpDeserializerBase.VOID;
         }
 

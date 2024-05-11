@@ -72,7 +72,7 @@ public class WithJsonTest extends ModelTestCase {
         );
 
         assertEquals("foo", s.field());
-        assertEquals(12, s.id());
+        assertEquals("12", s.id());
         assertEquals(34, s.max());
     }
 

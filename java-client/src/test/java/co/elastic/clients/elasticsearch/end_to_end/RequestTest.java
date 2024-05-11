@@ -42,14 +42,19 @@ import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.util.BinaryData;
+import co.elastic.clients.util.ContentType;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -183,6 +188,58 @@ public class RequestTest extends Assertions {
         assertEquals(1, msearch.responses().get(0).result().hits().hits().size());
         assertTrue(msearch.responses().get(1).isFailure());
         assertEquals(404, msearch.responses().get(1).failure().status());
+    }
+
+    @Test
+    public void testBinaryDataIngestion() throws IOException {
+        String index = "binary-ingestion-test";
+        String id = "foo-bar";
+
+        BinaryData data = BinaryData.of("{\"foo\":\"bar\"}".getBytes(), ContentType.APPLICATION_JSON);
+
+        client.index(i -> i
+            .index(index)
+            .id(id)
+            .document(data)
+            .refresh(Refresh.True)
+        );
+
+        GetResponse<BinaryData> getResponse = client.get(g -> g
+                .index(index)
+                .id(id)
+            , BinaryData.class
+        );
+
+        assertEquals(id, getResponse.id());
+        assertEquals(
+            "{\"foo\":\"bar\"}",
+            new String(getResponse.source().asByteBuffer().array(), StandardCharsets.UTF_8)
+        );
+    }
+
+    @Test
+    public void testMappingWithType() throws IOException {
+        String index = "mapping-with-type";
+
+        // Ingest some data
+        Map<String, AppData> map = new HashMap<>();
+        AppData appData = new AppData();
+        appData.setIntValue(1);
+        appData.setMsg("foo");
+        map.put("foo", appData);
+        appData = new AppData();
+        appData.setIntValue(2);
+        appData.setMsg("bar");
+        map.put("bar", appData);
+
+        String id = client.index(i -> i.index(index).document(map)).id();
+
+        TypeReference<Map<String, AppData>> typeRef = new TypeReference<Map<String, AppData>>() {};
+
+        Map<String, AppData> result = client.<Map<String, AppData>>get(g -> g.index(index).id(id), typeRef.getType()).source();
+        assertEquals(1, result.get("foo").intValue);
+        assertEquals(2, result.get("bar").intValue);
+
     }
 
     @Test

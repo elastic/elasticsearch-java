@@ -17,13 +17,8 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,6 +37,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.mapping.PropertyBase
 
 /**
@@ -51,8 +61,6 @@ import javax.annotation.Nullable;
  */
 
 public abstract class PropertyBase implements JsonpSerializable {
-	private final Map<String, JsonData> localMetadata;
-
 	private final Map<String, String> meta;
 
 	private final Map<String, Property> properties;
@@ -69,7 +77,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	protected PropertyBase(AbstractBuilder<?> builder) {
 
-		this.localMetadata = ApiTypeHelper.unmodifiable(builder.localMetadata);
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.ignoreAbove = builder.ignoreAbove;
@@ -79,13 +86,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code local_metadata}
-	 */
-	public final Map<String, JsonData> localMetadata() {
-		return this.localMetadata;
-	}
-
-	/**
+	 * Metadata about the field.
+	 * <p>
 	 * API name: {@code meta}
 	 */
 	public final Map<String, String> meta() {
@@ -133,17 +135,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.localMetadata)) {
-			generator.writeKey("local_metadata");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.localMetadata.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
@@ -194,12 +185,9 @@ public abstract class PropertyBase implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
-		@Nullable
-		private Map<String, JsonData> localMetadata;
-
 		@Nullable
 		private Map<String, String> meta;
 
@@ -216,26 +204,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 		private Map<String, Property> fields;
 
 		/**
-		 * API name: {@code local_metadata}
+		 * Metadata about the field.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>localMetadata</code>.
-		 */
-		public final BuilderT localMetadata(Map<String, JsonData> map) {
-			this.localMetadata = _mapPutAll(this.localMetadata, map);
-			return self();
-		}
-
-		/**
-		 * API name: {@code local_metadata}
-		 * <p>
-		 * Adds an entry to <code>localMetadata</code>.
-		 */
-		public final BuilderT localMetadata(String key, JsonData value) {
-			this.localMetadata = _mapPut(this.localMetadata, key, value);
-			return self();
-		}
-
-		/**
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
@@ -246,6 +216,8 @@ public abstract class PropertyBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Metadata about the field.
+		 * <p>
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds an entry to <code>meta</code>.
@@ -337,8 +309,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPropertyBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::localMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
-				"local_metadata");
 		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"meta");
 		op.add(AbstractBuilder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER),

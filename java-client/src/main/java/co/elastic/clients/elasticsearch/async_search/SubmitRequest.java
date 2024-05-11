@@ -17,14 +17,11 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
@@ -60,6 +57,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +65,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: async_search.submit.Request
 
@@ -191,7 +204,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time scroll;
 
-	private final List<String> searchAfter;
+	private final List<FieldValue> searchAfter;
 
 	@Nullable
 	private final SearchType searchType;
@@ -709,7 +722,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * API name: {@code search_after}
 	 */
-	public final List<String> searchAfter() {
+	public final List<FieldValue> searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -1017,8 +1030,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
-			for (String item0 : this.searchAfter) {
-				generator.write(item0);
+			for (FieldValue item0 : this.searchAfter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -1233,7 +1246,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private Time scroll;
 
 		@Nullable
-		private List<String> searchAfter;
+		private List<FieldValue> searchAfter;
 
 		@Nullable
 		private SearchType searchType;
@@ -1973,7 +1986,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(List<String> list) {
+		public final Builder searchAfter(List<FieldValue> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
@@ -1983,9 +1996,78 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(String value, String... values) {
+		public final Builder searchAfter(FieldValue value, FieldValue... values) {
 			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(long value, long... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(double value, double... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all passed values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(boolean value, boolean... values) {
+			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
+			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds a value to <code>searchAfter</code> using a builder lambda.
+		 */
+		public final Builder searchAfter(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return searchAfter(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -2281,8 +2363,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"search_after");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");

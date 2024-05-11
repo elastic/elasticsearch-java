@@ -17,42 +17,37 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.util.ObjectBuilder;
 import java.lang.String;
 import java.util.function.Function;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 /**
  * Builders for {@link FieldRule} variants.
  * <p>
- * Variants <code>username</code>, <code>dn</code>, <code>groups</code>,
- * <code>metadata</code> are not available here as they don't have a dedicated
- * class. Use {@link FieldRule}'s builder for these.
+ * Variants <code>username</code>, <code>dn</code>, <code>groups</code> are not
+ * available here as they don't have a dedicated class. Use {@link FieldRule}'s
+ * builder for these.
  * 
  */
 public class FieldRuleBuilders {
 	private FieldRuleBuilders() {
-	}
-
-	/**
-	 * Creates a builder for the {@link Realm realm} {@code FieldRule} variant.
-	 */
-	public static Realm.Builder realm() {
-		return new Realm.Builder();
-	}
-
-	/**
-	 * Creates a FieldRule of the {@link Realm realm} {@code FieldRule} variant.
-	 */
-	public static FieldRule realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
-		FieldRule.Builder builder = new FieldRule.Builder();
-		builder.realm(fn.apply(new Realm.Builder()).build());
-		return builder.build();
 	}
 
 }

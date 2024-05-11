@@ -95,7 +95,7 @@ public class JsonpMappingExceptionTest extends ModelTestCase {
             "}";
 
         // Error deserializing co.elastic.clients.elasticsearch._types.mapping.TextProperty:
-        // Unknown field 'baz' (JSON path: properties['foo-bar'].baz) (in object at line no=1, column no=36, offset=35)
+        // Unknown field 'baz' (JSON path: properties['foo-bar'].baz) (...line no=1, column no=36, offset=35)
 
         JsonpMappingException e = assertThrows(JsonpMappingException.class, () -> {
             fromJson(json, TypeMapping.class);
@@ -106,7 +106,5 @@ public class JsonpMappingExceptionTest extends ModelTestCase {
 
         String msg = e.getMessage();
         assertTrue(msg.contains("Unknown field 'baz'"));
-        // Check look ahead position (see JsonpUtils.lookAheadFieldValue)
-        assertTrue(msg.contains("(in object at line no="));
     }
 }

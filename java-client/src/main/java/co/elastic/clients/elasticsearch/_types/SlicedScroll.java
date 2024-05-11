@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,6 +36,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.SlicedScroll
 
 /**
@@ -52,7 +63,7 @@ public class SlicedScroll implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
-	private final int id;
+	private final String id;
 
 	private final int max;
 
@@ -81,7 +92,7 @@ public class SlicedScroll implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public final int id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -131,7 +142,7 @@ public class SlicedScroll implements JsonpSerializable {
 		@Nullable
 		private String field;
 
-		private Integer id;
+		private String id;
 
 		private Integer max;
 
@@ -146,7 +157,7 @@ public class SlicedScroll implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public final Builder id(int value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -188,7 +199,7 @@ public class SlicedScroll implements JsonpSerializable {
 	protected static void setupSlicedScrollDeserializer(ObjectDeserializer<SlicedScroll.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::id, JsonpDeserializer.integerDeserializer(), "id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
 
 	}

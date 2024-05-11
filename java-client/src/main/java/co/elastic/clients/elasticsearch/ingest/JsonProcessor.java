@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -37,6 +33,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: ingest._types.JsonProcessor
 
 /**
@@ -46,10 +57,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
-	private final boolean addToRoot;
+	@Nullable
+	private final Boolean addToRoot;
+
+	@Nullable
+	private final JsonProcessorConflictStrategy addToRootConflictStrategy;
+
+	@Nullable
+	private final Boolean allowDuplicateKeys;
 
 	private final String field;
 
+	@Nullable
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
@@ -57,9 +76,11 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	private JsonProcessor(Builder builder) {
 		super(builder);
 
-		this.addToRoot = ApiTypeHelper.requireNonNull(builder.addToRoot, this, "addToRoot");
+		this.addToRoot = builder.addToRoot;
+		this.addToRootConflictStrategy = builder.addToRootConflictStrategy;
+		this.allowDuplicateKeys = builder.allowDuplicateKeys;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = builder.targetField;
 
 	}
 
@@ -76,10 +97,27 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code add_to_root}
+	 * API name: {@code add_to_root}
 	 */
-	public final boolean addToRoot() {
+	@Nullable
+	public final Boolean addToRoot() {
 		return this.addToRoot;
+	}
+
+	/**
+	 * API name: {@code add_to_root_conflict_strategy}
+	 */
+	@Nullable
+	public final JsonProcessorConflictStrategy addToRootConflictStrategy() {
+		return this.addToRootConflictStrategy;
+	}
+
+	/**
+	 * API name: {@code allow_duplicate_keys}
+	 */
+	@Nullable
+	public final Boolean allowDuplicateKeys() {
+		return this.allowDuplicateKeys;
 	}
 
 	/**
@@ -90,8 +128,9 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - API name: {@code target_field}
+	 * API name: {@code target_field}
 	 */
+	@Nullable
 	public final String targetField() {
 		return this.targetField;
 	}
@@ -99,14 +138,28 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("add_to_root");
-		generator.write(this.addToRoot);
+		if (this.addToRoot != null) {
+			generator.writeKey("add_to_root");
+			generator.write(this.addToRoot);
 
+		}
+		if (this.addToRootConflictStrategy != null) {
+			generator.writeKey("add_to_root_conflict_strategy");
+			this.addToRootConflictStrategy.serialize(generator, mapper);
+		}
+		if (this.allowDuplicateKeys != null) {
+			generator.writeKey("allow_duplicate_keys");
+			generator.write(this.allowDuplicateKeys);
+
+		}
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
+
+		}
 
 	}
 
@@ -117,17 +170,41 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	 */
 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JsonProcessor> {
+		@Nullable
 		private Boolean addToRoot;
+
+		@Nullable
+		private JsonProcessorConflictStrategy addToRootConflictStrategy;
+
+		@Nullable
+		private Boolean allowDuplicateKeys;
 
 		private String field;
 
+		@Nullable
 		private String targetField;
 
 		/**
-		 * Required - API name: {@code add_to_root}
+		 * API name: {@code add_to_root}
 		 */
-		public final Builder addToRoot(boolean value) {
+		public final Builder addToRoot(@Nullable Boolean value) {
 			this.addToRoot = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code add_to_root_conflict_strategy}
+		 */
+		public final Builder addToRootConflictStrategy(@Nullable JsonProcessorConflictStrategy value) {
+			this.addToRootConflictStrategy = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allow_duplicate_keys}
+		 */
+		public final Builder allowDuplicateKeys(@Nullable Boolean value) {
+			this.allowDuplicateKeys = value;
 			return this;
 		}
 
@@ -140,9 +217,9 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - API name: {@code target_field}
+		 * API name: {@code target_field}
 		 */
-		public final Builder targetField(String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -176,6 +253,9 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	protected static void setupJsonProcessorDeserializer(ObjectDeserializer<JsonProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::addToRoot, JsonpDeserializer.booleanDeserializer(), "add_to_root");
+		op.add(Builder::addToRootConflictStrategy, JsonProcessorConflictStrategy._DESERIALIZER,
+				"add_to_root_conflict_strategy");
+		op.add(Builder::allowDuplicateKeys, JsonpDeserializer.booleanDeserializer(), "allow_duplicate_keys");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 

@@ -52,21 +52,20 @@ import java.util.Map;
  */
 public class JacksonJsonProvider extends JsonProvider {
 
+    private final JacksonJsonpMapper mapper;
     private final JsonFactory jsonFactory;
 
-    public JacksonJsonProvider(JsonFactory jsonFactory) {
-        this.jsonFactory = jsonFactory;
+    public JacksonJsonProvider(JacksonJsonpMapper mapper) {
+        this.mapper = mapper;
+        this.jsonFactory = mapper.objectMapper().getFactory();
     }
 
     public JacksonJsonProvider() {
-        this(new JsonFactory());
+        this(new JacksonJsonpMapper());
     }
 
-    /**
-     * Return the underlying Jackson {@link JsonFactory}.
-     */
-    public JsonFactory jacksonJsonFactory() {
-        return this.jsonFactory;
+    public JacksonJsonpMapper mapper() {
+        return this.mapper;
     }
 
     //---------------------------------------------------------------------------------------------
@@ -105,7 +104,7 @@ public class JacksonJsonProvider extends JsonProvider {
         @Override
         public JsonParser createParser(Reader reader) {
             try {
-                return new JacksonJsonpParser(jsonFactory.createParser(reader));
+                return new JacksonJsonpParser(jsonFactory.createParser(reader), mapper);
             } catch (IOException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }
@@ -114,7 +113,7 @@ public class JacksonJsonProvider extends JsonProvider {
         @Override
         public JsonParser createParser(InputStream in) {
             try {
-                return new JacksonJsonpParser(jsonFactory.createParser(in));
+                return new JacksonJsonpParser(jsonFactory.createParser(in), mapper);
             } catch (IOException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }
@@ -123,7 +122,7 @@ public class JacksonJsonProvider extends JsonProvider {
         @Override
         public JsonParser createParser(InputStream in, Charset charset) {
             try {
-                return new JacksonJsonpParser(jsonFactory.createParser(new InputStreamReader(in, charset)));
+                return new JacksonJsonpParser(jsonFactory.createParser(new InputStreamReader(in, charset)), mapper);
             } catch (IOException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }

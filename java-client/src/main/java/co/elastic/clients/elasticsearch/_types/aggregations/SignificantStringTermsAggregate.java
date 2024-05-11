@@ -17,23 +17,31 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.aggregations.SignificantStringTermsAggregate
 
@@ -44,22 +52,13 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<SignificantStringTermsBucket>
+public class SignificantStringTermsAggregate extends SignificantTermsAggregateBase<SignificantStringTermsBucket>
 		implements
 			AggregateVariant {
-	@Nullable
-	private final Long bgCount;
-
-	@Nullable
-	private final Long docCount;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private SignificantStringTermsAggregate(Builder builder) {
 		super(builder);
-
-		this.bgCount = builder.bgCount;
-		this.docCount = builder.docCount;
 
 	}
 
@@ -76,69 +75,17 @@ public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<Si
 		return Aggregate.Kind.Sigsterms;
 	}
 
-	/**
-	 * API name: {@code bg_count}
-	 */
-	@Nullable
-	public final Long bgCount() {
-		return this.bgCount;
-	}
-
-	/**
-	 * API name: {@code doc_count}
-	 */
-	@Nullable
-	public final Long docCount() {
-		return this.docCount;
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		if (this.bgCount != null) {
-			generator.writeKey("bg_count");
-			generator.write(this.bgCount);
-
-		}
-		if (this.docCount != null) {
-			generator.writeKey("doc_count");
-			generator.write(this.docCount);
-
-		}
-
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link SignificantStringTermsAggregate}.
 	 */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<SignificantStringTermsBucket, Builder>
+	public static class Builder
+			extends
+				SignificantTermsAggregateBase.AbstractBuilder<SignificantStringTermsBucket, Builder>
 			implements
 				ObjectBuilder<SignificantStringTermsAggregate> {
-		@Nullable
-		private Long bgCount;
-
-		@Nullable
-		private Long docCount;
-
-		/**
-		 * API name: {@code bg_count}
-		 */
-		public final Builder bgCount(@Nullable Long value) {
-			this.bgCount = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code doc_count}
-		 */
-		public final Builder docCount(@Nullable Long value) {
-			this.docCount = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -152,7 +99,7 @@ public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<Si
 		 */
 		public SignificantStringTermsAggregate build() {
 			_checkSingleUse();
-			super.tBucketSerializer(null);
+			super.tSerializer(null);
 
 			return new SignificantStringTermsAggregate(this);
 		}
@@ -168,10 +115,8 @@ public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<Si
 
 	protected static void setupSignificantStringTermsAggregateDeserializer(
 			ObjectDeserializer<SignificantStringTermsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op,
+		SignificantTermsAggregateBase.setupSignificantTermsAggregateBaseDeserializer(op,
 				SignificantStringTermsBucket._DESERIALIZER);
-		op.add(Builder::bgCount, JsonpDeserializer.longDeserializer(), "bg_count");
-		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 
 	}
 

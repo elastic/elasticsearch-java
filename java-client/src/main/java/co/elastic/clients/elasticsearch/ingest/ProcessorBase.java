@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,6 +37,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: ingest._types.ProcessorBase
 
 /**
@@ -50,6 +61,9 @@ import javax.annotation.Nullable;
  */
 
 public abstract class ProcessorBase implements JsonpSerializable {
+	@Nullable
+	private final String description;
+
 	@Nullable
 	private final String if_;
 
@@ -65,11 +79,20 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 	protected ProcessorBase(AbstractBuilder<?> builder) {
 
+		this.description = builder.description;
 		this.if_ = builder.if_;
 		this.ignoreFailure = builder.ignoreFailure;
 		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);
 		this.tag = builder.tag;
 
+	}
+
+	/**
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -114,6 +137,11 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
 		if (this.if_ != null) {
 			generator.writeKey("if");
 			generator.write(this.if_);
@@ -147,9 +175,12 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
+		@Nullable
+		private String description;
+
 		@Nullable
 		private String if_;
 
@@ -161,6 +192,14 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		@Nullable
 		private String tag;
+
+		/**
+		 * API name: {@code description}
+		 */
+		public final BuilderT description(@Nullable String value) {
+			this.description = value;
+			return self();
+		}
 
 		/**
 		 * API name: {@code if}
@@ -223,6 +262,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupProcessorBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(AbstractBuilder::if_, JsonpDeserializer.stringDeserializer(), "if");
 		op.add(AbstractBuilder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");

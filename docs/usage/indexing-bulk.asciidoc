@@ -30,23 +30,61 @@ include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-objects]
 [discrete]
 ==== Indexing raw JSON data
 
-The `document` property of a bulk index request can be any object that can be serialized to JSON using your Elasticsearch client's JSON mapper. In the example below we will use the {java-client}'s `JsonData` object to read json files from a log directory and send them in a bulk request.
+The `document` property of a bulk index request can be any object that can be serialized to JSON using your Elasticsearch client's JSON mapper. However, data that is ingested in bulk is often available as JSON text (e.g. files on disk), and parsing this JSON just to re-serialize it to send the bulk request would be a waste of resources. So documents in bulk operations can also be of type `BinaryData` that are sent verbatim (without parsing) to the {es} server.
 
-Since `JsonData` doesn't allow reading directly from an input stream (this will be added in a future release), we will use the following function for that:
-
-["source","java"]
---------------------------------------------------
-include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[read-json]
---------------------------------------------------
-
-We can now read the contents of the log directory and send it to {es}:
+In the example below we will use the {java-client}'s `BinaryData` to read json files from a log directory and send them in a bulk request.
 
 ["source","java"]
 --------------------------------------------------
 include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-json]
 --------------------------------------------------
 
+[discrete]
+==== Streaming ingestion with the Bulk Ingester
 
+The `BulkIngester` simplifies the usage of the Bulk API by providing a utility class that allows index/update/delete operations to be transparently grouped in bulk requests. You only have to `add()` bulk operations to the ingester and
+it will take care of grouping and sending them in bulk according to its configuration.
 
+The ingester will send a bulk request when one of the following criteria is met:
+
+- the number of operations exceeds a maximum (defaults to 1000)
+- the bulk request size in bytes exceeds a maximum (defaults to 5 MiB)
+- a delay since the last request has expired (periodic flush, no default)
+
+Additionally, you can define a maximum number of concurrent request waiting to be executed by {es} (defaults to 1). When that maximum is reached and the maximum number of operations have been collected, adding a new operation to the indexer will block. This is avoids overloading the {es} server by putting backpressure on the client application.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-ingester-setup]
+--------------------------------------------------
+<1> Sets the {es} client used to send bulk requests.
+<2> Sets the maximum number of operations to collect before sending a bulk request.
+<3> Sets the flush interval.
+<4> Adds a bulk operation to the ingester.
+<5> Closes the ingester to flush the pending operations and release resources.
+
+Additionally, the bulk ingester accepts a listener so that your application can be notified of bulk requests that are
+sent and their result. To allow correlating bulk operations to application context, the `add()` method optionally
+accepts a `context` parameter. The type of this context parameter is used as the generic parameter of the `BulkIngester`
+object. You may have noticed the `Void` type in `BulkIngester<Void>` above: this is because we did not register a listener,
+and therefore did not care about context values.
+
+The following example shows how you can use context values to implement a bulk ingestion listener: as previously it
+sends JSON log files in bulk, but tracks bulk request errors and failed operations. When an operation fails, depending on the error type you may want to re-add it to the ingester.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-ingester-context]
+--------------------------------------------------
+<1> Creates a listener where context values are strings for the ingested file name.
+<2> Registers the listener on the bulk ingester.
+<3> Sets the file name as the context value for a bulk operation.
+
+The bulk ingest also exposes statistic information that allows monitoring the ingestion process and tune its configuration:
+
+- number of operations added,
+- number of calls to `add()` that were blocked because the maximum number of concurrent requests was reached (contention),
+- number of bulk requests sent,
+- number of bulk requests that were blocked because the maximum number of concurrent requests was reached.
 
 {doc-tests-blurb}

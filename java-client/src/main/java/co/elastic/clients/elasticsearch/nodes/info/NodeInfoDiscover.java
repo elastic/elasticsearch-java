@@ -17,12 +17,9 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.nodes.info;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,9 +32,27 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: nodes.info.NodeInfoDiscover
 
@@ -48,13 +63,24 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodeInfoDiscover implements JsonpSerializable {
-	private final String seedHosts;
+	private final Map<String, JsonData> settings;
+
+	private final List<String> seedHosts;
+
+	@Nullable
+	private final String type;
+
+	private final List<String> seedProviders;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoDiscover(Builder builder) {
 
-		this.seedHosts = ApiTypeHelper.requireNonNull(builder.seedHosts, this, "seedHosts");
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
+
+		this.seedHosts = ApiTypeHelper.unmodifiable(builder.seedHosts);
+		this.type = builder.type;
+		this.seedProviders = ApiTypeHelper.unmodifiable(builder.seedProviders);
 
 	}
 
@@ -63,10 +89,32 @@ public class NodeInfoDiscover implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code seed_hosts}
+	 * Additional or alternative settings
 	 */
-	public final String seedHosts() {
+	public final Map<String, JsonData> settings() {
+		return this.settings;
+	}
+
+	/**
+	 * API name: {@code seed_hosts}
+	 */
+	public final List<String> seedHosts() {
 		return this.seedHosts;
+	}
+
+	/**
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public final String type() {
+		return this.type;
+	}
+
+	/**
+	 * API name: {@code seed_providers}
+	 */
+	public final List<String> seedProviders() {
+		return this.seedProviders;
 	}
 
 	/**
@@ -80,8 +128,37 @@ public class NodeInfoDiscover implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("seed_hosts");
-		generator.write(this.seedHosts);
+		for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+
+		if (ApiTypeHelper.isDefined(this.seedHosts)) {
+			generator.writeKey("seed_hosts");
+			generator.writeStartArray();
+			for (String item0 : this.seedHosts) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.type != null) {
+			generator.writeKey("type");
+			generator.write(this.type);
+
+		}
+		if (ApiTypeHelper.isDefined(this.seedProviders)) {
+			generator.writeKey("seed_providers");
+			generator.writeStartArray();
+			for (String item0 : this.seedProviders) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -97,13 +174,83 @@ public class NodeInfoDiscover implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoDiscover> {
-		private String seedHosts;
+		@Nullable
+		private Map<String, JsonData> settings = new HashMap<>();
 
 		/**
-		 * Required - API name: {@code seed_hosts}
+		 * Additional or alternative settings
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder seedHosts(String value) {
-			this.seedHosts = value;
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
+			return this;
+		}
+
+		/**
+		 * Additional or alternative settings
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
+			return this;
+		}
+
+		@Nullable
+		private List<String> seedHosts;
+
+		@Nullable
+		private String type;
+
+		@Nullable
+		private List<String> seedProviders;
+
+		/**
+		 * API name: {@code seed_hosts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>seedHosts</code>.
+		 */
+		public final Builder seedHosts(List<String> list) {
+			this.seedHosts = _listAddAll(this.seedHosts, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code seed_hosts}
+		 * <p>
+		 * Adds one or more values to <code>seedHosts</code>.
+		 */
+		public final Builder seedHosts(String value, String... values) {
+			this.seedHosts = _listAdd(this.seedHosts, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code type}
+		 */
+		public final Builder type(@Nullable String value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code seed_providers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>seedProviders</code>.
+		 */
+		public final Builder seedProviders(List<String> list) {
+			this.seedProviders = _listAddAll(this.seedProviders, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code seed_providers}
+		 * <p>
+		 * Adds one or more values to <code>seedProviders</code>.
+		 */
+		public final Builder seedProviders(String value, String... values) {
+			this.seedProviders = _listAdd(this.seedProviders, value, values);
 			return this;
 		}
 
@@ -135,7 +282,15 @@ public class NodeInfoDiscover implements JsonpSerializable {
 
 	protected static void setupNodeInfoDiscoverDeserializer(ObjectDeserializer<NodeInfoDiscover.Builder> op) {
 
-		op.add(Builder::seedHosts, JsonpDeserializer.stringDeserializer(), "seed_hosts");
+		op.add(Builder::seedHosts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"seed_hosts");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::seedProviders, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"seed_providers");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.settings(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

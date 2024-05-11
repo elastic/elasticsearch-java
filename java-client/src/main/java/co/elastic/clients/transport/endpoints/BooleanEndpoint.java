@@ -19,12 +19,10 @@
 
 package co.elastic.clients.transport.endpoints;
 
-import co.elastic.clients.json.JsonpDeserializer;
-
 import java.util.Map;
 import java.util.function.Function;
 
-public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse> {
+public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanResponse> {
 
     public BooleanEndpoint(
         String id,
@@ -34,9 +32,9 @@ public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanR
             Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         boolean hasRequestBody,
-        JsonpDeserializer<?> responseParser // always null
+        Object ignored // same number of arguments as SimpleEndpoint
     ) {
-        super(id, method, requestUrl, queryParameters, headers, hasRequestBody, null);
+        super(id, method, requestUrl, queryParameters, headers, hasRequestBody ? returnSelf() : returnNull());
     }
 
     @Override

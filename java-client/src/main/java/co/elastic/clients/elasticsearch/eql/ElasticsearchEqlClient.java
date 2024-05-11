@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.ApiClient;
@@ -34,8 +30,24 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the eql namespace.
@@ -128,6 +140,42 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventClass);
 	}
 
+	/**
+	 * Returns async results from previously executed Event Query Language (EQL)
+	 * search
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TEvent> EqlGetResponse<TEvent> get(EqlGetRequest request, Type tEventType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse> endpoint = (JsonEndpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse>) EqlGetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint, "co.elastic.clients:Deserializer:eql.get.TEvent",
+				getDeserializer(tEventType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns async results from previously executed Event Query Language (EQL)
+	 * search
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link EqlGetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TEvent> EqlGetResponse<TEvent> get(Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn,
+			Type tEventType) throws IOException, ElasticsearchException {
+		return get(fn.apply(new EqlGetRequest.Builder()).build(), tEventType);
+	}
+
 	// ----- Endpoint: eql.get_status
 
 	/**
@@ -199,6 +247,41 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
 			throws IOException, ElasticsearchException {
 		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
+	}
+
+	/**
+	 * Returns results matching a query expressed in Event Query Language (EQL)
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TEvent> EqlSearchResponse<TEvent> search(EqlSearchRequest request, Type tEventType)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse> endpoint = (JsonEndpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse>) EqlSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint, "co.elastic.clients:Deserializer:eql.search.TEvent",
+				getDeserializer(tEventType));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns results matching a query expressed in Event Query Language (EQL)
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link EqlSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TEvent> EqlSearchResponse<TEvent> search(
+			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Type tEventType)
+			throws IOException, ElasticsearchException {
+		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventType);
 	}
 
 }

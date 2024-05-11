@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,6 +34,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _global.search._types.FetchProfileBreakdown
 
 /**
@@ -48,6 +59,12 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FetchProfileBreakdown implements JsonpSerializable {
+	@Nullable
+	private final Integer loadSource;
+
+	@Nullable
+	private final Integer loadSourceCount;
+
 	@Nullable
 	private final Integer loadStoredFields;
 
@@ -70,6 +87,8 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 
 	private FetchProfileBreakdown(Builder builder) {
 
+		this.loadSource = builder.loadSource;
+		this.loadSourceCount = builder.loadSourceCount;
 		this.loadStoredFields = builder.loadStoredFields;
 		this.loadStoredFieldsCount = builder.loadStoredFieldsCount;
 		this.nextReader = builder.nextReader;
@@ -81,6 +100,22 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 
 	public static FetchProfileBreakdown of(Function<Builder, ObjectBuilder<FetchProfileBreakdown>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code load_source}
+	 */
+	@Nullable
+	public final Integer loadSource() {
+		return this.loadSource;
+	}
+
+	/**
+	 * API name: {@code load_source_count}
+	 */
+	@Nullable
+	public final Integer loadSourceCount() {
+		return this.loadSourceCount;
 	}
 
 	/**
@@ -142,6 +177,16 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.loadSource != null) {
+			generator.writeKey("load_source");
+			generator.write(this.loadSource);
+
+		}
+		if (this.loadSourceCount != null) {
+			generator.writeKey("load_source_count");
+			generator.write(this.loadSourceCount);
+
+		}
 		if (this.loadStoredFields != null) {
 			generator.writeKey("load_stored_fields");
 			generator.write(this.loadStoredFields);
@@ -190,6 +235,12 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 			implements
 				ObjectBuilder<FetchProfileBreakdown> {
 		@Nullable
+		private Integer loadSource;
+
+		@Nullable
+		private Integer loadSourceCount;
+
+		@Nullable
 		private Integer loadStoredFields;
 
 		@Nullable
@@ -206,6 +257,22 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 
 		@Nullable
 		private Integer process;
+
+		/**
+		 * API name: {@code load_source}
+		 */
+		public final Builder loadSource(@Nullable Integer value) {
+			this.loadSource = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code load_source_count}
+		 */
+		public final Builder loadSourceCount(@Nullable Integer value) {
+			this.loadSourceCount = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code load_stored_fields}
@@ -283,6 +350,8 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 
 	protected static void setupFetchProfileBreakdownDeserializer(ObjectDeserializer<FetchProfileBreakdown.Builder> op) {
 
+		op.add(Builder::loadSource, JsonpDeserializer.integerDeserializer(), "load_source");
+		op.add(Builder::loadSourceCount, JsonpDeserializer.integerDeserializer(), "load_source_count");
 		op.add(Builder::loadStoredFields, JsonpDeserializer.integerDeserializer(), "load_stored_fields");
 		op.add(Builder::loadStoredFieldsCount, JsonpDeserializer.integerDeserializer(), "load_stored_fields_count");
 		op.add(Builder::nextReader, JsonpDeserializer.integerDeserializer(), "next_reader");

@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.indices.data_streams_stats;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,6 +37,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
 
 /**
@@ -58,7 +69,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	@Nullable
 	private final String storeSize;
 
-	private final int storeSizeBytes;
+	private final long storeSizeBytes;
 
 	private final long maximumTimestamp;
 
@@ -103,7 +114,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code store_size_bytes}
 	 */
-	public final int storeSizeBytes() {
+	public final long storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
@@ -165,7 +176,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		@Nullable
 		private String storeSize;
 
-		private Integer storeSizeBytes;
+		private Long storeSizeBytes;
 
 		private Long maximumTimestamp;
 
@@ -196,7 +207,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_size_bytes}
 		 */
-		public final Builder storeSizeBytes(int value) {
+		public final Builder storeSizeBytes(long value) {
 			this.storeSizeBytes = value;
 			return this;
 		}
@@ -240,7 +251,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store_size");
-		op.add(Builder::storeSizeBytes, JsonpDeserializer.integerDeserializer(), "store_size_bytes");
+		op.add(Builder::storeSizeBytes, JsonpDeserializer.longDeserializer(), "store_size_bytes");
 		op.add(Builder::maximumTimestamp, JsonpDeserializer.longDeserializer(), "maximum_timestamp");
 
 	}

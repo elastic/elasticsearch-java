@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
@@ -39,6 +35,21 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.mapping.DynamicProperty
 
@@ -151,7 +162,7 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	 */
 	@Override
 	public Property.Kind _propertyKind() {
-		return Property.Kind.DynamicProperty;
+		return Property.Kind.DynamicType;
 	}
 
 	/**
@@ -324,7 +335,7 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "{dynamic_property}");
+		generator.write("type", "{dynamic_type}");
 		super.serializeInternal(generator, mapper);
 		if (this.enabled != null) {
 			generator.writeKey("enabled");

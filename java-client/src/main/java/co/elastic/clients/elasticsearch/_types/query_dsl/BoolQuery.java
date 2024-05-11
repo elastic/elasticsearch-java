@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.JsonpDeserializable;
@@ -36,6 +32,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: _types.query_dsl.BoolQuery
 
@@ -331,6 +342,16 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 			return new BoolQuery(this);
 		}
+
+		/**
+		 * Returns <code>true</code> if this query has at least one should, must, must
+		 * not or filter clause.
+		 */
+		public boolean hasClauses() {
+			return !(this.must == null || this.must.isEmpty()) || !(this.mustNot == null || this.mustNot.isEmpty())
+					|| !(this.should == null || this.should.isEmpty())
+					|| !(this.filter == null || this.filter.isEmpty());
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -351,4 +372,12 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	/**
+	 * Returns <code>true</code> if this query has at least one should, must, must
+	 * not or filter clause.
+	 */
+	public boolean hasClauses() {
+		return !(this.must == null || this.must.isEmpty()) || !(this.mustNot == null || this.mustNot.isEmpty())
+				|| !(this.should == null || this.should.isEmpty()) || !(this.filter == null || this.filter.isEmpty());
+	}
 }

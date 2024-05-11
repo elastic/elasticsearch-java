@@ -19,11 +19,15 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.ApiClient;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * An endpoint links requests and responses to HTTP protocol encoding. It also defines the error response
@@ -69,7 +73,23 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     return Collections.emptyMap();
   }
 
-  boolean hasRequestBody();
+  /**
+   * Get the body for a request. The caller must handle several cases depending on the interface implemented by the result:
+   * <li>
+   *     {@code null} means the request has no body.
+   * </li>
+   * <li>
+   *     {@link co.elastic.clients.json.NdJsonpSerializable} must be serialized as nd-json.
+   * </li>
+   * <li>
+   *     {@link co.elastic.clients.util.BinaryData} must be serialized as is.
+   * </li>
+   * <li>
+   *     All other objects must be serialized as JSON using a {@link co.elastic.clients.json.JsonpMapper}
+   * </li>
+   */
+  @Nullable
+  Object body(RequestT request);
 
   /**
    * Is this status code to be considered as an error?
@@ -82,4 +102,31 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   @Nullable
   JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
 
+  default BinaryEndpoint<RequestT> withBinaryResponse() {
+    return new BinaryEndpoint<>(
+        this.id(),
+        this::method,
+        this::requestUrl,
+        this::queryParameters,
+        this::headers,
+        this::body,
+        null
+    );
+  }
+
+  default ResponseT call(RequestT request, Transport transport) throws IOException {
+    return transport.performRequest(request, this, null);
+  }
+
+  default ResponseT call(RequestT request, ApiClient<?, ?> client) throws IOException {
+    return client._transport().performRequest(request, this, null);
+  }
+
+  default CompletableFuture<ResponseT> callAsync(RequestT request, Transport transport) throws IOException {
+    return transport.performRequestAsync(request, this, null);
+  }
+
+  default CompletableFuture<ResponseT> callAsync(RequestT request, ApiClient<?, ?> client) throws IOException {
+    return client._transport().performRequestAsync(request, this, null);
+  }
 }

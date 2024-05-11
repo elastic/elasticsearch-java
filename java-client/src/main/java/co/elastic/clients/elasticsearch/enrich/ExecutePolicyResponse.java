@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch.enrich.execute_policy.ExecuteEnrichPolicyStatus;
@@ -31,7 +27,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +34,21 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 // typedef: enrich.execute_policy.Response
 
@@ -49,6 +59,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ExecutePolicyResponse implements JsonpSerializable {
+	@Nullable
 	private final ExecuteEnrichPolicyStatus status;
 
 	@Nullable
@@ -58,7 +69,7 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 
 	private ExecutePolicyResponse(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = builder.status;
 		this.taskId = builder.taskId;
 
 	}
@@ -68,8 +79,9 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code status}
+	 * API name: {@code status}
 	 */
+	@Nullable
 	public final ExecuteEnrichPolicyStatus status() {
 		return this.status;
 	}
@@ -93,9 +105,11 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("status");
-		this.status.serialize(generator, mapper);
+		if (this.status != null) {
+			generator.writeKey("status");
+			this.status.serialize(generator, mapper);
 
+		}
 		if (this.taskId != null) {
 			generator.writeKey("task_id");
 			generator.write(this.taskId);
@@ -118,21 +132,22 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ExecutePolicyResponse> {
+		@Nullable
 		private ExecuteEnrichPolicyStatus status;
 
 		@Nullable
 		private String taskId;
 
 		/**
-		 * Required - API name: {@code status}
+		 * API name: {@code status}
 		 */
-		public final Builder status(ExecuteEnrichPolicyStatus value) {
+		public final Builder status(@Nullable ExecuteEnrichPolicyStatus value) {
 			this.status = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code status}
+		 * API name: {@code status}
 		 */
 		public final Builder status(
 				Function<ExecuteEnrichPolicyStatus.Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {

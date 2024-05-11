@@ -17,12 +17,9 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,6 +36,21 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
 // typedef: _types.aggregations.MultiTermLookup
 
 /**
@@ -51,11 +63,15 @@ import javax.annotation.Nullable;
 public class MultiTermLookup implements JsonpSerializable {
 	private final String field;
 
+	@Nullable
+	private final FieldValue missing;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MultiTermLookup(Builder builder) {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.missing = builder.missing;
 
 	}
 
@@ -71,6 +87,14 @@ public class MultiTermLookup implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code missing}
+	 */
+	@Nullable
+	public final FieldValue missing() {
+		return this.missing;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -83,6 +107,12 @@ public class MultiTermLookup implements JsonpSerializable {
 
 		generator.writeKey("field");
 		generator.write(this.field);
+
+		if (this.missing != null) {
+			generator.writeKey("missing");
+			this.missing.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -100,11 +130,61 @@ public class MultiTermLookup implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MultiTermLookup> {
 		private String field;
 
+		@Nullable
+		private FieldValue missing;
+
 		/**
 		 * Required - API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(@Nullable FieldValue value) {
+			this.missing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(String value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(long value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(double value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(boolean value) {
+			this.missing = FieldValue.of(value);
 			return this;
 		}
 
@@ -137,6 +217,7 @@ public class MultiTermLookup implements JsonpSerializable {
 	protected static void setupMultiTermLookupDeserializer(ObjectDeserializer<MultiTermLookup.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 
 	}
 

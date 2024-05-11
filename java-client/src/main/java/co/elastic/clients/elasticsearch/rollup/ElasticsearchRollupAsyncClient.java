@@ -17,10 +17,6 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.ApiClient;
@@ -32,9 +28,25 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
+import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Client for the rollup namespace.
@@ -319,6 +331,40 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn,
 			Class<TDocument> tDocumentClass) {
 		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Enables searching rolled-up data using the standard query DSL.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(RollupSearchRequest request,
+			Type tDocumentType) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:rollup.rollup_search.TDocument", getDeserializer(tDocumentType));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Enables searching rolled-up data using the standard query DSL.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RollupSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(
+			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn, Type tDocumentType) {
+		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: rollup.start_job

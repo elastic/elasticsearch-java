@@ -17,14 +17,25 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
 
 /**
  * Builders for {@link Property} variants.
@@ -250,20 +261,20 @@ public class PropertyBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link DynamicProperty {dynamic_property}}
+	 * Creates a builder for the {@link DynamicProperty {dynamic_type}}
 	 * {@code Property} variant.
 	 */
-	public static DynamicProperty.Builder dynamicProperty() {
+	public static DynamicProperty.Builder dynamicType() {
 		return new DynamicProperty.Builder();
 	}
 
 	/**
-	 * Creates a Property of the {@link DynamicProperty {dynamic_property}}
+	 * Creates a Property of the {@link DynamicProperty {dynamic_type}}
 	 * {@code Property} variant.
 	 */
-	public static Property dynamicProperty(Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
+	public static Property dynamicType(Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
 		Property.Builder builder = new Property.Builder();
-		builder.dynamicProperty(fn.apply(new DynamicProperty.Builder()).build());
+		builder.dynamicType(fn.apply(new DynamicProperty.Builder()).build());
 		return builder.build();
 	}
 
