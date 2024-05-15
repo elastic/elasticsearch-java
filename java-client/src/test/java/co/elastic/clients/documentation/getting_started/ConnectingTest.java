@@ -68,10 +68,10 @@ public class ConnectingTest {
         // And create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
-	// Use the client...
+        // Use the client...
 
-	// Close the transport, freeing the underlying thread
-	transport.close();
+        // Close the transport, freeing the underlying thread
+        transport.close();
         //end::create-client
 
         //tag::first-request
@@ -121,10 +121,10 @@ public class ConnectingTest {
         // And create the API client
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
-	// Use the client...
+        // Use the client...
 
-	// Close the transport, freeing the underlying thread
-	transport.close();
+        // Close the transport, freeing the underlying thread
+        transport.close();
         //end::create-client-otel
     }
 
@@ -161,10 +161,10 @@ public class ConnectingTest {
         ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
-	// Use the client...
+        // Use the client...
 
-	// Close the transport, freeing the underlying thread
-	transport.close();
+        // Close the transport, freeing the underlying thread
+        transport.close();
         //end::create-secure-client-cert
     }
 
@@ -201,10 +201,10 @@ public class ConnectingTest {
         ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
-	// Use the client...
+        // Use the client...
 
-	// Close the transport, freeing the underlying thread
-	transport.close();
+        // Close the transport, freeing the underlying thread
+        transport.close();
         //end::create-secure-client-fingerprint
     }
 
