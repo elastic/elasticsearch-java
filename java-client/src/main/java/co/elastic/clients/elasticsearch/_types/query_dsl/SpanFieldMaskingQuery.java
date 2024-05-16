@@ -80,7 +80,7 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	 */
 	@Override
 	public SpanQuery.Kind _spanQueryKind() {
-		return SpanQuery.Kind.FieldMaskingSpan;
+		return SpanQuery.Kind.SpanFieldMasking;
 	}
 
 	/**
