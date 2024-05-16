@@ -64,7 +64,7 @@ public class SpanQueryBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SpanFieldMaskingQuery field_masking_span}
+	 * Creates a builder for the {@link SpanFieldMaskingQuery span_field_masking}
 	 * {@code SpanQuery} variant.
 	 */
 	public static SpanFieldMaskingQuery.Builder spanFieldMasking() {
@@ -72,7 +72,7 @@ public class SpanQueryBuilders {
 	}
 
 	/**
-	 * Creates a SpanQuery of the {@link SpanFieldMaskingQuery field_masking_span}
+	 * Creates a SpanQuery of the {@link SpanFieldMaskingQuery span_field_masking}
 	 * {@code SpanQuery} variant.
 	 */
 	public static SpanQuery spanFieldMasking(

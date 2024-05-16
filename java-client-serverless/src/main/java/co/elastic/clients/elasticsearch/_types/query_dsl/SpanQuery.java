@@ -34,9 +34,7 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
-import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -73,7 +71,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 	public enum Kind implements JsonEnum {
 		SpanContaining("span_containing"),
 
-		FieldMaskingSpan("field_masking_span"),
+		SpanFieldMasking("span_field_masking"),
 
 		SpanFirst("span_first"),
 
@@ -155,21 +153,21 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 	}
 
 	/**
-	 * Is this variant instance of kind {@code field_masking_span}?
+	 * Is this variant instance of kind {@code span_field_masking}?
 	 */
-	public boolean isFieldMaskingSpan() {
-		return _kind == Kind.FieldMaskingSpan;
+	public boolean isSpanFieldMasking() {
+		return _kind == Kind.SpanFieldMasking;
 	}
 
 	/**
-	 * Get the {@code field_masking_span} variant value.
+	 * Get the {@code span_field_masking} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code field_masking_span}
+	 *             if the current variant is not of the {@code span_field_masking}
 	 *             kind.
 	 */
-	public SpanFieldMaskingQuery fieldMaskingSpan() {
-		return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
+	public SpanFieldMaskingQuery spanFieldMasking() {
+		return TaggedUnionUtils.get(this, Kind.SpanFieldMasking);
 	}
 
 	/**
@@ -347,15 +345,15 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<SpanQuery> fieldMaskingSpan(SpanFieldMaskingQuery v) {
-			this._kind = Kind.FieldMaskingSpan;
+		public ObjectBuilder<SpanQuery> spanFieldMasking(SpanFieldMaskingQuery v) {
+			this._kind = Kind.SpanFieldMasking;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<SpanQuery> fieldMaskingSpan(
+		public ObjectBuilder<SpanQuery> spanFieldMasking(
 				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
-			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
+			return this.spanFieldMasking(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<SpanQuery> spanFirst(SpanFirstQuery v) {
@@ -450,7 +448,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 	protected static void setupSpanQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
-		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFieldMasking, SpanFieldMaskingQuery._DESERIALIZER, "span_field_masking");
 		op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
 		op.add(Builder::spanGap, SpanGapQuery._DESERIALIZER, "span_gap");
 		op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");

@@ -28,9 +28,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -88,7 +86,7 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	 */
 	@Override
 	public Query.Kind _queryKind() {
-		return Query.Kind.FieldMaskingSpan;
+		return Query.Kind.SpanFieldMasking;
 	}
 
 	/**

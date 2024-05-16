@@ -161,17 +161,17 @@ public class SpanQuery implements OpenTaggedUnion<SpanQuery.Kind, Object>, Jsonp
 	}
 
 	/**
-	 * Is this variant instance of kind {@code field_masking_span}?
+	 * Is this variant instance of kind {@code span_field_masking}?
 	 */
 	public boolean isSpanFieldMasking() {
 		return _kind == Kind.SpanFieldMasking;
 	}
 
 	/**
-	 * Get the {@code field_masking_span} variant value.
+	 * Get the {@code span_field_masking} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code field_masking_span}
+	 *             if the current variant is not of the {@code span_field_masking}
 	 *             kind.
 	 */
 	public SpanFieldMaskingQuery spanFieldMasking() {
@@ -502,7 +502,7 @@ public class SpanQuery implements OpenTaggedUnion<SpanQuery.Kind, Object>, Jsonp
 	protected static void setupSpanQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
-		op.add(Builder::spanFieldMasking, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFieldMasking, SpanFieldMaskingQuery._DESERIALIZER, "span_field_masking");
 		op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
 		op.add(Builder::spanGap, SpanGapQuery._DESERIALIZER, "span_gap");
 		op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
