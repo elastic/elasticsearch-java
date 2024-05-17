@@ -56,34 +56,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.put_model.Request
+// typedef: inference.put.Request
 
 /**
- * Create an inference service model
+ * Create an inference endpoint
  * 
- * @see <a href="../doc-files/api-spec.html#inference.put_model.Request">API
+ * @see <a href="../doc-files/api-spec.html#inference.put.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutModelRequest extends RequestBase implements JsonpSerializable {
+public class PutRequest extends RequestBase implements JsonpSerializable {
 	private final String inferenceId;
 
 	@Nullable
 	private final TaskType taskType;
 
-	private final ModelConfig modelConfig;
+	private final InferenceEndpoint inferenceConfig;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private PutModelRequest(Builder builder) {
+	private PutRequest(Builder builder) {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = builder.taskType;
-		this.modelConfig = ApiTypeHelper.requireNonNull(builder.modelConfig, this, "modelConfig");
+		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
 
 	}
 
-	public static PutModelRequest of(Function<Builder, ObjectBuilder<PutModelRequest>> fn) {
+	public static PutRequest of(Function<Builder, ObjectBuilder<PutRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -109,31 +109,31 @@ public class PutModelRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Required - Request body.
 	 */
-	public final ModelConfig modelConfig() {
-		return this.modelConfig;
+	public final InferenceEndpoint inferenceConfig() {
+		return this.inferenceConfig;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.modelConfig.serialize(generator, mapper);
+		this.inferenceConfig.serialize(generator, mapper);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PutModelRequest}.
+	 * Builder for {@link PutRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutModelRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutRequest> {
 		private String inferenceId;
 
 		@Nullable
 		private TaskType taskType;
 
-		private ModelConfig modelConfig;
+		private InferenceEndpoint inferenceConfig;
 
 		/**
 		 * Required - The inference Id
@@ -158,24 +158,24 @@ public class PutModelRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Required - Request body.
 		 */
-		public final Builder modelConfig(ModelConfig value) {
-			this.modelConfig = value;
+		public final Builder inferenceConfig(InferenceEndpoint value) {
+			this.inferenceConfig = value;
 			return this;
 		}
 
 		/**
 		 * Required - Request body.
 		 */
-		public final Builder modelConfig(Function<ModelConfig.Builder, ObjectBuilder<ModelConfig>> fn) {
-			return this.modelConfig(fn.apply(new ModelConfig.Builder()).build());
+		public final Builder inferenceConfig(Function<InferenceEndpoint.Builder, ObjectBuilder<InferenceEndpoint>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceEndpoint.Builder()).build());
 		}
 
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 
 			@SuppressWarnings("unchecked")
-			ModelConfig value = (ModelConfig) ModelConfig._DESERIALIZER.deserialize(parser, mapper);
-			return this.modelConfig(value);
+			InferenceEndpoint value = (InferenceEndpoint) InferenceEndpoint._DESERIALIZER.deserialize(parser, mapper);
+			return this.inferenceConfig(value);
 		}
 
 		@Override
@@ -184,34 +184,34 @@ public class PutModelRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link PutModelRequest}.
+		 * Builds a {@link PutRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PutModelRequest build() {
+		public PutRequest build() {
 			_checkSingleUse();
 
-			return new PutModelRequest(this);
+			return new PutRequest(this);
 		}
 	}
 
-	public static final JsonpDeserializer<PutModelRequest> _DESERIALIZER = createPutModelRequestDeserializer();
-	protected static JsonpDeserializer<PutModelRequest> createPutModelRequestDeserializer() {
+	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
+	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
 
-		JsonpDeserializer<ModelConfig> valueDeserializer = ModelConfig._DESERIALIZER;
+		JsonpDeserializer<InferenceEndpoint> valueDeserializer = InferenceEndpoint._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.modelConfig(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.inferenceConfig(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code inference.put_model}".
+	 * Endpoint "{@code inference.put}".
 	 */
-	public static final Endpoint<PutModelRequest, PutModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/inference.put_model",
+	public static final Endpoint<PutRequest, PutResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/inference.put",
 
 			// Request method
 			request -> {
@@ -276,5 +276,5 @@ public class PutModelRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, PutModelResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutResponse._DESERIALIZER);
 }

@@ -110,7 +110,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Text input to the model. Either a string or an array of strings.
+	 * Required - Inference input. Either a string or an array of strings.
 	 * <p>
 	 * API name: {@code input}
 	 */
@@ -228,7 +228,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Text input to the model. Either a string or an array of strings.
+		 * Required - Inference input. Either a string or an array of strings.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -240,7 +240,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Text input to the model. Either a string or an array of strings.
+		 * Required - Inference input. Either a string or an array of strings.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>

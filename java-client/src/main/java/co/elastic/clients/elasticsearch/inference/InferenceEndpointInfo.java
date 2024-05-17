@@ -48,47 +48,47 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.ModelConfigContainer
+// typedef: inference._types.InferenceEndpointInfo
 
 /**
- * Represents a model as returned by the GET API
+ * Represents an inference endpoint as returned by the GET API
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.ModelConfigContainer">API
+ *      "../doc-files/api-spec.html#inference._types.InferenceEndpointInfo">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ModelConfigContainer extends ModelConfig {
-	private final String modelId;
+public class InferenceEndpointInfo extends InferenceEndpoint {
+	private final String inferenceId;
 
 	private final TaskType taskType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelConfigContainer(AbstractBuilder<?> builder) {
+	protected InferenceEndpointInfo(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
 	}
 
-	public static ModelConfigContainer modelConfigContainerOf(
-			Function<Builder, ObjectBuilder<ModelConfigContainer>> fn) {
+	public static InferenceEndpointInfo inferenceEndpointInfoOf(
+			Function<Builder, ObjectBuilder<InferenceEndpointInfo>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The model Id
+	 * Required - The inference Id
 	 * <p>
-	 * API name: {@code model_id}
+	 * API name: {@code inference_id}
 	 */
-	public final String modelId() {
-		return this.modelId;
+	public final String inferenceId() {
+		return this.inferenceId;
 	}
 
 	/**
-	 * Required - The model's task type
+	 * Required - The task type
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -99,8 +99,8 @@ public class ModelConfigContainer extends ModelConfig {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("model_id");
-		generator.write(this.modelId);
+		generator.writeKey("inference_id");
+		generator.write(this.inferenceId);
 
 		generator.writeKey("task_type");
 		this.taskType.serialize(generator, mapper);
@@ -110,49 +110,49 @@ public class ModelConfigContainer extends ModelConfig {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ModelConfigContainer}.
+	 * Builder for {@link InferenceEndpointInfo}.
 	 */
 
-	public static class Builder extends ModelConfigContainer.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<ModelConfigContainer> {
+				ObjectBuilder<InferenceEndpointInfo> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link ModelConfigContainer}.
+		 * Builds a {@link InferenceEndpointInfo}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ModelConfigContainer build() {
+		public InferenceEndpointInfo build() {
 			_checkSingleUse();
 
-			return new ModelConfigContainer(this);
+			return new InferenceEndpointInfo(this);
 		}
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				ModelConfig.AbstractBuilder<BuilderT> {
-		private String modelId;
+				InferenceEndpoint.AbstractBuilder<BuilderT> {
+		private String inferenceId;
 
 		private TaskType taskType;
 
 		/**
-		 * Required - The model Id
+		 * Required - The inference Id
 		 * <p>
-		 * API name: {@code model_id}
+		 * API name: {@code inference_id}
 		 */
-		public final BuilderT modelId(String value) {
-			this.modelId = value;
+		public final BuilderT inferenceId(String value) {
+			this.inferenceId = value;
 			return self();
 		}
 
 		/**
-		 * Required - The model's task type
+		 * Required - The task type
 		 * <p>
 		 * API name: {@code task_type}
 		 */
@@ -166,15 +166,15 @@ public class ModelConfigContainer extends ModelConfig {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ModelConfigContainer}
+	 * Json deserializer for {@link InferenceEndpointInfo}
 	 */
-	public static final JsonpDeserializer<ModelConfigContainer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ModelConfigContainer::setupModelConfigContainerDeserializer);
+	public static final JsonpDeserializer<InferenceEndpointInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceEndpointInfo::setupInferenceEndpointInfoDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupModelConfigContainerDeserializer(
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupInferenceEndpointInfoDeserializer(
 			ObjectDeserializer<BuilderT> op) {
-		ModelConfig.setupModelConfigDeserializer(op);
-		op.add(AbstractBuilder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		InferenceEndpoint.setupInferenceEndpointDeserializer(op);
+		op.add(AbstractBuilder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
 		op.add(AbstractBuilder::taskType, TaskType._DESERIALIZER, "task_type");
 
 	}

@@ -50,34 +50,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.get_model.Response
+// typedef: inference.get.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#inference.get_model.Response">API
+ * @see <a href="../doc-files/api-spec.html#inference.get.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetModelResponse implements JsonpSerializable {
-	private final List<ModelConfigContainer> models;
+public class GetInferenceResponse implements JsonpSerializable {
+	private final List<InferenceEndpointInfo> endpoints;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetModelResponse(Builder builder) {
+	private GetInferenceResponse(Builder builder) {
 
-		this.models = ApiTypeHelper.unmodifiableRequired(builder.models, this, "models");
+		this.endpoints = ApiTypeHelper.unmodifiableRequired(builder.endpoints, this, "endpoints");
 
 	}
 
-	public static GetModelResponse of(Function<Builder, ObjectBuilder<GetModelResponse>> fn) {
+	public static GetInferenceResponse of(Function<Builder, ObjectBuilder<GetInferenceResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code models}
+	 * Required - API name: {@code endpoints}
 	 */
-	public final List<ModelConfigContainer> models() {
-		return this.models;
+	public final List<InferenceEndpointInfo> endpoints() {
+		return this.endpoints;
 	}
 
 	/**
@@ -91,10 +91,10 @@ public class GetModelResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.models)) {
-			generator.writeKey("models");
+		if (ApiTypeHelper.isDefined(this.endpoints)) {
+			generator.writeKey("endpoints");
 			generator.writeStartArray();
-			for (ModelConfigContainer item0 : this.models) {
+			for (InferenceEndpointInfo item0 : this.endpoints) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -112,39 +112,42 @@ public class GetModelResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetModelResponse}.
+	 * Builder for {@link GetInferenceResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetModelResponse> {
-		private List<ModelConfigContainer> models;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetInferenceResponse> {
+		private List<InferenceEndpointInfo> endpoints;
 
 		/**
-		 * Required - API name: {@code models}
+		 * Required - API name: {@code endpoints}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>models</code>.
+		 * Adds all elements of <code>list</code> to <code>endpoints</code>.
 		 */
-		public final Builder models(List<ModelConfigContainer> list) {
-			this.models = _listAddAll(this.models, list);
+		public final Builder endpoints(List<InferenceEndpointInfo> list) {
+			this.endpoints = _listAddAll(this.endpoints, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code models}
+		 * Required - API name: {@code endpoints}
 		 * <p>
-		 * Adds one or more values to <code>models</code>.
+		 * Adds one or more values to <code>endpoints</code>.
 		 */
-		public final Builder models(ModelConfigContainer value, ModelConfigContainer... values) {
-			this.models = _listAdd(this.models, value, values);
+		public final Builder endpoints(InferenceEndpointInfo value, InferenceEndpointInfo... values) {
+			this.endpoints = _listAdd(this.endpoints, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code models}
+		 * Required - API name: {@code endpoints}
 		 * <p>
-		 * Adds a value to <code>models</code> using a builder lambda.
+		 * Adds a value to <code>endpoints</code> using a builder lambda.
 		 */
-		public final Builder models(Function<ModelConfigContainer.Builder, ObjectBuilder<ModelConfigContainer>> fn) {
-			return models(fn.apply(new ModelConfigContainer.Builder()).build());
+		public final Builder endpoints(
+				Function<InferenceEndpointInfo.Builder, ObjectBuilder<InferenceEndpointInfo>> fn) {
+			return endpoints(fn.apply(new InferenceEndpointInfo.Builder()).build());
 		}
 
 		@Override
@@ -153,29 +156,30 @@ public class GetModelResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link GetModelResponse}.
+		 * Builds a {@link GetInferenceResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetModelResponse build() {
+		public GetInferenceResponse build() {
 			_checkSingleUse();
 
-			return new GetModelResponse(this);
+			return new GetInferenceResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GetModelResponse}
+	 * Json deserializer for {@link GetInferenceResponse}
 	 */
-	public static final JsonpDeserializer<GetModelResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetModelResponse::setupGetModelResponseDeserializer);
+	public static final JsonpDeserializer<GetInferenceResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetInferenceResponse::setupGetInferenceResponseDeserializer);
 
-	protected static void setupGetModelResponseDeserializer(ObjectDeserializer<GetModelResponse.Builder> op) {
+	protected static void setupGetInferenceResponseDeserializer(ObjectDeserializer<GetInferenceResponse.Builder> op) {
 
-		op.add(Builder::models, JsonpDeserializer.arrayDeserializer(ModelConfigContainer._DESERIALIZER), "models");
+		op.add(Builder::endpoints, JsonpDeserializer.arrayDeserializer(InferenceEndpointInfo._DESERIALIZER),
+				"endpoints");
 
 	}
 

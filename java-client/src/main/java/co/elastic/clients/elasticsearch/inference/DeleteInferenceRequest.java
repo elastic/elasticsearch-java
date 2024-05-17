@@ -27,6 +27,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -52,17 +53,16 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.get_model.Request
+// typedef: inference.delete.Request
 
 /**
- * Get an inference service model
+ * Delete an inference endpoint
  * 
- * @see <a href="../doc-files/api-spec.html#inference.get_model.Request">API
+ * @see <a href="../doc-files/api-spec.html#inference.delete.Request">API
  *      specification</a>
  */
 
-public class GetModelRequest extends RequestBase {
-	@Nullable
+public class DeleteInferenceRequest extends RequestBase {
 	private final String inferenceId;
 
 	@Nullable
@@ -70,23 +70,22 @@ public class GetModelRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetModelRequest(Builder builder) {
+	private DeleteInferenceRequest(Builder builder) {
 
-		this.inferenceId = builder.inferenceId;
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = builder.taskType;
 
 	}
 
-	public static GetModelRequest of(Function<Builder, ObjectBuilder<GetModelRequest>> fn) {
+	public static DeleteInferenceRequest of(Function<Builder, ObjectBuilder<DeleteInferenceRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The inference Id
+	 * Required - The inference Id
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
-	@Nullable
 	public final String inferenceId() {
 		return this.inferenceId;
 	}
@@ -104,22 +103,23 @@ public class GetModelRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetModelRequest}.
+	 * Builder for {@link DeleteInferenceRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetModelRequest> {
-		@Nullable
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteInferenceRequest> {
 		private String inferenceId;
 
 		@Nullable
 		private TaskType taskType;
 
 		/**
-		 * The inference Id
+		 * Required - The inference Id
 		 * <p>
 		 * API name: {@code inference_id}
 		 */
-		public final Builder inferenceId(@Nullable String value) {
+		public final Builder inferenceId(String value) {
 			this.inferenceId = value;
 			return this;
 		}
@@ -140,29 +140,29 @@ public class GetModelRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetModelRequest}.
+		 * Builds a {@link DeleteInferenceRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetModelRequest build() {
+		public DeleteInferenceRequest build() {
 			_checkSingleUse();
 
-			return new GetModelRequest(this);
+			return new DeleteInferenceRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code inference.get_model}".
+	 * Endpoint "{@code inference.delete}".
 	 */
-	public static final Endpoint<GetModelRequest, GetModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/inference.get_model",
+	public static final Endpoint<DeleteInferenceRequest, DeleteInferenceResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/inference.delete",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "DELETE";
 
 			},
 
@@ -173,16 +173,10 @@ public class GetModelRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.inferenceId() != null)
-					propsSet |= _inferenceId;
+				propsSet |= _inferenceId;
 				if (request.taskType() != null)
 					propsSet |= _taskType;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_inference");
-					return buf.toString();
-				}
 				if (propsSet == (_inferenceId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_inference");
@@ -211,13 +205,10 @@ public class GetModelRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.inferenceId() != null)
-					propsSet |= _inferenceId;
+				propsSet |= _inferenceId;
 				if (request.taskType() != null)
 					propsSet |= _taskType;
 
-				if (propsSet == 0) {
-				}
 				if (propsSet == (_inferenceId)) {
 					params.put("inferenceId", request.inferenceId);
 				}
@@ -232,5 +223,5 @@ public class GetModelRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetModelResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteInferenceResponse._DESERIALIZER);
 }
