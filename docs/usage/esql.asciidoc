@@ -1,7 +1,7 @@
 [[esql]]
 === ES|QL in the Java client
 
-This page enables you to understand and use {ref}/esql.html[ES|QL] utilizing the
+This page enables you to understand and use {ref}/esql.html[ES|QL] in the
 Java client.
 
 There are two ways to use ES|QL in the {java-client):
@@ -39,7 +39,7 @@ The example below shows how to get ES|QL results as CSV and parse them:
 
 [discrete]
 [[esql-consume-results]]
-==== Consuming ES|QL results
+==== Consume ES|QL results
 
 The previous example showed that while using the raw ES|QL API gives maximum
 flexibility, it is low level and requires quite some work to make use of the
@@ -61,7 +61,7 @@ allows efficient processing of column data.
 
 [discrete]
 [[esql-custom-mapping]]
-==== Defining your own mapping
+==== Define your own mapping
 
 While the mappers provided by the {java-client} cover many use cases, your
 application may require some specific mapping not covered by the provided

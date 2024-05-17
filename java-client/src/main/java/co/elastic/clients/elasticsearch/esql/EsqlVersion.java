@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security;
+package co.elastic.clients.elasticsearch.esql;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,60 +40,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#security._types.IndexPrivilege">API
+ * @see <a href="../doc-files/api-spec.html#esql._types.EsqlVersion">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum IndexPrivilege implements JsonEnum {
-	All("all"),
-
-	AutoConfigure("auto_configure"),
-
-	Create("create"),
-
-	CreateDoc("create_doc"),
-
-	CreateIndex("create_index"),
-
-	CrossClusterReplication("cross_cluster_replication"),
-
-	CrossClusterReplicationInternal("cross_cluster_replication_internal"),
-
-	Delete("delete"),
-
-	DeleteIndex("delete_index"),
-
-	Index("index"),
-
-	Maintenance("maintenance"),
-
-	Manage("manage"),
-
-	ManageDataStreamLifecycle("manage_data_stream_lifecycle"),
-
-	ManageFollowIndex("manage_follow_index"),
-
-	ManageIlm("manage_ilm"),
-
-	ManageLeaderIndex("manage_leader_index"),
-
-	Monitor("monitor"),
-
-	None("none"),
-
-	Read("read"),
-
-	ReadCrossCluster("read_cross_cluster"),
-
-	ViewIndexMetadata("view_index_metadata"),
-
-	Write("write"),
+public enum EsqlVersion implements JsonEnum {
+	/**
+	 * Run against the first version of ES|QL.
+	 */
+	V2024_04_01("2024.04.01"),
 
 	;
 
 	private final String jsonValue;
 
-	IndexPrivilege(String jsonValue) {
+	EsqlVersion(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -101,6 +62,23 @@ public enum IndexPrivilege implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<IndexPrivilege> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexPrivilege.values());
+	private static EsqlVersion DEFAULT_VERSION = V2024_04_01;
+
+	/**
+	 * The default ES|QL language version used when not explicitly specified.
+	 */
+	public static EsqlVersion getDefault() {
+		return DEFAULT_VERSION;
+	}
+
+	/**
+	 * Set the default ES|QL language version to be used. This is a global
+	 * application-wide setting.
+	 */
+	public static void setDefault(EsqlVersion version) {
+		DEFAULT_VERSION = version;
+	}
+
+	public static final JsonEnum.Deserializer<EsqlVersion> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			EsqlVersion.values());
 }

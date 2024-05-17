@@ -133,6 +133,19 @@ public class ElasticsearchInferenceAsyncClient
 		return getModel(fn.apply(new GetModelRequest.Builder()).build());
 	}
 
+	/**
+	 * Get a model in the Inference API
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetModelResponse> getModel() {
+		return this.transport.performRequestAsync(new GetModelRequest.Builder().build(), GetModelRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: inference.inference
 
 	/**
