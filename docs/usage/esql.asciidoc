@@ -4,31 +4,75 @@
 This page enables you to understand and use {ref}/esql.html[ES|QL] utilizing the
 Java client.
 
+There are two ways to use ES|QL in the {java-client):
+
+* by using the Elasticsearch {es-docs}/esql-apis.html[ES|QL API] directly. This
+is the most flexible approach, but also the most complex since you must handle
+results in their raw form. You can also choose the precise format of results,
+such as JSON, CSV or text.
+* by using ES|QL mapping helpers. These mappers take care of parsing the raw
+response into something readily usable by the application. Several mappers are
+available that are suited to different use cases such as object mapping, cursor
+traversal of results or dataframes. You can also define your own for specific
+use cases.
+
+
 
 [discrete]
 [[esql-how-to]]
 ==== How to use the ES|QL API
 
-[TO DO]
+The {es-docs}/esql-query-api.html[ES|QL query API] allows you to choose how
+results should be returned. This includes the 
+{es-docs}/esql-rest.html#esql-rest-format[response format] such as CSV, text or
+JSON, which can be further fine-tuned with parameters such as column separators
+or locale.
 
-// This section describes the use of the "raw" ES|QL API.
+Since the response format varies widely depending on the chosen format, the
+{java-client) as a BinaryData object, which you can then use according to the
+format chosen in the request.
+
+The example below shows how to get ES|QL results as CSV and parse them:
+
+// Code example to be written
 
 
 [discrete]
 [[esql-consume-results]]
 ==== Consuming ES|QL results
 
-[TO DO]
+The previous example showed that while using the raw ES|QL API gives maximum
+flexibility, it is low level and requires quite some work to make use of the
+result data.
 
-// This section demonstrates the various ways to consume ES|QL results (Object,
-// Cursor, DataFrame, etc.).
+To simplify things, we have identified three main ways to represent ES|QL
+results and provide mapping helpers for each of them:
+
+* Objects, where each row in the results is mapped to an object from your
+application domain. This is similar to what ORMs (object relational mappers)
+commonly do.
+* Cursors, where you scan the results row by row and access the data using
+column names. This is similar to database access libraries.
+* Dataframes, where results are organized in a column-oriented structure that
+allows efficient processing of column data.
+
+// Code examples to be written for each of them, depending on availability in the language
 
 
 [discrete]
 [[esql-custom-mapping]]
 ==== Defining your own mapping
 
-[TO DO]
+While the mappers provided by the {java-client} cover many use cases, your
+application may require some specific mapping not covered by the provided
+mappers. You can write your own mapper and used it in a similar way as the
+built-in ones.
 
-// This section describes how to come up with your own way of consuming ES|QL
-// results.
+Note that mappers are meant to provide a more usable representation of ES|QL
+results, and not to process the result data. Data processing should be based on
+the output of a result mapper.
+
+As an example, let's write a mapper that returns a simple column-oriented
+representation of the data:
+
+// Code example to be written
