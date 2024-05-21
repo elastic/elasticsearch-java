@@ -48,12 +48,12 @@ result data.
 To simplify things, try working with these three main representations of ES|QL
 results (each with its own mapping helper):
 
-* Objects, where each row in the results is mapped to an object from your
+* **Objects**, where each row in the results is mapped to an object from your
 application domain. This is similar to what ORMs (object relational mappers)
 commonly do.
-* Cursors, where you scan the results row by row and access the data using
+* **Cursors**, where you scan the results row by row and access the data using
 column names. This is similar to database access libraries.
-* Dataframes, where results are organized in a column-oriented structure that
+* **Dataframes**, where results are organized in a column-oriented structure that
 allows efficient processing of column data.
 
 // Code examples to be written for each of them, depending on availability in the language
