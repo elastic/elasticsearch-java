@@ -90,8 +90,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	private final String query;
 
-	private final EsqlVersion version;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryRequest(Builder builder) {
@@ -103,7 +101,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.locale = builder.locale;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
@@ -186,16 +183,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The version of the ES|QL language in which the &quot;query&quot;
-	 * field was written.
-	 * <p>
-	 * API name: {@code version}
-	 */
-	public final EsqlVersion version() {
-		return this.version;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -234,9 +221,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		generator.writeKey("query");
 		generator.write(this.query);
 
-		generator.writeKey("version");
-		this.version.serialize(generator, mapper);
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -265,8 +249,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private List<FieldValue> params;
 
 		private String query;
-
-		private EsqlVersion version;
 
 		/**
 		 * By default, ES|QL returns results as rows. For example, FROM returns each
@@ -383,17 +365,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Required - The version of the ES|QL language in which the &quot;query&quot;
-		 * field was written.
-		 * <p>
-		 * API name: {@code version}
-		 */
-		public final Builder version(EsqlVersion value) {
-			this.version = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -409,10 +380,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			_checkSingleUse();
 
 			return new QueryRequest(this);
-		}
-		{
-			// Use the default ES|QL language version if not set explicitly
-			this.version = EsqlVersion.getDefault();
 		}
 	}
 
@@ -431,7 +398,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::version, EsqlVersion._DESERIALIZER, "version");
 
 	}
 
