@@ -164,7 +164,6 @@ public class SpecIssuesTest extends ModelTestCase {
     }
 
     @Test
-    @Disabled("Plugins cannot be installed on snapshot versions of ES")
     public void i0249_variantKind() throws Exception {
         try (ElasticsearchTestServer server = new ElasticsearchTestServer("analysis-icu").start()) {
 
