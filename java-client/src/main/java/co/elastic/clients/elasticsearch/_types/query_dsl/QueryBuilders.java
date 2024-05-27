@@ -770,21 +770,21 @@ public class QueryBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SpanFieldMaskingQuery field_masking_span}
+	 * Creates a builder for the {@link SpanFieldMaskingQuery span_field_masking}
 	 * {@code Query} variant.
 	 */
-	public static SpanFieldMaskingQuery.Builder fieldMaskingSpan() {
+	public static SpanFieldMaskingQuery.Builder spanFieldMasking() {
 		return new SpanFieldMaskingQuery.Builder();
 	}
 
 	/**
-	 * Creates a Query of the {@link SpanFieldMaskingQuery field_masking_span}
+	 * Creates a Query of the {@link SpanFieldMaskingQuery span_field_masking}
 	 * {@code Query} variant.
 	 */
-	public static Query fieldMaskingSpan(
+	public static Query spanFieldMasking(
 			Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
-		builder.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
+		builder.spanFieldMasking(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		return builder.build();
 	}
 

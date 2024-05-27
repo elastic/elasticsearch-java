@@ -17,17 +17,19 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.query_dsl;
+package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -47,109 +49,84 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.query_dsl.SpanFieldMaskingQuery
+// typedef: ml.update_trained_model_deployment.Response
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.query_dsl.SpanFieldMaskingQuery">API
+ *      "../doc-files/api-spec.html#ml.update_trained_model_deployment.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
-	private final String field;
-
-	private final SpanQuery query;
+public class UpdateTrainedModelDeploymentResponse implements JsonpSerializable {
+	private final TrainedModelAssignment assignment;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private SpanFieldMaskingQuery(Builder builder) {
-		super(builder);
+	private UpdateTrainedModelDeploymentResponse(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.assignment = ApiTypeHelper.requireNonNull(builder.assignment, this, "assignment");
 
 	}
 
-	public static SpanFieldMaskingQuery of(Function<Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+	public static UpdateTrainedModelDeploymentResponse of(
+			Function<Builder, ObjectBuilder<UpdateTrainedModelDeploymentResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * SpanQuery variant kind.
+	 * Required - API name: {@code assignment}
 	 */
-	@Override
-	public SpanQuery.Kind _spanQueryKind() {
-		return SpanQuery.Kind.SpanFieldMasking;
+	public final TrainedModelAssignment assignment() {
+		return this.assignment;
 	}
 
 	/**
-	 * Query variant kind.
+	 * Serialize this object to JSON.
 	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.SpanFieldMasking;
-	}
-
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
-
-	/**
-	 * Required - API name: {@code query}
-	 */
-	public final SpanQuery query() {
-		return this.query;
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+		generator.writeKey("assignment");
+		this.assignment.serialize(generator, mapper);
 
-		generator.writeKey("query");
-		this.query.serialize(generator, mapper);
+	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SpanFieldMaskingQuery}.
+	 * Builder for {@link UpdateTrainedModelDeploymentResponse}.
 	 */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<SpanFieldMaskingQuery> {
-		private String field;
-
-		private SpanQuery query;
+				ObjectBuilder<UpdateTrainedModelDeploymentResponse> {
+		private TrainedModelAssignment assignment;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - API name: {@code assignment}
 		 */
-		public final Builder field(String value) {
-			this.field = value;
+		public final Builder assignment(TrainedModelAssignment value) {
+			this.assignment = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - API name: {@code assignment}
 		 */
-		public final Builder query(SpanQuery value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code query}
-		 */
-		public final Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.query(fn.apply(new SpanQuery.Builder()).build());
+		public final Builder assignment(
+				Function<TrainedModelAssignment.Builder, ObjectBuilder<TrainedModelAssignment>> fn) {
+			return this.assignment(fn.apply(new TrainedModelAssignment.Builder()).build());
 		}
 
 		@Override
@@ -158,30 +135,31 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 		}
 
 		/**
-		 * Builds a {@link SpanFieldMaskingQuery}.
+		 * Builds a {@link UpdateTrainedModelDeploymentResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public SpanFieldMaskingQuery build() {
+		public UpdateTrainedModelDeploymentResponse build() {
 			_checkSingleUse();
 
-			return new SpanFieldMaskingQuery(this);
+			return new UpdateTrainedModelDeploymentResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SpanFieldMaskingQuery}
+	 * Json deserializer for {@link UpdateTrainedModelDeploymentResponse}
 	 */
-	public static final JsonpDeserializer<SpanFieldMaskingQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryDeserializer);
+	public static final JsonpDeserializer<UpdateTrainedModelDeploymentResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					UpdateTrainedModelDeploymentResponse::setupUpdateTrainedModelDeploymentResponseDeserializer);
 
-	protected static void setupSpanFieldMaskingQueryDeserializer(ObjectDeserializer<SpanFieldMaskingQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::query, SpanQuery._DESERIALIZER, "query");
+	protected static void setupUpdateTrainedModelDeploymentResponseDeserializer(
+			ObjectDeserializer<UpdateTrainedModelDeploymentResponse.Builder> op) {
+
+		op.add(Builder::assignment, TrainedModelAssignment._DESERIALIZER, "assignment");
 
 	}
 

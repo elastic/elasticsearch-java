@@ -23,7 +23,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -93,7 +92,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final Integer order;
 
-	private final Map<String, JsonData> settings;
+	@Nullable
+	private final IndexSettings settings;
 
 	@Nullable
 	private final Long version;
@@ -110,7 +110,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.order = builder.order;
-		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
+		this.settings = builder.settings;
 		this.version = builder.version;
 
 	}
@@ -205,7 +205,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code settings}
 	 */
-	public final Map<String, JsonData> settings() {
+	@Nullable
+	public final IndexSettings settings() {
 		return this.settings;
 	}
 
@@ -262,15 +263,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.order);
 
 		}
-		if (ApiTypeHelper.isDefined(this.settings)) {
+		if (this.settings != null) {
 			generator.writeKey("settings");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.version != null) {
@@ -314,7 +309,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		private Integer order;
 
 		@Nullable
-		private Map<String, JsonData> settings;
+		private IndexSettings settings;
 
 		@Nullable
 		private Long version;
@@ -466,11 +461,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * Configuration options for the index.
 		 * <p>
 		 * API name: {@code settings}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(Map<String, JsonData> map) {
-			this.settings = _mapPutAll(this.settings, map);
+		public final Builder settings(@Nullable IndexSettings value) {
+			this.settings = value;
 			return this;
 		}
 
@@ -478,12 +471,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * Configuration options for the index.
 		 * <p>
 		 * API name: {@code settings}
-		 * <p>
-		 * Adds an entry to <code>settings</code>.
 		 */
-		public final Builder settings(String key, JsonData value) {
-			this.settings = _mapPut(this.settings, key, value);
-			return this;
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -530,7 +520,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 				"index_patterns");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::order, JsonpDeserializer.integerDeserializer(), "order");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
