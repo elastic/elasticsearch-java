@@ -113,24 +113,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 */
 	public final <T> T query(EsqlAdapter<T> adapter, String query, Object... parameters)
 			throws IOException, ElasticsearchException {
-		return EsqlHelper.query(this, null, adapter, query, parameters);
-	}
-
-	/**
-	 * Executes an ES|QL request and adapts its result to a target type.
-	 *
-	 * @param version
-	 *            the ES|QL language version
-	 * @param adapter
-	 *            the ES|QL response adapter
-	 * @param query
-	 *            the ES|QL query
-	 * @param parameters
-	 *            values for query parameters, if any
-	 */
-	public final <T> T query(EsqlVersion version, EsqlAdapter<T> adapter, String query, Object... parameters)
-			throws IOException, ElasticsearchException {
-		return EsqlHelper.query(this, version, adapter, query, parameters);
+		return EsqlHelper.query(this, adapter, query, parameters);
 	}
 
 	/**

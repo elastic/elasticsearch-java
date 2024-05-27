@@ -17,11 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.esql;
-
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+package co.elastic.clients.elasticsearch._types;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,46 +35,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#esql._types.EsqlVersion">API
- *      specification</a>
+ * Base interface for {@link Retriever} variants.
  */
-@JsonpDeserializable
-public enum EsqlVersion implements JsonEnum {
-	/**
-	 * Run against the first version of ES|QL.
-	 */
-	V2024_04_01("2024.04.01"),
+public interface RetrieverVariant {
 
-	;
+	Retriever.Kind _retrieverKind();
 
-	private final String jsonValue;
-
-	EsqlVersion(String jsonValue) {
-		this.jsonValue = jsonValue;
+	default Retriever _toRetriever() {
+		return new Retriever(this);
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	private static EsqlVersion DEFAULT_VERSION = V2024_04_01;
-
-	/**
-	 * The default ES|QL language version used when not explicitly specified.
-	 */
-	public static EsqlVersion getDefault() {
-		return DEFAULT_VERSION;
-	}
-
-	/**
-	 * Set the default ES|QL language version to be used. This is a global
-	 * application-wide setting.
-	 */
-	public static void setDefault(EsqlVersion version) {
-		DEFAULT_VERSION = version;
-	}
-
-	public static final JsonEnum.Deserializer<EsqlVersion> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			EsqlVersion.values());
 }

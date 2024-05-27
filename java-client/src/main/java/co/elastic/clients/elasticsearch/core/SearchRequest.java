@@ -25,6 +25,7 @@ import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.KnnSearch;
 import co.elastic.clients.elasticsearch._types.Rank;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Retriever;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
@@ -201,6 +202,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final List<Rescore> rescore;
 
 	@Nullable
+	private final Retriever retriever;
+
+	@Nullable
 	private final String routing;
 
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -290,6 +294,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.rank = builder.rank;
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+		this.retriever = builder.retriever;
 		this.routing = builder.routing;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
@@ -761,6 +766,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * A retriever is a specification to describe top documents returned from a
+	 * search. A retriever replaces other elements of the search API that also
+	 * return top documents such as query and knn.
+	 * <p>
+	 * API name: {@code retriever}
+	 */
+	@Nullable
+	public final Retriever retriever() {
+		return this.retriever;
+	}
+
+	/**
 	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
@@ -1109,6 +1126,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.retriever != null) {
+			generator.writeKey("retriever");
+			this.retriever.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
@@ -1339,6 +1361,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<Rescore> rescore;
+
+		@Nullable
+		private Retriever retriever;
 
 		@Nullable
 		private String routing;
@@ -2115,6 +2140,29 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A retriever is a specification to describe top documents returned from a
+		 * search. A retriever replaces other elements of the search API that also
+		 * return top documents such as query and knn.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(@Nullable Retriever value) {
+			this.retriever = value;
+			return this;
+		}
+
+		/**
+		 * A retriever is a specification to describe top documents returned from a
+		 * search. A retriever replaces other elements of the search API that also
+		 * return top documents such as query and knn.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(Function<Retriever.Builder, ObjectBuilder<Retriever>> fn) {
+			return this.retriever(fn.apply(new Retriever.Builder()).build());
+		}
+
+		/**
 		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
@@ -2629,6 +2677,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rank, Rank._DESERIALIZER, "rank");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
+		op.add(Builder::retriever, Retriever._DESERIALIZER, "retriever");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),

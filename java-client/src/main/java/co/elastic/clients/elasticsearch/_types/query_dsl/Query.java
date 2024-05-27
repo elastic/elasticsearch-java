@@ -164,7 +164,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		SpanContaining("span_containing"),
 
-		FieldMaskingSpan("field_masking_span"),
+		SpanFieldMasking("span_field_masking"),
 
 		SpanFirst("span_first"),
 
@@ -976,21 +976,21 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
-	 * Is this variant instance of kind {@code field_masking_span}?
+	 * Is this variant instance of kind {@code span_field_masking}?
 	 */
-	public boolean isFieldMaskingSpan() {
-		return _kind == Kind.FieldMaskingSpan;
+	public boolean isSpanFieldMasking() {
+		return _kind == Kind.SpanFieldMasking;
 	}
 
 	/**
-	 * Get the {@code field_masking_span} variant value.
+	 * Get the {@code span_field_masking} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code field_masking_span}
+	 *             if the current variant is not of the {@code span_field_masking}
 	 *             kind.
 	 */
-	public SpanFieldMaskingQuery fieldMaskingSpan() {
-		return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
+	public SpanFieldMaskingQuery spanFieldMasking() {
+		return TaggedUnionUtils.get(this, Kind.SpanFieldMasking);
 	}
 
 	/**
@@ -1742,15 +1742,15 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
-			this._kind = Kind.FieldMaskingSpan;
+		public ObjectBuilder<Query> spanFieldMasking(SpanFieldMaskingQuery v) {
+			this._kind = Kind.SpanFieldMasking;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(
+		public ObjectBuilder<Query> spanFieldMasking(
 				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
-			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
+			return this.spanFieldMasking(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
@@ -1973,7 +1973,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");
 		op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
-		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFieldMasking, SpanFieldMaskingQuery._DESERIALIZER, "span_field_masking");
 		op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
 		op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
 		op.add(Builder::spanNear, SpanNearQuery._DESERIALIZER, "span_near");
