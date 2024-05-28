@@ -234,7 +234,7 @@ public class Rescore implements OpenTaggedUnion<Rescore.Kind, Object>, JsonpSeri
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Rescore> {
 		private Kind _kind;
 		private Object _value;
 		private String _customKind;
@@ -290,7 +290,7 @@ public class Rescore implements OpenTaggedUnion<Rescore.Kind, Object>, JsonpSeri
 			return new ContainerBuilder();
 		}
 
-		protected Rescore build() {
+		public Rescore build() {
 			_checkSingleUse();
 			return new Rescore(this);
 		}
