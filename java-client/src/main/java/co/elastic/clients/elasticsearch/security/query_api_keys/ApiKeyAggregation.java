@@ -402,7 +402,7 @@ public class ApiKeyAggregation implements OpenTaggedUnion<ApiKeyAggregation.Kind
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ApiKeyAggregation> {
 		private Kind _kind;
 		private Object _value;
 		private String _customKind;
@@ -584,7 +584,7 @@ public class ApiKeyAggregation implements OpenTaggedUnion<ApiKeyAggregation.Kind
 			return new ContainerBuilder();
 		}
 
-		protected ApiKeyAggregation build() {
+		public ApiKeyAggregation build() {
 			_checkSingleUse();
 			return new ApiKeyAggregation(this);
 		}

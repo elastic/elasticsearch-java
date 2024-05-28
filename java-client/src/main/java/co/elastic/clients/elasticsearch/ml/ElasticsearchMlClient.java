@@ -2687,6 +2687,41 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 		return updateModelSnapshot(fn.apply(new UpdateModelSnapshotRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: ml.update_trained_model_deployment
+
+	/**
+	 * Updates certain properties of trained model deployment.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateTrainedModelDeploymentResponse updateTrainedModelDeployment(
+			UpdateTrainedModelDeploymentRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateTrainedModelDeploymentRequest, UpdateTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateTrainedModelDeploymentRequest, UpdateTrainedModelDeploymentResponse, ErrorResponse>) UpdateTrainedModelDeploymentRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates certain properties of trained model deployment.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateTrainedModelDeploymentRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final UpdateTrainedModelDeploymentResponse updateTrainedModelDeployment(
+			Function<UpdateTrainedModelDeploymentRequest.Builder, ObjectBuilder<UpdateTrainedModelDeploymentRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return updateTrainedModelDeployment(fn.apply(new UpdateTrainedModelDeploymentRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.upgrade_job_snapshot
 
 	/**
