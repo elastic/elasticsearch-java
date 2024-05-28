@@ -217,7 +217,7 @@ public class PinnedQuery extends QueryBase
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> {
+	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<PinnedQuery> {
 		private Kind _kind;
 		private Object _value;
 
@@ -254,7 +254,7 @@ public class PinnedQuery extends QueryBase
 			return new ContainerBuilder();
 		}
 
-		protected PinnedQuery build() {
+		public PinnedQuery build() {
 			_checkSingleUse();
 			return new PinnedQuery(this);
 		}
