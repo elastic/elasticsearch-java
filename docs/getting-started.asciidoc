@@ -161,6 +161,10 @@ include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-delete]
 include-tagged::{doc-tests-src}/usage/IndexingTest.java[delete-products-index]
 --------------------------------------------------
 
+[discrete]
+== Examples
+
+The https://github.com/elastic/elasticsearch-java/tree/main/examples[examples] folder in the Github repository contains full working examples showing how to set up and use the client.
 
 [discrete]
 == Further reading
