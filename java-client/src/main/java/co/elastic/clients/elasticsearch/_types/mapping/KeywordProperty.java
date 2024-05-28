@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -71,6 +72,12 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	private final IndexOptions indexOptions;
 
 	@Nullable
+	private final Script script;
+
+	@Nullable
+	private final OnScriptError onScriptError;
+
+	@Nullable
 	private final String normalizer;
 
 	@Nullable
@@ -91,6 +98,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		this.eagerGlobalOrdinals = builder.eagerGlobalOrdinals;
 		this.index = builder.index;
 		this.indexOptions = builder.indexOptions;
+		this.script = builder.script;
+		this.onScriptError = builder.onScriptError;
 		this.normalizer = builder.normalizer;
 		this.norms = builder.norms;
 		this.nullValue = builder.nullValue;
@@ -140,6 +149,22 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	@Nullable
 	public final IndexOptions indexOptions() {
 		return this.indexOptions;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public final Script script() {
+		return this.script;
+	}
+
+	/**
+	 * API name: {@code on_script_error}
+	 */
+	@Nullable
+	public final OnScriptError onScriptError() {
+		return this.onScriptError;
 	}
 
 	/**
@@ -197,6 +222,15 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 			generator.writeKey("index_options");
 			this.indexOptions.serialize(generator, mapper);
 		}
+		if (this.script != null) {
+			generator.writeKey("script");
+			this.script.serialize(generator, mapper);
+
+		}
+		if (this.onScriptError != null) {
+			generator.writeKey("on_script_error");
+			this.onScriptError.serialize(generator, mapper);
+		}
 		if (this.normalizer != null) {
 			generator.writeKey("normalizer");
 			generator.write(this.normalizer);
@@ -242,6 +276,12 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		private IndexOptions indexOptions;
 
 		@Nullable
+		private Script script;
+
+		@Nullable
+		private OnScriptError onScriptError;
+
+		@Nullable
 		private String normalizer;
 
 		@Nullable
@@ -282,6 +322,29 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		 */
 		public final Builder indexOptions(@Nullable IndexOptions value) {
 			this.indexOptions = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(@Nullable Script value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code on_script_error}
+		 */
+		public final Builder onScriptError(@Nullable OnScriptError value) {
+			this.onScriptError = value;
 			return this;
 		}
 
@@ -349,6 +412,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		op.add(Builder::eagerGlobalOrdinals, JsonpDeserializer.booleanDeserializer(), "eager_global_ordinals");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::indexOptions, IndexOptions._DESERIALIZER, "index_options");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
 		op.add(Builder::normalizer, JsonpDeserializer.stringDeserializer(), "normalizer");
 		op.add(Builder::norms, JsonpDeserializer.booleanDeserializer(), "norms");
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
