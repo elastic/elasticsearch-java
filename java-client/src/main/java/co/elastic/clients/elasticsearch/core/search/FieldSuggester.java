@@ -295,7 +295,7 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldSuggester> {
 		private Kind _kind;
 		private Object _value;
 		private String _customKind;
@@ -391,7 +391,7 @@ public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Obje
 			return new ContainerBuilder();
 		}
 
-		protected FieldSuggester build() {
+		public FieldSuggester build() {
 			_checkSingleUse();
 			return new FieldSuggester(this);
 		}
