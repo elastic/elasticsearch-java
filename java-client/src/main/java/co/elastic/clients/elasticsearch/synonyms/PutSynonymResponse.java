@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.synonyms;
 
 import co.elastic.clients.elasticsearch._types.Result;
-import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadDetails;
+import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
 public class PutSynonymResponse implements JsonpSerializable {
 	private final Result result;
 
-	private final ReloadDetails reloadAnalyzersDetails;
+	private final ReloadResult reloadAnalyzersDetails;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ public class PutSynonymResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code reload_analyzers_details}
 	 */
-	public final ReloadDetails reloadAnalyzersDetails() {
+	public final ReloadResult reloadAnalyzersDetails() {
 		return this.reloadAnalyzersDetails;
 	}
 
@@ -126,7 +126,7 @@ public class PutSynonymResponse implements JsonpSerializable {
 				ObjectBuilder<PutSynonymResponse> {
 		private Result result;
 
-		private ReloadDetails reloadAnalyzersDetails;
+		private ReloadResult reloadAnalyzersDetails;
 
 		/**
 		 * Required - API name: {@code result}
@@ -139,7 +139,7 @@ public class PutSynonymResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reload_analyzers_details}
 		 */
-		public final Builder reloadAnalyzersDetails(ReloadDetails value) {
+		public final Builder reloadAnalyzersDetails(ReloadResult value) {
 			this.reloadAnalyzersDetails = value;
 			return this;
 		}
@@ -147,8 +147,8 @@ public class PutSynonymResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reload_analyzers_details}
 		 */
-		public final Builder reloadAnalyzersDetails(Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>> fn) {
-			return this.reloadAnalyzersDetails(fn.apply(new ReloadDetails.Builder()).build());
+		public final Builder reloadAnalyzersDetails(Function<ReloadResult.Builder, ObjectBuilder<ReloadResult>> fn) {
+			return this.reloadAnalyzersDetails(fn.apply(new ReloadResult.Builder()).build());
 		}
 
 		@Override
@@ -180,7 +180,7 @@ public class PutSynonymResponse implements JsonpSerializable {
 	protected static void setupPutSynonymResponseDeserializer(ObjectDeserializer<PutSynonymResponse.Builder> op) {
 
 		op.add(Builder::result, Result._DESERIALIZER, "result");
-		op.add(Builder::reloadAnalyzersDetails, ReloadDetails._DESERIALIZER, "reload_analyzers_details");
+		op.add(Builder::reloadAnalyzersDetails, ReloadResult._DESERIALIZER, "reload_analyzers_details");
 
 	}
 
