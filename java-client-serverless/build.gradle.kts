@@ -273,6 +273,7 @@ dependencies {
     // https://www.testcontainers.org/
     testImplementation("org.testcontainers", "testcontainers", "1.17.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
+    // updating transitive dependency from testcontainers
     testImplementation("org.apache.commons","commons-compress","1.26.1")
 
     testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
