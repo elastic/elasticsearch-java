@@ -34,7 +34,23 @@ format specified in the request.
 
 The following example gets ES|QL results as CSV and parses them:
 
-// Code example to be written
+```
+String queryAuthor =
+    """
+        from books
+        | where author == "Isaac Asimov"
+        | sort year desc
+        | limit 10
+    """;
+
+BinaryResponse response = client.esql().query(q -> q
+    .format("csv")
+    .delimiter(",")
+    .query(queryAuthor));
+
+String result = new BufferedReader(new InputStreamReader(response.content()))
+    .lines().collect(Collectors.joining("\n"));
+```
 
 
 [discrete]
@@ -51,12 +67,25 @@ results (each with its own mapping helper):
 * **Objects**, where each row in the results is mapped to an object from your
 application domain. This is similar to what ORMs (object relational mappers)
 commonly do.
+
+```
+List<Book> queryRes = (List<Book>) client.esql().query(ObjectsEsqlAdapter.of(Book.class), queryAuthor);
+
+```
 * **Cursors**, where you scan the results row by row and access the data using
 column names. This is similar to database access libraries.
+```
+ResultSet resultSet = client.esql().query(ResultSetEsqlAdapter.INSTANCE, queryAuthor);
+```
 * **Dataframes**, where results are organized in a column-oriented structure that
 allows efficient processing of column data.
+```
+BinaryResponse response = client.esql().query(q -> q
+    .format("json")
+    .columnar(true)
+    .query(queryAuthor));
+```
 
-// Code examples to be written for each of them, depending on availability in the language
 
 
 [discrete]
@@ -75,4 +104,27 @@ the output of a result mapper.
 Here's an example mapper that returns a simple column-oriented
 representation of the data:
 
-// Code example to be written
+```
+public class CustomStringAdapter extends EsqlAdapterBase<String> {
+
+    public static final CustomStringAdapter INSTANCE = new CustomStringAdapter();
+
+    @Override
+    public String format() {
+        return "json";
+    }
+
+    @Override
+    public boolean columnar() {
+        return true;
+    }
+
+    @Override
+    public String deserialize(ApiClient<ElasticsearchTransport, ?> client, QueryRequest request,
+                              BinaryResponse response)
+        throws IOException {
+        return new BufferedReader(new InputStreamReader(response.content()))
+            .lines().collect(Collectors.joining("\n"));
+    }
+}
+```
