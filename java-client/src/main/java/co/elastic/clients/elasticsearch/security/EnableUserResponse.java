@@ -60,6 +60,6 @@ public class EnableUserResponse {
 	public static final EnableUserResponse _INSTANCE = new EnableUserResponse();
 
 	public static final JsonpDeserializer<EnableUserResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(EnableUserResponse._INSTANCE);
+			.emptyObject(EnableUserResponse._INSTANCE);
 
 }
