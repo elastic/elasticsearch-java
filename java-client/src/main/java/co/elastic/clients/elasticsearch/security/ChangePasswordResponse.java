@@ -61,6 +61,6 @@ public class ChangePasswordResponse {
 	public static final ChangePasswordResponse _INSTANCE = new ChangePasswordResponse();
 
 	public static final JsonpDeserializer<ChangePasswordResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(ChangePasswordResponse._INSTANCE);
+			.emptyObject(ChangePasswordResponse._INSTANCE);
 
 }
