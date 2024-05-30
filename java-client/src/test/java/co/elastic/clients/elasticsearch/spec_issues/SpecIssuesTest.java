@@ -117,7 +117,7 @@ public class SpecIssuesTest extends ModelTestCase {
             .index("i0297")
             .settings(s -> s
                 // This is "mapping" and not "mappings"
-                .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001)))
+                .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001L)))
                 .otherSettings("foo", JsonData.of("bar"))
             )
         );

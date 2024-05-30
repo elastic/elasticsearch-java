@@ -29,7 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 	@Nullable
-	private final Integer limit;
+	private final Long limit;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@ public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 	 * API name: {@code limit}
 	 */
 	@Nullable
-	public final Integer limit() {
+	public final Long limit() {
 		return this.limit;
 	}
 
@@ -122,7 +122,7 @@ public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 			implements
 				ObjectBuilder<MappingLimitSettingsDimensionFields> {
 		@Nullable
-		private Integer limit;
+		private Long limit;
 
 		/**
 		 * [preview] This functionality is in technical preview and may be changed or
@@ -132,7 +132,7 @@ public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code limit}
 		 */
-		public final Builder limit(@Nullable Integer value) {
+		public final Builder limit(@Nullable Long value) {
 			this.limit = value;
 			return this;
 		}
@@ -167,7 +167,7 @@ public class MappingLimitSettingsDimensionFields implements JsonpSerializable {
 	protected static void setupMappingLimitSettingsDimensionFieldsDeserializer(
 			ObjectDeserializer<MappingLimitSettingsDimensionFields.Builder> op) {
 
-		op.add(Builder::limit, JsonpDeserializer.integerDeserializer(), "limit");
+		op.add(Builder::limit, JsonpDeserializer.longDeserializer(), "limit");
 
 	}
 
