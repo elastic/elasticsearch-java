@@ -1178,12 +1178,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
-			generator.writeStartArray();
-			for (String item0 : this.storedFields) {
-				generator.write(item0);
+			if (this.storedFields.size() == 1) {
+				String singleItem = this.storedFields.get(0);
+				generator.write(singleItem);
 
+			} else {
+				generator.writeStartArray();
+				for (String item0 : this.storedFields) {
+					generator.write(item0);
+
+				}
+				generator.writeEnd();
 			}
-			generator.writeEnd();
 
 		}
 		if (this.suggest != null) {
