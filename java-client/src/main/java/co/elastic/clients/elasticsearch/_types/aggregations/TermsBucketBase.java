@@ -57,31 +57,31 @@ import javax.annotation.Nullable;
 
 public abstract class TermsBucketBase extends MultiBucketBase {
 	@Nullable
-	private final Long docCountError;
+	private final Long docCountErrorUpperBound;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected TermsBucketBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.docCountError = builder.docCountError;
+		this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
 
 	}
 
 	/**
-	 * API name: {@code doc_count_error}
+	 * API name: {@code doc_count_error_upper_bound}
 	 */
 	@Nullable
-	public final Long docCountError() {
-		return this.docCountError;
+	public final Long docCountErrorUpperBound() {
+		return this.docCountErrorUpperBound;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.docCountError != null) {
-			generator.writeKey("doc_count_error");
-			generator.write(this.docCountError);
+		if (this.docCountErrorUpperBound != null) {
+			generator.writeKey("doc_count_error_upper_bound");
+			generator.write(this.docCountErrorUpperBound);
 
 		}
 
@@ -91,13 +91,13 @@ public abstract class TermsBucketBase extends MultiBucketBase {
 			extends
 				MultiBucketBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private Long docCountError;
+		private Long docCountErrorUpperBound;
 
 		/**
-		 * API name: {@code doc_count_error}
+		 * API name: {@code doc_count_error_upper_bound}
 		 */
-		public final BuilderT docCountError(@Nullable Long value) {
-			this.docCountError = value;
+		public final BuilderT docCountErrorUpperBound(@Nullable Long value) {
+			this.docCountErrorUpperBound = value;
 			return self();
 		}
 
@@ -107,7 +107,8 @@ public abstract class TermsBucketBase extends MultiBucketBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTermsBucketBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(AbstractBuilder::docCountError, JsonpDeserializer.longDeserializer(), "doc_count_error");
+		op.add(AbstractBuilder::docCountErrorUpperBound, JsonpDeserializer.longDeserializer(),
+				"doc_count_error_upper_bound");
 
 	}
 
