@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
 public class NodeInfoScript implements JsonpSerializable {
 	private final String allowedTypes;
 
+	@Nullable
 	private final String disableMaxCompilationsRate;
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,8 +69,7 @@ public class NodeInfoScript implements JsonpSerializable {
 	private NodeInfoScript(Builder builder) {
 
 		this.allowedTypes = ApiTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
-		this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
-				"disableMaxCompilationsRate");
+		this.disableMaxCompilationsRate = builder.disableMaxCompilationsRate;
 
 	}
 
@@ -85,8 +85,9 @@ public class NodeInfoScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code disable_max_compilations_rate}
+	 * API name: {@code disable_max_compilations_rate}
 	 */
+	@Nullable
 	public final String disableMaxCompilationsRate() {
 		return this.disableMaxCompilationsRate;
 	}
@@ -105,8 +106,11 @@ public class NodeInfoScript implements JsonpSerializable {
 		generator.writeKey("allowed_types");
 		generator.write(this.allowedTypes);
 
-		generator.writeKey("disable_max_compilations_rate");
-		generator.write(this.disableMaxCompilationsRate);
+		if (this.disableMaxCompilationsRate != null) {
+			generator.writeKey("disable_max_compilations_rate");
+			generator.write(this.disableMaxCompilationsRate);
+
+		}
 
 	}
 
@@ -124,6 +128,7 @@ public class NodeInfoScript implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoScript> {
 		private String allowedTypes;
 
+		@Nullable
 		private String disableMaxCompilationsRate;
 
 		/**
@@ -135,9 +140,9 @@ public class NodeInfoScript implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code disable_max_compilations_rate}
+		 * API name: {@code disable_max_compilations_rate}
 		 */
-		public final Builder disableMaxCompilationsRate(String value) {
+		public final Builder disableMaxCompilationsRate(@Nullable String value) {
 			this.disableMaxCompilationsRate = value;
 			return this;
 		}

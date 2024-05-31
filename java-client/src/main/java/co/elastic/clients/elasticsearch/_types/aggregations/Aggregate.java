@@ -82,7 +82,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		Avg("avg"),
 
-		BoxPlot("box_plot"),
+		Boxplot("boxplot"),
 
 		BucketMetricValue("bucket_metric_value"),
 
@@ -328,20 +328,20 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	}
 
 	/**
-	 * Is this variant instance of kind {@code box_plot}?
+	 * Is this variant instance of kind {@code boxplot}?
 	 */
-	public boolean isBoxPlot() {
-		return _kind == Kind.BoxPlot;
+	public boolean isBoxplot() {
+		return _kind == Kind.Boxplot;
 	}
 
 	/**
-	 * Get the {@code box_plot} variant value.
+	 * Get the {@code boxplot} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code box_plot} kind.
+	 *             if the current variant is not of the {@code boxplot} kind.
 	 */
-	public BoxPlotAggregate boxPlot() {
-		return TaggedUnionUtils.get(this, Kind.BoxPlot);
+	public BoxPlotAggregate boxplot() {
+		return TaggedUnionUtils.get(this, Kind.Boxplot);
 	}
 
 	/**
@@ -1540,15 +1540,15 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.avg(fn.apply(new AvgAggregate.Builder()).build());
 		}
 
-		public ObjectBuilder<Aggregate> boxPlot(BoxPlotAggregate v) {
-			this._kind = Kind.BoxPlot;
+		public ObjectBuilder<Aggregate> boxplot(BoxPlotAggregate v) {
+			this._kind = Kind.Boxplot;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Aggregate> boxPlot(
+		public ObjectBuilder<Aggregate> boxplot(
 				Function<BoxPlotAggregate.Builder, ObjectBuilder<BoxPlotAggregate>> fn) {
-			return this.boxPlot(fn.apply(new BoxPlotAggregate.Builder()).build());
+			return this.boxplot(fn.apply(new BoxPlotAggregate.Builder()).build());
 		}
 
 		public ObjectBuilder<Aggregate> bucketMetricValue(BucketMetricValueAggregate v) {
@@ -2285,7 +2285,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("adjacency_matrix", AdjacencyMatrixAggregate._DESERIALIZER);
 		deserializers.put("auto_date_histogram", AutoDateHistogramAggregate._DESERIALIZER);
 		deserializers.put("avg", AvgAggregate._DESERIALIZER);
-		deserializers.put("box_plot", BoxPlotAggregate._DESERIALIZER);
+		deserializers.put("boxplot", BoxPlotAggregate._DESERIALIZER);
 		deserializers.put("bucket_metric_value", BucketMetricValueAggregate._DESERIALIZER);
 		deserializers.put("cardinality", CardinalityAggregate._DESERIALIZER);
 		deserializers.put("children", ChildrenAggregate._DESERIALIZER);

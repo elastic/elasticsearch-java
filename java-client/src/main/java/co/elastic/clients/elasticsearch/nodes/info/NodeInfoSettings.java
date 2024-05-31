@@ -74,6 +74,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 	@Nullable
 	private final NodeInfoAction action;
 
+	@Nullable
 	private final NodeInfoClient client;
 
 	private final NodeInfoSettingsHttp http;
@@ -108,7 +109,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 		this.repositories = builder.repositories;
 		this.discovery = builder.discovery;
 		this.action = builder.action;
-		this.client = ApiTypeHelper.requireNonNull(builder.client, this, "client");
+		this.client = builder.client;
 		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
 		this.bootstrap = builder.bootstrap;
 		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
@@ -171,8 +172,9 @@ public class NodeInfoSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code client}
+	 * API name: {@code client}
 	 */
+	@Nullable
 	public final NodeInfoClient client() {
 		return this.client;
 	}
@@ -276,9 +278,11 @@ public class NodeInfoSettings implements JsonpSerializable {
 			this.action.serialize(generator, mapper);
 
 		}
-		generator.writeKey("client");
-		this.client.serialize(generator, mapper);
+		if (this.client != null) {
+			generator.writeKey("client");
+			this.client.serialize(generator, mapper);
 
+		}
 		generator.writeKey("http");
 		this.http.serialize(generator, mapper);
 
@@ -346,6 +350,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 		@Nullable
 		private NodeInfoAction action;
 
+		@Nullable
 		private NodeInfoClient client;
 
 		private NodeInfoSettingsHttp http;
@@ -463,15 +468,15 @@ public class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code client}
+		 * API name: {@code client}
 		 */
-		public final Builder client(NodeInfoClient value) {
+		public final Builder client(@Nullable NodeInfoClient value) {
 			this.client = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code client}
+		 * API name: {@code client}
 		 */
 		public final Builder client(Function<NodeInfoClient.Builder, ObjectBuilder<NodeInfoClient>> fn) {
 			return this.client(fn.apply(new NodeInfoClient.Builder()).build());

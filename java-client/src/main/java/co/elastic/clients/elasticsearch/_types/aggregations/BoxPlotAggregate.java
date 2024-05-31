@@ -124,7 +124,7 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 	 */
 	@Override
 	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.BoxPlot;
+		return Aggregate.Kind.Boxplot;
 	}
 
 	/**
