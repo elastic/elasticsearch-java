@@ -296,6 +296,13 @@ public class SpecIssuesTest extends ModelTestCase {
                 .trackTotalHits(thb -> thb.enabled(false)), JsonData.class);
     }
 
+    @Test
+    public void gettingVersionFromNodes() throws Exception {
+        ElasticsearchTestServer.global().client()
+            .nodes().info().nodes().entrySet().forEach(node ->
+                assertNotNull(node.getValue().version()));
+    }
+    
     private <T> T loadRsrc(String res, JsonpDeserializer<T> deser) {
         InputStream is = this.getClass().getResourceAsStream(res);
         assertNotNull(is, "Resource not found: " + res);
