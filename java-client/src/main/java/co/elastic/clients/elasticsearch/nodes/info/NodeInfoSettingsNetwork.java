@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,13 +59,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodeInfoSettingsNetwork implements JsonpSerializable {
+	@Nullable
 	private final String host;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoSettingsNetwork(Builder builder) {
 
-		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.host = builder.host;
 
 	}
 
@@ -75,8 +75,9 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code host}
+	 * API name: {@code host}
 	 */
+	@Nullable
 	public final String host() {
 		return this.host;
 	}
@@ -92,8 +93,11 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("host");
-		generator.write(this.host);
+		if (this.host != null) {
+			generator.writeKey("host");
+			generator.write(this.host);
+
+		}
 
 	}
 
@@ -111,12 +115,13 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<NodeInfoSettingsNetwork> {
+		@Nullable
 		private String host;
 
 		/**
-		 * Required - API name: {@code host}
+		 * API name: {@code host}
 		 */
-		public final Builder host(String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
