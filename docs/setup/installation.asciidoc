@@ -95,7 +95,7 @@ dependencies {
 
 Some frameworks like Spring Boot or Helidon come with their Gradle and Maven plugins or their Maven BOM files to ease development and dependency management. These plugins and BOM define the versions to use for a number of well-known libraries.
 
-One these libraries can be `jakarta.json:json-api` that defines the standard Java JSON API. In version `1.x` this library used the `javax.json` package, while in version `2.x` it uses the `jakarta.json` package after https://blogs.oracle.com/javamagazine/post/transition-from-java-ee-to-jakarta-ee[the transition from JavaEE to JakartaEE].
+One of these libraries can be `jakarta.json:json-api` that defines the standard Java JSON API. In version `1.x` this library used the `javax.json` package, while in version `2.x` it uses the `jakarta.json` package after https://blogs.oracle.com/javamagazine/post/transition-from-java-ee-to-jakarta-ee[the transition from JavaEE to JakartaEE].
 
 The {java-client} depends on version `2.0.1` of this library, in order to use the newer and future-proof `jakarta.json` package. But some build plugins and BOMs override the {java-client}'s dependency to use version `1.x` in the older `javax.json` namespace, resulting in `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
 
