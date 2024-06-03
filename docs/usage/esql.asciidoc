@@ -77,15 +77,6 @@ column names. This is similar to database access libraries.
 ```
 ResultSet resultSet = client.esql().query(ResultSetEsqlAdapter.INSTANCE, queryAuthor);
 ```
-* **Dataframes**, where results are organized in a column-oriented structure that
-allows efficient processing of column data.
-```
-BinaryResponse response = client.esql().query(q -> q
-    .format("json")
-    .columnar(true)
-    .query(queryAuthor));
-```
-
 
 
 [discrete]
