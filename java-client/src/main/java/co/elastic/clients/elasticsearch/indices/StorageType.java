@@ -50,7 +50,7 @@ public enum StorageType implements JsonEnum {
 	 * depending on the operating environment, which is currently hybridfs on all
 	 * supported systems but is subject to change.
 	 */
-	Fs("fs", ""),
+	Fs("fs"),
 
 	/**
 	 * The NIO FS type stores the shard index on the file system (maps to Lucene
@@ -82,19 +82,13 @@ public enum StorageType implements JsonEnum {
 	;
 
 	private final String jsonValue;
-	private final String[] aliases;
 
-	StorageType(String jsonValue, String... aliases) {
+	StorageType(String jsonValue) {
 		this.jsonValue = jsonValue;
-		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
-	}
-
-	public String[] aliases() {
-		return this.aliases;
 	}
 
 	public static final JsonEnum.Deserializer<StorageType> _DESERIALIZER = new JsonEnum.Deserializer<>(

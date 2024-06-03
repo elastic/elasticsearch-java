@@ -31,7 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
-import java.lang.Long;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -67,9 +67,9 @@ public class KnnSearchQuery implements JsonpSerializable {
 
 	private final List<Float> queryVector;
 
-	private final long k;
+	private final int k;
 
-	private final long numCandidates;
+	private final int numCandidates;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code k}
 	 */
-	public final long k() {
+	public final int k() {
 		return this.k;
 	}
 
@@ -118,7 +118,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code num_candidates}
 	 */
-	public final long numCandidates() {
+	public final int numCandidates() {
 		return this.numCandidates;
 	}
 
@@ -170,9 +170,9 @@ public class KnnSearchQuery implements JsonpSerializable {
 
 		private List<Float> queryVector;
 
-		private Long k;
+		private Integer k;
 
-		private Long numCandidates;
+		private Integer numCandidates;
 
 		/**
 		 * Required - The name of the vector field to search against
@@ -213,7 +213,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code k}
 		 */
-		public final Builder k(long value) {
+		public final Builder k(int value) {
 			this.k = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_candidates}
 		 */
-		public final Builder numCandidates(long value) {
+		public final Builder numCandidates(int value) {
 			this.numCandidates = value;
 			return this;
 		}
@@ -259,8 +259,8 @@ public class KnnSearchQuery implements JsonpSerializable {
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::queryVector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()),
 				"query_vector");
-		op.add(Builder::k, JsonpDeserializer.longDeserializer(), "k");
-		op.add(Builder::numCandidates, JsonpDeserializer.longDeserializer(), "num_candidates");
+		op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
+		op.add(Builder::numCandidates, JsonpDeserializer.integerDeserializer(), "num_candidates");
 
 	}
 

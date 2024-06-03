@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,11 +26,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,67 +49,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.AggregationRange
+// typedef: ml.update_trained_model_deployment.Response
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.AggregationRange">API
+ *      "../doc-files/api-spec.html#ml.update_trained_model_deployment.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class AggregationRange implements JsonpSerializable {
-	@Nullable
-	private final Double from;
-
-	@Nullable
-	private final String key;
-
-	@Nullable
-	private final Double to;
+public class UpdateTrainedModelDeploymentResponse implements JsonpSerializable {
+	private final TrainedModelAssignment assignment;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private AggregationRange(Builder builder) {
+	private UpdateTrainedModelDeploymentResponse(Builder builder) {
 
-		this.from = builder.from;
-		this.key = builder.key;
-		this.to = builder.to;
+		this.assignment = ApiTypeHelper.requireNonNull(builder.assignment, this, "assignment");
 
 	}
 
-	public static AggregationRange of(Function<Builder, ObjectBuilder<AggregationRange>> fn) {
+	public static UpdateTrainedModelDeploymentResponse of(
+			Function<Builder, ObjectBuilder<UpdateTrainedModelDeploymentResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Start of the range (inclusive).
-	 * <p>
-	 * API name: {@code from}
+	 * Required - API name: {@code assignment}
 	 */
-	@Nullable
-	public final Double from() {
-		return this.from;
-	}
-
-	/**
-	 * Custom key to return the range with.
-	 * <p>
-	 * API name: {@code key}
-	 */
-	@Nullable
-	public final String key() {
-		return this.key;
-	}
-
-	/**
-	 * End of the range (exclusive).
-	 * <p>
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final Double to() {
-		return this.to;
+	public final TrainedModelAssignment assignment() {
+		return this.assignment;
 	}
 
 	/**
@@ -124,21 +92,8 @@ public class AggregationRange implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
-
-		}
-		if (this.key != null) {
-			generator.writeKey("key");
-			generator.write(this.key);
-
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
-
-		}
+		generator.writeKey("assignment");
+		this.assignment.serialize(generator, mapper);
 
 	}
 
@@ -150,47 +105,28 @@ public class AggregationRange implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link AggregationRange}.
+	 * Builder for {@link UpdateTrainedModelDeploymentResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AggregationRange> {
-		@Nullable
-		private Double from;
-
-		@Nullable
-		private String key;
-
-		@Nullable
-		private Double to;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateTrainedModelDeploymentResponse> {
+		private TrainedModelAssignment assignment;
 
 		/**
-		 * Start of the range (inclusive).
-		 * <p>
-		 * API name: {@code from}
+		 * Required - API name: {@code assignment}
 		 */
-		public final Builder from(@Nullable Double value) {
-			this.from = value;
+		public final Builder assignment(TrainedModelAssignment value) {
+			this.assignment = value;
 			return this;
 		}
 
 		/**
-		 * Custom key to return the range with.
-		 * <p>
-		 * API name: {@code key}
+		 * Required - API name: {@code assignment}
 		 */
-		public final Builder key(@Nullable String value) {
-			this.key = value;
-			return this;
-		}
-
-		/**
-		 * End of the range (exclusive).
-		 * <p>
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable Double value) {
-			this.to = value;
-			return this;
+		public final Builder assignment(
+				Function<TrainedModelAssignment.Builder, ObjectBuilder<TrainedModelAssignment>> fn) {
+			return this.assignment(fn.apply(new TrainedModelAssignment.Builder()).build());
 		}
 
 		@Override
@@ -199,31 +135,31 @@ public class AggregationRange implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link AggregationRange}.
+		 * Builds a {@link UpdateTrainedModelDeploymentResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public AggregationRange build() {
+		public UpdateTrainedModelDeploymentResponse build() {
 			_checkSingleUse();
 
-			return new AggregationRange(this);
+			return new UpdateTrainedModelDeploymentResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link AggregationRange}
+	 * Json deserializer for {@link UpdateTrainedModelDeploymentResponse}
 	 */
-	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregationRange::setupAggregationRangeDeserializer);
+	public static final JsonpDeserializer<UpdateTrainedModelDeploymentResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					UpdateTrainedModelDeploymentResponse::setupUpdateTrainedModelDeploymentResponseDeserializer);
 
-	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
+	protected static void setupUpdateTrainedModelDeploymentResponseDeserializer(
+			ObjectDeserializer<UpdateTrainedModelDeploymentResponse.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.doubleDeserializer(), "from");
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
+		op.add(Builder::assignment, TrainedModelAssignment._DESERIALIZER, "assignment");
 
 	}
 

@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes.info;
+package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -26,10 +27,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,37 +51,32 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes.info.NodeInfoSettingsNetwork
+// typedef: _types.RetrieverBase
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#nodes.info.NodeInfoSettingsNetwork">API
+ * @see <a href="../doc-files/api-spec.html#_types.RetrieverBase">API
  *      specification</a>
  */
-@JsonpDeserializable
-public class NodeInfoSettingsNetwork implements JsonpSerializable {
-	@Nullable
-	private final String host;
+
+public abstract class RetrieverBase implements JsonpSerializable {
+	private final List<Query> filter;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeInfoSettingsNetwork(Builder builder) {
+	protected RetrieverBase(AbstractBuilder<?> builder) {
 
-		this.host = builder.host;
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 
-	}
-
-	public static NodeInfoSettingsNetwork of(Function<Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
-		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Query to filter the documents that can match.
+	 * <p>
+	 * API name: {@code filter}
 	 */
-	@Nullable
-	public final String host() {
-		return this.host;
+	public final List<Query> filter() {
+		return this.filter;
 	}
 
 	/**
@@ -93,9 +90,14 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.host != null) {
-			generator.writeKey("host");
-			generator.write(this.host);
+		if (ApiTypeHelper.isDefined(this.filter)) {
+			generator.writeKey("filter");
+			generator.writeStartArray();
+			for (Query item0 : this.filter) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -106,56 +108,56 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link NodeInfoSettingsNetwork}.
-	 */
-
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<NodeInfoSettingsNetwork> {
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
-		private String host;
+		private List<Query> filter;
 
 		/**
-		 * API name: {@code host}
+		 * Query to filter the documents that can match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public final Builder host(@Nullable String value) {
-			this.host = value;
-			return this;
-		}
-
-		@Override
-		protected Builder self() {
-			return this;
+		public final BuilderT filter(List<Query> list) {
+			this.filter = _listAddAll(this.filter, list);
+			return self();
 		}
 
 		/**
-		 * Builds a {@link NodeInfoSettingsNetwork}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
+		 * Query to filter the documents that can match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public NodeInfoSettingsNetwork build() {
-			_checkSingleUse();
-
-			return new NodeInfoSettingsNetwork(this);
+		public final BuilderT filter(Query value, Query... values) {
+			this.filter = _listAdd(this.filter, value, values);
+			return self();
 		}
+
+		/**
+		 * Query to filter the documents that can match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
+		 */
+		public final BuilderT filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return filter(fn.apply(new Query.Builder()).build());
+		}
+
+		protected abstract BuilderT self();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRetrieverBaseDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-	/**
-	 * Json deserializer for {@link NodeInfoSettingsNetwork}
-	 */
-	public static final JsonpDeserializer<NodeInfoSettingsNetwork> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkDeserializer);
-
-	protected static void setupNodeInfoSettingsNetworkDeserializer(
-			ObjectDeserializer<NodeInfoSettingsNetwork.Builder> op) {
-
-		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(AbstractBuilder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 
 	}
 

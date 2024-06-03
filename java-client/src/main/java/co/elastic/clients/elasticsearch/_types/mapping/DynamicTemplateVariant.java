@@ -17,15 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security;
-
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -42,25 +34,15 @@ import java.util.Objects;
 //
 //----------------------------------------------------------------
 
-// typedef: security.change_password.Response
-
 /**
- *
- * @see <a href=
- *      "../doc-files/api-spec.html#security.change_password.Response">API
- *      specification</a>
+ * Base interface for {@link DynamicTemplate} variants.
  */
+public interface DynamicTemplateVariant {
 
-public class ChangePasswordResponse {
-	public ChangePasswordResponse() {
+	DynamicTemplate.Kind _dynamicTemplateKind();
+
+	default DynamicTemplate _toDynamicTemplate() {
+		return new DynamicTemplate(this);
 	}
-
-	/**
-	 * Singleton instance for {@link ChangePasswordResponse}.
-	 */
-	public static final ChangePasswordResponse _INSTANCE = new ChangePasswordResponse();
-
-	public static final JsonpDeserializer<ChangePasswordResponse> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(ChangePasswordResponse._INSTANCE);
 
 }

@@ -117,7 +117,7 @@ public class SpecIssuesTest extends ModelTestCase {
             .index("i0297")
             .settings(s -> s
                 // This is "mapping" and not "mappings"
-                .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001)))
+                .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001L)))
                 .otherSettings("foo", JsonData.of("bar"))
             )
         );
@@ -164,7 +164,6 @@ public class SpecIssuesTest extends ModelTestCase {
     }
 
     @Test
-    @Disabled("Plugins cannot be installed on snapshot versions of ES")
     public void i0249_variantKind() throws Exception {
         try (ElasticsearchTestServer server = new ElasticsearchTestServer("analysis-icu").start()) {
 
@@ -297,6 +296,13 @@ public class SpecIssuesTest extends ModelTestCase {
                 .trackTotalHits(thb -> thb.enabled(false)), JsonData.class);
     }
 
+    @Test
+    public void gettingVersionFromNodes() throws Exception {
+        ElasticsearchTestServer.global().client()
+            .nodes().info().nodes().entrySet().forEach(node ->
+                assertNotNull(node.getValue().version()));
+    }
+    
     private <T> T loadRsrc(String res, JsonpDeserializer<T> deser) {
         InputStream is = this.getClass().getResourceAsStream(res);
         assertNotNull(is, "Resource not found: " + res);

@@ -17,11 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.esql;
+package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,46 +38,46 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#esql._types.EsqlVersion">API
- *      specification</a>
+ * Builders for {@link DynamicTemplate} variants.
  */
-@JsonpDeserializable
-public enum EsqlVersion implements JsonEnum {
-	/**
-	 * Run against the first version of ES|QL.
-	 */
-	V2024_04_01("2024.04.01"),
-
-	;
-
-	private final String jsonValue;
-
-	EsqlVersion(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
-
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	private static EsqlVersion DEFAULT_VERSION = V2024_04_01;
-
-	/**
-	 * The default ES|QL language version used when not explicitly specified.
-	 */
-	public static EsqlVersion getDefault() {
-		return DEFAULT_VERSION;
+public class DynamicTemplateBuilders {
+	private DynamicTemplateBuilders() {
 	}
 
 	/**
-	 * Set the default ES|QL language version to be used. This is a global
-	 * application-wide setting.
+	 * Creates a builder for the {@link Property mapping} {@code DynamicTemplate}
+	 * variant.
 	 */
-	public static void setDefault(EsqlVersion version) {
-		DEFAULT_VERSION = version;
+	public static Property.Builder mapping() {
+		return new Property.Builder();
 	}
 
-	public static final JsonEnum.Deserializer<EsqlVersion> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			EsqlVersion.values());
+	/**
+	 * Creates a DynamicTemplate of the {@link Property mapping}
+	 * {@code DynamicTemplate} variant.
+	 */
+	public static DynamicTemplate mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
+		DynamicTemplate.Builder builder = new DynamicTemplate.Builder();
+		builder.mapping(fn.apply(new Property.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link Property runtime} {@code DynamicTemplate}
+	 * variant.
+	 */
+	public static Property.Builder runtime() {
+		return new Property.Builder();
+	}
+
+	/**
+	 * Creates a DynamicTemplate of the {@link Property runtime}
+	 * {@code DynamicTemplate} variant.
+	 */
+	public static DynamicTemplate runtime(Function<Property.Builder, ObjectBuilder<Property>> fn) {
+		DynamicTemplate.Builder builder = new DynamicTemplate.Builder();
+		builder.runtime(fn.apply(new Property.Builder()).build());
+		return builder.build();
+	}
+
 }
