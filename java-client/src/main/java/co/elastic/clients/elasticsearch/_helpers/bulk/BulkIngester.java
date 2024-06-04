@@ -35,7 +35,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CompletionStage;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -80,9 +80,9 @@ public class BulkIngester<Context> implements AutoCloseable {
         public final long id;
         public final BulkRequest request;
         public final List<Context> contexts;
-        public final CompletionStage<BulkResponse> futureResponse;
+        public final CompletableFuture<BulkResponse> futureResponse;
 
-        RequestExecution(long id, BulkRequest request, List<Context> contexts, CompletionStage<BulkResponse> futureResponse) {
+        RequestExecution(long id, BulkRequest request, List<Context> contexts, CompletableFuture<BulkResponse> futureResponse) {
             this.id = id;
             this.request = request;
             this.contexts = contexts;
@@ -271,7 +271,11 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
     }
 
-    public void flush() {
+    /**
+     * @return A future of the response. The BulkResponse is empty if there was nothing to execute.
+     */
+    @Nullable
+    public CompletableFuture<BulkResponse> flush() {
         RequestExecution<Context> exec = sendRequestCondition.whenReadyIf(
             () -> {
                 // May happen on manual and periodic flushes
@@ -294,7 +298,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                     listener.beforeBulk(id, request, requestContexts);
                 }
 
-                CompletionStage<BulkResponse> result = client.bulk(request);
+                CompletableFuture<BulkResponse> result = client.bulk(request);
                 requestsInFlightCount++;
 
                 if (listener == null) {
@@ -327,7 +331,15 @@ public class BulkIngester<Context> implements AutoCloseable {
                 }
                 return null;
             });
+
+            return exec.futureResponse;
         }
+
+        return CompletableFuture.completedFuture(BulkResponse.of(b -> b
+            .errors(false)
+            .items(Collections.emptyList())
+            .took(1))
+        );
     }
 
     public void add(BulkOperation operation, Context context) {
