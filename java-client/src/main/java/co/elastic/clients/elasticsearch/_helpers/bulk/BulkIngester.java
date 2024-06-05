@@ -108,7 +108,7 @@ public class BulkIngester<Context> implements AutoCloseable {
             if (builder.scheduler == null) {
                 scheduler = Executors.newScheduledThreadPool(maxRequests + 1, (r) -> {
                     Thread t = Executors.defaultThreadFactory().newThread(r);
-                    t.setName("bulk-ingester-executor#" + ingesterId);
+                    t.setName("bulk-ingester-executor#" + ingesterId + "#" + t.getId());
                     t.setDaemon(true);
                     return t;
                 });
