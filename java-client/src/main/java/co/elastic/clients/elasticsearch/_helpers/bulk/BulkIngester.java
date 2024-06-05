@@ -502,6 +502,10 @@ public class BulkIngester<Context> implements AutoCloseable {
             return flushInterval(value, unit);
         }
 
+        /**
+         * Sets a custom scheduler to run the flush thread and the listener logic. A default one is used if
+         * not set.
+         */
         public Builder<Context> scheduler(ScheduledExecutorService scheduler) {
             this.scheduler = scheduler;
             return this;
