@@ -62,6 +62,7 @@ public class BulkIngester<Context> implements AutoCloseable {
 
     private @Nullable ScheduledFuture<?> flushTask;
     private @Nullable ScheduledExecutorService scheduler;
+    private boolean isExternalScheduler = false;
 
     // Current state
     private List<BulkOperation> operations = new ArrayList<>();
@@ -101,25 +102,20 @@ public class BulkIngester<Context> implements AutoCloseable {
         this.listener = builder.listener;
         this.flushIntervalMillis = builder.flushIntervalMillis;
 
-        // Create a scheduler if needed
-        ScheduledExecutorService scheduler = null;
         if (flushIntervalMillis != null || listener != null) {
-
+            // Create a scheduler if needed
             if (builder.scheduler == null) {
-                scheduler = Executors.newScheduledThreadPool(maxRequests + 1, (r) -> {
+                this.scheduler = Executors.newScheduledThreadPool(maxRequests + 1, (r) -> {
                     Thread t = Executors.defaultThreadFactory().newThread(r);
                     t.setName("bulk-ingester-executor#" + ingesterId + "#" + t.getId());
                     t.setDaemon(true);
                     return t;
                 });
-
-                // Keep it, we'll have to close it.
-                this.scheduler = scheduler;
             } else {
                 // It's not ours, we will not close it.
-                scheduler = builder.scheduler;
+                this.scheduler = builder.scheduler;
+                this.isExternalScheduler = true;
             }
-
         }
 
         if (flushIntervalMillis != null) {
@@ -398,7 +394,7 @@ public class BulkIngester<Context> implements AutoCloseable {
             flushTask.cancel(false);
         }
 
-        if (scheduler != null) {
+        if (scheduler != null && !isExternalScheduler) {
             scheduler.shutdownNow();
         }
     }
