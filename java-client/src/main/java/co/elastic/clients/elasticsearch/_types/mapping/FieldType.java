@@ -133,6 +133,8 @@ public enum FieldType implements JsonEnum {
 
 	MatchOnlyText("match_only_text"),
 
+	IcuCollationKeyword("icu_collation_keyword"),
+
 	;
 
 	private final String jsonValue;

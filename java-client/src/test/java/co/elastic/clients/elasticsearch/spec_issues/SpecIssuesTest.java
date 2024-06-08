@@ -164,6 +164,7 @@ public class SpecIssuesTest extends ModelTestCase {
     }
 
     @Test
+    // update: icu_collation_keyword has been released and added to the spec
     public void i0249_variantKind() throws Exception {
         try (ElasticsearchTestServer server = new ElasticsearchTestServer("analysis-icu").start()) {
 
@@ -198,8 +199,8 @@ public class SpecIssuesTest extends ModelTestCase {
 
             Property property = fm.get("i0249").mappings().get("name").mapping().get("name").text().fields().get("sort");
 
-            assertTrue(property._isCustom());
-            assertEquals("icu_collation_keyword", property._customKind());
+            assertFalse(property._isCustom());
+            assertEquals(Property.Kind.IcuCollationKeyword, property._kind());
         }
     }
 
