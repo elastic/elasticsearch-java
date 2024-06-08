@@ -424,6 +424,25 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IcuCollationProperty icu_collation_keyword}
+	 * {@code Property} variant.
+	 */
+	public static IcuCollationProperty.Builder icuCollationKeyword() {
+		return new IcuCollationProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link IcuCollationProperty icu_collation_keyword}
+	 * {@code Property} variant.
+	 */
+	public static Property icuCollationKeyword(
+			Function<IcuCollationProperty.Builder, ObjectBuilder<IcuCollationProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.icuCollationKeyword(fn.apply(new IcuCollationProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link IntegerNumberProperty integer}
 	 * {@code Property} variant.
 	 */
