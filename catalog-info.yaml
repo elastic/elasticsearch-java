@@ -11,7 +11,7 @@ metadata:
 
 spec:
   type: buildkite-pipeline
-  owner: group:clients-team
+  owner: group:devtools-team
   system: buildkite
   implementation:
     apiVersion: buildkite.elastic.dev/v1
@@ -23,6 +23,6 @@ spec:
       repository: elastic/elasticsearch-java
       pipeline_file: ".buildkite/pipeline.yml"
       teams:
-        clients-team: {}
+        devtools-team: {}
         everyone:
           access_level: READ_ONLY
