@@ -429,8 +429,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         /**
-         * Sets when to flush a new bulk request based on the number of operations currently added.
-         * Defaults to
+         * Sets when to flush a new bulk request based on the number of operations currently added. Defaults to
          * {@code 1000}. Can be set to {@code -1} to disable it.
          *
          * @throws IllegalArgumentException if less than -1.
@@ -494,7 +493,7 @@ public class BulkIngester<Context> implements AutoCloseable {
          * <p>
          * Flushing is still subject to the maximum number of requests set with
          * {@link #maxConcurrentRequests}.
-         * Deprecated in favor of {@link #scheduler}
+         * @deprecated use {@link #scheduler(ScheduledExecutorService)}
          */
         @Deprecated
         public Builder<Context> flushInterval(long value, TimeUnit unit, ScheduledExecutorService scheduler) {
