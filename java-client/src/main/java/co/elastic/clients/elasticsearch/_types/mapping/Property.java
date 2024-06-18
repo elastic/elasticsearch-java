@@ -114,6 +114,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		Histogram("histogram"),
 
+		IcuCollationKeyword("icu_collation_keyword"),
+
 		Integer("integer"),
 
 		IntegerRange("integer_range"),
@@ -583,6 +585,24 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	 */
 	public HistogramProperty histogram() {
 		return TaggedUnionUtils.get(this, Kind.Histogram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_collation_keyword}?
+	 */
+	public boolean isIcuCollationKeyword() {
+		return _kind == Kind.IcuCollationKeyword;
+	}
+
+	/**
+	 * Get the {@code icu_collation_keyword} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code icu_collation_keyword} kind.
+	 */
+	public IcuCollationProperty icuCollationKeyword() {
+		return TaggedUnionUtils.get(this, Kind.IcuCollationKeyword);
 	}
 
 	/**
@@ -1307,6 +1327,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.histogram(fn.apply(new HistogramProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> icuCollationKeyword(IcuCollationProperty v) {
+			this._kind = Kind.IcuCollationKeyword;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> icuCollationKeyword(
+				Function<IcuCollationProperty.Builder, ObjectBuilder<IcuCollationProperty>> fn) {
+			return this.icuCollationKeyword(fn.apply(new IcuCollationProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> integer(IntegerNumberProperty v) {
 			this._kind = Kind.Integer;
 			this._value = v;
@@ -1629,6 +1660,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::geoShape, GeoShapeProperty._DESERIALIZER, "geo_shape");
 		op.add(Builder::halfFloat, HalfFloatNumberProperty._DESERIALIZER, "half_float");
 		op.add(Builder::histogram, HistogramProperty._DESERIALIZER, "histogram");
+		op.add(Builder::icuCollationKeyword, IcuCollationProperty._DESERIALIZER, "icu_collation_keyword");
 		op.add(Builder::integer, IntegerNumberProperty._DESERIALIZER, "integer");
 		op.add(Builder::integerRange, IntegerRangeProperty._DESERIALIZER, "integer_range");
 		op.add(Builder::ip, IpProperty._DESERIALIZER, "ip");

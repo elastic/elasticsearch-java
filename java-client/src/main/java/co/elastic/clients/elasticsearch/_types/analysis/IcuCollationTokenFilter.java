@@ -61,10 +61,10 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	private final IcuCollationAlternate alternate;
 
 	@Nullable
-	private final IcuCollationCaseFirst casefirst;
+	private final IcuCollationCaseFirst caseFirst;
 
 	@Nullable
-	private final Boolean caselevel;
+	private final Boolean caseLevel;
 
 	@Nullable
 	private final String country;
@@ -73,7 +73,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	private final IcuCollationDecomposition decomposition;
 
 	@Nullable
-	private final Boolean hiraganaquaternarymode;
+	private final Boolean hiraganaQuaternaryMode;
 
 	@Nullable
 	private final String language;
@@ -88,7 +88,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	private final IcuCollationStrength strength;
 
 	@Nullable
-	private final String variabletop;
+	private final String variableTop;
 
 	@Nullable
 	private final String variant;
@@ -99,16 +99,16 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		super(builder);
 
 		this.alternate = builder.alternate;
-		this.casefirst = builder.casefirst;
-		this.caselevel = builder.caselevel;
+		this.caseFirst = builder.caseFirst;
+		this.caseLevel = builder.caseLevel;
 		this.country = builder.country;
 		this.decomposition = builder.decomposition;
-		this.hiraganaquaternarymode = builder.hiraganaquaternarymode;
+		this.hiraganaQuaternaryMode = builder.hiraganaQuaternaryMode;
 		this.language = builder.language;
 		this.numeric = builder.numeric;
 		this.rules = builder.rules;
 		this.strength = builder.strength;
-		this.variabletop = builder.variabletop;
+		this.variableTop = builder.variableTop;
 		this.variant = builder.variant;
 
 	}
@@ -134,19 +134,19 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * API name: {@code caseFirst}
+	 * API name: {@code case_first}
 	 */
 	@Nullable
-	public final IcuCollationCaseFirst casefirst() {
-		return this.casefirst;
+	public final IcuCollationCaseFirst caseFirst() {
+		return this.caseFirst;
 	}
 
 	/**
-	 * API name: {@code caseLevel}
+	 * API name: {@code case_level}
 	 */
 	@Nullable
-	public final Boolean caselevel() {
-		return this.caselevel;
+	public final Boolean caseLevel() {
+		return this.caseLevel;
 	}
 
 	/**
@@ -166,11 +166,11 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * API name: {@code hiraganaQuaternaryMode}
+	 * API name: {@code hiragana_quaternary_mode}
 	 */
 	@Nullable
-	public final Boolean hiraganaquaternarymode() {
-		return this.hiraganaquaternarymode;
+	public final Boolean hiraganaQuaternaryMode() {
+		return this.hiraganaQuaternaryMode;
 	}
 
 	/**
@@ -206,11 +206,11 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * API name: {@code variableTop}
+	 * API name: {@code variable_top}
 	 */
 	@Nullable
-	public final String variabletop() {
-		return this.variabletop;
+	public final String variableTop() {
+		return this.variableTop;
 	}
 
 	/**
@@ -229,13 +229,13 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 			generator.writeKey("alternate");
 			this.alternate.serialize(generator, mapper);
 		}
-		if (this.casefirst != null) {
-			generator.writeKey("caseFirst");
-			this.casefirst.serialize(generator, mapper);
+		if (this.caseFirst != null) {
+			generator.writeKey("case_first");
+			this.caseFirst.serialize(generator, mapper);
 		}
-		if (this.caselevel != null) {
-			generator.writeKey("caseLevel");
-			generator.write(this.caselevel);
+		if (this.caseLevel != null) {
+			generator.writeKey("case_level");
+			generator.write(this.caseLevel);
 
 		}
 		if (this.country != null) {
@@ -247,9 +247,9 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 			generator.writeKey("decomposition");
 			this.decomposition.serialize(generator, mapper);
 		}
-		if (this.hiraganaquaternarymode != null) {
-			generator.writeKey("hiraganaQuaternaryMode");
-			generator.write(this.hiraganaquaternarymode);
+		if (this.hiraganaQuaternaryMode != null) {
+			generator.writeKey("hiragana_quaternary_mode");
+			generator.write(this.hiraganaQuaternaryMode);
 
 		}
 		if (this.language != null) {
@@ -271,9 +271,9 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 			generator.writeKey("strength");
 			this.strength.serialize(generator, mapper);
 		}
-		if (this.variabletop != null) {
-			generator.writeKey("variableTop");
-			generator.write(this.variabletop);
+		if (this.variableTop != null) {
+			generator.writeKey("variable_top");
+			generator.write(this.variableTop);
 
 		}
 		if (this.variant != null) {
@@ -297,10 +297,10 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		private IcuCollationAlternate alternate;
 
 		@Nullable
-		private IcuCollationCaseFirst casefirst;
+		private IcuCollationCaseFirst caseFirst;
 
 		@Nullable
-		private Boolean caselevel;
+		private Boolean caseLevel;
 
 		@Nullable
 		private String country;
@@ -309,7 +309,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		private IcuCollationDecomposition decomposition;
 
 		@Nullable
-		private Boolean hiraganaquaternarymode;
+		private Boolean hiraganaQuaternaryMode;
 
 		@Nullable
 		private String language;
@@ -324,7 +324,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		private IcuCollationStrength strength;
 
 		@Nullable
-		private String variabletop;
+		private String variableTop;
 
 		@Nullable
 		private String variant;
@@ -338,18 +338,18 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		}
 
 		/**
-		 * API name: {@code caseFirst}
+		 * API name: {@code case_first}
 		 */
-		public final Builder casefirst(@Nullable IcuCollationCaseFirst value) {
-			this.casefirst = value;
+		public final Builder caseFirst(@Nullable IcuCollationCaseFirst value) {
+			this.caseFirst = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code caseLevel}
+		 * API name: {@code case_level}
 		 */
-		public final Builder caselevel(@Nullable Boolean value) {
-			this.caselevel = value;
+		public final Builder caseLevel(@Nullable Boolean value) {
+			this.caseLevel = value;
 			return this;
 		}
 
@@ -370,10 +370,10 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		}
 
 		/**
-		 * API name: {@code hiraganaQuaternaryMode}
+		 * API name: {@code hiragana_quaternary_mode}
 		 */
-		public final Builder hiraganaquaternarymode(@Nullable Boolean value) {
-			this.hiraganaquaternarymode = value;
+		public final Builder hiraganaQuaternaryMode(@Nullable Boolean value) {
+			this.hiraganaQuaternaryMode = value;
 			return this;
 		}
 
@@ -410,10 +410,10 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		}
 
 		/**
-		 * API name: {@code variableTop}
+		 * API name: {@code variable_top}
 		 */
-		public final Builder variabletop(@Nullable String value) {
-			this.variabletop = value;
+		public final Builder variableTop(@Nullable String value) {
+			this.variableTop = value;
 			return this;
 		}
 
@@ -455,16 +455,16 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 			ObjectDeserializer<IcuCollationTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::alternate, IcuCollationAlternate._DESERIALIZER, "alternate");
-		op.add(Builder::casefirst, IcuCollationCaseFirst._DESERIALIZER, "caseFirst");
-		op.add(Builder::caselevel, JsonpDeserializer.booleanDeserializer(), "caseLevel");
+		op.add(Builder::caseFirst, IcuCollationCaseFirst._DESERIALIZER, "case_first");
+		op.add(Builder::caseLevel, JsonpDeserializer.booleanDeserializer(), "case_level");
 		op.add(Builder::country, JsonpDeserializer.stringDeserializer(), "country");
 		op.add(Builder::decomposition, IcuCollationDecomposition._DESERIALIZER, "decomposition");
-		op.add(Builder::hiraganaquaternarymode, JsonpDeserializer.booleanDeserializer(), "hiraganaQuaternaryMode");
+		op.add(Builder::hiraganaQuaternaryMode, JsonpDeserializer.booleanDeserializer(), "hiragana_quaternary_mode");
 		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 		op.add(Builder::numeric, JsonpDeserializer.booleanDeserializer(), "numeric");
 		op.add(Builder::rules, JsonpDeserializer.stringDeserializer(), "rules");
 		op.add(Builder::strength, IcuCollationStrength._DESERIALIZER, "strength");
-		op.add(Builder::variabletop, JsonpDeserializer.stringDeserializer(), "variableTop");
+		op.add(Builder::variableTop, JsonpDeserializer.stringDeserializer(), "variable_top");
 		op.add(Builder::variant, JsonpDeserializer.stringDeserializer(), "variant");
 
 		op.ignore("type");

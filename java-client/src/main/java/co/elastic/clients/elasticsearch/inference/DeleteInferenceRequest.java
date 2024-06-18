@@ -30,8 +30,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -63,6 +63,12 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteInferenceRequest extends RequestBase {
+	@Nullable
+	private final Boolean dryRun;
+
+	@Nullable
+	private final Boolean force;
+
 	private final String inferenceId;
 
 	@Nullable
@@ -72,6 +78,8 @@ public class DeleteInferenceRequest extends RequestBase {
 
 	private DeleteInferenceRequest(Builder builder) {
 
+		this.dryRun = builder.dryRun;
+		this.force = builder.force;
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = builder.taskType;
 
@@ -79,6 +87,28 @@ public class DeleteInferenceRequest extends RequestBase {
 
 	public static DeleteInferenceRequest of(Function<Builder, ObjectBuilder<DeleteInferenceRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * When true, the endpoint is not deleted, and a list of ingest processors which
+	 * reference this endpoint is returned
+	 * <p>
+	 * API name: {@code dry_run}
+	 */
+	@Nullable
+	public final Boolean dryRun() {
+		return this.dryRun;
+	}
+
+	/**
+	 * When true, the inference endpoint is forcefully deleted even if it is still
+	 * being used by ingest processors or semantic text fields
+	 * <p>
+	 * API name: {@code force}
+	 */
+	@Nullable
+	public final Boolean force() {
+		return this.force;
 	}
 
 	/**
@@ -109,10 +139,38 @@ public class DeleteInferenceRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteInferenceRequest> {
+		@Nullable
+		private Boolean dryRun;
+
+		@Nullable
+		private Boolean force;
+
 		private String inferenceId;
 
 		@Nullable
 		private TaskType taskType;
+
+		/**
+		 * When true, the endpoint is not deleted, and a list of ingest processors which
+		 * reference this endpoint is returned
+		 * <p>
+		 * API name: {@code dry_run}
+		 */
+		public final Builder dryRun(@Nullable Boolean value) {
+			this.dryRun = value;
+			return this;
+		}
+
+		/**
+		 * When true, the inference endpoint is forcefully deleted even if it is still
+		 * being used by ingest processors or semantic text fields
+		 * <p>
+		 * API name: {@code force}
+		 */
+		public final Builder force(@Nullable Boolean value) {
+			this.force = value;
+			return this;
+		}
 
 		/**
 		 * Required - The inference Id
@@ -221,7 +279,14 @@ public class DeleteInferenceRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.dryRun != null) {
+					params.put("dry_run", String.valueOf(request.dryRun));
+				}
+				if (request.force != null) {
+					params.put("force", String.valueOf(request.force));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, DeleteInferenceResponse._DESERIALIZER);
 }

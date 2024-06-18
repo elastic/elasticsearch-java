@@ -19,8 +19,12 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.ApiClient;
+
 import javax.annotation.Nullable;
+import java.io.InputStream;
 import java.util.Objects;
+import java.util.Properties;
 
 /**
  * This class represents a SemVer version, with an optional patch revision.
@@ -45,12 +49,12 @@ public class Version {
         int hyphen = version.indexOf('-');
         if (hyphen >= 0) {
             // Has prerelease. May be followed buy build information
-            prerelease = version.substring(hyphen+1);
+            prerelease = version.substring(hyphen + 1);
             version = version.substring(0, hyphen);
 
             int plus = prerelease.indexOf('+');
             if (plus >= 0) {
-                build = prerelease.substring(0, plus+1);
+                build = prerelease.substring(0, plus + 1);
                 prerelease = prerelease.substring(0, plus);
             }
         }
@@ -58,7 +62,7 @@ public class Version {
         int plus = version.indexOf('+');
         if (plus >= 0) {
             // Has build information
-            build = version.substring(0, plus+1);
+            build = version.substring(0, plus + 1);
             version = version.substring(0, plus);
         }
 
@@ -68,8 +72,7 @@ public class Version {
             int minor = (bits.length >= 2) ? Integer.parseInt(bits[1]) : 0;
             int maintenance = (bits.length >= 3) ? Integer.parseInt(bits[2]) : -1;
             return new Version(major, minor, maintenance, prerelease, build);
-        }
-        catch(NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             return null;
         }
     }
@@ -78,7 +81,8 @@ public class Version {
         this(major, minor, maintenance, isPreRelease ? "p" : null, null);
     }
 
-    public Version(int major, int minor, int maintenance, @Nullable String prerelease, @Nullable String build) {
+    public Version(int major, int minor, int maintenance, @Nullable String prerelease,
+                   @Nullable String build) {
         this.major = major;
         this.minor = minor;
         this.maintenance = maintenance;
@@ -108,10 +112,10 @@ public class Version {
         if (!(other instanceof Version)) return false;
         Version that = (Version) other;
         return (major == that.major &&
-                minor == that.minor &&
-                maintenance == that.maintenance &&
-                Objects.equals(prerelease, that.prerelease) &&
-                Objects.equals(build, that.build));
+            minor == that.minor &&
+            maintenance == that.maintenance &&
+            Objects.equals(prerelease, that.prerelease) &&
+            Objects.equals(build, that.build));
     }
 
     @Override
@@ -146,10 +150,19 @@ public class Version {
 
     static {
         Version version = null;
-        try {
-            version = Version.parse(VersionInfo.VERSION);
-        } catch (Exception e) {
-            // Failed to parse version
+        InputStream in = ApiClient.class.getResourceAsStream("version.properties");
+        if (in != null) {
+            Properties properties = new Properties();
+            try {
+                properties.load(in);
+                String versionStr = properties.getProperty("version");
+                if (versionStr != null) {
+                    version = Version.parse(versionStr);
+                }
+            } catch (Exception e) {
+                // Failed to parse version from file, trying from VersionInfo
+                version = Version.parse(VersionInfo.VERSION);
+            }
         }
         VERSION = version;
     }

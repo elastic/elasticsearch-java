@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +51,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DeleteInferenceResponse extends AcknowledgedResponseBase {
+public class DeleteInferenceResponse extends DeleteInferenceEndpointResult {
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteInferenceResponse(Builder builder) {
@@ -70,7 +69,7 @@ public class DeleteInferenceResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link DeleteInferenceResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends DeleteInferenceEndpointResult.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteInferenceResponse> {
 		@Override
@@ -101,7 +100,7 @@ public class DeleteInferenceResponse extends AcknowledgedResponseBase {
 
 	protected static void setupDeleteInferenceResponseDeserializer(
 			ObjectDeserializer<DeleteInferenceResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		DeleteInferenceEndpointResult.setupDeleteInferenceEndpointResultDeserializer(op);
 
 	}
 
