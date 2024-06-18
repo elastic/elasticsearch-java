@@ -37,8 +37,7 @@ checkstyle {
     toolVersion = "10.16.0"
 }
 
-// GitHub Maven repo doesn't like 1.0.0+20231031-SNAPSHOT
-version = "1.0.0-20231031-SNAPSHOT"
+version = (File(project.rootDir, "config/version-serverless.txt").readText().trim() + "-SNAPSHOT")
 
 signing {
     sign(publishing.publications)
