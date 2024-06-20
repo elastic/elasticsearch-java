@@ -47,6 +47,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -102,11 +103,18 @@ class BulkIngesterTest extends Assertions {
         CountingListener listener = new CountingListener();
         TestTransport transport = new TestTransport();
         ElasticsearchAsyncClient client = new ElasticsearchAsyncClient(transport);
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(r -> {
+                Thread t = Executors.defaultThreadFactory().newThread(r);
+                t.setName("my-bulk-ingester-executor#" );
+                t.setDaemon(true);
+                return t;
+        });
 
         BulkIngester<Void> ingester = BulkIngester.of(b -> b
             .client(client)
             .maxOperations(maxOperations)
             .maxConcurrentRequests(maxRequests)
+            .scheduler(scheduler)
             .listener(listener)
         );
 
@@ -130,6 +138,7 @@ class BulkIngesterTest extends Assertions {
 
         ingester.close();
         transport.close();
+        scheduler.shutdownNow();
 
         printStats(ingester);
         printStats(listener);
@@ -181,7 +190,7 @@ class BulkIngesterTest extends Assertions {
             // Disable other flushing limits
             .maxSize(-1)
             .maxOperations(-1)
-            .maxConcurrentRequests(Integer.MAX_VALUE)
+            .maxConcurrentRequests(Integer.MAX_VALUE-1)
         );
 
         // Add an operation every 100 ms to give time
@@ -242,7 +251,7 @@ class BulkIngesterTest extends Assertions {
             // Disable other flushing limits
             .maxSize(-1)
             .maxOperations(-1)
-            .maxConcurrentRequests(Integer.MAX_VALUE)
+            .maxConcurrentRequests(Integer.MAX_VALUE - 1)
             .listener(listener)
         );
 

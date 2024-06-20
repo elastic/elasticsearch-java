@@ -293,7 +293,8 @@ public class BulkIngester<Context> implements AutoCloseable {
 
                 if (listener != null) {
                     BulkRequest finalRequest = request;
-                    scheduler.submit(() -> listener.beforeBulk(id, finalRequest, requestContexts));
+                    // synchronous execution to make sure it actually runs before
+                    listener.beforeBulk(id, finalRequest, requestContexts);
                 }
 
                 CompletionStage<BulkResponse> result = client.bulk(request);
