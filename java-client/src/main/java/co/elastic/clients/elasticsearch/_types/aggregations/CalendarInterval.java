@@ -60,7 +60,7 @@ public enum CalendarInterval implements JsonEnum {
 
 	Quarter("quarter", "1q"),
 
-	Year("year", "1Y"),
+	Year("year", "1y"),
 
 	;
 
