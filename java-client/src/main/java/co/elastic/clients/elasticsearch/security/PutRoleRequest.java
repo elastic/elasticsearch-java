@@ -180,7 +180,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of users that the owners of this role can impersonate.
+	 * A list of users that the owners of this role can impersonate. <em>Note</em>:
+	 * in Serverless, the run-as feature is disabled. For API compatibility, you can
+	 * still specify an empty <code>run_as</code> field, but a non-empty list will
+	 * be rejected.
 	 * <p>
 	 * API name: {@code run_as}
 	 */
@@ -497,7 +500,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the owners of this role can impersonate.
+		 * A list of users that the owners of this role can impersonate. <em>Note</em>:
+		 * in Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
@@ -509,7 +515,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the owners of this role can impersonate.
+		 * A list of users that the owners of this role can impersonate. <em>Note</em>:
+		 * in Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>

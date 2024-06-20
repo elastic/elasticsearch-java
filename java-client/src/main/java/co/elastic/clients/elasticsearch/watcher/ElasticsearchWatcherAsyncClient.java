@@ -204,7 +204,13 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.execute_watch
 
 	/**
-	 * Forces the execution of a stored watch.
+	 * This API can be used to force execution of the watch outside of its
+	 * triggering logic or to simulate the watch execution for debugging purposes.
+	 * For testing and debugging purposes, you also have fine-grained control on how
+	 * the watch runs. You can execute the watch without executing all of its
+	 * actions or alternatively by simulating them. You can also force execution by
+	 * ignoring the watch condition and control whether a watch record would be
+	 * written to the watch history after execution.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
@@ -219,7 +225,13 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Forces the execution of a stored watch.
+	 * This API can be used to force execution of the watch outside of its
+	 * triggering logic or to simulate the watch execution for debugging purposes.
+	 * For testing and debugging purposes, you also have fine-grained control on how
+	 * the watch runs. You can execute the watch without executing all of its
+	 * actions or alternatively by simulating them. You can also force execution by
+	 * ignoring the watch condition and control whether a watch record would be
+	 * written to the watch history after execution.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -235,7 +247,13 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Forces the execution of a stored watch.
+	 * This API can be used to force execution of the watch outside of its
+	 * triggering logic or to simulate the watch execution for debugging purposes.
+	 * For testing and debugging purposes, you also have fine-grained control on how
+	 * the watch runs. You can execute the watch without executing all of its
+	 * actions or alternatively by simulating them. You can also force execution by
+	 * ignoring the watch condition and control whether a watch record would be
+	 * written to the watch history after execution.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation

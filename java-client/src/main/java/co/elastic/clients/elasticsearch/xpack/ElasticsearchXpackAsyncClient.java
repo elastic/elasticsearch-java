@@ -68,7 +68,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: xpack.info
 
 	/**
-	 * Retrieves information about the installed X-Pack features.
+	 * Provides general information about the installed X-Pack features.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
@@ -83,7 +83,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Retrieves information about the installed X-Pack features.
+	 * Provides general information about the installed X-Pack features.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -99,7 +99,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Retrieves information about the installed X-Pack features.
+	 * Provides general information about the installed X-Pack features.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
@@ -114,7 +114,8 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: xpack.usage
 
 	/**
-	 * Retrieves usage information about the installed X-Pack features.
+	 * This API provides information about which features are currently enabled and
+	 * available under the current license and some usage statistics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
@@ -129,7 +130,8 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Retrieves usage information about the installed X-Pack features.
+	 * This API provides information about which features are currently enabled and
+	 * available under the current license and some usage statistics.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -145,7 +147,8 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Retrieves usage information about the installed X-Pack features.
+	 * This API provides information about which features are currently enabled and
+	 * available under the current license and some usage statistics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation

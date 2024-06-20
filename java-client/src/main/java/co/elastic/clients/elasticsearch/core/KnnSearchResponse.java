@@ -376,7 +376,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<KnnSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createKnnSearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.knn_search.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.knn_search.Response.TDocument")));
 
 	protected static <TDocument> void setupKnnSearchResponseDeserializer(
 			ObjectDeserializer<KnnSearchResponse.Builder<TDocument>> op,

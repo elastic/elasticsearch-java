@@ -147,7 +147,8 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: tasks.list
 
 	/**
-	 * Returns a list of tasks.
+	 * The task management API returns information about tasks currently executing
+	 * on one or more nodes in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/tasks.html">Documentation
@@ -162,7 +163,8 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Returns a list of tasks.
+	 * The task management API returns information about tasks currently executing
+	 * on one or more nodes in the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -177,7 +179,8 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Returns a list of tasks.
+	 * The task management API returns information about tasks currently executing
+	 * on one or more nodes in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/tasks.html">Documentation

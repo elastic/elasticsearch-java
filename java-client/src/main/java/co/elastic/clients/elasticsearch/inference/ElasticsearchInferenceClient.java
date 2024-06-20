@@ -148,7 +148,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.inference
 
 	/**
-	 * Perform inference
+	 * Perform inference on the service
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/post-inference-api.html">Documentation
@@ -163,7 +163,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform inference
+	 * Perform inference on the service
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -181,7 +181,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.put
 
 	/**
-	 * Configure an inference endpoint for use in the Inference API
+	 * Create an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
@@ -196,7 +196,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Configure an inference endpoint for use in the Inference API
+	 * Create an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

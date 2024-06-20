@@ -70,9 +70,9 @@ public class ElasticsearchFleetAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: fleet.search
 
 	/**
-	 * Search API where the search will only be executed after specified checkpoints
-	 * are available due to a refresh. This API is designed for internal use by the
-	 * fleet server project.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
@@ -82,15 +82,15 @@ public class ElasticsearchFleetAsyncClient extends ApiClient<ElasticsearchTransp
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FleetSearchRequest, FleetSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<FleetSearchRequest, FleetSearchResponse<TDocument>, ErrorResponse>) FleetSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:fleet.search.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:fleet.search.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Search API where the search will only be executed after specified checkpoints
-	 * are available due to a refresh. This API is designed for internal use by the
-	 * fleet server project.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,9 +105,9 @@ public class ElasticsearchFleetAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Search API where the search will only be executed after specified checkpoints
-	 * are available due to a refresh. This API is designed for internal use by the
-	 * fleet server project.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
@@ -117,15 +117,15 @@ public class ElasticsearchFleetAsyncClient extends ApiClient<ElasticsearchTransp
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FleetSearchRequest, FleetSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<FleetSearchRequest, FleetSearchResponse<TDocument>, ErrorResponse>) FleetSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:fleet.search.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:fleet.search.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Search API where the search will only be executed after specified checkpoints
-	 * are available due to a refresh. This API is designed for internal use by the
-	 * fleet server project.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

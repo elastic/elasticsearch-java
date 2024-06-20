@@ -70,7 +70,7 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: esql.query
 
 	/**
-	 * Executes an ESQL request
+	 * Executes an ES|QL request
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/esql-rest.html">Documentation
@@ -85,7 +85,7 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Executes an ESQL request
+	 * Executes an ES|QL request
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

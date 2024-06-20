@@ -70,8 +70,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: eql.delete
 
 	/**
-	 * Deletes an async EQL search by ID. If the search is still running, the search
-	 * request will be cancelled. Otherwise, the saved search results are deleted.
+	 * Deletes an async EQL search or a stored synchronous EQL search. The API also
+	 * deletes results for the search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
@@ -86,8 +86,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Deletes an async EQL search by ID. If the search is still running, the search
-	 * request will be cancelled. Otherwise, the saved search results are deleted.
+	 * Deletes an async EQL search or a stored synchronous EQL search. The API also
+	 * deletes results for the search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,8 +105,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: eql.get
 
 	/**
-	 * Returns async results from previously executed Event Query Language (EQL)
-	 * search
+	 * Returns the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/get-async-eql-search-api.html">Documentation
@@ -117,15 +117,15 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse> endpoint = (JsonEndpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse>) EqlGetRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint, "co.elastic.clients:Deserializer:eql.get.TEvent",
-				getDeserializer(tEventClass));
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:eql.get.Response.TEvent", getDeserializer(tEventClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Returns async results from previously executed Event Query Language (EQL)
-	 * search
+	 * Returns the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -141,8 +141,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Returns async results from previously executed Event Query Language (EQL)
-	 * search
+	 * Returns the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/get-async-eql-search-api.html">Documentation
@@ -153,15 +153,15 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse> endpoint = (JsonEndpoint<EqlGetRequest, EqlGetResponse<TEvent>, ErrorResponse>) EqlGetRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint, "co.elastic.clients:Deserializer:eql.get.TEvent",
-				getDeserializer(tEventType));
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:eql.get.Response.TEvent", getDeserializer(tEventType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Returns async results from previously executed Event Query Language (EQL)
-	 * search
+	 * Returns the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -179,8 +179,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: eql.get_status
 
 	/**
-	 * Returns the status of a previously submitted async or stored Event Query
-	 * Language (EQL) search
+	 * Returns the current status for an async EQL search or a stored synchronous
+	 * EQL search without returning results.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/get-async-eql-status-api.html">Documentation
@@ -195,8 +195,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Returns the status of a previously submitted async or stored Event Query
-	 * Language (EQL) search
+	 * Returns the current status for an async EQL search or a stored synchronous
+	 * EQL search without returning results.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -226,8 +226,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse> endpoint = (JsonEndpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse>) EqlSearchRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint, "co.elastic.clients:Deserializer:eql.search.TEvent",
-				getDeserializer(tEventClass));
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:eql.search.Response.TEvent", getDeserializer(tEventClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -261,8 +261,8 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse> endpoint = (JsonEndpoint<EqlSearchRequest, EqlSearchResponse<TEvent>, ErrorResponse>) EqlSearchRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint, "co.elastic.clients:Deserializer:eql.search.TEvent",
-				getDeserializer(tEventType));
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:eql.search.Response.TEvent", getDeserializer(tEventType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

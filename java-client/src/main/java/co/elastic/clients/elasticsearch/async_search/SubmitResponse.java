@@ -112,7 +112,7 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 	 */
 	public static final JsonpDeserializer<SubmitResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createSubmitResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.submit.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.submit.Response.TDocument")));
 
 	protected static <TDocument> void setupSubmitResponseDeserializer(
 			ObjectDeserializer<SubmitResponse.Builder<TDocument>> op,

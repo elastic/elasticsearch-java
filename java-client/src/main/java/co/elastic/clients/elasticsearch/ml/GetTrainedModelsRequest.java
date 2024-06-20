@@ -27,15 +27,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -78,14 +81,12 @@ public class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
 	private final Include include;
 
-	@Nullable
-	private final String modelId;
+	private final List<String> modelId;
 
 	@Nullable
 	private final Integer size;
 
-	@Nullable
-	private final String tags;
+	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -96,9 +97,9 @@ public class GetTrainedModelsRequest extends RequestBase {
 		this.excludeGenerated = builder.excludeGenerated;
 		this.from = builder.from;
 		this.include = builder.include;
-		this.modelId = builder.modelId;
+		this.modelId = ApiTypeHelper.unmodifiable(builder.modelId);
 		this.size = builder.size;
-		this.tags = builder.tags;
+		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
 
 	}
 
@@ -168,12 +169,14 @@ public class GetTrainedModelsRequest extends RequestBase {
 	}
 
 	/**
-	 * The unique identifier of the trained model.
+	 * The unique identifier of the trained model or a model alias.
+	 * <p>
+	 * You can get information for multiple trained models in a single API request
+	 * by using a comma-separated list of model IDs or a wildcard expression.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	@Nullable
-	public final String modelId() {
+	public final List<String> modelId() {
 		return this.modelId;
 	}
 
@@ -194,8 +197,7 @@ public class GetTrainedModelsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code tags}
 	 */
-	@Nullable
-	public final String tags() {
+	public final List<String> tags() {
 		return this.tags;
 	}
 
@@ -224,13 +226,13 @@ public class GetTrainedModelsRequest extends RequestBase {
 		private Include include;
 
 		@Nullable
-		private String modelId;
+		private List<String> modelId;
 
 		@Nullable
 		private Integer size;
 
 		@Nullable
-		private String tags;
+		private List<String> tags;
 
 		/**
 		 * Specifies what to do when the request:
@@ -294,12 +296,32 @@ public class GetTrainedModelsRequest extends RequestBase {
 		}
 
 		/**
-		 * The unique identifier of the trained model.
+		 * The unique identifier of the trained model or a model alias.
+		 * <p>
+		 * You can get information for multiple trained models in a single API request
+		 * by using a comma-separated list of model IDs or a wildcard expression.
 		 * <p>
 		 * API name: {@code model_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>modelId</code>.
 		 */
-		public final Builder modelId(@Nullable String value) {
-			this.modelId = value;
+		public final Builder modelId(List<String> list) {
+			this.modelId = _listAddAll(this.modelId, list);
+			return this;
+		}
+
+		/**
+		 * The unique identifier of the trained model or a model alias.
+		 * <p>
+		 * You can get information for multiple trained models in a single API request
+		 * by using a comma-separated list of model IDs or a wildcard expression.
+		 * <p>
+		 * API name: {@code model_id}
+		 * <p>
+		 * Adds one or more values to <code>modelId</code>.
+		 */
+		public final Builder modelId(String value, String... values) {
+			this.modelId = _listAdd(this.modelId, value, values);
 			return this;
 		}
 
@@ -319,9 +341,25 @@ public class GetTrainedModelsRequest extends RequestBase {
 		 * are returned.
 		 * <p>
 		 * API name: {@code tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tags</code>.
 		 */
-		public final Builder tags(@Nullable String value) {
-			this.tags = value;
+		public final Builder tags(List<String> list) {
+			this.tags = _listAddAll(this.tags, list);
+			return this;
+		}
+
+		/**
+		 * A comma delimited string of tags. A trained model can have many tags, or
+		 * none. When supplied, only trained models that contain all the supplied tags
+		 * are returned.
+		 * <p>
+		 * API name: {@code tags}
+		 * <p>
+		 * Adds one or more values to <code>tags</code>.
+		 */
+		public final Builder tags(String value, String... values) {
+			this.tags = _listAdd(this.tags, value, values);
 			return this;
 		}
 
@@ -363,7 +401,7 @@ public class GetTrainedModelsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
+				if (ApiTypeHelper.isDefined(request.modelId()))
 					propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
@@ -371,7 +409,8 @@ public class GetTrainedModelsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId, buf);
+					SimpleEndpoint.pathEncode(request.modelId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -391,11 +430,11 @@ public class GetTrainedModelsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
+				if (ApiTypeHelper.isDefined(request.modelId()))
 					propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
-					params.put("modelId", request.modelId);
+					params.put("modelId", request.modelId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}
@@ -423,8 +462,8 @@ public class GetTrainedModelsRequest extends RequestBase {
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
-				if (request.tags != null) {
-					params.put("tags", request.tags);
+				if (ApiTypeHelper.isDefined(request.tags)) {
+					params.put("tags", request.tags.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

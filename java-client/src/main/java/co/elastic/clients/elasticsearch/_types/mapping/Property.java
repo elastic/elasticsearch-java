@@ -152,6 +152,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		SearchAsYouType("search_as_you_type"),
 
+		SemanticText("semantic_text"),
+
 		Shape("shape"),
 
 		Short("short"),
@@ -914,6 +916,23 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	}
 
 	/**
+	 * Is this variant instance of kind {@code semantic_text}?
+	 */
+	public boolean isSemanticText() {
+		return _kind == Kind.SemanticText;
+	}
+
+	/**
+	 * Get the {@code semantic_text} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code semantic_text} kind.
+	 */
+	public SemanticTextProperty semanticText() {
+		return TaggedUnionUtils.get(this, Kind.SemanticText);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code shape}?
 	 */
 	public boolean isShape() {
@@ -1529,6 +1548,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> semanticText(SemanticTextProperty v) {
+			this._kind = Kind.SemanticText;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> semanticText(
+				Function<SemanticTextProperty.Builder, ObjectBuilder<SemanticTextProperty>> fn) {
+			return this.semanticText(fn.apply(new SemanticTextProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> shape(ShapeProperty v) {
 			this._kind = Kind.Shape;
 			this._value = v;
@@ -1679,6 +1709,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::rankFeatures, RankFeaturesProperty._DESERIALIZER, "rank_features");
 		op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
 		op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
+		op.add(Builder::semanticText, SemanticTextProperty._DESERIALIZER, "semantic_text");
 		op.add(Builder::shape, ShapeProperty._DESERIALIZER, "shape");
 		op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
 		op.add(Builder::sparseVector, SparseVectorProperty._DESERIALIZER, "sparse_vector");

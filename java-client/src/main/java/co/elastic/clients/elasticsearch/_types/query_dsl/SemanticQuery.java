@@ -17,21 +17,19 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core.msearch;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.elasticsearch.core.search.ResponseBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -49,114 +47,132 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.msearch.MultiSearchItem
+// typedef: _types.query_dsl.SemanticQuery
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_global.msearch.MultiSearchItem">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.SemanticQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class MultiSearchItem<TDocument> extends ResponseBody<TDocument> {
-	@Nullable
-	private final Integer status;
+public class SemanticQuery extends QueryBase implements QueryVariant {
+	private final String field;
+
+	private final String query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private MultiSearchItem(Builder<TDocument> builder) {
+	private SemanticQuery(Builder builder) {
 		super(builder);
 
-		this.status = builder.status;
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public static <TDocument> MultiSearchItem<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<MultiSearchItem<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
+	public static SemanticQuery of(Function<Builder, ObjectBuilder<SemanticQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Query variant kind.
 	 */
-	@Nullable
-	public final Integer status() {
-		return this.status;
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.Semantic;
+	}
+
+	/**
+	 * Required - The field to query, which must be a semantic_text field type
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public final String field() {
+		return this.field;
+	}
+
+	/**
+	 * Required - The query text
+	 * <p>
+	 * API name: {@code query}
+	 */
+	public final String query() {
+		return this.query;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.status != null) {
-			generator.writeKey("status");
-			generator.write(this.status);
+		generator.writeKey("field");
+		generator.write(this.field);
 
-		}
+		generator.writeKey("query");
+		generator.write(this.query);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link MultiSearchItem}.
+	 * Builder for {@link SemanticQuery}.
 	 */
 
-	public static class Builder<TDocument> extends ResponseBody.AbstractBuilder<TDocument, Builder<TDocument>>
-			implements
-				ObjectBuilder<MultiSearchItem<TDocument>> {
-		@Nullable
-		private Integer status;
+	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SemanticQuery> {
+		private String field;
+
+		private String query;
 
 		/**
-		 * API name: {@code status}
+		 * Required - The field to query, which must be a semantic_text field type
+		 * <p>
+		 * API name: {@code field}
 		 */
-		public final Builder<TDocument> status(@Nullable Integer value) {
-			this.status = value;
+		public final Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
+		 * Required - The query text
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(String value) {
+			this.query = value;
 			return this;
 		}
 
 		@Override
-		protected Builder<TDocument> self() {
+		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link MultiSearchItem}.
+		 * Builds a {@link SemanticQuery}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public MultiSearchItem<TDocument> build() {
+		public SemanticQuery build() {
 			_checkSingleUse();
 
-			return new MultiSearchItem<TDocument>(this);
+			return new SemanticQuery(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a JSON deserializer for MultiSearchItem
+	 * Json deserializer for {@link SemanticQuery}
 	 */
-	public static <TDocument> JsonpDeserializer<MultiSearchItem<TDocument>> createMultiSearchItemDeserializer(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> MultiSearchItem.setupMultiSearchItemDeserializer(op, tDocumentDeserializer));
-	};
+	public static final JsonpDeserializer<SemanticQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SemanticQuery::setupSemanticQueryDeserializer);
 
-	/**
-	 * Json deserializer for {@link MultiSearchItem} based on named deserializers
-	 * provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<MultiSearchItem<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createMultiSearchItemDeserializer(new NamedDeserializer<>(
-					"co.elastic.clients:Deserializer:_global.msearch.MultiSearchItem.TDocument")));
-
-	protected static <TDocument> void setupMultiSearchItemDeserializer(
-			ObjectDeserializer<MultiSearchItem.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		ResponseBody.setupResponseBodyDeserializer(op, tDocumentDeserializer);
-		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
+	protected static void setupSemanticQueryDeserializer(ObjectDeserializer<SemanticQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
 	}
 

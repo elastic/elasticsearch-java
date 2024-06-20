@@ -280,7 +280,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<HitsMetadata<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createHitsMetadataDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.T")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.HitsMetadata.T")));
 
 	protected static <T> void setupHitsMetadataDeserializer(ObjectDeserializer<HitsMetadata.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {

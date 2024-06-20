@@ -443,8 +443,8 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<CompletionSuggestOption<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createCompletionSuggestOptionDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.TDocument")));
+			.lazy(() -> createCompletionSuggestOptionDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:_global.search._types.CompletionSuggestOption.TDocument")));
 
 	protected static <TDocument> void setupCompletionSuggestOptionDeserializer(
 			ObjectDeserializer<CompletionSuggestOption.Builder<TDocument>> op,

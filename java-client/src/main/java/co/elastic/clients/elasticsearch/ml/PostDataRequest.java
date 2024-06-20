@@ -274,7 +274,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<PostDataRequest<Object>> _DESERIALIZER = createPostDataRequestDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.post_data.TData"));
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.post_data.Request.TData"));
 
 	public static <TData> JsonpDeserializer<PostDataRequest<TData>> createPostDataRequestDeserializer(
 			JsonpDeserializer<TData> tDataDeserializer) {

@@ -426,8 +426,9 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	 */
 	public static final JsonpDeserializer<UpdateAction<Object, Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createUpdateActionDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.bulk.TDocument"),
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.bulk.TPartialDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.bulk.UpdateAction.TDocument"),
+					new NamedDeserializer<>(
+							"co.elastic.clients:Deserializer:_global.bulk.UpdateAction.TPartialDocument")));
 
 	protected static <TDocument, TPartialDocument> void setupUpdateActionDeserializer(
 			ObjectDeserializer<UpdateAction.Builder<TDocument, TPartialDocument>> op,

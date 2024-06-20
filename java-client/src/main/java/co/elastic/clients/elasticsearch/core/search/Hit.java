@@ -906,7 +906,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<Hit<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createHitDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.Hit.TDocument")));
 
 	protected static <TDocument> void setupHitDeserializer(ObjectDeserializer<Hit.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

@@ -111,7 +111,7 @@ public class ScrollResponse<TDocument> extends ResponseBody<TDocument> {
 	 */
 	public static final JsonpDeserializer<ScrollResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createScrollResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scroll.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scroll.Response.TDocument")));
 
 	protected static <TDocument> void setupScrollResponseDeserializer(
 			ObjectDeserializer<ScrollResponse.Builder<TDocument>> op,

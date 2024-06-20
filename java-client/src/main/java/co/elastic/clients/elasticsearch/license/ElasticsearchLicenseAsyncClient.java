@@ -84,7 +84,10 @@ public class ElasticsearchLicenseAsyncClient
 	// ----- Endpoint: license.get
 
 	/**
-	 * Retrieves licensing information for the cluster
+	 * This API returns information about the type of license, when it was issued,
+	 * and when it expires, for example. For more information about the different
+	 * types of licenses, see <a href=
+	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
@@ -99,7 +102,10 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * Retrieves licensing information for the cluster
+	 * This API returns information about the type of license, when it was issued,
+	 * and when it expires, for example. For more information about the different
+	 * types of licenses, see <a href=
+	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -115,7 +121,10 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * Retrieves licensing information for the cluster
+	 * This API returns information about the type of license, when it was issued,
+	 * and when it expires, for example. For more information about the different
+	 * types of licenses, see <a href=
+	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
@@ -203,7 +212,14 @@ public class ElasticsearchLicenseAsyncClient
 	// ----- Endpoint: license.post_start_basic
 
 	/**
-	 * Starts an indefinite basic license.
+	 * The start basic API enables you to initiate an indefinite basic license,
+	 * which gives access to all the basic features. If the basic license does not
+	 * support all of the features that are available with your current license,
+	 * however, you are notified in the response. You must then re-submit the API
+	 * request with the acknowledge parameter set to true. To check the status of
+	 * your basic license, use the following API: <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-basic-status.html">Get
+	 * basic status</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
@@ -218,7 +234,14 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * Starts an indefinite basic license.
+	 * The start basic API enables you to initiate an indefinite basic license,
+	 * which gives access to all the basic features. If the basic license does not
+	 * support all of the features that are available with your current license,
+	 * however, you are notified in the response. You must then re-submit the API
+	 * request with the acknowledge parameter set to true. To check the status of
+	 * your basic license, use the following API: <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-basic-status.html">Get
+	 * basic status</a>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -234,7 +257,14 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * Starts an indefinite basic license.
+	 * The start basic API enables you to initiate an indefinite basic license,
+	 * which gives access to all the basic features. If the basic license does not
+	 * support all of the features that are available with your current license,
+	 * however, you are notified in the response. You must then re-submit the API
+	 * request with the acknowledge parameter set to true. To check the status of
+	 * your basic license, use the following API: <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-basic-status.html">Get
+	 * basic status</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
@@ -249,7 +279,8 @@ public class ElasticsearchLicenseAsyncClient
 	// ----- Endpoint: license.post_start_trial
 
 	/**
-	 * starts a limited time trial license.
+	 * The start trial API enables you to start a 30-day trial, which gives access
+	 * to all subscription features.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
@@ -264,7 +295,8 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * starts a limited time trial license.
+	 * The start trial API enables you to start a 30-day trial, which gives access
+	 * to all subscription features.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -280,7 +312,8 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * starts a limited time trial license.
+	 * The start trial API enables you to start a 30-day trial, which gives access
+	 * to all subscription features.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation

@@ -68,8 +68,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.clear_repositories_metering_archive
 
 	/**
-	 * Removes the archived repositories metering information present in the
-	 * cluster.
+	 * You can use this API to clear the archived repositories metering information
+	 * in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-repositories-metering-archive-api.html">Documentation
@@ -85,8 +85,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Removes the archived repositories metering information present in the
-	 * cluster.
+	 * You can use this API to clear the archived repositories metering information
+	 * in the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -106,7 +106,12 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.get_repositories_metering_info
 
 	/**
-	 * Returns cluster repositories metering information.
+	 * You can use the cluster repositories metering API to retrieve repositories
+	 * metering information in a cluster. This API exposes monotonically
+	 * non-decreasing counters and it’s expected that clients would durably store
+	 * the information needed to compute aggregations over a period of time.
+	 * Additionally, the information exposed by this API is volatile, meaning that
+	 * it won’t be present after node restarts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-repositories-metering-api.html">Documentation
@@ -122,7 +127,12 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns cluster repositories metering information.
+	 * You can use the cluster repositories metering API to retrieve repositories
+	 * metering information in a cluster. This API exposes monotonically
+	 * non-decreasing counters and it’s expected that clients would durably store
+	 * the information needed to compute aggregations over a period of time.
+	 * Additionally, the information exposed by this API is volatile, meaning that
+	 * it won’t be present after node restarts.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -141,7 +151,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.hot_threads
 
 	/**
-	 * Returns information about hot threads on each node in the cluster.
+	 * This API yields a breakdown of the hot threads on each selected node in the
+	 * cluster. The output is plain text with a breakdown of each node’s top hot
+	 * threads.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-hot-threads.html">Documentation
@@ -156,7 +168,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about hot threads on each node in the cluster.
+	 * This API yields a breakdown of the hot threads on each selected node in the
+	 * cluster. The output is plain text with a breakdown of each node’s top hot
+	 * threads.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -172,7 +186,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about hot threads on each node in the cluster.
+	 * This API yields a breakdown of the hot threads on each selected node in the
+	 * cluster. The output is plain text with a breakdown of each node’s top hot
+	 * threads.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-hot-threads.html">Documentation
@@ -187,7 +203,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.info
 
 	/**
-	 * Returns information about nodes in the cluster.
+	 * Returns cluster nodes information.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-info.html">Documentation
@@ -202,7 +218,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about nodes in the cluster.
+	 * Returns cluster nodes information.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -218,7 +234,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about nodes in the cluster.
+	 * Returns cluster nodes information.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-info.html">Documentation
@@ -233,7 +249,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.reload_secure_settings
 
 	/**
-	 * Reloads secure settings.
+	 * Reloads the keystore on nodes in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
@@ -249,7 +265,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Reloads secure settings.
+	 * Reloads the keystore on nodes in the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -266,7 +282,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Reloads secure settings.
+	 * Reloads the keystore on nodes in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
@@ -281,7 +297,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.stats
 
 	/**
-	 * Returns statistical information about nodes in the cluster.
+	 * Returns cluster nodes statistics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-stats.html">Documentation
@@ -296,7 +312,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns statistical information about nodes in the cluster.
+	 * Returns cluster nodes statistics.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -312,7 +328,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns statistical information about nodes in the cluster.
+	 * Returns cluster nodes statistics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-stats.html">Documentation
@@ -327,7 +343,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.usage
 
 	/**
-	 * Returns low-level information about REST actions usage on nodes.
+	 * Returns information on the usage of features.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-usage.html">Documentation
@@ -342,7 +358,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns low-level information about REST actions usage on nodes.
+	 * Returns information on the usage of features.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -358,7 +374,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns low-level information about REST actions usage on nodes.
+	 * Returns information on the usage of features.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-nodes-usage.html">Documentation

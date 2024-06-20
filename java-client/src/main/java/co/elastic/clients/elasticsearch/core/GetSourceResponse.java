@@ -164,7 +164,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<GetSourceResponse<Object>> _DESERIALIZER = createGetSourceResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get_source.TDocument"));
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get_source.Response.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<GetSourceResponse<TDocument>> createGetSourceResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

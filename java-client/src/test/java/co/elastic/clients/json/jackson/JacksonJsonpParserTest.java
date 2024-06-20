@@ -157,8 +157,7 @@ public class JacksonJsonpParserTest extends ModelTestCase {
                 "}\n";
 
         JsonpMapper mapper = new JacksonJsonpMapper();
-        mapper = mapper.withAttribute("co.elastic.clients:Deserializer:_global.msearch.TDocument", JsonpDeserializer.of(Foo.class));
-
+        mapper = mapper.withAttribute("co.elastic.clients:Deserializer:_global.msearch.Response.TDocument", JsonpDeserializer.of(Foo.class));
         @SuppressWarnings("unchecked")
         MsearchResponse<Foo> response = fromJson(json, MsearchResponse.class, mapper);
 

@@ -342,8 +342,8 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<RollupSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createRollupSearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:rollup.rollup_search.TDocument")));
+			.lazy(() -> createRollupSearchResponseDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:rollup.rollup_search.Response.TDocument")));
 
 	protected static <TDocument> void setupRollupSearchResponseDeserializer(
 			ObjectDeserializer<RollupSearchResponse.Builder<TDocument>> op,

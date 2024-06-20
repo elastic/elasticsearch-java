@@ -158,6 +158,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		ScriptScore("script_score"),
 
+		Semantic("semantic"),
+
 		Shape("shape"),
 
 		SimpleQueryString("simple_query_string"),
@@ -920,6 +922,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public ScriptScoreQuery scriptScore() {
 		return TaggedUnionUtils.get(this, Kind.ScriptScore);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code semantic}?
+	 */
+	public boolean isSemantic() {
+		return _kind == Kind.Semantic;
+	}
+
+	/**
+	 * Get the {@code semantic} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code semantic} kind.
+	 */
+	public SemanticQuery semantic() {
+		return TaggedUnionUtils.get(this, Kind.Semantic);
 	}
 
 	/**
@@ -1710,6 +1729,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> semantic(SemanticQuery v) {
+			this._kind = Kind.Semantic;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> semantic(Function<SemanticQuery.Builder, ObjectBuilder<SemanticQuery>> fn) {
+			return this.semantic(fn.apply(new SemanticQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> shape(ShapeQuery v) {
 			this._kind = Kind.Shape;
 			this._value = v;
@@ -1970,6 +1999,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::ruleQuery, RuleQuery._DESERIALIZER, "rule_query");
 		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
 		op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
+		op.add(Builder::semantic, SemanticQuery._DESERIALIZER, "semantic");
 		op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");
 		op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");

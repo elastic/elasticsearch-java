@@ -198,8 +198,8 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: rollup.get_rollup_index_caps
 
 	/**
-	 * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
-	 * the index where rollup data is stored).
+	 * Returns the rollup capabilities of all jobs inside of a rollup index (for
+	 * example, the index where rollup data is stored).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
@@ -214,8 +214,8 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
-	 * the index where rollup data is stored).
+	 * Returns the rollup capabilities of all jobs inside of a rollup index (for
+	 * example, the index where rollup data is stored).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -266,7 +266,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: rollup.rollup_search
 
 	/**
-	 * Enables searching rolled-up data using the standard query DSL.
+	 * Enables searching rolled-up data using the standard Query DSL.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
@@ -278,13 +278,14 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:rollup.rollup_search.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:rollup.rollup_search.Response.TDocument",
+				getDeserializer(tDocumentClass));
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Enables searching rolled-up data using the standard query DSL.
+	 * Enables searching rolled-up data using the standard Query DSL.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -301,7 +302,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Enables searching rolled-up data using the standard query DSL.
+	 * Enables searching rolled-up data using the standard Query DSL.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
@@ -313,13 +314,14 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:rollup.rollup_search.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:rollup.rollup_search.Response.TDocument",
+				getDeserializer(tDocumentType));
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Enables searching rolled-up data using the standard query DSL.
+	 * Enables searching rolled-up data using the standard Query DSL.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

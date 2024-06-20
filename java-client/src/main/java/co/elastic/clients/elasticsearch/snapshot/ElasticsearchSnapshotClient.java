@@ -68,7 +68,8 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.cleanup_repository
 
 	/**
-	 * Removes stale data from repository.
+	 * Triggers the review of a snapshot repository’s contents and deletes any stale
+	 * data not referenced by existing snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
@@ -84,7 +85,8 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Removes stale data from repository.
+	 * Triggers the review of a snapshot repository’s contents and deletes any stale
+	 * data not referenced by existing snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

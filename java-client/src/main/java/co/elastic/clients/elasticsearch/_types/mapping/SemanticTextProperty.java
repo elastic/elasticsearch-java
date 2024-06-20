@@ -17,23 +17,23 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -51,57 +51,53 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.ExtendedBounds
+// typedef: _types.mapping.SemanticTextProperty
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.ExtendedBounds">API
+ *      "../../doc-files/api-spec.html#_types.mapping.SemanticTextProperty">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ExtendedBounds<T> implements JsonpSerializable {
-	@Nullable
-	private final T max;
+public class SemanticTextProperty implements PropertyVariant, JsonpSerializable {
+	private final Map<String, String> meta;
 
-	@Nullable
-	private final T min;
-
-	@Nullable
-	private final JsonpSerializer<T> tSerializer;
+	private final String inferenceId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ExtendedBounds(Builder<T> builder) {
+	private SemanticTextProperty(Builder builder) {
 
-		this.max = builder.max;
-		this.min = builder.min;
-		this.tSerializer = builder.tSerializer;
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 
 	}
 
-	public static <T> ExtendedBounds<T> of(Function<Builder<T>, ObjectBuilder<ExtendedBounds<T>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
-
-	/**
-	 * Maximum value for the bound.
-	 * <p>
-	 * API name: {@code max}
-	 */
-	@Nullable
-	public final T max() {
-		return this.max;
+	public static SemanticTextProperty of(Function<Builder, ObjectBuilder<SemanticTextProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Minimum value for the bound.
-	 * <p>
-	 * API name: {@code min}
+	 * Property variant kind.
 	 */
-	@Nullable
-	public final T min() {
-		return this.min;
+	@Override
+	public Property.Kind _propertyKind() {
+		return Property.Kind.SemanticText;
+	}
+
+	/**
+	 * API name: {@code meta}
+	 */
+	public final Map<String, String> meta() {
+		return this.meta;
+	}
+
+	/**
+	 * Required - API name: {@code inference_id}
+	 */
+	public final String inferenceId() {
+		return this.inferenceId;
 	}
 
 	/**
@@ -115,16 +111,21 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.max != null) {
-			generator.writeKey("max");
-			JsonpUtils.serialize(this.max, generator, tSerializer, mapper);
+		generator.write("type", "semantic_text");
+
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		if (this.min != null) {
-			generator.writeKey("min");
-			JsonpUtils.serialize(this.min, generator, tSerializer, mapper);
-
-		}
+		generator.writeKey("inference_id");
+		generator.write(this.inferenceId);
 
 	}
 
@@ -136,93 +137,77 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ExtendedBounds}.
+	 * Builder for {@link SemanticTextProperty}.
 	 */
 
-	public static class Builder<T> extends WithJsonObjectBuilderBase<Builder<T>>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<ExtendedBounds<T>> {
+				ObjectBuilder<SemanticTextProperty> {
 		@Nullable
-		private T max;
+		private Map<String, String> meta;
 
-		@Nullable
-		private T min;
-
-		@Nullable
-		private JsonpSerializer<T> tSerializer;
+		private String inferenceId;
 
 		/**
-		 * Maximum value for the bound.
+		 * API name: {@code meta}
 		 * <p>
-		 * API name: {@code max}
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder<T> max(@Nullable T value) {
-			this.max = value;
+		public final Builder meta(Map<String, String> map) {
+			this.meta = _mapPutAll(this.meta, map);
 			return this;
 		}
 
 		/**
-		 * Minimum value for the bound.
+		 * API name: {@code meta}
 		 * <p>
-		 * API name: {@code min}
+		 * Adds an entry to <code>meta</code>.
 		 */
-		public final Builder<T> min(@Nullable T value) {
-			this.min = value;
+		public final Builder meta(String key, String value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		/**
-		 * Serializer for T. If not set, an attempt will be made to find a serializer
-		 * from the JSON context.
+		 * Required - API name: {@code inference_id}
 		 */
-		public final Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
-			this.tSerializer = value;
+		public final Builder inferenceId(String value) {
+			this.inferenceId = value;
 			return this;
 		}
 
 		@Override
-		protected Builder<T> self() {
+		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link ExtendedBounds}.
+		 * Builds a {@link SemanticTextProperty}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ExtendedBounds<T> build() {
+		public SemanticTextProperty build() {
 			_checkSingleUse();
 
-			return new ExtendedBounds<T>(this);
+			return new SemanticTextProperty(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a JSON deserializer for ExtendedBounds
+	 * Json deserializer for {@link SemanticTextProperty}
 	 */
-	public static <T> JsonpDeserializer<ExtendedBounds<T>> createExtendedBoundsDeserializer(
-			JsonpDeserializer<T> tDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<T>>) Builder::new,
-				op -> ExtendedBounds.setupExtendedBoundsDeserializer(op, tDeserializer));
-	};
+	public static final JsonpDeserializer<SemanticTextProperty> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SemanticTextProperty::setupSemanticTextPropertyDeserializer);
 
-	/**
-	 * Json deserializer for {@link ExtendedBounds} based on named deserializers
-	 * provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<ExtendedBounds<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createExtendedBoundsDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.aggregations.ExtendedBounds.T")));
+	protected static void setupSemanticTextPropertyDeserializer(ObjectDeserializer<SemanticTextProperty.Builder> op) {
 
-	protected static <T> void setupExtendedBoundsDeserializer(ObjectDeserializer<ExtendedBounds.Builder<T>> op,
-			JsonpDeserializer<T> tDeserializer) {
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "meta");
+		op.add(Builder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
 
-		op.add(Builder::max, tDeserializer, "max");
-		op.add(Builder::min, tDeserializer, "min");
-
+		op.ignore("type");
 	}
 
 }

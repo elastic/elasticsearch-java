@@ -717,6 +717,23 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link SemanticQuery semantic} {@code Query}
+	 * variant.
+	 */
+	public static SemanticQuery.Builder semantic() {
+		return new SemanticQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link SemanticQuery semantic} {@code Query} variant.
+	 */
+	public static Query semantic(Function<SemanticQuery.Builder, ObjectBuilder<SemanticQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.semantic(fn.apply(new SemanticQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ShapeQuery shape} {@code Query} variant.
 	 */
 	public static ShapeQuery.Builder shape() {

@@ -768,6 +768,25 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link SemanticTextProperty semantic_text}
+	 * {@code Property} variant.
+	 */
+	public static SemanticTextProperty.Builder semanticText() {
+		return new SemanticTextProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link SemanticTextProperty semantic_text}
+	 * {@code Property} variant.
+	 */
+	public static Property semanticText(
+			Function<SemanticTextProperty.Builder, ObjectBuilder<SemanticTextProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.semanticText(fn.apply(new SemanticTextProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ShapeProperty shape} {@code Property}
 	 * variant.
 	 */

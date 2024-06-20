@@ -614,7 +614,7 @@ public class FleetSearchResponse<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<FleetSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createFleetSearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:fleet.search.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:fleet.search.Response.TDocument")));
 
 	protected static <TDocument> void setupFleetSearchResponseDeserializer(
 			ObjectDeserializer<FleetSearchResponse.Builder<TDocument>> op,

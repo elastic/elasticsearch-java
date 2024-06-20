@@ -117,7 +117,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.delete_component_template
 
 	/**
-	 * Deletes a component template
+	 * Deletes component templates. Component templates are building blocks for
+	 * constructing index templates that specify index mappings, settings, and
+	 * aliases.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/indices-component-template.html">Documentation
@@ -133,7 +135,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes a component template
+	 * Deletes component templates. Component templates are building blocks for
+	 * constructing index templates that specify index mappings, settings, and
+	 * aliases.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -235,7 +239,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.get_component_template
 
 	/**
-	 * Returns one or more component templates
+	 * Retrieves information about component templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/indices-component-template.html">Documentation
@@ -251,7 +255,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns one or more component templates
+	 * Retrieves information about component templates.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -268,7 +272,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns one or more component templates
+	 * Retrieves information about component templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/indices-component-template.html">Documentation
@@ -283,7 +287,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.get_settings
 
 	/**
-	 * Returns cluster settings.
+	 * Returns cluster-wide settings. By default, it returns only settings that have
+	 * been explicitly defined.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-get-settings.html">Documentation
@@ -299,7 +304,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns cluster settings.
+	 * Returns cluster-wide settings. By default, it returns only settings that have
+	 * been explicitly defined.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -316,7 +322,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns cluster settings.
+	 * Returns cluster-wide settings. By default, it returns only settings that have
+	 * been explicitly defined.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-get-settings.html">Documentation
@@ -331,7 +338,15 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.health
 
 	/**
-	 * Returns basic information about the health of the cluster.
+	 * The cluster health API returns a simple status on the health of the cluster.
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices. The cluster health status is: green, yellow or
+	 * red. On the shard level, a red status indicates that the specific shard is
+	 * not allocated in the cluster, yellow means that the primary shard is
+	 * allocated but replicas are not, and green means that all shards are
+	 * allocated. The index level status is controlled by the worst shard status.
+	 * The cluster status is controlled by the worst index status.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-health.html">Documentation
@@ -346,7 +361,15 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns basic information about the health of the cluster.
+	 * The cluster health API returns a simple status on the health of the cluster.
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices. The cluster health status is: green, yellow or
+	 * red. On the shard level, a red status indicates that the specific shard is
+	 * not allocated in the cluster, yellow means that the primary shard is
+	 * allocated but replicas are not, and green means that all shards are
+	 * allocated. The index level status is controlled by the worst shard status.
+	 * The cluster status is controlled by the worst index status.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -362,7 +385,15 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns basic information about the health of the cluster.
+	 * The cluster health API returns a simple status on the health of the cluster.
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices. The cluster health status is: green, yellow or
+	 * red. On the shard level, a red status indicates that the specific shard is
+	 * not allocated in the cluster, yellow means that the primary shard is
+	 * allocated but replicas are not, and green means that all shards are
+	 * allocated. The index level status is controlled by the worst shard status.
+	 * The cluster status is controlled by the worst index status.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-health.html">Documentation
@@ -410,8 +441,14 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.pending_tasks
 
 	/**
-	 * Returns a list of any cluster-level changes (e.g. create index, update
-	 * mapping, allocate or fail shard) which have not yet been executed.
+	 * Returns cluster-level changes (such as create index, update mapping, allocate
+	 * or fail shard) that have not yet been executed. NOTE: This API returns a list
+	 * of any pending updates to the cluster state. These are distinct from the
+	 * tasks reported by the Task Management API which include periodic tasks and
+	 * tasks initiated by the user, such as node stats, search queries, or create
+	 * index requests. However, if a user-initiated task such as a create index
+	 * command causes a cluster state update, the activity of this task might be
+	 * reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-pending.html">Documentation
@@ -426,8 +463,14 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns a list of any cluster-level changes (e.g. create index, update
-	 * mapping, allocate or fail shard) which have not yet been executed.
+	 * Returns cluster-level changes (such as create index, update mapping, allocate
+	 * or fail shard) that have not yet been executed. NOTE: This API returns a list
+	 * of any pending updates to the cluster state. These are distinct from the
+	 * tasks reported by the Task Management API which include periodic tasks and
+	 * tasks initiated by the user, such as node stats, search queries, or create
+	 * index requests. However, if a user-initiated task such as a create index
+	 * command causes a cluster state update, the activity of this task might be
+	 * reported by both task api and pending cluster tasks API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -444,8 +487,14 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns a list of any cluster-level changes (e.g. create index, update
-	 * mapping, allocate or fail shard) which have not yet been executed.
+	 * Returns cluster-level changes (such as create index, update mapping, allocate
+	 * or fail shard) that have not yet been executed. NOTE: This API returns a list
+	 * of any pending updates to the cluster state. These are distinct from the
+	 * tasks reported by the Task Management API which include periodic tasks and
+	 * tasks initiated by the user, such as node stats, search queries, or create
+	 * index requests. However, if a user-initiated task such as a create index
+	 * command causes a cluster state update, the activity of this task might be
+	 * reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-pending.html">Documentation
@@ -508,7 +557,27 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.put_component_template
 
 	/**
-	 * Creates or updates a component template
+	 * Creates or updates a component template. Component templates are building
+	 * blocks for constructing index templates that specify index mappings,
+	 * settings, and aliases.
+	 * <p>
+	 * An index template can be composed of multiple component templates. To use a
+	 * component template, specify it in an index template’s
+	 * <code>composed_of</code> list. Component templates are only applied to new
+	 * data streams and indices as part of a matching index template.
+	 * <p>
+	 * Settings and mappings specified directly in the index template or the create
+	 * index request override any settings or mappings specified in a component
+	 * template.
+	 * <p>
+	 * Component templates are only used during index creation. For data streams,
+	 * this includes data stream creation and the creation of a stream’s backing
+	 * indices. Changes to component templates do not affect existing indices,
+	 * including a stream’s backing indices.
+	 * <p>
+	 * You can use C-style <code>/* *\/</code> block comments in component
+	 * templates. You can include comments anywhere in the request body except
+	 * before the opening curly bracket.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/indices-component-template.html">Documentation
@@ -524,7 +593,27 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Creates or updates a component template
+	 * Creates or updates a component template. Component templates are building
+	 * blocks for constructing index templates that specify index mappings,
+	 * settings, and aliases.
+	 * <p>
+	 * An index template can be composed of multiple component templates. To use a
+	 * component template, specify it in an index template’s
+	 * <code>composed_of</code> list. Component templates are only applied to new
+	 * data streams and indices as part of a matching index template.
+	 * <p>
+	 * Settings and mappings specified directly in the index template or the create
+	 * index request override any settings or mappings specified in a component
+	 * template.
+	 * <p>
+	 * Component templates are only used during index creation. For data streams,
+	 * this includes data stream creation and the creation of a stream’s backing
+	 * indices. Changes to component templates do not affect existing indices,
+	 * including a stream’s backing indices.
+	 * <p>
+	 * You can use C-style <code>/* *\/</code> block comments in component
+	 * templates. You can include comments anywhere in the request body except
+	 * before the opening curly bracket.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -591,7 +680,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.remote_info
 
 	/**
-	 * Returns the information about configured remote clusters.
+	 * The cluster remote info API allows you to retrieve all of the configured
+	 * remote cluster information. It returns connection and endpoint information
+	 * keyed by the configured remote cluster alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-remote-info.html">Documentation
@@ -697,7 +788,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.stats
 
 	/**
-	 * Returns high-level overview of cluster statistics.
+	 * Returns cluster statistics. It returns basic index metrics (shard numbers,
+	 * store size, memory usage) and information about the current nodes that form
+	 * the cluster (number, roles, os, jvm versions, memory usage, cpu and installed
+	 * plugins).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-stats.html">Documentation
@@ -712,7 +806,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns high-level overview of cluster statistics.
+	 * Returns cluster statistics. It returns basic index metrics (shard numbers,
+	 * store size, memory usage) and information about the current nodes that form
+	 * the cluster (number, roles, os, jvm versions, memory usage, cpu and installed
+	 * plugins).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -729,7 +826,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns high-level overview of cluster statistics.
+	 * Returns cluster statistics. It returns basic index metrics (shard numbers,
+	 * store size, memory usage) and information about the current nodes that form
+	 * the cluster (number, roles, os, jvm versions, memory usage, cpu and installed
+	 * plugins).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/cluster-stats.html">Documentation

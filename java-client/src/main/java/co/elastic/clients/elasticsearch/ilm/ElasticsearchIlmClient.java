@@ -68,8 +68,9 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.delete_lifecycle
 
 	/**
-	 * Deletes the specified lifecycle policy definition. A currently used policy
-	 * cannot be deleted.
+	 * Deletes the specified lifecycle policy definition. You cannot delete policies
+	 * that are currently in use. If the policy is being used to manage any indices,
+	 * the request fails and returns an error.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-delete-lifecycle.html">Documentation
@@ -85,8 +86,9 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Deletes the specified lifecycle policy definition. A currently used policy
-	 * cannot be deleted.
+	 * Deletes the specified lifecycle policy definition. You cannot delete policies
+	 * that are currently in use. If the policy is being used to manage any indices,
+	 * the request fails and returns an error.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,8 +107,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.explain_lifecycle
 
 	/**
-	 * Retrieves information about the index's current lifecycle state, such as the
-	 * currently executing phase, action, and step.
+	 * Retrieves information about the index’s current lifecycle state, such as the
+	 * currently executing phase, action, and step. Shows when the index entered
+	 * each one, the definition of the running phase, and information about any
+	 * failures.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-explain-lifecycle.html">Documentation
@@ -122,8 +126,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Retrieves information about the index's current lifecycle state, such as the
-	 * currently executing phase, action, and step.
+	 * Retrieves information about the index’s current lifecycle state, such as the
+	 * currently executing phase, action, and step. Shows when the index entered
+	 * each one, the definition of the running phase, and information about any
+	 * failures.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -142,8 +148,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.get_lifecycle
 
 	/**
-	 * Returns the specified policy definition. Includes the policy version and last
-	 * modified date.
+	 * Retrieves a lifecycle policy.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html">Documentation
@@ -158,8 +163,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Returns the specified policy definition. Includes the policy version and last
-	 * modified date.
+	 * Retrieves a lifecycle policy.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -176,8 +180,7 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Returns the specified policy definition. Includes the policy version and last
-	 * modified date.
+	 * Retrieves a lifecycle policy.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html">Documentation
@@ -206,8 +209,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.migrate_to_data_tiers
 
 	/**
-	 * Migrates the indices and ILM policies away from custom node attribute
-	 * allocation routing to data tiers routing
+	 * Switches the indices, ILM policies, and legacy, composable and component
+	 * templates from using custom node attributes and attribute-based allocation
+	 * filters to using data tiers, and optionally deletes one legacy index
+	 * template.+ Using node roles enables ILM to automatically move the indices
+	 * between data tiers.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
@@ -223,8 +229,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Migrates the indices and ILM policies away from custom node attribute
-	 * allocation routing to data tiers routing
+	 * Switches the indices, ILM policies, and legacy, composable and component
+	 * templates from using custom node attributes and attribute-based allocation
+	 * filters to using data tiers, and optionally deletes one legacy index
+	 * template.+ Using node roles enables ILM to automatically move the indices
+	 * between data tiers.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -241,8 +250,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Migrates the indices and ILM policies away from custom node attribute
-	 * allocation routing to data tiers routing
+	 * Switches the indices, ILM policies, and legacy, composable and component
+	 * templates from using custom node attributes and attribute-based allocation
+	 * filters to using data tiers, and optionally deletes one legacy index
+	 * template.+ Using node roles enables ILM to automatically move the indices
+	 * between data tiers.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
@@ -290,7 +302,8 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.put_lifecycle
 
 	/**
-	 * Creates a lifecycle policy
+	 * Creates a lifecycle policy. If the specified policy exists, the policy is
+	 * replaced and the policy version is incremented.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-put-lifecycle.html">Documentation
@@ -305,7 +318,8 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Creates a lifecycle policy
+	 * Creates a lifecycle policy. If the specified policy exists, the policy is
+	 * replaced and the policy version is incremented.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

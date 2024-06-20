@@ -68,7 +68,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
-	 * Deletes a pipeline.
+	 * Deletes one or more existing ingest pipeline.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
@@ -83,7 +83,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Deletes a pipeline.
+	 * Deletes one or more existing ingest pipeline.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -101,7 +101,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.geo_ip_stats
 
 	/**
-	 * Returns statistical information about geoip databases
+	 * Gets download statistics for GeoIP2 databases used with the geoip processor.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/geoip-processor.html">Documentation
@@ -115,7 +115,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.get_pipeline
 
 	/**
-	 * Returns a pipeline.
+	 * Returns information about one or more ingest pipelines. This API returns a
+	 * local reference of the pipeline.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
@@ -130,7 +131,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Returns a pipeline.
+	 * Returns information about one or more ingest pipelines. This API returns a
+	 * local reference of the pipeline.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -146,7 +148,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Returns a pipeline.
+	 * Returns information about one or more ingest pipelines. This API returns a
+	 * local reference of the pipeline.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
@@ -161,7 +164,10 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.processor_grok
 
 	/**
-	 * Returns a list of the built-in patterns.
+	 * Extracts structured fields out of a single text field within a document. You
+	 * choose which field to extract matched fields from, as well as the grok
+	 * pattern you expect will match. A grok pattern is like a regular expression
+	 * that supports aliased expressions that can be reused.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/grok-processor.html">Documentation
@@ -175,7 +181,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.put_pipeline
 
 	/**
-	 * Creates or updates a pipeline.
+	 * Creates or updates an ingest pipeline. Changes made using this API take
+	 * effect immediately.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/ingest.html">Documentation
@@ -190,7 +197,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Creates or updates a pipeline.
+	 * Creates or updates an ingest pipeline. Changes made using this API take
+	 * effect immediately.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -208,7 +216,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.simulate
 
 	/**
-	 * Allows to simulate a pipeline with example documents.
+	 * Executes an ingest pipeline against a set of provided documents.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
@@ -223,7 +231,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Allows to simulate a pipeline with example documents.
+	 * Executes an ingest pipeline against a set of provided documents.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -239,7 +247,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Allows to simulate a pipeline with example documents.
+	 * Executes an ingest pipeline against a set of provided documents.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation

@@ -111,7 +111,7 @@ public class MsearchResponse<TDocument> extends MultiSearchResult<TDocument> {
 	 */
 	public static final JsonpDeserializer<MsearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createMsearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch.Response.TDocument")));
 
 	protected static <TDocument> void setupMsearchResponseDeserializer(
 			ObjectDeserializer<MsearchResponse.Builder<TDocument>> op,
