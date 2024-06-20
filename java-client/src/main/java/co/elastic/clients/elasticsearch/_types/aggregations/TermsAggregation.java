@@ -39,6 +39,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -111,6 +112,9 @@ public class TermsAggregation extends BucketAggregationBase
 	private final Script script;
 
 	@Nullable
+	private final Long shardMinDocCount;
+
+	@Nullable
 	private final Integer shardSize;
 
 	@Nullable
@@ -138,6 +142,7 @@ public class TermsAggregation extends BucketAggregationBase
 		this.valueType = builder.valueType;
 		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.script = builder.script;
+		this.shardMinDocCount = builder.shardMinDocCount;
 		this.shardSize = builder.shardSize;
 		this.showTermDocCountError = builder.showTermDocCountError;
 		this.size = builder.size;
@@ -292,6 +297,19 @@ public class TermsAggregation extends BucketAggregationBase
 	}
 
 	/**
+	 * Regulates the certainty a shard has if the term should actually be added to
+	 * the candidate list or not with respect to the <code>min_doc_count</code>.
+	 * Terms will only be considered if their local shard frequency within the set
+	 * is higher than the <code>shard_min_doc_count</code>.
+	 * <p>
+	 * API name: {@code shard_min_doc_count}
+	 */
+	@Nullable
+	public final Long shardMinDocCount() {
+		return this.shardMinDocCount;
+	}
+
+	/**
 	 * The number of candidate terms produced by each shard. By default,
 	 * <code>shard_size</code> will be automatically estimated based on the number
 	 * of shards and the <code>size</code> parameter.
@@ -409,6 +427,11 @@ public class TermsAggregation extends BucketAggregationBase
 			this.script.serialize(generator, mapper);
 
 		}
+		if (this.shardMinDocCount != null) {
+			generator.writeKey("shard_min_doc_count");
+			generator.write(this.shardMinDocCount);
+
+		}
 		if (this.shardSize != null) {
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
@@ -481,6 +504,9 @@ public class TermsAggregation extends BucketAggregationBase
 
 		@Nullable
 		private Script script;
+
+		@Nullable
+		private Long shardMinDocCount;
 
 		@Nullable
 		private Integer shardSize;
@@ -708,6 +734,19 @@ public class TermsAggregation extends BucketAggregationBase
 		}
 
 		/**
+		 * Regulates the certainty a shard has if the term should actually be added to
+		 * the candidate list or not with respect to the <code>min_doc_count</code>.
+		 * Terms will only be considered if their local shard frequency within the set
+		 * is higher than the <code>shard_min_doc_count</code>.
+		 * <p>
+		 * API name: {@code shard_min_doc_count}
+		 */
+		public final Builder shardMinDocCount(@Nullable Long value) {
+			this.shardMinDocCount = value;
+			return this;
+		}
+
+		/**
 		 * The number of candidate terms produced by each shard. By default,
 		 * <code>shard_size</code> will be automatically estimated based on the number
 		 * of shards and the <code>size</code> parameter.
@@ -790,6 +829,7 @@ public class TermsAggregation extends BucketAggregationBase
 		op.add(Builder::order,
 				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> SortOrder._DESERIALIZER)), "order");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.longDeserializer(), "shard_min_doc_count");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
