@@ -70,7 +70,7 @@ public class QueryRule implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private QueryRule(Builder builder) {
+	protected QueryRule(AbstractBuilder<?> builder) {
 
 		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
@@ -79,7 +79,7 @@ public class QueryRule implements JsonpSerializable {
 
 	}
 
-	public static QueryRule of(Function<Builder, ObjectBuilder<QueryRule>> fn) {
+	public static QueryRule queryRuleOf(Function<Builder, ObjectBuilder<QueryRule>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -153,75 +153,7 @@ public class QueryRule implements JsonpSerializable {
 	 * Builder for {@link QueryRule}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryRule> {
-		private String ruleId;
-
-		private QueryRuleType type;
-
-		private List<QueryRuleCriteria> criteria;
-
-		private QueryRuleActions actions;
-
-		/**
-		 * Required - API name: {@code rule_id}
-		 */
-		public final Builder ruleId(String value) {
-			this.ruleId = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(QueryRuleType value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code criteria}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>criteria</code>.
-		 */
-		public final Builder criteria(List<QueryRuleCriteria> list) {
-			this.criteria = _listAddAll(this.criteria, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code criteria}
-		 * <p>
-		 * Adds one or more values to <code>criteria</code>.
-		 */
-		public final Builder criteria(QueryRuleCriteria value, QueryRuleCriteria... values) {
-			this.criteria = _listAdd(this.criteria, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code criteria}
-		 * <p>
-		 * Adds a value to <code>criteria</code> using a builder lambda.
-		 */
-		public final Builder criteria(Function<QueryRuleCriteria.Builder, ObjectBuilder<QueryRuleCriteria>> fn) {
-			return criteria(fn.apply(new QueryRuleCriteria.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code actions}
-		 */
-		public final Builder actions(QueryRuleActions value) {
-			this.actions = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code actions}
-		 */
-		public final Builder actions(Function<QueryRuleActions.Builder, ObjectBuilder<QueryRuleActions>> fn) {
-			return this.actions(fn.apply(new QueryRuleActions.Builder()).build());
-		}
-
+	public static class Builder extends QueryRule.AbstractBuilder<Builder> implements ObjectBuilder<QueryRule> {
 		@Override
 		protected Builder self() {
 			return this;
@@ -240,6 +172,81 @@ public class QueryRule implements JsonpSerializable {
 		}
 	}
 
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
+		private String ruleId;
+
+		private QueryRuleType type;
+
+		private List<QueryRuleCriteria> criteria;
+
+		private QueryRuleActions actions;
+
+		/**
+		 * Required - API name: {@code rule_id}
+		 */
+		public final BuilderT ruleId(String value) {
+			this.ruleId = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code type}
+		 */
+		public final BuilderT type(QueryRuleType value) {
+			this.type = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code criteria}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>criteria</code>.
+		 */
+		public final BuilderT criteria(List<QueryRuleCriteria> list) {
+			this.criteria = _listAddAll(this.criteria, list);
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code criteria}
+		 * <p>
+		 * Adds one or more values to <code>criteria</code>.
+		 */
+		public final BuilderT criteria(QueryRuleCriteria value, QueryRuleCriteria... values) {
+			this.criteria = _listAdd(this.criteria, value, values);
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code criteria}
+		 * <p>
+		 * Adds a value to <code>criteria</code> using a builder lambda.
+		 */
+		public final BuilderT criteria(Function<QueryRuleCriteria.Builder, ObjectBuilder<QueryRuleCriteria>> fn) {
+			return criteria(fn.apply(new QueryRuleCriteria.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code actions}
+		 */
+		public final BuilderT actions(QueryRuleActions value) {
+			this.actions = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code actions}
+		 */
+		public final BuilderT actions(Function<QueryRuleActions.Builder, ObjectBuilder<QueryRuleActions>> fn) {
+			return this.actions(fn.apply(new QueryRuleActions.Builder()).build());
+		}
+
+		protected abstract BuilderT self();
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -248,12 +255,14 @@ public class QueryRule implements JsonpSerializable {
 	public static final JsonpDeserializer<QueryRule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			QueryRule::setupQueryRuleDeserializer);
 
-	protected static void setupQueryRuleDeserializer(ObjectDeserializer<QueryRule.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupQueryRuleDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::ruleId, JsonpDeserializer.stringDeserializer(), "rule_id");
-		op.add(Builder::type, QueryRuleType._DESERIALIZER, "type");
-		op.add(Builder::criteria, JsonpDeserializer.arrayDeserializer(QueryRuleCriteria._DESERIALIZER), "criteria");
-		op.add(Builder::actions, QueryRuleActions._DESERIALIZER, "actions");
+		op.add(AbstractBuilder::ruleId, JsonpDeserializer.stringDeserializer(), "rule_id");
+		op.add(AbstractBuilder::type, QueryRuleType._DESERIALIZER, "type");
+		op.add(AbstractBuilder::criteria, JsonpDeserializer.arrayDeserializer(QueryRuleCriteria._DESERIALIZER),
+				"criteria");
+		op.add(AbstractBuilder::actions, QueryRuleActions._DESERIALIZER, "actions");
 
 	}
 

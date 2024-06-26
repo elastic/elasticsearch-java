@@ -17,11 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
-
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,47 +35,10 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href=
- *      "../doc-files/api-spec.html#query_ruleset._types.QueryRuleCriteriaType">API
- *      specification</a>
+ * Base interface for {@link SparseVectorQuery} variants.
  */
-@JsonpDeserializable
-public enum QueryRuleCriteriaType implements JsonEnum {
-	Global("global"),
+public interface SparseVectorQueryVariant {
 
-	Exact("exact"),
+	SparseVectorQuery.Kind _sparseVectorQueryKind();
 
-	ExactFuzzy("exact_fuzzy"),
-
-	Prefix("prefix"),
-
-	Suffix("suffix"),
-
-	Contains("contains"),
-
-	Lt("lt"),
-
-	Lte("lte"),
-
-	Gt("gt"),
-
-	Gte("gte"),
-
-	Always("always"),
-
-	;
-
-	private final String jsonValue;
-
-	QueryRuleCriteriaType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
-
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<QueryRuleCriteriaType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			QueryRuleCriteriaType.values());
 }

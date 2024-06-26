@@ -128,6 +128,7 @@ import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
 import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringClient;
 import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesClient;
+import co.elastic.clients.elasticsearch.query_rule.ElasticsearchQueryRuleClient;
 import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetClient;
 import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationClient;
@@ -279,6 +280,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchNodesClient nodes() {
 		return new ElasticsearchNodesClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchQueryRuleClient queryRule() {
+		return new ElasticsearchQueryRuleClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchQueryRulesetClient queryRuleset() {

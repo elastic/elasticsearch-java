@@ -152,7 +152,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		Regexp("regexp"),
 
-		RuleQuery("rule_query"),
+		Rule("rule"),
 
 		Script("script"),
 
@@ -181,6 +181,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		SpanTerm("span_term"),
 
 		SpanWithin("span_within"),
+
+		SparseVector("sparse_vector"),
 
 		Term("term"),
 
@@ -874,20 +876,20 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
-	 * Is this variant instance of kind {@code rule_query}?
+	 * Is this variant instance of kind {@code rule}?
 	 */
-	public boolean isRuleQuery() {
-		return _kind == Kind.RuleQuery;
+	public boolean isRule() {
+		return _kind == Kind.Rule;
 	}
 
 	/**
-	 * Get the {@code rule_query} variant value.
+	 * Get the {@code rule} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code rule_query} kind.
+	 *             if the current variant is not of the {@code rule} kind.
 	 */
-	public RuleQuery ruleQuery() {
-		return TaggedUnionUtils.get(this, Kind.RuleQuery);
+	public RuleQuery rule() {
+		return TaggedUnionUtils.get(this, Kind.Rule);
 	}
 
 	/**
@@ -1129,6 +1131,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public SpanWithinQuery spanWithin() {
 		return TaggedUnionUtils.get(this, Kind.SpanWithin);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sparse_vector}?
+	 */
+	public boolean isSparseVector() {
+		return _kind == Kind.SparseVector;
+	}
+
+	/**
+	 * Get the {@code sparse_vector} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code sparse_vector} kind.
+	 */
+	public SparseVectorQuery sparseVector() {
+		return TaggedUnionUtils.get(this, Kind.SparseVector);
 	}
 
 	/**
@@ -1698,14 +1717,14 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.regexp(fn.apply(new RegexpQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> ruleQuery(RuleQuery v) {
-			this._kind = Kind.RuleQuery;
+		public ObjectBuilder<Query> rule(RuleQuery v) {
+			this._kind = Kind.Rule;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Query> ruleQuery(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
-			return this.ruleQuery(fn.apply(new RuleQuery.Builder()).build());
+		public ObjectBuilder<Query> rule(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
+			return this.rule(fn.apply(new RuleQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> script(ScriptQuery v) {
@@ -1853,6 +1872,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> sparseVector(SparseVectorQuery v) {
+			this._kind = Kind.SparseVector;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> sparseVector(
+				Function<SparseVectorQuery.Builder, ObjectBuilder<SparseVectorQuery>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> term(TermQuery v) {
 			this._kind = Kind.Term;
 			this._value = v;
@@ -1996,7 +2026,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::range, RangeQuery._DESERIALIZER, "range");
 		op.add(Builder::rankFeature, RankFeatureQuery._DESERIALIZER, "rank_feature");
 		op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
-		op.add(Builder::ruleQuery, RuleQuery._DESERIALIZER, "rule_query");
+		op.add(Builder::rule, RuleQuery._DESERIALIZER, "rule");
 		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
 		op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
 		op.add(Builder::semantic, SemanticQuery._DESERIALIZER, "semantic");
@@ -2011,6 +2041,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::spanOr, SpanOrQuery._DESERIALIZER, "span_or");
 		op.add(Builder::spanTerm, SpanTermQuery._DESERIALIZER, "span_term");
 		op.add(Builder::spanWithin, SpanWithinQuery._DESERIALIZER, "span_within");
+		op.add(Builder::sparseVector, SparseVectorQuery._DESERIALIZER, "sparse_vector");
 		op.add(Builder::term, TermQuery._DESERIALIZER, "term");
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
