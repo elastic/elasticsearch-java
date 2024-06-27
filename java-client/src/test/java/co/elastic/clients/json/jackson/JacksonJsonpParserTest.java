@@ -20,9 +20,9 @@
 package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.elasticsearch.core.MsearchResponse;
-import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.testkit.ModelTestCase;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,8 @@ import java.io.StringReader;
 
 public class JacksonJsonpParserTest extends ModelTestCase {
 
-    private static final String json = "{ 'foo': 'fooValue', 'bar': { 'baz': 1}, 'quux': [true] }".replace('\'', '"');
+    private static final String json =
+        "{ 'foo': 'fooValue', 'bar': { 'baz': 1}, 'quux': [true] }".replace('\'', '"');
 
     @Test
     public void testEventStream() {
@@ -93,12 +94,13 @@ public class JacksonJsonpParserTest extends ModelTestCase {
         try {
             assertEquals("fooValue", parser.getString());
             fail();
-        } catch(IllegalStateException e) {
+        } catch (IllegalStateException e) {
             // expected
         }
     }
 
-    @Test void testMultiSearchResponse() {
+    @Test
+    void testMultiSearchResponse() {
         String json =
             "{\n" +
                 "  \"took\" : 1,\n" +
@@ -157,7 +159,8 @@ public class JacksonJsonpParserTest extends ModelTestCase {
                 "}\n";
 
         JsonpMapper mapper = new JacksonJsonpMapper();
-        mapper = mapper.withAttribute("co.elastic.clients:Deserializer:_global.msearch.Response.TDocument", JsonpDeserializer.of(Foo.class));
+        mapper = mapper.withAttribute("co.elastic.clients:Deserializer:_global.msearch.Response.TDocument",
+            JsonpDeserializer.of(Foo.class));
         @SuppressWarnings("unchecked")
         MsearchResponse<Foo> response = fromJson(json, MsearchResponse.class, mapper);
 
