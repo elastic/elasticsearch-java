@@ -45,8 +45,6 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum IndexPrivilege implements JsonEnum {
-	None("none"),
-
 	All("all"),
 
 	AutoConfigure("auto_configure"),
@@ -67,17 +65,13 @@ public enum IndexPrivilege implements JsonEnum {
 
 	Manage("manage"),
 
-	ManageFollowIndex("manage_follow_index"),
-
-	ManageIlm("manage_ilm"),
-
-	ManageLeaderIndex("manage_leader_index"),
+	ManageDataStreamLifecycle("manage_data_stream_lifecycle"),
 
 	Monitor("monitor"),
 
-	Read("read"),
+	None("none"),
 
-	ReadCrossCluster("read_cross_cluster"),
+	Read("read"),
 
 	ViewIndexMetadata("view_index_metadata"),
 

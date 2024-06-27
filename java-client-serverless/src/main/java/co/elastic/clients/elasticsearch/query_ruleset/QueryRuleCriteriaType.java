@@ -66,6 +66,8 @@ public enum QueryRuleCriteriaType implements JsonEnum {
 
 	Gte("gte"),
 
+	Always("always"),
+
 	;
 
 	private final String jsonValue;

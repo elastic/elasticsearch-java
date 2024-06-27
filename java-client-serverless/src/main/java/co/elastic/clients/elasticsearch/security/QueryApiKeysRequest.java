@@ -23,7 +23,8 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,6 +38,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -72,11 +74,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class QueryApiKeysRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, ApiKeyAggregation> aggregations;
+
 	@Nullable
 	private final Integer from;
 
 	@Nullable
-	private final Query query;
+	private final ApiKeyQuery query;
 
 	private final List<FieldValue> searchAfter;
 
@@ -88,21 +92,42 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Boolean withLimitedBy;
 
+	@Nullable
+	private final Boolean withProfileUid;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryApiKeysRequest(Builder builder) {
 
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.from = builder.from;
 		this.query = builder.query;
 		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.size = builder.size;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.withLimitedBy = builder.withLimitedBy;
+		this.withProfileUid = builder.withProfileUid;
 
 	}
 
 	public static QueryApiKeysRequest of(Function<Builder, ObjectBuilder<QueryApiKeysRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Any aggregations to run over the corpus of returned API keys. Aggregations
+	 * and queries work together. Aggregations are computed only on the API keys
+	 * that match the query. This supports only a subset of aggregation types,
+	 * namely: <code>terms</code>, <code>range</code>, <code>date_range</code>,
+	 * <code>missing</code>, <code>cardinality</code>, <code>value_count</code>,
+	 * <code>composite</code>, <code>filter</code>, and <code>filters</code>.
+	 * Additionally, aggregations only run over the same subset of fields that query
+	 * works with.
+	 * <p>
+	 * API name: {@code aggregations}
+	 */
+	public final Map<String, ApiKeyAggregation> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
@@ -118,16 +143,22 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * A query to filter which API keys to return. The query supports a subset of
-	 * query types, including <code>match_all</code>, <code>bool</code>,
-	 * <code>term</code>, <code>terms</code>, <code>ids</code>, <code>prefix</code>,
-	 * <code>wildcard</code>, and <code>range</code>. You can query all public
-	 * information associated with an API key.
+	 * A query to filter which API keys to return. If the query parameter is
+	 * missing, it is equivalent to a <code>match_all</code> query. The query
+	 * supports a subset of query types, including <code>match_all</code>,
+	 * <code>bool</code>, <code>term</code>, <code>terms</code>, <code>match</code>,
+	 * <code>ids</code>, <code>prefix</code>, <code>wildcard</code>,
+	 * <code>exists</code>, <code>range</code>, and
+	 * <code>simple_query_string</code>. You can query the following public
+	 * information associated with an API key: <code>id</code>, <code>type</code>,
+	 * <code>name</code>, <code>creation</code>, <code>expiration</code>,
+	 * <code>invalidated</code>, <code>invalidation</code>, <code>username</code>,
+	 * <code>realm</code>, and <code>metadata</code>.
 	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public final Query query() {
+	public final ApiKeyQuery query() {
 		return this.query;
 	}
 
@@ -176,6 +207,17 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Determines whether to also retrieve the profile uid, for the API key owner
+	 * principal, if it exists.
+	 * <p>
+	 * API name: {@code with_profile_uid}
+	 */
+	@Nullable
+	public final Boolean withProfileUid() {
+		return this.withProfileUid;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -186,6 +228,17 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
+			generator.writeStartObject();
+			for (Map.Entry<String, ApiKeyAggregation> item0 : this.aggregations.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.from != null) {
 			generator.writeKey("from");
 			generator.write(this.from);
@@ -234,10 +287,13 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 			implements
 				ObjectBuilder<QueryApiKeysRequest> {
 		@Nullable
+		private Map<String, ApiKeyAggregation> aggregations;
+
+		@Nullable
 		private Integer from;
 
 		@Nullable
-		private Query query;
+		private ApiKeyQuery query;
 
 		@Nullable
 		private List<FieldValue> searchAfter;
@@ -250,6 +306,66 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Boolean withLimitedBy;
+
+		@Nullable
+		private Boolean withProfileUid;
+
+		/**
+		 * Any aggregations to run over the corpus of returned API keys. Aggregations
+		 * and queries work together. Aggregations are computed only on the API keys
+		 * that match the query. This supports only a subset of aggregation types,
+		 * namely: <code>terms</code>, <code>range</code>, <code>date_range</code>,
+		 * <code>missing</code>, <code>cardinality</code>, <code>value_count</code>,
+		 * <code>composite</code>, <code>filter</code>, and <code>filters</code>.
+		 * Additionally, aggregations only run over the same subset of fields that query
+		 * works with.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(Map<String, ApiKeyAggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
+			return this;
+		}
+
+		/**
+		 * Any aggregations to run over the corpus of returned API keys. Aggregations
+		 * and queries work together. Aggregations are computed only on the API keys
+		 * that match the query. This supports only a subset of aggregation types,
+		 * namely: <code>terms</code>, <code>range</code>, <code>date_range</code>,
+		 * <code>missing</code>, <code>cardinality</code>, <code>value_count</code>,
+		 * <code>composite</code>, <code>filter</code>, and <code>filters</code>.
+		 * Additionally, aggregations only run over the same subset of fields that query
+		 * works with.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, ApiKeyAggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * Any aggregations to run over the corpus of returned API keys. Aggregations
+		 * and queries work together. Aggregations are computed only on the API keys
+		 * that match the query. This supports only a subset of aggregation types,
+		 * namely: <code>terms</code>, <code>range</code>, <code>date_range</code>,
+		 * <code>missing</code>, <code>cardinality</code>, <code>value_count</code>,
+		 * <code>composite</code>, <code>filter</code>, and <code>filters</code>.
+		 * Additionally, aggregations only run over the same subset of fields that query
+		 * works with.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key,
+				Function<ApiKeyAggregation.Builder, ObjectBuilder<ApiKeyAggregation>> fn) {
+			return aggregations(key, fn.apply(new ApiKeyAggregation.Builder()).build());
+		}
 
 		/**
 		 * Starting document offset. By default, you cannot page through more than
@@ -264,30 +380,42 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * A query to filter which API keys to return. The query supports a subset of
-		 * query types, including <code>match_all</code>, <code>bool</code>,
-		 * <code>term</code>, <code>terms</code>, <code>ids</code>, <code>prefix</code>,
-		 * <code>wildcard</code>, and <code>range</code>. You can query all public
-		 * information associated with an API key.
+		 * A query to filter which API keys to return. If the query parameter is
+		 * missing, it is equivalent to a <code>match_all</code> query. The query
+		 * supports a subset of query types, including <code>match_all</code>,
+		 * <code>bool</code>, <code>term</code>, <code>terms</code>, <code>match</code>,
+		 * <code>ids</code>, <code>prefix</code>, <code>wildcard</code>,
+		 * <code>exists</code>, <code>range</code>, and
+		 * <code>simple_query_string</code>. You can query the following public
+		 * information associated with an API key: <code>id</code>, <code>type</code>,
+		 * <code>name</code>, <code>creation</code>, <code>expiration</code>,
+		 * <code>invalidated</code>, <code>invalidation</code>, <code>username</code>,
+		 * <code>realm</code>, and <code>metadata</code>.
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable ApiKeyQuery value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * A query to filter which API keys to return. The query supports a subset of
-		 * query types, including <code>match_all</code>, <code>bool</code>,
-		 * <code>term</code>, <code>terms</code>, <code>ids</code>, <code>prefix</code>,
-		 * <code>wildcard</code>, and <code>range</code>. You can query all public
-		 * information associated with an API key.
+		 * A query to filter which API keys to return. If the query parameter is
+		 * missing, it is equivalent to a <code>match_all</code> query. The query
+		 * supports a subset of query types, including <code>match_all</code>,
+		 * <code>bool</code>, <code>term</code>, <code>terms</code>, <code>match</code>,
+		 * <code>ids</code>, <code>prefix</code>, <code>wildcard</code>,
+		 * <code>exists</code>, <code>range</code>, and
+		 * <code>simple_query_string</code>. You can query the following public
+		 * information associated with an API key: <code>id</code>, <code>type</code>,
+		 * <code>name</code>, <code>creation</code>, <code>expiration</code>,
+		 * <code>invalidated</code>, <code>invalidation</code>, <code>username</code>,
+		 * <code>realm</code>, and <code>metadata</code>.
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder query(Function<ApiKeyQuery.Builder, ObjectBuilder<ApiKeyQuery>> fn) {
+			return this.query(fn.apply(new ApiKeyQuery.Builder()).build());
 		}
 
 		/**
@@ -458,6 +586,17 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 			return this;
 		}
 
+		/**
+		 * Determines whether to also retrieve the profile uid, for the API key owner
+		 * principal, if it exists.
+		 * <p>
+		 * API name: {@code with_profile_uid}
+		 */
+		public final Builder withProfileUid(@Nullable Boolean value) {
+			this.withProfileUid = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -486,8 +625,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupQueryApiKeysRequestDeserializer(ObjectDeserializer<QueryApiKeysRequest.Builder> op) {
 
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(ApiKeyAggregation._DESERIALIZER),
+				"aggregations", "aggs");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
-		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::query, ApiKeyQuery._DESERIALIZER, "query");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
@@ -522,6 +663,10 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("typed_keys", "true");
+				if (request.withProfileUid != null) {
+					params.put("with_profile_uid", String.valueOf(request.withProfileUid));
+				}
 				if (request.withLimitedBy != null) {
 					params.put("with_limited_by", String.valueOf(request.withLimitedBy));
 				}

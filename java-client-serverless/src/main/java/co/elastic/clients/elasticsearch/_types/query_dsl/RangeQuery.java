@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -56,7 +58,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RangeQuery extends RangeQueryBase implements QueryVariant {
+public class RangeQuery extends RangeQueryBase implements ApiKeyQueryVariant, QueryVariant {
 	// Single key dictionary
 	private final String field;
 
@@ -103,6 +105,14 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 
 	public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * ApiKeyQuery variant kind.
+	 */
+	@Override
+	public ApiKeyQuery.Kind _apiKeyQueryKind() {
+		return ApiKeyQuery.Kind.Range;
 	}
 
 	/**

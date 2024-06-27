@@ -59,12 +59,16 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	@Nullable
 	private final Boolean enabled;
 
+	@Nullable
+	private final Boolean subobjects;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ObjectProperty(Builder builder) {
 		super(builder);
 
 		this.enabled = builder.enabled;
+		this.subobjects = builder.subobjects;
 
 	}
 
@@ -88,6 +92,14 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		return this.enabled;
 	}
 
+	/**
+	 * API name: {@code subobjects}
+	 */
+	@Nullable
+	public final Boolean subobjects() {
+		return this.subobjects;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "object");
@@ -95,6 +107,11 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		if (this.enabled != null) {
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
+
+		}
+		if (this.subobjects != null) {
+			generator.writeKey("subobjects");
+			generator.write(this.subobjects);
 
 		}
 
@@ -112,11 +129,22 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		@Nullable
 		private Boolean enabled;
 
+		@Nullable
+		private Boolean subobjects;
+
 		/**
 		 * API name: {@code enabled}
 		 */
 		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code subobjects}
+		 */
+		public final Builder subobjects(@Nullable Boolean value) {
+			this.subobjects = value;
 			return this;
 		}
 
@@ -149,6 +177,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::subobjects, JsonpDeserializer.booleanDeserializer(), "subobjects");
 
 		op.ignore("type");
 	}

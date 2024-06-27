@@ -417,7 +417,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<GetResult<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createGetResultDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get.GetResult.TDocument")));
 
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupGetResultDeserializer(
 			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

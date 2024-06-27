@@ -71,10 +71,12 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.delete_component_template
 
 	/**
-	 * Deletes a component template
+	 * Deletes component templates. Component templates are building blocks for
+	 * constructing index templates that specify index mappings, settings, and
+	 * aliases.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -87,13 +89,15 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Deletes a component template
+	 * Deletes component templates. Component templates are building blocks for
+	 * constructing index templates that specify index mappings, settings, and
+	 * aliases.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -108,7 +112,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Returns information about whether a particular component template exist
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -126,7 +130,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -138,10 +142,10 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.get_component_template
 
 	/**
-	 * Returns one or more component templates
+	 * Retrieves information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -153,13 +157,13 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Returns one or more component templates
+	 * Retrieves information about component templates.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -169,10 +173,10 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Returns one or more component templates
+	 * Retrieves information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -187,7 +191,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Returns different information about the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-info.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/cluster-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -205,7 +209,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/cluster-info.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/cluster-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -217,10 +221,30 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.put_component_template
 
 	/**
-	 * Creates or updates a component template
+	 * Creates or updates a component template. Component templates are building
+	 * blocks for constructing index templates that specify index mappings,
+	 * settings, and aliases.
+	 * <p>
+	 * An index template can be composed of multiple component templates. To use a
+	 * component template, specify it in an index template’s
+	 * <code>composed_of</code> list. Component templates are only applied to new
+	 * data streams and indices as part of a matching index template.
+	 * <p>
+	 * Settings and mappings specified directly in the index template or the create
+	 * index request override any settings or mappings specified in a component
+	 * template.
+	 * <p>
+	 * Component templates are only used during index creation. For data streams,
+	 * this includes data stream creation and the creation of a stream’s backing
+	 * indices. Changes to component templates do not affect existing indices,
+	 * including a stream’s backing indices.
+	 * <p>
+	 * You can use C-style <code>/* *\/</code> block comments in component
+	 * templates. You can include comments anywhere in the request body except
+	 * before the opening curly bracket.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -232,13 +256,33 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Creates or updates a component template
+	 * Creates or updates a component template. Component templates are building
+	 * blocks for constructing index templates that specify index mappings,
+	 * settings, and aliases.
+	 * <p>
+	 * An index template can be composed of multiple component templates. To use a
+	 * component template, specify it in an index template’s
+	 * <code>composed_of</code> list. Component templates are only applied to new
+	 * data streams and indices as part of a matching index template.
+	 * <p>
+	 * Settings and mappings specified directly in the index template or the create
+	 * index request override any settings or mappings specified in a component
+	 * template.
+	 * <p>
+	 * Component templates are only used during index creation. For data streams,
+	 * this includes data stream creation and the creation of a stream’s backing
+	 * indices. Changes to component templates do not affect existing indices,
+	 * including a stream’s backing indices.
+	 * <p>
+	 * You can use C-style <code>/* *\/</code> block comments in component
+	 * templates. You can include comments anywhere in the request body except
+	 * before the opening curly bracket.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

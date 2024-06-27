@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregate;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregateVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +54,10 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> implements AggregateVariant {
+public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket>
+		implements
+			AggregateVariant,
+			ApiKeyAggregateVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private FiltersAggregate(Builder builder) {
@@ -70,6 +75,14 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> im
 	@Override
 	public Aggregate.Kind _aggregateKind() {
 		return Aggregate.Kind.Filters;
+	}
+
+	/**
+	 * ApiKeyAggregate variant kind.
+	 */
+	@Override
+	public ApiKeyAggregate.Kind _apiKeyAggregateKind() {
+		return ApiKeyAggregate.Kind.Filters;
 	}
 
 	// ---------------------------------------------------------------------------------------------

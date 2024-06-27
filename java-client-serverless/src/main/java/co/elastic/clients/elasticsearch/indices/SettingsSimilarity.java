@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,11 +29,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.OpenTaggedUnion;
+import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -63,7 +61,10 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Kind, Object>, JsonpSerializable {
+public class SettingsSimilarity
+		implements
+			TaggedUnion<SettingsSimilarity.Kind, SettingsSimilarityVariant>,
+			JsonpSerializable {
 
 	/**
 	 * {@link SettingsSimilarity} variant kinds.
@@ -74,22 +75,21 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 	 */
 
 	public enum Kind implements JsonEnum {
-		Bm25("bm25"),
+		Bm25("BM25"),
 
-		Dfi("dfi"),
+		Boolean("boolean"),
 
-		Dfr("dfr"),
+		Dfi("DFI"),
 
-		Ib("ib"),
+		Dfr("DFR"),
 
-		Lmd("lmd"),
+		Ib("IB"),
 
-		Lmj("lmj"),
+		LMDirichlet("LMDirichlet"),
 
-		ScriptedTfidf("scripted_tfidf"),
+		LMJelinekMercer("LMJelinekMercer"),
 
-		/** A custom {@code SettingsSimilarity} defined by a plugin */
-		_Custom(null)
+		Scripted("scripted"),
 
 		;
 
@@ -106,7 +106,7 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 	}
 
 	private final Kind _kind;
-	private final Object _value;
+	private final SettingsSimilarityVariant _value;
 
 	@Override
 	public final Kind _kind() {
@@ -114,7 +114,7 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 	}
 
 	@Override
-	public final Object _get() {
+	public final SettingsSimilarityVariant _get() {
 		return _value;
 	}
 
@@ -122,7 +122,6 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 
 		this._kind = ApiTypeHelper.requireNonNull(value._settingsSimilarityKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-		this._customKind = null;
 
 	}
 
@@ -130,7 +129,6 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-		this._customKind = builder._customKind;
 
 	}
 
@@ -139,165 +137,146 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 	}
 
 	/**
-	 * Is this variant instance of kind {@code bm25}?
+	 * Is this variant instance of kind {@code BM25}?
 	 */
 	public boolean isBm25() {
 		return _kind == Kind.Bm25;
 	}
 
 	/**
-	 * Get the {@code bm25} variant value.
+	 * Get the {@code BM25} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code bm25} kind.
+	 *             if the current variant is not of the {@code BM25} kind.
 	 */
 	public SettingsSimilarityBm25 bm25() {
 		return TaggedUnionUtils.get(this, Kind.Bm25);
 	}
 
 	/**
-	 * Is this variant instance of kind {@code dfi}?
+	 * Is this variant instance of kind {@code boolean}?
+	 */
+	public boolean isBoolean() {
+		return _kind == Kind.Boolean;
+	}
+
+	/**
+	 * Get the {@code boolean} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code boolean} kind.
+	 */
+	public SettingsSimilarityBoolean boolean_() {
+		return TaggedUnionUtils.get(this, Kind.Boolean);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code DFI}?
 	 */
 	public boolean isDfi() {
 		return _kind == Kind.Dfi;
 	}
 
 	/**
-	 * Get the {@code dfi} variant value.
+	 * Get the {@code DFI} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code dfi} kind.
+	 *             if the current variant is not of the {@code DFI} kind.
 	 */
 	public SettingsSimilarityDfi dfi() {
 		return TaggedUnionUtils.get(this, Kind.Dfi);
 	}
 
 	/**
-	 * Is this variant instance of kind {@code dfr}?
+	 * Is this variant instance of kind {@code DFR}?
 	 */
 	public boolean isDfr() {
 		return _kind == Kind.Dfr;
 	}
 
 	/**
-	 * Get the {@code dfr} variant value.
+	 * Get the {@code DFR} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code dfr} kind.
+	 *             if the current variant is not of the {@code DFR} kind.
 	 */
 	public SettingsSimilarityDfr dfr() {
 		return TaggedUnionUtils.get(this, Kind.Dfr);
 	}
 
 	/**
-	 * Is this variant instance of kind {@code ib}?
+	 * Is this variant instance of kind {@code IB}?
 	 */
 	public boolean isIb() {
 		return _kind == Kind.Ib;
 	}
 
 	/**
-	 * Get the {@code ib} variant value.
+	 * Get the {@code IB} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code ib} kind.
+	 *             if the current variant is not of the {@code IB} kind.
 	 */
 	public SettingsSimilarityIb ib() {
 		return TaggedUnionUtils.get(this, Kind.Ib);
 	}
 
 	/**
-	 * Is this variant instance of kind {@code lmd}?
+	 * Is this variant instance of kind {@code LMDirichlet}?
 	 */
-	public boolean isLmd() {
-		return _kind == Kind.Lmd;
+	public boolean isLMDirichlet() {
+		return _kind == Kind.LMDirichlet;
 	}
 
 	/**
-	 * Get the {@code lmd} variant value.
+	 * Get the {@code LMDirichlet} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code lmd} kind.
+	 *             if the current variant is not of the {@code LMDirichlet} kind.
 	 */
-	public SettingsSimilarityLmd lmd() {
-		return TaggedUnionUtils.get(this, Kind.Lmd);
+	public SettingsSimilarityLmd lmdirichlet() {
+		return TaggedUnionUtils.get(this, Kind.LMDirichlet);
 	}
 
 	/**
-	 * Is this variant instance of kind {@code lmj}?
+	 * Is this variant instance of kind {@code LMJelinekMercer}?
 	 */
-	public boolean isLmj() {
-		return _kind == Kind.Lmj;
+	public boolean isLMJelinekMercer() {
+		return _kind == Kind.LMJelinekMercer;
 	}
 
 	/**
-	 * Get the {@code lmj} variant value.
+	 * Get the {@code LMJelinekMercer} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code lmj} kind.
+	 *             if the current variant is not of the {@code LMJelinekMercer}
+	 *             kind.
 	 */
-	public SettingsSimilarityLmj lmj() {
-		return TaggedUnionUtils.get(this, Kind.Lmj);
+	public SettingsSimilarityLmj lmjelinekmercer() {
+		return TaggedUnionUtils.get(this, Kind.LMJelinekMercer);
 	}
 
 	/**
-	 * Is this variant instance of kind {@code scripted_tfidf}?
+	 * Is this variant instance of kind {@code scripted}?
 	 */
-	public boolean isScriptedTfidf() {
-		return _kind == Kind.ScriptedTfidf;
+	public boolean isScripted() {
+		return _kind == Kind.Scripted;
 	}
 
 	/**
-	 * Get the {@code scripted_tfidf} variant value.
+	 * Get the {@code scripted} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code scripted_tfidf} kind.
+	 *             if the current variant is not of the {@code scripted} kind.
 	 */
-	public SettingsSimilarityScriptedTfidf scriptedTfidf() {
-		return TaggedUnionUtils.get(this, Kind.ScriptedTfidf);
-	}
-
-	@Nullable
-	private final String _customKind;
-
-	/**
-	 * Is this a custom {@code SettingsSimilarity} defined by a plugin?
-	 */
-	public boolean _isCustom() {
-		return _kind == Kind._Custom;
-	}
-
-	/**
-	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
-	 * (plugin-defined variant).
-	 */
-	@Nullable
-	public final String _customKind() {
-		return _customKind;
-	}
-
-	/**
-	 * Get the custom plugin-defined variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not {@link Kind#_Custom}.
-	 */
-	public JsonData _custom() {
-		return TaggedUnionUtils.get(this, Kind._Custom);
+	public SettingsSimilarityScripted scripted() {
+		return TaggedUnionUtils.get(this, Kind.Scripted);
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeStartObject();
-
-		generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		}
-
-		generator.writeEnd();
+		mapper.serialize(_value, generator);
 
 	}
 
@@ -310,8 +289,7 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 			implements
 				ObjectBuilder<SettingsSimilarity> {
 		private Kind _kind;
-		private Object _value;
-		private String _customKind;
+		private SettingsSimilarityVariant _value;
 
 		@Override
 		protected Builder self() {
@@ -326,6 +304,17 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 		public ObjectBuilder<SettingsSimilarity> bm25(
 				Function<SettingsSimilarityBm25.Builder, ObjectBuilder<SettingsSimilarityBm25>> fn) {
 			return this.bm25(fn.apply(new SettingsSimilarityBm25.Builder()).build());
+		}
+
+		public ObjectBuilder<SettingsSimilarity> boolean_(SettingsSimilarityBoolean v) {
+			this._kind = Kind.Boolean;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SettingsSimilarity> boolean_(
+				Function<SettingsSimilarityBoolean.Builder, ObjectBuilder<SettingsSimilarityBoolean>> fn) {
+			return this.boolean_(fn.apply(new SettingsSimilarityBoolean.Builder()).build());
 		}
 
 		public ObjectBuilder<SettingsSimilarity> dfi(SettingsSimilarityDfi v) {
@@ -361,53 +350,37 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 			return this.ib(fn.apply(new SettingsSimilarityIb.Builder()).build());
 		}
 
-		public ObjectBuilder<SettingsSimilarity> lmd(SettingsSimilarityLmd v) {
-			this._kind = Kind.Lmd;
+		public ObjectBuilder<SettingsSimilarity> lmdirichlet(SettingsSimilarityLmd v) {
+			this._kind = Kind.LMDirichlet;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<SettingsSimilarity> lmd(
+		public ObjectBuilder<SettingsSimilarity> lmdirichlet(
 				Function<SettingsSimilarityLmd.Builder, ObjectBuilder<SettingsSimilarityLmd>> fn) {
-			return this.lmd(fn.apply(new SettingsSimilarityLmd.Builder()).build());
+			return this.lmdirichlet(fn.apply(new SettingsSimilarityLmd.Builder()).build());
 		}
 
-		public ObjectBuilder<SettingsSimilarity> lmj(SettingsSimilarityLmj v) {
-			this._kind = Kind.Lmj;
+		public ObjectBuilder<SettingsSimilarity> lmjelinekmercer(SettingsSimilarityLmj v) {
+			this._kind = Kind.LMJelinekMercer;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<SettingsSimilarity> lmj(
+		public ObjectBuilder<SettingsSimilarity> lmjelinekmercer(
 				Function<SettingsSimilarityLmj.Builder, ObjectBuilder<SettingsSimilarityLmj>> fn) {
-			return this.lmj(fn.apply(new SettingsSimilarityLmj.Builder()).build());
+			return this.lmjelinekmercer(fn.apply(new SettingsSimilarityLmj.Builder()).build());
 		}
 
-		public ObjectBuilder<SettingsSimilarity> scriptedTfidf(SettingsSimilarityScriptedTfidf v) {
-			this._kind = Kind.ScriptedTfidf;
+		public ObjectBuilder<SettingsSimilarity> scripted(SettingsSimilarityScripted v) {
+			this._kind = Kind.Scripted;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<SettingsSimilarity> scriptedTfidf(
-				Function<SettingsSimilarityScriptedTfidf.Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
-			return this.scriptedTfidf(fn.apply(new SettingsSimilarityScriptedTfidf.Builder()).build());
-		}
-
-		/**
-		 * Define this {@code SettingsSimilarity} as a plugin-defined variant.
-		 *
-		 * @param name
-		 *            the plugin-defined identifier
-		 * @param data
-		 *            the data for this custom {@code SettingsSimilarity}. It is
-		 *            converted internally to {@link JsonData}.
-		 */
-		public ObjectBuilder<SettingsSimilarity> _custom(String name, Object data) {
-			this._kind = Kind._Custom;
-			this._customKind = name;
-			this._value = JsonData.of(data);
-			return this;
+		public ObjectBuilder<SettingsSimilarity> scripted(
+				Function<SettingsSimilarityScripted.Builder, ObjectBuilder<SettingsSimilarityScripted>> fn) {
+			return this.scripted(fn.apply(new SettingsSimilarityScripted.Builder()).build());
 		}
 
 		public SettingsSimilarity build() {
@@ -419,18 +392,16 @@ public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Ki
 
 	protected static void setupSettingsSimilarityDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::bm25, SettingsSimilarityBm25._DESERIALIZER, "bm25");
-		op.add(Builder::dfi, SettingsSimilarityDfi._DESERIALIZER, "dfi");
-		op.add(Builder::dfr, SettingsSimilarityDfr._DESERIALIZER, "dfr");
-		op.add(Builder::ib, SettingsSimilarityIb._DESERIALIZER, "ib");
-		op.add(Builder::lmd, SettingsSimilarityLmd._DESERIALIZER, "lmd");
-		op.add(Builder::lmj, SettingsSimilarityLmj._DESERIALIZER, "lmj");
-		op.add(Builder::scriptedTfidf, SettingsSimilarityScriptedTfidf._DESERIALIZER, "scripted_tfidf");
+		op.add(Builder::bm25, SettingsSimilarityBm25._DESERIALIZER, "BM25");
+		op.add(Builder::boolean_, SettingsSimilarityBoolean._DESERIALIZER, "boolean");
+		op.add(Builder::dfi, SettingsSimilarityDfi._DESERIALIZER, "DFI");
+		op.add(Builder::dfr, SettingsSimilarityDfr._DESERIALIZER, "DFR");
+		op.add(Builder::ib, SettingsSimilarityIb._DESERIALIZER, "IB");
+		op.add(Builder::lmdirichlet, SettingsSimilarityLmd._DESERIALIZER, "LMDirichlet");
+		op.add(Builder::lmjelinekmercer, SettingsSimilarityLmj._DESERIALIZER, "LMJelinekMercer");
+		op.add(Builder::scripted, SettingsSimilarityScripted._DESERIALIZER, "scripted");
 
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
-			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
-		});
+		op.setTypeProperty("type", null);
 
 	}
 

@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpSerializable;
+
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------------------
@@ -37,7 +39,7 @@ package co.elastic.clients.elasticsearch.indices;
 /**
  * Base interface for {@link SettingsSimilarity} variants.
  */
-public interface SettingsSimilarityVariant {
+public interface SettingsSimilarityVariant extends JsonpSerializable {
 
 	SettingsSimilarity.Kind _settingsSimilarityKind();
 

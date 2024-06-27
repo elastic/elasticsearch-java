@@ -89,6 +89,9 @@ public class GetApiKeyRequest extends RequestBase {
 	@Nullable
 	private final Boolean withLimitedBy;
 
+	@Nullable
+	private final Boolean withProfileUid;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetApiKeyRequest(Builder builder) {
@@ -100,6 +103,7 @@ public class GetApiKeyRequest extends RequestBase {
 		this.realmName = builder.realmName;
 		this.username = builder.username;
 		this.withLimitedBy = builder.withLimitedBy;
+		this.withProfileUid = builder.withProfileUid;
 
 	}
 
@@ -194,6 +198,17 @@ public class GetApiKeyRequest extends RequestBase {
 		return this.withLimitedBy;
 	}
 
+	/**
+	 * Determines whether to also retrieve the profile uid, for the API key owner
+	 * principal, if it exists.
+	 * <p>
+	 * API name: {@code with_profile_uid}
+	 */
+	@Nullable
+	public final Boolean withProfileUid() {
+		return this.withProfileUid;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -223,6 +238,9 @@ public class GetApiKeyRequest extends RequestBase {
 
 		@Nullable
 		private Boolean withLimitedBy;
+
+		@Nullable
+		private Boolean withProfileUid;
 
 		/**
 		 * A boolean flag that can be used to query API keys that are currently active.
@@ -311,6 +329,17 @@ public class GetApiKeyRequest extends RequestBase {
 			return this;
 		}
 
+		/**
+		 * Determines whether to also retrieve the profile uid, for the API key owner
+		 * principal, if it exists.
+		 * <p>
+		 * API name: {@code with_profile_uid}
+		 */
+		public final Builder withProfileUid(@Nullable Boolean value) {
+			this.withProfileUid = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -371,6 +400,9 @@ public class GetApiKeyRequest extends RequestBase {
 				}
 				if (request.realmName != null) {
 					params.put("realm_name", request.realmName);
+				}
+				if (request.withProfileUid != null) {
+					params.put("with_profile_uid", String.valueOf(request.withProfileUid));
 				}
 				if (request.username != null) {
 					params.put("username", request.username);

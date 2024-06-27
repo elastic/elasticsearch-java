@@ -59,6 +59,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class DenseVectorProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
+	private final String elementType;
+
+	@Nullable
 	private final Integer dims;
 
 	@Nullable
@@ -75,6 +78,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	private DenseVectorProperty(Builder builder) {
 		super(builder);
 
+		this.elementType = builder.elementType;
 		this.dims = builder.dims;
 		this.similarity = builder.similarity;
 		this.index = builder.index;
@@ -92,6 +96,14 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	@Override
 	public Property.Kind _propertyKind() {
 		return Property.Kind.DenseVector;
+	}
+
+	/**
+	 * API name: {@code element_type}
+	 */
+	@Nullable
+	public final String elementType() {
+		return this.elementType;
 	}
 
 	/**
@@ -130,6 +142,11 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 
 		generator.write("type", "dense_vector");
 		super.serializeInternal(generator, mapper);
+		if (this.elementType != null) {
+			generator.writeKey("element_type");
+			generator.write(this.elementType);
+
+		}
 		if (this.dims != null) {
 			generator.writeKey("dims");
 			generator.write(this.dims);
@@ -163,6 +180,9 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 			implements
 				ObjectBuilder<DenseVectorProperty> {
 		@Nullable
+		private String elementType;
+
+		@Nullable
 		private Integer dims;
 
 		@Nullable
@@ -173,6 +193,14 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 
 		@Nullable
 		private DenseVectorIndexOptions indexOptions;
+
+		/**
+		 * API name: {@code element_type}
+		 */
+		public final Builder elementType(@Nullable String value) {
+			this.elementType = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code dims}
@@ -242,6 +270,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 
 	protected static void setupDenseVectorPropertyDeserializer(ObjectDeserializer<DenseVectorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
+		op.add(Builder::elementType, JsonpDeserializer.stringDeserializer(), "element_type");
 		op.add(Builder::dims, JsonpDeserializer.integerDeserializer(), "dims");
 		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");

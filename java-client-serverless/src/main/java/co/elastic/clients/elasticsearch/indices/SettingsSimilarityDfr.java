@@ -122,6 +122,8 @@ public class SettingsSimilarityDfr implements SettingsSimilarityVariant, JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.write("type", "DFR");
+
 		generator.writeKey("after_effect");
 		this.afterEffect.serialize(generator, mapper);
 		generator.writeKey("basic_model");
@@ -207,6 +209,7 @@ public class SettingsSimilarityDfr implements SettingsSimilarityVariant, JsonpSe
 		op.add(Builder::basicModel, DFRBasicModel._DESERIALIZER, "basic_model");
 		op.add(Builder::normalization, Normalization._DESERIALIZER, "normalization");
 
+		op.ignore("type");
 	}
 
 }

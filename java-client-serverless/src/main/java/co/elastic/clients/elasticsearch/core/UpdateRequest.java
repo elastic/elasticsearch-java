@@ -765,8 +765,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 */
 	public static final JsonpDeserializer<UpdateRequest<Object, Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createUpdateRequestDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument"),
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TPartialDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.Request.TDocument"),
+					new NamedDeserializer<>(
+							"co.elastic.clients:Deserializer:_global.update.Request.TPartialDocument")));
 
 	protected static <TDocument, TPartialDocument> void setupUpdateRequestDeserializer(
 			ObjectDeserializer<UpdateRequest.Builder<TDocument, TPartialDocument>> op,

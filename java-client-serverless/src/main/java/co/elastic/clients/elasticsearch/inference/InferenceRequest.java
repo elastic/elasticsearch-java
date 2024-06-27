@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,7 +35,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,10 +72,16 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> input;
 
 	@Nullable
+	private final String query;
+
+	@Nullable
 	private final JsonData taskSettings;
 
 	@Nullable
 	private final TaskType taskType;
+
+	@Nullable
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,8 +89,10 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.query = builder.query;
 		this.taskSettings = builder.taskSettings;
 		this.taskType = builder.taskType;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -102,12 +110,22 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Text input to the model. Either a string or an array of strings.
+	 * Required - Inference input. Either a string or an array of strings.
 	 * <p>
 	 * API name: {@code input}
 	 */
 	public final List<String> input() {
 		return this.input;
+	}
+
+	/**
+	 * Query input, required for rerank task. Not required for other tasks.
+	 * <p>
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final String query() {
+		return this.query;
 	}
 
 	/**
@@ -131,6 +149,16 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies the amount of time to wait for the inference request to complete.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -149,6 +177,11 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.query != null) {
+			generator.writeKey("query");
+			generator.write(this.query);
 
 		}
 		if (this.taskSettings != null) {
@@ -173,10 +206,16 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		private List<String> input;
 
 		@Nullable
+		private String query;
+
+		@Nullable
 		private JsonData taskSettings;
 
 		@Nullable
 		private TaskType taskType;
+
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Required - The inference Id
@@ -189,7 +228,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Text input to the model. Either a string or an array of strings.
+		 * Required - Inference input. Either a string or an array of strings.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -201,7 +240,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Text input to the model. Either a string or an array of strings.
+		 * Required - Inference input. Either a string or an array of strings.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -209,6 +248,16 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder input(String value, String... values) {
 			this.input = _listAdd(this.input, value, values);
+			return this;
+		}
+
+		/**
+		 * Query input, required for rerank task. Not required for other tasks.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable String value) {
+			this.query = value;
 			return this;
 		}
 
@@ -230,6 +279,25 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		public final Builder taskType(@Nullable TaskType value) {
 			this.taskType = value;
 			return this;
+		}
+
+		/**
+		 * Specifies the amount of time to wait for the inference request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the amount of time to wait for the inference request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -261,6 +329,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupInferenceRequestDeserializer(ObjectDeserializer<InferenceRequest.Builder> op) {
 
 		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
 
 	}
@@ -334,7 +403,11 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, InferenceResponse._DESERIALIZER);
 }

@@ -22,9 +22,10 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.FieldValue;
-import co.elastic.clients.elasticsearch._types.KnnQuery;
+import co.elastic.clients.elasticsearch._types.KnnSearch;
 import co.elastic.clients.elasticsearch._types.Rank;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Retriever;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
@@ -154,7 +155,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<Map<String, Double>> indicesBoost;
 
-	private final List<KnnQuery> knn;
+	private final List<KnnSearch> knn;
 
 	@Nullable
 	private final Boolean lenient;
@@ -196,6 +197,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean requestCache;
 
 	private final List<Rescore> rescore;
+
+	@Nullable
+	private final Retriever retriever;
 
 	@Nullable
 	private final String routing;
@@ -286,6 +290,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.rank = builder.rank;
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+		this.retriever = builder.retriever;
 		this.routing = builder.routing;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
@@ -561,7 +566,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code knn}
 	 */
-	public final List<KnnQuery> knn() {
+	public final List<KnnSearch> knn() {
 		return this.knn;
 	}
 
@@ -741,6 +746,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<Rescore> rescore() {
 		return this.rescore;
+	}
+
+	/**
+	 * A retriever is a specification to describe top documents returned from a
+	 * search. A retriever replaces other elements of the search API that also
+	 * return top documents such as query and knn.
+	 * <p>
+	 * API name: {@code retriever}
+	 */
+	@Nullable
+	public final Retriever retriever() {
+		return this.retriever;
 	}
 
 	/**
@@ -1045,7 +1062,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.knn)) {
 			generator.writeKey("knn");
 			generator.writeStartArray();
-			for (KnnQuery item0 : this.knn) {
+			for (KnnSearch item0 : this.knn) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -1090,6 +1107,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.retriever != null) {
+			generator.writeKey("retriever");
+			this.retriever.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
@@ -1161,12 +1183,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
-			generator.writeStartArray();
-			for (String item0 : this.storedFields) {
-				generator.write(item0);
+			if (this.storedFields.size() == 1) {
+				String singleItem = this.storedFields.get(0);
+				generator.write(singleItem);
 
+			} else {
+				generator.writeStartArray();
+				for (String item0 : this.storedFields) {
+					generator.write(item0);
+
+				}
+				generator.writeEnd();
 			}
-			generator.writeEnd();
 
 		}
 		if (this.suggest != null) {
@@ -1276,7 +1304,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
-		private List<KnnQuery> knn;
+		private List<KnnSearch> knn;
 
 		@Nullable
 		private Boolean lenient;
@@ -1319,6 +1347,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<Rescore> rescore;
+
+		@Nullable
+		private Retriever retriever;
 
 		@Nullable
 		private String routing;
@@ -1806,7 +1837,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>knn</code>.
 		 */
-		public final Builder knn(List<KnnQuery> list) {
+		public final Builder knn(List<KnnSearch> list) {
 			this.knn = _listAddAll(this.knn, list);
 			return this;
 		}
@@ -1818,7 +1849,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>knn</code>.
 		 */
-		public final Builder knn(KnnQuery value, KnnQuery... values) {
+		public final Builder knn(KnnSearch value, KnnSearch... values) {
 			this.knn = _listAdd(this.knn, value, values);
 			return this;
 		}
@@ -1830,8 +1861,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>knn</code> using a builder lambda.
 		 */
-		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
-			return knn(fn.apply(new KnnQuery.Builder()).build());
+		public final Builder knn(Function<KnnSearch.Builder, ObjectBuilder<KnnSearch>> fn) {
+			return knn(fn.apply(new KnnSearch.Builder()).build());
 		}
 
 		/**
@@ -2079,6 +2110,29 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
 			return rescore(fn.apply(new Rescore.Builder()).build());
+		}
+
+		/**
+		 * A retriever is a specification to describe top documents returned from a
+		 * search. A retriever replaces other elements of the search API that also
+		 * return top documents such as query and knn.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(@Nullable Retriever value) {
+			this.retriever = value;
+			return this;
+		}
+
+		/**
+		 * A retriever is a specification to describe top documents returned from a
+		 * search. A retriever replaces other elements of the search API that also
+		 * return top documents such as query and knn.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(Function<Retriever.Builder, ObjectBuilder<Retriever>> fn) {
+			return this.retriever(fn.apply(new Retriever.Builder()).build());
 		}
 
 		/**
@@ -2588,7 +2642,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
-		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnQuery._DESERIALIZER), "knn");
+		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnSearch._DESERIALIZER), "knn");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
@@ -2596,6 +2650,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rank, Rank._DESERIALIZER, "rank");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
+		op.add(Builder::retriever, Retriever._DESERIALIZER, "retriever");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),

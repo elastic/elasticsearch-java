@@ -68,11 +68,11 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: graph.explore
 
 	/**
-	 * Explore extracted and summarized information about the documents and terms in
-	 * an index.
+	 * Extracts and summarizes information about the documents and terms in an
+	 * Elasticsearch data stream or index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/graph-explore-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/graph-explore-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -84,14 +84,14 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Explore extracted and summarized information about the documents and terms in
-	 * an index.
+	 * Extracts and summarizes information about the documents and terms in an
+	 * Elasticsearch data stream or index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExploreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/graph-explore-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/graph-explore-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

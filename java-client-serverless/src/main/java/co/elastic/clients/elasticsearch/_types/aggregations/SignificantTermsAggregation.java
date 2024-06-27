@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -59,7 +61,10 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
+public class SignificantTermsAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			JsonpSerializable {
 	@Nullable
 	private final Query backgroundFilter;
 
@@ -108,7 +113,6 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	// ---------------------------------------------------------------------------------------------
 
 	private SignificantTermsAggregation(Builder builder) {
-		super(builder);
 
 		this.backgroundFilter = builder.backgroundFilter;
 		this.chiSquare = builder.chiSquare;
@@ -302,9 +306,17 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		return this.size;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.backgroundFilter != null) {
 			generator.writeKey("background_filter");
 			this.backgroundFilter.serialize(generator, mapper);
@@ -380,6 +392,11 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -715,7 +732,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 
 	protected static void setupSignificantTermsAggregationDeserializer(
 			ObjectDeserializer<SignificantTermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::backgroundFilter, Query._DESERIALIZER, "background_filter");
 		op.add(Builder::chiSquare, ChiSquareHeuristic._DESERIALIZER, "chi_square");
 		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");

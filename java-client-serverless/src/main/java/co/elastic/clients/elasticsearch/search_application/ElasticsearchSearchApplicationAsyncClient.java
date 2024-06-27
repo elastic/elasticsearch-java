@@ -139,7 +139,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.get
 
 	/**
-	 * Returns the details about a search application.
+	 * Returns the details about a search application
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-search-application.html">Documentation
@@ -154,7 +154,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Returns the details about a search application.
+	 * Returns the details about a search application
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -330,7 +330,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.search
 
 	/**
-	 * Perform a search against a search application
+	 * Perform a search against a search application.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
@@ -342,13 +342,14 @@ public class ElasticsearchSearchApplicationAsyncClient
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchApplicationSearchRequest, SearchApplicationSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchApplicationSearchRequest, SearchApplicationSearchResponse<TDocument>, ErrorResponse>) SearchApplicationSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:search_application.search.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:search_application.search.Response.TDocument",
+				getDeserializer(tDocumentClass));
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Perform a search against a search application
+	 * Perform a search against a search application.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -365,7 +366,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Perform a search against a search application
+	 * Perform a search against a search application.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
@@ -377,13 +378,14 @@ public class ElasticsearchSearchApplicationAsyncClient
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchApplicationSearchRequest, SearchApplicationSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchApplicationSearchRequest, SearchApplicationSearchResponse<TDocument>, ErrorResponse>) SearchApplicationSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:search_application.search.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:search_application.search.Response.TDocument",
+				getDeserializer(tDocumentType));
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Perform a search against a search application
+	 * Perform a search against a search application.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

@@ -33,9 +33,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -65,14 +67,14 @@ import javax.annotation.Nullable;
 public class PutCalendarJobRequest extends RequestBase {
 	private final String calendarId;
 
-	private final String jobId;
+	private final List<String> jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PutCalendarJobRequest(Builder builder) {
 
 		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.unmodifiableRequired(builder.jobId, this, "jobId");
 
 	}
 
@@ -95,7 +97,7 @@ public class PutCalendarJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public final String jobId() {
+	public final List<String> jobId() {
 		return this.jobId;
 	}
 
@@ -110,7 +112,7 @@ public class PutCalendarJobRequest extends RequestBase {
 				ObjectBuilder<PutCalendarJobRequest> {
 		private String calendarId;
 
-		private String jobId;
+		private List<String> jobId;
 
 		/**
 		 * Required - A string that uniquely identifies a calendar.
@@ -127,9 +129,24 @@ public class PutCalendarJobRequest extends RequestBase {
 		 * identifier, a group name, or a comma-separated list of jobs or groups.
 		 * <p>
 		 * API name: {@code job_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobId</code>.
 		 */
-		public final Builder jobId(String value) {
-			this.jobId = value;
+		public final Builder jobId(List<String> list) {
+			this.jobId = _listAddAll(this.jobId, list);
+			return this;
+		}
+
+		/**
+		 * Required - An identifier for the anomaly detection jobs. It can be a job
+		 * identifier, a group name, or a comma-separated list of jobs or groups.
+		 * <p>
+		 * API name: {@code job_id}
+		 * <p>
+		 * Adds one or more values to <code>jobId</code>.
+		 */
+		public final Builder jobId(String value, String... values) {
+			this.jobId = _listAdd(this.jobId, value, values);
 			return this;
 		}
 
@@ -183,7 +200,7 @@ public class PutCalendarJobRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/jobs");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.jobId, buf);
+					SimpleEndpoint.pathEncode(request.jobId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -203,7 +220,7 @@ public class PutCalendarJobRequest extends RequestBase {
 
 				if (propsSet == (_calendarId | _jobId)) {
 					params.put("calendarId", request.calendarId);
-					params.put("jobId", request.jobId);
+					params.put("jobId", request.jobId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

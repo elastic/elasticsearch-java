@@ -69,7 +69,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: logstash.delete_pipeline
 
 	/**
-	 * Deletes Logstash Pipelines used by Central Management
+	 * Deletes a pipeline used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
@@ -84,7 +84,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Deletes Logstash Pipelines used by Central Management
+	 * Deletes a pipeline used for Logstash Central Management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -103,7 +103,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: logstash.get_pipeline
 
 	/**
-	 * Retrieves Logstash Pipelines used by Central Management
+	 * Retrieves pipelines used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
@@ -118,7 +118,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves Logstash Pipelines used by Central Management
+	 * Retrieves pipelines used for Logstash Central Management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -135,7 +135,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves Logstash Pipelines used by Central Management
+	 * Retrieves pipelines used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
@@ -150,7 +150,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: logstash.put_pipeline
 
 	/**
-	 * Adds and updates Logstash Pipelines used for Central Management
+	 * Creates or updates a pipeline used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
@@ -165,7 +165,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Adds and updates Logstash Pipelines used for Central Management
+	 * Creates or updates a pipeline used for Logstash Central Management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

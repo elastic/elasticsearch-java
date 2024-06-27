@@ -149,8 +149,8 @@ public class MultiSearchItem<TDocument> extends ResponseBody<TDocument> {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<MultiSearchItem<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createMultiSearchItemDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch.TDocument")));
+			.lazy(() -> createMultiSearchItemDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:_global.msearch.MultiSearchItem.TDocument")));
 
 	protected static <TDocument> void setupMultiSearchItemDeserializer(
 			ObjectDeserializer<MultiSearchItem.Builder<TDocument>> op,

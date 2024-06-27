@@ -183,7 +183,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<PreviewDatafeedResponse<Object>> _DESERIALIZER = createPreviewDatafeedResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument"));
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.preview_datafeed.Response.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<PreviewDatafeedResponse<TDocument>> createPreviewDatafeedResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

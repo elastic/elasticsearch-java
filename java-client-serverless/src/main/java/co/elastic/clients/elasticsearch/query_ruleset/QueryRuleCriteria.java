@@ -64,6 +64,7 @@ import javax.annotation.Nullable;
 public class QueryRuleCriteria implements JsonpSerializable {
 	private final QueryRuleCriteriaType type;
 
+	@Nullable
 	private final String metadata;
 
 	private final List<JsonData> values;
@@ -73,7 +74,7 @@ public class QueryRuleCriteria implements JsonpSerializable {
 	private QueryRuleCriteria(Builder builder) {
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.metadata = ApiTypeHelper.requireNonNull(builder.metadata, this, "metadata");
+		this.metadata = builder.metadata;
 		this.values = ApiTypeHelper.unmodifiable(builder.values);
 
 	}
@@ -90,8 +91,9 @@ public class QueryRuleCriteria implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code metadata}
+	 * API name: {@code metadata}
 	 */
+	@Nullable
 	public final String metadata() {
 		return this.metadata;
 	}
@@ -116,9 +118,11 @@ public class QueryRuleCriteria implements JsonpSerializable {
 
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
-		generator.writeKey("metadata");
-		generator.write(this.metadata);
+		if (this.metadata != null) {
+			generator.writeKey("metadata");
+			generator.write(this.metadata);
 
+		}
 		if (ApiTypeHelper.isDefined(this.values)) {
 			generator.writeKey("values");
 			generator.writeStartArray();
@@ -146,6 +150,7 @@ public class QueryRuleCriteria implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryRuleCriteria> {
 		private QueryRuleCriteriaType type;
 
+		@Nullable
 		private String metadata;
 
 		@Nullable
@@ -160,9 +165,9 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code metadata}
+		 * API name: {@code metadata}
 		 */
-		public final Builder metadata(String value) {
+		public final Builder metadata(@Nullable String value) {
 			this.metadata = value;
 			return this;
 		}

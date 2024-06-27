@@ -29,6 +29,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -59,7 +60,7 @@ import javax.annotation.Nullable;
 public class RuleQuery extends QueryBase implements QueryVariant {
 	private final Query organic;
 
-	private final String rulesetId;
+	private final List<String> rulesetIds;
 
 	private final JsonData matchCriteria;
 
@@ -69,7 +70,7 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.organic = ApiTypeHelper.requireNonNull(builder.organic, this, "organic");
-		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.rulesetIds = ApiTypeHelper.unmodifiableRequired(builder.rulesetIds, this, "rulesetIds");
 		this.matchCriteria = ApiTypeHelper.requireNonNull(builder.matchCriteria, this, "matchCriteria");
 
 	}
@@ -83,7 +84,7 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 	 */
 	@Override
 	public Query.Kind _queryKind() {
-		return Query.Kind.RuleQuery;
+		return Query.Kind.Rule;
 	}
 
 	/**
@@ -94,10 +95,10 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code ruleset_id}
+	 * Required - API name: {@code ruleset_ids}
 	 */
-	public final String rulesetId() {
-		return this.rulesetId;
+	public final List<String> rulesetIds() {
+		return this.rulesetIds;
 	}
 
 	/**
@@ -113,9 +114,16 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 		generator.writeKey("organic");
 		this.organic.serialize(generator, mapper);
 
-		generator.writeKey("ruleset_id");
-		generator.write(this.rulesetId);
+		if (ApiTypeHelper.isDefined(this.rulesetIds)) {
+			generator.writeKey("ruleset_ids");
+			generator.writeStartArray();
+			for (String item0 : this.rulesetIds) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("match_criteria");
 		this.matchCriteria.serialize(generator, mapper);
 
@@ -130,7 +138,7 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RuleQuery> {
 		private Query organic;
 
-		private String rulesetId;
+		private List<String> rulesetIds;
 
 		private JsonData matchCriteria;
 
@@ -150,10 +158,22 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code ruleset_id}
+		 * Required - API name: {@code ruleset_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rulesetIds</code>.
 		 */
-		public final Builder rulesetId(String value) {
-			this.rulesetId = value;
+		public final Builder rulesetIds(List<String> list) {
+			this.rulesetIds = _listAddAll(this.rulesetIds, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code ruleset_ids}
+		 * <p>
+		 * Adds one or more values to <code>rulesetIds</code>.
+		 */
+		public final Builder rulesetIds(String value, String... values) {
+			this.rulesetIds = _listAdd(this.rulesetIds, value, values);
 			return this;
 		}
 
@@ -194,7 +214,8 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 	protected static void setupRuleQueryDeserializer(ObjectDeserializer<RuleQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::organic, Query._DESERIALIZER, "organic");
-		op.add(Builder::rulesetId, JsonpDeserializer.stringDeserializer(), "ruleset_id");
+		op.add(Builder::rulesetIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"ruleset_ids");
 		op.add(Builder::matchCriteria, JsonData._DESERIALIZER, "match_criteria");
 
 	}

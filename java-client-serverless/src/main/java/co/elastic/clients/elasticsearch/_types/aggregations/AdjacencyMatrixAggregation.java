@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -58,15 +60,18 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
+public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
 	private final Map<String, Query> filters;
+
+	@Nullable
+	private final String separator;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private AdjacencyMatrixAggregation(Builder builder) {
-		super(builder);
 
 		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
+		this.separator = builder.separator;
 
 	}
 
@@ -91,9 +96,27 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		return this.filters;
 	}
 
+	/**
+	 * Separator used to concatenate filter names. Defaults to &amp;.
+	 * <p>
+	 * API name: {@code separator}
+	 */
+	@Nullable
+	public final String separator() {
+		return this.separator;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartObject();
@@ -105,7 +128,17 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 			generator.writeEnd();
 
 		}
+		if (this.separator != null) {
+			generator.writeKey("separator");
+			generator.write(this.separator);
 
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -119,6 +152,9 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 				ObjectBuilder<AdjacencyMatrixAggregation> {
 		@Nullable
 		private Map<String, Query> filters;
+
+		@Nullable
+		private String separator;
 
 		/**
 		 * Filters used to create buckets. At least one filter is required.
@@ -155,6 +191,16 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 			return filters(key, fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * Separator used to concatenate filter names. Defaults to &amp;.
+		 * <p>
+		 * API name: {@code separator}
+		 */
+		public final Builder separator(@Nullable String value) {
+			this.separator = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -183,8 +229,9 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 
 	protected static void setupAdjacencyMatrixAggregationDeserializer(
 			ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
 
 	}
 

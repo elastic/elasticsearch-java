@@ -68,7 +68,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: license.get
 
 	/**
-	 * Retrieves licensing information for the cluster
+	 * This API returns information about the type of license, when it was issued,
+	 * and when it expires, for example. For more information about the different
+	 * types of licenses, see <a href=
+	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
@@ -83,7 +86,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves licensing information for the cluster
+	 * This API returns information about the type of license, when it was issued,
+	 * and when it expires, for example. For more information about the different
+	 * types of licenses, see <a href=
+	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -99,7 +105,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves licensing information for the cluster
+	 * This API returns information about the type of license, when it was issued,
+	 * and when it expires, for example. For more information about the different
+	 * types of licenses, see <a href=
+	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation

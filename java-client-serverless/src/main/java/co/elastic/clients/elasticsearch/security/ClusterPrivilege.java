@@ -50,21 +50,17 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	CancelTask("cancel_task"),
 
-	CreateSnapshot("create_snapshot"),
-
-	GrantApiKey("grant_api_key"),
-
 	Manage("manage"),
 
 	ManageApiKey("manage_api_key"),
 
-	ManageCcr("manage_ccr"),
+	ManageBehavioralAnalytics("manage_behavioral_analytics"),
 
 	ManageEnrich("manage_enrich"),
 
-	ManageIlm("manage_ilm"),
-
 	ManageIndexTemplates("manage_index_templates"),
+
+	ManageInference("manage_inference"),
 
 	ManageIngestPipelines("manage_ingest_pipelines"),
 
@@ -72,53 +68,37 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	ManageMl("manage_ml"),
 
-	ManageOidc("manage_oidc"),
-
 	ManageOwnApiKey("manage_own_api_key"),
 
 	ManagePipeline("manage_pipeline"),
 
-	ManageRollup("manage_rollup"),
+	ManageSearchApplication("manage_search_application"),
 
-	ManageSaml("manage_saml"),
+	ManageSearchQueryRules("manage_search_query_rules"),
+
+	ManageSearchSynonyms("manage_search_synonyms"),
 
 	ManageSecurity("manage_security"),
 
-	ManageServiceAccount("manage_service_account"),
-
-	ManageSlm("manage_slm"),
-
-	ManageToken("manage_token"),
-
 	ManageTransform("manage_transform"),
-
-	ManageUserProfile("manage_user_profile"),
-
-	ManageWatcher("manage_watcher"),
 
 	Monitor("monitor"),
 
+	MonitorEnrich("monitor_enrich"),
+
+	MonitorInference("monitor_inference"),
+
 	MonitorMl("monitor_ml"),
-
-	MonitorRollup("monitor_rollup"),
-
-	MonitorSnapshot("monitor_snapshot"),
-
-	MonitorTextStructure("monitor_text_structure"),
 
 	MonitorTransform("monitor_transform"),
 
-	MonitorWatcher("monitor_watcher"),
+	None("none"),
 
-	ReadCcr("read_ccr"),
-
-	ReadIlm("read_ilm"),
+	PostBehavioralAnalyticsEvent("post_behavioral_analytics_event"),
 
 	ReadPipeline("read_pipeline"),
 
-	ReadSlm("read_slm"),
-
-	TransportClient("transport_client"),
+	ReadSecurity("read_security"),
 
 	;
 

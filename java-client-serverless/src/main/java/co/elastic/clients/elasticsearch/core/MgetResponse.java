@@ -207,7 +207,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<MgetResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createMgetResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.mget.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.mget.Response.TDocument")));
 
 	protected static <TDocument> void setupMgetResponseDeserializer(
 			ObjectDeserializer<MgetResponse.Builder<TDocument>> op,

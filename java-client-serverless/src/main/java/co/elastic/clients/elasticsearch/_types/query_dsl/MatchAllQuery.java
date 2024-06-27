@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +54,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class MatchAllQuery extends QueryBase implements QueryVariant {
+public class MatchAllQuery extends QueryBase implements ApiKeyQueryVariant, QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private MatchAllQuery(Builder builder) {
@@ -62,6 +64,14 @@ public class MatchAllQuery extends QueryBase implements QueryVariant {
 
 	public static MatchAllQuery of(Function<Builder, ObjectBuilder<MatchAllQuery>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * ApiKeyQuery variant kind.
+	 */
+	@Override
+	public ApiKeyQuery.Kind _apiKeyQueryKind() {
+		return ApiKeyQuery.Kind.MatchAll;
 	}
 
 	/**

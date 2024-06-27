@@ -176,7 +176,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	 */
 	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createScriptsPainlessExecuteResponseDeserializer(new NamedDeserializer<>(
-					"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult")));
+					"co.elastic.clients:Deserializer:_global.scripts_painless_execute.Response.TResult")));
 
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
 			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,

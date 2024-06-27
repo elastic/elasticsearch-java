@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregate;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregateVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -54,7 +56,10 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> implements AggregateVariant {
+public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
+		implements
+			AggregateVariant,
+			ApiKeyAggregateVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private LongTermsAggregate(Builder builder) {
@@ -72,6 +77,14 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> impl
 	@Override
 	public Aggregate.Kind _aggregateKind() {
 		return Aggregate.Kind.Lterms;
+	}
+
+	/**
+	 * ApiKeyAggregate variant kind.
+	 */
+	@Override
+	public ApiKeyAggregate.Kind _apiKeyAggregateKind() {
+		return ApiKeyAggregate.Kind.Lterms;
 	}
 
 	// ---------------------------------------------------------------------------------------------

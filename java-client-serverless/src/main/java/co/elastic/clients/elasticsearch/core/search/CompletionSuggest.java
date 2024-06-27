@@ -199,8 +199,8 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<CompletionSuggest<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createCompletionSuggestDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.TDocument")));
+			.lazy(() -> createCompletionSuggestDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:_global.search._types.CompletionSuggest.TDocument")));
 
 	protected static <TDocument> void setupCompletionSuggestDeserializer(
 			ObjectDeserializer<CompletionSuggest.Builder<TDocument>> op,

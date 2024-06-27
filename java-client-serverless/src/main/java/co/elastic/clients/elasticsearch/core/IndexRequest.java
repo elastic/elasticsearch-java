@@ -581,7 +581,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<IndexRequest<Object>> _DESERIALIZER = createIndexRequestDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.index.TDocument"));
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.index.Request.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<IndexRequest<TDocument>> createIndexRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

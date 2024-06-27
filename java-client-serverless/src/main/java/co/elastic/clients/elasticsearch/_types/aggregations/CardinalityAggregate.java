@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregate;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregateVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -55,7 +57,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CardinalityAggregate extends AggregateBase implements AggregateVariant {
+public class CardinalityAggregate extends AggregateBase implements AggregateVariant, ApiKeyAggregateVariant {
 	private final long value;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,6 +79,14 @@ public class CardinalityAggregate extends AggregateBase implements AggregateVari
 	@Override
 	public Aggregate.Kind _aggregateKind() {
 		return Aggregate.Kind.Cardinality;
+	}
+
+	/**
+	 * ApiKeyAggregate variant kind.
+	 */
+	@Override
+	public ApiKeyAggregate.Kind _apiKeyAggregateKind() {
+		return ApiKeyAggregate.Kind.Cardinality;
 	}
 
 	/**

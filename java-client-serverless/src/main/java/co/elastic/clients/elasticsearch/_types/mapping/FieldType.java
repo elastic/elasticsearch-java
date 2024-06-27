@@ -73,6 +73,8 @@ public enum FieldType implements JsonEnum {
 
 	Object("object"),
 
+	Version("version"),
+
 	Murmur3("murmur3"),
 
 	TokenCount("token_count"),
@@ -127,9 +129,13 @@ public enum FieldType implements JsonEnum {
 
 	DenseVector("dense_vector"),
 
+	SemanticText("semantic_text"),
+
 	SparseVector("sparse_vector"),
 
 	MatchOnlyText("match_only_text"),
+
+	IcuCollationKeyword("icu_collation_keyword"),
 
 	;
 

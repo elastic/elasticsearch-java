@@ -227,8 +227,8 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<PreviewTransformResponse<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createPreviewTransformResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:transform.preview_transform.TTransform")));
+			.lazy(() -> createPreviewTransformResponseDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:transform.preview_transform.Response.TTransform")));
 
 	protected static <TTransform> void setupPreviewTransformResponseDeserializer(
 			ObjectDeserializer<PreviewTransformResponse.Builder<TTransform>> op,

@@ -20,9 +20,13 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregationVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -59,7 +63,11 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
+public class DateRangeAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			ApiKeyAggregationVariant,
+			JsonpSerializable {
 	@Nullable
 	private final String field;
 
@@ -80,7 +88,6 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	// ---------------------------------------------------------------------------------------------
 
 	private DateRangeAggregation(Builder builder) {
-		super(builder);
 
 		this.field = builder.field;
 		this.format = builder.format;
@@ -101,6 +108,14 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	@Override
 	public Aggregation.Kind _aggregationKind() {
 		return Aggregation.Kind.DateRange;
+	}
+
+	/**
+	 * ApiKeyAggregation variant kind.
+	 */
+	@Override
+	public ApiKeyAggregation.Kind _apiKeyAggregationKind() {
+		return ApiKeyAggregation.Kind.DateRange;
 	}
 
 	/**
@@ -165,9 +180,17 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		return this.keyed;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 			generator.writeKey("field");
 			generator.write(this.field);
@@ -204,6 +227,11 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -402,7 +430,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 			.lazy(Builder::new, DateRangeAggregation::setupDateRangeAggregationDeserializer);
 
 	protected static void setupDateRangeAggregationDeserializer(ObjectDeserializer<DateRangeAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");

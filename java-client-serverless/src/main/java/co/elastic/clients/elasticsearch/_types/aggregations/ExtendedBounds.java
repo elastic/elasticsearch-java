@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -62,8 +61,10 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ExtendedBounds<T> implements JsonpSerializable {
+	@Nullable
 	private final T max;
 
+	@Nullable
 	private final T min;
 
 	@Nullable
@@ -73,8 +74,8 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 
 	private ExtendedBounds(Builder<T> builder) {
 
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = builder.max;
+		this.min = builder.min;
 		this.tSerializer = builder.tSerializer;
 
 	}
@@ -84,19 +85,21 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Maximum value for the bound.
+	 * Maximum value for the bound.
 	 * <p>
 	 * API name: {@code max}
 	 */
+	@Nullable
 	public final T max() {
 		return this.max;
 	}
 
 	/**
-	 * Required - Minimum value for the bound.
+	 * Minimum value for the bound.
 	 * <p>
 	 * API name: {@code min}
 	 */
+	@Nullable
 	public final T min() {
 		return this.min;
 	}
@@ -112,11 +115,16 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("max");
-		JsonpUtils.serialize(this.max, generator, tSerializer, mapper);
+		if (this.max != null) {
+			generator.writeKey("max");
+			JsonpUtils.serialize(this.max, generator, tSerializer, mapper);
 
-		generator.writeKey("min");
-		JsonpUtils.serialize(this.min, generator, tSerializer, mapper);
+		}
+		if (this.min != null) {
+			generator.writeKey("min");
+			JsonpUtils.serialize(this.min, generator, tSerializer, mapper);
+
+		}
 
 	}
 
@@ -134,29 +142,31 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	public static class Builder<T> extends WithJsonObjectBuilderBase<Builder<T>>
 			implements
 				ObjectBuilder<ExtendedBounds<T>> {
+		@Nullable
 		private T max;
 
+		@Nullable
 		private T min;
 
 		@Nullable
 		private JsonpSerializer<T> tSerializer;
 
 		/**
-		 * Required - Maximum value for the bound.
+		 * Maximum value for the bound.
 		 * <p>
 		 * API name: {@code max}
 		 */
-		public final Builder<T> max(T value) {
+		public final Builder<T> max(@Nullable T value) {
 			this.max = value;
 			return this;
 		}
 
 		/**
-		 * Required - Minimum value for the bound.
+		 * Minimum value for the bound.
 		 * <p>
 		 * API name: {@code min}
 		 */
-		public final Builder<T> min(T value) {
+		public final Builder<T> min(@Nullable T value) {
 			this.min = value;
 			return this;
 		}
@@ -205,7 +215,7 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<ExtendedBounds<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createExtendedBoundsDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.aggregations.T")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.aggregations.ExtendedBounds.T")));
 
 	protected static <T> void setupExtendedBoundsDeserializer(ObjectDeserializer<ExtendedBounds.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
