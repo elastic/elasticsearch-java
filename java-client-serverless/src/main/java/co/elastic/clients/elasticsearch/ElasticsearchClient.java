@@ -95,6 +95,7 @@ import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichClient;
 import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlClient;
+import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesClient;
 import co.elastic.clients.elasticsearch.inference.ElasticsearchInferenceClient;
@@ -102,6 +103,7 @@ import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestClient;
 import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
+import co.elastic.clients.elasticsearch.query_rule.ElasticsearchQueryRuleClient;
 import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
@@ -178,6 +180,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchEqlClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchEsqlClient esql() {
+		return new ElasticsearchEsqlClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchGraphClient graph() {
 		return new ElasticsearchGraphClient(this.transport, this.transportOptions);
 	}
@@ -204,6 +210,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchMlClient ml() {
 		return new ElasticsearchMlClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchQueryRuleClient queryRule() {
+		return new ElasticsearchQueryRuleClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchQueryRulesetClient queryRuleset() {
@@ -237,11 +247,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: bulk
 
 	/**
-	 * Allows to perform multiple index/update/delete operations in a single
-	 * request.
+	 * Performs multiple indexing or delete operations in a single API call. This
+	 * reduces overhead and can greatly increase indexing speed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -253,14 +263,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to perform multiple index/update/delete operations in a single
-	 * request.
+	 * Performs multiple indexing or delete operations in a single API call. This
+	 * reduces overhead and can greatly increase indexing speed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,11 +280,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to perform multiple index/update/delete operations in a single
-	 * request.
+	 * Performs multiple indexing or delete operations in a single API call. This
+	 * reduces overhead and can greatly increase indexing speed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -286,10 +296,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: clear_scroll
 
 	/**
-	 * Explicitly clears the search context for a scroll.
+	 * Clears the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -301,13 +311,13 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Explicitly clears the search context for a scroll.
+	 * Clears the search context and results for a scrolling search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -318,10 +328,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Explicitly clears the search context for a scroll.
+	 * Clears the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -333,10 +343,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: close_point_in_time
 
 	/**
-	 * Close a point in time
+	 * Closes a point-in-time.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -349,13 +359,13 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Close a point in time
+	 * Closes a point-in-time.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -414,10 +424,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: create
 
 	/**
-	 * Creates a new document in the index.
-	 * <p>
-	 * Returns a 409 response when a document with a same ID already exists in the
-	 * index.
+	 * Adds a JSON document to the specified data stream or index and makes it
+	 * searchable. If the target is an index and the document already exists, the
+	 * request updates the document and increments its version.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
@@ -433,10 +442,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Creates a new document in the index.
-	 * <p>
-	 * Returns a 409 response when a document with a same ID already exists in the
-	 * index.
+	 * Adds a JSON document to the specified data stream or index and makes it
+	 * searchable. If the target is an index and the document already exists, the
+	 * request updates the document and increments its version.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -455,7 +463,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: delete
 
 	/**
-	 * Removes a document from the index.
+	 * Removes a JSON document from the specified index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
@@ -470,7 +478,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Removes a document from the index.
+	 * Removes a JSON document from the specified index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -488,7 +496,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: delete_by_query
 
 	/**
-	 * Deletes documents matching the provided query.
+	 * Deletes documents that match the specified query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
@@ -504,7 +512,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Deletes documents matching the provided query.
+	 * Deletes documents that match the specified query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -523,7 +531,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: delete_script
 
 	/**
-	 * Deletes a script.
+	 * Deletes a stored script or search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -538,7 +546,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Deletes a script.
+	 * Deletes a stored script or search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -557,7 +565,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: exists
 
 	/**
-	 * Returns information about whether a document exists in an index.
+	 * Checks if a document in an index exists.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -572,7 +580,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns information about whether a document exists in an index.
+	 * Checks if a document in an index exists.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -590,7 +598,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: exists_source
 
 	/**
-	 * Returns information about whether a document source exists in an index.
+	 * Checks if a document's <code>_source</code> is stored.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -605,7 +613,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns information about whether a document source exists in an index.
+	 * Checks if a document's <code>_source</code> is stored.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -624,7 +632,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: explain
 
 	/**
-	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * Returns information about why a specific document matches (or doesn’t match)
+	 * a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
@@ -636,13 +645,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.explain.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * Returns information about why a specific document matches (or doesn’t match)
+	 * a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -659,7 +669,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * Returns information about why a specific document matches (or doesn’t match)
+	 * a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
@@ -671,13 +682,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.explain.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Returns information about why a specific matches (or doesn't match) a query.
+	 * Returns information about why a specific document matches (or doesn’t match)
+	 * a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -696,8 +708,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: field_caps
 
 	/**
-	 * Returns the information about the capabilities of fields among multiple
-	 * indices.
+	 * The field capabilities API returns the information about the capabilities of
+	 * fields among multiple indices. The field capabilities API returns runtime
+	 * fields like any other field. For example, a runtime field with a type of
+	 * keyword is returned as any other field that belongs to the
+	 * <code>keyword</code> family.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
@@ -712,8 +727,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns the information about the capabilities of fields among multiple
-	 * indices.
+	 * The field capabilities API returns the information about the capabilities of
+	 * fields among multiple indices. The field capabilities API returns runtime
+	 * fields like any other field. For example, a runtime field with a type of
+	 * keyword is returned as any other field that belongs to the
+	 * <code>keyword</code> family.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -729,8 +747,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns the information about the capabilities of fields among multiple
-	 * indices.
+	 * The field capabilities API returns the information about the capabilities of
+	 * fields among multiple indices. The field capabilities API returns runtime
+	 * fields like any other field. For example, a runtime field with a type of
+	 * keyword is returned as any other field that belongs to the
+	 * <code>keyword</code> family.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
@@ -757,7 +778,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.get.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.get.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -791,7 +812,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.get.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.get.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -815,7 +836,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: get_script
 
 	/**
-	 * Returns a script.
+	 * Retrieves a stored script or search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -830,7 +851,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns a script.
+	 * Retrieves a stored script or search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -860,7 +881,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.get_source.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.get_source.Response.TDocument",
+				getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -895,7 +917,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.get_source.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.get_source.Response.TDocument",
+				getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -920,7 +943,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: index
 
 	/**
-	 * Creates or updates a document in an index.
+	 * Adds a JSON document to the specified data stream or index and makes it
+	 * searchable. If the target is an index and the document already exists, the
+	 * request updates the document and increments its version.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
@@ -935,7 +960,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Creates or updates a document in an index.
+	 * Adds a JSON document to the specified data stream or index and makes it
+	 * searchable. If the target is an index and the document already exists, the
+	 * request updates the document and increments its version.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -979,7 +1006,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.mget.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.mget.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1013,7 +1040,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.mget.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.mget.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1049,7 +1076,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.msearch.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.msearch.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1084,7 +1111,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.msearch.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.msearch.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1109,7 +1136,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: msearch_template
 
 	/**
-	 * Allows to execute several search template operations in one request.
+	 * Runs multiple templated searches with a single request.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
@@ -1121,13 +1148,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.msearch_template.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.msearch_template.Response.TDocument",
+				getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Allows to execute several search template operations in one request.
+	 * Runs multiple templated searches with a single request.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1144,7 +1172,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to execute several search template operations in one request.
+	 * Runs multiple templated searches with a single request.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
@@ -1156,13 +1184,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.msearch_template.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.msearch_template.Response.TDocument",
+				getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Allows to execute several search template operations in one request.
+	 * Runs multiple templated searches with a single request.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1228,10 +1257,17 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: open_point_in_time
 
 	/**
-	 * Open a point in time that can be used in subsequent searches
+	 * A search request by default executes against the most recent visible data of
+	 * the target indices, which is called point in time. Elasticsearch pit (point
+	 * in time) is a lightweight view into the state of the data as it existed when
+	 * initiated. In some cases, it’s preferred to perform multiple search requests
+	 * using the same point in time. For example, if refreshes happen between
+	 * <code>search_after</code> requests, then the results of those requests might
+	 * not be consistent as changes happening between searches are only visible to
+	 * the more recent point in time.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1244,13 +1280,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Open a point in time that can be used in subsequent searches
+	 * A search request by default executes against the most recent visible data of
+	 * the target indices, which is called point in time. Elasticsearch pit (point
+	 * in time) is a lightweight view into the state of the data as it existed when
+	 * initiated. In some cases, it’s preferred to perform multiple search requests
+	 * using the same point in time. For example, if refreshes happen between
+	 * <code>search_after</code> requests, then the results of those requests might
+	 * not be consistent as changes happening between searches are only visible to
+	 * the more recent point in time.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1276,7 +1319,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: put_script
 
 	/**
-	 * Creates or updates a script.
+	 * Creates or updates a stored script or search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -1291,7 +1334,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Creates or updates a script.
+	 * Creates or updates a stored script or search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1309,8 +1352,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: rank_eval
 
 	/**
-	 * Allows to evaluate the quality of ranked search results over a set of typical
-	 * search queries
+	 * Enables you to evaluate the quality of ranked search results over a set of
+	 * typical search queries.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
@@ -1325,8 +1368,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to evaluate the quality of ranked search results over a set of typical
-	 * search queries
+	 * Enables you to evaluate the quality of ranked search results over a set of
+	 * typical search queries.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1381,7 +1424,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: render_search_template
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Renders a search template as a search request body.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
@@ -1397,7 +1440,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Renders a search template as a search request body.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1414,7 +1457,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Renders a search template as a search request body.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
@@ -1429,7 +1472,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: scripts_painless_execute
 
 	/**
-	 * Allows an arbitrary script to be executed and a result to be returned
+	 * Runs a script and returns a result.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
@@ -1442,14 +1485,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult",
+				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.Response.TResult",
 				getDeserializer(tResultClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Allows an arbitrary script to be executed and a result to be returned
+	 * Runs a script and returns a result.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1466,7 +1509,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows an arbitrary script to be executed and a result to be returned
+	 * Runs a script and returns a result.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
@@ -1478,14 +1521,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult",
+				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.Response.TResult",
 				getDeserializer(tResultType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Allows an arbitrary script to be executed and a result to be returned
+	 * Runs a script and returns a result.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1516,7 +1559,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.scroll.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.scroll.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1551,7 +1594,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.scroll.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.scroll.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1576,7 +1619,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: search
 
 	/**
-	 * Returns results matching a query.
+	 * Returns search hits that match the query defined in the request. You can
+	 * provide search queries using the <code>q</code> query string parameter or the
+	 * request body. If both are specified, only the query parameter is used.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1588,13 +1633,15 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.search.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.search.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Returns results matching a query.
+	 * Returns search hits that match the query defined in the request. You can
+	 * provide search queries using the <code>q</code> query string parameter or the
+	 * request body. If both are specified, only the query parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1611,7 +1658,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns results matching a query.
+	 * Returns search hits that match the query defined in the request. You can
+	 * provide search queries using the <code>q</code> query string parameter or the
+	 * request body. If both are specified, only the query parameter is used.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1623,13 +1672,15 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.search.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.search.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Returns results matching a query.
+	 * Returns search hits that match the query defined in the request. You can
+	 * provide search queries using the <code>q</code> query string parameter or the
+	 * request body. If both are specified, only the query parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1683,7 +1734,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: search_template
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Runs a search with a search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
@@ -1695,13 +1746,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.search_template.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.search_template.Response.TDocument",
+				getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Runs a search with a search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1718,7 +1770,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Runs a search with a search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
@@ -1730,13 +1782,14 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.search_template.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.search_template.Response.TDocument",
+				getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Allows to use the Mustache language to pre-render a search definition.
+	 * Runs a search with a search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1842,7 +1895,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.update.TDocument", getDeserializer(tDocumentClass));
+				"co.elastic.clients:Deserializer:_global.update.Response.TDocument", getDeserializer(tDocumentClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1878,7 +1931,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.update.TDocument", getDeserializer(tDocumentType));
+				"co.elastic.clients:Deserializer:_global.update.Response.TDocument", getDeserializer(tDocumentType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1904,8 +1957,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	/**
 	 * Updates documents that match the specified query. If no query is specified,
-	 * performs an update on every document in the index without changing the
-	 * source, for example to pick up a mapping change.
+	 * performs an update on every document in the data stream or index without
+	 * modifying the source, which is useful for picking up mapping changes.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
@@ -1922,8 +1975,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	/**
 	 * Updates documents that match the specified query. If no query is specified,
-	 * performs an update on every document in the index without changing the
-	 * source, for example to pick up a mapping change.
+	 * performs an update on every document in the data stream or index without
+	 * modifying the source, which is useful for picking up mapping changes.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

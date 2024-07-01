@@ -103,7 +103,7 @@ public class ElasticsearchQueryRulesetAsyncClient
 	// ----- Endpoint: query_ruleset.get
 
 	/**
-	 * Returns the details about a query ruleset.
+	 * Returns the details about a query ruleset
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-query-ruleset.html">Documentation
@@ -118,7 +118,7 @@ public class ElasticsearchQueryRulesetAsyncClient
 	}
 
 	/**
-	 * Returns the details about a query ruleset.
+	 * Returns the details about a query ruleset
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -136,7 +136,7 @@ public class ElasticsearchQueryRulesetAsyncClient
 	// ----- Endpoint: query_ruleset.list
 
 	/**
-	 * Lists query rulesets.
+	 * Returns summarized information about existing query rulesets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-query-rulesets.html">Documentation
@@ -151,7 +151,7 @@ public class ElasticsearchQueryRulesetAsyncClient
 	}
 
 	/**
-	 * Lists query rulesets.
+	 * Returns summarized information about existing query rulesets.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -166,7 +166,7 @@ public class ElasticsearchQueryRulesetAsyncClient
 	}
 
 	/**
-	 * Lists query rulesets.
+	 * Returns summarized information about existing query rulesets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-query-rulesets.html">Documentation

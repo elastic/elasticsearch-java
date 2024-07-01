@@ -248,7 +248,7 @@ public class ElasticsearchSynonymsAsyncClient
 	// ----- Endpoint: synonyms.put_synonym
 
 	/**
-	 * Creates or updates a synonyms set
+	 * Creates or updates a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonyms-set.html">Documentation
@@ -263,7 +263,7 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Creates or updates a synonyms set
+	 * Creates or updates a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/query-dsl.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/query-dsl.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API
@@ -152,11 +152,13 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		Regexp("regexp"),
 
-		RuleQuery("rule_query"),
+		Rule("rule"),
 
 		Script("script"),
 
 		ScriptScore("script_score"),
+
+		Semantic("semantic"),
 
 		Shape("shape"),
 
@@ -164,7 +166,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		SpanContaining("span_containing"),
 
-		FieldMaskingSpan("field_masking_span"),
+		SpanFieldMasking("span_field_masking"),
 
 		SpanFirst("span_first"),
 
@@ -179,6 +181,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		SpanTerm("span_term"),
 
 		SpanWithin("span_within"),
+
+		SparseVector("sparse_vector"),
 
 		Term("term"),
 
@@ -872,20 +876,20 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
-	 * Is this variant instance of kind {@code rule_query}?
+	 * Is this variant instance of kind {@code rule}?
 	 */
-	public boolean isRuleQuery() {
-		return _kind == Kind.RuleQuery;
+	public boolean isRule() {
+		return _kind == Kind.Rule;
 	}
 
 	/**
-	 * Get the {@code rule_query} variant value.
+	 * Get the {@code rule} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code rule_query} kind.
+	 *             if the current variant is not of the {@code rule} kind.
 	 */
-	public RuleQuery ruleQuery() {
-		return TaggedUnionUtils.get(this, Kind.RuleQuery);
+	public RuleQuery rule() {
+		return TaggedUnionUtils.get(this, Kind.Rule);
 	}
 
 	/**
@@ -920,6 +924,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public ScriptScoreQuery scriptScore() {
 		return TaggedUnionUtils.get(this, Kind.ScriptScore);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code semantic}?
+	 */
+	public boolean isSemantic() {
+		return _kind == Kind.Semantic;
+	}
+
+	/**
+	 * Get the {@code semantic} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code semantic} kind.
+	 */
+	public SemanticQuery semantic() {
+		return TaggedUnionUtils.get(this, Kind.Semantic);
 	}
 
 	/**
@@ -976,21 +997,21 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	}
 
 	/**
-	 * Is this variant instance of kind {@code field_masking_span}?
+	 * Is this variant instance of kind {@code span_field_masking}?
 	 */
-	public boolean isFieldMaskingSpan() {
-		return _kind == Kind.FieldMaskingSpan;
+	public boolean isSpanFieldMasking() {
+		return _kind == Kind.SpanFieldMasking;
 	}
 
 	/**
-	 * Get the {@code field_masking_span} variant value.
+	 * Get the {@code span_field_masking} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code field_masking_span}
+	 *             if the current variant is not of the {@code span_field_masking}
 	 *             kind.
 	 */
-	public SpanFieldMaskingQuery fieldMaskingSpan() {
-		return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
+	public SpanFieldMaskingQuery spanFieldMasking() {
+		return TaggedUnionUtils.get(this, Kind.SpanFieldMasking);
 	}
 
 	/**
@@ -1110,6 +1131,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public SpanWithinQuery spanWithin() {
 		return TaggedUnionUtils.get(this, Kind.SpanWithin);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sparse_vector}?
+	 */
+	public boolean isSparseVector() {
+		return _kind == Kind.SparseVector;
+	}
+
+	/**
+	 * Get the {@code sparse_vector} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code sparse_vector} kind.
+	 */
+	public SparseVectorQuery sparseVector() {
+		return TaggedUnionUtils.get(this, Kind.SparseVector);
 	}
 
 	/**
@@ -1679,14 +1717,14 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.regexp(fn.apply(new RegexpQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> ruleQuery(RuleQuery v) {
-			this._kind = Kind.RuleQuery;
+		public ObjectBuilder<Query> rule(RuleQuery v) {
+			this._kind = Kind.Rule;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Query> ruleQuery(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
-			return this.ruleQuery(fn.apply(new RuleQuery.Builder()).build());
+		public ObjectBuilder<Query> rule(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
+			return this.rule(fn.apply(new RuleQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> script(ScriptQuery v) {
@@ -1708,6 +1746,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		public ObjectBuilder<Query> scriptScore(
 				Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
 			return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> semantic(SemanticQuery v) {
+			this._kind = Kind.Semantic;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> semantic(Function<SemanticQuery.Builder, ObjectBuilder<SemanticQuery>> fn) {
+			return this.semantic(fn.apply(new SemanticQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> shape(ShapeQuery v) {
@@ -1742,15 +1790,15 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
-			this._kind = Kind.FieldMaskingSpan;
+		public ObjectBuilder<Query> spanFieldMasking(SpanFieldMaskingQuery v) {
+			this._kind = Kind.SpanFieldMasking;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(
+		public ObjectBuilder<Query> spanFieldMasking(
 				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
-			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
+			return this.spanFieldMasking(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
@@ -1822,6 +1870,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		public ObjectBuilder<Query> spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> fn) {
 			return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> sparseVector(SparseVectorQuery v) {
+			this._kind = Kind.SparseVector;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> sparseVector(
+				Function<SparseVectorQuery.Builder, ObjectBuilder<SparseVectorQuery>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> term(TermQuery v) {
@@ -1967,13 +2026,14 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::range, RangeQuery._DESERIALIZER, "range");
 		op.add(Builder::rankFeature, RankFeatureQuery._DESERIALIZER, "rank_feature");
 		op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
-		op.add(Builder::ruleQuery, RuleQuery._DESERIALIZER, "rule_query");
+		op.add(Builder::rule, RuleQuery._DESERIALIZER, "rule");
 		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
 		op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
+		op.add(Builder::semantic, SemanticQuery._DESERIALIZER, "semantic");
 		op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");
 		op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
-		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFieldMasking, SpanFieldMaskingQuery._DESERIALIZER, "span_field_masking");
 		op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
 		op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
 		op.add(Builder::spanNear, SpanNearQuery._DESERIALIZER, "span_near");
@@ -1981,6 +2041,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::spanOr, SpanOrQuery._DESERIALIZER, "span_or");
 		op.add(Builder::spanTerm, SpanTermQuery._DESERIALIZER, "span_term");
 		op.add(Builder::spanWithin, SpanWithinQuery._DESERIALIZER, "span_within");
+		op.add(Builder::sparseVector, SparseVectorQuery._DESERIALIZER, "sparse_vector");
 		op.add(Builder::term, TermQuery._DESERIALIZER, "term");
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");

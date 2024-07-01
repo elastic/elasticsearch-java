@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/analysis-normalizers.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/analysis-normalizers.html">Documentation
  *      on elastic.co</a>
  * @see <a href="../../doc-files/api-spec.html#_types.analysis.Normalizer">API
  *      specification</a>
@@ -210,7 +210,7 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
 		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
 
-		op.setTypeProperty("type", null);
+		op.setTypeProperty("type", "custom");
 
 	}
 

@@ -667,18 +667,18 @@ public class QueryBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link RuleQuery rule_query} {@code Query} variant.
+	 * Creates a builder for the {@link RuleQuery rule} {@code Query} variant.
 	 */
-	public static RuleQuery.Builder ruleQuery() {
+	public static RuleQuery.Builder rule() {
 		return new RuleQuery.Builder();
 	}
 
 	/**
-	 * Creates a Query of the {@link RuleQuery rule_query} {@code Query} variant.
+	 * Creates a Query of the {@link RuleQuery rule} {@code Query} variant.
 	 */
-	public static Query ruleQuery(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
+	public static Query rule(Function<RuleQuery.Builder, ObjectBuilder<RuleQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
-		builder.ruleQuery(fn.apply(new RuleQuery.Builder()).build());
+		builder.rule(fn.apply(new RuleQuery.Builder()).build());
 		return builder.build();
 	}
 
@@ -713,6 +713,23 @@ public class QueryBuilders {
 	public static Query scriptScore(Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
 		builder.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SemanticQuery semantic} {@code Query}
+	 * variant.
+	 */
+	public static SemanticQuery.Builder semantic() {
+		return new SemanticQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link SemanticQuery semantic} {@code Query} variant.
+	 */
+	public static Query semantic(Function<SemanticQuery.Builder, ObjectBuilder<SemanticQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.semantic(fn.apply(new SemanticQuery.Builder()).build());
 		return builder.build();
 	}
 
@@ -770,21 +787,21 @@ public class QueryBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link SpanFieldMaskingQuery field_masking_span}
+	 * Creates a builder for the {@link SpanFieldMaskingQuery span_field_masking}
 	 * {@code Query} variant.
 	 */
-	public static SpanFieldMaskingQuery.Builder fieldMaskingSpan() {
+	public static SpanFieldMaskingQuery.Builder spanFieldMasking() {
 		return new SpanFieldMaskingQuery.Builder();
 	}
 
 	/**
-	 * Creates a Query of the {@link SpanFieldMaskingQuery field_masking_span}
+	 * Creates a Query of the {@link SpanFieldMaskingQuery span_field_masking}
 	 * {@code Query} variant.
 	 */
-	public static Query fieldMaskingSpan(
+	public static Query spanFieldMasking(
 			Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
-		builder.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
+		builder.spanFieldMasking(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		return builder.build();
 	}
 
@@ -906,6 +923,24 @@ public class QueryBuilders {
 	public static Query spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> fn) {
 		Query.Builder builder = new Query.Builder();
 		builder.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SparseVectorQuery sparse_vector}
+	 * {@code Query} variant.
+	 */
+	public static SparseVectorQuery.Builder sparseVector() {
+		return new SparseVectorQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link SparseVectorQuery sparse_vector} {@code Query}
+	 * variant.
+	 */
+	public static Query sparseVector(Function<SparseVectorQuery.Builder, ObjectBuilder<SparseVectorQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.sparseVector(fn.apply(new SparseVectorQuery.Builder()).build());
 		return builder.build();
 	}
 

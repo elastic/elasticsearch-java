@@ -29,7 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 	@Nullable
-	private final Integer limit;
+	private final Long limit;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@ public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 	 * API name: {@code limit}
 	 */
 	@Nullable
-	public final Integer limit() {
+	public final Long limit() {
 		return this.limit;
 	}
 
@@ -122,7 +122,7 @@ public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 			implements
 				ObjectBuilder<MappingLimitSettingsNestedFields> {
 		@Nullable
-		private Integer limit;
+		private Long limit;
 
 		/**
 		 * The maximum number of distinct nested mappings in an index. The nested type
@@ -132,7 +132,7 @@ public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code limit}
 		 */
-		public final Builder limit(@Nullable Integer value) {
+		public final Builder limit(@Nullable Long value) {
 			this.limit = value;
 			return this;
 		}
@@ -166,7 +166,7 @@ public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 	protected static void setupMappingLimitSettingsNestedFieldsDeserializer(
 			ObjectDeserializer<MappingLimitSettingsNestedFields.Builder> op) {
 
-		op.add(Builder::limit, JsonpDeserializer.integerDeserializer(), "limit");
+		op.add(Builder::limit, JsonpDeserializer.longDeserializer(), "limit");
 
 	}
 

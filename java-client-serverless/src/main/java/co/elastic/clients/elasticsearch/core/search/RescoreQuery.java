@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RescoreQuery implements JsonpSerializable {
+public class RescoreQuery implements RescoreVariant, JsonpSerializable {
 	private final Query query;
 
 	@Nullable
@@ -85,6 +85,14 @@ public class RescoreQuery implements JsonpSerializable {
 
 	public static RescoreQuery of(Function<Builder, ObjectBuilder<RescoreQuery>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Rescore variant kind.
+	 */
+	@Override
+	public Rescore.Kind _rescoreKind() {
+		return Rescore.Kind.Query;
 	}
 
 	/**

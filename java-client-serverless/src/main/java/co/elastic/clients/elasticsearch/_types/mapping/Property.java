@@ -96,7 +96,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		DoubleRange("double_range"),
 
-		DynamicProperty("{dynamic_property}"),
+		DynamicType("{dynamic_type}"),
 
 		Alias("alias"),
 
@@ -113,6 +113,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		HalfFloat("half_float"),
 
 		Histogram("histogram"),
+
+		IcuCollationKeyword("icu_collation_keyword"),
 
 		Integer("integer"),
 
@@ -149,6 +151,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		ScaledFloat("scaled_float"),
 
 		SearchAsYouType("search_as_you_type"),
+
+		SemanticText("semantic_text"),
 
 		Shape("shape"),
 
@@ -433,21 +437,20 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	}
 
 	/**
-	 * Is this variant instance of kind {@code {dynamic_property}}?
+	 * Is this variant instance of kind {@code {dynamic_type}}?
 	 */
-	public boolean isDynamicProperty() {
-		return _kind == Kind.DynamicProperty;
+	public boolean isDynamicType() {
+		return _kind == Kind.DynamicType;
 	}
 
 	/**
-	 * Get the {@code {dynamic_property}} variant value.
+	 * Get the {@code {dynamic_type}} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code {dynamic_property}}
-	 *             kind.
+	 *             if the current variant is not of the {@code {dynamic_type}} kind.
 	 */
-	public DynamicProperty dynamicProperty() {
-		return TaggedUnionUtils.get(this, Kind.DynamicProperty);
+	public DynamicProperty dynamicType() {
+		return TaggedUnionUtils.get(this, Kind.DynamicType);
 	}
 
 	/**
@@ -584,6 +587,24 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	 */
 	public HistogramProperty histogram() {
 		return TaggedUnionUtils.get(this, Kind.Histogram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code icu_collation_keyword}?
+	 */
+	public boolean isIcuCollationKeyword() {
+		return _kind == Kind.IcuCollationKeyword;
+	}
+
+	/**
+	 * Get the {@code icu_collation_keyword} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code icu_collation_keyword} kind.
+	 */
+	public IcuCollationProperty icuCollationKeyword() {
+		return TaggedUnionUtils.get(this, Kind.IcuCollationKeyword);
 	}
 
 	/**
@@ -892,6 +913,23 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	 */
 	public SearchAsYouTypeProperty searchAsYouType() {
 		return TaggedUnionUtils.get(this, Kind.SearchAsYouType);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code semantic_text}?
+	 */
+	public boolean isSemanticText() {
+		return _kind == Kind.SemanticText;
+	}
+
+	/**
+	 * Get the {@code semantic_text} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code semantic_text} kind.
+	 */
+	public SemanticTextProperty semanticText() {
+		return TaggedUnionUtils.get(this, Kind.SemanticText);
 	}
 
 	/**
@@ -1209,15 +1247,15 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.doubleRange(fn.apply(new DoubleRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> dynamicProperty(DynamicProperty v) {
-			this._kind = Kind.DynamicProperty;
+		public ObjectBuilder<Property> dynamicType(DynamicProperty v) {
+			this._kind = Kind.DynamicType;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Property> dynamicProperty(
+		public ObjectBuilder<Property> dynamicType(
 				Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
-			return this.dynamicProperty(fn.apply(new DynamicProperty.Builder()).build());
+			return this.dynamicType(fn.apply(new DynamicProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
@@ -1306,6 +1344,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		public ObjectBuilder<Property> histogram(
 				Function<HistogramProperty.Builder, ObjectBuilder<HistogramProperty>> fn) {
 			return this.histogram(fn.apply(new HistogramProperty.Builder()).build());
+		}
+
+		public ObjectBuilder<Property> icuCollationKeyword(IcuCollationProperty v) {
+			this._kind = Kind.IcuCollationKeyword;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> icuCollationKeyword(
+				Function<IcuCollationProperty.Builder, ObjectBuilder<IcuCollationProperty>> fn) {
+			return this.icuCollationKeyword(fn.apply(new IcuCollationProperty.Builder()).build());
 		}
 
 		public ObjectBuilder<Property> integer(IntegerNumberProperty v) {
@@ -1499,6 +1548,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> semanticText(SemanticTextProperty v) {
+			this._kind = Kind.SemanticText;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> semanticText(
+				Function<SemanticTextProperty.Builder, ObjectBuilder<SemanticTextProperty>> fn) {
+			return this.semanticText(fn.apply(new SemanticTextProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> shape(ShapeProperty v) {
 			this._kind = Kind.Shape;
 			this._value = v;
@@ -1621,7 +1681,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::denseVector, DenseVectorProperty._DESERIALIZER, "dense_vector");
 		op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
 		op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
-		op.add(Builder::dynamicProperty, DynamicProperty._DESERIALIZER, "{dynamic_property}");
+		op.add(Builder::dynamicType, DynamicProperty._DESERIALIZER, "{dynamic_type}");
 		op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
 		op.add(Builder::flattened, FlattenedProperty._DESERIALIZER, "flattened");
 		op.add(Builder::float_, FloatNumberProperty._DESERIALIZER, "float");
@@ -1630,6 +1690,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::geoShape, GeoShapeProperty._DESERIALIZER, "geo_shape");
 		op.add(Builder::halfFloat, HalfFloatNumberProperty._DESERIALIZER, "half_float");
 		op.add(Builder::histogram, HistogramProperty._DESERIALIZER, "histogram");
+		op.add(Builder::icuCollationKeyword, IcuCollationProperty._DESERIALIZER, "icu_collation_keyword");
 		op.add(Builder::integer, IntegerNumberProperty._DESERIALIZER, "integer");
 		op.add(Builder::integerRange, IntegerRangeProperty._DESERIALIZER, "integer_range");
 		op.add(Builder::ip, IpProperty._DESERIALIZER, "ip");
@@ -1648,6 +1709,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::rankFeatures, RankFeaturesProperty._DESERIALIZER, "rank_features");
 		op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
 		op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
+		op.add(Builder::semanticText, SemanticTextProperty._DESERIALIZER, "semantic_text");
 		op.add(Builder::shape, ShapeProperty._DESERIALIZER, "shape");
 		op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
 		op.add(Builder::sparseVector, SparseVectorProperty._DESERIALIZER, "sparse_vector");

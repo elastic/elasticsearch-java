@@ -113,7 +113,7 @@ public class UpdateResponse<TDocument> extends UpdateWriteResponseBase<TDocument
 	 */
 	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createUpdateResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.Response.TDocument")));
 
 	protected static <TDocument> void setupUpdateResponseDeserializer(
 			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,

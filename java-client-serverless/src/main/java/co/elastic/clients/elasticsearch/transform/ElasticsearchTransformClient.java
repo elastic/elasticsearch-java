@@ -70,7 +70,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.delete_transform
 
 	/**
-	 * Deletes an existing transform.
+	 * Deletes a transform.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
@@ -86,7 +86,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Deletes an existing transform.
+	 * Deletes a transform.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -188,6 +188,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Previews a transform.
+	 * <p>
+	 * It returns a maximum of 100 results. The calculations are based on all the
+	 * current data in the source index. It also generates a list of mappings and
+	 * settings for the destination index. These values are determined based on the
+	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
@@ -199,7 +204,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:transform.preview_transform.TTransform",
+				"co.elastic.clients:Deserializer:transform.preview_transform.Response.TTransform",
 				getDeserializer(tTransformClass));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
@@ -207,6 +212,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Previews a transform.
+	 * <p>
+	 * It returns a maximum of 100 results. The calculations are based on all the
+	 * current data in the source index. It also generates a list of mappings and
+	 * settings for the destination index. These values are determined based on the
+	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -224,6 +234,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Previews a transform.
+	 * <p>
+	 * It returns a maximum of 100 results. The calculations are based on all the
+	 * current data in the source index. It also generates a list of mappings and
+	 * settings for the destination index. These values are determined based on the
+	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
@@ -235,7 +250,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:transform.preview_transform.TTransform",
+				"co.elastic.clients:Deserializer:transform.preview_transform.Response.TTransform",
 				getDeserializer(tTransformType));
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
@@ -243,6 +258,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Previews a transform.
+	 * <p>
+	 * It returns a maximum of 100 results. The calculations are based on all the
+	 * current data in the source index. It also generates a list of mappings and
+	 * settings for the destination index. These values are determined based on the
+	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -261,7 +281,36 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.put_transform
 
 	/**
-	 * Instantiates a transform.
+	 * Creates a transform.
+	 * <p>
+	 * A transform copies data from source indices, transforms it, and persists it
+	 * into an entity-centric destination index. You can also think of the
+	 * destination index as a two-dimensional tabular data structure (known as a
+	 * data frame). The ID for each document in the data frame is generated from a
+	 * hash of the entity, so there is a unique row per entity.
+	 * <p>
+	 * You must choose either the latest or pivot method for your transform; you
+	 * cannot use both in a single transform. If you choose to use the pivot method
+	 * for your transform, the entities are defined by the set of
+	 * <code>group_by</code> fields in the pivot object. If you choose to use the
+	 * latest method, the entities are defined by the <code>unique_key</code> field
+	 * values in the latest object.
+	 * <p>
+	 * You must have <code>create_index</code>, <code>index</code>, and
+	 * <code>read</code> privileges on the destination index and <code>read</code>
+	 * and <code>view_index_metadata</code> privileges on the source indices. When
+	 * Elasticsearch security features are enabled, the transform remembers which
+	 * roles the user that created it had at the time of creation and uses those
+	 * same roles. If those roles do not have the required privileges on the source
+	 * and destination indices, the transform fails when it attempts unauthorized
+	 * operations.
+	 * <p>
+	 * NOTE: You must use Kibana or this API to create a transform. Do not add a
+	 * transform directly into any <code>.transform-internal*</code> indices using
+	 * the Elasticsearch index API. If Elasticsearch security features are enabled,
+	 * do not give users any privileges on <code>.transform-internal*</code>
+	 * indices. If you used transforms prior to 7.5, also do not give users any
+	 * privileges on <code>.data-frame-internal*</code> indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
@@ -276,7 +325,36 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Instantiates a transform.
+	 * Creates a transform.
+	 * <p>
+	 * A transform copies data from source indices, transforms it, and persists it
+	 * into an entity-centric destination index. You can also think of the
+	 * destination index as a two-dimensional tabular data structure (known as a
+	 * data frame). The ID for each document in the data frame is generated from a
+	 * hash of the entity, so there is a unique row per entity.
+	 * <p>
+	 * You must choose either the latest or pivot method for your transform; you
+	 * cannot use both in a single transform. If you choose to use the pivot method
+	 * for your transform, the entities are defined by the set of
+	 * <code>group_by</code> fields in the pivot object. If you choose to use the
+	 * latest method, the entities are defined by the <code>unique_key</code> field
+	 * values in the latest object.
+	 * <p>
+	 * You must have <code>create_index</code>, <code>index</code>, and
+	 * <code>read</code> privileges on the destination index and <code>read</code>
+	 * and <code>view_index_metadata</code> privileges on the source indices. When
+	 * Elasticsearch security features are enabled, the transform remembers which
+	 * roles the user that created it had at the time of creation and uses those
+	 * same roles. If those roles do not have the required privileges on the source
+	 * and destination indices, the transform fails when it attempts unauthorized
+	 * operations.
+	 * <p>
+	 * NOTE: You must use Kibana or this API to create a transform. Do not add a
+	 * transform directly into any <code>.transform-internal*</code> indices using
+	 * the Elasticsearch index API. If Elasticsearch security features are enabled,
+	 * do not give users any privileges on <code>.transform-internal*</code>
+	 * indices. If you used transforms prior to 7.5, also do not give users any
+	 * privileges on <code>.data-frame-internal*</code> indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -295,7 +373,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.reset_transform
 
 	/**
-	 * Resets an existing transform.
+	 * Resets a transform. Before you can reset it, you must stop it; alternatively,
+	 * use the <code>force</code> query parameter. If the destination index was
+	 * created by the transform, it is deleted.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-transform.html">Documentation
@@ -311,7 +391,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Resets an existing transform.
+	 * Resets a transform. Before you can reset it, you must stop it; alternatively,
+	 * use the <code>force</code> query parameter. If the destination index was
+	 * created by the transform, it is deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -331,6 +413,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Schedules now a transform.
+	 * <p>
+	 * If you _schedule_now a transform, it will process the new data instantly,
+	 * without waiting for the configured frequency interval. After _schedule_now
+	 * API is called, the transform will be processed again at now + frequency
+	 * unless _schedule_now API is called again in the meantime.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/schedule-now-transform.html">Documentation
@@ -347,6 +434,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Schedules now a transform.
+	 * <p>
+	 * If you _schedule_now a transform, it will process the new data instantly,
+	 * without waiting for the configured frequency interval. After _schedule_now
+	 * API is called, the transform will be processed again at now + frequency
+	 * unless _schedule_now API is called again in the meantime.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -365,7 +457,29 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.start_transform
 
 	/**
-	 * Starts one or more transforms.
+	 * Starts a transform.
+	 * <p>
+	 * When you start a transform, it creates the destination index if it does not
+	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
+	 * the <code>auto_expand_replicas</code> is set to <code>0-1</code>. If it is a
+	 * pivot transform, it deduces the mapping definitions for the destination index
+	 * from the source indices and the transform aggregations. If fields in the
+	 * destination index are derived from scripts (as in the case of
+	 * <code>scripted_metric</code> or <code>bucket_script</code> aggregations), the
+	 * transform uses dynamic mappings unless an index template exists. If it is a
+	 * latest transform, it does not deduce mapping definitions; it uses dynamic
+	 * mappings. To use explicit mappings, create the destination index before you
+	 * start the transform. Alternatively, you can create an index template, though
+	 * it does not affect the deduced mappings in a pivot transform.
+	 * <p>
+	 * When the transform starts, a series of validations occur to ensure its
+	 * success. If you deferred validation when you created the transform, they
+	 * occur when you start the transform—​with the exception of privilege checks.
+	 * When Elasticsearch security features are enabled, the transform remembers
+	 * which roles the user that created it had at the time of creation and uses
+	 * those same roles. If those roles do not have the required privileges on the
+	 * source and destination indices, the transform fails when it attempts
+	 * unauthorized operations.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
@@ -381,7 +495,29 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Starts one or more transforms.
+	 * Starts a transform.
+	 * <p>
+	 * When you start a transform, it creates the destination index if it does not
+	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
+	 * the <code>auto_expand_replicas</code> is set to <code>0-1</code>. If it is a
+	 * pivot transform, it deduces the mapping definitions for the destination index
+	 * from the source indices and the transform aggregations. If fields in the
+	 * destination index are derived from scripts (as in the case of
+	 * <code>scripted_metric</code> or <code>bucket_script</code> aggregations), the
+	 * transform uses dynamic mappings unless an index template exists. If it is a
+	 * latest transform, it does not deduce mapping definitions; it uses dynamic
+	 * mappings. To use explicit mappings, create the destination index before you
+	 * start the transform. Alternatively, you can create an index template, though
+	 * it does not affect the deduced mappings in a pivot transform.
+	 * <p>
+	 * When the transform starts, a series of validations occur to ensure its
+	 * success. If you deferred validation when you created the transform, they
+	 * occur when you start the transform—​with the exception of privilege checks.
+	 * When Elasticsearch security features are enabled, the transform remembers
+	 * which roles the user that created it had at the time of creation and uses
+	 * those same roles. If those roles do not have the required privileges on the
+	 * source and destination indices, the transform fails when it attempts
+	 * unauthorized operations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -436,6 +572,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Updates certain properties of a transform.
+	 * <p>
+	 * All updated properties except <code>description</code> do not take effect
+	 * until after the transform starts the next checkpoint, thus there is data
+	 * consistency in each checkpoint. To use this API, you must have
+	 * <code>read</code> and <code>view_index_metadata</code> privileges for the
+	 * source indices. You must also have <code>index</code> and <code>read</code>
+	 * privileges for the destination index. When Elasticsearch security features
+	 * are enabled, the transform remembers which roles the user who updated it had
+	 * at the time of update and runs with those privileges.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
@@ -452,6 +597,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Updates certain properties of a transform.
+	 * <p>
+	 * All updated properties except <code>description</code> do not take effect
+	 * until after the transform starts the next checkpoint, thus there is data
+	 * consistency in each checkpoint. To use this API, you must have
+	 * <code>read</code> and <code>view_index_metadata</code> privileges for the
+	 * source indices. You must also have <code>index</code> and <code>read</code>
+	 * privileges for the destination index. When Elasticsearch security features
+	 * are enabled, the transform remembers which roles the user who updated it had
+	 * at the time of update and runs with those privileges.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

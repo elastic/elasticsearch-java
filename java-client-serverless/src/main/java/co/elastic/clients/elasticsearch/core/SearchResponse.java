@@ -111,7 +111,7 @@ public class SearchResponse<TDocument> extends ResponseBody<TDocument> {
 	 */
 	public static final JsonpDeserializer<SearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createSearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search.Response.TDocument")));
 
 	protected static <TDocument> void setupSearchResponseDeserializer(
 			ObjectDeserializer<SearchResponse.Builder<TDocument>> op,

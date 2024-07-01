@@ -26,13 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -59,13 +59,14 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class SettingsSimilarityLmj implements SettingsSimilarityVariant, JsonpSerializable {
-	private final double lambda;
+	@Nullable
+	private final Double lambda;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SettingsSimilarityLmj(Builder builder) {
 
-		this.lambda = ApiTypeHelper.requireNonNull(builder.lambda, this, "lambda");
+		this.lambda = builder.lambda;
 
 	}
 
@@ -78,13 +79,14 @@ public class SettingsSimilarityLmj implements SettingsSimilarityVariant, JsonpSe
 	 */
 	@Override
 	public SettingsSimilarity.Kind _settingsSimilarityKind() {
-		return SettingsSimilarity.Kind.Lmj;
+		return SettingsSimilarity.Kind.LMJelinekMercer;
 	}
 
 	/**
-	 * Required - API name: {@code lambda}
+	 * API name: {@code lambda}
 	 */
-	public final double lambda() {
+	@Nullable
+	public final Double lambda() {
 		return this.lambda;
 	}
 
@@ -99,8 +101,13 @@ public class SettingsSimilarityLmj implements SettingsSimilarityVariant, JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("lambda");
-		generator.write(this.lambda);
+		generator.write("type", "LMJelinekMercer");
+
+		if (this.lambda != null) {
+			generator.writeKey("lambda");
+			generator.write(this.lambda);
+
+		}
 
 	}
 
@@ -118,12 +125,13 @@ public class SettingsSimilarityLmj implements SettingsSimilarityVariant, JsonpSe
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SettingsSimilarityLmj> {
+		@Nullable
 		private Double lambda;
 
 		/**
-		 * Required - API name: {@code lambda}
+		 * API name: {@code lambda}
 		 */
-		public final Builder lambda(double value) {
+		public final Builder lambda(@Nullable Double value) {
 			this.lambda = value;
 			return this;
 		}
@@ -158,6 +166,7 @@ public class SettingsSimilarityLmj implements SettingsSimilarityVariant, JsonpSe
 
 		op.add(Builder::lambda, JsonpDeserializer.doubleDeserializer(), "lambda");
 
+		op.ignore("type");
 	}
 
 }

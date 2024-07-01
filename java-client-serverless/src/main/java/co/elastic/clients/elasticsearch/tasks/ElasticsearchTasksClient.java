@@ -71,7 +71,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	 * Returns information about a task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -89,7 +89,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.11/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MappingLimitSettingsDepth implements JsonpSerializable {
 	@Nullable
-	private final Integer limit;
+	private final Long limit;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ public class MappingLimitSettingsDepth implements JsonpSerializable {
 	 * API name: {@code limit}
 	 */
 	@Nullable
-	public final Integer limit() {
+	public final Long limit() {
 		return this.limit;
 	}
 
@@ -121,7 +121,7 @@ public class MappingLimitSettingsDepth implements JsonpSerializable {
 			implements
 				ObjectBuilder<MappingLimitSettingsDepth> {
 		@Nullable
-		private Integer limit;
+		private Long limit;
 
 		/**
 		 * The maximum depth for a field, which is measured as the number of inner
@@ -131,7 +131,7 @@ public class MappingLimitSettingsDepth implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code limit}
 		 */
-		public final Builder limit(@Nullable Integer value) {
+		public final Builder limit(@Nullable Long value) {
 			this.limit = value;
 			return this;
 		}
@@ -165,7 +165,7 @@ public class MappingLimitSettingsDepth implements JsonpSerializable {
 	protected static void setupMappingLimitSettingsDepthDeserializer(
 			ObjectDeserializer<MappingLimitSettingsDepth.Builder> op) {
 
-		op.add(Builder::limit, JsonpDeserializer.integerDeserializer(), "limit");
+		op.add(Builder::limit, JsonpDeserializer.longDeserializer(), "limit");
 
 	}
 

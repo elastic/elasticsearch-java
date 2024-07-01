@@ -65,77 +65,90 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 		return new ElasticsearchInferenceClient(this.transport, transportOptions);
 	}
 
-	// ----- Endpoint: inference.delete_model
+	// ----- Endpoint: inference.delete
 
 	/**
-	 * Delete model in the Inference API
+	 * Delete an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteModelResponse deleteModel(DeleteModelRequest request) throws IOException, ElasticsearchException {
+	public DeleteInferenceResponse delete(DeleteInferenceRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse>) DeleteModelRequest._ENDPOINT;
+		JsonEndpoint<DeleteInferenceRequest, DeleteInferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteInferenceRequest, DeleteInferenceResponse, ErrorResponse>) DeleteInferenceRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Delete model in the Inference API
+	 * Delete an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link DeleteModelRequest}
+	 *            {@link DeleteInferenceRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteModelResponse deleteModel(
-			Function<DeleteModelRequest.Builder, ObjectBuilder<DeleteModelRequest>> fn)
+	public final DeleteInferenceResponse delete(
+			Function<DeleteInferenceRequest.Builder, ObjectBuilder<DeleteInferenceRequest>> fn)
 			throws IOException, ElasticsearchException {
-		return deleteModel(fn.apply(new DeleteModelRequest.Builder()).build());
+		return delete(fn.apply(new DeleteInferenceRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: inference.get_model
+	// ----- Endpoint: inference.get
 
 	/**
-	 * Get a model in the Inference API
+	 * Get an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public GetModelResponse getModel(GetModelRequest request) throws IOException, ElasticsearchException {
+	public GetInferenceResponse get(GetInferenceRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetModelRequest, GetModelResponse, ErrorResponse> endpoint = (JsonEndpoint<GetModelRequest, GetModelResponse, ErrorResponse>) GetModelRequest._ENDPOINT;
+		JsonEndpoint<GetInferenceRequest, GetInferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<GetInferenceRequest, GetInferenceResponse, ErrorResponse>) GetInferenceRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Get a model in the Inference API
+	 * Get an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link GetModelRequest}
+	 *            {@link GetInferenceRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final GetModelResponse getModel(Function<GetModelRequest.Builder, ObjectBuilder<GetModelRequest>> fn)
+	public final GetInferenceResponse get(Function<GetInferenceRequest.Builder, ObjectBuilder<GetInferenceRequest>> fn)
 			throws IOException, ElasticsearchException {
-		return getModel(fn.apply(new GetModelRequest.Builder()).build());
+		return get(fn.apply(new GetInferenceRequest.Builder()).build());
+	}
+
+	/**
+	 * Get an inference endpoint
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetInferenceResponse get() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetInferenceRequest.Builder().build(), GetInferenceRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: inference.inference
 
 	/**
-	 * Perform inference on a model
+	 * Perform inference on the service
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/post-inference-api.html">Documentation
@@ -150,7 +163,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform inference on a model
+	 * Perform inference on the service
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -165,37 +178,37 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 		return inference(fn.apply(new InferenceRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: inference.put_model
+	// ----- Endpoint: inference.put
 
 	/**
-	 * Configure a model for use in the Inference API
+	 * Create an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public PutModelResponse putModel(PutModelRequest request) throws IOException, ElasticsearchException {
+	public PutResponse put(PutRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutModelRequest, PutModelResponse, ErrorResponse> endpoint = (JsonEndpoint<PutModelRequest, PutModelResponse, ErrorResponse>) PutModelRequest._ENDPOINT;
+		JsonEndpoint<PutRequest, PutResponse, ErrorResponse> endpoint = (JsonEndpoint<PutRequest, PutResponse, ErrorResponse>) PutRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Configure a model for use in the Inference API
+	 * Create an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link PutModelRequest}
+	 *            {@link PutRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final PutModelResponse putModel(Function<PutModelRequest.Builder, ObjectBuilder<PutModelRequest>> fn)
+	public final PutResponse put(Function<PutRequest.Builder, ObjectBuilder<PutRequest>> fn)
 			throws IOException, ElasticsearchException {
-		return putModel(fn.apply(new PutModelRequest.Builder()).build());
+		return put(fn.apply(new PutRequest.Builder()).build());
 	}
 
 }

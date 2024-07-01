@@ -29,7 +29,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Boolean;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,13 +61,17 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 	@Nullable
-	private final Integer limit;
+	private final Long limit;
+
+	@Nullable
+	private final Boolean ignoreDynamicBeyondLimit;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MappingLimitSettingsTotalFields(Builder builder) {
 
 		this.limit = builder.limit;
+		this.ignoreDynamicBeyondLimit = builder.ignoreDynamicBeyondLimit;
 
 	}
 
@@ -85,8 +90,24 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 	 * API name: {@code limit}
 	 */
 	@Nullable
-	public final Integer limit() {
+	public final Long limit() {
 		return this.limit;
+	}
+
+	/**
+	 * This setting determines what happens when a dynamically mapped field would
+	 * exceed the total fields limit. When set to false (the default), the index
+	 * request of the document that tries to add a dynamic field to the mapping will
+	 * fail with the message Limit of total fields [X] has been exceeded. When set
+	 * to true, the index request will not fail. Instead, fields that would exceed
+	 * the limit are not added to the mapping, similar to dynamic: false. The fields
+	 * that were not added to the mapping will be added to the _ignored field.
+	 * <p>
+	 * API name: {@code ignore_dynamic_beyond_limit}
+	 */
+	@Nullable
+	public final Boolean ignoreDynamicBeyondLimit() {
+		return this.ignoreDynamicBeyondLimit;
 	}
 
 	/**
@@ -103,6 +124,11 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 		if (this.limit != null) {
 			generator.writeKey("limit");
 			generator.write(this.limit);
+
+		}
+		if (this.ignoreDynamicBeyondLimit != null) {
+			generator.writeKey("ignore_dynamic_beyond_limit");
+			generator.write(this.ignoreDynamicBeyondLimit);
 
 		}
 
@@ -123,7 +149,10 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 			implements
 				ObjectBuilder<MappingLimitSettingsTotalFields> {
 		@Nullable
-		private Integer limit;
+		private Long limit;
+
+		@Nullable
+		private Boolean ignoreDynamicBeyondLimit;
 
 		/**
 		 * The maximum number of fields in an index. Field and object mappings, as well
@@ -134,8 +163,24 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code limit}
 		 */
-		public final Builder limit(@Nullable Integer value) {
+		public final Builder limit(@Nullable Long value) {
 			this.limit = value;
+			return this;
+		}
+
+		/**
+		 * This setting determines what happens when a dynamically mapped field would
+		 * exceed the total fields limit. When set to false (the default), the index
+		 * request of the document that tries to add a dynamic field to the mapping will
+		 * fail with the message Limit of total fields [X] has been exceeded. When set
+		 * to true, the index request will not fail. Instead, fields that would exceed
+		 * the limit are not added to the mapping, similar to dynamic: false. The fields
+		 * that were not added to the mapping will be added to the _ignored field.
+		 * <p>
+		 * API name: {@code ignore_dynamic_beyond_limit}
+		 */
+		public final Builder ignoreDynamicBeyondLimit(@Nullable Boolean value) {
+			this.ignoreDynamicBeyondLimit = value;
 			return this;
 		}
 
@@ -168,7 +213,9 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 	protected static void setupMappingLimitSettingsTotalFieldsDeserializer(
 			ObjectDeserializer<MappingLimitSettingsTotalFields.Builder> op) {
 
-		op.add(Builder::limit, JsonpDeserializer.integerDeserializer(), "limit");
+		op.add(Builder::limit, JsonpDeserializer.longDeserializer(), "limit");
+		op.add(Builder::ignoreDynamicBeyondLimit, JsonpDeserializer.booleanDeserializer(),
+				"ignore_dynamic_beyond_limit");
 
 	}
 

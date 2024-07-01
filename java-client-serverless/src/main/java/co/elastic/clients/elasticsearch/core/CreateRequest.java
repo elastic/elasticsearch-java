@@ -464,7 +464,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<CreateRequest<Object>> _DESERIALIZER = createCreateRequestDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.create.TDocument"));
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.create.Request.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<CreateRequest<TDocument>> createCreateRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

@@ -112,8 +112,8 @@ public class SearchApplicationSearchResponse<TDocument> extends ResponseBody<TDo
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<SearchApplicationSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createSearchApplicationSearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:search_application.search.TDocument")));
+			.lazy(() -> createSearchApplicationSearchResponseDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:search_application.search.Response.TDocument")));
 
 	protected static <TDocument> void setupSearchApplicationSearchResponseDeserializer(
 			ObjectDeserializer<SearchApplicationSearchResponse.Builder<TDocument>> op,

@@ -377,7 +377,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<InlineGet<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createInlineGetDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.InlineGet.TDocument")));
 
 	protected static <TDocument> void setupInlineGetDeserializer(ObjectDeserializer<InlineGet.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

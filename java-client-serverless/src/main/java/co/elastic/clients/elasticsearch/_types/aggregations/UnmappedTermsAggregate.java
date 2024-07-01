@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregate;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregateVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -55,7 +57,10 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements AggregateVariant {
+public class UnmappedTermsAggregate extends TermsAggregateBase<Void>
+		implements
+			AggregateVariant,
+			ApiKeyAggregateVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private UnmappedTermsAggregate(Builder builder) {
@@ -73,6 +78,14 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements 
 	@Override
 	public Aggregate.Kind _aggregateKind() {
 		return Aggregate.Kind.Umterms;
+	}
+
+	/**
+	 * ApiKeyAggregate variant kind.
+	 */
+	@Override
+	public ApiKeyAggregate.Kind _apiKeyAggregateKind() {
+		return ApiKeyAggregate.Kind.Umterms;
 	}
 
 	// ---------------------------------------------------------------------------------------------

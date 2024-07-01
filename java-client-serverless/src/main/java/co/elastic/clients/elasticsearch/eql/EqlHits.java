@@ -323,7 +323,7 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<EqlHits<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createEqlHitsDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql._types.TEvent")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql._types.EqlHits.TEvent")));
 
 	protected static <TEvent> void setupEqlHitsDeserializer(ObjectDeserializer<EqlHits.Builder<TEvent>> op,
 			JsonpDeserializer<TEvent> tEventDeserializer) {

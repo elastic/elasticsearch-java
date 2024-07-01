@@ -1668,7 +1668,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Aggregation> {
 		private Kind _kind;
 		private Object _value;
 		private String _customKind;
@@ -2557,7 +2557,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		protected Aggregation build() {
+		public Aggregation build() {
 			_checkSingleUse();
 			return new Aggregation(this);
 		}

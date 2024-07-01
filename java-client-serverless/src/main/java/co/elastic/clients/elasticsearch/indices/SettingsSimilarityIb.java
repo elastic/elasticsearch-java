@@ -122,6 +122,8 @@ public class SettingsSimilarityIb implements SettingsSimilarityVariant, JsonpSer
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.write("type", "IB");
+
 		generator.writeKey("distribution");
 		this.distribution.serialize(generator, mapper);
 		generator.writeKey("lambda");
@@ -207,6 +209,7 @@ public class SettingsSimilarityIb implements SettingsSimilarityVariant, JsonpSer
 		op.add(Builder::lambda, IBLambda._DESERIALIZER, "lambda");
 		op.add(Builder::normalization, Normalization._DESERIALIZER, "normalization");
 
+		op.ignore("type");
 	}
 
 }

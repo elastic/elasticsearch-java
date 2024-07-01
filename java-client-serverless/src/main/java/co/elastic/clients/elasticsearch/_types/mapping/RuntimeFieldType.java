@@ -48,6 +48,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum RuntimeFieldType implements JsonEnum {
 	Boolean("boolean"),
 
+	Composite("composite"),
+
 	Date("date"),
 
 	Double("double"),

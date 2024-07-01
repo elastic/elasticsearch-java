@@ -49,6 +49,10 @@ public enum TaskType implements JsonEnum {
 
 	TextEmbedding("text_embedding"),
 
+	Rerank("rerank"),
+
+	Completion("completion"),
+
 	;
 
 	private final String jsonValue;

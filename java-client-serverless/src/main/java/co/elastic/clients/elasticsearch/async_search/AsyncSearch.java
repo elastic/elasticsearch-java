@@ -646,8 +646,8 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<AsyncSearch<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createAsyncSearchDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search._types.TDocument")));
+			.lazy(() -> createAsyncSearchDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:async_search._types.AsyncSearch.TDocument")));
 
 	protected static <TDocument> void setupAsyncSearchDeserializer(
 			ObjectDeserializer<AsyncSearch.Builder<TDocument>> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

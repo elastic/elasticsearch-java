@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -54,7 +56,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class TTestAggregation extends AggregationBase implements AggregationVariant {
+public class TTestAggregation extends AggregationBase implements AggregationVariant, JsonpSerializable {
 	@Nullable
 	private final TestPopulation a;
 
@@ -67,7 +69,6 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	// ---------------------------------------------------------------------------------------------
 
 	private TTestAggregation(Builder builder) {
-		super(builder);
 
 		this.a = builder.a;
 		this.b = builder.b;
@@ -117,9 +118,17 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		return this.type;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.a != null) {
 			generator.writeKey("a");
 			this.a.serialize(generator, mapper);
@@ -135,6 +144,11 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 			this.type.serialize(generator, mapper);
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -230,7 +244,7 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 			TTestAggregation::setupTTestAggregationDeserializer);
 
 	protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
-		AggregationBase.setupAggregationBaseDeserializer(op);
+
 		op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
 		op.add(Builder::b, TestPopulation._DESERIALIZER, "b");
 		op.add(Builder::type, TTestType._DESERIALIZER, "type");

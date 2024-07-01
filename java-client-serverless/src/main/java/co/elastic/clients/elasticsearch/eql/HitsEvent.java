@@ -289,7 +289,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<HitsEvent<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createHitsEventDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql._types.TEvent")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql._types.HitsEvent.TEvent")));
 
 	protected static <TEvent> void setupHitsEventDeserializer(ObjectDeserializer<HitsEvent.Builder<TEvent>> op,
 			JsonpDeserializer<TEvent> tEventDeserializer) {

@@ -67,76 +67,89 @@ public class ElasticsearchInferenceAsyncClient
 		return new ElasticsearchInferenceAsyncClient(this.transport, transportOptions);
 	}
 
-	// ----- Endpoint: inference.delete_model
+	// ----- Endpoint: inference.delete
 
 	/**
-	 * Delete model in the Inference API
+	 * Delete an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteModelResponse> deleteModel(DeleteModelRequest request) {
+	public CompletableFuture<DeleteInferenceResponse> delete(DeleteInferenceRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse>) DeleteModelRequest._ENDPOINT;
+		JsonEndpoint<DeleteInferenceRequest, DeleteInferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteInferenceRequest, DeleteInferenceResponse, ErrorResponse>) DeleteInferenceRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Delete model in the Inference API
+	 * Delete an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link DeleteModelRequest}
+	 *            {@link DeleteInferenceRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteModelResponse> deleteModel(
-			Function<DeleteModelRequest.Builder, ObjectBuilder<DeleteModelRequest>> fn) {
-		return deleteModel(fn.apply(new DeleteModelRequest.Builder()).build());
+	public final CompletableFuture<DeleteInferenceResponse> delete(
+			Function<DeleteInferenceRequest.Builder, ObjectBuilder<DeleteInferenceRequest>> fn) {
+		return delete(fn.apply(new DeleteInferenceRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: inference.get_model
+	// ----- Endpoint: inference.get
 
 	/**
-	 * Get a model in the Inference API
+	 * Get an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetModelResponse> getModel(GetModelRequest request) {
+	public CompletableFuture<GetInferenceResponse> get(GetInferenceRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetModelRequest, GetModelResponse, ErrorResponse> endpoint = (JsonEndpoint<GetModelRequest, GetModelResponse, ErrorResponse>) GetModelRequest._ENDPOINT;
+		JsonEndpoint<GetInferenceRequest, GetInferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<GetInferenceRequest, GetInferenceResponse, ErrorResponse>) GetInferenceRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Get a model in the Inference API
+	 * Get an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link GetModelRequest}
+	 *            {@link GetInferenceRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetModelResponse> getModel(
-			Function<GetModelRequest.Builder, ObjectBuilder<GetModelRequest>> fn) {
-		return getModel(fn.apply(new GetModelRequest.Builder()).build());
+	public final CompletableFuture<GetInferenceResponse> get(
+			Function<GetInferenceRequest.Builder, ObjectBuilder<GetInferenceRequest>> fn) {
+		return get(fn.apply(new GetInferenceRequest.Builder()).build());
+	}
+
+	/**
+	 * Get an inference endpoint
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetInferenceResponse> get() {
+		return this.transport.performRequestAsync(new GetInferenceRequest.Builder().build(),
+				GetInferenceRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: inference.inference
 
 	/**
-	 * Perform inference on a model
+	 * Perform inference on the service
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/post-inference-api.html">Documentation
@@ -151,7 +164,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform inference on a model
+	 * Perform inference on the service
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -166,37 +179,36 @@ public class ElasticsearchInferenceAsyncClient
 		return inference(fn.apply(new InferenceRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: inference.put_model
+	// ----- Endpoint: inference.put
 
 	/**
-	 * Configure a model for use in the Inference API
+	 * Create an inference endpoint
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutModelResponse> putModel(PutModelRequest request) {
+	public CompletableFuture<PutResponse> put(PutRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutModelRequest, PutModelResponse, ErrorResponse> endpoint = (JsonEndpoint<PutModelRequest, PutModelResponse, ErrorResponse>) PutModelRequest._ENDPOINT;
+		JsonEndpoint<PutRequest, PutResponse, ErrorResponse> endpoint = (JsonEndpoint<PutRequest, PutResponse, ErrorResponse>) PutRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
-	 * Configure a model for use in the Inference API
+	 * Create an inference endpoint
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link PutModelRequest}
+	 *            {@link PutRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutModelResponse> putModel(
-			Function<PutModelRequest.Builder, ObjectBuilder<PutModelRequest>> fn) {
-		return putModel(fn.apply(new PutModelRequest.Builder()).build());
+	public final CompletableFuture<PutResponse> put(Function<PutRequest.Builder, ObjectBuilder<PutRequest>> fn) {
+		return put(fn.apply(new PutRequest.Builder()).build());
 	}
 
 }

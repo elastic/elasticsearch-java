@@ -22,11 +22,15 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregationVariant;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -35,6 +39,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -65,7 +70,12 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
+public class TermsAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			PivotGroupByVariant,
+			ApiKeyAggregationVariant,
+			JsonpSerializable {
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
@@ -102,6 +112,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	private final Script script;
 
 	@Nullable
+	private final Long shardMinDocCount;
+
+	@Nullable
 	private final Integer shardSize;
 
 	@Nullable
@@ -116,7 +129,6 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	// ---------------------------------------------------------------------------------------------
 
 	private TermsAggregation(Builder builder) {
-		super(builder);
 
 		this.collectMode = builder.collectMode;
 		this.exclude = builder.exclude;
@@ -130,6 +142,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		this.valueType = builder.valueType;
 		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.script = builder.script;
+		this.shardMinDocCount = builder.shardMinDocCount;
 		this.shardSize = builder.shardSize;
 		this.showTermDocCountError = builder.showTermDocCountError;
 		this.size = builder.size;
@@ -155,6 +168,14 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	@Override
 	public PivotGroupBy.Kind _pivotGroupByKind() {
 		return PivotGroupBy.Kind.Terms;
+	}
+
+	/**
+	 * ApiKeyAggregation variant kind.
+	 */
+	@Override
+	public ApiKeyAggregation.Kind _apiKeyAggregationKind() {
+		return ApiKeyAggregation.Kind.Terms;
 	}
 
 	/**
@@ -276,6 +297,19 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	}
 
 	/**
+	 * Regulates the certainty a shard has if the term should actually be added to
+	 * the candidate list or not with respect to the <code>min_doc_count</code>.
+	 * Terms will only be considered if their local shard frequency within the set
+	 * is higher than the <code>shard_min_doc_count</code>.
+	 * <p>
+	 * API name: {@code shard_min_doc_count}
+	 */
+	@Nullable
+	public final Long shardMinDocCount() {
+		return this.shardMinDocCount;
+	}
+
+	/**
 	 * The number of candidate terms produced by each shard. By default,
 	 * <code>shard_size</code> will be automatically estimated based on the number
 	 * of shards and the <code>size</code> parameter.
@@ -317,9 +351,17 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		return this.format;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.collectMode != null) {
 			generator.writeKey("collect_mode");
 			this.collectMode.serialize(generator, mapper);
@@ -385,6 +427,11 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			this.script.serialize(generator, mapper);
 
 		}
+		if (this.shardMinDocCount != null) {
+			generator.writeKey("shard_min_doc_count");
+			generator.write(this.shardMinDocCount);
+
+		}
 		if (this.shardSize != null) {
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
@@ -406,6 +453,11 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -452,6 +504,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 		@Nullable
 		private Script script;
+
+		@Nullable
+		private Long shardMinDocCount;
 
 		@Nullable
 		private Integer shardSize;
@@ -679,6 +734,19 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 
 		/**
+		 * Regulates the certainty a shard has if the term should actually be added to
+		 * the candidate list or not with respect to the <code>min_doc_count</code>.
+		 * Terms will only be considered if their local shard frequency within the set
+		 * is higher than the <code>shard_min_doc_count</code>.
+		 * <p>
+		 * API name: {@code shard_min_doc_count}
+		 */
+		public final Builder shardMinDocCount(@Nullable Long value) {
+			this.shardMinDocCount = value;
+			return this;
+		}
+
+		/**
 		 * The number of candidate terms produced by each shard. By default,
 		 * <code>shard_size</code> will be automatically estimated based on the number
 		 * of shards and the <code>size</code> parameter.
@@ -747,7 +815,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			TermsAggregation::setupTermsAggregationDeserializer);
 
 	protected static void setupTermsAggregationDeserializer(ObjectDeserializer<TermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+
 		op.add(Builder::collectMode, TermsAggregationCollectMode._DESERIALIZER, "collect_mode");
 		op.add(Builder::exclude, TermsExclude._DESERIALIZER, "exclude");
 		op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
@@ -761,6 +829,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		op.add(Builder::order,
 				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> SortOrder._DESERIALIZER)), "order");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.longDeserializer(), "shard_min_doc_count");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

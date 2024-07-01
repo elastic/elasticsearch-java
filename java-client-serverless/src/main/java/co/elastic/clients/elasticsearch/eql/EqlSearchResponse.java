@@ -110,7 +110,7 @@ public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	 */
 	public static final JsonpDeserializer<EqlSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createEqlSearchResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql.search.TEvent")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql.search.Response.TEvent")));
 
 	protected static <TEvent> void setupEqlSearchResponseDeserializer(
 			ObjectDeserializer<EqlSearchResponse.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {

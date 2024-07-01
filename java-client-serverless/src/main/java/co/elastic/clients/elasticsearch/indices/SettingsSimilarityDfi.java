@@ -101,6 +101,8 @@ public class SettingsSimilarityDfi implements SettingsSimilarityVariant, JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.write("type", "DFI");
+
 		generator.writeKey("independence_measure");
 		this.independenceMeasure.serialize(generator, mapper);
 
@@ -160,6 +162,7 @@ public class SettingsSimilarityDfi implements SettingsSimilarityVariant, JsonpSe
 
 		op.add(Builder::independenceMeasure, DFIIndependenceMeasure._DESERIALIZER, "independence_measure");
 
+		op.ignore("type");
 	}
 
 }

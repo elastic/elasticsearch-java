@@ -23,7 +23,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -75,10 +74,10 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	private final Map<String, Alias> aliases;
 
 	@Nullable
-	private final Boolean create;
+	private final String cause;
 
 	@Nullable
-	private final Boolean flatSettings;
+	private final Boolean create;
 
 	private final List<String> indexPatterns;
 
@@ -93,10 +92,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final Integer order;
 
-	private final Map<String, JsonData> settings;
-
 	@Nullable
-	private final Time timeout;
+	private final IndexSettings settings;
 
 	@Nullable
 	private final Long version;
@@ -106,15 +103,14 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	private PutTemplateRequest(Builder builder) {
 
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.cause = builder.cause;
 		this.create = builder.create;
-		this.flatSettings = builder.flatSettings;
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.order = builder.order;
-		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
-		this.timeout = builder.timeout;
+		this.settings = builder.settings;
 		this.version = builder.version;
 
 	}
@@ -133,6 +129,14 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * API name: {@code cause}
+	 */
+	@Nullable
+	public final String cause() {
+		return this.cause;
+	}
+
+	/**
 	 * If true, this request cannot replace or update existing index templates.
 	 * <p>
 	 * API name: {@code create}
@@ -140,16 +144,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final Boolean create() {
 		return this.create;
-	}
-
-	/**
-	 * If <code>true</code>, returns settings in flat format.
-	 * <p>
-	 * API name: {@code flat_settings}
-	 */
-	@Nullable
-	public final Boolean flatSettings() {
-		return this.flatSettings;
 	}
 
 	/**
@@ -211,19 +205,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code settings}
 	 */
-	public final Map<String, JsonData> settings() {
-		return this.settings;
-	}
-
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
 	@Nullable
-	public final Time timeout() {
-		return this.timeout;
+	public final IndexSettings settings() {
+		return this.settings;
 	}
 
 	/**
@@ -279,15 +263,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.order);
 
 		}
-		if (ApiTypeHelper.isDefined(this.settings)) {
+		if (this.settings != null) {
 			generator.writeKey("settings");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.version != null) {
@@ -311,10 +289,10 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		private Map<String, Alias> aliases;
 
 		@Nullable
-		private Boolean create;
+		private String cause;
 
 		@Nullable
-		private Boolean flatSettings;
+		private Boolean create;
 
 		@Nullable
 		private List<String> indexPatterns;
@@ -331,10 +309,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		private Integer order;
 
 		@Nullable
-		private Map<String, JsonData> settings;
-
-		@Nullable
-		private Time timeout;
+		private IndexSettings settings;
 
 		@Nullable
 		private Long version;
@@ -375,22 +350,20 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * API name: {@code cause}
+		 */
+		public final Builder cause(@Nullable String value) {
+			this.cause = value;
+			return this;
+		}
+
+		/**
 		 * If true, this request cannot replace or update existing index templates.
 		 * <p>
 		 * API name: {@code create}
 		 */
 		public final Builder create(@Nullable Boolean value) {
 			this.create = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, returns settings in flat format.
-		 * <p>
-		 * API name: {@code flat_settings}
-		 */
-		public final Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
 			return this;
 		}
 
@@ -488,11 +461,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * Configuration options for the index.
 		 * <p>
 		 * API name: {@code settings}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(Map<String, JsonData> map) {
-			this.settings = _mapPutAll(this.settings, map);
+		public final Builder settings(@Nullable IndexSettings value) {
+			this.settings = value;
 			return this;
 		}
 
@@ -500,33 +471,9 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * Configuration options for the index.
 		 * <p>
 		 * API name: {@code settings}
-		 * <p>
-		 * Adds an entry to <code>settings</code>.
 		 */
-		public final Builder settings(String key, JsonData value) {
-			this.settings = _mapPut(this.settings, key, value);
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -573,7 +520,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 				"index_patterns");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::order, JsonpDeserializer.integerDeserializer(), "order");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
@@ -632,14 +579,11 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
+				if (request.cause != null) {
+					params.put("cause", request.cause);
 				}
 				return params;
 

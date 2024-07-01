@@ -103,7 +103,13 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String platformArchitecture;
 
+	@Nullable
+	private final TrainedModelPrefixStrings prefixStrings;
+
 	private final List<String> tags;
+
+	@Nullable
+	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -120,7 +126,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.modelSizeBytes = builder.modelSizeBytes;
 		this.modelType = builder.modelType;
 		this.platformArchitecture = builder.platformArchitecture;
+		this.prefixStrings = builder.prefixStrings;
 		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -256,12 +264,32 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Optional prefix strings applied at inference
+	 * <p>
+	 * API name: {@code prefix_strings}
+	 */
+	@Nullable
+	public final TrainedModelPrefixStrings prefixStrings() {
+		return this.prefixStrings;
+	}
+
+	/**
 	 * An array of tags to organize the model.
 	 * <p>
 	 * API name: {@code tags}
 	 */
 	public final List<String> tags() {
 		return this.tags;
+	}
+
+	/**
+	 * Whether to wait for all child operations (e.g. model download) to complete.
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public final Boolean waitForCompletion() {
+		return this.waitForCompletion;
 	}
 
 	/**
@@ -319,6 +347,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			generator.write(this.platformArchitecture);
 
 		}
+		if (this.prefixStrings != null) {
+			generator.writeKey("prefix_strings");
+			this.prefixStrings.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
@@ -374,7 +407,13 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		private String platformArchitecture;
 
 		@Nullable
+		private TrainedModelPrefixStrings prefixStrings;
+
+		@Nullable
 		private List<String> tags;
+
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * The compressed (GZipped and Base64 encoded) inference definition of the
@@ -537,6 +576,26 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Optional prefix strings applied at inference
+		 * <p>
+		 * API name: {@code prefix_strings}
+		 */
+		public final Builder prefixStrings(@Nullable TrainedModelPrefixStrings value) {
+			this.prefixStrings = value;
+			return this;
+		}
+
+		/**
+		 * Optional prefix strings applied at inference
+		 * <p>
+		 * API name: {@code prefix_strings}
+		 */
+		public final Builder prefixStrings(
+				Function<TrainedModelPrefixStrings.Builder, ObjectBuilder<TrainedModelPrefixStrings>> fn) {
+			return this.prefixStrings(fn.apply(new TrainedModelPrefixStrings.Builder()).build());
+		}
+
+		/**
 		 * An array of tags to organize the model.
 		 * <p>
 		 * API name: {@code tags}
@@ -557,6 +616,16 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder tags(String value, String... values) {
 			this.tags = _listAdd(this.tags, value, values);
+			return this;
+		}
+
+		/**
+		 * Whether to wait for all child operations (e.g. model download) to complete.
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public final Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 
@@ -598,6 +667,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::modelSizeBytes, JsonpDeserializer.longDeserializer(), "model_size_bytes");
 		op.add(Builder::modelType, TrainedModelType._DESERIALIZER, "model_type");
 		op.add(Builder::platformArchitecture, JsonpDeserializer.stringDeserializer(), "platform_architecture");
+		op.add(Builder::prefixStrings, TrainedModelPrefixStrings._DESERIALIZER, "prefix_strings");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}
@@ -654,6 +724,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
 				if (request.deferDefinitionDecompression != null) {
 					params.put("defer_definition_decompression", String.valueOf(request.deferDefinitionDecompression));
 				}

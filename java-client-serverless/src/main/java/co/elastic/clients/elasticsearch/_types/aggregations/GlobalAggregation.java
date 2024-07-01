@@ -21,12 +21,10 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
-import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -43,8 +41,6 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.GlobalAggregation
-
 /**
  *
  * @see <a href=
@@ -52,17 +48,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
-
-	private GlobalAggregation(Builder builder) {
-		super(builder);
-
-	}
-
-	public static GlobalAggregation of(Function<Builder, ObjectBuilder<GlobalAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
 
 	/**
 	 * Aggregation variant kind.
@@ -72,44 +58,27 @@ public class GlobalAggregation extends BucketAggregationBase implements Aggregat
 		return Aggregation.Kind.Global;
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link GlobalAggregation}.
-	 */
-
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GlobalAggregation> {
+	public static final class Builder implements ObjectBuilder<GlobalAggregation> {
 		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link GlobalAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
 		public GlobalAggregation build() {
-			_checkSingleUse();
-
-			return new GlobalAggregation(this);
+			return GlobalAggregation._INSTANCE;
 		}
 	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GlobalAggregation}
+	 * Serialize this object to JSON.
 	 */
-	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer);
-
-	protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		generator.writeEnd();
 	}
+
+	/**
+	 * Singleton instance for empty class {@link GlobalAggregation}.
+	 */
+	public static final GlobalAggregation _INSTANCE = new GlobalAggregation();
+
+	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(GlobalAggregation._INSTANCE);
 
 }

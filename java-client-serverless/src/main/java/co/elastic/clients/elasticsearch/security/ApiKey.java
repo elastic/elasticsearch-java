@@ -83,7 +83,13 @@ public class ApiKey implements JsonpSerializable {
 	private final String realm;
 
 	@Nullable
+	private final String realmType;
+
+	@Nullable
 	private final String username;
+
+	@Nullable
+	private final String profileUid;
 
 	private final Map<String, JsonData> metadata;
 
@@ -103,7 +109,9 @@ public class ApiKey implements JsonpSerializable {
 		this.invalidated = builder.invalidated;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.realm = builder.realm;
+		this.realmType = builder.realmType;
 		this.username = builder.username;
+		this.profileUid = builder.profileUid;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 		this.limitedBy = ApiTypeHelper.unmodifiable(builder.limitedBy);
@@ -175,6 +183,16 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * Realm type of the principal for which this API key was created
+	 * <p>
+	 * API name: {@code realm_type}
+	 */
+	@Nullable
+	public final String realmType() {
+		return this.realmType;
+	}
+
+	/**
 	 * Principal for which this API key was created
 	 * <p>
 	 * API name: {@code username}
@@ -182,6 +200,17 @@ public class ApiKey implements JsonpSerializable {
 	@Nullable
 	public final String username() {
 		return this.username;
+	}
+
+	/**
+	 * The profile uid for the API key owner principal, if requested and if it
+	 * exists
+	 * <p>
+	 * API name: {@code profile_uid}
+	 */
+	@Nullable
+	public final String profileUid() {
+		return this.profileUid;
 	}
 
 	/**
@@ -260,9 +289,19 @@ public class ApiKey implements JsonpSerializable {
 			generator.write(this.realm);
 
 		}
+		if (this.realmType != null) {
+			generator.writeKey("realm_type");
+			generator.write(this.realmType);
+
+		}
 		if (this.username != null) {
 			generator.writeKey("username");
 			generator.write(this.username);
+
+		}
+		if (this.profileUid != null) {
+			generator.writeKey("profile_uid");
+			generator.write(this.profileUid);
 
 		}
 		if (ApiTypeHelper.isDefined(this.metadata)) {
@@ -347,7 +386,13 @@ public class ApiKey implements JsonpSerializable {
 		private String realm;
 
 		@Nullable
+		private String realmType;
+
+		@Nullable
 		private String username;
+
+		@Nullable
+		private String profileUid;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
@@ -423,12 +468,33 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Realm type of the principal for which this API key was created
+		 * <p>
+		 * API name: {@code realm_type}
+		 */
+		public final Builder realmType(@Nullable String value) {
+			this.realmType = value;
+			return this;
+		}
+
+		/**
 		 * Principal for which this API key was created
 		 * <p>
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {
 			this.username = value;
+			return this;
+		}
+
+		/**
+		 * The profile uid for the API key owner principal, if requested and if it
+		 * exists
+		 * <p>
+		 * API name: {@code profile_uid}
+		 */
+		public final Builder profileUid(@Nullable String value) {
+			this.profileUid = value;
 			return this;
 		}
 
@@ -651,7 +717,9 @@ public class ApiKey implements JsonpSerializable {
 		op.add(Builder::invalidated, JsonpDeserializer.booleanDeserializer(), "invalidated");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::realm, JsonpDeserializer.stringDeserializer(), "realm");
+		op.add(Builder::realmType, JsonpDeserializer.stringDeserializer(), "realm_type");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
+		op.add(Builder::profileUid, JsonpDeserializer.stringDeserializer(), "profile_uid");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");

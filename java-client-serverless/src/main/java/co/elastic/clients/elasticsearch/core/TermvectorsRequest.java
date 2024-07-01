@@ -661,7 +661,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	 */
 	public static final JsonpDeserializer<TermvectorsRequest<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createTermvectorsRequestDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.termvectors.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.termvectors.Request.TDocument")));
 
 	protected static <TDocument> void setupTermvectorsRequestDeserializer(
 			ObjectDeserializer<TermvectorsRequest.Builder<TDocument>> op,

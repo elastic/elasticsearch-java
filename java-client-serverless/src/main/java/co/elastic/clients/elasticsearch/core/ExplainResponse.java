@@ -297,7 +297,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	 */
 	public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> createExplainResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.TDocument")));
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.Response.TDocument")));
 
 	protected static <TDocument> void setupExplainResponseDeserializer(
 			ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,

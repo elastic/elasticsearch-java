@@ -32,6 +32,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -63,14 +64,18 @@ import javax.annotation.Nullable;
 public class QueryRulesetListItem implements JsonpSerializable {
 	private final String rulesetId;
 
-	private final int rulesCount;
+	private final int ruleTotalCount;
+
+	private final Map<String, String> ruleCriteriaTypesCounts;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryRulesetListItem(Builder builder) {
 
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
-		this.rulesCount = ApiTypeHelper.requireNonNull(builder.rulesCount, this, "rulesCount");
+		this.ruleTotalCount = ApiTypeHelper.requireNonNull(builder.ruleTotalCount, this, "ruleTotalCount");
+		this.ruleCriteriaTypesCounts = ApiTypeHelper.unmodifiableRequired(builder.ruleCriteriaTypesCounts, this,
+				"ruleCriteriaTypesCounts");
 
 	}
 
@@ -90,10 +95,19 @@ public class QueryRulesetListItem implements JsonpSerializable {
 	/**
 	 * Required - The number of rules associated with this ruleset
 	 * <p>
-	 * API name: {@code rules_count}
+	 * API name: {@code rule_total_count}
 	 */
-	public final int rulesCount() {
-		return this.rulesCount;
+	public final int ruleTotalCount() {
+		return this.ruleTotalCount;
+	}
+
+	/**
+	 * Required - A map of criteria type to the number of rules of that type
+	 * <p>
+	 * API name: {@code rule_criteria_types_counts}
+	 */
+	public final Map<String, String> ruleCriteriaTypesCounts() {
+		return this.ruleCriteriaTypesCounts;
 	}
 
 	/**
@@ -110,8 +124,20 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		generator.writeKey("ruleset_id");
 		generator.write(this.rulesetId);
 
-		generator.writeKey("rules_count");
-		generator.write(this.rulesCount);
+		generator.writeKey("rule_total_count");
+		generator.write(this.ruleTotalCount);
+
+		if (ApiTypeHelper.isDefined(this.ruleCriteriaTypesCounts)) {
+			generator.writeKey("rule_criteria_types_counts");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.ruleCriteriaTypesCounts.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -131,7 +157,9 @@ public class QueryRulesetListItem implements JsonpSerializable {
 				ObjectBuilder<QueryRulesetListItem> {
 		private String rulesetId;
 
-		private Integer rulesCount;
+		private Integer ruleTotalCount;
+
+		private Map<String, String> ruleCriteriaTypesCounts;
 
 		/**
 		 * Required - Ruleset unique identifier
@@ -146,10 +174,34 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		/**
 		 * Required - The number of rules associated with this ruleset
 		 * <p>
-		 * API name: {@code rules_count}
+		 * API name: {@code rule_total_count}
 		 */
-		public final Builder rulesCount(int value) {
-			this.rulesCount = value;
+		public final Builder ruleTotalCount(int value) {
+			this.ruleTotalCount = value;
+			return this;
+		}
+
+		/**
+		 * Required - A map of criteria type to the number of rules of that type
+		 * <p>
+		 * API name: {@code rule_criteria_types_counts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ruleCriteriaTypesCounts</code>.
+		 */
+		public final Builder ruleCriteriaTypesCounts(Map<String, String> map) {
+			this.ruleCriteriaTypesCounts = _mapPutAll(this.ruleCriteriaTypesCounts, map);
+			return this;
+		}
+
+		/**
+		 * Required - A map of criteria type to the number of rules of that type
+		 * <p>
+		 * API name: {@code rule_criteria_types_counts}
+		 * <p>
+		 * Adds an entry to <code>ruleCriteriaTypesCounts</code>.
+		 */
+		public final Builder ruleCriteriaTypesCounts(String key, String value) {
+			this.ruleCriteriaTypesCounts = _mapPut(this.ruleCriteriaTypesCounts, key, value);
 			return this;
 		}
 
@@ -182,7 +234,10 @@ public class QueryRulesetListItem implements JsonpSerializable {
 	protected static void setupQueryRulesetListItemDeserializer(ObjectDeserializer<QueryRulesetListItem.Builder> op) {
 
 		op.add(Builder::rulesetId, JsonpDeserializer.stringDeserializer(), "ruleset_id");
-		op.add(Builder::rulesCount, JsonpDeserializer.integerDeserializer(), "rules_count");
+		op.add(Builder::ruleTotalCount, JsonpDeserializer.integerDeserializer(), "rule_total_count");
+		op.add(Builder::ruleCriteriaTypesCounts,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"rule_criteria_types_counts");
 
 	}
 

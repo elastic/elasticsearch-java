@@ -31,7 +31,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -73,9 +72,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
-	@Nullable
-	private final Boolean allowRestrictedIndices;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesPrivileges(Builder builder) {
@@ -84,7 +80,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = builder.query;
-		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
 
@@ -137,21 +132,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * Set to <code>true</code> if using wildcard or regular expressions for
-	 * patterns that cover restricted indices. Implicitly, restricted indices have
-	 * limited privileges that can cause pattern tests to fail. If restricted
-	 * indices are explicitly included in the <code>names</code> list, Elasticsearch
-	 * checks privileges against these indices regardless of the value set for
-	 * <code>allow_restricted_indices</code>.
-	 * <p>
-	 * API name: {@code allow_restricted_indices}
-	 */
-	@Nullable
-	public final Boolean allowRestrictedIndices() {
-		return this.allowRestrictedIndices;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -192,11 +172,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.write(JsonpUtils.toJsonString(this.query, mapper));
 
 		}
-		if (this.allowRestrictedIndices != null) {
-			generator.writeKey("allow_restricted_indices");
-			generator.write(this.allowRestrictedIndices);
-
-		}
 
 	}
 
@@ -221,9 +196,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 		@Nullable
 		private Query query;
-
-		@Nullable
-		private Boolean allowRestrictedIndices;
 
 		/**
 		 * The document fields that the owners of the role have read access to.
@@ -323,21 +295,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
-		/**
-		 * Set to <code>true</code> if using wildcard or regular expressions for
-		 * patterns that cover restricted indices. Implicitly, restricted indices have
-		 * limited privileges that can cause pattern tests to fail. If restricted
-		 * indices are explicitly included in the <code>names</code> list, Elasticsearch
-		 * checks privileges against these indices regardless of the value set for
-		 * <code>allow_restricted_indices</code>.
-		 * <p>
-		 * API name: {@code allow_restricted_indices}
-		 */
-		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
-			this.allowRestrictedIndices = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -371,7 +328,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"privileges");
 		op.add(Builder::query, JsonpDeserializer.jsonString(Query._DESERIALIZER), "query");
-		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}
 
