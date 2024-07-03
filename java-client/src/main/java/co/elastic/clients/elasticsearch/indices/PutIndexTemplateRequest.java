@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 // typedef: indices.put_index_template.Request
 
 /**
- * Creates or updates an index template. Index templates define settings,
+ * Create or update an index template. Index templates define settings,
  * mappings, and aliases that can be applied automatically to new indices.
  * 
  * @see <a href=

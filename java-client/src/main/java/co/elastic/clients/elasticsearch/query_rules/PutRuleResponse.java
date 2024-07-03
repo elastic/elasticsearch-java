@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_rule;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -50,26 +50,26 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_rule.put.Response
+// typedef: query_rules.put_rule.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#query_rule.put.Response">API
+ * @see <a href="../doc-files/api-spec.html#query_rules.put_rule.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutResponse implements JsonpSerializable {
+public class PutRuleResponse implements JsonpSerializable {
 	private final Result result;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private PutResponse(Builder builder) {
+	private PutRuleResponse(Builder builder) {
 
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 
 	}
 
-	public static PutResponse of(Function<Builder, ObjectBuilder<PutResponse>> fn) {
+	public static PutRuleResponse of(Function<Builder, ObjectBuilder<PutRuleResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -104,10 +104,10 @@ public class PutResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PutResponse}.
+	 * Builder for {@link PutRuleResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PutResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PutRuleResponse> {
 		private Result result;
 
 		/**
@@ -124,27 +124,27 @@ public class PutResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link PutResponse}.
+		 * Builds a {@link PutRuleResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PutResponse build() {
+		public PutRuleResponse build() {
 			_checkSingleUse();
 
-			return new PutResponse(this);
+			return new PutRuleResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link PutResponse}
+	 * Json deserializer for {@link PutRuleResponse}
 	 */
-	public static final JsonpDeserializer<PutResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutResponse::setupPutResponseDeserializer);
+	public static final JsonpDeserializer<PutRuleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutRuleResponse::setupPutRuleResponseDeserializer);
 
-	protected static void setupPutResponseDeserializer(ObjectDeserializer<PutResponse.Builder> op) {
+	protected static void setupPutRuleResponseDeserializer(ObjectDeserializer<PutRuleResponse.Builder> op) {
 
 		op.add(Builder::result, Result._DESERIALIZER, "result");
 

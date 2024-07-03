@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -53,32 +53,46 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.get.Request
+// typedef: query_rules.delete_rule.Request
 
 /**
- * Returns the details about a query ruleset
+ * Deletes a query rule within a query ruleset.
  * 
- * @see <a href="../doc-files/api-spec.html#query_ruleset.get.Request">API
+ * @see <a href="../doc-files/api-spec.html#query_rules.delete_rule.Request">API
  *      specification</a>
  */
 
-public class GetQueryRulesetRequest extends RequestBase {
+public class DeleteRuleRequest extends RequestBase {
+	private final String ruleId;
+
 	private final String rulesetId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetQueryRulesetRequest(Builder builder) {
+	private DeleteRuleRequest(Builder builder) {
 
+		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 
 	}
 
-	public static GetQueryRulesetRequest of(Function<Builder, ObjectBuilder<GetQueryRulesetRequest>> fn) {
+	public static DeleteRuleRequest of(Function<Builder, ObjectBuilder<DeleteRuleRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The unique identifier of the query ruleset
+	 * Required - The unique identifier of the query rule within the specified
+	 * ruleset to delete
+	 * <p>
+	 * API name: {@code rule_id}
+	 */
+	public final String ruleId() {
+		return this.ruleId;
+	}
+
+	/**
+	 * Required - The unique identifier of the query ruleset containing the rule to
+	 * delete
 	 * <p>
 	 * API name: {@code ruleset_id}
 	 */
@@ -89,16 +103,30 @@ public class GetQueryRulesetRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetQueryRulesetRequest}.
+	 * Builder for {@link DeleteRuleRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetQueryRulesetRequest> {
+				ObjectBuilder<DeleteRuleRequest> {
+		private String ruleId;
+
 		private String rulesetId;
 
 		/**
-		 * Required - The unique identifier of the query ruleset
+		 * Required - The unique identifier of the query rule within the specified
+		 * ruleset to delete
+		 * <p>
+		 * API name: {@code rule_id}
+		 */
+		public final Builder ruleId(String value) {
+			this.ruleId = value;
+			return this;
+		}
+
+		/**
+		 * Required - The unique identifier of the query ruleset containing the rule to
+		 * delete
 		 * <p>
 		 * API name: {@code ruleset_id}
 		 */
@@ -113,45 +141,50 @@ public class GetQueryRulesetRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetQueryRulesetRequest}.
+		 * Builds a {@link DeleteRuleRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetQueryRulesetRequest build() {
+		public DeleteRuleRequest build() {
 			_checkSingleUse();
 
-			return new GetQueryRulesetRequest(this);
+			return new DeleteRuleRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code query_ruleset.get}".
+	 * Endpoint "{@code query_rules.delete_rule}".
 	 */
-	public static final Endpoint<GetQueryRulesetRequest, GetQueryRulesetResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/query_ruleset.get",
+	public static final Endpoint<DeleteRuleRequest, DeleteRuleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/query_rules.delete_rule",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int _rulesetId = 1 << 0;
+				final int _ruleId = 1 << 0;
+				final int _rulesetId = 1 << 1;
 
 				int propsSet = 0;
 
+				propsSet |= _ruleId;
 				propsSet |= _rulesetId;
 
-				if (propsSet == (_rulesetId)) {
+				if (propsSet == (_rulesetId | _ruleId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_query_rules");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.rulesetId, buf);
+					buf.append("/_rule");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.ruleId, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -161,14 +194,17 @@ public class GetQueryRulesetRequest extends RequestBase {
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _rulesetId = 1 << 0;
+				final int _ruleId = 1 << 0;
+				final int _rulesetId = 1 << 1;
 
 				int propsSet = 0;
 
+				propsSet |= _ruleId;
 				propsSet |= _rulesetId;
 
-				if (propsSet == (_rulesetId)) {
+				if (propsSet == (_rulesetId | _ruleId)) {
 					params.put("rulesetId", request.rulesetId);
+					params.put("ruleId", request.ruleId);
 				}
 				return params;
 			},
@@ -177,5 +213,5 @@ public class GetQueryRulesetRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetQueryRulesetResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteRuleResponse._DESERIALIZER);
 }

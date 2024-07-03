@@ -520,10 +520,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.delete_index_template
 
 	/**
-	 * The provided &lt;index-template&gt; may contain multiple template names
-	 * separated by a comma. If multiple template names are specified then there is
-	 * no wildcard support and the provided names should match completely with
-	 * existing templates.
+	 * Delete an index template. The provided &lt;index-template&gt; may contain
+	 * multiple template names separated by a comma. If multiple template names are
+	 * specified then there is no wildcard support and the provided names should
+	 * match completely with existing templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-template.html">Documentation
@@ -539,10 +539,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * The provided &lt;index-template&gt; may contain multiple template names
-	 * separated by a comma. If multiple template names are specified then there is
-	 * no wildcard support and the provided names should match completely with
-	 * existing templates.
+	 * Delete an index template. The provided &lt;index-template&gt; may contain
+	 * multiple template names separated by a comma. If multiple template names are
+	 * specified then there is no wildcard support and the provided names should
+	 * match completely with existing templates.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -769,7 +769,8 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.exists_template
 
 	/**
-	 * Returns information about whether a particular index template exists.
+	 * Check existence of index templates. Returns information about whether a
+	 * particular index template exists.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-template-exists-v1.html">Documentation
@@ -784,7 +785,8 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns information about whether a particular index template exists.
+	 * Check existence of index templates. Returns information about whether a
+	 * particular index template exists.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1170,7 +1172,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.get_index_template
 
 	/**
-	 * Returns information about one or more index templates.
+	 * Get index templates. Returns information about one or more index templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
@@ -1186,7 +1188,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns information about one or more index templates.
+	 * Get index templates. Returns information about one or more index templates.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1203,7 +1205,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns information about one or more index templates.
+	 * Get index templates. Returns information about one or more index templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template.html">Documentation
@@ -1318,7 +1320,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.get_template
 
 	/**
-	 * Retrieves information about one or more index templates.
+	 * Get index templates. Retrieves information about one or more index templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template-v1.html">Documentation
@@ -1333,7 +1335,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves information about one or more index templates.
+	 * Get index templates. Retrieves information about one or more index templates.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1350,7 +1352,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves information about one or more index templates.
+	 * Get index templates. Retrieves information about one or more index templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-template-v1.html">Documentation
@@ -1593,7 +1595,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.put_index_template
 
 	/**
-	 * Creates or updates an index template. Index templates define settings,
+	 * Create or update an index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * 
 	 * @see <a href=
@@ -1610,7 +1612,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Creates or updates an index template. Index templates define settings,
+	 * Create or update an index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * 
 	 * @param fn
@@ -1718,7 +1720,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.put_template
 
 	/**
-	 * Creates or updates an index template. Index templates define settings,
+	 * Create or update an index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * 
 	 * @see <a href=
@@ -1734,7 +1736,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Creates or updates an index template. Index templates define settings,
+	 * Create or update an index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * 
 	 * @param fn
@@ -2136,7 +2138,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.simulate_index_template
 
 	/**
-	 *
+	 * Simulate an index. Returns the index configuration that would be applied to
+	 * the specified index from an existing index template.
+	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
@@ -2151,7 +2155,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 *
+	 * Simulate an index. Returns the index configuration that would be applied to
+	 * the specified index from an existing index template.
+	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
@@ -2169,8 +2175,8 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.simulate_template
 
 	/**
-	 * Returns the index configuration that would be applied by a particular index
-	 * template.
+	 * Simulate an index template. Returns the index configuration that would be
+	 * applied by a particular index template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation
@@ -2186,8 +2192,8 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns the index configuration that would be applied by a particular index
-	 * template.
+	 * Simulate an index template. Returns the index configuration that would be
+	 * applied by a particular index template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2204,8 +2210,8 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns the index configuration that would be applied by a particular index
-	 * template.
+	 * Simulate an index template. Returns the index configuration that would be
+	 * applied by a particular index template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-simulate-template.html">Documentation

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -52,16 +52,17 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.list.Request
+// typedef: query_rules.list_rulesets.Request
 
 /**
  * Returns summarized information about existing query rulesets.
  * 
- * @see <a href="../doc-files/api-spec.html#query_ruleset.list.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#query_rules.list_rulesets.Request">API
  *      specification</a>
  */
 
-public class ListRequest extends RequestBase {
+public class ListRulesetsRequest extends RequestBase {
 	@Nullable
 	private final Integer from;
 
@@ -70,14 +71,14 @@ public class ListRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ListRequest(Builder builder) {
+	private ListRulesetsRequest(Builder builder) {
 
 		this.from = builder.from;
 		this.size = builder.size;
 
 	}
 
-	public static ListRequest of(Function<Builder, ObjectBuilder<ListRequest>> fn) {
+	public static ListRulesetsRequest of(Function<Builder, ObjectBuilder<ListRulesetsRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -104,10 +105,12 @@ public class ListRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ListRequest}.
+	 * Builder for {@link ListRulesetsRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<ListRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ListRulesetsRequest> {
 		@Nullable
 		private Integer from;
 
@@ -140,25 +143,25 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link ListRequest}.
+		 * Builds a {@link ListRulesetsRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ListRequest build() {
+		public ListRulesetsRequest build() {
 			_checkSingleUse();
 
-			return new ListRequest(this);
+			return new ListRulesetsRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code query_ruleset.list}".
+	 * Endpoint "{@code query_rules.list_rulesets}".
 	 */
-	public static final Endpoint<ListRequest, ListResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/query_ruleset.list",
+	public static final Endpoint<ListRulesetsRequest, ListRulesetsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/query_rules.list_rulesets",
 
 			// Request method
 			request -> {
@@ -188,5 +191,5 @@ public class ListRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ListResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ListRulesetsResponse._DESERIALIZER);
 }

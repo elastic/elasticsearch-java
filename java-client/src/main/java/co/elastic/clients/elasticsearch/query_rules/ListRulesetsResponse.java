@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.PinnedDoc;
+import co.elastic.clients.elasticsearch.query_rules.list_rulesets.QueryRulesetListItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Long;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -52,45 +52,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset._types.QueryRuleActions
+// typedef: query_rules.list_rulesets.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#query_ruleset._types.QueryRuleActions">API
+ *      "../doc-files/api-spec.html#query_rules.list_rulesets.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class QueryRuleActions implements JsonpSerializable {
-	private final List<String> ids;
+public class ListRulesetsResponse implements JsonpSerializable {
+	private final long count;
 
-	private final List<PinnedDoc> docs;
+	private final List<QueryRulesetListItem> results;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private QueryRuleActions(Builder builder) {
+	private ListRulesetsResponse(Builder builder) {
 
-		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
-		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.results = ApiTypeHelper.unmodifiableRequired(builder.results, this, "results");
 
 	}
 
-	public static QueryRuleActions of(Function<Builder, ObjectBuilder<QueryRuleActions>> fn) {
+	public static ListRulesetsResponse of(Function<Builder, ObjectBuilder<ListRulesetsResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code ids}
+	 * Required - API name: {@code count}
 	 */
-	public final List<String> ids() {
-		return this.ids;
+	public final long count() {
+		return this.count;
 	}
 
 	/**
-	 * API name: {@code docs}
+	 * Required - API name: {@code results}
 	 */
-	public final List<PinnedDoc> docs() {
-		return this.docs;
+	public final List<QueryRulesetListItem> results() {
+		return this.results;
 	}
 
 	/**
@@ -104,20 +104,13 @@ public class QueryRuleActions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.ids)) {
-			generator.writeKey("ids");
-			generator.writeStartArray();
-			for (String item0 : this.ids) {
-				generator.write(item0);
+		generator.writeKey("count");
+		generator.write(this.count);
 
-			}
-			generator.writeEnd();
-
-		}
-		if (ApiTypeHelper.isDefined(this.docs)) {
-			generator.writeKey("docs");
+		if (ApiTypeHelper.isDefined(this.results)) {
+			generator.writeKey("results");
 			generator.writeStartArray();
-			for (PinnedDoc item0 : this.docs) {
+			for (QueryRulesetListItem item0 : this.results) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -135,63 +128,51 @@ public class QueryRuleActions implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link QueryRuleActions}.
+	 * Builder for {@link ListRulesetsResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryRuleActions> {
-		@Nullable
-		private List<String> ids;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ListRulesetsResponse> {
+		private Long count;
 
-		@Nullable
-		private List<PinnedDoc> docs;
+		private List<QueryRulesetListItem> results;
 
 		/**
-		 * API name: {@code ids}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ids</code>.
+		 * Required - API name: {@code count}
 		 */
-		public final Builder ids(List<String> list) {
-			this.ids = _listAddAll(this.ids, list);
+		public final Builder count(long value) {
+			this.count = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code ids}
+		 * Required - API name: {@code results}
 		 * <p>
-		 * Adds one or more values to <code>ids</code>.
+		 * Adds all elements of <code>list</code> to <code>results</code>.
 		 */
-		public final Builder ids(String value, String... values) {
-			this.ids = _listAdd(this.ids, value, values);
+		public final Builder results(List<QueryRulesetListItem> list) {
+			this.results = _listAddAll(this.results, list);
 			return this;
 		}
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code results}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>.
+		 * Adds one or more values to <code>results</code>.
 		 */
-		public final Builder docs(List<PinnedDoc> list) {
-			this.docs = _listAddAll(this.docs, list);
+		public final Builder results(QueryRulesetListItem value, QueryRulesetListItem... values) {
+			this.results = _listAdd(this.results, value, values);
 			return this;
 		}
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code results}
 		 * <p>
-		 * Adds one or more values to <code>docs</code>.
+		 * Adds a value to <code>results</code> using a builder lambda.
 		 */
-		public final Builder docs(PinnedDoc value, PinnedDoc... values) {
-			this.docs = _listAdd(this.docs, value, values);
-			return this;
-		}
-
-		/**
-		 * API name: {@code docs}
-		 * <p>
-		 * Adds a value to <code>docs</code> using a builder lambda.
-		 */
-		public final Builder docs(Function<PinnedDoc.Builder, ObjectBuilder<PinnedDoc>> fn) {
-			return docs(fn.apply(new PinnedDoc.Builder()).build());
+		public final Builder results(Function<QueryRulesetListItem.Builder, ObjectBuilder<QueryRulesetListItem>> fn) {
+			return results(fn.apply(new QueryRulesetListItem.Builder()).build());
 		}
 
 		@Override
@@ -200,30 +181,30 @@ public class QueryRuleActions implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link QueryRuleActions}.
+		 * Builds a {@link ListRulesetsResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public QueryRuleActions build() {
+		public ListRulesetsResponse build() {
 			_checkSingleUse();
 
-			return new QueryRuleActions(this);
+			return new ListRulesetsResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link QueryRuleActions}
+	 * Json deserializer for {@link ListRulesetsResponse}
 	 */
-	public static final JsonpDeserializer<QueryRuleActions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryRuleActions::setupQueryRuleActionsDeserializer);
+	public static final JsonpDeserializer<ListRulesetsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ListRulesetsResponse::setupListRulesetsResponseDeserializer);
 
-	protected static void setupQueryRuleActionsDeserializer(ObjectDeserializer<QueryRuleActions.Builder> op) {
+	protected static void setupListRulesetsResponseDeserializer(ObjectDeserializer<ListRulesetsResponse.Builder> op) {
 
-		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PinnedDoc._DESERIALIZER), "docs");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::results, JsonpDeserializer.arrayDeserializer(QueryRulesetListItem._DESERIALIZER), "results");
 
 	}
 

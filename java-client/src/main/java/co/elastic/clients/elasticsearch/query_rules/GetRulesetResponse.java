@@ -17,23 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
-import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,103 +43,64 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.put.Response
+// typedef: query_rules.get_ruleset.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#query_ruleset.put.Response">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#query_rules.get_ruleset.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutResponse implements JsonpSerializable {
-	private final Result result;
-
+public class GetRulesetResponse extends QueryRuleset {
 	// ---------------------------------------------------------------------------------------------
 
-	private PutResponse(Builder builder) {
-
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+	private GetRulesetResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	public static PutResponse of(Function<Builder, ObjectBuilder<PutResponse>> fn) {
+	public static GetRulesetResponse of(Function<Builder, ObjectBuilder<GetRulesetResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * Required - API name: {@code result}
-	 */
-	public final Result result() {
-		return this.result;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("result");
-		this.result.serialize(generator, mapper);
-
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PutResponse}.
+	 * Builder for {@link GetRulesetResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PutResponse> {
-		private Result result;
-
-		/**
-		 * Required - API name: {@code result}
-		 */
-		public final Builder result(Result value) {
-			this.result = value;
-			return this;
-		}
-
+	public static class Builder extends QueryRuleset.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetRulesetResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link PutResponse}.
+		 * Builds a {@link GetRulesetResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PutResponse build() {
+		public GetRulesetResponse build() {
 			_checkSingleUse();
 
-			return new PutResponse(this);
+			return new GetRulesetResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link PutResponse}
+	 * Json deserializer for {@link GetRulesetResponse}
 	 */
-	public static final JsonpDeserializer<PutResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutResponse::setupPutResponseDeserializer);
+	public static final JsonpDeserializer<GetRulesetResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRulesetResponse::setupGetRulesetResponseDeserializer);
 
-	protected static void setupPutResponseDeserializer(ObjectDeserializer<PutResponse.Builder> op) {
-
-		op.add(Builder::result, Result._DESERIALIZER, "result");
+	protected static void setupGetRulesetResponseDeserializer(ObjectDeserializer<GetRulesetResponse.Builder> op) {
+		QueryRuleset.setupQueryRulesetDeserializer(op);
 
 	}
 

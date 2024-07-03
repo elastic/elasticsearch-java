@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -53,27 +53,28 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.delete.Request
+// typedef: query_rules.delete_ruleset.Request
 
 /**
  * Deletes a query ruleset.
  * 
- * @see <a href="../doc-files/api-spec.html#query_ruleset.delete.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#query_rules.delete_ruleset.Request">API
  *      specification</a>
  */
 
-public class DeleteQueryRulesetRequest extends RequestBase {
+public class DeleteRulesetRequest extends RequestBase {
 	private final String rulesetId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteQueryRulesetRequest(Builder builder) {
+	private DeleteRulesetRequest(Builder builder) {
 
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 
 	}
 
-	public static DeleteQueryRulesetRequest of(Function<Builder, ObjectBuilder<DeleteQueryRulesetRequest>> fn) {
+	public static DeleteRulesetRequest of(Function<Builder, ObjectBuilder<DeleteRulesetRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -89,12 +90,12 @@ public class DeleteQueryRulesetRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteQueryRulesetRequest}.
+	 * Builder for {@link DeleteRulesetRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DeleteQueryRulesetRequest> {
+				ObjectBuilder<DeleteRulesetRequest> {
 		private String rulesetId;
 
 		/**
@@ -113,25 +114,25 @@ public class DeleteQueryRulesetRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link DeleteQueryRulesetRequest}.
+		 * Builds a {@link DeleteRulesetRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DeleteQueryRulesetRequest build() {
+		public DeleteRulesetRequest build() {
 			_checkSingleUse();
 
-			return new DeleteQueryRulesetRequest(this);
+			return new DeleteRulesetRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code query_ruleset.delete}".
+	 * Endpoint "{@code query_rules.delete_ruleset}".
 	 */
-	public static final Endpoint<DeleteQueryRulesetRequest, DeleteQueryRulesetResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/query_ruleset.delete",
+	public static final Endpoint<DeleteRulesetRequest, DeleteRulesetResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/query_rules.delete_ruleset",
 
 			// Request method
 			request -> {
@@ -177,5 +178,5 @@ public class DeleteQueryRulesetRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteQueryRulesetResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteRulesetResponse._DESERIALIZER);
 }

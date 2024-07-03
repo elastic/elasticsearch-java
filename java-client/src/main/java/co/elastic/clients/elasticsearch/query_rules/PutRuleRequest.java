@@ -17,12 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_rule;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -33,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -53,36 +56,59 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_rule.get.Request
+// typedef: query_rules.put_rule.Request
 
 /**
- * Returns the details about a query rule within a query ruleset
+ * Creates or updates a query rule within a query ruleset.
  * 
- * @see <a href="../doc-files/api-spec.html#query_rule.get.Request">API
+ * @see <a href="../doc-files/api-spec.html#query_rules.put_rule.Request">API
  *      specification</a>
  */
+@JsonpDeserializable
+public class PutRuleRequest extends RequestBase implements JsonpSerializable {
+	private final QueryRuleActions actions;
 
-public class GetQueryRuleRequest extends RequestBase {
+	private final List<QueryRuleCriteria> criteria;
+
 	private final String ruleId;
 
 	private final String rulesetId;
 
+	private final QueryRuleType type;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private GetQueryRuleRequest(Builder builder) {
+	private PutRuleRequest(Builder builder) {
 
+		this.actions = ApiTypeHelper.requireNonNull(builder.actions, this, "actions");
+		this.criteria = ApiTypeHelper.unmodifiableRequired(builder.criteria, this, "criteria");
 		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static GetQueryRuleRequest of(Function<Builder, ObjectBuilder<GetQueryRuleRequest>> fn) {
+	public static PutRuleRequest of(Function<Builder, ObjectBuilder<PutRuleRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * Required - API name: {@code actions}
+	 */
+	public final QueryRuleActions actions() {
+		return this.actions;
+	}
+
+	/**
+	 * Required - API name: {@code criteria}
+	 */
+	public final List<QueryRuleCriteria> criteria() {
+		return this.criteria;
+	}
+
+	/**
 	 * Required - The unique identifier of the query rule within the specified
-	 * ruleset to retrieve
+	 * ruleset to be created or updated
 	 * <p>
 	 * API name: {@code rule_id}
 	 */
@@ -92,7 +118,7 @@ public class GetQueryRuleRequest extends RequestBase {
 
 	/**
 	 * Required - The unique identifier of the query ruleset containing the rule to
-	 * retrieve
+	 * be created or updated
 	 * <p>
 	 * API name: {@code ruleset_id}
 	 */
@@ -100,22 +126,106 @@ public class GetQueryRuleRequest extends RequestBase {
 		return this.rulesetId;
 	}
 
+	/**
+	 * Required - API name: {@code type}
+	 */
+	public final QueryRuleType type() {
+		return this.type;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("actions");
+		this.actions.serialize(generator, mapper);
+
+		if (ApiTypeHelper.isDefined(this.criteria)) {
+			generator.writeKey("criteria");
+			generator.writeStartArray();
+			for (QueryRuleCriteria item0 : this.criteria) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeKey("type");
+		this.type.serialize(generator, mapper);
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetQueryRuleRequest}.
+	 * Builder for {@link PutRuleRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GetQueryRuleRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutRuleRequest> {
+		private QueryRuleActions actions;
+
+		private List<QueryRuleCriteria> criteria;
+
 		private String ruleId;
 
 		private String rulesetId;
 
+		private QueryRuleType type;
+
+		/**
+		 * Required - API name: {@code actions}
+		 */
+		public final Builder actions(QueryRuleActions value) {
+			this.actions = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code actions}
+		 */
+		public final Builder actions(Function<QueryRuleActions.Builder, ObjectBuilder<QueryRuleActions>> fn) {
+			return this.actions(fn.apply(new QueryRuleActions.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code criteria}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>criteria</code>.
+		 */
+		public final Builder criteria(List<QueryRuleCriteria> list) {
+			this.criteria = _listAddAll(this.criteria, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code criteria}
+		 * <p>
+		 * Adds one or more values to <code>criteria</code>.
+		 */
+		public final Builder criteria(QueryRuleCriteria value, QueryRuleCriteria... values) {
+			this.criteria = _listAdd(this.criteria, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code criteria}
+		 * <p>
+		 * Adds a value to <code>criteria</code> using a builder lambda.
+		 */
+		public final Builder criteria(Function<QueryRuleCriteria.Builder, ObjectBuilder<QueryRuleCriteria>> fn) {
+			return criteria(fn.apply(new QueryRuleCriteria.Builder()).build());
+		}
+
 		/**
 		 * Required - The unique identifier of the query rule within the specified
-		 * ruleset to retrieve
+		 * ruleset to be created or updated
 		 * <p>
 		 * API name: {@code rule_id}
 		 */
@@ -126,12 +236,20 @@ public class GetQueryRuleRequest extends RequestBase {
 
 		/**
 		 * Required - The unique identifier of the query ruleset containing the rule to
-		 * retrieve
+		 * be created or updated
 		 * <p>
 		 * API name: {@code ruleset_id}
 		 */
 		public final Builder rulesetId(String value) {
 			this.rulesetId = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code type}
+		 */
+		public final Builder type(QueryRuleType value) {
+			this.type = value;
 			return this;
 		}
 
@@ -141,29 +259,45 @@ public class GetQueryRuleRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetQueryRuleRequest}.
+		 * Builds a {@link PutRuleRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetQueryRuleRequest build() {
+		public PutRuleRequest build() {
 			_checkSingleUse();
 
-			return new GetQueryRuleRequest(this);
+			return new PutRuleRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code query_rule.get}".
+	 * Json deserializer for {@link PutRuleRequest}
 	 */
-	public static final Endpoint<GetQueryRuleRequest, GetQueryRuleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/query_rule.get",
+	public static final JsonpDeserializer<PutRuleRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutRuleRequest::setupPutRuleRequestDeserializer);
+
+	protected static void setupPutRuleRequestDeserializer(ObjectDeserializer<PutRuleRequest.Builder> op) {
+
+		op.add(Builder::actions, QueryRuleActions._DESERIALIZER, "actions");
+		op.add(Builder::criteria, JsonpDeserializer.arrayDeserializer(QueryRuleCriteria._DESERIALIZER), "criteria");
+		op.add(Builder::type, QueryRuleType._DESERIALIZER, "type");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code query_rules.put_rule}".
+	 */
+	public static final Endpoint<PutRuleRequest, PutRuleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/query_rules.put_rule",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "PUT";
 
 			},
 
@@ -213,5 +347,5 @@ public class GetQueryRuleRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetQueryRuleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutRuleResponse._DESERIALIZER);
 }

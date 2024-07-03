@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: indices.exists_template.Request
 
 /**
- * Returns information about whether a particular index template exists.
+ * Check existence of index templates. Returns information about whether a
+ * particular index template exists.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.exists_template.Request">API
  *      specification</a>
