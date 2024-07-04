@@ -175,6 +175,11 @@ public class GetModelRequest extends RequestBase {
 				if (request.taskType() != null)
 					propsSet |= _taskType;
 
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_inference");
+					return buf.toString();
+				}
 				if (propsSet == (_inferenceId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_inference");
@@ -207,6 +212,8 @@ public class GetModelRequest extends RequestBase {
 				if (request.taskType() != null)
 					propsSet |= _taskType;
 
+				if (propsSet == 0) {
+				}
 				if (propsSet == (_inferenceId)) {
 					params.put("inferenceId", request.inferenceId);
 				}
