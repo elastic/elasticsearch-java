@@ -74,7 +74,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * Executes an ES|QL request
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/esql-rest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/esql-rest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -92,7 +92,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.15/esql-rest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/esql-rest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
