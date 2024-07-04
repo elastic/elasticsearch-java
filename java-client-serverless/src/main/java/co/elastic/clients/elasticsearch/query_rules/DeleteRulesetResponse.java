@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -44,63 +44,63 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.delete.Response
+// typedef: query_rules.delete_ruleset.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#query_ruleset.delete.Response">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#query_rules.delete_ruleset.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DeleteQueryRulesetResponse extends AcknowledgedResponseBase {
+public class DeleteRulesetResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteQueryRulesetResponse(Builder builder) {
+	private DeleteRulesetResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static DeleteQueryRulesetResponse of(Function<Builder, ObjectBuilder<DeleteQueryRulesetResponse>> fn) {
+	public static DeleteRulesetResponse of(Function<Builder, ObjectBuilder<DeleteRulesetResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteQueryRulesetResponse}.
+	 * Builder for {@link DeleteRulesetResponse}.
 	 */
 
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DeleteQueryRulesetResponse> {
+				ObjectBuilder<DeleteRulesetResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link DeleteQueryRulesetResponse}.
+		 * Builds a {@link DeleteRulesetResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DeleteQueryRulesetResponse build() {
+		public DeleteRulesetResponse build() {
 			_checkSingleUse();
 
-			return new DeleteQueryRulesetResponse(this);
+			return new DeleteRulesetResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DeleteQueryRulesetResponse}
+	 * Json deserializer for {@link DeleteRulesetResponse}
 	 */
-	public static final JsonpDeserializer<DeleteQueryRulesetResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteQueryRulesetResponse::setupDeleteQueryRulesetResponseDeserializer);
+	public static final JsonpDeserializer<DeleteRulesetResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteRulesetResponse::setupDeleteRulesetResponseDeserializer);
 
-	protected static void setupDeleteQueryRulesetResponseDeserializer(
-			ObjectDeserializer<DeleteQueryRulesetResponse.Builder> op) {
+	protected static void setupDeleteRulesetResponseDeserializer(ObjectDeserializer<DeleteRulesetResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

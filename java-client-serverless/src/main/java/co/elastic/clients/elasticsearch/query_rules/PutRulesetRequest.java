@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -56,30 +56,30 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.put.Request
+// typedef: query_rules.put_ruleset.Request
 
 /**
  * Creates or updates a query ruleset.
  * 
- * @see <a href="../doc-files/api-spec.html#query_ruleset.put.Request">API
+ * @see <a href="../doc-files/api-spec.html#query_rules.put_ruleset.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutRequest extends RequestBase implements JsonpSerializable {
+public class PutRulesetRequest extends RequestBase implements JsonpSerializable {
 	private final List<QueryRule> rules;
 
 	private final String rulesetId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private PutRequest(Builder builder) {
+	private PutRulesetRequest(Builder builder) {
 
 		this.rules = ApiTypeHelper.unmodifiableRequired(builder.rules, this, "rules");
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 
 	}
 
-	public static PutRequest of(Function<Builder, ObjectBuilder<PutRequest>> fn) {
+	public static PutRulesetRequest of(Function<Builder, ObjectBuilder<PutRulesetRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -127,10 +127,12 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PutRequest}.
+	 * Builder for {@link PutRulesetRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutRequest> {
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PutRulesetRequest> {
 		private List<QueryRule> rules;
 
 		private String rulesetId;
@@ -181,27 +183,27 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link PutRequest}.
+		 * Builds a {@link PutRulesetRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PutRequest build() {
+		public PutRulesetRequest build() {
 			_checkSingleUse();
 
-			return new PutRequest(this);
+			return new PutRulesetRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link PutRequest}
+	 * Json deserializer for {@link PutRulesetRequest}
 	 */
-	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutRequest::setupPutRequestDeserializer);
+	public static final JsonpDeserializer<PutRulesetRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutRulesetRequest::setupPutRulesetRequestDeserializer);
 
-	protected static void setupPutRequestDeserializer(ObjectDeserializer<PutRequest.Builder> op) {
+	protected static void setupPutRulesetRequestDeserializer(ObjectDeserializer<PutRulesetRequest.Builder> op) {
 
 		op.add(Builder::rules, JsonpDeserializer.arrayDeserializer(QueryRule._DESERIALIZER), "rules");
 
@@ -210,10 +212,10 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code query_ruleset.put}".
+	 * Endpoint "{@code query_rules.put_ruleset}".
 	 */
-	public static final Endpoint<PutRequest, PutResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/query_ruleset.put",
+	public static final Endpoint<PutRulesetRequest, PutRulesetResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/query_rules.put_ruleset",
 
 			// Request method
 			request -> {
@@ -259,5 +261,5 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, PutResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutRulesetResponse._DESERIALIZER);
 }

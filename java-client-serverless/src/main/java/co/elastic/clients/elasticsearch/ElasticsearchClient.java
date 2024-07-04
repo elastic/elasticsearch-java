@@ -103,8 +103,7 @@ import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestClient;
 import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
-import co.elastic.clients.elasticsearch.query_rule.ElasticsearchQueryRuleClient;
-import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetClient;
+import co.elastic.clients.elasticsearch.query_rules.ElasticsearchQueryRulesClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
@@ -212,12 +211,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchMlClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchQueryRuleClient queryRule() {
-		return new ElasticsearchQueryRuleClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchQueryRulesetClient queryRuleset() {
-		return new ElasticsearchQueryRulesetClient(this.transport, this.transportOptions);
+	public ElasticsearchQueryRulesClient queryRules() {
+		return new ElasticsearchQueryRulesClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSearchApplicationClient searchApplication() {

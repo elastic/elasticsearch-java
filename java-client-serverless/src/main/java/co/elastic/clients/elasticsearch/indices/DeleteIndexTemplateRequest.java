@@ -58,10 +58,10 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_index_template.Request
 
 /**
- * The provided &lt;index-template&gt; may contain multiple template names
- * separated by a comma. If multiple template names are specified then there is
- * no wildcard support and the provided names should match completely with
- * existing templates.
+ * Delete an index template. The provided &lt;index-template&gt; may contain
+ * multiple template names separated by a comma. If multiple template names are
+ * specified then there is no wildcard support and the provided names should
+ * match completely with existing templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_index_template.Request">API

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset.list;
+package co.elastic.clients.elasticsearch.query_rules.list_rulesets;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -52,12 +52,12 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.list.QueryRulesetListItem
+// typedef: query_rules.list_rulesets.QueryRulesetListItem
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#query_ruleset.list.QueryRulesetListItem">API
+ *      "../../doc-files/api-spec.html#query_rules.list_rulesets.QueryRulesetListItem">API
  *      specification</a>
  */
 @JsonpDeserializable

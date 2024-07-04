@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -52,12 +52,12 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset._types.QueryRuleCriteria
+// typedef: query_rules._types.QueryRuleCriteria
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#query_ruleset._types.QueryRuleCriteria">API
+ *      "../doc-files/api-spec.html#query_rules._types.QueryRuleCriteria">API
  *      specification</a>
  */
 @JsonpDeserializable

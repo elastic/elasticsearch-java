@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.query_ruleset;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -43,64 +43,61 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: query_ruleset.get.Response
+// typedef: query_rules.get_rule.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#query_ruleset.get.Response">API
+ * @see <a href="../doc-files/api-spec.html#query_rules.get_rule.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetQueryRulesetResponse extends QueryRuleset {
+public class GetRuleResponse extends QueryRule {
 	// ---------------------------------------------------------------------------------------------
 
-	private GetQueryRulesetResponse(Builder builder) {
+	private GetRuleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static GetQueryRulesetResponse of(Function<Builder, ObjectBuilder<GetQueryRulesetResponse>> fn) {
+	public static GetRuleResponse of(Function<Builder, ObjectBuilder<GetRuleResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetQueryRulesetResponse}.
+	 * Builder for {@link GetRuleResponse}.
 	 */
 
-	public static class Builder extends QueryRuleset.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GetQueryRulesetResponse> {
+	public static class Builder extends QueryRule.AbstractBuilder<Builder> implements ObjectBuilder<GetRuleResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link GetQueryRulesetResponse}.
+		 * Builds a {@link GetRuleResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetQueryRulesetResponse build() {
+		public GetRuleResponse build() {
 			_checkSingleUse();
 
-			return new GetQueryRulesetResponse(this);
+			return new GetRuleResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GetQueryRulesetResponse}
+	 * Json deserializer for {@link GetRuleResponse}
 	 */
-	public static final JsonpDeserializer<GetQueryRulesetResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetQueryRulesetResponse::setupGetQueryRulesetResponseDeserializer);
+	public static final JsonpDeserializer<GetRuleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetRuleResponse::setupGetRuleResponseDeserializer);
 
-	protected static void setupGetQueryRulesetResponseDeserializer(
-			ObjectDeserializer<GetQueryRulesetResponse.Builder> op) {
-		QueryRuleset.setupQueryRulesetDeserializer(op);
+	protected static void setupGetRuleResponseDeserializer(ObjectDeserializer<GetRuleResponse.Builder> op) {
+		QueryRule.setupQueryRuleDeserializer(op);
 
 	}
 

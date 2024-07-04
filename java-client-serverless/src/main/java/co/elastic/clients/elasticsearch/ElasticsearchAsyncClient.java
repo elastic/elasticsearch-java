@@ -102,8 +102,7 @@ import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestAsyncClient;
 import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseAsyncClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashAsyncClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlAsyncClient;
-import co.elastic.clients.elasticsearch.query_rule.ElasticsearchQueryRuleAsyncClient;
-import co.elastic.clients.elasticsearch.query_ruleset.ElasticsearchQueryRulesetAsyncClient;
+import co.elastic.clients.elasticsearch.query_rules.ElasticsearchQueryRulesAsyncClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationAsyncClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityAsyncClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
@@ -211,12 +210,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchMlAsyncClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchQueryRuleAsyncClient queryRule() {
-		return new ElasticsearchQueryRuleAsyncClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchQueryRulesetAsyncClient queryRuleset() {
-		return new ElasticsearchQueryRulesetAsyncClient(this.transport, this.transportOptions);
+	public ElasticsearchQueryRulesAsyncClient queryRules() {
+		return new ElasticsearchQueryRulesAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSearchApplicationAsyncClient searchApplication() {
