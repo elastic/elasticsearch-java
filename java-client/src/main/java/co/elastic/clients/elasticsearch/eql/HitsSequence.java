@@ -75,7 +75,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 	private HitsSequence(Builder<TEvent> builder) {
 
 		this.events = ApiTypeHelper.unmodifiableRequired(builder.events, this, "events");
-		this.joinKeys = ApiTypeHelper.unmodifiableRequired(builder.joinKeys, this, "joinKeys");
+		this.joinKeys = ApiTypeHelper.unmodifiable(builder.joinKeys);
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
@@ -95,8 +95,8 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Shared field values used to constrain matches in the sequence.
-	 * These are defined using the by keyword in the EQL query syntax.
+	 * Shared field values used to constrain matches in the sequence. These are
+	 * defined using the by keyword in the EQL query syntax.
 	 * <p>
 	 * API name: {@code join_keys}
 	 */
@@ -154,6 +154,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 				ObjectBuilder<HitsSequence<TEvent>> {
 		private List<HitsEvent<TEvent>> events;
 
+		@Nullable
 		private List<JsonData> joinKeys;
 
 		@Nullable
@@ -198,8 +199,8 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Shared field values used to constrain matches in the sequence.
-		 * These are defined using the by keyword in the EQL query syntax.
+		 * Shared field values used to constrain matches in the sequence. These are
+		 * defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
 		 * <p>
@@ -211,8 +212,8 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Shared field values used to constrain matches in the sequence.
-		 * These are defined using the by keyword in the EQL query syntax.
+		 * Shared field values used to constrain matches in the sequence. These are
+		 * defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
 		 * <p>

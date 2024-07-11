@@ -146,8 +146,6 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	ReadCcr("read_ccr"),
 
-	ReadConnectorSecrets("read_connector_secrets"),
-
 	ReadFleetSecrets("read_fleet_secrets"),
 
 	ReadIlm("read_ilm"),

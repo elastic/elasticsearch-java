@@ -24,7 +24,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -56,6 +55,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
 	private final SnowballLanguage language;
 
 	// ---------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	private SnowballTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+		this.language = builder.language;
 
 	}
 
@@ -80,8 +80,9 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code language}
+	 * API name: {@code language}
 	 */
+	@Nullable
 	public final SnowballLanguage language() {
 		return this.language;
 	}
@@ -90,8 +91,10 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 
 		generator.write("type", "snowball");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("language");
-		this.language.serialize(generator, mapper);
+		if (this.language != null) {
+			generator.writeKey("language");
+			this.language.serialize(generator, mapper);
+		}
 
 	}
 
@@ -104,12 +107,13 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SnowballTokenFilter> {
+		@Nullable
 		private SnowballLanguage language;
 
 		/**
-		 * Required - API name: {@code language}
+		 * API name: {@code language}
 		 */
-		public final Builder language(SnowballLanguage value) {
+		public final Builder language(@Nullable SnowballLanguage value) {
 			this.language = value;
 			return this;
 		}

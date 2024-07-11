@@ -19,15 +19,20 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -56,22 +61,41 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DecayFunction extends DecayFunctionBase implements FunctionScoreVariant {
-	private final String field;
+public class DecayFunction
+		implements
+			TaggedUnion<DecayFunction.Kind, DecayFunctionVariant>,
+			FunctionScoreVariant,
+			JsonpSerializable {
 
-	private final DecayPlacement placement;
+	/**
+	 * {@link DecayFunction} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.query_dsl.DecayFunction">API
+	 *      specification</a>
+	 */
 
-	// ---------------------------------------------------------------------------------------------
+	public enum Kind implements JsonEnum {
+		Date("date"),
 
-	private DecayFunction(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
+		Geo("geo"),
 
-	}
+		Numeric("numeric"),
 
-	public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
-		return fn.apply(new Builder()).build();
+		Untyped("untyped"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
 	/**
@@ -82,98 +106,182 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 		return FunctionScore.Kind.Linear;
 	}
 
-	/**
-	 * Required -
-	 */
-	public final String field() {
-		return this.field;
+	private final Kind _kind;
+	private final DecayFunctionVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final DecayFunctionVariant _get() {
+		return _value;
+	}
+
+	public DecayFunction(DecayFunctionVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._decayFunctionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
+
+	private DecayFunction(Kind kind, DecayFunctionVariant value) {
+		this._kind = kind;
+		this._value = value;
+	}
+
+	private DecayFunction(Builder builder) {
+
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+	}
+
+	public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required -
+	 * Is this variant instance of kind {@code date}?
 	 */
-	public final DecayPlacement placement() {
-		return this.placement;
+	public boolean isDate() {
+		return _kind == Kind.Date;
 	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeKey(this.field);
-		this.placement.serialize(generator, mapper);
-
-		super.serializeInternal(generator, mapper);
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DecayFunction}.
+	 * Get the {@code date} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date} kind.
 	 */
+	public DateDecayFunction date() {
+		return TaggedUnionUtils.get(this, Kind.Date);
+	}
 
-	public static class Builder extends DecayFunctionBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DecayFunction> {
-		private String field;
+	/**
+	 * Is this variant instance of kind {@code geo}?
+	 */
+	public boolean isGeo() {
+		return _kind == Kind.Geo;
+	}
 
-		private DecayPlacement placement;
+	/**
+	 * Get the {@code geo} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo} kind.
+	 */
+	public GeoDecayFunction geo() {
+		return TaggedUnionUtils.get(this, Kind.Geo);
+	}
 
-		/**
-		 * Required -
-		 */
-		public final Builder field(String value) {
-			this.field = value;
+	/**
+	 * Is this variant instance of kind {@code numeric}?
+	 */
+	public boolean isNumeric() {
+		return _kind == Kind.Numeric;
+	}
+
+	/**
+	 * Get the {@code numeric} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code numeric} kind.
+	 */
+	public NumericDecayFunction numeric() {
+		return TaggedUnionUtils.get(this, Kind.Numeric);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code untyped}?
+	 */
+	public boolean isUntyped() {
+		return _kind == Kind.Untyped;
+	}
+
+	/**
+	 * Get the {@code untyped} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code untyped} kind.
+	 */
+	public UntypedDecayFunction untyped() {
+		return TaggedUnionUtils.get(this, Kind.Untyped);
+	}
+
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		mapper.serialize(_value, generator);
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DecayFunction> {
+		private Kind _kind;
+		private DecayFunctionVariant _value;
+
+		public ObjectBuilder<DecayFunction> date(DateDecayFunction v) {
+			this._kind = Kind.Date;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required -
-		 */
-		public final Builder placement(DecayPlacement value) {
-			this.placement = value;
+		public ObjectBuilder<DecayFunction> date(
+				Function<DateDecayFunction.Builder, ObjectBuilder<DateDecayFunction>> fn) {
+			return this.date(fn.apply(new DateDecayFunction.Builder()).build());
+		}
+
+		public ObjectBuilder<DecayFunction> geo(GeoDecayFunction v) {
+			this._kind = Kind.Geo;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required -
-		 */
-		public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
-			return this.placement(fn.apply(new DecayPlacement.Builder()).build());
+		public ObjectBuilder<DecayFunction> geo(
+				Function<GeoDecayFunction.Builder, ObjectBuilder<GeoDecayFunction>> fn) {
+			return this.geo(fn.apply(new GeoDecayFunction.Builder()).build());
 		}
 
-		@Override
-		protected Builder self() {
+		public ObjectBuilder<DecayFunction> numeric(NumericDecayFunction v) {
+			this._kind = Kind.Numeric;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Builds a {@link DecayFunction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<DecayFunction> numeric(
+				Function<NumericDecayFunction.Builder, ObjectBuilder<NumericDecayFunction>> fn) {
+			return this.numeric(fn.apply(new NumericDecayFunction.Builder()).build());
+		}
+
+		public ObjectBuilder<DecayFunction> untyped(UntypedDecayFunction v) {
+			this._kind = Kind.Untyped;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<DecayFunction> untyped(
+				Function<UntypedDecayFunction.Builder, ObjectBuilder<UntypedDecayFunction>> fn) {
+			return this.untyped(fn.apply(new UntypedDecayFunction.Builder()).build());
+		}
+
 		public DecayFunction build() {
 			_checkSingleUse();
-
 			return new DecayFunction(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link DecayFunction}
-	 */
-	public static final JsonpDeserializer<DecayFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DecayFunction::setupDecayFunctionDeserializer);
-
-	protected static void setupDecayFunctionDeserializer(ObjectDeserializer<DecayFunction.Builder> op) {
-		DecayFunctionBase.setupDecayFunctionBaseDeserializer(op);
-
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			builder.field(name);
-			builder.placement(DecayPlacement._DESERIALIZER.deserialize(parser, mapper));
-		});
 
 	}
 
+	private static JsonpDeserializer<DecayFunction> buildDecayFunctionDeserializer() {
+		return new UnionDeserializer.Builder<DecayFunction, Kind, DecayFunctionVariant>(DecayFunction::new, false)
+				.addMember(Kind.Untyped, UntypedDecayFunction._DESERIALIZER).build();
+	}
+
+	public static final JsonpDeserializer<DecayFunction> _DESERIALIZER = JsonpDeserializer
+			.lazy(DecayFunction::buildDecayFunctionDeserializer);
 }

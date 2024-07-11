@@ -114,7 +114,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.close_job
 
 	/**
-	 * Close anomaly detection jobs A job can be opened and closed multiple times
+	 * Close anomaly detection jobs. A job can be opened and closed multiple times
 	 * throughout its lifecycle. A closed job cannot receive data or perform
 	 * analysis operations, but you can still explore and navigate results. When you
 	 * close a job, it runs housekeeping tasks such as pruning the model history,
@@ -142,7 +142,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Close anomaly detection jobs A job can be opened and closed multiple times
+	 * Close anomaly detection jobs. A job can be opened and closed multiple times
 	 * throughout its lifecycle. A closed job cannot receive data or perform
 	 * analysis operations, but you can still explore and navigate results. When you
 	 * close a job, it runs housekeeping tasks such as pruning the model history,
@@ -496,14 +496,12 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.delete_job
 
 	/**
-	 * Deletes an anomaly detection job.
-	 * <p>
-	 * All job configuration, model state and results are deleted. It is not
-	 * currently possible to delete multiple jobs using wildcards or a comma
-	 * separated list. If you delete a job that has a datafeed, the request first
-	 * tries to delete the datafeed. This behavior is equivalent to calling the
-	 * delete datafeed API with the same timeout and force parameters as the delete
-	 * job request.
+	 * Delete an anomaly detection job. All job configuration, model state and
+	 * results are deleted. It is not currently possible to delete multiple jobs
+	 * using wildcards or a comma separated list. If you delete a job that has a
+	 * datafeed, the request first tries to delete the datafeed. This behavior is
+	 * equivalent to calling the delete datafeed API with the same timeout and force
+	 * parameters as the delete job request.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html">Documentation
@@ -518,14 +516,12 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Deletes an anomaly detection job.
-	 * <p>
-	 * All job configuration, model state and results are deleted. It is not
-	 * currently possible to delete multiple jobs using wildcards or a comma
-	 * separated list. If you delete a job that has a datafeed, the request first
-	 * tries to delete the datafeed. This behavior is equivalent to calling the
-	 * delete datafeed API with the same timeout and force parameters as the delete
-	 * job request.
+	 * Delete an anomaly detection job. All job configuration, model state and
+	 * results are deleted. It is not currently possible to delete multiple jobs
+	 * using wildcards or a comma separated list. If you delete a job that has a
+	 * datafeed, the request first tries to delete the datafeed. This behavior is
+	 * equivalent to calling the delete datafeed API with the same timeout and force
+	 * parameters as the delete job request.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1904,12 +1900,12 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.open_job
 
 	/**
-	 * Opens one or more anomaly detection jobs. An anomaly detection job must be
-	 * opened in order for it to be ready to receive and analyze data. It can be
-	 * opened and closed multiple times throughout its lifecycle. When you open a
-	 * new job, it starts with an empty model. When you open an existing job, the
-	 * most recent model state is automatically loaded. The job is ready to resume
-	 * its analysis from where it left off, once new data is received.
+	 * Open anomaly detection jobs. An anomaly detection job must be opened in order
+	 * for it to be ready to receive and analyze data. It can be opened and closed
+	 * multiple times throughout its lifecycle. When you open a new job, it starts
+	 * with an empty model. When you open an existing job, the most recent model
+	 * state is automatically loaded. The job is ready to resume its analysis from
+	 * where it left off, once new data is received.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html">Documentation
@@ -1924,12 +1920,12 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Opens one or more anomaly detection jobs. An anomaly detection job must be
-	 * opened in order for it to be ready to receive and analyze data. It can be
-	 * opened and closed multiple times throughout its lifecycle. When you open a
-	 * new job, it starts with an empty model. When you open an existing job, the
-	 * most recent model state is automatically loaded. The job is ready to resume
-	 * its analysis from where it left off, once new data is received.
+	 * Open anomaly detection jobs. An anomaly detection job must be opened in order
+	 * for it to be ready to receive and analyze data. It can be opened and closed
+	 * multiple times throughout its lifecycle. When you open a new job, it starts
+	 * with an empty model. When you open an existing job, the most recent model
+	 * state is automatically loaded. The job is ready to resume its analysis from
+	 * where it left off, once new data is received.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2374,7 +2370,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.put_job
 
 	/**
-	 * Instantiates an anomaly detection job. If you include a
+	 * Create an anomaly detection job. If you include a
 	 * <code>datafeed_config</code>, you must have read index privileges on the
 	 * source index.
 	 * 
@@ -2391,7 +2387,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Instantiates an anomaly detection job. If you include a
+	 * Create an anomaly detection job. If you include a
 	 * <code>datafeed_config</code>, you must have read index privileges on the
 	 * source index.
 	 * 

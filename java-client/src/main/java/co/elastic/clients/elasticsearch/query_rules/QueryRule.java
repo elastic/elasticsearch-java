@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -68,6 +69,9 @@ public class QueryRule implements JsonpSerializable {
 
 	private final QueryRuleActions actions;
 
+	@Nullable
+	private final Integer priority;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected QueryRule(AbstractBuilder<?> builder) {
@@ -76,6 +80,7 @@ public class QueryRule implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.criteria = ApiTypeHelper.unmodifiableRequired(builder.criteria, this, "criteria");
 		this.actions = ApiTypeHelper.requireNonNull(builder.actions, this, "actions");
+		this.priority = builder.priority;
 
 	}
 
@@ -112,6 +117,14 @@ public class QueryRule implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code priority}
+	 */
+	@Nullable
+	public final Integer priority() {
+		return this.priority;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -139,6 +152,12 @@ public class QueryRule implements JsonpSerializable {
 		}
 		generator.writeKey("actions");
 		this.actions.serialize(generator, mapper);
+
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			generator.write(this.priority);
+
+		}
 
 	}
 
@@ -182,6 +201,9 @@ public class QueryRule implements JsonpSerializable {
 		private List<QueryRuleCriteria> criteria;
 
 		private QueryRuleActions actions;
+
+		@Nullable
+		private Integer priority;
 
 		/**
 		 * Required - API name: {@code rule_id}
@@ -243,6 +265,14 @@ public class QueryRule implements JsonpSerializable {
 			return this.actions(fn.apply(new QueryRuleActions.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code priority}
+		 */
+		public final BuilderT priority(@Nullable Integer value) {
+			this.priority = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -263,6 +293,7 @@ public class QueryRule implements JsonpSerializable {
 		op.add(AbstractBuilder::criteria, JsonpDeserializer.arrayDeserializer(QueryRuleCriteria._DESERIALIZER),
 				"criteria");
 		op.add(AbstractBuilder::actions, QueryRuleActions._DESERIALIZER, "actions");
+		op.add(AbstractBuilder::priority, JsonpDeserializer.integerDeserializer(), "priority");
 
 	}
 

@@ -34,6 +34,7 @@ import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -64,11 +65,14 @@ public class TransformProgress implements JsonpSerializable {
 
 	private final long docsProcessed;
 
-	private final long docsRemaining;
+	@Nullable
+	private final Long docsRemaining;
 
-	private final double percentComplete;
+	@Nullable
+	private final Double percentComplete;
 
-	private final long totalDocs;
+	@Nullable
+	private final Long totalDocs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,9 +80,9 @@ public class TransformProgress implements JsonpSerializable {
 
 		this.docsIndexed = ApiTypeHelper.requireNonNull(builder.docsIndexed, this, "docsIndexed");
 		this.docsProcessed = ApiTypeHelper.requireNonNull(builder.docsProcessed, this, "docsProcessed");
-		this.docsRemaining = ApiTypeHelper.requireNonNull(builder.docsRemaining, this, "docsRemaining");
-		this.percentComplete = ApiTypeHelper.requireNonNull(builder.percentComplete, this, "percentComplete");
-		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
+		this.docsRemaining = builder.docsRemaining;
+		this.percentComplete = builder.percentComplete;
+		this.totalDocs = builder.totalDocs;
 
 	}
 
@@ -101,23 +105,26 @@ public class TransformProgress implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code docs_remaining}
+	 * API name: {@code docs_remaining}
 	 */
-	public final long docsRemaining() {
+	@Nullable
+	public final Long docsRemaining() {
 		return this.docsRemaining;
 	}
 
 	/**
-	 * Required - API name: {@code percent_complete}
+	 * API name: {@code percent_complete}
 	 */
-	public final double percentComplete() {
+	@Nullable
+	public final Double percentComplete() {
 		return this.percentComplete;
 	}
 
 	/**
-	 * Required - API name: {@code total_docs}
+	 * API name: {@code total_docs}
 	 */
-	public final long totalDocs() {
+	@Nullable
+	public final Long totalDocs() {
 		return this.totalDocs;
 	}
 
@@ -138,14 +145,21 @@ public class TransformProgress implements JsonpSerializable {
 		generator.writeKey("docs_processed");
 		generator.write(this.docsProcessed);
 
-		generator.writeKey("docs_remaining");
-		generator.write(this.docsRemaining);
+		if (this.docsRemaining != null) {
+			generator.writeKey("docs_remaining");
+			generator.write(this.docsRemaining);
 
-		generator.writeKey("percent_complete");
-		generator.write(this.percentComplete);
+		}
+		if (this.percentComplete != null) {
+			generator.writeKey("percent_complete");
+			generator.write(this.percentComplete);
 
-		generator.writeKey("total_docs");
-		generator.write(this.totalDocs);
+		}
+		if (this.totalDocs != null) {
+			generator.writeKey("total_docs");
+			generator.write(this.totalDocs);
+
+		}
 
 	}
 
@@ -165,10 +179,13 @@ public class TransformProgress implements JsonpSerializable {
 
 		private Long docsProcessed;
 
+		@Nullable
 		private Long docsRemaining;
 
+		@Nullable
 		private Double percentComplete;
 
+		@Nullable
 		private Long totalDocs;
 
 		/**
@@ -188,25 +205,25 @@ public class TransformProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code docs_remaining}
+		 * API name: {@code docs_remaining}
 		 */
-		public final Builder docsRemaining(long value) {
+		public final Builder docsRemaining(@Nullable Long value) {
 			this.docsRemaining = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code percent_complete}
+		 * API name: {@code percent_complete}
 		 */
-		public final Builder percentComplete(double value) {
+		public final Builder percentComplete(@Nullable Double value) {
 			this.percentComplete = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total_docs}
+		 * API name: {@code total_docs}
 		 */
-		public final Builder totalDocs(long value) {
+		public final Builder totalDocs(@Nullable Long value) {
 			this.totalDocs = value;
 			return this;
 		}

@@ -74,11 +74,14 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private final List<String> runAs;
 
+	@Nullable
+	private final String description;
+
 	private final Map<String, JsonData> transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RoleDescriptor(Builder builder) {
+	protected RoleDescriptor(AbstractBuilder<?> builder) {
 
 		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
@@ -86,11 +89,12 @@ public class RoleDescriptor implements JsonpSerializable {
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
+		this.description = builder.description;
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
 	}
 
-	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
+	public static RoleDescriptor roleDescriptorOf(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -144,12 +148,25 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of users that the API keys can impersonate.
+	 * A list of users that the API keys can impersonate. <em>Note</em>: in
+	 * Serverless, the run-as feature is disabled. For API compatibility, you can
+	 * still specify an empty <code>run_as</code> field, but a non-empty list will
+	 * be rejected.
 	 * <p>
 	 * API name: {@code run_as}
 	 */
 	public final List<String> runAs() {
 		return this.runAs;
+	}
+
+	/**
+	 * Optional description of the role descriptor
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -231,6 +248,11 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
 		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
 			generator.writeKey("transient_metadata");
 			generator.writeStartObject();
@@ -256,7 +278,30 @@ public class RoleDescriptor implements JsonpSerializable {
 	 * Builder for {@link RoleDescriptor}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleDescriptor> {
+	public static class Builder extends RoleDescriptor.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<RoleDescriptor> {
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link RoleDescriptor}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public RoleDescriptor build() {
+			_checkSingleUse();
+
+			return new RoleDescriptor(this);
+		}
+	}
+
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
 		private List<String> cluster;
 
@@ -276,6 +321,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		private List<String> runAs;
 
 		@Nullable
+		private String description;
+
+		@Nullable
 		private Map<String, JsonData> transientMetadata;
 
 		/**
@@ -286,9 +334,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public final Builder cluster(List<String> list) {
+		public final BuilderT cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
-			return this;
+			return self();
 		}
 
 		/**
@@ -299,9 +347,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public final Builder cluster(String value, String... values) {
+		public final BuilderT cluster(String value, String... values) {
 			this.cluster = _listAdd(this.cluster, value, values);
-			return this;
+			return self();
 		}
 
 		/**
@@ -311,9 +359,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesPrivileges> list) {
+		public final BuilderT indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
-			return this;
+			return self();
 		}
 
 		/**
@@ -323,9 +371,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+		public final BuilderT indices(IndicesPrivileges value, IndicesPrivileges... values) {
 			this.indices = _listAdd(this.indices, value, values);
-			return this;
+			return self();
 		}
 
 		/**
@@ -335,7 +383,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+		public final BuilderT indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
@@ -348,9 +396,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>global</code>.
 		 */
-		public final Builder global(List<GlobalPrivilege> list) {
+		public final BuilderT global(List<GlobalPrivilege> list) {
 			this.global = _listAddAll(this.global, list);
-			return this;
+			return self();
 		}
 
 		/**
@@ -362,9 +410,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>global</code>.
 		 */
-		public final Builder global(GlobalPrivilege value, GlobalPrivilege... values) {
+		public final BuilderT global(GlobalPrivilege value, GlobalPrivilege... values) {
 			this.global = _listAdd(this.global, value, values);
-			return this;
+			return self();
 		}
 
 		/**
@@ -376,7 +424,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>global</code> using a builder lambda.
 		 */
-		public final Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+		public final BuilderT global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
 			return global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
@@ -387,9 +435,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public final Builder applications(List<ApplicationPrivileges> list) {
+		public final BuilderT applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
-			return this;
+			return self();
 		}
 
 		/**
@@ -399,9 +447,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+		public final BuilderT applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
 			this.applications = _listAdd(this.applications, value, values);
-			return this;
+			return self();
 		}
 
 		/**
@@ -411,7 +459,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
-		public final Builder applications(
+		public final BuilderT applications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
 			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
@@ -424,9 +472,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(Map<String, JsonData> map) {
+		public final BuilderT metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
-			return this;
+			return self();
 		}
 
 		/**
@@ -437,33 +485,49 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>metadata</code>.
 		 */
-		public final Builder metadata(String key, JsonData value) {
+		public final BuilderT metadata(String key, JsonData value) {
 			this.metadata = _mapPut(this.metadata, key, value);
-			return this;
+			return self();
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate.
+		 * A list of users that the API keys can impersonate. <em>Note</em>: in
+		 * Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
-		public final Builder runAs(List<String> list) {
+		public final BuilderT runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);
-			return this;
+			return self();
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate.
+		 * A list of users that the API keys can impersonate. <em>Note</em>: in
+		 * Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public final Builder runAs(String value, String... values) {
+		public final BuilderT runAs(String value, String... values) {
 			this.runAs = _listAdd(this.runAs, value, values);
-			return this;
+			return self();
+		}
+
+		/**
+		 * Optional description of the role descriptor
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public final BuilderT description(@Nullable String value) {
+			this.description = value;
+			return self();
 		}
 
 		/**
@@ -471,9 +535,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(Map<String, JsonData> map) {
+		public final BuilderT transientMetadata(Map<String, JsonData> map) {
 			this.transientMetadata = _mapPutAll(this.transientMetadata, map);
-			return this;
+			return self();
 		}
 
 		/**
@@ -481,27 +545,13 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(String key, JsonData value) {
+		public final BuilderT transientMetadata(String key, JsonData value) {
 			this.transientMetadata = _mapPut(this.transientMetadata, key, value);
-			return this;
+			return self();
 		}
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+		protected abstract BuilderT self();
 
-		/**
-		 * Builds a {@link RoleDescriptor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RoleDescriptor build() {
-			_checkSingleUse();
-
-			return new RoleDescriptor(this);
-		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -512,18 +562,21 @@ public class RoleDescriptor implements JsonpSerializable {
 	public static final JsonpDeserializer<RoleDescriptor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			RoleDescriptor::setupRoleDescriptorDeserializer);
 
-	protected static void setupRoleDescriptorDeserializer(ObjectDeserializer<RoleDescriptor.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRoleDescriptorDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(AbstractBuilder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices",
-				"index");
-		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
+		op.add(AbstractBuilder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER),
+				"indices", "index");
+		op.add(AbstractBuilder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
+		op.add(AbstractBuilder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
-		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+		op.add(AbstractBuilder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(AbstractBuilder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"run_as");
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(AbstractBuilder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"transient_metadata");
 
 	}
