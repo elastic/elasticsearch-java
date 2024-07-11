@@ -31,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
@@ -65,12 +66,15 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 
 	private final long policies;
 
+	private final int stagnatingIndices;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IlmIndicatorDetails(Builder builder) {
 
 		this.ilmStatus = ApiTypeHelper.requireNonNull(builder.ilmStatus, this, "ilmStatus");
 		this.policies = ApiTypeHelper.requireNonNull(builder.policies, this, "policies");
+		this.stagnatingIndices = ApiTypeHelper.requireNonNull(builder.stagnatingIndices, this, "stagnatingIndices");
 
 	}
 
@@ -93,6 +97,13 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code stagnating_indices}
+	 */
+	public final int stagnatingIndices() {
+		return this.stagnatingIndices;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -107,6 +118,9 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 		this.ilmStatus.serialize(generator, mapper);
 		generator.writeKey("policies");
 		generator.write(this.policies);
+
+		generator.writeKey("stagnating_indices");
+		generator.write(this.stagnatingIndices);
 
 	}
 
@@ -128,6 +142,8 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 
 		private Long policies;
 
+		private Integer stagnatingIndices;
+
 		/**
 		 * Required - API name: {@code ilm_status}
 		 */
@@ -141,6 +157,14 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 		 */
 		public final Builder policies(long value) {
 			this.policies = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code stagnating_indices}
+		 */
+		public final Builder stagnatingIndices(int value) {
+			this.stagnatingIndices = value;
 			return this;
 		}
 
@@ -174,6 +198,7 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 
 		op.add(Builder::ilmStatus, LifecycleOperationMode._DESERIALIZER, "ilm_status");
 		op.add(Builder::policies, JsonpDeserializer.longDeserializer(), "policies");
+		op.add(Builder::stagnatingIndices, JsonpDeserializer.integerDeserializer(), "stagnating_indices");
 
 	}
 

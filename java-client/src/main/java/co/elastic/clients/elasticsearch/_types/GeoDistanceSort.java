@@ -80,6 +80,9 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable
 	private final DistanceUnit unit;
 
+	@Nullable
+	private final NestedSortValue nested;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoDistanceSort(Builder builder) {
@@ -92,6 +95,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.order = builder.order;
 		this.unit = builder.unit;
+		this.nested = builder.nested;
 
 	}
 
@@ -162,6 +166,14 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code nested}
+	 */
+	@Nullable
+	public final NestedSortValue nested() {
+		return this.nested;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -199,6 +211,11 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		if (this.unit != null) {
 			generator.writeKey("unit");
 			this.unit.serialize(generator, mapper);
+		}
+		if (this.nested != null) {
+			generator.writeKey("nested");
+			this.nested.serialize(generator, mapper);
+
 		}
 
 	}
@@ -265,6 +282,9 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		@Nullable
 		private DistanceUnit unit;
 
+		@Nullable
+		private NestedSortValue nested;
+
 		/**
 		 * API name: {@code mode}
 		 */
@@ -305,6 +325,21 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code nested}
+		 */
+		public final Builder nested(@Nullable NestedSortValue value) {
+			this.nested = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code nested}
+		 */
+		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -338,6 +373,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
 		op.add(Builder::unit, DistanceUnit._DESERIALIZER, "unit");
+		op.add(Builder::nested, NestedSortValue._DESERIALIZER, "nested");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);
