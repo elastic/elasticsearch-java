@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,6 +26,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,55 +46,77 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.analysis.SnowballTokenFilter
+// typedef: _types.query_dsl.DateRangeQuery
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.SnowballTokenFilter">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.DateRangeQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class DateRangeQuery extends RangeQueryBase<String> implements RangeQueryVariant {
 	@Nullable
-	private final SnowballLanguage language;
+	private final String format;
+
+	@Nullable
+	private final String timeZone;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private SnowballTokenFilter(Builder builder) {
+	private DateRangeQuery(Builder builder) {
 		super(builder);
 
-		this.language = builder.language;
+		this.format = builder.format;
+		this.timeZone = builder.timeZone;
 
 	}
 
-	public static SnowballTokenFilter of(Function<Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
+	public static DateRangeQuery of(Function<Builder, ObjectBuilder<DateRangeQuery>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * TokenFilterDefinition variant kind.
+	 * RangeQuery variant kind.
 	 */
 	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Snowball;
+	public RangeQuery.Kind _rangeQueryKind() {
+		return RangeQuery.Kind.Date;
 	}
 
 	/**
-	 * API name: {@code language}
+	 * Date format used to convert <code>date</code> values in the query.
+	 * <p>
+	 * API name: {@code format}
 	 */
 	@Nullable
-	public final SnowballLanguage language() {
-		return this.language;
+	public final String format() {
+		return this.format;
+	}
+
+	/**
+	 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
+	 * <code>date</code> values in the query to UTC.
+	 * <p>
+	 * API name: {@code time_zone}
+	 */
+	@Nullable
+	public final String timeZone() {
+		return this.timeZone;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "snowball");
 		super.serializeInternal(generator, mapper);
-		if (this.language != null) {
-			generator.writeKey("language");
-			this.language.serialize(generator, mapper);
+		if (this.format != null) {
+			generator.writeKey("format");
+			generator.write(this.format);
+
+		}
+		if (this.timeZone != null) {
+			generator.writeKey("time_zone");
+			generator.write(this.timeZone);
+
 		}
 
 	}
@@ -101,20 +124,36 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SnowballTokenFilter}.
+	 * Builder for {@link DateRangeQuery}.
 	 */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+	public static class Builder extends RangeQueryBase.AbstractBuilder<String, Builder>
 			implements
-				ObjectBuilder<SnowballTokenFilter> {
+				ObjectBuilder<DateRangeQuery> {
 		@Nullable
-		private SnowballLanguage language;
+		private String format;
+
+		@Nullable
+		private String timeZone;
 
 		/**
-		 * API name: {@code language}
+		 * Date format used to convert <code>date</code> values in the query.
+		 * <p>
+		 * API name: {@code format}
 		 */
-		public final Builder language(@Nullable SnowballLanguage value) {
-			this.language = value;
+		public final Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
+		/**
+		 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
+		 * <code>date</code> values in the query to UTC.
+		 * <p>
+		 * API name: {@code time_zone}
+		 */
+		public final Builder timeZone(@Nullable String value) {
+			this.timeZone = value;
 			return this;
 		}
 
@@ -124,31 +163,32 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Builds a {@link SnowballTokenFilter}.
+		 * Builds a {@link DateRangeQuery}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public SnowballTokenFilter build() {
+		public DateRangeQuery build() {
 			_checkSingleUse();
+			super.tSerializer(null);
 
-			return new SnowballTokenFilter(this);
+			return new DateRangeQuery(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SnowballTokenFilter}
+	 * Json deserializer for {@link DateRangeQuery}
 	 */
-	public static final JsonpDeserializer<SnowballTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnowballTokenFilter::setupSnowballTokenFilterDeserializer);
+	public static final JsonpDeserializer<DateRangeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DateRangeQuery::setupDateRangeQueryDeserializer);
 
-	protected static void setupSnowballTokenFilterDeserializer(ObjectDeserializer<SnowballTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");
+	protected static void setupDateRangeQueryDeserializer(ObjectDeserializer<DateRangeQuery.Builder> op) {
+		RangeQueryBase.setupRangeQueryBaseDeserializer(op, JsonpDeserializer.stringDeserializer());
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
-		op.ignore("type");
 	}
 
 }

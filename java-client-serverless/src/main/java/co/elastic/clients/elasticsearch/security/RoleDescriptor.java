@@ -66,13 +66,14 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private final List<IndicesPrivileges> indices;
 
-	private final List<GlobalPrivilege> global;
-
 	private final List<ApplicationPrivileges> applications;
 
 	private final Map<String, JsonData> metadata;
 
 	private final List<String> runAs;
+
+	@Nullable
+	private final String description;
 
 	private final Map<String, JsonData> transientMetadata;
 
@@ -82,10 +83,10 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.global = ApiTypeHelper.unmodifiable(builder.global);
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
+		this.description = builder.description;
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
 	}
@@ -114,17 +115,6 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
-	 * An object defining global privileges. A global privilege is a form of cluster
-	 * privilege that is request-aware. Support for global privileges is currently
-	 * limited to the management of application privileges.
-	 * <p>
-	 * API name: {@code global}
-	 */
-	public final List<GlobalPrivilege> global() {
-		return this.global;
-	}
-
-	/**
 	 * A list of application privilege entries
 	 * <p>
 	 * API name: {@code applications}
@@ -144,12 +134,25 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of users that the API keys can impersonate.
+	 * A list of users that the API keys can impersonate. <em>Note</em>: in
+	 * Serverless, the run-as feature is disabled. For API compatibility, you can
+	 * still specify an empty <code>run_as</code> field, but a non-empty list will
+	 * be rejected.
 	 * <p>
 	 * API name: {@code run_as}
 	 */
 	public final List<String> runAs() {
 		return this.runAs;
+	}
+
+	/**
+	 * Optional description of the role descriptor
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -190,16 +193,6 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.global)) {
-			generator.writeKey("global");
-			generator.writeStartArray();
-			for (GlobalPrivilege item0 : this.global) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
@@ -229,6 +222,11 @@ public class RoleDescriptor implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
 
 		}
 		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
@@ -264,9 +262,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		private List<IndicesPrivileges> indices;
 
 		@Nullable
-		private List<GlobalPrivilege> global;
-
-		@Nullable
 		private List<ApplicationPrivileges> applications;
 
 		@Nullable
@@ -274,6 +269,9 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		@Nullable
 		private List<String> runAs;
+
+		@Nullable
+		private String description;
 
 		@Nullable
 		private Map<String, JsonData> transientMetadata;
@@ -340,47 +338,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
-		 * <p>
-		 * API name: {@code global}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>global</code>.
-		 */
-		public final Builder global(List<GlobalPrivilege> list) {
-			this.global = _listAddAll(this.global, list);
-			return this;
-		}
-
-		/**
-		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
-		 * <p>
-		 * API name: {@code global}
-		 * <p>
-		 * Adds one or more values to <code>global</code>.
-		 */
-		public final Builder global(GlobalPrivilege value, GlobalPrivilege... values) {
-			this.global = _listAdd(this.global, value, values);
-			return this;
-		}
-
-		/**
-		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
-		 * <p>
-		 * API name: {@code global}
-		 * <p>
-		 * Adds a value to <code>global</code> using a builder lambda.
-		 */
-		public final Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
-			return global(fn.apply(new GlobalPrivilege.Builder()).build());
-		}
-
-		/**
 		 * A list of application privilege entries
 		 * <p>
 		 * API name: {@code applications}
@@ -443,7 +400,10 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate.
+		 * A list of users that the API keys can impersonate. <em>Note</em>: in
+		 * Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
@@ -455,7 +415,10 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate.
+		 * A list of users that the API keys can impersonate. <em>Note</em>: in
+		 * Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
@@ -463,6 +426,16 @@ public class RoleDescriptor implements JsonpSerializable {
 		 */
 		public final Builder runAs(String value, String... values) {
 			this.runAs = _listAdd(this.runAs, value, values);
+			return this;
+		}
+
+		/**
+		 * Optional description of the role descriptor
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
 			return this;
 		}
 
@@ -518,11 +491,11 @@ public class RoleDescriptor implements JsonpSerializable {
 				"cluster");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices",
 				"index");
-		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
 		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"transient_metadata");
 

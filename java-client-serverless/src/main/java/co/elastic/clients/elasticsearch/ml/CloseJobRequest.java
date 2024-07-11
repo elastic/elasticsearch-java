@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.close_job.Request
 
 /**
- * Close anomaly detection jobs A job can be opened and closed multiple times
+ * Close anomaly detection jobs. A job can be opened and closed multiple times
  * throughout its lifecycle. A closed job cannot receive data or perform
  * analysis operations, but you can still explore and navigate results. When you
  * close a job, it runs housekeeping tasks such as pruning the model history,

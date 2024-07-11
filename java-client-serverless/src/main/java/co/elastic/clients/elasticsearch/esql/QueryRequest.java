@@ -38,6 +38,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +79,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final String delimiter;
 
 	@Nullable
+	private final Boolean dropNullColumns;
+
+	@Nullable
 	private final Query filter;
 
 	@Nullable
@@ -88,6 +92,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<FieldValue> params;
 
+	@Nullable
+	private final Boolean profile;
+
 	private final String query;
 
 	// ---------------------------------------------------------------------------------------------
@@ -96,10 +103,12 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		this.columnar = builder.columnar;
 		this.delimiter = builder.delimiter;
+		this.dropNullColumns = builder.dropNullColumns;
 		this.filter = builder.filter;
 		this.format = builder.format;
 		this.locale = builder.locale;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
+		this.profile = builder.profile;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
@@ -130,6 +139,20 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final String delimiter() {
 		return this.delimiter;
+	}
+
+	/**
+	 * Should columns that are entirely <code>null</code> be removed from the
+	 * <code>columns</code> and <code>values</code> portion of the results? Defaults
+	 * to <code>false</code>. If <code>true</code> then the response will include an
+	 * extra section under the name <code>all_columns</code> which has the name of
+	 * all columns.
+	 * <p>
+	 * API name: {@code drop_null_columns}
+	 */
+	@Nullable
+	public final Boolean dropNullColumns() {
+		return this.dropNullColumns;
 	}
 
 	/**
@@ -170,6 +193,14 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<FieldValue> params() {
 		return this.params;
+	}
+
+	/**
+	 * API name: {@code profile}
+	 */
+	@Nullable
+	public final Boolean profile() {
+		return this.profile;
 	}
 
 	/**
@@ -218,6 +249,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.profile != null) {
+			generator.writeKey("profile");
+			generator.write(this.profile);
+
+		}
 		generator.writeKey("query");
 		generator.write(this.query);
 
@@ -237,6 +273,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private String delimiter;
 
 		@Nullable
+		private Boolean dropNullColumns;
+
+		@Nullable
 		private Query filter;
 
 		@Nullable
@@ -247,6 +286,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<FieldValue> params;
+
+		@Nullable
+		private Boolean profile;
 
 		private String query;
 
@@ -271,6 +313,20 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder delimiter(@Nullable String value) {
 			this.delimiter = value;
+			return this;
+		}
+
+		/**
+		 * Should columns that are entirely <code>null</code> be removed from the
+		 * <code>columns</code> and <code>values</code> portion of the results? Defaults
+		 * to <code>false</code>. If <code>true</code> then the response will include an
+		 * extra section under the name <code>all_columns</code> which has the name of
+		 * all columns.
+		 * <p>
+		 * API name: {@code drop_null_columns}
+		 */
+		public final Builder dropNullColumns(@Nullable Boolean value) {
+			this.dropNullColumns = value;
 			return this;
 		}
 
@@ -348,10 +404,94 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
+		 * Adds all passed values to <code>params</code>.
+		 */
+		public final Builder params(String value, String... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.params = _listAddAll(this.params, fieldValues);
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds all passed values to <code>params</code>.
+		 */
+		public final Builder params(long value, long... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.params = _listAddAll(this.params, fieldValues);
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds all passed values to <code>params</code>.
+		 */
+		public final Builder params(double value, double... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.params = _listAddAll(this.params, fieldValues);
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds all passed values to <code>params</code>.
+		 */
+		public final Builder params(boolean value, boolean... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.params = _listAddAll(this.params, fieldValues);
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
 		 * Adds a value to <code>params</code> using a builder lambda.
 		 */
 		public final Builder params(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
 			return params(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code profile}
+		 */
+		public final Builder profile(@Nullable Boolean value) {
+			this.profile = value;
+			return this;
 		}
 
 		/**
@@ -397,6 +537,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
+		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
 	}
@@ -434,6 +575,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.format != null) {
 					params.put("format", request.format);
+				}
+				if (request.dropNullColumns != null) {
+					params.put("drop_null_columns", String.valueOf(request.dropNullColumns));
 				}
 				return params;
 

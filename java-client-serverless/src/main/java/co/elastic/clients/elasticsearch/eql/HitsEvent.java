@@ -33,6 +33,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,9 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 
 	private final TEvent source;
 
+	@Nullable
+	private final Boolean missing;
+
 	private final Map<String, List<JsonData>> fields;
 
 	@Nullable
@@ -83,6 +87,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.missing = builder.missing;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.tEventSerializer = builder.tEventSerializer;
 
@@ -121,6 +126,17 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 	}
 
 	/**
+	 * Set to <code>true</code> for events in a timespan-constrained sequence that
+	 * do not meet a given condition.
+	 * <p>
+	 * API name: {@code missing}
+	 */
+	@Nullable
+	public final Boolean missing() {
+		return this.missing;
+	}
+
+	/**
 	 * API name: {@code fields}
 	 */
 	public final Map<String, List<JsonData>> fields() {
@@ -147,6 +163,11 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		generator.writeKey("_source");
 		JsonpUtils.serialize(this.source, generator, tEventSerializer, mapper);
 
+		if (this.missing != null) {
+			generator.writeKey("missing");
+			generator.write(this.missing);
+
+		}
 		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
@@ -189,6 +210,9 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		private TEvent source;
 
 		@Nullable
+		private Boolean missing;
+
+		@Nullable
 		private Map<String, List<JsonData>> fields;
 
 		@Nullable
@@ -222,6 +246,17 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		 */
 		public final Builder<TEvent> source(TEvent value) {
 			this.source = value;
+			return this;
+		}
+
+		/**
+		 * Set to <code>true</code> for events in a timespan-constrained sequence that
+		 * do not meet a given condition.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder<TEvent> missing(@Nullable Boolean value) {
+			this.missing = value;
 			return this;
 		}
 
@@ -297,6 +332,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::source, tEventDeserializer, "_source");
+		op.add(Builder::missing, JsonpDeserializer.booleanDeserializer(), "missing");
 		op.add(Builder::fields,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER)),
 				"fields");

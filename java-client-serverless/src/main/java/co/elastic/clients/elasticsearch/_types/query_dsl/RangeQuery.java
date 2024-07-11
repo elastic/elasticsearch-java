@@ -21,16 +21,20 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
 import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -58,53 +62,41 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RangeQuery extends RangeQueryBase implements ApiKeyQueryVariant, QueryVariant {
-	// Single key dictionary
-	private final String field;
+public class RangeQuery
+		implements
+			TaggedUnion<RangeQuery.Kind, RangeQueryVariant>,
+			ApiKeyQueryVariant,
+			QueryVariant,
+			JsonpSerializable {
 
-	@Nullable
-	private final JsonData gt;
+	/**
+	 * {@link RangeQuery} variant kinds.
+	 * 
+	 * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.RangeQuery">API
+	 *      specification</a>
+	 */
 
-	@Nullable
-	private final JsonData gte;
+	public enum Kind implements JsonEnum {
+		Date("date"),
 
-	@Nullable
-	private final JsonData lt;
+		Number("number"),
 
-	@Nullable
-	private final JsonData lte;
+		Term("term"),
 
-	@Nullable
-	private final String from;
+		Untyped("untyped"),
 
-	@Nullable
-	private final String to;
+		;
 
-	@Nullable
-	private final String format;
+		private final String jsonValue;
 
-	@Nullable
-	private final String timeZone;
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
 
-	// ---------------------------------------------------------------------------------------------
+		public String jsonValue() {
+			return this.jsonValue;
+		}
 
-	private RangeQuery(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-
-		this.gt = builder.gt;
-		this.gte = builder.gte;
-		this.lt = builder.lt;
-		this.lte = builder.lte;
-		this.from = builder.from;
-		this.to = builder.to;
-		this.format = builder.format;
-		this.timeZone = builder.timeZone;
-
-	}
-
-	public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
-		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,296 +115,180 @@ public class RangeQuery extends RangeQueryBase implements ApiKeyQueryVariant, Qu
 		return Query.Kind.Range;
 	}
 
-	/**
-	 * Required - The target field
-	 */
-	public final String field() {
-		return this.field;
+	private final Kind _kind;
+	private final RangeQueryVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
 	}
 
-	/**
-	 * Greater than.
-	 * <p>
-	 * API name: {@code gt}
-	 */
-	@Nullable
-	public final JsonData gt() {
-		return this.gt;
+	@Override
+	public final RangeQueryVariant _get() {
+		return _value;
 	}
 
-	/**
-	 * Greater than or equal to.
-	 * <p>
-	 * API name: {@code gte}
-	 */
-	@Nullable
-	public final JsonData gte() {
-		return this.gte;
-	}
+	public RangeQuery(RangeQueryVariant value) {
 
-	/**
-	 * Less than.
-	 * <p>
-	 * API name: {@code lt}
-	 */
-	@Nullable
-	public final JsonData lt() {
-		return this.lt;
-	}
-
-	/**
-	 * Less than or equal to.
-	 * <p>
-	 * API name: {@code lte}
-	 */
-	@Nullable
-	public final JsonData lte() {
-		return this.lte;
-	}
-
-	/**
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public final String from() {
-		return this.from;
-	}
-
-	/**
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final String to() {
-		return this.to;
-	}
-
-	/**
-	 * Date format used to convert <code>date</code> values in the query.
-	 * <p>
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
-
-	/**
-	 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
-	 * <code>date</code> values in the query to UTC.
-	 * <p>
-	 * API name: {@code time_zone}
-	 */
-	@Nullable
-	public final String timeZone() {
-		return this.timeZone;
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
-
-		super.serializeInternal(generator, mapper);
-		if (this.gt != null) {
-			generator.writeKey("gt");
-			this.gt.serialize(generator, mapper);
-
-		}
-		if (this.gte != null) {
-			generator.writeKey("gte");
-			this.gte.serialize(generator, mapper);
-
-		}
-		if (this.lt != null) {
-			generator.writeKey("lt");
-			this.lt.serialize(generator, mapper);
-
-		}
-		if (this.lte != null) {
-			generator.writeKey("lte");
-			this.lte.serialize(generator, mapper);
-
-		}
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
-
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
-
-		}
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
-
-		}
-		if (this.timeZone != null) {
-			generator.writeKey("time_zone");
-			generator.write(this.timeZone);
-
-		}
-
-		generator.writeEnd();
+		this._kind = ApiTypeHelper.requireNonNull(value._rangeQueryKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	private RangeQuery(Kind kind, RangeQueryVariant value) {
+		this._kind = kind;
+		this._value = value;
+	}
+
+	private RangeQuery(Builder builder) {
+
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+	}
+
+	public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
+		return fn.apply(new Builder()).build();
+	}
 
 	/**
-	 * Builder for {@link RangeQuery}.
+	 * Is this variant instance of kind {@code date}?
 	 */
+	public boolean isDate() {
+		return _kind == Kind.Date;
+	}
 
-	public static class Builder extends RangeQueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeQuery> {
-		private String field;
+	/**
+	 * Get the {@code date} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date} kind.
+	 */
+	public DateRangeQuery date() {
+		return TaggedUnionUtils.get(this, Kind.Date);
+	}
 
-		/**
-		 * Required - The target field
-		 */
-		public final Builder field(String value) {
-			this.field = value;
+	/**
+	 * Is this variant instance of kind {@code number}?
+	 */
+	public boolean isNumber() {
+		return _kind == Kind.Number;
+	}
+
+	/**
+	 * Get the {@code number} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code number} kind.
+	 */
+	public NumberRangeQuery number() {
+		return TaggedUnionUtils.get(this, Kind.Number);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code term}?
+	 */
+	public boolean isTerm() {
+		return _kind == Kind.Term;
+	}
+
+	/**
+	 * Get the {@code term} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code term} kind.
+	 */
+	public TermRangeQuery term() {
+		return TaggedUnionUtils.get(this, Kind.Term);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code untyped}?
+	 */
+	public boolean isUntyped() {
+		return _kind == Kind.Untyped;
+	}
+
+	/**
+	 * Get the {@code untyped} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code untyped} kind.
+	 */
+	public UntypedRangeQuery untyped() {
+		return TaggedUnionUtils.get(this, Kind.Untyped);
+	}
+
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		mapper.serialize(_value, generator);
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RangeQuery> {
+		private Kind _kind;
+		private RangeQueryVariant _value;
+
+		public ObjectBuilder<RangeQuery> date(DateRangeQuery v) {
+			this._kind = Kind.Date;
+			this._value = v;
 			return this;
 		}
 
-		@Nullable
-		private JsonData gt;
+		public ObjectBuilder<RangeQuery> date(Function<DateRangeQuery.Builder, ObjectBuilder<DateRangeQuery>> fn) {
+			return this.date(fn.apply(new DateRangeQuery.Builder()).build());
+		}
 
-		@Nullable
-		private JsonData gte;
-
-		@Nullable
-		private JsonData lt;
-
-		@Nullable
-		private JsonData lte;
-
-		@Nullable
-		private String from;
-
-		@Nullable
-		private String to;
-
-		@Nullable
-		private String format;
-
-		@Nullable
-		private String timeZone;
-
-		/**
-		 * Greater than.
-		 * <p>
-		 * API name: {@code gt}
-		 */
-		public final Builder gt(@Nullable JsonData value) {
-			this.gt = value;
+		public ObjectBuilder<RangeQuery> number(NumberRangeQuery v) {
+			this._kind = Kind.Number;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Greater than or equal to.
-		 * <p>
-		 * API name: {@code gte}
-		 */
-		public final Builder gte(@Nullable JsonData value) {
-			this.gte = value;
+		public ObjectBuilder<RangeQuery> number(
+				Function<NumberRangeQuery.Builder, ObjectBuilder<NumberRangeQuery>> fn) {
+			return this.number(fn.apply(new NumberRangeQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<RangeQuery> term(TermRangeQuery v) {
+			this._kind = Kind.Term;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Less than.
-		 * <p>
-		 * API name: {@code lt}
-		 */
-		public final Builder lt(@Nullable JsonData value) {
-			this.lt = value;
+		public ObjectBuilder<RangeQuery> term(Function<TermRangeQuery.Builder, ObjectBuilder<TermRangeQuery>> fn) {
+			return this.term(fn.apply(new TermRangeQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<RangeQuery> untyped(UntypedRangeQuery v) {
+			this._kind = Kind.Untyped;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Less than or equal to.
-		 * <p>
-		 * API name: {@code lte}
-		 */
-		public final Builder lte(@Nullable JsonData value) {
-			this.lte = value;
-			return this;
+		public ObjectBuilder<RangeQuery> untyped(
+				Function<UntypedRangeQuery.Builder, ObjectBuilder<UntypedRangeQuery>> fn) {
+			return this.untyped(fn.apply(new UntypedRangeQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable String value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable String value) {
-			this.to = value;
-			return this;
-		}
-
-		/**
-		 * Date format used to convert <code>date</code> values in the query.
-		 * <p>
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
-
-		/**
-		 * Coordinated Universal Time (UTC) offset or IANA time zone used to convert
-		 * <code>date</code> values in the query to UTC.
-		 * <p>
-		 * API name: {@code time_zone}
-		 */
-		public final Builder timeZone(@Nullable String value) {
-			this.timeZone = value;
-			return this;
-		}
-
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link RangeQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
 		public RangeQuery build() {
 			_checkSingleUse();
-
 			return new RangeQuery(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link RangeQuery}
-	 */
-	public static final JsonpDeserializer<RangeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RangeQuery::setupRangeQueryDeserializer);
-
-	protected static void setupRangeQueryDeserializer(ObjectDeserializer<RangeQuery.Builder> op) {
-		RangeQueryBase.setupRangeQueryBaseDeserializer(op);
-		op.add(Builder::gt, JsonData._DESERIALIZER, "gt");
-		op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
-		op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
-		op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
-		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
-		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
-		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-
-		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 
+	private static JsonpDeserializer<RangeQuery> buildRangeQueryDeserializer() {
+		return new UnionDeserializer.Builder<RangeQuery, Kind, RangeQueryVariant>(RangeQuery::new, false)
+				.addMember(Kind.Untyped, UntypedRangeQuery._DESERIALIZER).build();
+	}
+
+	public static final JsonpDeserializer<RangeQuery> _DESERIALIZER = JsonpDeserializer
+			.lazy(RangeQuery::buildRangeQueryDeserializer);
 }

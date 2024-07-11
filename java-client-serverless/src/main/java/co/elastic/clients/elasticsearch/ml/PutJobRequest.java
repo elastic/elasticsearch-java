@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 // typedef: ml.put_job.Request
 
 /**
- * Instantiates an anomaly detection job. If you include a
+ * Create an anomaly detection job. If you include a
  * <code>datafeed_config</code>, you must have read index privileges on the
  * source index.
  * 

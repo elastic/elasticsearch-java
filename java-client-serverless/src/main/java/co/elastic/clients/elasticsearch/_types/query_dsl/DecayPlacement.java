@@ -19,12 +19,13 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -59,32 +61,41 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DecayPlacement implements JsonpSerializable {
+public class DecayPlacement<TOrigin, TScale> implements JsonpSerializable {
 	@Nullable
 	private final Double decay;
 
 	@Nullable
-	private final JsonData offset;
+	private final TScale offset;
 
 	@Nullable
-	private final JsonData scale;
+	private final TScale scale;
 
 	@Nullable
-	private final JsonData origin;
+	private final TOrigin origin;
+
+	@Nullable
+	private final JsonpSerializer<TOrigin> tOriginSerializer;
+
+	@Nullable
+	private final JsonpSerializer<TScale> tScaleSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DecayPlacement(Builder builder) {
+	private DecayPlacement(Builder<TOrigin, TScale> builder) {
 
 		this.decay = builder.decay;
 		this.offset = builder.offset;
 		this.scale = builder.scale;
 		this.origin = builder.origin;
+		this.tOriginSerializer = builder.tOriginSerializer;
+		this.tScaleSerializer = builder.tScaleSerializer;
 
 	}
 
-	public static DecayPlacement of(Function<Builder, ObjectBuilder<DecayPlacement>> fn) {
-		return fn.apply(new Builder()).build();
+	public static <TOrigin, TScale> DecayPlacement<TOrigin, TScale> of(
+			Function<Builder<TOrigin, TScale>, ObjectBuilder<DecayPlacement<TOrigin, TScale>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -104,7 +115,7 @@ public class DecayPlacement implements JsonpSerializable {
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public final JsonData offset() {
+	public final TScale offset() {
 		return this.offset;
 	}
 
@@ -115,7 +126,7 @@ public class DecayPlacement implements JsonpSerializable {
 	 * API name: {@code scale}
 	 */
 	@Nullable
-	public final JsonData scale() {
+	public final TScale scale() {
 		return this.scale;
 	}
 
@@ -126,7 +137,7 @@ public class DecayPlacement implements JsonpSerializable {
 	 * API name: {@code origin}
 	 */
 	@Nullable
-	public final JsonData origin() {
+	public final TOrigin origin() {
 		return this.origin;
 	}
 
@@ -148,17 +159,17 @@ public class DecayPlacement implements JsonpSerializable {
 		}
 		if (this.offset != null) {
 			generator.writeKey("offset");
-			this.offset.serialize(generator, mapper);
+			JsonpUtils.serialize(this.offset, generator, tScaleSerializer, mapper);
 
 		}
 		if (this.scale != null) {
 			generator.writeKey("scale");
-			this.scale.serialize(generator, mapper);
+			JsonpUtils.serialize(this.scale, generator, tScaleSerializer, mapper);
 
 		}
 		if (this.origin != null) {
 			generator.writeKey("origin");
-			this.origin.serialize(generator, mapper);
+			JsonpUtils.serialize(this.origin, generator, tOriginSerializer, mapper);
 
 		}
 
@@ -175,25 +186,33 @@ public class DecayPlacement implements JsonpSerializable {
 	 * Builder for {@link DecayPlacement}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DecayPlacement> {
+	public static class Builder<TOrigin, TScale> extends WithJsonObjectBuilderBase<Builder<TOrigin, TScale>>
+			implements
+				ObjectBuilder<DecayPlacement<TOrigin, TScale>> {
 		@Nullable
 		private Double decay;
 
 		@Nullable
-		private JsonData offset;
+		private TScale offset;
 
 		@Nullable
-		private JsonData scale;
+		private TScale scale;
 
 		@Nullable
-		private JsonData origin;
+		private TOrigin origin;
+
+		@Nullable
+		private JsonpSerializer<TOrigin> tOriginSerializer;
+
+		@Nullable
+		private JsonpSerializer<TScale> tScaleSerializer;
 
 		/**
 		 * Defines how documents are scored at the distance given at scale.
 		 * <p>
 		 * API name: {@code decay}
 		 */
-		public final Builder decay(@Nullable Double value) {
+		public final Builder<TOrigin, TScale> decay(@Nullable Double value) {
 			this.decay = value;
 			return this;
 		}
@@ -204,7 +223,7 @@ public class DecayPlacement implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code offset}
 		 */
-		public final Builder offset(@Nullable JsonData value) {
+		public final Builder<TOrigin, TScale> offset(@Nullable TScale value) {
 			this.offset = value;
 			return this;
 		}
@@ -215,7 +234,7 @@ public class DecayPlacement implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scale}
 		 */
-		public final Builder scale(@Nullable JsonData value) {
+		public final Builder<TOrigin, TScale> scale(@Nullable TScale value) {
 			this.scale = value;
 			return this;
 		}
@@ -226,13 +245,31 @@ public class DecayPlacement implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code origin}
 		 */
-		public final Builder origin(@Nullable JsonData value) {
+		public final Builder<TOrigin, TScale> origin(@Nullable TOrigin value) {
 			this.origin = value;
 			return this;
 		}
 
+		/**
+		 * Serializer for TOrigin. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public final Builder<TOrigin, TScale> tOriginSerializer(@Nullable JsonpSerializer<TOrigin> value) {
+			this.tOriginSerializer = value;
+			return this;
+		}
+
+		/**
+		 * Serializer for TScale. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public final Builder<TOrigin, TScale> tScaleSerializer(@Nullable JsonpSerializer<TScale> value) {
+			this.tScaleSerializer = value;
+			return this;
+		}
+
 		@Override
-		protected Builder self() {
+		protected Builder<TOrigin, TScale> self() {
 			return this;
 		}
 
@@ -242,27 +279,41 @@ public class DecayPlacement implements JsonpSerializable {
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DecayPlacement build() {
+		public DecayPlacement<TOrigin, TScale> build() {
 			_checkSingleUse();
 
-			return new DecayPlacement(this);
+			return new DecayPlacement<TOrigin, TScale>(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DecayPlacement}
+	 * Create a JSON deserializer for DecayPlacement
 	 */
-	public static final JsonpDeserializer<DecayPlacement> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DecayPlacement::setupDecayPlacementDeserializer);
+	public static <TOrigin, TScale> JsonpDeserializer<DecayPlacement<TOrigin, TScale>> createDecayPlacementDeserializer(
+			JsonpDeserializer<TOrigin> tOriginDeserializer, JsonpDeserializer<TScale> tScaleDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TOrigin, TScale>>) Builder::new,
+				op -> DecayPlacement.setupDecayPlacementDeserializer(op, tOriginDeserializer, tScaleDeserializer));
+	};
 
-	protected static void setupDecayPlacementDeserializer(ObjectDeserializer<DecayPlacement.Builder> op) {
+	/**
+	 * Json deserializer for {@link DecayPlacement} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<DecayPlacement<Object, Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createDecayPlacementDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.query_dsl.DecayPlacement.TOrigin"),
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.query_dsl.DecayPlacement.TScale")));
+
+	protected static <TOrigin, TScale> void setupDecayPlacementDeserializer(
+			ObjectDeserializer<DecayPlacement.Builder<TOrigin, TScale>> op,
+			JsonpDeserializer<TOrigin> tOriginDeserializer, JsonpDeserializer<TScale> tScaleDeserializer) {
 
 		op.add(Builder::decay, JsonpDeserializer.doubleDeserializer(), "decay");
-		op.add(Builder::offset, JsonData._DESERIALIZER, "offset");
-		op.add(Builder::scale, JsonData._DESERIALIZER, "scale");
-		op.add(Builder::origin, JsonData._DESERIALIZER, "origin");
+		op.add(Builder::offset, tScaleDeserializer, "offset");
+		op.add(Builder::scale, tScaleDeserializer, "scale");
+		op.add(Builder::origin, tOriginDeserializer, "origin");
 
 	}
 

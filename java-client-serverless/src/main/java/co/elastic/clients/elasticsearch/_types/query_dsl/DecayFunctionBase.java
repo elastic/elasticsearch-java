@@ -23,13 +23,17 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -56,16 +60,45 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 
-public abstract class DecayFunctionBase implements JsonpSerializable {
+public abstract class DecayFunctionBase<TOrigin, TScale> implements JsonpSerializable {
+	private final String field;
+
+	private final DecayPlacement<TOrigin, TScale> placement;
+
 	@Nullable
 	private final MultiValueMode multiValueMode;
 
+	@Nullable
+	private final JsonpSerializer<TOrigin> tOriginSerializer;
+
+	@Nullable
+	private final JsonpSerializer<TScale> tScaleSerializer;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected DecayFunctionBase(AbstractBuilder<?> builder) {
+	protected DecayFunctionBase(AbstractBuilder<TOrigin, TScale, ?> builder) {
+
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
 
 		this.multiValueMode = builder.multiValueMode;
+		this.tOriginSerializer = builder.tOriginSerializer;
+		this.tScaleSerializer = builder.tScaleSerializer;
 
+	}
+
+	/**
+	 * Required -
+	 */
+	public final String field() {
+		return this.field;
+	}
+
+	/**
+	 * Required -
+	 */
+	public final DecayPlacement<TOrigin, TScale> placement() {
+		return this.placement;
 	}
 
 	/**
@@ -89,6 +122,8 @@ public abstract class DecayFunctionBase implements JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeKey(this.field);
+		this.placement.serialize(generator, mapper);
 
 		if (this.multiValueMode != null) {
 			generator.writeKey("multi_value_mode");
@@ -102,11 +137,45 @@ public abstract class DecayFunctionBase implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+	public abstract static class AbstractBuilder<TOrigin, TScale, BuilderT extends AbstractBuilder<TOrigin, TScale, BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
+		private String field;
+
+		private DecayPlacement<TOrigin, TScale> placement;
+
+		/**
+		 * Required -
+		 */
+		public final BuilderT field(String value) {
+			this.field = value;
+			return self();
+		}
+
+		/**
+		 * Required -
+		 */
+		public final BuilderT placement(DecayPlacement<TOrigin, TScale> value) {
+			this.placement = value;
+			return self();
+		}
+
+		/**
+		 * Required -
+		 */
+		public final BuilderT placement(
+				Function<DecayPlacement.Builder<TOrigin, TScale>, ObjectBuilder<DecayPlacement<TOrigin, TScale>>> fn) {
+			return this.placement(fn.apply(new DecayPlacement.Builder<TOrigin, TScale>()).build());
+		}
+
 		@Nullable
 		private MultiValueMode multiValueMode;
+
+		@Nullable
+		private JsonpSerializer<TOrigin> tOriginSerializer;
+
+		@Nullable
+		private JsonpSerializer<TScale> tScaleSerializer;
 
 		/**
 		 * Determines how the distance is calculated when a field used for computing the
@@ -119,15 +188,40 @@ public abstract class DecayFunctionBase implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * Serializer for TOrigin. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public final BuilderT tOriginSerializer(@Nullable JsonpSerializer<TOrigin> value) {
+			this.tOriginSerializer = value;
+			return self();
+		}
+
+		/**
+		 * Serializer for TScale. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public final BuilderT tScaleSerializer(@Nullable JsonpSerializer<TScale> value) {
+			this.tScaleSerializer = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static <TOrigin, TScale, BuilderT extends AbstractBuilder<TOrigin, TScale, BuilderT>> void setupDecayFunctionBaseDeserializer(
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TOrigin> tOriginDeserializer,
+			JsonpDeserializer<TScale> tScaleDeserializer) {
 
 		op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.field(name);
+			builder.placement(DecayPlacement.createDecayPlacementDeserializer(tOriginDeserializer, tScaleDeserializer)
+					.deserialize(parser, mapper));
+		});
 
 	}
 

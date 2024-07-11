@@ -17,18 +17,17 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -45,110 +44,79 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.analysis.SnowballTokenFilter
+// typedef: _types.query_dsl.UntypedDistanceFeatureQuery
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.SnowballTokenFilter">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.UntypedDistanceFeatureQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	@Nullable
-	private final SnowballLanguage language;
-
+public class UntypedDistanceFeatureQuery extends DistanceFeatureQueryBase<JsonData, JsonData>
+		implements
+			DistanceFeatureQueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	private SnowballTokenFilter(Builder builder) {
+	private UntypedDistanceFeatureQuery(Builder builder) {
 		super(builder);
-
-		this.language = builder.language;
 
 	}
 
-	public static SnowballTokenFilter of(Function<Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
+	public static UntypedDistanceFeatureQuery of(Function<Builder, ObjectBuilder<UntypedDistanceFeatureQuery>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * TokenFilterDefinition variant kind.
+	 * DistanceFeatureQuery variant kind.
 	 */
 	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Snowball;
-	}
-
-	/**
-	 * API name: {@code language}
-	 */
-	@Nullable
-	public final SnowballLanguage language() {
-		return this.language;
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.write("type", "snowball");
-		super.serializeInternal(generator, mapper);
-		if (this.language != null) {
-			generator.writeKey("language");
-			this.language.serialize(generator, mapper);
-		}
-
+	public DistanceFeatureQuery.Kind _distanceFeatureQueryKind() {
+		return DistanceFeatureQuery.Kind.Untyped;
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SnowballTokenFilter}.
+	 * Builder for {@link UntypedDistanceFeatureQuery}.
 	 */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+	public static class Builder extends DistanceFeatureQueryBase.AbstractBuilder<JsonData, JsonData, Builder>
 			implements
-				ObjectBuilder<SnowballTokenFilter> {
-		@Nullable
-		private SnowballLanguage language;
-
-		/**
-		 * API name: {@code language}
-		 */
-		public final Builder language(@Nullable SnowballLanguage value) {
-			this.language = value;
-			return this;
-		}
-
+				ObjectBuilder<UntypedDistanceFeatureQuery> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link SnowballTokenFilter}.
+		 * Builds a {@link UntypedDistanceFeatureQuery}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public SnowballTokenFilter build() {
+		public UntypedDistanceFeatureQuery build() {
 			_checkSingleUse();
+			super.tOriginSerializer(null);
+			super.tDistanceSerializer(null);
 
-			return new SnowballTokenFilter(this);
+			return new UntypedDistanceFeatureQuery(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SnowballTokenFilter}
+	 * Json deserializer for {@link UntypedDistanceFeatureQuery}
 	 */
-	public static final JsonpDeserializer<SnowballTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnowballTokenFilter::setupSnowballTokenFilterDeserializer);
+	public static final JsonpDeserializer<UntypedDistanceFeatureQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UntypedDistanceFeatureQuery::setupUntypedDistanceFeatureQueryDeserializer);
 
-	protected static void setupSnowballTokenFilterDeserializer(ObjectDeserializer<SnowballTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");
+	protected static void setupUntypedDistanceFeatureQueryDeserializer(
+			ObjectDeserializer<UntypedDistanceFeatureQuery.Builder> op) {
+		DistanceFeatureQueryBase.setupDistanceFeatureQueryBaseDeserializer(op, JsonData._DESERIALIZER,
+				JsonData._DESERIALIZER);
 
-		op.ignore("type");
 	}
 
 }
