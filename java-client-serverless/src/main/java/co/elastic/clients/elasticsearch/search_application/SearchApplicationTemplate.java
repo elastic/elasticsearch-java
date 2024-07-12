@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.search_application;
 
-import co.elastic.clients.elasticsearch._types.InlineScript;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SearchApplicationTemplate implements JsonpSerializable {
-	private final InlineScript script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code script}
 	 */
-	public final InlineScript script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -113,14 +113,14 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SearchApplicationTemplate> {
-		private InlineScript script;
+		private Script script;
 
 		/**
 		 * Required - The associated mustache template.
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder script(InlineScript value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
 		}
@@ -130,8 +130,8 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
-			return this.script(fn.apply(new InlineScript.Builder()).build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -163,7 +163,7 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 	protected static void setupSearchApplicationTemplateDeserializer(
 			ObjectDeserializer<SearchApplicationTemplate.Builder> op) {
 
-		op.add(Builder::script, InlineScript._DESERIALIZER, "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

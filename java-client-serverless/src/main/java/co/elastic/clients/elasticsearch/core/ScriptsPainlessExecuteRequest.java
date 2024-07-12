@@ -20,8 +20,8 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch.core.scripts_painless_execute.PainlessContextSetup;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -72,7 +72,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	private final PainlessContextSetup contextSetup;
 
 	@Nullable
-	private final InlineScript script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -114,7 +114,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public final InlineScript script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -163,7 +163,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		private PainlessContextSetup contextSetup;
 
 		@Nullable
-		private InlineScript script;
+		private Script script;
 
 		/**
 		 * The context that the script should run in.
@@ -200,7 +200,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder script(@Nullable InlineScript value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
 		}
@@ -210,8 +210,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
-			return this.script(fn.apply(new InlineScript.Builder()).build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -245,7 +245,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 
 		op.add(Builder::context, JsonpDeserializer.stringDeserializer(), "context");
 		op.add(Builder::contextSetup, PainlessContextSetup._DESERIALIZER, "context_setup");
-		op.add(Builder::script, InlineScript._DESERIALIZER, "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

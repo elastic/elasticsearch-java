@@ -19,21 +19,21 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch._types.StoredScriptId;
+import co.elastic.clients.elasticsearch._types.ScriptLanguage;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
-import co.elastic.clients.util.TaggedUnion;
-import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -62,35 +62,29 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RoleTemplateScript implements TaggedUnion<RoleTemplateScript.Kind, Object>, JsonpSerializable {
+public class RoleTemplateScript implements JsonpSerializable {
+	@Nullable
+	private final RoleTemplateInlineQuery source;
 
-	public enum Kind {
-		Stored, Inline
+	@Nullable
+	private final String id;
 
-	}
+	private final Map<String, JsonData> params;
 
-	private final Kind _kind;
-	private final Object _value;
+	@Nullable
+	private final String lang;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+	private final Map<String, String> options;
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
-
-	private RoleTemplateScript(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+	// ---------------------------------------------------------------------------------------------
 
 	private RoleTemplateScript(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this.source = builder.source;
+		this.id = builder.id;
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
+		this.lang = builder.lang;
+		this.options = ApiTypeHelper.unmodifiable(builder.options);
 
 	}
 
@@ -99,43 +93,97 @@ public class RoleTemplateScript implements TaggedUnion<RoleTemplateScript.Kind, 
 	}
 
 	/**
-	 * Is this variant instance of kind {@code stored}?
+	 * API name: {@code source}
 	 */
-	public boolean isStored() {
-		return _kind == Kind.Stored;
+	@Nullable
+	public final RoleTemplateInlineQuery source() {
+		return this.source;
 	}
 
 	/**
-	 * Get the {@code stored} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code stored} kind.
+	 * The <code>id</code> for a stored script.
+	 * <p>
+	 * API name: {@code id}
 	 */
-	public StoredScriptId stored() {
-		return TaggedUnionUtils.get(this, Kind.Stored);
+	@Nullable
+	public final String id() {
+		return this.id;
 	}
 
 	/**
-	 * Is this variant instance of kind {@code inline}?
+	 * Specifies any named parameters that are passed into the script as variables.
+	 * Use parameters instead of hard-coded values to decrease compile time.
+	 * <p>
+	 * API name: {@code params}
 	 */
-	public boolean isInline() {
-		return _kind == Kind.Inline;
+	public final Map<String, JsonData> params() {
+		return this.params;
 	}
 
 	/**
-	 * Get the {@code inline} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code inline} kind.
+	 * Specifies the language the script is written in.
+	 * <p>
+	 * API name: {@code lang}
 	 */
-	public RoleTemplateInlineScript inline() {
-		return TaggedUnionUtils.get(this, Kind.Inline);
+	@Nullable
+	public final String lang() {
+		return this.lang;
 	}
 
-	@Override
+	/**
+	 * API name: {@code options}
+	 */
+	public final Map<String, String> options() {
+		return this.options;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.source != null) {
+			generator.writeKey("source");
+			this.source.serialize(generator, mapper);
+
+		}
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
+
+		}
+		if (ApiTypeHelper.isDefined(this.params)) {
+			generator.writeKey("params");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.lang != null) {
+			generator.writeKey("lang");
+			generator.write(this.lang);
+
+		}
+		if (ApiTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.options.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
 		}
 
 	}
@@ -145,45 +193,159 @@ public class RoleTemplateScript implements TaggedUnion<RoleTemplateScript.Kind, 
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleTemplateScript> {
-		private Kind _kind;
-		private Object _value;
+	// ---------------------------------------------------------------------------------------------
 
-		public ObjectBuilder<RoleTemplateScript> stored(StoredScriptId v) {
-			this._kind = Kind.Stored;
-			this._value = v;
+	/**
+	 * Builder for {@link RoleTemplateScript}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RoleTemplateScript> {
+		@Nullable
+		private RoleTemplateInlineQuery source;
+
+		@Nullable
+		private String id;
+
+		@Nullable
+		private Map<String, JsonData> params;
+
+		@Nullable
+		private String lang;
+
+		@Nullable
+		private Map<String, String> options;
+
+		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(@Nullable RoleTemplateInlineQuery value) {
+			this.source = value;
 			return this;
 		}
 
-		public ObjectBuilder<RoleTemplateScript> stored(
-				Function<StoredScriptId.Builder, ObjectBuilder<StoredScriptId>> fn) {
-			return this.stored(fn.apply(new StoredScriptId.Builder()).build());
+		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(
+				Function<RoleTemplateInlineQuery.Builder, ObjectBuilder<RoleTemplateInlineQuery>> fn) {
+			return this.source(fn.apply(new RoleTemplateInlineQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<RoleTemplateScript> inline(RoleTemplateInlineScript v) {
-			this._kind = Kind.Inline;
-			this._value = v;
+		/**
+		 * The <code>id</code> for a stored script.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
-		public ObjectBuilder<RoleTemplateScript> inline(
-				Function<RoleTemplateInlineScript.Builder, ObjectBuilder<RoleTemplateInlineScript>> fn) {
-			return this.inline(fn.apply(new RoleTemplateInlineScript.Builder()).build());
+		/**
+		 * Specifies any named parameters that are passed into the script as variables.
+		 * Use parameters instead of hard-coded values to decrease compile time.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
+		 */
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
 		}
 
+		/**
+		 * Specifies any named parameters that are passed into the script as variables.
+		 * Use parameters instead of hard-coded values to decrease compile time.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
+			return this;
+		}
+
+		/**
+		 * Specifies the language the script is written in.
+		 * <p>
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable String value) {
+			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the language the script is written in.
+		 * <p>
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable ScriptLanguage value) {
+			this.lang = value == null ? null : value.jsonValue();
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>options</code>.
+		 */
+		public final Builder options(Map<String, String> map) {
+			this.options = _mapPutAll(this.options, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds an entry to <code>options</code>.
+		 */
+		public final Builder options(String key, String value) {
+			this.options = _mapPut(this.options, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link RoleTemplateScript}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
 		public RoleTemplateScript build() {
 			_checkSingleUse();
+
 			return new RoleTemplateScript(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link RoleTemplateScript}
+	 */
+	public static final JsonpDeserializer<RoleTemplateScript> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RoleTemplateScript::setupRoleTemplateScriptDeserializer);
+
+	protected static void setupRoleTemplateScriptDeserializer(ObjectDeserializer<RoleTemplateScript.Builder> op) {
+
+		op.add(Builder::source, RoleTemplateInlineQuery._DESERIALIZER, "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
+		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"options");
+
+		op.shortcutProperty("source");
 
 	}
 
-	private static JsonpDeserializer<RoleTemplateScript> buildRoleTemplateScriptDeserializer() {
-		return new UnionDeserializer.Builder<RoleTemplateScript, Kind, Object>(RoleTemplateScript::new, false)
-				.addMember(Kind.Stored, StoredScriptId._DESERIALIZER)
-				.addMember(Kind.Inline, RoleTemplateInlineScript._DESERIALIZER).build();
-	}
-
-	public static final JsonpDeserializer<RoleTemplateScript> _DESERIALIZER = JsonpDeserializer
-			.lazy(RoleTemplateScript::buildRoleTemplateScriptDeserializer);
 }
