@@ -120,6 +120,80 @@ public class ElasticsearchSecurityAsyncClient
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: security.bulk_delete_role
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk delete roles API
+	 * cannot delete roles that are defined in roles files.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-delete-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<BulkDeleteRoleResponse> bulkDeleteRole(BulkDeleteRoleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkDeleteRoleRequest, BulkDeleteRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkDeleteRoleRequest, BulkDeleteRoleResponse, ErrorResponse>) BulkDeleteRoleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk delete roles API
+	 * cannot delete roles that are defined in roles files.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkDeleteRoleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-delete-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<BulkDeleteRoleResponse> bulkDeleteRole(
+			Function<BulkDeleteRoleRequest.Builder, ObjectBuilder<BulkDeleteRoleRequest>> fn) {
+		return bulkDeleteRole(fn.apply(new BulkDeleteRoleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.bulk_put_role
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk create or update roles
+	 * API cannot update roles that are defined in roles files.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-put-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<BulkPutRoleResponse> bulkPutRole(BulkPutRoleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkPutRoleRequest, BulkPutRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkPutRoleRequest, BulkPutRoleResponse, ErrorResponse>) BulkPutRoleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk create or update roles
+	 * API cannot update roles that are defined in roles files.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkPutRoleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-put-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<BulkPutRoleResponse> bulkPutRole(
+			Function<BulkPutRoleRequest.Builder, ObjectBuilder<BulkPutRoleRequest>> fn) {
+		return bulkPutRole(fn.apply(new BulkPutRoleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.change_password
 
 	/**
@@ -1706,6 +1780,104 @@ public class ElasticsearchSecurityAsyncClient
 	public CompletableFuture<QueryApiKeysResponse> queryApiKeys() {
 		return this.transport.performRequestAsync(new QueryApiKeysRequest.Builder().build(),
 				QueryApiKeysRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: security.query_role
+
+	/**
+	 * Retrieves roles in a paginated manner. You can optionally filter the results
+	 * with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryRoleResponse> queryRole(QueryRoleRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryRoleRequest, QueryRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryRoleRequest, QueryRoleResponse, ErrorResponse>) QueryRoleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves roles in a paginated manner. You can optionally filter the results
+	 * with a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryRoleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<QueryRoleResponse> queryRole(
+			Function<QueryRoleRequest.Builder, ObjectBuilder<QueryRoleRequest>> fn) {
+		return queryRole(fn.apply(new QueryRoleRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves roles in a paginated manner. You can optionally filter the results
+	 * with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryRoleResponse> queryRole() {
+		return this.transport.performRequestAsync(new QueryRoleRequest.Builder().build(), QueryRoleRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: security.query_user
+
+	/**
+	 * Retrieves information for Users in a paginated manner. You can optionally
+	 * filter the results with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryUserResponse> queryUser(QueryUserRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryUserRequest, QueryUserResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryUserRequest, QueryUserResponse, ErrorResponse>) QueryUserRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves information for Users in a paginated manner. You can optionally
+	 * filter the results with a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryUserRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<QueryUserResponse> queryUser(
+			Function<QueryUserRequest.Builder, ObjectBuilder<QueryUserRequest>> fn) {
+		return queryUser(fn.apply(new QueryUserRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves information for Users in a paginated manner. You can optionally
+	 * filter the results with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryUserResponse> queryUser() {
+		return this.transport.performRequestAsync(new QueryUserRequest.Builder().build(), QueryUserRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.saml_authenticate

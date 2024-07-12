@@ -65,6 +65,7 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 
 	private final long policies;
 
+	@Nullable
 	private final SlmIndicatorUnhealthyPolicies unhealthyPolicies;
 
 	// ---------------------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 
 		this.slmStatus = ApiTypeHelper.requireNonNull(builder.slmStatus, this, "slmStatus");
 		this.policies = ApiTypeHelper.requireNonNull(builder.policies, this, "policies");
-		this.unhealthyPolicies = ApiTypeHelper.requireNonNull(builder.unhealthyPolicies, this, "unhealthyPolicies");
+		this.unhealthyPolicies = builder.unhealthyPolicies;
 
 	}
 
@@ -96,8 +97,9 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code unhealthy_policies}
+	 * API name: {@code unhealthy_policies}
 	 */
+	@Nullable
 	public final SlmIndicatorUnhealthyPolicies unhealthyPolicies() {
 		return this.unhealthyPolicies;
 	}
@@ -118,8 +120,11 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 		generator.writeKey("policies");
 		generator.write(this.policies);
 
-		generator.writeKey("unhealthy_policies");
-		this.unhealthyPolicies.serialize(generator, mapper);
+		if (this.unhealthyPolicies != null) {
+			generator.writeKey("unhealthy_policies");
+			this.unhealthyPolicies.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -141,6 +146,7 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 
 		private Long policies;
 
+		@Nullable
 		private SlmIndicatorUnhealthyPolicies unhealthyPolicies;
 
 		/**
@@ -160,15 +166,15 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code unhealthy_policies}
+		 * API name: {@code unhealthy_policies}
 		 */
-		public final Builder unhealthyPolicies(SlmIndicatorUnhealthyPolicies value) {
+		public final Builder unhealthyPolicies(@Nullable SlmIndicatorUnhealthyPolicies value) {
 			this.unhealthyPolicies = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code unhealthy_policies}
+		 * API name: {@code unhealthy_policies}
 		 */
 		public final Builder unhealthyPolicies(
 				Function<SlmIndicatorUnhealthyPolicies.Builder, ObjectBuilder<SlmIndicatorUnhealthyPolicies>> fn) {

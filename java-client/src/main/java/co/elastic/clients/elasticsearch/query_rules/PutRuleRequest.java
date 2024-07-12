@@ -32,6 +32,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -70,6 +71,9 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<QueryRuleCriteria> criteria;
 
+	@Nullable
+	private final Integer priority;
+
 	private final String ruleId;
 
 	private final String rulesetId;
@@ -82,6 +86,7 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 		this.actions = ApiTypeHelper.requireNonNull(builder.actions, this, "actions");
 		this.criteria = ApiTypeHelper.unmodifiableRequired(builder.criteria, this, "criteria");
+		this.priority = builder.priority;
 		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
@@ -104,6 +109,14 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<QueryRuleCriteria> criteria() {
 		return this.criteria;
+	}
+
+	/**
+	 * API name: {@code priority}
+	 */
+	@Nullable
+	public final Integer priority() {
+		return this.priority;
 	}
 
 	/**
@@ -157,6 +170,11 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			generator.write(this.priority);
+
+		}
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -172,6 +190,9 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		private QueryRuleActions actions;
 
 		private List<QueryRuleCriteria> criteria;
+
+		@Nullable
+		private Integer priority;
 
 		private String ruleId;
 
@@ -221,6 +242,14 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder criteria(Function<QueryRuleCriteria.Builder, ObjectBuilder<QueryRuleCriteria>> fn) {
 			return criteria(fn.apply(new QueryRuleCriteria.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code priority}
+		 */
+		public final Builder priority(@Nullable Integer value) {
+			this.priority = value;
+			return this;
 		}
 
 		/**
@@ -283,6 +312,7 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::actions, QueryRuleActions._DESERIALIZER, "actions");
 		op.add(Builder::criteria, JsonpDeserializer.arrayDeserializer(QueryRuleCriteria._DESERIALIZER), "criteria");
+		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
 		op.add(Builder::type, QueryRuleType._DESERIALIZER, "type");
 
 	}
