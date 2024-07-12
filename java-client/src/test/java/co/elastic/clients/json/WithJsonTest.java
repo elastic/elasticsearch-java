@@ -19,7 +19,7 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.elasticsearch._types.InlineScript;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TextProperty;
@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.PutIndicesSettingsRequest;
+import co.elastic.clients.elasticsearch.security.RoleTemplateScript;
 import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
@@ -123,7 +124,7 @@ public class WithJsonTest extends ModelTestCase {
 
         String json = "{\"source\": \"return doc;\"}";
 
-        InlineScript is = InlineScript.of(b -> b
+        Script is = Script.of(b -> b
             .withJson(new StringReader(json))
         );
 
@@ -169,6 +170,17 @@ public class WithJsonTest extends ModelTestCase {
 
         TextProperty tp = p.text();
         assertEquals("lowercase", tp.fields().get("some_field").keyword().normalizer());
+    }
+
+    @Test
+    public void testExternalTaggedUnion() {
+
+        RoleTemplateScript withSource = RoleTemplateScript.of(j -> j.withJson(new StringReader("{\"source\": {\"match\": {\"category\": \"click\"}}}")));
+        assertTrue(withSource.source().isQueryObject());
+        RoleTemplateScript withStringSource = RoleTemplateScript.of(j -> j.withJson(new StringReader("{\"source\": \"string\"}")));
+        assertTrue(withStringSource.source().isQueryString());
+        RoleTemplateScript withStoredScript = RoleTemplateScript.of(j -> j.withJson(new StringReader("{\"id\": \"foo\"}")));
+        assertTrue(!withStoredScript.id().isEmpty());
     }
 }
 

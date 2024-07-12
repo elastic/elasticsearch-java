@@ -46,28 +46,24 @@ public class UnionTests extends ModelTestCase {
         // A union discriminated by its field names (source -> inline, id -> stored)
         {
             Script s = Script.of(_1 -> _1
-                .inline(_2 -> _2
                     .source("a script")
-                )
             );
             s = checkJsonRoundtrip(s, "{\"source\":\"a script\"}");
-            assertEquals("a script", s.inline().source());
+            assertEquals("a script", s.source());
         }
 
         {
             Script s = Script.of(_1 -> _1
-                .stored(_2 -> _2
                     .id("script_id")
-                )
             );
             s = checkJsonRoundtrip(s, "{\"id\":\"script_id\"}");
-            assertEquals("script_id", s.stored().id());
+            assertEquals("script_id", s.id());
         }
 
         {
             // Test shortcut property
             Script s = fromJson("\"a script\"", Script.class);
-            assertEquals("a script", s.inline().source());
+            assertEquals("a script", s.source());
         }
     }
 

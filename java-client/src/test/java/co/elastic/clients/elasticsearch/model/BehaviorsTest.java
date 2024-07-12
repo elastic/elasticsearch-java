@@ -113,10 +113,10 @@ public class BehaviorsTest extends ModelTestCase {
 
         {
             SortOptions so = SortOptions.of(_0 -> _0
-                .script(_1 -> _1.script(_2 -> _2.inline(_3 -> _3.source("blah"))))
+                .script(_1 -> _1.script(_3 -> _3.source("blah")))
             );
             so = checkJsonRoundtrip(so, "{\"_script\":{\"script\":{\"source\":\"blah\"}}}");
-            assertEquals("blah", so.script().script().inline().source());
+            assertEquals("blah", so.script().script().source());
 
         }
 

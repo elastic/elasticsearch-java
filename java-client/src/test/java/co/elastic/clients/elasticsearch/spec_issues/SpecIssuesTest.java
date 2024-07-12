@@ -98,9 +98,7 @@ public class SpecIssuesTest extends ModelTestCase {
         RuntimeField runtimeField = RuntimeField.of(rf -> rf
             .type(RuntimeFieldType.Double)
             .script(Script.of(s -> s
-                .inline(i -> i.
-                    source("emit(doc['price'].value * 1.19)")
-                )
+                .source("emit(doc['price'].value * 1.19)")
             ))
         );
 
