@@ -19,16 +19,20 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -57,26 +61,39 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
-	private final JsonData origin;
+public class DistanceFeatureQuery
+		implements
+			TaggedUnion<DistanceFeatureQuery.Kind, DistanceFeatureQueryVariant>,
+			QueryVariant,
+			JsonpSerializable {
 
-	private final JsonData pivot;
+	/**
+	 * {@link DistanceFeatureQuery} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.query_dsl.DistanceFeatureQuery">API
+	 *      specification</a>
+	 */
 
-	private final String field;
+	public enum Kind implements JsonEnum {
+		Date("date"),
 
-	// ---------------------------------------------------------------------------------------------
+		Geo("geo"),
 
-	private DistanceFeatureQuery(Builder builder) {
-		super(builder);
+		Untyped("untyped"),
 
-		this.origin = ApiTypeHelper.requireNonNull(builder.origin, this, "origin");
-		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		;
 
-	}
+		private final String jsonValue;
 
-	public static DistanceFeatureQuery of(Function<Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
-		return fn.apply(new Builder()).build();
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
 	/**
@@ -87,156 +104,155 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 		return Query.Kind.DistanceFeature;
 	}
 
-	/**
-	 * Required - Date or point of origin used to calculate distances. If the
-	 * <code>field</code> value is a <code>date</code> or <code>date_nanos</code>
-	 * field, the <code>origin</code> value must be a date. Date Math, such as
-	 * <code>now-1h</code>, is supported. If the field value is a
-	 * <code>geo_point</code> field, the <code>origin</code> value must be a
-	 * geopoint.
-	 * <p>
-	 * API name: {@code origin}
-	 */
-	public final JsonData origin() {
-		return this.origin;
+	private final Kind _kind;
+	private final DistanceFeatureQueryVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
 	}
 
-	/**
-	 * Required - Distance from the <code>origin</code> at which relevance scores
-	 * receive half of the <code>boost</code> value. If the <code>field</code> value
-	 * is a <code>date</code> or <code>date_nanos</code> field, the
-	 * <code>pivot</code> value must be a time unit, such as <code>1h</code> or
-	 * <code>10d</code>. If the <code>field</code> value is a <code>geo_point</code>
-	 * field, the <code>pivot</code> value must be a distance unit, such as
-	 * <code>1km</code> or <code>12m</code>.
-	 * <p>
-	 * API name: {@code pivot}
-	 */
-	public final JsonData pivot() {
-		return this.pivot;
+	@Override
+	public final DistanceFeatureQueryVariant _get() {
+		return _value;
 	}
 
-	/**
-	 * Required - Name of the field used to calculate distances. This field must
-	 * meet the following criteria: be a <code>date</code>, <code>date_nanos</code>
-	 * or <code>geo_point</code> field; have an <code>index</code> mapping parameter
-	 * value of <code>true</code>, which is the default; have an
-	 * <code>doc_values</code> mapping parameter value of <code>true</code>, which
-	 * is the default.
-	 * <p>
-	 * API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+	public DistanceFeatureQuery(DistanceFeatureQueryVariant value) {
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("origin");
-		this.origin.serialize(generator, mapper);
-
-		generator.writeKey("pivot");
-		this.pivot.serialize(generator, mapper);
-
-		generator.writeKey("field");
-		generator.write(this.field);
+		this._kind = ApiTypeHelper.requireNonNull(value._distanceFeatureQueryKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	private DistanceFeatureQuery(Kind kind, DistanceFeatureQueryVariant value) {
+		this._kind = kind;
+		this._value = value;
+	}
+
+	private DistanceFeatureQuery(Builder builder) {
+
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+	}
+
+	public static DistanceFeatureQuery of(Function<Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
+		return fn.apply(new Builder()).build();
+	}
 
 	/**
-	 * Builder for {@link DistanceFeatureQuery}.
+	 * Is this variant instance of kind {@code date}?
 	 */
+	public boolean isDate() {
+		return _kind == Kind.Date;
+	}
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DistanceFeatureQuery> {
-		private JsonData origin;
+	/**
+	 * Get the {@code date} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date} kind.
+	 */
+	public DateDistanceFeatureQuery date() {
+		return TaggedUnionUtils.get(this, Kind.Date);
+	}
 
-		private JsonData pivot;
+	/**
+	 * Is this variant instance of kind {@code geo}?
+	 */
+	public boolean isGeo() {
+		return _kind == Kind.Geo;
+	}
 
-		private String field;
+	/**
+	 * Get the {@code geo} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo} kind.
+	 */
+	public GeoDistanceFeatureQuery geo() {
+		return TaggedUnionUtils.get(this, Kind.Geo);
+	}
 
-		/**
-		 * Required - Date or point of origin used to calculate distances. If the
-		 * <code>field</code> value is a <code>date</code> or <code>date_nanos</code>
-		 * field, the <code>origin</code> value must be a date. Date Math, such as
-		 * <code>now-1h</code>, is supported. If the field value is a
-		 * <code>geo_point</code> field, the <code>origin</code> value must be a
-		 * geopoint.
-		 * <p>
-		 * API name: {@code origin}
-		 */
-		public final Builder origin(JsonData value) {
-			this.origin = value;
+	/**
+	 * Is this variant instance of kind {@code untyped}?
+	 */
+	public boolean isUntyped() {
+		return _kind == Kind.Untyped;
+	}
+
+	/**
+	 * Get the {@code untyped} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code untyped} kind.
+	 */
+	public UntypedDistanceFeatureQuery untyped() {
+		return TaggedUnionUtils.get(this, Kind.Untyped);
+	}
+
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		mapper.serialize(_value, generator);
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DistanceFeatureQuery> {
+		private Kind _kind;
+		private DistanceFeatureQueryVariant _value;
+
+		public ObjectBuilder<DistanceFeatureQuery> date(DateDistanceFeatureQuery v) {
+			this._kind = Kind.Date;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required - Distance from the <code>origin</code> at which relevance scores
-		 * receive half of the <code>boost</code> value. If the <code>field</code> value
-		 * is a <code>date</code> or <code>date_nanos</code> field, the
-		 * <code>pivot</code> value must be a time unit, such as <code>1h</code> or
-		 * <code>10d</code>. If the <code>field</code> value is a <code>geo_point</code>
-		 * field, the <code>pivot</code> value must be a distance unit, such as
-		 * <code>1km</code> or <code>12m</code>.
-		 * <p>
-		 * API name: {@code pivot}
-		 */
-		public final Builder pivot(JsonData value) {
-			this.pivot = value;
+		public ObjectBuilder<DistanceFeatureQuery> date(
+				Function<DateDistanceFeatureQuery.Builder, ObjectBuilder<DateDistanceFeatureQuery>> fn) {
+			return this.date(fn.apply(new DateDistanceFeatureQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<DistanceFeatureQuery> geo(GeoDistanceFeatureQuery v) {
+			this._kind = Kind.Geo;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required - Name of the field used to calculate distances. This field must
-		 * meet the following criteria: be a <code>date</code>, <code>date_nanos</code>
-		 * or <code>geo_point</code> field; have an <code>index</code> mapping parameter
-		 * value of <code>true</code>, which is the default; have an
-		 * <code>doc_values</code> mapping parameter value of <code>true</code>, which
-		 * is the default.
-		 * <p>
-		 * API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
+		public ObjectBuilder<DistanceFeatureQuery> geo(
+				Function<GeoDistanceFeatureQuery.Builder, ObjectBuilder<GeoDistanceFeatureQuery>> fn) {
+			return this.geo(fn.apply(new GeoDistanceFeatureQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<DistanceFeatureQuery> untyped(UntypedDistanceFeatureQuery v) {
+			this._kind = Kind.Untyped;
+			this._value = v;
 			return this;
 		}
 
-		@Override
-		protected Builder self() {
-			return this;
+		public ObjectBuilder<DistanceFeatureQuery> untyped(
+				Function<UntypedDistanceFeatureQuery.Builder, ObjectBuilder<UntypedDistanceFeatureQuery>> fn) {
+			return this.untyped(fn.apply(new UntypedDistanceFeatureQuery.Builder()).build());
 		}
 
-		/**
-		 * Builds a {@link DistanceFeatureQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
 		public DistanceFeatureQuery build() {
 			_checkSingleUse();
-
 			return new DistanceFeatureQuery(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link DistanceFeatureQuery}
-	 */
-	public static final JsonpDeserializer<DistanceFeatureQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DistanceFeatureQuery::setupDistanceFeatureQueryDeserializer);
-
-	protected static void setupDistanceFeatureQueryDeserializer(ObjectDeserializer<DistanceFeatureQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::origin, JsonData._DESERIALIZER, "origin");
-		op.add(Builder::pivot, JsonData._DESERIALIZER, "pivot");
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}
 
+	private static JsonpDeserializer<DistanceFeatureQuery> buildDistanceFeatureQueryDeserializer() {
+		return new UnionDeserializer.Builder<DistanceFeatureQuery, Kind, DistanceFeatureQueryVariant>(
+				DistanceFeatureQuery::new, false).addMember(Kind.Untyped, UntypedDistanceFeatureQuery._DESERIALIZER)
+						.build();
+	}
+
+	public static final JsonpDeserializer<DistanceFeatureQuery> _DESERIALIZER = JsonpDeserializer
+			.lazy(DistanceFeatureQuery::buildDistanceFeatureQueryDeserializer);
 }

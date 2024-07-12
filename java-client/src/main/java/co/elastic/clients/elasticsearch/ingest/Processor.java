@@ -74,19 +74,27 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 
 	public enum Kind implements JsonEnum {
-		Attachment("attachment"),
-
 		Append("append"),
 
-		Csv("csv"),
+		Attachment("attachment"),
+
+		Bytes("bytes"),
+
+		Circle("circle"),
 
 		Convert("convert"),
+
+		Csv("csv"),
 
 		Date("date"),
 
 		DateIndexName("date_index_name"),
 
+		Dissect("dissect"),
+
 		DotExpander("dot_expander"),
+
+		Drop("drop"),
 
 		Enrich("enrich"),
 
@@ -94,21 +102,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Foreach("foreach"),
 
-		Json("json"),
-
-		UserAgent("user_agent"),
-
-		Kv("kv"),
-
 		Geoip("geoip"),
 
 		Grok("grok"),
 
 		Gsub("gsub"),
 
+		Inference("inference"),
+
 		Join("join"),
 
+		Json("json"),
+
+		Kv("kv"),
+
 		Lowercase("lowercase"),
+
+		Pipeline("pipeline"),
 
 		Remove("remove"),
 
@@ -120,6 +130,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Set("set"),
 
+		SetSecurityUser("set_security_user"),
+
 		Sort("sort"),
 
 		Split("split"),
@@ -130,19 +142,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Urldecode("urldecode"),
 
-		Bytes("bytes"),
-
-		Dissect("dissect"),
-
-		SetSecurityUser("set_security_user"),
-
-		Pipeline("pipeline"),
-
-		Drop("drop"),
-
-		Circle("circle"),
-
-		Inference("inference"),
+		UserAgent("user_agent"),
 
 		/** A custom {@code Processor} defined by a plugin */
 		_Custom(null)
@@ -195,23 +195,6 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
-	 * Is this variant instance of kind {@code attachment}?
-	 */
-	public boolean isAttachment() {
-		return _kind == Kind.Attachment;
-	}
-
-	/**
-	 * Get the {@code attachment} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code attachment} kind.
-	 */
-	public AttachmentProcessor attachment() {
-		return TaggedUnionUtils.get(this, Kind.Attachment);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code append}?
 	 */
 	public boolean isAppend() {
@@ -229,20 +212,54 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
-	 * Is this variant instance of kind {@code csv}?
+	 * Is this variant instance of kind {@code attachment}?
 	 */
-	public boolean isCsv() {
-		return _kind == Kind.Csv;
+	public boolean isAttachment() {
+		return _kind == Kind.Attachment;
 	}
 
 	/**
-	 * Get the {@code csv} variant value.
+	 * Get the {@code attachment} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code csv} kind.
+	 *             if the current variant is not of the {@code attachment} kind.
 	 */
-	public CsvProcessor csv() {
-		return TaggedUnionUtils.get(this, Kind.Csv);
+	public AttachmentProcessor attachment() {
+		return TaggedUnionUtils.get(this, Kind.Attachment);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bytes}?
+	 */
+	public boolean isBytes() {
+		return _kind == Kind.Bytes;
+	}
+
+	/**
+	 * Get the {@code bytes} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bytes} kind.
+	 */
+	public BytesProcessor bytes() {
+		return TaggedUnionUtils.get(this, Kind.Bytes);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code circle}?
+	 */
+	public boolean isCircle() {
+		return _kind == Kind.Circle;
+	}
+
+	/**
+	 * Get the {@code circle} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code circle} kind.
+	 */
+	public CircleProcessor circle() {
+		return TaggedUnionUtils.get(this, Kind.Circle);
 	}
 
 	/**
@@ -260,6 +277,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public ConvertProcessor convert() {
 		return TaggedUnionUtils.get(this, Kind.Convert);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code csv}?
+	 */
+	public boolean isCsv() {
+		return _kind == Kind.Csv;
+	}
+
+	/**
+	 * Get the {@code csv} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code csv} kind.
+	 */
+	public CsvProcessor csv() {
+		return TaggedUnionUtils.get(this, Kind.Csv);
 	}
 
 	/**
@@ -298,6 +332,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code dissect}?
+	 */
+	public boolean isDissect() {
+		return _kind == Kind.Dissect;
+	}
+
+	/**
+	 * Get the {@code dissect} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dissect} kind.
+	 */
+	public DissectProcessor dissect() {
+		return TaggedUnionUtils.get(this, Kind.Dissect);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code dot_expander}?
 	 */
 	public boolean isDotExpander() {
@@ -312,6 +363,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public DotExpanderProcessor dotExpander() {
 		return TaggedUnionUtils.get(this, Kind.DotExpander);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code drop}?
+	 */
+	public boolean isDrop() {
+		return _kind == Kind.Drop;
+	}
+
+	/**
+	 * Get the {@code drop} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code drop} kind.
+	 */
+	public DropProcessor drop() {
+		return TaggedUnionUtils.get(this, Kind.Drop);
 	}
 
 	/**
@@ -366,57 +434,6 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
-	 * Is this variant instance of kind {@code json}?
-	 */
-	public boolean isJson() {
-		return _kind == Kind.Json;
-	}
-
-	/**
-	 * Get the {@code json} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code json} kind.
-	 */
-	public JsonProcessor json() {
-		return TaggedUnionUtils.get(this, Kind.Json);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code user_agent}?
-	 */
-	public boolean isUserAgent() {
-		return _kind == Kind.UserAgent;
-	}
-
-	/**
-	 * Get the {@code user_agent} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code user_agent} kind.
-	 */
-	public UserAgentProcessor userAgent() {
-		return TaggedUnionUtils.get(this, Kind.UserAgent);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code kv}?
-	 */
-	public boolean isKv() {
-		return _kind == Kind.Kv;
-	}
-
-	/**
-	 * Get the {@code kv} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code kv} kind.
-	 */
-	public KeyValueProcessor kv() {
-		return TaggedUnionUtils.get(this, Kind.Kv);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code geoip}?
 	 */
 	public boolean isGeoip() {
@@ -468,6 +485,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code inference}?
+	 */
+	public boolean isInference() {
+		return _kind == Kind.Inference;
+	}
+
+	/**
+	 * Get the {@code inference} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code inference} kind.
+	 */
+	public InferenceProcessor inference() {
+		return TaggedUnionUtils.get(this, Kind.Inference);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code join}?
 	 */
 	public boolean isJoin() {
@@ -485,6 +519,40 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code json}?
+	 */
+	public boolean isJson() {
+		return _kind == Kind.Json;
+	}
+
+	/**
+	 * Get the {@code json} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code json} kind.
+	 */
+	public JsonProcessor json() {
+		return TaggedUnionUtils.get(this, Kind.Json);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kv}?
+	 */
+	public boolean isKv() {
+		return _kind == Kind.Kv;
+	}
+
+	/**
+	 * Get the {@code kv} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kv} kind.
+	 */
+	public KeyValueProcessor kv() {
+		return TaggedUnionUtils.get(this, Kind.Kv);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code lowercase}?
 	 */
 	public boolean isLowercase() {
@@ -499,6 +567,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public LowercaseProcessor lowercase() {
 		return TaggedUnionUtils.get(this, Kind.Lowercase);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pipeline}?
+	 */
+	public boolean isPipeline() {
+		return _kind == Kind.Pipeline;
+	}
+
+	/**
+	 * Get the {@code pipeline} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code pipeline} kind.
+	 */
+	public PipelineProcessor pipeline() {
+		return TaggedUnionUtils.get(this, Kind.Pipeline);
 	}
 
 	/**
@@ -587,6 +672,24 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code set_security_user}?
+	 */
+	public boolean isSetSecurityUser() {
+		return _kind == Kind.SetSecurityUser;
+	}
+
+	/**
+	 * Get the {@code set_security_user} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code set_security_user}
+	 *             kind.
+	 */
+	public SetSecurityUserProcessor setSecurityUser() {
+		return TaggedUnionUtils.get(this, Kind.SetSecurityUser);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code sort}?
 	 */
 	public boolean isSort() {
@@ -672,123 +775,20 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
-	 * Is this variant instance of kind {@code bytes}?
+	 * Is this variant instance of kind {@code user_agent}?
 	 */
-	public boolean isBytes() {
-		return _kind == Kind.Bytes;
+	public boolean isUserAgent() {
+		return _kind == Kind.UserAgent;
 	}
 
 	/**
-	 * Get the {@code bytes} variant value.
+	 * Get the {@code user_agent} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code bytes} kind.
+	 *             if the current variant is not of the {@code user_agent} kind.
 	 */
-	public BytesProcessor bytes() {
-		return TaggedUnionUtils.get(this, Kind.Bytes);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code dissect}?
-	 */
-	public boolean isDissect() {
-		return _kind == Kind.Dissect;
-	}
-
-	/**
-	 * Get the {@code dissect} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code dissect} kind.
-	 */
-	public DissectProcessor dissect() {
-		return TaggedUnionUtils.get(this, Kind.Dissect);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code set_security_user}?
-	 */
-	public boolean isSetSecurityUser() {
-		return _kind == Kind.SetSecurityUser;
-	}
-
-	/**
-	 * Get the {@code set_security_user} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code set_security_user}
-	 *             kind.
-	 */
-	public SetSecurityUserProcessor setSecurityUser() {
-		return TaggedUnionUtils.get(this, Kind.SetSecurityUser);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code pipeline}?
-	 */
-	public boolean isPipeline() {
-		return _kind == Kind.Pipeline;
-	}
-
-	/**
-	 * Get the {@code pipeline} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code pipeline} kind.
-	 */
-	public PipelineProcessor pipeline() {
-		return TaggedUnionUtils.get(this, Kind.Pipeline);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code drop}?
-	 */
-	public boolean isDrop() {
-		return _kind == Kind.Drop;
-	}
-
-	/**
-	 * Get the {@code drop} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code drop} kind.
-	 */
-	public DropProcessor drop() {
-		return TaggedUnionUtils.get(this, Kind.Drop);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code circle}?
-	 */
-	public boolean isCircle() {
-		return _kind == Kind.Circle;
-	}
-
-	/**
-	 * Get the {@code circle} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code circle} kind.
-	 */
-	public CircleProcessor circle() {
-		return TaggedUnionUtils.get(this, Kind.Circle);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code inference}?
-	 */
-	public boolean isInference() {
-		return _kind == Kind.Inference;
-	}
-
-	/**
-	 * Get the {@code inference} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code inference} kind.
-	 */
-	public InferenceProcessor inference() {
-		return TaggedUnionUtils.get(this, Kind.Inference);
+	public UserAgentProcessor userAgent() {
+		return TaggedUnionUtils.get(this, Kind.UserAgent);
 	}
 
 	@Nullable
@@ -849,6 +849,16 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<Processor> append(AppendProcessor v) {
+			this._kind = Kind.Append;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> append(Function<AppendProcessor.Builder, ObjectBuilder<AppendProcessor>> fn) {
+			return this.append(fn.apply(new AppendProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> attachment(AttachmentProcessor v) {
 			this._kind = Kind.Attachment;
 			this._value = v;
@@ -860,24 +870,24 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.attachment(fn.apply(new AttachmentProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> append(AppendProcessor v) {
-			this._kind = Kind.Append;
+		public ObjectBuilder<Processor> bytes(BytesProcessor v) {
+			this._kind = Kind.Bytes;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Processor> append(Function<AppendProcessor.Builder, ObjectBuilder<AppendProcessor>> fn) {
-			return this.append(fn.apply(new AppendProcessor.Builder()).build());
+		public ObjectBuilder<Processor> bytes(Function<BytesProcessor.Builder, ObjectBuilder<BytesProcessor>> fn) {
+			return this.bytes(fn.apply(new BytesProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> csv(CsvProcessor v) {
-			this._kind = Kind.Csv;
+		public ObjectBuilder<Processor> circle(CircleProcessor v) {
+			this._kind = Kind.Circle;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Processor> csv(Function<CsvProcessor.Builder, ObjectBuilder<CsvProcessor>> fn) {
-			return this.csv(fn.apply(new CsvProcessor.Builder()).build());
+		public ObjectBuilder<Processor> circle(Function<CircleProcessor.Builder, ObjectBuilder<CircleProcessor>> fn) {
+			return this.circle(fn.apply(new CircleProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> convert(ConvertProcessor v) {
@@ -889,6 +899,16 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		public ObjectBuilder<Processor> convert(
 				Function<ConvertProcessor.Builder, ObjectBuilder<ConvertProcessor>> fn) {
 			return this.convert(fn.apply(new ConvertProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> csv(CsvProcessor v) {
+			this._kind = Kind.Csv;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> csv(Function<CsvProcessor.Builder, ObjectBuilder<CsvProcessor>> fn) {
+			return this.csv(fn.apply(new CsvProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> date(DateProcessor v) {
@@ -912,6 +932,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.dateIndexName(fn.apply(new DateIndexNameProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> dissect(DissectProcessor v) {
+			this._kind = Kind.Dissect;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> dissect(
+				Function<DissectProcessor.Builder, ObjectBuilder<DissectProcessor>> fn) {
+			return this.dissect(fn.apply(new DissectProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> dotExpander(DotExpanderProcessor v) {
 			this._kind = Kind.DotExpander;
 			this._value = v;
@@ -921,6 +952,16 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		public ObjectBuilder<Processor> dotExpander(
 				Function<DotExpanderProcessor.Builder, ObjectBuilder<DotExpanderProcessor>> fn) {
 			return this.dotExpander(fn.apply(new DotExpanderProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> drop(DropProcessor v) {
+			this._kind = Kind.Drop;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> drop(Function<DropProcessor.Builder, ObjectBuilder<DropProcessor>> fn) {
+			return this.drop(fn.apply(new DropProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> enrich(EnrichProcessor v) {
@@ -954,37 +995,6 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.foreach(fn.apply(new ForeachProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> json(JsonProcessor v) {
-			this._kind = Kind.Json;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> json(Function<JsonProcessor.Builder, ObjectBuilder<JsonProcessor>> fn) {
-			return this.json(fn.apply(new JsonProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
-			this._kind = Kind.UserAgent;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> userAgent(
-				Function<UserAgentProcessor.Builder, ObjectBuilder<UserAgentProcessor>> fn) {
-			return this.userAgent(fn.apply(new UserAgentProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> kv(KeyValueProcessor v) {
-			this._kind = Kind.Kv;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> kv(Function<KeyValueProcessor.Builder, ObjectBuilder<KeyValueProcessor>> fn) {
-			return this.kv(fn.apply(new KeyValueProcessor.Builder()).build());
-		}
-
 		public ObjectBuilder<Processor> geoip(GeoIpProcessor v) {
 			this._kind = Kind.Geoip;
 			this._value = v;
@@ -1015,6 +1025,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.gsub(fn.apply(new GsubProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
+			this._kind = Kind.Inference;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> inference(
+				Function<InferenceProcessor.Builder, ObjectBuilder<InferenceProcessor>> fn) {
+			return this.inference(fn.apply(new InferenceProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> join(JoinProcessor v) {
 			this._kind = Kind.Join;
 			this._value = v;
@@ -1023,6 +1044,26 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		public ObjectBuilder<Processor> join(Function<JoinProcessor.Builder, ObjectBuilder<JoinProcessor>> fn) {
 			return this.join(fn.apply(new JoinProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> json(JsonProcessor v) {
+			this._kind = Kind.Json;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> json(Function<JsonProcessor.Builder, ObjectBuilder<JsonProcessor>> fn) {
+			return this.json(fn.apply(new JsonProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> kv(KeyValueProcessor v) {
+			this._kind = Kind.Kv;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> kv(Function<KeyValueProcessor.Builder, ObjectBuilder<KeyValueProcessor>> fn) {
+			return this.kv(fn.apply(new KeyValueProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> lowercase(LowercaseProcessor v) {
@@ -1034,6 +1075,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		public ObjectBuilder<Processor> lowercase(
 				Function<LowercaseProcessor.Builder, ObjectBuilder<LowercaseProcessor>> fn) {
 			return this.lowercase(fn.apply(new LowercaseProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
+			this._kind = Kind.Pipeline;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> pipeline(
+				Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> fn) {
+			return this.pipeline(fn.apply(new PipelineProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
@@ -1085,6 +1137,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		public ObjectBuilder<Processor> set(Function<SetProcessor.Builder, ObjectBuilder<SetProcessor>> fn) {
 			return this.set(fn.apply(new SetProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> setSecurityUser(SetSecurityUserProcessor v) {
+			this._kind = Kind.SetSecurityUser;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> setSecurityUser(
+				Function<SetSecurityUserProcessor.Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
+			return this.setSecurityUser(fn.apply(new SetSecurityUserProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> sort(SortProcessor v) {
@@ -1139,78 +1202,15 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.urldecode(fn.apply(new UrlDecodeProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> bytes(BytesProcessor v) {
-			this._kind = Kind.Bytes;
+		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
+			this._kind = Kind.UserAgent;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<Processor> bytes(Function<BytesProcessor.Builder, ObjectBuilder<BytesProcessor>> fn) {
-			return this.bytes(fn.apply(new BytesProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> dissect(DissectProcessor v) {
-			this._kind = Kind.Dissect;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> dissect(
-				Function<DissectProcessor.Builder, ObjectBuilder<DissectProcessor>> fn) {
-			return this.dissect(fn.apply(new DissectProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> setSecurityUser(SetSecurityUserProcessor v) {
-			this._kind = Kind.SetSecurityUser;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> setSecurityUser(
-				Function<SetSecurityUserProcessor.Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
-			return this.setSecurityUser(fn.apply(new SetSecurityUserProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
-			this._kind = Kind.Pipeline;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> pipeline(
-				Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> fn) {
-			return this.pipeline(fn.apply(new PipelineProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> drop(DropProcessor v) {
-			this._kind = Kind.Drop;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> drop(Function<DropProcessor.Builder, ObjectBuilder<DropProcessor>> fn) {
-			return this.drop(fn.apply(new DropProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> circle(CircleProcessor v) {
-			this._kind = Kind.Circle;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> circle(Function<CircleProcessor.Builder, ObjectBuilder<CircleProcessor>> fn) {
-			return this.circle(fn.apply(new CircleProcessor.Builder()).build());
-		}
-
-		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
-			this._kind = Kind.Inference;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> inference(
-				Function<InferenceProcessor.Builder, ObjectBuilder<InferenceProcessor>> fn) {
-			return this.inference(fn.apply(new InferenceProcessor.Builder()).build());
+		public ObjectBuilder<Processor> userAgent(
+				Function<UserAgentProcessor.Builder, ObjectBuilder<UserAgentProcessor>> fn) {
+			return this.userAgent(fn.apply(new UserAgentProcessor.Builder()).build());
 		}
 
 		/**
@@ -1238,41 +1238,41 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 	protected static void setupProcessorDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
 		op.add(Builder::append, AppendProcessor._DESERIALIZER, "append");
-		op.add(Builder::csv, CsvProcessor._DESERIALIZER, "csv");
+		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
+		op.add(Builder::bytes, BytesProcessor._DESERIALIZER, "bytes");
+		op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
 		op.add(Builder::convert, ConvertProcessor._DESERIALIZER, "convert");
+		op.add(Builder::csv, CsvProcessor._DESERIALIZER, "csv");
 		op.add(Builder::date, DateProcessor._DESERIALIZER, "date");
 		op.add(Builder::dateIndexName, DateIndexNameProcessor._DESERIALIZER, "date_index_name");
+		op.add(Builder::dissect, DissectProcessor._DESERIALIZER, "dissect");
 		op.add(Builder::dotExpander, DotExpanderProcessor._DESERIALIZER, "dot_expander");
+		op.add(Builder::drop, DropProcessor._DESERIALIZER, "drop");
 		op.add(Builder::enrich, EnrichProcessor._DESERIALIZER, "enrich");
 		op.add(Builder::fail, FailProcessor._DESERIALIZER, "fail");
 		op.add(Builder::foreach, ForeachProcessor._DESERIALIZER, "foreach");
-		op.add(Builder::json, JsonProcessor._DESERIALIZER, "json");
-		op.add(Builder::userAgent, UserAgentProcessor._DESERIALIZER, "user_agent");
-		op.add(Builder::kv, KeyValueProcessor._DESERIALIZER, "kv");
 		op.add(Builder::geoip, GeoIpProcessor._DESERIALIZER, "geoip");
 		op.add(Builder::grok, GrokProcessor._DESERIALIZER, "grok");
 		op.add(Builder::gsub, GsubProcessor._DESERIALIZER, "gsub");
+		op.add(Builder::inference, InferenceProcessor._DESERIALIZER, "inference");
 		op.add(Builder::join, JoinProcessor._DESERIALIZER, "join");
+		op.add(Builder::json, JsonProcessor._DESERIALIZER, "json");
+		op.add(Builder::kv, KeyValueProcessor._DESERIALIZER, "kv");
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
+		op.add(Builder::pipeline, PipelineProcessor._DESERIALIZER, "pipeline");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
 		op.add(Builder::reroute, RerouteProcessor._DESERIALIZER, "reroute");
 		op.add(Builder::script, ScriptProcessor._DESERIALIZER, "script");
 		op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
+		op.add(Builder::setSecurityUser, SetSecurityUserProcessor._DESERIALIZER, "set_security_user");
 		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
 		op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");
 		op.add(Builder::trim, TrimProcessor._DESERIALIZER, "trim");
 		op.add(Builder::uppercase, UppercaseProcessor._DESERIALIZER, "uppercase");
 		op.add(Builder::urldecode, UrlDecodeProcessor._DESERIALIZER, "urldecode");
-		op.add(Builder::bytes, BytesProcessor._DESERIALIZER, "bytes");
-		op.add(Builder::dissect, DissectProcessor._DESERIALIZER, "dissect");
-		op.add(Builder::setSecurityUser, SetSecurityUserProcessor._DESERIALIZER, "set_security_user");
-		op.add(Builder::pipeline, PipelineProcessor._DESERIALIZER, "pipeline");
-		op.add(Builder::drop, DropProcessor._DESERIALIZER, "drop");
-		op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
-		op.add(Builder::inference, InferenceProcessor._DESERIALIZER, "inference");
+		op.add(Builder::userAgent, UserAgentProcessor._DESERIALIZER, "user_agent");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);

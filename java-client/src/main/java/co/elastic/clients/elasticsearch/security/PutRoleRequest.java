@@ -73,6 +73,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> cluster;
 
+	@Nullable
+	private final String description;
+
 	private final Map<String, JsonData> global;
 
 	private final List<IndicesPrivileges> indices;
@@ -94,6 +97,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
+		this.description = builder.description;
 		this.global = ApiTypeHelper.unmodifiable(builder.global);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
@@ -125,6 +129,16 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> cluster() {
 		return this.cluster;
+	}
+
+	/**
+	 * Optional description of the role descriptor
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -236,6 +250,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
 		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartObject();
@@ -304,6 +323,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<String> cluster;
+
+		@Nullable
+		private String description;
 
 		@Nullable
 		private Map<String, JsonData> global;
@@ -384,6 +406,16 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder cluster(String value, String... values) {
 			this.cluster = _listAdd(this.cluster, value, values);
+			return this;
+		}
+
+		/**
+		 * Optional description of the role descriptor
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
 			return this;
 		}
 
@@ -595,6 +627,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 				"applications");
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "global");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");

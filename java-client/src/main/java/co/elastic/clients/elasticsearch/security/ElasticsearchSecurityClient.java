@@ -120,6 +120,83 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: security.bulk_delete_role
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk delete roles API
+	 * cannot delete roles that are defined in roles files.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-delete-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BulkDeleteRoleResponse bulkDeleteRole(BulkDeleteRoleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkDeleteRoleRequest, BulkDeleteRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkDeleteRoleRequest, BulkDeleteRoleResponse, ErrorResponse>) BulkDeleteRoleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk delete roles API
+	 * cannot delete roles that are defined in roles files.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkDeleteRoleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-delete-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BulkDeleteRoleResponse bulkDeleteRole(
+			Function<BulkDeleteRoleRequest.Builder, ObjectBuilder<BulkDeleteRoleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulkDeleteRole(fn.apply(new BulkDeleteRoleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.bulk_put_role
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk create or update roles
+	 * API cannot update roles that are defined in roles files.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-put-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BulkPutRoleResponse bulkPutRole(BulkPutRoleRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkPutRoleRequest, BulkPutRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkPutRoleRequest, BulkPutRoleResponse, ErrorResponse>) BulkPutRoleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * The role management APIs are generally the preferred way to manage roles,
+	 * rather than using file-based role management. The bulk create or update roles
+	 * API cannot update roles that are defined in roles files.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkPutRoleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-put-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BulkPutRoleResponse bulkPutRole(
+			Function<BulkPutRoleRequest.Builder, ObjectBuilder<BulkPutRoleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulkPutRole(fn.apply(new BulkPutRoleRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.change_password
 
 	/**
@@ -1753,6 +1830,104 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 
 	public QueryApiKeysResponse queryApiKeys() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new QueryApiKeysRequest.Builder().build(), QueryApiKeysRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: security.query_role
+
+	/**
+	 * Retrieves roles in a paginated manner. You can optionally filter the results
+	 * with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public QueryRoleResponse queryRole(QueryRoleRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryRoleRequest, QueryRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryRoleRequest, QueryRoleResponse, ErrorResponse>) QueryRoleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves roles in a paginated manner. You can optionally filter the results
+	 * with a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryRoleRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final QueryRoleResponse queryRole(Function<QueryRoleRequest.Builder, ObjectBuilder<QueryRoleRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return queryRole(fn.apply(new QueryRoleRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves roles in a paginated manner. You can optionally filter the results
+	 * with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public QueryRoleResponse queryRole() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new QueryRoleRequest.Builder().build(), QueryRoleRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: security.query_user
+
+	/**
+	 * Retrieves information for Users in a paginated manner. You can optionally
+	 * filter the results with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public QueryUserResponse queryUser(QueryUserRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryUserRequest, QueryUserResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryUserRequest, QueryUserResponse, ErrorResponse>) QueryUserRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves information for Users in a paginated manner. You can optionally
+	 * filter the results with a query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryUserRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final QueryUserResponse queryUser(Function<QueryUserRequest.Builder, ObjectBuilder<QueryUserRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return queryUser(fn.apply(new QueryUserRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves information for Users in a paginated manner. You can optionally
+	 * filter the results with a query.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public QueryUserResponse queryUser() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new QueryUserRequest.Builder().build(), QueryUserRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

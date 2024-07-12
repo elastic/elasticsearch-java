@@ -61,6 +61,8 @@ import java.util.function.Function;
 public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 	private final long creatingPrimaries;
 
+	private final long creatingReplicas;
+
 	private final long initializingPrimaries;
 
 	private final long initializingReplicas;
@@ -82,6 +84,7 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 	private ShardsAvailabilityIndicatorDetails(Builder builder) {
 
 		this.creatingPrimaries = ApiTypeHelper.requireNonNull(builder.creatingPrimaries, this, "creatingPrimaries");
+		this.creatingReplicas = ApiTypeHelper.requireNonNull(builder.creatingReplicas, this, "creatingReplicas");
 		this.initializingPrimaries = ApiTypeHelper.requireNonNull(builder.initializingPrimaries, this,
 				"initializingPrimaries");
 		this.initializingReplicas = ApiTypeHelper.requireNonNull(builder.initializingReplicas, this,
@@ -107,6 +110,13 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 	 */
 	public final long creatingPrimaries() {
 		return this.creatingPrimaries;
+	}
+
+	/**
+	 * Required - API name: {@code creating_replicas}
+	 */
+	public final long creatingReplicas() {
+		return this.creatingReplicas;
 	}
 
 	/**
@@ -179,6 +189,9 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 		generator.writeKey("creating_primaries");
 		generator.write(this.creatingPrimaries);
 
+		generator.writeKey("creating_replicas");
+		generator.write(this.creatingReplicas);
+
 		generator.writeKey("initializing_primaries");
 		generator.write(this.initializingPrimaries);
 
@@ -221,6 +234,8 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 				ObjectBuilder<ShardsAvailabilityIndicatorDetails> {
 		private Long creatingPrimaries;
 
+		private Long creatingReplicas;
+
 		private Long initializingPrimaries;
 
 		private Long initializingReplicas;
@@ -242,6 +257,14 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 		 */
 		public final Builder creatingPrimaries(long value) {
 			this.creatingPrimaries = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code creating_replicas}
+		 */
+		public final Builder creatingReplicas(long value) {
+			this.creatingReplicas = value;
 			return this;
 		}
 
@@ -340,6 +363,7 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 			ObjectDeserializer<ShardsAvailabilityIndicatorDetails.Builder> op) {
 
 		op.add(Builder::creatingPrimaries, JsonpDeserializer.longDeserializer(), "creating_primaries");
+		op.add(Builder::creatingReplicas, JsonpDeserializer.longDeserializer(), "creating_replicas");
 		op.add(Builder::initializingPrimaries, JsonpDeserializer.longDeserializer(), "initializing_primaries");
 		op.add(Builder::initializingReplicas, JsonpDeserializer.longDeserializer(), "initializing_replicas");
 		op.add(Builder::restartingPrimaries, JsonpDeserializer.longDeserializer(), "restarting_primaries");
