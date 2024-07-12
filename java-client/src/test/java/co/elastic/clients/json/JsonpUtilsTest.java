@@ -179,7 +179,7 @@ public class JsonpUtilsTest extends ModelTestCase {
         {
             IndicesPrivileges priv = IndicesPrivileges.of(i -> i
                 .names("bar")
-                .query(q -> q._custom("template", RoleTemplateScript.of(s -> s.stored(v -> v.id("foo")))))
+                .query(q -> q._custom("template", RoleTemplateScript.of(s -> s.id("foo"))))
                 .privileges(IndexPrivilege.All.jsonValue())
             );
 
@@ -188,7 +188,7 @@ public class JsonpUtilsTest extends ModelTestCase {
             assertEquals(json, toJson(priv));
 
             priv = fromJson(json, IndicesPrivileges.class);
-            assertEquals("foo", priv.query()._custom().to(RoleTemplateScript.class).stored().id());
+            assertEquals("foo", priv.query()._custom().to(RoleTemplateScript.class).id());
         }
 
         // Array value
