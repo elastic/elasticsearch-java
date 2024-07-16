@@ -61,14 +61,14 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 	private final Long rankConstant;
 
 	@Nullable
-	private final Long windowSize;
+	private final Long rankWindowSize;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private RrfRank(Builder builder) {
 
 		this.rankConstant = builder.rankConstant;
-		this.windowSize = builder.windowSize;
+		this.rankWindowSize = builder.rankWindowSize;
 
 	}
 
@@ -98,11 +98,11 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 	/**
 	 * Size of the individual result sets per query
 	 * <p>
-	 * API name: {@code window_size}
+	 * API name: {@code rank_window_size}
 	 */
 	@Nullable
-	public final Long windowSize() {
-		return this.windowSize;
+	public final Long rankWindowSize() {
+		return this.rankWindowSize;
 	}
 
 	/**
@@ -121,9 +121,9 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 			generator.write(this.rankConstant);
 
 		}
-		if (this.windowSize != null) {
-			generator.writeKey("window_size");
-			generator.write(this.windowSize);
+		if (this.rankWindowSize != null) {
+			generator.writeKey("rank_window_size");
+			generator.write(this.rankWindowSize);
 
 		}
 
@@ -145,7 +145,7 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 		private Long rankConstant;
 
 		@Nullable
-		private Long windowSize;
+		private Long rankWindowSize;
 
 		/**
 		 * How much influence documents in individual result sets per query have over
@@ -161,10 +161,10 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 		/**
 		 * Size of the individual result sets per query
 		 * <p>
-		 * API name: {@code window_size}
+		 * API name: {@code rank_window_size}
 		 */
-		public final Builder windowSize(@Nullable Long value) {
-			this.windowSize = value;
+		public final Builder rankWindowSize(@Nullable Long value) {
+			this.rankWindowSize = value;
 			return this;
 		}
 
@@ -197,7 +197,7 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 	protected static void setupRrfRankDeserializer(ObjectDeserializer<RrfRank.Builder> op) {
 
 		op.add(Builder::rankConstant, JsonpDeserializer.longDeserializer(), "rank_constant");
-		op.add(Builder::windowSize, JsonpDeserializer.longDeserializer(), "window_size");
+		op.add(Builder::rankWindowSize, JsonpDeserializer.longDeserializer(), "rank_window_size");
 
 	}
 

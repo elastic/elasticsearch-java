@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: indices.get_data_stream.Request
 
 /**
- * Retrieves information about one or more data streams.
+ * Get data streams. Retrieves information about one or more data streams.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
  *      specification</a>

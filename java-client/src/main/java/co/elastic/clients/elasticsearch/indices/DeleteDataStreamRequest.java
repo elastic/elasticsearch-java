@@ -58,7 +58,8 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_stream.Request
 
 /**
- * Deletes one or more data streams and their backing indices.
+ * Delete data streams. Deletes one or more data streams and their backing
+ * indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_stream.Request">API

@@ -138,7 +138,7 @@ public class IndexState implements JsonpSerializable {
 	}
 
 	/**
-	 * Data lifecycle applicable if this is a data stream.
+	 * Data stream lifecycle applicable if this is a data stream.
 	 * <p>
 	 * API name: {@code lifecycle}
 	 */
@@ -316,7 +316,7 @@ public class IndexState implements JsonpSerializable {
 		}
 
 		/**
-		 * Data lifecycle applicable if this is a data stream.
+		 * Data stream lifecycle applicable if this is a data stream.
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */
@@ -326,7 +326,7 @@ public class IndexState implements JsonpSerializable {
 		}
 
 		/**
-		 * Data lifecycle applicable if this is a data stream.
+		 * Data stream lifecycle applicable if this is a data stream.
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */

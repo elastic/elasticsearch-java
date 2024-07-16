@@ -36,6 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
@@ -109,6 +110,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 	private final TDocument source;
 
 	@Nullable
+	private final Integer rank;
+
+	@Nullable
 	private final Long seqNo;
 
 	@Nullable
@@ -141,6 +145,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		this.node = builder.node;
 		this.routing = builder.routing;
 		this.source = builder.source;
+		this.rank = builder.rank;
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.version = builder.version;
@@ -266,6 +271,14 @@ public class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
 	public final TDocument source() {
 		return this.source;
+	}
+
+	/**
+	 * API name: {@code _rank}
+	 */
+	@Nullable
+	public final Integer rank() {
+		return this.rank;
 	}
 
 	/**
@@ -430,6 +443,11 @@ public class Hit<TDocument> implements JsonpSerializable {
 			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 		}
+		if (this.rank != null) {
+			generator.writeKey("_rank");
+			generator.write(this.rank);
+
+		}
 		if (this.seqNo != null) {
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
@@ -515,6 +533,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 		@Nullable
 		private TDocument source;
+
+		@Nullable
+		private Integer rank;
 
 		@Nullable
 		private Long seqNo;
@@ -750,6 +771,14 @@ public class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code _rank}
+		 */
+		public final Builder<TDocument> rank(@Nullable Integer value) {
+			this.rank = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code _seq_no}
 		 */
 		public final Builder<TDocument> seqNo(@Nullable Long value) {
@@ -933,6 +962,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
+		op.add(Builder::rank, JsonpDeserializer.integerDeserializer(), "_rank");
 		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");

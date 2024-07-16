@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: indices.put_data_lifecycle.Request
 
 /**
- * Update the data lifecycle of the specified data streams.
+ * Update data stream lifecycles. Update the data stream lifecycle of the
+ * specified data streams.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.put_data_lifecycle.Request">API

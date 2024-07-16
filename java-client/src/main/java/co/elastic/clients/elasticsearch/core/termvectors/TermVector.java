@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TermVector implements JsonpSerializable {
+	@Nullable
 	private final FieldStatistics fieldStatistics;
 
 	private final Map<String, Term> terms;
@@ -69,7 +70,7 @@ public class TermVector implements JsonpSerializable {
 
 	private TermVector(Builder builder) {
 
-		this.fieldStatistics = ApiTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.fieldStatistics = builder.fieldStatistics;
 		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
@@ -79,8 +80,9 @@ public class TermVector implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field_statistics}
+	 * API name: {@code field_statistics}
 	 */
+	@Nullable
 	public final FieldStatistics fieldStatistics() {
 		return this.fieldStatistics;
 	}
@@ -103,9 +105,11 @@ public class TermVector implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field_statistics");
-		this.fieldStatistics.serialize(generator, mapper);
+		if (this.fieldStatistics != null) {
+			generator.writeKey("field_statistics");
+			this.fieldStatistics.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartObject();
@@ -132,20 +136,21 @@ public class TermVector implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermVector> {
+		@Nullable
 		private FieldStatistics fieldStatistics;
 
 		private Map<String, Term> terms;
 
 		/**
-		 * Required - API name: {@code field_statistics}
+		 * API name: {@code field_statistics}
 		 */
-		public final Builder fieldStatistics(FieldStatistics value) {
+		public final Builder fieldStatistics(@Nullable FieldStatistics value) {
 			this.fieldStatistics = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code field_statistics}
+		 * API name: {@code field_statistics}
 		 */
 		public final Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
 			return this.fieldStatistics(fn.apply(new FieldStatistics.Builder()).build());

@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
 // typedef: indices.get_data_lifecycle.Request
 
 /**
- * Retrieves the data stream lifecycle configuration of one or more data
- * streams.
+ * Get data stream lifecycles. Retrieves the data stream lifecycle configuration
+ * of one or more data streams.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.get_data_lifecycle.Request">API
