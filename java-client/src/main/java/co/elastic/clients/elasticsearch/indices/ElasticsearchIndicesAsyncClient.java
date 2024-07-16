@@ -298,8 +298,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.create_data_stream
 
 	/**
-	 * Creates a data stream. You must have a matching index template with data
-	 * stream enabled.
+	 * Create a data stream. Creates a data stream. You must have a matching index
+	 * template with data stream enabled.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -314,8 +314,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Creates a data stream. You must have a matching index template with data
-	 * stream enabled.
+	 * Create a data stream. Creates a data stream. You must have a matching index
+	 * template with data stream enabled.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -333,7 +333,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.data_streams_stats
 
 	/**
-	 * Retrieves statistics for one or more data streams.
+	 * Get data stream stats. Retrieves statistics for one or more data streams.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -348,7 +348,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves statistics for one or more data streams.
+	 * Get data stream stats. Retrieves statistics for one or more data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -364,7 +364,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves statistics for one or more data streams.
+	 * Get data stream stats. Retrieves statistics for one or more data streams.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -445,8 +445,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.delete_data_lifecycle
 
 	/**
-	 * Removes the data lifecycle from a data stream rendering it not managed by the
-	 * data stream lifecycle
+	 * Delete data stream lifecycles. Removes the data stream lifecycle from a data
+	 * stream, rendering it not managed by the data stream lifecycle.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
@@ -461,8 +461,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Removes the data lifecycle from a data stream rendering it not managed by the
-	 * data stream lifecycle
+	 * Delete data stream lifecycles. Removes the data stream lifecycle from a data
+	 * stream, rendering it not managed by the data stream lifecycle.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -480,7 +480,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.delete_data_stream
 
 	/**
-	 * Deletes one or more data streams and their backing indices.
+	 * Delete data streams. Deletes one or more data streams and their backing
+	 * indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -495,7 +496,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Deletes one or more data streams and their backing indices.
+	 * Delete data streams. Deletes one or more data streams and their backing
+	 * indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1032,8 +1034,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_data_lifecycle
 
 	/**
-	 * Retrieves the data stream lifecycle configuration of one or more data
-	 * streams.
+	 * Get data stream lifecycles. Retrieves the data stream lifecycle configuration
+	 * of one or more data streams.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
@@ -1048,8 +1050,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves the data stream lifecycle configuration of one or more data
-	 * streams.
+	 * Get data stream lifecycles. Retrieves the data stream lifecycle configuration
+	 * of one or more data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1067,7 +1069,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_data_stream
 
 	/**
-	 * Retrieves information about one or more data streams.
+	 * Get data streams. Retrieves information about one or more data streams.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -1082,7 +1084,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves information about one or more data streams.
+	 * Get data streams. Retrieves information about one or more data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1098,7 +1100,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves information about one or more data streams.
+	 * Get data streams. Retrieves information about one or more data streams.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -1338,15 +1340,15 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.migrate_to_data_stream
 
 	/**
-	 * Converts an index alias to a data stream. You must have a matching index
-	 * template that is data stream enabled. The alias must meet the following
-	 * criteria: The alias must have a write index; All indices for the alias must
-	 * have a <code>@timestamp</code> field mapping of a <code>date</code> or
-	 * <code>date_nanos</code> field type; The alias must not have any filters; The
-	 * alias must not use custom routing. If successful, the request removes the
-	 * alias and creates a data stream with the same name. The indices for the alias
-	 * become hidden backing indices for the stream. The write index for the alias
-	 * becomes the write index for the stream.
+	 * Convert an index alias to a data stream. Converts an index alias to a data
+	 * stream. You must have a matching index template that is data stream enabled.
+	 * The alias must meet the following criteria: The alias must have a write
+	 * index; All indices for the alias must have a <code>@timestamp</code> field
+	 * mapping of a <code>date</code> or <code>date_nanos</code> field type; The
+	 * alias must not have any filters; The alias must not use custom routing. If
+	 * successful, the request removes the alias and creates a data stream with the
+	 * same name. The indices for the alias become hidden backing indices for the
+	 * stream. The write index for the alias becomes the write index for the stream.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -1361,15 +1363,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Converts an index alias to a data stream. You must have a matching index
-	 * template that is data stream enabled. The alias must meet the following
-	 * criteria: The alias must have a write index; All indices for the alias must
-	 * have a <code>@timestamp</code> field mapping of a <code>date</code> or
-	 * <code>date_nanos</code> field type; The alias must not have any filters; The
-	 * alias must not use custom routing. If successful, the request removes the
-	 * alias and creates a data stream with the same name. The indices for the alias
-	 * become hidden backing indices for the stream. The write index for the alias
-	 * becomes the write index for the stream.
+	 * Convert an index alias to a data stream. Converts an index alias to a data
+	 * stream. You must have a matching index template that is data stream enabled.
+	 * The alias must meet the following criteria: The alias must have a write
+	 * index; All indices for the alias must have a <code>@timestamp</code> field
+	 * mapping of a <code>date</code> or <code>date_nanos</code> field type; The
+	 * alias must not have any filters; The alias must not use custom routing. If
+	 * successful, the request removes the alias and creates a data stream with the
+	 * same name. The indices for the alias become hidden backing indices for the
+	 * stream. The write index for the alias becomes the write index for the stream.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1387,8 +1389,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.modify_data_stream
 
 	/**
-	 * Performs one or more data stream modification actions in a single atomic
-	 * operation.
+	 * Update data streams. Performs one or more data stream modification actions in
+	 * a single atomic operation.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -1403,8 +1405,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Performs one or more data stream modification actions in a single atomic
-	 * operation.
+	 * Update data streams. Performs one or more data stream modification actions in
+	 * a single atomic operation.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1524,7 +1526,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.put_data_lifecycle
 
 	/**
-	 * Update the data lifecycle of the specified data streams.
+	 * Update data stream lifecycles. Update the data stream lifecycle of the
+	 * specified data streams.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
@@ -1539,7 +1542,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Update the data lifecycle of the specified data streams.
+	 * Update data stream lifecycles. Update the data stream lifecycle of the
+	 * specified data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

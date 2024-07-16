@@ -215,8 +215,7 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains the configuration for the data lifecycle management of this data
-	 * stream.
+	 * Contains the configuration for the data stream lifecycle of this data stream.
 	 * <p>
 	 * API name: {@code lifecycle}
 	 */
@@ -556,8 +555,7 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains the configuration for the data lifecycle management of this data
-		 * stream.
+		 * Contains the configuration for the data stream lifecycle of this data stream.
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */
@@ -567,8 +565,7 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains the configuration for the data lifecycle management of this data
-		 * stream.
+		 * Contains the configuration for the data stream lifecycle of this data stream.
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */

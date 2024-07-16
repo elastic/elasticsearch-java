@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -63,17 +64,23 @@ import javax.annotation.Nullable;
 public class DenseVectorIndexOptions implements JsonpSerializable {
 	private final String type;
 
-	private final int m;
+	@Nullable
+	private final Integer m;
 
-	private final int efConstruction;
+	@Nullable
+	private final Integer efConstruction;
+
+	@Nullable
+	private final Float confidenceInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DenseVectorIndexOptions(Builder builder) {
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.m = ApiTypeHelper.requireNonNull(builder.m, this, "m");
-		this.efConstruction = ApiTypeHelper.requireNonNull(builder.efConstruction, this, "efConstruction");
+		this.m = builder.m;
+		this.efConstruction = builder.efConstruction;
+		this.confidenceInterval = builder.confidenceInterval;
 
 	}
 
@@ -89,17 +96,27 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code m}
+	 * API name: {@code m}
 	 */
-	public final int m() {
+	@Nullable
+	public final Integer m() {
 		return this.m;
 	}
 
 	/**
-	 * Required - API name: {@code ef_construction}
+	 * API name: {@code ef_construction}
 	 */
-	public final int efConstruction() {
+	@Nullable
+	public final Integer efConstruction() {
 		return this.efConstruction;
+	}
+
+	/**
+	 * API name: {@code confidence_interval}
+	 */
+	@Nullable
+	public final Float confidenceInterval() {
+		return this.confidenceInterval;
 	}
 
 	/**
@@ -116,11 +133,21 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		generator.writeKey("m");
-		generator.write(this.m);
+		if (this.m != null) {
+			generator.writeKey("m");
+			generator.write(this.m);
 
-		generator.writeKey("ef_construction");
-		generator.write(this.efConstruction);
+		}
+		if (this.efConstruction != null) {
+			generator.writeKey("ef_construction");
+			generator.write(this.efConstruction);
+
+		}
+		if (this.confidenceInterval != null) {
+			generator.writeKey("confidence_interval");
+			generator.write(this.confidenceInterval);
+
+		}
 
 	}
 
@@ -140,9 +167,14 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 				ObjectBuilder<DenseVectorIndexOptions> {
 		private String type;
 
+		@Nullable
 		private Integer m;
 
+		@Nullable
 		private Integer efConstruction;
+
+		@Nullable
+		private Float confidenceInterval;
 
 		/**
 		 * Required - API name: {@code type}
@@ -153,18 +185,26 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code m}
+		 * API name: {@code m}
 		 */
-		public final Builder m(int value) {
+		public final Builder m(@Nullable Integer value) {
 			this.m = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code ef_construction}
+		 * API name: {@code ef_construction}
 		 */
-		public final Builder efConstruction(int value) {
+		public final Builder efConstruction(@Nullable Integer value) {
 			this.efConstruction = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code confidence_interval}
+		 */
+		public final Builder confidenceInterval(@Nullable Float value) {
+			this.confidenceInterval = value;
 			return this;
 		}
 
@@ -200,6 +240,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::m, JsonpDeserializer.integerDeserializer(), "m");
 		op.add(Builder::efConstruction, JsonpDeserializer.integerDeserializer(), "ef_construction");
+		op.add(Builder::confidenceInterval, JsonpDeserializer.floatDeserializer(), "confidence_interval");
 
 	}
 

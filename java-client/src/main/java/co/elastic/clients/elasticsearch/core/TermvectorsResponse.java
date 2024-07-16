@@ -65,6 +65,7 @@ import javax.annotation.Nullable;
 public class TermvectorsResponse implements JsonpSerializable {
 	private final boolean found;
 
+	@Nullable
 	private final String id;
 
 	private final String index;
@@ -80,7 +81,7 @@ public class TermvectorsResponse implements JsonpSerializable {
 	private TermvectorsResponse(Builder builder) {
 
 		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = builder.id;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.termVectors = ApiTypeHelper.unmodifiable(builder.termVectors);
 		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
@@ -100,8 +101,9 @@ public class TermvectorsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * API name: {@code _id}
 	 */
+	@Nullable
 	public final String id() {
 		return this.id;
 	}
@@ -148,9 +150,11 @@ public class TermvectorsResponse implements JsonpSerializable {
 		generator.writeKey("found");
 		generator.write(this.found);
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+		if (this.id != null) {
+			generator.writeKey("_id");
+			generator.write(this.id);
 
+		}
 		generator.writeKey("_index");
 		generator.write(this.index);
 
@@ -189,6 +193,7 @@ public class TermvectorsResponse implements JsonpSerializable {
 				ObjectBuilder<TermvectorsResponse> {
 		private Boolean found;
 
+		@Nullable
 		private String id;
 
 		private String index;
@@ -209,9 +214,9 @@ public class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _id}
+		 * API name: {@code _id}
 		 */
-		public final Builder id(String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
