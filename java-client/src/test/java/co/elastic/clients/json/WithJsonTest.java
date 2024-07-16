@@ -175,11 +175,14 @@ public class WithJsonTest extends ModelTestCase {
     @Test
     public void testExternalTaggedUnion() {
 
-        RoleTemplateScript withSource = RoleTemplateScript.of(j -> j.withJson(new StringReader("{\"source\": {\"match\": {\"category\": \"click\"}}}")));
+        RoleTemplateScript withSource = RoleTemplateScript.of(j -> j
+            .withJson(new StringReader("{\"source\": {\"match\": {\"category\": \"click\"}}}")));
         assertTrue(withSource.source().isQueryObject());
-        RoleTemplateScript withStringSource = RoleTemplateScript.of(j -> j.withJson(new StringReader("{\"source\": \"string\"}")));
+        RoleTemplateScript withStringSource = RoleTemplateScript.of(j -> j
+            .withJson(new StringReader("{\"source\": \"string\"}")));
         assertTrue(withStringSource.source().isQueryString());
-        RoleTemplateScript withStoredScript = RoleTemplateScript.of(j -> j.withJson(new StringReader("{\"id\": \"foo\"}")));
+        RoleTemplateScript withStoredScript = RoleTemplateScript.of(j -> j
+            .withJson(new StringReader("{\"id\": \"foo\"}")));
         assertTrue(!withStoredScript.id().isEmpty());
     }
 }
