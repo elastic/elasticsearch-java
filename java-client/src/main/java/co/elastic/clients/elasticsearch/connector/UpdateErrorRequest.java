@@ -30,7 +30,9 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NullReset;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -69,12 +71,15 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 
 	private final String error;
 
+	private final boolean isExpNullError;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private UpdateErrorRequest(Builder builder) {
 
 		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.isExpNullError = builder.isExpNullError;
 
 	}
 
@@ -107,12 +112,22 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 		generator.writeEnd();
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    
+    
+    
+    generator.writeKey("error");
+generator.write(this.error);
 
-		generator.writeKey("error");
-		generator.write(this.error);
 
-	}
+else if(isExpNullError){
+    generator.writeKey("error");
+    generator.write(JsonValue.NULL);
+
+}
+
+    
+}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -127,6 +142,8 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 
 		private String error;
 
+		private boolean isExpNullError;
+
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -140,8 +157,9 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * Required - API name: {@code error}
 		 */
-		public final Builder error(String value) {
-			this.error = value;
+		public final Builder error(NullReset value) {
+			this.isExpNullError = true;
+			this.error = null;
 			return this;
 		}
 

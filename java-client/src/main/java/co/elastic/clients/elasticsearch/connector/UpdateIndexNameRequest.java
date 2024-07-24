@@ -30,7 +30,9 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NullReset;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -70,12 +72,15 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 
 	private final String indexName;
 
+	private final boolean isExpNullIndexName;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private UpdateIndexNameRequest(Builder builder) {
 
 		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
+		this.isExpNullIndexName = builder.isExpNullIndexName;
 
 	}
 
@@ -108,12 +113,22 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 		generator.writeEnd();
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    
+    
+    
+    generator.writeKey("index_name");
+generator.write(this.indexName);
 
-		generator.writeKey("index_name");
-		generator.write(this.indexName);
 
-	}
+else if(isExpNullIndexName){
+    generator.writeKey("index_name");
+    generator.write(JsonValue.NULL);
+
+}
+
+    
+}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -128,6 +143,8 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 
 		private String indexName;
 
+		private boolean isExpNullIndexName;
+
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -141,8 +158,9 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * Required - API name: {@code index_name}
 		 */
-		public final Builder indexName(String value) {
-			this.indexName = value;
+		public final Builder indexName(NullReset value) {
+			this.isExpNullIndexName = true;
+			this.indexName = null;
 			return this;
 		}
 
