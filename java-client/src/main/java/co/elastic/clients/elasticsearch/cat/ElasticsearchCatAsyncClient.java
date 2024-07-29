@@ -67,12 +67,17 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.aliases
 
 	/**
-	 * Retrieves the cluster’s index aliases, including filter and routing
-	 * information. The API does not return data stream aliases. IMPORTANT: cat APIs
-	 * are only intended for human consumption using the command line or the Kibana
-	 * console. They are not intended for use by applications. For application
-	 * consumption, use the aliases API.
-	 * 
+	 * Get aliases. Retrieves the cluster’s index aliases, including filter and
+	 * routing information. The API does not return data stream aliases.
+	 * <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or the Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-alias">the /_alias
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-alias.html">Documentation
 	 *      on elastic.co</a>
@@ -86,12 +91,17 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves the cluster’s index aliases, including filter and routing
-	 * information. The API does not return data stream aliases. IMPORTANT: cat APIs
-	 * are only intended for human consumption using the command line or the Kibana
-	 * console. They are not intended for use by applications. For application
-	 * consumption, use the aliases API.
-	 * 
+	 * Get aliases. Retrieves the cluster’s index aliases, including filter and
+	 * routing information. The API does not return data stream aliases.
+	 * <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or the Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-alias">the /_alias
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AliasesRequest}
@@ -106,12 +116,17 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves the cluster’s index aliases, including filter and routing
-	 * information. The API does not return data stream aliases. IMPORTANT: cat APIs
-	 * are only intended for human consumption using the command line or the Kibana
-	 * console. They are not intended for use by applications. For application
-	 * consumption, use the aliases API.
-	 * 
+	 * Get aliases. Retrieves the cluster’s index aliases, including filter and
+	 * routing information. The API does not return data stream aliases.
+	 * <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or the Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-alias">the /_alias
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-alias.html">Documentation
 	 *      on elastic.co</a>
@@ -180,13 +195,17 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.component_templates
 
 	/**
-	 * Returns information about component templates in a cluster. Component
-	 * templates are building blocks for constructing index templates that specify
-	 * index mappings, settings, and aliases. IMPORTANT: cat APIs are only intended
-	 * for human consumption using the command line or Kibana console. They are not
-	 * intended for use by applications. For application consumption, use the get
-	 * component template API.
-	 * 
+	 * Get component templates. Returns information about component templates in a
+	 * cluster. Component templates are building blocks for constructing index
+	 * templates that specify index mappings, settings, and aliases. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-component-template">the
+	 * /_component_template endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-component-templates.html">Documentation
 	 *      on elastic.co</a>
@@ -200,13 +219,17 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns information about component templates in a cluster. Component
-	 * templates are building blocks for constructing index templates that specify
-	 * index mappings, settings, and aliases. IMPORTANT: cat APIs are only intended
-	 * for human consumption using the command line or Kibana console. They are not
-	 * intended for use by applications. For application consumption, use the get
-	 * component template API.
-	 * 
+	 * Get component templates. Returns information about component templates in a
+	 * cluster. Component templates are building blocks for constructing index
+	 * templates that specify index mappings, settings, and aliases. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-component-template">the
+	 * /_component_template endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ComponentTemplatesRequest}
@@ -221,13 +244,17 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns information about component templates in a cluster. Component
-	 * templates are building blocks for constructing index templates that specify
-	 * index mappings, settings, and aliases. IMPORTANT: cat APIs are only intended
-	 * for human consumption using the command line or Kibana console. They are not
-	 * intended for use by applications. For application consumption, use the get
-	 * component template API.
-	 * 
+	 * Get component templates. Returns information about component templates in a
+	 * cluster. Component templates are building blocks for constructing index
+	 * templates that specify index mappings, settings, and aliases. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-component-template">the
+	 * /_component_template endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-component-templates.html">Documentation
 	 *      on elastic.co</a>
@@ -241,13 +268,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.count
 
 	/**
-	 * Provides quick access to a document count for a data stream, an index, or an
-	 * entire cluster. NOTE: The document count only includes live documents, not
-	 * deleted documents which have not yet been removed by the merge process.
-	 * IMPORTANT: cat APIs are only intended for human consumption using the command
-	 * line or Kibana console. They are not intended for use by applications. For
-	 * application consumption, use the count API.
-	 * 
+	 * Get a document count. Provides quick access to a document count for a data
+	 * stream, an index, or an entire cluster.n/ The document count only includes
+	 * live documents, not deleted documents which have not yet been removed by the
+	 * merge process. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-count">the /_count
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-count.html">Documentation
 	 *      on elastic.co</a>
@@ -261,13 +293,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Provides quick access to a document count for a data stream, an index, or an
-	 * entire cluster. NOTE: The document count only includes live documents, not
-	 * deleted documents which have not yet been removed by the merge process.
-	 * IMPORTANT: cat APIs are only intended for human consumption using the command
-	 * line or Kibana console. They are not intended for use by applications. For
-	 * application consumption, use the count API.
-	 * 
+	 * Get a document count. Provides quick access to a document count for a data
+	 * stream, an index, or an entire cluster.n/ The document count only includes
+	 * live documents, not deleted documents which have not yet been removed by the
+	 * merge process. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-count">the /_count
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
@@ -282,13 +319,18 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Provides quick access to a document count for a data stream, an index, or an
-	 * entire cluster. NOTE: The document count only includes live documents, not
-	 * deleted documents which have not yet been removed by the merge process.
-	 * IMPORTANT: cat APIs are only intended for human consumption using the command
-	 * line or Kibana console. They are not intended for use by applications. For
-	 * application consumption, use the count API.
-	 * 
+	 * Get a document count. Provides quick access to a document count for a data
+	 * stream, an index, or an entire cluster.n/ The document count only includes
+	 * live documents, not deleted documents which have not yet been removed by the
+	 * merge process. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use <a href="#endpoint-count">the /_count
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-count.html">Documentation
 	 *      on elastic.co</a>
@@ -439,7 +481,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.help
 
 	/**
-	 * Returns help for the Cat APIs.
+	 * Get CAT help. Returns help for the CAT APIs.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat.html">Documentation
@@ -452,17 +494,30 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.indices
 
 	/**
-	 * Returns high-level information about indices in a cluster, including backing
-	 * indices for data streams. IMPORTANT: cat APIs are only intended for human
-	 * consumption using the command line or Kibana console. They are not intended
-	 * for use by applications. For application consumption, use the get index API.
-	 * Use the cat indices API to get the following information for each index in a
-	 * cluster: shard count; document count; deleted document count; primary store
-	 * size; total store size of all shards, including shard replicas. These metrics
-	 * are retrieved directly from Lucene, which Elasticsearch uses internally to
-	 * power indexing and search. As a result, all document counts include hidden
-	 * nested documents. To get an accurate count of Elasticsearch documents, use
-	 * the cat count or count APIs.
+	 * Get index information. Returns high-level information about indices in a
+	 * cluster, including backing indices for data streams. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use an index endpoint.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * Use this request to get the following information for each index in a
+	 * cluster:
+	 * <ul>
+	 * <li>shard count</li>
+	 * <li>document count</li>
+	 * <li>deleted document count</li>
+	 * <li>primary store size</li>
+	 * <li>total store size of all shards, including shard replicas</li>
+	 * </ul>
+	 * <p>
+	 * These metrics are retrieved directly from Lucene, which Elasticsearch uses
+	 * internally to power indexing and search. As a result, all document counts
+	 * include hidden nested documents. To get an accurate count of Elasticsearch
+	 * documents, use the <a href="#operation-cat-count">/_cat/count</a> or
+	 * <a href="#endpoint-count">count</a> endpoints.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-indices.html">Documentation
@@ -477,17 +532,30 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns high-level information about indices in a cluster, including backing
-	 * indices for data streams. IMPORTANT: cat APIs are only intended for human
-	 * consumption using the command line or Kibana console. They are not intended
-	 * for use by applications. For application consumption, use the get index API.
-	 * Use the cat indices API to get the following information for each index in a
-	 * cluster: shard count; document count; deleted document count; primary store
-	 * size; total store size of all shards, including shard replicas. These metrics
-	 * are retrieved directly from Lucene, which Elasticsearch uses internally to
-	 * power indexing and search. As a result, all document counts include hidden
-	 * nested documents. To get an accurate count of Elasticsearch documents, use
-	 * the cat count or count APIs.
+	 * Get index information. Returns high-level information about indices in a
+	 * cluster, including backing indices for data streams. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use an index endpoint.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * Use this request to get the following information for each index in a
+	 * cluster:
+	 * <ul>
+	 * <li>shard count</li>
+	 * <li>document count</li>
+	 * <li>deleted document count</li>
+	 * <li>primary store size</li>
+	 * <li>total store size of all shards, including shard replicas</li>
+	 * </ul>
+	 * <p>
+	 * These metrics are retrieved directly from Lucene, which Elasticsearch uses
+	 * internally to power indexing and search. As a result, all document counts
+	 * include hidden nested documents. To get an accurate count of Elasticsearch
+	 * documents, use the <a href="#operation-cat-count">/_cat/count</a> or
+	 * <a href="#endpoint-count">count</a> endpoints.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -503,17 +571,30 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns high-level information about indices in a cluster, including backing
-	 * indices for data streams. IMPORTANT: cat APIs are only intended for human
-	 * consumption using the command line or Kibana console. They are not intended
-	 * for use by applications. For application consumption, use the get index API.
-	 * Use the cat indices API to get the following information for each index in a
-	 * cluster: shard count; document count; deleted document count; primary store
-	 * size; total store size of all shards, including shard replicas. These metrics
-	 * are retrieved directly from Lucene, which Elasticsearch uses internally to
-	 * power indexing and search. As a result, all document counts include hidden
-	 * nested documents. To get an accurate count of Elasticsearch documents, use
-	 * the cat count or count APIs.
+	 * Get index information. Returns high-level information about indices in a
+	 * cluster, including backing indices for data streams. <blockquote>
+	 * <p>
+	 * info CAT APIs are only intended for human consumption using the command line
+	 * or Kibana console. They are not intended for use by applications. For
+	 * application consumption, use an index endpoint.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * Use this request to get the following information for each index in a
+	 * cluster:
+	 * <ul>
+	 * <li>shard count</li>
+	 * <li>document count</li>
+	 * <li>deleted document count</li>
+	 * <li>primary store size</li>
+	 * <li>total store size of all shards, including shard replicas</li>
+	 * </ul>
+	 * <p>
+	 * These metrics are retrieved directly from Lucene, which Elasticsearch uses
+	 * internally to power indexing and search. As a result, all document counts
+	 * include hidden nested documents. To get an accurate count of Elasticsearch
+	 * documents, use the <a href="#operation-cat-count">/_cat/count</a> or
+	 * <a href="#endpoint-count">count</a> endpoints.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-indices.html">Documentation
@@ -545,13 +626,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.ml_data_frame_analytics
 
 	/**
-	 * Returns configuration and usage information about data frame analytics jobs.
+	 * Get data frame analytics jobs. Returns configuration and usage information
+	 * about data frame analytics jobs. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get data frame analytics jobs statistics
-	 * API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the
+	 * /_ml/data_frame/analytics endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -565,13 +649,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about data frame analytics jobs.
+	 * Get data frame analytics jobs. Returns configuration and usage information
+	 * about data frame analytics jobs. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get data frame analytics jobs statistics
-	 * API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the
+	 * /_ml/data_frame/analytics endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MlDataFrameAnalyticsRequest}
@@ -586,13 +673,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about data frame analytics jobs.
+	 * Get data frame analytics jobs. Returns configuration and usage information
+	 * about data frame analytics jobs. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get data frame analytics jobs statistics
-	 * API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the
+	 * /_ml/data_frame/analytics endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -606,16 +696,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.ml_datafeeds
 
 	/**
-	 * Returns configuration and usage information about datafeeds. This API returns
-	 * a maximum of 10,000 datafeeds. If the Elasticsearch security features are
-	 * enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
-	 * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
-	 * API.
+	 * Get datafeeds. Returns configuration and usage information about datafeeds.
+	 * This API returns a maximum of 10,000 datafeeds. If the Elasticsearch security
+	 * features are enabled, you must have <code>monitor_ml</code>,
+	 * <code>monitor</code>, <code>manage_ml</code>, or <code>manage</code> cluster
+	 * privileges to use this API. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get datafeed statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the /_ml/datafeeds
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-datafeeds.html">Documentation
 	 *      on elastic.co</a>
@@ -629,16 +722,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about datafeeds. This API returns
-	 * a maximum of 10,000 datafeeds. If the Elasticsearch security features are
-	 * enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
-	 * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
-	 * API.
+	 * Get datafeeds. Returns configuration and usage information about datafeeds.
+	 * This API returns a maximum of 10,000 datafeeds. If the Elasticsearch security
+	 * features are enabled, you must have <code>monitor_ml</code>,
+	 * <code>monitor</code>, <code>manage_ml</code>, or <code>manage</code> cluster
+	 * privileges to use this API. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get datafeed statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the /_ml/datafeeds
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MlDatafeedsRequest}
@@ -653,16 +749,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about datafeeds. This API returns
-	 * a maximum of 10,000 datafeeds. If the Elasticsearch security features are
-	 * enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
-	 * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
-	 * API.
+	 * Get datafeeds. Returns configuration and usage information about datafeeds.
+	 * This API returns a maximum of 10,000 datafeeds. If the Elasticsearch security
+	 * features are enabled, you must have <code>monitor_ml</code>,
+	 * <code>monitor</code>, <code>manage_ml</code>, or <code>manage</code> cluster
+	 * privileges to use this API. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get datafeed statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the /_ml/datafeeds
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-datafeeds.html">Documentation
 	 *      on elastic.co</a>
@@ -676,16 +775,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.ml_jobs
 
 	/**
-	 * Returns configuration and usage information for anomaly detection jobs. This
-	 * API returns a maximum of 10,000 jobs. If the Elasticsearch security features
-	 * are enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
-	 * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
-	 * API.
+	 * Get anomaly detection jobs. Returns configuration and usage information for
+	 * anomaly detection jobs. This API returns a maximum of 10,000 jobs. If the
+	 * Elasticsearch security features are enabled, you must have
+	 * <code>monitor_ml</code>, <code>monitor</code>, <code>manage_ml</code>, or
+	 * <code>manage</code> cluster privileges to use this API. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get anomaly detection job statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the
+	 * /_ml/anomaly_detectors endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-anomaly-detectors.html">Documentation
 	 *      on elastic.co</a>
@@ -699,16 +801,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information for anomaly detection jobs. This
-	 * API returns a maximum of 10,000 jobs. If the Elasticsearch security features
-	 * are enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
-	 * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
-	 * API.
+	 * Get anomaly detection jobs. Returns configuration and usage information for
+	 * anomaly detection jobs. This API returns a maximum of 10,000 jobs. If the
+	 * Elasticsearch security features are enabled, you must have
+	 * <code>monitor_ml</code>, <code>monitor</code>, <code>manage_ml</code>, or
+	 * <code>manage</code> cluster privileges to use this API. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get anomaly detection job statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the
+	 * /_ml/anomaly_detectors endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MlJobsRequest}
@@ -723,16 +828,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information for anomaly detection jobs. This
-	 * API returns a maximum of 10,000 jobs. If the Elasticsearch security features
-	 * are enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
-	 * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
-	 * API.
+	 * Get anomaly detection jobs. Returns configuration and usage information for
+	 * anomaly detection jobs. This API returns a maximum of 10,000 jobs. If the
+	 * Elasticsearch security features are enabled, you must have
+	 * <code>monitor_ml</code>, <code>monitor</code>, <code>manage_ml</code>, or
+	 * <code>manage</code> cluster privileges to use this API. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get anomaly detection job statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the
+	 * /_ml/anomaly_detectors endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-anomaly-detectors.html">Documentation
 	 *      on elastic.co</a>
@@ -746,12 +854,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.ml_trained_models
 
 	/**
-	 * Returns configuration and usage information about inference trained models.
+	 * Get trained models. Returns configuration and usage information about
+	 * inference trained models. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get trained models statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the /_ml/trained_models
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-trained-model.html">Documentation
 	 *      on elastic.co</a>
@@ -765,12 +877,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about inference trained models.
+	 * Get trained models. Returns configuration and usage information about
+	 * inference trained models. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get trained models statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the /_ml/trained_models
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MlTrainedModelsRequest}
@@ -785,12 +901,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about inference trained models.
+	 * Get trained models. Returns configuration and usage information about
+	 * inference trained models. <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get trained models statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-ml">the /_ml/trained_models
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-trained-model.html">Documentation
 	 *      on elastic.co</a>
@@ -1339,12 +1459,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.transforms
 
 	/**
-	 * Returns configuration and usage information about transforms.
+	 * Get transforms. Returns configuration and usage information about transforms.
+	 * <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get transform statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-transform">the /_transform
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-transforms.html">Documentation
 	 *      on elastic.co</a>
@@ -1358,12 +1482,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about transforms.
+	 * Get transforms. Returns configuration and usage information about transforms.
+	 * <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get transform statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-transform">the /_transform
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TransformsRequest}
@@ -1378,12 +1506,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Returns configuration and usage information about transforms.
+	 * Get transforms. Returns configuration and usage information about transforms.
+	 * <blockquote>
 	 * <p>
-	 * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+	 * info CAT APIs are only intended for human consumption using the Kibana
 	 * console or command line. They are not intended for use by applications. For
-	 * application consumption, use the get transform statistics API.
-	 * 
+	 * application consumption, use <a href="#endpoint-transform">the /_transform
+	 * endpoints</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cat-transforms.html">Documentation
 	 *      on elastic.co</a>

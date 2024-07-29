@@ -62,9 +62,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.put_component_template.Request
 
 /**
- * Creates or updates a component template. Component templates are building
- * blocks for constructing index templates that specify index mappings,
- * settings, and aliases.
+ * Create or update a component template. Creates or updates a component
+ * template. Component templates are building blocks for constructing index
+ * templates that specify index mappings, settings, and aliases.
  * <p>
  * An index template can be composed of multiple component templates. To use a
  * component template, specify it in an index template’s

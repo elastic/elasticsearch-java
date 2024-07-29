@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingAsyn
 import co.elastic.clients.elasticsearch.cat.ElasticsearchCatAsyncClient;
 import co.elastic.clients.elasticsearch.ccr.ElasticsearchCcrAsyncClient;
 import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterAsyncClient;
+import co.elastic.clients.elasticsearch.connector.ElasticsearchConnectorAsyncClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.ClearScrollRequest;
@@ -212,6 +213,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 		return new ElasticsearchClusterAsyncClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchConnectorAsyncClient connector() {
+		return new ElasticsearchConnectorAsyncClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchDanglingIndicesAsyncClient danglingIndices() {
 		return new ElasticsearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
 	}
@@ -347,8 +352,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: bulk
 
 	/**
-	 * Performs multiple indexing or delete operations in a single API call. This
-	 * reduces overhead and can greatly increase indexing speed.
+	 * Bulk index or delete documents. Performs multiple indexing or delete
+	 * operations in a single API call. This reduces overhead and can greatly
+	 * increase indexing speed.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/docs-bulk.html">Documentation
@@ -363,8 +369,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs multiple indexing or delete operations in a single API call. This
-	 * reduces overhead and can greatly increase indexing speed.
+	 * Bulk index or delete documents. Performs multiple indexing or delete
+	 * operations in a single API call. This reduces overhead and can greatly
+	 * increase indexing speed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -379,8 +386,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs multiple indexing or delete operations in a single API call. This
-	 * reduces overhead and can greatly increase indexing speed.
+	 * Bulk index or delete documents. Performs multiple indexing or delete
+	 * operations in a single API call. This reduces overhead and can greatly
+	 * increase indexing speed.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/docs-bulk.html">Documentation
@@ -520,9 +528,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: create
 
 	/**
-	 * Adds a JSON document to the specified data stream or index and makes it
-	 * searchable. If the target is an index and the document already exists, the
-	 * request updates the document and increments its version.
+	 * Index a document. Adds a JSON document to the specified data stream or index
+	 * and makes it searchable. If the target is an index and the document already
+	 * exists, the request updates the document and increments its version.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
@@ -537,9 +545,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Adds a JSON document to the specified data stream or index and makes it
-	 * searchable. If the target is an index and the document already exists, the
-	 * request updates the document and increments its version.
+	 * Index a document. Adds a JSON document to the specified data stream or index
+	 * and makes it searchable. If the target is an index and the document already
+	 * exists, the request updates the document and increments its version.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -557,7 +565,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: delete
 
 	/**
-	 * Removes a JSON document from the specified index.
+	 * Delete a document. Removes a JSON document from the specified index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
@@ -572,7 +580,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Removes a JSON document from the specified index.
+	 * Delete a document. Removes a JSON document from the specified index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -590,7 +598,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: delete_by_query
 
 	/**
-	 * Deletes documents that match the specified query.
+	 * Delete documents. Deletes documents that match the specified query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
@@ -605,7 +613,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Deletes documents that match the specified query.
+	 * Delete documents. Deletes documents that match the specified query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -659,7 +667,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: delete_script
 
 	/**
-	 * Deletes a stored script or search template.
+	 * Delete a script or search template. Deletes a stored script or search
+	 * template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -674,7 +683,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Deletes a stored script or search template.
+	 * Delete a script or search template. Deletes a stored script or search
+	 * template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -692,7 +702,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: exists
 
 	/**
-	 * Checks if a document in an index exists.
+	 * Check a document. Checks if a specified document exists.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -707,7 +717,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Checks if a document in an index exists.
+	 * Check a document. Checks if a specified document exists.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -725,7 +735,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: exists_source
 
 	/**
-	 * Checks if a document's <code>_source</code> is stored.
+	 * Check for a document source. Checks if a document's <code>_source</code> is
+	 * stored.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -740,7 +751,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Checks if a document's <code>_source</code> is stored.
+	 * Check for a document source. Checks if a document's <code>_source</code> is
+	 * stored.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -758,8 +770,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: explain
 
 	/**
-	 * Returns information about why a specific document matches (or doesn’t match)
-	 * a query.
+	 * Explain a document match result. Returns information about why a specific
+	 * document matches, or doesn’t match, a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
@@ -777,8 +789,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about why a specific document matches (or doesn’t match)
-	 * a query.
+	 * Explain a document match result. Returns information about why a specific
+	 * document matches, or doesn’t match, a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -794,8 +806,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about why a specific document matches (or doesn’t match)
-	 * a query.
+	 * Explain a document match result. Returns information about why a specific
+	 * document matches, or doesn’t match, a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
@@ -813,8 +825,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about why a specific document matches (or doesn’t match)
-	 * a query.
+	 * Explain a document match result. Returns information about why a specific
+	 * document matches, or doesn’t match, a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -890,7 +902,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: get
 
 	/**
-	 * Returns a document.
+	 * Get a document by its ID. Retrieves the document with the specified ID from
+	 * an index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -908,7 +921,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns a document.
+	 * Get a document by its ID. Retrieves the document with the specified ID from
+	 * an index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -924,7 +938,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns a document.
+	 * Get a document by its ID. Retrieves the document with the specified ID from
+	 * an index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -941,7 +956,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns a document.
+	 * Get a document by its ID. Retrieves the document with the specified ID from
+	 * an index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -959,7 +975,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: get_script
 
 	/**
-	 * Retrieves a stored script or search template.
+	 * Get a script or search template. Retrieves a stored script or search
+	 * template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -974,7 +991,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Retrieves a stored script or search template.
+	 * Get a script or search template. Retrieves a stored script or search
+	 * template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1020,7 +1038,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: get_source
 
 	/**
-	 * Returns the source of a document.
+	 * Get a document's source. Returns the source of a document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -1039,7 +1057,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns the source of a document.
+	 * Get a document's source. Returns the source of a document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1055,7 +1073,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns the source of a document.
+	 * Get a document's source. Returns the source of a document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
@@ -1074,7 +1092,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns the source of a document.
+	 * Get a document's source. Returns the source of a document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1138,9 +1156,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: index
 
 	/**
-	 * Adds a JSON document to the specified data stream or index and makes it
-	 * searchable. If the target is an index and the document already exists, the
-	 * request updates the document and increments its version.
+	 * Index a document. Adds a JSON document to the specified data stream or index
+	 * and makes it searchable. If the target is an index and the document already
+	 * exists, the request updates the document and increments its version.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
@@ -1155,9 +1173,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Adds a JSON document to the specified data stream or index and makes it
-	 * searchable. If the target is an index and the document already exists, the
-	 * request updates the document and increments its version.
+	 * Index a document. Adds a JSON document to the specified data stream or index
+	 * and makes it searchable. If the target is an index and the document already
+	 * exists, the request updates the document and increments its version.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1175,7 +1193,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: info
 
 	/**
-	 * Returns basic information about the cluster.
+	 * Get cluster info. Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
@@ -1565,7 +1583,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: ping
 
 	/**
-	 * Returns whether the cluster is running.
+	 * Ping the cluster. Returns whether the cluster is running.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
@@ -1578,7 +1596,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: put_script
 
 	/**
-	 * Creates or updates a stored script or search template.
+	 * Create or update a script or search template. Creates or updates a stored
+	 * script or search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -1593,7 +1612,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Creates or updates a stored script or search template.
+	 * Create or update a script or search template. Creates or updates a stored
+	 * script or search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1646,9 +1666,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: reindex
 
 	/**
-	 * Allows to copy documents from one index to another, optionally filtering the
-	 * source documents by a query, changing the destination index settings, or
-	 * fetching the documents from a remote cluster.
+	 * Reindex documents. Copies documents from a source to a destination. The
+	 * source can be any existing index, alias, or data stream. The destination must
+	 * differ from the source. For example, you cannot reindex a data stream into
+	 * itself.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
@@ -1663,9 +1684,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to copy documents from one index to another, optionally filtering the
-	 * source documents by a query, changing the destination index settings, or
-	 * fetching the documents from a remote cluster.
+	 * Reindex documents. Copies documents from a source to a destination. The
+	 * source can be any existing index, alias, or data stream. The destination must
+	 * differ from the source. For example, you cannot reindex a data stream into
+	 * itself.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1762,7 +1784,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: scripts_painless_execute
 
 	/**
-	 * Runs a script and returns a result.
+	 * Run a script. Runs a script and returns a result.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
@@ -1781,7 +1803,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a script and returns a result.
+	 * Run a script. Runs a script and returns a result.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1798,7 +1820,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a script and returns a result.
+	 * Run a script. Runs a script and returns a result.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
@@ -1817,7 +1839,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a script and returns a result.
+	 * Run a script. Runs a script and returns a result.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1982,8 +2004,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_mvt
 
 	/**
-	 * Searches a vector tile for geospatial values. Returns results as a binary
-	 * Mapbox vector tile.
+	 * Search a vector tile. Searches a vector tile for geospatial values.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
@@ -1998,8 +2019,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Searches a vector tile for geospatial values. Returns results as a binary
-	 * Mapbox vector tile.
+	 * Search a vector tile. Searches a vector tile for geospatial values.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2176,8 +2196,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: termvectors
 
 	/**
-	 * Returns information and statistics about terms in the fields of a particular
-	 * document.
+	 * Get term vector information. Returns information and statistics about terms
+	 * in the fields of a particular document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
@@ -2192,8 +2212,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information and statistics about terms in the fields of a particular
-	 * document.
+	 * Get term vector information. Returns information and statistics about terms
+	 * in the fields of a particular document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2211,7 +2231,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: update
 
 	/**
-	 * Updates a document with a script or partial document.
+	 * Update a document. Updates a document by running a script or passing a
+	 * partial document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
@@ -2229,7 +2250,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Updates a document with a script or partial document.
+	 * Update a document. Updates a document by running a script or passing a
+	 * partial document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2246,7 +2268,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Updates a document with a script or partial document.
+	 * Update a document. Updates a document by running a script or passing a
+	 * partial document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
@@ -2264,7 +2287,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Updates a document with a script or partial document.
+	 * Update a document. Updates a document by running a script or passing a
+	 * partial document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2283,9 +2307,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: update_by_query
 
 	/**
-	 * Updates documents that match the specified query. If no query is specified,
-	 * performs an update on every document in the data stream or index without
-	 * modifying the source, which is useful for picking up mapping changes.
+	 * Update documents. Updates documents that match the specified query. If no
+	 * query is specified, performs an update on every document in the data stream
+	 * or index without modifying the source, which is useful for picking up mapping
+	 * changes.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
@@ -2300,9 +2325,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Updates documents that match the specified query. If no query is specified,
-	 * performs an update on every document in the data stream or index without
-	 * modifying the source, which is useful for picking up mapping changes.
+	 * Update documents. Updates documents that match the specified query. If no
+	 * query is specified, performs an update on every document in the data stream
+	 * or index without modifying the source, which is useful for picking up mapping
+	 * changes.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

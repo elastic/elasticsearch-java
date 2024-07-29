@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: transform.delete_transform.Request
 
 /**
- * Deletes a transform.
+ * Delete a transform. Deletes a transform.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.delete_transform.Request">API

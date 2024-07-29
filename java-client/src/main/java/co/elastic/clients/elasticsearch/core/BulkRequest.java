@@ -67,8 +67,9 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.Request
 
 /**
- * Performs multiple indexing or delete operations in a single API call. This
- * reduces overhead and can greatly increase indexing speed.
+ * Bulk index or delete documents. Performs multiple indexing or delete
+ * operations in a single API call. This reduces overhead and can greatly
+ * increase indexing speed.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.bulk.Request">API
  *      specification</a>

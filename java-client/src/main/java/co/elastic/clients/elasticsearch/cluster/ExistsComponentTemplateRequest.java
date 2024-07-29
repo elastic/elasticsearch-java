@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: cluster.exists_component_template.Request
 
 /**
- * Returns information about whether a particular component template exist
+ * Check component templates. Returns information about whether a particular
+ * component template exists.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.exists_component_template.Request">API

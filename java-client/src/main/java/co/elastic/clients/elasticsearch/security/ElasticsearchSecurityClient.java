@@ -104,12 +104,14 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.authenticate
 
 	/**
-	 * Enables you to submit a request with a basic auth header to authenticate a
-	 * user and retrieve information about the authenticated user. A successful call
-	 * returns a JSON structure that shows user information such as their username,
-	 * the roles that are assigned to the user, any assigned metadata, and
-	 * information about the realms that authenticated and authorized the user. If
-	 * the user cannot be authenticated, this API returns a 401 status code.
+	 * Authenticate a user. Authenticates a user and returns information about the
+	 * authenticated user. Include the user information in a
+	 * <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic
+	 * auth header</a>. A successful call returns a JSON structure that shows user
+	 * information such as their username, the roles that are assigned to the user,
+	 * any assigned metadata, and information about the realms that authenticated
+	 * and authorized the user. If the user cannot be authenticated, this API
+	 * returns a 401 status code.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html">Documentation
@@ -427,11 +429,12 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.create_api_key
 
 	/**
-	 * Creates an API key for access without requiring basic authentication. A
-	 * successful request returns a JSON structure that contains the API key, its
-	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds. NOTE: By default, API keys never
-	 * expire. You can specify expiration information when you create the API keys.
+	 * Create an API key. Creates an API key for access without requiring basic
+	 * authentication. A successful request returns a JSON structure that contains
+	 * the API key, its unique id, and its name. If applicable, it also returns
+	 * expiration information for the API key in milliseconds. NOTE: By default, API
+	 * keys never expire. You can specify expiration information when you create the
+	 * API keys.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
@@ -446,11 +449,12 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Creates an API key for access without requiring basic authentication. A
-	 * successful request returns a JSON structure that contains the API key, its
-	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds. NOTE: By default, API keys never
-	 * expire. You can specify expiration information when you create the API keys.
+	 * Create an API key. Creates an API key for access without requiring basic
+	 * authentication. A successful request returns a JSON structure that contains
+	 * the API key, its unique id, and its name. If applicable, it also returns
+	 * expiration information for the API key in milliseconds. NOTE: By default, API
+	 * keys never expire. You can specify expiration information when you create the
+	 * API keys.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -467,11 +471,12 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Creates an API key for access without requiring basic authentication. A
-	 * successful request returns a JSON structure that contains the API key, its
-	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds. NOTE: By default, API keys never
-	 * expire. You can specify expiration information when you create the API keys.
+	 * Create an API key. Creates an API key for access without requiring basic
+	 * authentication. A successful request returns a JSON structure that contains
+	 * the API key, its unique id, and its name. If applicable, it also returns
+	 * expiration information for the API key in milliseconds. NOTE: By default, API
+	 * keys never expire. You can specify expiration information when you create the
+	 * API keys.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
@@ -860,12 +865,12 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.get_api_key
 
 	/**
-	 * Retrieves information for one or more API keys. NOTE: If you have only the
-	 * <code>manage_own_api_key</code> privilege, this API returns only the API keys
-	 * that you own. If you have <code>read_security</code>,
-	 * <code>manage_api_key</code> or greater privileges (including
-	 * <code>manage_security</code>), this API returns all API keys regardless of
-	 * ownership.
+	 * Get API key information. Retrieves information for one or more API keys.
+	 * NOTE: If you have only the <code>manage_own_api_key</code> privilege, this
+	 * API returns only the API keys that you own. If you have
+	 * <code>read_security</code>, <code>manage_api_key</code> or greater privileges
+	 * (including <code>manage_security</code>), this API returns all API keys
+	 * regardless of ownership.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
@@ -880,12 +885,12 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves information for one or more API keys. NOTE: If you have only the
-	 * <code>manage_own_api_key</code> privilege, this API returns only the API keys
-	 * that you own. If you have <code>read_security</code>,
-	 * <code>manage_api_key</code> or greater privileges (including
-	 * <code>manage_security</code>), this API returns all API keys regardless of
-	 * ownership.
+	 * Get API key information. Retrieves information for one or more API keys.
+	 * NOTE: If you have only the <code>manage_own_api_key</code> privilege, this
+	 * API returns only the API keys that you own. If you have
+	 * <code>read_security</code>, <code>manage_api_key</code> or greater privileges
+	 * (including <code>manage_security</code>), this API returns all API keys
+	 * regardless of ownership.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -901,12 +906,12 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves information for one or more API keys. NOTE: If you have only the
-	 * <code>manage_own_api_key</code> privilege, this API returns only the API keys
-	 * that you own. If you have <code>read_security</code>,
-	 * <code>manage_api_key</code> or greater privileges (including
-	 * <code>manage_security</code>), this API returns all API keys regardless of
-	 * ownership.
+	 * Get API key information. Retrieves information for one or more API keys.
+	 * NOTE: If you have only the <code>manage_own_api_key</code> privilege, this
+	 * API returns only the API keys that you own. If you have
+	 * <code>read_security</code>, <code>manage_api_key</code> or greater privileges
+	 * (including <code>manage_security</code>), this API returns all API keys
+	 * regardless of ownership.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
@@ -1417,7 +1422,8 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.has_privileges
 
 	/**
-	 * Determines whether the specified user has a specified list of privileges.
+	 * Check user privileges. Determines whether the specified user has a specified
+	 * list of privileges.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
@@ -1433,7 +1439,8 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Determines whether the specified user has a specified list of privileges.
+	 * Check user privileges. Determines whether the specified user has a specified
+	 * list of privileges.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1450,7 +1457,8 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Determines whether the specified user has a specified list of privileges.
+	 * Check user privileges. Determines whether the specified user has a specified
+	 * list of privileges.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
@@ -1502,11 +1510,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.invalidate_api_key
 
 	/**
-	 * Invalidates one or more API keys. The <code>manage_api_key</code> privilege
-	 * allows deleting any API keys. The <code>manage_own_api_key</code> only allows
-	 * deleting API keys that are owned by the user. In addition, with the
-	 * <code>manage_own_api_key</code> privilege, an invalidation request must be
-	 * issued in one of the three formats:
+	 * Invalidate API keys. Invalidates one or more API keys. The
+	 * <code>manage_api_key</code> privilege allows deleting any API keys. The
+	 * <code>manage_own_api_key</code> only allows deleting API keys that are owned
+	 * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
+	 * an invalidation request must be issued in one of the three formats:
 	 * <ul>
 	 * <li>Set the parameter <code>owner=true</code>.</li>
 	 * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
@@ -1529,11 +1537,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Invalidates one or more API keys. The <code>manage_api_key</code> privilege
-	 * allows deleting any API keys. The <code>manage_own_api_key</code> only allows
-	 * deleting API keys that are owned by the user. In addition, with the
-	 * <code>manage_own_api_key</code> privilege, an invalidation request must be
-	 * issued in one of the three formats:
+	 * Invalidate API keys. Invalidates one or more API keys. The
+	 * <code>manage_api_key</code> privilege allows deleting any API keys. The
+	 * <code>manage_own_api_key</code> only allows deleting API keys that are owned
+	 * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
+	 * an invalidation request must be issued in one of the three formats:
 	 * <ul>
 	 * <li>Set the parameter <code>owner=true</code>.</li>
 	 * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
@@ -1557,11 +1565,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Invalidates one or more API keys. The <code>manage_api_key</code> privilege
-	 * allows deleting any API keys. The <code>manage_own_api_key</code> only allows
-	 * deleting API keys that are owned by the user. In addition, with the
-	 * <code>manage_own_api_key</code> privilege, an invalidation request must be
-	 * issued in one of the three formats:
+	 * Invalidate API keys. Invalidates one or more API keys. The
+	 * <code>manage_api_key</code> privilege allows deleting any API keys. The
+	 * <code>manage_own_api_key</code> only allows deleting API keys that are owned
+	 * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
+	 * an invalidation request must be issued in one of the three formats:
 	 * <ul>
 	 * <li>Set the parameter <code>owner=true</code>.</li>
 	 * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
@@ -1786,8 +1794,8 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.query_api_keys
 
 	/**
-	 * Retrieves information for API keys in a paginated manner. You can optionally
-	 * filter the results with a query.
+	 * Query API keys. Retrieves a paginated list of API keys and their information.
+	 * You can optionally filter the results with a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
@@ -1802,8 +1810,8 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves information for API keys in a paginated manner. You can optionally
-	 * filter the results with a query.
+	 * Query API keys. Retrieves a paginated list of API keys and their information.
+	 * You can optionally filter the results with a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1820,8 +1828,8 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves information for API keys in a paginated manner. You can optionally
-	 * filter the results with a query.
+	 * Query API keys. Retrieves a paginated list of API keys and their information.
+	 * You can optionally filter the results with a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
@@ -2206,22 +2214,22 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: security.update_api_key
 
 	/**
-	 * Updates attributes of an existing API key. Users can only update API keys
-	 * that they created or that were granted to them. Use this API to update API
-	 * keys created by the create API Key or grant API Key APIs. If you need to
-	 * apply the same update to many API keys, you can use bulk update API Keys to
-	 * reduce overhead. It’s not possible to update expired API keys, or API keys
-	 * that have been invalidated by invalidate API Key. This API supports updates
-	 * to an API key’s access scope and metadata. The access scope of an API key is
-	 * derived from the <code>role_descriptors</code> you specify in the request,
-	 * and a snapshot of the owner user’s permissions at the time of the request.
-	 * The snapshot of the owner’s permissions is updated automatically on every
-	 * call. If you don’t specify <code>role_descriptors</code> in the request, a
-	 * call to this API might still change the API key’s access scope. This change
-	 * can occur if the owner user’s permissions have changed since the API key was
-	 * created or last modified. To update another user’s API key, use the
-	 * <code>run_as</code> feature to submit a request on behalf of another user.
-	 * IMPORTANT: It’s not possible to use an API key as the authentication
+	 * Update an API key. Updates attributes of an existing API key. Users can only
+	 * update API keys that they created or that were granted to them. Use this API
+	 * to update API keys created by the create API Key or grant API Key APIs. If
+	 * you need to apply the same update to many API keys, you can use bulk update
+	 * API Keys to reduce overhead. It’s not possible to update expired API keys, or
+	 * API keys that have been invalidated by invalidate API Key. This API supports
+	 * updates to an API key’s access scope and metadata. The access scope of an API
+	 * key is derived from the <code>role_descriptors</code> you specify in the
+	 * request, and a snapshot of the owner user’s permissions at the time of the
+	 * request. The snapshot of the owner’s permissions is updated automatically on
+	 * every call. If you don’t specify <code>role_descriptors</code> in the
+	 * request, a call to this API might still change the API key’s access scope.
+	 * This change can occur if the owner user’s permissions have changed since the
+	 * API key was created or last modified. To update another user’s API key, use
+	 * the <code>run_as</code> feature to submit a request on behalf of another
+	 * user. IMPORTANT: It’s not possible to use an API key as the authentication
 	 * credential for this API. To update an API key, the owner user’s credentials
 	 * are required.
 	 * 
@@ -2238,22 +2246,22 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Updates attributes of an existing API key. Users can only update API keys
-	 * that they created or that were granted to them. Use this API to update API
-	 * keys created by the create API Key or grant API Key APIs. If you need to
-	 * apply the same update to many API keys, you can use bulk update API Keys to
-	 * reduce overhead. It’s not possible to update expired API keys, or API keys
-	 * that have been invalidated by invalidate API Key. This API supports updates
-	 * to an API key’s access scope and metadata. The access scope of an API key is
-	 * derived from the <code>role_descriptors</code> you specify in the request,
-	 * and a snapshot of the owner user’s permissions at the time of the request.
-	 * The snapshot of the owner’s permissions is updated automatically on every
-	 * call. If you don’t specify <code>role_descriptors</code> in the request, a
-	 * call to this API might still change the API key’s access scope. This change
-	 * can occur if the owner user’s permissions have changed since the API key was
-	 * created or last modified. To update another user’s API key, use the
-	 * <code>run_as</code> feature to submit a request on behalf of another user.
-	 * IMPORTANT: It’s not possible to use an API key as the authentication
+	 * Update an API key. Updates attributes of an existing API key. Users can only
+	 * update API keys that they created or that were granted to them. Use this API
+	 * to update API keys created by the create API Key or grant API Key APIs. If
+	 * you need to apply the same update to many API keys, you can use bulk update
+	 * API Keys to reduce overhead. It’s not possible to update expired API keys, or
+	 * API keys that have been invalidated by invalidate API Key. This API supports
+	 * updates to an API key’s access scope and metadata. The access scope of an API
+	 * key is derived from the <code>role_descriptors</code> you specify in the
+	 * request, and a snapshot of the owner user’s permissions at the time of the
+	 * request. The snapshot of the owner’s permissions is updated automatically on
+	 * every call. If you don’t specify <code>role_descriptors</code> in the
+	 * request, a call to this API might still change the API key’s access scope.
+	 * This change can occur if the owner user’s permissions have changed since the
+	 * API key was created or last modified. To update another user’s API key, use
+	 * the <code>run_as</code> feature to submit a request on behalf of another
+	 * user. IMPORTANT: It’s not possible to use an API key as the authentication
 	 * credential for this API. To update an API key, the owner user’s credentials
 	 * are required.
 	 * 

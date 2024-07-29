@@ -72,9 +72,10 @@ import javax.annotation.Nullable;
 // typedef: _global.update_by_query.Request
 
 /**
- * Updates documents that match the specified query. If no query is specified,
- * performs an update on every document in the data stream or index without
- * modifying the source, which is useful for picking up mapping changes.
+ * Update documents. Updates documents that match the specified query. If no
+ * query is specified, performs an update on every document in the data stream
+ * or index without modifying the source, which is useful for picking up mapping
+ * changes.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.update_by_query.Request">API
  *      specification</a>

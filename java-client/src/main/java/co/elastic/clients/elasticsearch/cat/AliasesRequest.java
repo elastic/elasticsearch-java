@@ -57,12 +57,17 @@ import javax.annotation.Nullable;
 // typedef: cat.aliases.Request
 
 /**
- * Retrieves the cluster’s index aliases, including filter and routing
- * information. The API does not return data stream aliases. IMPORTANT: cat APIs
- * are only intended for human consumption using the command line or the Kibana
- * console. They are not intended for use by applications. For application
- * consumption, use the aliases API.
- * 
+ * Get aliases. Retrieves the cluster’s index aliases, including filter and
+ * routing information. The API does not return data stream aliases.
+ * <blockquote>
+ * <p>
+ * info CAT APIs are only intended for human consumption using the command line
+ * or the Kibana console. They are not intended for use by applications. For
+ * application consumption, use <a href="#endpoint-alias">the /_alias
+ * endpoints</a>.
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="../doc-files/api-spec.html#cat.aliases.Request">API
  *      specification</a>
  */

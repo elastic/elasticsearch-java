@@ -58,11 +58,11 @@ import javax.annotation.Nullable;
 // typedef: security.invalidate_api_key.Request
 
 /**
- * Invalidates one or more API keys. The <code>manage_api_key</code> privilege
- * allows deleting any API keys. The <code>manage_own_api_key</code> only allows
- * deleting API keys that are owned by the user. In addition, with the
- * <code>manage_own_api_key</code> privilege, an invalidation request must be
- * issued in one of the three formats:
+ * Invalidate API keys. Invalidates one or more API keys. The
+ * <code>manage_api_key</code> privilege allows deleting any API keys. The
+ * <code>manage_own_api_key</code> only allows deleting API keys that are owned
+ * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
+ * an invalidation request must be issued in one of the three formats:
  * <ul>
  * <li>Set the parameter <code>owner=true</code>.</li>
  * <li>Or, set both <code>username</code> and <code>realm_name</code> to match

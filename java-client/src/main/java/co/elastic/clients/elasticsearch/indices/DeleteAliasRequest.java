@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_alias.Request
 
 /**
- * Removes a data stream or index from an alias.
+ * Delete an alias. Removes a data stream or index from an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_alias.Request">API
  *      specification</a>

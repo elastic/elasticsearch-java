@@ -71,7 +71,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.add_block
 
 	/**
-	 * Adds a block to an index.
+	 * Add an index block. Limits the operations allowed on an index by blocking
+	 * specific operation types.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
@@ -86,7 +87,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Adds a block to an index.
+	 * Add an index block. Limits the operations allowed on an index by blocking
+	 * specific operation types.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -265,7 +267,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.create
 
 	/**
-	 * Creates a new index.
+	 * Create an index. Creates a new index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-create-index.html">Documentation
@@ -280,7 +282,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Creates a new index.
+	 * Create an index. Creates a new index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -379,7 +381,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.delete
 
 	/**
-	 * Deletes one or more indices.
+	 * Delete indices. Deletes one or more indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
@@ -394,7 +396,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Deletes one or more indices.
+	 * Delete indices. Deletes one or more indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -412,7 +414,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.delete_alias
 
 	/**
-	 * Removes a data stream or index from an alias.
+	 * Delete an alias. Removes a data stream or index from an alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -427,7 +429,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Removes a data stream or index from an alias.
+	 * Delete an alias. Removes a data stream or index from an alias.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -659,7 +661,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.exists
 
 	/**
-	 * Checks if a data stream, index, or alias exists.
+	 * Check indices. Checks if one or more indices, index aliases, or data streams
+	 * exist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
@@ -674,7 +677,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Checks if a data stream, index, or alias exists.
+	 * Check indices. Checks if one or more indices, index aliases, or data streams
+	 * exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -692,7 +696,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.exists_alias
 
 	/**
-	 * Checks if an alias exists.
+	 * Check aliases. Checks if one or more data stream or index aliases exist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -707,7 +711,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Checks if an alias exists.
+	 * Check aliases. Checks if one or more data stream or index aliases exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -793,8 +797,10 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.explain_data_lifecycle
 
 	/**
-	 * Retrieves information about the index's current data stream lifecycle, such
-	 * as any potential encountered error, time since creation etc.
+	 * Get the status for a data stream lifecycle. Retrieves information about an
+	 * index or data stream’s current data stream lifecycle status, such as time
+	 * since index creation, time since rollover, the lifecycle configuration
+	 * managing the index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
@@ -809,8 +815,10 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves information about the index's current data stream lifecycle, such
-	 * as any potential encountered error, time since creation etc.
+	 * Get the status for a data stream lifecycle. Retrieves information about an
+	 * index or data stream’s current data stream lifecycle status, such as time
+	 * since index creation, time since rollover, the lifecycle configuration
+	 * managing the index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -953,8 +961,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get
 
 	/**
-	 * Returns information about one or more indices. For data streams, the API
-	 * returns information about the stream’s backing indices.
+	 * Get index information. Returns information about one or more indices. For
+	 * data streams, the API returns information about the stream’s backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
@@ -969,8 +977,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns information about one or more indices. For data streams, the API
-	 * returns information about the stream’s backing indices.
+	 * Get index information. Returns information about one or more indices. For
+	 * data streams, the API returns information about the stream’s backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -988,7 +996,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_alias
 
 	/**
-	 * Retrieves information for one or more aliases.
+	 * Get aliases. Retrieves information for one or more data stream or index
+	 * aliases.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -1003,7 +1012,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves information for one or more aliases.
+	 * Get aliases. Retrieves information for one or more data stream or index
+	 * aliases.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1019,7 +1029,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves information for one or more aliases.
+	 * Get aliases. Retrieves information for one or more data stream or index
+	 * aliases.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -1115,8 +1126,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
-	 * Retrieves mapping definitions for one or more fields. For data streams, the
-	 * API retrieves field mappings for the stream’s backing indices.
+	 * Get mapping definitions. Retrieves mapping definitions for one or more
+	 * fields. For data streams, the API retrieves field mappings for the stream’s
+	 * backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html">Documentation
@@ -1131,8 +1143,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves mapping definitions for one or more fields. For data streams, the
-	 * API retrieves field mappings for the stream’s backing indices.
+	 * Get mapping definitions. Retrieves mapping definitions for one or more
+	 * fields. For data streams, the API retrieves field mappings for the stream’s
+	 * backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1196,8 +1209,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_mapping
 
 	/**
-	 * Retrieves mapping definitions for one or more indices. For data streams, the
-	 * API retrieves mappings for the stream’s backing indices.
+	 * Get mapping definitions. Retrieves mapping definitions for one or more
+	 * indices. For data streams, the API retrieves mappings for the stream’s
+	 * backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
@@ -1212,8 +1226,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves mapping definitions for one or more indices. For data streams, the
-	 * API retrieves mappings for the stream’s backing indices.
+	 * Get mapping definitions. Retrieves mapping definitions for one or more
+	 * indices. For data streams, the API retrieves mappings for the stream’s
+	 * backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1229,8 +1244,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves mapping definitions for one or more indices. For data streams, the
-	 * API retrieves mappings for the stream’s backing indices.
+	 * Get mapping definitions. Retrieves mapping definitions for one or more
+	 * indices. For data streams, the API retrieves mappings for the stream’s
+	 * backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
@@ -1245,8 +1261,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_settings
 
 	/**
-	 * Returns setting information for one or more indices. For data streams,
-	 * returns setting information for the stream’s backing indices.
+	 * Get index settings. Returns setting information for one or more indices. For
+	 * data streams, returns setting information for the stream’s backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
@@ -1261,8 +1277,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns setting information for one or more indices. For data streams,
-	 * returns setting information for the stream’s backing indices.
+	 * Get index settings. Returns setting information for one or more indices. For
+	 * data streams, returns setting information for the stream’s backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1278,8 +1294,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns setting information for one or more indices. For data streams,
-	 * returns setting information for the stream’s backing indices.
+	 * Get index settings. Returns setting information for one or more indices. For
+	 * data streams, returns setting information for the stream’s backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
@@ -1493,7 +1509,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.put_alias
 
 	/**
-	 * Adds a data stream or index to an alias.
+	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -1508,7 +1524,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Adds a data stream or index to an alias.
+	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1596,9 +1612,10 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.put_mapping
 
 	/**
-	 * Adds new fields to an existing data stream or index. You can also use this
-	 * API to change the search settings of existing fields. For data streams, these
-	 * changes are applied to all backing indices by default.
+	 * Update field mappings. Adds new fields to an existing data stream or index.
+	 * You can also use this API to change the search settings of existing fields.
+	 * For data streams, these changes are applied to all backing indices by
+	 * default.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
@@ -1613,9 +1630,10 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Adds new fields to an existing data stream or index. You can also use this
-	 * API to change the search settings of existing fields. For data streams, these
-	 * changes are applied to all backing indices by default.
+	 * Update field mappings. Adds new fields to an existing data stream or index.
+	 * You can also use this API to change the search settings of existing fields.
+	 * For data streams, these changes are applied to all backing indices by
+	 * default.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1633,8 +1651,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.put_settings
 
 	/**
-	 * Changes a dynamic index setting in real time. For data streams, index setting
-	 * changes are applied to all backing indices by default.
+	 * Update index settings. Changes dynamic index settings in real time. For data
+	 * streams, index setting changes are applied to all backing indices by default.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
@@ -1649,8 +1667,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Changes a dynamic index setting in real time. For data streams, index setting
-	 * changes are applied to all backing indices by default.
+	 * Update index settings. Changes dynamic index settings in real time. For data
+	 * streams, index setting changes are applied to all backing indices by default.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1666,8 +1684,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Changes a dynamic index setting in real time. For data streams, index setting
-	 * changes are applied to all backing indices by default.
+	 * Update index settings. Changes dynamic index settings in real time. For data
+	 * streams, index setting changes are applied to all backing indices by default.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
@@ -1769,9 +1787,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.refresh
 
 	/**
-	 * A refresh makes recent operations performed on one or more indices available
-	 * for search. For data streams, the API runs the refresh operation on the
-	 * stream’s backing indices.
+	 * Refresh an index. A refresh makes recent operations performed on one or more
+	 * indices available for search. For data streams, the API runs the refresh
+	 * operation on the stream’s backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
@@ -1786,9 +1804,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * A refresh makes recent operations performed on one or more indices available
-	 * for search. For data streams, the API runs the refresh operation on the
-	 * stream’s backing indices.
+	 * Refresh an index. A refresh makes recent operations performed on one or more
+	 * indices available for search. For data streams, the API runs the refresh
+	 * operation on the stream’s backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1804,9 +1822,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * A refresh makes recent operations performed on one or more indices available
-	 * for search. For data streams, the API runs the refresh operation on the
-	 * stream’s backing indices.
+	 * Refresh an index. A refresh makes recent operations performed on one or more
+	 * indices available for search. For data streams, the API runs the refresh
+	 * operation on the stream’s backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
@@ -1927,7 +1945,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.rollover
 
 	/**
-	 * Creates a new index for a data stream or index alias.
+	 * Roll over to a new index. Creates a new index for a data stream or index
+	 * alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-rollover-index.html">Documentation
@@ -1942,7 +1961,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Creates a new index for a data stream or index alias.
+	 * Roll over to a new index. Creates a new index for a data stream or index
+	 * alias.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2294,7 +2314,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.update_aliases
 
 	/**
-	 * Adds a data stream or index to an alias.
+	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -2309,7 +2329,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Adds a data stream or index to an alias.
+	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2325,7 +2345,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Adds a data stream or index to an alias.
+	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
@@ -2340,7 +2360,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.validate_query
 
 	/**
-	 * Validates a potentially expensive query without executing it.
+	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
@@ -2355,7 +2375,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Validates a potentially expensive query without executing it.
+	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2371,7 +2391,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Validates a potentially expensive query without executing it.
+	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation

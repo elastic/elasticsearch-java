@@ -57,7 +57,8 @@ import javax.annotation.Nullable;
 // typedef: tasks.get.Request
 
 /**
- * Returns information about a task.
+ * Get task information. Returns information about the tasks currently executing
+ * in the cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#tasks.get.Request">API
  *      specification</a>

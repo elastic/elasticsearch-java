@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
 // typedef: _global.delete_by_query.Request
 
 /**
- * Deletes documents that match the specified query.
+ * Delete documents. Deletes documents that match the specified query.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.delete_by_query.Request">API
  *      specification</a>

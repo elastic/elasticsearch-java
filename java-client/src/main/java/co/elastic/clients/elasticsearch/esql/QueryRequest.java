@@ -97,6 +97,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	private final String query;
 
+	private final Map<String, Map<String, TableValues>> tables;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryRequest(Builder builder) {
@@ -110,6 +112,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.tables = ApiTypeHelper.unmodifiable(builder.tables);
 
 	}
 
@@ -196,6 +199,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If provided and <code>true</code> the response will include an extra
+	 * <code>profile</code> object with information on how the query was executed.
+	 * This information is for human debugging and its format can change at any time
+	 * but it can give some insight into the performance of each part of the query.
+	 * <p>
 	 * API name: {@code profile}
 	 */
 	@Nullable
@@ -211,6 +219,16 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final String query() {
 		return this.query;
+	}
+
+	/**
+	 * Tables to use with the LOOKUP operation. The top level key is the table name
+	 * and the next level key is the column name.
+	 * <p>
+	 * API name: {@code tables}
+	 */
+	public final Map<String, Map<String, TableValues>> tables() {
+		return this.tables;
 	}
 
 	/**
@@ -257,6 +275,26 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		generator.writeKey("query");
 		generator.write(this.query);
 
+		if (ApiTypeHelper.isDefined(this.tables)) {
+			generator.writeKey("tables");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, TableValues>> item0 : this.tables.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, TableValues> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -291,6 +329,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private Boolean profile;
 
 		private String query;
+
+		@Nullable
+		private Map<String, Map<String, TableValues>> tables;
 
 		/**
 		 * By default, ES|QL returns results as rows. For example, FROM returns each
@@ -487,6 +528,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If provided and <code>true</code> the response will include an extra
+		 * <code>profile</code> object with information on how the query was executed.
+		 * This information is for human debugging and its format can change at any time
+		 * but it can give some insight into the performance of each part of the query.
+		 * <p>
 		 * API name: {@code profile}
 		 */
 		public final Builder profile(@Nullable Boolean value) {
@@ -502,6 +548,32 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder query(String value) {
 			this.query = value;
+			return this;
+		}
+
+		/**
+		 * Tables to use with the LOOKUP operation. The top level key is the table name
+		 * and the next level key is the column name.
+		 * <p>
+		 * API name: {@code tables}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tables</code>.
+		 */
+		public final Builder tables(Map<String, Map<String, TableValues>> map) {
+			this.tables = _mapPutAll(this.tables, map);
+			return this;
+		}
+
+		/**
+		 * Tables to use with the LOOKUP operation. The top level key is the table name
+		 * and the next level key is the column name.
+		 * <p>
+		 * API name: {@code tables}
+		 * <p>
+		 * Adds an entry to <code>tables</code>.
+		 */
+		public final Builder tables(String key, Map<String, TableValues> value) {
+			this.tables = _mapPut(this.tables, key, value);
 			return this;
 		}
 
@@ -539,6 +611,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::tables, JsonpDeserializer
+				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(TableValues._DESERIALIZER)), "tables");
 
 	}
 

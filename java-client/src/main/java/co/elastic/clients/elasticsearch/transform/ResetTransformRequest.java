@@ -56,9 +56,9 @@ import javax.annotation.Nullable;
 // typedef: transform.reset_transform.Request
 
 /**
- * Resets a transform. Before you can reset it, you must stop it; alternatively,
- * use the <code>force</code> query parameter. If the destination index was
- * created by the transform, it is deleted.
+ * Reset a transform. Resets a transform. Before you can reset it, you must stop
+ * it; alternatively, use the <code>force</code> query parameter. If the
+ * destination index was created by the transform, it is deleted.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.reset_transform.Request">API

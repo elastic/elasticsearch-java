@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete.Request
 
 /**
- * Deletes one or more indices.
+ * Delete indices. Deletes one or more indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete.Request">API
  *      specification</a>

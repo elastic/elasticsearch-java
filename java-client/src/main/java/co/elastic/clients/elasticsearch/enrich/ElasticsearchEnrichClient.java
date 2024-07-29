@@ -68,7 +68,8 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: enrich.delete_policy
 
 	/**
-	 * Deletes an existing enrich policy and its enrich index.
+	 * Delete an enrich policy. Deletes an existing enrich policy and its enrich
+	 * index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
@@ -83,7 +84,8 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Deletes an existing enrich policy and its enrich index.
+	 * Delete an enrich policy. Deletes an existing enrich policy and its enrich
+	 * index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -137,7 +139,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: enrich.get_policy
 
 	/**
-	 * Returns information about an enrich policy.
+	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
@@ -152,7 +154,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Returns information about an enrich policy.
+	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -168,7 +170,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Returns information about an enrich policy.
+	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
@@ -183,7 +185,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: enrich.put_policy
 
 	/**
-	 * Creates an enrich policy.
+	 * Create an enrich policy. Creates an enrich policy.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/put-enrich-policy-api.html">Documentation
@@ -198,7 +200,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Creates an enrich policy.
+	 * Create an enrich policy. Creates an enrich policy.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -216,8 +218,8 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: enrich.stats
 
 	/**
-	 * Returns enrich coordinator statistics and information about enrich policies
-	 * that are currently executing.
+	 * Get enrich stats. Returns enrich coordinator statistics and information about
+	 * enrich policies that are currently executing.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation

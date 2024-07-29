@@ -59,9 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.refresh.Request
 
 /**
- * A refresh makes recent operations performed on one or more indices available
- * for search. For data streams, the API runs the refresh operation on the
- * stream’s backing indices.
+ * Refresh an index. A refresh makes recent operations performed on one or more
+ * indices available for search. For data streams, the API runs the refresh
+ * operation on the stream’s backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.refresh.Request">API
  *      specification</a>

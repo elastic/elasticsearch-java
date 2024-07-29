@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 // typedef: _global.exists.Request
 
 /**
- * Checks if a document in an index exists.
+ * Check a document. Checks if a specified document exists.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.exists.Request">API
  *      specification</a>

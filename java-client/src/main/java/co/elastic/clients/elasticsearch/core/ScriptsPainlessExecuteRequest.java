@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: _global.scripts_painless_execute.Request
 
 /**
- * Runs a script and returns a result.
+ * Run a script. Runs a script and returns a result.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.scripts_painless_execute.Request">API
