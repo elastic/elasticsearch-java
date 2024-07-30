@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
+import co.elastic.clients.elasticsearch.connector.UpdateIndexNameRequest;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
@@ -168,5 +169,17 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals("some-field", q.term().field());
         assertEquals("some-value", q.term().value().stringValue());
+    }
+
+    @Test
+    public void testWithNull() {
+
+        String jsonValue = "{\"index_name\":\"value\"}";
+        String jsonNull = "{\"index_name\":null}";
+        UpdateIndexNameRequest updateValue = UpdateIndexNameRequest.of(u -> u.connectorId("connector").indexName("value"));
+        UpdateIndexNameRequest updateNull = UpdateIndexNameRequest.of(u -> u.connectorId("connector").indexNameWithNull());
+
+        assertEquals(jsonValue,toJson(updateValue));
+        assertEquals(jsonNull,toJson(updateNull));
     }
 }
