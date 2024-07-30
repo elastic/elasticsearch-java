@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,49 +51,44 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.SelectOption
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href="../doc-files/api-spec.html#connector._types.SelectOption">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class SelectOption implements JsonpSerializable {
+	private final String label;
 
-	private final String requiredNativeMemoryBytes;
+	private final FieldValue value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private SelectOption(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.label = ApiTypeHelper.requireNonNull(builder.label, this, "label");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static SelectOption of(Function<Builder, ObjectBuilder<SelectOption>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Required - API name: {@code label}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	public final String label() {
+		return this.label;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * Required - API name: {@code value}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final FieldValue value() {
+		return this.value;
 	}
 
 	/**
@@ -106,11 +102,11 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		generator.writeKey("label");
+		generator.write(this.label);
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		generator.writeKey("value");
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -122,33 +118,66 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link SelectOption}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SelectOption> {
+		private String label;
 
-		private String requiredNativeMemoryBytes;
+		private FieldValue value;
 
 		/**
-		 * Required - The size of the model in bytes.
-		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Required - API name: {@code label}
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder label(String value) {
+			this.label = value;
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
-		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * Required - API name: {@code value}
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder value(FieldValue value) {
+			this.value = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(String value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(long value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(double value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(boolean value) {
+			this.value = FieldValue.of(value);
 			return this;
 		}
 
@@ -158,31 +187,30 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link SelectOption}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public SelectOption build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new SelectOption(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link SelectOption}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<SelectOption> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SelectOption::setupSelectOptionDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupSelectOptionDeserializer(ObjectDeserializer<SelectOption.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::label, JsonpDeserializer.stringDeserializer(), "label");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 
 	}
 

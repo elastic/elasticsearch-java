@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,49 +51,43 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.IncludedInValidation
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.IncludedInValidation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
-
-	private final String requiredNativeMemoryBytes;
+public class IncludedInValidation implements ValidationVariant, JsonpSerializable {
+	private final List<FieldValue> constraint;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private IncludedInValidation(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.constraint = ApiTypeHelper.unmodifiableRequired(builder.constraint, this, "constraint");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static IncludedInValidation of(Function<Builder, ObjectBuilder<IncludedInValidation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Validation variant kind.
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	@Override
+	public Validation.Kind _validationKind() {
+		return Validation.Kind.IncludedIn;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * Required - API name: {@code constraint}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final List<FieldValue> constraint() {
+		return this.constraint;
 	}
 
 	/**
@@ -106,11 +101,18 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		generator.write("type", "included_in");
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		if (ApiTypeHelper.isDefined(this.constraint)) {
+			generator.writeKey("constraint");
+			generator.writeStartArray();
+			for (FieldValue item0 : this.constraint) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -122,34 +124,41 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link IncludedInValidation}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
-
-		private String requiredNativeMemoryBytes;
+				ObjectBuilder<IncludedInValidation> {
+		private List<FieldValue> constraint;
 
 		/**
-		 * Required - The size of the model in bytes.
+		 * Required - API name: {@code constraint}
 		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Adds all elements of <code>list</code> to <code>constraint</code>.
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder constraint(List<FieldValue> list) {
+			this.constraint = _listAddAll(this.constraint, list);
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
+		 * Required - API name: {@code constraint}
 		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * Adds one or more values to <code>constraint</code>.
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder constraint(FieldValue value, FieldValue... values) {
+			this.constraint = _listAdd(this.constraint, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code constraint}
+		 * <p>
+		 * Adds a value to <code>constraint</code> using a builder lambda.
+		 */
+		public final Builder constraint(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return constraint(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -158,32 +167,31 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link IncludedInValidation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public IncludedInValidation build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new IncludedInValidation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link IncludedInValidation}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<IncludedInValidation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IncludedInValidation::setupIncludedInValidationDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupIncludedInValidationDeserializer(ObjectDeserializer<IncludedInValidation.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::constraint, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "constraint");
 
+		op.ignore("type");
 	}
 
 }

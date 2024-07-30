@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,49 +51,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.FilteringValidation
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.FilteringValidation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class FilteringValidation implements JsonpSerializable {
+	private final List<String> ids;
 
-	private final String requiredNativeMemoryBytes;
+	private final List<String> messages;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private FilteringValidation(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.ids = ApiTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
+		this.messages = ApiTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static FilteringValidation of(Function<Builder, ObjectBuilder<FilteringValidation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Required - API name: {@code ids}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	public final List<String> ids() {
+		return this.ids;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * Required - API name: {@code messages}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final List<String> messages() {
+		return this.messages;
 	}
 
 	/**
@@ -106,11 +103,26 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		if (ApiTypeHelper.isDefined(this.ids)) {
+			generator.writeKey("ids");
+			generator.writeStartArray();
+			for (String item0 : this.ids) {
+				generator.write(item0);
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.messages)) {
+			generator.writeKey("messages");
+			generator.writeStartArray();
+			for (String item0 : this.messages) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -122,33 +134,53 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link FilteringValidation}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+				ObjectBuilder<FilteringValidation> {
+		private List<String> ids;
 
-		private String requiredNativeMemoryBytes;
+		private List<String> messages;
 
 		/**
-		 * Required - The size of the model in bytes.
+		 * Required - API name: {@code ids}
 		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
+		 * Required - API name: {@code ids}
 		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code messages}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>messages</code>.
+		 */
+		public final Builder messages(List<String> list) {
+			this.messages = _listAddAll(this.messages, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code messages}
+		 * <p>
+		 * Adds one or more values to <code>messages</code>.
+		 */
+		public final Builder messages(String value, String... values) {
+			this.messages = _listAdd(this.messages, value, values);
 			return this;
 		}
 
@@ -158,31 +190,31 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link FilteringValidation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public FilteringValidation build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new FilteringValidation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link FilteringValidation}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<FilteringValidation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FilteringValidation::setupFilteringValidationDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupFilteringValidationDeserializer(ObjectDeserializer<FilteringValidation.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
+		op.add(Builder::messages, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"messages");
 
 	}
 

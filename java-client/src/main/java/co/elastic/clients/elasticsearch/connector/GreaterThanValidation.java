@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,10 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,49 +49,43 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.GreaterThanValidation
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.GreaterThanValidation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
-
-	private final String requiredNativeMemoryBytes;
+public class GreaterThanValidation implements ValidationVariant, JsonpSerializable {
+	private final double constraint;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private GreaterThanValidation(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static GreaterThanValidation of(Function<Builder, ObjectBuilder<GreaterThanValidation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Validation variant kind.
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	@Override
+	public Validation.Kind _validationKind() {
+		return Validation.Kind.GreaterThan;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * Required - API name: {@code constraint}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final double constraint() {
+		return this.constraint;
 	}
 
 	/**
@@ -106,11 +99,10 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		generator.write("type", "greater_than");
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		generator.writeKey("constraint");
+		generator.write(this.constraint);
 
 	}
 
@@ -122,33 +114,19 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link GreaterThanValidation}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
-
-		private String requiredNativeMemoryBytes;
+				ObjectBuilder<GreaterThanValidation> {
+		private Double constraint;
 
 		/**
-		 * Required - The size of the model in bytes.
-		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Required - API name: {@code constraint}
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - The amount of memory required to load the model in bytes.
-		 * <p>
-		 * API name: {@code required_native_memory_bytes}
-		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder constraint(double value) {
+			this.constraint = value;
 			return this;
 		}
 
@@ -158,32 +136,31 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link GreaterThanValidation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public GreaterThanValidation build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new GreaterThanValidation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link GreaterThanValidation}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<GreaterThanValidation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GreaterThanValidation::setupGreaterThanValidationDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupGreaterThanValidationDeserializer(ObjectDeserializer<GreaterThanValidation.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::constraint, JsonpDeserializer.doubleDeserializer(), "constraint");
 
+		op.ignore("type");
 	}
 
 }

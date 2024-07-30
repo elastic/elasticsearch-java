@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
+import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,49 +51,44 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector.put.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href="../doc-files/api-spec.html#connector.put.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class PutResponse implements JsonpSerializable {
+	private final Result result;
 
-	private final String requiredNativeMemoryBytes;
+	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private PutResponse(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static PutResponse of(Function<Builder, ObjectBuilder<PutResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Required - API name: {@code result}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	public final Result result() {
+		return this.result;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * Required - API name: {@code id}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -106,11 +102,10 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
-
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		generator.writeKey("result");
+		this.result.serialize(generator, mapper);
+		generator.writeKey("id");
+		generator.write(this.id);
 
 	}
 
@@ -122,33 +117,27 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link PutResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PutResponse> {
+		private Result result;
 
-		private String requiredNativeMemoryBytes;
+		private String id;
 
 		/**
-		 * Required - The size of the model in bytes.
-		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Required - API name: {@code result}
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder result(Result value) {
+			this.result = value;
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
-		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * Required - API name: {@code id}
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -158,31 +147,30 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link PutResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public PutResponse build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new PutResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link PutResponse}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<PutResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutResponse::setupPutResponseDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupPutResponseDeserializer(ObjectDeserializer<PutResponse.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::result, Result._DESERIALIZER, "result");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}
 

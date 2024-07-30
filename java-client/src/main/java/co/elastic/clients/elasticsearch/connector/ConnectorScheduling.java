@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -50,49 +51,47 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.ConnectorScheduling
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.ConnectorScheduling">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class ConnectorScheduling implements JsonpSerializable {
+	private final boolean enabled;
 
-	private final String requiredNativeMemoryBytes;
+	private final String interval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private ConnectorScheduling(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static ConnectorScheduling of(Function<Builder, ObjectBuilder<ConnectorScheduling>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Required - API name: {@code enabled}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	public final boolean enabled() {
+		return this.enabled;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
+	 * Required - The interval is expressed using the crontab syntax
 	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * API name: {@code interval}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final String interval() {
+		return this.interval;
 	}
 
 	/**
@@ -106,11 +105,11 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		generator.writeKey("enabled");
+		generator.write(this.enabled);
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		generator.writeKey("interval");
+		generator.write(this.interval);
 
 	}
 
@@ -122,33 +121,31 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link ConnectorScheduling}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+				ObjectBuilder<ConnectorScheduling> {
+		private Boolean enabled;
 
-		private String requiredNativeMemoryBytes;
+		private String interval;
 
 		/**
-		 * Required - The size of the model in bytes.
-		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Required - API name: {@code enabled}
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder enabled(boolean value) {
+			this.enabled = value;
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
+		 * Required - The interval is expressed using the crontab syntax
 		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * API name: {@code interval}
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder interval(String value) {
+			this.interval = value;
 			return this;
 		}
 
@@ -158,31 +155,30 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link ConnectorScheduling}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public ConnectorScheduling build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new ConnectorScheduling(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link ConnectorScheduling}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<ConnectorScheduling> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ConnectorScheduling::setupConnectorSchedulingDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupConnectorSchedulingDeserializer(ObjectDeserializer<ConnectorScheduling.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
 
 	}
 

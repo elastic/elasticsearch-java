@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -50,49 +50,57 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.FilteringConfig
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.FilteringConfig">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class FilteringConfig implements JsonpSerializable {
+	private final FilteringRules active;
 
-	private final String requiredNativeMemoryBytes;
+	@Nullable
+	private final String domain;
+
+	private final FilteringRules draft;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private FilteringConfig(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.domain = builder.domain;
+		this.draft = ApiTypeHelper.requireNonNull(builder.draft, this, "draft");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static FilteringConfig of(Function<Builder, ObjectBuilder<FilteringConfig>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Required - API name: {@code active}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	public final FilteringRules active() {
+		return this.active;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * API name: {@code domain}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	@Nullable
+	public final String domain() {
+		return this.domain;
+	}
+
+	/**
+	 * Required - API name: {@code draft}
+	 */
+	public final FilteringRules draft() {
+		return this.draft;
 	}
 
 	/**
@@ -106,11 +114,16 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		generator.writeKey("active");
+		this.active.serialize(generator, mapper);
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		if (this.domain != null) {
+			generator.writeKey("domain");
+			generator.write(this.domain);
+
+		}
+		generator.writeKey("draft");
+		this.draft.serialize(generator, mapper);
 
 	}
 
@@ -122,34 +135,53 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link FilteringConfig}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FilteringConfig> {
+		private FilteringRules active;
 
-		private String requiredNativeMemoryBytes;
+		@Nullable
+		private String domain;
+
+		private FilteringRules draft;
 
 		/**
-		 * Required - The size of the model in bytes.
-		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Required - API name: {@code active}
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder active(FilteringRules value) {
+			this.active = value;
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
-		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * Required - API name: {@code active}
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder active(Function<FilteringRules.Builder, ObjectBuilder<FilteringRules>> fn) {
+			return this.active(fn.apply(new FilteringRules.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code domain}
+		 */
+		public final Builder domain(@Nullable String value) {
+			this.domain = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code draft}
+		 */
+		public final Builder draft(FilteringRules value) {
+			this.draft = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code draft}
+		 */
+		public final Builder draft(Function<FilteringRules.Builder, ObjectBuilder<FilteringRules>> fn) {
+			return this.draft(fn.apply(new FilteringRules.Builder()).build());
 		}
 
 		@Override
@@ -158,31 +190,31 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link FilteringConfig}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public FilteringConfig build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new FilteringConfig(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link FilteringConfig}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<FilteringConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FilteringConfig::setupFilteringConfigDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupFilteringConfigDeserializer(ObjectDeserializer<FilteringConfig.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::active, FilteringRules._DESERIALIZER, "active");
+		op.add(Builder::domain, JsonpDeserializer.stringDeserializer(), "domain");
+		op.add(Builder::draft, FilteringRules._DESERIALIZER, "draft");
 
 	}
 

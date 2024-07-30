@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,7 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,49 +50,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.FilteringRulesValidation
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.FilteringRulesValidation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class FilteringRulesValidation implements JsonpSerializable {
+	private final List<FilteringValidation> errors;
 
-	private final String requiredNativeMemoryBytes;
+	private final FilteringValidationState state;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private FilteringRulesValidation(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.errors = ApiTypeHelper.unmodifiableRequired(builder.errors, this, "errors");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static FilteringRulesValidation of(Function<Builder, ObjectBuilder<FilteringRulesValidation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * Required - API name: {@code errors}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	public final List<FilteringValidation> errors() {
+		return this.errors;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * Required - API name: {@code state}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	public final FilteringValidationState state() {
+		return this.state;
 	}
 
 	/**
@@ -106,11 +102,18 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		if (ApiTypeHelper.isDefined(this.errors)) {
+			generator.writeKey("errors");
+			generator.writeStartArray();
+			for (FilteringValidation item0 : this.errors) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeKey("state");
+		this.state.serialize(generator, mapper);
 
 	}
 
@@ -122,33 +125,50 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link FilteringRulesValidation}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+				ObjectBuilder<FilteringRulesValidation> {
+		private List<FilteringValidation> errors;
 
-		private String requiredNativeMemoryBytes;
+		private FilteringValidationState state;
 
 		/**
-		 * Required - The size of the model in bytes.
+		 * Required - API name: {@code errors}
 		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * Adds all elements of <code>list</code> to <code>errors</code>.
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder errors(List<FilteringValidation> list) {
+			this.errors = _listAddAll(this.errors, list);
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
+		 * Required - API name: {@code errors}
 		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * Adds one or more values to <code>errors</code>.
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder errors(FilteringValidation value, FilteringValidation... values) {
+			this.errors = _listAdd(this.errors, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code errors}
+		 * <p>
+		 * Adds a value to <code>errors</code> using a builder lambda.
+		 */
+		public final Builder errors(Function<FilteringValidation.Builder, ObjectBuilder<FilteringValidation>> fn) {
+			return errors(fn.apply(new FilteringValidation.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code state}
+		 */
+		public final Builder state(FilteringValidationState value) {
+			this.state = value;
 			return this;
 		}
 
@@ -158,31 +178,31 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link FilteringRulesValidation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public FilteringRulesValidation build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new FilteringRulesValidation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link FilteringRulesValidation}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<FilteringRulesValidation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FilteringRulesValidation::setupFilteringRulesValidationDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupFilteringRulesValidationDeserializer(
+			ObjectDeserializer<FilteringRulesValidation.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::errors, JsonpDeserializer.arrayDeserializer(FilteringValidation._DESERIALIZER), "errors");
+		op.add(Builder::state, FilteringValidationState._DESERIALIZER, "state");
 
 	}
 

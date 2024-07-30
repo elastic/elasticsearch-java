@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.connector;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,11 +26,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,49 +48,49 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.TrainedModelSizeStats
+// typedef: connector._types.SyncRulesFeature
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelSizeStats">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#connector._types.SyncRulesFeature">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelSizeStats implements JsonpSerializable {
-	private final String modelSizeBytes;
+public class SyncRulesFeature implements JsonpSerializable {
+	@Nullable
+	private final FeatureEnabled advanced;
 
-	private final String requiredNativeMemoryBytes;
+	@Nullable
+	private final FeatureEnabled basic;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelSizeStats(Builder builder) {
+	private SyncRulesFeature(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
-				"requiredNativeMemoryBytes");
+		this.advanced = builder.advanced;
+		this.basic = builder.basic;
 
 	}
 
-	public static TrainedModelSizeStats of(Function<Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+	public static SyncRulesFeature of(Function<Builder, ObjectBuilder<SyncRulesFeature>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The size of the model in bytes.
-	 * <p>
-	 * API name: {@code model_size_bytes}
+	 * API name: {@code advanced}
 	 */
-	public final String modelSizeBytes() {
-		return this.modelSizeBytes;
+	@Nullable
+	public final FeatureEnabled advanced() {
+		return this.advanced;
 	}
 
 	/**
-	 * Required - The amount of memory required to load the model in bytes.
-	 * <p>
-	 * API name: {@code required_native_memory_bytes}
+	 * API name: {@code basic}
 	 */
-	public final String requiredNativeMemoryBytes() {
-		return this.requiredNativeMemoryBytes;
+	@Nullable
+	public final FeatureEnabled basic() {
+		return this.basic;
 	}
 
 	/**
@@ -106,11 +104,16 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_size_bytes");
-		generator.write(this.modelSizeBytes);
+		if (this.advanced != null) {
+			generator.writeKey("advanced");
+			this.advanced.serialize(generator, mapper);
 
-		generator.writeKey("required_native_memory_bytes");
-		generator.write(this.requiredNativeMemoryBytes);
+		}
+		if (this.basic != null) {
+			generator.writeKey("basic");
+			this.basic.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -122,34 +125,44 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelSizeStats}.
+	 * Builder for {@link SyncRulesFeature}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<TrainedModelSizeStats> {
-		private String modelSizeBytes;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SyncRulesFeature> {
+		@Nullable
+		private FeatureEnabled advanced;
 
-		private String requiredNativeMemoryBytes;
+		@Nullable
+		private FeatureEnabled basic;
 
 		/**
-		 * Required - The size of the model in bytes.
-		 * <p>
-		 * API name: {@code model_size_bytes}
+		 * API name: {@code advanced}
 		 */
-		public final Builder modelSizeBytes(String value) {
-			this.modelSizeBytes = value;
+		public final Builder advanced(@Nullable FeatureEnabled value) {
+			this.advanced = value;
 			return this;
 		}
 
 		/**
-		 * Required - The amount of memory required to load the model in bytes.
-		 * <p>
-		 * API name: {@code required_native_memory_bytes}
+		 * API name: {@code advanced}
 		 */
-		public final Builder requiredNativeMemoryBytes(String value) {
-			this.requiredNativeMemoryBytes = value;
+		public final Builder advanced(Function<FeatureEnabled.Builder, ObjectBuilder<FeatureEnabled>> fn) {
+			return this.advanced(fn.apply(new FeatureEnabled.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code basic}
+		 */
+		public final Builder basic(@Nullable FeatureEnabled value) {
+			this.basic = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code basic}
+		 */
+		public final Builder basic(Function<FeatureEnabled.Builder, ObjectBuilder<FeatureEnabled>> fn) {
+			return this.basic(fn.apply(new FeatureEnabled.Builder()).build());
 		}
 
 		@Override
@@ -158,31 +171,30 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelSizeStats}.
+		 * Builds a {@link SyncRulesFeature}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelSizeStats build() {
+		public SyncRulesFeature build() {
 			_checkSingleUse();
 
-			return new TrainedModelSizeStats(this);
+			return new SyncRulesFeature(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelSizeStats}
+	 * Json deserializer for {@link SyncRulesFeature}
 	 */
-	public static final JsonpDeserializer<TrainedModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelSizeStats::setupTrainedModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<SyncRulesFeature> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SyncRulesFeature::setupSyncRulesFeatureDeserializer);
 
-	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
+	protected static void setupSyncRulesFeatureDeserializer(ObjectDeserializer<SyncRulesFeature.Builder> op) {
 
-		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
-				"required_native_memory_bytes");
+		op.add(Builder::advanced, FeatureEnabled._DESERIALIZER, "advanced");
+		op.add(Builder::basic, FeatureEnabled._DESERIALIZER, "basic");
 
 	}
 
