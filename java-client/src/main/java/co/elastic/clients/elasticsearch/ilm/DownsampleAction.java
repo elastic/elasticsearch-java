@@ -27,6 +27,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,48 +50,46 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.Phase
+// typedef: ilm._types.DownsampleAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.Phase">API
+ * @see <a href="../doc-files/api-spec.html#ilm._types.DownsampleAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Phase implements JsonpSerializable {
-	@Nullable
-	private final Actions actions;
+public class DownsampleAction implements JsonpSerializable {
+	private final Time fixedInterval;
 
 	@Nullable
-	private final Time minAge;
+	private final Time waitTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Phase(Builder builder) {
+	private DownsampleAction(Builder builder) {
 
-		this.actions = builder.actions;
-		this.minAge = builder.minAge;
+		this.fixedInterval = ApiTypeHelper.requireNonNull(builder.fixedInterval, this, "fixedInterval");
+		this.waitTimeout = builder.waitTimeout;
 
 	}
 
-	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+	public static DownsampleAction of(Function<Builder, ObjectBuilder<DownsampleAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code fixed_interval}
 	 */
-	@Nullable
-	public final Actions actions() {
-		return this.actions;
+	public final Time fixedInterval() {
+		return this.fixedInterval;
 	}
 
 	/**
-	 * API name: {@code min_age}
+	 * API name: {@code wait_timeout}
 	 */
 	@Nullable
-	public final Time minAge() {
-		return this.minAge;
+	public final Time waitTimeout() {
+		return this.waitTimeout;
 	}
 
 	/**
@@ -104,14 +103,12 @@ public class Phase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-			generator.writeKey("actions");
-			this.actions.serialize(generator, mapper);
+		generator.writeKey("fixed_interval");
+		this.fixedInterval.serialize(generator, mapper);
 
-		}
-		if (this.minAge != null) {
-			generator.writeKey("min_age");
-			this.minAge.serialize(generator, mapper);
+		if (this.waitTimeout != null) {
+			generator.writeKey("wait_timeout");
+			this.waitTimeout.serialize(generator, mapper);
 
 		}
 
@@ -125,44 +122,43 @@ public class Phase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Phase}.
+	 * Builder for {@link DownsampleAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Phase> {
-		@Nullable
-		private Actions actions;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DownsampleAction> {
+		private Time fixedInterval;
 
 		@Nullable
-		private Time minAge;
+		private Time waitTimeout;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code fixed_interval}
 		 */
-		public final Builder actions(@Nullable Actions value) {
-			this.actions = value;
+		public final Builder fixedInterval(Time value) {
+			this.fixedInterval = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code fixed_interval}
 		 */
-		public final Builder actions(Function<Actions.Builder, ObjectBuilder<Actions>> fn) {
-			return this.actions(fn.apply(new Actions.Builder()).build());
+		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fixedInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code min_age}
+		 * API name: {@code wait_timeout}
 		 */
-		public final Builder minAge(@Nullable Time value) {
-			this.minAge = value;
+		public final Builder waitTimeout(@Nullable Time value) {
+			this.waitTimeout = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code min_age}
+		 * API name: {@code wait_timeout}
 		 */
-		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.minAge(fn.apply(new Time.Builder()).build());
+		public final Builder waitTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -171,30 +167,30 @@ public class Phase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Phase}.
+		 * Builds a {@link DownsampleAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Phase build() {
+		public DownsampleAction build() {
 			_checkSingleUse();
 
-			return new Phase(this);
+			return new DownsampleAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Phase}
+	 * Json deserializer for {@link DownsampleAction}
 	 */
-	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Phase::setupPhaseDeserializer);
+	public static final JsonpDeserializer<DownsampleAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DownsampleAction::setupDownsampleActionDeserializer);
 
-	protected static void setupPhaseDeserializer(ObjectDeserializer<Phase.Builder> op) {
+	protected static void setupDownsampleActionDeserializer(ObjectDeserializer<DownsampleAction.Builder> op) {
 
-		op.add(Builder::actions, Actions._DESERIALIZER, "actions");
-		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
+		op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
+		op.add(Builder::waitTimeout, Time._DESERIALIZER, "wait_timeout");
 
 	}
 

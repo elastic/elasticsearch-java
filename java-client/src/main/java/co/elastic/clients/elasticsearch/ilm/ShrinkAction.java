@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,6 +29,9 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,48 +51,60 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.Phase
+// typedef: ilm._types.ShrinkAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.Phase">API
+ * @see <a href="../doc-files/api-spec.html#ilm._types.ShrinkAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Phase implements JsonpSerializable {
+public class ShrinkAction implements JsonpSerializable {
 	@Nullable
-	private final Actions actions;
+	private final Integer numberOfShards;
 
 	@Nullable
-	private final Time minAge;
+	private final String maxPrimaryShardSize;
+
+	@Nullable
+	private final Boolean allowWriteAfterShrink;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Phase(Builder builder) {
+	private ShrinkAction(Builder builder) {
 
-		this.actions = builder.actions;
-		this.minAge = builder.minAge;
+		this.numberOfShards = builder.numberOfShards;
+		this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
+		this.allowWriteAfterShrink = builder.allowWriteAfterShrink;
 
 	}
 
-	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+	public static ShrinkAction of(Function<Builder, ObjectBuilder<ShrinkAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * API name: {@code number_of_shards}
 	 */
 	@Nullable
-	public final Actions actions() {
-		return this.actions;
+	public final Integer numberOfShards() {
+		return this.numberOfShards;
 	}
 
 	/**
-	 * API name: {@code min_age}
+	 * API name: {@code max_primary_shard_size}
 	 */
 	@Nullable
-	public final Time minAge() {
-		return this.minAge;
+	public final String maxPrimaryShardSize() {
+		return this.maxPrimaryShardSize;
+	}
+
+	/**
+	 * API name: {@code allow_write_after_shrink}
+	 */
+	@Nullable
+	public final Boolean allowWriteAfterShrink() {
+		return this.allowWriteAfterShrink;
 	}
 
 	/**
@@ -104,14 +118,19 @@ public class Phase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-			generator.writeKey("actions");
-			this.actions.serialize(generator, mapper);
+		if (this.numberOfShards != null) {
+			generator.writeKey("number_of_shards");
+			generator.write(this.numberOfShards);
 
 		}
-		if (this.minAge != null) {
-			generator.writeKey("min_age");
-			this.minAge.serialize(generator, mapper);
+		if (this.maxPrimaryShardSize != null) {
+			generator.writeKey("max_primary_shard_size");
+			generator.write(this.maxPrimaryShardSize);
+
+		}
+		if (this.allowWriteAfterShrink != null) {
+			generator.writeKey("allow_write_after_shrink");
+			generator.write(this.allowWriteAfterShrink);
 
 		}
 
@@ -125,44 +144,41 @@ public class Phase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Phase}.
+	 * Builder for {@link ShrinkAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Phase> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShrinkAction> {
 		@Nullable
-		private Actions actions;
+		private Integer numberOfShards;
 
 		@Nullable
-		private Time minAge;
+		private String maxPrimaryShardSize;
+
+		@Nullable
+		private Boolean allowWriteAfterShrink;
 
 		/**
-		 * API name: {@code actions}
+		 * API name: {@code number_of_shards}
 		 */
-		public final Builder actions(@Nullable Actions value) {
-			this.actions = value;
+		public final Builder numberOfShards(@Nullable Integer value) {
+			this.numberOfShards = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code actions}
+		 * API name: {@code max_primary_shard_size}
 		 */
-		public final Builder actions(Function<Actions.Builder, ObjectBuilder<Actions>> fn) {
-			return this.actions(fn.apply(new Actions.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(@Nullable Time value) {
-			this.minAge = value;
+		public final Builder maxPrimaryShardSize(@Nullable String value) {
+			this.maxPrimaryShardSize = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code min_age}
+		 * API name: {@code allow_write_after_shrink}
 		 */
-		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.minAge(fn.apply(new Time.Builder()).build());
+		public final Builder allowWriteAfterShrink(@Nullable Boolean value) {
+			this.allowWriteAfterShrink = value;
+			return this;
 		}
 
 		@Override
@@ -171,30 +187,31 @@ public class Phase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Phase}.
+		 * Builds a {@link ShrinkAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Phase build() {
+		public ShrinkAction build() {
 			_checkSingleUse();
 
-			return new Phase(this);
+			return new ShrinkAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Phase}
+	 * Json deserializer for {@link ShrinkAction}
 	 */
-	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Phase::setupPhaseDeserializer);
+	public static final JsonpDeserializer<ShrinkAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShrinkAction::setupShrinkActionDeserializer);
 
-	protected static void setupPhaseDeserializer(ObjectDeserializer<Phase.Builder> op) {
+	protected static void setupShrinkActionDeserializer(ObjectDeserializer<ShrinkAction.Builder> op) {
 
-		op.add(Builder::actions, Actions._DESERIALIZER, "actions");
-		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
+		op.add(Builder::numberOfShards, JsonpDeserializer.integerDeserializer(), "number_of_shards");
+		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
+		op.add(Builder::allowWriteAfterShrink, JsonpDeserializer.booleanDeserializer(), "allow_write_after_shrink");
 
 	}
 

@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,6 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,48 +49,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.Phase
+// typedef: ilm._types.DeleteAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.Phase">API
+ * @see <a href="../doc-files/api-spec.html#ilm._types.DeleteAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Phase implements JsonpSerializable {
+public class DeleteAction implements JsonpSerializable {
 	@Nullable
-	private final Actions actions;
-
-	@Nullable
-	private final Time minAge;
+	private final Boolean deleteSearchableSnapshot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Phase(Builder builder) {
+	private DeleteAction(Builder builder) {
 
-		this.actions = builder.actions;
-		this.minAge = builder.minAge;
+		this.deleteSearchableSnapshot = builder.deleteSearchableSnapshot;
 
 	}
 
-	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+	public static DeleteAction of(Function<Builder, ObjectBuilder<DeleteAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * API name: {@code delete_searchable_snapshot}
 	 */
 	@Nullable
-	public final Actions actions() {
-		return this.actions;
-	}
-
-	/**
-	 * API name: {@code min_age}
-	 */
-	@Nullable
-	public final Time minAge() {
-		return this.minAge;
+	public final Boolean deleteSearchableSnapshot() {
+		return this.deleteSearchableSnapshot;
 	}
 
 	/**
@@ -104,14 +92,9 @@ public class Phase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-			generator.writeKey("actions");
-			this.actions.serialize(generator, mapper);
-
-		}
-		if (this.minAge != null) {
-			generator.writeKey("min_age");
-			this.minAge.serialize(generator, mapper);
+		if (this.deleteSearchableSnapshot != null) {
+			generator.writeKey("delete_searchable_snapshot");
+			generator.write(this.deleteSearchableSnapshot);
 
 		}
 
@@ -125,44 +108,19 @@ public class Phase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Phase}.
+	 * Builder for {@link DeleteAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Phase> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DeleteAction> {
 		@Nullable
-		private Actions actions;
-
-		@Nullable
-		private Time minAge;
+		private Boolean deleteSearchableSnapshot;
 
 		/**
-		 * API name: {@code actions}
+		 * API name: {@code delete_searchable_snapshot}
 		 */
-		public final Builder actions(@Nullable Actions value) {
-			this.actions = value;
+		public final Builder deleteSearchableSnapshot(@Nullable Boolean value) {
+			this.deleteSearchableSnapshot = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code actions}
-		 */
-		public final Builder actions(Function<Actions.Builder, ObjectBuilder<Actions>> fn) {
-			return this.actions(fn.apply(new Actions.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(@Nullable Time value) {
-			this.minAge = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.minAge(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -171,30 +129,30 @@ public class Phase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Phase}.
+		 * Builds a {@link DeleteAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Phase build() {
+		public DeleteAction build() {
 			_checkSingleUse();
 
-			return new Phase(this);
+			return new DeleteAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Phase}
+	 * Json deserializer for {@link DeleteAction}
 	 */
-	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Phase::setupPhaseDeserializer);
+	public static final JsonpDeserializer<DeleteAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DeleteAction::setupDeleteActionDeserializer);
 
-	protected static void setupPhaseDeserializer(ObjectDeserializer<Phase.Builder> op) {
+	protected static void setupDeleteActionDeserializer(ObjectDeserializer<DeleteAction.Builder> op) {
 
-		op.add(Builder::actions, Actions._DESERIALIZER, "actions");
-		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
+		op.add(Builder::deleteSearchableSnapshot, JsonpDeserializer.booleanDeserializer(),
+				"delete_searchable_snapshot");
 
 	}
 

@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,6 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,48 +49,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.Phase
+// typedef: ilm._types.SetPriorityAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.Phase">API
+ * @see <a href="../doc-files/api-spec.html#ilm._types.SetPriorityAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Phase implements JsonpSerializable {
+public class SetPriorityAction implements JsonpSerializable {
 	@Nullable
-	private final Actions actions;
-
-	@Nullable
-	private final Time minAge;
+	private final Integer priority;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Phase(Builder builder) {
+	private SetPriorityAction(Builder builder) {
 
-		this.actions = builder.actions;
-		this.minAge = builder.minAge;
+		this.priority = builder.priority;
 
 	}
 
-	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+	public static SetPriorityAction of(Function<Builder, ObjectBuilder<SetPriorityAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * API name: {@code priority}
 	 */
 	@Nullable
-	public final Actions actions() {
-		return this.actions;
-	}
-
-	/**
-	 * API name: {@code min_age}
-	 */
-	@Nullable
-	public final Time minAge() {
-		return this.minAge;
+	public final Integer priority() {
+		return this.priority;
 	}
 
 	/**
@@ -104,14 +92,9 @@ public class Phase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-			generator.writeKey("actions");
-			this.actions.serialize(generator, mapper);
-
-		}
-		if (this.minAge != null) {
-			generator.writeKey("min_age");
-			this.minAge.serialize(generator, mapper);
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			generator.write(this.priority);
 
 		}
 
@@ -125,44 +108,19 @@ public class Phase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Phase}.
+	 * Builder for {@link SetPriorityAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Phase> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SetPriorityAction> {
 		@Nullable
-		private Actions actions;
-
-		@Nullable
-		private Time minAge;
+		private Integer priority;
 
 		/**
-		 * API name: {@code actions}
+		 * API name: {@code priority}
 		 */
-		public final Builder actions(@Nullable Actions value) {
-			this.actions = value;
+		public final Builder priority(@Nullable Integer value) {
+			this.priority = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code actions}
-		 */
-		public final Builder actions(Function<Actions.Builder, ObjectBuilder<Actions>> fn) {
-			return this.actions(fn.apply(new Actions.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(@Nullable Time value) {
-			this.minAge = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.minAge(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -171,30 +129,29 @@ public class Phase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Phase}.
+		 * Builds a {@link SetPriorityAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Phase build() {
+		public SetPriorityAction build() {
 			_checkSingleUse();
 
-			return new Phase(this);
+			return new SetPriorityAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Phase}
+	 * Json deserializer for {@link SetPriorityAction}
 	 */
-	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Phase::setupPhaseDeserializer);
+	public static final JsonpDeserializer<SetPriorityAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SetPriorityAction::setupSetPriorityActionDeserializer);
 
-	protected static void setupPhaseDeserializer(ObjectDeserializer<Phase.Builder> op) {
+	protected static void setupSetPriorityActionDeserializer(ObjectDeserializer<SetPriorityAction.Builder> op) {
 
-		op.add(Builder::actions, Actions._DESERIALIZER, "actions");
-		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
+		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
 
 	}
 

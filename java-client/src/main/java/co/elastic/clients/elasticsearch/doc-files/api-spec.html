@@ -986,15 +986,15 @@
 'cat.master.Request': 'cat/master/CatMasterRequest.ts#L22-L31',
 'cat.master.Response': 'cat/master/CatMasterResponse.ts#L22-L24',
 'cat.ml_data_frame_analytics.DataFrameAnalyticsRecord': 'cat/ml_data_frame_analytics/types.ts#L22-L102',
-'cat.ml_data_frame_analytics.Request': 'cat/ml_data_frame_analytics/CatDataFrameAnalyticsRequest.ts#L24-L60',
+'cat.ml_data_frame_analytics.Request': 'cat/ml_data_frame_analytics/CatDataFrameAnalyticsRequest.ts#L24-L59',
 'cat.ml_data_frame_analytics.Response': 'cat/ml_data_frame_analytics/CatDataFrameAnalyticsResponse.ts#L22-L24',
 'cat.ml_datafeeds.DatafeedsRecord': 'cat/ml_datafeeds/types.ts#L22-L87',
-'cat.ml_datafeeds.Request': 'cat/ml_datafeeds/CatDatafeedsRequest.ts#L24-L75',
+'cat.ml_datafeeds.Request': 'cat/ml_datafeeds/CatDatafeedsRequest.ts#L24-L74',
 'cat.ml_datafeeds.Response': 'cat/ml_datafeeds/CatDatafeedsResponse.ts#L22-L24',
 'cat.ml_jobs.JobsRecord': 'cat/ml_jobs/types.ts#L24-L347',
-'cat.ml_jobs.Request': 'cat/ml_jobs/CatJobsRequest.ts#L24-L79',
+'cat.ml_jobs.Request': 'cat/ml_jobs/CatJobsRequest.ts#L24-L78',
 'cat.ml_jobs.Response': 'cat/ml_jobs/CatJobsResponse.ts#L22-L24',
-'cat.ml_trained_models.Request': 'cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L65',
+'cat.ml_trained_models.Request': 'cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L64',
 'cat.ml_trained_models.Response': 'cat/ml_trained_models/CatTrainedModelsResponse.ts#L22-L24',
 'cat.ml_trained_models.TrainedModelsRecord': 'cat/ml_trained_models/types.ts#L23-L115',
 'cat.nodeattrs.NodeAttributesRecord': 'cat/nodeattrs/types.ts#L20-L55',
@@ -1033,7 +1033,7 @@
 'cat.thread_pool.Request': 'cat/thread_pool/CatThreadPoolRequest.ts#L24-L48',
 'cat.thread_pool.Response': 'cat/thread_pool/CatThreadPoolResponse.ts#L22-L24',
 'cat.thread_pool.ThreadPoolRecord': 'cat/thread_pool/types.ts#L22-L124',
-'cat.transforms.Request': 'cat/transforms/CatTransformsRequest.ts#L25-L79',
+'cat.transforms.Request': 'cat/transforms/CatTransformsRequest.ts#L25-L78',
 'cat.transforms.Response': 'cat/transforms/CatTransformsResponse.ts#L22-L24',
 'cat.transforms.TransformsRecord': 'cat/transforms/types.ts#L22-L197',
 'ccr._types.FollowIndexStats': 'ccr/_types/FollowIndexStats.ts#L30-L33',
@@ -1303,12 +1303,20 @@
 'graph._types.VertexInclude': 'graph/_types/Vertex.ts#L61-L64',
 'graph.explore.Request': 'graph/explore/GraphExploreRequest.ts#L28-L72',
 'graph.explore.Response': 'graph/explore/GraphExploreResponse.ts#L25-L33',
-'ilm._types.Configurations': 'ilm/_types/Phase.ts#L50-L54',
-'ilm._types.ForceMergeConfiguration': 'ilm/_types/Phase.ts#L56-L58',
-'ilm._types.Phase': 'ilm/_types/Phase.ts#L25-L36',
-'ilm._types.Phases': 'ilm/_types/Phase.ts#L38-L44',
+'ilm._types.Actions': 'ilm/_types/Phase.ts#L42-L91',
+'ilm._types.AllocateAction': 'ilm/_types/Phase.ts#L131-L137',
+'ilm._types.DeleteAction': 'ilm/_types/Phase.ts#L147-L149',
+'ilm._types.DownsampleAction': 'ilm/_types/Phase.ts#L110-L113',
+'ilm._types.ForceMergeAction': 'ilm/_types/Phase.ts#L121-L124',
+'ilm._types.MigrateAction': 'ilm/_types/Phase.ts#L139-L141',
+'ilm._types.Phase': 'ilm/_types/Phase.ts#L26-L32',
+'ilm._types.Phases': 'ilm/_types/Phase.ts#L34-L40',
 'ilm._types.Policy': 'ilm/_types/Policy.ts#L23-L26',
-'ilm._types.ShrinkConfiguration': 'ilm/_types/Phase.ts#L60-L62',
+'ilm._types.RolloverAction': 'ilm/_types/Phase.ts#L97-L108',
+'ilm._types.SearchableSnapshotAction': 'ilm/_types/Phase.ts#L126-L129',
+'ilm._types.SetPriorityAction': 'ilm/_types/Phase.ts#L93-L95',
+'ilm._types.ShrinkAction': 'ilm/_types/Phase.ts#L115-L119',
+'ilm._types.WaitForSnapshotAction': 'ilm/_types/Phase.ts#L143-L145',
 'ilm.delete_lifecycle.Request': 'ilm/delete_lifecycle/DeleteLifecycleRequest.ts#L24-L51',
 'ilm.delete_lifecycle.Response': 'ilm/delete_lifecycle/DeleteLifecycleResponse.ts#L22-L24',
 'ilm.explain_lifecycle.LifecycleExplain': 'ilm/explain_lifecycle/types.ts#L59-L62',
@@ -1890,11 +1898,11 @@
 'ml._types.Vocabulary': 'ml/_types/inference.ts#L233-L235',
 'ml._types.ZeroShotClassificationInferenceOptions': 'ml/_types/inference.ts#L201-L222',
 'ml._types.ZeroShotClassificationInferenceUpdateOptions': 'ml/_types/inference.ts#L374-L383',
-'ml.clear_trained_model_deployment_cache.Request': 'ml/clear_trained_model_deployment_cache/MlClearTrainedModelDeploymentCacheRequest.ts#L25-L42',
+'ml.clear_trained_model_deployment_cache.Request': 'ml/clear_trained_model_deployment_cache/MlClearTrainedModelDeploymentCacheRequest.ts#L25-L43',
 'ml.clear_trained_model_deployment_cache.Response': 'ml/clear_trained_model_deployment_cache/MlClearTrainedModelDeploymentCacheResponse.ts#L20-L24',
 'ml.close_job.Request': 'ml/close_job/MlCloseJobRequest.ts#L24-L77',
 'ml.close_job.Response': 'ml/close_job/MlCloseJobResponse.ts#L20-L22',
-'ml.delete_calendar.Request': 'ml/delete_calendar/MlDeleteCalendarRequest.ts#L23-L36',
+'ml.delete_calendar.Request': 'ml/delete_calendar/MlDeleteCalendarRequest.ts#L23-L37',
 'ml.delete_calendar.Response': 'ml/delete_calendar/MlDeleteCalendarResponse.ts#L22-L24',
 'ml.delete_calendar_event.Request': 'ml/delete_calendar_event/MlDeleteCalendarEventRequest.ts#L23-L42',
 'ml.delete_calendar_event.Response': 'ml/delete_calendar_event/MlDeleteCalendarEventResponse.ts#L22-L24',
@@ -1918,7 +1926,7 @@
 'ml.delete_trained_model.Response': 'ml/delete_trained_model/MlDeleteTrainedModelResponse.ts#L22-L24',
 'ml.delete_trained_model_alias.Request': 'ml/delete_trained_model_alias/MlDeleteTrainedModelAliasRequest.ts#L23-L44',
 'ml.delete_trained_model_alias.Response': 'ml/delete_trained_model_alias/MlDeleteTrainedModelAliasResponse.ts#L22-L24',
-'ml.estimate_model_memory.Request': 'ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L61',
+'ml.estimate_model_memory.Request': 'ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L62',
 'ml.estimate_model_memory.Response': 'ml/estimate_model_memory/MlEstimateModelMemoryResponse.ts#L20-L24',
 'ml.evaluate_data_frame.ConfusionMatrixItem': 'ml/evaluate_data_frame/types.ts#L125-L130',
 'ml.evaluate_data_frame.ConfusionMatrixPrediction': 'ml/evaluate_data_frame/types.ts#L132-L135',
@@ -2836,10 +2844,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/75481439fa126fbe9699e1d46e90cd9d1b27014e/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/8c1229882b27bb8a9d61460d518c8aeb827e06ff/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/75481439fa126fbe9699e1d46e90cd9d1b27014e/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/8c1229882b27bb8a9d61460d518c8aeb827e06ff/specification/">Elasticsearch API specification</a>.
 </body>
 </html>

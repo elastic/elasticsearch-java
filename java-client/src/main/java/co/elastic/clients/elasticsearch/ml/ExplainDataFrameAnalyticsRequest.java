@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ml.explain_data_frame_analytics.Request
 
 /**
- * Explains a data frame analytics config. This API provides explanations for a
+ * Explain data frame analytics config. This API provides explanations for a
  * data frame analytics config that either exists already or one that has not
  * been created yet. The following explanations are provided:
  * <ul>

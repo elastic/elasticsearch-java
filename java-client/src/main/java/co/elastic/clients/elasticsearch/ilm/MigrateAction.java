@@ -26,13 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -49,34 +49,36 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.ShrinkConfiguration
+// typedef: ilm._types.MigrateAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.ShrinkConfiguration">API
+ * @see <a href="../doc-files/api-spec.html#ilm._types.MigrateAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ShrinkConfiguration implements JsonpSerializable {
-	private final int numberOfShards;
+public class MigrateAction implements JsonpSerializable {
+	@Nullable
+	private final Boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ShrinkConfiguration(Builder builder) {
+	private MigrateAction(Builder builder) {
 
-		this.numberOfShards = ApiTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards");
+		this.enabled = builder.enabled;
 
 	}
 
-	public static ShrinkConfiguration of(Function<Builder, ObjectBuilder<ShrinkConfiguration>> fn) {
+	public static MigrateAction of(Function<Builder, ObjectBuilder<MigrateAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code number_of_shards}
+	 * API name: {@code enabled}
 	 */
-	public final int numberOfShards() {
-		return this.numberOfShards;
+	@Nullable
+	public final Boolean enabled() {
+		return this.enabled;
 	}
 
 	/**
@@ -90,8 +92,11 @@ public class ShrinkConfiguration implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("number_of_shards");
-		generator.write(this.numberOfShards);
+		if (this.enabled != null) {
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
+
+		}
 
 	}
 
@@ -103,19 +108,18 @@ public class ShrinkConfiguration implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ShrinkConfiguration}.
+	 * Builder for {@link MigrateAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<ShrinkConfiguration> {
-		private Integer numberOfShards;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MigrateAction> {
+		@Nullable
+		private Boolean enabled;
 
 		/**
-		 * Required - API name: {@code number_of_shards}
+		 * API name: {@code enabled}
 		 */
-		public final Builder numberOfShards(int value) {
-			this.numberOfShards = value;
+		public final Builder enabled(@Nullable Boolean value) {
+			this.enabled = value;
 			return this;
 		}
 
@@ -125,29 +129,29 @@ public class ShrinkConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link ShrinkConfiguration}.
+		 * Builds a {@link MigrateAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ShrinkConfiguration build() {
+		public MigrateAction build() {
 			_checkSingleUse();
 
-			return new ShrinkConfiguration(this);
+			return new MigrateAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ShrinkConfiguration}
+	 * Json deserializer for {@link MigrateAction}
 	 */
-	public static final JsonpDeserializer<ShrinkConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShrinkConfiguration::setupShrinkConfigurationDeserializer);
+	public static final JsonpDeserializer<MigrateAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MigrateAction::setupMigrateActionDeserializer);
 
-	protected static void setupShrinkConfigurationDeserializer(ObjectDeserializer<ShrinkConfiguration.Builder> op) {
+	protected static void setupMigrateActionDeserializer(ObjectDeserializer<MigrateAction.Builder> op) {
 
-		op.add(Builder::numberOfShards, JsonpDeserializer.integerDeserializer(), "number_of_shards");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

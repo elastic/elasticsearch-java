@@ -69,11 +69,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.clear_trained_model_deployment_cache
 
 	/**
-	 * Clears a trained model deployment cache on all nodes where the trained model
-	 * is assigned. A trained model deployment may have an inference cache enabled.
-	 * As requests are handled by each allocated node, their responses may be cached
-	 * on that individual node. Calling this API clears the caches without
-	 * restarting the deployment.
+	 * Clear trained model deployment cache. Cache will be cleared on all nodes
+	 * where the trained model is assigned. A trained model deployment may have an
+	 * inference cache enabled. As requests are handled by each allocated node,
+	 * their responses may be cached on that individual node. Calling this API
+	 * clears the caches without restarting the deployment.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clear-trained-model-deployment-cache.html">Documentation
@@ -89,11 +89,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Clears a trained model deployment cache on all nodes where the trained model
-	 * is assigned. A trained model deployment may have an inference cache enabled.
-	 * As requests are handled by each allocated node, their responses may be cached
-	 * on that individual node. Calling this API clears the caches without
-	 * restarting the deployment.
+	 * Clear trained model deployment cache. Cache will be cleared on all nodes
+	 * where the trained model is assigned. A trained model deployment may have an
+	 * inference cache enabled. As requests are handled by each allocated node,
+	 * their responses may be cached on that individual node. Calling this API
+	 * clears the caches without restarting the deployment.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -171,7 +171,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_calendar
 
 	/**
-	 * Removes all scheduled events from a calendar, then deletes it.
+	 * Delete a calendar. Removes all scheduled events from a calendar, then deletes
+	 * it.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/ml-delete-calendar.html">Documentation
@@ -186,7 +187,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Removes all scheduled events from a calendar, then deletes it.
+	 * Delete a calendar. Removes all scheduled events from a calendar, then deletes
+	 * it.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -204,7 +206,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_calendar_event
 
 	/**
-	 * Deletes scheduled events from a calendar.
+	 * Delete events from a calendar.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/ml-delete-calendar-event.html">Documentation
@@ -219,7 +221,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes scheduled events from a calendar.
+	 * Delete events from a calendar.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -237,7 +239,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_calendar_job
 
 	/**
-	 * Deletes anomaly detection jobs from a calendar.
+	 * Delete anomaly jobs from a calendar.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/ml-delete-calendar-job.html">Documentation
@@ -252,7 +254,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes anomaly detection jobs from a calendar.
+	 * Delete anomaly jobs from a calendar.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -270,7 +272,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_data_frame_analytics
 
 	/**
-	 * Deletes a data frame analytics job.
+	 * Delete a data frame analytics job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/delete-dfanalytics.html">Documentation
@@ -286,7 +288,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes a data frame analytics job.
+	 * Delete a data frame analytics job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -304,7 +306,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_datafeed
 
 	/**
-	 * Deletes an existing datafeed.
+	 * Delete a datafeed.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/ml-delete-datafeed.html">Documentation
@@ -319,7 +321,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes an existing datafeed.
+	 * Delete a datafeed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -337,14 +339,14 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_expired_data
 
 	/**
-	 * Deletes expired and unused machine learning data. Deletes all job results,
-	 * model snapshots and forecast data that have exceeded their retention days
-	 * period. Machine learning state documents that are not associated with any job
-	 * are also deleted. You can limit the request to a single or set of anomaly
-	 * detection jobs by using a job identifier, a group name, a comma-separated
-	 * list of jobs, or a wildcard expression. You can delete expired data for all
-	 * anomaly detection jobs by using _all, by specifying * as the &lt;job_id&gt;,
-	 * or by omitting the &lt;job_id&gt;.
+	 * Delete expired ML data. Deletes all job results, model snapshots and forecast
+	 * data that have exceeded their retention days period. Machine learning state
+	 * documents that are not associated with any job are also deleted. You can
+	 * limit the request to a single or set of anomaly detection jobs by using a job
+	 * identifier, a group name, a comma-separated list of jobs, or a wildcard
+	 * expression. You can delete expired data for all anomaly detection jobs by
+	 * using _all, by specifying * as the &lt;job_id&gt;, or by omitting the
+	 * &lt;job_id&gt;.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-expired-data.html">Documentation
@@ -359,14 +361,14 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes expired and unused machine learning data. Deletes all job results,
-	 * model snapshots and forecast data that have exceeded their retention days
-	 * period. Machine learning state documents that are not associated with any job
-	 * are also deleted. You can limit the request to a single or set of anomaly
-	 * detection jobs by using a job identifier, a group name, a comma-separated
-	 * list of jobs, or a wildcard expression. You can delete expired data for all
-	 * anomaly detection jobs by using _all, by specifying * as the &lt;job_id&gt;,
-	 * or by omitting the &lt;job_id&gt;.
+	 * Delete expired ML data. Deletes all job results, model snapshots and forecast
+	 * data that have exceeded their retention days period. Machine learning state
+	 * documents that are not associated with any job are also deleted. You can
+	 * limit the request to a single or set of anomaly detection jobs by using a job
+	 * identifier, a group name, a comma-separated list of jobs, or a wildcard
+	 * expression. You can delete expired data for all anomaly detection jobs by
+	 * using _all, by specifying * as the &lt;job_id&gt;, or by omitting the
+	 * &lt;job_id&gt;.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -382,14 +384,14 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes expired and unused machine learning data. Deletes all job results,
-	 * model snapshots and forecast data that have exceeded their retention days
-	 * period. Machine learning state documents that are not associated with any job
-	 * are also deleted. You can limit the request to a single or set of anomaly
-	 * detection jobs by using a job identifier, a group name, a comma-separated
-	 * list of jobs, or a wildcard expression. You can delete expired data for all
-	 * anomaly detection jobs by using _all, by specifying * as the &lt;job_id&gt;,
-	 * or by omitting the &lt;job_id&gt;.
+	 * Delete expired ML data. Deletes all job results, model snapshots and forecast
+	 * data that have exceeded their retention days period. Machine learning state
+	 * documents that are not associated with any job are also deleted. You can
+	 * limit the request to a single or set of anomaly detection jobs by using a job
+	 * identifier, a group name, a comma-separated list of jobs, or a wildcard
+	 * expression. You can delete expired data for all anomaly detection jobs by
+	 * using _all, by specifying * as the &lt;job_id&gt;, or by omitting the
+	 * &lt;job_id&gt;.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-expired-data.html">Documentation
@@ -404,7 +406,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_filter
 
 	/**
-	 * Deletes a filter. If an anomaly detection job references the filter, you
+	 * Delete a filter. If an anomaly detection job references the filter, you
 	 * cannot delete the filter. You must update or delete the job before you can
 	 * delete the filter.
 	 * 
@@ -421,7 +423,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes a filter. If an anomaly detection job references the filter, you
+	 * Delete a filter. If an anomaly detection job references the filter, you
 	 * cannot delete the filter. You must update or delete the job before you can
 	 * delete the filter.
 	 * 
@@ -441,10 +443,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_forecast
 
 	/**
-	 * Deletes forecasts from a machine learning job. By default, forecasts are
-	 * retained for 14 days. You can specify a different retention period with the
-	 * <code>expires_in</code> parameter in the forecast jobs API. The delete
-	 * forecast API enables you to delete one or more forecasts before they expire.
+	 * Delete forecasts from a job. By default, forecasts are retained for 14 days.
+	 * You can specify a different retention period with the <code>expires_in</code>
+	 * parameter in the forecast jobs API. The delete forecast API enables you to
+	 * delete one or more forecasts before they expire.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html">Documentation
@@ -459,10 +461,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes forecasts from a machine learning job. By default, forecasts are
-	 * retained for 14 days. You can specify a different retention period with the
-	 * <code>expires_in</code> parameter in the forecast jobs API. The delete
-	 * forecast API enables you to delete one or more forecasts before they expire.
+	 * Delete forecasts from a job. By default, forecasts are retained for 14 days.
+	 * You can specify a different retention period with the <code>expires_in</code>
+	 * parameter in the forecast jobs API. The delete forecast API enables you to
+	 * delete one or more forecasts before they expire.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -523,10 +525,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_model_snapshot
 
 	/**
-	 * Deletes an existing model snapshot. You cannot delete the active model
-	 * snapshot. To delete that snapshot, first revert to a different one. To
-	 * identify the active model snapshot, refer to the
-	 * <code>model_snapshot_id</code> in the results from the get jobs API.
+	 * Delete a model snapshot. You cannot delete the active model snapshot. To
+	 * delete that snapshot, first revert to a different one. To identify the active
+	 * model snapshot, refer to the <code>model_snapshot_id</code> in the results
+	 * from the get jobs API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html">Documentation
@@ -541,10 +543,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes an existing model snapshot. You cannot delete the active model
-	 * snapshot. To delete that snapshot, first revert to a different one. To
-	 * identify the active model snapshot, refer to the
-	 * <code>model_snapshot_id</code> in the results from the get jobs API.
+	 * Delete a model snapshot. You cannot delete the active model snapshot. To
+	 * delete that snapshot, first revert to a different one. To identify the active
+	 * model snapshot, refer to the <code>model_snapshot_id</code> in the results
+	 * from the get jobs API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -562,8 +564,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_trained_model
 
 	/**
-	 * Deletes an existing trained inference model that is currently not referenced
-	 * by an ingest pipeline.
+	 * Delete an unreferenced trained model. The request deletes a trained inference
+	 * model that is not referenced by an ingest pipeline.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html">Documentation
@@ -578,8 +580,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes an existing trained inference model that is currently not referenced
-	 * by an ingest pipeline.
+	 * Delete an unreferenced trained model. The request deletes a trained inference
+	 * model that is not referenced by an ingest pipeline.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -597,7 +599,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.delete_trained_model_alias
 
 	/**
-	 * Deletes a trained model alias. This API deletes an existing model alias that
+	 * Delete a trained model alias. This API deletes an existing model alias that
 	 * refers to a trained model. If the model alias is missing or refers to a model
 	 * other than the one identified by the <code>model_id</code>, this API returns
 	 * an error.
@@ -616,7 +618,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes a trained model alias. This API deletes an existing model alias that
+	 * Delete a trained model alias. This API deletes an existing model alias that
 	 * refers to a trained model. If the model alias is missing or refers to a model
 	 * other than the one identified by the <code>model_id</code>, this API returns
 	 * an error.
@@ -637,9 +639,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.estimate_model_memory
 
 	/**
-	 * Makes an estimation of the memory usage for an anomaly detection job model.
-	 * It is based on analysis configuration details for the job and cardinality
-	 * estimates for the fields it references.
+	 * Estimate job model memory usage. Makes an estimation of the memory usage for
+	 * an anomaly detection job model. It is based on analysis configuration details
+	 * for the job and cardinality estimates for the fields it references.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
@@ -654,9 +656,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Makes an estimation of the memory usage for an anomaly detection job model.
-	 * It is based on analysis configuration details for the job and cardinality
-	 * estimates for the fields it references.
+	 * Estimate job model memory usage. Makes an estimation of the memory usage for
+	 * an anomaly detection job model. It is based on analysis configuration details
+	 * for the job and cardinality estimates for the fields it references.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -672,9 +674,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Makes an estimation of the memory usage for an anomaly detection job model.
-	 * It is based on analysis configuration details for the job and cardinality
-	 * estimates for the fields it references.
+	 * Estimate job model memory usage. Makes an estimation of the memory usage for
+	 * an anomaly detection job model. It is based on analysis configuration details
+	 * for the job and cardinality estimates for the fields it references.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
@@ -689,11 +691,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.evaluate_data_frame
 
 	/**
-	 * Evaluates the data frame analytics for an annotated index. The API packages
-	 * together commonly used evaluation metrics for various types of machine
-	 * learning features. This has been designed for use on indexes created by data
-	 * frame analytics. Evaluation requires both a ground truth field and an
-	 * analytics result field to be present.
+	 * Evaluate data frame analytics. The API packages together commonly used
+	 * evaluation metrics for various types of machine learning features. This has
+	 * been designed for use on indexes created by data frame analytics. Evaluation
+	 * requires both a ground truth field and an analytics result field to be
+	 * present.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html">Documentation
@@ -708,11 +710,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Evaluates the data frame analytics for an annotated index. The API packages
-	 * together commonly used evaluation metrics for various types of machine
-	 * learning features. This has been designed for use on indexes created by data
-	 * frame analytics. Evaluation requires both a ground truth field and an
-	 * analytics result field to be present.
+	 * Evaluate data frame analytics. The API packages together commonly used
+	 * evaluation metrics for various types of machine learning features. This has
+	 * been designed for use on indexes created by data frame analytics. Evaluation
+	 * requires both a ground truth field and an analytics result field to be
+	 * present.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -730,7 +732,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.explain_data_frame_analytics
 
 	/**
-	 * Explains a data frame analytics config. This API provides explanations for a
+	 * Explain data frame analytics config. This API provides explanations for a
 	 * data frame analytics config that either exists already or one that has not
 	 * been created yet. The following explanations are provided:
 	 * <ul>
@@ -755,7 +757,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Explains a data frame analytics config. This API provides explanations for a
+	 * Explain data frame analytics config. This API provides explanations for a
 	 * data frame analytics config that either exists already or one that has not
 	 * been created yet. The following explanations are provided:
 	 * <ul>
@@ -780,7 +782,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Explains a data frame analytics config. This API provides explanations for a
+	 * Explain data frame analytics config. This API provides explanations for a
 	 * data frame analytics config that either exists already or one that has not
 	 * been created yet. The following explanations are provided:
 	 * <ul>

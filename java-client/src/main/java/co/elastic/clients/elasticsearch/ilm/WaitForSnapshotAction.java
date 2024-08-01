@@ -30,9 +30,10 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -49,35 +50,35 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.ForceMergeConfiguration
+// typedef: ilm._types.WaitForSnapshotAction
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ilm._types.ForceMergeConfiguration">API
+ *      "../doc-files/api-spec.html#ilm._types.WaitForSnapshotAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ForceMergeConfiguration implements JsonpSerializable {
-	private final int maxNumSegments;
+public class WaitForSnapshotAction implements JsonpSerializable {
+	private final String policy;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ForceMergeConfiguration(Builder builder) {
+	private WaitForSnapshotAction(Builder builder) {
 
-		this.maxNumSegments = ApiTypeHelper.requireNonNull(builder.maxNumSegments, this, "maxNumSegments");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
 
 	}
 
-	public static ForceMergeConfiguration of(Function<Builder, ObjectBuilder<ForceMergeConfiguration>> fn) {
+	public static WaitForSnapshotAction of(Function<Builder, ObjectBuilder<WaitForSnapshotAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code max_num_segments}
+	 * Required - API name: {@code policy}
 	 */
-	public final int maxNumSegments() {
-		return this.maxNumSegments;
+	public final String policy() {
+		return this.policy;
 	}
 
 	/**
@@ -91,8 +92,8 @@ public class ForceMergeConfiguration implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("max_num_segments");
-		generator.write(this.maxNumSegments);
+		generator.writeKey("policy");
+		generator.write(this.policy);
 
 	}
 
@@ -104,19 +105,19 @@ public class ForceMergeConfiguration implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ForceMergeConfiguration}.
+	 * Builder for {@link WaitForSnapshotAction}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<ForceMergeConfiguration> {
-		private Integer maxNumSegments;
+				ObjectBuilder<WaitForSnapshotAction> {
+		private String policy;
 
 		/**
-		 * Required - API name: {@code max_num_segments}
+		 * Required - API name: {@code policy}
 		 */
-		public final Builder maxNumSegments(int value) {
-			this.maxNumSegments = value;
+		public final Builder policy(String value) {
+			this.policy = value;
 			return this;
 		}
 
@@ -126,30 +127,29 @@ public class ForceMergeConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link ForceMergeConfiguration}.
+		 * Builds a {@link WaitForSnapshotAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ForceMergeConfiguration build() {
+		public WaitForSnapshotAction build() {
 			_checkSingleUse();
 
-			return new ForceMergeConfiguration(this);
+			return new WaitForSnapshotAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ForceMergeConfiguration}
+	 * Json deserializer for {@link WaitForSnapshotAction}
 	 */
-	public static final JsonpDeserializer<ForceMergeConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForceMergeConfiguration::setupForceMergeConfigurationDeserializer);
+	public static final JsonpDeserializer<WaitForSnapshotAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WaitForSnapshotAction::setupWaitForSnapshotActionDeserializer);
 
-	protected static void setupForceMergeConfigurationDeserializer(
-			ObjectDeserializer<ForceMergeConfiguration.Builder> op) {
+	protected static void setupWaitForSnapshotActionDeserializer(ObjectDeserializer<WaitForSnapshotAction.Builder> op) {
 
-		op.add(Builder::maxNumSegments, JsonpDeserializer.integerDeserializer(), "max_num_segments");
+		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
 
 	}
 

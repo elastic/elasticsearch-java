@@ -62,13 +62,7 @@ import javax.annotation.Nullable;
 
 /**
  * Get index information. Returns high-level information about indices in a
- * cluster, including backing indices for data streams. <blockquote>
- * <p>
- * info CAT APIs are only intended for human consumption using the command line
- * or Kibana console. They are not intended for use by applications. For
- * application consumption, use an index endpoint.
- * </p>
- * </blockquote>
+ * cluster, including backing indices for data streams.
  * <p>
  * Use this request to get the following information for each index in a
  * cluster:
@@ -83,8 +77,11 @@ import javax.annotation.Nullable;
  * These metrics are retrieved directly from Lucene, which Elasticsearch uses
  * internally to power indexing and search. As a result, all document counts
  * include hidden nested documents. To get an accurate count of Elasticsearch
- * documents, use the <a href="#operation-cat-count">/_cat/count</a> or
- * <a href="#endpoint-count">count</a> endpoints.
+ * documents, use the /_cat/count or _count endpoints.
+ * <p>
+ * CAT APIs are only intended for human consumption using the command line or
+ * Kibana console. They are not intended for use by applications. For
+ * application consumption, use an index endpoint.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.indices.Request">API
  *      specification</a>

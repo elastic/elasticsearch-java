@@ -60,15 +60,12 @@ import javax.annotation.Nullable;
 
 /**
  * Get data frame analytics jobs. Returns configuration and usage information
- * about data frame analytics jobs. <blockquote>
+ * about data frame analytics jobs.
  * <p>
- * info CAT APIs are only intended for human consumption using the Kibana
- * console or command line. They are not intended for use by applications. For
- * application consumption, use <a href="#endpoint-ml">the
- * /_ml/data_frame/analytics endpoints</a>.
- * </p>
- * </blockquote>
- *
+ * CAT APIs are only intended for human consumption using the Kibana console or
+ * command line. They are not intended for use by applications. For application
+ * consumption, use the /_ml/data_frame/analytics endpoints.
+ * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cat.ml_data_frame_analytics.Request">API
  *      specification</a>

@@ -59,15 +59,12 @@ import javax.annotation.Nullable;
  * Get a document count. Provides quick access to a document count for a data
  * stream, an index, or an entire cluster.n/ The document count only includes
  * live documents, not deleted documents which have not yet been removed by the
- * merge process. <blockquote>
+ * merge process.
  * <p>
- * info CAT APIs are only intended for human consumption using the command line
- * or Kibana console. They are not intended for use by applications. For
- * application consumption, use <a href="#endpoint-count">the /_count
- * endpoints</a>.
- * </p>
- * </blockquote>
- *
+ * CAT APIs are only intended for human consumption using the command line or
+ * Kibana console. They are not intended for use by applications. For
+ * application consumption, use /_count endpoints.
+ * 
  * @see <a href="../doc-files/api-spec.html#cat.count.Request">API
  *      specification</a>
  */
