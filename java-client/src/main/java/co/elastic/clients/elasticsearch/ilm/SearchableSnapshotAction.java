@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,9 +26,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,48 +51,47 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ilm._types.Phase
+// typedef: ilm._types.SearchableSnapshotAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.Phase">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ilm._types.SearchableSnapshotAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Phase implements JsonpSerializable {
-	@Nullable
-	private final Actions actions;
+public class SearchableSnapshotAction implements JsonpSerializable {
+	private final String snapshotRepository;
 
 	@Nullable
-	private final Time minAge;
+	private final Boolean forceMergeIndex;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Phase(Builder builder) {
+	private SearchableSnapshotAction(Builder builder) {
 
-		this.actions = builder.actions;
-		this.minAge = builder.minAge;
+		this.snapshotRepository = ApiTypeHelper.requireNonNull(builder.snapshotRepository, this, "snapshotRepository");
+		this.forceMergeIndex = builder.forceMergeIndex;
 
 	}
 
-	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+	public static SearchableSnapshotAction of(Function<Builder, ObjectBuilder<SearchableSnapshotAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code snapshot_repository}
 	 */
-	@Nullable
-	public final Actions actions() {
-		return this.actions;
+	public final String snapshotRepository() {
+		return this.snapshotRepository;
 	}
 
 	/**
-	 * API name: {@code min_age}
+	 * API name: {@code force_merge_index}
 	 */
 	@Nullable
-	public final Time minAge() {
-		return this.minAge;
+	public final Boolean forceMergeIndex() {
+		return this.forceMergeIndex;
 	}
 
 	/**
@@ -104,14 +105,12 @@ public class Phase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actions != null) {
-			generator.writeKey("actions");
-			this.actions.serialize(generator, mapper);
+		generator.writeKey("snapshot_repository");
+		generator.write(this.snapshotRepository);
 
-		}
-		if (this.minAge != null) {
-			generator.writeKey("min_age");
-			this.minAge.serialize(generator, mapper);
+		if (this.forceMergeIndex != null) {
+			generator.writeKey("force_merge_index");
+			generator.write(this.forceMergeIndex);
 
 		}
 
@@ -125,44 +124,31 @@ public class Phase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Phase}.
+	 * Builder for {@link SearchableSnapshotAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Phase> {
-		@Nullable
-		private Actions actions;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SearchableSnapshotAction> {
+		private String snapshotRepository;
 
 		@Nullable
-		private Time minAge;
+		private Boolean forceMergeIndex;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code snapshot_repository}
 		 */
-		public final Builder actions(@Nullable Actions value) {
-			this.actions = value;
+		public final Builder snapshotRepository(String value) {
+			this.snapshotRepository = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code actions}
+		 * API name: {@code force_merge_index}
 		 */
-		public final Builder actions(Function<Actions.Builder, ObjectBuilder<Actions>> fn) {
-			return this.actions(fn.apply(new Actions.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(@Nullable Time value) {
-			this.minAge = value;
+		public final Builder forceMergeIndex(@Nullable Boolean value) {
+			this.forceMergeIndex = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code min_age}
-		 */
-		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.minAge(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -171,30 +157,31 @@ public class Phase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Phase}.
+		 * Builds a {@link SearchableSnapshotAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Phase build() {
+		public SearchableSnapshotAction build() {
 			_checkSingleUse();
 
-			return new Phase(this);
+			return new SearchableSnapshotAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Phase}
+	 * Json deserializer for {@link SearchableSnapshotAction}
 	 */
-	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Phase::setupPhaseDeserializer);
+	public static final JsonpDeserializer<SearchableSnapshotAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchableSnapshotAction::setupSearchableSnapshotActionDeserializer);
 
-	protected static void setupPhaseDeserializer(ObjectDeserializer<Phase.Builder> op) {
+	protected static void setupSearchableSnapshotActionDeserializer(
+			ObjectDeserializer<SearchableSnapshotAction.Builder> op) {
 
-		op.add(Builder::actions, Actions._DESERIALIZER, "actions");
-		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
+		op.add(Builder::snapshotRepository, JsonpDeserializer.stringDeserializer(), "snapshot_repository");
+		op.add(Builder::forceMergeIndex, JsonpDeserializer.booleanDeserializer(), "force_merge_index");
 
 	}
 
