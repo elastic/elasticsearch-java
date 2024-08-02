@@ -378,6 +378,10 @@ public class BulkIngester<Context> implements AutoCloseable {
         add(f.apply(new BulkOperation.Builder()).build(), context);
     }
 
+    /**
+     * Close this ingester, first flushing any buffered operations. This <strong>does not close</strong>
+     * the underlying @{link {@link ElasticsearchClient} and {@link co.elastic.clients.transport.Transport}.
+     */
     @Override
     public void close() {
         if (isClosed) {
