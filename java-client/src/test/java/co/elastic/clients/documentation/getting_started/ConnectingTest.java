@@ -46,11 +46,16 @@ public class ConnectingTest {
             restClient, new JacksonJsonpMapper());
 
         // And create the API client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+
+        // Use the client...
+
+        // Close the client, also closing the underlying transport object and network connections.
+        esClient.close();
         //end::create-client
 
         //tag::first-request
-        SearchResponse<Product> search = client.search(s -> s
+        SearchResponse<Product> search = esClient.search(s -> s
             .index("products")
             .query(q -> q
                 .term(t -> t

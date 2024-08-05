@@ -26,10 +26,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapperBase;
 
 import javax.annotation.Nullable;
+import java.io.Closeable;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.function.Function;
 
-public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, Self>> {
+public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, Self>> implements Closeable {
 
     protected final T transport;
     protected final TransportOptions transportOptions;
@@ -84,5 +86,16 @@ public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, S
      */
     public JsonpMapper _jsonpMapper() {
         return transport.jsonpMapper();
+    }
+
+    /**
+     * Close this client and associated resources, including the underlying {@link Transport} object.
+     * <p>
+     * If the underlying {@code Transport} object is shared with other API client objects, these objects will also become
+     * unavailable.
+     */
+    @Override
+    public void close() throws IOException {
+        transport.close();
     }
 }
