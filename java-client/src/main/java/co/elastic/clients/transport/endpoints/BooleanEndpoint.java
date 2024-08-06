@@ -39,7 +39,8 @@ public class BooleanEndpoint<RequestT> extends EndpointBase<RequestT, BooleanRes
 
     @Override
     public boolean isError(int statusCode) {
-        return statusCode >= 500;
+        // 404 indicates a 'false' result.
+        return statusCode != 404 && super.isError(statusCode);
     }
 
     public boolean getResult(int statusCode) {
