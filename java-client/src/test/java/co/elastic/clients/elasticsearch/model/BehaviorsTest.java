@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.FieldSort;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
@@ -30,6 +31,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.connector.UpdateIndexNameRequest;
+import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalQuery;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
@@ -134,7 +136,6 @@ public class BehaviorsTest extends ModelTestCase {
         }
     }
 
-
     @Test
     public void testAdditionalProperties() {
         // Check that additional property map is initialized even if not set explicitly
@@ -161,7 +162,7 @@ public class BehaviorsTest extends ModelTestCase {
     }
 
     @Test
-    public void testShortcutProperty() {
+    public void testPrimitiveShortcutProperty() {
 
         // All-in-one: a variant, wrapping a single-key dictionary with a shortcut property
         String json = "{\"term\":{\"some-field\":\"some-value\"}}";
@@ -169,6 +170,43 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals("some-field", q.term().field());
         assertEquals("some-value", q.term().value().stringValue());
+    }
+
+    @Test
+    public void testEnumShortcutProperty() {
+
+        SortOptions so = fromJson("{\"foo\":{\"order\":\"asc\"}}", SortOptions.class);
+
+        assertEquals("foo", so.field().field());
+        assertEquals(SortOrder.Asc, so.field().order());
+
+        so = fromJson("{\"foo\":\"asc\"}", SortOptions.class);
+
+        assertEquals("foo", so.field().field());
+        assertEquals(SortOrder.Asc, so.field().order());
+    }
+
+    @Test
+    public void testObjectShortcutProperty() {
+
+        // Standard form
+        RankEvalQuery req = fromJson("{\"query\":{\"term\":{\"foo\":{\"value\":\"bar\"}}}}", RankEvalQuery.class);
+
+        assertEquals("foo", req.query().term().field());
+        assertEquals("bar", req.query().term().value().stringValue());
+
+        // Shortcut form
+        req = fromJson("{\"term\":{\"foo\":{\"value\":\"bar\"}}}", RankEvalQuery.class);
+
+        assertEquals("foo", req.query().term().field());
+        assertEquals("bar", req.query().term().value().stringValue());
+
+        // Nested shortcuts
+        req = fromJson("{\"term\":{\"foo\":\"bar\"}}", RankEvalQuery.class);
+
+        assertEquals("foo", req.query().term().field());
+        assertEquals("bar", req.query().term().value().stringValue());
+
     }
 
     @Test

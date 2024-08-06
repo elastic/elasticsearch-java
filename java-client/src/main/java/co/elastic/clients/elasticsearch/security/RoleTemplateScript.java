@@ -344,7 +344,7 @@ public class RoleTemplateScript implements JsonpSerializable {
 		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"options");
 
-		op.shortcutProperty("source");
+		op.shortcutProperty("source", false);
 
 	}
 

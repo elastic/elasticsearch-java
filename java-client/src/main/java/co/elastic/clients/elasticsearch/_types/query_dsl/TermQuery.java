@@ -294,7 +294,7 @@ public class TermQuery extends QueryBase
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("value");
+		op.shortcutProperty("value", false);
 
 	}
 

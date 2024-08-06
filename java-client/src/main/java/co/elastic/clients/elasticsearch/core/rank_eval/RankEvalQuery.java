@@ -187,7 +187,7 @@ public class RankEvalQuery implements JsonpSerializable {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
-		op.shortcutProperty("query");
+		op.shortcutProperty("query", false);
 
 	}
 

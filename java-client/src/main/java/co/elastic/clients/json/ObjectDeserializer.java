@@ -106,7 +106,6 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
     //---------------------------------------------------------------------------------------------
     private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT, Event.KEY_NAME);
-    private static final EnumSet<Event> EventSetObjectAndString = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING, Event.KEY_NAME);
 
     private EnumSet<Event> acceptedEvents = EventSetObject; // May be changed in `shortcutProperty()`
     private final Supplier<ObjectType> constructor;
@@ -115,6 +114,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     private String typeProperty;
     private String defaultType;
     private FieldDeserializer<ObjectType> shortcutProperty;
+    private boolean isPrimitiveShortcut;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public ObjectDeserializer(Supplier<ObjectType> constructor) {
@@ -167,11 +167,33 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
                 event = parser.next();
             }
 
-            if (shortcutProperty != null && event != Event.START_OBJECT && event != Event.KEY_NAME) {
-                // This is the shortcut property (should be a value event, this will be checked by its deserializer)
-                shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+            if (shortcutProperty != null) {
+                if (isPrimitiveShortcut) {
+                    if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
+                        // This is the shortcut property (should be a value event, this will be checked by its deserializer)
+                        shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                        return value;
+                    }
+                } else {
+                    // Does the shortcut property exist? If yes, the shortcut is used
+                    Map.Entry<Object, JsonParser> shortcut = JsonpUtils.findVariant(
+                        Collections.singletonMap(shortcutProperty.name, Boolean.TRUE /* arbitrary non-null value */),
+                        parser, mapper
+                    );
 
-            } else if (typeProperty == null) {
+                    // Parse the buffered events
+                    parser = shortcut.getValue();
+                    parser.next(); // consume START_OBJECT
+
+                    // If shortcut property was not found, this is a shortcut. Otherwise, keep deserializing as usual
+                    if (shortcut.getKey() == null) {
+                        shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                        return value;
+                    }
+                }
+            }
+
+            if (typeProperty == null) {
                 if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
                     // Report we're waiting for a start_object, since this is the most common beginning for object parser
                     JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
@@ -249,14 +271,18 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     }
 
     public void shortcutProperty(String name) {
+        shortcutProperty(name, true);
+    }
+
+    public void shortcutProperty(String name, boolean isPrimitive) {
         this.shortcutProperty = this.fieldDeserializers.get(name);
         if (this.shortcutProperty == null) {
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
         }
 
-        //acceptedEvents = EnumSet.copyOf(acceptedEvents);
-        //acceptedEvents.addAll(shortcutProperty.acceptedEvents());
-        acceptedEvents = EventSetObjectAndString;
+        acceptedEvents = EnumSet.copyOf(acceptedEvents);
+        acceptedEvents.addAll(shortcutProperty.acceptedEvents());
+        this.isPrimitiveShortcut = isPrimitive;
     }
 
     //----- Object types

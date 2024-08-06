@@ -273,6 +273,38 @@ public class JsonpUtils {
     }
 
     /**
+     * In union types, find the variant to be used by looking up property names in the JSON stream until we find one that
+     * uniquely identifies the variant.
+     *
+     * @param <Variant> the type of variant descriptors used by the caller.
+     * @param variants a map of variant descriptors, keyed by the property name that uniquely identifies the variant.
+     * @return a pair containing the variant descriptor (or {@code null} if not found), and a parser to be used to read the JSON object.
+     */
+
+    public static <Variant> Map.Entry<Variant, JsonParser> findVariant(
+        Map<String, Variant> variants, JsonParser parser, JsonpMapper mapper
+    ) {
+        if (parser instanceof LookAheadJsonParser) {
+            return ((LookAheadJsonParser) parser).findVariant(variants);
+        } else {
+            // Parse as an object to find matching field names
+            JsonObject object = parser.getObject();
+
+            Variant variant = null;
+            for (String field: object.keySet()) {
+                variant = variants.get(field);
+                if (variant != null) {
+                    break;
+                }
+            }
+
+            // Traverse the object we have inspected
+            parser = JsonpUtils.objectParser(object, mapper);
+            return new AbstractMap.SimpleImmutableEntry<>(variant, parser);
+        }
+    }
+
+    /**
      * Create a parser that traverses a JSON object
      */
     public static JsonParser objectParser(JsonObject object, JsonpMapper mapper) {
