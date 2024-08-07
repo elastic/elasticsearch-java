@@ -240,7 +240,7 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		op.add(Builder::excludes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"excludes");
 
-		op.shortcutProperty("includes", false);
+		op.shortcutProperty("includes");
 
 	}
 

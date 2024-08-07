@@ -114,7 +114,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     private String typeProperty;
     private String defaultType;
     private FieldDeserializer<ObjectType> shortcutProperty;
-    private boolean isPrimitiveShortcut;
+    private boolean shortcutIsObject;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public ObjectDeserializer(Supplier<ObjectType> constructor) {
@@ -131,6 +131,10 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
     public @Nullable String shortcutProperty() {
         return this.shortcutProperty == null ? null : this.shortcutProperty.name;
+    }
+
+    public boolean shortcutIsObject() {
+        return this.shortcutIsObject;
     }
 
     @Override
@@ -156,8 +160,9 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         String keyName = null;
         String fieldName = null;
 
-        try {
+        JsonParser singleKeyParser = null;
 
+        try {
             if (singleKey != null) {
                 // There's a wrapping property whose name is the key value
                 if (event == Event.START_OBJECT) {
@@ -165,12 +170,15 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
                 }
                 singleKey.deserialize(parser, mapper, null, value, event);
                 event = parser.next();
+                // Keep the current parser, as we needed to check the wrapping END_OBJECT below, but the variable may
+                // be overwritten if we have a shortcut property (happens in TermQuery).
+                singleKeyParser = parser;
             }
 
             if (shortcutProperty != null) {
-                if (isPrimitiveShortcut) {
+                if (!shortcutIsObject) {
                     if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
-                        // This is the shortcut property (should be a value event, this will be checked by its deserializer)
+                        // This is the shortcut property (should be a value or array event, this will be checked by its deserializer)
                         shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
                         return value;
                     }
@@ -183,7 +191,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
                     // Parse the buffered events
                     parser = shortcut.getValue();
-                    parser.next(); // consume START_OBJECT
+                    event = parser.next();
 
                     // If shortcut property was not found, this is a shortcut. Otherwise, keep deserializing as usual
                     if (shortcut.getKey() == null) {
@@ -233,6 +241,8 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
             }
 
             if (singleKey != null) {
+                // Consume the wrapping property's END_OBJECT
+                parser = singleKeyParser;
                 JsonpUtils.expectNextEvent(parser, Event.END_OBJECT);
             }
         } catch (Exception e) {
@@ -271,10 +281,10 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     }
 
     public void shortcutProperty(String name) {
-        shortcutProperty(name, true);
+        shortcutProperty(name, false);
     }
 
-    public void shortcutProperty(String name, boolean isPrimitive) {
+    public void shortcutProperty(String name, boolean isObject) {
         this.shortcutProperty = this.fieldDeserializers.get(name);
         if (this.shortcutProperty == null) {
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
@@ -282,7 +292,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
         acceptedEvents = EnumSet.copyOf(acceptedEvents);
         acceptedEvents.addAll(shortcutProperty.acceptedEvents());
-        this.isPrimitiveShortcut = isPrimitive;
+        this.shortcutIsObject = isObject;
     }
 
     //----- Object types

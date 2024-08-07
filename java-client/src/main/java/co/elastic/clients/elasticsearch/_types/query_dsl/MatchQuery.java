@@ -671,7 +671,7 @@ public class MatchQuery extends QueryBase
 		op.add(Builder::zeroTermsQuery, ZeroTermsQuery._DESERIALIZER, "zero_terms_query");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("query", false);
+		op.shortcutProperty("query", true);
 
 	}
 

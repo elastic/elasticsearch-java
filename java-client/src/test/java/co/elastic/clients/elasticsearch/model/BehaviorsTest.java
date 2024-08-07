@@ -32,7 +32,10 @@ import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.connector.UpdateIndexNameRequest;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalQuery;
+import co.elastic.clients.elasticsearch.core.search.SourceFilter;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.LazyDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
 import org.junit.jupiter.api.Test;
@@ -75,7 +78,6 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals("query-name", q.queryName());
         assertTrue(q.ignoreUnmapped());
         assertEquals(GeoShapeRelation.Disjoint, q.shape().relation());
-        System.out.println(toJson(q));
     }
 
     @Test
@@ -170,11 +172,44 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals("some-field", q.term().field());
         assertEquals("some-value", q.term().value().stringValue());
+
+    }
+
+    @Test
+    public void testArrayShortcutProperty() {
+
+        // Check that don't look ahead to handle the shortcut
+        ObjectDeserializer<?> deser = (ObjectDeserializer<?>) LazyDeserializer.unwrap(SourceFilter._DESERIALIZER);
+        assertEquals("includes", deser.shortcutProperty());
+        assertFalse(deser.shortcutIsObject());
+
+        // Regular form
+        SourceFilter sf = fromJson("{\"includes\":[\"foo\",\"bar\"]}", SourceFilter.class);
+        assertEquals(2, sf.includes().size());
+        assertEquals("foo", sf.includes().get(0));
+        assertEquals("bar", sf.includes().get(1));
+
+        // Shortcut with an array value
+        sf = fromJson("[\"foo\",\"bar\"]", SourceFilter.class);
+        assertEquals(2, sf.includes().size());
+        assertEquals("foo", sf.includes().get(0));
+        assertEquals("bar", sf.includes().get(1));
+
+        // Shortcut with a single value (lenient array)
+        sf = fromJson("\"foo\"]", SourceFilter.class);
+        assertEquals(1, sf.includes().size());
+        assertEquals("foo", sf.includes().get(0));
     }
 
     @Test
     public void testEnumShortcutProperty() {
 
+        // Check that we don't look ahead to handle the shortcut
+        ObjectDeserializer<?> deser = (ObjectDeserializer<?>) LazyDeserializer.unwrap(FieldSort._DESERIALIZER);
+        assertEquals("order", deser.shortcutProperty());
+        assertFalse(deser.shortcutIsObject());
+
+        // We have to test on the enclosing SortOption as FieldSort is used as a single-key dict
         SortOptions so = fromJson("{\"foo\":{\"order\":\"asc\"}}", SortOptions.class);
 
         assertEquals("foo", so.field().field());
@@ -188,6 +223,11 @@ public class BehaviorsTest extends ModelTestCase {
 
     @Test
     public void testObjectShortcutProperty() {
+
+        // Check that we look ahead to handle the shortcut
+        ObjectDeserializer<?> deser = (ObjectDeserializer<?>) LazyDeserializer.unwrap(RankEvalQuery._DESERIALIZER);
+        assertEquals("query", deser.shortcutProperty());
+        assertTrue(deser.shortcutIsObject());
 
         // Standard form
         RankEvalQuery req = fromJson("{\"query\":{\"term\":{\"foo\":{\"value\":\"bar\"}}}}", RankEvalQuery.class);

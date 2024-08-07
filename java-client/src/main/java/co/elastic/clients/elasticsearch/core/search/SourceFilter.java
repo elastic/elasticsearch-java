@@ -217,7 +217,7 @@ public class SourceFilter implements JsonpSerializable {
 		op.add(Builder::includes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"includes", "include");
 
-		op.shortcutProperty("includes", false);
+		op.shortcutProperty("includes");
 
 	}
 
