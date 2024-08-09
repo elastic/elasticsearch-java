@@ -253,7 +253,7 @@ public class JsonpUtils {
                 throw new JsonpMappingException("Property '" + name + "' not found", location);
             }
 
-            JsonParser newParser = objectParser(object, mapper);
+            JsonParser newParser = jsonValueParser(object, mapper);
 
             // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
             newParser = new DelegatingJsonParser(newParser) {
@@ -273,15 +273,59 @@ public class JsonpUtils {
     }
 
     /**
-     * Create a parser that traverses a JSON object
+     * In union types, find the variant to be used by looking up property names in the JSON stream until we find one that
+     * uniquely identifies the variant.
+     *
+     * @param <Variant> the type of variant descriptors used by the caller.
+     * @param variants a map of variant descriptors, keyed by the property name that uniquely identifies the variant.
+     * @return a pair containing the variant descriptor (or {@code null} if not found), and a parser to be used to read the JSON object.
      */
+
+    public static <Variant> Map.Entry<Variant, JsonParser> findVariant(
+        Map<String, Variant> variants, JsonParser parser, JsonpMapper mapper
+    ) {
+        if (parser instanceof LookAheadJsonParser) {
+            return ((LookAheadJsonParser) parser).findVariant(variants);
+        } else {
+            // If it's an object, find matching field names
+            Variant variant = null;
+            JsonValue value = parser.getValue();
+
+            if (value instanceof JsonObject) {
+                for (String field: value.asJsonObject().keySet()) {
+                    variant = variants.get(field);
+                    if (variant != null) {
+                        break;
+                    }
+                }
+            }
+
+            // Traverse the object we have inspected
+            parser = JsonpUtils.jsonValueParser(value, mapper);
+            return new AbstractMap.SimpleImmutableEntry<>(variant, parser);
+        }
+    }
+
+    /**
+     * Create a parser that traverses a JSON object
+     *
+     * @deprecated use {@link #jsonValueParser(JsonValue, JsonpMapper)}
+     */
+    @Deprecated
     public static JsonParser objectParser(JsonObject object, JsonpMapper mapper) {
+        return jsonValueParser(object, mapper);
+    }
+
+    /**
+     * Create a parser that traverses a JSON value
+     */
+    public static JsonParser jsonValueParser(JsonValue value, JsonpMapper mapper) {
         // FIXME: we should have used createParser(object), but this doesn't work as it creates a
         // org.glassfish.json.JsonStructureParser that doesn't implement the JsonP 1.0.1 features, in particular
         // parser.getObject(). So deserializing recursive internally-tagged union would fail with UnsupportedOperationException
         // While glassfish has this issue or until we write our own, we roundtrip through a string.
 
-        String strObject = object.toString();
+        String strObject = value.toString();
         return mapper.jsonProvider().createParser(new StringReader(strObject));
     }
 

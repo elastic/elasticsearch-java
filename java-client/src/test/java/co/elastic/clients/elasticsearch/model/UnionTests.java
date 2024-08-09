@@ -41,6 +41,10 @@ import java.io.StringReader;
 
 public class UnionTests extends ModelTestCase {
 
+//    public UnionTests() {
+//        super(JsonImpl.Simple);
+//    }
+
     @Test
     public void testScriptDeserializer() {
         // A union discriminated by its field names (source -> inline, id -> stored)

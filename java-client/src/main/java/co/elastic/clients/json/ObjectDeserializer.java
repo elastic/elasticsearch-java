@@ -106,7 +106,6 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
     //---------------------------------------------------------------------------------------------
     private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT, Event.KEY_NAME);
-    private static final EnumSet<Event> EventSetObjectAndString = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING, Event.KEY_NAME);
 
     private EnumSet<Event> acceptedEvents = EventSetObject; // May be changed in `shortcutProperty()`
     private final Supplier<ObjectType> constructor;
@@ -115,6 +114,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     private String typeProperty;
     private String defaultType;
     private FieldDeserializer<ObjectType> shortcutProperty;
+    private boolean shortcutIsObject;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public ObjectDeserializer(Supplier<ObjectType> constructor) {
@@ -133,6 +133,10 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         return this.shortcutProperty == null ? null : this.shortcutProperty.name;
     }
 
+    public boolean shortcutIsObject() {
+        return this.shortcutIsObject;
+    }
+
     @Override
     public EnumSet<Event> nativeEvents() {
         // May also return string if we have a shortcut property. This is needed to identify ambiguous unions.
@@ -145,33 +149,51 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     }
 
     public ObjectType deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-        return deserialize(constructor.get(), parser, mapper, event);
-    }
-
-    public ObjectType deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
         if (event == Event.VALUE_NULL) {
             return null;
         }
 
-        String keyName = null;
+        ObjectType value = constructor.get();
+        deserialize(value, parser, mapper, event);
+        return value;
+    }
+
+    public void deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
+        // Note: method is public as it's called by `withJson` to augment an already created object
+
+        if (singleKey == null) {
+            // Nominal case
+            deserializeInner(value, parser, mapper, event);
+
+        } else {
+            // Single key dictionary: there's a wrapping property whose name is the key value
+            if (event == Event.START_OBJECT) {
+                event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
+            }
+
+            String keyName = parser.getString();
+            try {
+                singleKey.deserialize(parser, mapper, null, value, event);
+                event = parser.next();
+                deserializeInner(value, parser, mapper, event);
+            } catch (Exception e) {
+                throw JsonpMappingException.from(e, value, keyName, parser);
+            }
+
+            JsonpUtils.expectNextEvent(parser, Event.END_OBJECT);
+        }
+    }
+
+    private void deserializeInner(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
         String fieldName = null;
 
         try {
-
-            if (singleKey != null) {
-                // There's a wrapping property whose name is the key value
-                if (event == Event.START_OBJECT) {
-                    event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
-                }
-                singleKey.deserialize(parser, mapper, null, value, event);
-                event = parser.next();
+            if ((parser = deserializeWithShortcut(value, parser, mapper, event)) == null) {
+                // We found the shortcut form
+                return;
             }
 
-            if (shortcutProperty != null && event != Event.START_OBJECT && event != Event.KEY_NAME) {
-                // This is the shortcut property (should be a value event, this will be checked by its deserializer)
-                shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
-
-            } else if (typeProperty == null) {
+            if (typeProperty == null) {
                 if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
                     // Report we're waiting for a start_object, since this is the most common beginning for object parser
                     JsonpUtils.expectEvent(parser, Event.START_OBJECT, event);
@@ -209,16 +231,52 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
                     fieldDeserializer.deserialize(innerParser, mapper, variant, value);
                 }
             }
-
-            if (singleKey != null) {
-                JsonpUtils.expectNextEvent(parser, Event.END_OBJECT);
-            }
         } catch (Exception e) {
-            // Add key name (for single key dicts) and field name if present
-            throw JsonpMappingException.from(e, value, fieldName, parser).prepend(value, keyName);
+            // Add field name if present
+            throw JsonpMappingException.from(e, value, fieldName, parser);
+        }
+    }
+
+    /**
+     * Try to deserialize the value with its shortcut property, if any.
+     *
+     * @return {@code null} if the shortcut form was found, and otherwise a parser that should be used to parse the
+     *         non-shortcut form. It may be different from the orginal parser if look-ahead was needed.
+     */
+    private JsonParser deserializeWithShortcut(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
+        if (shortcutProperty != null) {
+            if (!shortcutIsObject) {
+                if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
+                    // This is the shortcut property (should be a value or array event, this will be checked by its deserializer)
+                    shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                    return null;
+                }
+            } else {
+                // Fast path: we don't need to look ahead if the current event isn't an object
+                if (event != Event.START_OBJECT) {
+                    shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                    return null;
+                }
+
+                // Look ahead: does the shortcut property exist? If yes, the shortcut is used
+                Map.Entry<Object, JsonParser> shortcut = JsonpUtils.findVariant(
+                    Collections.singletonMap(shortcutProperty.name, Boolean.TRUE /* arbitrary non-null value */),
+                    parser, mapper
+                );
+
+                // Parse the buffered events
+                parser = shortcut.getValue();
+                event = parser.next();
+
+                // If shortcut property was not found, this is a shortcut. Otherwise, keep deserializing as usual
+                if (shortcut.getKey() == null) {
+                    shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                    return null;
+                }
+            }
         }
 
-        return value;
+        return parser;
     }
 
     protected void parseUnknownField(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
@@ -249,14 +307,18 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     }
 
     public void shortcutProperty(String name) {
+        shortcutProperty(name, false);
+    }
+
+    public void shortcutProperty(String name, boolean isObject) {
         this.shortcutProperty = this.fieldDeserializers.get(name);
         if (this.shortcutProperty == null) {
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
         }
 
-        //acceptedEvents = EnumSet.copyOf(acceptedEvents);
-        //acceptedEvents.addAll(shortcutProperty.acceptedEvents());
-        acceptedEvents = EventSetObjectAndString;
+        acceptedEvents = EnumSet.copyOf(acceptedEvents);
+        acceptedEvents.addAll(shortcutProperty.acceptedEvents());
+        this.shortcutIsObject = isObject;
     }
 
     //----- Object types

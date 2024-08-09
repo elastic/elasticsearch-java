@@ -389,7 +389,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("value");
+		op.shortcutProperty("value", true);
 
 	}
 

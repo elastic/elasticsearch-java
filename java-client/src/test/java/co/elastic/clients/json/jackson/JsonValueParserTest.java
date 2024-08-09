@@ -68,7 +68,7 @@ public class JsonValueParserTest extends Assertions {
             assertEquals(v.hashCode(), v2.hashCode());
             assertEquals(v, v2);
             
-            parser = JsonpUtils.objectParser(object, mapper);
+            parser = JsonpUtils.jsonValueParser(object, mapper);
             Data data = mapper.deserialize(parser, Data.class);
 
             Double d = (Double)data.data.get("value");
