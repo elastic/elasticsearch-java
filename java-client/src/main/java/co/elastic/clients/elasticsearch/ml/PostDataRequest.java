@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
 // typedef: ml.post_data.Request
 
 /**
- * Sends data to an anomaly detection job for analysis.
+ * Send data to an anomaly detection job for analysis.
  * <p>
  * IMPORTANT: For each job, data can be accepted from only a single connection
  * at a time. It is not currently possible to post data to multiple jobs using

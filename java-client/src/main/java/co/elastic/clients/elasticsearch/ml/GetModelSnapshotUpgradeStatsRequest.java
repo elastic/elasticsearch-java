@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_model_snapshot_upgrade_stats.Request
 
 /**
- * Retrieves usage information for anomaly detection job model snapshot
- * upgrades.
+ * Get anomaly detection job model snapshot upgrade usage info.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.get_model_snapshot_upgrade_stats.Request">API

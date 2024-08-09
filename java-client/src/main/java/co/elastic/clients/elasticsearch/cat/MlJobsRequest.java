@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  * <p>
  * CAT APIs are only intended for human consumption using the Kibana console or
  * command line. They are not intended for use by applications. For application
- * consumption, use the /_ml/anomaly_detectors endpoints.
+ * consumption, use the get anomaly detection job statistics API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.ml_jobs.Request">API
  *      specification</a>

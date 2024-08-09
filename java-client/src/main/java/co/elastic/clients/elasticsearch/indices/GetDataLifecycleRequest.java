@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -73,6 +74,9 @@ public class GetDataLifecycleRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -81,6 +85,7 @@ public class GetDataLifecycleRequest extends RequestBase {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.includeDefaults = builder.includeDefaults;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
@@ -112,6 +117,17 @@ public class GetDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Required - Comma-separated list of data streams to limit the request.
 	 * Supports wildcards (<code>*</code>). To target all data streams, omit this
 	 * parameter or use <code>*</code> or <code>_all</code>.
@@ -136,6 +152,9 @@ public class GetDataLifecycleRequest extends RequestBase {
 
 		@Nullable
 		private Boolean includeDefaults;
+
+		@Nullable
+		private Time masterTimeout;
 
 		private List<String> name;
 
@@ -177,6 +196,27 @@ public class GetDataLifecycleRequest extends RequestBase {
 		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -277,6 +317,9 @@ public class GetDataLifecycleRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

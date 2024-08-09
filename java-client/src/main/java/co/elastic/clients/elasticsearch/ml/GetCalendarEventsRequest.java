@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_calendar_events.Request
 
 /**
- * Retrieves information about the scheduled events in calendars.
+ * Get info about events in calendars.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_calendar_events.Request">API
  *      specification</a>

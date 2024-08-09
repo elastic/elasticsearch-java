@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_categories.Request
 
 /**
- * Retrieves anomaly detection job results for one or more categories.
+ * Get anomaly detection job results for categories.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_categories.Request">API
  *      specification</a>

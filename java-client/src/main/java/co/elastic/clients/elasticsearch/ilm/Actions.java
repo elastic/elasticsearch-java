@@ -68,6 +68,9 @@ public class Actions implements JsonpSerializable {
 	private final DownsampleAction downsample;
 
 	@Nullable
+	private final EmptyObject freeze;
+
+	@Nullable
 	private final ForceMergeAction forcemerge;
 
 	@Nullable
@@ -101,6 +104,7 @@ public class Actions implements JsonpSerializable {
 		this.allocate = builder.allocate;
 		this.delete = builder.delete;
 		this.downsample = builder.downsample;
+		this.freeze = builder.freeze;
 		this.forcemerge = builder.forcemerge;
 		this.migrate = builder.migrate;
 		this.readonly = builder.readonly;
@@ -145,6 +149,19 @@ public class Actions implements JsonpSerializable {
 	@Nullable
 	public final DownsampleAction downsample() {
 		return this.downsample;
+	}
+
+	/**
+	 * The freeze action is a noop in 8.x
+	 * <p>
+	 * API name: {@code freeze}
+	 * 
+	 * @deprecated 7.0.0
+	 */
+	@Deprecated
+	@Nullable
+	public final EmptyObject freeze() {
+		return this.freeze;
 	}
 
 	/**
@@ -263,6 +280,11 @@ public class Actions implements JsonpSerializable {
 			this.downsample.serialize(generator, mapper);
 
 		}
+		if (this.freeze != null) {
+			generator.writeKey("freeze");
+			this.freeze.serialize(generator, mapper);
+
+		}
 		if (this.forcemerge != null) {
 			generator.writeKey("forcemerge");
 			this.forcemerge.serialize(generator, mapper);
@@ -331,6 +353,9 @@ public class Actions implements JsonpSerializable {
 
 		@Nullable
 		private DownsampleAction downsample;
+
+		@Nullable
+		private EmptyObject freeze;
 
 		@Nullable
 		private ForceMergeAction forcemerge;
@@ -414,6 +439,31 @@ public class Actions implements JsonpSerializable {
 		 */
 		public final Builder downsample(Function<DownsampleAction.Builder, ObjectBuilder<DownsampleAction>> fn) {
 			return this.downsample(fn.apply(new DownsampleAction.Builder()).build());
+		}
+
+		/**
+		 * The freeze action is a noop in 8.x
+		 * <p>
+		 * API name: {@code freeze}
+		 * 
+		 * @deprecated 7.0.0
+		 */
+		@Deprecated
+		public final Builder freeze(@Nullable EmptyObject value) {
+			this.freeze = value;
+			return this;
+		}
+
+		/**
+		 * The freeze action is a noop in 8.x
+		 * <p>
+		 * API name: {@code freeze}
+		 * 
+		 * @deprecated 7.0.0
+		 */
+		@Deprecated
+		public final Builder freeze(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.freeze(fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**
@@ -620,6 +670,7 @@ public class Actions implements JsonpSerializable {
 		op.add(Builder::allocate, AllocateAction._DESERIALIZER, "allocate");
 		op.add(Builder::delete, DeleteAction._DESERIALIZER, "delete");
 		op.add(Builder::downsample, DownsampleAction._DESERIALIZER, "downsample");
+		op.add(Builder::freeze, EmptyObject._DESERIALIZER, "freeze");
 		op.add(Builder::forcemerge, ForceMergeAction._DESERIALIZER, "forcemerge");
 		op.add(Builder::migrate, MigrateAction._DESERIALIZER, "migrate");
 		op.add(Builder::readonly, EmptyObject._DESERIALIZER, "readonly");

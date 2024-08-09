@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  * <p>
  * CAT APIs are only intended for human consumption using the command line or
  * Kibana console. They are not intended for use by applications. For
- * application consumption, use the /_component_template endpoints.
+ * application consumption, use the get component template API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.component_templates.Request">API
  *      specification</a>

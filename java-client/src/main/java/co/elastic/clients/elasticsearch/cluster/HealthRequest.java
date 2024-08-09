@@ -148,8 +148,9 @@ public class HealthRequest extends RequestBase {
 
 	/**
 	 * Comma-separated list of data streams, indices, and index aliases used to
-	 * limit the request. Wildcard expressions (*) are supported. To target all data
-	 * streams and indices in a cluster, omit this parameter or use _all or *.
+	 * limit the request. Wildcard expressions (<code>*</code>) are supported. To
+	 * target all data streams and indices in a cluster, omit this parameter or use
+	 * _all or <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -342,8 +343,9 @@ public class HealthRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard expressions (*) are supported. To target all data
-		 * streams and indices in a cluster, omit this parameter or use _all or *.
+		 * limit the request. Wildcard expressions (<code>*</code>) are supported. To
+		 * target all data streams and indices in a cluster, omit this parameter or use
+		 * _all or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -356,8 +358,9 @@ public class HealthRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard expressions (*) are supported. To target all data
-		 * streams and indices in a cluster, omit this parameter or use _all or *.
+		 * limit the request. Wildcard expressions (<code>*</code>) are supported. To
+		 * target all data streams and indices in a cluster, omit this parameter or use
+		 * _all or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

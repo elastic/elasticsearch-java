@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_filters.Request
 
 /**
- * Retrieves filters. You can get a single filter or all filters.
+ * Get filters. You can get a single filter or all filters.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_filters.Request">API
  *      specification</a>

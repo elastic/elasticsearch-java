@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.infer_trained_model.Request
 
 /**
- * Evaluates a trained model.
+ * Evaluate a trained model.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.infer_trained_model.Request">API
  *      specification</a>

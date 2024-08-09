@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * <p>
  * CAT APIs are only intended for human consumption using the command line or
  * the Kibana console. They are not intended for use by applications. For
- * application consumption, use the /_alias endpoints.
+ * application consumption, use the aliases API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.aliases.Request">API
  *      specification</a>
