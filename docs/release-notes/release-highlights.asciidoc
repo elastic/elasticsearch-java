@@ -8,7 +8,37 @@ For a list of detailed changes, including bug fixes, please see the https://gith
 [discrete]
 ==== Version 8.15
 
-* No new feature.
+* New https://www.elastic.co/guide/en/elasticsearch/reference/current/connector-apis.html[Connector API] available
+* Fixed bug in BulkIngester - https://github.com/elastic/elasticsearch-java/pull/830[#830]
+* Various bug fixes, among which are https://github.com/elastic/elasticsearch-java/pull/844[#844], https://github.com/elastic/elasticsearch-java/pull/847[#847]
+* Changed builders for queries that use generic types, for example:
+
+** Old RangeQuery:
++
+[source,java,indent=2]
+----
+RangeQuery ra = RangeQuery.of(r -> r  // no distinction between various types (date, term, number)
+    .field("day")
+    .gte(JsonData.of("2024-06-20"))   // must use custom json for fields because there's no defined type
+    .lte(JsonData.of("2024-07-05"))
+    .boost(1.0F)
+    .format("yyyy-MM-dd")
+    .relation(RangeRelation.Contains));
+----
++
+** New RangeQuery:
++
+[source,java]
+----
+RangeQuery ra = RangeQuery.of(r -> r
+.date(d -> d             // choose query type before
+.field("day")
+.gte("20-06-24")    // field now only accepts valid type for the specified query
+.lte("20-07-24")
+.boost(1.0F)
+.format("yyyy-MM-dd")
+.relation(RangeRelation.Contains)));
+----
 
 [discrete]
 ==== Version 8.14
