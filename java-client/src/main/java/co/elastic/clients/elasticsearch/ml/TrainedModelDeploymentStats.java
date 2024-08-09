@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -75,7 +76,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 	private final String modelId;
 
-	private final TrainedModelDeploymentNodesStats nodes;
+	private final List<TrainedModelDeploymentNodesStats> nodes;
 
 	private final int numberOfAllocations;
 
@@ -103,7 +104,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
 		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
 				"numberOfAllocations");
 		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity");
@@ -184,7 +185,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code nodes}
 	 */
-	public final TrainedModelDeploymentNodesStats nodes() {
+	public final List<TrainedModelDeploymentNodesStats> nodes() {
 		return this.nodes;
 	}
 
@@ -298,9 +299,16 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
-		generator.writeKey("nodes");
-		this.nodes.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartArray();
+			for (TrainedModelDeploymentNodesStats item0 : this.nodes) {
+				item0.serialize(generator, mapper);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("number_of_allocations");
 		generator.write(this.numberOfAllocations);
 
@@ -353,7 +361,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 		private String modelId;
 
-		private TrainedModelDeploymentNodesStats nodes;
+		private List<TrainedModelDeploymentNodesStats> nodes;
 
 		private Integer numberOfAllocations;
 
@@ -447,9 +455,11 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		 * node.
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(TrainedModelDeploymentNodesStats value) {
-			this.nodes = value;
+		public final Builder nodes(List<TrainedModelDeploymentNodesStats> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
@@ -459,10 +469,26 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		 * node.
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
+		 */
+		public final Builder nodes(TrainedModelDeploymentNodesStats value, TrainedModelDeploymentNodesStats... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - The deployment stats for each node that currently has the model
+		 * allocated. In serverless, stats are reported for a single unnamed virtual
+		 * node.
+		 * <p>
+		 * API name: {@code nodes}
+		 * <p>
+		 * Adds a value to <code>nodes</code> using a builder lambda.
 		 */
 		public final Builder nodes(
 				Function<TrainedModelDeploymentNodesStats.Builder, ObjectBuilder<TrainedModelDeploymentNodesStats>> fn) {
-			return this.nodes(fn.apply(new TrainedModelDeploymentNodesStats.Builder()).build());
+			return nodes(fn.apply(new TrainedModelDeploymentNodesStats.Builder()).build());
 		}
 
 		/**
@@ -587,7 +613,8 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.integerDeserializer(), "inference_count");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::nodes, TrainedModelDeploymentNodesStats._DESERIALIZER, "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(TrainedModelDeploymentNodesStats._DESERIALIZER),
+				"nodes");
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::queueCapacity, JsonpDeserializer.integerDeserializer(), "queue_capacity");
 		op.add(Builder::rejectedExecutionCount, JsonpDeserializer.integerDeserializer(), "rejected_execution_count");
