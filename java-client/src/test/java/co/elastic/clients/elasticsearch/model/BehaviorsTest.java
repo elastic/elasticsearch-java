@@ -44,6 +44,10 @@ import org.junit.jupiter.api.Test;
 
 public class BehaviorsTest extends ModelTestCase {
 
+//    public BehaviorsTest() {
+//        super(JsonImpl.Jackson);
+//    }
+
     /**
      * Test for SingleKeyDictionary transformed to a behavior. For regular fields, see NamedValue tests in {@link ClassStructureTest}
      */
@@ -286,7 +290,7 @@ public class BehaviorsTest extends ModelTestCase {
 
         fsq = fromJson(full, FunctionScoreQuery.class);
         assertEquals(MultiValueMode.Avg, fsq.functions().get(0).gauss().untyped().multiValueMode());
-        
+
         fsq = fromJson(shortcut, FunctionScoreQuery.class);
         assertEquals(MultiValueMode.Avg, fsq.functions().get(0).gauss().untyped().multiValueMode());
     }

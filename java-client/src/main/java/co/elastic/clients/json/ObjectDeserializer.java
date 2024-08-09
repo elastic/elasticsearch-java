@@ -188,30 +188,9 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         String fieldName = null;
 
         try {
-            if (shortcutProperty != null) {
-                if (!shortcutIsObject) {
-                    if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
-                        // This is the shortcut property (should be a value or array event, this will be checked by its deserializer)
-                        shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
-                        return;
-                    }
-                } else {
-                    // Does the shortcut property exist? If yes, the shortcut is used
-                    Map.Entry<Object, JsonParser> shortcut = JsonpUtils.findVariant(
-                        Collections.singletonMap(shortcutProperty.name, Boolean.TRUE /* arbitrary non-null value */),
-                        parser, mapper
-                    );
-
-                    // Parse the buffered events
-                    parser = shortcut.getValue();
-                    event = parser.next();
-
-                    // If shortcut property was not found, this is a shortcut. Otherwise, keep deserializing as usual
-                    if (shortcut.getKey() == null) {
-                        shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
-                        return;
-                    }
-                }
+            if ((parser = deserializeWithShortcut(value, parser, mapper, event)) == null) {
+                // We found the shortcut form
+                return;
             }
 
             if (typeProperty == null) {
@@ -256,6 +235,48 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
             // Add field name if present
             throw JsonpMappingException.from(e, value, fieldName, parser);
         }
+    }
+
+    /**
+     * Try to deserialize the value with its shortcut property, if any.
+     *
+     * @return {@code null} if the shortcut form was found, and otherwise a parser that should be used to parse the
+     *         non-shortcut form. It may be different from the orginal parser if look-ahead was needed.
+     */
+    private JsonParser deserializeWithShortcut(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
+        if (shortcutProperty != null) {
+            if (!shortcutIsObject) {
+                if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
+                    // This is the shortcut property (should be a value or array event, this will be checked by its deserializer)
+                    shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                    return null;
+                }
+            } else {
+                // Fast path: we don't need to look ahead if the current event isn't an object
+                if (event != Event.START_OBJECT) {
+                    shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                    return null;
+                }
+
+                // Look ahead: does the shortcut property exist? If yes, the shortcut is used
+                Map.Entry<Object, JsonParser> shortcut = JsonpUtils.findVariant(
+                    Collections.singletonMap(shortcutProperty.name, Boolean.TRUE /* arbitrary non-null value */),
+                    parser, mapper
+                );
+
+                // Parse the buffered events
+                parser = shortcut.getValue();
+                event = parser.next();
+
+                // If shortcut property was not found, this is a shortcut. Otherwise, keep deserializing as usual
+                if (shortcut.getKey() == null) {
+                    shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
+                    return null;
+                }
+            }
+        }
+
+        return parser;
     }
 
     protected void parseUnknownField(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
