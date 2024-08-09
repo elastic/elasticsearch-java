@@ -72,6 +72,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Integer numCandidates;
 
+	@Nullable
+	private final Integer k;
+
 	private final List<Query> filter;
 
 	@Nullable
@@ -86,6 +89,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.numCandidates = builder.numCandidates;
+		this.k = builder.k;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.similarity = builder.similarity;
 
@@ -143,6 +147,16 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * The final number of nearest neighbors to return as top hits
+	 * <p>
+	 * API name: {@code k}
+	 */
+	@Nullable
+	public final Integer k() {
+		return this.k;
+	}
+
+	/**
 	 * Filters for the kNN search query
 	 * <p>
 	 * API name: {@code filter}
@@ -187,6 +201,11 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			generator.write(this.numCandidates);
 
 		}
+		if (this.k != null) {
+			generator.writeKey("k");
+			generator.write(this.k);
+
+		}
 		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
@@ -222,6 +241,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 
 		@Nullable
 		private Integer numCandidates;
+
+		@Nullable
+		private Integer k;
 
 		@Nullable
 		private List<Query> filter;
@@ -292,6 +314,16 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		 */
 		public final Builder numCandidates(@Nullable Integer value) {
 			this.numCandidates = value;
+			return this;
+		}
+
+		/**
+		 * The final number of nearest neighbors to return as top hits
+		 * <p>
+		 * API name: {@code k}
+		 */
+		public final Builder k(@Nullable Integer value) {
+			this.k = value;
 			return this;
 		}
 
@@ -373,6 +405,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 				"query_vector");
 		op.add(Builder::queryVectorBuilder, QueryVectorBuilder._DESERIALIZER, "query_vector_builder");
 		op.add(Builder::numCandidates, JsonpDeserializer.integerDeserializer(), "num_candidates");
+		op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
 
