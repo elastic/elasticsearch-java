@@ -19,7 +19,7 @@ For a list of detailed changes, including bug fixes, please see the https://gith
 
 ** Old RangeQuery:
 +
-[source,java,indent=2]
+[source,java]
 ----
 RangeQuery ra = RangeQuery.of(r -> r  // no distinction between various types (date, term, number)
     .field("day")
@@ -35,13 +35,13 @@ RangeQuery ra = RangeQuery.of(r -> r  // no distinction between various types (d
 [source,java]
 ----
 RangeQuery ra = RangeQuery.of(r -> r
-.date(d -> d             // choose query type before
-.field("day")
-.gte("20-06-24")    // field now only accepts valid type for the specified query
-.lte("20-07-24")
-.boost(1.0F)
-.format("yyyy-MM-dd")
-.relation(RangeRelation.Contains)));
+    .date(d -> d             // choose query type before
+        .field("day")
+        .gte("20-06-24")    // field now only accepts valid type for the specified query
+        .lte("20-07-24")
+        .boost(1.0F)
+        .format("yyyy-MM-dd")
+        .relation(RangeRelation.Contains)));
 ----
 
 [discrete]
