@@ -27,6 +27,8 @@ import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.SortOptionsBuilders;
 import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScoreQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.MultiValueMode;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
@@ -246,7 +248,47 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals("foo", req.query().term().field());
         assertEquals("bar", req.query().term().value().stringValue());
+    }
+    
+    @Test
+    public void testFunctionScoreQuery() {
+        String shortcut =
+            "{" +
+            "  \"gauss\": {" +
+            "    \"date\": {" +
+            "      \"origin\": \"2013-09-17\", " +
+            "      \"scale\": \"10d\"," +
+            "      \"offset\": \"5d\",         " +
+            "      \"decay\": 0.5" +
+            "    }," +
+            "    \"multi_value_mode\": \"avg\"" +
+            "  }" +
+            "}";
 
+        String full =
+            "{" +
+            "  \"functions\": [" +
+            "    {" +
+            "      \"gauss\": {" +
+            "        \"date\": {" +
+            "          \"origin\": \"2013-09-17\"," +
+            "          \"scale\": \"10d\"," +
+            "          \"offset\": \"5d\"," +
+            "          \"decay\": 0.5" +
+            "        }," +
+            "        \"multi_value_mode\": \"avg\"" +
+            "      }" +
+            "    }" +
+            "  ]" +
+            "}";
+
+        FunctionScoreQuery fsq;
+
+        fsq = fromJson(full, FunctionScoreQuery.class);
+        assertEquals(MultiValueMode.Avg, fsq.functions().get(0).gauss().untyped().multiValueMode());
+        
+        fsq = fromJson(shortcut, FunctionScoreQuery.class);
+        assertEquals(MultiValueMode.Avg, fsq.functions().get(0).gauss().untyped().multiValueMode());
     }
 
     @Test
