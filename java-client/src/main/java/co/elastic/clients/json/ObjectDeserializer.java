@@ -149,38 +149,51 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
     }
 
     public ObjectType deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-        return deserialize(constructor.get(), parser, mapper, event);
-    }
-
-    public ObjectType deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
         if (event == Event.VALUE_NULL) {
             return null;
         }
 
-        String keyName = null;
-        String fieldName = null;
+        ObjectType value = constructor.get();
+        deserialize(value, parser, mapper, event);
+        return value;
+    }
 
-        JsonParser singleKeyParser = null;
+    public void deserialize(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
+        // Note: method is public as it's called by `withJson` to augment an already created object
 
-        try {
-            if (singleKey != null) {
-                // There's a wrapping property whose name is the key value
-                if (event == Event.START_OBJECT) {
-                    event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
-                }
-                singleKey.deserialize(parser, mapper, null, value, event);
-                event = parser.next();
-                // Keep the current parser, as we needed to check the wrapping END_OBJECT below, but the variable may
-                // be overwritten if we have a shortcut property (happens in TermQuery).
-                singleKeyParser = parser;
+        if (singleKey == null) {
+            // Nominal case
+            deserializeInner(value, parser, mapper, event);
+
+        } else {
+            // Single key dictionary: there's a wrapping property whose name is the key value
+            if (event == Event.START_OBJECT) {
+                event = JsonpUtils.expectNextEvent(parser, Event.KEY_NAME);
             }
 
+            String keyName = parser.getString();
+            try {
+                singleKey.deserialize(parser, mapper, null, value, event);
+                event = parser.next();
+                deserializeInner(value, parser, mapper, event);
+            } catch (Exception e) {
+                throw JsonpMappingException.from(e, value, keyName, parser);
+            }
+
+            JsonpUtils.expectNextEvent(parser, Event.END_OBJECT);
+        }
+    }
+
+    private void deserializeInner(ObjectType value, JsonParser parser, JsonpMapper mapper, Event event) {
+        String fieldName = null;
+
+        try {
             if (shortcutProperty != null) {
                 if (!shortcutIsObject) {
                     if (event != Event.START_OBJECT && event != Event.KEY_NAME) {
                         // This is the shortcut property (should be a value or array event, this will be checked by its deserializer)
                         shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
-                        return value;
+                        return;
                     }
                 } else {
                     // Does the shortcut property exist? If yes, the shortcut is used
@@ -196,7 +209,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
                     // If shortcut property was not found, this is a shortcut. Otherwise, keep deserializing as usual
                     if (shortcut.getKey() == null) {
                         shortcutProperty.deserialize(parser, mapper, shortcutProperty.name, value, event);
-                        return value;
+                        return;
                     }
                 }
             }
@@ -239,18 +252,10 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
                     fieldDeserializer.deserialize(innerParser, mapper, variant, value);
                 }
             }
-
-            if (singleKey != null) {
-                // Consume the wrapping property's END_OBJECT
-                parser = singleKeyParser;
-                JsonpUtils.expectNextEvent(parser, Event.END_OBJECT);
-            }
         } catch (Exception e) {
-            // Add key name (for single key dicts) and field name if present
-            throw JsonpMappingException.from(e, value, fieldName, parser).prepend(value, keyName);
+            // Add field name if present
+            throw JsonpMappingException.from(e, value, fieldName, parser);
         }
-
-        return value;
     }
 
     protected void parseUnknownField(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
