@@ -311,12 +311,6 @@ public class BulkIngester<Context> implements AutoCloseable {
         if (exec != null) {
             // A request was actually sent
             exec.futureResponse.handle((resp, thr) -> {
-
-                sendRequestCondition.signalIfReadyAfter(() -> {
-                    requestsInFlightCount--;
-                    closeCondition.signalAllIfReady();
-                });
-
                 if (resp != null) {
                     // Success
                     if (listener != null) {
@@ -330,6 +324,11 @@ public class BulkIngester<Context> implements AutoCloseable {
                             exec.contexts, thr));
                     }
                 }
+
+                sendRequestCondition.signalIfReadyAfter(() -> {
+                    requestsInFlightCount--;
+                    closeCondition.signalAllIfReady();
+                });
                 return null;
             });
         }
