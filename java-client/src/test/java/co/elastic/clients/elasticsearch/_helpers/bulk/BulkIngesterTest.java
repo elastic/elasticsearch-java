@@ -105,7 +105,8 @@ class BulkIngesterTest extends Assertions {
         multiThreadTest(10, 3, 5, 100, true);
     }
 
-    private void multiThreadTest(int maxOperations, int maxRequests, int numThreads, int numOperations, boolean externalScheduler) throws Exception {
+    private void multiThreadTest(int maxOperations, int maxRequests, int numThreads, int numOperations,
+                                 boolean externalScheduler) throws Exception {
 
         CountingListener listener = new CountingListener();
         TestTransport transport = new TestTransport();
