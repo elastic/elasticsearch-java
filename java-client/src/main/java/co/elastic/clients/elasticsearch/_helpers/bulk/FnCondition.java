@@ -35,11 +35,13 @@ class FnCondition {
     private final BooleanSupplier ready;
     private long invocations;
     private long contentions;
+    private String name;
 
-    FnCondition(Lock lock, BooleanSupplier ready) {
+    FnCondition(Lock lock, BooleanSupplier ready, String name) {
         this.lock = lock;
         this.condition = lock.newCondition();
         this.ready = ready;
+        this.name = name;
     }
 
     public void whenReady(Runnable fn) {
@@ -69,6 +71,7 @@ class FnCondition {
         lock.lock();
         try {
             if (canRun != null && !canRun.getAsBoolean()) {
+                System.out.println("I'm thread " + Thread.currentThread().getName() + " and I cannot run current condition = " + name);
                 return null;
             }
 
@@ -79,7 +82,9 @@ class FnCondition {
                     contentions++;
                     firstLoop = false;
                 }
+                System.out.println("I'm thread " + Thread.currentThread().getName() + " and I'm about to get stuck - condition = " + name);
                 condition.awaitUninterruptibly();
+                System.out.println("I'm thread " + Thread.currentThread().getName() + " and I managed to wake up - condition = " + name);
             }
 
             if (canRun != null && !canRun.getAsBoolean()) {
@@ -96,7 +101,8 @@ class FnCondition {
         lock.lock();
         try {
             if (ready.getAsBoolean()) {
-                this.condition.signal();
+                System.out.println("I'm thread " + Thread.currentThread().getName() + " and in theory I should free another thread - condition = " + name);
+                this.condition.signal(); // THIS ONE
             }
         } finally {
             lock.unlock();
@@ -107,6 +113,7 @@ class FnCondition {
         lock.lock();
         try {
             if (ready.getAsBoolean()) {
+                System.out.println("I'm thread " + Thread.currentThread().getName() + " and in theory I should free all threads - condition = " + name);
                 this.condition.signalAll();
             }
         } finally {
@@ -119,6 +126,7 @@ class FnCondition {
         try {
             r.run();
             if (ready.getAsBoolean()) {
+                System.out.println("I'm thread " + Thread.currentThread().getName() + " and in theory I should free another thread after - condition = " + name);
                 this.condition.signal();
             }
         } finally {

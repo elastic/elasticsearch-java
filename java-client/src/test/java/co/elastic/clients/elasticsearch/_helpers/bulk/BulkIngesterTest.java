@@ -24,10 +24,12 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.core.bulk.OperationType;
 import co.elastic.clients.elasticsearch.end_to_end.RequestTest;
+import co.elastic.clients.elasticsearch.indices.IndicesStatsResponse;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.SimpleJsonpMapper;
@@ -441,6 +443,56 @@ class BulkIngesterTest extends Assertions {
         client.indices().delete(d -> d.index(index));
 
     }
+
+    @Test
+    public void multithreadStressTest() throws InterruptedException, IOException {
+        String index = "bulk-ingester-stress-test";
+        ElasticsearchClient client = ElasticsearchTestServer.global().client();
+
+        BulkIngester<?> ingester = BulkIngester.of(b -> b
+            .client(client)
+            .globalSettings(s -> s.index(index))
+            //.flushInterval(5, TimeUnit.SECONDS) // it also gets stuck with the flusher thread, easier to debug without it
+            //.maxConcurrentRequests(20)          // fixes it
+        );
+
+        RequestTest.AppData appData = new RequestTest.AppData();
+        appData.setIntValue(42);
+        appData.setMsg("Some message");
+
+        ExecutorService executor = Executors.newFixedThreadPool(50);
+
+        for (int i = 0; i < 15000; i++) {
+            int ii = i;
+            Runnable thread = () -> {
+                //System.out.println("created task number " + ii);
+                int finalI = ii;
+                ingester.add(_1 -> _1
+                    .create(_2 -> _2
+                        .id(String.valueOf(finalI))
+                        .document(appData)
+                    ));
+            };
+            executor.submit(thread);
+        }
+
+        executor.awaitTermination(10,TimeUnit.SECONDS);
+
+
+        client.indices().refresh();
+
+
+        IndicesStatsResponse lkj = client.indices().stats(g -> g.index(index));
+        System.out.println("Index stats: \n" + lkj);
+
+        assertTrue(lkj.indices().get(index).primaries().docs().count()==15000);
+
+
+        ingester.close();
+
+
+    }
+
 
     @Test
     public void testConfigValidation() {

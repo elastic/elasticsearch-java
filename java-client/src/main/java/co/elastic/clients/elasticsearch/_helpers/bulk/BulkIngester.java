@@ -73,9 +73,9 @@ public class BulkIngester<Context> implements AutoCloseable {
 
     // Synchronization objects
     private final ReentrantLock lock = new ReentrantLock();
-    private final FnCondition addCondition = new FnCondition(lock, this::canAddOperation);
-    private final FnCondition sendRequestCondition = new FnCondition(lock, this::canSendRequest);
-    private final FnCondition closeCondition = new FnCondition(lock, this::closedAndFlushed);
+    private final FnCondition addCondition = new FnCondition(lock, this::canAddOperation, "add");
+    private final FnCondition sendRequestCondition = new FnCondition(lock, this::canSendRequest, "send");
+    private final FnCondition closeCondition = new FnCondition(lock, this::closedAndFlushed, "close");
 
     private static class RequestExecution<Context> {
         public final long id;
@@ -310,6 +310,7 @@ public class BulkIngester<Context> implements AutoCloseable {
 
         if (exec != null) {
             // A request was actually sent
+            System.out.println("Thread " + Thread.currentThread().getName() + " sent request with id: " +  exec.id);
             exec.futureResponse.handle((resp, thr) -> {
 
                 sendRequestCondition.signalIfReadyAfter(() -> {
