@@ -122,6 +122,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private final String preference;
 
 	@Nullable
+	private final String q;
+
+	@Nullable
 	private final Query query;
 
 	@Nullable
@@ -197,6 +200,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		this.maxDocs = builder.maxDocs;
 		this.pipeline = builder.pipeline;
 		this.preference = builder.preference;
+		this.q = builder.q;
 		this.query = builder.query;
 		this.refresh = builder.refresh;
 		this.requestCache = builder.requestCache;
@@ -381,6 +385,16 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public final String preference() {
 		return this.preference;
+	}
+
+	/**
+	 * Query in the Lucene query string syntax.
+	 * <p>
+	 * API name: {@code q}
+	 */
+	@Nullable
+	public final String q() {
+		return this.q;
 	}
 
 	/**
@@ -684,6 +698,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private String preference;
 
 		@Nullable
+		private String q;
+
+		@Nullable
 		private Query query;
 
 		@Nullable
@@ -936,6 +953,16 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 */
 		public final Builder preference(@Nullable String value) {
 			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * Query in the Lucene query string syntax.
+		 * <p>
+		 * API name: {@code q}
+		 */
+		public final Builder q(@Nullable String value) {
+			this.q = value;
 			return this;
 		}
 
@@ -1421,6 +1448,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
+				}
+				if (request.q != null) {
+					params.put("q", request.q);
 				}
 				if (request.defaultOperator != null) {
 					params.put("default_operator", request.defaultOperator.jsonValue());

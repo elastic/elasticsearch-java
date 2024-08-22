@@ -362,7 +362,7 @@ public class CompletionContext implements JsonpSerializable {
 		op.add(Builder::precision, GeoHashPrecision._DESERIALIZER, "precision");
 		op.add(Builder::prefix, JsonpDeserializer.booleanDeserializer(), "prefix");
 
-		op.shortcutProperty("context");
+		op.shortcutProperty("context", true);
 
 	}
 

@@ -25,6 +25,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -57,6 +58,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements RangeQueryVariant {
+	// Single key dictionary
+	private final String field;
+
 	@Nullable
 	private final String format;
 
@@ -67,6 +71,7 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 
 	private UntypedRangeQuery(Builder builder) {
 		super(builder);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.format = builder.format;
 		this.timeZone = builder.timeZone;
@@ -83,6 +88,13 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 	@Override
 	public RangeQuery.Kind _rangeQueryKind() {
 		return RangeQuery.Kind.Untyped;
+	}
+
+	/**
+	 * Required - the required field
+	 */
+	public final String field() {
+		return this.field;
 	}
 
 	/**
@@ -107,6 +119,7 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
@@ -120,6 +133,8 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 
 		}
 
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -131,6 +146,16 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 	public static class Builder extends RangeQueryBase.AbstractBuilder<JsonData, Builder>
 			implements
 				ObjectBuilder<UntypedRangeQuery> {
+		private String field;
+
+		/**
+		 * Required - the required field
+		 */
+		public final Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private String format;
 
@@ -189,6 +214,8 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 		RangeQueryBase.setupRangeQueryBaseDeserializer(op, JsonData._DESERIALIZER);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 
