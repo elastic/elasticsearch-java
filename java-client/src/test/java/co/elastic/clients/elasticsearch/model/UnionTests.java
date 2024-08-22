@@ -161,7 +161,7 @@ public class UnionTests extends ModelTestCase {
                 .relation(RangeRelation.Contains))));
 
         String expectedDateRangeQuery = "{\"range\":{\"day\":{\"boost\":1.0,\"relation\":\"contains\"," +
-            "\"gte\":\"20-06-24\",\"lte\":\"20-07-24\"},\"format\":\"some-format\"}}";
+            "\"gte\":\"20-06-24\",\"lte\":\"20-07-24\",\"format\":\"some-format\"}}}";
 
         assertEquals(expectedDateRangeQuery, toJson(dateRangeQuery));
 
