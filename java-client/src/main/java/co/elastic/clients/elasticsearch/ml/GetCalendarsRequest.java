@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_calendars.Request
 
 /**
- * Retrieves configuration information for calendars.
+ * Get calendar configuration info.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_calendars.Request">API
  *      specification</a>

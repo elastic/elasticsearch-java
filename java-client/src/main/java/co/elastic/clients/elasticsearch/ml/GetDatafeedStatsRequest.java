@@ -58,10 +58,10 @@ import javax.annotation.Nullable;
 // typedef: ml.get_datafeed_stats.Request
 
 /**
- * Retrieves usage information for datafeeds. You can get statistics for
- * multiple datafeeds in a single API request by using a comma-separated list of
- * datafeeds or a wildcard expression. You can get statistics for all datafeeds
- * by using <code>_all</code>, by specifying <code>*</code> as the
+ * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
+ * single API request by using a comma-separated list of datafeeds or a wildcard
+ * expression. You can get statistics for all datafeeds by using
+ * <code>_all</code>, by specifying <code>*</code> as the
  * <code>&lt;feed_id&gt;</code>, or by omitting the
  * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
  * information you receive is the <code>datafeed_id</code> and the

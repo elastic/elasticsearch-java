@@ -59,9 +59,9 @@ import javax.annotation.Nullable;
 // typedef: ml.put_filter.Request
 
 /**
- * Instantiates a filter. A filter contains a list of strings. It can be used by
- * one or more anomaly detection jobs. Specifically, filters are referenced in
- * the <code>custom_rules</code> property of detector configuration objects.
+ * Create a filter. A filter contains a list of strings. It can be used by one
+ * or more anomaly detection jobs. Specifically, filters are referenced in the
+ * <code>custom_rules</code> property of detector configuration objects.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_filter.Request">API
  *      specification</a>

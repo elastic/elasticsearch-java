@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_model_snapshots.Request
 
 /**
- * Retrieves information about model snapshots.
+ * Get model snapshots info.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_model_snapshots.Request">API
  *      specification</a>

@@ -61,9 +61,9 @@ import javax.annotation.Nullable;
 // typedef: ml.put_data_frame_analytics.Request
 
 /**
- * Instantiates a data frame analytics job. This API creates a data frame
- * analytics job that performs an analysis on the source indices and stores the
- * outcome in a destination index.
+ * Create a data frame analytics job. This API creates a data frame analytics
+ * job that performs an analysis on the source indices and stores the outcome in
+ * a destination index.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.put_data_frame_analytics.Request">API

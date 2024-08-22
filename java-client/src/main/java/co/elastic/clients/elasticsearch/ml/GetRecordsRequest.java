@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_records.Request
 
 /**
- * Retrieves anomaly records for an anomaly detection job. Records contain the
+ * Get anomaly records for an anomaly detection job. Records contain the
  * detailed analytical results. They describe the anomalous activity that has
  * been identified in the input data based on the detector configuration. There
  * can be many anomaly records depending on the characteristics and size of the

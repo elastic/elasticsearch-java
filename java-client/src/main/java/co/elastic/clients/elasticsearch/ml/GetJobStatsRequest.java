@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_job_stats.Request
 
 /**
- * Retrieves usage information for anomaly detection jobs.
+ * Get anomaly detection jobs usage info.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_job_stats.Request">API
  *      specification</a>

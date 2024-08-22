@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
 // typedef: ml.revert_model_snapshot.Request
 
 /**
- * Reverts to a specific snapshot. The machine learning features react quickly
- * to anomalous input, learning new behaviors in data. Highly anomalous input
+ * Revert to a snapshot. The machine learning features react quickly to
+ * anomalous input, learning new behaviors in data. Highly anomalous input
  * increases the variance in the models whilst the system learns whether this is
  * a new step-change in behavior or a one-off event. In the case where this
  * anomalous input is known to be a one-off, then it might be appropriate to

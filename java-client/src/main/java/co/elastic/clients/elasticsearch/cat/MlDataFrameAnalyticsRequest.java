@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  * <p>
  * CAT APIs are only intended for human consumption using the Kibana console or
  * command line. They are not intended for use by applications. For application
- * consumption, use the /_ml/data_frame/analytics endpoints.
+ * consumption, use the get data frame analytics jobs statistics API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cat.ml_data_frame_analytics.Request">API

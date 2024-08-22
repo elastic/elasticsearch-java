@@ -59,12 +59,12 @@ import javax.annotation.Nullable;
 // typedef: ml.forecast.Request
 
 /**
- * Predicts the future behavior of a time series by using its historical
- * behavior.
+ * Predict future behavior of a time series.
  * <p>
  * Forecasts are not supported for jobs that perform population analysis; an
  * error occurs if you try to create a forecast for a job that has an
- * <code>over_field_name</code> in its configuration.
+ * <code>over_field_name</code> in its configuration. Forcasts predict future
+ * behavior based on historical data.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.forecast.Request">API
  *      specification</a>

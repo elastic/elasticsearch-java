@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.start_datafeed.Request
 
 /**
- * Starts one or more datafeeds.
+ * Start datafeeds.
  * <p>
  * A datafeed must be started in order to retrieve data from Elasticsearch. A
  * datafeed can be started and stopped multiple times throughout its lifecycle.

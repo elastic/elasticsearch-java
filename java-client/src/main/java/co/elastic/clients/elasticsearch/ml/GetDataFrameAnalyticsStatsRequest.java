@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_data_frame_analytics_stats.Request
 
 /**
- * Retrieves usage information for data frame analytics jobs.
+ * Get data frame analytics jobs usage info.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.get_data_frame_analytics_stats.Request">API

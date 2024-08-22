@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ml.update_model_snapshot.Request
 
 /**
- * Updates certain properties of a snapshot.
+ * Update a snapshot. Updates certain properties of a snapshot.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.update_model_snapshot.Request">API
