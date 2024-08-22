@@ -20,7 +20,6 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -265,28 +264,12 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         JsonLocation location = parser.getLocation();
 
         if (member == null && event == Event.START_OBJECT && !objectMembers.isEmpty()) {
-            if (parser instanceof LookAheadJsonParser) {
-                Map.Entry<EventHandler<Union, Kind, Member>, JsonParser> memberAndParser =
-                    ((LookAheadJsonParser) parser).findVariant(objectMembers);
+            Map.Entry<EventHandler<Union, Kind, Member>, JsonParser> memberAndParser =
+                JsonpUtils.findVariant(objectMembers, parser, mapper);
 
-                member = memberAndParser.getKey();
-                // Parse the buffered parser
-                parser = memberAndParser.getValue();
-
-            } else {
-                // Parse as an object to find matching field names
-                JsonObject object = parser.getObject();
-
-                for (String field: object.keySet()) {
-                    member = objectMembers.get(field);
-                    if (member != null) {
-                        break;
-                    }
-                }
-
-                // Traverse the object we have inspected
-                parser = JsonpUtils.objectParser(object, mapper);
-            }
+            member = memberAndParser.getKey();
+            // Parse the buffered parser
+            parser = memberAndParser.getValue();
 
             if (member == null) {
                 member = fallbackObjectMember;
