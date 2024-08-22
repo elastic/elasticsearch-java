@@ -17,17 +17,15 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.query_dsl;
+package co.elastic.clients.elasticsearch.core.health_report;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -47,72 +45,78 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.query_dsl.TermRangeQuery
+// typedef: _global.health_report.DataStreamLifecycleIndicator
 
 /**
- *
+ * DATA_STREAM_LIFECYCLE
+ * 
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.query_dsl.TermRangeQuery">API
+ *      "../../doc-files/api-spec.html#_global.health_report.DataStreamLifecycleIndicator">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TermRangeQuery extends RangeQueryBase<String> implements RangeQueryVariant {
-	// Single key dictionary
-	private final String field;
+public class DataStreamLifecycleIndicator extends BaseIndicator {
+	@Nullable
+	private final DataStreamLifecycleDetails details;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TermRangeQuery(Builder builder) {
+	private DataStreamLifecycleIndicator(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+
+		this.details = builder.details;
 
 	}
 
-	public static TermRangeQuery of(Function<Builder, ObjectBuilder<TermRangeQuery>> fn) {
+	public static DataStreamLifecycleIndicator of(Function<Builder, ObjectBuilder<DataStreamLifecycleIndicator>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * RangeQuery variant kind.
+	 * API name: {@code details}
 	 */
-	@Override
-	public RangeQuery.Kind _rangeQueryKind() {
-		return RangeQuery.Kind.Term;
-	}
-
-	/**
-	 * Required - the required field
-	 */
-	public final String field() {
-		return this.field;
+	@Nullable
+	public final DataStreamLifecycleDetails details() {
+		return this.details;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
+		if (this.details != null) {
+			generator.writeKey("details");
+			this.details.serialize(generator, mapper);
 
-		generator.writeEnd();
+		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TermRangeQuery}.
+	 * Builder for {@link DataStreamLifecycleIndicator}.
 	 */
 
-	public static class Builder extends RangeQueryBase.AbstractBuilder<String, Builder>
+	public static class Builder extends BaseIndicator.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<TermRangeQuery> {
-		private String field;
+				ObjectBuilder<DataStreamLifecycleIndicator> {
+		@Nullable
+		private DataStreamLifecycleDetails details;
 
 		/**
-		 * Required - the required field
+		 * API name: {@code details}
 		 */
-		public final Builder field(String value) {
-			this.field = value;
+		public final Builder details(@Nullable DataStreamLifecycleDetails value) {
+			this.details = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code details}
+		 */
+		public final Builder details(
+				Function<DataStreamLifecycleDetails.Builder, ObjectBuilder<DataStreamLifecycleDetails>> fn) {
+			return this.details(fn.apply(new DataStreamLifecycleDetails.Builder()).build());
 		}
 
 		@Override
@@ -121,31 +125,30 @@ public class TermRangeQuery extends RangeQueryBase<String> implements RangeQuery
 		}
 
 		/**
-		 * Builds a {@link TermRangeQuery}.
+		 * Builds a {@link DataStreamLifecycleIndicator}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TermRangeQuery build() {
+		public DataStreamLifecycleIndicator build() {
 			_checkSingleUse();
-			super.tSerializer(null);
 
-			return new TermRangeQuery(this);
+			return new DataStreamLifecycleIndicator(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TermRangeQuery}
+	 * Json deserializer for {@link DataStreamLifecycleIndicator}
 	 */
-	public static final JsonpDeserializer<TermRangeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermRangeQuery::setupTermRangeQueryDeserializer);
+	public static final JsonpDeserializer<DataStreamLifecycleIndicator> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataStreamLifecycleIndicator::setupDataStreamLifecycleIndicatorDeserializer);
 
-	protected static void setupTermRangeQueryDeserializer(ObjectDeserializer<TermRangeQuery.Builder> op) {
-		RangeQueryBase.setupRangeQueryBaseDeserializer(op, JsonpDeserializer.stringDeserializer());
-
-		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+	protected static void setupDataStreamLifecycleIndicatorDeserializer(
+			ObjectDeserializer<DataStreamLifecycleIndicator.Builder> op) {
+		BaseIndicator.setupBaseIndicatorDeserializer(op);
+		op.add(Builder::details, DataStreamLifecycleDetails._DESERIALIZER, "details");
 
 	}
 

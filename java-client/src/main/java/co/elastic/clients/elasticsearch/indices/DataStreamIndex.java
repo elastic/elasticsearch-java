@@ -67,9 +67,11 @@ public class DataStreamIndex implements JsonpSerializable {
 	@Nullable
 	private final String ilmPolicy;
 
+	@Nullable
 	private final ManagedBy managedBy;
 
-	private final boolean preferIlm;
+	@Nullable
+	private final Boolean preferIlm;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,8 +80,8 @@ public class DataStreamIndex implements JsonpSerializable {
 		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.ilmPolicy = builder.ilmPolicy;
-		this.managedBy = ApiTypeHelper.requireNonNull(builder.managedBy, this, "managedBy");
-		this.preferIlm = ApiTypeHelper.requireNonNull(builder.preferIlm, this, "preferIlm");
+		this.managedBy = builder.managedBy;
+		this.preferIlm = builder.preferIlm;
 
 	}
 
@@ -116,22 +118,23 @@ public class DataStreamIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Name of the lifecycle system that's currently managing this
-	 * backing index.
+	 * Name of the lifecycle system that's currently managing this backing index.
 	 * <p>
 	 * API name: {@code managed_by}
 	 */
+	@Nullable
 	public final ManagedBy managedBy() {
 		return this.managedBy;
 	}
 
 	/**
-	 * Required - Indicates if ILM should take precedence over DSL in case both are
-	 * configured to manage this index.
+	 * Indicates if ILM should take precedence over DSL in case both are configured
+	 * to manage this index.
 	 * <p>
 	 * API name: {@code prefer_ilm}
 	 */
-	public final boolean preferIlm() {
+	@Nullable
+	public final Boolean preferIlm() {
 		return this.preferIlm;
 	}
 
@@ -157,10 +160,15 @@ public class DataStreamIndex implements JsonpSerializable {
 			generator.write(this.ilmPolicy);
 
 		}
-		generator.writeKey("managed_by");
-		this.managedBy.serialize(generator, mapper);
-		generator.writeKey("prefer_ilm");
-		generator.write(this.preferIlm);
+		if (this.managedBy != null) {
+			generator.writeKey("managed_by");
+			this.managedBy.serialize(generator, mapper);
+		}
+		if (this.preferIlm != null) {
+			generator.writeKey("prefer_ilm");
+			generator.write(this.preferIlm);
+
+		}
 
 	}
 
@@ -183,8 +191,10 @@ public class DataStreamIndex implements JsonpSerializable {
 		@Nullable
 		private String ilmPolicy;
 
+		@Nullable
 		private ManagedBy managedBy;
 
+		@Nullable
 		private Boolean preferIlm;
 
 		/**
@@ -218,23 +228,22 @@ public class DataStreamIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Name of the lifecycle system that's currently managing this
-		 * backing index.
+		 * Name of the lifecycle system that's currently managing this backing index.
 		 * <p>
 		 * API name: {@code managed_by}
 		 */
-		public final Builder managedBy(ManagedBy value) {
+		public final Builder managedBy(@Nullable ManagedBy value) {
 			this.managedBy = value;
 			return this;
 		}
 
 		/**
-		 * Required - Indicates if ILM should take precedence over DSL in case both are
-		 * configured to manage this index.
+		 * Indicates if ILM should take precedence over DSL in case both are configured
+		 * to manage this index.
 		 * <p>
 		 * API name: {@code prefer_ilm}
 		 */
-		public final Builder preferIlm(boolean value) {
+		public final Builder preferIlm(@Nullable Boolean value) {
 			this.preferIlm = value;
 			return this;
 		}
