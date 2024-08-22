@@ -20,12 +20,15 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.FieldSort;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.SortOptionsBuilders;
 import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScoreQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.MultiValueMode;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
@@ -71,7 +74,6 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals("query-name", q.queryName());
         assertTrue(q.ignoreUnmapped());
         assertEquals(GeoShapeRelation.Disjoint, q.shape().relation());
-        System.out.println(toJson(q));
     }
 
     @Test
@@ -132,7 +134,6 @@ public class BehaviorsTest extends ModelTestCase {
         }
     }
 
-
     @Test
     public void testAdditionalProperties() {
         // Check that additional property map is initialized even if not set explicitly
@@ -159,7 +160,7 @@ public class BehaviorsTest extends ModelTestCase {
     }
 
     @Test
-    public void testShortcutProperty() {
+    public void testPrimitiveShortcutProperty() {
 
         // All-in-one: a variant, wrapping a single-key dictionary with a shortcut property
         String json = "{\"term\":{\"some-field\":\"some-value\"}}";
@@ -167,5 +168,6 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals("some-field", q.term().field());
         assertEquals("some-value", q.term().value().stringValue());
+
     }
 }
