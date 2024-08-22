@@ -44,10 +44,6 @@ import org.junit.jupiter.api.Test;
 
 public class BehaviorsTest extends ModelTestCase {
 
-//    public BehaviorsTest() {
-//        super(JsonImpl.Jackson);
-//    }
-
     /**
      * Test for SingleKeyDictionary transformed to a behavior. For regular fields, see NamedValue tests in {@link ClassStructureTest}
      */
