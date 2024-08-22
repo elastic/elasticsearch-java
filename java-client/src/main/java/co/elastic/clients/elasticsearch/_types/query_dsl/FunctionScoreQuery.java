@@ -359,8 +359,6 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::scoreMode, FunctionScoreMode._DESERIALIZER, "score_mode");
 
-		op.shortcutProperty("functions", true);
-
 	}
 
 }
