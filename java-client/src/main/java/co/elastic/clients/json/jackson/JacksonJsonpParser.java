@@ -372,29 +372,34 @@ public class JacksonJsonpParser implements LookAheadJsonParser, BufferingJsonPar
         TokenBuffer tb = new TokenBuffer(parser, null);
 
         try {
-            // The resulting parser must contain the full object, including START_EVENT
-            tb.copyCurrentEvent(parser);
-            while (parser.nextToken() != JsonToken.END_OBJECT) {
+            if (parser.currentToken() != JsonToken.START_OBJECT) {
+                // Primitive value or array
+                tb.copyCurrentStructure(parser);
+            } else {
+                // The resulting parser must contain the full object, including START_EVENT
+                tb.copyCurrentEvent(parser);
+                while (parser.nextToken() != JsonToken.END_OBJECT) {
 
-                expectEvent(JsonToken.FIELD_NAME);
-                String fieldName = parser.getCurrentName();
+                    expectEvent(JsonToken.FIELD_NAME);
+                    String fieldName = parser.getCurrentName();
 
-                Variant variant = variants.get(fieldName);
-                if (variant != null) {
-                    tb.copyCurrentEvent(parser);
-                    return new AbstractMap.SimpleImmutableEntry<>(
-                        variant,
-                        new JacksonJsonpParser(
-                            JsonParserSequence.createFlattened(false, tb.asParser(), parser),
-                            mapper
-                        )
-                    );
-                } else {
-                    tb.copyCurrentStructure(parser);
+                    Variant variant = variants.get(fieldName);
+                    if (variant != null) {
+                        tb.copyCurrentEvent(parser);
+                        return new AbstractMap.SimpleImmutableEntry<>(
+                            variant,
+                            new JacksonJsonpParser(
+                                JsonParserSequence.createFlattened(false, tb.asParser(), parser),
+                                mapper
+                            )
+                        );
+                    } else {
+                        tb.copyCurrentStructure(parser);
+                    }
                 }
+                // Copy ending END_OBJECT
+                tb.copyCurrentEvent(parser);
             }
-            // Copy ending END_OBJECT
-            tb.copyCurrentEvent(parser);
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);
         }

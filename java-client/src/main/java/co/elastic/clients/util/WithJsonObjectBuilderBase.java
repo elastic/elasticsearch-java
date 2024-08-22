@@ -51,7 +51,8 @@ public abstract class WithJsonObjectBuilderBase<B> extends ObjectBuilderBase imp
 
         @SuppressWarnings("unchecked")
         ObjectDeserializer<B> builderDeser = (ObjectDeserializer<B>) DelegatingDeserializer.unwrap(classDeser);
-        return builderDeser.deserialize(self(), parser, mapper, parser.next());
+        builderDeser.deserialize(self(), parser, mapper, parser.next());
+        return self();
     }
 
     private static class WithJsonMapper extends DelegatingJsonpMapper {
