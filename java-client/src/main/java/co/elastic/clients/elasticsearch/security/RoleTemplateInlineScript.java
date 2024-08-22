@@ -222,7 +222,7 @@ public class RoleTemplateInlineScript extends ScriptBase {
 				"options");
 		op.add(Builder::source, RoleTemplateInlineQuery._DESERIALIZER, "source");
 
-		op.shortcutProperty("source");
+		op.shortcutProperty("source", true);
 
 	}
 
