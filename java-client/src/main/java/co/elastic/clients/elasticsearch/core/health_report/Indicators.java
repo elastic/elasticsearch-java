@@ -71,6 +71,9 @@ public class Indicators implements JsonpSerializable {
 	private final RepositoryIntegrityIndicator repositoryIntegrity;
 
 	@Nullable
+	private final DataStreamLifecycleIndicator dataStreamLifecycle;
+
+	@Nullable
 	private final IlmIndicator ilm;
 
 	@Nullable
@@ -87,6 +90,7 @@ public class Indicators implements JsonpSerializable {
 		this.shardsAvailability = builder.shardsAvailability;
 		this.disk = builder.disk;
 		this.repositoryIntegrity = builder.repositoryIntegrity;
+		this.dataStreamLifecycle = builder.dataStreamLifecycle;
 		this.ilm = builder.ilm;
 		this.slm = builder.slm;
 		this.shardsCapacity = builder.shardsCapacity;
@@ -127,6 +131,14 @@ public class Indicators implements JsonpSerializable {
 	@Nullable
 	public final RepositoryIntegrityIndicator repositoryIntegrity() {
 		return this.repositoryIntegrity;
+	}
+
+	/**
+	 * API name: {@code data_stream_lifecycle}
+	 */
+	@Nullable
+	public final DataStreamLifecycleIndicator dataStreamLifecycle() {
+		return this.dataStreamLifecycle;
 	}
 
 	/**
@@ -184,6 +196,11 @@ public class Indicators implements JsonpSerializable {
 			this.repositoryIntegrity.serialize(generator, mapper);
 
 		}
+		if (this.dataStreamLifecycle != null) {
+			generator.writeKey("data_stream_lifecycle");
+			this.dataStreamLifecycle.serialize(generator, mapper);
+
+		}
 		if (this.ilm != null) {
 			generator.writeKey("ilm");
 			this.ilm.serialize(generator, mapper);
@@ -225,6 +242,9 @@ public class Indicators implements JsonpSerializable {
 
 		@Nullable
 		private RepositoryIntegrityIndicator repositoryIntegrity;
+
+		@Nullable
+		private DataStreamLifecycleIndicator dataStreamLifecycle;
 
 		@Nullable
 		private IlmIndicator ilm;
@@ -296,6 +316,22 @@ public class Indicators implements JsonpSerializable {
 		public final Builder repositoryIntegrity(
 				Function<RepositoryIntegrityIndicator.Builder, ObjectBuilder<RepositoryIntegrityIndicator>> fn) {
 			return this.repositoryIntegrity(fn.apply(new RepositoryIntegrityIndicator.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code data_stream_lifecycle}
+		 */
+		public final Builder dataStreamLifecycle(@Nullable DataStreamLifecycleIndicator value) {
+			this.dataStreamLifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream_lifecycle}
+		 */
+		public final Builder dataStreamLifecycle(
+				Function<DataStreamLifecycleIndicator.Builder, ObjectBuilder<DataStreamLifecycleIndicator>> fn) {
+			return this.dataStreamLifecycle(fn.apply(new DataStreamLifecycleIndicator.Builder()).build());
 		}
 
 		/**
@@ -376,6 +412,7 @@ public class Indicators implements JsonpSerializable {
 		op.add(Builder::shardsAvailability, ShardsAvailabilityIndicator._DESERIALIZER, "shards_availability");
 		op.add(Builder::disk, DiskIndicator._DESERIALIZER, "disk");
 		op.add(Builder::repositoryIntegrity, RepositoryIntegrityIndicator._DESERIALIZER, "repository_integrity");
+		op.add(Builder::dataStreamLifecycle, DataStreamLifecycleIndicator._DESERIALIZER, "data_stream_lifecycle");
 		op.add(Builder::ilm, IlmIndicator._DESERIALIZER, "ilm");
 		op.add(Builder::slm, SlmIndicator._DESERIALIZER, "slm");
 		op.add(Builder::shardsCapacity, ShardsCapacityIndicator._DESERIALIZER, "shards_capacity");
