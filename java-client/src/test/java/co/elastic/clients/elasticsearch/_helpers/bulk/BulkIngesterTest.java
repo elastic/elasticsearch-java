@@ -160,11 +160,6 @@ class BulkIngesterTest extends Assertions {
     @Test
     public void multiThreadStressTest() throws InterruptedException, IOException {
 
-        Runtime runtime = Runtime.getRuntime();
-        long usedMemoryBefore = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Used Memory before: " + usedMemoryBefore);
-
-
         String index = "bulk-ingester-stress-test";
         ElasticsearchClient client = ElasticsearchTestServer.global().client();
 
@@ -204,9 +199,6 @@ class BulkIngesterTest extends Assertions {
         IndicesStatsResponse indexStats = client.indices().stats(g -> g.index(index));
 
         assertTrue(indexStats.indices().get(index).primaries().docs().count()==100000);
-
-        long usedMemoryAfter = runtime.totalMemory() - runtime.freeMemory();
-        System.out.println("Memory increased:" + (usedMemoryAfter-usedMemoryBefore));
     }
 
     @Test
