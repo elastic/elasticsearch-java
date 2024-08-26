@@ -358,6 +358,9 @@ public class BulkIngester<Context> implements AutoCloseable {
             if (!canAddOperation()) {
                 flush();
             }
+            else {
+                addCondition.signalIfReady();
+            }
         });
     }
 
