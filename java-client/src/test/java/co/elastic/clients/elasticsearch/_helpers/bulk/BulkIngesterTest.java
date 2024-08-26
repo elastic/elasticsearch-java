@@ -105,6 +105,12 @@ class BulkIngesterTest extends Assertions {
         multiThreadTest(10, 3, 5, 100, true);
     }
 
+    @Test
+    public void basicTestNoFlushWithInternalScheduler() throws Exception {
+        // Will have nothing to flush on close.
+        multiThreadTest(10, 3, 5, 100, false);
+    }
+
     private void multiThreadTest(int maxOperations, int maxRequests, int numThreads, int numOperations,
                                  boolean externalScheduler) throws Exception {
 
