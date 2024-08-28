@@ -51,34 +51,31 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.analysis.DutchAnalyzer
+// typedef: _types.analysis.BrazilianAnalyzer
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.DutchAnalyzer">API
+ *      "../../doc-files/api-spec.html#_types.analysis.BrazilianAnalyzer">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class BrazilianAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final List<String> stopwords;
 
 	@Nullable
 	private final String stopwordsPath;
 
-	private final List<String> stemExclusion;
-
 	// ---------------------------------------------------------------------------------------------
 
-	private DutchAnalyzer(Builder builder) {
+	private BrazilianAnalyzer(Builder builder) {
 
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 		this.stopwordsPath = builder.stopwordsPath;
-		this.stemExclusion = ApiTypeHelper.unmodifiable(builder.stemExclusion);
 
 	}
 
-	public static DutchAnalyzer of(Function<Builder, ObjectBuilder<DutchAnalyzer>> fn) {
+	public static BrazilianAnalyzer of(Function<Builder, ObjectBuilder<BrazilianAnalyzer>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -87,7 +84,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 */
 	@Override
 	public Analyzer.Kind _analyzerKind() {
-		return Analyzer.Kind.Dutch;
+		return Analyzer.Kind.Brazilian;
 	}
 
 	/**
@@ -106,13 +103,6 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stem_exclusion}
-	 */
-	public final List<String> stemExclusion() {
-		return this.stemExclusion;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -123,7 +113,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "dutch");
+		generator.write("type", "brazilian");
 
 		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
@@ -140,16 +130,6 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.write(this.stopwordsPath);
 
 		}
-		if (ApiTypeHelper.isDefined(this.stemExclusion)) {
-			generator.writeKey("stem_exclusion");
-			generator.writeStartArray();
-			for (String item0 : this.stemExclusion) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 
 	}
 
@@ -161,18 +141,15 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DutchAnalyzer}.
+	 * Builder for {@link BrazilianAnalyzer}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DutchAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<BrazilianAnalyzer> {
 		@Nullable
 		private List<String> stopwords;
 
 		@Nullable
 		private String stopwordsPath;
-
-		@Nullable
-		private List<String> stemExclusion;
 
 		/**
 		 * API name: {@code stopwords}
@@ -202,59 +179,37 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * API name: {@code stem_exclusion}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stemExclusion</code>.
-		 */
-		public final Builder stemExclusion(List<String> list) {
-			this.stemExclusion = _listAddAll(this.stemExclusion, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code stem_exclusion}
-		 * <p>
-		 * Adds one or more values to <code>stemExclusion</code>.
-		 */
-		public final Builder stemExclusion(String value, String... values) {
-			this.stemExclusion = _listAdd(this.stemExclusion, value, values);
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link DutchAnalyzer}.
+		 * Builds a {@link BrazilianAnalyzer}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DutchAnalyzer build() {
+		public BrazilianAnalyzer build() {
 			_checkSingleUse();
 
-			return new DutchAnalyzer(this);
+			return new BrazilianAnalyzer(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DutchAnalyzer}
+	 * Json deserializer for {@link BrazilianAnalyzer}
 	 */
-	public static final JsonpDeserializer<DutchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DutchAnalyzer::setupDutchAnalyzerDeserializer);
+	public static final JsonpDeserializer<BrazilianAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BrazilianAnalyzer::setupBrazilianAnalyzerDeserializer);
 
-	protected static void setupDutchAnalyzerDeserializer(ObjectDeserializer<DutchAnalyzer.Builder> op) {
+	protected static void setupBrazilianAnalyzerDeserializer(ObjectDeserializer<BrazilianAnalyzer.Builder> op) {
 
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");
 		op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
-		op.add(Builder::stemExclusion, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"stem_exclusion");
 
 		op.ignore("type");
 	}

@@ -65,6 +65,52 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 		return new ElasticsearchIngestAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: ingest.delete_geoip_database
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteGeoipDatabaseResponse> deleteGeoipDatabase(DeleteGeoipDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse>) DeleteGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteGeoipDatabaseResponse> deleteGeoipDatabase(
+			Function<DeleteGeoipDatabaseRequest.Builder, ObjectBuilder<DeleteGeoipDatabaseRequest>> fn) {
+		return deleteGeoipDatabase(fn.apply(new DeleteGeoipDatabaseRequest.Builder()).build());
+	}
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteGeoipDatabaseResponse> deleteGeoipDatabase() {
+		return this.transport.performRequestAsync(new DeleteGeoipDatabaseRequest.Builder().build(),
+				DeleteGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
@@ -110,6 +156,52 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<GeoIpStatsResponse> geoIpStats() {
 		return this.transport.performRequestAsync(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: ingest.get_geoip_database
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetGeoipDatabaseResponse> getGeoipDatabase(GetGeoipDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetGeoipDatabaseRequest, GetGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<GetGeoipDatabaseRequest, GetGeoipDatabaseResponse, ErrorResponse>) GetGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetGeoipDatabaseResponse> getGeoipDatabase(
+			Function<GetGeoipDatabaseRequest.Builder, ObjectBuilder<GetGeoipDatabaseRequest>> fn) {
+		return getGeoipDatabase(fn.apply(new GetGeoipDatabaseRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetGeoipDatabaseResponse> getGeoipDatabase() {
+		return this.transport.performRequestAsync(new GetGeoipDatabaseRequest.Builder().build(),
+				GetGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.get_pipeline

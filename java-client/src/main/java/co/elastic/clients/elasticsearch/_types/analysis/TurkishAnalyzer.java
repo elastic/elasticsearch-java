@@ -51,16 +51,16 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.analysis.DutchAnalyzer
+// typedef: _types.analysis.TurkishAnalyzer
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.DutchAnalyzer">API
+ *      "../../doc-files/api-spec.html#_types.analysis.TurkishAnalyzer">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class TurkishAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final List<String> stopwords;
 
 	@Nullable
@@ -70,7 +70,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DutchAnalyzer(Builder builder) {
+	private TurkishAnalyzer(Builder builder) {
 
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 		this.stopwordsPath = builder.stopwordsPath;
@@ -78,7 +78,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static DutchAnalyzer of(Function<Builder, ObjectBuilder<DutchAnalyzer>> fn) {
+	public static TurkishAnalyzer of(Function<Builder, ObjectBuilder<TurkishAnalyzer>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -87,7 +87,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 */
 	@Override
 	public Analyzer.Kind _analyzerKind() {
-		return Analyzer.Kind.Dutch;
+		return Analyzer.Kind.Turkish;
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "dutch");
+		generator.write("type", "turkish");
 
 		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
@@ -161,10 +161,10 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DutchAnalyzer}.
+	 * Builder for {@link TurkishAnalyzer}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DutchAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TurkishAnalyzer> {
 		@Nullable
 		private List<String> stopwords;
 
@@ -228,27 +228,27 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DutchAnalyzer}.
+		 * Builds a {@link TurkishAnalyzer}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DutchAnalyzer build() {
+		public TurkishAnalyzer build() {
 			_checkSingleUse();
 
-			return new DutchAnalyzer(this);
+			return new TurkishAnalyzer(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DutchAnalyzer}
+	 * Json deserializer for {@link TurkishAnalyzer}
 	 */
-	public static final JsonpDeserializer<DutchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DutchAnalyzer::setupDutchAnalyzerDeserializer);
+	public static final JsonpDeserializer<TurkishAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TurkishAnalyzer::setupTurkishAnalyzerDeserializer);
 
-	protected static void setupDutchAnalyzerDeserializer(ObjectDeserializer<DutchAnalyzer.Builder> op) {
+	protected static void setupTurkishAnalyzerDeserializer(ObjectDeserializer<TurkishAnalyzer.Builder> op) {
 
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");

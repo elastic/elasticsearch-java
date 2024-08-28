@@ -66,9 +66,11 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 	private final long totalDownloadTime;
 
-	private final int databaseCount;
+	private final int databasesCount;
 
 	private final int skippedUpdates;
+
+	private final int expiredDatabases;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,8 +80,9 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 				"successfulDownloads");
 		this.failedDownloads = ApiTypeHelper.requireNonNull(builder.failedDownloads, this, "failedDownloads");
 		this.totalDownloadTime = ApiTypeHelper.requireNonNull(builder.totalDownloadTime, this, "totalDownloadTime");
-		this.databaseCount = ApiTypeHelper.requireNonNull(builder.databaseCount, this, "databaseCount");
+		this.databasesCount = ApiTypeHelper.requireNonNull(builder.databasesCount, this, "databasesCount");
 		this.skippedUpdates = ApiTypeHelper.requireNonNull(builder.skippedUpdates, this, "skippedUpdates");
+		this.expiredDatabases = ApiTypeHelper.requireNonNull(builder.expiredDatabases, this, "expiredDatabases");
 
 	}
 
@@ -117,10 +120,10 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 	/**
 	 * Required - Current number of databases available for use.
 	 * <p>
-	 * API name: {@code database_count}
+	 * API name: {@code databases_count}
 	 */
-	public final int databaseCount() {
-		return this.databaseCount;
+	public final int databasesCount() {
+		return this.databasesCount;
 	}
 
 	/**
@@ -130,6 +133,15 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 	 */
 	public final int skippedUpdates() {
 		return this.skippedUpdates;
+	}
+
+	/**
+	 * Required - Total number of databases not updated after 30 days
+	 * <p>
+	 * API name: {@code expired_databases}
+	 */
+	public final int expiredDatabases() {
+		return this.expiredDatabases;
 	}
 
 	/**
@@ -152,11 +164,14 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		generator.writeKey("total_download_time");
 		generator.write(this.totalDownloadTime);
 
-		generator.writeKey("database_count");
-		generator.write(this.databaseCount);
+		generator.writeKey("databases_count");
+		generator.write(this.databasesCount);
 
 		generator.writeKey("skipped_updates");
 		generator.write(this.skippedUpdates);
+
+		generator.writeKey("expired_databases");
+		generator.write(this.expiredDatabases);
 
 	}
 
@@ -180,9 +195,11 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 		private Long totalDownloadTime;
 
-		private Integer databaseCount;
+		private Integer databasesCount;
 
 		private Integer skippedUpdates;
+
+		private Integer expiredDatabases;
 
 		/**
 		 * Required - Total number of successful database downloads.
@@ -217,10 +234,10 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		/**
 		 * Required - Current number of databases available for use.
 		 * <p>
-		 * API name: {@code database_count}
+		 * API name: {@code databases_count}
 		 */
-		public final Builder databaseCount(int value) {
-			this.databaseCount = value;
+		public final Builder databasesCount(int value) {
+			this.databasesCount = value;
 			return this;
 		}
 
@@ -231,6 +248,16 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		 */
 		public final Builder skippedUpdates(int value) {
 			this.skippedUpdates = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total number of databases not updated after 30 days
+		 * <p>
+		 * API name: {@code expired_databases}
+		 */
+		public final Builder expiredDatabases(int value) {
+			this.expiredDatabases = value;
 			return this;
 		}
 
@@ -266,8 +293,9 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		op.add(Builder::successfulDownloads, JsonpDeserializer.integerDeserializer(), "successful_downloads");
 		op.add(Builder::failedDownloads, JsonpDeserializer.integerDeserializer(), "failed_downloads");
 		op.add(Builder::totalDownloadTime, JsonpDeserializer.longDeserializer(), "total_download_time");
-		op.add(Builder::databaseCount, JsonpDeserializer.integerDeserializer(), "database_count");
+		op.add(Builder::databasesCount, JsonpDeserializer.integerDeserializer(), "databases_count");
 		op.add(Builder::skippedUpdates, JsonpDeserializer.integerDeserializer(), "skipped_updates");
+		op.add(Builder::expiredDatabases, JsonpDeserializer.integerDeserializer(), "expired_databases");
 
 	}
 

@@ -65,6 +65,54 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 		return new ElasticsearchIngestClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: ingest.delete_geoip_database
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteGeoipDatabaseResponse deleteGeoipDatabase(DeleteGeoipDatabaseRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse>) DeleteGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteGeoipDatabaseResponse deleteGeoipDatabase(
+			Function<DeleteGeoipDatabaseRequest.Builder, ObjectBuilder<DeleteGeoipDatabaseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteGeoipDatabase(fn.apply(new DeleteGeoipDatabaseRequest.Builder()).build());
+	}
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteGeoipDatabaseResponse deleteGeoipDatabase() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new DeleteGeoipDatabaseRequest.Builder().build(),
+				DeleteGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
@@ -112,6 +160,54 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: ingest.get_geoip_database
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetGeoipDatabaseResponse getGeoipDatabase(GetGeoipDatabaseRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetGeoipDatabaseRequest, GetGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<GetGeoipDatabaseRequest, GetGeoipDatabaseResponse, ErrorResponse>) GetGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetGeoipDatabaseResponse getGeoipDatabase(
+			Function<GetGeoipDatabaseRequest.Builder, ObjectBuilder<GetGeoipDatabaseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getGeoipDatabase(fn.apply(new GetGeoipDatabaseRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetGeoipDatabaseResponse getGeoipDatabase() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetGeoipDatabaseRequest.Builder().build(),
+				GetGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.get_pipeline
