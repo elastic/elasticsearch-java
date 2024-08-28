@@ -63,11 +63,18 @@ import javax.annotation.Nullable;
 public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final List<String> stopwords;
 
+	@Nullable
+	private final String stopwordsPath;
+
+	private final List<String> stemExclusion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DutchAnalyzer(Builder builder) {
 
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwordsPath = builder.stopwordsPath;
+		this.stemExclusion = ApiTypeHelper.unmodifiable(builder.stemExclusion);
 
 	}
 
@@ -88,6 +95,21 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 */
 	public final List<String> stopwords() {
 		return this.stopwords;
+	}
+
+	/**
+	 * API name: {@code stopwords_path}
+	 */
+	@Nullable
+	public final String stopwordsPath() {
+		return this.stopwordsPath;
+	}
+
+	/**
+	 * API name: {@code stem_exclusion}
+	 */
+	public final List<String> stemExclusion() {
+		return this.stemExclusion;
 	}
 
 	/**
@@ -113,6 +135,21 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.stopwordsPath != null) {
+			generator.writeKey("stopwords_path");
+			generator.write(this.stopwordsPath);
+
+		}
+		if (ApiTypeHelper.isDefined(this.stemExclusion)) {
+			generator.writeKey("stem_exclusion");
+			generator.writeStartArray();
+			for (String item0 : this.stemExclusion) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -131,6 +168,12 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private List<String> stopwords;
 
+		@Nullable
+		private String stopwordsPath;
+
+		@Nullable
+		private List<String> stemExclusion;
+
 		/**
 		 * API name: {@code stopwords}
 		 * <p>
@@ -148,6 +191,34 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 */
 		public final Builder stopwords(String value, String... values) {
 			this.stopwords = _listAdd(this.stopwords, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code stopwords_path}
+		 */
+		public final Builder stopwordsPath(@Nullable String value) {
+			this.stopwordsPath = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stem_exclusion}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stemExclusion</code>.
+		 */
+		public final Builder stemExclusion(List<String> list) {
+			this.stemExclusion = _listAddAll(this.stemExclusion, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code stem_exclusion}
+		 * <p>
+		 * Adds one or more values to <code>stemExclusion</code>.
+		 */
+		public final Builder stemExclusion(String value, String... values) {
+			this.stemExclusion = _listAdd(this.stemExclusion, value, values);
 			return this;
 		}
 
@@ -181,6 +252,9 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");
+		op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
+		op.add(Builder::stemExclusion, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stem_exclusion");
 
 		op.ignore("type");
 	}

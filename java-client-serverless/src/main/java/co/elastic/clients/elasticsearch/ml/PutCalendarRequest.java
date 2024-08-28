@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ml.put_calendar.Request
 
 /**
- * Creates a calendar.
+ * Create a calendar.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_calendar.Request">API
  *      specification</a>

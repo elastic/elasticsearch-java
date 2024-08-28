@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -70,6 +71,8 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 	private final Map<String, JsonData> fields;
 
+	private final List<String> ignored;
+
 	private final boolean found;
 
 	private final String id;
@@ -98,6 +101,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.ignored = ApiTypeHelper.unmodifiable(builder.ignored);
 		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.primaryTerm = builder.primaryTerm;
@@ -126,6 +130,13 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	 */
 	public final Map<String, JsonData> fields() {
 		return this.fields;
+	}
+
+	/**
+	 * API name: {@code _ignored}
+	 */
+	public final List<String> ignored() {
+		return this.ignored;
 	}
 
 	/**
@@ -207,6 +218,16 @@ public class GetResult<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.ignored)) {
+			generator.writeKey("_ignored");
+			generator.writeStartArray();
+			for (String item0 : this.ignored) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("found");
 		generator.write(this.found);
 
@@ -281,6 +302,9 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> fields;
 
+		@Nullable
+		private List<String> ignored;
+
 		private Boolean found;
 
 		private String id;
@@ -328,6 +352,26 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		 */
 		public final BuilderT fields(String key, JsonData value) {
 			this.fields = _mapPut(this.fields, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code _ignored}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ignored</code>.
+		 */
+		public final BuilderT ignored(List<String> list) {
+			this.ignored = _listAddAll(this.ignored, list);
+			return self();
+		}
+
+		/**
+		 * API name: {@code _ignored}
+		 * <p>
+		 * Adds one or more values to <code>ignored</code>.
+		 */
+		public final BuilderT ignored(String value, String... values) {
+			this.ignored = _listAdd(this.ignored, value, values);
 			return self();
 		}
 
@@ -424,6 +468,8 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
+		op.add(AbstractBuilder::ignored, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"_ignored");
 		op.add(AbstractBuilder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");

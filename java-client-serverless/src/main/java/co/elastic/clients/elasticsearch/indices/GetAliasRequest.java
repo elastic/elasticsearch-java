@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 // typedef: indices.get_alias.Request
 
 /**
- * Retrieves information for one or more aliases.
+ * Get aliases. Retrieves information for one or more data stream or index
+ * aliases.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_alias.Request">API
  *      specification</a>

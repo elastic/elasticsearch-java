@@ -63,7 +63,8 @@ import javax.annotation.Nullable;
 // typedef: _global.exists_source.Request
 
 /**
- * Checks if a document's <code>_source</code> is stored.
+ * Check for a document source. Checks if a document's <code>_source</code> is
+ * stored.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.exists_source.Request">API
  *      specification</a>

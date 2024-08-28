@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_data_frame_analytics.Request
 
 /**
- * Deletes a data frame analytics job.
+ * Delete a data frame analytics job.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.delete_data_frame_analytics.Request">API

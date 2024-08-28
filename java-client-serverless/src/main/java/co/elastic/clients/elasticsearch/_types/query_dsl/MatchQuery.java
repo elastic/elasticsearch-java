@@ -646,7 +646,7 @@ public class MatchQuery extends QueryBase implements ApiKeyQueryVariant, QueryVa
 		op.add(Builder::zeroTermsQuery, ZeroTermsQuery._DESERIALIZER, "zero_terms_query");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("query");
+		op.shortcutProperty("query", true);
 
 	}
 

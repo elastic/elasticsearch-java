@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: _global.get_source.Request
 
 /**
- * Returns the source of a document.
+ * Get a document's source. Returns the source of a document.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.get_source.Request">API
  *      specification</a>

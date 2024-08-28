@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: _global.delete.Request
 
 /**
- * Removes a JSON document from the specified index.
+ * Delete a document. Removes a JSON document from the specified index.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.delete.Request">API
  *      specification</a>

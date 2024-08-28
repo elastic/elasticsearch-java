@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: ml.put_calendar_job.Request
 
 /**
- * Adds an anomaly detection job to a calendar.
+ * Add anomaly detection job to calendar.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_calendar_job.Request">API
  *      specification</a>

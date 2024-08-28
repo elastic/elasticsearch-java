@@ -26,11 +26,9 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
@@ -59,9 +57,6 @@ import javax.annotation.Nullable;
  */
 
 public abstract class RangeQueryBase<T> extends QueryBase {
-	// Single key dictionary
-	private final String field;
-
 	@Nullable
 	private final RangeRelation relation;
 
@@ -90,7 +85,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 	protected RangeQueryBase(AbstractBuilder<T, ?> builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.relation = builder.relation;
 		this.gt = builder.gt;
@@ -101,13 +95,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 		this.to = builder.to;
 		this.tSerializer = builder.tSerializer;
 
-	}
-
-	/**
-	 * Required - the required field
-	 */
-	public final String field() {
-		return this.field;
 	}
 
 	/**
@@ -177,7 +164,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
 		if (this.relation != null) {
@@ -215,23 +201,11 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 		}
 
-		generator.writeEnd();
-
 	}
 
 	public abstract static class AbstractBuilder<T, BuilderT extends AbstractBuilder<T, BuilderT>>
 			extends
 				QueryBase.AbstractBuilder<BuilderT> {
-		private String field;
-
-		/**
-		 * Required - the required field
-		 */
-		public final BuilderT field(String value) {
-			this.field = value;
-			return self();
-		}
-
 		@Nullable
 		private RangeRelation relation;
 
@@ -344,8 +318,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 		op.add(AbstractBuilder::lte, tDeserializer, "lte");
 		op.add(AbstractBuilder::from, tDeserializer, "from");
 		op.add(AbstractBuilder::to, tDeserializer, "to");
-
-		op.setKey(AbstractBuilder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 

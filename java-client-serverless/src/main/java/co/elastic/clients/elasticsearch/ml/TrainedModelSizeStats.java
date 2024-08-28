@@ -30,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,7 +61,7 @@ import javax.annotation.Nullable;
 public class TrainedModelSizeStats implements JsonpSerializable {
 	private final String modelSizeBytes;
 
-	private final int requiredNativeMemoryBytes;
+	private final String requiredNativeMemoryBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,7 +91,7 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code required_native_memory_bytes}
 	 */
-	public final int requiredNativeMemoryBytes() {
+	public final String requiredNativeMemoryBytes() {
 		return this.requiredNativeMemoryBytes;
 	}
 
@@ -131,7 +130,7 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 				ObjectBuilder<TrainedModelSizeStats> {
 		private String modelSizeBytes;
 
-		private Integer requiredNativeMemoryBytes;
+		private String requiredNativeMemoryBytes;
 
 		/**
 		 * Required - The size of the model in bytes.
@@ -148,7 +147,7 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code required_native_memory_bytes}
 		 */
-		public final Builder requiredNativeMemoryBytes(int value) {
+		public final Builder requiredNativeMemoryBytes(String value) {
 			this.requiredNativeMemoryBytes = value;
 			return this;
 		}
@@ -182,7 +181,7 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	protected static void setupTrainedModelSizeStatsDeserializer(ObjectDeserializer<TrainedModelSizeStats.Builder> op) {
 
 		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
-		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
 				"required_native_memory_bytes");
 
 	}

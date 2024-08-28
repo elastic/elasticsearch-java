@@ -70,6 +70,9 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowCustomRouting;
 
+	@Nullable
+	private final FailureStore failureStore;
+
 	private final int generation;
 
 	private final boolean hidden;
@@ -91,6 +94,8 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final Boolean replicated;
 
+	private final boolean rolloverOnWrite;
+
 	private final HealthStatus status;
 
 	@Nullable
@@ -106,6 +111,7 @@ public class DataStream implements JsonpSerializable {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowCustomRouting = builder.allowCustomRouting;
+		this.failureStore = builder.failureStore;
 		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
 		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden");
 		this.ilmPolicy = builder.ilmPolicy;
@@ -116,6 +122,7 @@ public class DataStream implements JsonpSerializable {
 		this.lifecycle = builder.lifecycle;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.replicated = builder.replicated;
+		this.rolloverOnWrite = ApiTypeHelper.requireNonNull(builder.rolloverOnWrite, this, "rolloverOnWrite");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.system = builder.system;
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
@@ -146,6 +153,16 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	public final Boolean allowCustomRouting() {
 		return this.allowCustomRouting;
+	}
+
+	/**
+	 * Information about failure store backing indices
+	 * <p>
+	 * API name: {@code failure_store}
+	 */
+	@Nullable
+	public final FailureStore failureStore() {
+		return this.failureStore;
 	}
 
 	/**
@@ -215,8 +232,7 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains the configuration for the data lifecycle management of this data
-	 * stream.
+	 * Contains the configuration for the data stream lifecycle of this data stream.
 	 * <p>
 	 * API name: {@code lifecycle}
 	 */
@@ -244,6 +260,17 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	public final Boolean replicated() {
 		return this.replicated;
+	}
+
+	/**
+	 * Required - If <code>true</code>, the next write to this data stream will
+	 * trigger a rollover first and the document will be indexed in the new backing
+	 * index. If the rollover fails the indexing request will fail too.
+	 * <p>
+	 * API name: {@code rollover_on_write}
+	 */
+	public final boolean rolloverOnWrite() {
+		return this.rolloverOnWrite;
 	}
 
 	/**
@@ -315,6 +342,11 @@ public class DataStream implements JsonpSerializable {
 			generator.write(this.allowCustomRouting);
 
 		}
+		if (this.failureStore != null) {
+			generator.writeKey("failure_store");
+			this.failureStore.serialize(generator, mapper);
+
+		}
 		generator.writeKey("generation");
 		generator.write(this.generation);
 
@@ -354,6 +386,9 @@ public class DataStream implements JsonpSerializable {
 			generator.write(this.replicated);
 
 		}
+		generator.writeKey("rollover_on_write");
+		generator.write(this.rolloverOnWrite);
+
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
 		if (this.system != null) {
@@ -387,6 +422,9 @@ public class DataStream implements JsonpSerializable {
 		@Nullable
 		private Boolean allowCustomRouting;
 
+		@Nullable
+		private FailureStore failureStore;
+
 		private Integer generation;
 
 		private Boolean hidden;
@@ -407,6 +445,8 @@ public class DataStream implements JsonpSerializable {
 
 		@Nullable
 		private Boolean replicated;
+
+		private Boolean rolloverOnWrite;
 
 		private HealthStatus status;
 
@@ -453,6 +493,25 @@ public class DataStream implements JsonpSerializable {
 		public final Builder allowCustomRouting(@Nullable Boolean value) {
 			this.allowCustomRouting = value;
 			return this;
+		}
+
+		/**
+		 * Information about failure store backing indices
+		 * <p>
+		 * API name: {@code failure_store}
+		 */
+		public final Builder failureStore(@Nullable FailureStore value) {
+			this.failureStore = value;
+			return this;
+		}
+
+		/**
+		 * Information about failure store backing indices
+		 * <p>
+		 * API name: {@code failure_store}
+		 */
+		public final Builder failureStore(Function<FailureStore.Builder, ObjectBuilder<FailureStore>> fn) {
+			return this.failureStore(fn.apply(new FailureStore.Builder()).build());
 		}
 
 		/**
@@ -556,8 +615,7 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains the configuration for the data lifecycle management of this data
-		 * stream.
+		 * Contains the configuration for the data stream lifecycle of this data stream.
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */
@@ -567,8 +625,7 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains the configuration for the data lifecycle management of this data
-		 * stream.
+		 * Contains the configuration for the data stream lifecycle of this data stream.
 		 * <p>
 		 * API name: {@code lifecycle}
 		 */
@@ -596,6 +653,18 @@ public class DataStream implements JsonpSerializable {
 		 */
 		public final Builder replicated(@Nullable Boolean value) {
 			this.replicated = value;
+			return this;
+		}
+
+		/**
+		 * Required - If <code>true</code>, the next write to this data stream will
+		 * trigger a rollover first and the document will be indexed in the new backing
+		 * index. If the rollover fails the indexing request will fail too.
+		 * <p>
+		 * API name: {@code rollover_on_write}
+		 */
+		public final Builder rolloverOnWrite(boolean value) {
+			this.rolloverOnWrite = value;
 			return this;
 		}
 
@@ -685,6 +754,7 @@ public class DataStream implements JsonpSerializable {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
+		op.add(Builder::failureStore, FailureStore._DESERIALIZER, "failure_store");
 		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
@@ -694,6 +764,7 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::replicated, JsonpDeserializer.booleanDeserializer(), "replicated");
+		op.add(Builder::rolloverOnWrite, JsonpDeserializer.booleanDeserializer(), "rollover_on_write");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");

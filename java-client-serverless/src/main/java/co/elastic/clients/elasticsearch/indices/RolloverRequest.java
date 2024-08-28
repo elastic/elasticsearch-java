@@ -63,7 +63,8 @@ import javax.annotation.Nullable;
 // typedef: indices.rollover.Request
 
 /**
- * Creates a new index for a data stream or index alias.
+ * Roll over to a new index. Creates a new index for a data stream or index
+ * alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.rollover.Request">API
  *      specification</a>

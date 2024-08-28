@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 // typedef: _global.put_script.Request
 
 /**
- * Creates or updates a stored script or search template.
+ * Create or update a script or search template. Creates or updates a stored
+ * script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.put_script.Request">API
  *      specification</a>

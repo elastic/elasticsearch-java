@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model_alias.Request
 
 /**
- * Creates or updates a trained model alias. A trained model alias is a logical
+ * Create or update a trained model alias. A trained model alias is a logical
  * name used to reference a single trained model. You can use aliases instead of
  * trained model identifiers to make it easier to reference your models. For
  * example, you can use aliases in inference aggregations and processors. An

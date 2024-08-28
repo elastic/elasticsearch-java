@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_calendar_job.Request
 
 /**
- * Deletes anomaly detection jobs from a calendar.
+ * Delete anomaly jobs from a calendar.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_calendar_job.Request">API
  *      specification</a>

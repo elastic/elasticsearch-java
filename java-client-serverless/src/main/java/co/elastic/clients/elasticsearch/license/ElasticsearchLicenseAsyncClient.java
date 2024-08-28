@@ -70,10 +70,11 @@ public class ElasticsearchLicenseAsyncClient
 	// ----- Endpoint: license.get
 
 	/**
-	 * This API returns information about the type of license, when it was issued,
-	 * and when it expires, for example. For more information about the different
-	 * types of licenses, see <a href=
-	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
+	 * Get license information. Returns information about your Elastic license,
+	 * including its type, its status, when it was issued, and when it expires. For
+	 * more information about the different types of licenses, refer to
+	 * <a href="https://www.elastic.co/subscriptions">Elastic Stack
+	 * subscriptions</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
@@ -88,10 +89,11 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * This API returns information about the type of license, when it was issued,
-	 * and when it expires, for example. For more information about the different
-	 * types of licenses, see <a href=
-	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
+	 * Get license information. Returns information about your Elastic license,
+	 * including its type, its status, when it was issued, and when it expires. For
+	 * more information about the different types of licenses, refer to
+	 * <a href="https://www.elastic.co/subscriptions">Elastic Stack
+	 * subscriptions</a>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -107,10 +109,11 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * This API returns information about the type of license, when it was issued,
-	 * and when it expires, for example. For more information about the different
-	 * types of licenses, see <a href=
-	 * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
+	 * Get license information. Returns information about your Elastic license,
+	 * including its type, its status, when it was issued, and when it expires. For
+	 * more information about the different types of licenses, refer to
+	 * <a href="https://www.elastic.co/subscriptions">Elastic Stack
+	 * subscriptions</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation

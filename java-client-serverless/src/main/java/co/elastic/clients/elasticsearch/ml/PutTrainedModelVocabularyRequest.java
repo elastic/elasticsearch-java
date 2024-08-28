@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model_vocabulary.Request
 
 /**
- * Creates a trained model vocabulary. This API is supported only for natural
+ * Create a trained model vocabulary. This API is supported only for natural
  * language processing (NLP) models. The vocabulary is stored in the index as
  * described in <code>inference_config.*.vocabulary</code> of the trained model
  * definition.

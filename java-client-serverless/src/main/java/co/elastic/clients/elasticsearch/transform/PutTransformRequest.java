@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: transform.put_transform.Request
 
 /**
- * Creates a transform.
+ * Create a transform. Creates a transform.
  * <p>
  * A transform copies data from source indices, transforms it, and persists it
  * into an entity-centric destination index. You can also think of the

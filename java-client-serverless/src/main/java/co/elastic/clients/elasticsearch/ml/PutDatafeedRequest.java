@@ -68,11 +68,11 @@ import javax.annotation.Nullable;
 // typedef: ml.put_datafeed.Request
 
 /**
- * Instantiates a datafeed. Datafeeds retrieve data from Elasticsearch for
- * analysis by an anomaly detection job. You can associate only one datafeed
- * with each anomaly detection job. The datafeed contains a query that runs at a
- * defined interval (<code>frequency</code>). If you are concerned about delayed
- * data, you can add a delay
+ * Create a datafeed. Datafeeds retrieve data from Elasticsearch for analysis by
+ * an anomaly detection job. You can associate only one datafeed with each
+ * anomaly detection job. The datafeed contains a query that runs at a defined
+ * interval (<code>frequency</code>). If you are concerned about delayed data,
+ * you can add a delay
  * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
  * index.
  * 

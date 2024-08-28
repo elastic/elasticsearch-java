@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -59,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: indices.get_data_stream.Request
 
 /**
- * Retrieves information about one or more data streams.
+ * Get data streams. Retrieves information about one or more data streams.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
  *      specification</a>
@@ -71,6 +72,9 @@ public class GetDataStreamRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -79,6 +83,7 @@ public class GetDataStreamRequest extends RequestBase {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.includeDefaults = builder.includeDefaults;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
@@ -108,6 +113,17 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Comma-separated list of data stream names used to limit the request. Wildcard
 	 * (<code>*</code>) expressions are supported. If omitted, all data streams are
 	 * returned.
@@ -132,6 +148,9 @@ public class GetDataStreamRequest extends RequestBase {
 
 		@Nullable
 		private Boolean includeDefaults;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> name;
@@ -170,6 +189,27 @@ public class GetDataStreamRequest extends RequestBase {
 		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -278,6 +318,9 @@ public class GetDataStreamRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

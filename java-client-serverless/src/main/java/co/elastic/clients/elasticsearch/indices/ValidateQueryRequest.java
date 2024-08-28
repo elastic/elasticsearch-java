@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 // typedef: indices.validate_query.Request
 
 /**
- * Validates a potentially expensive query without executing it.
+ * Validate a query. Validates a query without running it.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.validate_query.Request">API
  *      specification</a>

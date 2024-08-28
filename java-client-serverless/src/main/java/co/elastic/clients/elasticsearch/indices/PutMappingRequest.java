@@ -70,9 +70,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_mapping.Request
 
 /**
- * Adds new fields to an existing data stream or index. You can also use this
- * API to change the search settings of existing fields. For data streams, these
- * changes are applied to all backing indices by default.
+ * Update field mappings. Adds new fields to an existing data stream or index.
+ * You can also use this API to change the search settings of existing fields.
+ * For data streams, these changes are applied to all backing indices by
+ * default.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_mapping.Request">API
  *      specification</a>

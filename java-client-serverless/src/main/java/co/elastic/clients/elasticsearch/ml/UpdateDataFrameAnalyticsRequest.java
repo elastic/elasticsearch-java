@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.update_data_frame_analytics.Request
 
 /**
- * Updates an existing data frame analytics job.
+ * Update a data frame analytics job.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.update_data_frame_analytics.Request">API

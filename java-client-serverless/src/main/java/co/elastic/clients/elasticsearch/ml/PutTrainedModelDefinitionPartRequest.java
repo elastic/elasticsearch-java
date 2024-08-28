@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model_definition_part.Request
 
 /**
- * Creates part of a trained model definition.
+ * Create part of a trained model definition.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.put_trained_model_definition_part.Request">API

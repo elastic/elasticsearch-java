@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_filter.Request
 
 /**
- * Deletes a filter. If an anomaly detection job references the filter, you
+ * Delete a filter. If an anomaly detection job references the filter, you
  * cannot delete the filter. You must update or delete the job before you can
  * delete the filter.
  * 

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_trained_model_deployment.Request
 
 /**
- * Stops a trained model deployment.
+ * Stop a trained model deployment.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.stop_trained_model_deployment.Request">API

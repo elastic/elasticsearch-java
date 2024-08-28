@@ -65,6 +65,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MultiTermVectorsResult implements JsonpSerializable {
+	@Nullable
 	private final String id;
 
 	private final String index;
@@ -87,7 +88,7 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 
 	private MultiTermVectorsResult(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = builder.id;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.version = builder.version;
 		this.took = builder.took;
@@ -102,8 +103,9 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * API name: {@code _id}
 	 */
+	@Nullable
 	public final String id() {
 		return this.id;
 	}
@@ -165,9 +167,11 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+		if (this.id != null) {
+			generator.writeKey("_id");
+			generator.write(this.id);
 
+		}
 		generator.writeKey("_index");
 		generator.write(this.index);
 
@@ -219,6 +223,7 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<MultiTermVectorsResult> {
+		@Nullable
 		private String id;
 
 		private String index;
@@ -239,9 +244,9 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 		private ErrorCause error;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * API name: {@code _id}
 		 */
-		public final Builder id(String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}

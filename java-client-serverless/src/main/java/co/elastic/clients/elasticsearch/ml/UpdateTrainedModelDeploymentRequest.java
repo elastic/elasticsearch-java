@@ -59,8 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ml.update_trained_model_deployment.Request
 
 /**
- * Starts a trained model deployment, which allocates the model to every machine
- * learning node.
+ * Update a trained model deployment.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.update_trained_model_deployment.Request">API

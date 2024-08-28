@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
 // typedef: ml.update_filter.Request
 
 /**
- * Updates the description of a filter, adds items, or removes items from the
- * list.
+ * Update a filter. Updates the description of a filter, adds items, or removes
+ * items from the list.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.update_filter.Request">API
  *      specification</a>

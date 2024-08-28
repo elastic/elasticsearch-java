@@ -269,7 +269,7 @@ public class TermQuery extends QueryBase implements ApiKeyQueryVariant, QueryVar
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("value");
+		op.shortcutProperty("value", true);
 
 	}
 

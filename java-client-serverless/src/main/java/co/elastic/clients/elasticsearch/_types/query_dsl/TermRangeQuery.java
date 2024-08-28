@@ -21,13 +21,16 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -54,10 +57,14 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class TermRangeQuery extends RangeQueryBase<String> implements RangeQueryVariant {
+	// Single key dictionary
+	private final String field;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TermRangeQuery(Builder builder) {
 		super(builder);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -73,6 +80,22 @@ public class TermRangeQuery extends RangeQueryBase<String> implements RangeQuery
 		return RangeQuery.Kind.Term;
 	}
 
+	/**
+	 * Required - the required field
+	 */
+	public final String field() {
+		return this.field;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
+
+		generator.writeEnd();
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -82,6 +105,16 @@ public class TermRangeQuery extends RangeQueryBase<String> implements RangeQuery
 	public static class Builder extends RangeQueryBase.AbstractBuilder<String, Builder>
 			implements
 				ObjectBuilder<TermRangeQuery> {
+		private String field;
+
+		/**
+		 * Required - the required field
+		 */
+		public final Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -111,6 +144,8 @@ public class TermRangeQuery extends RangeQueryBase<String> implements RangeQuery
 
 	protected static void setupTermRangeQueryDeserializer(ObjectDeserializer<TermRangeQuery.Builder> op) {
 		RangeQueryBase.setupRangeQueryBaseDeserializer(op, JsonpDeserializer.stringDeserializer());
+
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 

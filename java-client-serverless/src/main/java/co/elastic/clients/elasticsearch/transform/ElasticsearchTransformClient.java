@@ -70,7 +70,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.delete_transform
 
 	/**
-	 * Deletes a transform.
+	 * Delete a transform. Deletes a transform.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
@@ -86,7 +86,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Deletes a transform.
+	 * Delete a transform. Deletes a transform.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,7 +105,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.get_transform
 
 	/**
-	 * Retrieves configuration information for transforms.
+	 * Get transforms. Retrieves configuration information for transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
@@ -120,7 +120,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Retrieves configuration information for transforms.
+	 * Get transforms. Retrieves configuration information for transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -137,7 +137,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Retrieves configuration information for transforms.
+	 * Get transforms. Retrieves configuration information for transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
@@ -152,7 +152,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.get_transform_stats
 
 	/**
-	 * Retrieves usage information for transforms.
+	 * Get transform stats. Retrieves usage information for transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
@@ -168,7 +168,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Retrieves usage information for transforms.
+	 * Get transform stats. Retrieves usage information for transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -187,7 +187,8 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.preview_transform
 
 	/**
-	 * Previews a transform.
+	 * Preview a transform. Generates a preview of the results that you will get
+	 * when you create a transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -211,7 +212,8 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Previews a transform.
+	 * Preview a transform. Generates a preview of the results that you will get
+	 * when you create a transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -233,7 +235,8 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Previews a transform.
+	 * Preview a transform. Generates a preview of the results that you will get
+	 * when you create a transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -257,7 +260,8 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Previews a transform.
+	 * Preview a transform. Generates a preview of the results that you will get
+	 * when you create a transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -281,7 +285,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.put_transform
 
 	/**
-	 * Creates a transform.
+	 * Create a transform. Creates a transform.
 	 * <p>
 	 * A transform copies data from source indices, transforms it, and persists it
 	 * into an entity-centric destination index. You can also think of the
@@ -325,7 +329,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Creates a transform.
+	 * Create a transform. Creates a transform.
 	 * <p>
 	 * A transform copies data from source indices, transforms it, and persists it
 	 * into an entity-centric destination index. You can also think of the
@@ -373,9 +377,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.reset_transform
 
 	/**
-	 * Resets a transform. Before you can reset it, you must stop it; alternatively,
-	 * use the <code>force</code> query parameter. If the destination index was
-	 * created by the transform, it is deleted.
+	 * Reset a transform. Resets a transform. Before you can reset it, you must stop
+	 * it; alternatively, use the <code>force</code> query parameter. If the
+	 * destination index was created by the transform, it is deleted.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-transform.html">Documentation
@@ -391,9 +395,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Resets a transform. Before you can reset it, you must stop it; alternatively,
-	 * use the <code>force</code> query parameter. If the destination index was
-	 * created by the transform, it is deleted.
+	 * Reset a transform. Resets a transform. Before you can reset it, you must stop
+	 * it; alternatively, use the <code>force</code> query parameter. If the
+	 * destination index was created by the transform, it is deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -412,7 +416,8 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.schedule_now_transform
 
 	/**
-	 * Schedules now a transform.
+	 * Schedule a transform to start now. Instantly runs a transform to process
+	 * data.
 	 * <p>
 	 * If you _schedule_now a transform, it will process the new data instantly,
 	 * without waiting for the configured frequency interval. After _schedule_now
@@ -433,7 +438,8 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Schedules now a transform.
+	 * Schedule a transform to start now. Instantly runs a transform to process
+	 * data.
 	 * <p>
 	 * If you _schedule_now a transform, it will process the new data instantly,
 	 * without waiting for the configured frequency interval. After _schedule_now
@@ -457,7 +463,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.start_transform
 
 	/**
-	 * Starts a transform.
+	 * Start a transform. Starts a transform.
 	 * <p>
 	 * When you start a transform, it creates the destination index if it does not
 	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
@@ -495,7 +501,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Starts a transform.
+	 * Start a transform. Starts a transform.
 	 * <p>
 	 * When you start a transform, it creates the destination index if it does not
 	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
@@ -536,7 +542,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.stop_transform
 
 	/**
-	 * Stops one or more transforms.
+	 * Stop transforms. Stops one or more transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
@@ -552,7 +558,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Stops one or more transforms.
+	 * Stop transforms. Stops one or more transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -571,7 +577,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.update_transform
 
 	/**
-	 * Updates certain properties of a transform.
+	 * Update a transform. Updates certain properties of a transform.
 	 * <p>
 	 * All updated properties except <code>description</code> do not take effect
 	 * until after the transform starts the next checkpoint, thus there is data
@@ -596,7 +602,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Updates certain properties of a transform.
+	 * Update a transform. Updates certain properties of a transform.
 	 * <p>
 	 * All updated properties except <code>description</code> do not take effect
 	 * until after the transform starts the next checkpoint, thus there is data

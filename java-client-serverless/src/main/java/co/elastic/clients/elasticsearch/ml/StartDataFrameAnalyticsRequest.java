@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.start_data_frame_analytics.Request
 
 /**
- * Starts a data frame analytics job. A data frame analytics job can be started
+ * Start a data frame analytics job. A data frame analytics job can be started
  * and stopped multiple times throughout its lifecycle. If the destination index
  * does not exist, it is created automatically the first time you start the data
  * frame analytics job. The <code>index.number_of_shards</code> and

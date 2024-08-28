@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: security.has_privileges.Request
 
 /**
- * Determines whether the specified user has a specified list of privileges.
+ * Check user privileges. Determines whether the specified user has a specified
+ * list of privileges.
  * 
  * @see <a href="../doc-files/api-spec.html#security.has_privileges.Request">API
  *      specification</a>

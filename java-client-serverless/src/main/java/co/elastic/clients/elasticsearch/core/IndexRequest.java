@@ -69,9 +69,9 @@ import javax.annotation.Nullable;
 // typedef: _global.index.Request
 
 /**
- * Adds a JSON document to the specified data stream or index and makes it
- * searchable. If the target is an index and the document already exists, the
- * request updates the document and increments its version.
+ * Index a document. Adds a JSON document to the specified data stream or index
+ * and makes it searchable. If the target is an index and the document already
+ * exists, the request updates the document and increments its version.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.index.Request">API
  *      specification</a>

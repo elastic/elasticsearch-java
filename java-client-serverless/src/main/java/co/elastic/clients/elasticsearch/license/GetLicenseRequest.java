@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: license.get.Request
 
 /**
- * This API returns information about the type of license, when it was issued,
- * and when it expires, for example. For more information about the different
- * types of licenses, see <a href=
- * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
+ * Get license information. Returns information about your Elastic license,
+ * including its type, its status, when it was issued, and when it expires. For
+ * more information about the different types of licenses, refer to
+ * <a href="https://www.elastic.co/subscriptions">Elastic Stack
+ * subscriptions</a>.
  * 
  * @see <a href="../doc-files/api-spec.html#license.get.Request">API
  *      specification</a>
