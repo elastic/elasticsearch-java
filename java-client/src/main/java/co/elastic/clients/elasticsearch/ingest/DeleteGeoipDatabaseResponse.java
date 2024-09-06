@@ -17,23 +17,17 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.get_geoip_database;
+package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,104 +44,65 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.get_geoip_database.Maxmind
+// typedef: ingest.delete_geoip_database.Response
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#ingest.get_geoip_database.Maxmind">API
+ *      "../doc-files/api-spec.html#ingest.delete_geoip_database.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Maxmind implements JsonpSerializable {
-	private final String accountId;
-
+public class DeleteGeoipDatabaseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private Maxmind(Builder builder) {
-
-		this.accountId = ApiTypeHelper.requireNonNull(builder.accountId, this, "accountId");
+	private DeleteGeoipDatabaseResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	public static Maxmind of(Function<Builder, ObjectBuilder<Maxmind>> fn) {
+	public static DeleteGeoipDatabaseResponse of(Function<Builder, ObjectBuilder<DeleteGeoipDatabaseResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * Required - API name: {@code account_id}
-	 */
-	public final String accountId() {
-		return this.accountId;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("account_id");
-		generator.write(this.accountId);
-
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Maxmind}.
+	 * Builder for {@link DeleteGeoipDatabaseResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Maxmind> {
-		private String accountId;
-
-		/**
-		 * Required - API name: {@code account_id}
-		 */
-		public final Builder accountId(String value) {
-			this.accountId = value;
-			return this;
-		}
-
+	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteGeoipDatabaseResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link Maxmind}.
+		 * Builds a {@link DeleteGeoipDatabaseResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Maxmind build() {
+		public DeleteGeoipDatabaseResponse build() {
 			_checkSingleUse();
 
-			return new Maxmind(this);
+			return new DeleteGeoipDatabaseResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Maxmind}
+	 * Json deserializer for {@link DeleteGeoipDatabaseResponse}
 	 */
-	public static final JsonpDeserializer<Maxmind> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Maxmind::setupMaxmindDeserializer);
+	public static final JsonpDeserializer<DeleteGeoipDatabaseResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteGeoipDatabaseResponse::setupDeleteGeoipDatabaseResponseDeserializer);
 
-	protected static void setupMaxmindDeserializer(ObjectDeserializer<Maxmind.Builder> op) {
-
-		op.add(Builder::accountId, JsonpDeserializer.stringDeserializer(), "account_id");
+	protected static void setupDeleteGeoipDatabaseResponseDeserializer(
+			ObjectDeserializer<DeleteGeoipDatabaseResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

@@ -298,6 +298,24 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link GeoGridProcessor geo_grid} {@code Processor}
+	 * variant.
+	 */
+	public static GeoGridProcessor.Builder geoGrid() {
+		return new GeoGridProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link GeoGridProcessor geo_grid}
+	 * {@code Processor} variant.
+	 */
+	public static Processor geoGrid(Function<GeoGridProcessor.Builder, ObjectBuilder<GeoGridProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.geoGrid(fn.apply(new GeoGridProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GeoIpProcessor geoip} {@code Processor}
 	 * variant.
 	 */
@@ -348,6 +366,24 @@ public class ProcessorBuilders {
 	public static Processor gsub(Function<GsubProcessor.Builder, ObjectBuilder<GsubProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
 		builder.gsub(fn.apply(new GsubProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link HtmlStripProcessor html_strip}
+	 * {@code Processor} variant.
+	 */
+	public static HtmlStripProcessor.Builder htmlStrip() {
+		return new HtmlStripProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link HtmlStripProcessor html_strip}
+	 * {@code Processor} variant.
+	 */
+	public static Processor htmlStrip(Function<HtmlStripProcessor.Builder, ObjectBuilder<HtmlStripProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.htmlStrip(fn.apply(new HtmlStripProcessor.Builder()).build());
 		return builder.build();
 	}
 
@@ -654,6 +690,24 @@ public class ProcessorBuilders {
 	public static Processor urldecode(Function<UrlDecodeProcessor.Builder, ObjectBuilder<UrlDecodeProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
 		builder.urldecode(fn.apply(new UrlDecodeProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link UriPartsProcessor uri_parts}
+	 * {@code Processor} variant.
+	 */
+	public static UriPartsProcessor.Builder uriParts() {
+		return new UriPartsProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link UriPartsProcessor uri_parts}
+	 * {@code Processor} variant.
+	 */
+	public static Processor uriParts(Function<UriPartsProcessor.Builder, ObjectBuilder<UriPartsProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.uriParts(fn.apply(new UriPartsProcessor.Builder()).build());
 		return builder.build();
 	}
 

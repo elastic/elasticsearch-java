@@ -1336,6 +1336,25 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link TimeSeriesAggregation time_series}
+	 * {@code Aggregation} variant.
+	 */
+	public static TimeSeriesAggregation.Builder timeSeries() {
+		return new TimeSeriesAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link TimeSeriesAggregation time_series}
+	 * {@code Aggregation} variant.
+	 */
+	public static Aggregation timeSeries(
+			Function<TimeSeriesAggregation.Builder, ObjectBuilder<TimeSeriesAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.timeSeries(fn.apply(new TimeSeriesAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TopHitsAggregation top_hits}
 	 * {@code Aggregation} variant.
 	 */

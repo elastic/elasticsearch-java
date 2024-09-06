@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch._types.NodeShard;
+import co.elastic.clients.elasticsearch.core.search_shards.SearchShardsNodeAttributes;
 import co.elastic.clients.elasticsearch.core.search_shards.ShardStoreIndex;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SearchShardsResponse implements JsonpSerializable {
-	private final Map<String, NodeAttributes> nodes;
+	private final Map<String, SearchShardsNodeAttributes> nodes;
 
 	private final List<List<NodeShard>> shards;
 
@@ -87,7 +87,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public final Map<String, NodeAttributes> nodes() {
+	public final Map<String, SearchShardsNodeAttributes> nodes() {
 		return this.nodes;
 	}
 
@@ -119,7 +119,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
-			for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
+			for (Map.Entry<String, SearchShardsNodeAttributes> item0 : this.nodes.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -172,7 +172,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SearchShardsResponse> {
-		private Map<String, NodeAttributes> nodes;
+		private Map<String, SearchShardsNodeAttributes> nodes;
 
 		private List<List<NodeShard>> shards;
 
@@ -183,7 +183,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(Map<String, NodeAttributes> map) {
+		public final Builder nodes(Map<String, SearchShardsNodeAttributes> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
@@ -193,7 +193,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>nodes</code>.
 		 */
-		public final Builder nodes(String key, NodeAttributes value) {
+		public final Builder nodes(String key, SearchShardsNodeAttributes value) {
 			this.nodes = _mapPut(this.nodes, key, value);
 			return this;
 		}
@@ -203,8 +203,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
-		public final Builder nodes(String key, Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
-			return nodes(key, fn.apply(new NodeAttributes.Builder()).build());
+		public final Builder nodes(String key,
+				Function<SearchShardsNodeAttributes.Builder, ObjectBuilder<SearchShardsNodeAttributes>> fn) {
+			return nodes(key, fn.apply(new SearchShardsNodeAttributes.Builder()).build());
 		}
 
 		/**
@@ -284,7 +285,8 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 	protected static void setupSearchShardsResponseDeserializer(ObjectDeserializer<SearchShardsResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes._DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(SearchShardsNodeAttributes._DESERIALIZER),
+				"nodes");
 		op.add(Builder::shards,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard._DESERIALIZER)),
 				"shards");

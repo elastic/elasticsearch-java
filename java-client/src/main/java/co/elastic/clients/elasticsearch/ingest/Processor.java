@@ -102,11 +102,15 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Foreach("foreach"),
 
+		GeoGrid("geo_grid"),
+
 		Geoip("geoip"),
 
 		Grok("grok"),
 
 		Gsub("gsub"),
+
+		HtmlStrip("html_strip"),
 
 		Inference("inference"),
 
@@ -141,6 +145,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		Uppercase("uppercase"),
 
 		Urldecode("urldecode"),
+
+		UriParts("uri_parts"),
 
 		UserAgent("user_agent"),
 
@@ -434,6 +440,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code geo_grid}?
+	 */
+	public boolean isGeoGrid() {
+		return _kind == Kind.GeoGrid;
+	}
+
+	/**
+	 * Get the {@code geo_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo_grid} kind.
+	 */
+	public GeoGridProcessor geoGrid() {
+		return TaggedUnionUtils.get(this, Kind.GeoGrid);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code geoip}?
 	 */
 	public boolean isGeoip() {
@@ -482,6 +505,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public GsubProcessor gsub() {
 		return TaggedUnionUtils.get(this, Kind.Gsub);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code html_strip}?
+	 */
+	public boolean isHtmlStrip() {
+		return _kind == Kind.HtmlStrip;
+	}
+
+	/**
+	 * Get the {@code html_strip} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code html_strip} kind.
+	 */
+	public HtmlStripProcessor htmlStrip() {
+		return TaggedUnionUtils.get(this, Kind.HtmlStrip);
 	}
 
 	/**
@@ -775,6 +815,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code uri_parts}?
+	 */
+	public boolean isUriParts() {
+		return _kind == Kind.UriParts;
+	}
+
+	/**
+	 * Get the {@code uri_parts} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code uri_parts} kind.
+	 */
+	public UriPartsProcessor uriParts() {
+		return TaggedUnionUtils.get(this, Kind.UriParts);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code user_agent}?
 	 */
 	public boolean isUserAgent() {
@@ -995,6 +1052,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.foreach(fn.apply(new ForeachProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> geoGrid(GeoGridProcessor v) {
+			this._kind = Kind.GeoGrid;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> geoGrid(
+				Function<GeoGridProcessor.Builder, ObjectBuilder<GeoGridProcessor>> fn) {
+			return this.geoGrid(fn.apply(new GeoGridProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> geoip(GeoIpProcessor v) {
 			this._kind = Kind.Geoip;
 			this._value = v;
@@ -1023,6 +1091,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		public ObjectBuilder<Processor> gsub(Function<GsubProcessor.Builder, ObjectBuilder<GsubProcessor>> fn) {
 			return this.gsub(fn.apply(new GsubProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> htmlStrip(HtmlStripProcessor v) {
+			this._kind = Kind.HtmlStrip;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> htmlStrip(
+				Function<HtmlStripProcessor.Builder, ObjectBuilder<HtmlStripProcessor>> fn) {
+			return this.htmlStrip(fn.apply(new HtmlStripProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
@@ -1202,6 +1281,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.urldecode(fn.apply(new UrlDecodeProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> uriParts(UriPartsProcessor v) {
+			this._kind = Kind.UriParts;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> uriParts(
+				Function<UriPartsProcessor.Builder, ObjectBuilder<UriPartsProcessor>> fn) {
+			return this.uriParts(fn.apply(new UriPartsProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
 			this._kind = Kind.UserAgent;
 			this._value = v;
@@ -1252,9 +1342,11 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::enrich, EnrichProcessor._DESERIALIZER, "enrich");
 		op.add(Builder::fail, FailProcessor._DESERIALIZER, "fail");
 		op.add(Builder::foreach, ForeachProcessor._DESERIALIZER, "foreach");
+		op.add(Builder::geoGrid, GeoGridProcessor._DESERIALIZER, "geo_grid");
 		op.add(Builder::geoip, GeoIpProcessor._DESERIALIZER, "geoip");
 		op.add(Builder::grok, GrokProcessor._DESERIALIZER, "grok");
 		op.add(Builder::gsub, GsubProcessor._DESERIALIZER, "gsub");
+		op.add(Builder::htmlStrip, HtmlStripProcessor._DESERIALIZER, "html_strip");
 		op.add(Builder::inference, InferenceProcessor._DESERIALIZER, "inference");
 		op.add(Builder::join, JoinProcessor._DESERIALIZER, "join");
 		op.add(Builder::json, JsonProcessor._DESERIALIZER, "json");
@@ -1272,6 +1364,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::trim, TrimProcessor._DESERIALIZER, "trim");
 		op.add(Builder::uppercase, UppercaseProcessor._DESERIALIZER, "uppercase");
 		op.add(Builder::urldecode, UrlDecodeProcessor._DESERIALIZER, "urldecode");
+		op.add(Builder::uriParts, UriPartsProcessor._DESERIALIZER, "uri_parts");
 		op.add(Builder::userAgent, UserAgentProcessor._DESERIALIZER, "user_agent");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {

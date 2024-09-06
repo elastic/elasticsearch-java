@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ingest.get_geoip_database;
 
+import co.elastic.clients.elasticsearch.ingest.DatabaseConfiguration;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

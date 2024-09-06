@@ -65,6 +65,39 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 		return new ElasticsearchIngestAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: ingest.delete_geoip_database
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteGeoipDatabaseResponse> deleteGeoipDatabase(DeleteGeoipDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse>) DeleteGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes a geoip database configuration.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteGeoipDatabaseResponse> deleteGeoipDatabase(
+			Function<DeleteGeoipDatabaseRequest.Builder, ObjectBuilder<DeleteGeoipDatabaseRequest>> fn) {
+		return deleteGeoipDatabase(fn.apply(new DeleteGeoipDatabaseRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
@@ -222,6 +255,39 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<ProcessorGrokResponse> processorGrok() {
 		return this.transport.performRequestAsync(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: ingest.put_geoip_database
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutGeoipDatabaseResponse> putGeoipDatabase(PutGeoipDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutGeoipDatabaseRequest, PutGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<PutGeoipDatabaseRequest, PutGeoipDatabaseResponse, ErrorResponse>) PutGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutGeoipDatabaseResponse> putGeoipDatabase(
+			Function<PutGeoipDatabaseRequest.Builder, ObjectBuilder<PutGeoipDatabaseRequest>> fn) {
+		return putGeoipDatabase(fn.apply(new PutGeoipDatabaseRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ingest.put_pipeline
