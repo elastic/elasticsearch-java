@@ -28,7 +28,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -62,15 +61,12 @@ import javax.annotation.Nullable;
 public class TimeSeriesBucket extends MultiBucketBase {
 	private final Map<String, FieldValue> key;
 
-	private final long docCount;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private TimeSeriesBucket(Builder builder) {
 		super(builder);
 
 		this.key = ApiTypeHelper.unmodifiableRequired(builder.key, this, "key");
-		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
 
 	}
 
@@ -83,13 +79,6 @@ public class TimeSeriesBucket extends MultiBucketBase {
 	 */
 	public final Map<String, FieldValue> key() {
 		return this.key;
-	}
-
-	/**
-	 * Required - API name: {@code doc_count}
-	 */
-	public final long docCount() {
-		return this.docCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -106,8 +95,6 @@ public class TimeSeriesBucket extends MultiBucketBase {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("doc_count");
-		generator.write(this.docCount);
 
 	}
 
@@ -121,8 +108,6 @@ public class TimeSeriesBucket extends MultiBucketBase {
 			implements
 				ObjectBuilder<TimeSeriesBucket> {
 		private Map<String, FieldValue> key;
-
-		private Long docCount;
 
 		/**
 		 * Required - API name: {@code key}
@@ -151,14 +136,6 @@ public class TimeSeriesBucket extends MultiBucketBase {
 		 */
 		public final Builder key(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
 			return key(key, fn.apply(new FieldValue.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code doc_count}
-		 */
-		public final Builder docCount(long value) {
-			this.docCount = value;
-			return this;
 		}
 
 		@Override
@@ -190,7 +167,6 @@ public class TimeSeriesBucket extends MultiBucketBase {
 	protected static void setupTimeSeriesBucketDeserializer(ObjectDeserializer<TimeSeriesBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::key, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "key");
-		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 
 	}
 
