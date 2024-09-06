@@ -99,6 +99,8 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 
 	private final boolean timedOut;
 
+	private final int unassignedPrimaryShards;
+
 	private final int unassignedShards;
 
 	// ---------------------------------------------------------------------------------------------
@@ -127,6 +129,8 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
 				"taskMaxWaitingInQueueMillis");
 		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.unassignedPrimaryShards = ApiTypeHelper.requireNonNull(builder.unassignedPrimaryShards, this,
+				"unassignedPrimaryShards");
 		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
@@ -278,6 +282,15 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The number of primary shards that are not allocated.
+	 * <p>
+	 * API name: {@code unassigned_primary_shards}
+	 */
+	public final int unassignedPrimaryShards() {
+		return this.unassignedPrimaryShards;
+	}
+
+	/**
 	 * Required - The number of shards that are not allocated.
 	 * <p>
 	 * API name: {@code unassigned_shards}
@@ -354,6 +367,9 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		generator.writeKey("timed_out");
 		generator.write(this.timedOut);
 
+		generator.writeKey("unassigned_primary_shards");
+		generator.write(this.unassignedPrimaryShards);
+
 		generator.writeKey("unassigned_shards");
 		generator.write(this.unassignedShards);
 
@@ -400,6 +416,8 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		private Long taskMaxWaitingInQueueMillis;
 
 		private Boolean timedOut;
+
+		private Integer unassignedPrimaryShards;
 
 		private Integer unassignedShards;
 
@@ -596,6 +614,16 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The number of primary shards that are not allocated.
+		 * <p>
+		 * API name: {@code unassigned_primary_shards}
+		 */
+		public final BuilderT unassignedPrimaryShards(int value) {
+			this.unassignedPrimaryShards = value;
+			return self();
+		}
+
+		/**
 		 * Required - The number of shards that are not allocated.
 		 * <p>
 		 * API name: {@code unassigned_shards}
@@ -635,6 +663,8 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		op.add(AbstractBuilder::taskMaxWaitingInQueueMillis, JsonpDeserializer.longDeserializer(),
 				"task_max_waiting_in_queue_millis");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(AbstractBuilder::unassignedPrimaryShards, JsonpDeserializer.integerDeserializer(),
+				"unassigned_primary_shards");
 		op.add(AbstractBuilder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 
 	}

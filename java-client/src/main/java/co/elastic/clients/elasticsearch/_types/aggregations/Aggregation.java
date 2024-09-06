@@ -215,6 +215,8 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 
 		Terms("terms"),
 
+		TimeSeries("time_series"),
+
 		TopHits("top_hits"),
 
 		TTest("t_test"),
@@ -1494,6 +1496,23 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code time_series}?
+	 */
+	public boolean isTimeSeries() {
+		return _kind == Kind.TimeSeries;
+	}
+
+	/**
+	 * Get the {@code time_series} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code time_series} kind.
+	 */
+	public TimeSeriesAggregation timeSeries() {
+		return TaggedUnionUtils.get(this, Kind.TimeSeries);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code top_hits}?
 	 */
 	public boolean isTopHits() {
@@ -2477,6 +2496,17 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder timeSeries(TimeSeriesAggregation v) {
+			this._kind = Kind.TimeSeries;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder timeSeries(
+				Function<TimeSeriesAggregation.Builder, ObjectBuilder<TimeSeriesAggregation>> fn) {
+			return this.timeSeries(fn.apply(new TimeSeriesAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder topHits(TopHitsAggregation v) {
 			this._kind = Kind.TopHits;
 			this._value = v;
@@ -2702,6 +2732,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		op.add(Builder::sum, SumAggregation._DESERIALIZER, "sum");
 		op.add(Builder::sumBucket, SumBucketAggregation._DESERIALIZER, "sum_bucket");
 		op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
+		op.add(Builder::timeSeries, TimeSeriesAggregation._DESERIALIZER, "time_series");
 		op.add(Builder::topHits, TopHitsAggregation._DESERIALIZER, "top_hits");
 		op.add(Builder::tTest, TTestAggregation._DESERIALIZER, "t_test");
 		op.add(Builder::topMetrics, TopMetricsAggregation._DESERIALIZER, "top_metrics");

@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -33,11 +35,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -55,45 +55,51 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.delete_geoip_database.Request
+// typedef: ingest.put_geoip_database.Request
 
 /**
- * Deletes a geoip database configuration.
+ * Returns information about one or more geoip database configurations.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#ingest.delete_geoip_database.Request">API
+ *      "../doc-files/api-spec.html#ingest.put_geoip_database.Request">API
  *      specification</a>
  */
-
-public class DeleteGeoipDatabaseRequest extends RequestBase {
-	private final List<String> id;
+@JsonpDeserializable
+public class PutGeoipDatabaseRequest extends RequestBase implements JsonpSerializable {
+	private final String id;
 
 	@Nullable
 	private final Time masterTimeout;
+
+	private final Maxmind maxmind;
+
+	private final String name;
 
 	@Nullable
 	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteGeoipDatabaseRequest(Builder builder) {
+	private PutGeoipDatabaseRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.unmodifiableRequired(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
+		this.maxmind = ApiTypeHelper.requireNonNull(builder.maxmind, this, "maxmind");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public static DeleteGeoipDatabaseRequest of(Function<Builder, ObjectBuilder<DeleteGeoipDatabaseRequest>> fn) {
+	public static PutGeoipDatabaseRequest of(Function<Builder, ObjectBuilder<PutGeoipDatabaseRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - A comma-separated list of geoip database configurations to delete
+	 * Required - ID of the database configuration to create or update.
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public final List<String> id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -109,6 +115,29 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 	}
 
 	/**
+	 * Required - The configuration necessary to identify which IP geolocation
+	 * provider to use to download the database, as well as any provider-specific
+	 * configuration necessary for such downloading. At present, the only supported
+	 * provider is maxmind, and the maxmind provider requires that an account_id
+	 * (string) is configured.
+	 * <p>
+	 * API name: {@code maxmind}
+	 */
+	public final Maxmind maxmind() {
+		return this.maxmind;
+	}
+
+	/**
+	 * Required - The provider-assigned name of the IP geolocation database to
+	 * download.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
+	}
+
+	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
 	 * <p>
@@ -119,44 +148,53 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		return this.timeout;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("maxmind");
+		this.maxmind.serialize(generator, mapper);
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteGeoipDatabaseRequest}.
+	 * Builder for {@link PutGeoipDatabaseRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DeleteGeoipDatabaseRequest> {
-		private List<String> id;
+				ObjectBuilder<PutGeoipDatabaseRequest> {
+		private String id;
 
 		@Nullable
 		private Time masterTimeout;
+
+		private Maxmind maxmind;
+
+		private String name;
 
 		@Nullable
 		private Time timeout;
 
 		/**
-		 * Required - A comma-separated list of geoip database configurations to delete
+		 * Required - ID of the database configuration to create or update.
 		 * <p>
 		 * API name: {@code id}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>id</code>.
 		 */
-		public final Builder id(List<String> list) {
-			this.id = _listAddAll(this.id, list);
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of geoip database configurations to delete
-		 * <p>
-		 * API name: {@code id}
-		 * <p>
-		 * Adds one or more values to <code>id</code>.
-		 */
-		public final Builder id(String value, String... values) {
-			this.id = _listAdd(this.id, value, values);
+		public final Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -179,6 +217,44 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - The configuration necessary to identify which IP geolocation
+		 * provider to use to download the database, as well as any provider-specific
+		 * configuration necessary for such downloading. At present, the only supported
+		 * provider is maxmind, and the maxmind provider requires that an account_id
+		 * (string) is configured.
+		 * <p>
+		 * API name: {@code maxmind}
+		 */
+		public final Builder maxmind(Maxmind value) {
+			this.maxmind = value;
+			return this;
+		}
+
+		/**
+		 * Required - The configuration necessary to identify which IP geolocation
+		 * provider to use to download the database, as well as any provider-specific
+		 * configuration necessary for such downloading. At present, the only supported
+		 * provider is maxmind, and the maxmind provider requires that an account_id
+		 * (string) is configured.
+		 * <p>
+		 * API name: {@code maxmind}
+		 */
+		public final Builder maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
+			return this.maxmind(fn.apply(new Maxmind.Builder()).build());
+		}
+
+		/**
+		 * Required - The provider-assigned name of the IP geolocation database to
+		 * download.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
 		}
 
 		/**
@@ -208,29 +284,45 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link DeleteGeoipDatabaseRequest}.
+		 * Builds a {@link PutGeoipDatabaseRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DeleteGeoipDatabaseRequest build() {
+		public PutGeoipDatabaseRequest build() {
 			_checkSingleUse();
 
-			return new DeleteGeoipDatabaseRequest(this);
+			return new PutGeoipDatabaseRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code ingest.delete_geoip_database}".
+	 * Json deserializer for {@link PutGeoipDatabaseRequest}
 	 */
-	public static final Endpoint<DeleteGeoipDatabaseRequest, DeleteGeoipDatabaseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/ingest.delete_geoip_database",
+	public static final JsonpDeserializer<PutGeoipDatabaseRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutGeoipDatabaseRequest::setupPutGeoipDatabaseRequestDeserializer);
+
+	protected static void setupPutGeoipDatabaseRequestDeserializer(
+			ObjectDeserializer<PutGeoipDatabaseRequest.Builder> op) {
+
+		op.add(Builder::maxmind, Maxmind._DESERIALIZER, "maxmind");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code ingest.put_geoip_database}".
+	 */
+	public static final Endpoint<PutGeoipDatabaseRequest, PutGeoipDatabaseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.put_geoip_database",
 
 			// Request method
 			request -> {
-				return "DELETE";
+				return "PUT";
 
 			},
 
@@ -248,7 +340,7 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 					buf.append("/geoip");
 					buf.append("/database");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -265,7 +357,7 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 				propsSet |= _id;
 
 				if (propsSet == (_id)) {
-					params.put("id", request.id.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("id", request.id);
 				}
 				return params;
 			},
@@ -281,5 +373,5 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteGeoipDatabaseResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutGeoipDatabaseResponse._DESERIALIZER);
 }

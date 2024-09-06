@@ -90,6 +90,9 @@ public class HealthRecord implements JsonpSerializable {
 	private final String init;
 
 	@Nullable
+	private final String unassignPri;
+
+	@Nullable
 	private final String unassign;
 
 	@Nullable
@@ -115,6 +118,7 @@ public class HealthRecord implements JsonpSerializable {
 		this.pri = builder.pri;
 		this.relo = builder.relo;
 		this.init = builder.init;
+		this.unassignPri = builder.unassignPri;
 		this.unassign = builder.unassign;
 		this.pendingTasks = builder.pendingTasks;
 		this.maxTaskWaitTime = builder.maxTaskWaitTime;
@@ -227,6 +231,16 @@ public class HealthRecord implements JsonpSerializable {
 	}
 
 	/**
+	 * number of unassigned primary shards
+	 * <p>
+	 * API name: {@code unassign.pri}
+	 */
+	@Nullable
+	public final String unassignPri() {
+		return this.unassignPri;
+	}
+
+	/**
 	 * number of unassigned shards
 	 * <p>
 	 * API name: {@code unassign}
@@ -327,6 +341,11 @@ public class HealthRecord implements JsonpSerializable {
 			generator.write(this.init);
 
 		}
+		if (this.unassignPri != null) {
+			generator.writeKey("unassign.pri");
+			generator.write(this.unassignPri);
+
+		}
 		if (this.unassign != null) {
 			generator.writeKey("unassign");
 			generator.write(this.unassign);
@@ -391,6 +410,9 @@ public class HealthRecord implements JsonpSerializable {
 
 		@Nullable
 		private String init;
+
+		@Nullable
+		private String unassignPri;
 
 		@Nullable
 		private String unassign;
@@ -505,6 +527,16 @@ public class HealthRecord implements JsonpSerializable {
 		}
 
 		/**
+		 * number of unassigned primary shards
+		 * <p>
+		 * API name: {@code unassign.pri}
+		 */
+		public final Builder unassignPri(@Nullable String value) {
+			this.unassignPri = value;
+			return this;
+		}
+
+		/**
 		 * number of unassigned shards
 		 * <p>
 		 * API name: {@code unassign}
@@ -585,6 +617,8 @@ public class HealthRecord implements JsonpSerializable {
 				"shardsRelocating");
 		op.add(Builder::init, JsonpDeserializer.stringDeserializer(), "init", "i", "shards.initializing",
 				"shardsInitializing");
+		op.add(Builder::unassignPri, JsonpDeserializer.stringDeserializer(), "unassign.pri", "up",
+				"shards.unassigned.primary", "shardsUnassignedPrimary");
 		op.add(Builder::unassign, JsonpDeserializer.stringDeserializer(), "unassign", "u", "shards.unassigned",
 				"shardsUnassigned");
 		op.add(Builder::pendingTasks, JsonpDeserializer.stringDeserializer(), "pending_tasks", "pt", "pendingTasks");

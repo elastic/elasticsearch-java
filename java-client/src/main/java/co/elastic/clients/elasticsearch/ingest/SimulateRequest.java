@@ -82,7 +82,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 
 	private SimulateRequest(Builder builder) {
 
-		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 		this.id = builder.id;
 		this.pipeline = builder.pipeline;
 		this.verbose = builder.verbose;
@@ -94,7 +94,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Sample documents to test in the pipeline.
+	 * Required - Sample documents to test in the pipeline.
 	 * <p>
 	 * API name: {@code docs}
 	 */
@@ -172,7 +172,6 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<SimulateRequest> {
-		@Nullable
 		private List<Document> docs;
 
 		@Nullable
@@ -185,7 +184,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		private Boolean verbose;
 
 		/**
-		 * Sample documents to test in the pipeline.
+		 * Required - Sample documents to test in the pipeline.
 		 * <p>
 		 * API name: {@code docs}
 		 * <p>
@@ -197,7 +196,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sample documents to test in the pipeline.
+		 * Required - Sample documents to test in the pipeline.
 		 * <p>
 		 * API name: {@code docs}
 		 * <p>
@@ -209,7 +208,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sample documents to test in the pipeline.
+		 * Required - Sample documents to test in the pipeline.
 		 * <p>
 		 * API name: {@code docs}
 		 * <p>

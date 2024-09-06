@@ -40,26 +40,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ingest._types.UserAgentProperty">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.GeoGridTileType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum UserAgentProperty implements JsonEnum {
-	Name("name"),
+public enum GeoGridTileType implements JsonEnum {
+	Geotile("geotile"),
 
-	Os("os"),
+	Geohex("geohex"),
 
-	Device("device"),
-
-	Original("original"),
-
-	Version("version"),
+	Geohash("geohash"),
 
 	;
 
 	private final String jsonValue;
 
-	UserAgentProperty(String jsonValue) {
+	GeoGridTileType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -67,6 +63,6 @@ public enum UserAgentProperty implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			UserAgentProperty.values());
+	public static final JsonEnum.Deserializer<GeoGridTileType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			GeoGridTileType.values());
 }

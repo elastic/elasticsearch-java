@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.get_geoip_database;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,11 +26,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,45 +49,62 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.get_geoip_database.DatabaseConfiguration
+// typedef: _types.aggregations.TimeSeriesAggregation
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#ingest.get_geoip_database.DatabaseConfiguration">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.TimeSeriesAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DatabaseConfiguration implements JsonpSerializable {
-	private final String name;
+public class TimeSeriesAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
+	@Nullable
+	private final Integer size;
 
-	private final Maxmind maxmind;
+	@Nullable
+	private final Boolean keyed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DatabaseConfiguration(Builder builder) {
+	private TimeSeriesAggregation(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.maxmind = ApiTypeHelper.requireNonNull(builder.maxmind, this, "maxmind");
+		this.size = builder.size;
+		this.keyed = builder.keyed;
 
 	}
 
-	public static DatabaseConfiguration of(Function<Builder, ObjectBuilder<DatabaseConfiguration>> fn) {
+	public static TimeSeriesAggregation of(Function<Builder, ObjectBuilder<TimeSeriesAggregation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Aggregation variant kind.
 	 */
-	public final String name() {
-		return this.name;
+	@Override
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.TimeSeries;
 	}
 
 	/**
-	 * Required - API name: {@code maxmind}
+	 * The maximum number of results to return.
+	 * <p>
+	 * API name: {@code size}
 	 */
-	public final Maxmind maxmind() {
-		return this.maxmind;
+	@Nullable
+	public final Integer size() {
+		return this.size;
+	}
+
+	/**
+	 * Set to <code>true</code> to associate a unique string key with each bucket
+	 * and returns the ranges as a hash rather than an array.
+	 * <p>
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public final Boolean keyed() {
+		return this.keyed;
 	}
 
 	/**
@@ -102,11 +118,16 @@ public class DatabaseConfiguration implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
 
-		generator.writeKey("maxmind");
-		this.maxmind.serialize(generator, mapper);
+		}
+		if (this.keyed != null) {
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
+
+		}
 
 	}
 
@@ -118,37 +139,37 @@ public class DatabaseConfiguration implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DatabaseConfiguration}.
+	 * Builder for {@link TimeSeriesAggregation}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DatabaseConfiguration> {
-		private String name;
+				ObjectBuilder<TimeSeriesAggregation> {
+		@Nullable
+		private Integer size;
 
-		private Maxmind maxmind;
+		@Nullable
+		private Boolean keyed;
 
 		/**
-		 * Required - API name: {@code name}
+		 * The maximum number of results to return.
+		 * <p>
+		 * API name: {@code size}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code maxmind}
+		 * Set to <code>true</code> to associate a unique string key with each bucket
+		 * and returns the ranges as a hash rather than an array.
+		 * <p>
+		 * API name: {@code keyed}
 		 */
-		public final Builder maxmind(Maxmind value) {
-			this.maxmind = value;
+		public final Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code maxmind}
-		 */
-		public final Builder maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
-			return this.maxmind(fn.apply(new Maxmind.Builder()).build());
 		}
 
 		@Override
@@ -157,30 +178,30 @@ public class DatabaseConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DatabaseConfiguration}.
+		 * Builds a {@link TimeSeriesAggregation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DatabaseConfiguration build() {
+		public TimeSeriesAggregation build() {
 			_checkSingleUse();
 
-			return new DatabaseConfiguration(this);
+			return new TimeSeriesAggregation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DatabaseConfiguration}
+	 * Json deserializer for {@link TimeSeriesAggregation}
 	 */
-	public static final JsonpDeserializer<DatabaseConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatabaseConfiguration::setupDatabaseConfigurationDeserializer);
+	public static final JsonpDeserializer<TimeSeriesAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TimeSeriesAggregation::setupTimeSeriesAggregationDeserializer);
 
-	protected static void setupDatabaseConfigurationDeserializer(ObjectDeserializer<DatabaseConfiguration.Builder> op) {
+	protected static void setupTimeSeriesAggregationDeserializer(ObjectDeserializer<TimeSeriesAggregation.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::maxmind, Maxmind._DESERIALIZER, "maxmind");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

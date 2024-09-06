@@ -40,26 +40,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ingest._types.UserAgentProperty">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest._types.GeoGridTargetFormat">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum UserAgentProperty implements JsonEnum {
-	Name("name"),
+public enum GeoGridTargetFormat implements JsonEnum {
+	Geojson("geojson"),
 
-	Os("os"),
-
-	Device("device"),
-
-	Original("original"),
-
-	Version("version"),
+	Wkt("wkt"),
 
 	;
 
 	private final String jsonValue;
 
-	UserAgentProperty(String jsonValue) {
+	GeoGridTargetFormat(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -67,6 +62,6 @@ public enum UserAgentProperty implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			UserAgentProperty.values());
+	public static final JsonEnum.Deserializer<GeoGridTargetFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			GeoGridTargetFormat.values());
 }

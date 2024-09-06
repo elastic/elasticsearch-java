@@ -34,6 +34,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -72,6 +73,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	private final Map<String, JsonData> meta;
 
 	@Nullable
+	private final Boolean deprecated;
+
+	@Nullable
 	private final String description;
 
 	private final String id;
@@ -97,6 +101,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	private PutPipelineRequest(Builder builder) {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.deprecated = builder.deprecated;
 		this.description = builder.description;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifVersion = builder.ifVersion;
@@ -120,6 +125,18 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 */
 	public final Map<String, JsonData> meta() {
 		return this.meta;
+	}
+
+	/**
+	 * Marks this ingest pipeline as deprecated. When a deprecated ingest pipeline
+	 * is referenced as the default or final pipeline when creating or updating a
+	 * non-deprecated index template, Elasticsearch will emit a deprecation warning.
+	 * <p>
+	 * API name: {@code deprecated}
+	 */
+	@Nullable
+	public final Boolean deprecated() {
+		return this.deprecated;
 	}
 
 	/**
@@ -231,6 +248,11 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 			generator.writeEnd();
 
 		}
+		if (this.deprecated != null) {
+			generator.writeKey("deprecated");
+			generator.write(this.deprecated);
+
+		}
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
@@ -275,6 +297,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 				ObjectBuilder<PutPipelineRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
+
+		@Nullable
+		private Boolean deprecated;
 
 		@Nullable
 		private String description;
@@ -322,6 +347,18 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder meta(String key, JsonData value) {
 			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
+
+		/**
+		 * Marks this ingest pipeline as deprecated. When a deprecated ingest pipeline
+		 * is referenced as the default or final pipeline when creating or updating a
+		 * non-deprecated index template, Elasticsearch will emit a deprecation warning.
+		 * <p>
+		 * API name: {@code deprecated}
+		 */
+		public final Builder deprecated(@Nullable Boolean value) {
+			this.deprecated = value;
 			return this;
 		}
 
@@ -526,6 +563,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	protected static void setupPutPipelineRequestDeserializer(ObjectDeserializer<PutPipelineRequest.Builder> op) {
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
 		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");

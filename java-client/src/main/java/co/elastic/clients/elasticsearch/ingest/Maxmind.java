@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.get_geoip_database;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -50,12 +50,11 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.get_geoip_database.Maxmind
+// typedef: ingest._types.Maxmind
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#ingest.get_geoip_database.Maxmind">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.Maxmind">API
  *      specification</a>
  */
 @JsonpDeserializable

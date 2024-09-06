@@ -77,6 +77,9 @@ public class ShardsRecord implements JsonpSerializable {
 	private final String store;
 
 	@Nullable
+	private final String dataset;
+
+	@Nullable
 	private final String ip;
 
 	@Nullable
@@ -296,6 +299,7 @@ public class ShardsRecord implements JsonpSerializable {
 		this.state = builder.state;
 		this.docs = builder.docs;
 		this.store = builder.store;
+		this.dataset = builder.dataset;
 		this.ip = builder.ip;
 		this.id = builder.id;
 		this.node = builder.node;
@@ -434,6 +438,16 @@ public class ShardsRecord implements JsonpSerializable {
 	@Nullable
 	public final String store() {
 		return this.store;
+	}
+
+	/**
+	 * total size of dataset (including the cache for partially mounted indices)
+	 * <p>
+	 * API name: {@code dataset}
+	 */
+	@Nullable
+	public final String dataset() {
+		return this.dataset;
 	}
 
 	/**
@@ -1208,6 +1222,11 @@ public class ShardsRecord implements JsonpSerializable {
 			generator.write(this.store);
 
 		}
+		if (this.dataset != null) {
+			generator.writeKey("dataset");
+			generator.write(this.dataset);
+
+		}
 		if (this.ip != null) {
 			generator.writeKey("ip");
 			generator.write(this.ip);
@@ -1592,6 +1611,9 @@ public class ShardsRecord implements JsonpSerializable {
 		private String store;
 
 		@Nullable
+		private String dataset;
+
+		@Nullable
 		private String ip;
 
 		@Nullable
@@ -1861,6 +1883,16 @@ public class ShardsRecord implements JsonpSerializable {
 		 */
 		public final Builder store(@Nullable String value) {
 			this.store = value;
+			return this;
+		}
+
+		/**
+		 * total size of dataset (including the cache for partially mounted indices)
+		 * <p>
+		 * API name: {@code dataset}
+		 */
+		public final Builder dataset(@Nullable String value) {
+			this.dataset = value;
 			return this;
 		}
 
@@ -2629,6 +2661,7 @@ public class ShardsRecord implements JsonpSerializable {
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state", "st");
 		op.add(Builder::docs, JsonpDeserializer.stringDeserializer(), "docs", "d", "dc");
 		op.add(Builder::store, JsonpDeserializer.stringDeserializer(), "store", "sto");
+		op.add(Builder::dataset, JsonpDeserializer.stringDeserializer(), "dataset");
 		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");

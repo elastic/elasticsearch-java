@@ -48,36 +48,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.DotExpanderProcessor
+// typedef: ingest._types.HtmlStripProcessor
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ingest._types.DotExpanderProcessor">API
+ *      "../doc-files/api-spec.html#ingest._types.HtmlStripProcessor">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DotExpanderProcessor extends ProcessorBase implements ProcessorVariant {
+public class HtmlStripProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
-	private final Boolean override;
+	private final Boolean ignoreMissing;
 
 	@Nullable
-	private final String path;
+	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DotExpanderProcessor(Builder builder) {
+	private HtmlStripProcessor(Builder builder) {
 		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.override = builder.override;
-		this.path = builder.path;
+		this.ignoreMissing = builder.ignoreMissing;
+		this.targetField = builder.targetField;
 
 	}
 
-	public static DotExpanderProcessor of(Function<Builder, ObjectBuilder<DotExpanderProcessor>> fn) {
+	public static HtmlStripProcessor of(Function<Builder, ObjectBuilder<HtmlStripProcessor>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -86,12 +86,11 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	 */
 	@Override
 	public Processor.Kind _processorKind() {
-		return Processor.Kind.DotExpander;
+		return Processor.Kind.HtmlStrip;
 	}
 
 	/**
-	 * Required - The field to expand into an object field. If set to
-	 * <code>*</code>, all top-level fields will be expanded.
+	 * Required - The string-valued field to remove HTML tags from.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -100,29 +99,26 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	}
 
 	/**
-	 * Controls the behavior when there is already an existing nested object that
-	 * conflicts with the expanded field. When <code>false</code>, the processor
-	 * will merge conflicts by combining the old and the new values into an array.
-	 * When <code>true</code>, the value from the expanded field will overwrite the
-	 * existing value.
+	 * If <code>true</code> and <code>field</code> does not exist or is
+	 * <code>null</code>, the processor quietly exits without modifying the
+	 * document,
 	 * <p>
-	 * API name: {@code override}
+	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public final Boolean override() {
-		return this.override;
+	public final Boolean ignoreMissing() {
+		return this.ignoreMissing;
 	}
 
 	/**
-	 * The field that contains the field to expand. Only required if the field to
-	 * expand is part another object field, because the <code>field</code> option
-	 * can only understand leaf fields.
+	 * The field to assign the converted value to By default, the <code>field</code>
+	 * is updated in-place.
 	 * <p>
-	 * API name: {@code path}
+	 * API name: {@code target_field}
 	 */
 	@Nullable
-	public final String path() {
-		return this.path;
+	public final String targetField() {
+		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -131,14 +127,14 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (this.override != null) {
-			generator.writeKey("override");
-			generator.write(this.override);
+		if (this.ignoreMissing != null) {
+			generator.writeKey("ignore_missing");
+			generator.write(this.ignoreMissing);
 
 		}
-		if (this.path != null) {
-			generator.writeKey("path");
-			generator.write(this.path);
+		if (this.targetField != null) {
+			generator.writeKey("target_field");
+			generator.write(this.targetField);
 
 		}
 
@@ -147,23 +143,22 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DotExpanderProcessor}.
+	 * Builder for {@link HtmlStripProcessor}.
 	 */
 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DotExpanderProcessor> {
+				ObjectBuilder<HtmlStripProcessor> {
 		private String field;
 
 		@Nullable
-		private Boolean override;
+		private Boolean ignoreMissing;
 
 		@Nullable
-		private String path;
+		private String targetField;
 
 		/**
-		 * Required - The field to expand into an object field. If set to
-		 * <code>*</code>, all top-level fields will be expanded.
+		 * Required - The string-valued field to remove HTML tags from.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -173,28 +168,25 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * Controls the behavior when there is already an existing nested object that
-		 * conflicts with the expanded field. When <code>false</code>, the processor
-		 * will merge conflicts by combining the old and the new values into an array.
-		 * When <code>true</code>, the value from the expanded field will overwrite the
-		 * existing value.
+		 * If <code>true</code> and <code>field</code> does not exist or is
+		 * <code>null</code>, the processor quietly exits without modifying the
+		 * document,
 		 * <p>
-		 * API name: {@code override}
+		 * API name: {@code ignore_missing}
 		 */
-		public final Builder override(@Nullable Boolean value) {
-			this.override = value;
+		public final Builder ignoreMissing(@Nullable Boolean value) {
+			this.ignoreMissing = value;
 			return this;
 		}
 
 		/**
-		 * The field that contains the field to expand. Only required if the field to
-		 * expand is part another object field, because the <code>field</code> option
-		 * can only understand leaf fields.
+		 * The field to assign the converted value to By default, the <code>field</code>
+		 * is updated in-place.
 		 * <p>
-		 * API name: {@code path}
+		 * API name: {@code target_field}
 		 */
-		public final Builder path(@Nullable String value) {
-			this.path = value;
+		public final Builder targetField(@Nullable String value) {
+			this.targetField = value;
 			return this;
 		}
 
@@ -204,31 +196,31 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * Builds a {@link DotExpanderProcessor}.
+		 * Builds a {@link HtmlStripProcessor}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DotExpanderProcessor build() {
+		public HtmlStripProcessor build() {
 			_checkSingleUse();
 
-			return new DotExpanderProcessor(this);
+			return new HtmlStripProcessor(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DotExpanderProcessor}
+	 * Json deserializer for {@link HtmlStripProcessor}
 	 */
-	public static final JsonpDeserializer<DotExpanderProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DotExpanderProcessor::setupDotExpanderProcessorDeserializer);
+	public static final JsonpDeserializer<HtmlStripProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HtmlStripProcessor::setupHtmlStripProcessorDeserializer);
 
-	protected static void setupDotExpanderProcessorDeserializer(ObjectDeserializer<DotExpanderProcessor.Builder> op) {
+	protected static void setupHtmlStripProcessorDeserializer(ObjectDeserializer<HtmlStripProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
-		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}
 

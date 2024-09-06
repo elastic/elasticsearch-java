@@ -98,19 +98,6 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 		return deleteGeoipDatabase(fn.apply(new DeleteGeoipDatabaseRequest.Builder()).build());
 	}
 
-	/**
-	 * Deletes a geoip database configuration.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<DeleteGeoipDatabaseResponse> deleteGeoipDatabase() {
-		return this.transport.performRequestAsync(new DeleteGeoipDatabaseRequest.Builder().build(),
-				DeleteGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
@@ -270,6 +257,39 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: ingest.put_geoip_database
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutGeoipDatabaseResponse> putGeoipDatabase(PutGeoipDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutGeoipDatabaseRequest, PutGeoipDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<PutGeoipDatabaseRequest, PutGeoipDatabaseResponse, ErrorResponse>) PutGeoipDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more geoip database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutGeoipDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutGeoipDatabaseResponse> putGeoipDatabase(
+			Function<PutGeoipDatabaseRequest.Builder, ObjectBuilder<PutGeoipDatabaseRequest>> fn) {
+		return putGeoipDatabase(fn.apply(new PutGeoipDatabaseRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ingest.put_pipeline
 
 	/**
@@ -336,19 +356,6 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	public final CompletableFuture<SimulateResponse> simulate(
 			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn) {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
-	}
-
-	/**
-	 * Executes an ingest pipeline against a set of provided documents.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<SimulateResponse> simulate() {
-		return this.transport.performRequestAsync(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
-				this.transportOptions);
 	}
 
 }

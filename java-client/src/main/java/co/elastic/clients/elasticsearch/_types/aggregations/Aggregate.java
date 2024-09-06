@@ -196,6 +196,8 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		TTest("t_test"),
 
+		TimeSeries("time_series"),
+
 		TopHits("top_hits"),
 
 		TopMetrics("top_metrics"),
@@ -1308,6 +1310,23 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code time_series}?
+	 */
+	public boolean isTimeSeries() {
+		return _kind == Kind.TimeSeries;
+	}
+
+	/**
+	 * Get the {@code time_series} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code time_series} kind.
+	 */
+	public TimeSeriesAggregate timeSeries() {
+		return TaggedUnionUtils.get(this, Kind.TimeSeries);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code top_hits}?
 	 */
 	public boolean isTopHits() {
@@ -2156,6 +2175,17 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.tTest(fn.apply(new TTestAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> timeSeries(TimeSeriesAggregate v) {
+			this._kind = Kind.TimeSeries;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> timeSeries(
+				Function<TimeSeriesAggregate.Builder, ObjectBuilder<TimeSeriesAggregate>> fn) {
+			return this.timeSeries(fn.apply(new TimeSeriesAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> topHits(TopHitsAggregate v) {
 			this._kind = Kind.TopHits;
 			this._value = v;
@@ -2342,6 +2372,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("tdigest_percentile_ranks", TDigestPercentileRanksAggregate._DESERIALIZER);
 		deserializers.put("tdigest_percentiles", TDigestPercentilesAggregate._DESERIALIZER);
 		deserializers.put("t_test", TTestAggregate._DESERIALIZER);
+		deserializers.put("time_series", TimeSeriesAggregate._DESERIALIZER);
 		deserializers.put("top_hits", TopHitsAggregate._DESERIALIZER);
 		deserializers.put("top_metrics", TopMetricsAggregate._DESERIALIZER);
 		deserializers.put("umrareterms", UnmappedRareTermsAggregate._DESERIALIZER);

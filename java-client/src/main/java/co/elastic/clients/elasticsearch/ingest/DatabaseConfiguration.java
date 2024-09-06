@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core;
+package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,47 +50,54 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.open_point_in_time.Response
+// typedef: ingest._types.DatabaseConfiguration
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#_global.open_point_in_time.Response">API
+ *      "../doc-files/api-spec.html#ingest._types.DatabaseConfiguration">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenPointInTimeResponse implements JsonpSerializable {
-	private final ShardStatistics shards;
+public class DatabaseConfiguration implements JsonpSerializable {
+	private final String name;
 
-	private final String id;
+	private final Maxmind maxmind;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenPointInTimeResponse(Builder builder) {
+	private DatabaseConfiguration(Builder builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.maxmind = ApiTypeHelper.requireNonNull(builder.maxmind, this, "maxmind");
 
 	}
 
-	public static OpenPointInTimeResponse of(Function<Builder, ObjectBuilder<OpenPointInTimeResponse>> fn) {
+	public static DatabaseConfiguration of(Function<Builder, ObjectBuilder<DatabaseConfiguration>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Shards used to create the PIT
+	 * Required - The provider-assigned name of the IP geolocation database to
+	 * download.
 	 * <p>
-	 * API name: {@code _shards}
+	 * API name: {@code name}
 	 */
-	public final ShardStatistics shards() {
-		return this.shards;
+	public final String name() {
+		return this.name;
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - The configuration necessary to identify which IP geolocation
+	 * provider to use to download the database, as well as any provider-specific
+	 * configuration necessary for such downloading. At present, the only supported
+	 * provider is maxmind, and the maxmind provider requires that an account_id
+	 * (string) is configured.
+	 * <p>
+	 * API name: {@code maxmind}
 	 */
-	public final String id() {
-		return this.id;
+	public final Maxmind maxmind() {
+		return this.maxmind;
 	}
 
 	/**
@@ -105,11 +111,11 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
+		generator.writeKey("name");
+		generator.write(this.name);
 
-		generator.writeKey("id");
-		generator.write(this.id);
+		generator.writeKey("maxmind");
+		this.maxmind.serialize(generator, mapper);
 
 	}
 
@@ -121,41 +127,52 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenPointInTimeResponse}.
+	 * Builder for {@link DatabaseConfiguration}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<OpenPointInTimeResponse> {
-		private ShardStatistics shards;
+				ObjectBuilder<DatabaseConfiguration> {
+		private String name;
 
-		private String id;
+		private Maxmind maxmind;
 
 		/**
-		 * Required - Shards used to create the PIT
+		 * Required - The provider-assigned name of the IP geolocation database to
+		 * download.
 		 * <p>
-		 * API name: {@code _shards}
+		 * API name: {@code name}
 		 */
-		public final Builder shards(ShardStatistics value) {
-			this.shards = value;
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
 		/**
-		 * Required - Shards used to create the PIT
+		 * Required - The configuration necessary to identify which IP geolocation
+		 * provider to use to download the database, as well as any provider-specific
+		 * configuration necessary for such downloading. At present, the only supported
+		 * provider is maxmind, and the maxmind provider requires that an account_id
+		 * (string) is configured.
 		 * <p>
-		 * API name: {@code _shards}
+		 * API name: {@code maxmind}
 		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public final Builder maxmind(Maxmind value) {
+			this.maxmind = value;
+			return this;
 		}
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - The configuration necessary to identify which IP geolocation
+		 * provider to use to download the database, as well as any provider-specific
+		 * configuration necessary for such downloading. At present, the only supported
+		 * provider is maxmind, and the maxmind provider requires that an account_id
+		 * (string) is configured.
+		 * <p>
+		 * API name: {@code maxmind}
 		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
+		public final Builder maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
+			return this.maxmind(fn.apply(new Maxmind.Builder()).build());
 		}
 
 		@Override
@@ -164,31 +181,30 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenPointInTimeResponse}.
+		 * Builds a {@link DatabaseConfiguration}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenPointInTimeResponse build() {
+		public DatabaseConfiguration build() {
 			_checkSingleUse();
 
-			return new OpenPointInTimeResponse(this);
+			return new DatabaseConfiguration(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenPointInTimeResponse}
+	 * Json deserializer for {@link DatabaseConfiguration}
 	 */
-	public static final JsonpDeserializer<OpenPointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer);
+	public static final JsonpDeserializer<DatabaseConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DatabaseConfiguration::setupDatabaseConfigurationDeserializer);
 
-	protected static void setupOpenPointInTimeResponseDeserializer(
-			ObjectDeserializer<OpenPointInTimeResponse.Builder> op) {
+	protected static void setupDatabaseConfigurationDeserializer(ObjectDeserializer<DatabaseConfiguration.Builder> op) {
 
-		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::maxmind, Maxmind._DESERIALIZER, "maxmind");
 
 	}
 

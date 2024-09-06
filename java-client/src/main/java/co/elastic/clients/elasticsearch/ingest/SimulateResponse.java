@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation;
+import co.elastic.clients.elasticsearch.ingest.simulate.SimulateDocumentResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SimulateResponse implements JsonpSerializable {
-	private final List<PipelineSimulation> docs;
+	private final List<SimulateDocumentResult> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class SimulateResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public final List<PipelineSimulation> docs() {
+	public final List<SimulateDocumentResult> docs() {
 		return this.docs;
 	}
 
@@ -95,7 +95,7 @@ public class SimulateResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (PipelineSimulation item0 : this.docs) {
+			for (SimulateDocumentResult item0 : this.docs) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -117,14 +117,14 @@ public class SimulateResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SimulateResponse> {
-		private List<PipelineSimulation> docs;
+		private List<SimulateDocumentResult> docs;
 
 		/**
 		 * Required - API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public final Builder docs(List<PipelineSimulation> list) {
+		public final Builder docs(List<SimulateDocumentResult> list) {
 			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
@@ -134,7 +134,7 @@ public class SimulateResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder docs(PipelineSimulation value, PipelineSimulation... values) {
+		public final Builder docs(SimulateDocumentResult value, SimulateDocumentResult... values) {
 			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
@@ -144,8 +144,8 @@ public class SimulateResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public final Builder docs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
-			return docs(fn.apply(new PipelineSimulation.Builder()).build());
+		public final Builder docs(Function<SimulateDocumentResult.Builder, ObjectBuilder<SimulateDocumentResult>> fn) {
+			return docs(fn.apply(new SimulateDocumentResult.Builder()).build());
 		}
 
 		@Override
@@ -176,7 +176,7 @@ public class SimulateResponse implements JsonpSerializable {
 
 	protected static void setupSimulateResponseDeserializer(ObjectDeserializer<SimulateResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(SimulateDocumentResult._DESERIALIZER), "docs");
 
 	}
 
