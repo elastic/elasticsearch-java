@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
+import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.testkit.MockHttpClient;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
@@ -60,7 +61,7 @@ public class EsqlAdapterTest extends Assertions {
 
         BinaryResponse response = esClient.esql().query(q -> q
             .query("FROM foo")
-            .format("json")
+            .format(EsqlFormat.Json)
         );
 
         Iterable<Data> data = esClient.esql().query(
