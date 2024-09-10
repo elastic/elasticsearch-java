@@ -79,7 +79,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * <code>cancel_task</code> cluster privilege.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -103,7 +103,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -122,7 +122,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * that submitted it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -146,7 +146,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -163,7 +163,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * that submitted it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -187,7 +187,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -206,7 +206,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * restricted to the <code>monitoring_user</code> role.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -228,7 +228,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link AsyncSearchStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -252,7 +252,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * <code>search.max_async_search_response_size</code> cluster level setting.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -282,7 +282,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -304,7 +304,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * <code>search.max_async_search_response_size</code> cluster level setting.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -334,7 +334,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
