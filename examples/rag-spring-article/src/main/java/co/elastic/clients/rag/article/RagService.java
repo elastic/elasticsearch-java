@@ -60,6 +60,7 @@ public class RagService {
 
     public void ingestPDF(String path) throws IOException, TikaException, SAXException {
         // Initializing the PDF parser
+        // Keep in mind that AutoDetectParser is not thread safe
         Parser parser = new AutoDetectParser();
         // Using our custom single page handler class
         PageContentHandler handler = new PageContentHandler();
