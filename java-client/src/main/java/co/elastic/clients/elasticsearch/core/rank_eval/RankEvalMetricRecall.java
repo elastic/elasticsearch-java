@@ -49,7 +49,7 @@ import java.util.function.Function;
  * Recall at K (R@k)
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/search-rank-eval.html#k-recall">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/search-rank-eval.html#k-recall">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricRecall">API

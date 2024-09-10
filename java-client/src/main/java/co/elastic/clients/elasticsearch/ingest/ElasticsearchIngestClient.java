@@ -141,7 +141,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Gets download statistics for GeoIP2 databases used with the geoip processor.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/geoip-processor.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/geoip-processor.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
@@ -256,7 +256,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * that supports aliased expressions that can be reused.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/grok-processor.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/grok-processor.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException, ElasticsearchException {
@@ -306,7 +306,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * effect immediately.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ingest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/ingest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -325,7 +325,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ingest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/ingest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
