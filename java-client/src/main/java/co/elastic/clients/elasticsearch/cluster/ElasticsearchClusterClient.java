@@ -72,7 +72,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Provides explanations for shard allocations in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-allocation-explain.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-allocation-explain.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,7 +91,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-allocation-explain.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-allocation-explain.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,7 +105,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Provides explanations for shard allocations in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-allocation-explain.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-allocation-explain.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -122,7 +122,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * mappings, settings, and aliases.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -143,7 +143,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -159,7 +159,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Clears cluster voting config exclusions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -178,7 +178,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -192,7 +192,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Clears cluster voting config exclusions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -208,7 +208,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * component template exists.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -228,7 +228,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -244,7 +244,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Get component templates. Retrieves information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -263,7 +263,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -277,7 +277,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Get component templates. Retrieves information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -293,7 +293,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * been explicitly defined.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-get-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -313,7 +313,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetClusterSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-get-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -328,7 +328,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * been explicitly defined.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-get-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -351,7 +351,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * The cluster status is controlled by the worst index status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-health.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-health.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -377,7 +377,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-health.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-health.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -398,7 +398,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * The cluster status is controlled by the worst index status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-health.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-health.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -413,7 +413,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Get cluster info. Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-info.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -431,7 +431,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-info.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -453,7 +453,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-pending.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-pending.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -478,7 +478,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PendingTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-pending.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-pending.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -499,7 +499,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-pending.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-pending.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -514,7 +514,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Updates the cluster voting config exclusions by node ids or node names.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -533,7 +533,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -547,7 +547,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Updates the cluster voting config exclusions by node ids or node names.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/voting-config-exclusions.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -582,7 +582,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * before the opening curly bracket.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -621,7 +621,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-component-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -637,7 +637,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Updates the cluster settings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-update-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -656,7 +656,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutClusterSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-update-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -670,7 +670,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Updates the cluster settings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-update-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -687,7 +687,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * keyed by the configured remote cluster alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-remote-info.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-remote-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public RemoteInfoResponse remoteInfo() throws IOException, ElasticsearchException {
@@ -701,7 +701,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Allows to manually change the allocation of individual shards in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-reroute.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-reroute.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -719,7 +719,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link RerouteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-reroute.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-reroute.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -732,7 +732,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Allows to manually change the allocation of individual shards in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-reroute.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-reroute.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -747,7 +747,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Returns a comprehensive information about the state of the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-state.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-state.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -765,7 +765,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-state.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-state.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -778,7 +778,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * Returns a comprehensive information about the state of the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-state.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-state.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -796,7 +796,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * plugins).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -817,7 +817,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -834,7 +834,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * plugins).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/cluster-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cluster-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

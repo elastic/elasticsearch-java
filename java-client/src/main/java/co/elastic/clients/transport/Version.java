@@ -32,7 +32,7 @@ import java.util.Properties;
 public class Version {
 
     private final int major;
-    private final String minor;
+    private final int minor;
     private final int maintenance;
     private final String prerelease;
     private final String build;
@@ -69,7 +69,7 @@ public class Version {
         String[] bits = version.split("\\.");
         try {
             int major = (bits.length >= 1) ? Integer.parseInt(bits[0]) : 0;
-            String minor = (bits.length >= 2) ? new String(bits[1]) : "0";
+            int minor = (bits.length >= 2) ? Integer.parseInt(bits[1]) : 0;
             int maintenance = (bits.length >= 3) ? Integer.parseInt(bits[2]) : -1;
             return new Version(major, minor, maintenance, prerelease, build);
         } catch (NumberFormatException ex) {
@@ -77,11 +77,11 @@ public class Version {
         }
     }
 
-    public Version(int major, String minor, int maintenance, boolean isPreRelease) {
+    public Version(int major, int minor, int maintenance, boolean isPreRelease) {
         this(major, minor, maintenance, isPreRelease ? "p" : null, null);
     }
 
-    public Version(int major, String minor, int maintenance, @Nullable String prerelease,
+    public Version(int major, int minor, int maintenance, @Nullable String prerelease,
                    @Nullable String build) {
         this.major = major;
         this.minor = minor;
@@ -94,7 +94,7 @@ public class Version {
         return major;
     }
 
-    public String minor() {
+    public int minor() {
         return minor;
     }
 

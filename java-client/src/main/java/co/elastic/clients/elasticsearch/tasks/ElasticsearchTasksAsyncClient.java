@@ -71,7 +71,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -89,7 +89,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -102,7 +102,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -118,7 +118,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,7 +137,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -153,7 +153,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * on one or more nodes in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +172,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -185,7 +185,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * on one or more nodes in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.x/tasks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
