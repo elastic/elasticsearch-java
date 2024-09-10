@@ -23,7 +23,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.KnnSearch;
-import co.elastic.clients.elasticsearch._types.Rank;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Retriever;
 import co.elastic.clients.elasticsearch._types.ScriptField;
@@ -191,9 +190,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Query query;
 
 	@Nullable
-	private final Rank rank;
-
-	@Nullable
 	private final Boolean requestCache;
 
 	private final List<Rescore> rescore;
@@ -287,7 +283,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.profile = builder.profile;
 		this.q = builder.q;
 		this.query = builder.query;
-		this.rank = builder.rank;
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
 		this.retriever = builder.retriever;
@@ -717,16 +712,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines the Reciprocal Rank Fusion (RRF) to use.
-	 * <p>
-	 * API name: {@code rank}
-	 */
-	@Nullable
-	public final Rank rank() {
-		return this.rank;
-	}
-
-	/**
 	 * If <code>true</code>, the caching of search results is enabled for requests
 	 * where <code>size</code> is <code>0</code>. Defaults to index level settings.
 	 * <p>
@@ -1094,11 +1079,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (this.rank != null) {
-			generator.writeKey("rank");
-			this.rank.serialize(generator, mapper);
-
-		}
 		if (ApiTypeHelper.isDefined(this.rescore)) {
 			generator.writeKey("rescore");
 			generator.writeStartArray();
@@ -1338,9 +1318,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Query query;
-
-		@Nullable
-		private Rank rank;
 
 		@Nullable
 		private Boolean requestCache;
@@ -2042,25 +2019,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the Reciprocal Rank Fusion (RRF) to use.
-		 * <p>
-		 * API name: {@code rank}
-		 */
-		public final Builder rank(@Nullable Rank value) {
-			this.rank = value;
-			return this;
-		}
-
-		/**
-		 * Defines the Reciprocal Rank Fusion (RRF) to use.
-		 * <p>
-		 * API name: {@code rank}
-		 */
-		public final Builder rank(Function<Rank.Builder, ObjectBuilder<Rank>> fn) {
-			return this.rank(fn.apply(new Rank.Builder()).build());
-		}
-
-		/**
 		 * If <code>true</code>, the caching of search results is enabled for requests
 		 * where <code>size</code> is <code>0</code>. Defaults to index level settings.
 		 * <p>
@@ -2648,7 +2606,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::rank, Rank._DESERIALIZER, "rank");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
 		op.add(Builder::retriever, Retriever._DESERIALIZER, "retriever");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

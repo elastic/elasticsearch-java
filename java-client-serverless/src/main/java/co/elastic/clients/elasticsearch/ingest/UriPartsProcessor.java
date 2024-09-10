@@ -29,7 +29,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,47 +48,43 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.UserAgentProcessor
+// typedef: ingest._types.UriPartsProcessor
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#ingest._types.UserAgentProcessor">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.UriPartsProcessor">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class UserAgentProcessor extends ProcessorBase implements ProcessorVariant {
+public class UriPartsProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
 	private final Boolean ignoreMissing;
 
 	@Nullable
-	private final String regexFile;
+	private final Boolean keepOriginal;
+
+	@Nullable
+	private final Boolean removeIfSuccessful;
 
 	@Nullable
 	private final String targetField;
 
-	private final List<UserAgentProperty> properties;
-
-	@Nullable
-	private final Boolean extractDeviceType;
-
 	// ---------------------------------------------------------------------------------------------
 
-	private UserAgentProcessor(Builder builder) {
+	private UriPartsProcessor(Builder builder) {
 		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.regexFile = builder.regexFile;
+		this.keepOriginal = builder.keepOriginal;
+		this.removeIfSuccessful = builder.removeIfSuccessful;
 		this.targetField = builder.targetField;
-		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
-		this.extractDeviceType = builder.extractDeviceType;
 
 	}
 
-	public static UserAgentProcessor of(Function<Builder, ObjectBuilder<UserAgentProcessor>> fn) {
+	public static UriPartsProcessor of(Function<Builder, ObjectBuilder<UriPartsProcessor>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -98,11 +93,11 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	 */
 	@Override
 	public Processor.Kind _processorKind() {
-		return Processor.Kind.UserAgent;
+		return Processor.Kind.UriParts;
 	}
 
 	/**
-	 * Required - The field containing the user agent string.
+	 * Required - Field containing the URI string.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -122,46 +117,36 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * The name of the file in the <code>config/ingest-user-agent</code> directory
-	 * containing the regular expressions for parsing the user agent string. Both
-	 * the directory and the file have to be created before starting Elasticsearch.
-	 * If not specified, ingest-user-agent will use the <code>regexes.yaml</code>
-	 * from uap-core it ships with.
+	 * If <code>true</code>, the processor copies the unparsed URI to
+	 * <code>&lt;target_field&gt;.original</code>.
 	 * <p>
-	 * API name: {@code regex_file}
+	 * API name: {@code keep_original}
 	 */
 	@Nullable
-	public final String regexFile() {
-		return this.regexFile;
+	public final Boolean keepOriginal() {
+		return this.keepOriginal;
 	}
 
 	/**
-	 * The field that will be filled with the user agent details.
+	 * If <code>true</code>, the processor removes the <code>field</code> after
+	 * parsing the URI string. If parsing fails, the processor does not remove the
+	 * <code>field</code>.
+	 * <p>
+	 * API name: {@code remove_if_successful}
+	 */
+	@Nullable
+	public final Boolean removeIfSuccessful() {
+		return this.removeIfSuccessful;
+	}
+
+	/**
+	 * Output field for the URI object.
 	 * <p>
 	 * API name: {@code target_field}
 	 */
 	@Nullable
 	public final String targetField() {
 		return this.targetField;
-	}
-
-	/**
-	 * Controls what properties are added to <code>target_field</code>.
-	 * <p>
-	 * API name: {@code properties}
-	 */
-	public final List<UserAgentProperty> properties() {
-		return this.properties;
-	}
-
-	/**
-	 * Extracts device type from the user agent string on a best-effort basis.
-	 * <p>
-	 * API name: {@code extract_device_type}
-	 */
-	@Nullable
-	public final Boolean extractDeviceType() {
-		return this.extractDeviceType;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -175,28 +160,19 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 			generator.write(this.ignoreMissing);
 
 		}
-		if (this.regexFile != null) {
-			generator.writeKey("regex_file");
-			generator.write(this.regexFile);
+		if (this.keepOriginal != null) {
+			generator.writeKey("keep_original");
+			generator.write(this.keepOriginal);
+
+		}
+		if (this.removeIfSuccessful != null) {
+			generator.writeKey("remove_if_successful");
+			generator.write(this.removeIfSuccessful);
 
 		}
 		if (this.targetField != null) {
 			generator.writeKey("target_field");
 			generator.write(this.targetField);
-
-		}
-		if (ApiTypeHelper.isDefined(this.properties)) {
-			generator.writeKey("properties");
-			generator.writeStartArray();
-			for (UserAgentProperty item0 : this.properties) {
-				item0.serialize(generator, mapper);
-			}
-			generator.writeEnd();
-
-		}
-		if (this.extractDeviceType != null) {
-			generator.writeKey("extract_device_type");
-			generator.write(this.extractDeviceType);
 
 		}
 
@@ -205,31 +181,28 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link UserAgentProcessor}.
+	 * Builder for {@link UriPartsProcessor}.
 	 */
 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<UserAgentProcessor> {
+				ObjectBuilder<UriPartsProcessor> {
 		private String field;
 
 		@Nullable
 		private Boolean ignoreMissing;
 
 		@Nullable
-		private String regexFile;
+		private Boolean keepOriginal;
+
+		@Nullable
+		private Boolean removeIfSuccessful;
 
 		@Nullable
 		private String targetField;
 
-		@Nullable
-		private List<UserAgentProperty> properties;
-
-		@Nullable
-		private Boolean extractDeviceType;
-
 		/**
-		 * Required - The field containing the user agent string.
+		 * Required - Field containing the URI string.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -250,60 +223,35 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * The name of the file in the <code>config/ingest-user-agent</code> directory
-		 * containing the regular expressions for parsing the user agent string. Both
-		 * the directory and the file have to be created before starting Elasticsearch.
-		 * If not specified, ingest-user-agent will use the <code>regexes.yaml</code>
-		 * from uap-core it ships with.
+		 * If <code>true</code>, the processor copies the unparsed URI to
+		 * <code>&lt;target_field&gt;.original</code>.
 		 * <p>
-		 * API name: {@code regex_file}
+		 * API name: {@code keep_original}
 		 */
-		public final Builder regexFile(@Nullable String value) {
-			this.regexFile = value;
+		public final Builder keepOriginal(@Nullable Boolean value) {
+			this.keepOriginal = value;
 			return this;
 		}
 
 		/**
-		 * The field that will be filled with the user agent details.
+		 * If <code>true</code>, the processor removes the <code>field</code> after
+		 * parsing the URI string. If parsing fails, the processor does not remove the
+		 * <code>field</code>.
+		 * <p>
+		 * API name: {@code remove_if_successful}
+		 */
+		public final Builder removeIfSuccessful(@Nullable Boolean value) {
+			this.removeIfSuccessful = value;
+			return this;
+		}
+
+		/**
+		 * Output field for the URI object.
 		 * <p>
 		 * API name: {@code target_field}
 		 */
 		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
-			return this;
-		}
-
-		/**
-		 * Controls what properties are added to <code>target_field</code>.
-		 * <p>
-		 * API name: {@code properties}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>properties</code>.
-		 */
-		public final Builder properties(List<UserAgentProperty> list) {
-			this.properties = _listAddAll(this.properties, list);
-			return this;
-		}
-
-		/**
-		 * Controls what properties are added to <code>target_field</code>.
-		 * <p>
-		 * API name: {@code properties}
-		 * <p>
-		 * Adds one or more values to <code>properties</code>.
-		 */
-		public final Builder properties(UserAgentProperty value, UserAgentProperty... values) {
-			this.properties = _listAdd(this.properties, value, values);
-			return this;
-		}
-
-		/**
-		 * Extracts device type from the user agent string on a best-effort basis.
-		 * <p>
-		 * API name: {@code extract_device_type}
-		 */
-		public final Builder extractDeviceType(@Nullable Boolean value) {
-			this.extractDeviceType = value;
 			return this;
 		}
 
@@ -313,34 +261,33 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * Builds a {@link UserAgentProcessor}.
+		 * Builds a {@link UriPartsProcessor}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public UserAgentProcessor build() {
+		public UriPartsProcessor build() {
 			_checkSingleUse();
 
-			return new UserAgentProcessor(this);
+			return new UriPartsProcessor(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link UserAgentProcessor}
+	 * Json deserializer for {@link UriPartsProcessor}
 	 */
-	public static final JsonpDeserializer<UserAgentProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UserAgentProcessor::setupUserAgentProcessorDeserializer);
+	public static final JsonpDeserializer<UriPartsProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UriPartsProcessor::setupUriPartsProcessorDeserializer);
 
-	protected static void setupUserAgentProcessorDeserializer(ObjectDeserializer<UserAgentProcessor.Builder> op) {
+	protected static void setupUriPartsProcessorDeserializer(ObjectDeserializer<UriPartsProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::regexFile, JsonpDeserializer.stringDeserializer(), "regex_file");
+		op.add(Builder::keepOriginal, JsonpDeserializer.booleanDeserializer(), "keep_original");
+		op.add(Builder::removeIfSuccessful, JsonpDeserializer.booleanDeserializer(), "remove_if_successful");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
-		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(UserAgentProperty._DESERIALIZER), "properties");
-		op.add(Builder::extractDeviceType, JsonpDeserializer.booleanDeserializer(), "extract_device_type");
 
 	}
 

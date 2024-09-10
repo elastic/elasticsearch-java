@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.esql.query;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -38,26 +39,40 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link Rank} variants.
+ *
+ * @see <a href="../../doc-files/api-spec.html#esql.query.EsqlFormat">API
+ *      specification</a>
  */
-public class RankBuilders {
-	private RankBuilders() {
+@JsonpDeserializable
+public enum EsqlFormat implements JsonEnum {
+	Csv("csv"),
+
+	Json("json"),
+
+	Tsv("tsv"),
+
+	Txt("txt"),
+
+	Yaml("yaml"),
+
+	Cbor("cbor"),
+
+	Smile("smile"),
+
+	Arrow("arrow"),
+
+	;
+
+	private final String jsonValue;
+
+	EsqlFormat(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	/**
-	 * Creates a builder for the {@link RrfRank rrf} {@code Rank} variant.
-	 */
-	public static RrfRank.Builder rrf() {
-		return new RrfRank.Builder();
+	public String jsonValue() {
+		return this.jsonValue;
 	}
 
-	/**
-	 * Creates a Rank of the {@link RrfRank rrf} {@code Rank} variant.
-	 */
-	public static Rank rrf(Function<RrfRank.Builder, ObjectBuilder<RrfRank>> fn) {
-		Rank.Builder builder = new Rank.Builder();
-		builder.rrf(fn.apply(new RrfRank.Builder()).build());
-		return builder.build();
-	}
-
+	public static final JsonEnum.Deserializer<EsqlFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			EsqlFormat.values());
 }

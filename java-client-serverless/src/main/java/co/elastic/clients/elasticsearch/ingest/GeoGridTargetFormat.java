@@ -17,7 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.ingest;
+
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -35,14 +39,29 @@ package co.elastic.clients.elasticsearch._types;
 //----------------------------------------------------------------
 
 /**
- * Base interface for {@link Rank} variants.
+ *
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest._types.GeoGridTargetFormat">API
+ *      specification</a>
  */
-public interface RankVariant {
+@JsonpDeserializable
+public enum GeoGridTargetFormat implements JsonEnum {
+	Geojson("geojson"),
 
-	Rank.Kind _rankKind();
+	Wkt("wkt"),
 
-	default Rank _toRank() {
-		return new Rank(this);
+	;
+
+	private final String jsonValue;
+
+	GeoGridTargetFormat(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<GeoGridTargetFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			GeoGridTargetFormat.values());
 }

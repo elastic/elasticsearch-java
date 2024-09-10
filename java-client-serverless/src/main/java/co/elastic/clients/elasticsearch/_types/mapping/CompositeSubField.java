@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core;
+package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,47 +49,35 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.open_point_in_time.Response
+// typedef: _types.mapping.CompositeSubField
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#_global.open_point_in_time.Response">API
+ *      "../../doc-files/api-spec.html#_types.mapping.CompositeSubField">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class OpenPointInTimeResponse implements JsonpSerializable {
-	private final ShardStatistics shards;
-
-	private final String id;
+public class CompositeSubField implements JsonpSerializable {
+	private final RuntimeFieldType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private OpenPointInTimeResponse(Builder builder) {
+	private CompositeSubField(Builder builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static OpenPointInTimeResponse of(Function<Builder, ObjectBuilder<OpenPointInTimeResponse>> fn) {
+	public static CompositeSubField of(Function<Builder, ObjectBuilder<CompositeSubField>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Shards used to create the PIT
-	 * <p>
-	 * API name: {@code _shards}
+	 * Required - API name: {@code type}
 	 */
-	public final ShardStatistics shards() {
-		return this.shards;
-	}
-
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
+	public final RuntimeFieldType type() {
+		return this.type;
 	}
 
 	/**
@@ -105,11 +91,8 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
-
-		generator.writeKey("id");
-		generator.write(this.id);
+		generator.writeKey("type");
+		this.type.serialize(generator, mapper);
 
 	}
 
@@ -121,40 +104,17 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link OpenPointInTimeResponse}.
+	 * Builder for {@link CompositeSubField}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<OpenPointInTimeResponse> {
-		private ShardStatistics shards;
-
-		private String id;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CompositeSubField> {
+		private RuntimeFieldType type;
 
 		/**
-		 * Required - Shards used to create the PIT
-		 * <p>
-		 * API name: {@code _shards}
+		 * Required - API name: {@code type}
 		 */
-		public final Builder shards(ShardStatistics value) {
-			this.shards = value;
-			return this;
-		}
-
-		/**
-		 * Required - Shards used to create the PIT
-		 * <p>
-		 * API name: {@code _shards}
-		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
+		public final Builder type(RuntimeFieldType value) {
+			this.type = value;
 			return this;
 		}
 
@@ -164,31 +124,29 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link OpenPointInTimeResponse}.
+		 * Builds a {@link CompositeSubField}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public OpenPointInTimeResponse build() {
+		public CompositeSubField build() {
 			_checkSingleUse();
 
-			return new OpenPointInTimeResponse(this);
+			return new CompositeSubField(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link OpenPointInTimeResponse}
+	 * Json deserializer for {@link CompositeSubField}
 	 */
-	public static final JsonpDeserializer<OpenPointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer);
+	public static final JsonpDeserializer<CompositeSubField> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CompositeSubField::setupCompositeSubFieldDeserializer);
 
-	protected static void setupOpenPointInTimeResponseDeserializer(
-			ObjectDeserializer<OpenPointInTimeResponse.Builder> op) {
+	protected static void setupCompositeSubFieldDeserializer(ObjectDeserializer<CompositeSubField.Builder> op) {
 
-		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 
 	}
 

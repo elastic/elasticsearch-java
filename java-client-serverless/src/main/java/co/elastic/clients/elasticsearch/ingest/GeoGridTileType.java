@@ -17,16 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -43,23 +38,31 @@ import java.util.Objects;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.RankBase
-
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.RankBase">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.GeoGridTileType">API
  *      specification</a>
  */
+@JsonpDeserializable
+public enum GeoGridTileType implements JsonEnum {
+	Geotile("geotile"),
 
-public abstract class RankBase {
-	public RankBase() {
+	Geohex("geohex"),
+
+	Geohash("geohash"),
+
+	;
+
+	private final String jsonValue;
+
+	GeoGridTileType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
-		protected abstract BuilderT self();
-
+	public String jsonValue() {
+		return this.jsonValue;
 	}
 
+	public static final JsonEnum.Deserializer<GeoGridTileType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			GeoGridTileType.values());
 }

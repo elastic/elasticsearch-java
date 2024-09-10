@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -28,7 +28,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,61 +49,62 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.RrfRank
+// typedef: _types.aggregations.TimeSeriesAggregation
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.RrfRank">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.aggregations.TimeSeriesAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RrfRank extends RankBase implements RankVariant, JsonpSerializable {
+public class TimeSeriesAggregation extends BucketAggregationBase implements AggregationVariant, JsonpSerializable {
 	@Nullable
-	private final Long rankConstant;
+	private final Integer size;
 
 	@Nullable
-	private final Long rankWindowSize;
+	private final Boolean keyed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RrfRank(Builder builder) {
+	private TimeSeriesAggregation(Builder builder) {
 
-		this.rankConstant = builder.rankConstant;
-		this.rankWindowSize = builder.rankWindowSize;
+		this.size = builder.size;
+		this.keyed = builder.keyed;
 
 	}
 
-	public static RrfRank of(Function<Builder, ObjectBuilder<RrfRank>> fn) {
+	public static TimeSeriesAggregation of(Function<Builder, ObjectBuilder<TimeSeriesAggregation>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Rank variant kind.
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public Rank.Kind _rankKind() {
-		return Rank.Kind.Rrf;
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.TimeSeries;
 	}
 
 	/**
-	 * How much influence documents in individual result sets per query have over
-	 * the final ranked result set
+	 * The maximum number of results to return.
 	 * <p>
-	 * API name: {@code rank_constant}
+	 * API name: {@code size}
 	 */
 	@Nullable
-	public final Long rankConstant() {
-		return this.rankConstant;
+	public final Integer size() {
+		return this.size;
 	}
 
 	/**
-	 * Size of the individual result sets per query
+	 * Set to <code>true</code> to associate a unique string key with each bucket
+	 * and returns the ranges as a hash rather than an array.
 	 * <p>
-	 * API name: {@code rank_window_size}
+	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public final Long rankWindowSize() {
-		return this.rankWindowSize;
+	public final Boolean keyed() {
+		return this.keyed;
 	}
 
 	/**
@@ -116,14 +118,14 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.rankConstant != null) {
-			generator.writeKey("rank_constant");
-			generator.write(this.rankConstant);
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
 
 		}
-		if (this.rankWindowSize != null) {
-			generator.writeKey("rank_window_size");
-			generator.write(this.rankWindowSize);
+		if (this.keyed != null) {
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
 
 		}
 
@@ -137,34 +139,36 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RrfRank}.
+	 * Builder for {@link TimeSeriesAggregation}.
 	 */
 
-	public static class Builder extends RankBase.AbstractBuilder<Builder> implements ObjectBuilder<RrfRank> {
+	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<TimeSeriesAggregation> {
 		@Nullable
-		private Long rankConstant;
+		private Integer size;
 
 		@Nullable
-		private Long rankWindowSize;
+		private Boolean keyed;
 
 		/**
-		 * How much influence documents in individual result sets per query have over
-		 * the final ranked result set
+		 * The maximum number of results to return.
 		 * <p>
-		 * API name: {@code rank_constant}
+		 * API name: {@code size}
 		 */
-		public final Builder rankConstant(@Nullable Long value) {
-			this.rankConstant = value;
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
 			return this;
 		}
 
 		/**
-		 * Size of the individual result sets per query
+		 * Set to <code>true</code> to associate a unique string key with each bucket
+		 * and returns the ranges as a hash rather than an array.
 		 * <p>
-		 * API name: {@code rank_window_size}
+		 * API name: {@code keyed}
 		 */
-		public final Builder rankWindowSize(@Nullable Long value) {
-			this.rankWindowSize = value;
+		public final Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
 			return this;
 		}
 
@@ -174,30 +178,30 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Builds a {@link RrfRank}.
+		 * Builds a {@link TimeSeriesAggregation}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RrfRank build() {
+		public TimeSeriesAggregation build() {
 			_checkSingleUse();
 
-			return new RrfRank(this);
+			return new TimeSeriesAggregation(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RrfRank}
+	 * Json deserializer for {@link TimeSeriesAggregation}
 	 */
-	public static final JsonpDeserializer<RrfRank> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RrfRank::setupRrfRankDeserializer);
+	public static final JsonpDeserializer<TimeSeriesAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TimeSeriesAggregation::setupTimeSeriesAggregationDeserializer);
 
-	protected static void setupRrfRankDeserializer(ObjectDeserializer<RrfRank.Builder> op) {
+	protected static void setupTimeSeriesAggregationDeserializer(ObjectDeserializer<TimeSeriesAggregation.Builder> op) {
 
-		op.add(Builder::rankConstant, JsonpDeserializer.longDeserializer(), "rank_constant");
-		op.add(Builder::rankWindowSize, JsonpDeserializer.longDeserializer(), "rank_window_size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

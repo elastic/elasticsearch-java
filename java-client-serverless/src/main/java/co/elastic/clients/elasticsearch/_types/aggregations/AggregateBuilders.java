@@ -1150,6 +1150,24 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link TimeSeriesAggregate time_series}
+	 * {@code Aggregate} variant.
+	 */
+	public static TimeSeriesAggregate.Builder timeSeries() {
+		return new TimeSeriesAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link TimeSeriesAggregate time_series}
+	 * {@code Aggregate} variant.
+	 */
+	public static Aggregate timeSeries(Function<TimeSeriesAggregate.Builder, ObjectBuilder<TimeSeriesAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.timeSeries(fn.apply(new TimeSeriesAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TopHitsAggregate top_hits} {@code Aggregate}
 	 * variant.
 	 */

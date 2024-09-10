@@ -232,17 +232,4 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
-	/**
-	 * Executes an ingest pipeline against a set of provided documents.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<SimulateResponse> simulate() {
-		return this.transport.performRequestAsync(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
-				this.transportOptions);
-	}
-
 }
