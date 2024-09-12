@@ -67,9 +67,10 @@ import javax.annotation.Nullable;
 // typedef: _global.reindex.Request
 
 /**
- * Allows to copy documents from one index to another, optionally filtering the
- * source documents by a query, changing the destination index settings, or
- * fetching the documents from a remote cluster.
+ * Reindex documents. Copies documents from a source to a destination. The
+ * source can be any existing index, alias, or data stream. The destination must
+ * differ from the source. For example, you cannot reindex a data stream into
+ * itself.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.reindex.Request">API
  *      specification</a>

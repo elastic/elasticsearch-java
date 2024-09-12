@@ -27,6 +27,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -60,6 +61,9 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	private final String field;
 
 	@Nullable
+	private final Boolean override;
+
+	@Nullable
 	private final String path;
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,6 +72,7 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.override = builder.override;
 		this.path = builder.path;
 
 	}
@@ -95,6 +100,20 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	}
 
 	/**
+	 * Controls the behavior when there is already an existing nested object that
+	 * conflicts with the expanded field. When <code>false</code>, the processor
+	 * will merge conflicts by combining the old and the new values into an array.
+	 * When <code>true</code>, the value from the expanded field will overwrite the
+	 * existing value.
+	 * <p>
+	 * API name: {@code override}
+	 */
+	@Nullable
+	public final Boolean override() {
+		return this.override;
+	}
+
+	/**
 	 * The field that contains the field to expand. Only required if the field to
 	 * expand is part another object field, because the <code>field</code> option
 	 * can only understand leaf fields.
@@ -112,6 +131,11 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		generator.writeKey("field");
 		generator.write(this.field);
 
+		if (this.override != null) {
+			generator.writeKey("override");
+			generator.write(this.override);
+
+		}
 		if (this.path != null) {
 			generator.writeKey("path");
 			generator.write(this.path);
@@ -132,6 +156,9 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		private String field;
 
 		@Nullable
+		private Boolean override;
+
+		@Nullable
 		private String path;
 
 		/**
@@ -142,6 +169,20 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		 */
 		public final Builder field(String value) {
 			this.field = value;
+			return this;
+		}
+
+		/**
+		 * Controls the behavior when there is already an existing nested object that
+		 * conflicts with the expanded field. When <code>false</code>, the processor
+		 * will merge conflicts by combining the old and the new values into an array.
+		 * When <code>true</code>, the value from the expanded field will overwrite the
+		 * existing value.
+		 * <p>
+		 * API name: {@code override}
+		 */
+		public final Builder override(@Nullable Boolean value) {
+			this.override = value;
 			return this;
 		}
 
@@ -186,6 +227,7 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	protected static void setupDotExpanderProcessorDeserializer(ObjectDeserializer<DotExpanderProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
 	}

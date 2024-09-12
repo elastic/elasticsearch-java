@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 // typedef: indices._types.DataStreamLifecycleWithRollover
 
 /**
- * Data lifecycle with rollover can be used to display the configuration
+ * Data stream lifecycle with rollover can be used to display the configuration
  * including the default rollover conditions, if asked.
  * 
  * @see <a href=

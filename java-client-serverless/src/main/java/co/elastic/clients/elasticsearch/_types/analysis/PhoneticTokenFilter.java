@@ -66,11 +66,13 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	@Nullable
 	private final Integer maxCodeLen;
 
+	@Nullable
 	private final PhoneticNameType nameType;
 
 	@Nullable
 	private final Boolean replace;
 
+	@Nullable
 	private final PhoneticRuleType ruleType;
 
 	// ---------------------------------------------------------------------------------------------
@@ -79,11 +81,11 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		super(builder);
 
 		this.encoder = ApiTypeHelper.requireNonNull(builder.encoder, this, "encoder");
-		this.languageset = ApiTypeHelper.unmodifiableRequired(builder.languageset, this, "languageset");
+		this.languageset = ApiTypeHelper.unmodifiable(builder.languageset);
 		this.maxCodeLen = builder.maxCodeLen;
-		this.nameType = ApiTypeHelper.requireNonNull(builder.nameType, this, "nameType");
+		this.nameType = builder.nameType;
 		this.replace = builder.replace;
-		this.ruleType = ApiTypeHelper.requireNonNull(builder.ruleType, this, "ruleType");
+		this.ruleType = builder.ruleType;
 
 	}
 
@@ -107,7 +109,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code languageset}
+	 * API name: {@code languageset}
 	 */
 	public final List<PhoneticLanguage> languageset() {
 		return this.languageset;
@@ -122,8 +124,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code name_type}
+	 * API name: {@code name_type}
 	 */
+	@Nullable
 	public final PhoneticNameType nameType() {
 		return this.nameType;
 	}
@@ -137,8 +140,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code rule_type}
+	 * API name: {@code rule_type}
 	 */
+	@Nullable
 	public final PhoneticRuleType ruleType() {
 		return this.ruleType;
 	}
@@ -163,15 +167,19 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 			generator.write(this.maxCodeLen);
 
 		}
-		generator.writeKey("name_type");
-		this.nameType.serialize(generator, mapper);
+		if (this.nameType != null) {
+			generator.writeKey("name_type");
+			this.nameType.serialize(generator, mapper);
+		}
 		if (this.replace != null) {
 			generator.writeKey("replace");
 			generator.write(this.replace);
 
 		}
-		generator.writeKey("rule_type");
-		this.ruleType.serialize(generator, mapper);
+		if (this.ruleType != null) {
+			generator.writeKey("rule_type");
+			this.ruleType.serialize(generator, mapper);
+		}
 
 	}
 
@@ -186,16 +194,19 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 				ObjectBuilder<PhoneticTokenFilter> {
 		private PhoneticEncoder encoder;
 
+		@Nullable
 		private List<PhoneticLanguage> languageset;
 
 		@Nullable
 		private Integer maxCodeLen;
 
+		@Nullable
 		private PhoneticNameType nameType;
 
 		@Nullable
 		private Boolean replace;
 
+		@Nullable
 		private PhoneticRuleType ruleType;
 
 		/**
@@ -207,7 +218,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Required - API name: {@code languageset}
+		 * API name: {@code languageset}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>languageset</code>.
 		 */
@@ -217,7 +228,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Required - API name: {@code languageset}
+		 * API name: {@code languageset}
 		 * <p>
 		 * Adds one or more values to <code>languageset</code>.
 		 */
@@ -235,9 +246,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Required - API name: {@code name_type}
+		 * API name: {@code name_type}
 		 */
-		public final Builder nameType(PhoneticNameType value) {
+		public final Builder nameType(@Nullable PhoneticNameType value) {
 			this.nameType = value;
 			return this;
 		}
@@ -251,9 +262,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Required - API name: {@code rule_type}
+		 * API name: {@code rule_type}
 		 */
-		public final Builder ruleType(PhoneticRuleType value) {
+		public final Builder ruleType(@Nullable PhoneticRuleType value) {
 			this.ruleType = value;
 			return this;
 		}

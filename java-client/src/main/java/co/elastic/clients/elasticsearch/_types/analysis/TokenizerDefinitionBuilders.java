@@ -64,6 +64,24 @@ public class TokenizerDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ClassicTokenizer classic}
+	 * {@code TokenizerDefinition} variant.
+	 */
+	public static ClassicTokenizer.Builder classic() {
+		return new ClassicTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a TokenizerDefinition of the {@link ClassicTokenizer classic}
+	 * {@code TokenizerDefinition} variant.
+	 */
+	public static TokenizerDefinition classic(Function<ClassicTokenizer.Builder, ObjectBuilder<ClassicTokenizer>> fn) {
+		TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
+		builder.classic(fn.apply(new ClassicTokenizer.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link EdgeNGramTokenizer edge_ngram}
 	 * {@code TokenizerDefinition} variant.
 	 */
@@ -248,6 +266,44 @@ public class TokenizerDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link SimplePatternSplitTokenizer
+	 * simple_pattern_split} {@code TokenizerDefinition} variant.
+	 */
+	public static SimplePatternSplitTokenizer.Builder simplePatternSplit() {
+		return new SimplePatternSplitTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a TokenizerDefinition of the {@link SimplePatternSplitTokenizer
+	 * simple_pattern_split} {@code TokenizerDefinition} variant.
+	 */
+	public static TokenizerDefinition simplePatternSplit(
+			Function<SimplePatternSplitTokenizer.Builder, ObjectBuilder<SimplePatternSplitTokenizer>> fn) {
+		TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
+		builder.simplePatternSplit(fn.apply(new SimplePatternSplitTokenizer.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SimplePatternTokenizer simple_pattern}
+	 * {@code TokenizerDefinition} variant.
+	 */
+	public static SimplePatternTokenizer.Builder simplePattern() {
+		return new SimplePatternTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a TokenizerDefinition of the {@link SimplePatternTokenizer
+	 * simple_pattern} {@code TokenizerDefinition} variant.
+	 */
+	public static TokenizerDefinition simplePattern(
+			Function<SimplePatternTokenizer.Builder, ObjectBuilder<SimplePatternTokenizer>> fn) {
+		TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
+		builder.simplePattern(fn.apply(new SimplePatternTokenizer.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link StandardTokenizer standard}
 	 * {@code TokenizerDefinition} variant.
 	 */
@@ -263,6 +319,24 @@ public class TokenizerDefinitionBuilders {
 			Function<StandardTokenizer.Builder, ObjectBuilder<StandardTokenizer>> fn) {
 		TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
 		builder.standard(fn.apply(new StandardTokenizer.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link ThaiTokenizer thai}
+	 * {@code TokenizerDefinition} variant.
+	 */
+	public static ThaiTokenizer.Builder thai() {
+		return new ThaiTokenizer.Builder();
+	}
+
+	/**
+	 * Creates a TokenizerDefinition of the {@link ThaiTokenizer thai}
+	 * {@code TokenizerDefinition} variant.
+	 */
+	public static TokenizerDefinition thai(Function<ThaiTokenizer.Builder, ObjectBuilder<ThaiTokenizer>> fn) {
+		TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
+		builder.thai(fn.apply(new ThaiTokenizer.Builder()).build());
 		return builder.build();
 	}
 

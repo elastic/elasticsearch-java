@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: ml.preview_datafeed.Request
 
 /**
- * Previews a datafeed. This API returns the first &quot;page&quot; of search
+ * Preview a datafeed. This API returns the first &quot;page&quot; of search
  * results from a datafeed. You can preview an existing datafeed or provide
  * configuration details for a datafeed and anomaly detection job in the API.
  * The preview shows the structure of the data that will be passed to the

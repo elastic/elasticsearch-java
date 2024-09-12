@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_datafeed.Request
 
 /**
- * Deletes an existing datafeed.
+ * Delete a datafeed.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_datafeed.Request">API
  *      specification</a>

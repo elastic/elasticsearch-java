@@ -33,6 +33,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,6 +62,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RuntimeField implements JsonpSerializable {
+	private final Map<String, CompositeSubField> fields;
+
 	private final List<RuntimeFieldFetchFields> fetchFields;
 
 	@Nullable
@@ -84,6 +87,7 @@ public class RuntimeField implements JsonpSerializable {
 
 	private RuntimeField(Builder builder) {
 
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.fetchFields = ApiTypeHelper.unmodifiable(builder.fetchFields);
 		this.format = builder.format;
 		this.inputField = builder.inputField;
@@ -96,6 +100,15 @@ public class RuntimeField implements JsonpSerializable {
 
 	public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * For type <code>composite</code>
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final Map<String, CompositeSubField> fields() {
+		return this.fields;
 	}
 
 	/**
@@ -180,6 +193,17 @@ public class RuntimeField implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartObject();
+			for (Map.Entry<String, CompositeSubField> item0 : this.fields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.fetchFields)) {
 			generator.writeKey("fetch_fields");
 			generator.writeStartArray();
@@ -233,6 +257,9 @@ public class RuntimeField implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RuntimeField> {
 		@Nullable
+		private Map<String, CompositeSubField> fields;
+
+		@Nullable
 		private List<RuntimeFieldFetchFields> fetchFields;
 
 		@Nullable
@@ -251,6 +278,42 @@ public class RuntimeField implements JsonpSerializable {
 		private Script script;
 
 		private RuntimeFieldType type;
+
+		/**
+		 * For type <code>composite</code>
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
+		 */
+		public final Builder fields(Map<String, CompositeSubField> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * For type <code>composite</code>
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, CompositeSubField value) {
+			this.fields = _mapPut(this.fields, key, value);
+			return this;
+		}
+
+		/**
+		 * For type <code>composite</code>
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(String key,
+				Function<CompositeSubField.Builder, ObjectBuilder<CompositeSubField>> fn) {
+			return fields(key, fn.apply(new CompositeSubField.Builder()).build());
+		}
 
 		/**
 		 * For type <code>lookup</code>
@@ -388,6 +451,7 @@ public class RuntimeField implements JsonpSerializable {
 
 	protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
 
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(CompositeSubField._DESERIALIZER), "fields");
 		op.add(Builder::fetchFields, JsonpDeserializer.arrayDeserializer(RuntimeFieldFetchFields._DESERIALIZER),
 				"fetch_fields");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");

@@ -53,12 +53,13 @@ import javax.annotation.Nullable;
 // typedef: cat.component_templates.Request
 
 /**
- * Returns information about component templates in a cluster. Component
- * templates are building blocks for constructing index templates that specify
- * index mappings, settings, and aliases. IMPORTANT: cat APIs are only intended
- * for human consumption using the command line or Kibana console. They are not
- * intended for use by applications. For application consumption, use the get
- * component template API.
+ * Get component templates. Returns information about component templates in a
+ * cluster. Component templates are building blocks for constructing index
+ * templates that specify index mappings, settings, and aliases.
+ * <p>
+ * CAT APIs are only intended for human consumption using the command line or
+ * Kibana console. They are not intended for use by applications. For
+ * application consumption, use the get component template API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.component_templates.Request">API
  *      specification</a>

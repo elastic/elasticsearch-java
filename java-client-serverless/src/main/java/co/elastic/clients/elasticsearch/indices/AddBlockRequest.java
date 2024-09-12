@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: indices.add_block.Request
 
 /**
- * Adds a block to an index.
+ * Add an index block. Limits the operations allowed on an index by blocking
+ * specific operation types.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.add_block.Request">API
  *      specification</a>

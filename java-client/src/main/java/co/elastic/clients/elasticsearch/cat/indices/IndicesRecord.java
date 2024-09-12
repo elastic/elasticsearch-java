@@ -95,6 +95,9 @@ public class IndicesRecord implements JsonpSerializable {
 	private final String priStoreSize;
 
 	@Nullable
+	private final String datasetSize;
+
+	@Nullable
 	private final String completionSize;
 
 	@Nullable
@@ -497,6 +500,7 @@ public class IndicesRecord implements JsonpSerializable {
 		this.creationDateString = builder.creationDateString;
 		this.storeSize = builder.storeSize;
 		this.priStoreSize = builder.priStoreSize;
+		this.datasetSize = builder.datasetSize;
 		this.completionSize = builder.completionSize;
 		this.priCompletionSize = builder.priCompletionSize;
 		this.fielddataMemorySize = builder.fielddataMemorySize;
@@ -751,6 +755,16 @@ public class IndicesRecord implements JsonpSerializable {
 	@Nullable
 	public final String priStoreSize() {
 		return this.priStoreSize;
+	}
+
+	/**
+	 * total size of dataset (including the cache for partially mounted indices)
+	 * <p>
+	 * API name: {@code dataset.size}
+	 */
+	@Nullable
+	public final String datasetSize() {
+		return this.datasetSize;
 	}
 
 	/**
@@ -2116,6 +2130,11 @@ public class IndicesRecord implements JsonpSerializable {
 			generator.write(this.priStoreSize);
 
 		}
+		if (this.datasetSize != null) {
+			generator.writeKey("dataset.size");
+			generator.write(this.datasetSize);
+
+		}
 		if (this.completionSize != null) {
 			generator.writeKey("completion.size");
 			generator.write(this.completionSize);
@@ -2813,6 +2832,9 @@ public class IndicesRecord implements JsonpSerializable {
 		private String priStoreSize;
 
 		@Nullable
+		private String datasetSize;
+
+		@Nullable
 		private String completionSize;
 
 		@Nullable
@@ -3316,6 +3338,16 @@ public class IndicesRecord implements JsonpSerializable {
 		 */
 		public final Builder priStoreSize(@Nullable String value) {
 			this.priStoreSize = value;
+			return this;
+		}
+
+		/**
+		 * total size of dataset (including the cache for partially mounted indices)
+		 * <p>
+		 * API name: {@code dataset.size}
+		 */
+		public final Builder datasetSize(@Nullable String value) {
+			this.datasetSize = value;
 			return this;
 		}
 
@@ -4651,6 +4683,7 @@ public class IndicesRecord implements JsonpSerializable {
 		op.add(Builder::creationDateString, JsonpDeserializer.stringDeserializer(), "creation.date.string", "cds");
 		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store.size", "ss", "storeSize");
 		op.add(Builder::priStoreSize, JsonpDeserializer.stringDeserializer(), "pri.store.size");
+		op.add(Builder::datasetSize, JsonpDeserializer.stringDeserializer(), "dataset.size");
 		op.add(Builder::completionSize, JsonpDeserializer.stringDeserializer(), "completion.size", "cs",
 				"completionSize");
 		op.add(Builder::priCompletionSize, JsonpDeserializer.stringDeserializer(), "pri.completion.size");

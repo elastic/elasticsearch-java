@@ -48,6 +48,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum QueryRuleType implements JsonEnum {
 	Pinned("pinned"),
 
+	Exclude("exclude"),
+
 	;
 
 	private final String jsonValue;

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_calendar_event.Request
 
 /**
- * Deletes scheduled events from a calendar.
+ * Delete events from a calendar.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.delete_calendar_event.Request">API

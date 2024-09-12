@@ -50,8 +50,8 @@ import java.util.Objects;
 // typedef: enrich.stats.Request
 
 /**
- * Returns enrich coordinator statistics and information about enrich policies
- * that are currently executing.
+ * Get enrich stats. Returns enrich coordinator statistics and information about
+ * enrich policies that are currently executing.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.stats.Request">API
  *      specification</a>

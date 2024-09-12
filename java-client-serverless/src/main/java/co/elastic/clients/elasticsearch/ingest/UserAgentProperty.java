@@ -45,25 +45,15 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum UserAgentProperty implements JsonEnum {
-	Name("NAME"),
+	Name("name"),
 
-	Major("MAJOR"),
+	Os("os"),
 
-	Minor("MINOR"),
+	Device("device"),
 
-	Patch("PATCH"),
+	Original("original"),
 
-	Os("OS"),
-
-	OsName("OS_NAME"),
-
-	OsMajor("OS_MAJOR"),
-
-	OsMinor("OS_MINOR"),
-
-	Device("DEVICE"),
-
-	Build("BUILD"),
+	Version("version"),
 
 	;
 

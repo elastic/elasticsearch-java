@@ -66,6 +66,7 @@ public class PainlessContextSetup implements JsonpSerializable {
 
 	private final String index;
 
+	@Nullable
 	private final Query query;
 
 	// ---------------------------------------------------------------------------------------------
@@ -74,7 +75,7 @@ public class PainlessContextSetup implements JsonpSerializable {
 
 		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = builder.query;
 
 	}
 
@@ -104,10 +105,11 @@ public class PainlessContextSetup implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Use this parameter to specify a query for computing a score.
+	 * Use this parameter to specify a query for computing a score.
 	 * <p>
 	 * API name: {@code query}
 	 */
+	@Nullable
 	public final Query query() {
 		return this.query;
 	}
@@ -129,8 +131,11 @@ public class PainlessContextSetup implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("query");
-		this.query.serialize(generator, mapper);
+		if (this.query != null) {
+			generator.writeKey("query");
+			this.query.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -152,6 +157,7 @@ public class PainlessContextSetup implements JsonpSerializable {
 
 		private String index;
 
+		@Nullable
 		private Query query;
 
 		/**
@@ -178,17 +184,17 @@ public class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Use this parameter to specify a query for computing a score.
+		 * Use this parameter to specify a query for computing a score.
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * Required - Use this parameter to specify a query for computing a score.
+		 * Use this parameter to specify a query for computing a score.
 		 * <p>
 		 * API name: {@code query}
 		 */

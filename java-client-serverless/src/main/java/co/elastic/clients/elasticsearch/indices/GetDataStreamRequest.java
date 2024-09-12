@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -59,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: indices.get_data_stream.Request
 
 /**
- * Retrieves information about one or more data streams.
+ * Get data streams. Retrieves information about one or more data streams.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
  *      specification</a>
@@ -71,7 +72,13 @@ public class GetDataStreamRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> name;
+
+	@Nullable
+	private final Boolean verbose;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +86,9 @@ public class GetDataStreamRequest extends RequestBase {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.includeDefaults = builder.includeDefaults;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
+		this.verbose = builder.verbose;
 
 	}
 
@@ -108,6 +117,17 @@ public class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Comma-separated list of data stream names used to limit the request. Wildcard
 	 * (<code>*</code>) expressions are supported. If omitted, all data streams are
 	 * returned.
@@ -116,6 +136,17 @@ public class GetDataStreamRequest extends RequestBase {
 	 */
 	public final List<String> name() {
 		return this.name;
+	}
+
+	/**
+	 * Whether the maximum timestamp for each data stream should be calculated and
+	 * returned.
+	 * <p>
+	 * API name: {@code verbose}
+	 */
+	@Nullable
+	public final Boolean verbose() {
+		return this.verbose;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -134,7 +165,13 @@ public class GetDataStreamRequest extends RequestBase {
 		private Boolean includeDefaults;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private List<String> name;
+
+		@Nullable
+		private Boolean verbose;
 
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
@@ -173,6 +210,27 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Comma-separated list of data stream names used to limit the request. Wildcard
 		 * (<code>*</code>) expressions are supported. If omitted, all data streams are
 		 * returned.
@@ -197,6 +255,17 @@ public class GetDataStreamRequest extends RequestBase {
 		 */
 		public final Builder name(String value, String... values) {
 			this.name = _listAdd(this.name, value, values);
+			return this;
+		}
+
+		/**
+		 * Whether the maximum timestamp for each data stream should be calculated and
+		 * returned.
+		 * <p>
+		 * API name: {@code verbose}
+		 */
+		public final Builder verbose(@Nullable Boolean value) {
+			this.verbose = value;
 			return this;
 		}
 
@@ -278,12 +347,18 @@ public class GetDataStreamRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
+				}
+				if (request.verbose != null) {
+					params.put("verbose", String.valueOf(request.verbose));
 				}
 				return params;
 

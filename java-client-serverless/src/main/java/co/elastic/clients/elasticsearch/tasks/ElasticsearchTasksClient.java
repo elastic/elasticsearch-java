@@ -68,7 +68,8 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: tasks.get
 
 	/**
-	 * Returns information about a task.
+	 * Get task information. Returns information about the tasks currently executing
+	 * in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/tasks.html">Documentation
@@ -83,7 +84,8 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about a task.
+	 * Get task information. Returns information about the tasks currently executing
+	 * in the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

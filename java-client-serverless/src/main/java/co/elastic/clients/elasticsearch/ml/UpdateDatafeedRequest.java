@@ -68,11 +68,11 @@ import javax.annotation.Nullable;
 // typedef: ml.update_datafeed.Request
 
 /**
- * Updates the properties of a datafeed. You must stop and start the datafeed
- * for the changes to be applied. When Elasticsearch security features are
- * enabled, your datafeed remembers which roles the user who updated it had at
- * the time of the update and runs the query using those same roles. If you
- * provide secondary authorization headers, those credentials are used instead.
+ * Update a datafeed. You must stop and start the datafeed for the changes to be
+ * applied. When Elasticsearch security features are enabled, your datafeed
+ * remembers which roles the user who updated it had at the time of the update
+ * and runs the query using those same roles. If you provide secondary
+ * authorization headers, those credentials are used instead.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.update_datafeed.Request">API
  *      specification</a>

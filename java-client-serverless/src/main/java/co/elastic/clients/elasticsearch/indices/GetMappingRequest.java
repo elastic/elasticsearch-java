@@ -60,8 +60,9 @@ import javax.annotation.Nullable;
 // typedef: indices.get_mapping.Request
 
 /**
- * Retrieves mapping definitions for one or more indices. For data streams, the
- * API retrieves mappings for the stream’s backing indices.
+ * Get mapping definitions. Retrieves mapping definitions for one or more
+ * indices. For data streams, the API retrieves mappings for the stream’s
+ * backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_mapping.Request">API
  *      specification</a>

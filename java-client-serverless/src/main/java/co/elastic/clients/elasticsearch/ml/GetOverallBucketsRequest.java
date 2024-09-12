@@ -62,8 +62,10 @@ import javax.annotation.Nullable;
 // typedef: ml.get_overall_buckets.Request
 
 /**
- * Retrieves overall bucket results that summarize the bucket results of
- * multiple anomaly detection jobs.
+ * Get overall bucket results.
+ * <p>
+ * Retrievs overall bucket results that summarize the bucket results of multiple
+ * anomaly detection jobs.
  * <p>
  * The <code>overall_score</code> is calculated by combining the scores of all
  * the buckets within the overall bucket span. First, the maximum

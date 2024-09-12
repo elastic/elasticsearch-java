@@ -23,8 +23,11 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -73,14 +76,17 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#_global.open_point_in_time.Request">API
  *      specification</a>
  */
-
-public class OpenPointInTimeRequest extends RequestBase {
+@JsonpDeserializable
+public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializable {
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	private final List<String> index;
+
+	@Nullable
+	private final Query indexFilter;
 
 	private final Time keepAlive;
 
@@ -97,6 +103,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.indexFilter = builder.indexFilter;
 		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
 		this.preference = builder.preference;
 		this.routing = builder.routing;
@@ -143,6 +150,17 @@ public class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
+	 * Allows to filter indices if the provided query rewrites to
+	 * <code>match_none</code> on every shard.
+	 * <p>
+	 * API name: {@code index_filter}
+	 */
+	@Nullable
+	public final Query indexFilter() {
+		return this.indexFilter;
+	}
+
+	/**
 	 * Required - Extends the time to live of the corresponding point in time.
 	 * <p>
 	 * API name: {@code keep_alive}
@@ -172,6 +190,25 @@ public class OpenPointInTimeRequest extends RequestBase {
 		return this.routing;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.indexFilter != null) {
+			generator.writeKey("index_filter");
+			this.indexFilter.serialize(generator, mapper);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -188,6 +225,9 @@ public class OpenPointInTimeRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		private List<String> index;
+
+		@Nullable
+		private Query indexFilter;
 
 		private Time keepAlive;
 
@@ -269,6 +309,27 @@ public class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
+		 * Allows to filter indices if the provided query rewrites to
+		 * <code>match_none</code> on every shard.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(@Nullable Query value) {
+			this.indexFilter = value;
+			return this;
+		}
+
+		/**
+		 * Allows to filter indices if the provided query rewrites to
+		 * <code>match_none</code> on every shard.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.indexFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
 		 * Required - Extends the time to live of the corresponding point in time.
 		 * <p>
 		 * API name: {@code keep_alive}
@@ -324,6 +385,21 @@ public class OpenPointInTimeRequest extends RequestBase {
 
 			return new OpenPointInTimeRequest(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link OpenPointInTimeRequest}
+	 */
+	public static final JsonpDeserializer<OpenPointInTimeRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, OpenPointInTimeRequest::setupOpenPointInTimeRequestDeserializer);
+
+	protected static void setupOpenPointInTimeRequestDeserializer(
+			ObjectDeserializer<OpenPointInTimeRequest.Builder> op) {
+
+		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -393,5 +469,5 @@ public class OpenPointInTimeRequest extends RequestBase {
 				params.put("keep_alive", request.keepAlive._toJsonString());
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, OpenPointInTimeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, OpenPointInTimeResponse._DESERIALIZER);
 }

@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.explain_data_lifecycle.Request
 
 /**
- * Retrieves information about the index's current data stream lifecycle, such
- * as any potential encountered error, time since creation etc.
+ * Get the status for a data stream lifecycle. Retrieves information about an
+ * index or data stream’s current data stream lifecycle status, such as time
+ * since index creation, time since rollover, the lifecycle configuration
+ * managing the index, or any errors encountered during lifecycle execution.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.explain_data_lifecycle.Request">API

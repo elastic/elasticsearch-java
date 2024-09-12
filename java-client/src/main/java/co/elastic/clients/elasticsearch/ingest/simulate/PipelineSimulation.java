@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -27,12 +28,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,8 +64,6 @@ public class PipelineSimulation implements JsonpSerializable {
 	@Nullable
 	private final DocumentSimulation doc;
 
-	private final List<PipelineSimulation> processorResults;
-
 	@Nullable
 	private final String tag;
 
@@ -76,15 +73,26 @@ public class PipelineSimulation implements JsonpSerializable {
 	@Nullable
 	private final ActionStatusOptions status;
 
+	@Nullable
+	private final String description;
+
+	@Nullable
+	private final ErrorCause ignoredError;
+
+	@Nullable
+	private final ErrorCause error;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PipelineSimulation(Builder builder) {
 
 		this.doc = builder.doc;
-		this.processorResults = ApiTypeHelper.unmodifiable(builder.processorResults);
 		this.tag = builder.tag;
 		this.processorType = builder.processorType;
 		this.status = builder.status;
+		this.description = builder.description;
+		this.ignoredError = builder.ignoredError;
+		this.error = builder.error;
 
 	}
 
@@ -98,13 +106,6 @@ public class PipelineSimulation implements JsonpSerializable {
 	@Nullable
 	public final DocumentSimulation doc() {
 		return this.doc;
-	}
-
-	/**
-	 * API name: {@code processor_results}
-	 */
-	public final List<PipelineSimulation> processorResults() {
-		return this.processorResults;
 	}
 
 	/**
@@ -132,6 +133,30 @@ public class PipelineSimulation implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
+	}
+
+	/**
+	 * API name: {@code ignored_error}
+	 */
+	@Nullable
+	public final ErrorCause ignoredError() {
+		return this.ignoredError;
+	}
+
+	/**
+	 * API name: {@code error}
+	 */
+	@Nullable
+	public final ErrorCause error() {
+		return this.error;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -147,16 +172,6 @@ public class PipelineSimulation implements JsonpSerializable {
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.processorResults)) {
-			generator.writeKey("processor_results");
-			generator.writeStartArray();
-			for (PipelineSimulation item0 : this.processorResults) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.tag != null) {
 			generator.writeKey("tag");
 			generator.write(this.tag);
@@ -170,6 +185,21 @@ public class PipelineSimulation implements JsonpSerializable {
 		if (this.status != null) {
 			generator.writeKey("status");
 			this.status.serialize(generator, mapper);
+		}
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
+		if (this.ignoredError != null) {
+			generator.writeKey("ignored_error");
+			this.ignoredError.serialize(generator, mapper);
+
+		}
+		if (this.error != null) {
+			generator.writeKey("error");
+			this.error.serialize(generator, mapper);
+
 		}
 
 	}
@@ -192,9 +222,6 @@ public class PipelineSimulation implements JsonpSerializable {
 		private DocumentSimulation doc;
 
 		@Nullable
-		private List<PipelineSimulation> processorResults;
-
-		@Nullable
 		private String tag;
 
 		@Nullable
@@ -202,6 +229,15 @@ public class PipelineSimulation implements JsonpSerializable {
 
 		@Nullable
 		private ActionStatusOptions status;
+
+		@Nullable
+		private String description;
+
+		@Nullable
+		private ErrorCause ignoredError;
+
+		@Nullable
+		private ErrorCause error;
 
 		/**
 		 * API name: {@code doc}
@@ -216,36 +252,6 @@ public class PipelineSimulation implements JsonpSerializable {
 		 */
 		public final Builder doc(Function<DocumentSimulation.Builder, ObjectBuilder<DocumentSimulation>> fn) {
 			return this.doc(fn.apply(new DocumentSimulation.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code processor_results}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>processorResults</code>.
-		 */
-		public final Builder processorResults(List<PipelineSimulation> list) {
-			this.processorResults = _listAddAll(this.processorResults, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code processor_results}
-		 * <p>
-		 * Adds one or more values to <code>processorResults</code>.
-		 */
-		public final Builder processorResults(PipelineSimulation value, PipelineSimulation... values) {
-			this.processorResults = _listAdd(this.processorResults, value, values);
-			return this;
-		}
-
-		/**
-		 * API name: {@code processor_results}
-		 * <p>
-		 * Adds a value to <code>processorResults</code> using a builder lambda.
-		 */
-		public final Builder processorResults(
-				Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
-			return processorResults(fn.apply(new PipelineSimulation.Builder()).build());
 		}
 
 		/**
@@ -270,6 +276,44 @@ public class PipelineSimulation implements JsonpSerializable {
 		public final Builder status(@Nullable ActionStatusOptions value) {
 			this.status = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignored_error}
+		 */
+		public final Builder ignoredError(@Nullable ErrorCause value) {
+			this.ignoredError = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignored_error}
+		 */
+		public final Builder ignoredError(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.ignoredError(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code error}
+		 */
+		public final Builder error(@Nullable ErrorCause value) {
+			this.error = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code error}
+		 */
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		@Override
@@ -301,11 +345,12 @@ public class PipelineSimulation implements JsonpSerializable {
 	protected static void setupPipelineSimulationDeserializer(ObjectDeserializer<PipelineSimulation.Builder> op) {
 
 		op.add(Builder::doc, DocumentSimulation._DESERIALIZER, "doc");
-		op.add(Builder::processorResults, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER),
-				"processor_results");
 		op.add(Builder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 		op.add(Builder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
 		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::ignoredError, ErrorCause._DESERIALIZER, "ignored_error");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}
 

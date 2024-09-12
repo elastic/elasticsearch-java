@@ -69,7 +69,7 @@ public class InferenceResponseResult implements JsonpSerializable {
 	@Nullable
 	private final Boolean isTruncated;
 
-	private final List<FieldValue> predictedValue;
+	private final List<List<FieldValue>> predictedValue;
 
 	@Nullable
 	private final String predictedValueSequence;
@@ -139,7 +139,7 @@ public class InferenceResponseResult implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code predicted_value}
 	 */
-	public final List<FieldValue> predictedValue() {
+	public final List<List<FieldValue>> predictedValue() {
 		return this.predictedValue;
 	}
 
@@ -233,8 +233,15 @@ public class InferenceResponseResult implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.predictedValue)) {
 			generator.writeKey("predicted_value");
 			generator.writeStartArray();
-			for (FieldValue item0 : this.predictedValue) {
-				item0.serialize(generator, mapper);
+			for (List<FieldValue> item0 : this.predictedValue) {
+				generator.writeStartArray();
+				if (item0 != null) {
+					for (FieldValue item1 : item0) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -304,7 +311,7 @@ public class InferenceResponseResult implements JsonpSerializable {
 		private Boolean isTruncated;
 
 		@Nullable
-		private List<FieldValue> predictedValue;
+		private List<List<FieldValue>> predictedValue;
 
 		@Nullable
 		private String predictedValueSequence;
@@ -386,7 +393,7 @@ public class InferenceResponseResult implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>predictedValue</code>.
 		 */
-		public final Builder predictedValue(List<FieldValue> list) {
+		public final Builder predictedValue(List<List<FieldValue>> list) {
 			this.predictedValue = _listAddAll(this.predictedValue, list);
 			return this;
 		}
@@ -404,26 +411,9 @@ public class InferenceResponseResult implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>predictedValue</code>.
 		 */
-		public final Builder predictedValue(FieldValue value, FieldValue... values) {
+		public final Builder predictedValue(List<FieldValue> value, List<FieldValue>... values) {
 			this.predictedValue = _listAdd(this.predictedValue, value, values);
 			return this;
-		}
-
-		/**
-		 * If the model is trained for a text classification or zero shot classification
-		 * task, the response is the predicted class. For named entity recognition (NER)
-		 * tasks, it contains the annotated text output. For fill mask tasks, it
-		 * contains the top prediction for replacing the mask token. For text embedding
-		 * tasks, it contains the raw numerical text embedding values. For regression
-		 * models, its a numerical value For classification models, it may be an
-		 * integer, double, boolean or string depending on prediction type
-		 * <p>
-		 * API name: {@code predicted_value}
-		 * <p>
-		 * Adds a value to <code>predictedValue</code> using a builder lambda.
-		 */
-		public final Builder predictedValue(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
-			return predictedValue(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -576,7 +566,8 @@ public class InferenceResponseResult implements JsonpSerializable {
 
 		op.add(Builder::entities, JsonpDeserializer.arrayDeserializer(TrainedModelEntities._DESERIALIZER), "entities");
 		op.add(Builder::isTruncated, JsonpDeserializer.booleanDeserializer(), "is_truncated");
-		op.add(Builder::predictedValue, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER),
+		op.add(Builder::predictedValue,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER)),
 				"predicted_value");
 		op.add(Builder::predictedValueSequence, JsonpDeserializer.stringDeserializer(), "predicted_value_sequence");
 		op.add(Builder::predictionProbability, JsonpDeserializer.doubleDeserializer(), "prediction_probability");

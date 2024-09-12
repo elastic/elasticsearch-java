@@ -69,7 +69,8 @@ import javax.annotation.Nullable;
 // typedef: _global.update.Request
 
 /**
- * Updates a document with a script or partial document.
+ * Update a document. Updates a document by running a script or passing a
+ * partial document.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.update.Request">API
  *      specification</a>

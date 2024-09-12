@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ml.post_calendar_events.Request
 
 /**
- * Adds scheduled events to a calendar.
+ * Add scheduled events to the calendar.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.post_calendar_events.Request">API
  *      specification</a>

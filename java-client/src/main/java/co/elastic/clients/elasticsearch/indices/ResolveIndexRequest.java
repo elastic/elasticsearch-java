@@ -31,6 +31,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +67,13 @@ import javax.annotation.Nullable;
  */
 
 public class ResolveIndexRequest extends RequestBase {
+	@Nullable
+	private final Boolean allowNoIndices;
+
 	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
 
 	private final List<String> name;
 
@@ -74,13 +81,30 @@ public class ResolveIndexRequest extends RequestBase {
 
 	private ResolveIndexRequest(Builder builder) {
 
+		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
 	public static ResolveIndexRequest of(Function<Builder, ObjectBuilder<ResolveIndexRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+	 * error if an index starts with <code>foo</code> but no index starts with
+	 * <code>bar</code>.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
 	}
 
 	/**
@@ -95,6 +119,17 @@ public class ResolveIndexRequest extends RequestBase {
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
 	}
 
 	/**
@@ -119,9 +154,30 @@ public class ResolveIndexRequest extends RequestBase {
 			implements
 				ObjectBuilder<ResolveIndexRequest> {
 		@Nullable
+		private Boolean allowNoIndices;
+
+		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
+		@Nullable
+		private Boolean ignoreUnavailable;
+
 		private List<String> name;
+
+		/**
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+		 * error if an index starts with <code>foo</code> but no index starts with
+		 * <code>bar</code>.
+		 * <p>
+		 * API name: {@code allow_no_indices}
+		 */
+		public final Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
+			return this;
+		}
 
 		/**
 		 * Type of index that wildcard patterns can match. If the request can target
@@ -154,6 +210,17 @@ public class ResolveIndexRequest extends RequestBase {
 		 */
 		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
 			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
 			return this;
 		}
 
@@ -260,6 +327,12 @@ public class ResolveIndexRequest extends RequestBase {
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				return params;
 

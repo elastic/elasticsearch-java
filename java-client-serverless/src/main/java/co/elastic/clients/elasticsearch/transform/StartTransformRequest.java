@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: transform.start_transform.Request
 
 /**
- * Starts a transform.
+ * Start a transform. Starts a transform.
  * <p>
  * When you start a transform, it creates the destination index if it does not
  * already exist. The <code>number_of_shards</code> is set to <code>1</code> and

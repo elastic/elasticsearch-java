@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 // typedef: enrich.delete_policy.Request
 
 /**
- * Deletes an existing enrich policy and its enrich index.
+ * Delete an enrich policy. Deletes an existing enrich policy and its enrich
+ * index.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.delete_policy.Request">API
  *      specification</a>

@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -66,9 +67,15 @@ public class CacheStats implements JsonpSerializable {
 
 	private final int hits;
 
+	private final long hitsTimeInMillis;
+
 	private final int misses;
 
+	private final long missesTimeInMillis;
+
 	private final int evictions;
+
+	private final long sizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,8 +84,11 @@ public class CacheStats implements JsonpSerializable {
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hitsTimeInMillis = ApiTypeHelper.requireNonNull(builder.hitsTimeInMillis, this, "hitsTimeInMillis");
 		this.misses = ApiTypeHelper.requireNonNull(builder.misses, this, "misses");
+		this.missesTimeInMillis = ApiTypeHelper.requireNonNull(builder.missesTimeInMillis, this, "missesTimeInMillis");
 		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 
 	}
 
@@ -108,6 +118,13 @@ public class CacheStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code hits_time_in_millis}
+	 */
+	public final long hitsTimeInMillis() {
+		return this.hitsTimeInMillis;
+	}
+
+	/**
 	 * Required - API name: {@code misses}
 	 */
 	public final int misses() {
@@ -115,10 +132,24 @@ public class CacheStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code misses_time_in_millis}
+	 */
+	public final long missesTimeInMillis() {
+		return this.missesTimeInMillis;
+	}
+
+	/**
 	 * Required - API name: {@code evictions}
 	 */
 	public final int evictions() {
 		return this.evictions;
+	}
+
+	/**
+	 * Required - API name: {@code size_in_bytes}
+	 */
+	public final long sizeInBytes() {
+		return this.sizeInBytes;
 	}
 
 	/**
@@ -141,11 +172,20 @@ public class CacheStats implements JsonpSerializable {
 		generator.writeKey("hits");
 		generator.write(this.hits);
 
+		generator.writeKey("hits_time_in_millis");
+		generator.write(this.hitsTimeInMillis);
+
 		generator.writeKey("misses");
 		generator.write(this.misses);
 
+		generator.writeKey("misses_time_in_millis");
+		generator.write(this.missesTimeInMillis);
+
 		generator.writeKey("evictions");
 		generator.write(this.evictions);
+
+		generator.writeKey("size_in_bytes");
+		generator.write(this.sizeInBytes);
 
 	}
 
@@ -167,9 +207,15 @@ public class CacheStats implements JsonpSerializable {
 
 		private Integer hits;
 
+		private Long hitsTimeInMillis;
+
 		private Integer misses;
 
+		private Long missesTimeInMillis;
+
 		private Integer evictions;
+
+		private Long sizeInBytes;
 
 		/**
 		 * Required - API name: {@code node_id}
@@ -196,6 +242,14 @@ public class CacheStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code hits_time_in_millis}
+		 */
+		public final Builder hitsTimeInMillis(long value) {
+			this.hitsTimeInMillis = value;
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code misses}
 		 */
 		public final Builder misses(int value) {
@@ -204,10 +258,26 @@ public class CacheStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code misses_time_in_millis}
+		 */
+		public final Builder missesTimeInMillis(long value) {
+			this.missesTimeInMillis = value;
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code evictions}
 		 */
 		public final Builder evictions(int value) {
 			this.evictions = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code size_in_bytes}
+		 */
+		public final Builder sizeInBytes(long value) {
+			this.sizeInBytes = value;
 			return this;
 		}
 
@@ -242,8 +312,11 @@ public class CacheStats implements JsonpSerializable {
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::hits, JsonpDeserializer.integerDeserializer(), "hits");
+		op.add(Builder::hitsTimeInMillis, JsonpDeserializer.longDeserializer(), "hits_time_in_millis");
 		op.add(Builder::misses, JsonpDeserializer.integerDeserializer(), "misses");
+		op.add(Builder::missesTimeInMillis, JsonpDeserializer.longDeserializer(), "misses_time_in_millis");
 		op.add(Builder::evictions, JsonpDeserializer.integerDeserializer(), "evictions");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 
 	}
 

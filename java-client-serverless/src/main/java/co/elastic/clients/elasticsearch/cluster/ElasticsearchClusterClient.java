@@ -69,9 +69,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.delete_component_template
 
 	/**
-	 * Deletes component templates. Component templates are building blocks for
-	 * constructing index templates that specify index mappings, settings, and
-	 * aliases.
+	 * Delete component templates. Deletes component templates. Component templates
+	 * are building blocks for constructing index templates that specify index
+	 * mappings, settings, and aliases.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
@@ -87,9 +87,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Deletes component templates. Component templates are building blocks for
-	 * constructing index templates that specify index mappings, settings, and
-	 * aliases.
+	 * Delete component templates. Deletes component templates. Component templates
+	 * are building blocks for constructing index templates that specify index
+	 * mappings, settings, and aliases.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -108,7 +108,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.exists_component_template
 
 	/**
-	 * Returns information about whether a particular component template exist
+	 * Check component templates. Returns information about whether a particular
+	 * component template exists.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
@@ -124,7 +125,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns information about whether a particular component template exist
+	 * Check component templates. Returns information about whether a particular
+	 * component template exists.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -143,7 +145,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.get_component_template
 
 	/**
-	 * Retrieves information about component templates.
+	 * Get component templates. Retrieves information about component templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
@@ -159,7 +161,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves information about component templates.
+	 * Get component templates. Retrieves information about component templates.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -176,7 +178,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Retrieves information about component templates.
+	 * Get component templates. Retrieves information about component templates.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/indices-component-template.html">Documentation
@@ -191,7 +193,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.info
 
 	/**
-	 * Returns different information about the cluster.
+	 * Get cluster info. Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/999.99/cluster-info.html">Documentation
@@ -206,7 +208,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns different information about the cluster.
+	 * Get cluster info. Returns basic information about the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -224,9 +226,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.put_component_template
 
 	/**
-	 * Creates or updates a component template. Component templates are building
-	 * blocks for constructing index templates that specify index mappings,
-	 * settings, and aliases.
+	 * Create or update a component template. Creates or updates a component
+	 * template. Component templates are building blocks for constructing index
+	 * templates that specify index mappings, settings, and aliases.
 	 * <p>
 	 * An index template can be composed of multiple component templates. To use a
 	 * component template, specify it in an index template’s
@@ -260,9 +262,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Creates or updates a component template. Component templates are building
-	 * blocks for constructing index templates that specify index mappings,
-	 * settings, and aliases.
+	 * Create or update a component template. Creates or updates a component
+	 * template. Component templates are building blocks for constructing index
+	 * templates that specify index mappings, settings, and aliases.
 	 * <p>
 	 * An index template can be composed of multiple component templates. To use a
 	 * component template, specify it in an index template’s

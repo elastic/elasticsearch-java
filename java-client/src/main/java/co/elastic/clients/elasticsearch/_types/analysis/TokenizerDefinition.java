@@ -76,6 +76,8 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 	public enum Kind implements JsonEnum {
 		CharGroup("char_group"),
 
+		Classic("classic"),
+
 		EdgeNgram("edge_ngram"),
 
 		IcuTokenizer("icu_tokenizer"),
@@ -96,7 +98,13 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 
 		Pattern("pattern"),
 
+		SimplePatternSplit("simple_pattern_split"),
+
+		SimplePattern("simple_pattern"),
+
 		Standard("standard"),
+
+		Thai("thai"),
 
 		UaxUrlEmail("uax_url_email"),
 
@@ -177,6 +185,23 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 	 */
 	public CharGroupTokenizer charGroup() {
 		return TaggedUnionUtils.get(this, Kind.CharGroup);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code classic}?
+	 */
+	public boolean isClassic() {
+		return _kind == Kind.Classic;
+	}
+
+	/**
+	 * Get the {@code classic} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code classic} kind.
+	 */
+	public ClassicTokenizer classic() {
+		return TaggedUnionUtils.get(this, Kind.Classic);
 	}
 
 	/**
@@ -351,6 +376,41 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 	}
 
 	/**
+	 * Is this variant instance of kind {@code simple_pattern_split}?
+	 */
+	public boolean isSimplePatternSplit() {
+		return _kind == Kind.SimplePatternSplit;
+	}
+
+	/**
+	 * Get the {@code simple_pattern_split} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code simple_pattern_split}
+	 *             kind.
+	 */
+	public SimplePatternSplitTokenizer simplePatternSplit() {
+		return TaggedUnionUtils.get(this, Kind.SimplePatternSplit);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple_pattern}?
+	 */
+	public boolean isSimplePattern() {
+		return _kind == Kind.SimplePattern;
+	}
+
+	/**
+	 * Get the {@code simple_pattern} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code simple_pattern} kind.
+	 */
+	public SimplePatternTokenizer simplePattern() {
+		return TaggedUnionUtils.get(this, Kind.SimplePattern);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code standard}?
 	 */
 	public boolean isStandard() {
@@ -365,6 +425,23 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 	 */
 	public StandardTokenizer standard() {
 		return TaggedUnionUtils.get(this, Kind.Standard);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code thai}?
+	 */
+	public boolean isThai() {
+		return _kind == Kind.Thai;
+	}
+
+	/**
+	 * Get the {@code thai} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code thai} kind.
+	 */
+	public ThaiTokenizer thai() {
+		return TaggedUnionUtils.get(this, Kind.Thai);
 	}
 
 	/**
@@ -462,6 +539,17 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 		public ObjectBuilder<TokenizerDefinition> charGroup(
 				Function<CharGroupTokenizer.Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
 			return this.charGroup(fn.apply(new CharGroupTokenizer.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenizerDefinition> classic(ClassicTokenizer v) {
+			this._kind = Kind.Classic;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenizerDefinition> classic(
+				Function<ClassicTokenizer.Builder, ObjectBuilder<ClassicTokenizer>> fn) {
+			return this.classic(fn.apply(new ClassicTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> edgeNgram(EdgeNGramTokenizer v) {
@@ -574,6 +662,28 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 			return this.pattern(fn.apply(new PatternTokenizer.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenizerDefinition> simplePatternSplit(SimplePatternSplitTokenizer v) {
+			this._kind = Kind.SimplePatternSplit;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenizerDefinition> simplePatternSplit(
+				Function<SimplePatternSplitTokenizer.Builder, ObjectBuilder<SimplePatternSplitTokenizer>> fn) {
+			return this.simplePatternSplit(fn.apply(new SimplePatternSplitTokenizer.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenizerDefinition> simplePattern(SimplePatternTokenizer v) {
+			this._kind = Kind.SimplePattern;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenizerDefinition> simplePattern(
+				Function<SimplePatternTokenizer.Builder, ObjectBuilder<SimplePatternTokenizer>> fn) {
+			return this.simplePattern(fn.apply(new SimplePatternTokenizer.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenizerDefinition> standard(StandardTokenizer v) {
 			this._kind = Kind.Standard;
 			this._value = v;
@@ -583,6 +693,17 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 		public ObjectBuilder<TokenizerDefinition> standard(
 				Function<StandardTokenizer.Builder, ObjectBuilder<StandardTokenizer>> fn) {
 			return this.standard(fn.apply(new StandardTokenizer.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenizerDefinition> thai(ThaiTokenizer v) {
+			this._kind = Kind.Thai;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenizerDefinition> thai(
+				Function<ThaiTokenizer.Builder, ObjectBuilder<ThaiTokenizer>> fn) {
+			return this.thai(fn.apply(new ThaiTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> uaxUrlEmail(UaxEmailUrlTokenizer v) {
@@ -633,6 +754,7 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 	protected static void setupTokenizerDefinitionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::charGroup, CharGroupTokenizer._DESERIALIZER, "char_group");
+		op.add(Builder::classic, ClassicTokenizer._DESERIALIZER, "classic");
 		op.add(Builder::edgeNgram, EdgeNGramTokenizer._DESERIALIZER, "edge_ngram");
 		op.add(Builder::icuTokenizer, IcuTokenizer._DESERIALIZER, "icu_tokenizer");
 		op.add(Builder::keyword, KeywordTokenizer._DESERIALIZER, "keyword");
@@ -643,7 +765,10 @@ public class TokenizerDefinition implements OpenTaggedUnion<TokenizerDefinition.
 		op.add(Builder::noriTokenizer, NoriTokenizer._DESERIALIZER, "nori_tokenizer");
 		op.add(Builder::pathHierarchy, PathHierarchyTokenizer._DESERIALIZER, "path_hierarchy");
 		op.add(Builder::pattern, PatternTokenizer._DESERIALIZER, "pattern");
+		op.add(Builder::simplePatternSplit, SimplePatternSplitTokenizer._DESERIALIZER, "simple_pattern_split");
+		op.add(Builder::simplePattern, SimplePatternTokenizer._DESERIALIZER, "simple_pattern");
 		op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
+		op.add(Builder::thai, ThaiTokenizer._DESERIALIZER, "thai");
 		op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
 		op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
 

@@ -76,7 +76,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		this.customTokenChars = builder.customTokenChars;
 		this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
 		this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
-		this.tokenChars = ApiTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
+		this.tokenChars = ApiTypeHelper.unmodifiable(builder.tokenChars);
 
 	}
 
@@ -115,7 +115,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 	}
 
 	/**
-	 * Required - API name: {@code token_chars}
+	 * API name: {@code token_chars}
 	 */
 	public final List<TokenChar> tokenChars() {
 		return this.tokenChars;
@@ -164,6 +164,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 
 		private Integer minGram;
 
+		@Nullable
 		private List<TokenChar> tokenChars;
 
 		/**
@@ -191,7 +192,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		}
 
 		/**
-		 * Required - API name: {@code token_chars}
+		 * API name: {@code token_chars}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokenChars</code>.
 		 */
@@ -201,7 +202,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		}
 
 		/**
-		 * Required - API name: {@code token_chars}
+		 * API name: {@code token_chars}
 		 * <p>
 		 * Adds one or more values to <code>tokenChars</code>.
 		 */

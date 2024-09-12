@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
+import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 
@@ -81,7 +82,7 @@ public class EsqlHelper {
 
     private static QueryRequest buildRequest(EsqlAdapter<?> adapter, String query, Object... params) {
         return QueryRequest.of(esql -> esql
-            .format(adapter.format())
+            .format(EsqlFormat._DESERIALIZER.parse(adapter.format()))
             .columnar(adapter.columnar())
             .query(query)
             .params(asFieldValues(params))
@@ -91,7 +92,7 @@ public class EsqlHelper {
     private static QueryRequest buildRequest(EsqlAdapter<?> adapter, QueryRequest request) {
         return QueryRequest.of(q -> q
             // Set/override format and columnar
-            .format(adapter.format())
+            .format(EsqlFormat._DESERIALIZER.parse(adapter.format()))
             .columnar(adapter.columnar())
 
             .delimiter(request.delimiter())

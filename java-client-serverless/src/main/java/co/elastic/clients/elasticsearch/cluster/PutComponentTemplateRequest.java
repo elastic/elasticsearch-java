@@ -62,9 +62,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.put_component_template.Request
 
 /**
- * Creates or updates a component template. Component templates are building
- * blocks for constructing index templates that specify index mappings,
- * settings, and aliases.
+ * Create or update a component template. Creates or updates a component
+ * template. Component templates are building blocks for constructing index
+ * templates that specify index mappings, settings, and aliases.
  * <p>
  * An index template can be composed of multiple component templates. To use a
  * component template, specify it in an index template’s
@@ -175,8 +175,15 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Required - Name of the component template to create. Elasticsearch includes
 	 * the following built-in component templates: <code>logs-mappings</code>;
-	 * 'logs-settings<code>; </code>metrics-mappings<code>; </code>metrics-settings<code>;</code>synthetics-mapping<code>; </code>synthetics-settings<code>. Elastic Agent uses these templates to configure backing indices for its data streams. If you use Elastic Agent and want to overwrite one of these templates, set the </code>version<code>for your replacement template higher than the current version. If you don’t use Elastic Agent and want to disable all built-in component and index templates, set</code>stack.templates.enabled<code>to</code>false`
-	 * using the cluster update settings API.
+	 * <code>logs-settings</code>; <code>metrics-mappings</code>;
+	 * <code>metrics-settings</code>;<code>synthetics-mapping</code>;
+	 * <code>synthetics-settings</code>. Elastic Agent uses these templates to
+	 * configure backing indices for its data streams. If you use Elastic Agent and
+	 * want to overwrite one of these templates, set the <code>version</code> for
+	 * your replacement template higher than the current version. If you don’t use
+	 * Elastic Agent and want to disable all built-in component and index templates,
+	 * set <code>stack.templates.enabled</code> to <code>false</code> using the
+	 * cluster update settings API.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -349,8 +356,15 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * Required - Name of the component template to create. Elasticsearch includes
 		 * the following built-in component templates: <code>logs-mappings</code>;
-		 * 'logs-settings<code>; </code>metrics-mappings<code>; </code>metrics-settings<code>;</code>synthetics-mapping<code>; </code>synthetics-settings<code>. Elastic Agent uses these templates to configure backing indices for its data streams. If you use Elastic Agent and want to overwrite one of these templates, set the </code>version<code>for your replacement template higher than the current version. If you don’t use Elastic Agent and want to disable all built-in component and index templates, set</code>stack.templates.enabled<code>to</code>false`
-		 * using the cluster update settings API.
+		 * <code>logs-settings</code>; <code>metrics-mappings</code>;
+		 * <code>metrics-settings</code>;<code>synthetics-mapping</code>;
+		 * <code>synthetics-settings</code>. Elastic Agent uses these templates to
+		 * configure backing indices for its data streams. If you use Elastic Agent and
+		 * want to overwrite one of these templates, set the <code>version</code> for
+		 * your replacement template higher than the current version. If you don’t use
+		 * Elastic Agent and want to disable all built-in component and index templates,
+		 * set <code>stack.templates.enabled</code> to <code>false</code> using the
+		 * cluster update settings API.
 		 * <p>
 		 * API name: {@code name}
 		 */

@@ -63,8 +63,8 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model.Request
 
 /**
- * Enables you to supply a trained model that is not created by data frame
- * analytics.
+ * Create a trained model. Enable you to supply a trained model that is not
+ * created by data frame analytics.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_trained_model.Request">API
  *      specification</a>

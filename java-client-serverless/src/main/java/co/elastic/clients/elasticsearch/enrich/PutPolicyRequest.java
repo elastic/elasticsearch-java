@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: enrich.put_policy.Request
 
 /**
- * Creates an enrich policy.
+ * Create an enrich policy. Creates an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.put_policy.Request">API
  *      specification</a>

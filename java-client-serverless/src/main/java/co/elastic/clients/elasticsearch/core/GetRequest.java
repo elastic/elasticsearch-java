@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: _global.get.Request
 
 /**
- * Returns a document.
+ * Get a document by its ID. Retrieves the document with the specified ID from
+ * an index.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.get.Request">API
  *      specification</a>

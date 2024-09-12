@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: indices.exists.Request
 
 /**
- * Checks if a data stream, index, or alias exists.
+ * Check indices. Checks if one or more indices, index aliases, or data streams
+ * exist.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.exists.Request">API
  *      specification</a>

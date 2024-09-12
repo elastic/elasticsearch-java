@@ -52,8 +52,8 @@ import javax.annotation.Nullable;
 // typedef: indices._types.DataStreamLifecycle
 
 /**
- * Data lifecycle denotes that a data stream is managed by the data stream
- * lifecycle and contains the configuration.
+ * Data stream lifecycle denotes that a data stream is managed by the data
+ * stream lifecycle and contains the configuration.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices._types.DataStreamLifecycle">API

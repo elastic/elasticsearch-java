@@ -56,12 +56,12 @@ import javax.annotation.Nullable;
 // typedef: security.get_api_key.Request
 
 /**
- * Retrieves information for one or more API keys. NOTE: If you have only the
- * <code>manage_own_api_key</code> privilege, this API returns only the API keys
- * that you own. If you have <code>read_security</code>,
- * <code>manage_api_key</code> or greater privileges (including
- * <code>manage_security</code>), this API returns all API keys regardless of
- * ownership.
+ * Get API key information. Retrieves information for one or more API keys.
+ * NOTE: If you have only the <code>manage_own_api_key</code> privilege, this
+ * API returns only the API keys that you own. If you have
+ * <code>read_security</code>, <code>manage_api_key</code> or greater privileges
+ * (including <code>manage_security</code>), this API returns all API keys
+ * regardless of ownership.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_api_key.Request">API
  *      specification</a>

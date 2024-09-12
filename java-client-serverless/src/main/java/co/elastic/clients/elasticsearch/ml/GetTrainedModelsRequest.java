@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_trained_models.Request
 
 /**
- * Retrieves configuration information for a trained model.
+ * Get trained model configuration info.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_trained_models.Request">API
  *      specification</a>

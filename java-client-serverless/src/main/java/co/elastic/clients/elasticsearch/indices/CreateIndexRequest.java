@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: indices.create.Request
 
 /**
- * Creates a new index.
+ * Create an index. Creates a new index.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.create.Request">API
  *      specification</a>

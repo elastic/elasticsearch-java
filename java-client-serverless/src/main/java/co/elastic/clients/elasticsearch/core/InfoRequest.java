@@ -50,7 +50,7 @@ import java.util.Objects;
 // typedef: _global.info.Request
 
 /**
- * Returns basic information about the cluster.
+ * Get cluster info. Returns basic information about the cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.info.Request">API
  *      specification</a>

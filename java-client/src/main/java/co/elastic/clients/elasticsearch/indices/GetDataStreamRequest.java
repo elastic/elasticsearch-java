@@ -77,6 +77,9 @@ public class GetDataStreamRequest extends RequestBase {
 
 	private final List<String> name;
 
+	@Nullable
+	private final Boolean verbose;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetDataStreamRequest(Builder builder) {
@@ -85,6 +88,7 @@ public class GetDataStreamRequest extends RequestBase {
 		this.includeDefaults = builder.includeDefaults;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
+		this.verbose = builder.verbose;
 
 	}
 
@@ -134,6 +138,17 @@ public class GetDataStreamRequest extends RequestBase {
 		return this.name;
 	}
 
+	/**
+	 * Whether the maximum timestamp for each data stream should be calculated and
+	 * returned.
+	 * <p>
+	 * API name: {@code verbose}
+	 */
+	@Nullable
+	public final Boolean verbose() {
+		return this.verbose;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -154,6 +169,9 @@ public class GetDataStreamRequest extends RequestBase {
 
 		@Nullable
 		private List<String> name;
+
+		@Nullable
+		private Boolean verbose;
 
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
@@ -237,6 +255,17 @@ public class GetDataStreamRequest extends RequestBase {
 		 */
 		public final Builder name(String value, String... values) {
 			this.name = _listAdd(this.name, value, values);
+			return this;
+		}
+
+		/**
+		 * Whether the maximum timestamp for each data stream should be calculated and
+		 * returned.
+		 * <p>
+		 * API name: {@code verbose}
+		 */
+		public final Builder verbose(@Nullable Boolean value) {
+			this.verbose = value;
 			return this;
 		}
 
@@ -327,6 +356,9 @@ public class GetDataStreamRequest extends RequestBase {
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
+				}
+				if (request.verbose != null) {
+					params.put("verbose", String.valueOf(request.verbose));
 				}
 				return params;
 

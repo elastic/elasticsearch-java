@@ -58,10 +58,10 @@ import javax.annotation.Nullable;
 // typedef: ml.get_datafeeds.Request
 
 /**
- * Retrieves configuration information for datafeeds. You can get information
- * for multiple datafeeds in a single API request by using a comma-separated
- * list of datafeeds or a wildcard expression. You can get information for all
- * datafeeds by using <code>_all</code>, by specifying <code>*</code> as the
+ * Get datafeeds configuration info. You can get information for multiple
+ * datafeeds in a single API request by using a comma-separated list of
+ * datafeeds or a wildcard expression. You can get information for all datafeeds
+ * by using <code>_all</code>, by specifying <code>*</code> as the
  * <code>&lt;feed_id&gt;</code>, or by omitting the
  * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
  * 

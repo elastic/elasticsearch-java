@@ -578,9 +578,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("typed_keys", "true");
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
@@ -590,6 +587,15 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.searchType != null) {
+					params.put("search_type", request.searchType.jsonValue());
+				}
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				}
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -602,12 +608,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				}
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
-				}
-				if (request.searchType != null) {
-					params.put("search_type", request.searchType.jsonValue());
-				}
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 

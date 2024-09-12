@@ -58,9 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ml.estimate_model_memory.Request
 
 /**
- * Makes an estimation of the memory usage for an anomaly detection job model.
- * It is based on analysis configuration details for the job and cardinality
- * estimates for the fields it references.
+ * Estimate job model memory usage. Makes an estimation of the memory usage for
+ * an anomaly detection job model. It is based on analysis configuration details
+ * for the job and cardinality estimates for the fields it references.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.estimate_model_memory.Request">API

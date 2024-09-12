@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: transform.stop_transform.Request
 
 /**
- * Stops one or more transforms.
+ * Stop transforms. Stops one or more transforms.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.stop_transform.Request">API

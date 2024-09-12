@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
+import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,18 +61,30 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class OpenPointInTimeResponse implements JsonpSerializable {
+	private final ShardStatistics shards;
+
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private OpenPointInTimeResponse(Builder builder) {
 
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
 	public static OpenPointInTimeResponse of(Function<Builder, ObjectBuilder<OpenPointInTimeResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Shards used to create the PIT
+	 * <p>
+	 * API name: {@code _shards}
+	 */
+	public final ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -92,6 +105,9 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("_shards");
+		this.shards.serialize(generator, mapper);
+
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -111,7 +127,28 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<OpenPointInTimeResponse> {
+		private ShardStatistics shards;
+
 		private String id;
+
+		/**
+		 * Required - Shards used to create the PIT
+		 * <p>
+		 * API name: {@code _shards}
+		 */
+		public final Builder shards(ShardStatistics value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * Required - Shards used to create the PIT
+		 * <p>
+		 * API name: {@code _shards}
+		 */
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code id}
@@ -150,6 +187,7 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	protected static void setupOpenPointInTimeResponseDeserializer(
 			ObjectDeserializer<OpenPointInTimeResponse.Builder> op) {
 
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}

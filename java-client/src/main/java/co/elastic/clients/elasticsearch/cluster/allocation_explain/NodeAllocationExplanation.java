@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
+import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -73,6 +74,8 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 	private final String nodeName;
 
+	private final List<NodeRole> roles;
+
 	@Nullable
 	private final AllocationStore store;
 
@@ -89,6 +92,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		this.nodeDecision = ApiTypeHelper.requireNonNull(builder.nodeDecision, this, "nodeDecision");
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.store = builder.store;
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
@@ -132,6 +136,13 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 	 */
 	public final String nodeName() {
 		return this.nodeName;
+	}
+
+	/**
+	 * Required - API name: {@code roles}
+	 */
+	public final List<NodeRole> roles() {
+		return this.roles;
 	}
 
 	/**
@@ -196,6 +207,15 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		generator.writeKey("node_name");
 		generator.write(this.nodeName);
 
+		if (ApiTypeHelper.isDefined(this.roles)) {
+			generator.writeKey("roles");
+			generator.writeStartArray();
+			for (NodeRole item0 : this.roles) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
 		if (this.store != null) {
 			generator.writeKey("store");
 			this.store.serialize(generator, mapper);
@@ -232,6 +252,8 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		private String nodeId;
 
 		private String nodeName;
+
+		private List<NodeRole> roles;
 
 		@Nullable
 		private AllocationStore store;
@@ -314,6 +336,26 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
+		 */
+		public final Builder roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
+		 */
+		public final Builder roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
+			return this;
+		}
+
+		/**
 		 * API name: {@code store}
 		 */
 		public final Builder store(@Nullable AllocationStore value) {
@@ -379,6 +421,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		op.add(Builder::nodeDecision, Decision._DESERIALIZER, "node_decision");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
 		op.add(Builder::store, AllocationStore._DESERIALIZER, "store");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 		op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");

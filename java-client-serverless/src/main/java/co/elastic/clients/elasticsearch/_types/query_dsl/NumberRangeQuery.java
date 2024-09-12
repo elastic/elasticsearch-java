@@ -21,13 +21,17 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -54,10 +58,14 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQueryVariant {
+	// Single key dictionary
+	private final String field;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NumberRangeQuery(Builder builder) {
 		super(builder);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -73,6 +81,22 @@ public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQue
 		return RangeQuery.Kind.Number;
 	}
 
+	/**
+	 * Required - the required field
+	 */
+	public final String field() {
+		return this.field;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
+
+		generator.writeEnd();
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -82,6 +106,16 @@ public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQue
 	public static class Builder extends RangeQueryBase.AbstractBuilder<Double, Builder>
 			implements
 				ObjectBuilder<NumberRangeQuery> {
+		private String field;
+
+		/**
+		 * Required - the required field
+		 */
+		public final Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -111,6 +145,8 @@ public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQue
 
 	protected static void setupNumberRangeQueryDeserializer(ObjectDeserializer<NumberRangeQuery.Builder> op) {
 		RangeQueryBase.setupRangeQueryBaseDeserializer(op, JsonpDeserializer.doubleDeserializer());
+
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 

@@ -74,6 +74,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final String targetField;
 
+	@Nullable
+	private final Boolean downloadDatabaseOnPipelineCreation;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoIpProcessor(Builder builder) {
@@ -85,6 +88,7 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.targetField = builder.targetField;
+		this.downloadDatabaseOnPipelineCreation = builder.downloadDatabaseOnPipelineCreation;
 
 	}
 
@@ -164,6 +168,20 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		return this.targetField;
 	}
 
+	/**
+	 * If <code>true</code> (and if
+	 * <code>ingest.geoip.downloader.eager.download</code> is <code>false</code>),
+	 * the missing database is downloaded when the pipeline is created. Else, the
+	 * download is triggered by when the pipeline is used as the
+	 * <code>default_pipeline</code> or <code>final_pipeline</code> in an index.
+	 * <p>
+	 * API name: {@code download_database_on_pipeline_creation}
+	 */
+	@Nullable
+	public final Boolean downloadDatabaseOnPipelineCreation() {
+		return this.downloadDatabaseOnPipelineCreation;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -200,6 +218,11 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.targetField);
 
 		}
+		if (this.downloadDatabaseOnPipelineCreation != null) {
+			generator.writeKey("download_database_on_pipeline_creation");
+			generator.write(this.downloadDatabaseOnPipelineCreation);
+
+		}
 
 	}
 
@@ -228,6 +251,9 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 
 		@Nullable
 		private String targetField;
+
+		@Nullable
+		private Boolean downloadDatabaseOnPipelineCreation;
 
 		/**
 		 * The database filename referring to a database the module ships with
@@ -310,6 +336,20 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 			return this;
 		}
 
+		/**
+		 * If <code>true</code> (and if
+		 * <code>ingest.geoip.downloader.eager.download</code> is <code>false</code>),
+		 * the missing database is downloaded when the pipeline is created. Else, the
+		 * download is triggered by when the pipeline is used as the
+		 * <code>default_pipeline</code> or <code>final_pipeline</code> in an index.
+		 * <p>
+		 * API name: {@code download_database_on_pipeline_creation}
+		 */
+		public final Builder downloadDatabaseOnPipelineCreation(@Nullable Boolean value) {
+			this.downloadDatabaseOnPipelineCreation = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -345,6 +385,8 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"properties");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::downloadDatabaseOnPipelineCreation, JsonpDeserializer.booleanDeserializer(),
+				"download_database_on_pipeline_creation");
 
 	}
 
