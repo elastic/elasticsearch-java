@@ -75,6 +75,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     private final FnCondition addCondition = new FnCondition(lock, this::canAddOperation);
     private final FnCondition sendRequestCondition = new FnCondition(lock, this::canSendRequest);
     private final FnCondition closeCondition = new FnCondition(lock, this::closedAndFlushed);
+    private AtomicInteger listenerInProgressCount = new AtomicInteger();
 
     private static class RequestExecution<Context> {
         public final long id;
@@ -235,7 +236,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     }
 
     private boolean closedAndFlushed() {
-        return isClosed && operations.isEmpty() && requestsInFlightCount == 0;
+        return isClosed && operations.isEmpty() && requestsInFlightCount == 0 && listenerInProgressCount.get() == 0;
     }
 
     //----- Ingester logic
@@ -308,23 +309,42 @@ public class BulkIngester<Context> implements AutoCloseable {
         if (exec != null) {
             // A request was actually sent
             exec.futureResponse.handle((resp, thr) -> {
+                if (resp != null) {
+                    // Success
+                    if (listener != null) {
+                        listenerInProgressCount.incrementAndGet();
+                        scheduler.submit(() -> {
+                            try {
+                                listener.afterBulk(exec.id, exec.request, exec.contexts, resp);
+                            }
+                            finally {
+                                if(listenerInProgressCount.decrementAndGet() == 0){
+                                    closeCondition.signalIfReady();
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    // Failure
+                    if (listener != null) {
+                        listenerInProgressCount.incrementAndGet();
+                        scheduler.submit(() -> {
+                            try {
+                                listener.afterBulk(exec.id, exec.request, exec.contexts, thr);
+                            }
+                            finally {
+                                if(listenerInProgressCount.decrementAndGet() == 0){
+                                    closeCondition.signalIfReady();
+                                }
+                            }
+                        });
+                    }
+                }
 
                 sendRequestCondition.signalIfReadyAfter(() -> {
                     requestsInFlightCount--;
                     closeCondition.signalAllIfReady();
                 });
-
-                if (resp != null) {
-                    // Success
-                    if (listener != null) {
-                        listener.afterBulk(exec.id, exec.request, exec.contexts, resp);
-                    }
-                } else {
-                    // Failure
-                    if (listener != null) {
-                        listener.afterBulk(exec.id, exec.request, exec.contexts, thr);
-                    }
-                }
                 return null;
             });
         }

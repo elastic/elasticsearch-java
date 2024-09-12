@@ -88,20 +88,44 @@ class BulkIngesterTest extends Assertions {
     @Test
     public void basicTestFlush() throws Exception {
         // Prime numbers, so that we have leftovers to flush before shutting down
-        multiThreadTest(7, 3, 5, 101);
+        multiThreadTest(7, 3, 5, 101, true);
+    }
+
+    @Test
+    public void basicTestFlushWithInternalScheduler() throws Exception {
+        // Prime numbers, so that we have leftovers to flush before shutting down
+        multiThreadTest(7, 3, 5, 101, false);
     }
 
     @Test
     public void basicTestNoFlush() throws Exception {
         // Will have nothing to flush on close.
-        multiThreadTest(10, 3, 5, 100);
+        multiThreadTest(10, 3, 5, 100, true);
     }
 
-    private void multiThreadTest(int maxOperations, int maxRequests, int numThreads, int numOperations) throws Exception {
+    @Test
+    public void basicTestNoFlushWithInternalScheduler() throws Exception {
+        // Will have nothing to flush on close.
+        multiThreadTest(10, 3, 5, 100, false);
+    }
+
+    private void multiThreadTest(int maxOperations, int maxRequests, int numThreads, int numOperations,
+                                 boolean externalScheduler) throws Exception {
 
         CountingListener listener = new CountingListener();
         TestTransport transport = new TestTransport();
         ElasticsearchAsyncClient client = new ElasticsearchAsyncClient(transport);
+        ScheduledExecutorService scheduler;
+        if (externalScheduler) {
+            scheduler = Executors.newSingleThreadScheduledExecutor(r -> {
+                Thread t = Executors.defaultThreadFactory().newThread(r);
+                t.setName("my-bulk-ingester-executor#");
+                t.setDaemon(true);
+                return t;
+            });
+        } else {
+            scheduler = null;
+        }
 
         BulkIngester<Void> ingester = BulkIngester.of(b -> b
             .client(client)
@@ -130,6 +154,7 @@ class BulkIngesterTest extends Assertions {
 
         ingester.close();
         transport.close();
+        if (scheduler != null) scheduler.shutdownNow();
 
         printStats(ingester);
         printStats(listener);
