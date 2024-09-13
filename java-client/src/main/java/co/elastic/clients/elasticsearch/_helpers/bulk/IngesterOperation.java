@@ -80,7 +80,7 @@ public class IngesterOperation {
             BinaryData binaryDoc = BinaryData.of(create.document(), mapper);
             size += binaryDoc.size();
             newOperation = BulkOperation.of(bo -> bo.create(idx -> {
-                copyBaseProperties(create, idx);
+                copyCreateProperties(create, idx);
                 return idx.document(binaryDoc);
             }));
         }
@@ -102,7 +102,7 @@ public class IngesterOperation {
             BinaryData binaryDoc = BinaryData.of(index.document(), mapper);
             size += binaryDoc.size();
             newOperation = BulkOperation.of(bo -> bo.index(idx -> {
-                copyBaseProperties(index, idx);
+                copyIndexProperties(index, idx);
                 return idx.document(binaryDoc);
             }));
         }
@@ -152,6 +152,18 @@ public class IngesterOperation {
             .routing(op.routing())
             .version(op.version())
             .versionType(op.versionType());
+    }
+
+    private static void copyIndexProperties(IndexOperation<?> op, IndexOperation.Builder<?> builder) {
+        copyBaseProperties(op, builder);
+        builder.pipeline(op.pipeline());
+        builder.requireAlias(op.requireAlias());
+    }
+
+    private static void copyCreateProperties(CreateOperation<?> op, CreateOperation.Builder<?> builder) {
+        copyBaseProperties(op, builder);
+        builder.pipeline(op.pipeline());
+        builder.requireAlias(op.requireAlias());
     }
 
     private static int size(String name, @Nullable Boolean value) {

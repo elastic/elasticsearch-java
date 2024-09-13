@@ -62,6 +62,7 @@ public class BulkIngester<Context> implements AutoCloseable {
 
     private @Nullable ScheduledFuture<?> flushTask;
     private @Nullable ScheduledExecutorService scheduler;
+    private boolean isExternalScheduler = false;
 
     // Current state
     private List<BulkOperation> operations = new ArrayList<>();
@@ -83,7 +84,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         public final List<Context> contexts;
         public final CompletionStage<BulkResponse> futureResponse;
 
-        RequestExecution(long id, BulkRequest request, List<Context> contexts, CompletionStage<BulkResponse> futureResponse) {
+        RequestExecution(long id, BulkRequest request, List<Context> contexts,
+                         CompletionStage<BulkResponse> futureResponse) {
             this.id = id;
             this.request = request;
             this.contexts = contexts;
@@ -100,27 +102,25 @@ public class BulkIngester<Context> implements AutoCloseable {
         this.maxOperations = builder.bulkOperations < 0 ? Integer.MAX_VALUE : builder.bulkOperations;
         this.listener = builder.listener;
         this.flushIntervalMillis = builder.flushIntervalMillis;
-        
-        if (flushIntervalMillis != null) {
-            long flushInterval = flushIntervalMillis;
 
+        if (flushIntervalMillis != null || listener != null) {
             // Create a scheduler if needed
-            ScheduledExecutorService scheduler;
             if (builder.scheduler == null) {
-                scheduler = Executors.newSingleThreadScheduledExecutor((r) -> {
-                        Thread t = Executors.defaultThreadFactory().newThread(r);
-                        t.setName("bulk-ingester-flusher#" + ingesterId);
-                        t.setDaemon(true);
-                        return t;
-                    });
-
-                // Keep it, we'll have to close it.
-                this.scheduler = scheduler;
+                this.scheduler = Executors.newScheduledThreadPool(maxRequests + 1, (r) -> {
+                    Thread t = Executors.defaultThreadFactory().newThread(r);
+                    t.setName("bulk-ingester-executor#" + ingesterId + "#" + t.getId());
+                    t.setDaemon(true);
+                    return t;
+                });
             } else {
                 // It's not ours, we will not close it.
-                scheduler = builder.scheduler;
+                this.scheduler = builder.scheduler;
+                this.isExternalScheduler = true;
             }
-            
+        }
+
+        if (flushIntervalMillis != null) {
+            long flushInterval = flushIntervalMillis;
             this.flushTask = scheduler.scheduleWithFixedDelay(
                 this::failsafeFlush,
                 flushInterval, flushInterval,
@@ -222,7 +222,7 @@ public class BulkIngester<Context> implements AutoCloseable {
      * @see Builder#maxConcurrentRequests
      */
     public long requestContentionsCount() {
-        return  this.sendRequestCondition.contentions();
+        return this.sendRequestCondition.contentions();
     }
 
     //----- Predicates for the condition variables
@@ -266,7 +266,7 @@ public class BulkIngester<Context> implements AutoCloseable {
     private void failsafeFlush() {
         try {
             flush();
-        } catch(Throwable thr) {
+        } catch (Throwable thr) {
             // Log the error and continue
             logger.error("Error in background flush", thr);
         }
@@ -281,7 +281,8 @@ public class BulkIngester<Context> implements AutoCloseable {
             () -> {
                 // Build the request
                 BulkRequest request = newRequest().operations(operations).build();
-                List<Context> requestContexts = contexts == null ? Collections.nCopies(operations.size(), null) : contexts;
+                List<Context> requestContexts = contexts == null ? Collections.nCopies(operations.size(),
+                    null) : contexts;
 
                 // Prepare for next round
                 operations = new ArrayList<>();
@@ -292,7 +293,9 @@ public class BulkIngester<Context> implements AutoCloseable {
                 long id = sendRequestCondition.invocations();
 
                 if (listener != null) {
-                    listener.beforeBulk(id, request, requestContexts);
+                    BulkRequest finalRequest = request;
+                    // synchronous execution to make sure it actually runs before
+                    listener.beforeBulk(id, finalRequest, requestContexts);
                 }
 
                 CompletionStage<BulkResponse> result = client.bulk(request);
@@ -304,7 +307,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                 }
 
                 return new RequestExecution<>(id, request, requestContexts, result);
-        });
+            });
 
         if (exec != null) {
             // A request was actually sent
@@ -410,13 +413,14 @@ public class BulkIngester<Context> implements AutoCloseable {
         // Flush buffered operations
         flush();
         // and wait for all requests to be completed
-        closeCondition.whenReady(() -> {});
+        closeCondition.whenReady(() -> {
+        });
 
         if (flushTask != null) {
             flushTask.cancel(false);
         }
 
-        if (scheduler != null) {
+        if (scheduler != null && !isExternalScheduler) {
             scheduler.shutdownNow();
         }
     }
@@ -431,7 +435,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         private ElasticsearchAsyncClient client;
         private BulkRequest globalSettings;
         private int bulkOperations = 1000;
-        private long bulkSize = 5*1024*1024;
+        private long bulkSize = 5 * 1024 * 1024;
         private int maxConcurrentRequests = 1;
         private Long flushIntervalMillis;
         private BulkListener<Context> listener;
@@ -465,7 +469,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         /**
-         * Sets when to flush a new bulk request based on the size in bytes of actions currently added. A request is sent
+         * Sets when to flush a new bulk request based on the size in bytes of actions currently added. A
+         * request is sent
          * once that size has been exceeded. Defaults to 5 megabytes. Can be set to {@code -1} to disable it.
          *
          * @throws IllegalArgumentException if less than -1.
@@ -479,7 +484,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         /**
-         * Sets the number of concurrent requests allowed to be executed. A value of 1 means 1 request is allowed to be executed
+         * Sets the number of concurrent requests allowed to be executed. A value of 1 means 1 request is
+         * allowed to be executed
          * while accumulating new bulk requests. Defaults to {@code 1}.
          *
          * @throws IllegalArgumentException if less than 1.
@@ -495,7 +501,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         /**
          * Sets an interval flushing any bulk actions pending if the interval passes. Defaults to not set.
          * <p>
-         * Flushing is still subject to the maximum number of requests set with {@link #maxConcurrentRequests}.
+         * Flushing is still subject to the maximum number of requests set with
+         * {@link #maxConcurrentRequests}.
          *
          * @throws IllegalArgumentException if not a positive duration.
          */
@@ -510,11 +517,23 @@ public class BulkIngester<Context> implements AutoCloseable {
         /**
          * Sets an interval flushing any bulk actions pending if the interval passes. Defaults to not set.
          * <p>
-         * Flushing is still subject to the maximum number of requests set with {@link #maxConcurrentRequests}.     
+         * Flushing is still subject to the maximum number of requests set with
+         * {@link #maxConcurrentRequests}.
+         * @deprecated use {@link #scheduler(ScheduledExecutorService)}
          */
+        @Deprecated
         public Builder<Context> flushInterval(long value, TimeUnit unit, ScheduledExecutorService scheduler) {
             this.scheduler = scheduler;
             return flushInterval(value, unit);
+        }
+
+        /**
+         * Sets a custom scheduler to run the flush thread and the listener logic. A default one is used if
+         * not set.
+         */
+        public Builder<Context> scheduler(ScheduledExecutorService scheduler) {
+            this.scheduler = scheduler;
+            return this;
         }
 
         public Builder<Context> listener(BulkListener<Context> listener) {
@@ -545,7 +564,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         @Override
         public BulkIngester<Context> build() {
             // Ensure some chunking criteria are defined
-            boolean hasCriteria = this.bulkOperations >= 0 || this.bulkSize >= 0 || this.flushIntervalMillis != null;
+            boolean hasCriteria =
+                this.bulkOperations >= 0 || this.bulkSize >= 0 || this.flushIntervalMillis != null;
 
             if (!hasCriteria) {
                 throw new IllegalStateException("No bulk operation chunking criteria have been set.");
@@ -555,4 +575,3 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
     }
 }
-
