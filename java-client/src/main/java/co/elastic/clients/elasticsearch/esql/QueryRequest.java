@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -81,7 +82,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final Query filter;
 
 	@Nullable
-	private final String format;
+	private final EsqlFormat format;
 
 	@Nullable
 	private final String locale;
@@ -149,7 +150,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public final String format() {
+	public final EsqlFormat format() {
 		return this.format;
 	}
 
@@ -240,7 +241,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private Query filter;
 
 		@Nullable
-		private String format;
+		private EsqlFormat format;
 
 		@Nullable
 		private String locale;
@@ -300,7 +301,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code format}
 		 */
-		public final Builder format(@Nullable String value) {
+		public final Builder format(@Nullable EsqlFormat value) {
 			this.format = value;
 			return this;
 		}
@@ -433,7 +434,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 					params.put("delimiter", request.delimiter);
 				}
 				if (request.format != null) {
-					params.put("format", request.format);
+					params.put("format", request.format.jsonValue());
 				}
 				return params;
 

@@ -496,6 +496,24 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RedactProcessor redact} {@code Processor}
+	 * variant.
+	 */
+	public static RedactProcessor.Builder redact() {
+		return new RedactProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link RedactProcessor redact} {@code Processor}
+	 * variant.
+	 */
+	public static Processor redact(Function<RedactProcessor.Builder, ObjectBuilder<RedactProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.redact(fn.apply(new RedactProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link RemoveProcessor remove} {@code Processor}
 	 * variant.
 	 */

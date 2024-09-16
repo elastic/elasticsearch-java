@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -49,75 +50,58 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes._types.IngestTotal
+// typedef: nodes._types.TimeHttpHistogram
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#nodes._types.IngestTotal">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.TimeHttpHistogram">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IngestTotal implements JsonpSerializable {
+public class TimeHttpHistogram implements JsonpSerializable {
 	private final long count;
 
-	private final long current;
+	@Nullable
+	private final Long geMillis;
 
-	private final long failed;
-
-	private final long timeInMillis;
+	@Nullable
+	private final Long ltMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IngestTotal(Builder builder) {
+	private TimeHttpHistogram(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.geMillis = builder.geMillis;
+		this.ltMillis = builder.ltMillis;
 
 	}
 
-	public static IngestTotal of(Function<Builder, ObjectBuilder<IngestTotal>> fn) {
+	public static TimeHttpHistogram of(Function<Builder, ObjectBuilder<TimeHttpHistogram>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Total number of documents ingested during the lifetime of this
-	 * node.
-	 * <p>
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public final long count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - Total number of documents currently being ingested.
-	 * <p>
-	 * API name: {@code current}
+	 * API name: {@code ge_millis}
 	 */
-	public final long current() {
-		return this.current;
+	@Nullable
+	public final Long geMillis() {
+		return this.geMillis;
 	}
 
 	/**
-	 * Required - Total number of failed ingest operations during the lifetime of
-	 * this node.
-	 * <p>
-	 * API name: {@code failed}
+	 * API name: {@code lt_millis}
 	 */
-	public final long failed() {
-		return this.failed;
-	}
-
-	/**
-	 * Required - Total time, in milliseconds, spent preprocessing ingest documents
-	 * during the lifetime of this node.
-	 * <p>
-	 * API name: {@code time_in_millis}
-	 */
-	public final long timeInMillis() {
-		return this.timeInMillis;
+	@Nullable
+	public final Long ltMillis() {
+		return this.ltMillis;
 	}
 
 	/**
@@ -134,14 +118,16 @@ public class IngestTotal implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("current");
-		generator.write(this.current);
+		if (this.geMillis != null) {
+			generator.writeKey("ge_millis");
+			generator.write(this.geMillis);
 
-		generator.writeKey("failed");
-		generator.write(this.failed);
+		}
+		if (this.ltMillis != null) {
+			generator.writeKey("lt_millis");
+			generator.write(this.ltMillis);
 
-		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis);
+		}
 
 	}
 
@@ -153,23 +139,20 @@ public class IngestTotal implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IngestTotal}.
+	 * Builder for {@link TimeHttpHistogram}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IngestTotal> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TimeHttpHistogram> {
 		private Long count;
 
-		private Long current;
+		@Nullable
+		private Long geMillis;
 
-		private Long failed;
-
-		private Long timeInMillis;
+		@Nullable
+		private Long ltMillis;
 
 		/**
-		 * Required - Total number of documents ingested during the lifetime of this
-		 * node.
-		 * <p>
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public final Builder count(long value) {
 			this.count = value;
@@ -177,34 +160,18 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Total number of documents currently being ingested.
-		 * <p>
-		 * API name: {@code current}
+		 * API name: {@code ge_millis}
 		 */
-		public final Builder current(long value) {
-			this.current = value;
+		public final Builder geMillis(@Nullable Long value) {
+			this.geMillis = value;
 			return this;
 		}
 
 		/**
-		 * Required - Total number of failed ingest operations during the lifetime of
-		 * this node.
-		 * <p>
-		 * API name: {@code failed}
+		 * API name: {@code lt_millis}
 		 */
-		public final Builder failed(long value) {
-			this.failed = value;
-			return this;
-		}
-
-		/**
-		 * Required - Total time, in milliseconds, spent preprocessing ingest documents
-		 * during the lifetime of this node.
-		 * <p>
-		 * API name: {@code time_in_millis}
-		 */
-		public final Builder timeInMillis(long value) {
-			this.timeInMillis = value;
+		public final Builder ltMillis(@Nullable Long value) {
+			this.ltMillis = value;
 			return this;
 		}
 
@@ -214,32 +181,31 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IngestTotal}.
+		 * Builds a {@link TimeHttpHistogram}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IngestTotal build() {
+		public TimeHttpHistogram build() {
 			_checkSingleUse();
 
-			return new IngestTotal(this);
+			return new TimeHttpHistogram(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IngestTotal}
+	 * Json deserializer for {@link TimeHttpHistogram}
 	 */
-	public static final JsonpDeserializer<IngestTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IngestTotal::setupIngestTotalDeserializer);
+	public static final JsonpDeserializer<TimeHttpHistogram> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TimeHttpHistogram::setupTimeHttpHistogramDeserializer);
 
-	protected static void setupIngestTotalDeserializer(ObjectDeserializer<IngestTotal.Builder> op) {
+	protected static void setupTimeHttpHistogramDeserializer(ObjectDeserializer<TimeHttpHistogram.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
-		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
-		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
+		op.add(Builder::geMillis, JsonpDeserializer.longDeserializer(), "ge_millis");
+		op.add(Builder::ltMillis, JsonpDeserializer.longDeserializer(), "lt_millis");
 
 	}
 

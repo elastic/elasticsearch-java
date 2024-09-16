@@ -124,6 +124,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Pipeline("pipeline"),
 
+		Redact("redact"),
+
 		Remove("remove"),
 
 		Rename("rename"),
@@ -624,6 +626,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public PipelineProcessor pipeline() {
 		return TaggedUnionUtils.get(this, Kind.Pipeline);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code redact}?
+	 */
+	public boolean isRedact() {
+		return _kind == Kind.Redact;
+	}
+
+	/**
+	 * Get the {@code redact} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code redact} kind.
+	 */
+	public RedactProcessor redact() {
+		return TaggedUnionUtils.get(this, Kind.Redact);
 	}
 
 	/**
@@ -1167,6 +1186,16 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.pipeline(fn.apply(new PipelineProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> redact(RedactProcessor v) {
+			this._kind = Kind.Redact;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> redact(Function<RedactProcessor.Builder, ObjectBuilder<RedactProcessor>> fn) {
+			return this.redact(fn.apply(new RedactProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
 			this._kind = Kind.Remove;
 			this._value = v;
@@ -1353,6 +1382,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::kv, KeyValueProcessor._DESERIALIZER, "kv");
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
 		op.add(Builder::pipeline, PipelineProcessor._DESERIALIZER, "pipeline");
+		op.add(Builder::redact, RedactProcessor._DESERIALIZER, "redact");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
 		op.add(Builder::reroute, RerouteProcessor._DESERIALIZER, "reroute");
