@@ -31,8 +31,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -49,75 +51,54 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes._types.IngestTotal
+// typedef: nodes._types.HttpRouteRequests
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#nodes._types.IngestTotal">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.HttpRouteRequests">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IngestTotal implements JsonpSerializable {
+public class HttpRouteRequests implements JsonpSerializable {
 	private final long count;
 
-	private final long current;
+	private final long totalSizeInBytes;
 
-	private final long failed;
-
-	private final long timeInMillis;
+	private final List<SizeHttpHistogram> sizeHistogram;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IngestTotal(Builder builder) {
+	private HttpRouteRequests(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.sizeHistogram = ApiTypeHelper.unmodifiableRequired(builder.sizeHistogram, this, "sizeHistogram");
 
 	}
 
-	public static IngestTotal of(Function<Builder, ObjectBuilder<IngestTotal>> fn) {
+	public static HttpRouteRequests of(Function<Builder, ObjectBuilder<HttpRouteRequests>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Total number of documents ingested during the lifetime of this
-	 * node.
-	 * <p>
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public final long count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - Total number of documents currently being ingested.
-	 * <p>
-	 * API name: {@code current}
+	 * Required - API name: {@code total_size_in_bytes}
 	 */
-	public final long current() {
-		return this.current;
+	public final long totalSizeInBytes() {
+		return this.totalSizeInBytes;
 	}
 
 	/**
-	 * Required - Total number of failed ingest operations during the lifetime of
-	 * this node.
-	 * <p>
-	 * API name: {@code failed}
+	 * Required - API name: {@code size_histogram}
 	 */
-	public final long failed() {
-		return this.failed;
-	}
-
-	/**
-	 * Required - Total time, in milliseconds, spent preprocessing ingest documents
-	 * during the lifetime of this node.
-	 * <p>
-	 * API name: {@code time_in_millis}
-	 */
-	public final long timeInMillis() {
-		return this.timeInMillis;
+	public final List<SizeHttpHistogram> sizeHistogram() {
+		return this.sizeHistogram;
 	}
 
 	/**
@@ -134,14 +115,19 @@ public class IngestTotal implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("current");
-		generator.write(this.current);
+		generator.writeKey("total_size_in_bytes");
+		generator.write(this.totalSizeInBytes);
 
-		generator.writeKey("failed");
-		generator.write(this.failed);
+		if (ApiTypeHelper.isDefined(this.sizeHistogram)) {
+			generator.writeKey("size_histogram");
+			generator.writeStartArray();
+			for (SizeHttpHistogram item0 : this.sizeHistogram) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis);
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -153,23 +139,18 @@ public class IngestTotal implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IngestTotal}.
+	 * Builder for {@link HttpRouteRequests}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IngestTotal> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HttpRouteRequests> {
 		private Long count;
 
-		private Long current;
+		private Long totalSizeInBytes;
 
-		private Long failed;
-
-		private Long timeInMillis;
+		private List<SizeHttpHistogram> sizeHistogram;
 
 		/**
-		 * Required - Total number of documents ingested during the lifetime of this
-		 * node.
-		 * <p>
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public final Builder count(long value) {
 			this.count = value;
@@ -177,35 +158,40 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Total number of documents currently being ingested.
-		 * <p>
-		 * API name: {@code current}
+		 * Required - API name: {@code total_size_in_bytes}
 		 */
-		public final Builder current(long value) {
-			this.current = value;
+		public final Builder totalSizeInBytes(long value) {
+			this.totalSizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * Required - Total number of failed ingest operations during the lifetime of
-		 * this node.
+		 * Required - API name: {@code size_histogram}
 		 * <p>
-		 * API name: {@code failed}
+		 * Adds all elements of <code>list</code> to <code>sizeHistogram</code>.
 		 */
-		public final Builder failed(long value) {
-			this.failed = value;
+		public final Builder sizeHistogram(List<SizeHttpHistogram> list) {
+			this.sizeHistogram = _listAddAll(this.sizeHistogram, list);
 			return this;
 		}
 
 		/**
-		 * Required - Total time, in milliseconds, spent preprocessing ingest documents
-		 * during the lifetime of this node.
+		 * Required - API name: {@code size_histogram}
 		 * <p>
-		 * API name: {@code time_in_millis}
+		 * Adds one or more values to <code>sizeHistogram</code>.
 		 */
-		public final Builder timeInMillis(long value) {
-			this.timeInMillis = value;
+		public final Builder sizeHistogram(SizeHttpHistogram value, SizeHttpHistogram... values) {
+			this.sizeHistogram = _listAdd(this.sizeHistogram, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code size_histogram}
+		 * <p>
+		 * Adds a value to <code>sizeHistogram</code> using a builder lambda.
+		 */
+		public final Builder sizeHistogram(Function<SizeHttpHistogram.Builder, ObjectBuilder<SizeHttpHistogram>> fn) {
+			return sizeHistogram(fn.apply(new SizeHttpHistogram.Builder()).build());
 		}
 
 		@Override
@@ -214,32 +200,32 @@ public class IngestTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IngestTotal}.
+		 * Builds a {@link HttpRouteRequests}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IngestTotal build() {
+		public HttpRouteRequests build() {
 			_checkSingleUse();
 
-			return new IngestTotal(this);
+			return new HttpRouteRequests(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IngestTotal}
+	 * Json deserializer for {@link HttpRouteRequests}
 	 */
-	public static final JsonpDeserializer<IngestTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IngestTotal::setupIngestTotalDeserializer);
+	public static final JsonpDeserializer<HttpRouteRequests> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpRouteRequests::setupHttpRouteRequestsDeserializer);
 
-	protected static void setupIngestTotalDeserializer(ObjectDeserializer<IngestTotal.Builder> op) {
+	protected static void setupHttpRouteRequestsDeserializer(ObjectDeserializer<HttpRouteRequests.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
-		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
-		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
+		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
+		op.add(Builder::sizeHistogram, JsonpDeserializer.arrayDeserializer(SizeHttpHistogram._DESERIALIZER),
+				"size_histogram");
 
 	}
 
