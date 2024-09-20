@@ -40,6 +40,57 @@ RangeQuery ra = RangeQuery.of(r -> r
         .relation(RangeRelation.Contains)));
 ----
 
+* Simplified builder for Script, removing the subclasses Stored and Inline. Example with UpdateRequest:
+
+** Old InlineScript:
++
+[source,java]
+----
+UpdateRequest updateRequest = UpdateRequest.of(u -> u
+    .script(s -> s
+        .inline(i -> i
+            .lang(ScriptLanguage.Painless)
+            .source("my-script")
+            .params(params)
+        )
+    )
+);
+----
+** New Script
++
+[source,java]
+----
+UpdateRequest updateRequest = UpdateRequest.of(u -> u
+    .script(s -> s
+            .lang(ScriptLanguage.Painless)
+            .source("my-script")
+            .params(params)
+    )
+);
+----
+** Old StoredScript:
++
+[source,java]
+----
+UpdateRequest updateRequest = UpdateRequest.of(u -> u
+    .script(s -> s
+        .stored(st -> st
+            .id("script-id")
+        )
+    )
+);
+----
+** New Script
++
+[source,java]
+----
+UpdateRequest updateRequest = UpdateRequest.of(u -> u
+    .script(s -> s
+        .id("script-id")
+    )
+);
+----
+
 [discrete]
 ==== Version 8.14
 
