@@ -87,6 +87,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Refresh refresh;
 
+	private final List<RemoteIndicesPrivileges> remoteIndices;
+
 	private final List<String> runAs;
 
 	private final Map<String, JsonData> transientMetadata;
@@ -103,6 +105,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
+		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
@@ -191,6 +194,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Refresh refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * A list of remote indices permissions entries.
+	 * <p>
+	 * API name: {@code remote_indices}
+	 */
+	public final List<RemoteIndicesPrivileges> remoteIndices() {
+		return this.remoteIndices;
 	}
 
 	/**
@@ -287,6 +299,16 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.remoteIndices)) {
+			generator.writeKey("remote_indices");
+			generator.writeStartArray();
+			for (RemoteIndicesPrivileges item0 : this.remoteIndices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
@@ -340,6 +362,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Refresh refresh;
+
+		@Nullable
+		private List<RemoteIndicesPrivileges> remoteIndices;
 
 		@Nullable
 		private List<String> runAs;
@@ -532,6 +557,42 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of remote indices permissions entries.
+		 * <p>
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteIndices</code>.
+		 */
+		public final Builder remoteIndices(List<RemoteIndicesPrivileges> list) {
+			this.remoteIndices = _listAddAll(this.remoteIndices, list);
+			return this;
+		}
+
+		/**
+		 * A list of remote indices permissions entries.
+		 * <p>
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds one or more values to <code>remoteIndices</code>.
+		 */
+		public final Builder remoteIndices(RemoteIndicesPrivileges value, RemoteIndicesPrivileges... values) {
+			this.remoteIndices = _listAdd(this.remoteIndices, value, values);
+			return this;
+		}
+
+		/**
+		 * A list of remote indices permissions entries.
+		 * <p>
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds a value to <code>remoteIndices</code> using a builder lambda.
+		 */
+		public final Builder remoteIndices(
+				Function<RemoteIndicesPrivileges.Builder, ObjectBuilder<RemoteIndicesPrivileges>> fn) {
+			return remoteIndices(fn.apply(new RemoteIndicesPrivileges.Builder()).build());
+		}
+
+		/**
 		 * A list of users that the owners of this role can impersonate. <em>Note</em>:
 		 * in Serverless, the run-as feature is disabled. For API compatibility, you can
 		 * still specify an empty <code>run_as</code> field, but a non-empty list will
@@ -631,6 +692,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "global");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::remoteIndices, JsonpDeserializer.arrayDeserializer(RemoteIndicesPrivileges._DESERIALIZER),
+				"remote_indices");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"transient_metadata");

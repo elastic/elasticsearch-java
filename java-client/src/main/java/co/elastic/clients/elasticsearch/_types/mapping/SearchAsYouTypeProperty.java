@@ -80,6 +80,9 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 	private final String searchQuoteAnalyzer;
 
 	@Nullable
+	private final String similarity;
+
+	@Nullable
 	private final TermVectorOption termVector;
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,6 +97,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 		this.norms = builder.norms;
 		this.searchAnalyzer = builder.searchAnalyzer;
 		this.searchQuoteAnalyzer = builder.searchQuoteAnalyzer;
+		this.similarity = builder.similarity;
 		this.termVector = builder.termVector;
 
 	}
@@ -167,6 +171,14 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 	}
 
 	/**
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final String similarity() {
+		return this.similarity;
+	}
+
+	/**
 	 * API name: {@code term_vector}
 	 */
 	@Nullable
@@ -212,6 +224,11 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 			generator.write(this.searchQuoteAnalyzer);
 
 		}
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			generator.write(this.similarity);
+
+		}
 		if (this.termVector != null) {
 			generator.writeKey("term_vector");
 			this.termVector.serialize(generator, mapper);
@@ -248,6 +265,9 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 
 		@Nullable
 		private String searchQuoteAnalyzer;
+
+		@Nullable
+		private String similarity;
 
 		@Nullable
 		private TermVectorOption termVector;
@@ -309,6 +329,14 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 		}
 
 		/**
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable String value) {
+			this.similarity = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code term_vector}
 		 */
 		public final Builder termVector(@Nullable TermVectorOption value) {
@@ -352,6 +380,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 		op.add(Builder::norms, JsonpDeserializer.booleanDeserializer(), "norms");
 		op.add(Builder::searchAnalyzer, JsonpDeserializer.stringDeserializer(), "search_analyzer");
 		op.add(Builder::searchQuoteAnalyzer, JsonpDeserializer.stringDeserializer(), "search_quote_analyzer");
+		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
 		op.add(Builder::termVector, TermVectorOption._DESERIALIZER, "term_vector");
 
 		op.ignore("type");

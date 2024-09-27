@@ -17,16 +17,21 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import jakarta.json.stream.JsonParser;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,78 +51,76 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.analysis.KeywordTokenizer
+// typedef: snapshot.repository_verify_integrity.Response
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.analysis.KeywordTokenizer">API
+ *      "../doc-files/api-spec.html#snapshot.repository_verify_integrity.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class KeywordTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	@Nullable
-	private final Integer bufferSize;
+public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
+	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private KeywordTokenizer(Builder builder) {
-		super(builder);
+	private RepositoryVerifyIntegrityResponse(Builder builder) {
 
-		this.bufferSize = builder.bufferSize;
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static KeywordTokenizer of(Function<Builder, ObjectBuilder<KeywordTokenizer>> fn) {
+	public static RepositoryVerifyIntegrityResponse of(
+			Function<Builder, ObjectBuilder<RepositoryVerifyIntegrityResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * TokenizerDefinition variant kind.
+	 * Required - Response value.
 	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Keyword;
+	public final JsonData valueBody() {
+		return this.valueBody;
 	}
 
 	/**
-	 * API name: {@code buffer_size}
+	 * Serialize this value to JSON.
 	 */
-	@Nullable
-	public final Integer bufferSize() {
-		return this.bufferSize;
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.valueBody.serialize(generator, mapper);
+
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.write("type", "keyword");
-		super.serializeInternal(generator, mapper);
-		if (this.bufferSize != null) {
-			generator.writeKey("buffer_size");
-			generator.write(this.bufferSize);
-
-		}
-
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link KeywordTokenizer}.
+	 * Builder for {@link RepositoryVerifyIntegrityResponse}.
 	 */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<KeywordTokenizer> {
-		@Nullable
-		private Integer bufferSize;
+				ObjectBuilder<RepositoryVerifyIntegrityResponse> {
+		private JsonData valueBody;
 
 		/**
-		 * API name: {@code buffer_size}
+		 * Required - Response value.
 		 */
-		public final Builder bufferSize(@Nullable Integer value) {
-			this.bufferSize = value;
+		public final Builder valueBody(JsonData value) {
+			this.valueBody = value;
 			return this;
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
+			return this.valueBody(value);
 		}
 
 		@Override
@@ -126,31 +129,25 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
 		}
 
 		/**
-		 * Builds a {@link KeywordTokenizer}.
+		 * Builds a {@link RepositoryVerifyIntegrityResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public KeywordTokenizer build() {
+		public RepositoryVerifyIntegrityResponse build() {
 			_checkSingleUse();
 
-			return new KeywordTokenizer(this);
+			return new RepositoryVerifyIntegrityResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<RepositoryVerifyIntegrityResponse> _DESERIALIZER = createRepositoryVerifyIntegrityResponseDeserializer();
+	protected static JsonpDeserializer<RepositoryVerifyIntegrityResponse> createRepositoryVerifyIntegrityResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link KeywordTokenizer}
-	 */
-	public static final JsonpDeserializer<KeywordTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeywordTokenizer::setupKeywordTokenizerDeserializer);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupKeywordTokenizerDeserializer(ObjectDeserializer<KeywordTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
-		op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
-
-		op.ignore("type");
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

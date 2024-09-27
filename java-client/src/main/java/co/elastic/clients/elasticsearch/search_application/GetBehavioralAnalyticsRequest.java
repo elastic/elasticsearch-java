@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: search_application.get_behavioral_analytics.Request
 
 /**
- * Returns the existing behavioral analytics collections.
+ * Get behavioral analytics collections.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.get_behavioral_analytics.Request">API

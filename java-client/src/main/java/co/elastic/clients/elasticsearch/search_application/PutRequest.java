@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: search_application.put.Request
 
 /**
- * Creates or updates a search application.
+ * Create or update a search application.
  * 
  * @see <a href="../doc-files/api-spec.html#search_application.put.Request">API
  *      specification</a>

@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,41 +39,30 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#ml._types.DeploymentState">API
- *      specification</a>
+ * Builders for {@link IndicesPrivilegesQuery} variants.
+ * <p>
+ * Variants <code>json_text</code> are not available here as they don't have a
+ * dedicated class. Use {@link IndicesPrivilegesQuery}'s builder for these.
+ * 
  */
-@JsonpDeserializable
-public enum DeploymentState implements JsonEnum {
-	/**
-	 * The deployment is usable; at least one node has the model allocated.
-	 */
-	Started("started"),
-
-	/**
-	 * The deployment has recently started but is not yet usable; the model is not
-	 * allocated on any nodes.
-	 */
-	Starting("starting"),
-
-	/**
-	 * The deployment is preparing to stop and deallocate the model from the
-	 * relevant nodes.
-	 */
-	Stopping("stopping"),
-
-	;
-
-	private final String jsonValue;
-
-	DeploymentState(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class IndicesPrivilegesQueryBuilders {
+	private IndicesPrivilegesQueryBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	/**
+	 * Creates a builder for the {@link Query query} {@code IndicesPrivilegesQuery}
+	 * variant.
+	 */
+	public static Query.Builder query() {
+		return new Query.Builder();
 	}
 
-	public static final JsonEnum.Deserializer<DeploymentState> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DeploymentState.values());
+	/**
+	 * Creates a builder for the {@link RoleTemplateQuery template}
+	 * {@code IndicesPrivilegesQuery} variant.
+	 */
+	public static RoleTemplateQuery.Builder template() {
+		return new RoleTemplateQuery.Builder();
+	}
+
 }
