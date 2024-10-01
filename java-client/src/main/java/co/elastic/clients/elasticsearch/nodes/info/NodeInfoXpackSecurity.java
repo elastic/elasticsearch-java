@@ -60,6 +60,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodeInfoXpackSecurity implements JsonpSerializable {
+	@Nullable
 	private final NodeInfoXpackSecuritySsl http;
 
 	private final String enabled;
@@ -74,7 +75,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 	private NodeInfoXpackSecurity(Builder builder) {
 
-		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.http = builder.http;
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 		this.transport = builder.transport;
 		this.authc = builder.authc;
@@ -86,8 +87,9 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code http}
+	 * API name: {@code http}
 	 */
+	@Nullable
 	public final NodeInfoXpackSecuritySsl http() {
 		return this.http;
 	}
@@ -126,9 +128,11 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("http");
-		this.http.serialize(generator, mapper);
+		if (this.http != null) {
+			generator.writeKey("http");
+			this.http.serialize(generator, mapper);
 
+		}
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
@@ -159,6 +163,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<NodeInfoXpackSecurity> {
+		@Nullable
 		private NodeInfoXpackSecuritySsl http;
 
 		private String enabled;
@@ -170,15 +175,15 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		private NodeInfoXpackSecurityAuthc authc;
 
 		/**
-		 * Required - API name: {@code http}
+		 * API name: {@code http}
 		 */
-		public final Builder http(NodeInfoXpackSecuritySsl value) {
+		public final Builder http(@Nullable NodeInfoXpackSecuritySsl value) {
 			this.http = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code http}
+		 * API name: {@code http}
 		 */
 		public final Builder http(
 				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
