@@ -77,6 +77,9 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final Boolean skipIfUnlicensed;
 
+	@Nullable
+	private final Boolean traceRedact;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RedactProcessor(Builder builder) {
@@ -89,6 +92,7 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 		this.suffix = builder.suffix;
 		this.ignoreMissing = builder.ignoreMissing;
 		this.skipIfUnlicensed = builder.skipIfUnlicensed;
+		this.traceRedact = builder.traceRedact;
 
 	}
 
@@ -172,6 +176,18 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 		return this.skipIfUnlicensed;
 	}
 
+	/**
+	 * If <code>true</code> then ingest metadata
+	 * <code>_ingest._redact._is_redacted</code> is set to <code>true</code> if the
+	 * document has been redacted
+	 * <p>
+	 * API name: {@code trace_redact}
+	 */
+	@Nullable
+	public final Boolean traceRedact() {
+		return this.traceRedact;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -219,6 +235,11 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.skipIfUnlicensed);
 
 		}
+		if (this.traceRedact != null) {
+			generator.writeKey("trace_redact");
+			generator.write(this.traceRedact);
+
+		}
 
 	}
 
@@ -249,6 +270,9 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 
 		@Nullable
 		private Boolean skipIfUnlicensed;
+
+		@Nullable
+		private Boolean traceRedact;
 
 		/**
 		 * Required - The field to be redacted
@@ -347,6 +371,18 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 			return this;
 		}
 
+		/**
+		 * If <code>true</code> then ingest metadata
+		 * <code>_ingest._redact._is_redacted</code> is set to <code>true</code> if the
+		 * document has been redacted
+		 * <p>
+		 * API name: {@code trace_redact}
+		 */
+		public final Builder traceRedact(@Nullable Boolean value) {
+			this.traceRedact = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -384,6 +420,7 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 		op.add(Builder::suffix, JsonpDeserializer.stringDeserializer(), "suffix");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 		op.add(Builder::skipIfUnlicensed, JsonpDeserializer.booleanDeserializer(), "skip_if_unlicensed");
+		op.add(Builder::traceRedact, JsonpDeserializer.booleanDeserializer(), "trace_redact");
 
 	}
 

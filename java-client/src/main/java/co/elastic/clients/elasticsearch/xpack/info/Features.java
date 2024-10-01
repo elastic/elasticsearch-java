@@ -64,22 +64,17 @@ public class Features implements JsonpSerializable {
 
 	private final Feature ccr;
 
-	@Nullable
-	private final Feature dataFrame;
-
-	@Nullable
-	private final Feature dataScience;
-
 	private final Feature dataStreams;
 
 	private final Feature dataTiers;
 
 	private final Feature enrich;
 
+	private final Feature enterpriseSearch;
+
 	private final Feature eql;
 
-	@Nullable
-	private final Feature flattened;
+	private final Feature esql;
 
 	private final Feature frozenIndices;
 
@@ -110,8 +105,7 @@ public class Features implements JsonpSerializable {
 
 	private final Feature transform;
 
-	@Nullable
-	private final Feature vectors;
+	private final Feature universalProfiling;
 
 	private final Feature votingOnly;
 
@@ -126,13 +120,12 @@ public class Features implements JsonpSerializable {
 		this.aggregateMetric = ApiTypeHelper.requireNonNull(builder.aggregateMetric, this, "aggregateMetric");
 		this.analytics = ApiTypeHelper.requireNonNull(builder.analytics, this, "analytics");
 		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
-		this.dataFrame = builder.dataFrame;
-		this.dataScience = builder.dataScience;
 		this.dataStreams = ApiTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
 		this.dataTiers = ApiTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
 		this.enrich = ApiTypeHelper.requireNonNull(builder.enrich, this, "enrich");
+		this.enterpriseSearch = ApiTypeHelper.requireNonNull(builder.enterpriseSearch, this, "enterpriseSearch");
 		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
-		this.flattened = builder.flattened;
+		this.esql = ApiTypeHelper.requireNonNull(builder.esql, this, "esql");
 		this.frozenIndices = ApiTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
@@ -148,7 +141,7 @@ public class Features implements JsonpSerializable {
 		this.spatial = ApiTypeHelper.requireNonNull(builder.spatial, this, "spatial");
 		this.sql = ApiTypeHelper.requireNonNull(builder.sql, this, "sql");
 		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
-		this.vectors = builder.vectors;
+		this.universalProfiling = ApiTypeHelper.requireNonNull(builder.universalProfiling, this, "universalProfiling");
 		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
 		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
 		this.archive = ApiTypeHelper.requireNonNull(builder.archive, this, "archive");
@@ -181,22 +174,6 @@ public class Features implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_frame}
-	 */
-	@Nullable
-	public final Feature dataFrame() {
-		return this.dataFrame;
-	}
-
-	/**
-	 * API name: {@code data_science}
-	 */
-	@Nullable
-	public final Feature dataScience() {
-		return this.dataScience;
-	}
-
-	/**
 	 * Required - API name: {@code data_streams}
 	 */
 	public final Feature dataStreams() {
@@ -218,6 +195,13 @@ public class Features implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code enterprise_search}
+	 */
+	public final Feature enterpriseSearch() {
+		return this.enterpriseSearch;
+	}
+
+	/**
 	 * Required - API name: {@code eql}
 	 */
 	public final Feature eql() {
@@ -225,11 +209,10 @@ public class Features implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code flattened}
+	 * Required - API name: {@code esql}
 	 */
-	@Nullable
-	public final Feature flattened() {
-		return this.flattened;
+	public final Feature esql() {
+		return this.esql;
 	}
 
 	/**
@@ -332,11 +315,10 @@ public class Features implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code vectors}
+	 * Required - API name: {@code universal_profiling}
 	 */
-	@Nullable
-	public final Feature vectors() {
-		return this.vectors;
+	public final Feature universalProfiling() {
+		return this.universalProfiling;
 	}
 
 	/**
@@ -380,16 +362,6 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("ccr");
 		this.ccr.serialize(generator, mapper);
 
-		if (this.dataFrame != null) {
-			generator.writeKey("data_frame");
-			this.dataFrame.serialize(generator, mapper);
-
-		}
-		if (this.dataScience != null) {
-			generator.writeKey("data_science");
-			this.dataScience.serialize(generator, mapper);
-
-		}
 		generator.writeKey("data_streams");
 		this.dataStreams.serialize(generator, mapper);
 
@@ -399,14 +371,15 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("enrich");
 		this.enrich.serialize(generator, mapper);
 
+		generator.writeKey("enterprise_search");
+		this.enterpriseSearch.serialize(generator, mapper);
+
 		generator.writeKey("eql");
 		this.eql.serialize(generator, mapper);
 
-		if (this.flattened != null) {
-			generator.writeKey("flattened");
-			this.flattened.serialize(generator, mapper);
+		generator.writeKey("esql");
+		this.esql.serialize(generator, mapper);
 
-		}
 		generator.writeKey("frozen_indices");
 		this.frozenIndices.serialize(generator, mapper);
 
@@ -451,11 +424,9 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("transform");
 		this.transform.serialize(generator, mapper);
 
-		if (this.vectors != null) {
-			generator.writeKey("vectors");
-			this.vectors.serialize(generator, mapper);
+		generator.writeKey("universal_profiling");
+		this.universalProfiling.serialize(generator, mapper);
 
-		}
 		generator.writeKey("voting_only");
 		this.votingOnly.serialize(generator, mapper);
 
@@ -485,22 +456,17 @@ public class Features implements JsonpSerializable {
 
 		private Feature ccr;
 
-		@Nullable
-		private Feature dataFrame;
-
-		@Nullable
-		private Feature dataScience;
-
 		private Feature dataStreams;
 
 		private Feature dataTiers;
 
 		private Feature enrich;
 
+		private Feature enterpriseSearch;
+
 		private Feature eql;
 
-		@Nullable
-		private Feature flattened;
+		private Feature esql;
 
 		private Feature frozenIndices;
 
@@ -531,8 +497,7 @@ public class Features implements JsonpSerializable {
 
 		private Feature transform;
 
-		@Nullable
-		private Feature vectors;
+		private Feature universalProfiling;
 
 		private Feature votingOnly;
 
@@ -586,36 +551,6 @@ public class Features implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_frame}
-		 */
-		public final Builder dataFrame(@Nullable Feature value) {
-			this.dataFrame = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code data_frame}
-		 */
-		public final Builder dataFrame(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.dataFrame(fn.apply(new Feature.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code data_science}
-		 */
-		public final Builder dataScience(@Nullable Feature value) {
-			this.dataScience = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code data_science}
-		 */
-		public final Builder dataScience(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.dataScience(fn.apply(new Feature.Builder()).build());
-		}
-
-		/**
 		 * Required - API name: {@code data_streams}
 		 */
 		public final Builder dataStreams(Feature value) {
@@ -661,6 +596,21 @@ public class Features implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code enterprise_search}
+		 */
+		public final Builder enterpriseSearch(Feature value) {
+			this.enterpriseSearch = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code enterprise_search}
+		 */
+		public final Builder enterpriseSearch(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.enterpriseSearch(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code eql}
 		 */
 		public final Builder eql(Feature value) {
@@ -676,18 +626,18 @@ public class Features implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code flattened}
+		 * Required - API name: {@code esql}
 		 */
-		public final Builder flattened(@Nullable Feature value) {
-			this.flattened = value;
+		public final Builder esql(Feature value) {
+			this.esql = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code flattened}
+		 * Required - API name: {@code esql}
 		 */
-		public final Builder flattened(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.flattened(fn.apply(new Feature.Builder()).build());
+		public final Builder esql(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.esql(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -901,18 +851,18 @@ public class Features implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vectors}
+		 * Required - API name: {@code universal_profiling}
 		 */
-		public final Builder vectors(@Nullable Feature value) {
-			this.vectors = value;
+		public final Builder universalProfiling(Feature value) {
+			this.universalProfiling = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code vectors}
+		 * Required - API name: {@code universal_profiling}
 		 */
-		public final Builder vectors(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.vectors(fn.apply(new Feature.Builder()).build());
+		public final Builder universalProfiling(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.universalProfiling(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -991,13 +941,12 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::aggregateMetric, Feature._DESERIALIZER, "aggregate_metric");
 		op.add(Builder::analytics, Feature._DESERIALIZER, "analytics");
 		op.add(Builder::ccr, Feature._DESERIALIZER, "ccr");
-		op.add(Builder::dataFrame, Feature._DESERIALIZER, "data_frame");
-		op.add(Builder::dataScience, Feature._DESERIALIZER, "data_science");
 		op.add(Builder::dataStreams, Feature._DESERIALIZER, "data_streams");
 		op.add(Builder::dataTiers, Feature._DESERIALIZER, "data_tiers");
 		op.add(Builder::enrich, Feature._DESERIALIZER, "enrich");
+		op.add(Builder::enterpriseSearch, Feature._DESERIALIZER, "enterprise_search");
 		op.add(Builder::eql, Feature._DESERIALIZER, "eql");
-		op.add(Builder::flattened, Feature._DESERIALIZER, "flattened");
+		op.add(Builder::esql, Feature._DESERIALIZER, "esql");
 		op.add(Builder::frozenIndices, Feature._DESERIALIZER, "frozen_indices");
 		op.add(Builder::graph, Feature._DESERIALIZER, "graph");
 		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
@@ -1012,7 +961,7 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::spatial, Feature._DESERIALIZER, "spatial");
 		op.add(Builder::sql, Feature._DESERIALIZER, "sql");
 		op.add(Builder::transform, Feature._DESERIALIZER, "transform");
-		op.add(Builder::vectors, Feature._DESERIALIZER, "vectors");
+		op.add(Builder::universalProfiling, Feature._DESERIALIZER, "universal_profiling");
 		op.add(Builder::votingOnly, Feature._DESERIALIZER, "voting_only");
 		op.add(Builder::watcher, Feature._DESERIALIZER, "watcher");
 		op.add(Builder::archive, Feature._DESERIALIZER, "archive");
