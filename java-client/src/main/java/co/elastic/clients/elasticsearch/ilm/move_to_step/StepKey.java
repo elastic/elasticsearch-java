@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StepKey implements JsonpSerializable {
+	@Nullable
 	private final String action;
 
+	@Nullable
 	private final String name;
 
 	private final String phase;
@@ -69,8 +71,8 @@ public class StepKey implements JsonpSerializable {
 
 	private StepKey(Builder builder) {
 
-		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.action = builder.action;
+		this.name = builder.name;
 		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
@@ -80,15 +82,17 @@ public class StepKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code action}
+	 * API name: {@code action}
 	 */
+	@Nullable
 	public final String action() {
 		return this.action;
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * API name: {@code name}
 	 */
+	@Nullable
 	public final String name() {
 		return this.name;
 	}
@@ -111,12 +115,16 @@ public class StepKey implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("action");
-		generator.write(this.action);
+		if (this.action != null) {
+			generator.writeKey("action");
+			generator.write(this.action);
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		}
+		if (this.name != null) {
+			generator.writeKey("name");
+			generator.write(this.name);
 
+		}
 		generator.writeKey("phase");
 		generator.write(this.phase);
 
@@ -134,24 +142,26 @@ public class StepKey implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<StepKey> {
+		@Nullable
 		private String action;
 
+		@Nullable
 		private String name;
 
 		private String phase;
 
 		/**
-		 * Required - API name: {@code action}
+		 * API name: {@code action}
 		 */
-		public final Builder action(String value) {
+		public final Builder action(@Nullable String value) {
 			this.action = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code name}
 		 */
-		public final Builder name(String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
