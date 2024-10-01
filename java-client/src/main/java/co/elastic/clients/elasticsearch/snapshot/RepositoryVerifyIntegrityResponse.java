@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -26,10 +27,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import jakarta.json.stream.JsonParser;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,72 +51,43 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.DataStreamVisibility
+// typedef: snapshot.repository_verify_integrity.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.DataStreamVisibility">API
+ *      "../doc-files/api-spec.html#snapshot.repository_verify_integrity.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamVisibility implements JsonpSerializable {
-	@Nullable
-	private final Boolean hidden;
-
-	@Nullable
-	private final Boolean allowCustomRouting;
+public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
+	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataStreamVisibility(Builder builder) {
+	private RepositoryVerifyIntegrityResponse(Builder builder) {
 
-		this.hidden = builder.hidden;
-		this.allowCustomRouting = builder.allowCustomRouting;
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static DataStreamVisibility of(Function<Builder, ObjectBuilder<DataStreamVisibility>> fn) {
+	public static RepositoryVerifyIntegrityResponse of(
+			Function<Builder, ObjectBuilder<RepositoryVerifyIntegrityResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code hidden}
+	 * Required - Response value.
 	 */
-	@Nullable
-	public final Boolean hidden() {
-		return this.hidden;
+	public final JsonData valueBody() {
+		return this.valueBody;
 	}
 
 	/**
-	 * API name: {@code allow_custom_routing}
-	 */
-	@Nullable
-	public final Boolean allowCustomRouting() {
-		return this.allowCustomRouting;
-	}
-
-	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.hidden != null) {
-			generator.writeKey("hidden");
-			generator.write(this.hidden);
-
-		}
-		if (this.allowCustomRouting != null) {
-			generator.writeKey("allow_custom_routing");
-			generator.write(this.allowCustomRouting);
-
-		}
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -126,32 +99,28 @@ public class DataStreamVisibility implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamVisibility}.
+	 * Builder for {@link RepositoryVerifyIntegrityResponse}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DataStreamVisibility> {
-		@Nullable
-		private Boolean hidden;
-
-		@Nullable
-		private Boolean allowCustomRouting;
+				ObjectBuilder<RepositoryVerifyIntegrityResponse> {
+		private JsonData valueBody;
 
 		/**
-		 * API name: {@code hidden}
+		 * Required - Response value.
 		 */
-		public final Builder hidden(@Nullable Boolean value) {
-			this.hidden = value;
+		public final Builder valueBody(JsonData value) {
+			this.valueBody = value;
 			return this;
 		}
 
-		/**
-		 * API name: {@code allow_custom_routing}
-		 */
-		public final Builder allowCustomRouting(@Nullable Boolean value) {
-			this.allowCustomRouting = value;
-			return this;
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
+			return this.valueBody(value);
 		}
 
 		@Override
@@ -160,31 +129,25 @@ public class DataStreamVisibility implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataStreamVisibility}.
+		 * Builds a {@link RepositoryVerifyIntegrityResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataStreamVisibility build() {
+		public RepositoryVerifyIntegrityResponse build() {
 			_checkSingleUse();
 
-			return new DataStreamVisibility(this);
+			return new RepositoryVerifyIntegrityResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<RepositoryVerifyIntegrityResponse> _DESERIALIZER = createRepositoryVerifyIntegrityResponseDeserializer();
+	protected static JsonpDeserializer<RepositoryVerifyIntegrityResponse> createRepositoryVerifyIntegrityResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link DataStreamVisibility}
-	 */
-	public static final JsonpDeserializer<DataStreamVisibility> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamVisibility::setupDataStreamVisibilityDeserializer);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupDataStreamVisibilityDeserializer(ObjectDeserializer<DataStreamVisibility.Builder> op) {
-
-		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
-		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

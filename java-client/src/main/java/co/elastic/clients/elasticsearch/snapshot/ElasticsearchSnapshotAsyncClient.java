@@ -348,6 +348,40 @@ public class ElasticsearchSnapshotAsyncClient
 				GetRepositoryRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: snapshot.repository_verify_integrity
+
+	/**
+	 * Verifies the integrity of the contents of a snapshot repository
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RepositoryVerifyIntegrityResponse> repositoryVerifyIntegrity(
+			RepositoryVerifyIntegrityRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RepositoryVerifyIntegrityRequest, RepositoryVerifyIntegrityResponse, ErrorResponse> endpoint = (JsonEndpoint<RepositoryVerifyIntegrityRequest, RepositoryVerifyIntegrityResponse, ErrorResponse>) RepositoryVerifyIntegrityRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Verifies the integrity of the contents of a snapshot repository
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RepositoryVerifyIntegrityRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<RepositoryVerifyIntegrityResponse> repositoryVerifyIntegrity(
+			Function<RepositoryVerifyIntegrityRequest.Builder, ObjectBuilder<RepositoryVerifyIntegrityRequest>> fn) {
+		return repositoryVerifyIntegrity(fn.apply(new RepositoryVerifyIntegrityRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: snapshot.restore
 
 	/**

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: search_application.put_behavioral_analytics.Request
 
 /**
- * Creates a behavioral analytics collection.
+ * Create a behavioral analytics collection.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.put_behavioral_analytics.Request">API

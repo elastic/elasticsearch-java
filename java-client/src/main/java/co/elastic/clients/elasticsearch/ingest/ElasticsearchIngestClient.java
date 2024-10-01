@@ -71,7 +71,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Deletes a geoip database configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -90,7 +90,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -155,7 +155,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Returns information about one or more geoip database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -174,7 +174,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link GetGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -188,7 +188,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Returns information about one or more geoip database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Returns information about one or more geoip database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -289,7 +289,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link PutGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/TODO.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-geoip-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

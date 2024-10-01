@@ -88,7 +88,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 	private final long startTime;
 
-	private final DeploymentState state;
+	private final DeploymentAssignmentState state;
 
 	private final int threadsPerAllocation;
 
@@ -245,7 +245,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code state}
 	 */
-	public final DeploymentState state() {
+	public final DeploymentAssignmentState state() {
 		return this.state;
 	}
 
@@ -373,7 +373,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 		private Long startTime;
 
-		private DeploymentState state;
+		private DeploymentAssignmentState state;
 
 		private Integer threadsPerAllocation;
 
@@ -552,7 +552,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public final Builder state(DeploymentState value) {
+		public final Builder state(DeploymentAssignmentState value) {
 			this.state = value;
 			return this;
 		}
@@ -620,7 +620,7 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		op.add(Builder::rejectedExecutionCount, JsonpDeserializer.integerDeserializer(), "rejected_execution_count");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::startTime, JsonpDeserializer.longDeserializer(), "start_time");
-		op.add(Builder::state, DeploymentState._DESERIALIZER, "state");
+		op.add(Builder::state, DeploymentAssignmentState._DESERIALIZER, "state");
 		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 		op.add(Builder::timeoutCount, JsonpDeserializer.integerDeserializer(), "timeout_count");
 

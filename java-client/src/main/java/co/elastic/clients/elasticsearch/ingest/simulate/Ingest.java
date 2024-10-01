@@ -60,6 +60,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
+	@Nullable
+	private final Redact redact;
+
 	private final DateTime timestamp;
 
 	@Nullable
@@ -69,6 +72,7 @@ public class Ingest implements JsonpSerializable {
 
 	private Ingest(Builder builder) {
 
+		this.redact = builder.redact;
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.pipeline = builder.pipeline;
 
@@ -76,6 +80,14 @@ public class Ingest implements JsonpSerializable {
 
 	public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code _redact}
+	 */
+	@Nullable
+	public final Redact redact() {
+		return this.redact;
 	}
 
 	/**
@@ -104,6 +116,11 @@ public class Ingest implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.redact != null) {
+			generator.writeKey("_redact");
+			this.redact.serialize(generator, mapper);
+
+		}
 		generator.writeKey("timestamp");
 		this.timestamp.serialize(generator, mapper);
 		if (this.pipeline != null) {
@@ -126,10 +143,28 @@ public class Ingest implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Ingest> {
+		@Nullable
+		private Redact redact;
+
 		private DateTime timestamp;
 
 		@Nullable
 		private String pipeline;
+
+		/**
+		 * API name: {@code _redact}
+		 */
+		public final Builder redact(@Nullable Redact value) {
+			this.redact = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _redact}
+		 */
+		public final Builder redact(Function<Redact.Builder, ObjectBuilder<Redact>> fn) {
+			return this.redact(fn.apply(new Redact.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code timestamp}
@@ -175,6 +210,7 @@ public class Ingest implements JsonpSerializable {
 
 	protected static void setupIngestDeserializer(ObjectDeserializer<Ingest.Builder> op) {
 
+		op.add(Builder::redact, Redact._DESERIALIZER, "_redact");
 		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 

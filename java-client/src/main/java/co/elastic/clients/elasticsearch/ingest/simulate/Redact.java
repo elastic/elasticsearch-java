@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,12 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -48,33 +49,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.ShardsOperationResponseBase
+// typedef: ingest.simulate.Redact
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#_types.ShardsOperationResponseBase">API
+ * @see <a href="../../doc-files/api-spec.html#ingest.simulate.Redact">API
  *      specification</a>
  */
-
-public abstract class ShardsOperationResponseBase implements JsonpSerializable {
-	@Nullable
-	private final ShardStatistics shards;
+@JsonpDeserializable
+public class Redact implements JsonpSerializable {
+	private final boolean isRedacted;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
+	private Redact(Builder builder) {
 
-		this.shards = builder.shards;
+		this.isRedacted = ApiTypeHelper.requireNonNull(builder.isRedacted, this, "isRedacted");
 
 	}
 
+	public static Redact of(Function<Builder, ObjectBuilder<Redact>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
 	/**
-	 * API name: {@code _shards}
+	 * Required - indicates if document has been redacted
+	 * <p>
+	 * API name: {@code _is_redacted}
 	 */
-	@Nullable
-	public final ShardStatistics shards() {
-		return this.shards;
+	public final boolean isRedacted() {
+		return this.isRedacted;
 	}
 
 	/**
@@ -88,11 +92,8 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.shards != null) {
-			generator.writeKey("_shards");
-			this.shards.serialize(generator, mapper);
-
-		}
+		generator.writeKey("_is_redacted");
+		generator.write(this.isRedacted);
 
 	}
 
@@ -101,36 +102,54 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
-		@Nullable
-		private ShardStatistics shards;
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link Redact}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Redact> {
+		private Boolean isRedacted;
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - indicates if document has been redacted
+		 * <p>
+		 * API name: {@code _is_redacted}
 		 */
-		public final BuilderT shards(@Nullable ShardStatistics value) {
-			this.shards = value;
-			return self();
+		public final Builder isRedacted(boolean value) {
+			this.isRedacted = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Builds a {@link Redact}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
 		 */
-		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Redact build() {
+			_checkSingleUse();
+
+			return new Redact(this);
 		}
-
-		protected abstract BuilderT self();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupShardsOperationResponseBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
+	/**
+	 * Json deserializer for {@link Redact}
+	 */
+	public static final JsonpDeserializer<Redact> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Redact::setupRedactDeserializer);
+
+	protected static void setupRedactDeserializer(ObjectDeserializer<Redact.Builder> op) {
+
+		op.add(Builder::isRedacted, JsonpDeserializer.booleanDeserializer(), "_is_redacted");
 
 	}
 

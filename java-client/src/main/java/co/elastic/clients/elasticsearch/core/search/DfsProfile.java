@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,10 +26,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,49 +50,47 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.DataStreamVisibility
+// typedef: _global.search._types.DfsProfile
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.DataStreamVisibility">API
+ *      "../../doc-files/api-spec.html#_global.search._types.DfsProfile">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamVisibility implements JsonpSerializable {
+public class DfsProfile implements JsonpSerializable {
 	@Nullable
-	private final Boolean hidden;
+	private final DfsStatisticsProfile statistics;
 
-	@Nullable
-	private final Boolean allowCustomRouting;
+	private final List<DfsKnnProfile> knn;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataStreamVisibility(Builder builder) {
+	private DfsProfile(Builder builder) {
 
-		this.hidden = builder.hidden;
-		this.allowCustomRouting = builder.allowCustomRouting;
+		this.statistics = builder.statistics;
+		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 
 	}
 
-	public static DataStreamVisibility of(Function<Builder, ObjectBuilder<DataStreamVisibility>> fn) {
+	public static DfsProfile of(Function<Builder, ObjectBuilder<DfsProfile>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code hidden}
+	 * API name: {@code statistics}
 	 */
 	@Nullable
-	public final Boolean hidden() {
-		return this.hidden;
+	public final DfsStatisticsProfile statistics() {
+		return this.statistics;
 	}
 
 	/**
-	 * API name: {@code allow_custom_routing}
+	 * API name: {@code knn}
 	 */
-	@Nullable
-	public final Boolean allowCustomRouting() {
-		return this.allowCustomRouting;
+	public final List<DfsKnnProfile> knn() {
+		return this.knn;
 	}
 
 	/**
@@ -105,14 +104,19 @@ public class DataStreamVisibility implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.hidden != null) {
-			generator.writeKey("hidden");
-			generator.write(this.hidden);
+		if (this.statistics != null) {
+			generator.writeKey("statistics");
+			this.statistics.serialize(generator, mapper);
 
 		}
-		if (this.allowCustomRouting != null) {
-			generator.writeKey("allow_custom_routing");
-			generator.write(this.allowCustomRouting);
+		if (ApiTypeHelper.isDefined(this.knn)) {
+			generator.writeKey("knn");
+			generator.writeStartArray();
+			for (DfsKnnProfile item0 : this.knn) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -126,32 +130,59 @@ public class DataStreamVisibility implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamVisibility}.
+	 * Builder for {@link DfsProfile}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<DataStreamVisibility> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DfsProfile> {
 		@Nullable
-		private Boolean hidden;
+		private DfsStatisticsProfile statistics;
 
 		@Nullable
-		private Boolean allowCustomRouting;
+		private List<DfsKnnProfile> knn;
 
 		/**
-		 * API name: {@code hidden}
+		 * API name: {@code statistics}
 		 */
-		public final Builder hidden(@Nullable Boolean value) {
-			this.hidden = value;
+		public final Builder statistics(@Nullable DfsStatisticsProfile value) {
+			this.statistics = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code allow_custom_routing}
+		 * API name: {@code statistics}
 		 */
-		public final Builder allowCustomRouting(@Nullable Boolean value) {
-			this.allowCustomRouting = value;
+		public final Builder statistics(
+				Function<DfsStatisticsProfile.Builder, ObjectBuilder<DfsStatisticsProfile>> fn) {
+			return this.statistics(fn.apply(new DfsStatisticsProfile.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code knn}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>knn</code>.
+		 */
+		public final Builder knn(List<DfsKnnProfile> list) {
+			this.knn = _listAddAll(this.knn, list);
 			return this;
+		}
+
+		/**
+		 * API name: {@code knn}
+		 * <p>
+		 * Adds one or more values to <code>knn</code>.
+		 */
+		public final Builder knn(DfsKnnProfile value, DfsKnnProfile... values) {
+			this.knn = _listAdd(this.knn, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code knn}
+		 * <p>
+		 * Adds a value to <code>knn</code> using a builder lambda.
+		 */
+		public final Builder knn(Function<DfsKnnProfile.Builder, ObjectBuilder<DfsKnnProfile>> fn) {
+			return knn(fn.apply(new DfsKnnProfile.Builder()).build());
 		}
 
 		@Override
@@ -160,30 +191,30 @@ public class DataStreamVisibility implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataStreamVisibility}.
+		 * Builds a {@link DfsProfile}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataStreamVisibility build() {
+		public DfsProfile build() {
 			_checkSingleUse();
 
-			return new DataStreamVisibility(this);
+			return new DfsProfile(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DataStreamVisibility}
+	 * Json deserializer for {@link DfsProfile}
 	 */
-	public static final JsonpDeserializer<DataStreamVisibility> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamVisibility::setupDataStreamVisibilityDeserializer);
+	public static final JsonpDeserializer<DfsProfile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DfsProfile::setupDfsProfileDeserializer);
 
-	protected static void setupDataStreamVisibilityDeserializer(ObjectDeserializer<DataStreamVisibility.Builder> op) {
+	protected static void setupDfsProfileDeserializer(ObjectDeserializer<DfsProfile.Builder> op) {
 
-		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
-		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
+		op.add(Builder::statistics, DfsStatisticsProfile._DESERIALIZER, "statistics");
+		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(DfsKnnProfile._DESERIALIZER), "knn");
 
 	}
 

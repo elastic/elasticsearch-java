@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,39 +40,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#ml._types.DeploymentAssignmentState">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.info.XPackCategory">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum DeploymentAssignmentState implements JsonEnum {
-	/**
-	 * The deployment is usable; at least one node has the model allocated.
-	 */
-	Started("started"),
+public enum XPackCategory implements JsonEnum {
+	Build("build"),
 
-	/**
-	 * The deployment has recently started but is not yet usable; the model is not
-	 * allocated on any nodes.
-	 */
-	Starting("starting"),
+	Features("features"),
 
-	/**
-	 * The deployment is preparing to stop and deallocate the model from the
-	 * relevant nodes.
-	 */
-	Stopping("stopping"),
-
-	/**
-	 * The deployment is on a failed state and must be re-deployed.
-	 */
-	Failed("failed"),
+	License("license"),
 
 	;
 
 	private final String jsonValue;
 
-	DeploymentAssignmentState(String jsonValue) {
+	XPackCategory(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -80,6 +63,6 @@ public enum DeploymentAssignmentState implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<DeploymentAssignmentState> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DeploymentAssignmentState.values());
+	public static final JsonEnum.Deserializer<XPackCategory> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			XPackCategory.values());
 }
