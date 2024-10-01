@@ -393,11 +393,12 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
             // if the option to print the original body has been set, the body has to be
             // copied first to another stream to be read again by the exception class
-            if(options().retrieveOriginalJsonResponseOnException()){
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                entity.writeTo(baos);
-                content = new ByteArrayInputStream(baos.toByteArray());
-                contentForException = new ByteArrayInputStream(baos.toByteArray());
+            if(options().retrieveOriginalJsonResponseOnException()) {
+                try(ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                    entity.writeTo(baos);
+                    content = new ByteArrayInputStream(baos.toByteArray());
+                    contentForException = new ByteArrayInputStream(baos.toByteArray());
+                }
             }
 
             @SuppressWarnings("unchecked")

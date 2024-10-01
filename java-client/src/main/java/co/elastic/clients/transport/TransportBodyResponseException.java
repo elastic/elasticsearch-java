@@ -11,10 +11,6 @@ public class TransportBodyResponseException extends TransportException {
 
     private String originalBody;
 
-    public TransportBodyResponseException(InputStream originalBody, TransportHttpClient.Response response, String message, String endpointId) {
-        this(originalBody, response, message, endpointId, null);
-    }
-
     public TransportBodyResponseException(InputStream originalBody,TransportHttpClient.Response response, String message, String endpointId,
                               Throwable cause) {
         super(response, message, endpointId, cause);
