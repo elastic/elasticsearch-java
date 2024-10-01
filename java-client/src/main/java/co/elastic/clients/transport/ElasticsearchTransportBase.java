@@ -45,6 +45,8 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -377,28 +379,41 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     ) throws IOException {
 
         if (endpoint instanceof JsonEndpoint) {
+
+            // Expecting a body
+            if (entity == null) {
+                throw new TransportException(
+                    clientResp,
+                    "Expecting a response body, but none was sent",
+                    endpoint.id()
+                );
+            }
+            InputStream content = entity.asInputStream();
+            InputStream contentForException = null;
+
+            // if the option to print the original body has been set, the body has to be
+            // copied first to another stream to be read again by the exception class
+            if(options().retrieveOriginalJsonResponseOnException()){
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                entity.writeTo(baos);
+                content = new ByteArrayInputStream(baos.toByteArray());
+                contentForException = new ByteArrayInputStream(baos.toByteArray());
+            }
+
             @SuppressWarnings("unchecked")
             JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
             // Successful response
             ResponseT response = null;
             JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
             if (responseParser != null) {
-                // Expecting a body
-                if (entity == null) {
-                    throw new TransportException(
-                        clientResp,
-                        "Expecting a response body, but none was sent",
-                        endpoint.id()
-                    );
-                }
                 checkJsonContentType(entity.contentType(), clientResp, endpoint);
                 try (
-                    InputStream content = entity.asInputStream();
                     JsonParser parser = mapper.jsonProvider().createParser(content)
                 ) {
                     response = responseParser.deserialize(parser, mapper);
                 } catch (Exception e) {
-                    throw new TransportException(
+                    throw new TransportBodyResponseException(
+                        contentForException,
                         clientResp,
                         "Failed to decode response",
                         endpoint.id(),

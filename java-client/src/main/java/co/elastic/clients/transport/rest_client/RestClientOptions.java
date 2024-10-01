@@ -42,6 +42,8 @@ public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;
 
+    boolean retrieveOriginalJsonResponseOnException;
+
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
     @VisibleForTesting
@@ -97,6 +99,15 @@ public class RestClientOptions implements TransportOptions {
         }
 
         return warnings -> options.getWarningsHandler().warningsShouldFailRequest(warnings);
+    }
+
+    @Override
+    public boolean retrieveOriginalJsonResponseOnException() {
+        return this.retrieveOriginalJsonResponseOnException;
+    }
+
+    public void setRetrieveOriginalJsonResponseOnException(boolean retrieveOriginalJsonResponseOnException) {
+        this.retrieveOriginalJsonResponseOnException = retrieveOriginalJsonResponseOnException;
     }
 
     @Override
@@ -178,6 +189,11 @@ public class RestClientOptions implements TransportOptions {
                 });
             }
 
+            return this;
+        }
+
+        @Override
+        public TransportOptions.Builder retrieveOriginalJsonResponseOnException(boolean value) {
             return this;
         }
 
