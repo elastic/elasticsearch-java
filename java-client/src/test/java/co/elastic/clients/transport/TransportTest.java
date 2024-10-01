@@ -21,9 +21,11 @@ package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
+import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
@@ -33,6 +35,9 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+
+import static co.elastic.clients.util.ContentType.APPLICATION_JSON;
 
 public class TransportTest extends Assertions {
 
@@ -71,5 +76,59 @@ public class TransportTest extends Assertions {
         // Original response is transport-dependent
         Response restClientResponse = (Response)ex.response().originalResponse();
         assertEquals(401, restClientResponse.getStatusLine().getStatusCode());
+    }
+
+
+    @Test
+    public void testOriginalJsonBodyRetrievalException() throws Exception {
+        HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
+
+        httpServer.createContext("/_cat/indices", exchange -> {
+            exchange.getResponseHeaders().put("Content-Type", Collections.singletonList(APPLICATION_JSON));
+            exchange.getResponseHeaders().put("X-Elastic-Product", Collections.singletonList("Elasticsearch"));
+            exchange.sendResponseHeaders(200, 0);
+            OutputStream out = exchange.getResponseBody();
+            out.write(
+                "definitely not json".getBytes(StandardCharsets.UTF_8)
+            );
+            out.close();
+        });
+
+        httpServer.start();
+        InetSocketAddress address = httpServer.getAddress();
+
+        RestClient restClient = RestClient
+            .builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
+            .build();
+
+        // no transport options, should throw TransportBodyResponseException, but with an empty originalBody
+        ElasticsearchClient esClient = new ElasticsearchClient(new RestClientTransport(restClient, new JacksonJsonpMapper()));
+
+        TransportBodyResponseException ex = Assertions.assertThrows(
+            TransportBodyResponseException.class,
+            () -> esClient.cat().indices()
+        );
+
+        assertEquals(200, ex.statusCode());
+        assertEquals(null, ex.originalBody());
+
+        // setting transport option
+        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT);
+        options.setRetrieveOriginalJsonResponseOnException(true);
+
+        ElasticsearchTransport transport = new RestClientTransport(
+            restClient, new JacksonJsonpMapper(), options);
+
+        ElasticsearchClient esClientOptions = new ElasticsearchClient(transport);
+
+        ex = Assertions.assertThrows(
+            TransportBodyResponseException.class,
+            () -> esClientOptions.cat().indices()
+        );
+
+        httpServer.stop(0);
+
+        assertEquals(200, ex.statusCode());
+        assertEquals( "definitely not json", ex.originalBody());
     }
 }
