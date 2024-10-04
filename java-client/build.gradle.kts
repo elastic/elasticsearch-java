@@ -221,7 +221,7 @@ dependencies {
     }
 
     // Apache-2.0
-    testImplementation("commons-io:commons-io:2.11.0")
+    testImplementation("commons-io:commons-io:2.17.0")
 
     // EPL-2.0
     // https://junit.org/junit5/
