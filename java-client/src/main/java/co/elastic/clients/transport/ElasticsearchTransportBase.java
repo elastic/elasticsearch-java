@@ -375,21 +375,20 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
         if (endpoint instanceof JsonEndpoint) {
 
-            // Expecting a body
-            if (entity == null) {
-                throw new TransportException(
-                    clientResp,
-                    "Expecting a response body, but none was sent",
-                    endpoint.id()
-                );
-            }
-
             @SuppressWarnings("unchecked")
             JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
             // Successful response
             ResponseT response = null;
             JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
             if (responseParser != null) {
+                // Expecting a body
+                if (entity == null) {
+                    throw new TransportException(
+                        clientResp,
+                        "Expecting a response body, but none was sent",
+                        endpoint.id()
+                    );
+                }
                 checkJsonContentType(entity.contentType(), clientResp, endpoint);
                 try (
                     JsonParser parser = mapper.jsonProvider().createParser(entity.asInputStream())
