@@ -36,7 +36,6 @@ import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearc
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
-import co.elastic.clients.util.ByteArrayBinaryData;
 import co.elastic.clients.util.ContentType;
 import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
@@ -45,8 +44,6 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
