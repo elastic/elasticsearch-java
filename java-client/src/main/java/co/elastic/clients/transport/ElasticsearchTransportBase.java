@@ -335,11 +335,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
                 checkJsonContentType(entity.contentType(), clientResp, endpoint);
 
-                // We may have to replay it.
-                if (!entity.isRepeatable()) {
-                    entity = new ByteArrayBinaryData(entity);
-                }
-
                 try (InputStream content = entity.asInputStream()) {
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
@@ -388,18 +383,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                     endpoint.id()
                 );
             }
-            InputStream content = entity.asInputStream();
-            InputStream contentForException = null;
-
-            // if the option to print the original body has been set, the body has to be
-            // copied first to another stream to be read again by the exception class
-            if(options().retrieveOriginalJsonResponseOnException()) {
-                try(ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-                    entity.writeTo(baos);
-                    content = new ByteArrayInputStream(baos.toByteArray());
-                    contentForException = new ByteArrayInputStream(baos.toByteArray());
-                }
-            }
 
             @SuppressWarnings("unchecked")
             JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
@@ -409,12 +392,11 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             if (responseParser != null) {
                 checkJsonContentType(entity.contentType(), clientResp, endpoint);
                 try (
-                    JsonParser parser = mapper.jsonProvider().createParser(content)
+                    JsonParser parser = mapper.jsonProvider().createParser(entity.asInputStream())
                 ) {
                     response = responseParser.deserialize(parser, mapper);
                 } catch (Exception e) {
-                    throw new TransportBodyResponseException(
-                        contentForException,
+                    throw new TransportException(
                         clientResp,
                         "Failed to decode response",
                         endpoint.id(),

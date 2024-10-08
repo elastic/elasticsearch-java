@@ -89,7 +89,7 @@ public class DefaultTransportOptions implements TransportOptions {
     }
 
     @Override
-    public boolean retrieveOriginalJsonResponseOnException() {
+    public boolean keepResponseBodyOnException() {
         return false;
     }
 
@@ -116,7 +116,7 @@ public class DefaultTransportOptions implements TransportOptions {
         private HeaderMap headers;
         private Map<String, String> parameters;
         private Function<List<String>, Boolean> onWarnings;
-        private boolean retrieveOriginalJsonResponseOnException;
+        private boolean keepResponseBodyOnException;
 
         public AbstractBuilder() {
         }
@@ -125,14 +125,14 @@ public class DefaultTransportOptions implements TransportOptions {
             this.headers = new HeaderMap(options.headers);
             this.parameters = copyOrNull(options.parameters);
             this.onWarnings = options.onWarnings;
-            this.retrieveOriginalJsonResponseOnException = options.retrieveOriginalJsonResponseOnException();
+            this.keepResponseBodyOnException = options.keepResponseBodyOnException();
         }
 
         protected abstract BuilderT self();
 
         @Override
-        public BuilderT retrieveOriginalJsonResponseOnException(boolean value){
-            this.retrieveOriginalJsonResponseOnException = value;
+        public BuilderT keepResponseBodyOnException(boolean value){
+            this.keepResponseBodyOnException = value;
             return self();
         }
 

@@ -38,7 +38,7 @@ public interface TransportOptions {
 
     Function<List<String>, Boolean> onWarnings();
 
-    boolean retrieveOriginalJsonResponseOnException();
+    boolean keepResponseBodyOnException();
 
     Builder toBuilder();
 
@@ -62,6 +62,6 @@ public interface TransportOptions {
 
         Builder onWarnings(Function<List<String>, Boolean> listener);
 
-        Builder retrieveOriginalJsonResponseOnException(boolean value);
+        Builder keepResponseBodyOnException(boolean value);
     }
 }

@@ -42,7 +42,7 @@ public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;
 
-    boolean retrieveOriginalJsonResponseOnException;
+    boolean keepResponseBodyOnException;
 
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
@@ -65,7 +65,8 @@ public class RestClientOptions implements TransportOptions {
         return builder.build();
     }
 
-    public RestClientOptions(RequestOptions options) {
+    public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException) {
+        this.keepResponseBodyOnException = keepResponseBodyOnException;
         this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
@@ -102,12 +103,8 @@ public class RestClientOptions implements TransportOptions {
     }
 
     @Override
-    public boolean retrieveOriginalJsonResponseOnException() {
-        return this.retrieveOriginalJsonResponseOnException;
-    }
-
-    public void setRetrieveOriginalJsonResponseOnException(boolean retrieveOriginalJsonResponseOnException) {
-        this.retrieveOriginalJsonResponseOnException = retrieveOriginalJsonResponseOnException;
+    public boolean keepResponseBodyOnException() {
+        return this.keepResponseBodyOnException;
     }
 
     @Override
@@ -118,6 +115,8 @@ public class RestClientOptions implements TransportOptions {
     public static class Builder implements TransportOptions.Builder {
 
         private RequestOptions.Builder builder;
+
+        private boolean keepResponseBodyOnException;
 
         public Builder(RequestOptions.Builder builder) {
             this.builder = builder;
@@ -193,18 +192,19 @@ public class RestClientOptions implements TransportOptions {
         }
 
         @Override
-        public TransportOptions.Builder retrieveOriginalJsonResponseOnException(boolean value) {
+        public TransportOptions.Builder keepResponseBodyOnException(boolean value) {
+            this.keepResponseBodyOnException = value;
             return this;
         }
 
         @Override
         public RestClientOptions build() {
-            return new RestClientOptions(addBuiltinHeaders(builder).build());
+            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException);
         }
     }
 
     static RestClientOptions initialOptions() {
-        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS);
+        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {

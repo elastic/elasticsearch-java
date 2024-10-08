@@ -65,7 +65,7 @@ public class DocTestsTransport implements ElasticsearchTransport {
         }
 
         @Override
-        public boolean retrieveOriginalJsonResponseOnException() {
+        public boolean keepResponseBodyOnException() {
             return false;
         }
 
