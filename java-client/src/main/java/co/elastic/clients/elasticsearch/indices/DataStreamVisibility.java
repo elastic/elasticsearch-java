@@ -62,11 +62,15 @@ public class DataStreamVisibility implements JsonpSerializable {
 	@Nullable
 	private final Boolean hidden;
 
+	@Nullable
+	private final Boolean allowCustomRouting;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamVisibility(Builder builder) {
 
 		this.hidden = builder.hidden;
+		this.allowCustomRouting = builder.allowCustomRouting;
 
 	}
 
@@ -83,6 +87,14 @@ public class DataStreamVisibility implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code allow_custom_routing}
+	 */
+	@Nullable
+	public final Boolean allowCustomRouting() {
+		return this.allowCustomRouting;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -96,6 +108,11 @@ public class DataStreamVisibility implements JsonpSerializable {
 		if (this.hidden != null) {
 			generator.writeKey("hidden");
 			generator.write(this.hidden);
+
+		}
+		if (this.allowCustomRouting != null) {
+			generator.writeKey("allow_custom_routing");
+			generator.write(this.allowCustomRouting);
 
 		}
 
@@ -118,11 +135,22 @@ public class DataStreamVisibility implements JsonpSerializable {
 		@Nullable
 		private Boolean hidden;
 
+		@Nullable
+		private Boolean allowCustomRouting;
+
 		/**
 		 * API name: {@code hidden}
 		 */
 		public final Builder hidden(@Nullable Boolean value) {
 			this.hidden = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allow_custom_routing}
+		 */
+		public final Builder allowCustomRouting(@Nullable Boolean value) {
+			this.allowCustomRouting = value;
 			return this;
 		}
 
@@ -155,6 +183,7 @@ public class DataStreamVisibility implements JsonpSerializable {
 	protected static void setupDataStreamVisibilityDeserializer(ObjectDeserializer<DataStreamVisibility.Builder> op) {
 
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
+		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
 
 	}
 

@@ -62,9 +62,11 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 	@Nullable
 	private final String customTokenChars;
 
-	private final int maxGram;
+	@Nullable
+	private final Integer maxGram;
 
-	private final int minGram;
+	@Nullable
+	private final Integer minGram;
 
 	private final List<TokenChar> tokenChars;
 
@@ -74,8 +76,8 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		super(builder);
 
 		this.customTokenChars = builder.customTokenChars;
-		this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
-		this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.maxGram = builder.maxGram;
+		this.minGram = builder.minGram;
 		this.tokenChars = ApiTypeHelper.unmodifiable(builder.tokenChars);
 
 	}
@@ -101,16 +103,18 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 	}
 
 	/**
-	 * Required - API name: {@code max_gram}
+	 * API name: {@code max_gram}
 	 */
-	public final int maxGram() {
+	@Nullable
+	public final Integer maxGram() {
 		return this.maxGram;
 	}
 
 	/**
-	 * Required - API name: {@code min_gram}
+	 * API name: {@code min_gram}
 	 */
-	public final int minGram() {
+	@Nullable
+	public final Integer minGram() {
 		return this.minGram;
 	}
 
@@ -130,12 +134,16 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 			generator.write(this.customTokenChars);
 
 		}
-		generator.writeKey("max_gram");
-		generator.write(this.maxGram);
+		if (this.maxGram != null) {
+			generator.writeKey("max_gram");
+			generator.write(this.maxGram);
 
-		generator.writeKey("min_gram");
-		generator.write(this.minGram);
+		}
+		if (this.minGram != null) {
+			generator.writeKey("min_gram");
+			generator.write(this.minGram);
 
+		}
 		if (ApiTypeHelper.isDefined(this.tokenChars)) {
 			generator.writeKey("token_chars");
 			generator.writeStartArray();
@@ -160,8 +168,10 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		@Nullable
 		private String customTokenChars;
 
+		@Nullable
 		private Integer maxGram;
 
+		@Nullable
 		private Integer minGram;
 
 		@Nullable
@@ -176,17 +186,17 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		}
 
 		/**
-		 * Required - API name: {@code max_gram}
+		 * API name: {@code max_gram}
 		 */
-		public final Builder maxGram(int value) {
+		public final Builder maxGram(@Nullable Integer value) {
 			this.maxGram = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min_gram}
+		 * API name: {@code min_gram}
 		 */
-		public final Builder minGram(int value) {
+		public final Builder minGram(@Nullable Integer value) {
 			this.minGram = value;
 			return this;
 		}
