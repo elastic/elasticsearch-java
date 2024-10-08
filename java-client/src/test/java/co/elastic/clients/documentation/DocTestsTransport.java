@@ -65,6 +65,11 @@ public class DocTestsTransport implements ElasticsearchTransport {
         }
 
         @Override
+        public boolean keepResponseBodyOnException() {
+            return false;
+        }
+
+        @Override
         public Builder toBuilder() {
             return null;
         }

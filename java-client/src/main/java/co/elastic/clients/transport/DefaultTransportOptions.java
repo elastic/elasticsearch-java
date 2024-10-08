@@ -89,6 +89,11 @@ public class DefaultTransportOptions implements TransportOptions {
     }
 
     @Override
+    public boolean keepResponseBodyOnException() {
+        return false;
+    }
+
+    @Override
     public Builder toBuilder() {
         return new Builder(this);
     }
@@ -111,6 +116,7 @@ public class DefaultTransportOptions implements TransportOptions {
         private HeaderMap headers;
         private Map<String, String> parameters;
         private Function<List<String>, Boolean> onWarnings;
+        private boolean keepResponseBodyOnException;
 
         public AbstractBuilder() {
         }
@@ -119,9 +125,16 @@ public class DefaultTransportOptions implements TransportOptions {
             this.headers = new HeaderMap(options.headers);
             this.parameters = copyOrNull(options.parameters);
             this.onWarnings = options.onWarnings;
+            this.keepResponseBodyOnException = options.keepResponseBodyOnException();
         }
 
         protected abstract BuilderT self();
+
+        @Override
+        public BuilderT keepResponseBodyOnException(boolean value){
+            this.keepResponseBodyOnException = value;
+            return self();
+        }
 
         @Override
         public BuilderT addHeader(String name, String value) {

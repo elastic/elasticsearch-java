@@ -38,6 +38,8 @@ public interface TransportOptions {
 
     Function<List<String>, Boolean> onWarnings();
 
+    boolean keepResponseBodyOnException();
+
     Builder toBuilder();
 
     default TransportOptions with(Consumer<Builder> fn) {
@@ -59,5 +61,7 @@ public interface TransportOptions {
         Builder removeParameter(String name);
 
         Builder onWarnings(Function<List<String>, Boolean> listener);
+
+        Builder keepResponseBodyOnException(boolean value);
     }
 }

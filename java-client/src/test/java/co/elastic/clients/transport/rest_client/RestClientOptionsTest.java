@@ -192,7 +192,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options));
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options,false));
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
         // Should not override client meta
         String id = checkHeaders(esClient);
