@@ -33,6 +33,7 @@ import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
+import co.elastic.clients.util.ByteArrayBinaryData;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
@@ -332,6 +333,11 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
                 checkJsonContentType(entity.contentType(), clientResp, endpoint);
 
+                // We may have to replay it.
+                if (!entity.isRepeatable()) {
+                    entity = new ByteArrayBinaryData(entity);
+                }
+
                 try (InputStream content = entity.asInputStream()) {
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
@@ -388,7 +394,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 }
                 checkJsonContentType(entity.contentType(), clientResp, endpoint);
                 try (
-                    JsonParser parser = mapper.jsonProvider().createParser(entity.asInputStream())
+                    InputStream content = entity.asInputStream();
+                    JsonParser parser = mapper.jsonProvider().createParser(content)
                 ) {
                     response = responseParser.deserialize(parser, mapper);
                 } catch (Exception e) {
