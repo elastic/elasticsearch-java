@@ -658,6 +658,24 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link TerminateProcessor terminate}
+	 * {@code Processor} variant.
+	 */
+	public static TerminateProcessor.Builder terminate() {
+		return new TerminateProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link TerminateProcessor terminate}
+	 * {@code Processor} variant.
+	 */
+	public static Processor terminate(Function<TerminateProcessor.Builder, ObjectBuilder<TerminateProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.terminate(fn.apply(new TerminateProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TrimProcessor trim} {@code Processor}
 	 * variant.
 	 */
