@@ -21,9 +21,10 @@ package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.rest_client.RestClientHttpClient;
+import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.util.BinaryData;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
@@ -32,6 +33,8 @@ import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -106,7 +109,7 @@ public class TransportTest extends Assertions {
             .builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
             .build();
 
-        // no transport options, should throw TransportException, but original body cannot be retrieved
+        // no transport options, response is not RepeatableBodyResponse, original body cannot be retrieved
         ElasticsearchClient esClient = new ElasticsearchClient(new RestClientTransport(restClient,
             new JacksonJsonpMapper()));
 
@@ -116,7 +119,7 @@ public class TransportTest extends Assertions {
         );
 
         assertEquals(200, ex.statusCode());
-        assertNotEquals(RestClientHttpClient.RepeatableBodyResponse.class, ex.response().getClass());
+        assertNotEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
         // setting transport option
         RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true);
@@ -134,10 +137,19 @@ public class TransportTest extends Assertions {
         httpServer.stop(0);
 
         assertEquals(200, ex.statusCode());
-        assertEquals(RestClientHttpClient.RepeatableBodyResponse.class, ex.response().getClass());
+        assertEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
-        try (RestClientHttpClient.RepeatableBodyResponse repeatableResponse = (RestClientHttpClient.RepeatableBodyResponse) ex.response()){
-            assertEquals("definitely not json",repeatableResponse.getOriginalBodyAsString());
+        try (RepeatableBodyResponse repeatableResponse = (RepeatableBodyResponse) ex.response()){
+            BinaryData body = repeatableResponse.body();
+                StringBuilder sb = new StringBuilder();
+                BufferedReader br = new BufferedReader(new InputStreamReader(body.asInputStream()));
+                String read;
+
+                while ((read = br.readLine()) != null) {
+                    sb.append(read);
+                }
+                br.close();
+            assertEquals("definitely not json",sb.toString());
         }
     }
 }

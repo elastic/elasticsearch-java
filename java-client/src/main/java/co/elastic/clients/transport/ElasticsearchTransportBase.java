@@ -29,6 +29,7 @@ import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
@@ -306,6 +307,9 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
         int statusCode = clientResp.statusCode();
 
+        if(options().keepResponseBodyOnException()){
+            clientResp = RepeatableBodyResponse.of(clientResp);
+        }
         try {
             if (statusCode == 200) {
                 checkProductHeader(clientResp, endpoint);

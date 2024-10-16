@@ -23,7 +23,6 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
-import co.elastic.clients.util.ByteArrayBinaryData;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
@@ -35,10 +34,8 @@ import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
 
 import javax.annotation.Nullable;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.AbstractList;
@@ -93,9 +90,6 @@ public class RestClientHttpClient implements TransportHttpClient {
         RestClientOptions rcOptions = RestClientOptions.of(options);
         org.elasticsearch.client.Request restRequest = createRestRequest(request, rcOptions);
         org.elasticsearch.client.Response restResponse = restClient.performRequest(restRequest);
-        if (options.keepResponseBodyOnException()) {
-            return new RepeatableBodyResponse(restResponse);
-        }
         return new RestResponse(restResponse);
     }
 
@@ -119,9 +113,6 @@ public class RestClientHttpClient implements TransportHttpClient {
         future.cancellable = restClient.performRequestAsync(restRequest, new ResponseListener() {
             @Override
             public void onSuccess(org.elasticsearch.client.Response response) {
-                if (options.keepResponseBodyOnException()) {
-                    future.complete(new RepeatableBodyResponse(response));
-                }
                 future.complete(new RestResponse(response));
             }
 
@@ -249,51 +240,6 @@ public class RestClientHttpClient implements TransportHttpClient {
         public void close() throws IOException {
             EntityUtils.consume(restResponse.getEntity());
         }
-    }
-
-    public class RepeatableBodyResponse extends RestResponse {
-
-        BinaryData repeatableBody;
-
-        RepeatableBodyResponse(org.elasticsearch.client.Response restResponse) {
-            super(restResponse);
-        }
-
-        @Nullable
-        @Override
-        public BinaryData body() throws IOException {
-            if(repeatableBody != null) {
-                return repeatableBody;
-            }
-            BinaryData body = super.body();
-            if (body != null) {
-                if(body.isRepeatable()){
-                    repeatableBody = body;
-                }
-                else{
-                    repeatableBody = new ByteArrayBinaryData(body);
-                }
-            }
-            return repeatableBody;
-        }
-
-        public String getOriginalBodyAsString() throws IOException {
-            BinaryData body = body();
-
-            if (body != null) {
-                StringBuilder sb = new StringBuilder();
-                BufferedReader br = new BufferedReader(new InputStreamReader(body.asInputStream()));
-                String read;
-
-                while ((read = br.readLine()) != null) {
-                    sb.append(read);
-                }
-                br.close();
-                return sb.toString();
-            }
-            return null;
-        }
-
     }
 
     private static class HttpEntityBinaryData implements BinaryData {
