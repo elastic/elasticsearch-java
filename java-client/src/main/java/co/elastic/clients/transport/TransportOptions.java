@@ -38,6 +38,11 @@ public interface TransportOptions {
 
     Function<List<String>, Boolean> onWarnings();
 
+    /**
+     * If {@code true}, the response body in {@code TransportException.response().body()} is guaranteed to be
+     * replayable (i.e. buffered), even if the original response was streamed. This allows inspecting the
+     * response body in case of error.
+     */
     boolean keepResponseBodyOnException();
 
     Builder toBuilder();
