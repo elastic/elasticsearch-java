@@ -67,6 +67,11 @@ public interface TransportOptions {
 
         Builder onWarnings(Function<List<String>, Boolean> listener);
 
+        /**
+         * Should the response body be buffered and made available in {@code TransportException.response().body()}?
+         * This setting guarantees that the response body is buffered for inspection if parsing fails, even if originally
+         * streamed by the http library.
+         */
         Builder keepResponseBodyOnException(boolean value);
     }
 }
