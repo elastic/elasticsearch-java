@@ -142,6 +142,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Split("split"),
 
+		Terminate("terminate"),
+
 		Trim("trim"),
 
 		Uppercase("uppercase"),
@@ -783,6 +785,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code terminate}?
+	 */
+	public boolean isTerminate() {
+		return _kind == Kind.Terminate;
+	}
+
+	/**
+	 * Get the {@code terminate} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code terminate} kind.
+	 */
+	public TerminateProcessor terminate() {
+		return TaggedUnionUtils.get(this, Kind.Terminate);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code trim}?
 	 */
 	public boolean isTrim() {
@@ -1278,6 +1297,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.split(fn.apply(new SplitProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> terminate(TerminateProcessor v) {
+			this._kind = Kind.Terminate;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> terminate(
+				Function<TerminateProcessor.Builder, ObjectBuilder<TerminateProcessor>> fn) {
+			return this.terminate(fn.apply(new TerminateProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> trim(TrimProcessor v) {
 			this._kind = Kind.Trim;
 			this._value = v;
@@ -1391,6 +1421,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::setSecurityUser, SetSecurityUserProcessor._DESERIALIZER, "set_security_user");
 		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
 		op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");
+		op.add(Builder::terminate, TerminateProcessor._DESERIALIZER, "terminate");
 		op.add(Builder::trim, TrimProcessor._DESERIALIZER, "trim");
 		op.add(Builder::uppercase, UppercaseProcessor._DESERIALIZER, "uppercase");
 		op.add(Builder::urldecode, UrlDecodeProcessor._DESERIALIZER, "urldecode");

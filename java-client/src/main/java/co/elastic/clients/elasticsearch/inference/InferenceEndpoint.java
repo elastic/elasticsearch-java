@@ -66,6 +66,7 @@ public class InferenceEndpoint implements JsonpSerializable {
 
 	private final JsonData serviceSettings;
 
+	@Nullable
 	private final JsonData taskSettings;
 
 	// ---------------------------------------------------------------------------------------------
@@ -74,7 +75,7 @@ public class InferenceEndpoint implements JsonpSerializable {
 
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
-		this.taskSettings = ApiTypeHelper.requireNonNull(builder.taskSettings, this, "taskSettings");
+		this.taskSettings = builder.taskSettings;
 
 	}
 
@@ -101,10 +102,11 @@ public class InferenceEndpoint implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Task settings specific to the service and task type
+	 * Task settings specific to the service and task type
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
+	@Nullable
 	public final JsonData taskSettings() {
 		return this.taskSettings;
 	}
@@ -126,8 +128,11 @@ public class InferenceEndpoint implements JsonpSerializable {
 		generator.writeKey("service_settings");
 		this.serviceSettings.serialize(generator, mapper);
 
-		generator.writeKey("task_settings");
-		this.taskSettings.serialize(generator, mapper);
+		if (this.taskSettings != null) {
+			generator.writeKey("task_settings");
+			this.taskSettings.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -170,6 +175,7 @@ public class InferenceEndpoint implements JsonpSerializable {
 
 		private JsonData serviceSettings;
 
+		@Nullable
 		private JsonData taskSettings;
 
 		/**
@@ -193,11 +199,11 @@ public class InferenceEndpoint implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Task settings specific to the service and task type
+		 * Task settings specific to the service and task type
 		 * <p>
 		 * API name: {@code task_settings}
 		 */
-		public final BuilderT taskSettings(JsonData value) {
+		public final BuilderT taskSettings(@Nullable JsonData value) {
 			this.taskSettings = value;
 			return self();
 		}

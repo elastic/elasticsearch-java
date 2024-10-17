@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.snapshot;
+package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.elasticsearch.snapshot.restore.SnapshotRestore;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,48 +49,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: snapshot.restore.Response
+// typedef: nodes.info.NodeInfoXpackMl
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#snapshot.restore.Response">API
+ * @see <a href="../../doc-files/api-spec.html#nodes.info.NodeInfoXpackMl">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RestoreResponse implements JsonpSerializable {
+public class NodeInfoXpackMl implements JsonpSerializable {
 	@Nullable
-	private final Boolean accepted;
-
-	@Nullable
-	private final SnapshotRestore snapshot;
+	private final Boolean useAutoMachineMemoryPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RestoreResponse(Builder builder) {
+	private NodeInfoXpackMl(Builder builder) {
 
-		this.accepted = builder.accepted;
-		this.snapshot = builder.snapshot;
+		this.useAutoMachineMemoryPercent = builder.useAutoMachineMemoryPercent;
 
 	}
 
-	public static RestoreResponse of(Function<Builder, ObjectBuilder<RestoreResponse>> fn) {
+	public static NodeInfoXpackMl of(Function<Builder, ObjectBuilder<NodeInfoXpackMl>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code accepted}
+	 * API name: {@code use_auto_machine_memory_percent}
 	 */
 	@Nullable
-	public final Boolean accepted() {
-		return this.accepted;
-	}
-
-	/**
-	 * API name: {@code snapshot}
-	 */
-	@Nullable
-	public final SnapshotRestore snapshot() {
-		return this.snapshot;
+	public final Boolean useAutoMachineMemoryPercent() {
+		return this.useAutoMachineMemoryPercent;
 	}
 
 	/**
@@ -105,14 +92,9 @@ public class RestoreResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.accepted != null) {
-			generator.writeKey("accepted");
-			generator.write(this.accepted);
-
-		}
-		if (this.snapshot != null) {
-			generator.writeKey("snapshot");
-			this.snapshot.serialize(generator, mapper);
+		if (this.useAutoMachineMemoryPercent != null) {
+			generator.writeKey("use_auto_machine_memory_percent");
+			generator.write(this.useAutoMachineMemoryPercent);
 
 		}
 
@@ -126,37 +108,19 @@ public class RestoreResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RestoreResponse}.
+	 * Builder for {@link NodeInfoXpackMl}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RestoreResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoXpackMl> {
 		@Nullable
-		private Boolean accepted;
-
-		@Nullable
-		private SnapshotRestore snapshot;
+		private Boolean useAutoMachineMemoryPercent;
 
 		/**
-		 * API name: {@code accepted}
+		 * API name: {@code use_auto_machine_memory_percent}
 		 */
-		public final Builder accepted(@Nullable Boolean value) {
-			this.accepted = value;
+		public final Builder useAutoMachineMemoryPercent(@Nullable Boolean value) {
+			this.useAutoMachineMemoryPercent = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code snapshot}
-		 */
-		public final Builder snapshot(@Nullable SnapshotRestore value) {
-			this.snapshot = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code snapshot}
-		 */
-		public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
-			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
 		}
 
 		@Override
@@ -165,30 +129,30 @@ public class RestoreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RestoreResponse}.
+		 * Builds a {@link NodeInfoXpackMl}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RestoreResponse build() {
+		public NodeInfoXpackMl build() {
 			_checkSingleUse();
 
-			return new RestoreResponse(this);
+			return new NodeInfoXpackMl(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RestoreResponse}
+	 * Json deserializer for {@link NodeInfoXpackMl}
 	 */
-	public static final JsonpDeserializer<RestoreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RestoreResponse::setupRestoreResponseDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackMl> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoXpackMl::setupNodeInfoXpackMlDeserializer);
 
-	protected static void setupRestoreResponseDeserializer(ObjectDeserializer<RestoreResponse.Builder> op) {
+	protected static void setupNodeInfoXpackMlDeserializer(ObjectDeserializer<NodeInfoXpackMl.Builder> op) {
 
-		op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
-		op.add(Builder::snapshot, SnapshotRestore._DESERIALIZER, "snapshot");
+		op.add(Builder::useAutoMachineMemoryPercent, JsonpDeserializer.booleanDeserializer(),
+				"use_auto_machine_memory_percent");
 
 	}
 
