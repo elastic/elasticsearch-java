@@ -38,6 +38,13 @@ public interface TransportOptions {
 
     Function<List<String>, Boolean> onWarnings();
 
+    /**
+     * If {@code true}, the response body in {@code TransportException.response().body()} is guaranteed to be
+     * replayable (i.e. buffered), even if the original response was streamed. This allows inspecting the
+     * response body in case of error.
+     */
+    boolean keepResponseBodyOnException();
+
     Builder toBuilder();
 
     default TransportOptions with(Consumer<Builder> fn) {
@@ -59,5 +66,12 @@ public interface TransportOptions {
         Builder removeParameter(String name);
 
         Builder onWarnings(Function<List<String>, Boolean> listener);
+
+        /**
+         * Should the response body be buffered and made available in {@code TransportException.response().body()}?
+         * This setting guarantees that the response body is buffered for inspection if parsing fails, even if originally
+         * streamed by the http library.
+         */
+        Builder keepResponseBodyOnException(boolean value);
     }
 }
