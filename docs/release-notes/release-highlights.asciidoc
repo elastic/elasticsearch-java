@@ -8,6 +8,26 @@ For a list of detailed changes, including bug fixes, please see the https://gith
 [discrete]
 ==== Version 8.16
 * `ElasticsearchClient` is now `Closeable`. Closing a client object also closes the underlying transport - https://github.com/elastic/elasticsearch-java/pull/851[#851]
+* Added option to make the response body available in case of deserialization error- https://github.com/elastic/elasticsearch-java/pull/886[#886].
+
+** While it has always been possible to set the log level to `trace` and have the client print both the json bodies of the requests and responses, it's often not the best solution because of the large amount of information printed.
+** To enable the feature:
+
+    RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true);
+    ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper(), options);
+    ElasticsearchClient esClientWithOptions = new ElasticsearchClient(transport);
+
+** To retrieve the original body from the TransportException that gets thrown in case of deserialization errors:
+
+    try{
+        // some code that returns faulty json
+    }
+    catch (TransportException ex){
+        try (RepeatableBodyResponse repeatableResponse = (RepeatableBodyResponse) ex.response()) {
+            BinaryData body = repeatableResponse.body();
+        }
+    }
+
 
 [discrete]
 ==== Version 8.15
