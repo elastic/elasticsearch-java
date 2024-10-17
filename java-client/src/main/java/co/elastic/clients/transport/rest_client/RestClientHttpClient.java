@@ -85,7 +85,8 @@ public class RestClientHttpClient implements TransportHttpClient {
     }
 
     @Override
-    public Response performRequest(String endpointId, @Nullable Node node, Request request, TransportOptions options) throws IOException {
+    public Response performRequest(String endpointId, @Nullable Node node, Request request,
+                                   TransportOptions options) throws IOException {
         RestClientOptions rcOptions = RestClientOptions.of(options);
         org.elasticsearch.client.Request restRequest = createRestRequest(request, rcOptions);
         org.elasticsearch.client.Response restResponse = restClient.performRequest(restRequest);
@@ -103,7 +104,7 @@ public class RestClientHttpClient implements TransportHttpClient {
         try {
             RestClientOptions rcOptions = RestClientOptions.of(options);
             restRequest = createRestRequest(request, rcOptions);
-        } catch(Throwable thr) {
+        } catch (Throwable thr) {
             // Terminate early
             future.completeExceptionally(thr);
             return future;
@@ -166,7 +167,7 @@ public class RestClientHttpClient implements TransportHttpClient {
         if (body != null) {
             ContentType ct = null;
             String ctStr;
-            if (( ctStr = requestHeaders.get(HeaderMap.CONTENT_TYPE)) != null) {
+            if ((ctStr = requestHeaders.get(HeaderMap.CONTENT_TYPE)) != null) {
                 ct = ContentTypeCache.computeIfAbsent(ctStr, ContentType::parse);
             }
             clientReq.setEntity(new MultiBufferEntity(body, ct));
