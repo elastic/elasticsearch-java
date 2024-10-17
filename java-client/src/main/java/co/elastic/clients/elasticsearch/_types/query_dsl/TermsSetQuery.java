@@ -63,6 +63,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
+	private final String minimumShouldMatch;
+
+	@Nullable
 	private final String minimumShouldMatchField;
 
 	@Nullable
@@ -76,6 +79,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		super(builder);
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
+		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minimumShouldMatchField = builder.minimumShouldMatchField;
 		this.minimumShouldMatchScript = builder.minimumShouldMatchScript;
 		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
@@ -99,6 +103,17 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	 */
 	public final String field() {
 		return this.field;
+	}
+
+	/**
+	 * Specification describing number of matching terms required to return a
+	 * document.
+	 * <p>
+	 * API name: {@code minimum_should_match}
+	 */
+	@Nullable
+	public final String minimumShouldMatch() {
+		return this.minimumShouldMatch;
 	}
 
 	/**
@@ -136,6 +151,11 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
+		if (this.minimumShouldMatch != null) {
+			generator.writeKey("minimum_should_match");
+			generator.write(this.minimumShouldMatch);
+
+		}
 		if (this.minimumShouldMatchField != null) {
 			generator.writeKey("minimum_should_match_field");
 			generator.write(this.minimumShouldMatchField);
@@ -179,12 +199,26 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 
 		@Nullable
+		private String minimumShouldMatch;
+
+		@Nullable
 		private String minimumShouldMatchField;
 
 		@Nullable
 		private Script minimumShouldMatchScript;
 
 		private List<String> terms;
+
+		/**
+		 * Specification describing number of matching terms required to return a
+		 * document.
+		 * <p>
+		 * API name: {@code minimum_should_match}
+		 */
+		public final Builder minimumShouldMatch(@Nullable String value) {
+			this.minimumShouldMatch = value;
+			return this;
+		}
 
 		/**
 		 * Numeric field containing the number of matching terms required to return a
@@ -270,6 +304,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	protected static void setupTermsSetQueryDeserializer(ObjectDeserializer<TermsSetQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::minimumShouldMatchField, JsonpDeserializer.stringDeserializer(), "minimum_should_match_field");
 		op.add(Builder::minimumShouldMatchScript, Script._DESERIALIZER, "minimum_should_match_script");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");

@@ -68,6 +68,9 @@ public class NodeInfoXpack implements JsonpSerializable {
 
 	private final Map<String, JsonData> notification;
 
+	@Nullable
+	private final NodeInfoXpackMl ml;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoXpack(Builder builder) {
@@ -75,6 +78,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 		this.license = builder.license;
 		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
 		this.notification = ApiTypeHelper.unmodifiable(builder.notification);
+		this.ml = builder.ml;
 
 	}
 
@@ -102,6 +106,14 @@ public class NodeInfoXpack implements JsonpSerializable {
 	 */
 	public final Map<String, JsonData> notification() {
 		return this.notification;
+	}
+
+	/**
+	 * API name: {@code ml}
+	 */
+	@Nullable
+	public final NodeInfoXpackMl ml() {
+		return this.ml;
 	}
 
 	/**
@@ -134,6 +146,11 @@ public class NodeInfoXpack implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.ml != null) {
+			generator.writeKey("ml");
+			this.ml.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -156,6 +173,9 @@ public class NodeInfoXpack implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, JsonData> notification;
+
+		@Nullable
+		private NodeInfoXpackMl ml;
 
 		/**
 		 * API name: {@code license}
@@ -208,6 +228,21 @@ public class NodeInfoXpack implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code ml}
+		 */
+		public final Builder ml(@Nullable NodeInfoXpackMl value) {
+			this.ml = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ml}
+		 */
+		public final Builder ml(Function<NodeInfoXpackMl.Builder, ObjectBuilder<NodeInfoXpackMl>> fn) {
+			return this.ml(fn.apply(new NodeInfoXpackMl.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -239,6 +274,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 		op.add(Builder::license, NodeInfoXpackLicense._DESERIALIZER, "license");
 		op.add(Builder::security, NodeInfoXpackSecurity._DESERIALIZER, "security");
 		op.add(Builder::notification, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "notification");
+		op.add(Builder::ml, NodeInfoXpackMl._DESERIALIZER, "ml");
 
 	}
 

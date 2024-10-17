@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,19 +58,21 @@ import javax.annotation.Nullable;
  */
 
 public abstract class ShardsOperationResponseBase implements JsonpSerializable {
+	@Nullable
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = builder.shards;
 
 	}
 
 	/**
-	 * Required - API name: {@code _shards}
+	 * API name: {@code _shards}
 	 */
+	@Nullable
 	public final ShardStatistics shards() {
 		return this.shards;
 	}
@@ -87,8 +88,11 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
+		if (this.shards != null) {
+			generator.writeKey("_shards");
+			this.shards.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -100,18 +104,19 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
+		@Nullable
 		private ShardStatistics shards;
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * API name: {@code _shards}
 		 */
-		public final BuilderT shards(ShardStatistics value) {
+		public final BuilderT shards(@Nullable ShardStatistics value) {
 			this.shards = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());

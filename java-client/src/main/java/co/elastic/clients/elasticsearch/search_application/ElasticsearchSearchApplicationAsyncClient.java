@@ -72,7 +72,8 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.delete
 
 	/**
-	 * Deletes a search application.
+	 * Delete a search application. Remove a search application and its associated
+	 * alias. Indices attached to the search application are not removed.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
@@ -87,7 +88,8 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Deletes a search application.
+	 * Delete a search application. Remove a search application and its associated
+	 * alias. Indices attached to the search application are not removed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,7 +107,8 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.delete_behavioral_analytics
 
 	/**
-	 * Delete a behavioral analytics collection.
+	 * Delete a behavioral analytics collection. The associated data stream is also
+	 * deleted.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-analytics-collection.html">Documentation
@@ -121,7 +124,8 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Delete a behavioral analytics collection.
+	 * Delete a behavioral analytics collection. The associated data stream is also
+	 * deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -139,7 +143,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.get
 
 	/**
-	 * Returns the details about a search application
+	 * Get search application details.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-search-application.html">Documentation
@@ -154,7 +158,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Returns the details about a search application
+	 * Get search application details.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -172,7 +176,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.get_behavioral_analytics
 
 	/**
-	 * Returns the existing behavioral analytics collections.
+	 * Get behavioral analytics collections.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
@@ -188,7 +192,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Returns the existing behavioral analytics collections.
+	 * Get behavioral analytics collections.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -204,7 +208,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Returns the existing behavioral analytics collections.
+	 * Get behavioral analytics collections.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
@@ -264,7 +268,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.put
 
 	/**
-	 * Creates or updates a search application.
+	 * Create or update a search application.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
@@ -279,7 +283,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Creates or updates a search application.
+	 * Create or update a search application.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -296,7 +300,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.put_behavioral_analytics
 
 	/**
-	 * Creates a behavioral analytics collection.
+	 * Create a behavioral analytics collection.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-analytics-collection.html">Documentation
@@ -312,7 +316,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Creates a behavioral analytics collection.
+	 * Create a behavioral analytics collection.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -330,7 +334,10 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.search
 
 	/**
-	 * Perform a search against a search application.
+	 * Run a search application search. Generate and run an Elasticsearch query that
+	 * uses the specified query parameteter and the search template associated with
+	 * the search application or default template. Unspecified template parameters
+	 * are assigned their default values if applicable.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
@@ -349,7 +356,10 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Perform a search against a search application.
+	 * Run a search application search. Generate and run an Elasticsearch query that
+	 * uses the specified query parameteter and the search template associated with
+	 * the search application or default template. Unspecified template parameters
+	 * are assigned their default values if applicable.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -366,7 +376,10 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Perform a search against a search application.
+	 * Run a search application search. Generate and run an Elasticsearch query that
+	 * uses the specified query parameteter and the search template associated with
+	 * the search application or default template. Unspecified template parameters
+	 * are assigned their default values if applicable.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
@@ -385,7 +398,10 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Perform a search against a search application.
+	 * Run a search application search. Generate and run an Elasticsearch query that
+	 * uses the specified query parameteter and the search template associated with
+	 * the search application or default template. Unspecified template parameters
+	 * are assigned their default values if applicable.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

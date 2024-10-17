@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 // typedef: search_application.delete.Request
 
 /**
- * Deletes a search application.
+ * Delete a search application. Remove a search application and its associated
+ * alias. Indices attached to the search application are not removed.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.delete.Request">API

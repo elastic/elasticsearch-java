@@ -63,7 +63,9 @@ import javax.annotation.Nullable;
 // typedef: indices.analyze.Request
 
 /**
- * Performs analysis on a text string and returns the resulting tokens.
+ * Get tokens from text analysis. The analyze API performs <a href=
+ * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+ * on a text string and returns the resulting tokens.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.analyze.Request">API
  *      specification</a>

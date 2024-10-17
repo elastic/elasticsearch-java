@@ -104,7 +104,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.analyze
 
 	/**
-	 * Performs analysis on a text string and returns the resulting tokens.
+	 * Get tokens from text analysis. The analyze API performs <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+	 * on a text string and returns the resulting tokens.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-analyze.html">Documentation
@@ -119,7 +121,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Performs analysis on a text string and returns the resulting tokens.
+	 * Get tokens from text analysis. The analyze API performs <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+	 * on a text string and returns the resulting tokens.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -135,7 +139,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Performs analysis on a text string and returns the resulting tokens.
+	 * Get tokens from text analysis. The analyze API performs <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+	 * on a text string and returns the resulting tokens.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-analyze.html">Documentation

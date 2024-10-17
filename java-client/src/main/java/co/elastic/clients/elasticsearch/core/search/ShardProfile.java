@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -63,21 +64,37 @@ import javax.annotation.Nullable;
 public class ShardProfile implements JsonpSerializable {
 	private final List<AggregationProfile> aggregations;
 
-	private final String id;
+	private final String cluster;
 
-	private final List<SearchProfile> searches;
+	@Nullable
+	private final DfsProfile dfs;
 
 	@Nullable
 	private final FetchProfile fetch;
+
+	private final String id;
+
+	private final String index;
+
+	private final String nodeId;
+
+	private final List<SearchProfile> searches;
+
+	private final long shardId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ShardProfile(Builder builder) {
 
 		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
+		this.cluster = ApiTypeHelper.requireNonNull(builder.cluster, this, "cluster");
+		this.dfs = builder.dfs;
 		this.fetch = builder.fetch;
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
 
 	}
 
@@ -93,10 +110,47 @@ public class ShardProfile implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code cluster}
+	 */
+	public final String cluster() {
+		return this.cluster;
+	}
+
+	/**
+	 * API name: {@code dfs}
+	 */
+	@Nullable
+	public final DfsProfile dfs() {
+		return this.dfs;
+	}
+
+	/**
+	 * API name: {@code fetch}
+	 */
+	@Nullable
+	public final FetchProfile fetch() {
+		return this.fetch;
+	}
+
+	/**
 	 * Required - API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * Required - API name: {@code index}
+	 */
+	public final String index() {
+		return this.index;
+	}
+
+	/**
+	 * Required - API name: {@code node_id}
+	 */
+	public final String nodeId() {
+		return this.nodeId;
 	}
 
 	/**
@@ -107,11 +161,10 @@ public class ShardProfile implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fetch}
+	 * Required - API name: {@code shard_id}
 	 */
-	@Nullable
-	public final FetchProfile fetch() {
-		return this.fetch;
+	public final long shardId() {
+		return this.shardId;
 	}
 
 	/**
@@ -135,8 +188,27 @@ public class ShardProfile implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("cluster");
+		generator.write(this.cluster);
+
+		if (this.dfs != null) {
+			generator.writeKey("dfs");
+			this.dfs.serialize(generator, mapper);
+
+		}
+		if (this.fetch != null) {
+			generator.writeKey("fetch");
+			this.fetch.serialize(generator, mapper);
+
+		}
 		generator.writeKey("id");
 		generator.write(this.id);
+
+		generator.writeKey("index");
+		generator.write(this.index);
+
+		generator.writeKey("node_id");
+		generator.write(this.nodeId);
 
 		if (ApiTypeHelper.isDefined(this.searches)) {
 			generator.writeKey("searches");
@@ -148,11 +220,8 @@ public class ShardProfile implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.fetch != null) {
-			generator.writeKey("fetch");
-			this.fetch.serialize(generator, mapper);
-
-		}
+		generator.writeKey("shard_id");
+		generator.write(this.shardId);
 
 	}
 
@@ -170,12 +239,23 @@ public class ShardProfile implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardProfile> {
 		private List<AggregationProfile> aggregations;
 
-		private String id;
+		private String cluster;
 
-		private List<SearchProfile> searches;
+		@Nullable
+		private DfsProfile dfs;
 
 		@Nullable
 		private FetchProfile fetch;
+
+		private String id;
+
+		private String index;
+
+		private String nodeId;
+
+		private List<SearchProfile> searches;
+
+		private Long shardId;
 
 		/**
 		 * Required - API name: {@code aggregations}
@@ -207,10 +287,64 @@ public class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code cluster}
+		 */
+		public final Builder cluster(String value) {
+			this.cluster = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code dfs}
+		 */
+		public final Builder dfs(@Nullable DfsProfile value) {
+			this.dfs = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code dfs}
+		 */
+		public final Builder dfs(Function<DfsProfile.Builder, ObjectBuilder<DfsProfile>> fn) {
+			return this.dfs(fn.apply(new DfsProfile.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code fetch}
+		 */
+		public final Builder fetch(@Nullable FetchProfile value) {
+			this.fetch = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fetch}
+		 */
+		public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
+			return this.fetch(fn.apply(new FetchProfile.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code index}
+		 */
+		public final Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code node_id}
+		 */
+		public final Builder nodeId(String value) {
+			this.nodeId = value;
 			return this;
 		}
 
@@ -244,18 +378,11 @@ public class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fetch}
+		 * Required - API name: {@code shard_id}
 		 */
-		public final Builder fetch(@Nullable FetchProfile value) {
-			this.fetch = value;
+		public final Builder shardId(long value) {
+			this.shardId = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code fetch}
-		 */
-		public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
-			return this.fetch(fn.apply(new FetchProfile.Builder()).build());
 		}
 
 		@Override
@@ -288,9 +415,14 @@ public class ShardProfile implements JsonpSerializable {
 
 		op.add(Builder::aggregations, JsonpDeserializer.arrayDeserializer(AggregationProfile._DESERIALIZER),
 				"aggregations");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
+		op.add(Builder::cluster, JsonpDeserializer.stringDeserializer(), "cluster");
+		op.add(Builder::dfs, DfsProfile._DESERIALIZER, "dfs");
 		op.add(Builder::fetch, FetchProfile._DESERIALIZER, "fetch");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
+		op.add(Builder::shardId, JsonpDeserializer.longDeserializer(), "shard_id");
 
 	}
 

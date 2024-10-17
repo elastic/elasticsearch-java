@@ -69,6 +69,8 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 	private final String shardId;
 
+	private final String indexUuid;
+
 	private final String status;
 
 	// ---------------------------------------------------------------------------------------------
@@ -79,6 +81,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		this.nodeId = builder.nodeId;
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
@@ -117,6 +120,13 @@ public class SnapshotShardFailure implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code index_uuid}
+	 */
+	public final String indexUuid() {
+		return this.indexUuid;
+	}
+
+	/**
 	 * Required - API name: {@code status}
 	 */
 	public final String status() {
@@ -148,6 +158,9 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		generator.writeKey("shard_id");
 		generator.write(this.shardId);
 
+		generator.writeKey("index_uuid");
+		generator.write(this.indexUuid);
+
 		generator.writeKey("status");
 		generator.write(this.status);
 
@@ -175,6 +188,8 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		private String reason;
 
 		private String shardId;
+
+		private String indexUuid;
 
 		private String status;
 
@@ -207,6 +222,14 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		 */
 		public final Builder shardId(String value) {
 			this.shardId = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code index_uuid}
+		 */
+		public final Builder indexUuid(String value) {
+			this.indexUuid = value;
 			return this;
 		}
 
@@ -250,6 +273,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::shardId, JsonpDeserializer.stringDeserializer(), "shard_id");
+		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
 
 	}

@@ -49,13 +49,15 @@ public enum ConvertType implements JsonEnum {
 
 	Long("long"),
 
-	Float("float"),
-
 	Double("double"),
 
-	String("string"),
+	Float("float"),
 
 	Boolean("boolean"),
+
+	Ip("ip"),
+
+	String("string"),
 
 	Auto("auto"),
 

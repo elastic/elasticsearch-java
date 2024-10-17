@@ -1131,6 +1131,25 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RandomSamplerAggregation random_sampler}
+	 * {@code Aggregation} variant.
+	 */
+	public static RandomSamplerAggregation.Builder randomSampler() {
+		return new RandomSamplerAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link RandomSamplerAggregation random_sampler}
+	 * {@code Aggregation} variant.
+	 */
+	public static Aggregation randomSampler(
+			Function<RandomSamplerAggregation.Builder, ObjectBuilder<RandomSamplerAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.randomSampler(fn.apply(new RandomSamplerAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link SamplerAggregation sampler}
 	 * {@code Aggregation} variant.
 	 */

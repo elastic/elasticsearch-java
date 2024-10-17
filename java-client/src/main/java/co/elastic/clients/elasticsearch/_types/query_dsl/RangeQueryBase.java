@@ -149,7 +149,10 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 	/**
 	 * API name: {@code from}
+	 * 
+	 * @deprecated 8.16.0 Use gte or gt instead
 	 */
+	@Deprecated
 	@Nullable
 	public final T from() {
 		return this.from;
@@ -157,7 +160,10 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 	/**
 	 * API name: {@code to}
+	 * 
+	 * @deprecated 8.16.0 Use lte or lt instead
 	 */
+	@Deprecated
 	@Nullable
 	public final T to() {
 		return this.to;
@@ -282,7 +288,10 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 		/**
 		 * API name: {@code from}
+		 * 
+		 * @deprecated 8.16.0 Use gte or gt instead
 		 */
+		@Deprecated
 		public final BuilderT from(@Nullable T value) {
 			this.from = value;
 			return self();
@@ -290,7 +299,10 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 		/**
 		 * API name: {@code to}
+		 * 
+		 * @deprecated 8.16.0 Use lte or lt instead
 		 */
+		@Deprecated
 		public final BuilderT to(@Nullable T value) {
 			this.to = value;
 			return self();

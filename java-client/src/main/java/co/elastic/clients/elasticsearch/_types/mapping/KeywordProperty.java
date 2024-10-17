@@ -87,6 +87,9 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	private final String nullValue;
 
 	@Nullable
+	private final String similarity;
+
+	@Nullable
 	private final Boolean splitQueriesOnWhitespace;
 
 	@Nullable
@@ -106,6 +109,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		this.normalizer = builder.normalizer;
 		this.norms = builder.norms;
 		this.nullValue = builder.nullValue;
+		this.similarity = builder.similarity;
 		this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
 		this.timeSeriesDimension = builder.timeSeriesDimension;
 
@@ -196,6 +200,14 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	}
 
 	/**
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final String similarity() {
+		return this.similarity;
+	}
+
+	/**
 	 * API name: {@code split_queries_on_whitespace}
 	 */
 	@Nullable
@@ -261,6 +273,11 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 			generator.write(this.nullValue);
 
 		}
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			generator.write(this.similarity);
+
+		}
 		if (this.splitQueriesOnWhitespace != null) {
 			generator.writeKey("split_queries_on_whitespace");
 			generator.write(this.splitQueriesOnWhitespace);
@@ -309,6 +326,9 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 
 		@Nullable
 		private String nullValue;
+
+		@Nullable
+		private String similarity;
 
 		@Nullable
 		private Boolean splitQueriesOnWhitespace;
@@ -396,6 +416,14 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 
 		/**
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable String value) {
+			this.similarity = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code split_queries_on_whitespace}
 		 */
 		public final Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
@@ -451,6 +479,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		op.add(Builder::normalizer, JsonpDeserializer.stringDeserializer(), "normalizer");
 		op.add(Builder::norms, JsonpDeserializer.booleanDeserializer(), "norms");
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
 		op.add(Builder::splitQueriesOnWhitespace, JsonpDeserializer.booleanDeserializer(),
 				"split_queries_on_whitespace");
 		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
