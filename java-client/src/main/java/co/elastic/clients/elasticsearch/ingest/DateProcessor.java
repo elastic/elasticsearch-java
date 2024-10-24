@@ -70,6 +70,9 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final String timezone;
 
+	@Nullable
+	private final String outputFormat;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DateProcessor(Builder builder) {
@@ -80,6 +83,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		this.locale = builder.locale;
 		this.targetField = builder.targetField;
 		this.timezone = builder.timezone;
+		this.outputFormat = builder.outputFormat;
 
 	}
 
@@ -145,6 +149,17 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		return this.timezone;
 	}
 
+	/**
+	 * The format to use when writing the date to target_field. Must be a valid java
+	 * time pattern.
+	 * <p>
+	 * API name: {@code output_format}
+	 */
+	@Nullable
+	public final String outputFormat() {
+		return this.outputFormat;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -176,6 +191,11 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.timezone);
 
 		}
+		if (this.outputFormat != null) {
+			generator.writeKey("output_format");
+			generator.write(this.outputFormat);
+
+		}
 
 	}
 
@@ -198,6 +218,9 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 
 		@Nullable
 		private String timezone;
+
+		@Nullable
+		private String outputFormat;
 
 		/**
 		 * Required - The field to get the date from.
@@ -266,6 +289,17 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 			return this;
 		}
 
+		/**
+		 * The format to use when writing the date to target_field. Must be a valid java
+		 * time pattern.
+		 * <p>
+		 * API name: {@code output_format}
+		 */
+		public final Builder outputFormat(@Nullable String value) {
+			this.outputFormat = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -300,6 +334,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 		op.add(Builder::timezone, JsonpDeserializer.stringDeserializer(), "timezone");
+		op.add(Builder::outputFormat, JsonpDeserializer.stringDeserializer(), "output_format");
 
 	}
 

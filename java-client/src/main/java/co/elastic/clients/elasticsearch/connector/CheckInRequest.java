@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: connector.check_in.Request
 
 /**
- * Updates the last_seen field in the connector, and sets it to current
- * timestamp
+ * Check in a connector.
+ * <p>
+ * Update the <code>last_seen</code> field in the connector and set it to the
+ * current timestamp.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.check_in.Request">API
  *      specification</a>

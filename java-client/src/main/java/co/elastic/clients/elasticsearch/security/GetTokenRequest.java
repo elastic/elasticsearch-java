@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.get_token.Request
 
 /**
- * Creates a bearer token for access without requiring basic authentication.
+ * Get a token.
+ * <p>
+ * Create a bearer token for access without requiring basic authentication.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_token.Request">API
  *      specification</a>

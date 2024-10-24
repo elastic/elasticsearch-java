@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.enable_user_profile.Request
 
 /**
- * Enables a user profile so it's visible in user profile searches.
+ * Enable a user profile.
+ * <p>
+ * Enable user profiles to make them visible in user profile searches.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.enable_user_profile.Request">API

@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: connector.update_status.Request
 
 /**
- * Updates the status of the connector
+ * Update the connector status.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.update_status.Request">API
  *      specification</a>

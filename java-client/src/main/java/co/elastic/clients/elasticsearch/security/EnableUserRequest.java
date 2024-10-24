@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.enable_user.Request
 
 /**
- * Enables users in the native realm.
+ * Enable users.
+ * <p>
+ * Enable users in the native realm.
  * 
  * @see <a href="../doc-files/api-spec.html#security.enable_user.Request">API
  *      specification</a>

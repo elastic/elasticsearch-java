@@ -50,7 +50,9 @@ import java.util.Objects;
 // typedef: _global.get_script_context.Request
 
 /**
- * Returns all script contexts.
+ * Get script contexts.
+ * <p>
+ * Get a list of supported script contexts and their methods.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.get_script_context.Request">API

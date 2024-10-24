@@ -61,8 +61,10 @@ import javax.annotation.Nullable;
 // typedef: security.query_role.Request
 
 /**
- * Retrieves roles in a paginated manner. You can optionally filter the results
- * with a query.
+ * Find roles with a query.
+ * <p>
+ * Get roles in a paginated manner. You can optionally filter the results with a
+ * query.
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_role.Request">API
  *      specification</a>

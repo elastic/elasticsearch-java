@@ -55,8 +55,9 @@ import javax.annotation.Nullable;
 // typedef: security.get_service_accounts.Request
 
 /**
- * This API returns a list of service accounts that match the provided path
- * parameter(s).
+ * Get service accounts.
+ * <p>
+ * Get a list of service accounts that match the provided path parameters.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_service_accounts.Request">API

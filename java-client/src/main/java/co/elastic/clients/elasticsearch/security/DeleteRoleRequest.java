@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.delete_role.Request
 
 /**
- * Removes roles in the native realm.
+ * Delete roles.
+ * <p>
+ * Delete roles in the native realm.
  * 
  * @see <a href="../doc-files/api-spec.html#security.delete_role.Request">API
  *      specification</a>

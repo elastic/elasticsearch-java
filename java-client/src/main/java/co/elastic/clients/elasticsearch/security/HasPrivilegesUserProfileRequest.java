@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: security.has_privileges_user_profile.Request
 
 /**
- * Determines whether the users associated with the specified profile IDs have
- * all the requested privileges.
+ * Check user profile privileges.
+ * <p>
+ * Determine whether the users associated with the specified user profile IDs
+ * have all the requested privileges.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.has_privileges_user_profile.Request">API

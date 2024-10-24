@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: security.get_service_credentials.Request
 
 /**
- * Retrieves information of all service credentials for a service account.
+ * Get service account credentials.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_service_credentials.Request">API

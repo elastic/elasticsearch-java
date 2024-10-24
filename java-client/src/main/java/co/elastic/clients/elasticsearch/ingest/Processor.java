@@ -82,6 +82,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Circle("circle"),
 
+		CommunityId("community_id"),
+
 		Convert("convert"),
 
 		Csv("csv"),
@@ -99,6 +101,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		Enrich("enrich"),
 
 		Fail("fail"),
+
+		Fingerprint("fingerprint"),
 
 		Foreach("foreach"),
 
@@ -122,9 +126,13 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Lowercase("lowercase"),
 
+		NetworkDirection("network_direction"),
+
 		Pipeline("pipeline"),
 
 		Redact("redact"),
+
+		RegisteredDomain("registered_domain"),
 
 		Remove("remove"),
 
@@ -270,6 +278,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public CircleProcessor circle() {
 		return TaggedUnionUtils.get(this, Kind.Circle);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code community_id}?
+	 */
+	public boolean isCommunityId() {
+		return _kind == Kind.CommunityId;
+	}
+
+	/**
+	 * Get the {@code community_id} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code community_id} kind.
+	 */
+	public CommunityIDProcessor communityId() {
+		return TaggedUnionUtils.get(this, Kind.CommunityId);
 	}
 
 	/**
@@ -424,6 +449,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public FailProcessor fail() {
 		return TaggedUnionUtils.get(this, Kind.Fail);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fingerprint}?
+	 */
+	public boolean isFingerprint() {
+		return _kind == Kind.Fingerprint;
+	}
+
+	/**
+	 * Get the {@code fingerprint} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code fingerprint} kind.
+	 */
+	public FingerprintProcessor fingerprint() {
+		return TaggedUnionUtils.get(this, Kind.Fingerprint);
 	}
 
 	/**
@@ -614,6 +656,24 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code network_direction}?
+	 */
+	public boolean isNetworkDirection() {
+		return _kind == Kind.NetworkDirection;
+	}
+
+	/**
+	 * Get the {@code network_direction} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code network_direction}
+	 *             kind.
+	 */
+	public NetworkDirectionProcessor networkDirection() {
+		return TaggedUnionUtils.get(this, Kind.NetworkDirection);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code pipeline}?
 	 */
 	public boolean isPipeline() {
@@ -645,6 +705,24 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public RedactProcessor redact() {
 		return TaggedUnionUtils.get(this, Kind.Redact);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code registered_domain}?
+	 */
+	public boolean isRegisteredDomain() {
+		return _kind == Kind.RegisteredDomain;
+	}
+
+	/**
+	 * Get the {@code registered_domain} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code registered_domain}
+	 *             kind.
+	 */
+	public RegisteredDomainProcessor registeredDomain() {
+		return TaggedUnionUtils.get(this, Kind.RegisteredDomain);
 	}
 
 	/**
@@ -985,6 +1063,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.circle(fn.apply(new CircleProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> communityId(CommunityIDProcessor v) {
+			this._kind = Kind.CommunityId;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> communityId(
+				Function<CommunityIDProcessor.Builder, ObjectBuilder<CommunityIDProcessor>> fn) {
+			return this.communityId(fn.apply(new CommunityIDProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> convert(ConvertProcessor v) {
 			this._kind = Kind.Convert;
 			this._value = v;
@@ -1077,6 +1166,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		public ObjectBuilder<Processor> fail(Function<FailProcessor.Builder, ObjectBuilder<FailProcessor>> fn) {
 			return this.fail(fn.apply(new FailProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> fingerprint(FingerprintProcessor v) {
+			this._kind = Kind.Fingerprint;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> fingerprint(
+				Function<FingerprintProcessor.Builder, ObjectBuilder<FingerprintProcessor>> fn) {
+			return this.fingerprint(fn.apply(new FingerprintProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> foreach(ForeachProcessor v) {
@@ -1194,6 +1294,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.lowercase(fn.apply(new LowercaseProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> networkDirection(NetworkDirectionProcessor v) {
+			this._kind = Kind.NetworkDirection;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> networkDirection(
+				Function<NetworkDirectionProcessor.Builder, ObjectBuilder<NetworkDirectionProcessor>> fn) {
+			return this.networkDirection(fn.apply(new NetworkDirectionProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
 			this._kind = Kind.Pipeline;
 			this._value = v;
@@ -1213,6 +1324,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		public ObjectBuilder<Processor> redact(Function<RedactProcessor.Builder, ObjectBuilder<RedactProcessor>> fn) {
 			return this.redact(fn.apply(new RedactProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> registeredDomain(RegisteredDomainProcessor v) {
+			this._kind = Kind.RegisteredDomain;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> registeredDomain(
+				Function<RegisteredDomainProcessor.Builder, ObjectBuilder<RegisteredDomainProcessor>> fn) {
+			return this.registeredDomain(fn.apply(new RegisteredDomainProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
@@ -1391,6 +1513,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
 		op.add(Builder::bytes, BytesProcessor._DESERIALIZER, "bytes");
 		op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
+		op.add(Builder::communityId, CommunityIDProcessor._DESERIALIZER, "community_id");
 		op.add(Builder::convert, ConvertProcessor._DESERIALIZER, "convert");
 		op.add(Builder::csv, CsvProcessor._DESERIALIZER, "csv");
 		op.add(Builder::date, DateProcessor._DESERIALIZER, "date");
@@ -1400,6 +1523,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::drop, DropProcessor._DESERIALIZER, "drop");
 		op.add(Builder::enrich, EnrichProcessor._DESERIALIZER, "enrich");
 		op.add(Builder::fail, FailProcessor._DESERIALIZER, "fail");
+		op.add(Builder::fingerprint, FingerprintProcessor._DESERIALIZER, "fingerprint");
 		op.add(Builder::foreach, ForeachProcessor._DESERIALIZER, "foreach");
 		op.add(Builder::geoGrid, GeoGridProcessor._DESERIALIZER, "geo_grid");
 		op.add(Builder::geoip, GeoIpProcessor._DESERIALIZER, "geoip");
@@ -1411,8 +1535,10 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::json, JsonProcessor._DESERIALIZER, "json");
 		op.add(Builder::kv, KeyValueProcessor._DESERIALIZER, "kv");
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
+		op.add(Builder::networkDirection, NetworkDirectionProcessor._DESERIALIZER, "network_direction");
 		op.add(Builder::pipeline, PipelineProcessor._DESERIALIZER, "pipeline");
 		op.add(Builder::redact, RedactProcessor._DESERIALIZER, "redact");
+		op.add(Builder::registeredDomain, RegisteredDomainProcessor._DESERIALIZER, "registered_domain");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
 		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
 		op.add(Builder::reroute, RerouteProcessor._DESERIALIZER, "reroute");

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: async_search.status.Request
 
 /**
- * Get async search status Retrieves the status of a previously submitted async
+ * Get async search status. Retrieve the status of a previously submitted async
  * search request given its identifier, without retrieving search results. If
  * the Elasticsearch security features are enabled, use of this API is
  * restricted to the <code>monitoring_user</code> role.

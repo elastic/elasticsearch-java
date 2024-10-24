@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: security.delete_privileges.Request
 
 /**
- * Removes application privileges.
+ * Delete application privileges.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.delete_privileges.Request">API

@@ -32,8 +32,6 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,7 +67,7 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 	@Nullable
 	private final DateTime updatedAt;
 
-	private final Map<String, JsonData> value;
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +75,7 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 
 		this.createdAt = builder.createdAt;
 		this.updatedAt = builder.updatedAt;
-		this.value = ApiTypeHelper.unmodifiableRequired(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -104,7 +102,7 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public final Map<String, JsonData> value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
@@ -127,17 +125,8 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 			generator.writeKey("updated_at");
 			this.updatedAt.serialize(generator, mapper);
 		}
-		if (ApiTypeHelper.isDefined(this.value)) {
-			generator.writeKey("value");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.value.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("value");
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -161,7 +150,7 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 		@Nullable
 		private DateTime updatedAt;
 
-		private Map<String, JsonData> value;
+		private JsonData value;
 
 		/**
 		 * API name: {@code created_at}
@@ -181,21 +170,9 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code value}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>value</code>.
 		 */
-		public final Builder value(Map<String, JsonData> map) {
-			this.value = _mapPutAll(this.value, map);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code value}
-		 * <p>
-		 * Adds an entry to <code>value</code>.
-		 */
-		public final Builder value(String key, JsonData value) {
-			this.value = _mapPut(this.value, key, value);
+		public final Builder value(JsonData value) {
+			this.value = value;
 			return this;
 		}
 
@@ -230,7 +207,7 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 
 		op.add(Builder::createdAt, DateTime._DESERIALIZER, "created_at");
 		op.add(Builder::updatedAt, DateTime._DESERIALIZER, "updated_at");
-		op.add(Builder::value, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

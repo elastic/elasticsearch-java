@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: connector.update_name.Request
 
 /**
- * Updates the name and description fields in the connector document
+ * Update the connector name and description.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.update_name.Request">API
  *      specification</a>

@@ -59,7 +59,10 @@ import javax.annotation.Nullable;
 // typedef: connector.update_index_name.Request
 
 /**
- * Updates the index_name in the connector document
+ * Update the connector index name.
+ * <p>
+ * Update the <code>index_name</code> field of a connector, specifying the index
+ * where the data ingested by the connector is stored.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_index_name.Request">API

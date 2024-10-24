@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: connector.update_filtering_validation.Request
 
 /**
- * Updates the draft filtering validation info for a connector.
+ * Update the connector draft filtering validation.
+ * <p>
+ * Update the draft filtering validation info for a connector.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_filtering_validation.Request">API

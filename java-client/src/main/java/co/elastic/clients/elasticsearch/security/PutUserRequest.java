@@ -61,8 +61,11 @@ import javax.annotation.Nullable;
 // typedef: security.put_user.Request
 
 /**
- * Adds and updates users in the native realm. These users are commonly referred
- * to as native users.
+ * Create or update users.
+ * <p>
+ * A password is required for adding a new user but is optional when updating an
+ * existing user. To change a user’s password without updating any other fields,
+ * use the change password API.
  * 
  * @see <a href="../doc-files/api-spec.html#security.put_user.Request">API
  *      specification</a>

@@ -56,7 +56,12 @@ import javax.annotation.Nullable;
 // typedef: connector.delete.Request
 
 /**
- * Deletes a connector.
+ * Delete a connector.
+ * <p>
+ * Removes a connector and associated sync jobs. This is a destructive action
+ * that is not recoverable. NOTE: This action doesn’t delete any API keys,
+ * ingest pipelines, or data indices associated with the connector. These need
+ * to be removed manually.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.delete.Request">API
  *      specification</a>
