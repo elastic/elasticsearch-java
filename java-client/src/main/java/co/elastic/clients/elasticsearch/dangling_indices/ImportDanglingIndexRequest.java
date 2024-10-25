@@ -57,7 +57,13 @@ import javax.annotation.Nullable;
 // typedef: dangling_indices.import_dangling_index.Request
 
 /**
- * Imports the specified dangling index
+ * Import a dangling index.
+ * <p>
+ * If Elasticsearch encounters index data that is absent from the current
+ * cluster state, those indices are considered to be dangling. For example, this
+ * can happen if you delete more than
+ * <code>cluster.indices.tombstones.size</code> indices while an Elasticsearch
+ * node is offline.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#dangling_indices.import_dangling_index.Request">API
@@ -91,7 +97,11 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Must be set to true in order to import the dangling index
+	 * Required - This parameter must be set to true to import a dangling index.
+	 * Because Elasticsearch cannot know where the dangling index data came from or
+	 * determine which shard copies are fresh and which are stale, it cannot
+	 * guarantee that the imported data represents the latest state of the index
+	 * when it was last in the cluster.
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
@@ -100,7 +110,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The UUID of the dangling index
+	 * Required - The UUID of the index to import. Use the get dangling indices API
+	 * to locate the UUID.
 	 * <p>
 	 * API name: {@code index_uuid}
 	 */
@@ -148,7 +159,11 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - Must be set to true in order to import the dangling index
+		 * Required - This parameter must be set to true to import a dangling index.
+		 * Because Elasticsearch cannot know where the dangling index data came from or
+		 * determine which shard copies are fresh and which are stale, it cannot
+		 * guarantee that the imported data represents the latest state of the index
+		 * when it was last in the cluster.
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
@@ -158,7 +173,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The UUID of the dangling index
+		 * Required - The UUID of the index to import. Use the get dangling indices API
+		 * to locate the UUID.
 		 * <p>
 		 * API name: {@code index_uuid}
 		 */

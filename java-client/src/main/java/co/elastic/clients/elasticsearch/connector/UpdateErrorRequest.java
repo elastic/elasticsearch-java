@@ -59,7 +59,11 @@ import javax.annotation.Nullable;
 // typedef: connector.update_error.Request
 
 /**
- * Updates the filtering field in the connector document
+ * Update the connector error field.
+ * <p>
+ * Set the error field for the connector. If the error provided in the request
+ * body is non-null, the connector’s status is updated to error. Otherwise, if
+ * the error is reset to null, the connector status is updated to connected.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.update_error.Request">API
  *      specification</a>

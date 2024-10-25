@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: connector.list.Request
 
 /**
- * Returns existing connectors.
+ * Get all connectors.
+ * <p>
+ * Get information about all connectors.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.list.Request">API
  *      specification</a>

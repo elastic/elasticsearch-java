@@ -56,7 +56,10 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_post.Request
 
 /**
- * Creates a connector sync job.
+ * Create a connector sync job.
+ * <p>
+ * Create a connector sync job document in the internal index and initialize its
+ * counters and timestamps with default values.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.sync_job_post.Request">API
  *      specification</a>

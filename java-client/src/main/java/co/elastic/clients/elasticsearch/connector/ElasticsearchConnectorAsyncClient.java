@@ -70,8 +70,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.check_in
 
 	/**
-	 * Updates the last_seen field in the connector, and sets it to current
-	 * timestamp
+	 * Check in a connector.
+	 * <p>
+	 * Update the <code>last_seen</code> field in the connector and set it to the
+	 * current timestamp.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/check-in-connector-api.html">Documentation
@@ -86,8 +88,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the last_seen field in the connector, and sets it to current
-	 * timestamp
+	 * Check in a connector.
+	 * <p>
+	 * Update the <code>last_seen</code> field in the connector and set it to the
+	 * current timestamp.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,7 +109,12 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.delete
 
 	/**
-	 * Deletes a connector.
+	 * Delete a connector.
+	 * <p>
+	 * Removes a connector and associated sync jobs. This is a destructive action
+	 * that is not recoverable. NOTE: This action doesn’t delete any API keys,
+	 * ingest pipelines, or data indices associated with the connector. These need
+	 * to be removed manually.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/delete-connector-api.html">Documentation
@@ -120,7 +129,12 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Deletes a connector.
+	 * Delete a connector.
+	 * <p>
+	 * Removes a connector and associated sync jobs. This is a destructive action
+	 * that is not recoverable. NOTE: This action doesn’t delete any API keys,
+	 * ingest pipelines, or data indices associated with the connector. These need
+	 * to be removed manually.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -138,7 +152,9 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.get
 
 	/**
-	 * Retrieves a connector.
+	 * Get a connector.
+	 * <p>
+	 * Get the details about a connector.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/get-connector-api.html">Documentation
@@ -153,7 +169,9 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Retrieves a connector.
+	 * Get a connector.
+	 * <p>
+	 * Get the details about a connector.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -171,7 +189,9 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.list
 
 	/**
-	 * Returns existing connectors.
+	 * Get all connectors.
+	 * <p>
+	 * Get information about all connectors.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/list-connector-api.html">Documentation
@@ -186,7 +206,9 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Returns existing connectors.
+	 * Get all connectors.
+	 * <p>
+	 * Get information about all connectors.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -201,7 +223,9 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Returns existing connectors.
+	 * Get all connectors.
+	 * <p>
+	 * Get information about all connectors.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/list-connector-api.html">Documentation
@@ -216,7 +240,13 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.post
 
 	/**
-	 * Creates a connector.
+	 * Create a connector.
+	 * <p>
+	 * Connectors are Elasticsearch integrations that bring content from third-party
+	 * data sources, which can be deployed on Elastic Cloud or hosted on your own
+	 * infrastructure. Elastic managed connectors (Native connectors) are a managed
+	 * service on Elastic Cloud. Self-managed connectors (Connector clients) are
+	 * self-managed on your infrastructure.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/create-connector-api.html">Documentation
@@ -231,7 +261,13 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Creates a connector.
+	 * Create a connector.
+	 * <p>
+	 * Connectors are Elasticsearch integrations that bring content from third-party
+	 * data sources, which can be deployed on Elastic Cloud or hosted on your own
+	 * infrastructure. Elastic managed connectors (Native connectors) are a managed
+	 * service on Elastic Cloud. Self-managed connectors (Connector clients) are
+	 * self-managed on your infrastructure.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -246,7 +282,13 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Creates a connector.
+	 * Create a connector.
+	 * <p>
+	 * Connectors are Elasticsearch integrations that bring content from third-party
+	 * data sources, which can be deployed on Elastic Cloud or hosted on your own
+	 * infrastructure. Elastic managed connectors (Native connectors) are a managed
+	 * service on Elastic Cloud. Self-managed connectors (Connector clients) are
+	 * self-managed on your infrastructure.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/create-connector-api.html">Documentation
@@ -261,7 +303,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.put
 
 	/**
-	 * Creates or updates a connector.
+	 * Create or update a connector.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/create-connector-api.html">Documentation
@@ -276,7 +318,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Creates or updates a connector.
+	 * Create or update a connector.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -291,7 +333,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Creates or updates a connector.
+	 * Create or update a connector.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/create-connector-api.html">Documentation
@@ -306,7 +348,12 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_cancel
 
 	/**
-	 * Cancels a connector sync job.
+	 * Cancel a connector sync job.
+	 * <p>
+	 * Cancel a connector sync job, which sets the status to cancelling and updates
+	 * <code>cancellation_requested_at</code> to the current time. The connector
+	 * service is then responsible for setting the status of connector sync jobs to
+	 * cancelled.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/cancel-connector-sync-job-api.html">Documentation
@@ -321,7 +368,12 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Cancels a connector sync job.
+	 * Cancel a connector sync job.
+	 * <p>
+	 * Cancel a connector sync job, which sets the status to cancelling and updates
+	 * <code>cancellation_requested_at</code> to the current time. The connector
+	 * service is then responsible for setting the status of connector sync jobs to
+	 * cancelled.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -339,7 +391,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_delete
 
 	/**
-	 * Deletes a connector sync job.
+	 * Delete a connector sync job.
+	 * <p>
+	 * Remove a connector sync job and its associated data. This is a destructive
+	 * action that is not recoverable.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/delete-connector-sync-job-api.html">Documentation
@@ -354,7 +409,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Deletes a connector sync job.
+	 * Delete a connector sync job.
+	 * <p>
+	 * Remove a connector sync job and its associated data. This is a destructive
+	 * action that is not recoverable.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -372,7 +430,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_get
 
 	/**
-	 * Retrieves a connector sync job.
+	 * Get a connector sync job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/get-connector-sync-job-api.html">Documentation
@@ -387,7 +445,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Retrieves a connector sync job.
+	 * Get a connector sync job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -405,7 +463,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_list
 
 	/**
-	 * Lists connector sync jobs.
+	 * Get all connector sync jobs.
+	 * <p>
+	 * Get information about all stored connector sync jobs listed by their creation
+	 * date in ascending order.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/list-connector-sync-jobs-api.html">Documentation
@@ -420,7 +481,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Lists connector sync jobs.
+	 * Get all connector sync jobs.
+	 * <p>
+	 * Get information about all stored connector sync jobs listed by their creation
+	 * date in ascending order.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -436,7 +500,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Lists connector sync jobs.
+	 * Get all connector sync jobs.
+	 * <p>
+	 * Get information about all stored connector sync jobs listed by their creation
+	 * date in ascending order.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/list-connector-sync-jobs-api.html">Documentation
@@ -451,7 +518,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_post
 
 	/**
-	 * Creates a connector sync job.
+	 * Create a connector sync job.
+	 * <p>
+	 * Create a connector sync job document in the internal index and initialize its
+	 * counters and timestamps with default values.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/create-connector-sync-job-api.html">Documentation
@@ -466,7 +536,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Creates a connector sync job.
+	 * Create a connector sync job.
+	 * <p>
+	 * Create a connector sync job document in the internal index and initialize its
+	 * counters and timestamps with default values.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -484,6 +557,8 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_active_filtering
 
 	/**
+	 * Activate the connector draft filter.
+	 * <p>
 	 * Activates the valid draft filtering for a connector.
 	 * 
 	 * @see <a href=
@@ -500,6 +575,8 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
+	 * Activate the connector draft filter.
+	 * <p>
 	 * Activates the valid draft filtering for a connector.
 	 * 
 	 * @param fn
@@ -518,7 +595,13 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_api_key_id
 
 	/**
-	 * Updates the API key id in the connector document
+	 * Update the connector API key ID.
+	 * <p>
+	 * Update the <code>api_key_id</code> and <code>api_key_secret_id</code> fields
+	 * of a connector. You can specify the ID of the API key used for authorization
+	 * and the ID of the connector secret where the API key is stored. The connector
+	 * secret ID is required only for Elastic managed (native) connectors.
+	 * Self-managed connectors (connector clients) do not use this field.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-api-key-id-api.html">Documentation
@@ -533,7 +616,13 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the API key id in the connector document
+	 * Update the connector API key ID.
+	 * <p>
+	 * Update the <code>api_key_id</code> and <code>api_key_secret_id</code> fields
+	 * of a connector. You can specify the ID of the API key used for authorization
+	 * and the ID of the connector secret where the API key is stored. The connector
+	 * secret ID is required only for Elastic managed (native) connectors.
+	 * Self-managed connectors (connector clients) do not use this field.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -551,7 +640,9 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_configuration
 
 	/**
-	 * Updates the configuration field in the connector document
+	 * Update the connector configuration.
+	 * <p>
+	 * Update the configuration field in the connector document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-configuration-api.html">Documentation
@@ -566,7 +657,9 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the configuration field in the connector document
+	 * Update the connector configuration.
+	 * <p>
+	 * Update the configuration field in the connector document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -584,7 +677,11 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_error
 
 	/**
-	 * Updates the filtering field in the connector document
+	 * Update the connector error field.
+	 * <p>
+	 * Set the error field for the connector. If the error provided in the request
+	 * body is non-null, the connector’s status is updated to error. Otherwise, if
+	 * the error is reset to null, the connector status is updated to connected.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-error-api.html">Documentation
@@ -599,7 +696,11 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the filtering field in the connector document
+	 * Update the connector error field.
+	 * <p>
+	 * Set the error field for the connector. If the error provided in the request
+	 * body is non-null, the connector’s status is updated to error. Otherwise, if
+	 * the error is reset to null, the connector status is updated to connected.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -617,7 +718,12 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_filtering
 
 	/**
-	 * Updates the filtering field in the connector document
+	 * Update the connector filtering.
+	 * <p>
+	 * Update the draft filtering configuration of a connector and marks the draft
+	 * validation state as edited. The filtering draft is activated once validated
+	 * by the running Elastic connector service. The filtering property is used to
+	 * configure sync rules (both basic and advanced) for a connector.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-filtering-api.html">Documentation
@@ -632,7 +738,12 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the filtering field in the connector document
+	 * Update the connector filtering.
+	 * <p>
+	 * Update the draft filtering configuration of a connector and marks the draft
+	 * validation state as edited. The filtering draft is activated once validated
+	 * by the running Elastic connector service. The filtering property is used to
+	 * configure sync rules (both basic and advanced) for a connector.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -650,7 +761,9 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_filtering_validation
 
 	/**
-	 * Updates the draft filtering validation info for a connector.
+	 * Update the connector draft filtering validation.
+	 * <p>
+	 * Update the draft filtering validation info for a connector.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-filtering-validation-api.html">Documentation
@@ -666,7 +779,9 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the draft filtering validation info for a connector.
+	 * Update the connector draft filtering validation.
+	 * <p>
+	 * Update the draft filtering validation info for a connector.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -684,7 +799,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_index_name
 
 	/**
-	 * Updates the index_name in the connector document
+	 * Update the connector index name.
+	 * <p>
+	 * Update the <code>index_name</code> field of a connector, specifying the index
+	 * where the data ingested by the connector is stored.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-index-name-api.html">Documentation
@@ -699,7 +817,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the index_name in the connector document
+	 * Update the connector index name.
+	 * <p>
+	 * Update the <code>index_name</code> field of a connector, specifying the index
+	 * where the data ingested by the connector is stored.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -717,7 +838,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_name
 
 	/**
-	 * Updates the name and description fields in the connector document
+	 * Update the connector name and description.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-name-description-api.html">Documentation
@@ -732,7 +853,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the name and description fields in the connector document
+	 * Update the connector name and description.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -750,7 +871,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_native
 
 	/**
-	 * Updates the is_native flag in the connector document
+	 * Update the connector is_native flag.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-native-api.html">Documentation
@@ -765,7 +886,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the is_native flag in the connector document
+	 * Update the connector is_native flag.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -783,7 +904,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_pipeline
 
 	/**
-	 * Updates the pipeline field in the connector document
+	 * Update the connector pipeline.
+	 * <p>
+	 * When you create a new connector, the configuration of an ingest pipeline is
+	 * populated with default settings.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-pipeline-api.html">Documentation
@@ -798,7 +922,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the pipeline field in the connector document
+	 * Update the connector pipeline.
+	 * <p>
+	 * When you create a new connector, the configuration of an ingest pipeline is
+	 * populated with default settings.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -816,7 +943,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_scheduling
 
 	/**
-	 * Updates the scheduling field in the connector document
+	 * Update the connector scheduling.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-scheduling-api.html">Documentation
@@ -831,7 +958,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the scheduling field in the connector document
+	 * Update the connector scheduling.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -849,7 +976,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_service_type
 
 	/**
-	 * Updates the service type of the connector
+	 * Update the connector service type.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-service-type-api.html">Documentation
@@ -864,7 +991,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the service type of the connector
+	 * Update the connector service type.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -882,7 +1009,7 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_status
 
 	/**
-	 * Updates the status of the connector
+	 * Update the connector status.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/update-connector-status-api.html">Documentation
@@ -897,7 +1024,7 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Updates the status of the connector
+	 * Update the connector status.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

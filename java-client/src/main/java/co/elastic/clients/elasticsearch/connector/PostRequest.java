@@ -56,7 +56,13 @@ import javax.annotation.Nullable;
 // typedef: connector.post.Request
 
 /**
- * Creates a connector.
+ * Create a connector.
+ * <p>
+ * Connectors are Elasticsearch integrations that bring content from third-party
+ * data sources, which can be deployed on Elastic Cloud or hosted on your own
+ * infrastructure. Elastic managed connectors (Native connectors) are a managed
+ * service on Elastic Cloud. Self-managed connectors (Connector clients) are
+ * self-managed on your infrastructure.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.post.Request">API
  *      specification</a>

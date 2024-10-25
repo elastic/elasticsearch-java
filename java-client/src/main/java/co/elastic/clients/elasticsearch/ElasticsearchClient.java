@@ -1025,7 +1025,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: get_script_context
 
 	/**
-	 * Returns all script contexts.
+	 * Get script contexts.
+	 * <p>
+	 * Get a list of supported script contexts and their methods.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
@@ -1039,7 +1041,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: get_script_languages
 
 	/**
-	 * Returns available script types, languages and contexts
+	 * Get script languages.
+	 * <p>
+	 * Get a list of available script types, languages, and contexts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -1369,7 +1373,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: msearch
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
@@ -1387,7 +1411,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1404,7 +1448,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
@@ -1422,7 +1486,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1891,7 +1975,29 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: scroll
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
@@ -1909,7 +2015,29 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1926,7 +2054,29 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
@@ -1944,7 +2094,29 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2200,9 +2372,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: terms_enum
 
 	/**
-	 * The terms enum API can be used to discover terms in the index that begin with
-	 * the provided string. It is designed for low-latency look-ups used in
-	 * auto-complete scenarios.
+	 * Get terms in an index.
+	 * <p>
+	 * Discover terms that match a partial string in an index. This &quot;terms
+	 * enum&quot; API is designed for low-latency look-ups used in auto-complete
+	 * scenarios.
+	 * <p>
+	 * If the <code>complete</code> property in the response is false, the returned
+	 * terms set may be incomplete and should be treated as approximate. This can
+	 * occur due to a few reasons, such as a request timeout or a node error.
+	 * <p>
+	 * NOTE: The terms enum API may return terms from deleted documents. Deleted
+	 * documents are initially only marked as deleted. It is not until their
+	 * segments are merged that documents are actually deleted. Until that happens,
+	 * the terms enum API will return terms from these documents.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
@@ -2217,9 +2400,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * The terms enum API can be used to discover terms in the index that begin with
-	 * the provided string. It is designed for low-latency look-ups used in
-	 * auto-complete scenarios.
+	 * Get terms in an index.
+	 * <p>
+	 * Discover terms that match a partial string in an index. This &quot;terms
+	 * enum&quot; API is designed for low-latency look-ups used in auto-complete
+	 * scenarios.
+	 * <p>
+	 * If the <code>complete</code> property in the response is false, the returned
+	 * terms set may be incomplete and should be treated as approximate. This can
+	 * occur due to a few reasons, such as a request timeout or a node error.
+	 * <p>
+	 * NOTE: The terms enum API may return terms from deleted documents. Deleted
+	 * documents are initially only marked as deleted. It is not until their
+	 * segments are merged that documents are actually deleted. Until that happens,
+	 * the terms enum API will return terms from these documents.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

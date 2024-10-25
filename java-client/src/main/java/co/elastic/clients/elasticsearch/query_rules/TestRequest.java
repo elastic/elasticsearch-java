@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.connector;
+package co.elastic.clients.elasticsearch.query_rules;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -55,48 +56,48 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: connector.update_scheduling.Request
+// typedef: query_rules.test.Request
 
 /**
- * Update the connector scheduling.
+ * Creates or updates a query ruleset.
  * 
- * @see <a href=
- *      "../doc-files/api-spec.html#connector.update_scheduling.Request">API
+ * @see <a href="../doc-files/api-spec.html#query_rules.test.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class UpdateSchedulingRequest extends RequestBase implements JsonpSerializable {
-	private final String connectorId;
+public class TestRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, JsonData> matchCriteria;
 
-	private final SchedulingConfiguration scheduling;
+	private final String rulesetId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private UpdateSchedulingRequest(Builder builder) {
+	private TestRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
-		this.scheduling = ApiTypeHelper.requireNonNull(builder.scheduling, this, "scheduling");
+		this.matchCriteria = ApiTypeHelper.unmodifiableRequired(builder.matchCriteria, this, "matchCriteria");
+		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 
 	}
 
-	public static UpdateSchedulingRequest of(Function<Builder, ObjectBuilder<UpdateSchedulingRequest>> fn) {
+	public static TestRequest of(Function<Builder, ObjectBuilder<TestRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The unique identifier of the connector to be updated
-	 * <p>
-	 * API name: {@code connector_id}
+	 * Required - API name: {@code match_criteria}
 	 */
-	public final String connectorId() {
-		return this.connectorId;
+	public final Map<String, JsonData> matchCriteria() {
+		return this.matchCriteria;
 	}
 
 	/**
-	 * Required - API name: {@code scheduling}
+	 * Required - The unique identifier of the query ruleset to be created or
+	 * updated
+	 * <p>
+	 * API name: {@code ruleset_id}
 	 */
-	public final SchedulingConfiguration scheduling() {
-		return this.scheduling;
+	public final String rulesetId() {
+		return this.rulesetId;
 	}
 
 	/**
@@ -110,48 +111,60 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("scheduling");
-		this.scheduling.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.matchCriteria)) {
+			generator.writeKey("match_criteria");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.matchCriteria.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link UpdateSchedulingRequest}.
+	 * Builder for {@link TestRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<UpdateSchedulingRequest> {
-		private String connectorId;
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<TestRequest> {
+		private Map<String, JsonData> matchCriteria;
 
-		private SchedulingConfiguration scheduling;
+		private String rulesetId;
 
 		/**
-		 * Required - The unique identifier of the connector to be updated
+		 * Required - API name: {@code match_criteria}
 		 * <p>
-		 * API name: {@code connector_id}
+		 * Adds all entries of <code>map</code> to <code>matchCriteria</code>.
 		 */
-		public final Builder connectorId(String value) {
-			this.connectorId = value;
+		public final Builder matchCriteria(Map<String, JsonData> map) {
+			this.matchCriteria = _mapPutAll(this.matchCriteria, map);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code scheduling}
+		 * Required - API name: {@code match_criteria}
+		 * <p>
+		 * Adds an entry to <code>matchCriteria</code>.
 		 */
-		public final Builder scheduling(SchedulingConfiguration value) {
-			this.scheduling = value;
+		public final Builder matchCriteria(String key, JsonData value) {
+			this.matchCriteria = _mapPut(this.matchCriteria, key, value);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code scheduling}
+		 * Required - The unique identifier of the query ruleset to be created or
+		 * updated
+		 * <p>
+		 * API name: {@code ruleset_id}
 		 */
-		public final Builder scheduling(
-				Function<SchedulingConfiguration.Builder, ObjectBuilder<SchedulingConfiguration>> fn) {
-			return this.scheduling(fn.apply(new SchedulingConfiguration.Builder()).build());
+		public final Builder rulesetId(String value) {
+			this.rulesetId = value;
+			return this;
 		}
 
 		@Override
@@ -160,61 +173,61 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Builds a {@link UpdateSchedulingRequest}.
+		 * Builds a {@link TestRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public UpdateSchedulingRequest build() {
+		public TestRequest build() {
 			_checkSingleUse();
 
-			return new UpdateSchedulingRequest(this);
+			return new TestRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link UpdateSchedulingRequest}
+	 * Json deserializer for {@link TestRequest}
 	 */
-	public static final JsonpDeserializer<UpdateSchedulingRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateSchedulingRequest::setupUpdateSchedulingRequestDeserializer);
+	public static final JsonpDeserializer<TestRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TestRequest::setupTestRequestDeserializer);
 
-	protected static void setupUpdateSchedulingRequestDeserializer(
-			ObjectDeserializer<UpdateSchedulingRequest.Builder> op) {
+	protected static void setupTestRequestDeserializer(ObjectDeserializer<TestRequest.Builder> op) {
 
-		op.add(Builder::scheduling, SchedulingConfiguration._DESERIALIZER, "scheduling");
+		op.add(Builder::matchCriteria, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"match_criteria");
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code connector.update_scheduling}".
+	 * Endpoint "{@code query_rules.test}".
 	 */
-	public static final Endpoint<UpdateSchedulingRequest, UpdateSchedulingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/connector.update_scheduling",
+	public static final Endpoint<TestRequest, TestResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/query_rules.test",
 
 			// Request method
 			request -> {
-				return "PUT";
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int _connectorId = 1 << 0;
+				final int _rulesetId = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _connectorId;
+				propsSet |= _rulesetId;
 
-				if (propsSet == (_connectorId)) {
+				if (propsSet == (_rulesetId)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_connector");
+					buf.append("/_query_rules");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.connectorId, buf);
-					buf.append("/_scheduling");
+					SimpleEndpoint.pathEncode(request.rulesetId, buf);
+					buf.append("/_test");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -224,14 +237,14 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _connectorId = 1 << 0;
+				final int _rulesetId = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _connectorId;
+				propsSet |= _rulesetId;
 
-				if (propsSet == (_connectorId)) {
-					params.put("connectorId", request.connectorId);
+				if (propsSet == (_rulesetId)) {
+					params.put("rulesetId", request.rulesetId);
 				}
 				return params;
 			},
@@ -240,5 +253,5 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, UpdateSchedulingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TestResponse._DESERIALIZER);
 }

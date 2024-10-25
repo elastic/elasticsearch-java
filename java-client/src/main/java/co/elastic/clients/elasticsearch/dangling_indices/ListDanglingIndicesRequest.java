@@ -50,7 +50,15 @@ import java.util.Objects;
 // typedef: dangling_indices.list_dangling_indices.Request
 
 /**
- * Returns all dangling indices.
+ * Get the dangling indices.
+ * <p>
+ * If Elasticsearch encounters index data that is absent from the current
+ * cluster state, those indices are considered to be dangling. For example, this
+ * can happen if you delete more than
+ * <code>cluster.indices.tombstones.size</code> indices while an Elasticsearch
+ * node is offline.
+ * <p>
+ * Use this API to list dangling indices, which you can then import or delete.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#dangling_indices.list_dangling_indices.Request">API

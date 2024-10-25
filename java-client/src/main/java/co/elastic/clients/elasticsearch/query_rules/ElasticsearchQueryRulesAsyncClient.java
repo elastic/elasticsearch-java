@@ -311,4 +311,36 @@ public class ElasticsearchQueryRulesAsyncClient
 		return putRuleset(fn.apply(new PutRulesetRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: query_rules.test
+
+	/**
+	 * Creates or updates a query ruleset.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-query-ruleset.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<TestResponse> test(TestRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TestRequest, TestResponse, ErrorResponse> endpoint = (JsonEndpoint<TestRequest, TestResponse, ErrorResponse>) TestRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates or updates a query ruleset.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link TestRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-query-ruleset.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<TestResponse> test(Function<TestRequest.Builder, ObjectBuilder<TestRequest>> fn) {
+		return test(fn.apply(new TestRequest.Builder()).build());
+	}
+
 }

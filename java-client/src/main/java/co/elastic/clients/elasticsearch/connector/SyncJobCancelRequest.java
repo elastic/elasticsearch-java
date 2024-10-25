@@ -56,7 +56,12 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_cancel.Request
 
 /**
- * Cancels a connector sync job.
+ * Cancel a connector sync job.
+ * <p>
+ * Cancel a connector sync job, which sets the status to cancelling and updates
+ * <code>cancellation_requested_at</code> to the current time. The connector
+ * service is then responsible for setting the status of connector sync jobs to
+ * cancelled.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.sync_job_cancel.Request">API

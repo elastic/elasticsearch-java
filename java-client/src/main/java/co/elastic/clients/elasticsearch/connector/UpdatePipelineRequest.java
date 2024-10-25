@@ -58,7 +58,10 @@ import javax.annotation.Nullable;
 // typedef: connector.update_pipeline.Request
 
 /**
- * Updates the pipeline field in the connector document
+ * Update the connector pipeline.
+ * <p>
+ * When you create a new connector, the configuration of an ingest pipeline is
+ * populated with default settings.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_pipeline.Request">API

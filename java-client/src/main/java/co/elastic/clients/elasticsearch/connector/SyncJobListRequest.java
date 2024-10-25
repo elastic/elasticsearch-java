@@ -59,7 +59,10 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_list.Request
 
 /**
- * Lists connector sync jobs.
+ * Get all connector sync jobs.
+ * <p>
+ * Get information about all stored connector sync jobs listed by their creation
+ * date in ascending order.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.sync_job_list.Request">API
  *      specification</a>

@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.connector;
+package co.elastic.clients.elasticsearch.query_rules.test;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -28,10 +27,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,59 +50,49 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: connector._types.FilteringAdvancedSnippet
+// typedef: query_rules.test.QueryRulesetMatchedRule
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#connector._types.FilteringAdvancedSnippet">API
+ *      "../../doc-files/api-spec.html#query_rules.test.QueryRulesetMatchedRule">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class FilteringAdvancedSnippet implements JsonpSerializable {
-	@Nullable
-	private final DateTime createdAt;
+public class QueryRulesetMatchedRule implements JsonpSerializable {
+	private final String rulesetId;
 
-	@Nullable
-	private final DateTime updatedAt;
-
-	private final JsonData value;
+	private final String ruleId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private FilteringAdvancedSnippet(Builder builder) {
+	private QueryRulesetMatchedRule(Builder builder) {
 
-		this.createdAt = builder.createdAt;
-		this.updatedAt = builder.updatedAt;
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 
 	}
 
-	public static FilteringAdvancedSnippet of(Function<Builder, ObjectBuilder<FilteringAdvancedSnippet>> fn) {
+	public static QueryRulesetMatchedRule of(Function<Builder, ObjectBuilder<QueryRulesetMatchedRule>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code created_at}
+	 * Required - Ruleset unique identifier
+	 * <p>
+	 * API name: {@code ruleset_id}
 	 */
-	@Nullable
-	public final DateTime createdAt() {
-		return this.createdAt;
+	public final String rulesetId() {
+		return this.rulesetId;
 	}
 
 	/**
-	 * API name: {@code updated_at}
+	 * Required - Rule unique identifier within that ruleset
+	 * <p>
+	 * API name: {@code rule_id}
 	 */
-	@Nullable
-	public final DateTime updatedAt() {
-		return this.updatedAt;
-	}
-
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final JsonData value() {
-		return this.value;
+	public final String ruleId() {
+		return this.ruleId;
 	}
 
 	/**
@@ -117,16 +106,11 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.createdAt != null) {
-			generator.writeKey("created_at");
-			this.createdAt.serialize(generator, mapper);
-		}
-		if (this.updatedAt != null) {
-			generator.writeKey("updated_at");
-			this.updatedAt.serialize(generator, mapper);
-		}
-		generator.writeKey("value");
-		this.value.serialize(generator, mapper);
+		generator.writeKey("ruleset_id");
+		generator.write(this.rulesetId);
+
+		generator.writeKey("rule_id");
+		generator.write(this.ruleId);
 
 	}
 
@@ -138,41 +122,33 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link FilteringAdvancedSnippet}.
+	 * Builder for {@link QueryRulesetMatchedRule}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<FilteringAdvancedSnippet> {
-		@Nullable
-		private DateTime createdAt;
+				ObjectBuilder<QueryRulesetMatchedRule> {
+		private String rulesetId;
 
-		@Nullable
-		private DateTime updatedAt;
-
-		private JsonData value;
+		private String ruleId;
 
 		/**
-		 * API name: {@code created_at}
+		 * Required - Ruleset unique identifier
+		 * <p>
+		 * API name: {@code ruleset_id}
 		 */
-		public final Builder createdAt(@Nullable DateTime value) {
-			this.createdAt = value;
+		public final Builder rulesetId(String value) {
+			this.rulesetId = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code updated_at}
+		 * Required - Rule unique identifier within that ruleset
+		 * <p>
+		 * API name: {@code rule_id}
 		 */
-		public final Builder updatedAt(@Nullable DateTime value) {
-			this.updatedAt = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(JsonData value) {
-			this.value = value;
+		public final Builder ruleId(String value) {
+			this.ruleId = value;
 			return this;
 		}
 
@@ -182,32 +158,31 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link FilteringAdvancedSnippet}.
+		 * Builds a {@link QueryRulesetMatchedRule}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public FilteringAdvancedSnippet build() {
+		public QueryRulesetMatchedRule build() {
 			_checkSingleUse();
 
-			return new FilteringAdvancedSnippet(this);
+			return new QueryRulesetMatchedRule(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link FilteringAdvancedSnippet}
+	 * Json deserializer for {@link QueryRulesetMatchedRule}
 	 */
-	public static final JsonpDeserializer<FilteringAdvancedSnippet> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FilteringAdvancedSnippet::setupFilteringAdvancedSnippetDeserializer);
+	public static final JsonpDeserializer<QueryRulesetMatchedRule> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, QueryRulesetMatchedRule::setupQueryRulesetMatchedRuleDeserializer);
 
-	protected static void setupFilteringAdvancedSnippetDeserializer(
-			ObjectDeserializer<FilteringAdvancedSnippet.Builder> op) {
+	protected static void setupQueryRulesetMatchedRuleDeserializer(
+			ObjectDeserializer<QueryRulesetMatchedRule.Builder> op) {
 
-		op.add(Builder::createdAt, DateTime._DESERIALIZER, "created_at");
-		op.add(Builder::updatedAt, DateTime._DESERIALIZER, "updated_at");
-		op.add(Builder::value, JsonData._DESERIALIZER, "value");
+		op.add(Builder::rulesetId, JsonpDeserializer.stringDeserializer(), "ruleset_id");
+		op.add(Builder::ruleId, JsonpDeserializer.stringDeserializer(), "rule_id");
 
 	}
 
