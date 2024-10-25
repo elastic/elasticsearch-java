@@ -18,79 +18,34 @@
  */
 package co.elastic.clients.rag.article;
 
-import org.apache.tika.exception.TikaException;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.parser.AutoDetectParser;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.Parser;
-import org.apache.tika.parser.pdf.PDFParserConfig;
-import org.springframework.ai.chat.messages.Message;
-import org.springframework.ai.chat.messages.UserMessage;
-import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.chat.prompt.SystemPromptTemplate;
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
+import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.ElasticsearchVectorStore;
 import org.springframework.ai.vectorstore.SearchRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class RagService {
 
+    // Both beans autowired from default configuration
     private ElasticsearchVectorStore vectorStore;
-    private ChatModel chatModel;
+    private ChatClient chatClient;
 
-    @Autowired
-    public RagService(ElasticsearchVectorStore vectorStore, ChatModel model) {
+    public RagService(ElasticsearchVectorStore vectorStore, ChatClient.Builder clientBuilder) {
         this.vectorStore = vectorStore;
-        this.chatModel = model;
+        this.chatClient = clientBuilder.build();
     }
 
-    public void ingestPDF(String path) throws IOException, TikaException, SAXException {
-        // Initializing the PDF parser
-        // Keep in mind that AutoDetectParser is not thread safe
-        Parser parser = new AutoDetectParser();
-        // Using our custom single page handler class
-        PageContentHandler handler = new PageContentHandler();
+    public void ingestPDF(String path) {
 
-        // No need for any other specific PDF configuration
-        ParseContext parseContext = new ParseContext();
-        parseContext.set(PDFParserConfig.class, new PDFParserConfig());
-
-        // The metadata contain information such as creation date, creation tool used, etc... which we
-        // don't need
-        Metadata metadata = new Metadata();
-
-        // Reading the file
-        try (FileInputStream stream = new FileInputStream(path)) {
-            parser.parse(stream, handler, metadata, parseContext);
-        }
-
-        // Getting the result as a list of Strings with the content of the pages
-        List<String> allPages = handler.getPages();
-        List<Document> docbatch = new ArrayList<>();
-
-        // Converting pages to Documents
-        for (int i = 0; i < allPages.size(); i++) {
-            Map<String, Object> docMetadata = new HashMap<>();
-            // The page number will be used in the response
-            docMetadata.put("page", i + 1);
-
-            Document doc = new Document(allPages.get(i), docMetadata);
-            docbatch.add(doc);
-        }
+        // Spring AI utility class to read a PDF file page by page
+        PagePdfDocumentReader pdfReader = new PagePdfDocumentReader(path);
+        List<Document> docbatch = pdfReader.read();
 
         // Sending batch of documents to vector store
         // applying tokenizer
@@ -109,31 +64,31 @@ public class RagService {
             .map(Document::getContent)
             .collect(Collectors.joining(System.lineSeparator()));
 
-        // Setting the prompt
-        String basePrompt = """
+        // Setting the prompt with the context
+        String prompt = """
             You're assisting with providing the rules of the tabletop game Runewars.
-            Use the information from the DOCUMENTS section to provide accurate answers.
+            Use the information from the DOCUMENTS section to provide accurate answers to the
+            question in the QUESTION section. 
             If unsure, simply state that you don't know.
             
             DOCUMENTS:
-            {documents}
-            """;
+            """ + documents
+            + """
+            QUESTION:
+            """ + question;
 
-        // Preparing the question for the LLM
-        SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(basePrompt);
-        Message systemMessage = systemPromptTemplate.createMessage(Map.of("documents", documents));
 
-        UserMessage userMessage = new UserMessage(question);
-
-        Prompt prompt = new Prompt(List.of(systemMessage, userMessage));
         // Calling the chat model with the question
-        ChatResponse response = chatModel.call(prompt);
+        String response = chatClient.prompt()
+            .user(prompt)
+            .call()
+            .content();
 
-        return response.getResult().getOutput().getContent() +
+        return response +
             System.lineSeparator() +
             "Found at page: " +
             // Retrieving the first ranked page number from the document metadata
-            vectorStoreResult.get(0).getMetadata().get("page") +
+            vectorStoreResult.get(0).getMetadata().get(PagePdfDocumentReader.METADATA_START_PAGE_NUMBER) +
             " of the manual";
     }
 }
