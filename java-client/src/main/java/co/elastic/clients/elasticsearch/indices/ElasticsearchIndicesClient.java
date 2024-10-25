@@ -104,10 +104,12 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.analyze
 
 	/**
-	 * Performs analysis on a text string and returns the resulting tokens.
+	 * Get tokens from text analysis. The analyze API performs <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+	 * on a text string and returns the resulting tokens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -119,13 +121,15 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Performs analysis on a text string and returns the resulting tokens.
+	 * Get tokens from text analysis. The analyze API performs <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+	 * on a text string and returns the resulting tokens.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -135,10 +139,12 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Performs analysis on a text string and returns the resulting tokens.
+	 * Get tokens from text analysis. The analyze API performs <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">analysis</a>
+	 * on a text string and returns the resulting tokens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -235,7 +241,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Closes an index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -253,7 +259,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -268,7 +274,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Create an index. Creates a new index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-create-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -286,7 +292,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-create-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -603,7 +609,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Analyzes the disk usage of each field of an index or data stream.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-disk-usage.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -621,7 +627,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DiskUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-disk-usage.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -639,7 +645,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * by a configured time interval.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-downsample-data-stream.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-downsample-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -660,7 +666,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DownsampleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-downsample-data-stream.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-downsample-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -890,7 +896,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Flushes one or more data streams or indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -908,7 +914,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -921,7 +927,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Flushes one or more data streams or indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1996,7 +2002,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-rollover-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2015,7 +2021,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link RolloverRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-rollover-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2132,7 +2138,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Shrinks an existing index into a new index with fewer primary shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-shrink-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2150,7 +2156,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-shrink-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2253,7 +2259,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Splits an existing index into a new index with more primary shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-split-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2271,7 +2277,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/indices-split-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

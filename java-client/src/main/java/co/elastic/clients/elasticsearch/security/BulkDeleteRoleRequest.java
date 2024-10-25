@@ -60,6 +60,8 @@ import javax.annotation.Nullable;
 // typedef: security.bulk_delete_role.Request
 
 /**
+ * Bulk delete roles.
+ * <p>
  * The role management APIs are generally the preferred way to manage roles,
  * rather than using file-based role management. The bulk delete roles API
  * cannot delete roles that are defined in roles files.

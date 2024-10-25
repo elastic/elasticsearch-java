@@ -50,8 +50,10 @@ import java.util.Objects;
 // typedef: security.authenticate.Request
 
 /**
- * Authenticate a user. Authenticates a user and returns information about the
- * authenticated user. Include the user information in a
+ * Authenticate a user.
+ * <p>
+ * Authenticates a user and returns information about the authenticated user.
+ * Include the user information in a
  * <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic
  * auth header</a>. A successful call returns a JSON structure that shows user
  * information such as their username, the roles that are assigned to the user,

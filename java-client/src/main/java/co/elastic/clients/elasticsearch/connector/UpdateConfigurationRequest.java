@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: connector.update_configuration.Request
 
 /**
- * Updates the configuration field in the connector document
+ * Update the connector configuration.
+ * <p>
+ * Update the configuration field in the connector document.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_configuration.Request">API

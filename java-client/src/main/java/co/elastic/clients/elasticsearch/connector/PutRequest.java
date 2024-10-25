@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: connector.put.Request
 
 /**
- * Creates or updates a connector.
+ * Create or update a connector.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.put.Request">API
  *      specification</a>

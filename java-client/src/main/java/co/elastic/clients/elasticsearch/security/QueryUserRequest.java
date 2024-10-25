@@ -64,8 +64,10 @@ import javax.annotation.Nullable;
 // typedef: security.query_user.Request
 
 /**
- * Retrieves information for Users in a paginated manner. You can optionally
- * filter the results with a query.
+ * Find users with a query.
+ * <p>
+ * Get information for users in a paginated manner. You can optionally filter
+ * the results with a query.
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_user.Request">API
  *      specification</a>

@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: connector.get.Request
 
 /**
- * Retrieves a connector.
+ * Get a connector.
+ * <p>
+ * Get the details about a connector.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.get.Request">API
  *      specification</a>

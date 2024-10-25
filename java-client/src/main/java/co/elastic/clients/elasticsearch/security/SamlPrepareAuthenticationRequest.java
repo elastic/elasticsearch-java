@@ -55,8 +55,11 @@ import javax.annotation.Nullable;
 // typedef: security.saml_prepare_authentication.Request
 
 /**
- * Creates a SAML authentication request (&lt;AuthnRequest&gt;) as a URL string,
- * based on the configuration of the respective SAML realm in Elasticsearch.
+ * Prepare SAML authentication.
+ * <p>
+ * Creates a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as
+ * a URL string, based on the configuration of the respective SAML realm in
+ * Elasticsearch.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.saml_prepare_authentication.Request">API

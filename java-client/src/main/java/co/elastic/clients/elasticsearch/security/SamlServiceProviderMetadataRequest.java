@@ -56,6 +56,8 @@ import javax.annotation.Nullable;
 // typedef: security.saml_service_provider_metadata.Request
 
 /**
+ * Create SAML service provider metadata.
+ * <p>
  * Generate SAML metadata for a SAML 2.0 Service Provider.
  * 
  * @see <a href=

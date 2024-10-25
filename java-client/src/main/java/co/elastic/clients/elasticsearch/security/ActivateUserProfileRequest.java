@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.activate_user_profile.Request
 
 /**
- * Creates or updates a user profile on behalf of another user.
+ * Activate a user profile.
+ * <p>
+ * Create or update a user profile on behalf of another user.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.activate_user_profile.Request">API

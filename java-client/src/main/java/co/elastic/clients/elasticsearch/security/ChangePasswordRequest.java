@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: security.change_password.Request
 
 /**
- * Changes the passwords of users in the native realm and built-in users.
+ * Change passwords.
+ * <p>
+ * Change the passwords of users in the native realm and built-in users.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.change_password.Request">API

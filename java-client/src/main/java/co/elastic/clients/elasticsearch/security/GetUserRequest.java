@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: security.get_user.Request
 
 /**
- * Retrieves information about users in the native realm and built-in users.
+ * Get users.
+ * <p>
+ * Get information about users in the native realm and built-in users.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_user.Request">API
  *      specification</a>

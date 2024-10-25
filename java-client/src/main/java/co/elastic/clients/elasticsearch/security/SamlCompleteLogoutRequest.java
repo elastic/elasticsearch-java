@@ -59,6 +59,8 @@ import javax.annotation.Nullable;
 // typedef: security.saml_complete_logout.Request
 
 /**
+ * Logout of SAML completely.
+ * <p>
  * Verifies the logout response sent from the SAML IdP.
  * 
  * @see <a href=

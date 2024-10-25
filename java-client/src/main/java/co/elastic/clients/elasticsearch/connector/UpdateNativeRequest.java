@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: connector.update_native.Request
 
 /**
- * Updates the is_native flag in the connector document
+ * Update the connector is_native flag.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.update_native.Request">API
  *      specification</a>

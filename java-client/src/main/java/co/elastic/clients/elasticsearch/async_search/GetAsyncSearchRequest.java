@@ -56,10 +56,10 @@ import javax.annotation.Nullable;
 // typedef: async_search.get.Request
 
 /**
- * Retrieves the results of a previously submitted async search request given
- * its identifier. If the Elasticsearch security features are enabled, access to
- * the results of a specific async search is restricted to the user or API key
- * that submitted it.
+ * Get async search results. Retrieve the results of a previously submitted
+ * asynchronous search request. If the Elasticsearch security features are
+ * enabled, access to the results of a specific async search is restricted to
+ * the user or API key that submitted it.
  * 
  * @see <a href="../doc-files/api-spec.html#async_search.get.Request">API
  *      specification</a>

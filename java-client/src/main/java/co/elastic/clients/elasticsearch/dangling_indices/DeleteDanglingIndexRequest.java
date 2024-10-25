@@ -57,7 +57,13 @@ import javax.annotation.Nullable;
 // typedef: dangling_indices.delete_dangling_index.Request
 
 /**
- * Deletes the specified dangling index
+ * Delete a dangling index.
+ * <p>
+ * If Elasticsearch encounters index data that is absent from the current
+ * cluster state, those indices are considered to be dangling. For example, this
+ * can happen if you delete more than
+ * <code>cluster.indices.tombstones.size</code> indices while an Elasticsearch
+ * node is offline.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#dangling_indices.delete_dangling_index.Request">API
@@ -91,7 +97,8 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Must be set to true in order to delete the dangling index
+	 * Required - This parameter must be set to true to acknowledge that it will no
+	 * longer be possible to recove data from the dangling index.
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
@@ -100,7 +107,8 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The UUID of the dangling index
+	 * Required - The UUID of the index to delete. Use the get dangling indices API
+	 * to find the UUID.
 	 * <p>
 	 * API name: {@code index_uuid}
 	 */
@@ -148,7 +156,8 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - Must be set to true in order to delete the dangling index
+		 * Required - This parameter must be set to true to acknowledge that it will no
+		 * longer be possible to recove data from the dangling index.
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
@@ -158,7 +167,8 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The UUID of the dangling index
+		 * Required - The UUID of the index to delete. Use the get dangling indices API
+		 * to find the UUID.
 		 * <p>
 		 * API name: {@code index_uuid}
 		 */

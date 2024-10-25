@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: security.put_privileges.Request
 
 /**
- * Adds or updates application privileges.
+ * Create or update application privileges.
  * 
  * @see <a href="../doc-files/api-spec.html#security.put_privileges.Request">API
  *      specification</a>

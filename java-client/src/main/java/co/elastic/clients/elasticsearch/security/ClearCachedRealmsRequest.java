@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: security.clear_cached_realms.Request
 
 /**
- * Evicts users from the user cache. Can completely clear the cache or evict
+ * Clear the user cache.
+ * <p>
+ * Evict users from the user cache. You can completely clear the cache or evict
  * specific users.
  * 
  * @see <a href=

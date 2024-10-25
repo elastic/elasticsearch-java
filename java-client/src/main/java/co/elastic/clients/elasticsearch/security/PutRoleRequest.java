@@ -60,9 +60,12 @@ import javax.annotation.Nullable;
 // typedef: security.put_role.Request
 
 /**
- * The role management APIs are generally the preferred way to manage roles,
- * rather than using file-based role management. The create or update roles API
- * cannot update roles that are defined in roles files.
+ * Create or update roles.
+ * <p>
+ * The role management APIs are generally the preferred way to manage roles in
+ * the native realm, rather than using file-based role management. The create or
+ * update roles API cannot update roles that are defined in roles files.
+ * File-based role management is not available in Elastic Serverless.
  * 
  * @see <a href="../doc-files/api-spec.html#security.put_role.Request">API
  *      specification</a>
