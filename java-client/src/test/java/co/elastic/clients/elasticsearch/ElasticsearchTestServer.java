@@ -117,11 +117,17 @@ public class ElasticsearchTestServer implements AutoCloseable {
             return this;
         }
 
-        Version version = Version.VERSION.major() < 8 ? new Version(7,17,5,false) : new Version(8,12,0,false);
+        // using latest snapshot version for generic tests
+        Version version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) :
+            Version.parse(Version.VERSION.major() + "." + Version.VERSION.minor() + ".0-SNAPSHOT");
 
-        // Note we could use version.major() + "." + version.minor() + "-SNAPSHOT" but plugins won't install on a snapshot version
+        // using specific stable version for tests with plugins
+        if (plugins.length > 0) {
+            version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) : new Version(8, 16, 0, false);
+        }
+
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
-
+        
         DockerImageName image;
         if (plugins.length == 0) {
             image = DockerImageName.parse(esImage);
