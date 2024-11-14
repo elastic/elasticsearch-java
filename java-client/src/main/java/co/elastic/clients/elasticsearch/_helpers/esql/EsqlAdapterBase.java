@@ -34,26 +34,40 @@ public abstract class EsqlAdapterBase<T> implements EsqlAdapter<T> {
      * The caller can then read row arrays until finding an end array that closes the top-level array.
      */
     public static EsqlMetadata readHeader(JsonParser parser, JsonpMapper mapper) {
-        JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
-        JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
-
-        if (!"columns".equals(parser.getString())) {
-            throw new JsonpMappingException("Expecting a 'columns' property, but found '" + parser.getString() + "'", parser.getLocation());
-        }
-
-        List<EsqlMetadata.EsqlColumn> columns = JsonpDeserializer
-            .arrayDeserializer(EsqlMetadata.EsqlColumn._DESERIALIZER)
-            .deserialize(parser, mapper);
-
         EsqlMetadata result = new EsqlMetadata();
-        result.columns = columns;
 
-        JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
+        JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
 
-        if (!"values".equals(parser.getString())) {
-            throw new JsonpMappingException("Expecting a 'values' property, but found '" + parser.getString() + "'", parser.getLocation());
+        parse: while (JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME) != null) {
+            switch (parser.getString()) {
+                case "values": {
+                    // We're done parsing header information
+                    break parse;
+                }
+                case "columns": {
+                    result.columns = JsonpDeserializer
+                        .arrayDeserializer(EsqlMetadata.EsqlColumn._DESERIALIZER)
+                        .deserialize(parser, mapper);
+                    break;
+                }
+                case "took": {
+                    JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);
+                    result.took = parser.getLong();
+                    break;
+                }
+                default: {
+                    // Ignore everything else
+                    JsonpUtils.skipValue(parser);
+                    break;
+                }
+            }
         }
 
+        if (result.columns == null) {
+            throw new JsonpMappingException("Expecting a 'columns' property before 'values'.", parser.getLocation());
+        }
+
+        // Beginning of the `values` property
         JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_ARRAY);
 
         return result;
