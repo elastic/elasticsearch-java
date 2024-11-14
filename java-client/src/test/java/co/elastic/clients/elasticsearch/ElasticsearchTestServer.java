@@ -29,6 +29,7 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -40,12 +41,16 @@ import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
 import org.testcontainers.utility.DockerImageName;
 
 import javax.net.ssl.SSLContext;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 
 public class ElasticsearchTestServer implements AutoCloseable {
@@ -112,22 +117,75 @@ public class ElasticsearchTestServer implements AutoCloseable {
         client = new ElasticsearchClient(transport);
     }
 
+    private Version selectLatestVersion(Version version, String info) {
+        if (info.contains(version.toString())) {
+            return version;
+        }
+        // if no version X.Y.0 was found, we give up
+        if (version.maintenance() == 0) {
+            throw new RuntimeException("Elasticsearch server container version: " + version + " not yet " +
+                "available");
+        }
+        return selectLatestVersion(new Version(version.major(), version.minor(), version.maintenance() - 1,
+            false), info);
+    }
+
+    private String fetchAndWriteVersionInfo(File file) throws IOException {
+        String versionInfo = IOUtils.toString(new URL("https://artifacts-api.elastic" +
+            ".co/v1/versions/"), StandardCharsets.UTF_8);
+        try (FileWriter fw = new FileWriter(file, false)) {
+            fw.write(versionInfo);
+        }
+        return versionInfo;
+    }
+
+    private Version getLatestAvailableServerVersion(Version version) {
+        try {
+            // check if there's cached information
+            ClassLoader classLoader = getClass().getClassLoader();
+            URL location = classLoader.getResource("./co/elastic/clients/version.json");
+
+            // writing the info on file before returning
+            if (location == null) {
+                File file = new File(classLoader.getResource("./co/elastic/clients").getFile() + "/version" +
+                    ".json");
+                String versionInfo = fetchAndWriteVersionInfo(file);
+                return selectLatestVersion(version, versionInfo);
+            }
+
+            File file = new File(location.getFile());
+
+            // info file was found, but it's expired
+            if (Instant.ofEpochMilli(file.lastModified()).isBefore(Instant.now().minus(24,
+                ChronoUnit.HOURS))) {
+                String versionInfo = fetchAndWriteVersionInfo(file);
+                return selectLatestVersion(version, versionInfo);
+            }
+
+            // info file exists and it has new info
+            String versionInfo = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            return selectLatestVersion(version, versionInfo);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public synchronized ElasticsearchTestServer start() {
         if (this.client != null) {
             return this;
         }
 
-        // using latest snapshot version for generic tests
-        Version version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) :
-            Version.parse(Version.VERSION.major() + "." + Version.VERSION.minor() + ".0-SNAPSHOT");
+        Version version = getLatestAvailableServerVersion(Version.VERSION);
 
         // using specific stable version for tests with plugins
         if (plugins.length > 0) {
-            version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) : new Version(8, 16, 0, false);
+            version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) : new Version(8, 16, 0,
+                false);
         }
 
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
-        
+
         DockerImageName image;
         if (plugins.length == 0) {
             image = DockerImageName.parse(esImage);
@@ -172,10 +230,11 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
         try {
             @SuppressWarnings("unchecked")
-            JsonEndpoint<Req, JsonData, ErrorResponse> endpoint0 = (JsonEndpoint<Req, JsonData, ErrorResponse>) request.getClass()
+            JsonEndpoint<Req, JsonData, ErrorResponse> endpoint0 = (JsonEndpoint<Req, JsonData,
+                ErrorResponse>) request.getClass()
                 .getDeclaredField("_ENDPOINT").get(null);
             endpoint = endpoint0;
-        } catch (IllegalAccessException|NoSuchFieldException e) {
+        } catch (IllegalAccessException | NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
 
