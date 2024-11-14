@@ -42,7 +42,6 @@ import org.testcontainers.utility.DockerImageName;
 
 import javax.net.ssl.SSLContext;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
