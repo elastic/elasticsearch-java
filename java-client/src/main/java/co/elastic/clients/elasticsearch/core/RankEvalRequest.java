@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: _global.rank_eval.Request
 
 /**
- * Enables you to evaluate the quality of ranked search results over a set of
- * typical search queries.
+ * Evaluate ranked search results.
+ * <p>
+ * Evaluate the quality of ranked search results over a set of typical search
+ * queries.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.rank_eval.Request">API
  *      specification</a>

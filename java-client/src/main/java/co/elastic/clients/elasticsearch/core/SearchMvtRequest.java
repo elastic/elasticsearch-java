@@ -71,7 +71,9 @@ import javax.annotation.Nullable;
 // typedef: _global.search_mvt.Request
 
 /**
- * Search a vector tile. Searches a vector tile for geospatial values.
+ * Search a vector tile.
+ * <p>
+ * Search a vector tile for geospatial values.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search_mvt.Request">API
  *      specification</a>

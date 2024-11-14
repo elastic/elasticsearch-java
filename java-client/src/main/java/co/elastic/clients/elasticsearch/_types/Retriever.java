@@ -77,6 +77,10 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 
 		Rrf("rrf"),
 
+		TextSimilarityReranker("text_similarity_reranker"),
+
+		Rule("rule"),
+
 		;
 
 		private final String jsonValue;
@@ -173,6 +177,41 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 		return TaggedUnionUtils.get(this, Kind.Rrf);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code text_similarity_reranker}?
+	 */
+	public boolean isTextSimilarityReranker() {
+		return _kind == Kind.TextSimilarityReranker;
+	}
+
+	/**
+	 * Get the {@code text_similarity_reranker} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code text_similarity_reranker} kind.
+	 */
+	public TextSimilarityReranker textSimilarityReranker() {
+		return TaggedUnionUtils.get(this, Kind.TextSimilarityReranker);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rule}?
+	 */
+	public boolean isRule() {
+		return _kind == Kind.Rule;
+	}
+
+	/**
+	 * Get the {@code rule} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code rule} kind.
+	 */
+	public RuleRetriever rule() {
+		return TaggedUnionUtils.get(this, Kind.Rule);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -232,6 +271,27 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 			return this.rrf(fn.apply(new RRFRetriever.Builder()).build());
 		}
 
+		public ObjectBuilder<Retriever> textSimilarityReranker(TextSimilarityReranker v) {
+			this._kind = Kind.TextSimilarityReranker;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Retriever> textSimilarityReranker(
+				Function<TextSimilarityReranker.Builder, ObjectBuilder<TextSimilarityReranker>> fn) {
+			return this.textSimilarityReranker(fn.apply(new TextSimilarityReranker.Builder()).build());
+		}
+
+		public ObjectBuilder<Retriever> rule(RuleRetriever v) {
+			this._kind = Kind.Rule;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Retriever> rule(Function<RuleRetriever.Builder, ObjectBuilder<RuleRetriever>> fn) {
+			return this.rule(fn.apply(new RuleRetriever.Builder()).build());
+		}
+
 		public Retriever build() {
 			_checkSingleUse();
 			return new Retriever(this);
@@ -244,6 +304,8 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 		op.add(Builder::standard, StandardRetriever._DESERIALIZER, "standard");
 		op.add(Builder::knn, KnnRetriever._DESERIALIZER, "knn");
 		op.add(Builder::rrf, RRFRetriever._DESERIALIZER, "rrf");
+		op.add(Builder::textSimilarityReranker, TextSimilarityReranker._DESERIALIZER, "text_similarity_reranker");
+		op.add(Builder::rule, RuleRetriever._DESERIALIZER, "rule");
 
 	}
 

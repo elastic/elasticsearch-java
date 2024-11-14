@@ -29,7 +29,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Float;
 import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +71,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 	private final List<SortOptions> sort;
 
 	@Nullable
-	private final Float minScore;
-
-	@Nullable
 	private final FieldCollapse collapse;
 
 	// ---------------------------------------------------------------------------------------------
@@ -86,7 +82,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.terminateAfter = builder.terminateAfter;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
-		this.minScore = builder.minScore;
 		this.collapse = builder.collapse;
 
 	}
@@ -142,17 +137,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 	}
 
 	/**
-	 * Minimum _score for matching documents. Documents with a lower _score are not
-	 * included in the top documents.
-	 * <p>
-	 * API name: {@code min_score}
-	 */
-	@Nullable
-	public final Float minScore() {
-		return this.minScore;
-	}
-
-	/**
 	 * Collapses the top documents by a specified key into a single top document per
 	 * key.
 	 * <p>
@@ -196,11 +180,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 			generator.writeEnd();
 
 		}
-		if (this.minScore != null) {
-			generator.writeKey("min_score");
-			generator.write(this.minScore);
-
-		}
 		if (this.collapse != null) {
 			generator.writeKey("collapse");
 			this.collapse.serialize(generator, mapper);
@@ -229,9 +208,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 
 		@Nullable
 		private List<SortOptions> sort;
-
-		@Nullable
-		private Float minScore;
 
 		@Nullable
 		private FieldCollapse collapse;
@@ -404,17 +380,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		}
 
 		/**
-		 * Minimum _score for matching documents. Documents with a lower _score are not
-		 * included in the top documents.
-		 * <p>
-		 * API name: {@code min_score}
-		 */
-		public final Builder minScore(@Nullable Float value) {
-			this.minScore = value;
-			return this;
-		}
-
-		/**
 		 * Collapses the top documents by a specified key into a single top document per
 		 * key.
 		 * <p>
@@ -467,7 +432,6 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
 		op.add(Builder::terminateAfter, JsonpDeserializer.integerDeserializer(), "terminate_after");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
-		op.add(Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
 		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
 
 	}

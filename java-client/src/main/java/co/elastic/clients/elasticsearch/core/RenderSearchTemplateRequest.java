@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: _global.render_search_template.Request
 
 /**
- * Renders a search template as a search request body.
+ * Render a search template.
+ * <p>
+ * Render a search template as a search request body.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.render_search_template.Request">API

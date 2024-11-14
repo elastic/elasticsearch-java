@@ -77,9 +77,6 @@ public class GetAliasRequest extends RequestBase {
 
 	private final List<String> index;
 
-	@Nullable
-	private final Boolean local;
-
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -90,7 +87,6 @@ public class GetAliasRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
-		this.local = builder.local;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
@@ -149,17 +145,6 @@ public class GetAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the request retrieves information from the local node
-	 * only.
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
-	}
-
-	/**
 	 * Comma-separated list of aliases to retrieve. Supports wildcards
 	 * (<code>*</code>). To retrieve all aliases, omit this parameter or use
 	 * <code>*</code> or <code>_all</code>.
@@ -188,9 +173,6 @@ public class GetAliasRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private Boolean local;
 
 		@Nullable
 		private List<String> name;
@@ -278,17 +260,6 @@ public class GetAliasRequest extends RequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the request retrieves information from the local node
-		 * only.
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
 			return this;
 		}
 
@@ -436,9 +407,6 @@ public class GetAliasRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

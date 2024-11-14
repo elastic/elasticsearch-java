@@ -582,8 +582,47 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-master.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public MasterResponse master(MasterRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MasterRequest, MasterResponse, ErrorResponse> endpoint = (JsonEndpoint<MasterRequest, MasterResponse, ErrorResponse>) MasterRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about the master node, including the ID, bound IP
+	 * address, and name. IMPORTANT: cat APIs are only intended for human
+	 * consumption using the command line or Kibana console. They are not intended
+	 * for use by applications. For application consumption, use the nodes info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MasterRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-master.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final MasterResponse master(Function<MasterRequest.Builder, ObjectBuilder<MasterRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return master(fn.apply(new MasterRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about the master node, including the ID, bound IP
+	 * address, and name. IMPORTANT: cat APIs are only intended for human
+	 * consumption using the command line or Kibana console. They are not intended
+	 * for use by applications. For application consumption, use the nodes info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-master.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public MasterResponse master() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(MasterRequest._INSTANCE, MasterRequest._ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(new MasterRequest.Builder().build(), MasterRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.ml_data_frame_analytics
@@ -865,8 +904,46 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public NodeattrsResponse nodeattrs(NodeattrsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> endpoint = (JsonEndpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse>) NodeattrsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about custom node attributes. IMPORTANT: cat APIs are
+	 * only intended for human consumption using the command line or Kibana console.
+	 * They are not intended for use by applications. For application consumption,
+	 * use the nodes info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link NodeattrsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-nodeattrs.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final NodeattrsResponse nodeattrs(Function<NodeattrsRequest.Builder, ObjectBuilder<NodeattrsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return nodeattrs(fn.apply(new NodeattrsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about custom node attributes. IMPORTANT: cat APIs are
+	 * only intended for human consumption using the command line or Kibana console.
+	 * They are not intended for use by applications. For application consumption,
+	 * use the nodes info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-nodeattrs.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public NodeattrsResponse nodeattrs() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
+		return this.transport.performRequest(new NodeattrsRequest.Builder().build(), NodeattrsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -937,8 +1014,47 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-pending-tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse>) PendingTasksRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns cluster-level changes that have not yet been executed. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the pending cluster tasks API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PendingTasksRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-pending-tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PendingTasksResponse pendingTasks(
+			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns cluster-level changes that have not yet been executed. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the pending cluster tasks API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-pending-tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public PendingTasksResponse pendingTasks() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
+		return this.transport.performRequest(new PendingTasksRequest.Builder().build(), PendingTasksRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -954,8 +1070,47 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-plugins.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public PluginsResponse plugins(PluginsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PluginsRequest, PluginsResponse, ErrorResponse> endpoint = (JsonEndpoint<PluginsRequest, PluginsResponse, ErrorResponse>) PluginsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns a list of plugins running on each node of a cluster. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the nodes info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PluginsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-plugins.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PluginsResponse plugins(Function<PluginsRequest.Builder, ObjectBuilder<PluginsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return plugins(fn.apply(new PluginsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns a list of plugins running on each node of a cluster. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the nodes info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-plugins.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public PluginsResponse plugins() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(new PluginsRequest.Builder().build(), PluginsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.recovery

@@ -30,6 +30,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +71,9 @@ public class AllocationRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
+	@Nullable
+	private final Boolean local;
+
 	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,6 +81,7 @@ public class AllocationRequest extends CatRequestBase {
 	private AllocationRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
+		this.local = builder.local;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
@@ -93,6 +98,20 @@ public class AllocationRequest extends CatRequestBase {
 	@Nullable
 	public final Bytes bytes() {
 		return this.bytes;
+	}
+
+	/**
+	 * If <code>true</code>, the request computes the list of selected nodes from
+	 * the local cluster state. If <code>false</code> the list of selected nodes are
+	 * computed from the cluster state of the master node. In both cases the
+	 * coordinating node will send requests for further information to each selected
+	 * node.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public final Boolean local() {
+		return this.local;
 	}
 
 	/**
@@ -118,6 +137,9 @@ public class AllocationRequest extends CatRequestBase {
 		private Bytes bytes;
 
 		@Nullable
+		private Boolean local;
+
+		@Nullable
 		private List<String> nodeId;
 
 		/**
@@ -127,6 +149,20 @@ public class AllocationRequest extends CatRequestBase {
 		 */
 		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the request computes the list of selected nodes from
+		 * the local cluster state. If <code>false</code> the list of selected nodes are
+		 * computed from the cluster state of the master node. In both cases the
+		 * coordinating node will send requests for further information to each selected
+		 * node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
 			return this;
 		}
 
@@ -240,6 +276,9 @@ public class AllocationRequest extends CatRequestBase {
 				params.put("format", "json");
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 
