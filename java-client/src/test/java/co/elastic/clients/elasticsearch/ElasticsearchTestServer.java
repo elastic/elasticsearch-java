@@ -63,6 +63,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
+    private static final String artifactsApiUrl = "https://artifacts-api.elastic.co/v1/versions/";
 
     public static synchronized ElasticsearchTestServer global() {
         if (global == null) {
@@ -131,11 +132,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
     }
 
     private String fetchAndWriteVersionInfo(File file) throws IOException {
-        String versionInfo = IOUtils.toString(new URL("https://artifacts-api.elastic" +
-            ".co/v1/versions/"), StandardCharsets.UTF_8);
-        try (FileWriter fw = new FileWriter(file, false)) {
-            fw.write(versionInfo);
-        }
+        String versionInfo = IOUtils.toString(new URL(artifactsApiUrl), StandardCharsets.UTF_8);
+        FileUtils.writeStringToFile(file, versionInfo, StandardCharsets.UTF_8);
         return versionInfo;
     }
 
