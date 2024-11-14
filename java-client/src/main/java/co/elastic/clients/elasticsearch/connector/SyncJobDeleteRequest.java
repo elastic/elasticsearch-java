@@ -56,7 +56,10 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_delete.Request
 
 /**
- * Deletes a connector sync job.
+ * Delete a connector sync job.
+ * <p>
+ * Remove a connector sync job and its associated data. This is a destructive
+ * action that is not recoverable.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.sync_job_delete.Request">API

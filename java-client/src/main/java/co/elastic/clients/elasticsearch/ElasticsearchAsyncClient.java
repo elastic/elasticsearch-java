@@ -403,7 +403,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: clear_scroll
 
 	/**
-	 * Clears the search context and results for a scrolling search.
+	 * Clear a scrolling search.
+	 * <p>
+	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/clear-scroll-api.html">Documentation
@@ -418,7 +420,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Clears the search context and results for a scrolling search.
+	 * Clear a scrolling search.
+	 * <p>
+	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -434,7 +438,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Clears the search context and results for a scrolling search.
+	 * Clear a scrolling search.
+	 * <p>
+	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/clear-scroll-api.html">Documentation
@@ -449,7 +455,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: close_point_in_time
 
 	/**
-	 * Closes a point-in-time.
+	 * Close a point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist. A point in time is automatically closed when the
+	 * <code>keep_alive</code> period has elapsed. However, keeping points in time
+	 * has a cost; close them as soon as they are no longer required for search
+	 * requests.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/point-in-time-api.html">Documentation
@@ -464,7 +477,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Closes a point-in-time.
+	 * Close a point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist. A point in time is automatically closed when the
+	 * <code>keep_alive</code> period has elapsed. However, keeping points in time
+	 * has a cost; close them as soon as they are no longer required for search
+	 * requests.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -631,8 +651,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: delete_by_query_rethrottle
 
 	/**
-	 * Changes the number of requests per second for a particular Delete By Query
-	 * operation.
+	 * Throttle a delete by query operation.
+	 * <p>
+	 * Change the number of requests per second for a particular delete by query
+	 * operation. Rethrottling that speeds up the query takes effect immediately but
+	 * rethrotting that slows down the query takes effect after completing the
+	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
@@ -648,8 +672,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Changes the number of requests per second for a particular Delete By Query
-	 * operation.
+	 * Throttle a delete by query operation.
+	 * <p>
+	 * Change the number of requests per second for a particular delete by query
+	 * operation. Rethrottling that speeds up the query takes effect immediately but
+	 * rethrotting that slows down the query takes effect after completing the
+	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -844,11 +872,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: field_caps
 
 	/**
-	 * The field capabilities API returns the information about the capabilities of
-	 * fields among multiple indices. The field capabilities API returns runtime
-	 * fields like any other field. For example, a runtime field with a type of
-	 * keyword is returned as any other field that belongs to the
-	 * <code>keyword</code> family.
+	 * Get the field capabilities.
+	 * <p>
+	 * Get information about the capabilities of fields among multiple indices.
+	 * <p>
+	 * For data streams, the API returns field capabilities among the stream’s
+	 * backing indices. It returns runtime fields like any other field. For example,
+	 * a runtime field with a type of keyword is returned the same as any other
+	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
@@ -863,11 +894,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * The field capabilities API returns the information about the capabilities of
-	 * fields among multiple indices. The field capabilities API returns runtime
-	 * fields like any other field. For example, a runtime field with a type of
-	 * keyword is returned as any other field that belongs to the
-	 * <code>keyword</code> family.
+	 * Get the field capabilities.
+	 * <p>
+	 * Get information about the capabilities of fields among multiple indices.
+	 * <p>
+	 * For data streams, the API returns field capabilities among the stream’s
+	 * backing indices. It returns runtime fields like any other field. For example,
+	 * a runtime field with a type of keyword is returned the same as any other
+	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -883,11 +917,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * The field capabilities API returns the information about the capabilities of
-	 * fields among multiple indices. The field capabilities API returns runtime
-	 * fields like any other field. For example, a runtime field with a type of
-	 * keyword is returned as any other field that belongs to the
-	 * <code>keyword</code> family.
+	 * Get the field capabilities.
+	 * <p>
+	 * Get information about the capabilities of fields among multiple indices.
+	 * <p>
+	 * For data streams, the API returns field capabilities among the stream’s
+	 * backing indices. It returns runtime fields like any other field. For example,
+	 * a runtime field with a type of keyword is returned the same as any other
+	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
@@ -1010,7 +1047,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: get_script_context
 
 	/**
-	 * Returns all script contexts.
+	 * Get script contexts.
+	 * <p>
+	 * Get a list of supported script contexts and their methods.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
@@ -1024,7 +1063,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: get_script_languages
 
 	/**
-	 * Returns available script types, languages and contexts
+	 * Get script languages.
+	 * <p>
+	 * Get a list of available script types, languages, and contexts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
@@ -1206,7 +1247,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: knn_search
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1225,7 +1281,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1241,7 +1312,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1260,7 +1346,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1278,7 +1379,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: mget
 
 	/**
-	 * Allows to get multiple documents in one request.
+	 * Get multiple documents.
+	 * <p>
+	 * Get multiple JSON documents by ID from one or more indices. If you specify an
+	 * index in the request URI, you only need to specify the document IDs in the
+	 * request body. To ensure fast responses, this multi get (mget) API responds
+	 * with partial results if one or more shards fail.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
@@ -1296,7 +1402,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to get multiple documents in one request.
+	 * Get multiple documents.
+	 * <p>
+	 * Get multiple JSON documents by ID from one or more indices. If you specify an
+	 * index in the request URI, you only need to specify the document IDs in the
+	 * request body. To ensure fast responses, this multi get (mget) API responds
+	 * with partial results if one or more shards fail.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1312,7 +1423,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to get multiple documents in one request.
+	 * Get multiple documents.
+	 * <p>
+	 * Get multiple JSON documents by ID from one or more indices. If you specify an
+	 * index in the request URI, you only need to specify the document IDs in the
+	 * request body. To ensure fast responses, this multi get (mget) API responds
+	 * with partial results if one or more shards fail.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
@@ -1329,7 +1445,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to get multiple documents in one request.
+	 * Get multiple documents.
+	 * <p>
+	 * Get multiple JSON documents by ID from one or more indices. If you specify an
+	 * index in the request URI, you only need to specify the document IDs in the
+	 * request body. To ensure fast responses, this multi get (mget) API responds
+	 * with partial results if one or more shards fail.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1347,7 +1468,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: msearch
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
@@ -1365,7 +1506,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1381,7 +1542,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
@@ -1399,7 +1580,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to execute several search operations in one request.
+	 * Run multiple searches.
+	 * <p>
+	 * The format of the request is similar to the bulk API format and makes use of
+	 * the newline delimited JSON (NDJSON) format. The structure is as follows:
+	 * 
+	 * <pre>
+	 * <code>header\n
+	 * body\n
+	 * header\n
+	 * body\n
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * This structure is specifically optimized to reduce parsing if a specific
+	 * search ends up redirected to another node.
+	 * <p>
+	 * IMPORTANT: The final line of data must end with a newline character
+	 * <code>\n</code>. Each newline character may be preceded by a carriage return
+	 * <code>\r</code>. When sending requests to this endpoint the
+	 * <code>Content-Type</code> header should be set to
+	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1417,7 +1618,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: msearch_template
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
@@ -1436,7 +1637,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1453,7 +1654,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
@@ -1472,7 +1673,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1490,7 +1691,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: mtermvectors
 
 	/**
-	 * Returns multiple termvectors in one request.
+	 * Get multiple term vectors.
+	 * <p>
+	 * You can specify existing documents by index and ID or provide artificial
+	 * documents in the body of the request. You can specify the index in the
+	 * request body or request URI. The response contains a <code>docs</code> array
+	 * with all the fetched termvectors. Each element has the structure provided by
+	 * the termvectors API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
@@ -1505,7 +1712,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns multiple termvectors in one request.
+	 * Get multiple term vectors.
+	 * <p>
+	 * You can specify existing documents by index and ID or provide artificial
+	 * documents in the body of the request. You can specify the index in the
+	 * request body or request URI. The response contains a <code>docs</code> array
+	 * with all the fetched termvectors. Each element has the structure provided by
+	 * the termvectors API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1521,7 +1734,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns multiple termvectors in one request.
+	 * Get multiple term vectors.
+	 * <p>
+	 * You can specify existing documents by index and ID or provide artificial
+	 * documents in the body of the request. You can specify the index in the
+	 * request body or request URI. The response contains a <code>docs</code> array
+	 * with all the fetched termvectors. Each element has the structure provided by
+	 * the termvectors API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
@@ -1536,14 +1755,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: open_point_in_time
 
 	/**
-	 * A search request by default executes against the most recent visible data of
-	 * the target indices, which is called point in time. Elasticsearch pit (point
-	 * in time) is a lightweight view into the state of the data as it existed when
+	 * Open a point in time.
+	 * <p>
+	 * A search request by default runs against the most recent visible data of the
+	 * target indices, which is called point in time. Elasticsearch pit (point in
+	 * time) is a lightweight view into the state of the data as it existed when
 	 * initiated. In some cases, it’s preferred to perform multiple search requests
 	 * using the same point in time. For example, if refreshes happen between
 	 * <code>search_after</code> requests, then the results of those requests might
 	 * not be consistent as changes happening between searches are only visible to
 	 * the more recent point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/point-in-time-api.html">Documentation
@@ -1558,14 +1783,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * A search request by default executes against the most recent visible data of
-	 * the target indices, which is called point in time. Elasticsearch pit (point
-	 * in time) is a lightweight view into the state of the data as it existed when
+	 * Open a point in time.
+	 * <p>
+	 * A search request by default runs against the most recent visible data of the
+	 * target indices, which is called point in time. Elasticsearch pit (point in
+	 * time) is a lightweight view into the state of the data as it existed when
 	 * initiated. In some cases, it’s preferred to perform multiple search requests
 	 * using the same point in time. For example, if refreshes happen between
 	 * <code>search_after</code> requests, then the results of those requests might
 	 * not be consistent as changes happening between searches are only visible to
 	 * the more recent point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1631,8 +1862,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: rank_eval
 
 	/**
-	 * Enables you to evaluate the quality of ranked search results over a set of
-	 * typical search queries.
+	 * Evaluate ranked search results.
+	 * <p>
+	 * Evaluate the quality of ranked search results over a set of typical search
+	 * queries.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
@@ -1647,8 +1880,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Enables you to evaluate the quality of ranked search results over a set of
-	 * typical search queries.
+	 * Evaluate ranked search results.
+	 * <p>
+	 * Evaluate the quality of ranked search results over a set of typical search
+	 * queries.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1705,7 +1940,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: reindex_rethrottle
 
 	/**
-	 * Copies documents from a source to a destination.
+	 * Throttle a reindex operation.
+	 * <p>
+	 * Change the number of requests per second for a particular reindex operation.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
@@ -1720,7 +1957,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Copies documents from a source to a destination.
+	 * Throttle a reindex operation.
+	 * <p>
+	 * Change the number of requests per second for a particular reindex operation.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1738,7 +1977,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: render_search_template
 
 	/**
-	 * Renders a search template as a search request body.
+	 * Render a search template.
+	 * <p>
+	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
@@ -1753,7 +1994,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Renders a search template as a search request body.
+	 * Render a search template.
+	 * <p>
+	 * Render a search template as a search request body.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1769,7 +2012,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Renders a search template as a search request body.
+	 * Render a search template.
+	 * <p>
+	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
@@ -1858,7 +2103,29 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: scroll
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
@@ -1876,7 +2143,29 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1892,7 +2181,29 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
@@ -1909,7 +2220,29 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Allows to retrieve a large numbers of results from a single search request.
+	 * Run a scrolling search.
+	 * <p>
+	 * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+	 * need to preserve the index state while paging through more than 10,000 hits,
+	 * use the <code>search_after</code> parameter with a point in time (PIT).
+	 * <p>
+	 * The scroll API gets large sets of results from a single scrolling search
+	 * request. To get the necessary scroll ID, submit a search API request that
+	 * includes an argument for the <code>scroll</code> query parameter. The
+	 * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+	 * the search context for the request. The search response returns a scroll ID
+	 * in the <code>_scroll_id</code> response body parameter. You can then use the
+	 * scroll ID with the scroll API to retrieve the next batch of results for the
+	 * request. If the Elasticsearch security features are enabled, the access to
+	 * the results of a specific scroll ID is restricted to the user or API key that
+	 * submitted the search.
+	 * <p>
+	 * You can also use the scroll API to specify a new scroll parameter that
+	 * extends or shortens the retention period for the search context.
+	 * <p>
+	 * IMPORTANT: Results from a scrolling search reflect the state of the index at
+	 * the time of the initial search request. Subsequent indexing or document
+	 * changes only affect later search and scroll requests.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1927,9 +2260,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1947,9 +2282,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1965,9 +2302,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1984,9 +2323,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2004,7 +2345,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_mvt
 
 	/**
-	 * Search a vector tile. Searches a vector tile for geospatial values.
+	 * Search a vector tile.
+	 * <p>
+	 * Search a vector tile for geospatial values.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
@@ -2019,7 +2362,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Search a vector tile. Searches a vector tile for geospatial values.
+	 * Search a vector tile.
+	 * <p>
+	 * Search a vector tile for geospatial values.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2037,8 +2382,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_shards
 
 	/**
-	 * Returns information about the indices and shards that a search request would
-	 * be executed against.
+	 * Get the search shards.
+	 * <p>
+	 * Get the indices and shards that a search request would be run against. This
+	 * information can be useful for working out issues or planning optimizations
+	 * with routing and shard preferences. When filtered aliases are used, the
+	 * filter is returned as part of the indices section.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
@@ -2053,8 +2402,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about the indices and shards that a search request would
-	 * be executed against.
+	 * Get the search shards.
+	 * <p>
+	 * Get the indices and shards that a search request would be run against. This
+	 * information can be useful for working out issues or planning optimizations
+	 * with routing and shard preferences. When filtered aliases are used, the
+	 * filter is returned as part of the indices section.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2070,8 +2423,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about the indices and shards that a search request would
-	 * be executed against.
+	 * Get the search shards.
+	 * <p>
+	 * Get the indices and shards that a search request would be run against. This
+	 * information can be useful for working out issues or planning optimizations
+	 * with routing and shard preferences. When filtered aliases are used, the
+	 * filter is returned as part of the indices section.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
@@ -2086,7 +2443,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_template
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
@@ -2105,7 +2462,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2122,7 +2479,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
@@ -2141,7 +2498,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2159,9 +2516,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: terms_enum
 
 	/**
-	 * The terms enum API can be used to discover terms in the index that begin with
-	 * the provided string. It is designed for low-latency look-ups used in
-	 * auto-complete scenarios.
+	 * Get terms in an index.
+	 * <p>
+	 * Discover terms that match a partial string in an index. This &quot;terms
+	 * enum&quot; API is designed for low-latency look-ups used in auto-complete
+	 * scenarios.
+	 * <p>
+	 * If the <code>complete</code> property in the response is false, the returned
+	 * terms set may be incomplete and should be treated as approximate. This can
+	 * occur due to a few reasons, such as a request timeout or a node error.
+	 * <p>
+	 * NOTE: The terms enum API may return terms from deleted documents. Deleted
+	 * documents are initially only marked as deleted. It is not until their
+	 * segments are merged that documents are actually deleted. Until that happens,
+	 * the terms enum API will return terms from these documents.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
@@ -2176,9 +2544,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * The terms enum API can be used to discover terms in the index that begin with
-	 * the provided string. It is designed for low-latency look-ups used in
-	 * auto-complete scenarios.
+	 * Get terms in an index.
+	 * <p>
+	 * Discover terms that match a partial string in an index. This &quot;terms
+	 * enum&quot; API is designed for low-latency look-ups used in auto-complete
+	 * scenarios.
+	 * <p>
+	 * If the <code>complete</code> property in the response is false, the returned
+	 * terms set may be incomplete and should be treated as approximate. This can
+	 * occur due to a few reasons, such as a request timeout or a node error.
+	 * <p>
+	 * NOTE: The terms enum API may return terms from deleted documents. Deleted
+	 * documents are initially only marked as deleted. It is not until their
+	 * segments are merged that documents are actually deleted. Until that happens,
+	 * the terms enum API will return terms from these documents.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2196,8 +2575,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: termvectors
 
 	/**
-	 * Get term vector information. Returns information and statistics about terms
-	 * in the fields of a particular document.
+	 * Get term vector information.
+	 * <p>
+	 * Get information and statistics about terms in the fields of a particular
+	 * document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
@@ -2212,8 +2593,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get term vector information. Returns information and statistics about terms
-	 * in the fields of a particular document.
+	 * Get term vector information.
+	 * <p>
+	 * Get information and statistics about terms in the fields of a particular
+	 * document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2346,8 +2729,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: update_by_query_rethrottle
 
 	/**
-	 * Changes the number of requests per second for a particular Update By Query
-	 * operation.
+	 * Throttle an update by query operation.
+	 * <p>
+	 * Change the number of requests per second for a particular update by query
+	 * operation. Rethrottling that speeds up the query takes effect immediately but
+	 * rethrotting that slows down the query takes effect after completing the
+	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
@@ -2363,8 +2750,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Changes the number of requests per second for a particular Update By Query
-	 * operation.
+	 * Throttle an update by query operation.
+	 * <p>
+	 * Change the number of requests per second for a particular update by query
+	 * operation. Rethrottling that speeds up the query takes effect immediately but
+	 * rethrotting that slows down the query takes effect after completing the
+	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

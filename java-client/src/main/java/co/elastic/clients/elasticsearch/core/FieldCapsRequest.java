@@ -63,11 +63,14 @@ import javax.annotation.Nullable;
 // typedef: _global.field_caps.Request
 
 /**
- * The field capabilities API returns the information about the capabilities of
- * fields among multiple indices. The field capabilities API returns runtime
- * fields like any other field. For example, a runtime field with a type of
- * keyword is returned as any other field that belongs to the
- * <code>keyword</code> family.
+ * Get the field capabilities.
+ * <p>
+ * Get information about the capabilities of fields among multiple indices.
+ * <p>
+ * For data streams, the API returns field capabilities among the stream’s
+ * backing indices. It returns runtime fields like any other field. For example,
+ * a runtime field with a type of keyword is returned the same as any other
+ * field that belongs to the <code>keyword</code> family.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.field_caps.Request">API
  *      specification</a>

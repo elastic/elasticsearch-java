@@ -31,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Float;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,11 +63,15 @@ import javax.annotation.Nullable;
 public abstract class RetrieverBase implements JsonpSerializable {
 	private final List<Query> filter;
 
+	@Nullable
+	private final Float minScore;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected RetrieverBase(AbstractBuilder<?> builder) {
 
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+		this.minScore = builder.minScore;
 
 	}
 
@@ -77,6 +82,17 @@ public abstract class RetrieverBase implements JsonpSerializable {
 	 */
 	public final List<Query> filter() {
 		return this.filter;
+	}
+
+	/**
+	 * Minimum _score for matching documents. Documents with a lower _score are not
+	 * included in the top documents.
+	 * <p>
+	 * API name: {@code min_score}
+	 */
+	@Nullable
+	public final Float minScore() {
+		return this.minScore;
 	}
 
 	/**
@@ -100,6 +116,11 @@ public abstract class RetrieverBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.minScore != null) {
+			generator.writeKey("min_score");
+			generator.write(this.minScore);
+
+		}
 
 	}
 
@@ -113,6 +134,9 @@ public abstract class RetrieverBase implements JsonpSerializable {
 				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
 		private List<Query> filter;
+
+		@Nullable
+		private Float minScore;
 
 		/**
 		 * Query to filter the documents that can match.
@@ -149,6 +173,17 @@ public abstract class RetrieverBase implements JsonpSerializable {
 			return filter(fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * Minimum _score for matching documents. Documents with a lower _score are not
+		 * included in the top documents.
+		 * <p>
+		 * API name: {@code min_score}
+		 */
+		public final BuilderT minScore(@Nullable Float value) {
+			this.minScore = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -158,6 +193,7 @@ public abstract class RetrieverBase implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+		op.add(AbstractBuilder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
 
 	}
 

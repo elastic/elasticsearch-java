@@ -66,8 +66,10 @@ import javax.annotation.Nullable;
 // typedef: security.query_api_keys.Request
 
 /**
- * Query API keys. Retrieves a paginated list of API keys and their information.
- * You can optionally filter the results with a query.
+ * Find API keys with a query.
+ * <p>
+ * Get a paginated list of API keys and their information. You can optionally
+ * filter the results with a query.
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_api_keys.Request">API
  *      specification</a>

@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: security.clear_cached_roles.Request
 
 /**
- * Evicts roles from the native role cache.
+ * Clear the roles cache.
+ * <p>
+ * Evict roles from the native role cache.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.clear_cached_roles.Request">API

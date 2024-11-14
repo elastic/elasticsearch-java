@@ -50,7 +50,9 @@ import java.util.Objects;
 // typedef: _global.get_script_languages.Request
 
 /**
- * Returns available script types, languages and contexts
+ * Get script languages.
+ * <p>
+ * Get a list of available script types, languages, and contexts.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.get_script_languages.Request">API

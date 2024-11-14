@@ -59,8 +59,12 @@ import javax.annotation.Nullable;
 // typedef: _global.search_shards.Request
 
 /**
- * Returns information about the indices and shards that a search request would
- * be executed against.
+ * Get the search shards.
+ * <p>
+ * Get the indices and shards that a search request would be run against. This
+ * information can be useful for working out issues or planning optimizations
+ * with routing and shard preferences. When filtered aliases are used, the
+ * filter is returned as part of the indices section.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search_shards.Request">API
  *      specification</a>

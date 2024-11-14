@@ -56,6 +56,8 @@ import javax.annotation.Nullable;
 // typedef: connector.update_active_filtering.Request
 
 /**
+ * Activate the connector draft filter.
+ * <p>
  * Activates the valid draft filtering for a connector.
  * 
  * @see <a href=

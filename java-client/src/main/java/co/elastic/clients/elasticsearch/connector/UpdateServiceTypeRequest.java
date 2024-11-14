@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: connector.update_service_type.Request
 
 /**
- * Updates the service type of the connector
+ * Update the connector service type.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_service_type.Request">API

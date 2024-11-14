@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_get.Request
 
 /**
- * Retrieves a connector sync job.
+ * Get a connector sync job.
  * 
  * @see <a href="../doc-files/api-spec.html#connector.sync_job_get.Request">API
  *      specification</a>

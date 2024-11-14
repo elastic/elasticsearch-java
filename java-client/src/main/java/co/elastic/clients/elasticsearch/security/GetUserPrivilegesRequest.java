@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
 // typedef: security.get_user_privileges.Request
 
 /**
- * Retrieves security privileges for the logged in user.
+ * Get user privileges.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_user_privileges.Request">API

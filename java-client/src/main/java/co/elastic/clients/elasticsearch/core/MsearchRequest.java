@@ -66,7 +66,27 @@ import javax.annotation.Nullable;
 // typedef: _global.msearch.Request
 
 /**
- * Allows to execute several search operations in one request.
+ * Run multiple searches.
+ * <p>
+ * The format of the request is similar to the bulk API format and makes use of
+ * the newline delimited JSON (NDJSON) format. The structure is as follows:
+ * 
+ * <pre>
+ * <code>header\n
+ * body\n
+ * header\n
+ * body\n
+ * </code>
+ * </pre>
+ * <p>
+ * This structure is specifically optimized to reduce parsing if a specific
+ * search ends up redirected to another node.
+ * <p>
+ * IMPORTANT: The final line of data must end with a newline character
+ * <code>\n</code>. Each newline character may be preceded by a carriage return
+ * <code>\r</code>. When sending requests to this endpoint the
+ * <code>Content-Type</code> header should be set to
+ * <code>application/x-ndjson</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.msearch.Request">API
  *      specification</a>

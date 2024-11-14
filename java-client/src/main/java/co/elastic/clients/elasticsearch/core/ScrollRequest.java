@@ -57,7 +57,29 @@ import javax.annotation.Nullable;
 // typedef: _global.scroll.Request
 
 /**
- * Allows to retrieve a large numbers of results from a single search request.
+ * Run a scrolling search.
+ * <p>
+ * IMPORTANT: The scroll API is no longer recommend for deep pagination. If you
+ * need to preserve the index state while paging through more than 10,000 hits,
+ * use the <code>search_after</code> parameter with a point in time (PIT).
+ * <p>
+ * The scroll API gets large sets of results from a single scrolling search
+ * request. To get the necessary scroll ID, submit a search API request that
+ * includes an argument for the <code>scroll</code> query parameter. The
+ * <code>scroll</code> parameter indicates how long Elasticsearch should retain
+ * the search context for the request. The search response returns a scroll ID
+ * in the <code>_scroll_id</code> response body parameter. You can then use the
+ * scroll ID with the scroll API to retrieve the next batch of results for the
+ * request. If the Elasticsearch security features are enabled, the access to
+ * the results of a specific scroll ID is restricted to the user or API key that
+ * submitted the search.
+ * <p>
+ * You can also use the scroll API to specify a new scroll parameter that
+ * extends or shortens the retention period for the search context.
+ * <p>
+ * IMPORTANT: Results from a scrolling search reflect the state of the index at
+ * the time of the initial search request. Subsequent indexing or document
+ * changes only affect later search and scroll requests.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.scroll.Request">API
  *      specification</a>

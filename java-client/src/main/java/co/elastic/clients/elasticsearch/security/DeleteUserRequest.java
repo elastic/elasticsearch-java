@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.delete_user.Request
 
 /**
- * Deletes users from the native realm.
+ * Delete users.
+ * <p>
+ * Delete users from the native realm.
  * 
  * @see <a href="../doc-files/api-spec.html#security.delete_user.Request">API
  *      specification</a>

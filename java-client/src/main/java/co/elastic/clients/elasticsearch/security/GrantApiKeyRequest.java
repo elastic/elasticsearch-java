@@ -58,15 +58,17 @@ import javax.annotation.Nullable;
 // typedef: security.grant_api_key.Request
 
 /**
- * Creates an API key on behalf of another user. This API is similar to Create
- * API keys, however it creates the API key for a user that is different than
- * the user that runs the API. The caller must have authentication credentials
- * (either an access token, or a username and password) for the user on whose
- * behalf the API key will be created. It is not possible to use this API to
- * create an API key without that user’s credentials. The user, for whom the
- * authentication credentials is provided, can optionally &quot;run as&quot;
- * (impersonate) another user. In this case, the API key will be created on
- * behalf of the impersonated user.
+ * Grant an API key.
+ * <p>
+ * Create an API key on behalf of another user. This API is similar to the
+ * create API keys API, however it creates the API key for a user that is
+ * different than the user that runs the API. The caller must have
+ * authentication credentials (either an access token, or a username and
+ * password) for the user on whose behalf the API key will be created. It is not
+ * possible to use this API to create an API key without that user’s
+ * credentials. The user, for whom the authentication credentials is provided,
+ * can optionally &quot;run as&quot; (impersonate) another user. In this case,
+ * the API key will be created on behalf of the impersonated user.
  * <p>
  * This API is intended be used by applications that need to create and manage
  * API keys for end users, but cannot guarantee that those users have permission

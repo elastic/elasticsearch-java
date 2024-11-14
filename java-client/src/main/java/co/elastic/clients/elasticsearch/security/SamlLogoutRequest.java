@@ -56,6 +56,8 @@ import javax.annotation.Nullable;
 // typedef: security.saml_logout.Request
 
 /**
+ * Logout of SAML.
+ * <p>
  * Submits a request to invalidate an access token and refresh token.
  * 
  * @see <a href="../doc-files/api-spec.html#security.saml_logout.Request">API

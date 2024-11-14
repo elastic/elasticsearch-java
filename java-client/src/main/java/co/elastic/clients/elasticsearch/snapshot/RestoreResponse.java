@@ -27,10 +27,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -59,13 +59,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RestoreResponse implements JsonpSerializable {
+	@Nullable
+	private final Boolean accepted;
+
+	@Nullable
 	private final SnapshotRestore snapshot;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private RestoreResponse(Builder builder) {
 
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.accepted = builder.accepted;
+		this.snapshot = builder.snapshot;
 
 	}
 
@@ -74,8 +79,17 @@ public class RestoreResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code snapshot}
+	 * API name: {@code accepted}
 	 */
+	@Nullable
+	public final Boolean accepted() {
+		return this.accepted;
+	}
+
+	/**
+	 * API name: {@code snapshot}
+	 */
+	@Nullable
 	public final SnapshotRestore snapshot() {
 		return this.snapshot;
 	}
@@ -91,8 +105,16 @@ public class RestoreResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("snapshot");
-		this.snapshot.serialize(generator, mapper);
+		if (this.accepted != null) {
+			generator.writeKey("accepted");
+			generator.write(this.accepted);
+
+		}
+		if (this.snapshot != null) {
+			generator.writeKey("snapshot");
+			this.snapshot.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -108,18 +130,30 @@ public class RestoreResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RestoreResponse> {
+		@Nullable
+		private Boolean accepted;
+
+		@Nullable
 		private SnapshotRestore snapshot;
 
 		/**
-		 * Required - API name: {@code snapshot}
+		 * API name: {@code accepted}
 		 */
-		public final Builder snapshot(SnapshotRestore value) {
+		public final Builder accepted(@Nullable Boolean value) {
+			this.accepted = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code snapshot}
+		 */
+		public final Builder snapshot(@Nullable SnapshotRestore value) {
 			this.snapshot = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code snapshot}
+		 * API name: {@code snapshot}
 		 */
 		public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
 			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
@@ -153,6 +187,7 @@ public class RestoreResponse implements JsonpSerializable {
 
 	protected static void setupRestoreResponseDeserializer(ObjectDeserializer<RestoreResponse.Builder> op) {
 
+		op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
 		op.add(Builder::snapshot, SnapshotRestore._DESERIALIZER, "snapshot");
 
 	}

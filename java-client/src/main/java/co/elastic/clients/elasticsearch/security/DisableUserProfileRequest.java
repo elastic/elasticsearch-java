@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.disable_user_profile.Request
 
 /**
- * Disables a user profile so it's not visible in user profile searches.
+ * Disable a user profile.
+ * <p>
+ * Disable user profiles so that they are not visible in user profile searches.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.disable_user_profile.Request">API

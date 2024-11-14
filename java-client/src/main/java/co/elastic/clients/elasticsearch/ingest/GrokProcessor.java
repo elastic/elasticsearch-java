@@ -59,6 +59,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
+	@Nullable
+	private final String ecsCompatibility;
+
 	private final String field;
 
 	@Nullable
@@ -76,6 +79,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private GrokProcessor(Builder builder) {
 		super(builder);
 
+		this.ecsCompatibility = builder.ecsCompatibility;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.patternDefinitions = ApiTypeHelper.unmodifiable(builder.patternDefinitions);
@@ -94,6 +98,17 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	@Override
 	public Processor.Kind _processorKind() {
 		return Processor.Kind.Grok;
+	}
+
+	/**
+	 * Must be disabled or v1. If v1, the processor uses patterns with Elastic
+	 * Common Schema (ECS) field names.
+	 * <p>
+	 * API name: {@code ecs_compatibility}
+	 */
+	@Nullable
+	public final String ecsCompatibility() {
+		return this.ecsCompatibility;
 	}
 
 	/**
@@ -153,6 +168,11 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (this.ecsCompatibility != null) {
+			generator.writeKey("ecs_compatibility");
+			generator.write(this.ecsCompatibility);
+
+		}
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -197,6 +217,9 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	 */
 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<GrokProcessor> {
+		@Nullable
+		private String ecsCompatibility;
+
 		private String field;
 
 		@Nullable
@@ -209,6 +232,17 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 		@Nullable
 		private Boolean traceMatch;
+
+		/**
+		 * Must be disabled or v1. If v1, the processor uses patterns with Elastic
+		 * Common Schema (ECS) field names.
+		 * <p>
+		 * API name: {@code ecs_compatibility}
+		 */
+		public final Builder ecsCompatibility(@Nullable String value) {
+			this.ecsCompatibility = value;
+			return this;
+		}
 
 		/**
 		 * Required - The field to use for grok expression parsing.
@@ -326,6 +360,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 	protected static void setupGrokProcessorDeserializer(ObjectDeserializer<GrokProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::ecsCompatibility, JsonpDeserializer.stringDeserializer(), "ecs_compatibility");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 		op.add(Builder::patternDefinitions,

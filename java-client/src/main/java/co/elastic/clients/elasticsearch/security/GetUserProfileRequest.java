@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: security.get_user_profile.Request
 
 /**
- * Retrieves a user's profile using the unique profile ID.
+ * Get a user profile.
+ * <p>
+ * Get a user's profile using the unique profile ID.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_user_profile.Request">API

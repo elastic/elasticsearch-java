@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: security.clear_cached_service_tokens.Request
 
 /**
- * Evicts tokens from the service account token caches.
+ * Clear service account token caches.
+ * <p>
+ * Evict a subset of all entries from the service account token caches.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.clear_cached_service_tokens.Request">API

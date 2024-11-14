@@ -50,7 +50,10 @@ import java.util.Objects;
 // typedef: security.enroll_node.Request
 
 /**
- * Allows a new node to join an existing cluster with security features enabled.
+ * Enroll a node.
+ * <p>
+ * Enroll a new node to allow it to join an existing cluster with security
+ * features enabled.
  * 
  * @see <a href="../doc-files/api-spec.html#security.enroll_node.Request">API
  *      specification</a>

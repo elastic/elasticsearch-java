@@ -58,9 +58,9 @@ import javax.annotation.Nullable;
 // typedef: security.get_role.Request
 
 /**
- * The role management APIs are generally the preferred way to manage roles,
- * rather than using file-based role management. The get roles API cannot
- * retrieve roles that are defined in roles files.
+ * Get roles.
+ * <p>
+ * Get roles in the native realm.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_role.Request">API
  *      specification</a>

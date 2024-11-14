@@ -63,11 +63,27 @@ import javax.annotation.Nullable;
 // typedef: _global.knn_search.Request
 
 /**
- * Performs a kNN search.
+ * Run a knn search.
+ * <p>
+ * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+ * the search API.
+ * <p>
+ * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+ * the matching documents. Given a query vector, the API finds the k closest
+ * vectors and returns those documents as search hits.
+ * <p>
+ * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+ * most kNN algorithms, HNSW is an approximate method that sacrifices result
+ * accuracy for improved search speed. This means the results returned are not
+ * always the true k closest neighbors.
+ * <p>
+ * The kNN search API supports restricting the search using a filter. The search
+ * will return the top k documents that also match the filter query.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.knn_search.Request">API
  *      specification</a>
- * @deprecated 8.4.0
+ * @deprecated 8.4.0 The kNN search API has been replaced by the
+ *             <code>knn</code> option in the search API.
  */
 @Deprecated
 @JsonpDeserializable

@@ -28,6 +28,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,18 +68,36 @@ import javax.annotation.Nullable;
 
 public class ComponentTemplatesRequest extends CatRequestBase {
 	@Nullable
+	private final Boolean local;
+
+	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ComponentTemplatesRequest(Builder builder) {
 
+		this.local = builder.local;
 		this.name = builder.name;
 
 	}
 
 	public static ComponentTemplatesRequest of(Function<Builder, ObjectBuilder<ComponentTemplatesRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>true</code>, the request computes the list of selected nodes from
+	 * the local cluster state. If <code>false</code> the list of selected nodes are
+	 * computed from the cluster state of the master node. In both cases the
+	 * coordinating node will send requests for further information to each selected
+	 * node.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public final Boolean local() {
+		return this.local;
 	}
 
 	/**
@@ -102,7 +121,24 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<ComponentTemplatesRequest> {
 		@Nullable
+		private Boolean local;
+
+		@Nullable
 		private String name;
+
+		/**
+		 * If <code>true</code>, the request computes the list of selected nodes from
+		 * the local cluster state. If <code>false</code> the list of selected nodes are
+		 * computed from the cluster state of the master node. In both cases the
+		 * coordinating node will send requests for further information to each selected
+		 * node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
 
 		/**
 		 * The name of the component template. Accepts wildcard expressions. If omitted,
@@ -196,6 +232,9 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, ComponentTemplatesResponse._DESERIALIZER);

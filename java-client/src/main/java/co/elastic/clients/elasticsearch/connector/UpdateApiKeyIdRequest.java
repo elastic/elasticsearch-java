@@ -58,7 +58,13 @@ import javax.annotation.Nullable;
 // typedef: connector.update_api_key_id.Request
 
 /**
- * Updates the API key id in the connector document
+ * Update the connector API key ID.
+ * <p>
+ * Update the <code>api_key_id</code> and <code>api_key_secret_id</code> fields
+ * of a connector. You can specify the ID of the API key used for authorization
+ * and the ID of the connector secret where the API key is stored. The connector
+ * secret ID is required only for Elastic managed (native) connectors.
+ * Self-managed connectors (connector clients) do not use this field.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_api_key_id.Request">API

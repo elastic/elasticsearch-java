@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: security.clear_api_key_cache.Request
 
 /**
- * Evicts a subset of all entries from the API key cache. The cache is also
+ * Clear the API key cache.
+ * <p>
+ * Evict a subset of all entries from the API key cache. The cache is also
  * automatically cleared on state changes of the security index.
  * 
  * @see <a href=

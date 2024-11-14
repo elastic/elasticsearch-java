@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.search_application.list;
+package co.elastic.clients.elasticsearch.search_application;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -52,51 +51,41 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: search_application.list.SearchApplicationListItem
+// typedef: search_application._types.SearchApplicationParameters
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#search_application.list.SearchApplicationListItem">API
+ *      "../doc-files/api-spec.html#search_application._types.SearchApplicationParameters">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SearchApplicationListItem implements JsonpSerializable {
-	private final String name;
-
+public class SearchApplicationParameters implements JsonpSerializable {
 	private final List<String> indices;
-
-	private final long updatedAtMillis;
 
 	@Nullable
 	private final String analyticsCollectionName;
 
+	@Nullable
+	private final SearchApplicationTemplate template;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private SearchApplicationListItem(Builder builder) {
+	protected SearchApplicationParameters(AbstractBuilder<?> builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.updatedAtMillis = ApiTypeHelper.requireNonNull(builder.updatedAtMillis, this, "updatedAtMillis");
 		this.analyticsCollectionName = builder.analyticsCollectionName;
+		this.template = builder.template;
 
 	}
 
-	public static SearchApplicationListItem of(Function<Builder, ObjectBuilder<SearchApplicationListItem>> fn) {
+	public static SearchApplicationParameters searchApplicationParametersOf(
+			Function<Builder, ObjectBuilder<SearchApplicationParameters>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Search Application name
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * Required - Indices that are part of the Search Application
+	 * Required - Indices that are part of the Search Application.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -105,22 +94,23 @@ public class SearchApplicationListItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Last time the Search Application was updated
-	 * <p>
-	 * API name: {@code updated_at_millis}
-	 */
-	public final long updatedAtMillis() {
-		return this.updatedAtMillis;
-	}
-
-	/**
-	 * Analytics collection associated to the Search Application
+	 * Analytics collection associated to the Search Application.
 	 * <p>
 	 * API name: {@code analytics_collection_name}
 	 */
 	@Nullable
 	public final String analyticsCollectionName() {
 		return this.analyticsCollectionName;
+	}
+
+	/**
+	 * Search template to use on search operations.
+	 * <p>
+	 * API name: {@code template}
+	 */
+	@Nullable
+	public final SearchApplicationTemplate template() {
+		return this.template;
 	}
 
 	/**
@@ -134,9 +124,6 @@ public class SearchApplicationListItem implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
-
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
@@ -147,12 +134,14 @@ public class SearchApplicationListItem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("updated_at_millis");
-		generator.write(this.updatedAtMillis);
-
 		if (this.analyticsCollectionName != null) {
 			generator.writeKey("analytics_collection_name");
 			generator.write(this.analyticsCollectionName);
+
+		}
+		if (this.template != null) {
+			generator.writeKey("template");
+			this.template.serialize(generator, mapper);
 
 		}
 
@@ -166,109 +155,115 @@ public class SearchApplicationListItem implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SearchApplicationListItem}.
+	 * Builder for {@link SearchApplicationParameters}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends SearchApplicationParameters.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<SearchApplicationListItem> {
-		private String name;
-
-		private List<String> indices;
-
-		private Long updatedAtMillis;
-
-		@Nullable
-		private String analyticsCollectionName;
-
-		/**
-		 * Required - Search Application name
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - Indices that are part of the Search Application
-		 * <p>
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 */
-		public final Builder indices(List<String> list) {
-			this.indices = _listAddAll(this.indices, list);
-			return this;
-		}
-
-		/**
-		 * Required - Indices that are part of the Search Application
-		 * <p>
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds one or more values to <code>indices</code>.
-		 */
-		public final Builder indices(String value, String... values) {
-			this.indices = _listAdd(this.indices, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - Last time the Search Application was updated
-		 * <p>
-		 * API name: {@code updated_at_millis}
-		 */
-		public final Builder updatedAtMillis(long value) {
-			this.updatedAtMillis = value;
-			return this;
-		}
-
-		/**
-		 * Analytics collection associated to the Search Application
-		 * <p>
-		 * API name: {@code analytics_collection_name}
-		 */
-		public final Builder analyticsCollectionName(@Nullable String value) {
-			this.analyticsCollectionName = value;
-			return this;
-		}
-
+				ObjectBuilder<SearchApplicationParameters> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link SearchApplicationListItem}.
+		 * Builds a {@link SearchApplicationParameters}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public SearchApplicationListItem build() {
+		public SearchApplicationParameters build() {
 			_checkSingleUse();
 
-			return new SearchApplicationListItem(this);
+			return new SearchApplicationParameters(this);
 		}
+	}
+
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
+		private List<String> indices;
+
+		@Nullable
+		private String analyticsCollectionName;
+
+		@Nullable
+		private SearchApplicationTemplate template;
+
+		/**
+		 * Required - Indices that are part of the Search Application.
+		 * <p>
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
+		 */
+		public final BuilderT indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
+			return self();
+		}
+
+		/**
+		 * Required - Indices that are part of the Search Application.
+		 * <p>
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
+		 */
+		public final BuilderT indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
+			return self();
+		}
+
+		/**
+		 * Analytics collection associated to the Search Application.
+		 * <p>
+		 * API name: {@code analytics_collection_name}
+		 */
+		public final BuilderT analyticsCollectionName(@Nullable String value) {
+			this.analyticsCollectionName = value;
+			return self();
+		}
+
+		/**
+		 * Search template to use on search operations.
+		 * <p>
+		 * API name: {@code template}
+		 */
+		public final BuilderT template(@Nullable SearchApplicationTemplate value) {
+			this.template = value;
+			return self();
+		}
+
+		/**
+		 * Search template to use on search operations.
+		 * <p>
+		 * API name: {@code template}
+		 */
+		public final BuilderT template(
+				Function<SearchApplicationTemplate.Builder, ObjectBuilder<SearchApplicationTemplate>> fn) {
+			return this.template(fn.apply(new SearchApplicationTemplate.Builder()).build());
+		}
+
+		protected abstract BuilderT self();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SearchApplicationListItem}
+	 * Json deserializer for {@link SearchApplicationParameters}
 	 */
-	public static final JsonpDeserializer<SearchApplicationListItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchApplicationListItem::setupSearchApplicationListItemDeserializer);
+	public static final JsonpDeserializer<SearchApplicationParameters> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchApplicationParameters::setupSearchApplicationParametersDeserializer);
 
-	protected static void setupSearchApplicationListItemDeserializer(
-			ObjectDeserializer<SearchApplicationListItem.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSearchApplicationParametersDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(AbstractBuilder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::updatedAtMillis, JsonpDeserializer.longDeserializer(), "updated_at_millis");
-		op.add(Builder::analyticsCollectionName, JsonpDeserializer.stringDeserializer(), "analytics_collection_name");
+		op.add(AbstractBuilder::analyticsCollectionName, JsonpDeserializer.stringDeserializer(),
+				"analytics_collection_name");
+		op.add(AbstractBuilder::template, SearchApplicationTemplate._DESERIALIZER, "template");
 
 	}
 

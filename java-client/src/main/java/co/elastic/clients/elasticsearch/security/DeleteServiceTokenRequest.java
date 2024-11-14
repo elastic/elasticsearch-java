@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.delete_service_token.Request
 
 /**
- * Deletes a service account token.
+ * Delete service account tokens.
+ * <p>
+ * Delete service account tokens for a service in a specified namespace.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.delete_service_token.Request">API

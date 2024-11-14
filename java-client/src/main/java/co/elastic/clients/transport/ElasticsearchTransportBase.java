@@ -29,14 +29,15 @@ import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
+import co.elastic.clients.util.ByteArrayBinaryData;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
-import co.elastic.clients.util.ByteArrayBinaryData;
 import co.elastic.clients.util.ContentType;
 import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
@@ -306,6 +307,9 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
         int statusCode = clientResp.statusCode();
 
+        if(options().keepResponseBodyOnException()){
+            clientResp = RepeatableBodyResponse.of(clientResp);
+        }
         try {
             if (statusCode == 200) {
                 checkProductHeader(clientResp, endpoint);
@@ -377,6 +381,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     ) throws IOException {
 
         if (endpoint instanceof JsonEndpoint) {
+
             @SuppressWarnings("unchecked")
             JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
             // Successful response

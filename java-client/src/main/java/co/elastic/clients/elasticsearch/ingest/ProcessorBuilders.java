@@ -117,6 +117,25 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link CommunityIDProcessor community_id}
+	 * {@code Processor} variant.
+	 */
+	public static CommunityIDProcessor.Builder communityId() {
+		return new CommunityIDProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link CommunityIDProcessor community_id}
+	 * {@code Processor} variant.
+	 */
+	public static Processor communityId(
+			Function<CommunityIDProcessor.Builder, ObjectBuilder<CommunityIDProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.communityId(fn.apply(new CommunityIDProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ConvertProcessor convert} {@code Processor}
 	 * variant.
 	 */
@@ -280,6 +299,25 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link FingerprintProcessor fingerprint}
+	 * {@code Processor} variant.
+	 */
+	public static FingerprintProcessor.Builder fingerprint() {
+		return new FingerprintProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link FingerprintProcessor fingerprint}
+	 * {@code Processor} variant.
+	 */
+	public static Processor fingerprint(
+			Function<FingerprintProcessor.Builder, ObjectBuilder<FingerprintProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.fingerprint(fn.apply(new FingerprintProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ForeachProcessor foreach} {@code Processor}
 	 * variant.
 	 */
@@ -294,6 +332,24 @@ public class ProcessorBuilders {
 	public static Processor foreach(Function<ForeachProcessor.Builder, ObjectBuilder<ForeachProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
 		builder.foreach(fn.apply(new ForeachProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link IpLocationProcessor ip_location}
+	 * {@code Processor} variant.
+	 */
+	public static IpLocationProcessor.Builder ipLocation() {
+		return new IpLocationProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link IpLocationProcessor ip_location}
+	 * {@code Processor} variant.
+	 */
+	public static Processor ipLocation(Function<IpLocationProcessor.Builder, ObjectBuilder<IpLocationProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.ipLocation(fn.apply(new IpLocationProcessor.Builder()).build());
 		return builder.build();
 	}
 
@@ -478,6 +534,25 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link NetworkDirectionProcessor network_direction}
+	 * {@code Processor} variant.
+	 */
+	public static NetworkDirectionProcessor.Builder networkDirection() {
+		return new NetworkDirectionProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link NetworkDirectionProcessor
+	 * network_direction} {@code Processor} variant.
+	 */
+	public static Processor networkDirection(
+			Function<NetworkDirectionProcessor.Builder, ObjectBuilder<NetworkDirectionProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.networkDirection(fn.apply(new NetworkDirectionProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link PipelineProcessor pipeline}
 	 * {@code Processor} variant.
 	 */
@@ -510,6 +585,25 @@ public class ProcessorBuilders {
 	public static Processor redact(Function<RedactProcessor.Builder, ObjectBuilder<RedactProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
 		builder.redact(fn.apply(new RedactProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link RegisteredDomainProcessor registered_domain}
+	 * {@code Processor} variant.
+	 */
+	public static RegisteredDomainProcessor.Builder registeredDomain() {
+		return new RegisteredDomainProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link RegisteredDomainProcessor
+	 * registered_domain} {@code Processor} variant.
+	 */
+	public static Processor registeredDomain(
+			Function<RegisteredDomainProcessor.Builder, ObjectBuilder<RegisteredDomainProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.registeredDomain(fn.apply(new RegisteredDomainProcessor.Builder()).build());
 		return builder.build();
 	}
 
@@ -654,6 +748,24 @@ public class ProcessorBuilders {
 	public static Processor split(Function<SplitProcessor.Builder, ObjectBuilder<SplitProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
 		builder.split(fn.apply(new SplitProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link TerminateProcessor terminate}
+	 * {@code Processor} variant.
+	 */
+	public static TerminateProcessor.Builder terminate() {
+		return new TerminateProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link TerminateProcessor terminate}
+	 * {@code Processor} variant.
+	 */
+	public static Processor terminate(Function<TerminateProcessor.Builder, ObjectBuilder<TerminateProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.terminate(fn.apply(new TerminateProcessor.Builder()).build());
 		return builder.build();
 	}
 

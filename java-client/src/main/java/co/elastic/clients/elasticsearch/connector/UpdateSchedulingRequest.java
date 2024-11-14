@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: connector.update_scheduling.Request
 
 /**
- * Updates the scheduling field in the connector document
+ * Update the connector scheduling.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#connector.update_scheduling.Request">API

@@ -56,6 +56,8 @@ import javax.annotation.Nullable;
 // typedef: security.saml_invalidate.Request
 
 /**
+ * Invalidate SAML.
+ * <p>
  * Submits a SAML LogoutRequest message to Elasticsearch for consumption.
  * 
  * @see <a href=

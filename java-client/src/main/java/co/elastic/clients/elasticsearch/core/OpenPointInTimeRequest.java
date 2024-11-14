@@ -63,14 +63,20 @@ import javax.annotation.Nullable;
 // typedef: _global.open_point_in_time.Request
 
 /**
- * A search request by default executes against the most recent visible data of
- * the target indices, which is called point in time. Elasticsearch pit (point
- * in time) is a lightweight view into the state of the data as it existed when
+ * Open a point in time.
+ * <p>
+ * A search request by default runs against the most recent visible data of the
+ * target indices, which is called point in time. Elasticsearch pit (point in
+ * time) is a lightweight view into the state of the data as it existed when
  * initiated. In some cases, it’s preferred to perform multiple search requests
  * using the same point in time. For example, if refreshes happen between
  * <code>search_after</code> requests, then the results of those requests might
  * not be consistent as changes happening between searches are only visible to
  * the more recent point in time.
+ * <p>
+ * A point in time must be opened explicitly before being used in search
+ * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+ * it should persist.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.open_point_in_time.Request">API
