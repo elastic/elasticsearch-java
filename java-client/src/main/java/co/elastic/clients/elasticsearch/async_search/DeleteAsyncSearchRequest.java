@@ -56,12 +56,13 @@ import javax.annotation.Nullable;
 // typedef: async_search.delete.Request
 
 /**
- * Delete an async search. If the asynchronous search is still running, it is
- * cancelled. Otherwise, the saved search results are deleted. If the
- * Elasticsearch security features are enabled, the deletion of a specific async
- * search is restricted to: the authenticated user that submitted the original
- * search request; users that have the <code>cancel_task</code> cluster
- * privilege.
+ * Delete an async search.
+ * <p>
+ * If the asynchronous search is still running, it is cancelled. Otherwise, the
+ * saved search results are deleted. If the Elasticsearch security features are
+ * enabled, the deletion of a specific async search is restricted to: the
+ * authenticated user that submitted the original search request; users that
+ * have the <code>cancel_task</code> cluster privilege.
  * 
  * @see <a href="../doc-files/api-spec.html#async_search.delete.Request">API
  *      specification</a>

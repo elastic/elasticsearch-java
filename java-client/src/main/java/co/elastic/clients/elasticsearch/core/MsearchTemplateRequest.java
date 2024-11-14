@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
 // typedef: _global.msearch_template.Request
 
 /**
- * Runs multiple templated searches with a single request.
+ * Run multiple templated searches.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.msearch_template.Request">API

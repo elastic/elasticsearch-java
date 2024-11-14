@@ -403,7 +403,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: clear_scroll
 
 	/**
-	 * Clears the search context and results for a scrolling search.
+	 * Clear a scrolling search.
+	 * <p>
+	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/clear-scroll-api.html">Documentation
@@ -418,7 +420,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Clears the search context and results for a scrolling search.
+	 * Clear a scrolling search.
+	 * <p>
+	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -434,7 +438,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Clears the search context and results for a scrolling search.
+	 * Clear a scrolling search.
+	 * <p>
+	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/clear-scroll-api.html">Documentation
@@ -449,7 +455,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: close_point_in_time
 
 	/**
-	 * Closes a point-in-time.
+	 * Close a point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist. A point in time is automatically closed when the
+	 * <code>keep_alive</code> period has elapsed. However, keeping points in time
+	 * has a cost; close them as soon as they are no longer required for search
+	 * requests.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/point-in-time-api.html">Documentation
@@ -464,7 +477,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Closes a point-in-time.
+	 * Close a point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist. A point in time is automatically closed when the
+	 * <code>keep_alive</code> period has elapsed. However, keeping points in time
+	 * has a cost; close them as soon as they are no longer required for search
+	 * requests.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -852,11 +872,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: field_caps
 
 	/**
-	 * The field capabilities API returns the information about the capabilities of
-	 * fields among multiple indices. The field capabilities API returns runtime
-	 * fields like any other field. For example, a runtime field with a type of
-	 * keyword is returned as any other field that belongs to the
-	 * <code>keyword</code> family.
+	 * Get the field capabilities.
+	 * <p>
+	 * Get information about the capabilities of fields among multiple indices.
+	 * <p>
+	 * For data streams, the API returns field capabilities among the stream’s
+	 * backing indices. It returns runtime fields like any other field. For example,
+	 * a runtime field with a type of keyword is returned the same as any other
+	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
@@ -871,11 +894,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * The field capabilities API returns the information about the capabilities of
-	 * fields among multiple indices. The field capabilities API returns runtime
-	 * fields like any other field. For example, a runtime field with a type of
-	 * keyword is returned as any other field that belongs to the
-	 * <code>keyword</code> family.
+	 * Get the field capabilities.
+	 * <p>
+	 * Get information about the capabilities of fields among multiple indices.
+	 * <p>
+	 * For data streams, the API returns field capabilities among the stream’s
+	 * backing indices. It returns runtime fields like any other field. For example,
+	 * a runtime field with a type of keyword is returned the same as any other
+	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -891,11 +917,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * The field capabilities API returns the information about the capabilities of
-	 * fields among multiple indices. The field capabilities API returns runtime
-	 * fields like any other field. For example, a runtime field with a type of
-	 * keyword is returned as any other field that belongs to the
-	 * <code>keyword</code> family.
+	 * Get the field capabilities.
+	 * <p>
+	 * Get information about the capabilities of fields among multiple indices.
+	 * <p>
+	 * For data streams, the API returns field capabilities among the stream’s
+	 * backing indices. It returns runtime fields like any other field. For example,
+	 * a runtime field with a type of keyword is returned the same as any other
+	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
@@ -1218,7 +1247,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: knn_search
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1237,7 +1281,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1253,7 +1312,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -1272,7 +1346,22 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Performs a kNN search.
+	 * Run a knn search.
+	 * <p>
+	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
+	 * the search API.
+	 * <p>
+	 * Perform a k-nearest neighbor (kNN) search on a dense_vector field and return
+	 * the matching documents. Given a query vector, the API finds the k closest
+	 * vectors and returns those documents as search hits.
+	 * <p>
+	 * Elasticsearch uses the HNSW algorithm to support efficient kNN search. Like
+	 * most kNN algorithms, HNSW is an approximate method that sacrifices result
+	 * accuracy for improved search speed. This means the results returned are not
+	 * always the true k closest neighbors.
+	 * <p>
+	 * The kNN search API supports restricting the search using a filter. The search
+	 * will return the top k documents that also match the filter query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1529,7 +1618,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: msearch_template
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
@@ -1548,7 +1637,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1565,7 +1654,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
@@ -1584,7 +1673,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs multiple templated searches with a single request.
+	 * Run multiple templated searches.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1666,14 +1755,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: open_point_in_time
 
 	/**
-	 * A search request by default executes against the most recent visible data of
-	 * the target indices, which is called point in time. Elasticsearch pit (point
-	 * in time) is a lightweight view into the state of the data as it existed when
+	 * Open a point in time.
+	 * <p>
+	 * A search request by default runs against the most recent visible data of the
+	 * target indices, which is called point in time. Elasticsearch pit (point in
+	 * time) is a lightweight view into the state of the data as it existed when
 	 * initiated. In some cases, it’s preferred to perform multiple search requests
 	 * using the same point in time. For example, if refreshes happen between
 	 * <code>search_after</code> requests, then the results of those requests might
 	 * not be consistent as changes happening between searches are only visible to
 	 * the more recent point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/point-in-time-api.html">Documentation
@@ -1688,14 +1783,20 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * A search request by default executes against the most recent visible data of
-	 * the target indices, which is called point in time. Elasticsearch pit (point
-	 * in time) is a lightweight view into the state of the data as it existed when
+	 * Open a point in time.
+	 * <p>
+	 * A search request by default runs against the most recent visible data of the
+	 * target indices, which is called point in time. Elasticsearch pit (point in
+	 * time) is a lightweight view into the state of the data as it existed when
 	 * initiated. In some cases, it’s preferred to perform multiple search requests
 	 * using the same point in time. For example, if refreshes happen between
 	 * <code>search_after</code> requests, then the results of those requests might
 	 * not be consistent as changes happening between searches are only visible to
 	 * the more recent point in time.
+	 * <p>
+	 * A point in time must be opened explicitly before being used in search
+	 * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+	 * it should persist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1761,8 +1862,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: rank_eval
 
 	/**
-	 * Enables you to evaluate the quality of ranked search results over a set of
-	 * typical search queries.
+	 * Evaluate ranked search results.
+	 * <p>
+	 * Evaluate the quality of ranked search results over a set of typical search
+	 * queries.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
@@ -1777,8 +1880,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Enables you to evaluate the quality of ranked search results over a set of
-	 * typical search queries.
+	 * Evaluate ranked search results.
+	 * <p>
+	 * Evaluate the quality of ranked search results over a set of typical search
+	 * queries.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1872,7 +1977,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: render_search_template
 
 	/**
-	 * Renders a search template as a search request body.
+	 * Render a search template.
+	 * <p>
+	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
@@ -1887,7 +1994,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Renders a search template as a search request body.
+	 * Render a search template.
+	 * <p>
+	 * Render a search template as a search request body.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1903,7 +2012,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Renders a search template as a search request body.
+	 * Render a search template.
+	 * <p>
+	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
@@ -2149,9 +2260,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -2169,9 +2282,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2187,9 +2302,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
@@ -2206,9 +2323,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns search hits that match the query defined in the request. You can
-	 * provide search queries using the <code>q</code> query string parameter or the
-	 * request body. If both are specified, only the query parameter is used.
+	 * Run a search.
+	 * <p>
+	 * Get search hits that match the query defined in the request. You can provide
+	 * search queries using the <code>q</code> query string parameter or the request
+	 * body. If both are specified, only the query parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2226,7 +2345,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_mvt
 
 	/**
-	 * Search a vector tile. Searches a vector tile for geospatial values.
+	 * Search a vector tile.
+	 * <p>
+	 * Search a vector tile for geospatial values.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
@@ -2241,7 +2362,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Search a vector tile. Searches a vector tile for geospatial values.
+	 * Search a vector tile.
+	 * <p>
+	 * Search a vector tile for geospatial values.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2259,8 +2382,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_shards
 
 	/**
-	 * Returns information about the indices and shards that a search request would
-	 * be executed against.
+	 * Get the search shards.
+	 * <p>
+	 * Get the indices and shards that a search request would be run against. This
+	 * information can be useful for working out issues or planning optimizations
+	 * with routing and shard preferences. When filtered aliases are used, the
+	 * filter is returned as part of the indices section.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
@@ -2275,8 +2402,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about the indices and shards that a search request would
-	 * be executed against.
+	 * Get the search shards.
+	 * <p>
+	 * Get the indices and shards that a search request would be run against. This
+	 * information can be useful for working out issues or planning optimizations
+	 * with routing and shard preferences. When filtered aliases are used, the
+	 * filter is returned as part of the indices section.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2292,8 +2423,12 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Returns information about the indices and shards that a search request would
-	 * be executed against.
+	 * Get the search shards.
+	 * <p>
+	 * Get the indices and shards that a search request would be run against. This
+	 * information can be useful for working out issues or planning optimizations
+	 * with routing and shard preferences. When filtered aliases are used, the
+	 * filter is returned as part of the indices section.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
@@ -2308,7 +2443,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: search_template
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
@@ -2327,7 +2462,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2344,7 +2479,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
@@ -2363,7 +2498,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Runs a search with a search template.
+	 * Run a search with a search template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2440,8 +2575,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: termvectors
 
 	/**
-	 * Get term vector information. Returns information and statistics about terms
-	 * in the fields of a particular document.
+	 * Get term vector information.
+	 * <p>
+	 * Get information and statistics about terms in the fields of a particular
+	 * document.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
@@ -2456,8 +2593,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get term vector information. Returns information and statistics about terms
-	 * in the fields of a particular document.
+	 * Get term vector information.
+	 * <p>
+	 * Get information and statistics about terms in the fields of a particular
+	 * document.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

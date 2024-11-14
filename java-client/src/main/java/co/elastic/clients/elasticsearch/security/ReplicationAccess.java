@@ -17,23 +17,21 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,45 +51,38 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.close_point_in_time.Request
+// typedef: security._types.ReplicationAccess
 
 /**
- * Close a point in time.
- * <p>
- * A point in time must be opened explicitly before being used in search
- * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
- * it should persist. A point in time is automatically closed when the
- * <code>keep_alive</code> period has elapsed. However, keeping points in time
- * has a cost; close them as soon as they are no longer required for search
- * requests.
- * 
+ *
  * @see <a href=
- *      "../doc-files/api-spec.html#_global.close_point_in_time.Request">API
+ *      "../doc-files/api-spec.html#security._types.ReplicationAccess">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ClosePointInTimeRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
+public class ReplicationAccess implements JsonpSerializable {
+	private final List<String> names;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ClosePointInTimeRequest(Builder builder) {
+	private ReplicationAccess(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 
 	}
 
-	public static ClosePointInTimeRequest of(Function<Builder, ObjectBuilder<ClosePointInTimeRequest>> fn) {
+	public static ReplicationAccess of(Function<Builder, ObjectBuilder<ReplicationAccess>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the point-in-time.
+	 * Required - A list of indices (or index name patterns) to which the
+	 * permissions in this entry apply.
 	 * <p>
-	 * API name: {@code id}
+	 * API name: {@code names}
 	 */
-	public final String id() {
-		return this.id;
+	public final List<String> names() {
+		return this.names;
 	}
 
 	/**
@@ -105,29 +96,56 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("id");
-		generator.write(this.id);
+		if (ApiTypeHelper.isDefined(this.names)) {
+			generator.writeKey("names");
+			generator.writeStartArray();
+			for (String item0 : this.names) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ClosePointInTimeRequest}.
+	 * Builder for {@link ReplicationAccess}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ClosePointInTimeRequest> {
-		private String id;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReplicationAccess> {
+		private List<String> names;
 
 		/**
-		 * Required - The ID of the point-in-time.
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
 		 * <p>
-		 * API name: {@code id}
+		 * API name: {@code names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>names</code>.
 		 */
-		public final Builder id(String value) {
-			this.id = value;
+		public final Builder names(List<String> list) {
+			this.names = _listAddAll(this.names, list);
+			return this;
+		}
+
+		/**
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
+		 * <p>
+		 * API name: {@code names}
+		 * <p>
+		 * Adds one or more values to <code>names</code>.
+		 */
+		public final Builder names(String value, String... values) {
+			this.names = _listAdd(this.names, value, values);
 			return this;
 		}
 
@@ -137,61 +155,30 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Builds a {@link ClosePointInTimeRequest}.
+		 * Builds a {@link ReplicationAccess}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ClosePointInTimeRequest build() {
+		public ReplicationAccess build() {
 			_checkSingleUse();
 
-			return new ClosePointInTimeRequest(this);
+			return new ReplicationAccess(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ClosePointInTimeRequest}
+	 * Json deserializer for {@link ReplicationAccess}
 	 */
-	public static final JsonpDeserializer<ClosePointInTimeRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer);
+	public static final JsonpDeserializer<ReplicationAccess> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ReplicationAccess::setupReplicationAccessDeserializer);
 
-	protected static void setupClosePointInTimeRequestDeserializer(
-			ObjectDeserializer<ClosePointInTimeRequest.Builder> op) {
+	protected static void setupReplicationAccessDeserializer(ObjectDeserializer<ReplicationAccess.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Endpoint "{@code close_point_in_time}".
-	 */
-	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/close_point_in_time",
-
-			// Request method
-			request -> {
-				return "DELETE";
-
-			},
-
-			// Request path
-			request -> {
-				return "/_pit";
-
-			},
-
-			// Path parameters
-			request -> {
-				return Collections.emptyMap();
-			},
-
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
-
-			}, SimpleEndpoint.emptyMap(), true, ClosePointInTimeResponse._DESERIALIZER);
 }
