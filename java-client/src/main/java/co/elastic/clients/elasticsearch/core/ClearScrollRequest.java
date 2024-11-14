@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: _global.clear_scroll.Request
 
 /**
- * Clears the search context and results for a scrolling search.
+ * Clear a scrolling search.
+ * <p>
+ * Clear the search context and results for a scrolling search.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.clear_scroll.Request">API
  *      specification</a>

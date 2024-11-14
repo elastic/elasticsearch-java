@@ -28,10 +28,13 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -61,13 +64,78 @@ import java.util.Objects;
  */
 
 public class PendingTasksRequest extends CatRequestBase {
-	public PendingTasksRequest() {
+	@Nullable
+	private final Boolean local;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private PendingTasksRequest(Builder builder) {
+
+		this.local = builder.local;
+
+	}
+
+	public static PendingTasksRequest of(Function<Builder, ObjectBuilder<PendingTasksRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link PendingTasksRequest}.
+	 * If <code>true</code>, the request computes the list of selected nodes from
+	 * the local cluster state. If <code>false</code> the list of selected nodes are
+	 * computed from the cluster state of the master node. In both cases the
+	 * coordinating node will send requests for further information to each selected
+	 * node.
+	 * <p>
+	 * API name: {@code local}
 	 */
-	public static final PendingTasksRequest _INSTANCE = new PendingTasksRequest();
+	@Nullable
+	public final Boolean local() {
+		return this.local;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link PendingTasksRequest}.
+	 */
+
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PendingTasksRequest> {
+		@Nullable
+		private Boolean local;
+
+		/**
+		 * If <code>true</code>, the request computes the list of selected nodes from
+		 * the local cluster state. If <code>false</code> the list of selected nodes are
+		 * computed from the cluster state of the master node. In both cases the
+		 * coordinating node will send requests for further information to each selected
+		 * node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link PendingTasksRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public PendingTasksRequest build() {
+			_checkSingleUse();
+
+			return new PendingTasksRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,6 +166,9 @@ public class PendingTasksRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);

@@ -336,6 +336,24 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IpLocationProcessor ip_location}
+	 * {@code Processor} variant.
+	 */
+	public static IpLocationProcessor.Builder ipLocation() {
+		return new IpLocationProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link IpLocationProcessor ip_location}
+	 * {@code Processor} variant.
+	 */
+	public static Processor ipLocation(Function<IpLocationProcessor.Builder, ObjectBuilder<IpLocationProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.ipLocation(fn.apply(new IpLocationProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GeoGridProcessor geo_grid} {@code Processor}
 	 * variant.
 	 */
