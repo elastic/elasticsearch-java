@@ -106,6 +106,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Foreach("foreach"),
 
+		IpLocation("ip_location"),
+
 		GeoGrid("geo_grid"),
 
 		Geoip("geoip"),
@@ -483,6 +485,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public ForeachProcessor foreach() {
 		return TaggedUnionUtils.get(this, Kind.Foreach);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ip_location}?
+	 */
+	public boolean isIpLocation() {
+		return _kind == Kind.IpLocation;
+	}
+
+	/**
+	 * Get the {@code ip_location} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ip_location} kind.
+	 */
+	public IpLocationProcessor ipLocation() {
+		return TaggedUnionUtils.get(this, Kind.IpLocation);
 	}
 
 	/**
@@ -1190,6 +1209,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.foreach(fn.apply(new ForeachProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> ipLocation(IpLocationProcessor v) {
+			this._kind = Kind.IpLocation;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> ipLocation(
+				Function<IpLocationProcessor.Builder, ObjectBuilder<IpLocationProcessor>> fn) {
+			return this.ipLocation(fn.apply(new IpLocationProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> geoGrid(GeoGridProcessor v) {
 			this._kind = Kind.GeoGrid;
 			this._value = v;
@@ -1525,6 +1555,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::fail, FailProcessor._DESERIALIZER, "fail");
 		op.add(Builder::fingerprint, FingerprintProcessor._DESERIALIZER, "fingerprint");
 		op.add(Builder::foreach, ForeachProcessor._DESERIALIZER, "foreach");
+		op.add(Builder::ipLocation, IpLocationProcessor._DESERIALIZER, "ip_location");
 		op.add(Builder::geoGrid, GeoGridProcessor._DESERIALIZER, "geo_grid");
 		op.add(Builder::geoip, GeoIpProcessor._DESERIALIZER, "geoip");
 		op.add(Builder::grok, GrokProcessor._DESERIALIZER, "grok");

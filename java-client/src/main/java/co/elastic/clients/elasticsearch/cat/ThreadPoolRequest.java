@@ -30,6 +30,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +69,9 @@ import javax.annotation.Nullable;
  */
 
 public class ThreadPoolRequest extends CatRequestBase {
+	@Nullable
+	private final Boolean local;
+
 	private final List<String> threadPoolPatterns;
 
 	@Nullable
@@ -77,6 +81,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 	private ThreadPoolRequest(Builder builder) {
 
+		this.local = builder.local;
 		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 		this.time = builder.time;
 
@@ -84,6 +89,20 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 	public static ThreadPoolRequest of(Function<Builder, ObjectBuilder<ThreadPoolRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>true</code>, the request computes the list of selected nodes from
+	 * the local cluster state. If <code>false</code> the list of selected nodes are
+	 * computed from the cluster state of the master node. In both cases the
+	 * coordinating node will send requests for further information to each selected
+	 * node.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public final Boolean local() {
+		return this.local;
 	}
 
 	/**
@@ -116,10 +135,27 @@ public class ThreadPoolRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
+		private Boolean local;
+
+		@Nullable
 		private List<String> threadPoolPatterns;
 
 		@Nullable
 		private TimeUnit time;
+
+		/**
+		 * If <code>true</code>, the request computes the list of selected nodes from
+		 * the local cluster state. If <code>false</code> the list of selected nodes are
+		 * computed from the cluster state of the master node. In both cases the
+		 * coordinating node will send requests for further information to each selected
+		 * node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of thread pool names used to limit the request.
@@ -242,6 +278,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 				params.put("format", "json");
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

@@ -78,9 +78,6 @@ public class ExistsAliasRequest extends RequestBase {
 
 	private final List<String> index;
 
-	@Nullable
-	private final Boolean local;
-
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -91,7 +88,6 @@ public class ExistsAliasRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
-		this.local = builder.local;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
@@ -150,17 +146,6 @@ public class ExistsAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the request retrieves information from the local node
-	 * only.
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
-	}
-
-	/**
 	 * Required - Comma-separated list of aliases to check. Supports wildcards
 	 * (<code>*</code>).
 	 * <p>
@@ -190,9 +175,6 @@ public class ExistsAliasRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private Boolean local;
 
 		private List<String> name;
 
@@ -279,17 +261,6 @@ public class ExistsAliasRequest extends RequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the request retrieves information from the local node
-		 * only.
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
 			return this;
 		}
 
@@ -416,9 +387,6 @@ public class ExistsAliasRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

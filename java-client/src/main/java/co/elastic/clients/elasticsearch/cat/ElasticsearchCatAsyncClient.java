@@ -579,8 +579,46 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-master.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<MasterResponse> master(MasterRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MasterRequest, MasterResponse, ErrorResponse> endpoint = (JsonEndpoint<MasterRequest, MasterResponse, ErrorResponse>) MasterRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about the master node, including the ID, bound IP
+	 * address, and name. IMPORTANT: cat APIs are only intended for human
+	 * consumption using the command line or Kibana console. They are not intended
+	 * for use by applications. For application consumption, use the nodes info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MasterRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-master.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<MasterResponse> master(
+			Function<MasterRequest.Builder, ObjectBuilder<MasterRequest>> fn) {
+		return master(fn.apply(new MasterRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about the master node, including the ID, bound IP
+	 * address, and name. IMPORTANT: cat APIs are only intended for human
+	 * consumption using the command line or Kibana console. They are not intended
+	 * for use by applications. For application consumption, use the nodes info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-master.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<MasterResponse> master() {
-		return this.transport.performRequestAsync(MasterRequest._INSTANCE, MasterRequest._ENDPOINT,
+		return this.transport.performRequestAsync(new MasterRequest.Builder().build(), MasterRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -858,8 +896,46 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<NodeattrsResponse> nodeattrs(NodeattrsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> endpoint = (JsonEndpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse>) NodeattrsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about custom node attributes. IMPORTANT: cat APIs are
+	 * only intended for human consumption using the command line or Kibana console.
+	 * They are not intended for use by applications. For application consumption,
+	 * use the nodes info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link NodeattrsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-nodeattrs.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<NodeattrsResponse> nodeattrs(
+			Function<NodeattrsRequest.Builder, ObjectBuilder<NodeattrsRequest>> fn) {
+		return nodeattrs(fn.apply(new NodeattrsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about custom node attributes. IMPORTANT: cat APIs are
+	 * only intended for human consumption using the command line or Kibana console.
+	 * They are not intended for use by applications. For application consumption,
+	 * use the nodes info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-nodeattrs.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<NodeattrsResponse> nodeattrs() {
-		return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
+		return this.transport.performRequestAsync(new NodeattrsRequest.Builder().build(), NodeattrsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -930,9 +1006,47 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-pending-tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse>) PendingTasksRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns cluster-level changes that have not yet been executed. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the pending cluster tasks API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PendingTasksRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-pending-tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PendingTasksResponse> pendingTasks(
+			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn) {
+		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns cluster-level changes that have not yet been executed. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the pending cluster tasks API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-pending-tasks.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<PendingTasksResponse> pendingTasks() {
-		return this.transport.performRequestAsync(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new PendingTasksRequest.Builder().build(),
+				PendingTasksRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.plugins
@@ -947,8 +1061,46 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-plugins.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<PluginsResponse> plugins(PluginsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PluginsRequest, PluginsResponse, ErrorResponse> endpoint = (JsonEndpoint<PluginsRequest, PluginsResponse, ErrorResponse>) PluginsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns a list of plugins running on each node of a cluster. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the nodes info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PluginsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-plugins.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PluginsResponse> plugins(
+			Function<PluginsRequest.Builder, ObjectBuilder<PluginsRequest>> fn) {
+		return plugins(fn.apply(new PluginsRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns a list of plugins running on each node of a cluster. IMPORTANT: cat
+	 * APIs are only intended for human consumption using the command line or Kibana
+	 * console. They are not intended for use by applications. For application
+	 * consumption, use the nodes info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-plugins.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<PluginsResponse> plugins() {
-		return this.transport.performRequestAsync(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT,
+		return this.transport.performRequestAsync(new PluginsRequest.Builder().build(), PluginsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
