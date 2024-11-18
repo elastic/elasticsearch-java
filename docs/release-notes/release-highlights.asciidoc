@@ -57,8 +57,8 @@ RangeQuery ra = RangeQuery.of(r -> r  // no distinction between various types (d
 RangeQuery ra = RangeQuery.of(r -> r
     .date(d -> d             // choose query type before
         .field("day")
-        .gte("20-06-24")    // field now only accepts valid type for the specified query
-        .lte("20-07-24")
+        .gte("2024-06-20")    // field now only accepts valid type for the specified query
+        .lte("2024-07-05")
         .boost(1.0F)
         .format("yyyy-MM-dd")
         .relation(RangeRelation.Contains)));
