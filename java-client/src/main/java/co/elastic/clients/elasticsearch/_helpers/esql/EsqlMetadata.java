@@ -26,6 +26,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class EsqlMetadata {
@@ -74,4 +75,7 @@ public class EsqlMetadata {
     }
 
     public List<EsqlColumn> columns;
+
+    @Nullable
+    public Long took;
 }
