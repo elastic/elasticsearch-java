@@ -55,7 +55,8 @@ import javax.annotation.Nullable;
 // typedef: security._types.RemoteIndicesPrivileges
 
 /**
- *
+ * The subset of index level privileges that can be defined for remote clusters.
+ * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security._types.RemoteIndicesPrivileges">API
  *      specification</a>

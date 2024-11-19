@@ -85,6 +85,11 @@ public class IndexTemplate implements JsonpSerializable {
 	@Nullable
 	private final IndexTemplateDataStreamConfiguration dataStream;
 
+	@Nullable
+	private final Boolean deprecated;
+
+	private final List<String> ignoreMissingComponentTemplates;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexTemplate(Builder builder) {
@@ -97,6 +102,8 @@ public class IndexTemplate implements JsonpSerializable {
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowAutoCreate = builder.allowAutoCreate;
 		this.dataStream = builder.dataStream;
+		this.deprecated = builder.deprecated;
+		this.ignoreMissingComponentTemplates = ApiTypeHelper.unmodifiable(builder.ignoreMissingComponentTemplates);
 
 	}
 
@@ -191,6 +198,27 @@ public class IndexTemplate implements JsonpSerializable {
 	}
 
 	/**
+	 * Marks this index template as deprecated. When creating or updating a
+	 * non-deprecated index template that uses deprecated components, Elasticsearch
+	 * will emit a deprecation warning.
+	 * <p>
+	 * API name: {@code deprecated}
+	 */
+	@Nullable
+	public final Boolean deprecated() {
+		return this.deprecated;
+	}
+
+	/**
+	 * A list of component template names that are allowed to be absent.
+	 * <p>
+	 * API name: {@code ignore_missing_component_templates}
+	 */
+	public final List<String> ignoreMissingComponentTemplates() {
+		return this.ignoreMissingComponentTemplates;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -257,6 +285,21 @@ public class IndexTemplate implements JsonpSerializable {
 			this.dataStream.serialize(generator, mapper);
 
 		}
+		if (this.deprecated != null) {
+			generator.writeKey("deprecated");
+			generator.write(this.deprecated);
+
+		}
+		if (ApiTypeHelper.isDefined(this.ignoreMissingComponentTemplates)) {
+			generator.writeKey("ignore_missing_component_templates");
+			generator.writeStartArray();
+			for (String item0 : this.ignoreMissingComponentTemplates) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -293,6 +336,12 @@ public class IndexTemplate implements JsonpSerializable {
 
 		@Nullable
 		private IndexTemplateDataStreamConfiguration dataStream;
+
+		@Nullable
+		private Boolean deprecated;
+
+		@Nullable
+		private List<String> ignoreMissingComponentTemplates;
 
 		/**
 		 * Required - Name of the index template.
@@ -450,6 +499,43 @@ public class IndexTemplate implements JsonpSerializable {
 			return this.dataStream(fn.apply(new IndexTemplateDataStreamConfiguration.Builder()).build());
 		}
 
+		/**
+		 * Marks this index template as deprecated. When creating or updating a
+		 * non-deprecated index template that uses deprecated components, Elasticsearch
+		 * will emit a deprecation warning.
+		 * <p>
+		 * API name: {@code deprecated}
+		 */
+		public final Builder deprecated(@Nullable Boolean value) {
+			this.deprecated = value;
+			return this;
+		}
+
+		/**
+		 * A list of component template names that are allowed to be absent.
+		 * <p>
+		 * API name: {@code ignore_missing_component_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>ignoreMissingComponentTemplates</code>.
+		 */
+		public final Builder ignoreMissingComponentTemplates(List<String> list) {
+			this.ignoreMissingComponentTemplates = _listAddAll(this.ignoreMissingComponentTemplates, list);
+			return this;
+		}
+
+		/**
+		 * A list of component template names that are allowed to be absent.
+		 * <p>
+		 * API name: {@code ignore_missing_component_templates}
+		 * <p>
+		 * Adds one or more values to <code>ignoreMissingComponentTemplates</code>.
+		 */
+		public final Builder ignoreMissingComponentTemplates(String value, String... values) {
+			this.ignoreMissingComponentTemplates = _listAdd(this.ignoreMissingComponentTemplates, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -488,6 +574,10 @@ public class IndexTemplate implements JsonpSerializable {
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
 		op.add(Builder::dataStream, IndexTemplateDataStreamConfiguration._DESERIALIZER, "data_stream");
+		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
+		op.add(Builder::ignoreMissingComponentTemplates,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"ignore_missing_component_templates");
 
 	}
 

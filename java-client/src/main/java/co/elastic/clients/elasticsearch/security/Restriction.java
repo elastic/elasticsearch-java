@@ -30,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -52,53 +51,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security._types.ReplicationAccess
+// typedef: security._types.Restriction
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#security._types.ReplicationAccess">API
+ * @see <a href="../doc-files/api-spec.html#security._types.Restriction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ReplicationAccess implements JsonpSerializable {
-	private final List<String> names;
-
-	@Nullable
-	private final Boolean allowRestrictedIndices;
+public class Restriction implements JsonpSerializable {
+	private final List<String> workflows;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ReplicationAccess(Builder builder) {
+	private Restriction(Builder builder) {
 
-		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
-		this.allowRestrictedIndices = builder.allowRestrictedIndices;
+		this.workflows = ApiTypeHelper.unmodifiableRequired(builder.workflows, this, "workflows");
 
 	}
 
-	public static ReplicationAccess of(Function<Builder, ObjectBuilder<ReplicationAccess>> fn) {
+	public static Restriction of(Function<Builder, ObjectBuilder<Restriction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - A list of indices (or index name patterns) to which the
-	 * permissions in this entry apply.
-	 * <p>
-	 * API name: {@code names}
+	 * Required - API name: {@code workflows}
 	 */
-	public final List<String> names() {
-		return this.names;
-	}
-
-	/**
-	 * This needs to be set to true if the patterns in the names field should cover
-	 * system indices.
-	 * <p>
-	 * API name: {@code allow_restricted_indices}
-	 */
-	@Nullable
-	public final Boolean allowRestrictedIndices() {
-		return this.allowRestrictedIndices;
+	public final List<String> workflows() {
+		return this.workflows;
 	}
 
 	/**
@@ -112,19 +92,14 @@ public class ReplicationAccess implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.names)) {
-			generator.writeKey("names");
+		if (ApiTypeHelper.isDefined(this.workflows)) {
+			generator.writeKey("workflows");
 			generator.writeStartArray();
-			for (String item0 : this.names) {
+			for (String item0 : this.workflows) {
 				generator.write(item0);
 
 			}
 			generator.writeEnd();
-
-		}
-		if (this.allowRestrictedIndices != null) {
-			generator.writeKey("allow_restricted_indices");
-			generator.write(this.allowRestrictedIndices);
 
 		}
 
@@ -138,49 +113,29 @@ public class ReplicationAccess implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ReplicationAccess}.
+	 * Builder for {@link Restriction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReplicationAccess> {
-		private List<String> names;
-
-		@Nullable
-		private Boolean allowRestrictedIndices;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Restriction> {
+		private List<String> workflows;
 
 		/**
-		 * Required - A list of indices (or index name patterns) to which the
-		 * permissions in this entry apply.
+		 * Required - API name: {@code workflows}
 		 * <p>
-		 * API name: {@code names}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>names</code>.
+		 * Adds all elements of <code>list</code> to <code>workflows</code>.
 		 */
-		public final Builder names(List<String> list) {
-			this.names = _listAddAll(this.names, list);
+		public final Builder workflows(List<String> list) {
+			this.workflows = _listAddAll(this.workflows, list);
 			return this;
 		}
 
 		/**
-		 * Required - A list of indices (or index name patterns) to which the
-		 * permissions in this entry apply.
+		 * Required - API name: {@code workflows}
 		 * <p>
-		 * API name: {@code names}
-		 * <p>
-		 * Adds one or more values to <code>names</code>.
+		 * Adds one or more values to <code>workflows</code>.
 		 */
-		public final Builder names(String value, String... values) {
-			this.names = _listAdd(this.names, value, values);
-			return this;
-		}
-
-		/**
-		 * This needs to be set to true if the patterns in the names field should cover
-		 * system indices.
-		 * <p>
-		 * API name: {@code allow_restricted_indices}
-		 */
-		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
-			this.allowRestrictedIndices = value;
+		public final Builder workflows(String value, String... values) {
+			this.workflows = _listAdd(this.workflows, value, values);
 			return this;
 		}
 
@@ -190,30 +145,30 @@ public class ReplicationAccess implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link ReplicationAccess}.
+		 * Builds a {@link Restriction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ReplicationAccess build() {
+		public Restriction build() {
 			_checkSingleUse();
 
-			return new ReplicationAccess(this);
+			return new Restriction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ReplicationAccess}
+	 * Json deserializer for {@link Restriction}
 	 */
-	public static final JsonpDeserializer<ReplicationAccess> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReplicationAccess::setupReplicationAccessDeserializer);
+	public static final JsonpDeserializer<Restriction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Restriction::setupRestrictionDeserializer);
 
-	protected static void setupReplicationAccessDeserializer(ObjectDeserializer<ReplicationAccess.Builder> op) {
+	protected static void setupRestrictionDeserializer(ObjectDeserializer<Restriction.Builder> op) {
 
-		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
+		op.add(Builder::workflows, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"workflows");
 
 	}
 

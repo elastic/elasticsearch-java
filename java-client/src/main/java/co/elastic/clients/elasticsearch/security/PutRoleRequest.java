@@ -90,6 +90,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Refresh refresh;
 
+	private final List<RemoteClusterPrivileges> remoteCluster;
+
 	private final List<RemoteIndicesPrivileges> remoteIndices;
 
 	private final List<String> runAs;
@@ -108,6 +110,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
+		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
 		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
@@ -201,6 +204,15 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Refresh refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * A list of remote cluster permissions entries.
+	 * <p>
+	 * API name: {@code remote_cluster}
+	 */
+	public final List<RemoteClusterPrivileges> remoteCluster() {
+		return this.remoteCluster;
 	}
 
 	/**
@@ -306,6 +318,16 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.remoteCluster)) {
+			generator.writeKey("remote_cluster");
+			generator.writeStartArray();
+			for (RemoteClusterPrivileges item0 : this.remoteCluster) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.remoteIndices)) {
 			generator.writeKey("remote_indices");
 			generator.writeStartArray();
@@ -369,6 +391,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Refresh refresh;
+
+		@Nullable
+		private List<RemoteClusterPrivileges> remoteCluster;
 
 		@Nullable
 		private List<RemoteIndicesPrivileges> remoteIndices;
@@ -568,6 +593,42 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A list of remote cluster permissions entries.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteCluster</code>.
+		 */
+		public final Builder remoteCluster(List<RemoteClusterPrivileges> list) {
+			this.remoteCluster = _listAddAll(this.remoteCluster, list);
+			return this;
+		}
+
+		/**
+		 * A list of remote cluster permissions entries.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds one or more values to <code>remoteCluster</code>.
+		 */
+		public final Builder remoteCluster(RemoteClusterPrivileges value, RemoteClusterPrivileges... values) {
+			this.remoteCluster = _listAdd(this.remoteCluster, value, values);
+			return this;
+		}
+
+		/**
+		 * A list of remote cluster permissions entries.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds a value to <code>remoteCluster</code> using a builder lambda.
+		 */
+		public final Builder remoteCluster(
+				Function<RemoteClusterPrivileges.Builder, ObjectBuilder<RemoteClusterPrivileges>> fn) {
+			return remoteCluster(fn.apply(new RemoteClusterPrivileges.Builder()).build());
+		}
+
+		/**
 		 * A list of remote indices permissions entries.
 		 * <p>
 		 * API name: {@code remote_indices}
@@ -703,6 +764,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "global");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::remoteCluster, JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER),
+				"remote_cluster");
 		op.add(Builder::remoteIndices, JsonpDeserializer.arrayDeserializer(RemoteIndicesPrivileges._DESERIALIZER),
 				"remote_indices");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
