@@ -88,7 +88,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Decider settings
+	 * Required - Decider settings.
 	 * <p>
 	 * API name: {@code deciders}
 	 */
@@ -191,7 +191,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Decider settings
+		 * Required - Decider settings.
 		 * <p>
 		 * API name: {@code deciders}
 		 * <p>
@@ -203,7 +203,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Decider settings
+		 * Required - Decider settings.
 		 * <p>
 		 * API name: {@code deciders}
 		 * <p>

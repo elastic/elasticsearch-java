@@ -65,12 +65,15 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 
 	private final List<String> index;
 
+	private final List<RemoteClusterPrivilege> remoteCluster;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetBuiltinPrivilegesResponse(Builder builder) {
 
 		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.remoteCluster = ApiTypeHelper.unmodifiableRequired(builder.remoteCluster, this, "remoteCluster");
 
 	}
 
@@ -90,6 +93,13 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	 */
 	public final List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * Required - API name: {@code remote_cluster}
+	 */
+	public final List<RemoteClusterPrivilege> remoteCluster() {
+		return this.remoteCluster;
 	}
 
 	/**
@@ -123,6 +133,15 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.remoteCluster)) {
+			generator.writeKey("remote_cluster");
+			generator.writeStartArray();
+			for (RemoteClusterPrivilege item0 : this.remoteCluster) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -143,6 +162,8 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		private List<String> cluster;
 
 		private List<String> index;
+
+		private List<RemoteClusterPrivilege> remoteCluster;
 
 		/**
 		 * Required - API name: {@code cluster}
@@ -184,6 +205,26 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - API name: {@code remote_cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteCluster</code>.
+		 */
+		public final Builder remoteCluster(List<RemoteClusterPrivilege> list) {
+			this.remoteCluster = _listAddAll(this.remoteCluster, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code remote_cluster}
+		 * <p>
+		 * Adds one or more values to <code>remoteCluster</code>.
+		 */
+		public final Builder remoteCluster(RemoteClusterPrivilege value, RemoteClusterPrivilege... values) {
+			this.remoteCluster = _listAdd(this.remoteCluster, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -216,6 +257,8 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
+		op.add(Builder::remoteCluster, JsonpDeserializer.arrayDeserializer(RemoteClusterPrivilege._DESERIALIZER),
+				"remote_cluster");
 
 	}
 

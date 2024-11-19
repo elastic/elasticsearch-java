@@ -87,9 +87,11 @@ import javax.annotation.Nullable;
 // typedef: _global.search.Request
 
 /**
- * Returns search hits that match the query defined in the request. You can
- * provide search queries using the <code>q</code> query string parameter or the
- * request body. If both are specified, only the query parameter is used.
+ * Run a search.
+ * <p>
+ * Get search hits that match the query defined in the request. You can provide
+ * search queries using the <code>q</code> query string parameter or the request
+ * body. If both are specified, only the query parameter is used.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search.Request">API
  *      specification</a>

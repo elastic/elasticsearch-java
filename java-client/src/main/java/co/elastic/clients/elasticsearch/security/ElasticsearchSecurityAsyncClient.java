@@ -521,6 +521,92 @@ public class ElasticsearchSecurityAsyncClient
 				CreateApiKeyRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: security.create_cross_cluster_api_key
+
+	/**
+	 * Create a cross-cluster API key.
+	 * <p>
+	 * Create an API key of the <code>cross_cluster</code> type for the API key
+	 * based remote cluster access. A <code>cross_cluster</code> API key cannot be
+	 * used to authenticate through the REST interface.
+	 * <p>
+	 * IMPORTANT: To authenticate this request you must use a credential that is not
+	 * an API key. Even if you use an API key that has the required privilege, the
+	 * API returns an error.
+	 * <p>
+	 * Cross-cluster API keys are created by the Elasticsearch API key service,
+	 * which is automatically enabled.
+	 * <p>
+	 * NOTE: Unlike REST API keys, a cross-cluster API key does not capture
+	 * permissions of the authenticated user. The API key’s effective permission is
+	 * exactly as specified with the <code>access</code> property.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the API key, its
+	 * unique ID, and its name. If applicable, it also returns expiration
+	 * information for the API key in milliseconds.
+	 * <p>
+	 * By default, API keys never expire. You can specify expiration information
+	 * when you create the API keys.
+	 * <p>
+	 * Cross-cluster API keys can only be updated with the update cross-cluster API
+	 * key API. Attempting to update them with the update REST API key API or the
+	 * bulk update REST API keys API will result in an error.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-cross-cluster-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CreateCrossClusterApiKeyResponse> createCrossClusterApiKey(
+			CreateCrossClusterApiKeyRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateCrossClusterApiKeyRequest, CreateCrossClusterApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateCrossClusterApiKeyRequest, CreateCrossClusterApiKeyResponse, ErrorResponse>) CreateCrossClusterApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a cross-cluster API key.
+	 * <p>
+	 * Create an API key of the <code>cross_cluster</code> type for the API key
+	 * based remote cluster access. A <code>cross_cluster</code> API key cannot be
+	 * used to authenticate through the REST interface.
+	 * <p>
+	 * IMPORTANT: To authenticate this request you must use a credential that is not
+	 * an API key. Even if you use an API key that has the required privilege, the
+	 * API returns an error.
+	 * <p>
+	 * Cross-cluster API keys are created by the Elasticsearch API key service,
+	 * which is automatically enabled.
+	 * <p>
+	 * NOTE: Unlike REST API keys, a cross-cluster API key does not capture
+	 * permissions of the authenticated user. The API key’s effective permission is
+	 * exactly as specified with the <code>access</code> property.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the API key, its
+	 * unique ID, and its name. If applicable, it also returns expiration
+	 * information for the API key in milliseconds.
+	 * <p>
+	 * By default, API keys never expire. You can specify expiration information
+	 * when you create the API keys.
+	 * <p>
+	 * Cross-cluster API keys can only be updated with the update cross-cluster API
+	 * key API. Attempting to update them with the update REST API key API or the
+	 * bulk update REST API keys API will result in an error.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateCrossClusterApiKeyRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-cross-cluster-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CreateCrossClusterApiKeyResponse> createCrossClusterApiKey(
+			Function<CreateCrossClusterApiKeyRequest.Builder, ObjectBuilder<CreateCrossClusterApiKeyRequest>> fn) {
+		return createCrossClusterApiKey(fn.apply(new CreateCrossClusterApiKeyRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.create_service_token
 
 	/**
@@ -2489,6 +2575,46 @@ public class ElasticsearchSecurityAsyncClient
 	public final CompletableFuture<UpdateApiKeyResponse> updateApiKey(
 			Function<UpdateApiKeyRequest.Builder, ObjectBuilder<UpdateApiKeyRequest>> fn) {
 		return updateApiKey(fn.apply(new UpdateApiKeyRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.update_cross_cluster_api_key
+
+	/**
+	 * Update a cross-cluster API key.
+	 * <p>
+	 * Update the attributes of an existing cross-cluster API key, which is used for
+	 * API key based remote cluster access.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-cross-cluster-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateCrossClusterApiKeyResponse> updateCrossClusterApiKey(
+			UpdateCrossClusterApiKeyRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateCrossClusterApiKeyRequest, UpdateCrossClusterApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateCrossClusterApiKeyRequest, UpdateCrossClusterApiKeyResponse, ErrorResponse>) UpdateCrossClusterApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update a cross-cluster API key.
+	 * <p>
+	 * Update the attributes of an existing cross-cluster API key, which is used for
+	 * API key based remote cluster access.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateCrossClusterApiKeyRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-cross-cluster-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<UpdateCrossClusterApiKeyResponse> updateCrossClusterApiKey(
+			Function<UpdateCrossClusterApiKeyRequest.Builder, ObjectBuilder<UpdateCrossClusterApiKeyRequest>> fn) {
+		return updateCrossClusterApiKey(fn.apply(new UpdateCrossClusterApiKeyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.update_user_profile_data

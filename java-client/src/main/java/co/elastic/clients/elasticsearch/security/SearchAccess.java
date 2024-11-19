@@ -52,25 +52,19 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security._types.RemoteIndicesPrivileges
+// typedef: security._types.SearchAccess
 
 /**
- * The subset of index level privileges that can be defined for remote clusters.
- * 
- * @see <a href=
- *      "../doc-files/api-spec.html#security._types.RemoteIndicesPrivileges">API
+ *
+ * @see <a href="../doc-files/api-spec.html#security._types.SearchAccess">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RemoteIndicesPrivileges implements JsonpSerializable {
-	private final List<String> clusters;
-
+public class SearchAccess implements JsonpSerializable {
 	@Nullable
 	private final FieldSecurity fieldSecurity;
 
 	private final List<String> names;
-
-	private final List<String> privileges;
 
 	@Nullable
 	private final IndicesPrivilegesQuery query;
@@ -80,29 +74,17 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RemoteIndicesPrivileges(Builder builder) {
+	private SearchAccess(Builder builder) {
 
-		this.clusters = ApiTypeHelper.unmodifiableRequired(builder.clusters, this, "clusters");
 		this.fieldSecurity = builder.fieldSecurity;
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
-		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = builder.query;
 		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
 
-	public static RemoteIndicesPrivileges of(Function<Builder, ObjectBuilder<RemoteIndicesPrivileges>> fn) {
+	public static SearchAccess of(Function<Builder, ObjectBuilder<SearchAccess>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - A list of cluster aliases to which the permissions in this entry
-	 * apply.
-	 * <p>
-	 * API name: {@code clusters}
-	 */
-	public final List<String> clusters() {
-		return this.clusters;
 	}
 
 	/**
@@ -123,16 +105,6 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 	 */
 	public final List<String> names() {
 		return this.names;
-	}
-
-	/**
-	 * Required - The index level privileges that owners of the role have on the
-	 * specified indices.
-	 * <p>
-	 * API name: {@code privileges}
-	 */
-	public final List<String> privileges() {
-		return this.privileges;
 	}
 
 	/**
@@ -173,16 +145,6 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.clusters)) {
-			generator.writeKey("clusters");
-			generator.writeStartArray();
-			for (String item0 : this.clusters) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.fieldSecurity != null) {
 			generator.writeKey("field_security");
 			this.fieldSecurity.serialize(generator, mapper);
@@ -192,16 +154,6 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 			generator.writeKey("names");
 			generator.writeStartArray();
 			for (String item0 : this.names) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (ApiTypeHelper.isDefined(this.privileges)) {
-			generator.writeKey("privileges");
-			generator.writeStartArray();
-			for (String item0 : this.privileges) {
 				generator.write(item0);
 
 			}
@@ -229,52 +181,20 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RemoteIndicesPrivileges}.
+	 * Builder for {@link SearchAccess}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<RemoteIndicesPrivileges> {
-		private List<String> clusters;
-
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SearchAccess> {
 		@Nullable
 		private FieldSecurity fieldSecurity;
 
 		private List<String> names;
-
-		private List<String> privileges;
 
 		@Nullable
 		private IndicesPrivilegesQuery query;
 
 		@Nullable
 		private Boolean allowRestrictedIndices;
-
-		/**
-		 * Required - A list of cluster aliases to which the permissions in this entry
-		 * apply.
-		 * <p>
-		 * API name: {@code clusters}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>clusters</code>.
-		 */
-		public final Builder clusters(List<String> list) {
-			this.clusters = _listAddAll(this.clusters, list);
-			return this;
-		}
-
-		/**
-		 * Required - A list of cluster aliases to which the permissions in this entry
-		 * apply.
-		 * <p>
-		 * API name: {@code clusters}
-		 * <p>
-		 * Adds one or more values to <code>clusters</code>.
-		 */
-		public final Builder clusters(String value, String... values) {
-			this.clusters = _listAdd(this.clusters, value, values);
-			return this;
-		}
 
 		/**
 		 * The document fields that the owners of the role have read access to.
@@ -322,32 +242,6 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The index level privileges that owners of the role have on the
-		 * specified indices.
-		 * <p>
-		 * API name: {@code privileges}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>privileges</code>.
-		 */
-		public final Builder privileges(List<String> list) {
-			this.privileges = _listAddAll(this.privileges, list);
-			return this;
-		}
-
-		/**
-		 * Required - The index level privileges that owners of the role have on the
-		 * specified indices.
-		 * <p>
-		 * API name: {@code privileges}
-		 * <p>
-		 * Adds one or more values to <code>privileges</code>.
-		 */
-		public final Builder privileges(String value, String... values) {
-			this.privileges = _listAdd(this.privileges, value, values);
-			return this;
-		}
-
-		/**
 		 * A search query that defines the documents the owners of the role have access
 		 * to. A document within the specified indices must match this query for it to
 		 * be accessible by the owners of the role.
@@ -391,35 +285,30 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RemoteIndicesPrivileges}.
+		 * Builds a {@link SearchAccess}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RemoteIndicesPrivileges build() {
+		public SearchAccess build() {
 			_checkSingleUse();
 
-			return new RemoteIndicesPrivileges(this);
+			return new SearchAccess(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RemoteIndicesPrivileges}
+	 * Json deserializer for {@link SearchAccess}
 	 */
-	public static final JsonpDeserializer<RemoteIndicesPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RemoteIndicesPrivileges::setupRemoteIndicesPrivilegesDeserializer);
+	public static final JsonpDeserializer<SearchAccess> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchAccess::setupSearchAccessDeserializer);
 
-	protected static void setupRemoteIndicesPrivilegesDeserializer(
-			ObjectDeserializer<RemoteIndicesPrivileges.Builder> op) {
+	protected static void setupSearchAccessDeserializer(ObjectDeserializer<SearchAccess.Builder> op) {
 
-		op.add(Builder::clusters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"clusters");
 		op.add(Builder::fieldSecurity, FieldSecurity._DESERIALIZER, "field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"privileges");
 		op.add(Builder::query, IndicesPrivilegesQuery._DESERIALIZER, "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 

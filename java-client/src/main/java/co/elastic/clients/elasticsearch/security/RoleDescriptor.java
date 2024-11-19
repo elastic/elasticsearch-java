@@ -66,6 +66,10 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private final List<IndicesPrivileges> indices;
 
+	private final List<RemoteIndicesPrivileges> remoteIndices;
+
+	private final List<RemoteClusterPrivileges> remoteCluster;
+
 	private final List<GlobalPrivilege> global;
 
 	private final List<ApplicationPrivileges> applications;
@@ -77,6 +81,9 @@ public class RoleDescriptor implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
+	@Nullable
+	private final Restriction restriction;
+
 	private final Map<String, JsonData> transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
@@ -85,11 +92,14 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);
+		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
 		this.global = ApiTypeHelper.unmodifiable(builder.global);
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 		this.description = builder.description;
+		this.restriction = builder.restriction;
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
 	}
@@ -115,6 +125,25 @@ public class RoleDescriptor implements JsonpSerializable {
 	 */
 	public final List<IndicesPrivileges> indices() {
 		return this.indices;
+	}
+
+	/**
+	 * A list of indices permissions for remote clusters.
+	 * <p>
+	 * API name: {@code remote_indices}
+	 */
+	public final List<RemoteIndicesPrivileges> remoteIndices() {
+		return this.remoteIndices;
+	}
+
+	/**
+	 * A list of cluster permissions for remote clusters. Note - this is limited a
+	 * subset of the cluster permissions.
+	 * <p>
+	 * API name: {@code remote_cluster}
+	 */
+	public final List<RemoteClusterPrivileges> remoteCluster() {
+		return this.remoteCluster;
 	}
 
 	/**
@@ -170,6 +199,16 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
+	 * Restriction for when the role descriptor is allowed to be effective.
+	 * <p>
+	 * API name: {@code restriction}
+	 */
+	@Nullable
+	public final Restriction restriction() {
+		return this.restriction;
+	}
+
+	/**
 	 * API name: {@code transient_metadata}
 	 */
 	public final Map<String, JsonData> transientMetadata() {
@@ -201,6 +240,26 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.remoteIndices)) {
+			generator.writeKey("remote_indices");
+			generator.writeStartArray();
+			for (RemoteIndicesPrivileges item0 : this.remoteIndices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.remoteCluster)) {
+			generator.writeKey("remote_cluster");
+			generator.writeStartArray();
+			for (RemoteClusterPrivileges item0 : this.remoteCluster) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -251,6 +310,11 @@ public class RoleDescriptor implements JsonpSerializable {
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
+
+		}
+		if (this.restriction != null) {
+			generator.writeKey("restriction");
+			this.restriction.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
@@ -309,6 +373,12 @@ public class RoleDescriptor implements JsonpSerializable {
 		private List<IndicesPrivileges> indices;
 
 		@Nullable
+		private List<RemoteIndicesPrivileges> remoteIndices;
+
+		@Nullable
+		private List<RemoteClusterPrivileges> remoteCluster;
+
+		@Nullable
 		private List<GlobalPrivilege> global;
 
 		@Nullable
@@ -322,6 +392,9 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		@Nullable
 		private String description;
+
+		@Nullable
+		private Restriction restriction;
 
 		@Nullable
 		private Map<String, JsonData> transientMetadata;
@@ -385,6 +458,81 @@ public class RoleDescriptor implements JsonpSerializable {
 		 */
 		public final BuilderT indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
+		}
+
+		/**
+		 * A list of indices permissions for remote clusters.
+		 * <p>
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteIndices</code>.
+		 */
+		public final BuilderT remoteIndices(List<RemoteIndicesPrivileges> list) {
+			this.remoteIndices = _listAddAll(this.remoteIndices, list);
+			return self();
+		}
+
+		/**
+		 * A list of indices permissions for remote clusters.
+		 * <p>
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds one or more values to <code>remoteIndices</code>.
+		 */
+		public final BuilderT remoteIndices(RemoteIndicesPrivileges value, RemoteIndicesPrivileges... values) {
+			this.remoteIndices = _listAdd(this.remoteIndices, value, values);
+			return self();
+		}
+
+		/**
+		 * A list of indices permissions for remote clusters.
+		 * <p>
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds a value to <code>remoteIndices</code> using a builder lambda.
+		 */
+		public final BuilderT remoteIndices(
+				Function<RemoteIndicesPrivileges.Builder, ObjectBuilder<RemoteIndicesPrivileges>> fn) {
+			return remoteIndices(fn.apply(new RemoteIndicesPrivileges.Builder()).build());
+		}
+
+		/**
+		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * subset of the cluster permissions.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteCluster</code>.
+		 */
+		public final BuilderT remoteCluster(List<RemoteClusterPrivileges> list) {
+			this.remoteCluster = _listAddAll(this.remoteCluster, list);
+			return self();
+		}
+
+		/**
+		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * subset of the cluster permissions.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds one or more values to <code>remoteCluster</code>.
+		 */
+		public final BuilderT remoteCluster(RemoteClusterPrivileges value, RemoteClusterPrivileges... values) {
+			this.remoteCluster = _listAdd(this.remoteCluster, value, values);
+			return self();
+		}
+
+		/**
+		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * subset of the cluster permissions.
+		 * <p>
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds a value to <code>remoteCluster</code> using a builder lambda.
+		 */
+		public final BuilderT remoteCluster(
+				Function<RemoteClusterPrivileges.Builder, ObjectBuilder<RemoteClusterPrivileges>> fn) {
+			return remoteCluster(fn.apply(new RemoteClusterPrivileges.Builder()).build());
 		}
 
 		/**
@@ -531,6 +679,25 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
+		 * Restriction for when the role descriptor is allowed to be effective.
+		 * <p>
+		 * API name: {@code restriction}
+		 */
+		public final BuilderT restriction(@Nullable Restriction value) {
+			this.restriction = value;
+			return self();
+		}
+
+		/**
+		 * Restriction for when the role descriptor is allowed to be effective.
+		 * <p>
+		 * API name: {@code restriction}
+		 */
+		public final BuilderT restriction(Function<Restriction.Builder, ObjectBuilder<Restriction>> fn) {
+			return this.restriction(fn.apply(new Restriction.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code transient_metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
@@ -569,6 +736,10 @@ public class RoleDescriptor implements JsonpSerializable {
 				"cluster");
 		op.add(AbstractBuilder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER),
 				"indices", "index");
+		op.add(AbstractBuilder::remoteIndices,
+				JsonpDeserializer.arrayDeserializer(RemoteIndicesPrivileges._DESERIALIZER), "remote_indices");
+		op.add(AbstractBuilder::remoteCluster,
+				JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER), "remote_cluster");
 		op.add(AbstractBuilder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
 		op.add(AbstractBuilder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
@@ -576,6 +747,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		op.add(AbstractBuilder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"run_as");
 		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(AbstractBuilder::restriction, Restriction._DESERIALIZER, "restriction");
 		op.add(AbstractBuilder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"transient_metadata");
 

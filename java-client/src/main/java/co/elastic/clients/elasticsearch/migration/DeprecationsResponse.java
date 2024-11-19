@@ -66,6 +66,8 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 	private final Map<String, List<Deprecation>> indexSettings;
 
+	private final Map<String, List<Deprecation>> dataStreams;
+
 	private final List<Deprecation> nodeSettings;
 
 	private final List<Deprecation> mlSettings;
@@ -76,6 +78,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 		this.clusterSettings = ApiTypeHelper.unmodifiableRequired(builder.clusterSettings, this, "clusterSettings");
 		this.indexSettings = ApiTypeHelper.unmodifiableRequired(builder.indexSettings, this, "indexSettings");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 		this.nodeSettings = ApiTypeHelper.unmodifiableRequired(builder.nodeSettings, this, "nodeSettings");
 		this.mlSettings = ApiTypeHelper.unmodifiableRequired(builder.mlSettings, this, "mlSettings");
 
@@ -97,6 +100,13 @@ public class DeprecationsResponse implements JsonpSerializable {
 	 */
 	public final Map<String, List<Deprecation>> indexSettings() {
 		return this.indexSettings;
+	}
+
+	/**
+	 * Required - API name: {@code data_streams}
+	 */
+	public final Map<String, List<Deprecation>> dataStreams() {
+		return this.dataStreams;
 	}
 
 	/**
@@ -152,6 +162,24 @@ public class DeprecationsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
+			generator.writeKey("data_streams");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<Deprecation>> item0 : this.dataStreams.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (Deprecation item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.nodeSettings)) {
 			generator.writeKey("node_settings");
 			generator.writeStartArray();
@@ -192,6 +220,8 @@ public class DeprecationsResponse implements JsonpSerializable {
 		private List<Deprecation> clusterSettings;
 
 		private Map<String, List<Deprecation>> indexSettings;
+
+		private Map<String, List<Deprecation>> dataStreams;
 
 		private List<Deprecation> nodeSettings;
 
@@ -243,6 +273,26 @@ public class DeprecationsResponse implements JsonpSerializable {
 		 */
 		public final Builder indexSettings(String key, List<Deprecation> value) {
 			this.indexSettings = _mapPut(this.indexSettings, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>dataStreams</code>.
+		 */
+		public final Builder dataStreams(Map<String, List<Deprecation>> map) {
+			this.dataStreams = _mapPutAll(this.dataStreams, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds an entry to <code>dataStreams</code>.
+		 */
+		public final Builder dataStreams(String key, List<Deprecation> value) {
+			this.dataStreams = _mapPut(this.dataStreams, key, value);
 			return this;
 		}
 
@@ -337,6 +387,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		op.add(Builder::indexSettings,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER)),
 				"index_settings");
+		op.add(Builder::dataStreams,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER)),
+				"data_streams");
 		op.add(Builder::nodeSettings, JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER), "node_settings");
 		op.add(Builder::mlSettings, JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER), "ml_settings");
 

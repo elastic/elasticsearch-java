@@ -63,7 +63,13 @@ import javax.annotation.Nullable;
 // typedef: _global.mtermvectors.Request
 
 /**
- * Returns multiple termvectors in one request.
+ * Get multiple term vectors.
+ * <p>
+ * You can specify existing documents by index and ID or provide artificial
+ * documents in the body of the request. You can specify the index in the
+ * request body or request URI. The response contains a <code>docs</code> array
+ * with all the fetched termvectors. Each element has the structure provided by
+ * the termvectors API.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.mtermvectors.Request">API
  *      specification</a>

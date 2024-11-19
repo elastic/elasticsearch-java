@@ -96,4 +96,41 @@ public class RetrieverBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link TextSimilarityReranker
+	 * text_similarity_reranker} {@code Retriever} variant.
+	 */
+	public static TextSimilarityReranker.Builder textSimilarityReranker() {
+		return new TextSimilarityReranker.Builder();
+	}
+
+	/**
+	 * Creates a Retriever of the {@link TextSimilarityReranker
+	 * text_similarity_reranker} {@code Retriever} variant.
+	 */
+	public static Retriever textSimilarityReranker(
+			Function<TextSimilarityReranker.Builder, ObjectBuilder<TextSimilarityReranker>> fn) {
+		Retriever.Builder builder = new Retriever.Builder();
+		builder.textSimilarityReranker(fn.apply(new TextSimilarityReranker.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link RuleRetriever rule} {@code Retriever}
+	 * variant.
+	 */
+	public static RuleRetriever.Builder rule() {
+		return new RuleRetriever.Builder();
+	}
+
+	/**
+	 * Creates a Retriever of the {@link RuleRetriever rule} {@code Retriever}
+	 * variant.
+	 */
+	public static Retriever rule(Function<RuleRetriever.Builder, ObjectBuilder<RuleRetriever>> fn) {
+		Retriever.Builder builder = new Retriever.Builder();
+		builder.rule(fn.apply(new RuleRetriever.Builder()).build());
+		return builder.build();
+	}
+
 }

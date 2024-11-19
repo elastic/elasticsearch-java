@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: _global.reindex_rethrottle.Request
 
 /**
- * Copies documents from a source to a destination.
+ * Throttle a reindex operation.
+ * <p>
+ * Change the number of requests per second for a particular reindex operation.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.reindex_rethrottle.Request">API
