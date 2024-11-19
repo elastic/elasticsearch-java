@@ -152,7 +152,10 @@ public class GetAliasRequest extends RequestBase {
 	 * only.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 8.12.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -285,7 +288,10 @@ public class GetAliasRequest extends RequestBase {
 		 * only.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 8.12.0
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
