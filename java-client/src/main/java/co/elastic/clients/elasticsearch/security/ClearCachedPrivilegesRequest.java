@@ -56,7 +56,11 @@ import javax.annotation.Nullable;
 // typedef: security.clear_cached_privileges.Request
 
 /**
- * Evicts application privileges from the native application privileges cache.
+ * Clear the privileges cache.
+ * <p>
+ * Evict privileges from the native application privilege cache. The cache is
+ * also automatically cleared for applications that have their privileges
+ * updated.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.clear_cached_privileges.Request">API

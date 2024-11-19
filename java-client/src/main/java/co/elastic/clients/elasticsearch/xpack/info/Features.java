@@ -84,6 +84,8 @@ public class Features implements JsonpSerializable {
 
 	private final Feature logstash;
 
+	private final Feature logsdb;
+
 	private final Feature ml;
 
 	private final Feature monitoring;
@@ -130,6 +132,7 @@ public class Features implements JsonpSerializable {
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
+		this.logsdb = ApiTypeHelper.requireNonNull(builder.logsdb, this, "logsdb");
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
 		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
 		this.rollup = ApiTypeHelper.requireNonNull(builder.rollup, this, "rollup");
@@ -241,6 +244,13 @@ public class Features implements JsonpSerializable {
 	 */
 	public final Feature logstash() {
 		return this.logstash;
+	}
+
+	/**
+	 * Required - API name: {@code logsdb}
+	 */
+	public final Feature logsdb() {
+		return this.logsdb;
 	}
 
 	/**
@@ -392,6 +402,9 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("logstash");
 		this.logstash.serialize(generator, mapper);
 
+		generator.writeKey("logsdb");
+		this.logsdb.serialize(generator, mapper);
+
 		generator.writeKey("ml");
 		this.ml.serialize(generator, mapper);
 
@@ -475,6 +488,8 @@ public class Features implements JsonpSerializable {
 		private Feature ilm;
 
 		private Feature logstash;
+
+		private Feature logsdb;
 
 		private Feature ml;
 
@@ -698,6 +713,21 @@ public class Features implements JsonpSerializable {
 		 */
 		public final Builder logstash(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.logstash(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code logsdb}
+		 */
+		public final Builder logsdb(Feature value) {
+			this.logsdb = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code logsdb}
+		 */
+		public final Builder logsdb(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.logsdb(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -951,6 +981,7 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::graph, Feature._DESERIALIZER, "graph");
 		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
 		op.add(Builder::logstash, Feature._DESERIALIZER, "logstash");
+		op.add(Builder::logsdb, Feature._DESERIALIZER, "logsdb");
 		op.add(Builder::ml, Feature._DESERIALIZER, "ml");
 		op.add(Builder::monitoring, Feature._DESERIALIZER, "monitoring");
 		op.add(Builder::rollup, Feature._DESERIALIZER, "rollup");

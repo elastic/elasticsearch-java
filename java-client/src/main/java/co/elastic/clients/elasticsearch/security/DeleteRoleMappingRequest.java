@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: security.delete_role_mapping.Request
 
 /**
- * Removes role mappings.
+ * Delete role mappings.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.delete_role_mapping.Request">API

@@ -19,25 +19,20 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.Refresh;
-import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -57,41 +52,37 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: security.bulk_delete_role.Request
+// typedef: security._types.ReplicationAccess
 
 /**
- * Bulk delete roles.
- * <p>
- * The role management APIs are generally the preferred way to manage roles,
- * rather than using file-based role management. The bulk delete roles API
- * cannot delete roles that are defined in roles files.
- * 
+ *
  * @see <a href=
- *      "../doc-files/api-spec.html#security.bulk_delete_role.Request">API
+ *      "../doc-files/api-spec.html#security._types.ReplicationAccess">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializable {
+public class ReplicationAccess implements JsonpSerializable {
 	private final List<String> names;
 
 	@Nullable
-	private final Refresh refresh;
+	private final Boolean allowRestrictedIndices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private BulkDeleteRoleRequest(Builder builder) {
+	private ReplicationAccess(Builder builder) {
 
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
-		this.refresh = builder.refresh;
+		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
 
-	public static BulkDeleteRoleRequest of(Function<Builder, ObjectBuilder<BulkDeleteRoleRequest>> fn) {
+	public static ReplicationAccess of(Function<Builder, ObjectBuilder<ReplicationAccess>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - An array of role names to delete
+	 * Required - A list of indices (or index name patterns) to which the
+	 * permissions in this entry apply.
 	 * <p>
 	 * API name: {@code names}
 	 */
@@ -100,16 +91,14 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * If <code>true</code> (the default) then refresh the affected shards to make
-	 * this operation visible to search, if <code>wait_for</code> then wait for a
-	 * refresh to make this operation visible to search, if <code>false</code> then
-	 * do nothing with refreshes.
+	 * This needs to be set to true if the patterns in the names field should cover
+	 * system indices.
 	 * <p>
-	 * API name: {@code refresh}
+	 * API name: {@code allow_restricted_indices}
 	 */
 	@Nullable
-	public final Refresh refresh() {
-		return this.refresh;
+	public final Boolean allowRestrictedIndices() {
+		return this.allowRestrictedIndices;
 	}
 
 	/**
@@ -133,25 +122,34 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 			generator.writeEnd();
 
 		}
+		if (this.allowRestrictedIndices != null) {
+			generator.writeKey("allow_restricted_indices");
+			generator.write(this.allowRestrictedIndices);
 
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link BulkDeleteRoleRequest}.
+	 * Builder for {@link ReplicationAccess}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<BulkDeleteRoleRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReplicationAccess> {
 		private List<String> names;
 
 		@Nullable
-		private Refresh refresh;
+		private Boolean allowRestrictedIndices;
 
 		/**
-		 * Required - An array of role names to delete
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
 		 * <p>
 		 * API name: {@code names}
 		 * <p>
@@ -163,7 +161,8 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Required - An array of role names to delete
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
 		 * <p>
 		 * API name: {@code names}
 		 * <p>
@@ -175,15 +174,13 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * If <code>true</code> (the default) then refresh the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> then
-		 * do nothing with refreshes.
+		 * This needs to be set to true if the patterns in the names field should cover
+		 * system indices.
 		 * <p>
-		 * API name: {@code refresh}
+		 * API name: {@code allow_restricted_indices}
 		 */
-		public final Builder refresh(@Nullable Refresh value) {
-			this.refresh = value;
+		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
+			this.allowRestrictedIndices = value;
 			return this;
 		}
 
@@ -193,64 +190,31 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Builds a {@link BulkDeleteRoleRequest}.
+		 * Builds a {@link ReplicationAccess}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public BulkDeleteRoleRequest build() {
+		public ReplicationAccess build() {
 			_checkSingleUse();
 
-			return new BulkDeleteRoleRequest(this);
+			return new ReplicationAccess(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link BulkDeleteRoleRequest}
+	 * Json deserializer for {@link ReplicationAccess}
 	 */
-	public static final JsonpDeserializer<BulkDeleteRoleRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BulkDeleteRoleRequest::setupBulkDeleteRoleRequestDeserializer);
+	public static final JsonpDeserializer<ReplicationAccess> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ReplicationAccess::setupReplicationAccessDeserializer);
 
-	protected static void setupBulkDeleteRoleRequestDeserializer(ObjectDeserializer<BulkDeleteRoleRequest.Builder> op) {
+	protected static void setupReplicationAccessDeserializer(ObjectDeserializer<ReplicationAccess.Builder> op) {
 
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
+		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Endpoint "{@code security.bulk_delete_role}".
-	 */
-	public static final Endpoint<BulkDeleteRoleRequest, BulkDeleteRoleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/security.bulk_delete_role",
-
-			// Request method
-			request -> {
-				return "DELETE";
-
-			},
-
-			// Request path
-			request -> {
-				return "/_security/role";
-
-			},
-
-			// Path parameters
-			request -> {
-				return Collections.emptyMap();
-			},
-
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
-				}
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), true, BulkDeleteRoleResponse._DESERIALIZER);
 }

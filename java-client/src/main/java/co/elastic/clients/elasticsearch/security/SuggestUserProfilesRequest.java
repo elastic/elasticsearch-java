@@ -59,6 +59,8 @@ import javax.annotation.Nullable;
 // typedef: security.suggest_user_profiles.Request
 
 /**
+ * Suggest a user profile.
+ * <p>
  * Get suggestions for user profiles that match specified search criteria.
  * 
  * @see <a href=

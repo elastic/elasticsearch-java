@@ -59,6 +59,8 @@ import javax.annotation.Nullable;
 // typedef: security.bulk_put_role.Request
 
 /**
+ * Bulk create or update roles.
+ * <p>
  * The role management APIs are generally the preferred way to manage roles,
  * rather than using file-based role management. The bulk create or update roles
  * API cannot update roles that are defined in roles files.

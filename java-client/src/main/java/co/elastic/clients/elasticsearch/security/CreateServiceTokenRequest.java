@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: security.create_service_token.Request
 
 /**
- * Creates a service accounts token for access without requiring basic
+ * Create a service account token.
+ * <p>
+ * Create a service accounts token for access without requiring basic
  * authentication.
  * 
  * @see <a href=

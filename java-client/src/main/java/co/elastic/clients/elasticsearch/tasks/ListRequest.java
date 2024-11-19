@@ -79,7 +79,7 @@ public class ListRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
-	private final List<String> nodeId;
+	private final List<String> nodes;
 
 	@Nullable
 	private final String parentTaskId;
@@ -98,7 +98,7 @@ public class ListRequest extends RequestBase {
 		this.detailed = builder.detailed;
 		this.groupBy = builder.groupBy;
 		this.masterTimeout = builder.masterTimeout;
-		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
@@ -154,10 +154,10 @@ public class ListRequest extends RequestBase {
 	/**
 	 * Comma-separated list of node IDs or names used to limit returned information.
 	 * <p>
-	 * API name: {@code node_id}
+	 * API name: {@code nodes}
 	 */
-	public final List<String> nodeId() {
-		return this.nodeId;
+	public final List<String> nodes() {
+		return this.nodes;
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class ListRequest extends RequestBase {
 		private Time masterTimeout;
 
 		@Nullable
-		private List<String> nodeId;
+		private List<String> nodes;
 
 		@Nullable
 		private String parentTaskId;
@@ -294,24 +294,24 @@ public class ListRequest extends RequestBase {
 		/**
 		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
-		 * API name: {@code node_id}
+		 * API name: {@code nodes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public final Builder nodeId(List<String> list) {
-			this.nodeId = _listAddAll(this.nodeId, list);
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Comma-separated list of node IDs or names used to limit returned information.
 		 * <p>
-		 * API name: {@code node_id}
+		 * API name: {@code nodes}
 		 * <p>
-		 * Adds one or more values to <code>nodeId</code>.
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodeId(String value, String... values) {
-			this.nodeId = _listAdd(this.nodeId, value, values);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
@@ -406,6 +406,9 @@ public class ListRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				if (ApiTypeHelper.isDefined(request.nodes)) {
+					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
 				}
@@ -423,9 +426,6 @@ public class ListRequest extends RequestBase {
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
-				}
-				if (ApiTypeHelper.isDefined(request.nodeId)) {
-					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

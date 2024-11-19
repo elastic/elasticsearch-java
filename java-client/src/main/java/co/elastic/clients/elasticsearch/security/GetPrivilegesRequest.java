@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: security.get_privileges.Request
 
 /**
- * Retrieves application privileges.
+ * Get application privileges.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_privileges.Request">API
  *      specification</a>

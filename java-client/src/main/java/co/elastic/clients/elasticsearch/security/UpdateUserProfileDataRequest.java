@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: security.update_user_profile_data.Request
 
 /**
- * Updates specific data for the user profile that's associated with the
- * specified unique ID.
+ * Update user profile data.
+ * <p>
+ * Update specific data for the user profile that is associated with a unique
+ * ID.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.update_user_profile_data.Request">API

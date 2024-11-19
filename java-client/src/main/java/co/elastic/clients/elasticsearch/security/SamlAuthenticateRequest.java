@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: security.saml_authenticate.Request
 
 /**
- * Submits a SAML Response message to Elasticsearch for consumption.
+ * Authenticate SAML.
+ * <p>
+ * Submits a SAML response message to Elasticsearch for consumption.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.saml_authenticate.Request">API

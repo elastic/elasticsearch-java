@@ -72,12 +72,13 @@ public class ElasticsearchAsyncSearchAsyncClient
 	// ----- Endpoint: async_search.delete
 
 	/**
-	 * Delete an async search. If the asynchronous search is still running, it is
-	 * cancelled. Otherwise, the saved search results are deleted. If the
-	 * Elasticsearch security features are enabled, the deletion of a specific async
-	 * search is restricted to: the authenticated user that submitted the original
-	 * search request; users that have the <code>cancel_task</code> cluster
-	 * privilege.
+	 * Delete an async search.
+	 * <p>
+	 * If the asynchronous search is still running, it is cancelled. Otherwise, the
+	 * saved search results are deleted. If the Elasticsearch security features are
+	 * enabled, the deletion of a specific async search is restricted to: the
+	 * authenticated user that submitted the original search request; users that
+	 * have the <code>cancel_task</code> cluster privilege.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
@@ -92,12 +93,13 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Delete an async search. If the asynchronous search is still running, it is
-	 * cancelled. Otherwise, the saved search results are deleted. If the
-	 * Elasticsearch security features are enabled, the deletion of a specific async
-	 * search is restricted to: the authenticated user that submitted the original
-	 * search request; users that have the <code>cancel_task</code> cluster
-	 * privilege.
+	 * Delete an async search.
+	 * <p>
+	 * If the asynchronous search is still running, it is cancelled. Otherwise, the
+	 * saved search results are deleted. If the Elasticsearch security features are
+	 * enabled, the deletion of a specific async search is restricted to: the
+	 * authenticated user that submitted the original search request; users that
+	 * have the <code>cancel_task</code> cluster privilege.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -115,10 +117,12 @@ public class ElasticsearchAsyncSearchAsyncClient
 	// ----- Endpoint: async_search.get
 
 	/**
-	 * Get async search results. Retrieve the results of a previously submitted
-	 * asynchronous search request. If the Elasticsearch security features are
-	 * enabled, access to the results of a specific async search is restricted to
-	 * the user or API key that submitted it.
+	 * Get async search results.
+	 * <p>
+	 * Retrieve the results of a previously submitted asynchronous search request.
+	 * If the Elasticsearch security features are enabled, access to the results of
+	 * a specific async search is restricted to the user or API key that submitted
+	 * it.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
@@ -136,10 +140,12 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Get async search results. Retrieve the results of a previously submitted
-	 * asynchronous search request. If the Elasticsearch security features are
-	 * enabled, access to the results of a specific async search is restricted to
-	 * the user or API key that submitted it.
+	 * Get async search results.
+	 * <p>
+	 * Retrieve the results of a previously submitted asynchronous search request.
+	 * If the Elasticsearch security features are enabled, access to the results of
+	 * a specific async search is restricted to the user or API key that submitted
+	 * it.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -156,10 +162,12 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Get async search results. Retrieve the results of a previously submitted
-	 * asynchronous search request. If the Elasticsearch security features are
-	 * enabled, access to the results of a specific async search is restricted to
-	 * the user or API key that submitted it.
+	 * Get async search results.
+	 * <p>
+	 * Retrieve the results of a previously submitted asynchronous search request.
+	 * If the Elasticsearch security features are enabled, access to the results of
+	 * a specific async search is restricted to the user or API key that submitted
+	 * it.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
@@ -177,10 +185,12 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Get async search results. Retrieve the results of a previously submitted
-	 * asynchronous search request. If the Elasticsearch security features are
-	 * enabled, access to the results of a specific async search is restricted to
-	 * the user or API key that submitted it.
+	 * Get async search results.
+	 * <p>
+	 * Retrieve the results of a previously submitted asynchronous search request.
+	 * If the Elasticsearch security features are enabled, access to the results of
+	 * a specific async search is restricted to the user or API key that submitted
+	 * it.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -198,10 +208,12 @@ public class ElasticsearchAsyncSearchAsyncClient
 	// ----- Endpoint: async_search.status
 
 	/**
-	 * Get async search status. Retrieve the status of a previously submitted async
-	 * search request given its identifier, without retrieving search results. If
-	 * the Elasticsearch security features are enabled, use of this API is
-	 * restricted to the <code>monitoring_user</code> role.
+	 * Get the async search status.
+	 * <p>
+	 * Get the status of a previously submitted async search request given its
+	 * identifier, without retrieving search results. If the Elasticsearch security
+	 * features are enabled, use of this API is restricted to the
+	 * <code>monitoring_user</code> role.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/async-search.html">Documentation
@@ -216,10 +228,12 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Get async search status. Retrieve the status of a previously submitted async
-	 * search request given its identifier, without retrieving search results. If
-	 * the Elasticsearch security features are enabled, use of this API is
-	 * restricted to the <code>monitoring_user</code> role.
+	 * Get the async search status.
+	 * <p>
+	 * Get the status of a previously submitted async search request given its
+	 * identifier, without retrieving search results. If the Elasticsearch security
+	 * features are enabled, use of this API is restricted to the
+	 * <code>monitoring_user</code> role.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -237,10 +251,11 @@ public class ElasticsearchAsyncSearchAsyncClient
 	// ----- Endpoint: async_search.submit
 
 	/**
-	 * Run an async search. When the primary sort of the results is an indexed
-	 * field, shards get sorted based on minimum and maximum value that they hold
-	 * for that field. Partial results become available following the sort criteria
-	 * that was requested.
+	 * Run an async search.
+	 * <p>
+	 * When the primary sort of the results is an indexed field, shards get sorted
+	 * based on minimum and maximum value that they hold for that field. Partial
+	 * results become available following the sort criteria that was requested.
 	 * <p>
 	 * Warning: Asynchronous search does not support scroll or search requests that
 	 * include only the suggest section.
@@ -268,10 +283,11 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Run an async search. When the primary sort of the results is an indexed
-	 * field, shards get sorted based on minimum and maximum value that they hold
-	 * for that field. Partial results become available following the sort criteria
-	 * that was requested.
+	 * Run an async search.
+	 * <p>
+	 * When the primary sort of the results is an indexed field, shards get sorted
+	 * based on minimum and maximum value that they hold for that field. Partial
+	 * results become available following the sort criteria that was requested.
 	 * <p>
 	 * Warning: Asynchronous search does not support scroll or search requests that
 	 * include only the suggest section.
@@ -296,10 +312,11 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Run an async search. When the primary sort of the results is an indexed
-	 * field, shards get sorted based on minimum and maximum value that they hold
-	 * for that field. Partial results become available following the sort criteria
-	 * that was requested.
+	 * Run an async search.
+	 * <p>
+	 * When the primary sort of the results is an indexed field, shards get sorted
+	 * based on minimum and maximum value that they hold for that field. Partial
+	 * results become available following the sort criteria that was requested.
 	 * <p>
 	 * Warning: Asynchronous search does not support scroll or search requests that
 	 * include only the suggest section.
@@ -326,10 +343,11 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
-	 * Run an async search. When the primary sort of the results is an indexed
-	 * field, shards get sorted based on minimum and maximum value that they hold
-	 * for that field. Partial results become available following the sort criteria
-	 * that was requested.
+	 * Run an async search.
+	 * <p>
+	 * When the primary sort of the results is an indexed field, shards get sorted
+	 * based on minimum and maximum value that they hold for that field. Partial
+	 * results become available following the sort criteria that was requested.
 	 * <p>
 	 * Warning: Asynchronous search does not support scroll or search requests that
 	 * include only the suggest section.

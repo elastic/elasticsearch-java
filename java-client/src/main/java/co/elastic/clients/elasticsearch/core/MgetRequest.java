@@ -62,7 +62,12 @@ import javax.annotation.Nullable;
 // typedef: _global.mget.Request
 
 /**
- * Allows to get multiple documents in one request.
+ * Get multiple documents.
+ * <p>
+ * Get multiple JSON documents by ID from one or more indices. If you specify an
+ * index in the request URI, you only need to specify the document IDs in the
+ * request body. To ensure fast responses, this multi get (mget) API responds
+ * with partial results if one or more shards fail.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.mget.Request">API
  *      specification</a>

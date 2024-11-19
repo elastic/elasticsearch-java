@@ -50,8 +50,10 @@ import java.util.Objects;
 // typedef: security.enroll_kibana.Request
 
 /**
- * Enables a Kibana instance to configure itself for communication with a
- * secured Elasticsearch cluster.
+ * Enroll Kibana.
+ * <p>
+ * Enable a Kibana instance to configure itself for communication with a secured
+ * Elasticsearch cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#security.enroll_kibana.Request">API
  *      specification</a>

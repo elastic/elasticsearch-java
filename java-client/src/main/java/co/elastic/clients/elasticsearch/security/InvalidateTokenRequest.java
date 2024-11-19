@@ -55,7 +55,16 @@ import javax.annotation.Nullable;
 // typedef: security.invalidate_token.Request
 
 /**
- * Invalidates one or more access tokens or refresh tokens.
+ * Invalidate a token.
+ * <p>
+ * The access tokens returned by the get token API have a finite period of time
+ * for which they are valid. After that time period, they can no longer be used.
+ * The time period is defined by the
+ * <code>xpack.security.authc.token.timeout</code> setting.
+ * <p>
+ * The refresh tokens returned by the get token API are only valid for 24 hours.
+ * They can also be used exactly once. If you want to invalidate one or more
+ * access or refresh tokens immediately, use this invalidate token API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.invalidate_token.Request">API

@@ -67,8 +67,10 @@ import javax.annotation.Nullable;
 // typedef: _global.termvectors.Request
 
 /**
- * Get term vector information. Returns information and statistics about terms
- * in the fields of a particular document.
+ * Get term vector information.
+ * <p>
+ * Get information and statistics about terms in the fields of a particular
+ * document.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.termvectors.Request">API
  *      specification</a>

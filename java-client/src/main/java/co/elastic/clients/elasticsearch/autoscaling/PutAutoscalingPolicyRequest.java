@@ -59,8 +59,11 @@ import javax.annotation.Nullable;
 // typedef: autoscaling.put_autoscaling_policy.Request
 
 /**
- * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
- * ECK. Direct use is not supported.
+ * Create or update an autoscaling policy.
+ * <p>
+ * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+ * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+ * supported.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#autoscaling.put_autoscaling_policy.Request">API
