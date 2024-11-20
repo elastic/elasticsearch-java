@@ -358,7 +358,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * increase indexing speed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -378,7 +378,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -393,7 +393,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * increase indexing speed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -410,7 +410,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -430,7 +430,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -446,7 +446,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Clear the search context and results for a scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -468,7 +468,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -494,7 +494,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1797,7 +1797,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * it should persist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1829,7 +1829,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
