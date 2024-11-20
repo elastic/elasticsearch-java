@@ -84,6 +84,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean allowPartialSearchResults;
+
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
@@ -106,6 +109,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 
 	private OpenPointInTimeRequest(Builder builder) {
 
+		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
@@ -118,6 +122,19 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 
 	public static OpenPointInTimeRequest of(Function<Builder, ObjectBuilder<OpenPointInTimeRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>false</code>, creating a point in time request when a shard is
+	 * missing or unavailable will throw an exception. If <code>true</code>, the
+	 * point in time will contain all the shards that are available at the time of
+	 * the request.
+	 * <p>
+	 * API name: {@code allow_partial_search_results}
+	 */
+	@Nullable
+	public final Boolean allowPartialSearchResults() {
+		return this.allowPartialSearchResults;
 	}
 
 	/**
@@ -225,6 +242,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 			implements
 				ObjectBuilder<OpenPointInTimeRequest> {
 		@Nullable
+		private Boolean allowPartialSearchResults;
+
+		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
@@ -242,6 +262,19 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private String routing;
+
+		/**
+		 * If <code>false</code>, creating a point in time request when a shard is
+		 * missing or unavailable will throw an exception. If <code>true</code>, the
+		 * point in time will contain all the shards that are available at the time of
+		 * the request.
+		 * <p>
+		 * API name: {@code allow_partial_search_results}
+		 */
+		public final Builder allowPartialSearchResults(@Nullable Boolean value) {
+			this.allowPartialSearchResults = value;
+			return this;
+		}
 
 		/**
 		 * Type of index that wildcard patterns can match. If the request can target
@@ -461,6 +494,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 				Map<String, String> params = new HashMap<>();
 				if (request.routing != null) {
 					params.put("routing", request.routing);
+				}
+				if (request.allowPartialSearchResults != null) {
+					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
