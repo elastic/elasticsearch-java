@@ -139,8 +139,83 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity(
+			GetAutoscalingCapacityRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ErrorResponse>) GetAutoscalingCapacityRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get the autoscaling capacity.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+	 * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+	 * supported.
+	 * <p>
+	 * This API gets the current autoscaling capacity based on the configured
+	 * autoscaling policy. It will return information to size the cluster
+	 * appropriately to the current workload.
+	 * <p>
+	 * The <code>required_capacity</code> is calculated as the maximum of the
+	 * <code>required_capacity</code> result of all individual deciders that are
+	 * enabled for the policy.
+	 * <p>
+	 * The operator should verify that the <code>current_nodes</code> match the
+	 * operator’s knowledge of the cluster to avoid making autoscaling decisions
+	 * based on stale or incomplete information.
+	 * <p>
+	 * The response contains decider-specific information you can use to diagnose
+	 * how and why autoscaling determined a certain capacity was required. This
+	 * information is provided for diagnosis only. Do not use this information to
+	 * make autoscaling decisions.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAutoscalingCapacityRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity(
+			Function<GetAutoscalingCapacityRequest.Builder, ObjectBuilder<GetAutoscalingCapacityRequest>> fn) {
+		return getAutoscalingCapacity(fn.apply(new GetAutoscalingCapacityRequest.Builder()).build());
+	}
+
+	/**
+	 * Get the autoscaling capacity.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+	 * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+	 * supported.
+	 * <p>
+	 * This API gets the current autoscaling capacity based on the configured
+	 * autoscaling policy. It will return information to size the cluster
+	 * appropriately to the current workload.
+	 * <p>
+	 * The <code>required_capacity</code> is calculated as the maximum of the
+	 * <code>required_capacity</code> result of all individual deciders that are
+	 * enabled for the policy.
+	 * <p>
+	 * The operator should verify that the <code>current_nodes</code> match the
+	 * operator’s knowledge of the cluster to avoid making autoscaling decisions
+	 * based on stale or incomplete information.
+	 * <p>
+	 * The response contains decider-specific information you can use to diagnose
+	 * how and why autoscaling determined a certain capacity was required. This
+	 * information is provided for diagnosis only. Do not use this information to
+	 * make autoscaling decisions.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity() {
-		return this.transport.performRequestAsync(GetAutoscalingCapacityRequest._INSTANCE,
+		return this.transport.performRequestAsync(new GetAutoscalingCapacityRequest.Builder().build(),
 				GetAutoscalingCapacityRequest._ENDPOINT, this.transportOptions);
 	}
 

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.migration.deprecations;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,6 +63,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Deprecation implements JsonpSerializable {
+	@Nullable
 	private final String details;
 
 	private final DeprecationLevel level;
@@ -68,14 +72,21 @@ public class Deprecation implements JsonpSerializable {
 
 	private final String url;
 
+	private final boolean resolveDuringRollingUpgrade;
+
+	private final Map<String, JsonData> meta;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Deprecation(Builder builder) {
 
-		this.details = ApiTypeHelper.requireNonNull(builder.details, this, "details");
+		this.details = builder.details;
 		this.level = ApiTypeHelper.requireNonNull(builder.level, this, "level");
 		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
+		this.resolveDuringRollingUpgrade = ApiTypeHelper.requireNonNull(builder.resolveDuringRollingUpgrade, this,
+				"resolveDuringRollingUpgrade");
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -84,8 +95,9 @@ public class Deprecation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code details}
+	 * API name: {@code details}
 	 */
+	@Nullable
 	public final String details() {
 		return this.details;
 	}
@@ -114,6 +126,20 @@ public class Deprecation implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code resolve_during_rolling_upgrade}
+	 */
+	public final boolean resolveDuringRollingUpgrade() {
+		return this.resolveDuringRollingUpgrade;
+	}
+
+	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -124,9 +150,11 @@ public class Deprecation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("details");
-		generator.write(this.details);
+		if (this.details != null) {
+			generator.writeKey("details");
+			generator.write(this.details);
 
+		}
 		generator.writeKey("level");
 		this.level.serialize(generator, mapper);
 		generator.writeKey("message");
@@ -134,6 +162,21 @@ public class Deprecation implements JsonpSerializable {
 
 		generator.writeKey("url");
 		generator.write(this.url);
+
+		generator.writeKey("resolve_during_rolling_upgrade");
+		generator.write(this.resolveDuringRollingUpgrade);
+
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -149,6 +192,7 @@ public class Deprecation implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Deprecation> {
+		@Nullable
 		private String details;
 
 		private DeprecationLevel level;
@@ -157,10 +201,15 @@ public class Deprecation implements JsonpSerializable {
 
 		private String url;
 
+		private Boolean resolveDuringRollingUpgrade;
+
+		@Nullable
+		private Map<String, JsonData> meta;
+
 		/**
-		 * Required - API name: {@code details}
+		 * API name: {@code details}
 		 */
-		public final Builder details(String value) {
+		public final Builder details(@Nullable String value) {
 			this.details = value;
 			return this;
 		}
@@ -188,6 +237,34 @@ public class Deprecation implements JsonpSerializable {
 		 */
 		public final Builder url(String value) {
 			this.url = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code resolve_during_rolling_upgrade}
+		 */
+		public final Builder resolveDuringRollingUpgrade(boolean value) {
+			this.resolveDuringRollingUpgrade = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -223,6 +300,9 @@ public class Deprecation implements JsonpSerializable {
 		op.add(Builder::level, DeprecationLevel._DESERIALIZER, "level");
 		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
+		op.add(Builder::resolveDuringRollingUpgrade, JsonpDeserializer.booleanDeserializer(),
+				"resolve_during_rolling_upgrade");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 

@@ -217,9 +217,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	private final Map<String, ScriptField> scriptFields;
 
-	@Nullable
-	private final Time scroll;
-
 	private final List<FieldValue> searchAfter;
 
 	@Nullable
@@ -306,7 +303,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
-		this.scroll = builder.scroll;
 		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.searchType = builder.searchType;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
@@ -742,14 +738,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final Map<String, ScriptField> scriptFields() {
 		return this.scriptFields;
-	}
-
-	/**
-	 * API name: {@code scroll}
-	 */
-	@Nullable
-	public final Time scroll() {
-		return this.scroll;
 	}
 
 	/**
@@ -1295,9 +1283,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
-
-		@Nullable
-		private Time scroll;
 
 		@Nullable
 		private List<FieldValue> searchAfter;
@@ -2063,21 +2048,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code scroll}
-		 */
-		public final Builder scroll(@Nullable Time value) {
-			this.scroll = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code scroll}
-		 */
-		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.scroll(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code search_after}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
@@ -2586,9 +2556,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.analyzeWildcard != null) {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
-				if (request.scroll != null) {
-					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.waitForCompletionTimeout != null) {
 					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout._toJsonString());
