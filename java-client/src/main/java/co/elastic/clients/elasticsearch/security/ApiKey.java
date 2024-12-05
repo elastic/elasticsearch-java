@@ -66,30 +66,28 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ApiKey implements JsonpSerializable {
-	@Nullable
-	private final Long creation;
+	private final String id;
+
+	private final String name;
+
+	private final ApiKeyType type;
+
+	private final long creation;
 
 	@Nullable
 	private final Long expiration;
 
-	private final String id;
+	private final boolean invalidated;
 
 	@Nullable
-	private final Boolean invalidated;
+	private final Long invalidation;
 
-	private final String name;
+	private final String username;
 
-	@Nullable
 	private final String realm;
 
 	@Nullable
 	private final String realmType;
-
-	@Nullable
-	private final String username;
-
-	@Nullable
-	private final String profileUid;
 
 	private final Map<String, JsonData> metadata;
 
@@ -97,24 +95,33 @@ public class ApiKey implements JsonpSerializable {
 
 	private final List<Map<String, RoleDescriptor>> limitedBy;
 
+	@Nullable
+	private final Access access;
+
+	@Nullable
+	private final String profileUid;
+
 	private final List<FieldValue> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ApiKey(Builder builder) {
 
-		this.creation = builder.creation;
-		this.expiration = builder.expiration;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.invalidated = builder.invalidated;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.realm = builder.realm;
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.creation = ApiTypeHelper.requireNonNull(builder.creation, this, "creation");
+		this.expiration = builder.expiration;
+		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated");
+		this.invalidation = builder.invalidation;
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
 		this.realmType = builder.realmType;
-		this.username = builder.username;
-		this.profileUid = builder.profileUid;
-		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 		this.limitedBy = ApiTypeHelper.unmodifiable(builder.limitedBy);
+		this.access = builder.access;
+		this.profileUid = builder.profileUid;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
@@ -124,12 +131,39 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Creation time for the API key in milliseconds.
+	 * Required - Id for the API key
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public final String id() {
+		return this.id;
+	}
+
+	/**
+	 * Required - Name of the API key.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * Required - The type of the API key (e.g. <code>rest</code> or
+	 * <code>cross_cluster</code>).
+	 * <p>
+	 * API name: {@code type}
+	 */
+	public final ApiKeyType type() {
+		return this.type;
+	}
+
+	/**
+	 * Required - Creation time for the API key in milliseconds.
 	 * <p>
 	 * API name: {@code creation}
 	 */
-	@Nullable
-	public final Long creation() {
+	public final long creation() {
 		return this.creation;
 	}
 
@@ -144,40 +178,40 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Id for the API key
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
-
-	/**
-	 * Invalidation status for the API key. If the key has been invalidated, it has
-	 * a value of <code>true</code>. Otherwise, it is <code>false</code>.
+	 * Required - Invalidation status for the API key. If the key has been
+	 * invalidated, it has a value of <code>true</code>. Otherwise, it is
+	 * <code>false</code>.
 	 * <p>
 	 * API name: {@code invalidated}
 	 */
-	@Nullable
-	public final Boolean invalidated() {
+	public final boolean invalidated() {
 		return this.invalidated;
 	}
 
 	/**
-	 * Required - Name of the API key.
+	 * If the key has been invalidated, invalidation time in milliseconds.
 	 * <p>
-	 * API name: {@code name}
+	 * API name: {@code invalidation}
 	 */
-	public final String name() {
-		return this.name;
+	@Nullable
+	public final Long invalidation() {
+		return this.invalidation;
 	}
 
 	/**
-	 * Realm name of the principal for which this API key was created.
+	 * Required - Principal for which this API key was created
+	 * <p>
+	 * API name: {@code username}
+	 */
+	public final String username() {
+		return this.username;
+	}
+
+	/**
+	 * Required - Realm name of the principal for which this API key was created.
 	 * <p>
 	 * API name: {@code realm}
 	 */
-	@Nullable
 	public final String realm() {
 		return this.realm;
 	}
@@ -193,28 +227,7 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Principal for which this API key was created
-	 * <p>
-	 * API name: {@code username}
-	 */
-	@Nullable
-	public final String username() {
-		return this.username;
-	}
-
-	/**
-	 * The profile uid for the API key owner principal, if requested and if it
-	 * exists
-	 * <p>
-	 * API name: {@code profile_uid}
-	 */
-	@Nullable
-	public final String profileUid() {
-		return this.profileUid;
-	}
-
-	/**
-	 * Metadata of the API key
+	 * Required - Metadata of the API key
 	 * <p>
 	 * API name: {@code metadata}
 	 */
@@ -246,6 +259,33 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * The access granted to cross-cluster API keys. The access is composed of
+	 * permissions for cross cluster search and cross cluster replication. At least
+	 * one of them must be specified. When specified, the new access assignment
+	 * fully replaces the previously assigned access.
+	 * <p>
+	 * API name: {@code access}
+	 */
+	@Nullable
+	public final Access access() {
+		return this.access;
+	}
+
+	/**
+	 * The profile uid for the API key owner principal, if requested and if it
+	 * exists
+	 * <p>
+	 * API name: {@code profile_uid}
+	 */
+	@Nullable
+	public final String profileUid() {
+		return this.profileUid;
+	}
+
+	/**
+	 * Sorting values when using the <code>sort</code> parameter with the
+	 * <code>security.query_api_keys</code> API.
+	 * <p>
 	 * API name: {@code _sort}
 	 */
 	public final List<FieldValue> sort() {
@@ -263,45 +303,39 @@ public class ApiKey implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.creation != null) {
-			generator.writeKey("creation");
-			generator.write(this.creation);
+		generator.writeKey("id");
+		generator.write(this.id);
 
-		}
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey("type");
+		this.type.serialize(generator, mapper);
+		generator.writeKey("creation");
+		generator.write(this.creation);
+
 		if (this.expiration != null) {
 			generator.writeKey("expiration");
 			generator.write(this.expiration);
 
 		}
-		generator.writeKey("id");
-		generator.write(this.id);
+		generator.writeKey("invalidated");
+		generator.write(this.invalidated);
 
-		if (this.invalidated != null) {
-			generator.writeKey("invalidated");
-			generator.write(this.invalidated);
-
-		}
-		generator.writeKey("name");
-		generator.write(this.name);
-
-		if (this.realm != null) {
-			generator.writeKey("realm");
-			generator.write(this.realm);
+		if (this.invalidation != null) {
+			generator.writeKey("invalidation");
+			generator.write(this.invalidation);
 
 		}
+		generator.writeKey("username");
+		generator.write(this.username);
+
+		generator.writeKey("realm");
+		generator.write(this.realm);
+
 		if (this.realmType != null) {
 			generator.writeKey("realm_type");
 			generator.write(this.realmType);
-
-		}
-		if (this.username != null) {
-			generator.writeKey("username");
-			generator.write(this.username);
-
-		}
-		if (this.profileUid != null) {
-			generator.writeKey("profile_uid");
-			generator.write(this.profileUid);
 
 		}
 		if (ApiTypeHelper.isDefined(this.metadata)) {
@@ -344,6 +378,16 @@ public class ApiKey implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.access != null) {
+			generator.writeKey("access");
+			this.access.serialize(generator, mapper);
+
+		}
+		if (this.profileUid != null) {
+			generator.writeKey("profile_uid");
+			generator.write(this.profileUid);
+
+		}
 		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("_sort");
 			generator.writeStartArray();
@@ -369,32 +413,29 @@ public class ApiKey implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ApiKey> {
-		@Nullable
+		private String id;
+
+		private String name;
+
+		private ApiKeyType type;
+
 		private Long creation;
 
 		@Nullable
 		private Long expiration;
 
-		private String id;
-
-		@Nullable
 		private Boolean invalidated;
 
-		private String name;
-
 		@Nullable
+		private Long invalidation;
+
+		private String username;
+
 		private String realm;
 
 		@Nullable
 		private String realmType;
 
-		@Nullable
-		private String username;
-
-		@Nullable
-		private String profileUid;
-
-		@Nullable
 		private Map<String, JsonData> metadata;
 
 		@Nullable
@@ -404,14 +445,51 @@ public class ApiKey implements JsonpSerializable {
 		private List<Map<String, RoleDescriptor>> limitedBy;
 
 		@Nullable
+		private Access access;
+
+		@Nullable
+		private String profileUid;
+
+		@Nullable
 		private List<FieldValue> sort;
 
 		/**
-		 * Creation time for the API key in milliseconds.
+		 * Required - Id for the API key
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the API key.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - The type of the API key (e.g. <code>rest</code> or
+		 * <code>cross_cluster</code>).
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public final Builder type(ApiKeyType value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * Required - Creation time for the API key in milliseconds.
 		 * <p>
 		 * API name: {@code creation}
 		 */
-		public final Builder creation(@Nullable Long value) {
+		public final Builder creation(long value) {
 			this.creation = value;
 			return this;
 		}
@@ -427,42 +505,43 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Id for the API key
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Invalidation status for the API key. If the key has been invalidated, it has
-		 * a value of <code>true</code>. Otherwise, it is <code>false</code>.
+		 * Required - Invalidation status for the API key. If the key has been
+		 * invalidated, it has a value of <code>true</code>. Otherwise, it is
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code invalidated}
 		 */
-		public final Builder invalidated(@Nullable Boolean value) {
+		public final Builder invalidated(boolean value) {
 			this.invalidated = value;
 			return this;
 		}
 
 		/**
-		 * Required - Name of the API key.
+		 * If the key has been invalidated, invalidation time in milliseconds.
 		 * <p>
-		 * API name: {@code name}
+		 * API name: {@code invalidation}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder invalidation(@Nullable Long value) {
+			this.invalidation = value;
 			return this;
 		}
 
 		/**
-		 * Realm name of the principal for which this API key was created.
+		 * Required - Principal for which this API key was created
+		 * <p>
+		 * API name: {@code username}
+		 */
+		public final Builder username(String value) {
+			this.username = value;
+			return this;
+		}
+
+		/**
+		 * Required - Realm name of the principal for which this API key was created.
 		 * <p>
 		 * API name: {@code realm}
 		 */
-		public final Builder realm(@Nullable String value) {
+		public final Builder realm(String value) {
 			this.realm = value;
 			return this;
 		}
@@ -478,28 +557,7 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Principal for which this API key was created
-		 * <p>
-		 * API name: {@code username}
-		 */
-		public final Builder username(@Nullable String value) {
-			this.username = value;
-			return this;
-		}
-
-		/**
-		 * The profile uid for the API key owner principal, if requested and if it
-		 * exists
-		 * <p>
-		 * API name: {@code profile_uid}
-		 */
-		public final Builder profileUid(@Nullable String value) {
-			this.profileUid = value;
-			return this;
-		}
-
-		/**
-		 * Metadata of the API key
+		 * Required - Metadata of the API key
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
@@ -511,7 +569,7 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Metadata of the API key
+		 * Required - Metadata of the API key
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
@@ -595,6 +653,45 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The access granted to cross-cluster API keys. The access is composed of
+		 * permissions for cross cluster search and cross cluster replication. At least
+		 * one of them must be specified. When specified, the new access assignment
+		 * fully replaces the previously assigned access.
+		 * <p>
+		 * API name: {@code access}
+		 */
+		public final Builder access(@Nullable Access value) {
+			this.access = value;
+			return this;
+		}
+
+		/**
+		 * The access granted to cross-cluster API keys. The access is composed of
+		 * permissions for cross cluster search and cross cluster replication. At least
+		 * one of them must be specified. When specified, the new access assignment
+		 * fully replaces the previously assigned access.
+		 * <p>
+		 * API name: {@code access}
+		 */
+		public final Builder access(Function<Access.Builder, ObjectBuilder<Access>> fn) {
+			return this.access(fn.apply(new Access.Builder()).build());
+		}
+
+		/**
+		 * The profile uid for the API key owner principal, if requested and if it
+		 * exists
+		 * <p>
+		 * API name: {@code profile_uid}
+		 */
+		public final Builder profileUid(@Nullable String value) {
+			this.profileUid = value;
+			return this;
+		}
+
+		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
@@ -605,6 +702,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
@@ -615,6 +715,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds all passed values to <code>sort</code>.
@@ -630,6 +733,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds all passed values to <code>sort</code>.
@@ -645,6 +751,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds all passed values to <code>sort</code>.
@@ -660,6 +769,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds all passed values to <code>sort</code>.
@@ -675,6 +787,9 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * Sorting values when using the <code>sort</code> parameter with the
+		 * <code>security.query_api_keys</code> API.
+		 * <p>
 		 * API name: {@code _sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.
@@ -711,20 +826,23 @@ public class ApiKey implements JsonpSerializable {
 
 	protected static void setupApiKeyDeserializer(ObjectDeserializer<ApiKey.Builder> op) {
 
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::type, ApiKeyType._DESERIALIZER, "type");
 		op.add(Builder::creation, JsonpDeserializer.longDeserializer(), "creation");
 		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::invalidated, JsonpDeserializer.booleanDeserializer(), "invalidated");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::invalidation, JsonpDeserializer.longDeserializer(), "invalidation");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::realm, JsonpDeserializer.stringDeserializer(), "realm");
 		op.add(Builder::realmType, JsonpDeserializer.stringDeserializer(), "realm_type");
-		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
-		op.add(Builder::profileUid, JsonpDeserializer.stringDeserializer(), "profile_uid");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");
 		op.add(Builder::limitedBy, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER)), "limited_by");
+		op.add(Builder::access, Access._DESERIALIZER, "access");
+		op.add(Builder::profileUid, JsonpDeserializer.stringDeserializer(), "profile_uid");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "_sort");
 
 	}

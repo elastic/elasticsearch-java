@@ -165,9 +165,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	private final List<Map<String, Double>> indicesBoost;
 
 	@Nullable
-	private final Time keepAlive;
-
-	@Nullable
 	private final Boolean keepOnCompletion;
 
 	private final List<KnnSearch> knn;
@@ -189,9 +186,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	@Nullable
 	private final Query postFilter;
-
-	@Nullable
-	private final Long preFilterShardSize;
 
 	@Nullable
 	private final String preference;
@@ -216,9 +210,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	private final Map<String, ScriptField> scriptFields;
-
-	@Nullable
-	private final Time scroll;
 
 	private final List<FieldValue> searchAfter;
 
@@ -287,7 +278,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
-		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 		this.lenient = builder.lenient;
@@ -296,7 +286,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.minScore = builder.minScore;
 		this.pit = builder.pit;
 		this.postFilter = builder.postFilter;
-		this.preFilterShardSize = builder.preFilterShardSize;
 		this.preference = builder.preference;
 		this.profile = builder.profile;
 		this.q = builder.q;
@@ -306,7 +295,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
-		this.scroll = builder.scroll;
 		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.searchType = builder.searchType;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
@@ -555,17 +543,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies how long the async search needs to be available. Ongoing async
-	 * searches and any saved search results are deleted after this period.
-	 * <p>
-	 * API name: {@code keep_alive}
-	 */
-	@Nullable
-	public final Time keepAlive() {
-		return this.keepAlive;
-	}
-
-	/**
 	 * If <code>true</code>, results are stored for later retrieval when the search
 	 * completes within the <code>wait_for_completion_timeout</code>.
 	 * <p>
@@ -644,18 +621,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Query postFilter() {
 		return this.postFilter;
-	}
-
-	/**
-	 * The default value cannot be changed, which enforces the execution of a
-	 * pre-filter roundtrip to retrieve statistics from each shard so that the ones
-	 * that surely don’t hold any document matching the query get skipped.
-	 * <p>
-	 * API name: {@code pre_filter_shard_size}
-	 */
-	@Nullable
-	public final Long preFilterShardSize() {
-		return this.preFilterShardSize;
 	}
 
 	/**
@@ -742,14 +707,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final Map<String, ScriptField> scriptFields() {
 		return this.scriptFields;
-	}
-
-	/**
-	 * API name: {@code scroll}
-	 */
-	@Nullable
-	public final Time scroll() {
-		return this.scroll;
 	}
 
 	/**
@@ -1240,9 +1197,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
-		private Time keepAlive;
-
-		@Nullable
 		private Boolean keepOnCompletion;
 
 		@Nullable
@@ -1265,9 +1219,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Query postFilter;
-
-		@Nullable
-		private Long preFilterShardSize;
 
 		@Nullable
 		private String preference;
@@ -1295,9 +1246,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
-
-		@Nullable
-		private Time scroll;
 
 		@Nullable
 		private List<FieldValue> searchAfter;
@@ -1734,27 +1682,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies how long the async search needs to be available. Ongoing async
-		 * searches and any saved search results are deleted after this period.
-		 * <p>
-		 * API name: {@code keep_alive}
-		 */
-		public final Builder keepAlive(@Nullable Time value) {
-			this.keepAlive = value;
-			return this;
-		}
-
-		/**
-		 * Specifies how long the async search needs to be available. Ongoing async
-		 * searches and any saved search results are deleted after this period.
-		 * <p>
-		 * API name: {@code keep_alive}
-		 */
-		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.keepAlive(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
 		 * If <code>true</code>, results are stored for later retrieval when the search
 		 * completes within the <code>wait_for_completion_timeout</code>.
 		 * <p>
@@ -1876,18 +1803,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.postFilter(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * The default value cannot be changed, which enforces the execution of a
-		 * pre-filter roundtrip to retrieve statistics from each shard so that the ones
-		 * that surely don’t hold any document matching the query get skipped.
-		 * <p>
-		 * API name: {@code pre_filter_shard_size}
-		 */
-		public final Builder preFilterShardSize(@Nullable Long value) {
-			this.preFilterShardSize = value;
-			return this;
 		}
 
 		/**
@@ -2060,21 +1975,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
 			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code scroll}
-		 */
-		public final Builder scroll(@Nullable Time value) {
-			this.scroll = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code scroll}
-		 */
-		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -2544,9 +2444,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				if (request.df != null) {
 					params.put("df", request.df);
 				}
-				if (request.preFilterShardSize != null) {
-					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
-				}
 				if (request.minCompatibleShardNode != null) {
 					params.put("min_compatible_shard_node", request.minCompatibleShardNode);
 				}
@@ -2587,9 +2484,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				if (request.analyzeWildcard != null) {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
-				if (request.scroll != null) {
-					params.put("scroll", request.scroll._toJsonString());
-				}
 				if (request.waitForCompletionTimeout != null) {
 					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout._toJsonString());
 				}
@@ -2604,9 +2498,6 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.defaultOperator != null) {
 					params.put("default_operator", request.defaultOperator.jsonValue());
-				}
-				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive._toJsonString());
 				}
 				if (request.requestCache != null) {
 					params.put("request_cache", String.valueOf(request.requestCache));
