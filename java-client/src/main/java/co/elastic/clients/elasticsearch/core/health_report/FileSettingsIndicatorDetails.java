@@ -17,23 +17,21 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.sql;
+package co.elastic.clients.elasticsearch.core.health_report;
 
-import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,37 +51,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: sql.clear_cursor.Request
+// typedef: _global.health_report.FileSettingsIndicatorDetails
 
 /**
- * Clear an SQL search cursor.
- * 
- * @see <a href="../doc-files/api-spec.html#sql.clear_cursor.Request">API
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_global.health_report.FileSettingsIndicatorDetails">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ClearCursorRequest extends RequestBase implements JsonpSerializable {
-	private final String cursor;
+public class FileSettingsIndicatorDetails implements JsonpSerializable {
+	private final long failureStreak;
+
+	private final String mostRecentFailure;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ClearCursorRequest(Builder builder) {
+	private FileSettingsIndicatorDetails(Builder builder) {
 
-		this.cursor = ApiTypeHelper.requireNonNull(builder.cursor, this, "cursor");
+		this.failureStreak = ApiTypeHelper.requireNonNull(builder.failureStreak, this, "failureStreak");
+		this.mostRecentFailure = ApiTypeHelper.requireNonNull(builder.mostRecentFailure, this, "mostRecentFailure");
 
 	}
 
-	public static ClearCursorRequest of(Function<Builder, ObjectBuilder<ClearCursorRequest>> fn) {
+	public static FileSettingsIndicatorDetails of(Function<Builder, ObjectBuilder<FileSettingsIndicatorDetails>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Cursor to clear.
-	 * <p>
-	 * API name: {@code cursor}
+	 * Required - API name: {@code failure_streak}
 	 */
-	public final String cursor() {
-		return this.cursor;
+	public final long failureStreak() {
+		return this.failureStreak;
+	}
+
+	/**
+	 * Required - API name: {@code most_recent_failure}
+	 */
+	public final String mostRecentFailure() {
+		return this.mostRecentFailure;
 	}
 
 	/**
@@ -97,29 +103,45 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cursor");
-		generator.write(this.cursor);
+		generator.writeKey("failure_streak");
+		generator.write(this.failureStreak);
 
+		generator.writeKey("most_recent_failure");
+		generator.write(this.mostRecentFailure);
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ClearCursorRequest}.
+	 * Builder for {@link FileSettingsIndicatorDetails}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<ClearCursorRequest> {
-		private String cursor;
+				ObjectBuilder<FileSettingsIndicatorDetails> {
+		private Long failureStreak;
+
+		private String mostRecentFailure;
 
 		/**
-		 * Required - Cursor to clear.
-		 * <p>
-		 * API name: {@code cursor}
+		 * Required - API name: {@code failure_streak}
 		 */
-		public final Builder cursor(String value) {
-			this.cursor = value;
+		public final Builder failureStreak(long value) {
+			this.failureStreak = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code most_recent_failure}
+		 */
+		public final Builder mostRecentFailure(String value) {
+			this.mostRecentFailure = value;
 			return this;
 		}
 
@@ -129,60 +151,32 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Builds a {@link ClearCursorRequest}.
+		 * Builds a {@link FileSettingsIndicatorDetails}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ClearCursorRequest build() {
+		public FileSettingsIndicatorDetails build() {
 			_checkSingleUse();
 
-			return new ClearCursorRequest(this);
+			return new FileSettingsIndicatorDetails(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ClearCursorRequest}
+	 * Json deserializer for {@link FileSettingsIndicatorDetails}
 	 */
-	public static final JsonpDeserializer<ClearCursorRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer);
+	public static final JsonpDeserializer<FileSettingsIndicatorDetails> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FileSettingsIndicatorDetails::setupFileSettingsIndicatorDetailsDeserializer);
 
-	protected static void setupClearCursorRequestDeserializer(ObjectDeserializer<ClearCursorRequest.Builder> op) {
+	protected static void setupFileSettingsIndicatorDetailsDeserializer(
+			ObjectDeserializer<FileSettingsIndicatorDetails.Builder> op) {
 
-		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
+		op.add(Builder::failureStreak, JsonpDeserializer.longDeserializer(), "failure_streak");
+		op.add(Builder::mostRecentFailure, JsonpDeserializer.stringDeserializer(), "most_recent_failure");
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Endpoint "{@code sql.clear_cursor}".
-	 */
-	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/sql.clear_cursor",
-
-			// Request method
-			request -> {
-				return "POST";
-
-			},
-
-			// Request path
-			request -> {
-				return "/_sql/close";
-
-			},
-
-			// Path parameters
-			request -> {
-				return Collections.emptyMap();
-			},
-
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
-
-			}, SimpleEndpoint.emptyMap(), true, ClearCursorResponse._DESERIALIZER);
 }

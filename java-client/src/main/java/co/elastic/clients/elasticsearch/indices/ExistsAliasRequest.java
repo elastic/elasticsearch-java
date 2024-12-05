@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -78,6 +79,9 @@ public class ExistsAliasRequest extends RequestBase {
 
 	private final List<String> index;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -88,6 +92,7 @@ public class ExistsAliasRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
@@ -146,6 +151,17 @@ public class ExistsAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Required - Comma-separated list of aliases to check. Supports wildcards
 	 * (<code>*</code>).
 	 * <p>
@@ -175,6 +191,9 @@ public class ExistsAliasRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private Time masterTimeout;
 
 		private List<String> name;
 
@@ -262,6 +281,27 @@ public class ExistsAliasRequest extends RequestBase {
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -378,6 +418,9 @@ public class ExistsAliasRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

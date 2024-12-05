@@ -68,8 +68,14 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: graph.explore
 
 	/**
-	 * Extracts and summarizes information about the documents and terms in an
-	 * Elasticsearch data stream or index.
+	 * Explore graph analytics. Extract and summarize information about the
+	 * documents and terms in an Elasticsearch data stream or index. The easiest way
+	 * to understand the behavior of this API is to use the Graph UI to explore
+	 * connections. An initial request to the <code>_explore</code> API contains a
+	 * seed query that identifies the documents of interest and specifies the fields
+	 * that define the vertices and connections you want to include in the graph.
+	 * Subsequent requests enable you to spider out from one more vertices of
+	 * interest. You can exclude vertices that have already been returned.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/graph-explore-api.html">Documentation
@@ -84,8 +90,14 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Extracts and summarizes information about the documents and terms in an
-	 * Elasticsearch data stream or index.
+	 * Explore graph analytics. Extract and summarize information about the
+	 * documents and terms in an Elasticsearch data stream or index. The easiest way
+	 * to understand the behavior of this API is to use the Graph UI to explore
+	 * connections. An initial request to the <code>_explore</code> API contains a
+	 * seed query that identifies the documents of interest and specifies the fields
+	 * that define the vertices and connections you want to include in the graph.
+	 * Subsequent requests enable you to spider out from one more vertices of
+	 * interest. You can exclude vertices that have already been returned.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

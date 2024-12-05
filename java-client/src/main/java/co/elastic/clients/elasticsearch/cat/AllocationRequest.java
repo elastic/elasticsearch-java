@@ -58,10 +58,10 @@ import javax.annotation.Nullable;
 // typedef: cat.allocation.Request
 
 /**
- * Provides a snapshot of the number of shards allocated to each data node and
- * their disk space. IMPORTANT: cat APIs are only intended for human consumption
- * using the command line or Kibana console. They are not intended for use by
- * applications.
+ * Get shard allocation information. Get a snapshot of the number of shards
+ * allocated to each data node and their disk space. IMPORTANT: cat APIs are
+ * only intended for human consumption using the command line or Kibana console.
+ * They are not intended for use by applications.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.allocation.Request">API
  *      specification</a>

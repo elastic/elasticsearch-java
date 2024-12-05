@@ -60,7 +60,10 @@ import javax.annotation.Nullable;
 // typedef: ingest.simulate.Request
 
 /**
- * Executes an ingest pipeline against a set of provided documents.
+ * Simulate a pipeline. Run an ingest pipeline against a set of provided
+ * documents. You can either specify an existing pipeline to use with the
+ * provided documents or supply a pipeline definition in the body of the
+ * request.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.simulate.Request">API
  *      specification</a>

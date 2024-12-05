@@ -66,7 +66,8 @@ import javax.annotation.Nullable;
 // typedef: esql.query.Request
 
 /**
- * Executes an ES|QL request
+ * Run an ES|QL query. Get search results for an ES|QL (Elasticsearch query
+ * language) query.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.query.Request">API
  *      specification</a>

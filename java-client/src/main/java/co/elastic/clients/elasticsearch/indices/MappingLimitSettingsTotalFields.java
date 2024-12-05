@@ -30,7 +30,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 	@Nullable
-	private final Long limit;
+	private final String limit;
 
 	@Nullable
 	private final Boolean ignoreDynamicBeyondLimit;
@@ -90,7 +90,7 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 	 * API name: {@code limit}
 	 */
 	@Nullable
-	public final Long limit() {
+	public final String limit() {
 		return this.limit;
 	}
 
@@ -149,7 +149,7 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 			implements
 				ObjectBuilder<MappingLimitSettingsTotalFields> {
 		@Nullable
-		private Long limit;
+		private String limit;
 
 		@Nullable
 		private Boolean ignoreDynamicBeyondLimit;
@@ -163,7 +163,7 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code limit}
 		 */
-		public final Builder limit(@Nullable Long value) {
+		public final Builder limit(@Nullable String value) {
 			this.limit = value;
 			return this;
 		}
@@ -213,7 +213,7 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 	protected static void setupMappingLimitSettingsTotalFieldsDeserializer(
 			ObjectDeserializer<MappingLimitSettingsTotalFields.Builder> op) {
 
-		op.add(Builder::limit, JsonpDeserializer.longDeserializer(), "limit");
+		op.add(Builder::limit, JsonpDeserializer.stringDeserializer(), "limit");
 		op.add(Builder::ignoreDynamicBeyondLimit, JsonpDeserializer.booleanDeserializer(),
 				"ignore_dynamic_beyond_limit");
 

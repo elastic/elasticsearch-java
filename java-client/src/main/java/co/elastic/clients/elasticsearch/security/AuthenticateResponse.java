@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch.security.authenticate.AuthenticateApiKey;
 import co.elastic.clients.elasticsearch.security.authenticate.ServiceToken;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -65,7 +66,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class AuthenticateResponse implements JsonpSerializable {
 	@Nullable
-	private final ApiKey apiKey;
+	private final AuthenticateApiKey apiKey;
 
 	private final RealmInfo authenticationRealm;
 
@@ -117,7 +118,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 	 * API name: {@code api_key}
 	 */
 	@Nullable
-	public final ApiKey apiKey() {
+	public final AuthenticateApiKey apiKey() {
 		return this.apiKey;
 	}
 
@@ -279,7 +280,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 			implements
 				ObjectBuilder<AuthenticateResponse> {
 		@Nullable
-		private ApiKey apiKey;
+		private AuthenticateApiKey apiKey;
 
 		private RealmInfo authenticationRealm;
 
@@ -307,7 +308,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code api_key}
 		 */
-		public final Builder apiKey(@Nullable ApiKey value) {
+		public final Builder apiKey(@Nullable AuthenticateApiKey value) {
 			this.apiKey = value;
 			return this;
 		}
@@ -315,8 +316,8 @@ public class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code api_key}
 		 */
-		public final Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
-			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
+		public final Builder apiKey(Function<AuthenticateApiKey.Builder, ObjectBuilder<AuthenticateApiKey>> fn) {
+			return this.apiKey(fn.apply(new AuthenticateApiKey.Builder()).build());
 		}
 
 		/**
@@ -472,7 +473,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	protected static void setupAuthenticateResponseDeserializer(ObjectDeserializer<AuthenticateResponse.Builder> op) {
 
-		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
+		op.add(Builder::apiKey, AuthenticateApiKey._DESERIALIZER, "api_key");
 		op.add(Builder::authenticationRealm, RealmInfo._DESERIALIZER, "authentication_realm");
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");

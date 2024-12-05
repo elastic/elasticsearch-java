@@ -69,7 +69,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.delete_rule
 
 	/**
-	 * Deletes a query rule within a query ruleset.
+	 * Delete a query rule. Delete a query rule within a query ruleset.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-query-rule.html">Documentation
@@ -84,7 +84,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Deletes a query rule within a query ruleset.
+	 * Delete a query rule. Delete a query rule within a query ruleset.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -102,7 +102,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.delete_ruleset
 
 	/**
-	 * Deletes a query ruleset.
+	 * Delete a query ruleset.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-query-ruleset.html">Documentation
@@ -118,7 +118,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Deletes a query ruleset.
+	 * Delete a query ruleset.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -137,7 +137,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.get_rule
 
 	/**
-	 * Returns the details about a query rule within a query ruleset
+	 * Get a query rule. Get details about a query rule within a query ruleset.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-query-rule.html">Documentation
@@ -152,7 +152,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Returns the details about a query rule within a query ruleset
+	 * Get a query rule. Get details about a query rule within a query ruleset.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -170,7 +170,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.get_ruleset
 
 	/**
-	 * Returns the details about a query ruleset
+	 * Get a query ruleset. Get details about a query ruleset.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-query-ruleset.html">Documentation
@@ -185,7 +185,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Returns the details about a query ruleset
+	 * Get a query ruleset. Get details about a query ruleset.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -203,7 +203,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.list_rulesets
 
 	/**
-	 * Returns summarized information about existing query rulesets.
+	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-query-rulesets.html">Documentation
@@ -218,7 +218,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Returns summarized information about existing query rulesets.
+	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -235,7 +235,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Returns summarized information about existing query rulesets.
+	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-query-rulesets.html">Documentation
@@ -250,7 +250,8 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.put_rule
 
 	/**
-	 * Creates or updates a query rule within a query ruleset.
+	 * Create or update a query rule. Create or update a query rule within a query
+	 * ruleset.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-query-rule.html">Documentation
@@ -265,7 +266,8 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Creates or updates a query rule within a query ruleset.
+	 * Create or update a query rule. Create or update a query rule within a query
+	 * ruleset.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -283,7 +285,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.put_ruleset
 
 	/**
-	 * Creates or updates a query ruleset.
+	 * Create or update a query ruleset.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-query-ruleset.html">Documentation
@@ -298,7 +300,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Creates or updates a query ruleset.
+	 * Create or update a query ruleset.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -316,7 +318,8 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: query_rules.test
 
 	/**
-	 * Creates or updates a query ruleset.
+	 * Test a query ruleset. Evaluate match criteria against a query ruleset to
+	 * identify the rules that would match that criteria.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-query-ruleset.html">Documentation
@@ -331,7 +334,8 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Creates or updates a query ruleset.
+	 * Test a query ruleset. Evaluate match criteria against a query ruleset to
+	 * identify the rules that would match that criteria.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

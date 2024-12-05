@@ -68,7 +68,9 @@ import javax.annotation.Nullable;
 // typedef: eql.search.Request
 
 /**
- * Returns results matching a query expressed in Event Query Language (EQL)
+ * Get EQL search results. Returns search results for an Event Query Language
+ * (EQL) query. EQL assumes each document in a data stream or index corresponds
+ * to an event.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.search.Request">API
  *      specification</a>

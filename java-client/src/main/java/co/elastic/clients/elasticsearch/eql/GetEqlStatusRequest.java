@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
 // typedef: eql.get_status.Request
 
 /**
- * Returns the current status for an async EQL search or a stored synchronous
- * EQL search without returning results.
+ * Get the async EQL status. Get the current status for an async EQL search or a
+ * stored synchronous EQL search without returning results.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.get_status.Request">API
  *      specification</a>

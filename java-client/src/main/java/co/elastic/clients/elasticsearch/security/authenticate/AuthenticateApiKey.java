@@ -17,23 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.eql;
+package co.elastic.clients.elasticsearch.security.authenticate;
 
-import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,64 +50,103 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: eql.delete.Request
+// typedef: security.authenticate.AuthenticateApiKey
 
 /**
- * Delete an async EQL search. Delete an async EQL search or a stored
- * synchronous EQL search. The API also deletes results for the search.
- * 
- * @see <a href="../doc-files/api-spec.html#eql.delete.Request">API
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#security.authenticate.AuthenticateApiKey">API
  *      specification</a>
  */
-
-public class EqlDeleteRequest extends RequestBase {
+@JsonpDeserializable
+public class AuthenticateApiKey implements JsonpSerializable {
 	private final String id;
+
+	@Nullable
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private EqlDeleteRequest(Builder builder) {
+	private AuthenticateApiKey(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = builder.name;
 
 	}
 
-	public static EqlDeleteRequest of(Function<Builder, ObjectBuilder<EqlDeleteRequest>> fn) {
+	public static AuthenticateApiKey of(Function<Builder, ObjectBuilder<AuthenticateApiKey>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Identifier for the search to delete. A search ID is provided in
-	 * the EQL search API's response for an async search. A search ID is also
-	 * provided if the request’s <code>keep_on_completion</code> parameter is
-	 * <code>true</code>.
-	 * <p>
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
+	/**
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("id");
+		generator.write(this.id);
+
+		if (this.name != null) {
+			generator.writeKey("name");
+			generator.write(this.name);
+
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link EqlDeleteRequest}.
+	 * Builder for {@link AuthenticateApiKey}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<EqlDeleteRequest> {
+				ObjectBuilder<AuthenticateApiKey> {
 		private String id;
 
+		@Nullable
+		private String name;
+
 		/**
-		 * Required - Identifier for the search to delete. A search ID is provided in
-		 * the EQL search API's response for an async search. A search ID is also
-		 * provided if the request’s <code>keep_on_completion</code> parameter is
-		 * <code>true</code>.
-		 * <p>
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code name}
+		 */
+		public final Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -120,70 +156,31 @@ public class EqlDeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link EqlDeleteRequest}.
+		 * Builds a {@link AuthenticateApiKey}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public EqlDeleteRequest build() {
+		public AuthenticateApiKey build() {
 			_checkSingleUse();
 
-			return new EqlDeleteRequest(this);
+			return new AuthenticateApiKey(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code eql.delete}".
+	 * Json deserializer for {@link AuthenticateApiKey}
 	 */
-	public static final Endpoint<EqlDeleteRequest, EqlDeleteResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/eql.delete",
+	public static final JsonpDeserializer<AuthenticateApiKey> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AuthenticateApiKey::setupAuthenticateApiKeyDeserializer);
 
-			// Request method
-			request -> {
-				return "DELETE";
+	protected static void setupAuthenticateApiKeyDeserializer(ObjectDeserializer<AuthenticateApiKey.Builder> op) {
 
-			},
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
-			// Request path
-			request -> {
-				final int _id = 1 << 0;
+	}
 
-				int propsSet = 0;
-
-				propsSet |= _id;
-
-				if (propsSet == (_id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_eql");
-					buf.append("/search");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
-
-			},
-
-			// Path parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				final int _id = 1 << 0;
-
-				int propsSet = 0;
-
-				propsSet |= _id;
-
-				if (propsSet == (_id)) {
-					params.put("id", request.id);
-				}
-				return params;
-			},
-
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
-
-			}, SimpleEndpoint.emptyMap(), false, EqlDeleteResponse._DESERIALIZER);
 }
