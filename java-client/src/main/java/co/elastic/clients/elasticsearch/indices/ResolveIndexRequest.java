@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_index.Request
 
 /**
- * Resolves the specified name(s) and/or index patterns for indices, aliases,
- * and data streams. Multiple patterns and remote clusters are supported.
+ * Resolve indices. Resolve the names and/or index patterns for indices,
+ * aliases, and data streams. Multiple patterns and remote clusters are
+ * supported.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.resolve_index.Request">API
  *      specification</a>

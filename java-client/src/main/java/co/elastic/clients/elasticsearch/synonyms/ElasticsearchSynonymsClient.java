@@ -68,7 +68,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.delete_synonym
 
 	/**
-	 * Deletes a synonym set
+	 * Delete a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-synonyms-set.html">Documentation
@@ -84,7 +84,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Deletes a synonym set
+	 * Delete a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -103,7 +103,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.delete_synonym_rule
 
 	/**
-	 * Deletes a synonym rule in a synonym set
+	 * Delete a synonym rule. Delete a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-synonym-rule.html">Documentation
@@ -119,7 +119,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Deletes a synonym rule in a synonym set
+	 * Delete a synonym rule. Delete a synonym rule from a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -138,7 +138,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.get_synonym
 
 	/**
-	 * Retrieves a synonym set
+	 * Get a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-synonyms-set.html">Documentation
@@ -153,7 +153,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves a synonym set
+	 * Get a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -171,7 +171,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.get_synonym_rule
 
 	/**
-	 * Retrieves a synonym rule from a synonym set
+	 * Get a synonym rule. Get a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-synonym-rule.html">Documentation
@@ -187,7 +187,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves a synonym rule from a synonym set
+	 * Get a synonym rule. Get a synonym rule from a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -206,7 +206,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.get_synonyms_sets
 
 	/**
-	 * Retrieves a summary of all defined synonym sets
+	 * Get all synonym sets. Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-synonyms-sets.html">Documentation
@@ -222,7 +222,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves a summary of all defined synonym sets
+	 * Get all synonym sets. Get a summary of all defined synonym sets.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -239,7 +239,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Retrieves a summary of all defined synonym sets
+	 * Get all synonym sets. Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-synonyms-sets.html">Documentation
@@ -254,7 +254,9 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.put_synonym
 
 	/**
-	 * Creates or updates a synonym set.
+	 * Create or update a synonym set. Synonyms sets are limited to a maximum of
+	 * 10000 synonym rules per set. If you need to manage more synonym rules, you
+	 * can create multiple synonym sets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonyms-set.html">Documentation
@@ -269,7 +271,9 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Creates or updates a synonym set.
+	 * Create or update a synonym set. Synonyms sets are limited to a maximum of
+	 * 10000 synonym rules per set. If you need to manage more synonym rules, you
+	 * can create multiple synonym sets.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -287,7 +291,8 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: synonyms.put_synonym_rule
 
 	/**
-	 * Creates or updates a synonym rule in a synonym set
+	 * Create or update a synonym rule. Create or update a synonym rule in a synonym
+	 * set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonym-rule.html">Documentation
@@ -303,7 +308,8 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Creates or updates a synonym rule in a synonym set
+	 * Create or update a synonym rule. Create or update a synonym rule in a synonym
+	 * set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

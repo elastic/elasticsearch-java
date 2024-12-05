@@ -507,7 +507,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: count
 
 	/**
-	 * Returns number of documents matching a query.
+	 * Count search results. Get the number of documents matching a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
@@ -522,7 +522,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns number of documents matching a query.
+	 * Count search results. Get the number of documents matching a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -538,7 +538,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Returns number of documents matching a query.
+	 * Count search results. Get the number of documents matching a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation

@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: query_rules.put_ruleset.Request
 
 /**
- * Creates or updates a query ruleset.
+ * Create or update a query ruleset.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.put_ruleset.Request">API
  *      specification</a>

@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -70,11 +70,15 @@ import javax.annotation.Nullable;
 public class AsyncSearchStatusRequest extends RequestBase {
 	private final String id;
 
+	@Nullable
+	private final Time keepAlive;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AsyncSearchStatusRequest(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.keepAlive = builder.keepAlive;
 
 	}
 
@@ -91,6 +95,17 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		return this.id;
 	}
 
+	/**
+	 * Specifies how long the async search needs to be available. Ongoing async
+	 * searches and any saved search results are deleted after this period.
+	 * <p>
+	 * API name: {@code keep_alive}
+	 */
+	@Nullable
+	public final Time keepAlive() {
+		return this.keepAlive;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -102,6 +117,9 @@ public class AsyncSearchStatusRequest extends RequestBase {
 				ObjectBuilder<AsyncSearchStatusRequest> {
 		private String id;
 
+		@Nullable
+		private Time keepAlive;
+
 		/**
 		 * Required - A unique identifier for the async search.
 		 * <p>
@@ -110,6 +128,27 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		public final Builder id(String value) {
 			this.id = value;
 			return this;
+		}
+
+		/**
+		 * Specifies how long the async search needs to be available. Ongoing async
+		 * searches and any saved search results are deleted after this period.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(@Nullable Time value) {
+			this.keepAlive = value;
+			return this;
+		}
+
+		/**
+		 * Specifies how long the async search needs to be available. Ongoing async
+		 * searches and any saved search results are deleted after this period.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -181,7 +220,11 @@ public class AsyncSearchStatusRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.keepAlive != null) {
+					params.put("keep_alive", request.keepAlive._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, AsyncSearchStatusResponse._DESERIALIZER);
 }

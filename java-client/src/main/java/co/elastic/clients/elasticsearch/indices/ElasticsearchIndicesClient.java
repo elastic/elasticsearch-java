@@ -746,7 +746,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.exists_index_template
 
 	/**
-	 * Returns information about whether a particular index template exists.
+	 * Check index templates. Check whether index templates exist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
@@ -762,7 +762,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Returns information about whether a particular index template exists.
+	 * Check index templates. Check whether index templates exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1962,8 +1962,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.resolve_index
 
 	/**
-	 * Resolves the specified name(s) and/or index patterns for indices, aliases,
-	 * and data streams. Multiple patterns and remote clusters are supported.
+	 * Resolve indices. Resolve the names and/or index patterns for indices,
+	 * aliases, and data streams. Multiple patterns and remote clusters are
+	 * supported.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
@@ -1978,8 +1979,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Resolves the specified name(s) and/or index patterns for indices, aliases,
-	 * and data streams. Multiple patterns and remote clusters are supported.
+	 * Resolve indices. Resolve the names and/or index patterns for indices,
+	 * aliases, and data streams. Multiple patterns and remote clusters are
+	 * supported.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

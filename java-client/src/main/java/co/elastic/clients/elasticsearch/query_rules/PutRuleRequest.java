@@ -60,7 +60,8 @@ import javax.annotation.Nullable;
 // typedef: query_rules.put_rule.Request
 
 /**
- * Creates or updates a query rule within a query ruleset.
+ * Create or update a query rule. Create or update a query rule within a query
+ * ruleset.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.put_rule.Request">API
  *      specification</a>

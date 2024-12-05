@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -30,7 +31,11 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -79,13 +84,82 @@ import java.util.Objects;
  */
 
 public class GetAutoscalingCapacityRequest extends RequestBase {
-	public GetAutoscalingCapacityRequest() {
+	@Nullable
+	private final Time masterTimeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private GetAutoscalingCapacityRequest(Builder builder) {
+
+		this.masterTimeout = builder.masterTimeout;
+
+	}
+
+	public static GetAutoscalingCapacityRequest of(Function<Builder, ObjectBuilder<GetAutoscalingCapacityRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link GetAutoscalingCapacityRequest}.
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
 	 */
-	public static final GetAutoscalingCapacityRequest _INSTANCE = new GetAutoscalingCapacityRequest();
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link GetAutoscalingCapacityRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<GetAutoscalingCapacityRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link GetAutoscalingCapacityRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetAutoscalingCapacityRequest build() {
+			_checkSingleUse();
+
+			return new GetAutoscalingCapacityRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -114,7 +188,11 @@ public class GetAutoscalingCapacityRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetAutoscalingCapacityResponse._DESERIALIZER);
 }
