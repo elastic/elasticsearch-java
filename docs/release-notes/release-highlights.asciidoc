@@ -6,6 +6,10 @@ These are the important new features and changes in minor releases. Every releas
 For a list of detailed changes, including bug fixes, please see the https://github.com/elastic/elasticsearch-java/releases[GitHub project realease notes].
 
 [discrete]
+==== Version 8.17
+* No new feature.
+
+[discrete]
 ==== Version 8.16
 * `ElasticsearchClient` is now `Closeable`. Closing a client object also closes the underlying transport - https://github.com/elastic/elasticsearch-java/pull/851[#851]
 * Added option to make the response body available in case of deserialization error- https://github.com/elastic/elasticsearch-java/pull/886[#886].
