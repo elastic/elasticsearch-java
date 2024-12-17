@@ -59,7 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.disk_usage.Request
 
 /**
- * Analyzes the disk usage of each field of an index or data stream.
+ * Analyze the index disk usage. Analyze the disk usage of each field of an
+ * index or data stream. This API might not support indices created in previous
+ * Elasticsearch versions. The result of a small index can be inaccurate as some
+ * parts of an index might not be analyzed by the API.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.disk_usage.Request">API
  *      specification</a>

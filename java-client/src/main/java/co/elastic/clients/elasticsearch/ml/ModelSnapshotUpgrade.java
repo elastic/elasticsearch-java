@@ -65,7 +65,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 	private final SnapshotUpgradeState state;
 
-	private final DiscoveryNode node;
+	private final DiscoveryNodeContent node;
 
 	private final String assignmentExplanation;
 
@@ -110,7 +110,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public final DiscoveryNode node() {
+	public final DiscoveryNodeContent node() {
 		return this.node;
 	}
 
@@ -168,7 +168,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 		private SnapshotUpgradeState state;
 
-		private DiscoveryNode node;
+		private DiscoveryNodeContent node;
 
 		private String assignmentExplanation;
 
@@ -199,7 +199,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(DiscoveryNode value) {
+		public final Builder node(DiscoveryNodeContent value) {
 			this.node = value;
 			return this;
 		}
@@ -207,8 +207,8 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
-			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
+		public final Builder node(Function<DiscoveryNodeContent.Builder, ObjectBuilder<DiscoveryNodeContent>> fn) {
+			return this.node(fn.apply(new DiscoveryNodeContent.Builder()).build());
 		}
 
 		/**
@@ -250,7 +250,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::snapshotId, JsonpDeserializer.stringDeserializer(), "snapshot_id");
 		op.add(Builder::state, SnapshotUpgradeState._DESERIALIZER, "state");
-		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
+		op.add(Builder::node, DiscoveryNodeContent._DESERIALIZER, "node");
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
 
 	}

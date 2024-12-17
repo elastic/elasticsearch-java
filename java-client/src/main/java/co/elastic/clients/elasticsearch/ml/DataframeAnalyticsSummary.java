@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -95,6 +97,8 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 	@Nullable
 	private final String version;
 
+	private final Map<String, JsonData> meta;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataframeAnalyticsSummary(Builder builder) {
@@ -111,6 +115,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.version = builder.version;
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -215,6 +220,13 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -277,6 +289,17 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 			generator.write(this.version);
 
 		}
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -325,6 +348,9 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 
 		@Nullable
 		private String version;
+
+		@Nullable
+		private Map<String, JsonData> meta;
 
 		/**
 		 * API name: {@code allow_lazy_start}
@@ -469,6 +495,26 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -510,6 +556,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 

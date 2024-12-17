@@ -55,11 +55,13 @@ import javax.annotation.Nullable;
 // typedef: license.get.Request
 
 /**
- * Get license information. Returns information about your Elastic license,
- * including its type, its status, when it was issued, and when it expires. For
- * more information about the different types of licenses, refer to
- * <a href="https://www.elastic.co/subscriptions">Elastic Stack
- * subscriptions</a>.
+ * Get license information. Get information about your Elastic license including
+ * its type, its status, when it was issued, and when it expires.
+ * <p>
+ * NOTE: If the master node is generating a new cluster state, the get license
+ * API may return a <code>404 Not Found</code> response. If you receive an
+ * unexpected 404 response after cluster startup, wait a short period and retry
+ * the request.
  * 
  * @see <a href="../doc-files/api-spec.html#license.get.Request">API
  *      specification</a>

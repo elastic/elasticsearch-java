@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -71,6 +72,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, JsonData> meta;
+
 	@Nullable
 	private final Boolean allowLazyStart;
 
@@ -103,6 +106,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 	private PutDataFrameAnalyticsRequest(Builder builder) {
 
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowLazyStart = builder.allowLazyStart;
 		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
@@ -119,6 +123,13 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 	public static PutDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
 	}
 
 	/**
@@ -280,6 +291,17 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.allowLazyStart != null) {
 			generator.writeKey("allow_lazy_start");
 			generator.write(this.allowLazyStart);
@@ -350,6 +372,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 			implements
 				ObjectBuilder<PutDataFrameAnalyticsRequest> {
 		@Nullable
+		private Map<String, JsonData> meta;
+
+		@Nullable
 		private Boolean allowLazyStart;
 
 		private DataframeAnalysis analysis;
@@ -377,6 +402,26 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 		@Nullable
 		private String version;
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
 
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
@@ -642,6 +687,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	protected static void setupPutDataFrameAnalyticsRequestDeserializer(
 			ObjectDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
 
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");

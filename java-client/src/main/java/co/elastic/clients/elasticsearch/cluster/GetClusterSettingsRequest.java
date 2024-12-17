@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.get_settings.Request
 
 /**
- * Returns cluster-wide settings. By default, it returns only settings that have
+ * Get cluster-wide settings. By default, it returns only settings that have
  * been explicitly defined.
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.get_settings.Request">API

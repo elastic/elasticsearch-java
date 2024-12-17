@@ -63,7 +63,11 @@ import javax.annotation.Nullable;
 // typedef: rollup.rollup_search.Request
 
 /**
- * Enables searching rolled-up data using the standard Query DSL.
+ * Search rolled-up data. The rollup search endpoint is needed because,
+ * internally, rolled-up documents utilize a different document structure than
+ * the original data. It rewrites standard Query DSL into a format that matches
+ * the rollup documents then takes the response and rewrites it back to what a
+ * client would expect given the original query.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.rollup_search.Request">API
  *      specification</a>

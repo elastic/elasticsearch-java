@@ -72,9 +72,14 @@ import javax.annotation.Nullable;
  * an anomaly detection job. You can associate only one datafeed with each
  * anomaly detection job. The datafeed contains a query that runs at a defined
  * interval (<code>frequency</code>). If you are concerned about delayed data,
- * you can add a delay
- * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
- * index.
+ * you can add a delay (<code>query_delay</code>) at each interval. When
+ * Elasticsearch security features are enabled, your datafeed remembers which
+ * roles the user who created it had at the time of creation and runs the query
+ * using those same roles. If you provide secondary authorization headers, those
+ * credentials are used instead. You must use Kibana, this API, or the create
+ * anomaly detection jobs API to create a datafeed. Do not add a datafeed
+ * directly to the <code>.ml-config</code> index. Do not give users
+ * <code>write</code> privileges on the <code>.ml-config</code> index.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_datafeed.Request">API
  *      specification</a>
@@ -1043,7 +1048,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	protected static void setupPutDatafeedRequestDeserializer(ObjectDeserializer<PutDatafeedRequest.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
-				"aggregations");
+				"aggregations", "aggs");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");

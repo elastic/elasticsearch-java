@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
 // typedef: indices.clear_cache.Request
 
 /**
- * Clears the caches of one or more indices. For data streams, the API clears
- * the caches of the stream’s backing indices.
+ * Clear the cache. Clear the cache of one or more indices. For data streams,
+ * the API clears the caches of the stream's backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.clear_cache.Request">API
  *      specification</a>

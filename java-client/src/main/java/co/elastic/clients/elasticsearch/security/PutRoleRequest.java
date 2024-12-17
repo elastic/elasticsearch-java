@@ -181,7 +181,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the role.
+	 * Required - The name of the role that is being created or updated. On
+	 * Elasticsearch Serverless, the role name must begin with a letter or digit and
+	 * can only contain letters, digits and the characters '_', '-', and '.'. Each
+	 * role must have a unique name, as this will serve as the identifier for that
+	 * role.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -562,7 +566,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the role.
+		 * Required - The name of the role that is being created or updated. On
+		 * Elasticsearch Serverless, the role name must begin with a letter or digit and
+		 * can only contain letters, digits and the characters '_', '-', and '.'. Each
+		 * role must have a unique name, as this will serve as the identifier for that
+		 * role.
 		 * <p>
 		 * API name: {@code name}
 		 */

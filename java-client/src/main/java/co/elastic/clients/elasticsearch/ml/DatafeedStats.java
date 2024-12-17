@@ -65,10 +65,11 @@ public class DatafeedStats implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
-	private final DiscoveryNode node;
+	private final DiscoveryNodeCompact node;
 
 	private final DatafeedState state;
 
+	@Nullable
 	private final DatafeedTimingStats timingStats;
 
 	@Nullable
@@ -82,7 +83,7 @@ public class DatafeedStats implements JsonpSerializable {
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.node = builder.node;
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
-		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.timingStats = builder.timingStats;
 		this.runningState = builder.runningState;
 
 	}
@@ -121,7 +122,7 @@ public class DatafeedStats implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public final DiscoveryNode node() {
+	public final DiscoveryNodeCompact node() {
 		return this.node;
 	}
 
@@ -137,11 +138,12 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - An object that provides statistical information about timing
-	 * aspect of this datafeed.
+	 * An object that provides statistical information about timing aspect of this
+	 * datafeed.
 	 * <p>
 	 * API name: {@code timing_stats}
 	 */
+	@Nullable
 	public final DatafeedTimingStats timingStats() {
 		return this.timingStats;
 	}
@@ -183,9 +185,11 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-		generator.writeKey("timing_stats");
-		this.timingStats.serialize(generator, mapper);
+		if (this.timingStats != null) {
+			generator.writeKey("timing_stats");
+			this.timingStats.serialize(generator, mapper);
 
+		}
 		if (this.runningState != null) {
 			generator.writeKey("running_state");
 			this.runningState.serialize(generator, mapper);
@@ -212,10 +216,11 @@ public class DatafeedStats implements JsonpSerializable {
 		private String datafeedId;
 
 		@Nullable
-		private DiscoveryNode node;
+		private DiscoveryNodeCompact node;
 
 		private DatafeedState state;
 
+		@Nullable
 		private DatafeedTimingStats timingStats;
 
 		@Nullable
@@ -251,7 +256,7 @@ public class DatafeedStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public final Builder node(@Nullable DiscoveryNode value) {
+		public final Builder node(@Nullable DiscoveryNodeCompact value) {
 			this.node = value;
 			return this;
 		}
@@ -262,8 +267,8 @@ public class DatafeedStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
-			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
+		public final Builder node(Function<DiscoveryNodeCompact.Builder, ObjectBuilder<DiscoveryNodeCompact>> fn) {
+			return this.node(fn.apply(new DiscoveryNodeCompact.Builder()).build());
 		}
 
 		/**
@@ -279,19 +284,19 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An object that provides statistical information about timing
-		 * aspect of this datafeed.
+		 * An object that provides statistical information about timing aspect of this
+		 * datafeed.
 		 * <p>
 		 * API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(DatafeedTimingStats value) {
+		public final Builder timingStats(@Nullable DatafeedTimingStats value) {
 			this.timingStats = value;
 			return this;
 		}
 
 		/**
-		 * Required - An object that provides statistical information about timing
-		 * aspect of this datafeed.
+		 * An object that provides statistical information about timing aspect of this
+		 * datafeed.
 		 * <p>
 		 * API name: {@code timing_stats}
 		 */
@@ -351,7 +356,7 @@ public class DatafeedStats implements JsonpSerializable {
 
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
-		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
+		op.add(Builder::node, DiscoveryNodeCompact._DESERIALIZER, "node");
 		op.add(Builder::state, DatafeedState._DESERIALIZER, "state");
 		op.add(Builder::timingStats, DatafeedTimingStats._DESERIALIZER, "timing_stats");
 		op.add(Builder::runningState, DatafeedRunningState._DESERIALIZER, "running_state");

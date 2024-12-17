@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
@@ -37,12 +38,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -75,6 +76,9 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowLazyOpen;
 
+	@Nullable
+	private final Boolean allowNoIndices;
+
 	private final AnalysisConfig analysisConfig;
 
 	@Nullable
@@ -97,7 +101,15 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
+	private final List<ExpandWildcard> expandWildcards;
+
 	private final List<String> groups;
+
+	@Nullable
+	private final Boolean ignoreThrottled;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
 
 	private final String jobId;
 
@@ -121,6 +133,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	private PutJobRequest(Builder builder) {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
+		this.allowNoIndices = builder.allowNoIndices;
 		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
@@ -129,7 +142,10 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.ignoreThrottled = builder.ignoreThrottled;
+		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
@@ -159,6 +175,18 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean allowLazyOpen() {
 		return this.allowLazyOpen;
+	}
+
+	/**
+	 * If <code>true</code>, wildcard indices expressions that resolve into no
+	 * concrete indices are ignored. This includes the <code>_all</code> string or
+	 * when no indices are specified.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
 	}
 
 	/**
@@ -262,12 +290,58 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values. Valid values are:
+	 * <ul>
+	 * <li><code>all</code>: Match any data stream or index, including hidden
+	 * ones.</li>
+	 * <li><code>closed</code>: Match closed, non-hidden indices. Also matches any
+	 * non-hidden data stream. Data streams cannot be closed.</li>
+	 * <li><code>hidden</code>: Match hidden data streams and hidden indices. Must
+	 * be combined with <code>open</code>, <code>closed</code>, or both.</li>
+	 * <li><code>none</code>: Wildcard patterns are not accepted.</li>
+	 * <li><code>open</code>: Match open, non-hidden indices. Also matches any
+	 * non-hidden data stream.</li>
+	 * </ul>
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
 	 * A list of job groups. A job can belong to no groups or many.
 	 * <p>
 	 * API name: {@code groups}
 	 */
 	public final List<String> groups() {
 		return this.groups;
+	}
+
+	/**
+	 * If <code>true</code>, concrete, expanded or aliased indices are ignored when
+	 * frozen.
+	 * <p>
+	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0
+	 */
+	@Deprecated
+	@Nullable
+	public final Boolean ignoreThrottled() {
+		return this.ignoreThrottled;
+	}
+
+	/**
+	 * If <code>true</code>, unavailable indices (missing or closed) are ignored.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
 	}
 
 	/**
@@ -453,6 +527,9 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean allowLazyOpen;
 
+		@Nullable
+		private Boolean allowNoIndices;
+
 		private AnalysisConfig analysisConfig;
 
 		@Nullable
@@ -476,7 +553,16 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		private String description;
 
 		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
 		private List<String> groups;
+
+		@Nullable
+		private Boolean ignoreThrottled;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
 
 		private String jobId;
 
@@ -510,6 +596,18 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder allowLazyOpen(@Nullable Boolean value) {
 			this.allowLazyOpen = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, wildcard indices expressions that resolve into no
+		 * concrete indices are ignored. This includes the <code>_all</code> string or
+		 * when no indices are specified.
+		 * <p>
+		 * API name: {@code allow_no_indices}
+		 */
+		public final Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
 			return this;
 		}
 
@@ -679,6 +777,56 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values. Valid values are:
+		 * <ul>
+		 * <li><code>all</code>: Match any data stream or index, including hidden
+		 * ones.</li>
+		 * <li><code>closed</code>: Match closed, non-hidden indices. Also matches any
+		 * non-hidden data stream. Data streams cannot be closed.</li>
+		 * <li><code>hidden</code>: Match hidden data streams and hidden indices. Must
+		 * be combined with <code>open</code>, <code>closed</code>, or both.</li>
+		 * <li><code>none</code>: Wildcard patterns are not accepted.</li>
+		 * <li><code>open</code>: Match open, non-hidden indices. Also matches any
+		 * non-hidden data stream.</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values. Valid values are:
+		 * <ul>
+		 * <li><code>all</code>: Match any data stream or index, including hidden
+		 * ones.</li>
+		 * <li><code>closed</code>: Match closed, non-hidden indices. Also matches any
+		 * non-hidden data stream. Data streams cannot be closed.</li>
+		 * <li><code>hidden</code>: Match hidden data streams and hidden indices. Must
+		 * be combined with <code>open</code>, <code>closed</code>, or both.</li>
+		 * <li><code>none</code>: Wildcard patterns are not accepted.</li>
+		 * <li><code>open</code>: Match open, non-hidden indices. Also matches any
+		 * non-hidden data stream.</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
@@ -699,6 +847,30 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder groups(String value, String... values) {
 			this.groups = _listAdd(this.groups, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, concrete, expanded or aliased indices are ignored when
+		 * frozen.
+		 * <p>
+		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0
+		 */
+		@Deprecated
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
+			this.ignoreThrottled = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, unavailable indices (missing or closed) are ignored.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
 			return this;
 		}
 
@@ -902,7 +1074,21 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutJobResponse._DESERIALIZER);
 }

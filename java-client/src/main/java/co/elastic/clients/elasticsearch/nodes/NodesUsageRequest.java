@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.usage.Request
 
 /**
- * Returns information on the usage of features.
+ * Get feature usage information.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.usage.Request">API
  *      specification</a>

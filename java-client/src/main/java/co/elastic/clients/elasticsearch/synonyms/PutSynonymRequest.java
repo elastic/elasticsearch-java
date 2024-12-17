@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 
 /**
  * Create or update a synonym set. Synonyms sets are limited to a maximum of
- * 10000 synonym rules per set. If you need to manage more synonym rules, you
+ * 10,000 synonym rules per set. If you need to manage more synonym rules, you
  * can create multiple synonym sets.
  * 
  * @see <a href="../doc-files/api-spec.html#synonyms.put_synonym.Request">API

@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 // typedef: ilm.remove_policy.Request
 
 /**
- * Removes the assigned lifecycle policy and stops managing the specified index
+ * Remove policies from an index. Remove the assigned lifecycle policies from an
+ * index or a data stream's backing indices. It also stops managing the indices.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.remove_policy.Request">API
  *      specification</a>

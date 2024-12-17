@@ -60,8 +60,58 @@ import javax.annotation.Nullable;
 // typedef: indices.split.Request
 
 /**
- * Splits an existing index into a new index with more primary shards.
- * 
+ * Split an index. Split an index into a new index with more primary shards.
+ * <ul>
+ * <li>
+ * <p>
+ * Before you can split an index:
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The index must be read-only.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The cluster health status must be green.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * The number of times the index can be split (and the number of shards that
+ * each original shard can be split into) is determined by the
+ * <code>index.number_of_routing_shards</code> setting. The number of routing
+ * shards specifies the hashing space that is used internally to distribute
+ * documents across shards with consistent hashing. For instance, a 5 shard
+ * index with <code>number_of_routing_shards</code> set to 30 (5 x 2 x 3) could
+ * be split by a factor of 2 or 3.
+ * <p>
+ * A split operation:
+ * <ul>
+ * <li>Creates a new target index with the same definition as the source index,
+ * but with a larger number of primary shards.</li>
+ * <li>Hard-links segments from the source index into the target index. If the
+ * file system doesn't support hard-linking, all segments are copied into the
+ * new index, which is a much more time consuming process.</li>
+ * <li>Hashes all documents again, after low level files are created, to delete
+ * documents that belong to a different shard.</li>
+ * <li>Recovers the target index as though it were a closed index which had just
+ * been re-opened.</li>
+ * </ul>
+ * <p>
+ * IMPORTANT: Indices can only be split if they satisfy the following
+ * requirements:
+ * <ul>
+ * <li>The target index must not exist.</li>
+ * <li>The source index must have fewer primary shards than the target
+ * index.</li>
+ * <li>The number of primary shards in the target index must be a multiple of
+ * the number of primary shards in the source index.</li>
+ * <li>The node handling the split process must have sufficient free disk space
+ * to accommodate a second copy of the existing index.</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#indices.split.Request">API
  *      specification</a>
  */

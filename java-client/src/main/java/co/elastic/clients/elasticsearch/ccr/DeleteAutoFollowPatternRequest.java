@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 // typedef: ccr.delete_auto_follow_pattern.Request
 
 /**
- * Deletes auto-follow patterns.
+ * Delete auto-follow patterns. Delete a collection of cross-cluster replication
+ * auto-follow patterns.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.delete_auto_follow_pattern.Request">API

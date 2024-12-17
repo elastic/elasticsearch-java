@@ -27,11 +27,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,46 +62,50 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FollowerIndexParameters implements JsonpSerializable {
-	private final int maxOutstandingReadRequests;
+	@Nullable
+	private final Long maxOutstandingReadRequests;
 
-	private final int maxOutstandingWriteRequests;
+	@Nullable
+	private final Integer maxOutstandingWriteRequests;
 
-	private final int maxReadRequestOperationCount;
+	@Nullable
+	private final Integer maxReadRequestOperationCount;
 
+	@Nullable
 	private final String maxReadRequestSize;
 
+	@Nullable
 	private final Time maxRetryDelay;
 
-	private final int maxWriteBufferCount;
+	@Nullable
+	private final Integer maxWriteBufferCount;
 
+	@Nullable
 	private final String maxWriteBufferSize;
 
-	private final int maxWriteRequestOperationCount;
+	@Nullable
+	private final Integer maxWriteRequestOperationCount;
 
+	@Nullable
 	private final String maxWriteRequestSize;
 
+	@Nullable
 	private final Time readPollTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FollowerIndexParameters(Builder builder) {
 
-		this.maxOutstandingReadRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
-				"maxOutstandingReadRequests");
-		this.maxOutstandingWriteRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingWriteRequests, this,
-				"maxOutstandingWriteRequests");
-		this.maxReadRequestOperationCount = ApiTypeHelper.requireNonNull(builder.maxReadRequestOperationCount, this,
-				"maxReadRequestOperationCount");
-		this.maxReadRequestSize = ApiTypeHelper.requireNonNull(builder.maxReadRequestSize, this, "maxReadRequestSize");
-		this.maxRetryDelay = ApiTypeHelper.requireNonNull(builder.maxRetryDelay, this, "maxRetryDelay");
-		this.maxWriteBufferCount = ApiTypeHelper.requireNonNull(builder.maxWriteBufferCount, this,
-				"maxWriteBufferCount");
-		this.maxWriteBufferSize = ApiTypeHelper.requireNonNull(builder.maxWriteBufferSize, this, "maxWriteBufferSize");
-		this.maxWriteRequestOperationCount = ApiTypeHelper.requireNonNull(builder.maxWriteRequestOperationCount, this,
-				"maxWriteRequestOperationCount");
-		this.maxWriteRequestSize = ApiTypeHelper.requireNonNull(builder.maxWriteRequestSize, this,
-				"maxWriteRequestSize");
-		this.readPollTimeout = ApiTypeHelper.requireNonNull(builder.readPollTimeout, this, "readPollTimeout");
+		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
+		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
+		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
+		this.maxReadRequestSize = builder.maxReadRequestSize;
+		this.maxRetryDelay = builder.maxRetryDelay;
+		this.maxWriteBufferCount = builder.maxWriteBufferCount;
+		this.maxWriteBufferSize = builder.maxWriteBufferSize;
+		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
+		this.maxWriteRequestSize = builder.maxWriteRequestSize;
+		this.readPollTimeout = builder.readPollTimeout;
 
 	}
 
@@ -110,71 +114,113 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code max_outstanding_read_requests}
+	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * <p>
+	 * API name: {@code max_outstanding_read_requests}
 	 */
-	public final int maxOutstandingReadRequests() {
+	@Nullable
+	public final Long maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
 	/**
-	 * Required - API name: {@code max_outstanding_write_requests}
+	 * The maximum number of outstanding write requests on the follower.
+	 * <p>
+	 * API name: {@code max_outstanding_write_requests}
 	 */
-	public final int maxOutstandingWriteRequests() {
+	@Nullable
+	public final Integer maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
 	/**
-	 * Required - API name: {@code max_read_request_operation_count}
+	 * The maximum number of operations to pull per read from the remote cluster.
+	 * <p>
+	 * API name: {@code max_read_request_operation_count}
 	 */
-	public final int maxReadRequestOperationCount() {
+	@Nullable
+	public final Integer maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
 	/**
-	 * Required - API name: {@code max_read_request_size}
+	 * The maximum size in bytes of per read of a batch of operations pulled from
+	 * the remote cluster.
+	 * <p>
+	 * API name: {@code max_read_request_size}
 	 */
+	@Nullable
 	public final String maxReadRequestSize() {
 		return this.maxReadRequestSize;
 	}
 
 	/**
-	 * Required - API name: {@code max_retry_delay}
+	 * The maximum time to wait before retrying an operation that failed
+	 * exceptionally. An exponential backoff strategy is employed when retrying.
+	 * <p>
+	 * API name: {@code max_retry_delay}
 	 */
+	@Nullable
 	public final Time maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
 	/**
-	 * Required - API name: {@code max_write_buffer_count}
+	 * The maximum number of operations that can be queued for writing. When this
+	 * limit is reached, reads from the remote cluster will be deferred until the
+	 * number of queued operations goes below the limit.
+	 * <p>
+	 * API name: {@code max_write_buffer_count}
 	 */
-	public final int maxWriteBufferCount() {
+	@Nullable
+	public final Integer maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
 	/**
-	 * Required - API name: {@code max_write_buffer_size}
+	 * The maximum total bytes of operations that can be queued for writing. When
+	 * this limit is reached, reads from the remote cluster will be deferred until
+	 * the total bytes of queued operations goes below the limit.
+	 * <p>
+	 * API name: {@code max_write_buffer_size}
 	 */
+	@Nullable
 	public final String maxWriteBufferSize() {
 		return this.maxWriteBufferSize;
 	}
 
 	/**
-	 * Required - API name: {@code max_write_request_operation_count}
+	 * The maximum number of operations per bulk write request executed on the
+	 * follower.
+	 * <p>
+	 * API name: {@code max_write_request_operation_count}
 	 */
-	public final int maxWriteRequestOperationCount() {
+	@Nullable
+	public final Integer maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
 	/**
-	 * Required - API name: {@code max_write_request_size}
+	 * The maximum total bytes of operations per bulk write request executed on the
+	 * follower.
+	 * <p>
+	 * API name: {@code max_write_request_size}
 	 */
+	@Nullable
 	public final String maxWriteRequestSize() {
 		return this.maxWriteRequestSize;
 	}
 
 	/**
-	 * Required - API name: {@code read_poll_timeout}
+	 * The maximum time to wait for new operations on the remote cluster when the
+	 * follower index is synchronized with the leader index. When the timeout has
+	 * elapsed, the poll for operations will return to the follower so that it can
+	 * update some statistics. Then the follower will immediately attempt to read
+	 * from the leader again.
+	 * <p>
+	 * API name: {@code read_poll_timeout}
 	 */
+	@Nullable
 	public final Time readPollTimeout() {
 		return this.readPollTimeout;
 	}
@@ -190,35 +236,56 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("max_outstanding_read_requests");
-		generator.write(this.maxOutstandingReadRequests);
+		if (this.maxOutstandingReadRequests != null) {
+			generator.writeKey("max_outstanding_read_requests");
+			generator.write(this.maxOutstandingReadRequests);
 
-		generator.writeKey("max_outstanding_write_requests");
-		generator.write(this.maxOutstandingWriteRequests);
+		}
+		if (this.maxOutstandingWriteRequests != null) {
+			generator.writeKey("max_outstanding_write_requests");
+			generator.write(this.maxOutstandingWriteRequests);
 
-		generator.writeKey("max_read_request_operation_count");
-		generator.write(this.maxReadRequestOperationCount);
+		}
+		if (this.maxReadRequestOperationCount != null) {
+			generator.writeKey("max_read_request_operation_count");
+			generator.write(this.maxReadRequestOperationCount);
 
-		generator.writeKey("max_read_request_size");
-		generator.write(this.maxReadRequestSize);
+		}
+		if (this.maxReadRequestSize != null) {
+			generator.writeKey("max_read_request_size");
+			generator.write(this.maxReadRequestSize);
 
-		generator.writeKey("max_retry_delay");
-		this.maxRetryDelay.serialize(generator, mapper);
+		}
+		if (this.maxRetryDelay != null) {
+			generator.writeKey("max_retry_delay");
+			this.maxRetryDelay.serialize(generator, mapper);
 
-		generator.writeKey("max_write_buffer_count");
-		generator.write(this.maxWriteBufferCount);
+		}
+		if (this.maxWriteBufferCount != null) {
+			generator.writeKey("max_write_buffer_count");
+			generator.write(this.maxWriteBufferCount);
 
-		generator.writeKey("max_write_buffer_size");
-		generator.write(this.maxWriteBufferSize);
+		}
+		if (this.maxWriteBufferSize != null) {
+			generator.writeKey("max_write_buffer_size");
+			generator.write(this.maxWriteBufferSize);
 
-		generator.writeKey("max_write_request_operation_count");
-		generator.write(this.maxWriteRequestOperationCount);
+		}
+		if (this.maxWriteRequestOperationCount != null) {
+			generator.writeKey("max_write_request_operation_count");
+			generator.write(this.maxWriteRequestOperationCount);
 
-		generator.writeKey("max_write_request_size");
-		generator.write(this.maxWriteRequestSize);
+		}
+		if (this.maxWriteRequestSize != null) {
+			generator.writeKey("max_write_request_size");
+			generator.write(this.maxWriteRequestSize);
 
-		generator.writeKey("read_poll_timeout");
-		this.readPollTimeout.serialize(generator, mapper);
+		}
+		if (this.readPollTimeout != null) {
+			generator.writeKey("read_poll_timeout");
+			this.readPollTimeout.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -236,115 +303,166 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<FollowerIndexParameters> {
-		private Integer maxOutstandingReadRequests;
+		@Nullable
+		private Long maxOutstandingReadRequests;
 
+		@Nullable
 		private Integer maxOutstandingWriteRequests;
 
+		@Nullable
 		private Integer maxReadRequestOperationCount;
 
+		@Nullable
 		private String maxReadRequestSize;
 
+		@Nullable
 		private Time maxRetryDelay;
 
+		@Nullable
 		private Integer maxWriteBufferCount;
 
+		@Nullable
 		private String maxWriteBufferSize;
 
+		@Nullable
 		private Integer maxWriteRequestOperationCount;
 
+		@Nullable
 		private String maxWriteRequestSize;
 
+		@Nullable
 		private Time readPollTimeout;
 
 		/**
-		 * Required - API name: {@code max_outstanding_read_requests}
+		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * <p>
+		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public final Builder maxOutstandingReadRequests(int value) {
+		public final Builder maxOutstandingReadRequests(@Nullable Long value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_outstanding_write_requests}
+		 * The maximum number of outstanding write requests on the follower.
+		 * <p>
+		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public final Builder maxOutstandingWriteRequests(int value) {
+		public final Builder maxOutstandingWriteRequests(@Nullable Integer value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_read_request_operation_count}
+		 * The maximum number of operations to pull per read from the remote cluster.
+		 * <p>
+		 * API name: {@code max_read_request_operation_count}
 		 */
-		public final Builder maxReadRequestOperationCount(int value) {
+		public final Builder maxReadRequestOperationCount(@Nullable Integer value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_read_request_size}
+		 * The maximum size in bytes of per read of a batch of operations pulled from
+		 * the remote cluster.
+		 * <p>
+		 * API name: {@code max_read_request_size}
 		 */
-		public final Builder maxReadRequestSize(String value) {
+		public final Builder maxReadRequestSize(@Nullable String value) {
 			this.maxReadRequestSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_retry_delay}
+		 * The maximum time to wait before retrying an operation that failed
+		 * exceptionally. An exponential backoff strategy is employed when retrying.
+		 * <p>
+		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Time value) {
+		public final Builder maxRetryDelay(@Nullable Time value) {
 			this.maxRetryDelay = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_retry_delay}
+		 * The maximum time to wait before retrying an operation that failed
+		 * exceptionally. An exponential backoff strategy is employed when retrying.
+		 * <p>
+		 * API name: {@code max_retry_delay}
 		 */
 		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code max_write_buffer_count}
+		 * The maximum number of operations that can be queued for writing. When this
+		 * limit is reached, reads from the remote cluster will be deferred until the
+		 * number of queued operations goes below the limit.
+		 * <p>
+		 * API name: {@code max_write_buffer_count}
 		 */
-		public final Builder maxWriteBufferCount(int value) {
+		public final Builder maxWriteBufferCount(@Nullable Integer value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_write_buffer_size}
+		 * The maximum total bytes of operations that can be queued for writing. When
+		 * this limit is reached, reads from the remote cluster will be deferred until
+		 * the total bytes of queued operations goes below the limit.
+		 * <p>
+		 * API name: {@code max_write_buffer_size}
 		 */
-		public final Builder maxWriteBufferSize(String value) {
+		public final Builder maxWriteBufferSize(@Nullable String value) {
 			this.maxWriteBufferSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_write_request_operation_count}
+		 * The maximum number of operations per bulk write request executed on the
+		 * follower.
+		 * <p>
+		 * API name: {@code max_write_request_operation_count}
 		 */
-		public final Builder maxWriteRequestOperationCount(int value) {
+		public final Builder maxWriteRequestOperationCount(@Nullable Integer value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_write_request_size}
+		 * The maximum total bytes of operations per bulk write request executed on the
+		 * follower.
+		 * <p>
+		 * API name: {@code max_write_request_size}
 		 */
-		public final Builder maxWriteRequestSize(String value) {
+		public final Builder maxWriteRequestSize(@Nullable String value) {
 			this.maxWriteRequestSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code read_poll_timeout}
+		 * The maximum time to wait for new operations on the remote cluster when the
+		 * follower index is synchronized with the leader index. When the timeout has
+		 * elapsed, the poll for operations will return to the follower so that it can
+		 * update some statistics. Then the follower will immediately attempt to read
+		 * from the leader again.
+		 * <p>
+		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Time value) {
+		public final Builder readPollTimeout(@Nullable Time value) {
 			this.readPollTimeout = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code read_poll_timeout}
+		 * The maximum time to wait for new operations on the remote cluster when the
+		 * follower index is synchronized with the leader index. When the timeout has
+		 * elapsed, the poll for operations will return to the follower so that it can
+		 * update some statistics. Then the follower will immediately attempt to read
+		 * from the leader again.
+		 * <p>
+		 * API name: {@code read_poll_timeout}
 		 */
 		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
@@ -379,7 +497,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	protected static void setupFollowerIndexParametersDeserializer(
 			ObjectDeserializer<FollowerIndexParameters.Builder> op) {
 
-		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.longDeserializer(),
 				"max_outstanding_read_requests");
 		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_write_requests");

@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.segments.Request
 
 /**
- * Returns low-level information about the Lucene segments in index shards. For
- * data streams, the API returns information about the stream’s backing indices.
+ * Get index segments. Get low-level information about the Lucene segments in
+ * index shards. For data streams, the API returns information about the
+ * stream's backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.segments.Request">API
  *      specification</a>
@@ -77,9 +78,6 @@ public class SegmentsRequest extends RequestBase {
 
 	private final List<String> index;
 
-	@Nullable
-	private final Boolean verbose;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private SegmentsRequest(Builder builder) {
@@ -88,7 +86,6 @@ public class SegmentsRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
-		this.verbose = builder.verbose;
 
 	}
 
@@ -145,16 +142,6 @@ public class SegmentsRequest extends RequestBase {
 		return this.index;
 	}
 
-	/**
-	 * If <code>true</code>, the request returns a verbose response.
-	 * <p>
-	 * API name: {@code verbose}
-	 */
-	@Nullable
-	public final Boolean verbose() {
-		return this.verbose;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -173,9 +160,6 @@ public class SegmentsRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private Boolean verbose;
 
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
@@ -260,16 +244,6 @@ public class SegmentsRequest extends RequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the request returns a verbose response.
-		 * <p>
-		 * API name: {@code verbose}
-		 */
-		public final Builder verbose(@Nullable Boolean value) {
-			this.verbose = value;
 			return this;
 		}
 
@@ -360,9 +334,6 @@ public class SegmentsRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.verbose != null) {
-					params.put("verbose", String.valueOf(request.verbose));
 				}
 				return params;
 

@@ -62,9 +62,17 @@ import javax.annotation.Nullable;
 // typedef: ccr.put_auto_follow_pattern.Request
 
 /**
- * Creates a new named collection of auto-follow patterns against a specified
- * remote cluster. Newly created indices on the remote cluster matching any of
- * the specified patterns will be automatically configured as follower indices.
+ * Create or update auto-follow patterns. Create a collection of cross-cluster
+ * replication auto-follow patterns for a remote cluster. Newly created indices
+ * on the remote cluster that match any of the patterns are automatically
+ * configured as follower indices. Indices on the remote cluster that were
+ * created before the auto-follow pattern was created will not be auto-followed
+ * even if they match the pattern.
+ * <p>
+ * This API can also be used to update auto-follow patterns. NOTE: Follower
+ * indices that were configured automatically before updating an auto-follow
+ * pattern will remain unchanged even if they do not match against the new
+ * patterns.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.put_auto_follow_pattern.Request">API

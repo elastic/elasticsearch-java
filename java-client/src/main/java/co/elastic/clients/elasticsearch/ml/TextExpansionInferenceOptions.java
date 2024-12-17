@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -66,12 +67,15 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 	@Nullable
 	private final String resultsField;
 
+	private final Vocabulary vocabulary;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TextExpansionInferenceOptions(Builder builder) {
 
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
+		this.vocabulary = ApiTypeHelper.requireNonNull(builder.vocabulary, this, "vocabulary");
 
 	}
 
@@ -109,6 +113,13 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 	}
 
 	/**
+	 * Required - API name: {@code vocabulary}
+	 */
+	public final Vocabulary vocabulary() {
+		return this.vocabulary;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -129,6 +140,8 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 			generator.write(this.resultsField);
 
 		}
+		generator.writeKey("vocabulary");
+		this.vocabulary.serialize(generator, mapper);
 
 	}
 
@@ -151,6 +164,8 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 
 		@Nullable
 		private String resultsField;
+
+		private Vocabulary vocabulary;
 
 		/**
 		 * The tokenization options
@@ -180,6 +195,21 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 		public final Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code vocabulary}
+		 */
+		public final Builder vocabulary(Vocabulary value) {
+			this.vocabulary = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code vocabulary}
+		 */
+		public final Builder vocabulary(Function<Vocabulary.Builder, ObjectBuilder<Vocabulary>> fn) {
+			return this.vocabulary(fn.apply(new Vocabulary.Builder()).build());
 		}
 
 		@Override
@@ -213,6 +243,7 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 
 		op.add(Builder::tokenization, TokenizationConfig._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+		op.add(Builder::vocabulary, Vocabulary._DESERIALIZER, "vocabulary");
 
 	}
 

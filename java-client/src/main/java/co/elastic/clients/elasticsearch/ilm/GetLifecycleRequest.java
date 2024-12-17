@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
 // typedef: ilm.get_lifecycle.Request
 
 /**
- * Retrieves a lifecycle policy.
+ * Get lifecycle policies.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.get_lifecycle.Request">API
  *      specification</a>

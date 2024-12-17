@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -84,6 +86,8 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private final int maxNumThreads;
 
+	private final Map<String, JsonData> meta;
+
 	private final String modelMemoryLimit;
 
 	private final DataframeAnalyticsSource source;
@@ -103,6 +107,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = ApiTypeHelper.requireNonNull(builder.maxNumThreads, this, "maxNumThreads");
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
@@ -180,6 +185,13 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
 	 * Required - API name: {@code model_memory_limit}
 	 */
 	public final String modelMemoryLimit() {
@@ -244,6 +256,17 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		generator.writeKey("max_num_threads");
 		generator.write(this.maxNumThreads);
 
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("model_memory_limit");
 		generator.write(this.modelMemoryLimit);
 
@@ -289,6 +312,9 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		private String id;
 
 		private Integer maxNumThreads;
+
+		@Nullable
+		private Map<String, JsonData> meta;
 
 		private String modelMemoryLimit;
 
@@ -400,6 +426,26 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code model_memory_limit}
 		 */
 		public final Builder modelMemoryLimit(String value) {
@@ -469,6 +515,7 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");

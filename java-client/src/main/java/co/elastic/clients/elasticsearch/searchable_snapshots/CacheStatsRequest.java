@@ -58,7 +58,8 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.cache_stats.Request
 
 /**
- * Retrieve node-level cache statistics about searchable snapshots.
+ * Get cache statistics. Get statistics about the shared cache for partially
+ * mounted indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.cache_stats.Request">API

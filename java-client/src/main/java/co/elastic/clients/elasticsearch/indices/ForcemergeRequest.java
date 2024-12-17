@@ -60,7 +60,25 @@ import javax.annotation.Nullable;
 // typedef: indices.forcemerge.Request
 
 /**
- * Performs the force merge operation on one or more indices.
+ * Force a merge. Perform the force merge operation on the shards of one or more
+ * indices. For data streams, the API forces a merge on the shards of the
+ * stream's backing indices.
+ * <p>
+ * Merging reduces the number of segments in each shard by merging some of them
+ * together and also frees up the space used by deleted documents. Merging
+ * normally happens automatically, but sometimes it is useful to trigger a merge
+ * manually.
+ * <p>
+ * WARNING: We recommend force merging only a read-only index (meaning the index
+ * is no longer receiving writes). When documents are updated or deleted, the
+ * old version is not immediately removed but instead soft-deleted and marked
+ * with a &quot;tombstone&quot;. These soft-deleted documents are automatically
+ * cleaned up during regular segment merges. But force merge can cause very
+ * large (greater than 5 GB) segments to be produced, which are not eligible for
+ * regular merges. So the number of soft-deleted documents can then grow
+ * rapidly, resulting in higher disk usage and worse search performance. If you
+ * regularly force merge an index receiving writes, this can also make snapshots
+ * more expensive, since the new documents can't be backed up incrementally.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.forcemerge.Request">API
  *      specification</a>

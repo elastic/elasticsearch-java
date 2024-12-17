@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: snapshot.delete.Request
 
 /**
- * Deletes one or more snapshots.
+ * Delete snapshots.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.delete.Request">API
  *      specification</a>

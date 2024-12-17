@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow_info.Request
 
 /**
- * Retrieves information about all follower indices, including parameters and
- * status for each follower index
+ * Get follower information. Get information about all cross-cluster replication
+ * follower indices. For example, the results include follower index names,
+ * leader index names, replication options, and whether the follower indices are
+ * active or paused.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.follow_info.Request">API
  *      specification</a>
