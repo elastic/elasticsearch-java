@@ -58,11 +58,25 @@ import javax.annotation.Nullable;
 // typedef: ilm.migrate_to_data_tiers.Request
 
 /**
- * Switches the indices, ILM policies, and legacy, composable and component
- * templates from using custom node attributes and attribute-based allocation
- * filters to using data tiers, and optionally deletes one legacy index
- * template.+ Using node roles enables ILM to automatically move the indices
- * between data tiers.
+ * Migrate to data tiers routing. Switch the indices, ILM policies, and legacy,
+ * composable, and component templates from using custom node attributes and
+ * attribute-based allocation filters to using data tiers. Optionally, delete
+ * one legacy index template. Using node roles enables ILM to automatically move
+ * the indices between data tiers.
+ * <p>
+ * Migrating away from custom node attributes routing can be manually performed.
+ * This API provides an automated way of performing three out of the four manual
+ * steps listed in the migration guide:
+ * <ol>
+ * <li>Stop setting the custom hot attribute on new indices.</li>
+ * <li>Remove custom allocation settings from existing ILM policies.</li>
+ * <li>Replace custom allocation settings from existing indices with the
+ * corresponding tier preference.</li>
+ * </ol>
+ * <p>
+ * ILM must be stopped before performing the migration. Use the stop ILM and get
+ * ILM status APIs to wait until the reported operation mode is
+ * <code>STOPPED</code>.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ilm.migrate_to_data_tiers.Request">API

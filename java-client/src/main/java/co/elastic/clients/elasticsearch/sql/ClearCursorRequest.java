@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: sql.clear_cursor.Request
 
 /**
- * Clears the SQL cursor
+ * Clear an SQL search cursor.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.clear_cursor.Request">API
  *      specification</a>

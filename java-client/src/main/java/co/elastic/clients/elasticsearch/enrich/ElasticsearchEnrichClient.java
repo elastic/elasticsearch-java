@@ -104,7 +104,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: enrich.execute_policy
 
 	/**
-	 * Creates the enrich index for an existing enrich policy.
+	 * Run an enrich policy. Create the enrich index for an existing enrich policy.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.16/execute-enrich-policy-api.html">Documentation
@@ -120,7 +120,7 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Creates the enrich index for an existing enrich policy.
+	 * Run an enrich policy. Create the enrich index for an existing enrich policy.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

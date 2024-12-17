@@ -63,10 +63,16 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelAssignment implements JsonpSerializable {
+	@Nullable
+	private final AdaptiveAllocationsSettings adaptiveAllocations;
+
 	private final DeploymentAssignmentState assignmentState;
 
 	@Nullable
 	private final Integer maxAssignedAllocations;
+
+	@Nullable
+	private final String reason;
 
 	private final Map<String, TrainedModelAssignmentRoutingTable> routingTable;
 
@@ -78,8 +84,10 @@ public class TrainedModelAssignment implements JsonpSerializable {
 
 	private TrainedModelAssignment(Builder builder) {
 
+		this.adaptiveAllocations = builder.adaptiveAllocations;
 		this.assignmentState = ApiTypeHelper.requireNonNull(builder.assignmentState, this, "assignmentState");
 		this.maxAssignedAllocations = builder.maxAssignedAllocations;
+		this.reason = builder.reason;
 		this.routingTable = ApiTypeHelper.unmodifiableRequired(builder.routingTable, this, "routingTable");
 		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
 		this.taskParameters = ApiTypeHelper.requireNonNull(builder.taskParameters, this, "taskParameters");
@@ -88,6 +96,14 @@ public class TrainedModelAssignment implements JsonpSerializable {
 
 	public static TrainedModelAssignment of(Function<Builder, ObjectBuilder<TrainedModelAssignment>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code adaptive_allocations}
+	 */
+	@Nullable
+	public final AdaptiveAllocationsSettings adaptiveAllocations() {
+		return this.adaptiveAllocations;
 	}
 
 	/**
@@ -105,6 +121,14 @@ public class TrainedModelAssignment implements JsonpSerializable {
 	@Nullable
 	public final Integer maxAssignedAllocations() {
 		return this.maxAssignedAllocations;
+	}
+
+	/**
+	 * API name: {@code reason}
+	 */
+	@Nullable
+	public final String reason() {
+		return this.reason;
 	}
 
 	/**
@@ -143,11 +167,21 @@ public class TrainedModelAssignment implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.adaptiveAllocations != null) {
+			generator.writeKey("adaptive_allocations");
+			this.adaptiveAllocations.serialize(generator, mapper);
+
+		}
 		generator.writeKey("assignment_state");
 		this.assignmentState.serialize(generator, mapper);
 		if (this.maxAssignedAllocations != null) {
 			generator.writeKey("max_assigned_allocations");
 			generator.write(this.maxAssignedAllocations);
+
+		}
+		if (this.reason != null) {
+			generator.writeKey("reason");
+			generator.write(this.reason);
 
 		}
 		if (ApiTypeHelper.isDefined(this.routingTable)) {
@@ -182,16 +216,38 @@ public class TrainedModelAssignment implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelAssignment> {
+		@Nullable
+		private AdaptiveAllocationsSettings adaptiveAllocations;
+
 		private DeploymentAssignmentState assignmentState;
 
 		@Nullable
 		private Integer maxAssignedAllocations;
+
+		@Nullable
+		private String reason;
 
 		private Map<String, TrainedModelAssignmentRoutingTable> routingTable;
 
 		private DateTime startTime;
 
 		private TrainedModelAssignmentTaskParameters taskParameters;
+
+		/**
+		 * API name: {@code adaptive_allocations}
+		 */
+		public final Builder adaptiveAllocations(@Nullable AdaptiveAllocationsSettings value) {
+			this.adaptiveAllocations = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code adaptive_allocations}
+		 */
+		public final Builder adaptiveAllocations(
+				Function<AdaptiveAllocationsSettings.Builder, ObjectBuilder<AdaptiveAllocationsSettings>> fn) {
+			return this.adaptiveAllocations(fn.apply(new AdaptiveAllocationsSettings.Builder()).build());
+		}
 
 		/**
 		 * Required - The overall assignment state.
@@ -208,6 +264,14 @@ public class TrainedModelAssignment implements JsonpSerializable {
 		 */
 		public final Builder maxAssignedAllocations(@Nullable Integer value) {
 			this.maxAssignedAllocations = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code reason}
+		 */
+		public final Builder reason(@Nullable String value) {
+			this.reason = value;
 			return this;
 		}
 
@@ -302,8 +366,10 @@ public class TrainedModelAssignment implements JsonpSerializable {
 	protected static void setupTrainedModelAssignmentDeserializer(
 			ObjectDeserializer<TrainedModelAssignment.Builder> op) {
 
+		op.add(Builder::adaptiveAllocations, AdaptiveAllocationsSettings._DESERIALIZER, "adaptive_allocations");
 		op.add(Builder::assignmentState, DeploymentAssignmentState._DESERIALIZER, "assignment_state");
 		op.add(Builder::maxAssignedAllocations, JsonpDeserializer.integerDeserializer(), "max_assigned_allocations");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::routingTable,
 				JsonpDeserializer.stringMapDeserializer(TrainedModelAssignmentRoutingTable._DESERIALIZER),
 				"routing_table");

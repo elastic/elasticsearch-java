@@ -79,6 +79,9 @@ public class ModelSizeStats implements JsonpSerializable {
 	private final String modelBytesMemoryLimit;
 
 	@Nullable
+	private final String outputMemoryAllocatorBytes;
+
+	@Nullable
 	private final String peakModelBytes;
 
 	@Nullable
@@ -121,6 +124,7 @@ public class ModelSizeStats implements JsonpSerializable {
 		this.modelBytes = ApiTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
 		this.modelBytesExceeded = builder.modelBytesExceeded;
 		this.modelBytesMemoryLimit = builder.modelBytesMemoryLimit;
+		this.outputMemoryAllocatorBytes = builder.outputMemoryAllocatorBytes;
 		this.peakModelBytes = builder.peakModelBytes;
 		this.assignmentMemoryBasis = builder.assignmentMemoryBasis;
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
@@ -197,6 +201,14 @@ public class ModelSizeStats implements JsonpSerializable {
 	@Nullable
 	public final String modelBytesMemoryLimit() {
 		return this.modelBytesMemoryLimit;
+	}
+
+	/**
+	 * API name: {@code output_memory_allocator_bytes}
+	 */
+	@Nullable
+	public final String outputMemoryAllocatorBytes() {
+		return this.outputMemoryAllocatorBytes;
 	}
 
 	/**
@@ -334,6 +346,11 @@ public class ModelSizeStats implements JsonpSerializable {
 			generator.write(this.modelBytesMemoryLimit);
 
 		}
+		if (this.outputMemoryAllocatorBytes != null) {
+			generator.writeKey("output_memory_allocator_bytes");
+			generator.write(this.outputMemoryAllocatorBytes);
+
+		}
 		if (this.peakModelBytes != null) {
 			generator.writeKey("peak_model_bytes");
 			generator.write(this.peakModelBytes);
@@ -411,6 +428,9 @@ public class ModelSizeStats implements JsonpSerializable {
 
 		@Nullable
 		private String modelBytesMemoryLimit;
+
+		@Nullable
+		private String outputMemoryAllocatorBytes;
 
 		@Nullable
 		private String peakModelBytes;
@@ -496,6 +516,14 @@ public class ModelSizeStats implements JsonpSerializable {
 		 */
 		public final Builder modelBytesMemoryLimit(@Nullable String value) {
 			this.modelBytesMemoryLimit = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code output_memory_allocator_bytes}
+		 */
+		public final Builder outputMemoryAllocatorBytes(@Nullable String value) {
+			this.outputMemoryAllocatorBytes = value;
 			return this;
 		}
 
@@ -647,6 +675,8 @@ public class ModelSizeStats implements JsonpSerializable {
 		op.add(Builder::modelBytes, JsonpDeserializer.stringDeserializer(), "model_bytes");
 		op.add(Builder::modelBytesExceeded, JsonpDeserializer.stringDeserializer(), "model_bytes_exceeded");
 		op.add(Builder::modelBytesMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_bytes_memory_limit");
+		op.add(Builder::outputMemoryAllocatorBytes, JsonpDeserializer.stringDeserializer(),
+				"output_memory_allocator_bytes");
 		op.add(Builder::peakModelBytes, JsonpDeserializer.stringDeserializer(), "peak_model_bytes");
 		op.add(Builder::assignmentMemoryBasis, JsonpDeserializer.stringDeserializer(), "assignment_memory_basis");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");

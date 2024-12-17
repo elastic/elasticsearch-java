@@ -58,7 +58,8 @@ import javax.annotation.Nullable;
 // typedef: sql.translate.Request
 
 /**
- * Translates SQL into Elasticsearch queries
+ * Translate SQL into Elasticsearch queries. Translate an SQL search into a
+ * search API request containing Query DSL.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.translate.Request">API
  *      specification</a>

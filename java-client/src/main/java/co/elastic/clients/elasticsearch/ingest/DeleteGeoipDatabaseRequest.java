@@ -58,7 +58,8 @@ import javax.annotation.Nullable;
 // typedef: ingest.delete_geoip_database.Request
 
 /**
- * Deletes a geoip database configuration.
+ * Delete GeoIP database configurations. Delete one or more IP geolocation
+ * database configurations.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.delete_geoip_database.Request">API

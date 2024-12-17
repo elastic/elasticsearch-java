@@ -1043,7 +1043,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	protected static void setupPutDatafeedRequestDeserializer(ObjectDeserializer<PutDatafeedRequest.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
-				"aggregations");
+				"aggregations", "aggs");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");

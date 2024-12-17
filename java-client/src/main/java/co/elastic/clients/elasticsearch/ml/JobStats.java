@@ -73,7 +73,7 @@ public class JobStats implements JsonpSerializable {
 	private final ModelSizeStats modelSizeStats;
 
 	@Nullable
-	private final DiscoveryNode node;
+	private final DiscoveryNodeCompact node;
 
 	@Nullable
 	private final DateTime openTime;
@@ -166,7 +166,7 @@ public class JobStats implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public final DiscoveryNode node() {
+	public final DiscoveryNodeCompact node() {
 		return this.node;
 	}
 
@@ -286,7 +286,7 @@ public class JobStats implements JsonpSerializable {
 		private ModelSizeStats modelSizeStats;
 
 		@Nullable
-		private DiscoveryNode node;
+		private DiscoveryNodeCompact node;
 
 		@Nullable
 		private DateTime openTime;
@@ -395,7 +395,7 @@ public class JobStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public final Builder node(@Nullable DiscoveryNode value) {
+		public final Builder node(@Nullable DiscoveryNodeCompact value) {
 			this.node = value;
 			return this;
 		}
@@ -406,8 +406,8 @@ public class JobStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
-			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
+		public final Builder node(Function<DiscoveryNodeCompact.Builder, ObjectBuilder<DiscoveryNodeCompact>> fn) {
+			return this.node(fn.apply(new DiscoveryNodeCompact.Builder()).build());
 		}
 
 		/**
@@ -497,7 +497,7 @@ public class JobStats implements JsonpSerializable {
 		op.add(Builder::forecastsStats, JobForecastStatistics._DESERIALIZER, "forecasts_stats");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::modelSizeStats, ModelSizeStats._DESERIALIZER, "model_size_stats");
-		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
+		op.add(Builder::node, DiscoveryNodeCompact._DESERIALIZER, "node");
 		op.add(Builder::openTime, DateTime._DESERIALIZER, "open_time");
 		op.add(Builder::state, JobState._DESERIALIZER, "state");
 		op.add(Builder::timingStats, JobTimingStats._DESERIALIZER, "timing_stats");

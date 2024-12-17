@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 // typedef: nodes.info.Request
 
 /**
- * Returns cluster nodes information.
+ * Get node information. By default, the API returns all attributes and core
+ * settings for cluster nodes.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.info.Request">API
  *      specification</a>

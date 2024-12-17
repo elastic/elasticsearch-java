@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: query_rules.delete_rule.Request
 
 /**
- * Deletes a query rule within a query ruleset.
+ * Delete a query rule. Delete a query rule within a query ruleset.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.delete_rule.Request">API
  *      specification</a>

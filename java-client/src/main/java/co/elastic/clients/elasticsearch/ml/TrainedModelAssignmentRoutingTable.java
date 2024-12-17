@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
+	@Nullable
 	private final String reason;
 
 	private final RoutingState routingState;
@@ -73,7 +74,7 @@ public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 
 	private TrainedModelAssignmentRoutingTable(Builder builder) {
 
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.reason = builder.reason;
 		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
 		this.currentAllocations = ApiTypeHelper.requireNonNull(builder.currentAllocations, this, "currentAllocations");
 		this.targetAllocations = ApiTypeHelper.requireNonNull(builder.targetAllocations, this, "targetAllocations");
@@ -86,11 +87,12 @@ public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The reason for the current state. It is usually populated only
-	 * when the <code>routing_state</code> is <code>failed</code>.
+	 * The reason for the current state. It is usually populated only when the
+	 * <code>routing_state</code> is <code>failed</code>.
 	 * <p>
 	 * API name: {@code reason}
 	 */
+	@Nullable
 	public final String reason() {
 		return this.reason;
 	}
@@ -133,9 +135,11 @@ public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("reason");
-		generator.write(this.reason);
+		if (this.reason != null) {
+			generator.writeKey("reason");
+			generator.write(this.reason);
 
+		}
 		generator.writeKey("routing_state");
 		this.routingState.serialize(generator, mapper);
 		generator.writeKey("current_allocations");
@@ -160,6 +164,7 @@ public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelAssignmentRoutingTable> {
+		@Nullable
 		private String reason;
 
 		private RoutingState routingState;
@@ -169,12 +174,12 @@ public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 		private Integer targetAllocations;
 
 		/**
-		 * Required - The reason for the current state. It is usually populated only
-		 * when the <code>routing_state</code> is <code>failed</code>.
+		 * The reason for the current state. It is usually populated only when the
+		 * <code>routing_state</code> is <code>failed</code>.
 		 * <p>
 		 * API name: {@code reason}
 		 */
-		public final Builder reason(String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}

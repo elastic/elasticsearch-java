@@ -735,7 +735,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.exists_index_template
 
 	/**
-	 * Returns information about whether a particular index template exists.
+	 * Check index templates. Check whether index templates exist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
@@ -750,7 +750,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns information about whether a particular index template exists.
+	 * Check index templates. Check whether index templates exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -803,10 +803,10 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.explain_data_lifecycle
 
 	/**
-	 * Get the status for a data stream lifecycle. Retrieves information about an
-	 * index or data stream’s current data stream lifecycle status, such as time
-	 * since index creation, time since rollover, the lifecycle configuration
-	 * managing the index, or any errors encountered during lifecycle execution.
+	 * Get the status for a data stream lifecycle. Get information about an index or
+	 * data stream's current data stream lifecycle status, such as time since index
+	 * creation, time since rollover, the lifecycle configuration managing the
+	 * index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
@@ -821,10 +821,10 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get the status for a data stream lifecycle. Retrieves information about an
-	 * index or data stream’s current data stream lifecycle status, such as time
-	 * since index creation, time since rollover, the lifecycle configuration
-	 * managing the index, or any errors encountered during lifecycle execution.
+	 * Get the status for a data stream lifecycle. Get information about an index or
+	 * data stream's current data stream lifecycle status, such as time since index
+	 * creation, time since rollover, the lifecycle configuration managing the
+	 * index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1916,8 +1916,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.resolve_index
 
 	/**
-	 * Resolves the specified name(s) and/or index patterns for indices, aliases,
-	 * and data streams. Multiple patterns and remote clusters are supported.
+	 * Resolve indices. Resolve the names and/or index patterns for indices,
+	 * aliases, and data streams. Multiple patterns and remote clusters are
+	 * supported.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
@@ -1932,8 +1933,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Resolves the specified name(s) and/or index patterns for indices, aliases,
-	 * and data streams. Multiple patterns and remote clusters are supported.
+	 * Resolve indices. Resolve the names and/or index patterns for indices,
+	 * aliases, and data streams. Multiple patterns and remote clusters are
+	 * supported.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

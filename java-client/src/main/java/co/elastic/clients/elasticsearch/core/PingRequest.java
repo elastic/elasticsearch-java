@@ -52,7 +52,7 @@ import java.util.Objects;
 // typedef: _global.ping.Request
 
 /**
- * Ping the cluster. Returns whether the cluster is running.
+ * Ping the cluster. Get information about whether the cluster is running.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.ping.Request">API
  *      specification</a>

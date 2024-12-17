@@ -51,46 +51,48 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.DiscoveryNode
+// typedef: ml._types.DiscoveryNodeCompact
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#ml._types.DiscoveryNode">API
+ * Alternative representation of DiscoveryNode used in ml.get_job_stats and
+ * ml.get_datafeed_stats
+ * 
+ * @see <a href="../doc-files/api-spec.html#ml._types.DiscoveryNodeCompact">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DiscoveryNode implements JsonpSerializable {
-	private final Map<String, String> attributes;
+public class DiscoveryNodeCompact implements JsonpSerializable {
+	private final String name;
 
 	private final String ephemeralId;
 
 	private final String id;
 
-	private final String name;
-
 	private final String transportAddress;
+
+	private final Map<String, String> attributes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DiscoveryNode(Builder builder) {
+	private DiscoveryNodeCompact(Builder builder) {
 
-		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 
 	}
 
-	public static DiscoveryNode of(Function<Builder, ObjectBuilder<DiscoveryNode>> fn) {
+	public static DiscoveryNodeCompact of(Function<Builder, ObjectBuilder<DiscoveryNodeCompact>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code attributes}
+	 * Required - API name: {@code name}
 	 */
-	public final Map<String, String> attributes() {
-		return this.attributes;
+	public final String name() {
+		return this.name;
 	}
 
 	/**
@@ -108,17 +110,17 @@ public class DiscoveryNode implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
 	 * Required - API name: {@code transport_address}
 	 */
 	public final String transportAddress() {
 		return this.transportAddress;
+	}
+
+	/**
+	 * Required - API name: {@code attributes}
+	 */
+	public final Map<String, String> attributes() {
+		return this.attributes;
 	}
 
 	/**
@@ -132,6 +134,18 @@ public class DiscoveryNode implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey("ephemeral_id");
+		generator.write(this.ephemeralId);
+
+		generator.writeKey("id");
+		generator.write(this.id);
+
+		generator.writeKey("transport_address");
+		generator.write(this.transportAddress);
+
 		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
@@ -143,17 +157,6 @@ public class DiscoveryNode implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("ephemeral_id");
-		generator.write(this.ephemeralId);
-
-		generator.writeKey("id");
-		generator.write(this.id);
-
-		generator.writeKey("name");
-		generator.write(this.name);
-
-		generator.writeKey("transport_address");
-		generator.write(this.transportAddress);
 
 	}
 
@@ -165,19 +168,53 @@ public class DiscoveryNode implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DiscoveryNode}.
+	 * Builder for {@link DiscoveryNodeCompact}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DiscoveryNode> {
-		private Map<String, String> attributes;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DiscoveryNodeCompact> {
+		private String name;
 
 		private String ephemeralId;
 
 		private String id;
 
-		private String name;
-
 		private String transportAddress;
+
+		private Map<String, String> attributes;
+
+		/**
+		 * Required - API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code ephemeral_id}
+		 */
+		public final Builder ephemeralId(String value) {
+			this.ephemeralId = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code id}
+		 */
+		public final Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code transport_address}
+		 */
+		public final Builder transportAddress(String value) {
+			this.transportAddress = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code attributes}
@@ -199,72 +236,40 @@ public class DiscoveryNode implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code ephemeral_id}
-		 */
-		public final Builder ephemeralId(String value) {
-			this.ephemeralId = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code transport_address}
-		 */
-		public final Builder transportAddress(String value) {
-			this.transportAddress = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link DiscoveryNode}.
+		 * Builds a {@link DiscoveryNodeCompact}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DiscoveryNode build() {
+		public DiscoveryNodeCompact build() {
 			_checkSingleUse();
 
-			return new DiscoveryNode(this);
+			return new DiscoveryNodeCompact(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DiscoveryNode}
+	 * Json deserializer for {@link DiscoveryNodeCompact}
 	 */
-	public static final JsonpDeserializer<DiscoveryNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DiscoveryNode::setupDiscoveryNodeDeserializer);
+	public static final JsonpDeserializer<DiscoveryNodeCompact> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DiscoveryNodeCompact::setupDiscoveryNodeCompactDeserializer);
 
-	protected static void setupDiscoveryNodeDeserializer(ObjectDeserializer<DiscoveryNode.Builder> op) {
+	protected static void setupDiscoveryNodeCompactDeserializer(ObjectDeserializer<DiscoveryNodeCompact.Builder> op) {
 
-		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
-				"attributes");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::ephemeralId, JsonpDeserializer.stringDeserializer(), "ephemeral_id");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
 
 	}
 
