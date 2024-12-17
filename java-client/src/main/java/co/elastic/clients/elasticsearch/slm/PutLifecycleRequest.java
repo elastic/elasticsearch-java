@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: slm.put_lifecycle.Request
 
 /**
- * Creates or updates a snapshot lifecycle policy.
+ * Create or update a policy. Create or update a snapshot lifecycle policy. If
+ * the policy already exists, this request increments the policy version. Only
+ * the latest version of a policy is stored.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.put_lifecycle.Request">API
  *      specification</a>
@@ -141,7 +143,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - ID for the snapshot lifecycle policy you want to create or update.
+	 * Required - The identifier for the snapshot lifecycle policy you want to
+	 * create or update.
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
@@ -317,7 +320,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Required - ID for the snapshot lifecycle policy you want to create or update.
+		 * Required - The identifier for the snapshot lifecycle policy you want to
+		 * create or update.
 		 * <p>
 		 * API name: {@code policy_id}
 		 */

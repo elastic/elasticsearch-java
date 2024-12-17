@@ -50,7 +50,7 @@ import java.util.Objects;
 // typedef: slm.get_status.Request
 
 /**
- * Retrieves the status of snapshot lifecycle management (SLM).
+ * Get the snapshot lifecycle management status.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.get_status.Request">API
  *      specification</a>

@@ -76,6 +76,8 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 	public enum Kind implements JsonEnum {
 		Bert("bert"),
 
+		BertJa("bert_ja"),
+
 		Mpnet("mpnet"),
 
 		Roberta("roberta"),
@@ -140,6 +142,23 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 	 */
 	public NlpBertTokenizationConfig bert() {
 		return TaggedUnionUtils.get(this, Kind.Bert);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bert_ja}?
+	 */
+	public boolean isBertJa() {
+		return _kind == Kind.BertJa;
+	}
+
+	/**
+	 * Get the {@code bert_ja} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bert_ja} kind.
+	 */
+	public NlpBertTokenizationConfig bertJa() {
+		return TaggedUnionUtils.get(this, Kind.BertJa);
 	}
 
 	/**
@@ -217,6 +236,17 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 			return this.bert(fn.apply(new NlpBertTokenizationConfig.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenizationConfig> bertJa(NlpBertTokenizationConfig v) {
+			this._kind = Kind.BertJa;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenizationConfig> bertJa(
+				Function<NlpBertTokenizationConfig.Builder, ObjectBuilder<NlpBertTokenizationConfig>> fn) {
+			return this.bertJa(fn.apply(new NlpBertTokenizationConfig.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenizationConfig> mpnet(NlpBertTokenizationConfig v) {
 			this._kind = Kind.Mpnet;
 			this._value = v;
@@ -249,6 +279,7 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 	protected static void setupTokenizationConfigDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::bert, NlpBertTokenizationConfig._DESERIALIZER, "bert");
+		op.add(Builder::bertJa, NlpBertTokenizationConfig._DESERIALIZER, "bert_ja");
 		op.add(Builder::mpnet, NlpBertTokenizationConfig._DESERIALIZER, "mpnet");
 		op.add(Builder::roberta, NlpRobertaTokenizationConfig._DESERIALIZER, "roberta");
 

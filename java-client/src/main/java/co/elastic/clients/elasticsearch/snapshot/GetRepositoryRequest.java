@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: snapshot.get_repository.Request
 
 /**
- * Returns information about a repository.
+ * Get snapshot repository information.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.get_repository.Request">API
  *      specification</a>

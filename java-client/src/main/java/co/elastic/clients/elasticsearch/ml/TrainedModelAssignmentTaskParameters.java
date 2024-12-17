@@ -61,17 +61,22 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
-	private final int modelBytes;
+	private final String modelBytes;
 
 	private final String modelId;
 
 	private final String deploymentId;
 
+	@Nullable
 	private final String cacheSize;
 
 	private final int numberOfAllocations;
 
 	private final TrainingPriority priority;
+
+	private final String perDeploymentMemoryBytes;
+
+	private final String perAllocationMemoryBytes;
 
 	private final int queueCapacity;
 
@@ -84,10 +89,14 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		this.modelBytes = ApiTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
-		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
+		this.cacheSize = builder.cacheSize;
 		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
 				"numberOfAllocations");
 		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
+		this.perDeploymentMemoryBytes = ApiTypeHelper.requireNonNull(builder.perDeploymentMemoryBytes, this,
+				"perDeploymentMemoryBytes");
+		this.perAllocationMemoryBytes = ApiTypeHelper.requireNonNull(builder.perAllocationMemoryBytes, this,
+				"perAllocationMemoryBytes");
 		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity");
 		this.threadsPerAllocation = ApiTypeHelper.requireNonNull(builder.threadsPerAllocation, this,
 				"threadsPerAllocation");
@@ -104,7 +113,7 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code model_bytes}
 	 */
-	public final int modelBytes() {
+	public final String modelBytes() {
 		return this.modelBytes;
 	}
 
@@ -127,10 +136,11 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The size of the trained model cache.
+	 * The size of the trained model cache.
 	 * <p>
 	 * API name: {@code cache_size}
 	 */
+	@Nullable
 	public final String cacheSize() {
 		return this.cacheSize;
 	}
@@ -150,6 +160,20 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	 */
 	public final TrainingPriority priority() {
 		return this.priority;
+	}
+
+	/**
+	 * Required - API name: {@code per_deployment_memory_bytes}
+	 */
+	public final String perDeploymentMemoryBytes() {
+		return this.perDeploymentMemoryBytes;
+	}
+
+	/**
+	 * Required - API name: {@code per_allocation_memory_bytes}
+	 */
+	public final String perAllocationMemoryBytes() {
+		return this.perAllocationMemoryBytes;
 	}
 
 	/**
@@ -190,14 +214,22 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		generator.writeKey("deployment_id");
 		generator.write(this.deploymentId);
 
-		generator.writeKey("cache_size");
-		generator.write(this.cacheSize);
+		if (this.cacheSize != null) {
+			generator.writeKey("cache_size");
+			generator.write(this.cacheSize);
 
+		}
 		generator.writeKey("number_of_allocations");
 		generator.write(this.numberOfAllocations);
 
 		generator.writeKey("priority");
 		this.priority.serialize(generator, mapper);
+		generator.writeKey("per_deployment_memory_bytes");
+		generator.write(this.perDeploymentMemoryBytes);
+
+		generator.writeKey("per_allocation_memory_bytes");
+		generator.write(this.perAllocationMemoryBytes);
+
 		generator.writeKey("queue_capacity");
 		generator.write(this.queueCapacity);
 
@@ -220,17 +252,22 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelAssignmentTaskParameters> {
-		private Integer modelBytes;
+		private String modelBytes;
 
 		private String modelId;
 
 		private String deploymentId;
 
+		@Nullable
 		private String cacheSize;
 
 		private Integer numberOfAllocations;
 
 		private TrainingPriority priority;
+
+		private String perDeploymentMemoryBytes;
+
+		private String perAllocationMemoryBytes;
 
 		private Integer queueCapacity;
 
@@ -241,7 +278,7 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_bytes}
 		 */
-		public final Builder modelBytes(int value) {
+		public final Builder modelBytes(String value) {
 			this.modelBytes = value;
 			return this;
 		}
@@ -267,11 +304,11 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The size of the trained model cache.
+		 * The size of the trained model cache.
 		 * <p>
 		 * API name: {@code cache_size}
 		 */
-		public final Builder cacheSize(String value) {
+		public final Builder cacheSize(@Nullable String value) {
 			this.cacheSize = value;
 			return this;
 		}
@@ -292,6 +329,22 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		 */
 		public final Builder priority(TrainingPriority value) {
 			this.priority = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code per_deployment_memory_bytes}
+		 */
+		public final Builder perDeploymentMemoryBytes(String value) {
+			this.perDeploymentMemoryBytes = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code per_allocation_memory_bytes}
+		 */
+		public final Builder perAllocationMemoryBytes(String value) {
+			this.perAllocationMemoryBytes = value;
 			return this;
 		}
 
@@ -345,12 +398,16 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 	protected static void setupTrainedModelAssignmentTaskParametersDeserializer(
 			ObjectDeserializer<TrainedModelAssignmentTaskParameters.Builder> op) {
 
-		op.add(Builder::modelBytes, JsonpDeserializer.integerDeserializer(), "model_bytes");
+		op.add(Builder::modelBytes, JsonpDeserializer.stringDeserializer(), "model_bytes");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::deploymentId, JsonpDeserializer.stringDeserializer(), "deployment_id");
 		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::priority, TrainingPriority._DESERIALIZER, "priority");
+		op.add(Builder::perDeploymentMemoryBytes, JsonpDeserializer.stringDeserializer(),
+				"per_deployment_memory_bytes");
+		op.add(Builder::perAllocationMemoryBytes, JsonpDeserializer.stringDeserializer(),
+				"per_allocation_memory_bytes");
 		op.add(Builder::queueCapacity, JsonpDeserializer.integerDeserializer(), "queue_capacity");
 		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 

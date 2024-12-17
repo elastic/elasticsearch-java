@@ -50,9 +50,9 @@ import java.util.Objects;
 // typedef: cluster.remote_info.Request
 
 /**
- * The cluster remote info API allows you to retrieve all of the configured
- * remote cluster information. It returns connection and endpoint information
- * keyed by the configured remote cluster alias.
+ * Get remote cluster information. Get all of the configured remote cluster
+ * information. This API returns connection and endpoint information keyed by
+ * the configured remote cluster alias.
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.remote_info.Request">API
  *      specification</a>

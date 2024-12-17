@@ -55,14 +55,18 @@ import javax.annotation.Nullable;
 // typedef: license.post_start_basic.Request
 
 /**
- * The start basic API enables you to initiate an indefinite basic license,
- * which gives access to all the basic features. If the basic license does not
- * support all of the features that are available with your current license,
- * however, you are notified in the response. You must then re-submit the API
- * request with the acknowledge parameter set to true. To check the status of
- * your basic license, use the following API: <a href=
- * "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-basic-status.html">Get
- * basic status</a>.
+ * Start a basic license. Start an indefinite basic license, which gives access
+ * to all the basic features.
+ * <p>
+ * NOTE: In order to start a basic license, you must not currently have a basic
+ * license.
+ * <p>
+ * If the basic license does not support all of the features that are available
+ * with your current license, however, you are notified in the response. You
+ * must then re-submit the API request with the <code>acknowledge</code>
+ * parameter set to <code>true</code>.
+ * <p>
+ * To check the status of your basic license, use the get basic license API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#license.post_start_basic.Request">API

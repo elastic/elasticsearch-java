@@ -60,9 +60,21 @@ import javax.annotation.Nullable;
 // typedef: indices.shard_stores.Request
 
 /**
- * Retrieves store information about replica shards in one or more indices. For
- * data streams, the API retrieves store information for the stream’s backing
- * indices.
+ * Get index shard stores. Get store information about replica shards in one or
+ * more indices. For data streams, the API retrieves store information for the
+ * stream's backing indices.
+ * <p>
+ * The index shard stores API returns the following information:
+ * <ul>
+ * <li>The node on which each replica shard exists.</li>
+ * <li>The allocation ID for each replica shard.</li>
+ * <li>A unique ID for each replica shard.</li>
+ * <li>Any errors encountered while opening the shard index or from an earlier
+ * failure.</li>
+ * </ul>
+ * <p>
+ * By default, the API returns store information only for primary shards that
+ * are unassigned or have one or more unassigned replica shards.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.shard_stores.Request">API
  *      specification</a>

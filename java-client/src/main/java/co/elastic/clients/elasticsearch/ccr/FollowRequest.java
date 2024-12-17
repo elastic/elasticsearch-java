@@ -62,8 +62,10 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow.Request
 
 /**
- * Creates a new follower index configured to follow the referenced leader
- * index.
+ * Create a follower. Create a cross-cluster replication follower index that
+ * follows a specific leader index. When the API returns, the follower index
+ * exists and cross-cluster replication starts replicating operations from the
+ * leader index to the follower index.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.follow.Request">API
  *      specification</a>

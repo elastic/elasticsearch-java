@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow_stats.Request
 
 /**
- * Retrieves follower stats. return shard-level stats about the following tasks
- * associated with each shard for the specified indices.
+ * Get follower stats. Get cross-cluster replication follower stats. The API
+ * returns shard-level stats about the &quot;following tasks&quot; associated
+ * with each shard for the specified indices.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.follow_stats.Request">API
  *      specification</a>

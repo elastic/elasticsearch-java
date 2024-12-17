@@ -64,6 +64,25 @@ public class TokenizationConfigBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link NlpBertTokenizationConfig bert_ja}
+	 * {@code TokenizationConfig} variant.
+	 */
+	public static NlpBertTokenizationConfig.Builder bertJa() {
+		return new NlpBertTokenizationConfig.Builder();
+	}
+
+	/**
+	 * Creates a TokenizationConfig of the {@link NlpBertTokenizationConfig bert_ja}
+	 * {@code TokenizationConfig} variant.
+	 */
+	public static TokenizationConfig bertJa(
+			Function<NlpBertTokenizationConfig.Builder, ObjectBuilder<NlpBertTokenizationConfig>> fn) {
+		TokenizationConfig.Builder builder = new TokenizationConfig.Builder();
+		builder.bertJa(fn.apply(new NlpBertTokenizationConfig.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link NlpBertTokenizationConfig mpnet}
 	 * {@code TokenizationConfig} variant.
 	 */

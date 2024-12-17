@@ -59,7 +59,28 @@ import javax.annotation.Nullable;
 // typedef: indices.reload_search_analyzers.Request
 
 /**
- * Reloads an index's search analyzers and their resources.
+ * Reload search analyzers. Reload an index's search analyzers and their
+ * resources. For data streams, the API reloads search analyzers and resources
+ * for the stream's backing indices.
+ * <p>
+ * IMPORTANT: After reloading the search analyzers you should clear the request
+ * cache to make sure it doesn't contain responses derived from the previous
+ * versions of the analyzer.
+ * <p>
+ * You can use the reload search analyzers API to pick up changes to synonym
+ * files used in the <code>synonym_graph</code> or <code>synonym</code> token
+ * filter of a search analyzer. To be eligible, the token filter must have an
+ * <code>updateable</code> flag of <code>true</code> and only be used in search
+ * analyzers.
+ * <p>
+ * NOTE: This API does not perform a reload for each shard of an index. Instead,
+ * it performs a reload for each node containing index shards. As a result, the
+ * total shard count returned by the API can differ from the number of index
+ * shards. Because reloading affects every node with an index shard, it is
+ * important to update the synonym file on every data node in the
+ * cluster--including nodes that don't contain a shard replica--before using
+ * this API. This ensures the synonym file is updated everywhere in the cluster
+ * in case shards are relocated in the future.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.reload_search_analyzers.Request">API

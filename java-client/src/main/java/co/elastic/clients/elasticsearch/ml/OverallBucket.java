@@ -76,6 +76,7 @@ public class OverallBucket implements JsonpSerializable {
 
 	private final long timestamp;
 
+	@Nullable
 	private final DateTime timestampString;
 
 	// ---------------------------------------------------------------------------------------------
@@ -88,7 +89,7 @@ public class OverallBucket implements JsonpSerializable {
 		this.overallScore = ApiTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.timestampString = ApiTypeHelper.requireNonNull(builder.timestampString, this, "timestampString");
+		this.timestampString = builder.timestampString;
 
 	}
 
@@ -154,11 +155,11 @@ public class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The start time of the bucket for which these results were
-	 * calculated.
+	 * The start time of the bucket for which these results were calculated.
 	 * <p>
 	 * API name: {@code timestamp_string}
 	 */
+	@Nullable
 	public final DateTime timestampString() {
 		return this.timestampString;
 	}
@@ -199,8 +200,10 @@ public class OverallBucket implements JsonpSerializable {
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
-		generator.writeKey("timestamp_string");
-		this.timestampString.serialize(generator, mapper);
+		if (this.timestampString != null) {
+			generator.writeKey("timestamp_string");
+			this.timestampString.serialize(generator, mapper);
+		}
 
 	}
 
@@ -228,6 +231,7 @@ public class OverallBucket implements JsonpSerializable {
 
 		private Long timestamp;
 
+		@Nullable
 		private DateTime timestampString;
 
 		/**
@@ -319,12 +323,11 @@ public class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The start time of the bucket for which these results were
-		 * calculated.
+		 * The start time of the bucket for which these results were calculated.
 		 * <p>
 		 * API name: {@code timestamp_string}
 		 */
-		public final Builder timestampString(DateTime value) {
+		public final Builder timestampString(@Nullable DateTime value) {
 			this.timestampString = value;
 			return this;
 		}

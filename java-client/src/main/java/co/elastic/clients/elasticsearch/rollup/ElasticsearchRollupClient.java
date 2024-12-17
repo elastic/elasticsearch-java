@@ -70,8 +70,36 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.delete_job
 
 	/**
-	 * Deletes an existing rollup job.
+	 * Delete a rollup job.
+	 * <p>
+	 * A job must be stopped before it can be deleted. If you attempt to delete a
+	 * started job, an error occurs. Similarly, if you attempt to delete a
+	 * nonexistent job, an exception occurs.
+	 * <p>
+	 * IMPORTANT: When you delete a job, you remove only the process that is
+	 * actively monitoring and rolling up data. The API does not delete any
+	 * previously rolled up data. This is by design; a user may wish to roll up a
+	 * static data set. Because the data set is static, after it has been fully
+	 * rolled up there is no need to keep the indexing rollup job around (as there
+	 * will be no new data). Thus the job can be deleted, leaving behind the rolled
+	 * up data for analysis. If you wish to also remove the rollup data and the
+	 * rollup index contains the data for only a single job, you can delete the
+	 * whole rollup index. If the rollup index stores data from several jobs, you
+	 * must issue a delete-by-query that targets the rollup job's identifier in the
+	 * rollup index. For example:
 	 * 
+	 * <pre>
+	 * <code>POST my_rollup_index/_delete_by_query
+	 * {
+	 *   &quot;query&quot;: {
+	 *     &quot;term&quot;: {
+	 *       &quot;_rollup.id&quot;: &quot;the_rollup_job_id&quot;
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
 	 *      on elastic.co</a>
@@ -85,8 +113,36 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Deletes an existing rollup job.
+	 * Delete a rollup job.
+	 * <p>
+	 * A job must be stopped before it can be deleted. If you attempt to delete a
+	 * started job, an error occurs. Similarly, if you attempt to delete a
+	 * nonexistent job, an exception occurs.
+	 * <p>
+	 * IMPORTANT: When you delete a job, you remove only the process that is
+	 * actively monitoring and rolling up data. The API does not delete any
+	 * previously rolled up data. This is by design; a user may wish to roll up a
+	 * static data set. Because the data set is static, after it has been fully
+	 * rolled up there is no need to keep the indexing rollup job around (as there
+	 * will be no new data). Thus the job can be deleted, leaving behind the rolled
+	 * up data for analysis. If you wish to also remove the rollup data and the
+	 * rollup index contains the data for only a single job, you can delete the
+	 * whole rollup index. If the rollup index stores data from several jobs, you
+	 * must issue a delete-by-query that targets the rollup job's identifier in the
+	 * rollup index. For example:
 	 * 
+	 * <pre>
+	 * <code>POST my_rollup_index/_delete_by_query
+	 * {
+	 *   &quot;query&quot;: {
+	 *     &quot;term&quot;: {
+	 *       &quot;_rollup.id&quot;: &quot;the_rollup_job_id&quot;
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteJobRequest}
@@ -103,7 +159,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.get_jobs
 
 	/**
-	 * Retrieves the configuration, stats, and status of rollup jobs.
+	 * Get rollup job information. Get the configuration, stats, and status of
+	 * rollup jobs.
+	 * <p>
+	 * NOTE: This API returns only active (both <code>STARTED</code> and
+	 * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
+	 * deleted, the API does not return any details about it. For details about a
+	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
@@ -118,7 +180,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Retrieves the configuration, stats, and status of rollup jobs.
+	 * Get rollup job information. Get the configuration, stats, and status of
+	 * rollup jobs.
+	 * <p>
+	 * NOTE: This API returns only active (both <code>STARTED</code> and
+	 * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
+	 * deleted, the API does not return any details about it. For details about a
+	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -134,7 +202,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Retrieves the configuration, stats, and status of rollup jobs.
+	 * Get rollup job information. Get the configuration, stats, and status of
+	 * rollup jobs.
+	 * <p>
+	 * NOTE: This API returns only active (both <code>STARTED</code> and
+	 * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
+	 * deleted, the API does not return any details about it. For details about a
+	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
@@ -149,9 +223,21 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.get_rollup_caps
 
 	/**
-	 * Returns the capabilities of any rollup jobs that have been configured for a
-	 * specific index or index pattern.
-	 * 
+	 * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
+	 * have been configured for a specific index or index pattern.
+	 * <p>
+	 * This API is useful because a rollup job is often configured to rollup only a
+	 * subset of fields from the source index. Furthermore, only certain
+	 * aggregations can be configured for various fields, leading to a limited
+	 * subset of functionality depending on that configuration. This API enables you
+	 * to inspect an index and determine:
+	 * <ol>
+	 * <li>Does this index have associated rollup data somewhere in the
+	 * cluster?</li>
+	 * <li>If yes to the first question, what fields were rolled up, what
+	 * aggregations can be performed, and where does the data live?</li>
+	 * </ol>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
 	 *      on elastic.co</a>
@@ -166,9 +252,21 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Returns the capabilities of any rollup jobs that have been configured for a
-	 * specific index or index pattern.
-	 * 
+	 * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
+	 * have been configured for a specific index or index pattern.
+	 * <p>
+	 * This API is useful because a rollup job is often configured to rollup only a
+	 * subset of fields from the source index. Furthermore, only certain
+	 * aggregations can be configured for various fields, leading to a limited
+	 * subset of functionality depending on that configuration. This API enables you
+	 * to inspect an index and determine:
+	 * <ol>
+	 * <li>Does this index have associated rollup data somewhere in the
+	 * cluster?</li>
+	 * <li>If yes to the first question, what fields were rolled up, what
+	 * aggregations can be performed, and where does the data live?</li>
+	 * </ol>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRollupCapsRequest}
@@ -184,9 +282,21 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Returns the capabilities of any rollup jobs that have been configured for a
-	 * specific index or index pattern.
-	 * 
+	 * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
+	 * have been configured for a specific index or index pattern.
+	 * <p>
+	 * This API is useful because a rollup job is often configured to rollup only a
+	 * subset of fields from the source index. Furthermore, only certain
+	 * aggregations can be configured for various fields, leading to a limited
+	 * subset of functionality depending on that configuration. This API enables you
+	 * to inspect an index and determine:
+	 * <ol>
+	 * <li>Does this index have associated rollup data somewhere in the
+	 * cluster?</li>
+	 * <li>If yes to the first question, what fields were rolled up, what
+	 * aggregations can be performed, and where does the data live?</li>
+	 * </ol>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
 	 *      on elastic.co</a>
@@ -200,9 +310,17 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.get_rollup_index_caps
 
 	/**
-	 * Returns the rollup capabilities of all jobs inside of a rollup index (for
-	 * example, the index where rollup data is stored).
-	 * 
+	 * Get the rollup index capabilities. Get the rollup capabilities of all jobs
+	 * inside of a rollup index. A single rollup index may store the data for
+	 * multiple rollup jobs and may have a variety of capabilities depending on
+	 * those jobs. This API enables you to determine:
+	 * <ul>
+	 * <li>What jobs are stored in an index (or indices specified via a
+	 * pattern)?</li>
+	 * <li>What target indices were rolled up, what fields were used in those
+	 * rollups, and what aggregations can be performed on each job?</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
 	 *      on elastic.co</a>
@@ -217,9 +335,17 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Returns the rollup capabilities of all jobs inside of a rollup index (for
-	 * example, the index where rollup data is stored).
-	 * 
+	 * Get the rollup index capabilities. Get the rollup capabilities of all jobs
+	 * inside of a rollup index. A single rollup index may store the data for
+	 * multiple rollup jobs and may have a variety of capabilities depending on
+	 * those jobs. This API enables you to determine:
+	 * <ul>
+	 * <li>What jobs are stored in an index (or indices specified via a
+	 * pattern)?</li>
+	 * <li>What target indices were rolled up, what fields were used in those
+	 * rollups, and what aggregations can be performed on each job?</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRollupIndexCapsRequest}
@@ -237,7 +363,23 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.put_job
 
 	/**
-	 * Creates a rollup job.
+	 * Create a rollup job.
+	 * <p>
+	 * WARNING: From 8.15.0, calling this API in a cluster with no rollup usage will
+	 * fail with a message about the deprecation and planned removal of rollup
+	 * features. A cluster needs to contain either a rollup job or a rollup index in
+	 * order for this API to be allowed to run.
+	 * <p>
+	 * The rollup job configuration contains all the details about how the job
+	 * should run, when it indexes documents, and what future queries will be able
+	 * to run against the rollup index.
+	 * <p>
+	 * There are three main sections to the job configuration: the logistical
+	 * details about the job (for example, the cron schedule), the fields that are
+	 * used for grouping, and what metrics to collect for each group.
+	 * <p>
+	 * Jobs are created in a <code>STOPPED</code> state. You can start them with the
+	 * start rollup jobs API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
@@ -252,7 +394,23 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Creates a rollup job.
+	 * Create a rollup job.
+	 * <p>
+	 * WARNING: From 8.15.0, calling this API in a cluster with no rollup usage will
+	 * fail with a message about the deprecation and planned removal of rollup
+	 * features. A cluster needs to contain either a rollup job or a rollup index in
+	 * order for this API to be allowed to run.
+	 * <p>
+	 * The rollup job configuration contains all the details about how the job
+	 * should run, when it indexes documents, and what future queries will be able
+	 * to run against the rollup index.
+	 * <p>
+	 * There are three main sections to the job configuration: the logistical
+	 * details about the job (for example, the cron schedule), the fields that are
+	 * used for grouping, and what metrics to collect for each group.
+	 * <p>
+	 * Jobs are created in a <code>STOPPED</code> state. You can start them with the
+	 * start rollup jobs API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -270,7 +428,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.rollup_search
 
 	/**
-	 * Enables searching rolled-up data using the standard Query DSL.
+	 * Search rolled-up data. The rollup search endpoint is needed because,
+	 * internally, rolled-up documents utilize a different document structure than
+	 * the original data. It rewrites standard Query DSL into a format that matches
+	 * the rollup documents then takes the response and rewrites it back to what a
+	 * client would expect given the original query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
@@ -289,7 +451,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Enables searching rolled-up data using the standard Query DSL.
+	 * Search rolled-up data. The rollup search endpoint is needed because,
+	 * internally, rolled-up documents utilize a different document structure than
+	 * the original data. It rewrites standard Query DSL into a format that matches
+	 * the rollup documents then takes the response and rewrites it back to what a
+	 * client would expect given the original query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -306,7 +472,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Enables searching rolled-up data using the standard Query DSL.
+	 * Search rolled-up data. The rollup search endpoint is needed because,
+	 * internally, rolled-up documents utilize a different document structure than
+	 * the original data. It rewrites standard Query DSL into a format that matches
+	 * the rollup documents then takes the response and rewrites it back to what a
+	 * client would expect given the original query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
@@ -325,7 +495,11 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Enables searching rolled-up data using the standard Query DSL.
+	 * Search rolled-up data. The rollup search endpoint is needed because,
+	 * internally, rolled-up documents utilize a different document structure than
+	 * the original data. It rewrites standard Query DSL into a format that matches
+	 * the rollup documents then takes the response and rewrites it back to what a
+	 * client would expect given the original query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -344,7 +518,9 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.start_job
 
 	/**
-	 * Starts an existing, stopped rollup job.
+	 * Start rollup jobs. If you try to start a job that does not exist, an
+	 * exception occurs. If you try to start a job that is already started, nothing
+	 * happens.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
@@ -359,7 +535,9 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Starts an existing, stopped rollup job.
+	 * Start rollup jobs. If you try to start a job that does not exist, an
+	 * exception occurs. If you try to start a job that is already started, nothing
+	 * happens.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -377,7 +555,8 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.stop_job
 
 	/**
-	 * Stops an existing, started rollup job.
+	 * Stop rollup jobs. If you try to stop a job that does not exist, an exception
+	 * occurs. If you try to stop a job that is already stopped, nothing happens.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
@@ -392,7 +571,8 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Stops an existing, started rollup job.
+	 * Stop rollup jobs. If you try to stop a job that does not exist, an exception
+	 * occurs. If you try to stop a job that is already stopped, nothing happens.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

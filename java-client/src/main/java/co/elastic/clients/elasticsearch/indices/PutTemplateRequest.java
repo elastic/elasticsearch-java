@@ -65,6 +65,21 @@ import javax.annotation.Nullable;
 /**
  * Create or update an index template. Index templates define settings,
  * mappings, and aliases that can be applied automatically to new indices.
+ * Elasticsearch applies templates to new indices based on an index pattern that
+ * matches the index name.
+ * <p>
+ * IMPORTANT: This documentation is about legacy index templates, which are
+ * deprecated and will be replaced by the composable templates introduced in
+ * Elasticsearch 7.8.
+ * <p>
+ * Composable templates always take precedence over legacy templates. If no
+ * composable template matches a new index, matching legacy templates are
+ * applied according to their order.
+ * <p>
+ * Index templates are only applied during index creation. Changes to index
+ * templates do not affect existing indices. Settings and mappings specified in
+ * create index API requests override any settings or mappings specified in an
+ * index template.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_template.Request">API
  *      specification</a>

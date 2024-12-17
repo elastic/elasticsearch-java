@@ -50,7 +50,7 @@ import java.util.Objects;
 // typedef: license.get_trial_status.Request
 
 /**
- * Retrieves information about the status of the trial license.
+ * Get the trial status.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#license.get_trial_status.Request">API

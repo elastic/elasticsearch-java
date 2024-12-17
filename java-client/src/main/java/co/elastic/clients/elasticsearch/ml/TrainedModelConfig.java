@@ -112,6 +112,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 	private final String modelSizeBytes;
 
 	@Nullable
+	private final ModelPackageConfig modelPackage;
+
+	@Nullable
 	private final TrainedModelLocation location;
 
 	@Nullable
@@ -138,6 +141,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
 		this.modelSizeBytes = builder.modelSizeBytes;
+		this.modelPackage = builder.modelPackage;
 		this.location = builder.location;
 		this.prefixStrings = builder.prefixStrings;
 
@@ -315,6 +319,14 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code model_package}
+	 */
+	@Nullable
+	public final ModelPackageConfig modelPackage() {
+		return this.modelPackage;
+	}
+
+	/**
 	 * API name: {@code location}
 	 */
 	@Nullable
@@ -431,6 +443,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 			generator.write(this.modelSizeBytes);
 
 		}
+		if (this.modelPackage != null) {
+			generator.writeKey("model_package");
+			this.modelPackage.serialize(generator, mapper);
+
+		}
 		if (this.location != null) {
 			generator.writeKey("location");
 			this.location.serialize(generator, mapper);
@@ -526,6 +543,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 		@Nullable
 		private String modelSizeBytes;
+
+		@Nullable
+		private ModelPackageConfig modelPackage;
 
 		@Nullable
 		private TrainedModelLocation location;
@@ -768,6 +788,21 @@ public class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code model_package}
+		 */
+		public final BuilderT modelPackage(@Nullable ModelPackageConfig value) {
+			this.modelPackage = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code model_package}
+		 */
+		public final BuilderT modelPackage(Function<ModelPackageConfig.Builder, ObjectBuilder<ModelPackageConfig>> fn) {
+			return this.modelPackage(fn.apply(new ModelPackageConfig.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code location}
 		 */
 		public final BuilderT location(@Nullable TrainedModelLocation value) {
@@ -833,6 +868,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
 		op.add(AbstractBuilder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
 		op.add(AbstractBuilder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
+		op.add(AbstractBuilder::modelPackage, ModelPackageConfig._DESERIALIZER, "model_package");
 		op.add(AbstractBuilder::location, TrainedModelLocation._DESERIALIZER, "location");
 		op.add(AbstractBuilder::prefixStrings, TrainedModelPrefixStrings._DESERIALIZER, "prefix_strings");
 

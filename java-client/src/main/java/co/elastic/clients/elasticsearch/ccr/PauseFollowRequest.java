@@ -56,8 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ccr.pause_follow.Request
 
 /**
- * Pauses a follower index. The follower index will not fetch any additional
- * operations from the leader index.
+ * Pause a follower. Pause a cross-cluster replication follower index. The
+ * follower index will not fetch any additional operations from the leader
+ * index. You can resume following with the resume follower API. You can pause
+ * and resume a follower index to change the configuration of the following
+ * task.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.pause_follow.Request">API
  *      specification</a>

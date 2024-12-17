@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.stats.Request
 
 /**
- * Retrieve shard-level statistics about searchable snapshots.
+ * Get searchable snapshot statistics.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.stats.Request">API

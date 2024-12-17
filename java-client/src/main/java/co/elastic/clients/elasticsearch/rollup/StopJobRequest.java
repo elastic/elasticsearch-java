@@ -57,7 +57,8 @@ import javax.annotation.Nullable;
 // typedef: rollup.stop_job.Request
 
 /**
- * Stops an existing, started rollup job.
+ * Stop rollup jobs. If you try to stop a job that does not exist, an exception
+ * occurs. If you try to stop a job that is already stopped, nothing happens.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.stop_job.Request">API
  *      specification</a>

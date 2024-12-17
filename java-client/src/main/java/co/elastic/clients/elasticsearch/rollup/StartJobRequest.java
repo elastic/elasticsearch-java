@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: rollup.start_job.Request
 
 /**
- * Starts an existing, stopped rollup job.
+ * Start rollup jobs. If you try to start a job that does not exist, an
+ * exception occurs. If you try to start a job that is already started, nothing
+ * happens.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.start_job.Request">API
  *      specification</a>

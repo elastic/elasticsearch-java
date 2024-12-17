@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
 // typedef: ccr.get_auto_follow_pattern.Request
 
 /**
- * Gets configured auto-follow patterns. Returns the specified auto-follow
- * pattern collection.
+ * Get auto-follow patterns. Get cross-cluster replication auto-follow patterns.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.get_auto_follow_pattern.Request">API

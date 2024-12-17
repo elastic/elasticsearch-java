@@ -61,9 +61,9 @@ import javax.annotation.Nullable;
 // typedef: nodes.hot_threads.Request
 
 /**
- * This API yields a breakdown of the hot threads on each selected node in the
- * cluster. The output is plain text with a breakdown of each node’s top hot
- * threads.
+ * Get the hot threads for nodes. Get a breakdown of the hot threads on each
+ * selected node in the cluster. The output is plain text with a breakdown of
+ * the top hot threads for each node.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.hot_threads.Request">API
  *      specification</a>

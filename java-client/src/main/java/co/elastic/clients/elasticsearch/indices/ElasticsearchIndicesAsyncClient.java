@@ -158,8 +158,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.clear_cache
 
 	/**
-	 * Clears the caches of one or more indices. For data streams, the API clears
-	 * the caches of the stream’s backing indices.
+	 * Clear the cache. Clear the cache of one or more indices. For data streams,
+	 * the API clears the caches of the stream's backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
@@ -174,8 +174,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Clears the caches of one or more indices. For data streams, the API clears
-	 * the caches of the stream’s backing indices.
+	 * Clear the cache. Clear the cache of one or more indices. For data streams,
+	 * the API clears the caches of the stream's backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -191,8 +191,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Clears the caches of one or more indices. For data streams, the API clears
-	 * the caches of the stream’s backing indices.
+	 * Clear the cache. Clear the cache of one or more indices. For data streams,
+	 * the API clears the caches of the stream's backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
@@ -207,8 +207,42 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.clone
 
 	/**
-	 * Clones an existing index.
-	 * 
+	 * Clone an index. Clone an existing index into a new index. Each original
+	 * primary shard is cloned into a new primary shard in the new index.
+	 * <p>
+	 * IMPORTANT: Elasticsearch does not apply index templates to the resulting
+	 * index. The API also does not copy index metadata from the original index.
+	 * Index metadata includes aliases, index lifecycle management phase
+	 * definitions, and cross-cluster replication (CCR) follower information. For
+	 * example, if you clone a CCR follower index, the resulting clone will not be a
+	 * follower index.
+	 * <p>
+	 * The clone API copies most index settings from the source index to the
+	 * resulting index, with the exception of <code>index.number_of_replicas</code>
+	 * and <code>index.auto_expand_replicas</code>. To set the number of replicas in
+	 * the resulting index, configure these settings in the clone request.
+	 * <p>
+	 * Cloning works as follows:
+	 * <ul>
+	 * <li>First, it creates a new target index with the same definition as the
+	 * source index.</li>
+	 * <li>Then it hard-links segments from the source index into the target index.
+	 * If the file system does not support hard-linking, all segments are copied
+	 * into the new index, which is a much more time consuming process.</li>
+	 * <li>Finally, it recovers the target index as though it were a closed index
+	 * which had just been re-opened.</li>
+	 * </ul>
+	 * <p>
+	 * IMPORTANT: Indices can only be cloned if they meet the following
+	 * requirements:
+	 * <ul>
+	 * <li>The target index must not exist.</li>
+	 * <li>The source index must have the same number of primary shards as the
+	 * target index.</li>
+	 * <li>The node handling the clone process must have sufficient free disk space
+	 * to accommodate a second copy of the existing index.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
 	 *      on elastic.co</a>
@@ -222,8 +256,42 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Clones an existing index.
-	 * 
+	 * Clone an index. Clone an existing index into a new index. Each original
+	 * primary shard is cloned into a new primary shard in the new index.
+	 * <p>
+	 * IMPORTANT: Elasticsearch does not apply index templates to the resulting
+	 * index. The API also does not copy index metadata from the original index.
+	 * Index metadata includes aliases, index lifecycle management phase
+	 * definitions, and cross-cluster replication (CCR) follower information. For
+	 * example, if you clone a CCR follower index, the resulting clone will not be a
+	 * follower index.
+	 * <p>
+	 * The clone API copies most index settings from the source index to the
+	 * resulting index, with the exception of <code>index.number_of_replicas</code>
+	 * and <code>index.auto_expand_replicas</code>. To set the number of replicas in
+	 * the resulting index, configure these settings in the clone request.
+	 * <p>
+	 * Cloning works as follows:
+	 * <ul>
+	 * <li>First, it creates a new target index with the same definition as the
+	 * source index.</li>
+	 * <li>Then it hard-links segments from the source index into the target index.
+	 * If the file system does not support hard-linking, all segments are copied
+	 * into the new index, which is a much more time consuming process.</li>
+	 * <li>Finally, it recovers the target index as though it were a closed index
+	 * which had just been re-opened.</li>
+	 * </ul>
+	 * <p>
+	 * IMPORTANT: Indices can only be cloned if they meet the following
+	 * requirements:
+	 * <ul>
+	 * <li>The target index must not exist.</li>
+	 * <li>The source index must have the same number of primary shards as the
+	 * target index.</li>
+	 * <li>The node handling the clone process must have sufficient free disk space
+	 * to accommodate a second copy of the existing index.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneIndexRequest}
@@ -240,7 +308,33 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.close
 
 	/**
-	 * Closes an index.
+	 * Close an index. A closed index is blocked for read or write operations and
+	 * does not allow all operations that opened indices allow. It is not possible
+	 * to index documents or to search for documents in a closed index. Closed
+	 * indices do not have to maintain internal data structures for indexing or
+	 * searching documents, which results in a smaller overhead on the cluster.
+	 * <p>
+	 * When opening or closing an index, the master node is responsible for
+	 * restarting the index shards to reflect the new state of the index. The shards
+	 * will then go through the normal recovery process. The data of opened and
+	 * closed indices is automatically replicated by the cluster to ensure that
+	 * enough shard copies are safely kept around at all times.
+	 * <p>
+	 * You can open and close multiple indices. An error is thrown if the request
+	 * explicitly refers to a missing index. This behaviour can be turned off using
+	 * the <code>ignore_unavailable=true</code> parameter.
+	 * <p>
+	 * By default, you must explicitly name the indices you are opening or closing.
+	 * To open or close indices with <code>_all</code>, <code>*</code>, or other
+	 * wildcard expressions, change
+	 * the<code> action.destructive_requires_name</code> setting to
+	 * <code>false</code>. This setting can also be changed with the cluster update
+	 * settings API.
+	 * <p>
+	 * Closed indices consume a significant amount of disk-space which can cause
+	 * problems in managed environments. Closing indices can be turned off with the
+	 * cluster settings API by setting <code>cluster.indices.close.enable</code> to
+	 * <code>false</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-close.html">Documentation
@@ -255,7 +349,33 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Closes an index.
+	 * Close an index. A closed index is blocked for read or write operations and
+	 * does not allow all operations that opened indices allow. It is not possible
+	 * to index documents or to search for documents in a closed index. Closed
+	 * indices do not have to maintain internal data structures for indexing or
+	 * searching documents, which results in a smaller overhead on the cluster.
+	 * <p>
+	 * When opening or closing an index, the master node is responsible for
+	 * restarting the index shards to reflect the new state of the index. The shards
+	 * will then go through the normal recovery process. The data of opened and
+	 * closed indices is automatically replicated by the cluster to ensure that
+	 * enough shard copies are safely kept around at all times.
+	 * <p>
+	 * You can open and close multiple indices. An error is thrown if the request
+	 * explicitly refers to a missing index. This behaviour can be turned off using
+	 * the <code>ignore_unavailable=true</code> parameter.
+	 * <p>
+	 * By default, you must explicitly name the indices you are opening or closing.
+	 * To open or close indices with <code>_all</code>, <code>*</code>, or other
+	 * wildcard expressions, change
+	 * the<code> action.destructive_requires_name</code> setting to
+	 * <code>false</code>. This setting can also be changed with the cluster update
+	 * settings API.
+	 * <p>
+	 * Closed indices consume a significant amount of disk-space which can cause
+	 * problems in managed environments. Closing indices can be turned off with the
+	 * cluster settings API by setting <code>cluster.indices.close.enable</code> to
+	 * <code>false</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -595,7 +715,10 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.disk_usage
 
 	/**
-	 * Analyzes the disk usage of each field of an index or data stream.
+	 * Analyze the index disk usage. Analyze the disk usage of each field of an
+	 * index or data stream. This API might not support indices created in previous
+	 * Elasticsearch versions. The result of a small index can be inaccurate as some
+	 * parts of an index might not be analyzed by the API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-disk-usage.html">Documentation
@@ -610,7 +733,10 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Analyzes the disk usage of each field of an index or data stream.
+	 * Analyze the index disk usage. Analyze the disk usage of each field of an
+	 * index or data stream. This API might not support indices created in previous
+	 * Elasticsearch versions. The result of a small index can be inaccurate as some
+	 * parts of an index might not be analyzed by the API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -628,10 +754,17 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.downsample
 
 	/**
-	 * Aggregates a time series (TSDS) index and stores pre-computed statistical
-	 * summaries (<code>min</code>, <code>max</code>, <code>sum</code>,
-	 * <code>value_count</code> and <code>avg</code>) for each metric field grouped
-	 * by a configured time interval.
+	 * Downsample an index. Aggregate a time series (TSDS) index and store
+	 * pre-computed statistical summaries (<code>min</code>, <code>max</code>,
+	 * <code>sum</code>, <code>value_count</code> and <code>avg</code>) for each
+	 * metric field grouped by a configured time interval. For example, a TSDS index
+	 * that contains metrics sampled every 10 seconds can be downsampled to an
+	 * hourly index. All documents within an hour interval are summarized and stored
+	 * as a single document in the downsample index.
+	 * <p>
+	 * NOTE: Only indices in a time series data stream are supported. Neither field
+	 * nor document level security can be defined on the source index. The source
+	 * index must be read only (<code>index.blocks.write: true</code>).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-downsample-data-stream.html">Documentation
@@ -646,10 +779,17 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Aggregates a time series (TSDS) index and stores pre-computed statistical
-	 * summaries (<code>min</code>, <code>max</code>, <code>sum</code>,
-	 * <code>value_count</code> and <code>avg</code>) for each metric field grouped
-	 * by a configured time interval.
+	 * Downsample an index. Aggregate a time series (TSDS) index and store
+	 * pre-computed statistical summaries (<code>min</code>, <code>max</code>,
+	 * <code>sum</code>, <code>value_count</code> and <code>avg</code>) for each
+	 * metric field grouped by a configured time interval. For example, a TSDS index
+	 * that contains metrics sampled every 10 seconds can be downsampled to an
+	 * hourly index. All documents within an hour interval are summarized and stored
+	 * as a single document in the downsample index.
+	 * <p>
+	 * NOTE: Only indices in a time series data stream are supported. Neither field
+	 * nor document level security can be defined on the source index. The source
+	 * index must be read only (<code>index.blocks.write: true</code>).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -803,10 +943,10 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.explain_data_lifecycle
 
 	/**
-	 * Get the status for a data stream lifecycle. Retrieves information about an
-	 * index or data stream’s current data stream lifecycle status, such as time
-	 * since index creation, time since rollover, the lifecycle configuration
-	 * managing the index, or any errors encountered during lifecycle execution.
+	 * Get the status for a data stream lifecycle. Get information about an index or
+	 * data stream's current data stream lifecycle status, such as time since index
+	 * creation, time since rollover, the lifecycle configuration managing the
+	 * index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
@@ -821,10 +961,10 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get the status for a data stream lifecycle. Retrieves information about an
-	 * index or data stream’s current data stream lifecycle status, such as time
-	 * since index creation, time since rollover, the lifecycle configuration
-	 * managing the index, or any errors encountered during lifecycle execution.
+	 * Get the status for a data stream lifecycle. Get information about an index or
+	 * data stream's current data stream lifecycle status, such as time since index
+	 * creation, time since rollover, the lifecycle configuration managing the
+	 * index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -842,7 +982,11 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.field_usage_stats
 
 	/**
-	 * Returns field usage information for each shard and field of an index.
+	 * Get field usage stats. Get field usage information for each shard and field
+	 * of an index. Field usage statistics are automatically captured when queries
+	 * are running on a cluster. A shard-level search request that accesses a given
+	 * field, even if multiple times during that request, is counted as a single
+	 * use.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/field-usage-stats.html">Documentation
@@ -857,7 +1001,11 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns field usage information for each shard and field of an index.
+	 * Get field usage stats. Get field usage information for each shard and field
+	 * of an index. Field usage statistics are automatically captured when queries
+	 * are running on a cluster. A shard-level search request that accesses a given
+	 * field, even if multiple times during that request, is counted as a single
+	 * use.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -875,7 +1023,26 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.flush
 
 	/**
-	 * Flushes one or more data streams or indices.
+	 * Flush data streams or indices. Flushing a data stream or index is the process
+	 * of making sure that any data that is currently only stored in the transaction
+	 * log is also permanently stored in the Lucene index. When restarting,
+	 * Elasticsearch replays any unflushed operations from the transaction log into
+	 * the Lucene index to bring it back into the state that it was in before the
+	 * restart. Elasticsearch automatically triggers flushes as needed, using
+	 * heuristics that trade off the size of the unflushed transaction log against
+	 * the cost of performing each flush.
+	 * <p>
+	 * After each operation has been flushed it is permanently stored in the Lucene
+	 * index. This may mean that there is no need to maintain an additional copy of
+	 * it in the transaction log. The transaction log is made up of multiple files,
+	 * called generations, and Elasticsearch will delete any generation files when
+	 * they are no longer needed, freeing up disk space.
+	 * <p>
+	 * It is also possible to trigger a flush on one or more indices using the flush
+	 * API, although it is rare for users to need to call this API directly. If you
+	 * call the flush API after indexing some documents then a successful response
+	 * indicates that Elasticsearch has flushed all the documents that were indexed
+	 * before the flush API was called.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-flush.html">Documentation
@@ -890,7 +1057,26 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Flushes one or more data streams or indices.
+	 * Flush data streams or indices. Flushing a data stream or index is the process
+	 * of making sure that any data that is currently only stored in the transaction
+	 * log is also permanently stored in the Lucene index. When restarting,
+	 * Elasticsearch replays any unflushed operations from the transaction log into
+	 * the Lucene index to bring it back into the state that it was in before the
+	 * restart. Elasticsearch automatically triggers flushes as needed, using
+	 * heuristics that trade off the size of the unflushed transaction log against
+	 * the cost of performing each flush.
+	 * <p>
+	 * After each operation has been flushed it is permanently stored in the Lucene
+	 * index. This may mean that there is no need to maintain an additional copy of
+	 * it in the transaction log. The transaction log is made up of multiple files,
+	 * called generations, and Elasticsearch will delete any generation files when
+	 * they are no longer needed, freeing up disk space.
+	 * <p>
+	 * It is also possible to trigger a flush on one or more indices using the flush
+	 * API, although it is rare for users to need to call this API directly. If you
+	 * call the flush API after indexing some documents then a successful response
+	 * indicates that Elasticsearch has flushed all the documents that were indexed
+	 * before the flush API was called.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -906,7 +1092,26 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Flushes one or more data streams or indices.
+	 * Flush data streams or indices. Flushing a data stream or index is the process
+	 * of making sure that any data that is currently only stored in the transaction
+	 * log is also permanently stored in the Lucene index. When restarting,
+	 * Elasticsearch replays any unflushed operations from the transaction log into
+	 * the Lucene index to bring it back into the state that it was in before the
+	 * restart. Elasticsearch automatically triggers flushes as needed, using
+	 * heuristics that trade off the size of the unflushed transaction log against
+	 * the cost of performing each flush.
+	 * <p>
+	 * After each operation has been flushed it is permanently stored in the Lucene
+	 * index. This may mean that there is no need to maintain an additional copy of
+	 * it in the transaction log. The transaction log is made up of multiple files,
+	 * called generations, and Elasticsearch will delete any generation files when
+	 * they are no longer needed, freeing up disk space.
+	 * <p>
+	 * It is also possible to trigger a flush on one or more indices using the flush
+	 * API, although it is rare for users to need to call this API directly. If you
+	 * call the flush API after indexing some documents then a successful response
+	 * indicates that Elasticsearch has flushed all the documents that were indexed
+	 * before the flush API was called.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-flush.html">Documentation
@@ -921,7 +1126,25 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.forcemerge
 
 	/**
-	 * Performs the force merge operation on one or more indices.
+	 * Force a merge. Perform the force merge operation on the shards of one or more
+	 * indices. For data streams, the API forces a merge on the shards of the
+	 * stream's backing indices.
+	 * <p>
+	 * Merging reduces the number of segments in each shard by merging some of them
+	 * together and also frees up the space used by deleted documents. Merging
+	 * normally happens automatically, but sometimes it is useful to trigger a merge
+	 * manually.
+	 * <p>
+	 * WARNING: We recommend force merging only a read-only index (meaning the index
+	 * is no longer receiving writes). When documents are updated or deleted, the
+	 * old version is not immediately removed but instead soft-deleted and marked
+	 * with a &quot;tombstone&quot;. These soft-deleted documents are automatically
+	 * cleaned up during regular segment merges. But force merge can cause very
+	 * large (greater than 5 GB) segments to be produced, which are not eligible for
+	 * regular merges. So the number of soft-deleted documents can then grow
+	 * rapidly, resulting in higher disk usage and worse search performance. If you
+	 * regularly force merge an index receiving writes, this can also make snapshots
+	 * more expensive, since the new documents can't be backed up incrementally.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
@@ -936,7 +1159,25 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Performs the force merge operation on one or more indices.
+	 * Force a merge. Perform the force merge operation on the shards of one or more
+	 * indices. For data streams, the API forces a merge on the shards of the
+	 * stream's backing indices.
+	 * <p>
+	 * Merging reduces the number of segments in each shard by merging some of them
+	 * together and also frees up the space used by deleted documents. Merging
+	 * normally happens automatically, but sometimes it is useful to trigger a merge
+	 * manually.
+	 * <p>
+	 * WARNING: We recommend force merging only a read-only index (meaning the index
+	 * is no longer receiving writes). When documents are updated or deleted, the
+	 * old version is not immediately removed but instead soft-deleted and marked
+	 * with a &quot;tombstone&quot;. These soft-deleted documents are automatically
+	 * cleaned up during regular segment merges. But force merge can cause very
+	 * large (greater than 5 GB) segments to be produced, which are not eligible for
+	 * regular merges. So the number of soft-deleted documents can then grow
+	 * rapidly, resulting in higher disk usage and worse search performance. If you
+	 * regularly force merge an index receiving writes, this can also make snapshots
+	 * more expensive, since the new documents can't be backed up incrementally.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -952,7 +1193,25 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Performs the force merge operation on one or more indices.
+	 * Force a merge. Perform the force merge operation on the shards of one or more
+	 * indices. For data streams, the API forces a merge on the shards of the
+	 * stream's backing indices.
+	 * <p>
+	 * Merging reduces the number of segments in each shard by merging some of them
+	 * together and also frees up the space used by deleted documents. Merging
+	 * normally happens automatically, but sometimes it is useful to trigger a merge
+	 * manually.
+	 * <p>
+	 * WARNING: We recommend force merging only a read-only index (meaning the index
+	 * is no longer receiving writes). When documents are updated or deleted, the
+	 * old version is not immediately removed but instead soft-deleted and marked
+	 * with a &quot;tombstone&quot;. These soft-deleted documents are automatically
+	 * cleaned up during regular segment merges. But force merge can cause very
+	 * large (greater than 5 GB) segments to be produced, which are not eligible for
+	 * regular merges. So the number of soft-deleted documents can then grow
+	 * rapidly, resulting in higher disk usage and worse search performance. If you
+	 * regularly force merge an index receiving writes, this can also make snapshots
+	 * more expensive, since the new documents can't be backed up incrementally.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
@@ -1480,8 +1739,22 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.promote_data_stream
 
 	/**
-	 * Promotes a data stream from a replicated data stream managed by CCR to a
-	 * regular data stream
+	 * Promote a data stream. Promote a data stream from a replicated data stream
+	 * managed by cross-cluster replication (CCR) to a regular data stream.
+	 * <p>
+	 * With CCR auto following, a data stream from a remote cluster can be
+	 * replicated to the local cluster. These data streams can't be rolled over in
+	 * the local cluster. These replicated data streams roll over only if the
+	 * upstream data stream rolls over. In the event that the remote cluster is no
+	 * longer available, the data stream in the local cluster can be promoted to a
+	 * regular data stream, which allows these data streams to be rolled over in the
+	 * local cluster.
+	 * <p>
+	 * NOTE: When promoting a data stream, ensure the local cluster has a data
+	 * stream enabled index template that matches the data stream. If this is
+	 * missing, the data stream will not be able to roll over until a matching index
+	 * template is created. This will affect the lifecycle management of the data
+	 * stream and interfere with the data stream size and retention.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
@@ -1496,8 +1769,22 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Promotes a data stream from a replicated data stream managed by CCR to a
-	 * regular data stream
+	 * Promote a data stream. Promote a data stream from a replicated data stream
+	 * managed by cross-cluster replication (CCR) to a regular data stream.
+	 * <p>
+	 * With CCR auto following, a data stream from a remote cluster can be
+	 * replicated to the local cluster. These data streams can't be rolled over in
+	 * the local cluster. These replicated data streams roll over only if the
+	 * upstream data stream rolls over. In the event that the remote cluster is no
+	 * longer available, the data stream in the local cluster can be promoted to a
+	 * regular data stream, which allows these data streams to be rolled over in the
+	 * local cluster.
+	 * <p>
+	 * NOTE: When promoting a data stream, ensure the local cluster has a data
+	 * stream enabled index template that matches the data stream. If this is
+	 * missing, the data stream will not be able to roll over until a matching index
+	 * template is created. This will affect the lifecycle management of the data
+	 * stream and interfere with the data stream size and retention.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1708,6 +1995,21 @@ public class ElasticsearchIndicesAsyncClient
 	/**
 	 * Create or update an index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
+	 * Elasticsearch applies templates to new indices based on an index pattern that
+	 * matches the index name.
+	 * <p>
+	 * IMPORTANT: This documentation is about legacy index templates, which are
+	 * deprecated and will be replaced by the composable templates introduced in
+	 * Elasticsearch 7.8.
+	 * <p>
+	 * Composable templates always take precedence over legacy templates. If no
+	 * composable template matches a new index, matching legacy templates are
+	 * applied according to their order.
+	 * <p>
+	 * Index templates are only applied during index creation. Changes to index
+	 * templates do not affect existing indices. Settings and mappings specified in
+	 * create index API requests override any settings or mappings specified in an
+	 * index template.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates-v1.html">Documentation
@@ -1724,6 +2026,21 @@ public class ElasticsearchIndicesAsyncClient
 	/**
 	 * Create or update an index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
+	 * Elasticsearch applies templates to new indices based on an index pattern that
+	 * matches the index name.
+	 * <p>
+	 * IMPORTANT: This documentation is about legacy index templates, which are
+	 * deprecated and will be replaced by the composable templates introduced in
+	 * Elasticsearch 7.8.
+	 * <p>
+	 * Composable templates always take precedence over legacy templates. If no
+	 * composable template matches a new index, matching legacy templates are
+	 * applied according to their order.
+	 * <p>
+	 * Index templates are only applied during index creation. Changes to index
+	 * templates do not affect existing indices. Settings and mappings specified in
+	 * create index API requests override any settings or mappings specified in an
+	 * index template.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1741,9 +2058,37 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.recovery
 
 	/**
-	 * Returns information about ongoing and completed shard recoveries for one or
-	 * more indices. For data streams, the API returns information for the stream’s
-	 * backing indices.
+	 * Get index recovery information. Get information about ongoing and completed
+	 * shard recoveries for one or more indices. For data streams, the API returns
+	 * information for the stream's backing indices.
+	 * <p>
+	 * Shard recovery is the process of initializing a shard copy, such as restoring
+	 * a primary shard from a snapshot or creating a replica shard from a primary
+	 * shard. When a shard recovery completes, the recovered shard is available for
+	 * search and indexing.
+	 * <p>
+	 * Recovery automatically occurs during the following processes:
+	 * <ul>
+	 * <li>When creating an index for the first time.</li>
+	 * <li>When a node rejoins the cluster and starts up any missing primary shard
+	 * copies using the data that it holds in its data path.</li>
+	 * <li>Creation of new replica shard copies from the primary.</li>
+	 * <li>Relocation of a shard copy to a different node in the same cluster.</li>
+	 * <li>A snapshot restore operation.</li>
+	 * <li>A clone, shrink, or split operation.</li>
+	 * </ul>
+	 * <p>
+	 * You can determine the cause of a shard recovery using the recovery or cat
+	 * recovery APIs.
+	 * <p>
+	 * The index recovery API reports information about completed recoveries only
+	 * for shard copies that currently exist in the cluster. It only reports the
+	 * last recovery for each shard copy and does not report historical information
+	 * about earlier recoveries, nor does it report information about the recoveries
+	 * of shard copies that no longer exist. This means that if a shard copy
+	 * completes a recovery and then Elasticsearch relocates it onto a different
+	 * node then the information about the original recovery will not be shown in
+	 * the recovery API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
@@ -1758,9 +2103,37 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns information about ongoing and completed shard recoveries for one or
-	 * more indices. For data streams, the API returns information for the stream’s
-	 * backing indices.
+	 * Get index recovery information. Get information about ongoing and completed
+	 * shard recoveries for one or more indices. For data streams, the API returns
+	 * information for the stream's backing indices.
+	 * <p>
+	 * Shard recovery is the process of initializing a shard copy, such as restoring
+	 * a primary shard from a snapshot or creating a replica shard from a primary
+	 * shard. When a shard recovery completes, the recovered shard is available for
+	 * search and indexing.
+	 * <p>
+	 * Recovery automatically occurs during the following processes:
+	 * <ul>
+	 * <li>When creating an index for the first time.</li>
+	 * <li>When a node rejoins the cluster and starts up any missing primary shard
+	 * copies using the data that it holds in its data path.</li>
+	 * <li>Creation of new replica shard copies from the primary.</li>
+	 * <li>Relocation of a shard copy to a different node in the same cluster.</li>
+	 * <li>A snapshot restore operation.</li>
+	 * <li>A clone, shrink, or split operation.</li>
+	 * </ul>
+	 * <p>
+	 * You can determine the cause of a shard recovery using the recovery or cat
+	 * recovery APIs.
+	 * <p>
+	 * The index recovery API reports information about completed recoveries only
+	 * for shard copies that currently exist in the cluster. It only reports the
+	 * last recovery for each shard copy and does not report historical information
+	 * about earlier recoveries, nor does it report information about the recoveries
+	 * of shard copies that no longer exist. This means that if a shard copy
+	 * completes a recovery and then Elasticsearch relocates it onto a different
+	 * node then the information about the original recovery will not be shown in
+	 * the recovery API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1776,9 +2149,37 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns information about ongoing and completed shard recoveries for one or
-	 * more indices. For data streams, the API returns information for the stream’s
-	 * backing indices.
+	 * Get index recovery information. Get information about ongoing and completed
+	 * shard recoveries for one or more indices. For data streams, the API returns
+	 * information for the stream's backing indices.
+	 * <p>
+	 * Shard recovery is the process of initializing a shard copy, such as restoring
+	 * a primary shard from a snapshot or creating a replica shard from a primary
+	 * shard. When a shard recovery completes, the recovered shard is available for
+	 * search and indexing.
+	 * <p>
+	 * Recovery automatically occurs during the following processes:
+	 * <ul>
+	 * <li>When creating an index for the first time.</li>
+	 * <li>When a node rejoins the cluster and starts up any missing primary shard
+	 * copies using the data that it holds in its data path.</li>
+	 * <li>Creation of new replica shard copies from the primary.</li>
+	 * <li>Relocation of a shard copy to a different node in the same cluster.</li>
+	 * <li>A snapshot restore operation.</li>
+	 * <li>A clone, shrink, or split operation.</li>
+	 * </ul>
+	 * <p>
+	 * You can determine the cause of a shard recovery using the recovery or cat
+	 * recovery APIs.
+	 * <p>
+	 * The index recovery API reports information about completed recoveries only
+	 * for shard copies that currently exist in the cluster. It only reports the
+	 * last recovery for each shard copy and does not report historical information
+	 * about earlier recoveries, nor does it report information about the recoveries
+	 * of shard copies that no longer exist. This means that if a shard copy
+	 * completes a recovery and then Elasticsearch relocates it onto a different
+	 * node then the information about the original recovery will not be shown in
+	 * the recovery API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
@@ -1845,7 +2246,28 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.reload_search_analyzers
 
 	/**
-	 * Reloads an index's search analyzers and their resources.
+	 * Reload search analyzers. Reload an index's search analyzers and their
+	 * resources. For data streams, the API reloads search analyzers and resources
+	 * for the stream's backing indices.
+	 * <p>
+	 * IMPORTANT: After reloading the search analyzers you should clear the request
+	 * cache to make sure it doesn't contain responses derived from the previous
+	 * versions of the analyzer.
+	 * <p>
+	 * You can use the reload search analyzers API to pick up changes to synonym
+	 * files used in the <code>synonym_graph</code> or <code>synonym</code> token
+	 * filter of a search analyzer. To be eligible, the token filter must have an
+	 * <code>updateable</code> flag of <code>true</code> and only be used in search
+	 * analyzers.
+	 * <p>
+	 * NOTE: This API does not perform a reload for each shard of an index. Instead,
+	 * it performs a reload for each node containing index shards. As a result, the
+	 * total shard count returned by the API can differ from the number of index
+	 * shards. Because reloading affects every node with an index shard, it is
+	 * important to update the synonym file on every data node in the
+	 * cluster--including nodes that don't contain a shard replica--before using
+	 * this API. This ensures the synonym file is updated everywhere in the cluster
+	 * in case shards are relocated in the future.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-reload-analyzers.html">Documentation
@@ -1861,7 +2283,28 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Reloads an index's search analyzers and their resources.
+	 * Reload search analyzers. Reload an index's search analyzers and their
+	 * resources. For data streams, the API reloads search analyzers and resources
+	 * for the stream's backing indices.
+	 * <p>
+	 * IMPORTANT: After reloading the search analyzers you should clear the request
+	 * cache to make sure it doesn't contain responses derived from the previous
+	 * versions of the analyzer.
+	 * <p>
+	 * You can use the reload search analyzers API to pick up changes to synonym
+	 * files used in the <code>synonym_graph</code> or <code>synonym</code> token
+	 * filter of a search analyzer. To be eligible, the token filter must have an
+	 * <code>updateable</code> flag of <code>true</code> and only be used in search
+	 * analyzers.
+	 * <p>
+	 * NOTE: This API does not perform a reload for each shard of an index. Instead,
+	 * it performs a reload for each node containing index shards. As a result, the
+	 * total shard count returned by the API can differ from the number of index
+	 * shards. Because reloading affects every node with an index shard, it is
+	 * important to update the synonym file on every data node in the
+	 * cluster--including nodes that don't contain a shard replica--before using
+	 * this API. This ensures the synonym file is updated everywhere in the cluster
+	 * in case shards are relocated in the future.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1879,10 +2322,33 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.resolve_cluster
 
 	/**
-	 * Resolves the specified index expressions to return information about each
-	 * cluster, including the local cluster, if included. Multiple patterns and
-	 * remote clusters are supported.
-	 * 
+	 * Resolve the cluster. Resolve the specified index expressions to return
+	 * information about each cluster, including the local cluster, if included.
+	 * Multiple patterns and remote clusters are supported.
+	 * <p>
+	 * This endpoint is useful before doing a cross-cluster search in order to
+	 * determine which remote clusters should be included in a search.
+	 * <p>
+	 * You use the same index expression with this endpoint as you would for
+	 * cross-cluster search. Index and cluster exclusions are also supported with
+	 * this endpoint.
+	 * <p>
+	 * For each cluster in the index expression, information is returned about:
+	 * <ul>
+	 * <li>Whether the querying (&quot;local&quot;) cluster is currently connected
+	 * to each remote cluster in the index expression scope.</li>
+	 * <li>Whether each remote cluster is configured with
+	 * <code>skip_unavailable</code> as <code>true</code> or
+	 * <code>false</code>.</li>
+	 * <li>Whether there are any indices, aliases, or data streams on that cluster
+	 * that match the index expression.</li>
+	 * <li>Whether the search is likely to have errors returned when you do the
+	 * cross-cluster search (including any authorization errors if you do not have
+	 * permission to query the index).</li>
+	 * <li>Cluster version information, including the Elasticsearch server
+	 * version.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-cluster-api.html">Documentation
 	 *      on elastic.co</a>
@@ -1896,10 +2362,33 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Resolves the specified index expressions to return information about each
-	 * cluster, including the local cluster, if included. Multiple patterns and
-	 * remote clusters are supported.
-	 * 
+	 * Resolve the cluster. Resolve the specified index expressions to return
+	 * information about each cluster, including the local cluster, if included.
+	 * Multiple patterns and remote clusters are supported.
+	 * <p>
+	 * This endpoint is useful before doing a cross-cluster search in order to
+	 * determine which remote clusters should be included in a search.
+	 * <p>
+	 * You use the same index expression with this endpoint as you would for
+	 * cross-cluster search. Index and cluster exclusions are also supported with
+	 * this endpoint.
+	 * <p>
+	 * For each cluster in the index expression, information is returned about:
+	 * <ul>
+	 * <li>Whether the querying (&quot;local&quot;) cluster is currently connected
+	 * to each remote cluster in the index expression scope.</li>
+	 * <li>Whether each remote cluster is configured with
+	 * <code>skip_unavailable</code> as <code>true</code> or
+	 * <code>false</code>.</li>
+	 * <li>Whether there are any indices, aliases, or data streams on that cluster
+	 * that match the index expression.</li>
+	 * <li>Whether the search is likely to have errors returned when you do the
+	 * cross-cluster search (including any authorization errors if you do not have
+	 * permission to query the index).</li>
+	 * <li>Cluster version information, including the Elasticsearch server
+	 * version.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveClusterRequest}
@@ -1988,8 +2477,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.segments
 
 	/**
-	 * Returns low-level information about the Lucene segments in index shards. For
-	 * data streams, the API returns information about the stream’s backing indices.
+	 * Get index segments. Get low-level information about the Lucene segments in
+	 * index shards. For data streams, the API returns information about the
+	 * stream's backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
@@ -2004,8 +2494,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns low-level information about the Lucene segments in index shards. For
-	 * data streams, the API returns information about the stream’s backing indices.
+	 * Get index segments. Get low-level information about the Lucene segments in
+	 * index shards. For data streams, the API returns information about the
+	 * stream's backing indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2021,8 +2512,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns low-level information about the Lucene segments in index shards. For
-	 * data streams, the API returns information about the stream’s backing indices.
+	 * Get index segments. Get low-level information about the Lucene segments in
+	 * index shards. For data streams, the API returns information about the
+	 * stream's backing indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
@@ -2037,9 +2529,21 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.shard_stores
 
 	/**
-	 * Retrieves store information about replica shards in one or more indices. For
-	 * data streams, the API retrieves store information for the stream’s backing
-	 * indices.
+	 * Get index shard stores. Get store information about replica shards in one or
+	 * more indices. For data streams, the API retrieves store information for the
+	 * stream's backing indices.
+	 * <p>
+	 * The index shard stores API returns the following information:
+	 * <ul>
+	 * <li>The node on which each replica shard exists.</li>
+	 * <li>The allocation ID for each replica shard.</li>
+	 * <li>A unique ID for each replica shard.</li>
+	 * <li>Any errors encountered while opening the shard index or from an earlier
+	 * failure.</li>
+	 * </ul>
+	 * <p>
+	 * By default, the API returns store information only for primary shards that
+	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
@@ -2054,9 +2558,21 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves store information about replica shards in one or more indices. For
-	 * data streams, the API retrieves store information for the stream’s backing
-	 * indices.
+	 * Get index shard stores. Get store information about replica shards in one or
+	 * more indices. For data streams, the API retrieves store information for the
+	 * stream's backing indices.
+	 * <p>
+	 * The index shard stores API returns the following information:
+	 * <ul>
+	 * <li>The node on which each replica shard exists.</li>
+	 * <li>The allocation ID for each replica shard.</li>
+	 * <li>A unique ID for each replica shard.</li>
+	 * <li>Any errors encountered while opening the shard index or from an earlier
+	 * failure.</li>
+	 * </ul>
+	 * <p>
+	 * By default, the API returns store information only for primary shards that
+	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2072,9 +2588,21 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Retrieves store information about replica shards in one or more indices. For
-	 * data streams, the API retrieves store information for the stream’s backing
-	 * indices.
+	 * Get index shard stores. Get store information about replica shards in one or
+	 * more indices. For data streams, the API retrieves store information for the
+	 * stream's backing indices.
+	 * <p>
+	 * The index shard stores API returns the following information:
+	 * <ul>
+	 * <li>The node on which each replica shard exists.</li>
+	 * <li>The allocation ID for each replica shard.</li>
+	 * <li>A unique ID for each replica shard.</li>
+	 * <li>Any errors encountered while opening the shard index or from an earlier
+	 * failure.</li>
+	 * </ul>
+	 * <p>
+	 * By default, the API returns store information only for primary shards that
+	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
@@ -2089,8 +2617,62 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.shrink
 
 	/**
-	 * Shrinks an existing index into a new index with fewer primary shards.
-	 * 
+	 * Shrink an index. Shrink an index into a new index with fewer primary shards.
+	 * <p>
+	 * Before you can shrink an index:
+	 * <ul>
+	 * <li>The index must be read-only.</li>
+	 * <li>A copy of every shard in the index must reside on the same node.</li>
+	 * <li>The index must have a green health status.</li>
+	 * </ul>
+	 * <p>
+	 * To make shard allocation easier, we recommend you also remove the index's
+	 * replica shards. You can later re-add replica shards as part of the shrink
+	 * operation.
+	 * <p>
+	 * The requested number of primary shards in the target index must be a factor
+	 * of the number of shards in the source index. For example an index with 8
+	 * primary shards can be shrunk into 4, 2 or 1 primary shards or an index with
+	 * 15 primary shards can be shrunk into 5, 3 or 1. If the number of shards in
+	 * the index is a prime number it can only be shrunk into a single primary shard
+	 * Before shrinking, a (primary or replica) copy of every shard in the index
+	 * must be present on the same node.
+	 * <p>
+	 * The current write index on a data stream cannot be shrunk. In order to shrink
+	 * the current write index, the data stream must first be rolled over so that a
+	 * new write index is created and then the previous write index can be shrunk.
+	 * <p>
+	 * A shrink operation:
+	 * <ul>
+	 * <li>Creates a new target index with the same definition as the source index,
+	 * but with a smaller number of primary shards.</li>
+	 * <li>Hard-links segments from the source index into the target index. If the
+	 * file system does not support hard-linking, then all segments are copied into
+	 * the new index, which is a much more time consuming process. Also if using
+	 * multiple data paths, shards on different data paths require a full copy of
+	 * segment files if they are not on the same disk since hardlinks do not work
+	 * across disks.</li>
+	 * <li>Recovers the target index as though it were a closed index which had just
+	 * been re-opened. Recovers shards to the
+	 * <code>.routing.allocation.initial_recovery._id</code> index setting.</li>
+	 * </ul>
+	 * <p>
+	 * IMPORTANT: Indices can only be shrunk if they satisfy the following
+	 * requirements:
+	 * <ul>
+	 * <li>The target index must not exist.</li>
+	 * <li>The source index must have more primary shards than the target
+	 * index.</li>
+	 * <li>The number of primary shards in the target index must be a factor of the
+	 * number of primary shards in the source index. The source index must have more
+	 * primary shards than the target index.</li>
+	 * <li>The index must not contain more than 2,147,483,519 documents in total
+	 * across all shards that will be shrunk into a single shard on the target index
+	 * as this is the maximum number of docs that can fit into a single shard.</li>
+	 * <li>The node handling the shrink process must have sufficient free disk space
+	 * to accommodate a second copy of the existing index.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
@@ -2104,8 +2686,62 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Shrinks an existing index into a new index with fewer primary shards.
-	 * 
+	 * Shrink an index. Shrink an index into a new index with fewer primary shards.
+	 * <p>
+	 * Before you can shrink an index:
+	 * <ul>
+	 * <li>The index must be read-only.</li>
+	 * <li>A copy of every shard in the index must reside on the same node.</li>
+	 * <li>The index must have a green health status.</li>
+	 * </ul>
+	 * <p>
+	 * To make shard allocation easier, we recommend you also remove the index's
+	 * replica shards. You can later re-add replica shards as part of the shrink
+	 * operation.
+	 * <p>
+	 * The requested number of primary shards in the target index must be a factor
+	 * of the number of shards in the source index. For example an index with 8
+	 * primary shards can be shrunk into 4, 2 or 1 primary shards or an index with
+	 * 15 primary shards can be shrunk into 5, 3 or 1. If the number of shards in
+	 * the index is a prime number it can only be shrunk into a single primary shard
+	 * Before shrinking, a (primary or replica) copy of every shard in the index
+	 * must be present on the same node.
+	 * <p>
+	 * The current write index on a data stream cannot be shrunk. In order to shrink
+	 * the current write index, the data stream must first be rolled over so that a
+	 * new write index is created and then the previous write index can be shrunk.
+	 * <p>
+	 * A shrink operation:
+	 * <ul>
+	 * <li>Creates a new target index with the same definition as the source index,
+	 * but with a smaller number of primary shards.</li>
+	 * <li>Hard-links segments from the source index into the target index. If the
+	 * file system does not support hard-linking, then all segments are copied into
+	 * the new index, which is a much more time consuming process. Also if using
+	 * multiple data paths, shards on different data paths require a full copy of
+	 * segment files if they are not on the same disk since hardlinks do not work
+	 * across disks.</li>
+	 * <li>Recovers the target index as though it were a closed index which had just
+	 * been re-opened. Recovers shards to the
+	 * <code>.routing.allocation.initial_recovery._id</code> index setting.</li>
+	 * </ul>
+	 * <p>
+	 * IMPORTANT: Indices can only be shrunk if they satisfy the following
+	 * requirements:
+	 * <ul>
+	 * <li>The target index must not exist.</li>
+	 * <li>The source index must have more primary shards than the target
+	 * index.</li>
+	 * <li>The number of primary shards in the target index must be a factor of the
+	 * number of primary shards in the source index. The source index must have more
+	 * primary shards than the target index.</li>
+	 * <li>The index must not contain more than 2,147,483,519 documents in total
+	 * across all shards that will be shrunk into a single shard on the target index
+	 * as this is the maximum number of docs that can fit into a single shard.</li>
+	 * <li>The node handling the shrink process must have sufficient free disk space
+	 * to accommodate a second copy of the existing index.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
@@ -2207,8 +2843,58 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.split
 
 	/**
-	 * Splits an existing index into a new index with more primary shards.
-	 * 
+	 * Split an index. Split an index into a new index with more primary shards.
+	 * <ul>
+	 * <li>
+	 * <p>
+	 * Before you can split an index:
+	 * </p>
+	 * </li>
+	 * <li>
+	 * <p>
+	 * The index must be read-only.
+	 * </p>
+	 * </li>
+	 * <li>
+	 * <p>
+	 * The cluster health status must be green.
+	 * </p>
+	 * </li>
+	 * </ul>
+	 * <p>
+	 * The number of times the index can be split (and the number of shards that
+	 * each original shard can be split into) is determined by the
+	 * <code>index.number_of_routing_shards</code> setting. The number of routing
+	 * shards specifies the hashing space that is used internally to distribute
+	 * documents across shards with consistent hashing. For instance, a 5 shard
+	 * index with <code>number_of_routing_shards</code> set to 30 (5 x 2 x 3) could
+	 * be split by a factor of 2 or 3.
+	 * <p>
+	 * A split operation:
+	 * <ul>
+	 * <li>Creates a new target index with the same definition as the source index,
+	 * but with a larger number of primary shards.</li>
+	 * <li>Hard-links segments from the source index into the target index. If the
+	 * file system doesn't support hard-linking, all segments are copied into the
+	 * new index, which is a much more time consuming process.</li>
+	 * <li>Hashes all documents again, after low level files are created, to delete
+	 * documents that belong to a different shard.</li>
+	 * <li>Recovers the target index as though it were a closed index which had just
+	 * been re-opened.</li>
+	 * </ul>
+	 * <p>
+	 * IMPORTANT: Indices can only be split if they satisfy the following
+	 * requirements:
+	 * <ul>
+	 * <li>The target index must not exist.</li>
+	 * <li>The source index must have fewer primary shards than the target
+	 * index.</li>
+	 * <li>The number of primary shards in the target index must be a multiple of
+	 * the number of primary shards in the source index.</li>
+	 * <li>The node handling the split process must have sufficient free disk space
+	 * to accommodate a second copy of the existing index.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
@@ -2222,8 +2908,58 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Splits an existing index into a new index with more primary shards.
-	 * 
+	 * Split an index. Split an index into a new index with more primary shards.
+	 * <ul>
+	 * <li>
+	 * <p>
+	 * Before you can split an index:
+	 * </p>
+	 * </li>
+	 * <li>
+	 * <p>
+	 * The index must be read-only.
+	 * </p>
+	 * </li>
+	 * <li>
+	 * <p>
+	 * The cluster health status must be green.
+	 * </p>
+	 * </li>
+	 * </ul>
+	 * <p>
+	 * The number of times the index can be split (and the number of shards that
+	 * each original shard can be split into) is determined by the
+	 * <code>index.number_of_routing_shards</code> setting. The number of routing
+	 * shards specifies the hashing space that is used internally to distribute
+	 * documents across shards with consistent hashing. For instance, a 5 shard
+	 * index with <code>number_of_routing_shards</code> set to 30 (5 x 2 x 3) could
+	 * be split by a factor of 2 or 3.
+	 * <p>
+	 * A split operation:
+	 * <ul>
+	 * <li>Creates a new target index with the same definition as the source index,
+	 * but with a larger number of primary shards.</li>
+	 * <li>Hard-links segments from the source index into the target index. If the
+	 * file system doesn't support hard-linking, all segments are copied into the
+	 * new index, which is a much more time consuming process.</li>
+	 * <li>Hashes all documents again, after low level files are created, to delete
+	 * documents that belong to a different shard.</li>
+	 * <li>Recovers the target index as though it were a closed index which had just
+	 * been re-opened.</li>
+	 * </ul>
+	 * <p>
+	 * IMPORTANT: Indices can only be split if they satisfy the following
+	 * requirements:
+	 * <ul>
+	 * <li>The target index must not exist.</li>
+	 * <li>The source index must have fewer primary shards than the target
+	 * index.</li>
+	 * <li>The number of primary shards in the target index must be a multiple of
+	 * the number of primary shards in the source index.</li>
+	 * <li>The node handling the split process must have sufficient free disk space
+	 * to accommodate a second copy of the existing index.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
@@ -2240,8 +2976,21 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.stats
 
 	/**
-	 * Returns statistics for one or more indices. For data streams, the API
-	 * retrieves statistics for the stream’s backing indices.
+	 * Get index statistics. For data streams, the API retrieves statistics for the
+	 * stream's backing indices.
+	 * <p>
+	 * By default, the returned statistics are index-level with
+	 * <code>primaries</code> and <code>total</code> aggregations.
+	 * <code>primaries</code> are the values for only the primary shards.
+	 * <code>total</code> are the accumulated values for both primary and replica
+	 * shards.
+	 * <p>
+	 * To get shard-level statistics, set the <code>level</code> parameter to
+	 * <code>shards</code>.
+	 * <p>
+	 * NOTE: When moving to another node, the shard-level statistics for a shard are
+	 * cleared. Although the shard is no longer part of the node, that node retains
+	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
@@ -2256,8 +3005,21 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns statistics for one or more indices. For data streams, the API
-	 * retrieves statistics for the stream’s backing indices.
+	 * Get index statistics. For data streams, the API retrieves statistics for the
+	 * stream's backing indices.
+	 * <p>
+	 * By default, the returned statistics are index-level with
+	 * <code>primaries</code> and <code>total</code> aggregations.
+	 * <code>primaries</code> are the values for only the primary shards.
+	 * <code>total</code> are the accumulated values for both primary and replica
+	 * shards.
+	 * <p>
+	 * To get shard-level statistics, set the <code>level</code> parameter to
+	 * <code>shards</code>.
+	 * <p>
+	 * NOTE: When moving to another node, the shard-level statistics for a shard are
+	 * cleared. Although the shard is no longer part of the node, that node retains
+	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2273,8 +3035,21 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Returns statistics for one or more indices. For data streams, the API
-	 * retrieves statistics for the stream’s backing indices.
+	 * Get index statistics. For data streams, the API retrieves statistics for the
+	 * stream's backing indices.
+	 * <p>
+	 * By default, the returned statistics are index-level with
+	 * <code>primaries</code> and <code>total</code> aggregations.
+	 * <code>primaries</code> are the values for only the primary shards.
+	 * <code>total</code> are the accumulated values for both primary and replica
+	 * shards.
+	 * <p>
+	 * To get shard-level statistics, set the <code>level</code> parameter to
+	 * <code>shards</code>.
+	 * <p>
+	 * NOTE: When moving to another node, the shard-level statistics for a shard are
+	 * cleared. Although the shard is no longer part of the node, that node retains
+	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
@@ -2289,7 +3064,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.unfreeze
 
 	/**
-	 * Unfreezes an index.
+	 * Unfreeze an index. When a frozen index is unfrozen, the index goes through
+	 * the normal recovery process and becomes writeable again.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/unfreeze-index-api.html">Documentation
@@ -2304,7 +3080,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Unfreezes an index.
+	 * Unfreeze an index. When a frozen index is unfrozen, the index goes through
+	 * the normal recovery process and becomes writeable again.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
