@@ -22,5 +22,5 @@ package co.elastic.clients.transport;
 // Package private
 class VersionInfo {
     static final String FLAVOR = "stack";
-    static final String VERSION = "8.16.2";
+    static final String VERSION = "8.16.3";
 }
