@@ -115,12 +115,12 @@ public class SpecIssuesTest extends ModelTestCase {
             .index("i0297")
             .settings(s -> s
                 // This is "mapping" and not "mappings"
-                .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001L)))
+                .mapping(m -> m.totalFields(totalFields -> totalFields.limit("1001")))
                 .otherSettings("foo", JsonData.of("bar"))
             )
         );
 
-        assertEquals("{\"settings\":{\"foo\":\"bar\",\"mapping\":{\"total_fields\":{\"limit\":1001}}}}", toJson(request));
+        assertEquals("{\"settings\":{\"foo\":\"bar\",\"mapping\":{\"total_fields\":{\"limit\":\"1001\"}}}}", toJson(request));
     }
 
     @Test
