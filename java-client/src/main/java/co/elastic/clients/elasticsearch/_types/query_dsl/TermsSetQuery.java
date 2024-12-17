@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -29,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -71,7 +73,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Script minimumShouldMatchScript;
 
-	private final List<String> terms;
+	private final List<FieldValue> terms;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -143,7 +145,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	 * <p>
 	 * API name: {@code terms}
 	 */
-	public final List<String> terms() {
+	public final List<FieldValue> terms() {
 		return this.terms;
 	}
 
@@ -169,8 +171,8 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartArray();
-			for (String item0 : this.terms) {
-				generator.write(item0);
+			for (FieldValue item0 : this.terms) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -207,7 +209,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Script minimumShouldMatchScript;
 
-		private List<String> terms;
+		private List<FieldValue> terms;
 
 		/**
 		 * Specification describing number of matching terms required to return a
@@ -259,7 +261,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 */
-		public final Builder terms(List<String> list) {
+		public final Builder terms(List<FieldValue> list) {
 			this.terms = _listAddAll(this.terms, list);
 			return this;
 		}
@@ -271,9 +273,88 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		 * <p>
 		 * Adds one or more values to <code>terms</code>.
 		 */
-		public final Builder terms(String value, String... values) {
+		public final Builder terms(FieldValue value, FieldValue... values) {
 			this.terms = _listAdd(this.terms, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
+		 * <p>
+		 * Adds all passed values to <code>terms</code>.
+		 */
+		public final Builder terms(String value, String... values) {
+			this.terms = _listAdd(this.terms, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (String v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.terms = _listAddAll(this.terms, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
+		 * <p>
+		 * Adds all passed values to <code>terms</code>.
+		 */
+		public final Builder terms(long value, long... values) {
+			this.terms = _listAdd(this.terms, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (long v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.terms = _listAddAll(this.terms, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
+		 * <p>
+		 * Adds all passed values to <code>terms</code>.
+		 */
+		public final Builder terms(double value, double... values) {
+			this.terms = _listAdd(this.terms, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (double v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.terms = _listAddAll(this.terms, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
+		 * <p>
+		 * Adds all passed values to <code>terms</code>.
+		 */
+		public final Builder terms(boolean value, boolean... values) {
+			this.terms = _listAdd(this.terms, FieldValue.of(value));
+			List<FieldValue> fieldValues = new ArrayList<>();
+			for (boolean v : values) {
+				fieldValues.add(FieldValue.of(v));
+			}
+			this.terms = _listAddAll(this.terms, fieldValues);
+			return this;
+		}
+
+		/**
+		 * Required - Array of terms you wish to find in the provided field.
+		 * <p>
+		 * API name: {@code terms}
+		 * <p>
+		 * Adds a value to <code>terms</code> using a builder lambda.
+		 */
+		public final Builder terms(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return terms(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -307,7 +388,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::minimumShouldMatchField, JsonpDeserializer.stringDeserializer(), "minimum_should_match_field");
 		op.add(Builder::minimumShouldMatchScript, Script._DESERIALIZER, "minimum_should_match_script");
-		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");
+		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "terms");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 

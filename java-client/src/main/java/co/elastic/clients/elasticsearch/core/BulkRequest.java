@@ -87,6 +87,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	private final String index;
 
 	@Nullable
+	private final Boolean listExecutedPipelines;
+
+	@Nullable
 	private final String pipeline;
 
 	@Nullable
@@ -94,6 +97,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	@Nullable
 	private final Boolean requireAlias;
+
+	@Nullable
+	private final Boolean requireDataStream;
 
 	@Nullable
 	private final String routing;
@@ -114,9 +120,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.index = builder.index;
+		this.listExecutedPipelines = builder.listExecutedPipelines;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
+		this.requireDataStream = builder.requireDataStream;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -172,6 +180,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
+	 * If <code>true</code>, the response will include the ingest pipelines that
+	 * were executed for each index or create.
+	 * <p>
+	 * API name: {@code list_executed_pipelines}
+	 */
+	@Nullable
+	public final Boolean listExecutedPipelines() {
+		return this.listExecutedPipelines;
+	}
+
+	/**
 	 * ID of the pipeline to use to preprocess incoming documents. If the index has
 	 * a default ingest pipeline specified, then setting the value to
 	 * <code>_none</code> disables the default ingest pipeline for this request. If
@@ -207,6 +226,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	@Nullable
 	public final Boolean requireAlias() {
 		return this.requireAlias;
+	}
+
+	/**
+	 * If <code>true</code>, the request's actions must target a data stream
+	 * (existing or to-be-created).
+	 * <p>
+	 * API name: {@code require_data_stream}
+	 */
+	@Nullable
+	public final Boolean requireDataStream() {
+		return this.requireDataStream;
 	}
 
 	/**
@@ -282,6 +312,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private String index;
 
 		@Nullable
+		private Boolean listExecutedPipelines;
+
+		@Nullable
 		private String pipeline;
 
 		@Nullable
@@ -289,6 +322,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 		@Nullable
 		private Boolean requireAlias;
+
+		@Nullable
+		private Boolean requireDataStream;
 
 		@Nullable
 		private String routing;
@@ -381,6 +417,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
+		 * If <code>true</code>, the response will include the ingest pipelines that
+		 * were executed for each index or create.
+		 * <p>
+		 * API name: {@code list_executed_pipelines}
+		 */
+		public final Builder listExecutedPipelines(@Nullable Boolean value) {
+			this.listExecutedPipelines = value;
+			return this;
+		}
+
+		/**
 		 * ID of the pipeline to use to preprocess incoming documents. If the index has
 		 * a default ingest pipeline specified, then setting the value to
 		 * <code>_none</code> disables the default ingest pipeline for this request. If
@@ -415,6 +462,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 */
 		public final Builder requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the request's actions must target a data stream
+		 * (existing or to-be-created).
+		 * <p>
+		 * API name: {@code require_data_stream}
+		 */
+		public final Builder requireDataStream(@Nullable Boolean value) {
+			this.requireDataStream = value;
 			return this;
 		}
 
@@ -604,6 +662,12 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.requireDataStream != null) {
+					params.put("require_data_stream", String.valueOf(request.requireDataStream));
+				}
+				if (request.listExecutedPipelines != null) {
+					params.put("list_executed_pipelines", String.valueOf(request.listExecutedPipelines));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

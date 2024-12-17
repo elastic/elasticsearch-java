@@ -58,8 +58,8 @@ import javax.annotation.Nullable;
 // typedef: slm.get_lifecycle.Request
 
 /**
- * Retrieves one or more snapshot lifecycle policy definitions and information
- * about the latest snapshot attempts.
+ * Get policy information. Get snapshot lifecycle policy definitions and
+ * information about the latest snapshot attempts.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.get_lifecycle.Request">API
  *      specification</a>

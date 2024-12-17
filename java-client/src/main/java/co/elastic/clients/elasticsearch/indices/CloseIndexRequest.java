@@ -61,7 +61,33 @@ import javax.annotation.Nullable;
 // typedef: indices.close.Request
 
 /**
- * Closes an index.
+ * Close an index. A closed index is blocked for read or write operations and
+ * does not allow all operations that opened indices allow. It is not possible
+ * to index documents or to search for documents in a closed index. Closed
+ * indices do not have to maintain internal data structures for indexing or
+ * searching documents, which results in a smaller overhead on the cluster.
+ * <p>
+ * When opening or closing an index, the master node is responsible for
+ * restarting the index shards to reflect the new state of the index. The shards
+ * will then go through the normal recovery process. The data of opened and
+ * closed indices is automatically replicated by the cluster to ensure that
+ * enough shard copies are safely kept around at all times.
+ * <p>
+ * You can open and close multiple indices. An error is thrown if the request
+ * explicitly refers to a missing index. This behaviour can be turned off using
+ * the <code>ignore_unavailable=true</code> parameter.
+ * <p>
+ * By default, you must explicitly name the indices you are opening or closing.
+ * To open or close indices with <code>_all</code>, <code>*</code>, or other
+ * wildcard expressions, change
+ * the<code> action.destructive_requires_name</code> setting to
+ * <code>false</code>. This setting can also be changed with the cluster update
+ * settings API.
+ * <p>
+ * Closed indices consume a significant amount of disk-space which can cause
+ * problems in managed environments. Closing indices can be turned off with the
+ * cluster settings API by setting <code>cluster.indices.close.enable</code> to
+ * <code>false</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.close.Request">API
  *      specification</a>

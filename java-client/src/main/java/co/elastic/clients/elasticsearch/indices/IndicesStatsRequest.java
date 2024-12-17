@@ -60,8 +60,21 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.Request
 
 /**
- * Returns statistics for one or more indices. For data streams, the API
- * retrieves statistics for the stream’s backing indices.
+ * Get index statistics. For data streams, the API retrieves statistics for the
+ * stream's backing indices.
+ * <p>
+ * By default, the returned statistics are index-level with
+ * <code>primaries</code> and <code>total</code> aggregations.
+ * <code>primaries</code> are the values for only the primary shards.
+ * <code>total</code> are the accumulated values for both primary and replica
+ * shards.
+ * <p>
+ * To get shard-level statistics, set the <code>level</code> parameter to
+ * <code>shards</code>.
+ * <p>
+ * NOTE: When moving to another node, the shard-level statistics for a shard are
+ * cleared. Although the shard is no longer part of the node, that node retains
+ * any node-level statistics to which the shard contributed.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.stats.Request">API
  *      specification</a>

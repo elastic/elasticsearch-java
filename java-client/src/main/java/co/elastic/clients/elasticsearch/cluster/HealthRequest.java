@@ -64,15 +64,19 @@ import javax.annotation.Nullable;
 // typedef: cluster.health.Request
 
 /**
- * The cluster health API returns a simple status on the health of the cluster.
- * You can also use the API to get the health status of only specified data
- * streams and indices. For data streams, the API retrieves the health status of
- * the stream’s backing indices. The cluster health status is: green, yellow or
- * red. On the shard level, a red status indicates that the specific shard is
- * not allocated in the cluster, yellow means that the primary shard is
- * allocated but replicas are not, and green means that all shards are
- * allocated. The index level status is controlled by the worst shard status.
- * The cluster status is controlled by the worst index status.
+ * Get the cluster health status. You can also use the API to get the health
+ * status of only specified data streams and indices. For data streams, the API
+ * retrieves the health status of the stream’s backing indices.
+ * <p>
+ * The cluster health status is: green, yellow or red. On the shard level, a red
+ * status indicates that the specific shard is not allocated in the cluster.
+ * Yellow means that the primary shard is allocated but replicas are not. Green
+ * means that all shards are allocated. The index level status is controlled by
+ * the worst shard status.
+ * <p>
+ * One of the main benefits of the API is the ability to wait until the cluster
+ * reaches a certain high watermark health level. The cluster status is
+ * controlled by the worst index status.
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.health.Request">API
  *      specification</a>

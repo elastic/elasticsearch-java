@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: synonyms.delete_synonym.Request
 
 /**
- * Deletes a synonym set
+ * Delete a synonym set.
  * 
  * @see <a href="../doc-files/api-spec.html#synonyms.delete_synonym.Request">API
  *      specification</a>

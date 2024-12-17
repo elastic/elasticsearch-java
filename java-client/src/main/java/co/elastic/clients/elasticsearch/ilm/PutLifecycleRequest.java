@@ -58,8 +58,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.put_lifecycle.Request
 
 /**
- * Creates a lifecycle policy. If the specified policy exists, the policy is
+ * Create or update a lifecycle policy. If the specified policy exists, it is
  * replaced and the policy version is incremented.
+ * <p>
+ * NOTE: Only the latest version of the policy is stored, you cannot revert to
+ * previous versions.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.put_lifecycle.Request">API
  *      specification</a>

@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
 // typedef: synonyms.get_synonyms_sets.Request
 
 /**
- * Retrieves a summary of all defined synonym sets
+ * Get all synonym sets. Get a summary of all defined synonym sets.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.get_synonyms_sets.Request">API

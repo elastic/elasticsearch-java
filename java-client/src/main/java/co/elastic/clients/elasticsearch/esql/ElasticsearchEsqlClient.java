@@ -71,7 +71,8 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	// ----- Endpoint: esql.query
 
 	/**
-	 * Executes an ES|QL request
+	 * Run an ES|QL query. Get search results for an ES|QL (Elasticsearch query
+	 * language) query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-rest.html">Documentation
@@ -86,7 +87,8 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	}
 
 	/**
-	 * Executes an ES|QL request
+	 * Run an ES|QL query. Get search results for an ES|QL (Elasticsearch query
+	 * language) query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

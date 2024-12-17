@@ -50,7 +50,11 @@ import java.util.Objects;
 // typedef: license.delete.Request
 
 /**
- * Deletes licensing information for the cluster
+ * Delete the license. When the license expires, your subscription level reverts
+ * to Basic.
+ * <p>
+ * If the operator privileges feature is enabled, only operator users can use
+ * this API.
  * 
  * @see <a href="../doc-files/api-spec.html#license.delete.Request">API
  *      specification</a>

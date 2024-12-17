@@ -56,7 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ccr.resume_auto_follow_pattern.Request
 
 /**
- * Resumes an auto-follow pattern that has been paused
+ * Resume an auto-follow pattern. Resume a cross-cluster replication auto-follow
+ * pattern that was paused. The auto-follow pattern will resume configuring
+ * following indices for newly created indices that match its patterns on the
+ * remote cluster. Remote indices created while the pattern was paused will also
+ * be followed unless they have been deleted or closed in the interim.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.resume_auto_follow_pattern.Request">API

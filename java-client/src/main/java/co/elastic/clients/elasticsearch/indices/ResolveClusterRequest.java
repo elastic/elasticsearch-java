@@ -59,10 +59,33 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_cluster.Request
 
 /**
- * Resolves the specified index expressions to return information about each
- * cluster, including the local cluster, if included. Multiple patterns and
- * remote clusters are supported.
- * 
+ * Resolve the cluster. Resolve the specified index expressions to return
+ * information about each cluster, including the local cluster, if included.
+ * Multiple patterns and remote clusters are supported.
+ * <p>
+ * This endpoint is useful before doing a cross-cluster search in order to
+ * determine which remote clusters should be included in a search.
+ * <p>
+ * You use the same index expression with this endpoint as you would for
+ * cross-cluster search. Index and cluster exclusions are also supported with
+ * this endpoint.
+ * <p>
+ * For each cluster in the index expression, information is returned about:
+ * <ul>
+ * <li>Whether the querying (&quot;local&quot;) cluster is currently connected
+ * to each remote cluster in the index expression scope.</li>
+ * <li>Whether each remote cluster is configured with
+ * <code>skip_unavailable</code> as <code>true</code> or
+ * <code>false</code>.</li>
+ * <li>Whether there are any indices, aliases, or data streams on that cluster
+ * that match the index expression.</li>
+ * <li>Whether the search is likely to have errors returned when you do the
+ * cross-cluster search (including any authorization errors if you do not have
+ * permission to query the index).</li>
+ * <li>Cluster version information, including the Elasticsearch server
+ * version.</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#indices.resolve_cluster.Request">API
  *      specification</a>
  */

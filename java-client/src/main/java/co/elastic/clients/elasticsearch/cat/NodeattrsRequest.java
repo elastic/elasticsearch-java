@@ -28,10 +28,13 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -51,23 +54,88 @@ import java.util.Objects;
 // typedef: cat.nodeattrs.Request
 
 /**
- * Returns information about custom node attributes. IMPORTANT: cat APIs are
- * only intended for human consumption using the command line or Kibana console.
- * They are not intended for use by applications. For application consumption,
- * use the nodes info API.
+ * Get node attribute information. Get information about custom node attributes.
+ * IMPORTANT: cat APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
+ * application consumption, use the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.nodeattrs.Request">API
  *      specification</a>
  */
 
 public class NodeattrsRequest extends CatRequestBase {
-	public NodeattrsRequest() {
+	@Nullable
+	private final Boolean local;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private NodeattrsRequest(Builder builder) {
+
+		this.local = builder.local;
+
+	}
+
+	public static NodeattrsRequest of(Function<Builder, ObjectBuilder<NodeattrsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link NodeattrsRequest}.
+	 * If <code>true</code>, the request computes the list of selected nodes from
+	 * the local cluster state. If <code>false</code> the list of selected nodes are
+	 * computed from the cluster state of the master node. In both cases the
+	 * coordinating node will send requests for further information to each selected
+	 * node.
+	 * <p>
+	 * API name: {@code local}
 	 */
-	public static final NodeattrsRequest _INSTANCE = new NodeattrsRequest();
+	@Nullable
+	public final Boolean local() {
+		return this.local;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link NodeattrsRequest}.
+	 */
+
+	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<NodeattrsRequest> {
+		@Nullable
+		private Boolean local;
+
+		/**
+		 * If <code>true</code>, the request computes the list of selected nodes from
+		 * the local cluster state. If <code>false</code> the list of selected nodes are
+		 * computed from the cluster state of the master node. In both cases the
+		 * coordinating node will send requests for further information to each selected
+		 * node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link NodeattrsRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public NodeattrsRequest build() {
+			_checkSingleUse();
+
+			return new NodeattrsRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,6 +166,9 @@ public class NodeattrsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);

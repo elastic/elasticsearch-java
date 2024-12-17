@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
 // typedef: sql.get_async.Request
 
 /**
- * Returns the current status and available results for an async SQL search or
- * stored synchronous SQL search
+ * Get async SQL search results. Get the current status and available results
+ * for an async SQL search or stored synchronous SQL search.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.get_async.Request">API
  *      specification</a>

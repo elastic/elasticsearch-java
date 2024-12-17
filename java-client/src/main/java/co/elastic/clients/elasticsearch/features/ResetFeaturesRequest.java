@@ -50,7 +50,29 @@ import java.util.Objects;
 // typedef: features.reset_features.Request
 
 /**
- * Resets the internal state of features, usually by deleting system indices
+ * Reset the features. Clear all of the state information stored in system
+ * indices by Elasticsearch features, including the security and machine
+ * learning indices.
+ * <p>
+ * WARNING: Intended for development and testing use only. Do not reset features
+ * on a production cluster.
+ * <p>
+ * Return a cluster to the same state as a new installation by resetting the
+ * feature state for all Elasticsearch features. This deletes all state
+ * information stored in system indices.
+ * <p>
+ * The response code is HTTP 200 if the state is successfully reset for all
+ * features. It is HTTP 500 if the reset operation failed for any feature.
+ * <p>
+ * Note that select features might provide a way to reset particular system
+ * indices. Using this API resets all features, both those that are built-in and
+ * implemented as plugins.
+ * <p>
+ * To list the features that will be affected, use the get features API.
+ * <p>
+ * IMPORTANT: The features installed on the node you submit this request to are
+ * the features that will be reset. Run on the master node if you have any
+ * doubts about which plugins are installed on individual nodes.
  * 
  * @see <a href="../doc-files/api-spec.html#features.reset_features.Request">API
  *      specification</a>

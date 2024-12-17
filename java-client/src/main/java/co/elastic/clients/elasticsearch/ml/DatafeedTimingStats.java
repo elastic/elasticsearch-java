@@ -65,6 +65,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 	private final double exponentialAverageSearchTimePerHourMs;
 
+	@Nullable
+	private final ExponentialAverageCalculationContext exponentialAverageCalculationContext;
+
 	private final String jobId;
 
 	private final long searchCount;
@@ -81,6 +84,7 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
 		this.exponentialAverageSearchTimePerHourMs = ApiTypeHelper.requireNonNull(
 				builder.exponentialAverageSearchTimePerHourMs, this, "exponentialAverageSearchTimePerHourMs");
+		this.exponentialAverageCalculationContext = builder.exponentialAverageCalculationContext;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.searchCount = ApiTypeHelper.requireNonNull(builder.searchCount, this, "searchCount");
 		this.totalSearchTimeMs = ApiTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs");
@@ -108,6 +112,14 @@ public class DatafeedTimingStats implements JsonpSerializable {
 	 */
 	public final double exponentialAverageSearchTimePerHourMs() {
 		return this.exponentialAverageSearchTimePerHourMs;
+	}
+
+	/**
+	 * API name: {@code exponential_average_calculation_context}
+	 */
+	@Nullable
+	public final ExponentialAverageCalculationContext exponentialAverageCalculationContext() {
+		return this.exponentialAverageCalculationContext;
 	}
 
 	/**
@@ -164,6 +176,11 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		generator.writeKey("exponential_average_search_time_per_hour_ms");
 		generator.write(this.exponentialAverageSearchTimePerHourMs);
 
+		if (this.exponentialAverageCalculationContext != null) {
+			generator.writeKey("exponential_average_calculation_context");
+			this.exponentialAverageCalculationContext.serialize(generator, mapper);
+
+		}
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
@@ -199,6 +216,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 		private Double exponentialAverageSearchTimePerHourMs;
 
+		@Nullable
+		private ExponentialAverageCalculationContext exponentialAverageCalculationContext;
+
 		private String jobId;
 
 		private Long searchCount;
@@ -226,6 +246,24 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		public final Builder exponentialAverageSearchTimePerHourMs(double value) {
 			this.exponentialAverageSearchTimePerHourMs = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code exponential_average_calculation_context}
+		 */
+		public final Builder exponentialAverageCalculationContext(
+				@Nullable ExponentialAverageCalculationContext value) {
+			this.exponentialAverageCalculationContext = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code exponential_average_calculation_context}
+		 */
+		public final Builder exponentialAverageCalculationContext(
+				Function<ExponentialAverageCalculationContext.Builder, ObjectBuilder<ExponentialAverageCalculationContext>> fn) {
+			return this.exponentialAverageCalculationContext(
+					fn.apply(new ExponentialAverageCalculationContext.Builder()).build());
 		}
 
 		/**
@@ -299,6 +337,8 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		op.add(Builder::bucketCount, JsonpDeserializer.longDeserializer(), "bucket_count");
 		op.add(Builder::exponentialAverageSearchTimePerHourMs, JsonpDeserializer.doubleDeserializer(),
 				"exponential_average_search_time_per_hour_ms");
+		op.add(Builder::exponentialAverageCalculationContext, ExponentialAverageCalculationContext._DESERIALIZER,
+				"exponential_average_calculation_context");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::searchCount, JsonpDeserializer.longDeserializer(), "search_count");
 		op.add(Builder::totalSearchTimeMs, JsonpDeserializer.doubleDeserializer(), "total_search_time_ms");

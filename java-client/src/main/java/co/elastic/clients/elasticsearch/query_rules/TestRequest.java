@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 // typedef: query_rules.test.Request
 
 /**
- * Creates or updates a query ruleset.
+ * Test a query ruleset. Evaluate match criteria against a query ruleset to
+ * identify the rules that would match that criteria.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.test.Request">API
  *      specification</a>

@@ -59,10 +59,17 @@ import javax.annotation.Nullable;
 // typedef: indices.downsample.Request
 
 /**
- * Aggregates a time series (TSDS) index and stores pre-computed statistical
- * summaries (<code>min</code>, <code>max</code>, <code>sum</code>,
- * <code>value_count</code> and <code>avg</code>) for each metric field grouped
- * by a configured time interval.
+ * Downsample an index. Aggregate a time series (TSDS) index and store
+ * pre-computed statistical summaries (<code>min</code>, <code>max</code>,
+ * <code>sum</code>, <code>value_count</code> and <code>avg</code>) for each
+ * metric field grouped by a configured time interval. For example, a TSDS index
+ * that contains metrics sampled every 10 seconds can be downsampled to an
+ * hourly index. All documents within an hour interval are summarized and stored
+ * as a single document in the downsample index.
+ * <p>
+ * NOTE: Only indices in a time series data stream are supported. Neither field
+ * nor document level security can be defined on the source index. The source
+ * index must be read only (<code>index.blocks.write: true</code>).
  * 
  * @see <a href="../doc-files/api-spec.html#indices.downsample.Request">API
  *      specification</a>

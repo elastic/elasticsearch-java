@@ -50,7 +50,7 @@ import java.util.Objects;
 // typedef: license.get_basic_status.Request
 
 /**
- * Retrieves information about the status of the basic license.
+ * Get the basic license status.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#license.get_basic_status.Request">API

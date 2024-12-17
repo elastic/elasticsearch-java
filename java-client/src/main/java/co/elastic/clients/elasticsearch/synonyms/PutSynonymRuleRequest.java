@@ -58,7 +58,8 @@ import javax.annotation.Nullable;
 // typedef: synonyms.put_synonym_rule.Request
 
 /**
- * Creates or updates a synonym rule in a synonym set
+ * Create or update a synonym rule. Create or update a synonym rule in a synonym
+ * set.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.put_synonym_rule.Request">API

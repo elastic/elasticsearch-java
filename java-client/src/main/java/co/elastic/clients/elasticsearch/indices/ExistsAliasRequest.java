@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -79,7 +80,7 @@ public class ExistsAliasRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final Boolean local;
+	private final Time masterTimeout;
 
 	private final List<String> name;
 
@@ -91,7 +92,7 @@ public class ExistsAliasRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
-		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
@@ -150,17 +151,14 @@ public class ExistsAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the request retrieves information from the local node
-	 * only.
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
-	 * API name: {@code local}
-	 * 
-	 * @deprecated 8.12.0
+	 * API name: {@code master_timeout}
 	 */
-	@Deprecated
 	@Nullable
-	public final Boolean local() {
-		return this.local;
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -195,7 +193,7 @@ public class ExistsAliasRequest extends RequestBase {
 		private List<String> index;
 
 		@Nullable
-		private Boolean local;
+		private Time masterTimeout;
 
 		private List<String> name;
 
@@ -286,17 +284,24 @@ public class ExistsAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code>, the request retrieves information from the local node
-		 * only.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code local}
-		 * 
-		 * @deprecated 8.12.0
+		 * API name: {@code master_timeout}
 		 */
-		@Deprecated
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -413,6 +418,9 @@ public class ExistsAliasRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
@@ -422,9 +430,6 @@ public class ExistsAliasRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: synonyms.get_synonym.Request
 
 /**
- * Retrieves a synonym set
+ * Get a synonym set.
  * 
  * @see <a href="../doc-files/api-spec.html#synonyms.get_synonym.Request">API
  *      specification</a>

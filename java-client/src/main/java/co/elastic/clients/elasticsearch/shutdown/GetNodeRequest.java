@@ -58,9 +58,18 @@ import javax.annotation.Nullable;
 // typedef: shutdown.get_node.Request
 
 /**
- * Retrieve status of a node or nodes that are currently marked as shutting
- * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+ * Get the shutdown status.
+ * <p>
+ * Get information about nodes that are ready to be shut down, have shut down
+ * preparations still in progress, or have stalled. The API returns status
+ * information for each part of the shut down process.
+ * <p>
+ * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+ * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
  * supported.
+ * <p>
+ * If the operator privileges feature is enabled, you must be an operator to use
+ * this API.
  * 
  * @see <a href="../doc-files/api-spec.html#shutdown.get_node.Request">API
  *      specification</a>

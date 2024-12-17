@@ -56,8 +56,15 @@ import javax.annotation.Nullable;
 // typedef: ccr.unfollow.Request
 
 /**
- * Stops the following task associated with a follower index and removes index
- * metadata and settings associated with cross-cluster replication.
+ * Unfollow an index. Convert a cross-cluster replication follower index to a
+ * regular index. The API stops the following task associated with a follower
+ * index and removes index metadata and settings associated with cross-cluster
+ * replication. The follower index must be paused and closed before you call the
+ * unfollow API.
+ * <p>
+ * NOTE: Currently cross-cluster replication does not support converting an
+ * existing regular index to a follower index. Converting a follower index to a
+ * regular index is an irreversible operation.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.unfollow.Request">API
  *      specification</a>

@@ -50,7 +50,8 @@ import java.util.Objects;
 // typedef: ccr.stats.Request
 
 /**
- * Gets all stats related to cross-cluster replication.
+ * Get cross-cluster replication stats. This API returns stats about
+ * auto-following and the same shard-level stats as the get follower stats API.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.stats.Request">API
  *      specification</a>

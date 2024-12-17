@@ -1832,7 +1832,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.info
 
 	/**
-	 * Return ML defaults and limits. Returns defaults and limits used by machine
+	 * Get machine learning information. Get defaults and limits used by machine
 	 * learning. This endpoint is designed to be used by a user interface that needs
 	 * to fully understand machine learning configurations where some options are
 	 * not specified, meaning that the defaults should be used. This endpoint may be
@@ -2236,9 +2236,14 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * an anomaly detection job. You can associate only one datafeed with each
 	 * anomaly detection job. The datafeed contains a query that runs at a defined
 	 * interval (<code>frequency</code>). If you are concerned about delayed data,
-	 * you can add a delay
-	 * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
-	 * index.
+	 * you can add a delay (<code>query_delay</code>) at each interval. When
+	 * Elasticsearch security features are enabled, your datafeed remembers which
+	 * roles the user who created it had at the time of creation and runs the query
+	 * using those same roles. If you provide secondary authorization headers, those
+	 * credentials are used instead. You must use Kibana, this API, or the create
+	 * anomaly detection jobs API to create a datafeed. Do not add a datafeed
+	 * directly to the <code>.ml-config</code> index. Do not give users
+	 * <code>write</code> privileges on the <code>.ml-config</code> index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
@@ -2257,9 +2262,14 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * an anomaly detection job. You can associate only one datafeed with each
 	 * anomaly detection job. The datafeed contains a query that runs at a defined
 	 * interval (<code>frequency</code>). If you are concerned about delayed data,
-	 * you can add a delay
-	 * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
-	 * index.
+	 * you can add a delay (<code>query_delay</code>) at each interval. When
+	 * Elasticsearch security features are enabled, your datafeed remembers which
+	 * roles the user who created it had at the time of creation and runs the query
+	 * using those same roles. If you provide secondary authorization headers, those
+	 * credentials are used instead. You must use Kibana, this API, or the create
+	 * anomaly detection jobs API to create a datafeed. Do not add a datafeed
+	 * directly to the <code>.ml-config</code> index. Do not give users
+	 * <code>write</code> privileges on the <code>.ml-config</code> index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3246,7 +3256,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.validate_detector
 
 	/**
-	 * Validates an anomaly detection detector.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
@@ -3261,7 +3271,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Validates an anomaly detection detector.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3277,7 +3287,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Validates an anomaly detection detector.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation

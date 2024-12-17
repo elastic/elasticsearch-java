@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: synonyms.delete_synonym_rule.Request
 
 /**
- * Deletes a synonym rule in a synonym set
+ * Delete a synonym rule. Delete a synonym rule from a synonym set.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.delete_synonym_rule.Request">API

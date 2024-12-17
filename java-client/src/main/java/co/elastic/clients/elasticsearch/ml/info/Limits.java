@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -60,8 +61,15 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Limits implements JsonpSerializable {
 	@Nullable
+	private final Integer maxSingleMlNodeProcessors;
+
+	@Nullable
+	private final Integer totalMlProcessors;
+
+	@Nullable
 	private final String maxModelMemoryLimit;
 
+	@Nullable
 	private final String effectiveMaxModelMemoryLimit;
 
 	private final String totalMlMemory;
@@ -70,15 +78,32 @@ public class Limits implements JsonpSerializable {
 
 	private Limits(Builder builder) {
 
+		this.maxSingleMlNodeProcessors = builder.maxSingleMlNodeProcessors;
+		this.totalMlProcessors = builder.totalMlProcessors;
 		this.maxModelMemoryLimit = builder.maxModelMemoryLimit;
-		this.effectiveMaxModelMemoryLimit = ApiTypeHelper.requireNonNull(builder.effectiveMaxModelMemoryLimit, this,
-				"effectiveMaxModelMemoryLimit");
+		this.effectiveMaxModelMemoryLimit = builder.effectiveMaxModelMemoryLimit;
 		this.totalMlMemory = ApiTypeHelper.requireNonNull(builder.totalMlMemory, this, "totalMlMemory");
 
 	}
 
 	public static Limits of(Function<Builder, ObjectBuilder<Limits>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code max_single_ml_node_processors}
+	 */
+	@Nullable
+	public final Integer maxSingleMlNodeProcessors() {
+		return this.maxSingleMlNodeProcessors;
+	}
+
+	/**
+	 * API name: {@code total_ml_processors}
+	 */
+	@Nullable
+	public final Integer totalMlProcessors() {
+		return this.totalMlProcessors;
 	}
 
 	/**
@@ -90,8 +115,9 @@ public class Limits implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code effective_max_model_memory_limit}
+	 * API name: {@code effective_max_model_memory_limit}
 	 */
+	@Nullable
 	public final String effectiveMaxModelMemoryLimit() {
 		return this.effectiveMaxModelMemoryLimit;
 	}
@@ -114,14 +140,26 @@ public class Limits implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.maxSingleMlNodeProcessors != null) {
+			generator.writeKey("max_single_ml_node_processors");
+			generator.write(this.maxSingleMlNodeProcessors);
+
+		}
+		if (this.totalMlProcessors != null) {
+			generator.writeKey("total_ml_processors");
+			generator.write(this.totalMlProcessors);
+
+		}
 		if (this.maxModelMemoryLimit != null) {
 			generator.writeKey("max_model_memory_limit");
 			generator.write(this.maxModelMemoryLimit);
 
 		}
-		generator.writeKey("effective_max_model_memory_limit");
-		generator.write(this.effectiveMaxModelMemoryLimit);
+		if (this.effectiveMaxModelMemoryLimit != null) {
+			generator.writeKey("effective_max_model_memory_limit");
+			generator.write(this.effectiveMaxModelMemoryLimit);
 
+		}
 		generator.writeKey("total_ml_memory");
 		generator.write(this.totalMlMemory);
 
@@ -140,11 +178,34 @@ public class Limits implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Limits> {
 		@Nullable
+		private Integer maxSingleMlNodeProcessors;
+
+		@Nullable
+		private Integer totalMlProcessors;
+
+		@Nullable
 		private String maxModelMemoryLimit;
 
+		@Nullable
 		private String effectiveMaxModelMemoryLimit;
 
 		private String totalMlMemory;
+
+		/**
+		 * API name: {@code max_single_ml_node_processors}
+		 */
+		public final Builder maxSingleMlNodeProcessors(@Nullable Integer value) {
+			this.maxSingleMlNodeProcessors = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_ml_processors}
+		 */
+		public final Builder totalMlProcessors(@Nullable Integer value) {
+			this.totalMlProcessors = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code max_model_memory_limit}
@@ -155,9 +216,9 @@ public class Limits implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code effective_max_model_memory_limit}
+		 * API name: {@code effective_max_model_memory_limit}
 		 */
-		public final Builder effectiveMaxModelMemoryLimit(String value) {
+		public final Builder effectiveMaxModelMemoryLimit(@Nullable String value) {
 			this.effectiveMaxModelMemoryLimit = value;
 			return this;
 		}
@@ -198,6 +259,9 @@ public class Limits implements JsonpSerializable {
 
 	protected static void setupLimitsDeserializer(ObjectDeserializer<Limits.Builder> op) {
 
+		op.add(Builder::maxSingleMlNodeProcessors, JsonpDeserializer.integerDeserializer(),
+				"max_single_ml_node_processors");
+		op.add(Builder::totalMlProcessors, JsonpDeserializer.integerDeserializer(), "total_ml_processors");
 		op.add(Builder::maxModelMemoryLimit, JsonpDeserializer.stringDeserializer(), "max_model_memory_limit");
 		op.add(Builder::effectiveMaxModelMemoryLimit, JsonpDeserializer.stringDeserializer(),
 				"effective_max_model_memory_limit");

@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.cleanup_repository.Request
 
 /**
- * Triggers the review of a snapshot repository’s contents and deletes any stale
- * data not referenced by existing snapshots.
+ * Clean up the snapshot repository. Trigger the review of the contents of a
+ * snapshot repository and delete any stale data not referenced by existing
+ * snapshots.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.cleanup_repository.Request">API

@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
 // typedef: sql.delete_async.Request
 
 /**
- * Deletes an async SQL search or a stored synchronous SQL search. If the search
- * is still running, the API cancels it.
+ * Delete an async SQL search. Delete an async SQL search or a stored
+ * synchronous SQL search. If the search is still running, the API cancels it.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.delete_async.Request">API
  *      specification</a>

@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
 // typedef: _global.count.Request
 
 /**
- * Returns number of documents matching a query.
+ * Count search results. Get the number of documents matching a query.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.count.Request">API
  *      specification</a>
