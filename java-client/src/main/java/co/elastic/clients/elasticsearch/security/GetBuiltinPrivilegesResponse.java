@@ -73,7 +73,7 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 
 		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.remoteCluster = ApiTypeHelper.unmodifiableRequired(builder.remoteCluster, this, "remoteCluster");
+		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
 
 	}
 
@@ -163,6 +163,7 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 
 		private List<String> index;
 
+		@Nullable
 		private List<RemoteClusterPrivilege> remoteCluster;
 
 		/**
