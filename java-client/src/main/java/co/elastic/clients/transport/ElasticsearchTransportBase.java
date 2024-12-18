@@ -34,11 +34,11 @@ import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
-import co.elastic.clients.util.ByteArrayBinaryData;
-import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
+import co.elastic.clients.util.ByteArrayBinaryData;
 import co.elastic.clients.util.ContentType;
+import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
 import jakarta.json.JsonException;
@@ -65,22 +65,15 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     private static final String USER_AGENT_VALUE = getUserAgent();
     private static final String CLIENT_META_VALUE = getClientMeta();
-    private static final String ELASTIC_API_VERSION;
     public static final String JSON_CONTENT_TYPE;
 
     static {
-        if (VersionInfo.FLAVOR.equals("serverless")) {
+        if (Version.VERSION == null) {
             JSON_CONTENT_TYPE = ContentType.APPLICATION_JSON;
-            ELASTIC_API_VERSION = "2023-10-31";
-        }
-        else if (Version.VERSION == null) {
-            JSON_CONTENT_TYPE = ContentType.APPLICATION_JSON;
-            ELASTIC_API_VERSION = null;
         } else {
             JSON_CONTENT_TYPE =
                 "application/vnd.elasticsearch+json; compatible-with=" +
-                Version.VERSION.major();
-            ELASTIC_API_VERSION = null;
+                    Version.VERSION.major();
         }
     }
 
@@ -95,7 +88,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     private final JsonpMapper mapper;
     protected final TransportOptions transportOptions;
 
-    public ElasticsearchTransportBase(TransportHttpClient httpClient, TransportOptions options, JsonpMapper jsonpMapper) {
+    public ElasticsearchTransportBase(TransportHttpClient httpClient, TransportOptions options,
+                                      JsonpMapper jsonpMapper) {
         this(httpClient, options, jsonpMapper, null);
     }
 
@@ -149,7 +143,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 ctx.afterDecodingApiResponse(apiResponse);
 
                 return apiResponse;
-            } catch (Throwable throwable){
+            } catch (Throwable throwable) {
                 ctx.recordException(throwable);
                 throw throwable;
             }
@@ -185,7 +179,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             endpoint.id(), null, clientReq, opts
         );
 
-        // Cancelling the result will cancel the upstream future created by the http client, allowing to stop in-flight requests
+        // Cancelling the result will cancel the upstream future created by the http client, allowing to
+        // stop in-flight requests
         CompletableFuture<ResponseT> future = new CompletableFuture<ResponseT>() {
             @Override
             public boolean cancel(boolean mayInterruptIfRunning) {
@@ -247,7 +242,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 headers = JsonContentTypeHeaders;
 
             } else if (body instanceof BinaryData) {
-                BinaryData data = (BinaryData)body;
+                BinaryData data = (BinaryData) body;
 
                 // ES expects the Accept and Content-Type headers to be consistent.
                 String dataContentType = data.contentType();
@@ -275,6 +270,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     private static final HeaderMap JsonContentTypeHeaders = new HeaderMap();
     private static final HeaderMap DefaultHeaders = new HeaderMap();
+
     static {
         addStandardHeaders(DefaultHeaders);
         addStandardHeaders(JsonContentTypeHeaders);
@@ -285,12 +281,13 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     private void collectNdJsonLines(List<ByteBuffer> lines, NdJsonpSerializable value) throws IOException {
         Iterator<?> values = value._serializables();
-        while(values.hasNext()) {
+        while (values.hasNext()) {
             Object item = values.next();
             if (item == null) {
                 // Skip
-            } else if (item instanceof NdJsonpSerializable && item != value) { // do not recurse on the item itself
-                collectNdJsonLines(lines, (NdJsonpSerializable)item);
+            } else if (item instanceof NdJsonpSerializable && item != value) { // do not recurse on the
+                // item itself
+                collectNdJsonLines(lines, (NdJsonpSerializable) item);
             } else {
                 // TODO: items that aren't already BinaryData could be serialized to ByteBuffers lazily
                 // to reduce the number of buffers to keep in memory
@@ -307,7 +304,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
         int statusCode = clientResp.statusCode();
 
-        if(options().keepResponseBodyOnException()){
+        if (options().keepResponseBodyOnException()) {
             clientResp = RepeatableBodyResponse.of(clientResp);
         }
         try {
@@ -348,12 +345,13 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                         // TODO: have the endpoint provide the exception constructor
                         throw new ElasticsearchException(endpoint.id(), (ErrorResponse) error, clientResp);
                     }
-                } catch(JsonException | MissingRequiredPropertyException errorEx) {
+                } catch (JsonException | MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type
                     try {
-                        ResponseT response = decodeTransportResponse(statusCode, entity, clientResp, endpoint);
+                        ResponseT response = decodeTransportResponse(statusCode, entity, clientResp,
+                            endpoint);
                         return response;
-                    } catch(Exception respEx) {
+                    } catch (Exception respEx) {
                         // No better luck: throw the original error decoding exception
                         throw new TransportException(
                             clientResp,
@@ -369,7 +367,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
 
         } finally {
-            // Consume the entity unless this is a successful binary endpoint, where the user must consume the entity
+            // Consume the entity unless this is a successful binary endpoint, where the user must consume
+            // the entity
             if (!(endpoint instanceof BinaryEndpoint && !endpoint.isError(statusCode))) {
                 clientResp.close();
             }
@@ -377,7 +376,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     }
 
     private <ResponseT> ResponseT decodeTransportResponse(
-        int statusCode, @Nullable BinaryData entity, TransportHttpClient.Response clientResp, Endpoint<?, ResponseT, ?> endpoint
+        int statusCode, @Nullable BinaryData entity, TransportHttpClient.Response clientResp, Endpoint<?,
+        ResponseT, ?> endpoint
     ) throws IOException {
 
         if (endpoint instanceof JsonEndpoint) {
@@ -413,7 +413,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             }
             return response;
 
-        } else if(endpoint instanceof BooleanEndpoint) {
+        } else if (endpoint instanceof BooleanEndpoint) {
             BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
 
             @SuppressWarnings("unchecked")
@@ -447,7 +447,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             }
             throw new TransportException(
                 clientResp,
-                "Missing [X-Elastic-Product] header. Please check that you are connecting to an Elasticsearch "
+                "Missing [X-Elastic-Product] header. Please check that you are connecting to an " +
+                    "Elasticsearch "
                     + "instance, and that any networking filters are preserving that header.",
                 endpoint.id()
             );
@@ -469,20 +470,19 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             throw new TransportException(clientResp, "Response has no content-type", endpoint.id());
         }
 
-        if (contentType.startsWith("application/json") || contentType.startsWith("application/vnd.elasticsearch+json")) {
+        if (contentType.startsWith("application/json") || contentType.startsWith("application/vnd" +
+            ".elasticsearch+json")) {
             return;
         }
 
-        throw new TransportException(clientResp, "Expecting JSON data but response content-type is: " + contentType, endpoint.id());
+        throw new TransportException(clientResp,
+            "Expecting JSON data but response content-type is: " + contentType, endpoint.id());
     }
 
     private static void addStandardHeaders(HeaderMap headers) {
         headers.put(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
         headers.put(HeaderMap.CLIENT_META, CLIENT_META_VALUE);
         headers.put(HeaderMap.ACCEPT, JSON_CONTENT_TYPE);
-        if (ELASTIC_API_VERSION != null) {
-            headers.put("Elastic-Api-Version", ELASTIC_API_VERSION);
-        }
     }
 
     private static String getUserAgent() {
@@ -499,15 +499,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         String flavorKey;
         String transportVersion;
 
-        if (VersionInfo.FLAVOR.equals("serverless")) {
-            flavorKey = "esv=";
-            int pos = VersionInfo.VERSION.indexOf('+');
-            // Strip API version from the transport version
-            transportVersion = pos > 0 ? VersionInfo.VERSION.substring(0, pos) : VersionInfo.VERSION;
-        } else {
-            flavorKey = "es=";
-            transportVersion = VersionInfo.VERSION;
-        }
+        flavorKey = "es=";
+        transportVersion = VersionInfo.VERSION;
 
         // service, language, transport, followed by additional information
         return flavorKey

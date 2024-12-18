@@ -65,6 +65,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 	private final SnapshotUpgradeState state;
 
+	@Nullable
 	private final DiscoveryNodeContent node;
 
 	private final String assignmentExplanation;
@@ -76,7 +77,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.node = builder.node;
 		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
 				"assignmentExplanation");
 
@@ -110,6 +111,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code node}
 	 */
+	@Nullable
 	public final DiscoveryNodeContent node() {
 		return this.node;
 	}
@@ -140,9 +142,11 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-		generator.writeKey("node");
-		this.node.serialize(generator, mapper);
+		if (this.node != null) {
+			generator.writeKey("node");
+			this.node.serialize(generator, mapper);
 
+		}
 		generator.writeKey("assignment_explanation");
 		generator.write(this.assignmentExplanation);
 
@@ -168,6 +172,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 		private SnapshotUpgradeState state;
 
+		@Nullable
 		private DiscoveryNodeContent node;
 
 		private String assignmentExplanation;
@@ -199,7 +204,7 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(DiscoveryNodeContent value) {
+		public final Builder node(@Nullable DiscoveryNodeContent value) {
 			this.node = value;
 			return this;
 		}

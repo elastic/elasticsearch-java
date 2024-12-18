@@ -23,10 +23,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class VersionInfoTest {
-    @Test
-    public void testFlavor() {
-        Assertions.assertEquals("stack", VersionInfo.FLAVOR);
-    }
 
     @Test
     public void testClientMeta() {

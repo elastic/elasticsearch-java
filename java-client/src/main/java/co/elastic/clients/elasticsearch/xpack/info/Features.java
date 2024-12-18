@@ -70,10 +70,12 @@ public class Features implements JsonpSerializable {
 
 	private final Feature enrich;
 
+	@Nullable
 	private final Feature enterpriseSearch;
 
 	private final Feature eql;
 
+	@Nullable
 	private final Feature esql;
 
 	private final Feature frozenIndices;
@@ -107,12 +109,14 @@ public class Features implements JsonpSerializable {
 
 	private final Feature transform;
 
+	@Nullable
 	private final Feature universalProfiling;
 
 	private final Feature votingOnly;
 
 	private final Feature watcher;
 
+	@Nullable
 	private final Feature archive;
 
 	// ---------------------------------------------------------------------------------------------
@@ -125,9 +129,9 @@ public class Features implements JsonpSerializable {
 		this.dataStreams = ApiTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
 		this.dataTiers = ApiTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
 		this.enrich = ApiTypeHelper.requireNonNull(builder.enrich, this, "enrich");
-		this.enterpriseSearch = ApiTypeHelper.requireNonNull(builder.enterpriseSearch, this, "enterpriseSearch");
+		this.enterpriseSearch = builder.enterpriseSearch;
 		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
-		this.esql = ApiTypeHelper.requireNonNull(builder.esql, this, "esql");
+		this.esql = builder.esql;
 		this.frozenIndices = ApiTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
@@ -144,10 +148,10 @@ public class Features implements JsonpSerializable {
 		this.spatial = ApiTypeHelper.requireNonNull(builder.spatial, this, "spatial");
 		this.sql = ApiTypeHelper.requireNonNull(builder.sql, this, "sql");
 		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
-		this.universalProfiling = ApiTypeHelper.requireNonNull(builder.universalProfiling, this, "universalProfiling");
+		this.universalProfiling = builder.universalProfiling;
 		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
 		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
-		this.archive = ApiTypeHelper.requireNonNull(builder.archive, this, "archive");
+		this.archive = builder.archive;
 
 	}
 
@@ -200,6 +204,7 @@ public class Features implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code enterprise_search}
 	 */
+	@Nullable
 	public final Feature enterpriseSearch() {
 		return this.enterpriseSearch;
 	}
@@ -214,6 +219,7 @@ public class Features implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code esql}
 	 */
+	@Nullable
 	public final Feature esql() {
 		return this.esql;
 	}
@@ -327,6 +333,7 @@ public class Features implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code universal_profiling}
 	 */
+	@Nullable
 	public final Feature universalProfiling() {
 		return this.universalProfiling;
 	}
@@ -348,6 +355,7 @@ public class Features implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code archive}
 	 */
+	@Nullable
 	public final Feature archive() {
 		return this.archive;
 	}
@@ -381,15 +389,19 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("enrich");
 		this.enrich.serialize(generator, mapper);
 
-		generator.writeKey("enterprise_search");
-		this.enterpriseSearch.serialize(generator, mapper);
+		if (this.enterpriseSearch != null) {
+			generator.writeKey("enterprise_search");
+			this.enterpriseSearch.serialize(generator, mapper);
 
+		}
 		generator.writeKey("eql");
 		this.eql.serialize(generator, mapper);
 
-		generator.writeKey("esql");
-		this.esql.serialize(generator, mapper);
+		if (this.esql != null) {
+			generator.writeKey("esql");
+			this.esql.serialize(generator, mapper);
 
+		}
 		generator.writeKey("frozen_indices");
 		this.frozenIndices.serialize(generator, mapper);
 
@@ -437,17 +449,22 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("transform");
 		this.transform.serialize(generator, mapper);
 
-		generator.writeKey("universal_profiling");
-		this.universalProfiling.serialize(generator, mapper);
+		if (this.universalProfiling != null) {
+			generator.writeKey("universal_profiling");
+			this.universalProfiling.serialize(generator, mapper);
 
+		}
 		generator.writeKey("voting_only");
 		this.votingOnly.serialize(generator, mapper);
 
 		generator.writeKey("watcher");
 		this.watcher.serialize(generator, mapper);
 
-		generator.writeKey("archive");
-		this.archive.serialize(generator, mapper);
+		if (this.archive != null) {
+			generator.writeKey("archive");
+			this.archive.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -475,10 +492,12 @@ public class Features implements JsonpSerializable {
 
 		private Feature enrich;
 
+		@Nullable
 		private Feature enterpriseSearch;
 
 		private Feature eql;
 
+		@Nullable
 		private Feature esql;
 
 		private Feature frozenIndices;
@@ -512,12 +531,14 @@ public class Features implements JsonpSerializable {
 
 		private Feature transform;
 
+		@Nullable
 		private Feature universalProfiling;
 
 		private Feature votingOnly;
 
 		private Feature watcher;
 
+		@Nullable
 		private Feature archive;
 
 		/**
@@ -613,7 +634,7 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enterprise_search}
 		 */
-		public final Builder enterpriseSearch(Feature value) {
+		public final Builder enterpriseSearch(@Nullable Feature value) {
 			this.enterpriseSearch = value;
 			return this;
 		}
@@ -643,7 +664,7 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code esql}
 		 */
-		public final Builder esql(Feature value) {
+		public final Builder esql(@Nullable Feature value) {
 			this.esql = value;
 			return this;
 		}
@@ -883,7 +904,7 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code universal_profiling}
 		 */
-		public final Builder universalProfiling(Feature value) {
+		public final Builder universalProfiling(@Nullable Feature value) {
 			this.universalProfiling = value;
 			return this;
 		}
@@ -928,7 +949,7 @@ public class Features implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code archive}
 		 */
-		public final Builder archive(Feature value) {
+		public final Builder archive(@Nullable Feature value) {
 			this.archive = value;
 			return this;
 		}

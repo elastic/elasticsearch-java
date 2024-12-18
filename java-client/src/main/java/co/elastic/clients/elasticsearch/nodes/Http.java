@@ -80,7 +80,7 @@ public class Http implements JsonpSerializable {
 		this.currentOpen = builder.currentOpen;
 		this.totalOpened = builder.totalOpened;
 		this.clients = ApiTypeHelper.unmodifiable(builder.clients);
-		this.routes = ApiTypeHelper.unmodifiableRequired(builder.routes, this, "routes");
+		this.routes = ApiTypeHelper.unmodifiable(builder.routes);
 
 	}
 
@@ -195,6 +195,7 @@ public class Http implements JsonpSerializable {
 		@Nullable
 		private List<Client> clients;
 
+		@Nullable
 		private Map<String, HttpRoute> routes;
 
 		/**
