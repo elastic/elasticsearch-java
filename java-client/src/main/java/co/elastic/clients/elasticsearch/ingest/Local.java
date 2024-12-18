@@ -50,42 +50,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.Maxmind
+// typedef: ingest._types.Local
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ingest._types.Maxmind">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.Local">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable {
-	private final String accountId;
+public class Local implements JsonpSerializable {
+	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Maxmind(Builder builder) {
+	private Local(Builder builder) {
 
-		this.accountId = ApiTypeHelper.requireNonNull(builder.accountId, this, "accountId");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static Maxmind of(Function<Builder, ObjectBuilder<Maxmind>> fn) {
+	public static Local of(Function<Builder, ObjectBuilder<Local>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * DatabaseConfiguration variant kind.
+	 * Required - API name: {@code type}
 	 */
-	@Override
-	public DatabaseConfiguration.Kind _databaseConfigurationKind() {
-		return DatabaseConfiguration.Kind.Maxmind;
-	}
-
-	/**
-	 * Required - API name: {@code account_id}
-	 */
-	public final String accountId() {
-		return this.accountId;
+	public final String type() {
+		return this.type;
 	}
 
 	/**
@@ -99,8 +91,8 @@ public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("account_id");
-		generator.write(this.accountId);
+		generator.writeKey("type");
+		generator.write(this.type);
 
 	}
 
@@ -112,17 +104,17 @@ public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Maxmind}.
+	 * Builder for {@link Local}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Maxmind> {
-		private String accountId;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Local> {
+		private String type;
 
 		/**
-		 * Required - API name: {@code account_id}
+		 * Required - API name: {@code type}
 		 */
-		public final Builder accountId(String value) {
-			this.accountId = value;
+		public final Builder type(String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -132,29 +124,29 @@ public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Builds a {@link Maxmind}.
+		 * Builds a {@link Local}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Maxmind build() {
+		public Local build() {
 			_checkSingleUse();
 
-			return new Maxmind(this);
+			return new Local(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Maxmind}
+	 * Json deserializer for {@link Local}
 	 */
-	public static final JsonpDeserializer<Maxmind> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Maxmind::setupMaxmindDeserializer);
+	public static final JsonpDeserializer<Local> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Local::setupLocalDeserializer);
 
-	protected static void setupMaxmindDeserializer(ObjectDeserializer<Maxmind.Builder> op) {
+	protected static void setupLocalDeserializer(ObjectDeserializer<Local.Builder> op) {
 
-		op.add(Builder::accountId, JsonpDeserializer.stringDeserializer(), "account_id");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

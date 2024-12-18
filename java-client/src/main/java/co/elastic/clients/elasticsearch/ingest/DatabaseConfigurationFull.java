@@ -22,15 +22,10 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,80 +45,111 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.Maxmind
+// typedef: ingest._types.DatabaseConfigurationFull
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ingest._types.Maxmind">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest._types.DatabaseConfigurationFull">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable {
-	private final String accountId;
+public class DatabaseConfigurationFull extends DatabaseConfiguration {
+	@Nullable
+	private final Web web;
+
+	@Nullable
+	private final Local local;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Maxmind(Builder builder) {
+	private DatabaseConfigurationFull(Builder builder) {
+		super(builder);
 
-		this.accountId = ApiTypeHelper.requireNonNull(builder.accountId, this, "accountId");
+		this.web = builder.web;
+		this.local = builder.local;
 
 	}
 
-	public static Maxmind of(Function<Builder, ObjectBuilder<Maxmind>> fn) {
+	public static DatabaseConfigurationFull of(Function<Builder, ObjectBuilder<DatabaseConfigurationFull>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * DatabaseConfiguration variant kind.
+	 * API name: {@code web}
 	 */
-	@Override
-	public DatabaseConfiguration.Kind _databaseConfigurationKind() {
-		return DatabaseConfiguration.Kind.Maxmind;
+	@Nullable
+	public final Web web() {
+		return this.web;
 	}
 
 	/**
-	 * Required - API name: {@code account_id}
+	 * API name: {@code local}
 	 */
-	public final String accountId() {
-		return this.accountId;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	@Nullable
+	public final Local local() {
+		return this.local;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("account_id");
-		generator.write(this.accountId);
+		super.serializeInternal(generator, mapper);
+		if (this.web != null) {
+			generator.writeKey("web");
+			this.web.serialize(generator, mapper);
 
-	}
+		}
+		if (this.local != null) {
+			generator.writeKey("local");
+			this.local.serialize(generator, mapper);
 
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Maxmind}.
+	 * Builder for {@link DatabaseConfigurationFull}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Maxmind> {
-		private String accountId;
+	public static class Builder extends DatabaseConfiguration.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DatabaseConfigurationFull> {
+		@Nullable
+		private Web web;
+
+		@Nullable
+		private Local local;
 
 		/**
-		 * Required - API name: {@code account_id}
+		 * API name: {@code web}
 		 */
-		public final Builder accountId(String value) {
-			this.accountId = value;
+		public final Builder web(@Nullable Web value) {
+			this.web = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code web}
+		 */
+		public final Builder web(Function<Web.Builder, ObjectBuilder<Web>> fn) {
+			return this.web(fn.apply(new Web.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Local value) {
+			this.local = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code local}
+		 */
+		public final Builder local(Function<Local.Builder, ObjectBuilder<Local>> fn) {
+			return this.local(fn.apply(new Local.Builder()).build());
 		}
 
 		@Override
@@ -132,29 +158,31 @@ public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Builds a {@link Maxmind}.
+		 * Builds a {@link DatabaseConfigurationFull}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Maxmind build() {
+		public DatabaseConfigurationFull build() {
 			_checkSingleUse();
 
-			return new Maxmind(this);
+			return new DatabaseConfigurationFull(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Maxmind}
+	 * Json deserializer for {@link DatabaseConfigurationFull}
 	 */
-	public static final JsonpDeserializer<Maxmind> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Maxmind::setupMaxmindDeserializer);
+	public static final JsonpDeserializer<DatabaseConfigurationFull> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DatabaseConfigurationFull::setupDatabaseConfigurationFullDeserializer);
 
-	protected static void setupMaxmindDeserializer(ObjectDeserializer<Maxmind.Builder> op) {
-
-		op.add(Builder::accountId, JsonpDeserializer.stringDeserializer(), "account_id");
+	protected static void setupDatabaseConfigurationFullDeserializer(
+			ObjectDeserializer<DatabaseConfigurationFull.Builder> op) {
+		DatabaseConfiguration.setupDatabaseConfigurationDeserializer(op);
+		op.add(Builder::web, Web._DESERIALIZER, "web");
+		op.add(Builder::local, Local._DESERIALIZER, "local");
 
 	}
 

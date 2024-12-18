@@ -19,21 +19,15 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,111 +44,65 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.Maxmind
+// typedef: ingest.put_ip_location_database.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ingest._types.Maxmind">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest.put_ip_location_database.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable {
-	private final String accountId;
-
+public class PutIpLocationDatabaseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private Maxmind(Builder builder) {
-
-		this.accountId = ApiTypeHelper.requireNonNull(builder.accountId, this, "accountId");
+	private PutIpLocationDatabaseResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	public static Maxmind of(Function<Builder, ObjectBuilder<Maxmind>> fn) {
+	public static PutIpLocationDatabaseResponse of(Function<Builder, ObjectBuilder<PutIpLocationDatabaseResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * DatabaseConfiguration variant kind.
-	 */
-	@Override
-	public DatabaseConfiguration.Kind _databaseConfigurationKind() {
-		return DatabaseConfiguration.Kind.Maxmind;
-	}
-
-	/**
-	 * Required - API name: {@code account_id}
-	 */
-	public final String accountId() {
-		return this.accountId;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("account_id");
-		generator.write(this.accountId);
-
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Maxmind}.
+	 * Builder for {@link PutIpLocationDatabaseResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Maxmind> {
-		private String accountId;
-
-		/**
-		 * Required - API name: {@code account_id}
-		 */
-		public final Builder accountId(String value) {
-			this.accountId = value;
-			return this;
-		}
-
+	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PutIpLocationDatabaseResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link Maxmind}.
+		 * Builds a {@link PutIpLocationDatabaseResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Maxmind build() {
+		public PutIpLocationDatabaseResponse build() {
 			_checkSingleUse();
 
-			return new Maxmind(this);
+			return new PutIpLocationDatabaseResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Maxmind}
+	 * Json deserializer for {@link PutIpLocationDatabaseResponse}
 	 */
-	public static final JsonpDeserializer<Maxmind> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Maxmind::setupMaxmindDeserializer);
+	public static final JsonpDeserializer<PutIpLocationDatabaseResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutIpLocationDatabaseResponse::setupPutIpLocationDatabaseResponseDeserializer);
 
-	protected static void setupMaxmindDeserializer(ObjectDeserializer<Maxmind.Builder> op) {
-
-		op.add(Builder::accountId, JsonpDeserializer.stringDeserializer(), "account_id");
+	protected static void setupPutIpLocationDatabaseResponseDeserializer(
+			ObjectDeserializer<PutIpLocationDatabaseResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 
