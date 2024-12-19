@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class Local implements JsonpSerializable {
+public class Local implements DatabaseConfigurationFullVariant, JsonpSerializable {
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +71,14 @@ public class Local implements JsonpSerializable {
 
 	public static Local of(Function<Builder, ObjectBuilder<Local>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * DatabaseConfigurationFull variant kind.
+	 */
+	@Override
+	public DatabaseConfigurationFull.Kind _databaseConfigurationFullKind() {
+		return DatabaseConfigurationFull.Kind.Local;
 	}
 
 	/**

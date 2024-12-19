@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable {
+public class Maxmind implements DatabaseConfigurationFullVariant, DatabaseConfigurationVariant, JsonpSerializable {
 	private final String accountId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +71,14 @@ public class Maxmind implements DatabaseConfigurationVariant, JsonpSerializable 
 
 	public static Maxmind of(Function<Builder, ObjectBuilder<Maxmind>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * DatabaseConfigurationFull variant kind.
+	 */
+	@Override
+	public DatabaseConfigurationFull.Kind _databaseConfigurationFullKind() {
+		return DatabaseConfigurationFull.Kind.Maxmind;
 	}
 
 	/**

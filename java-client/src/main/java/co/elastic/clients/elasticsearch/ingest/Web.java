@@ -47,7 +47,15 @@ import jakarta.json.stream.JsonGenerator;
  *      specification</a>
  */
 @JsonpDeserializable
-public class Web implements JsonpSerializable {
+public class Web implements DatabaseConfigurationFullVariant, JsonpSerializable {
+
+	/**
+	 * DatabaseConfigurationFull variant kind.
+	 */
+	@Override
+	public DatabaseConfigurationFull.Kind _databaseConfigurationFullKind() {
+		return DatabaseConfigurationFull.Kind.Web;
+	}
 
 	public static final class Builder implements ObjectBuilder<Web> {
 		@Override

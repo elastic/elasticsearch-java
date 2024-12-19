@@ -19,13 +19,22 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -54,20 +63,63 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DatabaseConfigurationFull extends DatabaseConfiguration {
-	@Nullable
-	private final Web web;
+public class DatabaseConfigurationFull
+		implements
+			TaggedUnion<DatabaseConfigurationFull.Kind, Object>,
+			JsonpSerializable {
 
-	@Nullable
-	private final Local local;
+	/**
+	 * {@link DatabaseConfigurationFull} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#ingest._types.DatabaseConfigurationFull">API
+	 *      specification</a>
+	 */
 
-	// ---------------------------------------------------------------------------------------------
+	public enum Kind implements JsonEnum {
+		Web("web"),
+
+		Local("local"),
+
+		Maxmind("maxmind"),
+
+		Ipinfo("ipinfo"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final Object _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
+	private final String name;
 
 	private DatabaseConfigurationFull(Builder builder) {
-		super(builder);
 
-		this.web = builder.web;
-		this.local = builder.local;
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -76,114 +128,203 @@ public class DatabaseConfigurationFull extends DatabaseConfiguration {
 	}
 
 	/**
-	 * API name: {@code web}
+	 * Required - The provider-assigned name of the IP geolocation database to
+	 * download.
+	 * <p>
+	 * API name: {@code name}
 	 */
-	@Nullable
-	public final Web web() {
-		return this.web;
+	public final String name() {
+		return this.name;
 	}
 
 	/**
-	 * API name: {@code local}
+	 * Is this variant instance of kind {@code web}?
 	 */
-	@Nullable
-	public final Local local() {
-		return this.local;
+	public boolean isWeb() {
+		return _kind == Kind.Web;
 	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		if (this.web != null) {
-			generator.writeKey("web");
-			this.web.serialize(generator, mapper);
-
-		}
-		if (this.local != null) {
-			generator.writeKey("local");
-			this.local.serialize(generator, mapper);
-
-		}
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DatabaseConfigurationFull}.
+	 * Get the {@code web} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code web} kind.
 	 */
+	public Web web() {
+		return TaggedUnionUtils.get(this, Kind.Web);
+	}
 
-	public static class Builder extends DatabaseConfiguration.AbstractBuilder<Builder>
+	/**
+	 * Is this variant instance of kind {@code local}?
+	 */
+	public boolean isLocal() {
+		return _kind == Kind.Local;
+	}
+
+	/**
+	 * Get the {@code local} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code local} kind.
+	 */
+	public Local local() {
+		return TaggedUnionUtils.get(this, Kind.Local);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code maxmind}?
+	 */
+	public boolean isMaxmind() {
+		return _kind == Kind.Maxmind;
+	}
+
+	/**
+	 * Get the {@code maxmind} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code maxmind} kind.
+	 */
+	public Maxmind maxmind() {
+		return TaggedUnionUtils.get(this, Kind.Maxmind);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ipinfo}?
+	 */
+	public boolean isIpinfo() {
+		return _kind == Kind.Ipinfo;
+	}
+
+	/**
+	 * Get the {@code ipinfo} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ipinfo} kind.
+	 */
+	public Ipinfo ipinfo() {
+		return TaggedUnionUtils.get(this, Kind.Ipinfo);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeStartObject();
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey(_kind.jsonValue());
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		}
+
+		generator.writeEnd();
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DatabaseConfigurationFull> {
-		@Nullable
-		private Web web;
+		private Kind _kind;
+		private Object _value;
 
-		@Nullable
-		private Local local;
+		private String name;
 
 		/**
-		 * API name: {@code web}
+		 * Required - The provider-assigned name of the IP geolocation database to
+		 * download.
+		 * <p>
+		 * API name: {@code name}
 		 */
-		public final Builder web(@Nullable Web value) {
-			this.web = value;
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code web}
-		 */
-		public final Builder web(Function<Web.Builder, ObjectBuilder<Web>> fn) {
-			return this.web(fn.apply(new Web.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code local}
-		 */
-		public final Builder local(@Nullable Local value) {
-			this.local = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code local}
-		 */
-		public final Builder local(Function<Local.Builder, ObjectBuilder<Local>> fn) {
-			return this.local(fn.apply(new Local.Builder()).build());
 		}
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ContainerBuilder web(Web v) {
+			this._kind = Kind.Web;
+			this._value = v;
+			return new ContainerBuilder();
+		}
 
-		/**
-		 * Builds a {@link DatabaseConfigurationFull}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ContainerBuilder web(Function<Web.Builder, ObjectBuilder<Web>> fn) {
+			return this.web(fn.apply(new Web.Builder()).build());
+		}
+
+		public ContainerBuilder local(Local v) {
+			this._kind = Kind.Local;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder local(Function<Local.Builder, ObjectBuilder<Local>> fn) {
+			return this.local(fn.apply(new Local.Builder()).build());
+		}
+
+		public ContainerBuilder maxmind(Maxmind v) {
+			this._kind = Kind.Maxmind;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
+			return this.maxmind(fn.apply(new Maxmind.Builder()).build());
+		}
+
+		public ContainerBuilder ipinfo(Ipinfo v) {
+			this._kind = Kind.Ipinfo;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder ipinfo(Function<Ipinfo.Builder, ObjectBuilder<Ipinfo>> fn) {
+			return this.ipinfo(fn.apply(new Ipinfo.Builder()).build());
+		}
+
 		public DatabaseConfigurationFull build() {
 			_checkSingleUse();
-
 			return new DatabaseConfigurationFull(this);
+		}
+
+		public class ContainerBuilder implements ObjectBuilder<DatabaseConfigurationFull> {
+
+			/**
+			 * Required - The provider-assigned name of the IP geolocation database to
+			 * download.
+			 * <p>
+			 * API name: {@code name}
+			 */
+			public final ContainerBuilder name(String value) {
+				Builder.this.name = value;
+				return this;
+			}
+
+			public DatabaseConfigurationFull build() {
+				return Builder.this.build();
+			}
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	protected static void setupDatabaseConfigurationFullDeserializer(ObjectDeserializer<Builder> op) {
 
-	/**
-	 * Json deserializer for {@link DatabaseConfigurationFull}
-	 */
-	public static final JsonpDeserializer<DatabaseConfigurationFull> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatabaseConfigurationFull::setupDatabaseConfigurationFullDeserializer);
-
-	protected static void setupDatabaseConfigurationFullDeserializer(
-			ObjectDeserializer<DatabaseConfigurationFull.Builder> op) {
-		DatabaseConfiguration.setupDatabaseConfigurationDeserializer(op);
 		op.add(Builder::web, Web._DESERIALIZER, "web");
 		op.add(Builder::local, Local._DESERIALIZER, "local");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::maxmind, Maxmind._DESERIALIZER, "maxmind");
+		op.add(Builder::ipinfo, Ipinfo._DESERIALIZER, "ipinfo");
 
 	}
 
+	public static final JsonpDeserializer<DatabaseConfigurationFull> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DatabaseConfigurationFull::setupDatabaseConfigurationFullDeserializer, Builder::build);
 }
