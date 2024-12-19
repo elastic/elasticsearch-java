@@ -71,9 +71,7 @@ public class ElasticsearchLogstashAsyncClient
 	// ----- Endpoint: logstash.delete_pipeline
 
 	/**
-	 * Delete a Logstash pipeline.
-	 * <p>
-	 * Delete a pipeline that is used for Logstash Central Management.
+	 * Deletes a pipeline used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
@@ -88,9 +86,7 @@ public class ElasticsearchLogstashAsyncClient
 	}
 
 	/**
-	 * Delete a Logstash pipeline.
-	 * <p>
-	 * Delete a pipeline that is used for Logstash Central Management.
+	 * Deletes a pipeline used for Logstash Central Management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -108,9 +104,7 @@ public class ElasticsearchLogstashAsyncClient
 	// ----- Endpoint: logstash.get_pipeline
 
 	/**
-	 * Get Logstash pipelines.
-	 * <p>
-	 * Get pipelines that are used for Logstash Central Management.
+	 * Retrieves pipelines used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
@@ -125,9 +119,7 @@ public class ElasticsearchLogstashAsyncClient
 	}
 
 	/**
-	 * Get Logstash pipelines.
-	 * <p>
-	 * Get pipelines that are used for Logstash Central Management.
+	 * Retrieves pipelines used for Logstash Central Management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -143,9 +135,7 @@ public class ElasticsearchLogstashAsyncClient
 	}
 
 	/**
-	 * Get Logstash pipelines.
-	 * <p>
-	 * Get pipelines that are used for Logstash Central Management.
+	 * Retrieves pipelines used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
@@ -160,10 +150,7 @@ public class ElasticsearchLogstashAsyncClient
 	// ----- Endpoint: logstash.put_pipeline
 
 	/**
-	 * Create or update a Logstash pipeline.
-	 * <p>
-	 * Create a pipeline that is used for Logstash Central Management. If the
-	 * specified pipeline exists, it is replaced.
+	 * Creates or updates a pipeline used for Logstash Central Management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
@@ -178,10 +165,7 @@ public class ElasticsearchLogstashAsyncClient
 	}
 
 	/**
-	 * Create or update a Logstash pipeline.
-	 * <p>
-	 * Create a pipeline that is used for Logstash Central Management. If the
-	 * specified pipeline exists, it is replaced.
+	 * Creates or updates a pipeline used for Logstash Central Management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

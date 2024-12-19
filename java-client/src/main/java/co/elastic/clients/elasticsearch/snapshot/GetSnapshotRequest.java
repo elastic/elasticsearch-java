@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: snapshot.get.Request
 
 /**
- * Get snapshot information.
+ * Returns information about a snapshot.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.get.Request">API
  *      specification</a>

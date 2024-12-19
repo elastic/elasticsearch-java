@@ -23,7 +23,6 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
-import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,7 +34,6 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -72,21 +70,19 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FollowRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String dataStreamName;
-
 	private final String index;
 
+	@Nullable
 	private final String leaderIndex;
 
 	@Nullable
 	private final Long maxOutstandingReadRequests;
 
 	@Nullable
-	private final Integer maxOutstandingWriteRequests;
+	private final Long maxOutstandingWriteRequests;
 
 	@Nullable
-	private final Integer maxReadRequestOperationCount;
+	private final Long maxReadRequestOperationCount;
 
 	@Nullable
 	private final String maxReadRequestSize;
@@ -95,13 +91,13 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	private final Time maxRetryDelay;
 
 	@Nullable
-	private final Integer maxWriteBufferCount;
+	private final Long maxWriteBufferCount;
 
 	@Nullable
 	private final String maxWriteBufferSize;
 
 	@Nullable
-	private final Integer maxWriteRequestOperationCount;
+	private final Long maxWriteRequestOperationCount;
 
 	@Nullable
 	private final String maxWriteRequestSize;
@@ -109,10 +105,8 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time readPollTimeout;
 
-	private final String remoteCluster;
-
 	@Nullable
-	private final IndexSettings settings;
+	private final String remoteCluster;
 
 	@Nullable
 	private final WaitForActiveShards waitForActiveShards;
@@ -121,9 +115,8 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 
 	private FollowRequest(Builder builder) {
 
-		this.dataStreamName = builder.dataStreamName;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
+		this.leaderIndex = builder.leaderIndex;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -134,8 +127,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
 		this.readPollTimeout = builder.readPollTimeout;
-		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
-		this.settings = builder.settings;
+		this.remoteCluster = builder.remoteCluster;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
@@ -145,18 +137,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If the leader index is part of a data stream, the name to which the local
-	 * data stream for the followed index should be renamed.
-	 * <p>
-	 * API name: {@code data_stream_name}
-	 */
-	@Nullable
-	public final String dataStreamName() {
-		return this.dataStreamName;
-	}
-
-	/**
-	 * Required - The name of the follower index.
+	 * Required - The name of the follower index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -165,17 +146,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the index in the leader cluster to follow.
-	 * <p>
 	 * API name: {@code leader_index}
 	 */
+	@Nullable
 	public final String leaderIndex() {
 		return this.leaderIndex;
 	}
 
 	/**
-	 * The maximum number of outstanding reads requests from the remote cluster.
-	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	@Nullable
@@ -184,29 +162,22 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum number of outstanding write requests on the follower.
-	 * <p>
 	 * API name: {@code max_outstanding_write_requests}
 	 */
 	@Nullable
-	public final Integer maxOutstandingWriteRequests() {
+	public final Long maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
 	/**
-	 * The maximum number of operations to pull per read from the remote cluster.
-	 * <p>
 	 * API name: {@code max_read_request_operation_count}
 	 */
 	@Nullable
-	public final Integer maxReadRequestOperationCount() {
+	public final Long maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
 	/**
-	 * The maximum size in bytes of per read of a batch of operations pulled from
-	 * the remote cluster.
-	 * <p>
 	 * API name: {@code max_read_request_size}
 	 */
 	@Nullable
@@ -215,9 +186,6 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum time to wait before retrying an operation that failed
-	 * exceptionally. An exponential backoff strategy is employed when retrying.
-	 * <p>
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
@@ -226,22 +194,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum number of operations that can be queued for writing. When this
-	 * limit is reached, reads from the remote cluster will be deferred until the
-	 * number of queued operations goes below the limit.
-	 * <p>
 	 * API name: {@code max_write_buffer_count}
 	 */
 	@Nullable
-	public final Integer maxWriteBufferCount() {
+	public final Long maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
 	/**
-	 * The maximum total bytes of operations that can be queued for writing. When
-	 * this limit is reached, reads from the remote cluster will be deferred until
-	 * the total bytes of queued operations goes below the limit.
-	 * <p>
 	 * API name: {@code max_write_buffer_size}
 	 */
 	@Nullable
@@ -250,20 +210,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum number of operations per bulk write request executed on the
-	 * follower.
-	 * <p>
 	 * API name: {@code max_write_request_operation_count}
 	 */
 	@Nullable
-	public final Integer maxWriteRequestOperationCount() {
+	public final Long maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
 	/**
-	 * The maximum total bytes of operations per bulk write request executed on the
-	 * follower.
-	 * <p>
 	 * API name: {@code max_write_request_size}
 	 */
 	@Nullable
@@ -272,12 +226,6 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum time to wait for new operations on the remote cluster when the
-	 * follower index is synchronized with the leader index. When the timeout has
-	 * elapsed, the poll for operations will return to the follower so that it can
-	 * update some statistics. Then the follower will immediately attempt to read
-	 * from the leader again.
-	 * <p>
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
@@ -286,30 +234,18 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The remote cluster containing the leader index.
-	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
+	@Nullable
 	public final String remoteCluster() {
 		return this.remoteCluster;
 	}
 
 	/**
-	 * Settings to override from the leader index.
-	 * <p>
-	 * API name: {@code settings}
-	 */
-	@Nullable
-	public final IndexSettings settings() {
-		return this.settings;
-	}
-
-	/**
-	 * Specifies the number of shards to wait on being active before responding.
-	 * This defaults to waiting on none of the shards to be active. A shard must be
-	 * restored from the leader index before being active. Restoring a follower
-	 * shard requires transferring all the remote Lucene segment files to the
-	 * follower index.
+	 * Sets the number of shard copies that must be active before returning.
+	 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+	 * any non-negative value less than or equal to the total number of copies for
+	 * the shard (number of replicas + 1)
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -329,14 +265,11 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.dataStreamName != null) {
-			generator.writeKey("data_stream_name");
-			generator.write(this.dataStreamName);
+		if (this.leaderIndex != null) {
+			generator.writeKey("leader_index");
+			generator.write(this.leaderIndex);
 
 		}
-		generator.writeKey("leader_index");
-		generator.write(this.leaderIndex);
-
 		if (this.maxOutstandingReadRequests != null) {
 			generator.writeKey("max_outstanding_read_requests");
 			generator.write(this.maxOutstandingReadRequests);
@@ -387,12 +320,9 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 			this.readPollTimeout.serialize(generator, mapper);
 
 		}
-		generator.writeKey("remote_cluster");
-		generator.write(this.remoteCluster);
-
-		if (this.settings != null) {
-			generator.writeKey("settings");
-			this.settings.serialize(generator, mapper);
+		if (this.remoteCluster != null) {
+			generator.writeKey("remote_cluster");
+			generator.write(this.remoteCluster);
 
 		}
 
@@ -405,21 +335,19 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<FollowRequest> {
-		@Nullable
-		private String dataStreamName;
-
 		private String index;
 
+		@Nullable
 		private String leaderIndex;
 
 		@Nullable
 		private Long maxOutstandingReadRequests;
 
 		@Nullable
-		private Integer maxOutstandingWriteRequests;
+		private Long maxOutstandingWriteRequests;
 
 		@Nullable
-		private Integer maxReadRequestOperationCount;
+		private Long maxReadRequestOperationCount;
 
 		@Nullable
 		private String maxReadRequestSize;
@@ -428,13 +356,13 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		private Time maxRetryDelay;
 
 		@Nullable
-		private Integer maxWriteBufferCount;
+		private Long maxWriteBufferCount;
 
 		@Nullable
 		private String maxWriteBufferSize;
 
 		@Nullable
-		private Integer maxWriteRequestOperationCount;
+		private Long maxWriteRequestOperationCount;
 
 		@Nullable
 		private String maxWriteRequestSize;
@@ -442,27 +370,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time readPollTimeout;
 
-		private String remoteCluster;
-
 		@Nullable
-		private IndexSettings settings;
+		private String remoteCluster;
 
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
-		 * If the leader index is part of a data stream, the name to which the local
-		 * data stream for the followed index should be renamed.
-		 * <p>
-		 * API name: {@code data_stream_name}
-		 */
-		public final Builder dataStreamName(@Nullable String value) {
-			this.dataStreamName = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the follower index.
+		 * Required - The name of the follower index
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -472,18 +387,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index in the leader cluster to follow.
-		 * <p>
 		 * API name: {@code leader_index}
 		 */
-		public final Builder leaderIndex(String value) {
+		public final Builder leaderIndex(@Nullable String value) {
 			this.leaderIndex = value;
 			return this;
 		}
 
 		/**
-		 * The maximum number of outstanding reads requests from the remote cluster.
-		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
 		public final Builder maxOutstandingReadRequests(@Nullable Long value) {
@@ -492,29 +403,22 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum number of outstanding write requests on the follower.
-		 * <p>
 		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public final Builder maxOutstandingWriteRequests(@Nullable Integer value) {
+		public final Builder maxOutstandingWriteRequests(@Nullable Long value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
 
 		/**
-		 * The maximum number of operations to pull per read from the remote cluster.
-		 * <p>
 		 * API name: {@code max_read_request_operation_count}
 		 */
-		public final Builder maxReadRequestOperationCount(@Nullable Integer value) {
+		public final Builder maxReadRequestOperationCount(@Nullable Long value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
 
 		/**
-		 * The maximum size in bytes of per read of a batch of operations pulled from
-		 * the remote cluster.
-		 * <p>
 		 * API name: {@code max_read_request_size}
 		 */
 		public final Builder maxReadRequestSize(@Nullable String value) {
@@ -523,9 +427,6 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum time to wait before retrying an operation that failed
-		 * exceptionally. An exponential backoff strategy is employed when retrying.
-		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
 		public final Builder maxRetryDelay(@Nullable Time value) {
@@ -534,9 +435,6 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum time to wait before retrying an operation that failed
-		 * exceptionally. An exponential backoff strategy is employed when retrying.
-		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
 		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -544,22 +442,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum number of operations that can be queued for writing. When this
-		 * limit is reached, reads from the remote cluster will be deferred until the
-		 * number of queued operations goes below the limit.
-		 * <p>
 		 * API name: {@code max_write_buffer_count}
 		 */
-		public final Builder maxWriteBufferCount(@Nullable Integer value) {
+		public final Builder maxWriteBufferCount(@Nullable Long value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
 
 		/**
-		 * The maximum total bytes of operations that can be queued for writing. When
-		 * this limit is reached, reads from the remote cluster will be deferred until
-		 * the total bytes of queued operations goes below the limit.
-		 * <p>
 		 * API name: {@code max_write_buffer_size}
 		 */
 		public final Builder maxWriteBufferSize(@Nullable String value) {
@@ -568,20 +458,14 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum number of operations per bulk write request executed on the
-		 * follower.
-		 * <p>
 		 * API name: {@code max_write_request_operation_count}
 		 */
-		public final Builder maxWriteRequestOperationCount(@Nullable Integer value) {
+		public final Builder maxWriteRequestOperationCount(@Nullable Long value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}
 
 		/**
-		 * The maximum total bytes of operations per bulk write request executed on the
-		 * follower.
-		 * <p>
 		 * API name: {@code max_write_request_size}
 		 */
 		public final Builder maxWriteRequestSize(@Nullable String value) {
@@ -590,12 +474,6 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum time to wait for new operations on the remote cluster when the
-		 * follower index is synchronized with the leader index. When the timeout has
-		 * elapsed, the poll for operations will return to the follower so that it can
-		 * update some statistics. Then the follower will immediately attempt to read
-		 * from the leader again.
-		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
 		public final Builder readPollTimeout(@Nullable Time value) {
@@ -604,12 +482,6 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum time to wait for new operations on the remote cluster when the
-		 * follower index is synchronized with the leader index. When the timeout has
-		 * elapsed, the poll for operations will return to the follower so that it can
-		 * update some statistics. Then the follower will immediately attempt to read
-		 * from the leader again.
-		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
 		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -617,40 +489,18 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The remote cluster containing the leader index.
-		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
-		public final Builder remoteCluster(String value) {
+		public final Builder remoteCluster(@Nullable String value) {
 			this.remoteCluster = value;
 			return this;
 		}
 
 		/**
-		 * Settings to override from the leader index.
-		 * <p>
-		 * API name: {@code settings}
-		 */
-		public final Builder settings(@Nullable IndexSettings value) {
-			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Settings to override from the leader index.
-		 * <p>
-		 * API name: {@code settings}
-		 */
-		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
-			return this.settings(fn.apply(new IndexSettings.Builder()).build());
-		}
-
-		/**
-		 * Specifies the number of shards to wait on being active before responding.
-		 * This defaults to waiting on none of the shards to be active. A shard must be
-		 * restored from the leader index before being active. Restoring a follower
-		 * shard requires transferring all the remote Lucene segment files to the
-		 * follower index.
+		 * Sets the number of shard copies that must be active before returning.
+		 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+		 * any non-negative value less than or equal to the total number of copies for
+		 * the shard (number of replicas + 1)
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -660,11 +510,10 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the number of shards to wait on being active before responding.
-		 * This defaults to waiting on none of the shards to be active. A shard must be
-		 * restored from the leader index before being active. Restoring a follower
-		 * shard requires transferring all the remote Lucene segment files to the
-		 * follower index.
+		 * Sets the number of shard copies that must be active before returning.
+		 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+		 * any non-negative value less than or equal to the total number of copies for
+		 * the shard (number of replicas + 1)
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -701,24 +550,22 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupFollowRequestDeserializer(ObjectDeserializer<FollowRequest.Builder> op) {
 
-		op.add(Builder::dataStreamName, JsonpDeserializer.stringDeserializer(), "data_stream_name");
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.longDeserializer(),
 				"max_outstanding_read_requests");
-		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.longDeserializer(),
 				"max_outstanding_write_requests");
-		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
 		op.add(Builder::maxRetryDelay, Time._DESERIALIZER, "max_retry_delay");
-		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.integerDeserializer(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.longDeserializer(), "max_write_buffer_count");
 		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
-		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
 		op.add(Builder::readPollTimeout, Time._DESERIALIZER, "read_poll_timeout");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
-		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 
 	}
 

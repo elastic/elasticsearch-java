@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -71,6 +72,9 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 	private final Boolean local;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -78,6 +82,7 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 	private ComponentTemplatesRequest(Builder builder) {
 
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
 
 	}
@@ -98,6 +103,16 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 	@Nullable
 	public final Boolean local() {
 		return this.local;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -124,6 +139,9 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		private Boolean local;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private String name;
 
 		/**
@@ -138,6 +156,25 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -232,6 +269,9 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
 				}

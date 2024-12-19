@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 /**
  * Get roles.
  * <p>
- * Get roles in the native realm.
+ * Get roles in the native realm. The role management APIs are generally the
+ * preferred way to manage roles, rather than using file-based role management.
+ * The get roles API cannot retrieve roles that are defined in roles files.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_role.Request">API
  *      specification</a>

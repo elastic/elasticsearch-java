@@ -59,56 +59,7 @@ import javax.annotation.Nullable;
 // typedef: snapshot.repository_verify_integrity.Request
 
 /**
- * Verify the repository integrity. Verify the integrity of the contents of a
- * snapshot repository.
- * <p>
- * This API enables you to perform a comprehensive check of the contents of a
- * repository, looking for any anomalies in its data or metadata which might
- * prevent you from restoring snapshots from the repository or which might cause
- * future snapshot create or delete operations to fail.
- * <p>
- * If you suspect the integrity of the contents of one of your snapshot
- * repositories, cease all write activity to this repository immediately, set
- * its <code>read_only</code> option to <code>true</code>, and use this API to
- * verify its integrity. Until you do so:
- * <ul>
- * <li>It may not be possible to restore some snapshots from this
- * repository.</li>
- * <li>Searchable snapshots may report errors when searched or may have
- * unassigned shards.</li>
- * <li>Taking snapshots into this repository may fail or may appear to succeed
- * but have created a snapshot which cannot be restored.</li>
- * <li>Deleting snapshots from this repository may fail or may appear to succeed
- * but leave the underlying data on disk.</li>
- * <li>Continuing to write to the repository while it is in an invalid state may
- * causing additional damage to its contents.</li>
- * </ul>
- * <p>
- * If the API finds any problems with the integrity of the contents of your
- * repository, Elasticsearch will not be able to repair the damage. The only way
- * to bring the repository back into a fully working state after its contents
- * have been damaged is by restoring its contents from a repository backup which
- * was taken before the damage occurred. You must also identify what caused the
- * damage and take action to prevent it from happening again.
- * <p>
- * If you cannot restore a repository backup, register a new repository and use
- * this for all future snapshot operations. In some cases it may be possible to
- * recover some of the contents of a damaged repository, either by restoring as
- * many of its snapshots as needed and taking new snapshots of the restored
- * data, or by using the reindex API to copy data from any searchable snapshots
- * mounted from the damaged repository.
- * <p>
- * Avoid all operations which write to the repository while the verify
- * repository integrity API is running. If something changes the repository
- * contents while an integrity verification is running then Elasticsearch may
- * incorrectly report having detected some anomalies in its contents due to the
- * concurrent writes. It may also incorrectly fail to report some anomalies that
- * the concurrent writes prevented it from detecting.
- * <p>
- * NOTE: This API is intended for exploratory use by humans. You should expect
- * the request parameters and the response format to vary in future versions.
- * <p>
- * NOTE: This API may not work correctly in a mixed-version cluster.
+ * Verifies the integrity of the contents of a snapshot repository
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.repository_verify_integrity.Request">API

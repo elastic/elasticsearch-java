@@ -76,8 +76,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 	 */
 
 	public enum Kind implements JsonEnum {
-		Timezone("timezone"),
-
 		Cron("cron"),
 
 		Daily("daily"),
@@ -143,23 +141,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 
 	public static Schedule of(Function<Builder, ObjectBuilder<Schedule>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Is this variant instance of kind {@code timezone}?
-	 */
-	public boolean isTimezone() {
-		return _kind == Kind.Timezone;
-	}
-
-	/**
-	 * Get the {@code timezone} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code timezone} kind.
-	 */
-	public String timezone() {
-		return TaggedUnionUtils.get(this, Kind.Timezone);
 	}
 
 	/**
@@ -292,10 +273,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_kind) {
-				case Timezone :
-					generator.write(((String) this._value));
-
-					break;
 				case Cron :
 					generator.write(((String) this._value));
 
@@ -347,12 +324,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<Schedule> timezone(String v) {
-			this._kind = Kind.Timezone;
-			this._value = v;
-			return this;
-		}
-
 		public ObjectBuilder<Schedule> cron(String v) {
 			this._kind = Kind.Cron;
 			this._value = v;
@@ -416,7 +387,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 
 	protected static void setupScheduleDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::timezone, JsonpDeserializer.stringDeserializer(), "timezone");
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::daily, DailySchedule._DESERIALIZER, "daily");
 		op.add(Builder::hourly, HourlySchedule._DESERIALIZER, "hourly");

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: ml.validate_detector.Request
 
 /**
- * Validate an anomaly detection job.
+ * Validates an anomaly detection detector.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.validate_detector.Request">API
  *      specification</a>

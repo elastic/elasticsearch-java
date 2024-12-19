@@ -169,6 +169,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Long maxConcurrentShardRequests;
 
 	@Nullable
+	private final String minCompatibleShardNode;
+
+	@Nullable
 	private final Double minScore;
 
 	@Nullable
@@ -281,6 +284,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
+		this.minCompatibleShardNode = builder.minCompatibleShardNode;
 		this.minScore = builder.minScore;
 		this.pit = builder.pit;
 		this.postFilter = builder.postFilter;
@@ -607,6 +611,17 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Long maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
+	}
+
+	/**
+	 * The minimum version of the node that can handle the request Any handling node
+	 * with a lower version will fail the request.
+	 * <p>
+	 * API name: {@code min_compatible_shard_node}
+	 */
+	@Nullable
+	public final String minCompatibleShardNode() {
+		return this.minCompatibleShardNode;
 	}
 
 	/**
@@ -1320,6 +1335,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Long maxConcurrentShardRequests;
 
 		@Nullable
+		private String minCompatibleShardNode;
+
+		@Nullable
 		private Double minScore;
 
 		@Nullable
@@ -1903,6 +1921,17 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder maxConcurrentShardRequests(@Nullable Long value) {
 			this.maxConcurrentShardRequests = value;
+			return this;
+		}
+
+		/**
+		 * The minimum version of the node that can handle the request Any handling node
+		 * with a lower version will fail the request.
+		 * <p>
+		 * API name: {@code min_compatible_shard_node}
+		 */
+		public final Builder minCompatibleShardNode(@Nullable String value) {
+			this.minCompatibleShardNode = value;
 			return this;
 		}
 
@@ -2743,6 +2772,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
+				}
+				if (request.minCompatibleShardNode != null) {
+					params.put("min_compatible_shard_node", request.minCompatibleShardNode);
 				}
 				if (request.forceSyntheticSource != null) {
 					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));

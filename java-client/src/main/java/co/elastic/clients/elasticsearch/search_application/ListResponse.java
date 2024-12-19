@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.search_application;
 
+import co.elastic.clients.elasticsearch.search_application.list.SearchApplicationListItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +64,7 @@ import javax.annotation.Nullable;
 public class ListResponse implements JsonpSerializable {
 	private final long count;
 
-	private final List<SearchApplication> results;
+	private final List<SearchApplicationListItem> results;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -88,7 +89,7 @@ public class ListResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code results}
 	 */
-	public final List<SearchApplication> results() {
+	public final List<SearchApplicationListItem> results() {
 		return this.results;
 	}
 
@@ -109,7 +110,7 @@ public class ListResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.results)) {
 			generator.writeKey("results");
 			generator.writeStartArray();
-			for (SearchApplication item0 : this.results) {
+			for (SearchApplicationListItem item0 : this.results) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -133,7 +134,7 @@ public class ListResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ListResponse> {
 		private Long count;
 
-		private List<SearchApplication> results;
+		private List<SearchApplicationListItem> results;
 
 		/**
 		 * Required - API name: {@code count}
@@ -148,7 +149,7 @@ public class ListResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>results</code>.
 		 */
-		public final Builder results(List<SearchApplication> list) {
+		public final Builder results(List<SearchApplicationListItem> list) {
 			this.results = _listAddAll(this.results, list);
 			return this;
 		}
@@ -158,7 +159,7 @@ public class ListResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>results</code>.
 		 */
-		public final Builder results(SearchApplication value, SearchApplication... values) {
+		public final Builder results(SearchApplicationListItem value, SearchApplicationListItem... values) {
 			this.results = _listAdd(this.results, value, values);
 			return this;
 		}
@@ -168,8 +169,9 @@ public class ListResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>results</code> using a builder lambda.
 		 */
-		public final Builder results(Function<SearchApplication.Builder, ObjectBuilder<SearchApplication>> fn) {
-			return results(fn.apply(new SearchApplication.Builder()).build());
+		public final Builder results(
+				Function<SearchApplicationListItem.Builder, ObjectBuilder<SearchApplicationListItem>> fn) {
+			return results(fn.apply(new SearchApplicationListItem.Builder()).build());
 		}
 
 		@Override
@@ -201,7 +203,8 @@ public class ListResponse implements JsonpSerializable {
 	protected static void setupListResponseDeserializer(ObjectDeserializer<ListResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::results, JsonpDeserializer.arrayDeserializer(SearchApplication._DESERIALIZER), "results");
+		op.add(Builder::results, JsonpDeserializer.arrayDeserializer(SearchApplicationListItem._DESERIALIZER),
+				"results");
 
 	}
 

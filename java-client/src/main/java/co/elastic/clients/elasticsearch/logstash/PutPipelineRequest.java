@@ -61,10 +61,7 @@ import javax.annotation.Nullable;
 // typedef: logstash.put_pipeline.Request
 
 /**
- * Create or update a Logstash pipeline.
- * <p>
- * Create a pipeline that is used for Logstash Central Management. If the
- * specified pipeline exists, it is replaced.
+ * Creates or updates a pipeline used for Logstash Central Management.
  * 
  * @see <a href="../doc-files/api-spec.html#logstash.put_pipeline.Request">API
  *      specification</a>
@@ -89,7 +86,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - An identifier for the pipeline.
+	 * Required - Identifier for the pipeline.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -126,7 +123,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		private Pipeline pipeline;
 
 		/**
-		 * Required - An identifier for the pipeline.
+		 * Required - Identifier for the pipeline.
 		 * <p>
 		 * API name: {@code id}
 		 */

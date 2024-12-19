@@ -60,13 +60,7 @@ import javax.annotation.Nullable;
 // typedef: snapshot.create_repository.Request
 
 /**
- * Create or update a snapshot repository. IMPORTANT: If you are migrating
- * searchable snapshots, the repository name must be identical in the source and
- * destination clusters. To register a snapshot repository, the cluster's global
- * metadata must be writeable. Ensure there are no cluster blocks (for example,
- * <code>cluster.blocks.read_only</code> and
- * <code>clsuter.blocks.read_only_allow_delete</code> settings) that prevent
- * write access.
+ * Creates a repository.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.create_repository.Request">API

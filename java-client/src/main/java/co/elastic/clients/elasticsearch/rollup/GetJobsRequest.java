@@ -55,13 +55,7 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_jobs.Request
 
 /**
- * Get rollup job information. Get the configuration, stats, and status of
- * rollup jobs.
- * <p>
- * NOTE: This API returns only active (both <code>STARTED</code> and
- * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
- * deleted, the API does not return any details about it. For details about a
- * historical rollup job, the rollup capabilities API may be more useful.
+ * Retrieves the configuration, stats, and status of rollup jobs.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.get_jobs.Request">API
  *      specification</a>

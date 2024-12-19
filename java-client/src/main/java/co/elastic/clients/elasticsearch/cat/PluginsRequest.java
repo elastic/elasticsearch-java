@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -54,10 +55,10 @@ import javax.annotation.Nullable;
 // typedef: cat.plugins.Request
 
 /**
- * Get plugin information. Get a list of plugins running on each node of a
- * cluster. IMPORTANT: cat APIs are only intended for human consumption using
- * the command line or Kibana console. They are not intended for use by
- * applications. For application consumption, use the nodes info API.
+ * Returns a list of plugins running on each node of a cluster. IMPORTANT: cat
+ * APIs are only intended for human consumption using the command line or Kibana
+ * console. They are not intended for use by applications. For application
+ * consumption, use the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.plugins.Request">API
  *      specification</a>
@@ -65,18 +66,36 @@ import javax.annotation.Nullable;
 
 public class PluginsRequest extends CatRequestBase {
 	@Nullable
+	private final Boolean includeBootstrap;
+
+	@Nullable
 	private final Boolean local;
+
+	@Nullable
+	private final Time masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PluginsRequest(Builder builder) {
 
+		this.includeBootstrap = builder.includeBootstrap;
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 
 	}
 
 	public static PluginsRequest of(Function<Builder, ObjectBuilder<PluginsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Include bootstrap plugins in the response
+	 * <p>
+	 * API name: {@code include_bootstrap}
+	 */
+	@Nullable
+	public final Boolean includeBootstrap() {
+		return this.includeBootstrap;
 	}
 
 	/**
@@ -93,6 +112,16 @@ public class PluginsRequest extends CatRequestBase {
 		return this.local;
 	}
 
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -103,7 +132,23 @@ public class PluginsRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<PluginsRequest> {
 		@Nullable
+		private Boolean includeBootstrap;
+
+		@Nullable
 		private Boolean local;
+
+		@Nullable
+		private Time masterTimeout;
+
+		/**
+		 * Include bootstrap plugins in the response
+		 * <p>
+		 * API name: {@code include_bootstrap}
+		 */
+		public final Builder includeBootstrap(@Nullable Boolean value) {
+			this.includeBootstrap = value;
+			return this;
+		}
 
 		/**
 		 * If <code>true</code>, the request computes the list of selected nodes from
@@ -117,6 +162,25 @@ public class PluginsRequest extends CatRequestBase {
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -166,6 +230,12 @@ public class PluginsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.includeBootstrap != null) {
+					params.put("include_bootstrap", String.valueOf(request.includeBootstrap));
+				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
 				}

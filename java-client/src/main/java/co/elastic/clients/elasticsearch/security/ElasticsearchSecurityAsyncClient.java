@@ -1140,7 +1140,9 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Get roles.
 	 * <p>
-	 * Get roles in the native realm.
+	 * Get roles in the native realm. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
@@ -1157,7 +1159,9 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Get roles.
 	 * <p>
-	 * Get roles in the native realm.
+	 * Get roles in the native realm. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1175,7 +1179,9 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Get roles.
 	 * <p>
-	 * Get roles in the native realm.
+	 * Get roles in the native realm. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation

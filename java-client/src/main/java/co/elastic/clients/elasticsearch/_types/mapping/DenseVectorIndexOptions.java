@@ -32,6 +32,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,25 +62,25 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DenseVectorIndexOptions implements JsonpSerializable {
+	private final String type;
+
 	@Nullable
-	private final Float confidenceInterval;
+	private final Integer m;
 
 	@Nullable
 	private final Integer efConstruction;
 
 	@Nullable
-	private final Integer m;
-
-	private final DenseVectorIndexOptionsType type;
+	private final Float confidenceInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DenseVectorIndexOptions(Builder builder) {
 
-		this.confidenceInterval = builder.confidenceInterval;
-		this.efConstruction = builder.efConstruction;
-		this.m = builder.m;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.m = builder.m;
+		this.efConstruction = builder.efConstruction;
+		this.confidenceInterval = builder.confidenceInterval;
 
 	}
 
@@ -88,50 +89,13 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * The confidence interval to use when quantizing the vectors. Can be any value
-	 * between and including <code>0.90</code> and <code>1.0</code> or exactly
-	 * <code>0</code>. When the value is <code>0</code>, this indicates that dynamic
-	 * quantiles should be calculated for optimized quantization. When between
-	 * <code>0.90</code> and <code>1.0</code>, this value restricts the values used
-	 * when calculating the quantization thresholds.
-	 * <p>
-	 * For example, a value of <code>0.95</code> will only use the middle
-	 * <code>95%</code> of the values when calculating the quantization thresholds
-	 * (e.g. the highest and lowest <code>2.5%</code> of values will be ignored).
-	 * <p>
-	 * Defaults to <code>1/(dims + 1)</code> for <code>int8</code> quantized vectors
-	 * and <code>0</code> for <code>int4</code> for dynamic quantile calculation.
-	 * <p>
-	 * Only applicable to <code>int8_hnsw</code>, <code>int4_hnsw</code>,
-	 * <code>int8_flat</code>, and <code>int4_flat</code> index types.
-	 * <p>
-	 * API name: {@code confidence_interval}
+	 * Required - API name: {@code type}
 	 */
-	@Nullable
-	public final Float confidenceInterval() {
-		return this.confidenceInterval;
+	public final String type() {
+		return this.type;
 	}
 
 	/**
-	 * The number of candidates to track while assembling the list of nearest
-	 * neighbors for each new node.
-	 * <p>
-	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-	 * <code>int4_hnsw</code> index types.
-	 * <p>
-	 * API name: {@code ef_construction}
-	 */
-	@Nullable
-	public final Integer efConstruction() {
-		return this.efConstruction;
-	}
-
-	/**
-	 * The number of neighbors each node will be connected to in the HNSW graph.
-	 * <p>
-	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-	 * <code>int4_hnsw</code> index types.
-	 * <p>
 	 * API name: {@code m}
 	 */
 	@Nullable
@@ -140,12 +104,19 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The type of kNN algorithm to use.
-	 * <p>
-	 * API name: {@code type}
+	 * API name: {@code ef_construction}
 	 */
-	public final DenseVectorIndexOptionsType type() {
-		return this.type;
+	@Nullable
+	public final Integer efConstruction() {
+		return this.efConstruction;
+	}
+
+	/**
+	 * API name: {@code confidence_interval}
+	 */
+	@Nullable
+	public final Float confidenceInterval() {
+		return this.confidenceInterval;
 	}
 
 	/**
@@ -159,9 +130,12 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.confidenceInterval != null) {
-			generator.writeKey("confidence_interval");
-			generator.write(this.confidenceInterval);
+		generator.writeKey("type");
+		generator.write(this.type);
+
+		if (this.m != null) {
+			generator.writeKey("m");
+			generator.write(this.m);
 
 		}
 		if (this.efConstruction != null) {
@@ -169,13 +143,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			generator.write(this.efConstruction);
 
 		}
-		if (this.m != null) {
-			generator.writeKey("m");
-			generator.write(this.m);
+		if (this.confidenceInterval != null) {
+			generator.writeKey("confidence_interval");
+			generator.write(this.confidenceInterval);
 
 		}
-		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
 
 	}
 
@@ -193,62 +165,26 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DenseVectorIndexOptions> {
+		private String type;
+
 		@Nullable
-		private Float confidenceInterval;
+		private Integer m;
 
 		@Nullable
 		private Integer efConstruction;
 
 		@Nullable
-		private Integer m;
-
-		private DenseVectorIndexOptionsType type;
+		private Float confidenceInterval;
 
 		/**
-		 * The confidence interval to use when quantizing the vectors. Can be any value
-		 * between and including <code>0.90</code> and <code>1.0</code> or exactly
-		 * <code>0</code>. When the value is <code>0</code>, this indicates that dynamic
-		 * quantiles should be calculated for optimized quantization. When between
-		 * <code>0.90</code> and <code>1.0</code>, this value restricts the values used
-		 * when calculating the quantization thresholds.
-		 * <p>
-		 * For example, a value of <code>0.95</code> will only use the middle
-		 * <code>95%</code> of the values when calculating the quantization thresholds
-		 * (e.g. the highest and lowest <code>2.5%</code> of values will be ignored).
-		 * <p>
-		 * Defaults to <code>1/(dims + 1)</code> for <code>int8</code> quantized vectors
-		 * and <code>0</code> for <code>int4</code> for dynamic quantile calculation.
-		 * <p>
-		 * Only applicable to <code>int8_hnsw</code>, <code>int4_hnsw</code>,
-		 * <code>int8_flat</code>, and <code>int4_flat</code> index types.
-		 * <p>
-		 * API name: {@code confidence_interval}
+		 * Required - API name: {@code type}
 		 */
-		public final Builder confidenceInterval(@Nullable Float value) {
-			this.confidenceInterval = value;
+		public final Builder type(String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
-		 * The number of candidates to track while assembling the list of nearest
-		 * neighbors for each new node.
-		 * <p>
-		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-		 * <code>int4_hnsw</code> index types.
-		 * <p>
-		 * API name: {@code ef_construction}
-		 */
-		public final Builder efConstruction(@Nullable Integer value) {
-			this.efConstruction = value;
-			return this;
-		}
-
-		/**
-		 * The number of neighbors each node will be connected to in the HNSW graph.
-		 * <p>
-		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-		 * <code>int4_hnsw</code> index types.
-		 * <p>
 		 * API name: {@code m}
 		 */
 		public final Builder m(@Nullable Integer value) {
@@ -257,12 +193,18 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The type of kNN algorithm to use.
-		 * <p>
-		 * API name: {@code type}
+		 * API name: {@code ef_construction}
 		 */
-		public final Builder type(DenseVectorIndexOptionsType value) {
-			this.type = value;
+		public final Builder efConstruction(@Nullable Integer value) {
+			this.efConstruction = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code confidence_interval}
+		 */
+		public final Builder confidenceInterval(@Nullable Float value) {
+			this.confidenceInterval = value;
 			return this;
 		}
 
@@ -295,10 +237,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	protected static void setupDenseVectorIndexOptionsDeserializer(
 			ObjectDeserializer<DenseVectorIndexOptions.Builder> op) {
 
-		op.add(Builder::confidenceInterval, JsonpDeserializer.floatDeserializer(), "confidence_interval");
-		op.add(Builder::efConstruction, JsonpDeserializer.integerDeserializer(), "ef_construction");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::m, JsonpDeserializer.integerDeserializer(), "m");
-		op.add(Builder::type, DenseVectorIndexOptionsType._DESERIALIZER, "type");
+		op.add(Builder::efConstruction, JsonpDeserializer.integerDeserializer(), "ef_construction");
+		op.add(Builder::confidenceInterval, JsonpDeserializer.floatDeserializer(), "confidence_interval");
 
 	}
 

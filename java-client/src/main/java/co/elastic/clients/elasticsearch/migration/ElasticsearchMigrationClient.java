@@ -68,12 +68,9 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: migration.deprecations
 
 	/**
-	 * Get deprecation information. Get information about different cluster, node,
-	 * and index level settings that use deprecated features that will be removed or
-	 * changed in the next major version.
-	 * <p>
-	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * Retrieves information about different cluster, node, and index level settings
+	 * that use deprecated features that will be removed or changed in the next
+	 * major version.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
@@ -88,12 +85,9 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get deprecation information. Get information about different cluster, node,
-	 * and index level settings that use deprecated features that will be removed or
-	 * changed in the next major version.
-	 * <p>
-	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * Retrieves information about different cluster, node, and index level settings
+	 * that use deprecated features that will be removed or changed in the next
+	 * major version.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -110,12 +104,9 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get deprecation information. Get information about different cluster, node,
-	 * and index level settings that use deprecated features that will be removed or
-	 * changed in the next major version.
-	 * <p>
-	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * Retrieves information about different cluster, node, and index level settings
+	 * that use deprecated features that will be removed or changed in the next
+	 * major version.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
@@ -130,13 +121,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: migration.get_feature_upgrade_status
 
 	/**
-	 * Get feature migration information. Version upgrades sometimes require changes
-	 * to how features store configuration information and data in system indices.
-	 * Check which features need to be migrated and the status of any migrations
-	 * that are in progress.
-	 * <p>
-	 * TIP: This API is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * Find out whether system features need to be upgraded or not
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-feature-upgrade.html">Documentation
@@ -150,15 +135,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: migration.post_feature_upgrade
 
 	/**
-	 * Start the feature migration. Version upgrades sometimes require changes to
-	 * how features store configuration information and data in system indices. This
-	 * API starts the automatic migration process.
-	 * <p>
-	 * Some functionality might be temporarily unavailable during the migration
-	 * process.
-	 * <p>
-	 * TIP: The API is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * Begin upgrades for system features
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-feature-upgrade.html">Documentation

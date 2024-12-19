@@ -50,10 +50,8 @@ import java.util.Objects;
 // typedef: slm.execute_retention.Request
 
 /**
- * Run a retention policy. Manually apply the retention policy to force
- * immediate removal of snapshots that are expired according to the snapshot
- * lifecycle policy retention rules. The retention policy is normally applied
- * according to its schedule.
+ * Deletes any snapshots that are expired according to the policy's retention
+ * rules.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.execute_retention.Request">API
  *      specification</a>

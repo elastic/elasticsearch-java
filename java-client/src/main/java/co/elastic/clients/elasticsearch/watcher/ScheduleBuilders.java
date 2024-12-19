@@ -41,9 +41,9 @@ import java.util.function.Function;
 /**
  * Builders for {@link Schedule} variants.
  * <p>
- * Variants <code>timezone</code>, <code>cron</code>, <code>monthly</code>,
- * <code>weekly</code>, <code>yearly</code> are not available here as they don't
- * have a dedicated class. Use {@link Schedule}'s builder for these.
+ * Variants <code>cron</code>, <code>monthly</code>, <code>weekly</code>,
+ * <code>yearly</code> are not available here as they don't have a dedicated
+ * class. Use {@link Schedule}'s builder for these.
  * 
  */
 public class ScheduleBuilders {

@@ -61,23 +61,7 @@ import javax.annotation.Nullable;
 // typedef: rollup.put_job.Request
 
 /**
- * Create a rollup job.
- * <p>
- * WARNING: From 8.15.0, calling this API in a cluster with no rollup usage will
- * fail with a message about the deprecation and planned removal of rollup
- * features. A cluster needs to contain either a rollup job or a rollup index in
- * order for this API to be allowed to run.
- * <p>
- * The rollup job configuration contains all the details about how the job
- * should run, when it indexes documents, and what future queries will be able
- * to run against the rollup index.
- * <p>
- * There are three main sections to the job configuration: the logistical
- * details about the job (for example, the cron schedule), the fields that are
- * used for grouping, and what metrics to collect for each group.
- * <p>
- * Jobs are created in a <code>STOPPED</code> state. You can start them with the
- * start rollup jobs API.
+ * Creates a rollup job.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.put_job.Request">API
  *      specification</a>

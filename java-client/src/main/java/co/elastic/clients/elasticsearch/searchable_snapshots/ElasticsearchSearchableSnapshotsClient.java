@@ -71,8 +71,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	// ----- Endpoint: searchable_snapshots.cache_stats
 
 	/**
-	 * Get cache statistics. Get statistics about the shared cache for partially
-	 * mounted indices.
+	 * Retrieve node-level cache statistics about searchable snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
@@ -87,8 +86,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Get cache statistics. Get statistics about the shared cache for partially
-	 * mounted indices.
+	 * Retrieve node-level cache statistics about searchable snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -104,8 +102,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Get cache statistics. Get statistics about the shared cache for partially
-	 * mounted indices.
+	 * Retrieve node-level cache statistics about searchable snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
@@ -120,8 +117,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	// ----- Endpoint: searchable_snapshots.clear_cache
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the cache of searchable snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
@@ -136,8 +132,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the cache of searchable snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -153,8 +148,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the cache of searchable snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
@@ -169,9 +163,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	// ----- Endpoint: searchable_snapshots.mount
 
 	/**
-	 * Mount a snapshot. Mount a snapshot as a searchable snapshot index. Do not use
-	 * this API for snapshots managed by index lifecycle management (ILM). Manually
-	 * mounting ILM-managed snapshots can interfere with ILM processes.
+	 * Mount a snapshot as a searchable index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-api-mount-snapshot.html">Documentation
@@ -186,9 +178,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Mount a snapshot. Mount a snapshot as a searchable snapshot index. Do not use
-	 * this API for snapshots managed by index lifecycle management (ILM). Manually
-	 * mounting ILM-managed snapshots can interfere with ILM processes.
+	 * Mount a snapshot as a searchable index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -206,7 +196,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	// ----- Endpoint: searchable_snapshots.stats
 
 	/**
-	 * Get searchable snapshot statistics.
+	 * Retrieve shard-level statistics about searchable snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
@@ -222,7 +212,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Get searchable snapshot statistics.
+	 * Retrieve shard-level statistics about searchable snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -239,7 +229,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Get searchable snapshot statistics.
+	 * Retrieve shard-level statistics about searchable snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation

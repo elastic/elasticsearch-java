@@ -58,26 +58,8 @@ import javax.annotation.Nullable;
 // typedef: shutdown.put_node.Request
 
 /**
- * Prepare a node to be shut down.
- * <p>
- * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
- * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
- * supported.
- * <p>
- * If the operator privileges feature is enabled, you must be an operator to use
- * this API.
- * <p>
- * The API migrates ongoing tasks and index shards to other nodes as needed to
- * prepare a node to be restarted or shut down and removed from the cluster.
- * This ensures that Elasticsearch can be stopped safely with minimal disruption
- * to the cluster.
- * <p>
- * You must specify the type of shutdown: <code>restart</code>,
- * <code>remove</code>, or <code>replace</code>. If a node is already being
- * prepared for shutdown, you can use this API to change the shutdown type.
- * <p>
- * IMPORTANT: This API does NOT terminate the Elasticsearch process. Monitor the
- * node shutdown status to determine when it is safe to stop Elasticsearch.
+ * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
+ * Direct use is not supported.
  * 
  * @see <a href="../doc-files/api-spec.html#shutdown.put_node.Request">API
  *      specification</a>

@@ -69,8 +69,7 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: monitoring.bulk
 
 	/**
-	 * Send monitoring data. This API is used by the monitoring features to send
-	 * monitoring data.
+	 * Used by the monitoring features to send monitoring data.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
@@ -85,8 +84,7 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Send monitoring data. This API is used by the monitoring features to send
-	 * monitoring data.
+	 * Used by the monitoring features to send monitoring data.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

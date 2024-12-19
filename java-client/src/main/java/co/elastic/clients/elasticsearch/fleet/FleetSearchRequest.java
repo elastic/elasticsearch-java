@@ -84,9 +84,9 @@ import javax.annotation.Nullable;
 // typedef: fleet.search.Request
 
 /**
- * Run a Fleet search. The purpose of the Fleet search API is to provide an API
- * where the search will be run only after the provided checkpoint has been
- * processed and is visible for searches inside of Elasticsearch.
+ * The purpose of the fleet search api is to provide a search api where the
+ * search will only be executed after provided checkpoint has been processed and
+ * is visible for searches inside of Elasticsearch.
  * 
  * @see <a href="../doc-files/api-spec.html#fleet.search.Request">API
  *      specification</a>
@@ -157,6 +157,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 	@Nullable
 	private final Long maxConcurrentShardRequests;
+
+	@Nullable
+	private final String minCompatibleShardNode;
 
 	@Nullable
 	private final Double minScore;
@@ -265,6 +268,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
+		this.minCompatibleShardNode = builder.minCompatibleShardNode;
 		this.minScore = builder.minScore;
 		this.pit = builder.pit;
 		this.postFilter = builder.postFilter;
@@ -514,6 +518,14 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final Long maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
+	}
+
+	/**
+	 * API name: {@code min_compatible_shard_node}
+	 */
+	@Nullable
+	public final String minCompatibleShardNode() {
+		return this.minCompatibleShardNode;
 	}
 
 	/**
@@ -1121,6 +1133,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		private Long maxConcurrentShardRequests;
 
 		@Nullable
+		private String minCompatibleShardNode;
+
+		@Nullable
 		private Double minScore;
 
 		@Nullable
@@ -1565,6 +1580,14 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder maxConcurrentShardRequests(@Nullable Long value) {
 			this.maxConcurrentShardRequests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_compatible_shard_node}
+		 */
+		public final Builder minCompatibleShardNode(@Nullable String value) {
+			this.minCompatibleShardNode = value;
 			return this;
 		}
 
@@ -2265,6 +2288,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 				}
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
+				}
+				if (request.minCompatibleShardNode != null) {
+					params.put("min_compatible_shard_node", request.minCompatibleShardNode);
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));

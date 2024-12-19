@@ -55,12 +55,9 @@ import javax.annotation.Nullable;
 // typedef: migration.deprecations.Request
 
 /**
- * Get deprecation information. Get information about different cluster, node,
- * and index level settings that use deprecated features that will be removed or
- * changed in the next major version.
- * <p>
- * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
- * strongly recommend you use the Upgrade Assistant.
+ * Retrieves information about different cluster, node, and index level settings
+ * that use deprecated features that will be removed or changed in the next
+ * major version.
  * 
  * @see <a href="../doc-files/api-spec.html#migration.deprecations.Request">API
  *      specification</a>

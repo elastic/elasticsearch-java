@@ -62,8 +62,7 @@ import javax.annotation.Nullable;
 // typedef: monitoring.bulk.Request
 
 /**
- * Send monitoring data. This API is used by the monitoring features to send
- * monitoring data.
+ * Used by the monitoring features to send monitoring data.
  * 
  * @see <a href="../doc-files/api-spec.html#monitoring.bulk.Request">API
  *      specification</a>

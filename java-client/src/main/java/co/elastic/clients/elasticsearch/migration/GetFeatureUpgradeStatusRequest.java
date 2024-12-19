@@ -50,13 +50,7 @@ import java.util.Objects;
 // typedef: migration.get_feature_upgrade_status.Request
 
 /**
- * Get feature migration information. Version upgrades sometimes require changes
- * to how features store configuration information and data in system indices.
- * Check which features need to be migrated and the status of any migrations
- * that are in progress.
- * <p>
- * TIP: This API is designed for indirect use by the Upgrade Assistant. We
- * strongly recommend you use the Upgrade Assistant.
+ * Find out whether system features need to be upgraded or not
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#migration.get_feature_upgrade_status.Request">API

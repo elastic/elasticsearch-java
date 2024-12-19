@@ -61,9 +61,7 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.mount.Request
 
 /**
- * Mount a snapshot. Mount a snapshot as a searchable snapshot index. Do not use
- * this API for snapshots managed by index lifecycle management (ILM). Manually
- * mounting ILM-managed snapshots can interfere with ILM processes.
+ * Mount a snapshot as a searchable index.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.mount.Request">API

@@ -17,15 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core.health_report;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,78 +50,80 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.health_report.FileSettingsIndicator
+// typedef: ingest._types.Local
 
 /**
- * FILE_SETTINGS
- * 
- * @see <a href=
- *      "../../doc-files/api-spec.html#_global.health_report.FileSettingsIndicator">API
+ *
+ * @see <a href="../doc-files/api-spec.html#ingest._types.Local">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class FileSettingsIndicator extends BaseIndicator {
-	@Nullable
-	private final FileSettingsIndicatorDetails details;
+public class Local implements DatabaseConfigurationFullVariant, JsonpSerializable {
+	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private FileSettingsIndicator(Builder builder) {
-		super(builder);
+	private Local(Builder builder) {
 
-		this.details = builder.details;
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static FileSettingsIndicator of(Function<Builder, ObjectBuilder<FileSettingsIndicator>> fn) {
+	public static Local of(Function<Builder, ObjectBuilder<Local>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code details}
+	 * DatabaseConfigurationFull variant kind.
 	 */
-	@Nullable
-	public final FileSettingsIndicatorDetails details() {
-		return this.details;
+	@Override
+	public DatabaseConfigurationFull.Kind _databaseConfigurationFullKind() {
+		return DatabaseConfigurationFull.Kind.Local;
+	}
+
+	/**
+	 * Required - API name: {@code type}
+	 */
+	public final String type() {
+		return this.type;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.details != null) {
-			generator.writeKey("details");
-			this.details.serialize(generator, mapper);
+		generator.writeKey("type");
+		generator.write(this.type);
 
-		}
+	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link FileSettingsIndicator}.
+	 * Builder for {@link Local}.
 	 */
 
-	public static class Builder extends BaseIndicator.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FileSettingsIndicator> {
-		@Nullable
-		private FileSettingsIndicatorDetails details;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Local> {
+		private String type;
 
 		/**
-		 * API name: {@code details}
+		 * Required - API name: {@code type}
 		 */
-		public final Builder details(@Nullable FileSettingsIndicatorDetails value) {
-			this.details = value;
+		public final Builder type(String value) {
+			this.type = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code details}
-		 */
-		public final Builder details(
-				Function<FileSettingsIndicatorDetails.Builder, ObjectBuilder<FileSettingsIndicatorDetails>> fn) {
-			return this.details(fn.apply(new FileSettingsIndicatorDetails.Builder()).build());
 		}
 
 		@Override
@@ -125,29 +132,29 @@ public class FileSettingsIndicator extends BaseIndicator {
 		}
 
 		/**
-		 * Builds a {@link FileSettingsIndicator}.
+		 * Builds a {@link Local}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public FileSettingsIndicator build() {
+		public Local build() {
 			_checkSingleUse();
 
-			return new FileSettingsIndicator(this);
+			return new Local(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link FileSettingsIndicator}
+	 * Json deserializer for {@link Local}
 	 */
-	public static final JsonpDeserializer<FileSettingsIndicator> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FileSettingsIndicator::setupFileSettingsIndicatorDeserializer);
+	public static final JsonpDeserializer<Local> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Local::setupLocalDeserializer);
 
-	protected static void setupFileSettingsIndicatorDeserializer(ObjectDeserializer<FileSettingsIndicator.Builder> op) {
-		BaseIndicator.setupBaseIndicatorDeserializer(op);
-		op.add(Builder::details, FileSettingsIndicatorDetails._DESERIALIZER, "details");
+	protected static void setupLocalDeserializer(ObjectDeserializer<Local.Builder> op) {
+
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

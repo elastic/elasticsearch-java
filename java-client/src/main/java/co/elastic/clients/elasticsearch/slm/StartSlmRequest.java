@@ -50,9 +50,7 @@ import java.util.Objects;
 // typedef: slm.start.Request
 
 /**
- * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
- * starts automatically when a cluster is formed. Manually starting SLM is
- * necessary only if it has been stopped using the stop SLM API.
+ * Turns on snapshot lifecycle management (SLM).
  * 
  * @see <a href="../doc-files/api-spec.html#slm.start.Request">API
  *      specification</a>
