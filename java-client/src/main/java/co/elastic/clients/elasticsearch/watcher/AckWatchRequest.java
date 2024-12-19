@@ -58,8 +58,15 @@ import javax.annotation.Nullable;
 // typedef: watcher.ack_watch.Request
 
 /**
- * Acknowledges a watch, manually throttling the execution of the watch's
- * actions.
+ * Acknowledge a watch. Acknowledging a watch enables you to manually throttle
+ * the execution of the watch's actions.
+ * <p>
+ * The acknowledgement state of an action is stored in the
+ * <code>status.actions.&lt;id&gt;.ack.state</code> structure.
+ * <p>
+ * IMPORTANT: If the specified watch is currently being executed, this API will
+ * return an error The reason for this behavior is to prevent overwriting the
+ * watch status from a watch execution.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.ack_watch.Request">API
  *      specification</a>

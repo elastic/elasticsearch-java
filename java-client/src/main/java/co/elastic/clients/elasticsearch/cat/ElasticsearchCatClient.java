@@ -1202,8 +1202,49 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-repositories.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public RepositoriesResponse repositories(RepositoriesRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> endpoint = (JsonEndpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse>) RepositoriesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get snapshot repository information. Get a list of snapshot repositories for
+	 * a cluster. IMPORTANT: cat APIs are only intended for human consumption using
+	 * the command line or Kibana console. They are not intended for use by
+	 * applications. For application consumption, use the get snapshot repository
+	 * API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RepositoriesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-repositories.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final RepositoriesResponse repositories(
+			Function<RepositoriesRequest.Builder, ObjectBuilder<RepositoriesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return repositories(fn.apply(new RepositoriesRequest.Builder()).build());
+	}
+
+	/**
+	 * Get snapshot repository information. Get a list of snapshot repositories for
+	 * a cluster. IMPORTANT: cat APIs are only intended for human consumption using
+	 * the command line or Kibana console. They are not intended for use by
+	 * applications. For application consumption, use the get snapshot repository
+	 * API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-repositories.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public RepositoriesResponse repositories() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
+		return this.transport.performRequest(new RepositoriesRequest.Builder().build(), RepositoriesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

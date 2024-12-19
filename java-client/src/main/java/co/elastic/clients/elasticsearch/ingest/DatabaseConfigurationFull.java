@@ -54,33 +54,33 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.DatabaseConfiguration
+// typedef: ingest._types.DatabaseConfigurationFull
 
 /**
- * The configuration necessary to identify which IP geolocation provider to use
- * to download a database, as well as any provider-specific configuration
- * necessary for such downloading. At present, the only supported providers are
- * maxmind and ipinfo, and the maxmind provider requires that an account_id
- * (string) is configured. A provider (either maxmind or ipinfo) must be
- * specified. The web and local providers can be returned as read only
- * configurations.
- * 
+ *
  * @see <a href=
- *      "../doc-files/api-spec.html#ingest._types.DatabaseConfiguration">API
+ *      "../doc-files/api-spec.html#ingest._types.DatabaseConfigurationFull">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.Kind, Object>, JsonpSerializable {
+public class DatabaseConfigurationFull
+		implements
+			TaggedUnion<DatabaseConfigurationFull.Kind, Object>,
+			JsonpSerializable {
 
 	/**
-	 * {@link DatabaseConfiguration} variant kinds.
+	 * {@link DatabaseConfigurationFull} variant kinds.
 	 * 
 	 * @see <a href=
-	 *      "../doc-files/api-spec.html#ingest._types.DatabaseConfiguration">API
+	 *      "../doc-files/api-spec.html#ingest._types.DatabaseConfigurationFull">API
 	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {
+		Web("web"),
+
+		Local("local"),
+
 		Maxmind("maxmind"),
 
 		Ipinfo("ipinfo"),
@@ -114,7 +114,7 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 
 	private final String name;
 
-	private DatabaseConfiguration(Builder builder) {
+	private DatabaseConfigurationFull(Builder builder) {
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
@@ -123,7 +123,7 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 
 	}
 
-	public static DatabaseConfiguration of(Function<Builder, ObjectBuilder<DatabaseConfiguration>> fn) {
+	public static DatabaseConfigurationFull of(Function<Builder, ObjectBuilder<DatabaseConfigurationFull>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -135,6 +135,40 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 	 */
 	public final String name() {
 		return this.name;
+	}
+
+	/**
+	 * Is this variant instance of kind {@code web}?
+	 */
+	public boolean isWeb() {
+		return _kind == Kind.Web;
+	}
+
+	/**
+	 * Get the {@code web} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code web} kind.
+	 */
+	public Web web() {
+		return TaggedUnionUtils.get(this, Kind.Web);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code local}?
+	 */
+	public boolean isLocal() {
+		return _kind == Kind.Local;
+	}
+
+	/**
+	 * Get the {@code local} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code local} kind.
+	 */
+	public Local local() {
+		return TaggedUnionUtils.get(this, Kind.Local);
 	}
 
 	/**
@@ -196,7 +230,7 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DatabaseConfiguration> {
+				ObjectBuilder<DatabaseConfigurationFull> {
 		private Kind _kind;
 		private Object _value;
 
@@ -217,6 +251,26 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 		protected Builder self() {
 			return this;
 		}
+		public ContainerBuilder web(Web v) {
+			this._kind = Kind.Web;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder web(Function<Web.Builder, ObjectBuilder<Web>> fn) {
+			return this.web(fn.apply(new Web.Builder()).build());
+		}
+
+		public ContainerBuilder local(Local v) {
+			this._kind = Kind.Local;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder local(Function<Local.Builder, ObjectBuilder<Local>> fn) {
+			return this.local(fn.apply(new Local.Builder()).build());
+		}
+
 		public ContainerBuilder maxmind(Maxmind v) {
 			this._kind = Kind.Maxmind;
 			this._value = v;
@@ -237,12 +291,12 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 			return this.ipinfo(fn.apply(new Ipinfo.Builder()).build());
 		}
 
-		public DatabaseConfiguration build() {
+		public DatabaseConfigurationFull build() {
 			_checkSingleUse();
-			return new DatabaseConfiguration(this);
+			return new DatabaseConfigurationFull(this);
 		}
 
-		public class ContainerBuilder implements ObjectBuilder<DatabaseConfiguration> {
+		public class ContainerBuilder implements ObjectBuilder<DatabaseConfigurationFull> {
 
 			/**
 			 * Required - The provider-assigned name of the IP geolocation database to
@@ -255,20 +309,22 @@ public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.
 				return this;
 			}
 
-			public DatabaseConfiguration build() {
+			public DatabaseConfigurationFull build() {
 				return Builder.this.build();
 			}
 		}
 	}
 
-	protected static void setupDatabaseConfigurationDeserializer(ObjectDeserializer<Builder> op) {
+	protected static void setupDatabaseConfigurationFullDeserializer(ObjectDeserializer<Builder> op) {
 
+		op.add(Builder::web, Web._DESERIALIZER, "web");
+		op.add(Builder::local, Local._DESERIALIZER, "local");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::maxmind, Maxmind._DESERIALIZER, "maxmind");
 		op.add(Builder::ipinfo, Ipinfo._DESERIALIZER, "ipinfo");
 
 	}
 
-	public static final JsonpDeserializer<DatabaseConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatabaseConfiguration::setupDatabaseConfigurationDeserializer, Builder::build);
+	public static final JsonpDeserializer<DatabaseConfigurationFull> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DatabaseConfigurationFull::setupDatabaseConfigurationFullDeserializer, Builder::build);
 }

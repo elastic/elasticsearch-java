@@ -17,9 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cat;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -27,14 +28,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -52,61 +55,49 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: cat.component_templates.Request
+// typedef: ingest.get_ip_location_database.Request
 
 /**
- * Get component templates. Returns information about component templates in a
- * cluster. Component templates are building blocks for constructing index
- * templates that specify index mappings, settings, and aliases.
- * <p>
- * CAT APIs are only intended for human consumption using the command line or
- * Kibana console. They are not intended for use by applications. For
- * application consumption, use the get component template API.
+ * Returns information about one or more IP location database configurations.
  * 
- * @see <a href="../doc-files/api-spec.html#cat.component_templates.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest.get_ip_location_database.Request">API
  *      specification</a>
  */
 
-public class ComponentTemplatesRequest extends CatRequestBase {
-	@Nullable
-	private final Boolean local;
+public class GetIpLocationDatabaseRequest extends RequestBase {
+	private final List<String> id;
 
 	@Nullable
 	private final Time masterTimeout;
 
-	@Nullable
-	private final String name;
-
 	// ---------------------------------------------------------------------------------------------
 
-	private ComponentTemplatesRequest(Builder builder) {
+	private GetIpLocationDatabaseRequest(Builder builder) {
 
-		this.local = builder.local;
+		this.id = ApiTypeHelper.unmodifiable(builder.id);
 		this.masterTimeout = builder.masterTimeout;
-		this.name = builder.name;
 
 	}
 
-	public static ComponentTemplatesRequest of(Function<Builder, ObjectBuilder<ComponentTemplatesRequest>> fn) {
+	public static GetIpLocationDatabaseRequest of(Function<Builder, ObjectBuilder<GetIpLocationDatabaseRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * If <code>true</code>, the request computes the list of selected nodes from
-	 * the local cluster state. If <code>false</code> the list of selected nodes are
-	 * computed from the cluster state of the master node. In both cases the
-	 * coordinating node will send requests for further information to each selected
-	 * node.
+	 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+	 * (<code>*</code>) expressions are supported. To get all database
+	 * configurations, omit this parameter or use <code>*</code>.
 	 * <p>
-	 * API name: {@code local}
+	 * API name: {@code id}
 	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
+	public final List<String> id() {
+		return this.id;
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -115,51 +106,52 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		return this.masterTimeout;
 	}
 
-	/**
-	 * The name of the component template. Accepts wildcard expressions. If omitted,
-	 * all component templates are returned.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ComponentTemplatesRequest}.
+	 * Builder for {@link GetIpLocationDatabaseRequest}.
 	 */
 
-	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<ComponentTemplatesRequest> {
+				ObjectBuilder<GetIpLocationDatabaseRequest> {
 		@Nullable
-		private Boolean local;
+		private List<String> id;
 
 		@Nullable
 		private Time masterTimeout;
 
-		@Nullable
-		private String name;
-
 		/**
-		 * If <code>true</code>, the request computes the list of selected nodes from
-		 * the local cluster state. If <code>false</code> the list of selected nodes are
-		 * computed from the cluster state of the master node. In both cases the
-		 * coordinating node will send requests for further information to each selected
-		 * node.
+		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+		 * (<code>*</code>) expressions are supported. To get all database
+		 * configurations, omit this parameter or use <code>*</code>.
 		 * <p>
-		 * API name: {@code local}
+		 * API name: {@code id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>id</code>.
 		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
+		public final Builder id(List<String> list) {
+			this.id = _listAddAll(this.id, list);
 			return this;
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+		 * (<code>*</code>) expressions are supported. To get all database
+		 * configurations, omit this parameter or use <code>*</code>.
+		 * <p>
+		 * API name: {@code id}
+		 * <p>
+		 * Adds one or more values to <code>id</code>.
+		 */
+		public final Builder id(String value, String... values) {
+			this.id = _listAdd(this.id, value, values);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -169,23 +161,13 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * The name of the component template. Accepts wildcard expressions. If omitted,
-		 * all component templates are returned.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
 		}
 
 		@Override
@@ -194,25 +176,25 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Builds a {@link ComponentTemplatesRequest}.
+		 * Builds a {@link GetIpLocationDatabaseRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ComponentTemplatesRequest build() {
+		public GetIpLocationDatabaseRequest build() {
 			_checkSingleUse();
 
-			return new ComponentTemplatesRequest(this);
+			return new GetIpLocationDatabaseRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code cat.component_templates}".
+	 * Endpoint "{@code ingest.get_ip_location_database}".
 	 */
-	public static final Endpoint<ComponentTemplatesRequest, ComponentTemplatesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.component_templates",
+	public static final Endpoint<GetIpLocationDatabaseRequest, GetIpLocationDatabaseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.get_ip_location_database",
 
 			// Request method
 			request -> {
@@ -222,25 +204,27 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 
 			// Request path
 			request -> {
-				final int _name = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				if (ApiTypeHelper.isDefined(request.id()))
+					propsSet |= _id;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/component_templates");
+					buf.append("/_ingest");
+					buf.append("/ip_location");
+					buf.append("/database");
 					return buf.toString();
 				}
-				if (propsSet == (_name)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/component_templates");
+					buf.append("/_ingest");
+					buf.append("/ip_location");
+					buf.append("/database");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.id.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -250,17 +234,17 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _name = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				if (ApiTypeHelper.isDefined(request.id()))
+					propsSet |= _id;
 
 				if (propsSet == 0) {
 				}
-				if (propsSet == (_name)) {
-					params.put("name", request.name);
+				if (propsSet == (_id)) {
+					params.put("id", request.id.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -268,14 +252,10 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ComponentTemplatesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetIpLocationDatabaseResponse._DESERIALIZER);
 }

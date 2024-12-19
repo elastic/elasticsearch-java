@@ -17,15 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cat;
-
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
+package co.elastic.clients.elasticsearch.ingest;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -42,24 +34,11 @@ import java.util.Objects;
 //
 //----------------------------------------------------------------
 
-// typedef: cat.help.Response
-
 /**
- *
- * @see <a href="../doc-files/api-spec.html#cat.help.Response">API
- *      specification</a>
+ * Base interface for {@link DatabaseConfigurationFull} variants.
  */
+public interface DatabaseConfigurationFullVariant {
 
-public class HelpResponse {
-	public HelpResponse() {
-	}
-
-	/**
-	 * Singleton instance for {@link HelpResponse}.
-	 */
-	public static final HelpResponse _INSTANCE = new HelpResponse();
-
-	public static final JsonpDeserializer<HelpResponse> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(HelpResponse._INSTANCE);
+	DatabaseConfigurationFull.Kind _databaseConfigurationFullKind();
 
 }

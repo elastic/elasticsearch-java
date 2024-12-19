@@ -81,6 +81,12 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean allowNoIndices;
 
 	@Nullable
+	private final Boolean allowPartialSearchResults;
+
+	@Nullable
+	private final Boolean allowPartialSequenceResults;
+
+	@Nullable
 	private final Boolean caseSensitive;
 
 	@Nullable
@@ -133,6 +139,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	private EqlSearchRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
+		this.allowPartialSearchResults = builder.allowPartialSearchResults;
+		this.allowPartialSequenceResults = builder.allowPartialSequenceResults;
 		this.caseSensitive = builder.caseSensitive;
 		this.eventCategoryField = builder.eventCategoryField;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -164,6 +172,22 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
+	}
+
+	/**
+	 * API name: {@code allow_partial_search_results}
+	 */
+	@Nullable
+	public final Boolean allowPartialSearchResults() {
+		return this.allowPartialSearchResults;
+	}
+
+	/**
+	 * API name: {@code allow_partial_sequence_results}
+	 */
+	@Nullable
+	public final Boolean allowPartialSequenceResults() {
+		return this.allowPartialSequenceResults;
 	}
 
 	/**
@@ -345,6 +369,16 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.allowPartialSearchResults != null) {
+			generator.writeKey("allow_partial_search_results");
+			generator.write(this.allowPartialSearchResults);
+
+		}
+		if (this.allowPartialSequenceResults != null) {
+			generator.writeKey("allow_partial_sequence_results");
+			generator.write(this.allowPartialSequenceResults);
+
+		}
 		if (this.caseSensitive != null) {
 			generator.writeKey("case_sensitive");
 			generator.write(this.caseSensitive);
@@ -449,6 +483,12 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		private Boolean allowNoIndices;
 
 		@Nullable
+		private Boolean allowPartialSearchResults;
+
+		@Nullable
+		private Boolean allowPartialSequenceResults;
+
+		@Nullable
 		private Boolean caseSensitive;
 
 		@Nullable
@@ -505,6 +545,22 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allow_partial_search_results}
+		 */
+		public final Builder allowPartialSearchResults(@Nullable Boolean value) {
+			this.allowPartialSearchResults = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allow_partial_sequence_results}
+		 */
+		public final Builder allowPartialSequenceResults(@Nullable Boolean value) {
+			this.allowPartialSequenceResults = value;
 			return this;
 		}
 
@@ -826,6 +882,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupEqlSearchRequestDeserializer(ObjectDeserializer<EqlSearchRequest.Builder> op) {
 
+		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
+				"allow_partial_search_results");
+		op.add(Builder::allowPartialSequenceResults, JsonpDeserializer.booleanDeserializer(),
+				"allow_partial_sequence_results");
 		op.add(Builder::caseSensitive, JsonpDeserializer.booleanDeserializer(), "case_sensitive");
 		op.add(Builder::eventCategoryField, JsonpDeserializer.stringDeserializer(), "event_category_field");
 		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");

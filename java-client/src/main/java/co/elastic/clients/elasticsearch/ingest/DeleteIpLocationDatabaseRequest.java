@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.tasks;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -31,12 +31,13 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -54,46 +55,59 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: tasks.get.Request
+// typedef: ingest.delete_ip_location_database.Request
 
 /**
- * Get task information. Get information about a task currently running in the
- * cluster.
+ * Deletes an IP location database configuration.
  * 
- * @see <a href="../doc-files/api-spec.html#tasks.get.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest.delete_ip_location_database.Request">API
  *      specification</a>
  */
 
-public class GetTasksRequest extends RequestBase {
-	private final String taskId;
+public class DeleteIpLocationDatabaseRequest extends RequestBase {
+	private final List<String> id;
+
+	@Nullable
+	private final Time masterTimeout;
 
 	@Nullable
 	private final Time timeout;
 
-	@Nullable
-	private final Boolean waitForCompletion;
-
 	// ---------------------------------------------------------------------------------------------
 
-	private GetTasksRequest(Builder builder) {
+	private DeleteIpLocationDatabaseRequest(Builder builder) {
 
-		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.id = ApiTypeHelper.unmodifiableRequired(builder.id, this, "id");
+		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static GetTasksRequest of(Function<Builder, ObjectBuilder<GetTasksRequest>> fn) {
+	public static DeleteIpLocationDatabaseRequest of(
+			Function<Builder, ObjectBuilder<DeleteIpLocationDatabaseRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - ID of the task.
+	 * Required - A comma-separated list of IP location database configurations to
+	 * delete
 	 * <p>
-	 * API name: {@code task_id}
+	 * API name: {@code id}
 	 */
-	public final String taskId() {
-		return this.taskId;
+	public final List<String> id() {
+		return this.id;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -107,39 +121,68 @@ public class GetTasksRequest extends RequestBase {
 		return this.timeout;
 	}
 
-	/**
-	 * If <code>true</code>, the request blocks until the task has completed.
-	 * <p>
-	 * API name: {@code wait_for_completion}
-	 */
-	@Nullable
-	public final Boolean waitForCompletion() {
-		return this.waitForCompletion;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetTasksRequest}.
+	 * Builder for {@link DeleteIpLocationDatabaseRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetTasksRequest> {
-		private String taskId;
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteIpLocationDatabaseRequest> {
+		private List<String> id;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private Time timeout;
 
-		@Nullable
-		private Boolean waitForCompletion;
+		/**
+		 * Required - A comma-separated list of IP location database configurations to
+		 * delete
+		 * <p>
+		 * API name: {@code id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>id</code>.
+		 */
+		public final Builder id(List<String> list) {
+			this.id = _listAddAll(this.id, list);
+			return this;
+		}
 
 		/**
-		 * Required - ID of the task.
+		 * Required - A comma-separated list of IP location database configurations to
+		 * delete
 		 * <p>
-		 * API name: {@code task_id}
+		 * API name: {@code id}
+		 * <p>
+		 * Adds one or more values to <code>id</code>.
 		 */
-		public final Builder taskId(String value) {
-			this.taskId = value;
+		public final Builder id(String value, String... values) {
+			this.id = _listAdd(this.id, value, values);
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -163,61 +206,53 @@ public class GetTasksRequest extends RequestBase {
 			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
-		/**
-		 * If <code>true</code>, the request blocks until the task has completed.
-		 * <p>
-		 * API name: {@code wait_for_completion}
-		 */
-		public final Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link GetTasksRequest}.
+		 * Builds a {@link DeleteIpLocationDatabaseRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetTasksRequest build() {
+		public DeleteIpLocationDatabaseRequest build() {
 			_checkSingleUse();
 
-			return new GetTasksRequest(this);
+			return new DeleteIpLocationDatabaseRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code tasks.get}".
+	 * Endpoint "{@code ingest.delete_ip_location_database}".
 	 */
-	public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/tasks.get",
+	public static final Endpoint<DeleteIpLocationDatabaseRequest, DeleteIpLocationDatabaseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.delete_ip_location_database",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int _taskId = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _taskId;
+				propsSet |= _id;
 
-				if (propsSet == (_taskId)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_tasks");
+					buf.append("/_ingest");
+					buf.append("/ip_location");
+					buf.append("/database");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.taskId, buf);
+					SimpleEndpoint.pathEncode(request.id.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -227,14 +262,14 @@ public class GetTasksRequest extends RequestBase {
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _taskId = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _taskId;
+				propsSet |= _id;
 
-				if (propsSet == (_taskId)) {
-					params.put("taskId", request.taskId);
+				if (propsSet == (_id)) {
+					params.put("id", request.id.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -242,13 +277,13 @@ public class GetTasksRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.waitForCompletion != null) {
-					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetTasksResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteIpLocationDatabaseResponse._DESERIALIZER);
 }

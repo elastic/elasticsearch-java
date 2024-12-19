@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cat.help;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -50,34 +50,42 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: cat.help.HelpRecord
+// typedef: ingest._types.Local
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#cat.help.HelpRecord">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.Local">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class HelpRecord implements JsonpSerializable {
-	private final String endpoint;
+public class Local implements DatabaseConfigurationFullVariant, JsonpSerializable {
+	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private HelpRecord(Builder builder) {
+	private Local(Builder builder) {
 
-		this.endpoint = ApiTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static HelpRecord of(Function<Builder, ObjectBuilder<HelpRecord>> fn) {
+	public static Local of(Function<Builder, ObjectBuilder<Local>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code endpoint}
+	 * DatabaseConfigurationFull variant kind.
 	 */
-	public final String endpoint() {
-		return this.endpoint;
+	@Override
+	public DatabaseConfigurationFull.Kind _databaseConfigurationFullKind() {
+		return DatabaseConfigurationFull.Kind.Local;
+	}
+
+	/**
+	 * Required - API name: {@code type}
+	 */
+	public final String type() {
+		return this.type;
 	}
 
 	/**
@@ -91,8 +99,8 @@ public class HelpRecord implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("endpoint");
-		generator.write(this.endpoint);
+		generator.writeKey("type");
+		generator.write(this.type);
 
 	}
 
@@ -104,17 +112,17 @@ public class HelpRecord implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link HelpRecord}.
+	 * Builder for {@link Local}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HelpRecord> {
-		private String endpoint;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Local> {
+		private String type;
 
 		/**
-		 * Required - API name: {@code endpoint}
+		 * Required - API name: {@code type}
 		 */
-		public final Builder endpoint(String value) {
-			this.endpoint = value;
+		public final Builder type(String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -124,29 +132,29 @@ public class HelpRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link HelpRecord}.
+		 * Builds a {@link Local}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public HelpRecord build() {
+		public Local build() {
 			_checkSingleUse();
 
-			return new HelpRecord(this);
+			return new Local(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link HelpRecord}
+	 * Json deserializer for {@link Local}
 	 */
-	public static final JsonpDeserializer<HelpRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HelpRecord::setupHelpRecordDeserializer);
+	public static final JsonpDeserializer<Local> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Local::setupLocalDeserializer);
 
-	protected static void setupHelpRecordDeserializer(ObjectDeserializer<HelpRecord.Builder> op) {
+	protected static void setupLocalDeserializer(ObjectDeserializer<Local.Builder> op) {
 
-		op.add(Builder::endpoint, JsonpDeserializer.stringDeserializer(), "endpoint");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

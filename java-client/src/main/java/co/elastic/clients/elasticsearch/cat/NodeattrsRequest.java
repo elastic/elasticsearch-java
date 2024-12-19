@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -67,11 +68,15 @@ public class NodeattrsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeattrsRequest(Builder builder) {
 
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 
 	}
 
@@ -93,6 +98,16 @@ public class NodeattrsRequest extends CatRequestBase {
 		return this.local;
 	}
 
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -104,6 +119,9 @@ public class NodeattrsRequest extends CatRequestBase {
 				ObjectBuilder<NodeattrsRequest> {
 		@Nullable
 		private Boolean local;
+
+		@Nullable
+		private Time masterTimeout;
 
 		/**
 		 * If <code>true</code>, the request computes the list of selected nodes from
@@ -117,6 +135,25 @@ public class NodeattrsRequest extends CatRequestBase {
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -166,6 +203,9 @@ public class NodeattrsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
 				}

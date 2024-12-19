@@ -17,15 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cat;
+package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -42,24 +37,47 @@ import java.util.Objects;
 //
 //----------------------------------------------------------------
 
-// typedef: cat.help.Response
-
 /**
- *
- * @see <a href="../doc-files/api-spec.html#cat.help.Response">API
- *      specification</a>
+ * Builders for {@link DatabaseConfiguration} variants.
  */
-
-public class HelpResponse {
-	public HelpResponse() {
+public class DatabaseConfigurationBuilders {
+	private DatabaseConfigurationBuilders() {
 	}
 
 	/**
-	 * Singleton instance for {@link HelpResponse}.
+	 * Creates a builder for the {@link Maxmind maxmind}
+	 * {@code DatabaseConfiguration} variant.
 	 */
-	public static final HelpResponse _INSTANCE = new HelpResponse();
+	public static Maxmind.Builder maxmind() {
+		return new Maxmind.Builder();
+	}
 
-	public static final JsonpDeserializer<HelpResponse> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(HelpResponse._INSTANCE);
+	/**
+	 * Creates a DatabaseConfiguration of the {@link Maxmind maxmind}
+	 * {@code DatabaseConfiguration} variant.
+	 */
+	public static DatabaseConfiguration maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
+		DatabaseConfiguration.Builder builder = new DatabaseConfiguration.Builder();
+		builder.maxmind(fn.apply(new Maxmind.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link Ipinfo ipinfo} {@code DatabaseConfiguration}
+	 * variant.
+	 */
+	public static Ipinfo.Builder ipinfo() {
+		return new Ipinfo.Builder();
+	}
+
+	/**
+	 * Creates a DatabaseConfiguration of the {@link Ipinfo ipinfo}
+	 * {@code DatabaseConfiguration} variant.
+	 */
+	public static DatabaseConfiguration ipinfo(Function<Ipinfo.Builder, ObjectBuilder<Ipinfo>> fn) {
+		DatabaseConfiguration.Builder builder = new DatabaseConfiguration.Builder();
+		builder.ipinfo(fn.apply(new Ipinfo.Builder()).build());
+		return builder.build();
+	}
 
 }

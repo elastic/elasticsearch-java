@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: watcher.get_watch.Request
 
 /**
- * Retrieves a watch by its ID.
+ * Get a watch.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.get_watch.Request">API
  *      specification</a>

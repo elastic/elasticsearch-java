@@ -1193,9 +1193,49 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-repositories.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<RepositoriesResponse> repositories(RepositoriesRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> endpoint = (JsonEndpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse>) RepositoriesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get snapshot repository information. Get a list of snapshot repositories for
+	 * a cluster. IMPORTANT: cat APIs are only intended for human consumption using
+	 * the command line or Kibana console. They are not intended for use by
+	 * applications. For application consumption, use the get snapshot repository
+	 * API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RepositoriesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-repositories.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<RepositoriesResponse> repositories(
+			Function<RepositoriesRequest.Builder, ObjectBuilder<RepositoriesRequest>> fn) {
+		return repositories(fn.apply(new RepositoriesRequest.Builder()).build());
+	}
+
+	/**
+	 * Get snapshot repository information. Get a list of snapshot repositories for
+	 * a cluster. IMPORTANT: cat APIs are only intended for human consumption using
+	 * the command line or Kibana console. They are not intended for use by
+	 * applications. For application consumption, use the get snapshot repository
+	 * API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cat-repositories.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<RepositoriesResponse> repositories() {
-		return this.transport.performRequestAsync(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new RepositoriesRequest.Builder().build(),
+				RepositoriesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.segments

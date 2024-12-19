@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: watcher.activate_watch.Request
 
 /**
- * Activates a currently inactive watch.
+ * Activate a watch. A watch can be either active or inactive.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.activate_watch.Request">API
  *      specification</a>

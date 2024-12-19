@@ -20,6 +20,8 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -72,14 +74,22 @@ public class SnapshotsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> repository;
+
+	@Nullable
+	private final TimeUnit time;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SnapshotsRequest(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.masterTimeout = builder.masterTimeout;
 		this.repository = ApiTypeHelper.unmodifiable(builder.repository);
+		this.time = builder.time;
 
 	}
 
@@ -99,6 +109,16 @@ public class SnapshotsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * A comma-separated list of snapshot repositories used to limit the request.
 	 * Accepts wildcard expressions. <code>_all</code> returns all repositories. If
 	 * any repository fails during the request, Elasticsearch returns an error.
@@ -107,6 +127,16 @@ public class SnapshotsRequest extends CatRequestBase {
 	 */
 	public final List<String> repository() {
 		return this.repository;
+	}
+
+	/**
+	 * Unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -122,7 +152,13 @@ public class SnapshotsRequest extends CatRequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private List<String> repository;
+
+		@Nullable
+		private TimeUnit time;
 
 		/**
 		 * If <code>true</code>, the response does not include information from
@@ -133,6 +169,25 @@ public class SnapshotsRequest extends CatRequestBase {
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -160,6 +215,16 @@ public class SnapshotsRequest extends CatRequestBase {
 		 */
 		public final Builder repository(String value, String... values) {
 			this.repository = _listAdd(this.repository, value, values);
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
 			return this;
 		}
 
@@ -245,8 +310,14 @@ public class SnapshotsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
 				}
 				return params;
 

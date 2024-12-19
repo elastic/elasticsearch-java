@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -72,6 +73,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> threadPoolPatterns;
 
 	@Nullable
@@ -82,6 +86,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	private ThreadPoolRequest(Builder builder) {
 
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 		this.time = builder.time;
 
@@ -103,6 +108,16 @@ public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
 	public final Boolean local() {
 		return this.local;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -138,6 +153,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 		private Boolean local;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private List<String> threadPoolPatterns;
 
 		@Nullable
@@ -155,6 +173,25 @@ public class ThreadPoolRequest extends CatRequestBase {
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -276,6 +313,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());
 				}

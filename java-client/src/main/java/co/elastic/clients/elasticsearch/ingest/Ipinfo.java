@@ -17,15 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cat;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -42,24 +41,50 @@ import java.util.Objects;
 //
 //----------------------------------------------------------------
 
-// typedef: cat.help.Response
-
 /**
  *
- * @see <a href="../doc-files/api-spec.html#cat.help.Response">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.Ipinfo">API
  *      specification</a>
  */
+@JsonpDeserializable
+public class Ipinfo implements DatabaseConfigurationFullVariant, DatabaseConfigurationVariant, JsonpSerializable {
 
-public class HelpResponse {
-	public HelpResponse() {
+	/**
+	 * DatabaseConfigurationFull variant kind.
+	 */
+	@Override
+	public DatabaseConfigurationFull.Kind _databaseConfigurationFullKind() {
+		return DatabaseConfigurationFull.Kind.Ipinfo;
 	}
 
 	/**
-	 * Singleton instance for {@link HelpResponse}.
+	 * DatabaseConfiguration variant kind.
 	 */
-	public static final HelpResponse _INSTANCE = new HelpResponse();
+	@Override
+	public DatabaseConfiguration.Kind _databaseConfigurationKind() {
+		return DatabaseConfiguration.Kind.Ipinfo;
+	}
 
-	public static final JsonpDeserializer<HelpResponse> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(HelpResponse._INSTANCE);
+	public static final class Builder implements ObjectBuilder<Ipinfo> {
+		@Override
+		public Ipinfo build() {
+			return Ipinfo._INSTANCE;
+		}
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		generator.writeEnd();
+	}
+
+	/**
+	 * Singleton instance for empty class {@link Ipinfo}.
+	 */
+	public static final Ipinfo _INSTANCE = new Ipinfo();
+
+	public static final JsonpDeserializer<Ipinfo> _DESERIALIZER = JsonpDeserializer.emptyObject(Ipinfo._INSTANCE);
 
 }

@@ -71,7 +71,9 @@ public class ElasticsearchTextStructureClient
 	// ----- Endpoint: text_structure.test_grok_pattern
 
 	/**
-	 * Tests a Grok pattern on some text.
+	 * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
+	 * API indicates whether the lines match the pattern together with the offsets
+	 * and lengths of the matched substrings.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern.html">Documentation
@@ -87,7 +89,9 @@ public class ElasticsearchTextStructureClient
 	}
 
 	/**
-	 * Tests a Grok pattern on some text.
+	 * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
+	 * API indicates whether the lines match the pattern together with the offsets
+	 * and lengths of the matched substrings.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
