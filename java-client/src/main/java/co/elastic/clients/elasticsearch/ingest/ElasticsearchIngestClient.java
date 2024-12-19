@@ -102,6 +102,41 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 		return deleteGeoipDatabase(fn.apply(new DeleteGeoipDatabaseRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: ingest.delete_ip_location_database
+
+	/**
+	 * Deletes an IP location database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteIpLocationDatabaseResponse deleteIpLocationDatabase(DeleteIpLocationDatabaseRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteIpLocationDatabaseRequest, DeleteIpLocationDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteIpLocationDatabaseRequest, DeleteIpLocationDatabaseResponse, ErrorResponse>) DeleteIpLocationDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an IP location database configuration.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteIpLocationDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteIpLocationDatabaseResponse deleteIpLocationDatabase(
+			Function<DeleteIpLocationDatabaseRequest.Builder, ObjectBuilder<DeleteIpLocationDatabaseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteIpLocationDatabase(fn.apply(new DeleteIpLocationDatabaseRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
@@ -201,6 +236,54 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	public GetGeoipDatabaseResponse getGeoipDatabase() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetGeoipDatabaseRequest.Builder().build(),
 				GetGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: ingest.get_ip_location_database
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIpLocationDatabaseResponse getIpLocationDatabase(GetIpLocationDatabaseRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetIpLocationDatabaseRequest, GetIpLocationDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIpLocationDatabaseRequest, GetIpLocationDatabaseResponse, ErrorResponse>) GetIpLocationDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIpLocationDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetIpLocationDatabaseResponse getIpLocationDatabase(
+			Function<GetIpLocationDatabaseRequest.Builder, ObjectBuilder<GetIpLocationDatabaseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getIpLocationDatabase(fn.apply(new GetIpLocationDatabaseRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetIpLocationDatabaseResponse getIpLocationDatabase() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetIpLocationDatabaseRequest.Builder().build(),
+				GetIpLocationDatabaseRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.get_pipeline
@@ -306,6 +389,41 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 			Function<PutGeoipDatabaseRequest.Builder, ObjectBuilder<PutGeoipDatabaseRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putGeoipDatabase(fn.apply(new PutGeoipDatabaseRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: ingest.put_ip_location_database
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutIpLocationDatabaseResponse putIpLocationDatabase(PutIpLocationDatabaseRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutIpLocationDatabaseRequest, PutIpLocationDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<PutIpLocationDatabaseRequest, PutIpLocationDatabaseResponse, ErrorResponse>) PutIpLocationDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutIpLocationDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutIpLocationDatabaseResponse putIpLocationDatabase(
+			Function<PutIpLocationDatabaseRequest.Builder, ObjectBuilder<PutIpLocationDatabaseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putIpLocationDatabase(fn.apply(new PutIpLocationDatabaseRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ingest.put_pipeline

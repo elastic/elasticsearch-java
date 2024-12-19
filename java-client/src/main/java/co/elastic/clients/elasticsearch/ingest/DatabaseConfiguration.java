@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -28,8 +29,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -53,23 +57,69 @@ import javax.annotation.Nullable;
 // typedef: ingest._types.DatabaseConfiguration
 
 /**
- *
+ * The configuration necessary to identify which IP geolocation provider to use
+ * to download a database, as well as any provider-specific configuration
+ * necessary for such downloading. At present, the only supported providers are
+ * maxmind and ipinfo, and the maxmind provider requires that an account_id
+ * (string) is configured. A provider (either maxmind or ipinfo) must be
+ * specified. The web and local providers can be returned as read only
+ * configurations.
+ * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest._types.DatabaseConfiguration">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DatabaseConfiguration implements JsonpSerializable {
+public class DatabaseConfiguration implements TaggedUnion<DatabaseConfiguration.Kind, Object>, JsonpSerializable {
+
+	/**
+	 * {@link DatabaseConfiguration} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#ingest._types.DatabaseConfiguration">API
+	 *      specification</a>
+	 */
+
+	public enum Kind implements JsonEnum {
+		Maxmind("maxmind"),
+
+		Ipinfo("ipinfo"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final Object _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
 	private final String name;
-
-	private final Maxmind maxmind;
-
-	// ---------------------------------------------------------------------------------------------
 
 	private DatabaseConfiguration(Builder builder) {
 
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.maxmind = ApiTypeHelper.requireNonNull(builder.maxmind, this, "maxmind");
 
 	}
 
@@ -88,34 +138,54 @@ public class DatabaseConfiguration implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The configuration necessary to identify which IP geolocation
-	 * provider to use to download the database, as well as any provider-specific
-	 * configuration necessary for such downloading. At present, the only supported
-	 * provider is maxmind, and the maxmind provider requires that an account_id
-	 * (string) is configured.
-	 * <p>
-	 * API name: {@code maxmind}
+	 * Is this variant instance of kind {@code maxmind}?
 	 */
-	public final Maxmind maxmind() {
-		return this.maxmind;
+	public boolean isMaxmind() {
+		return _kind == Kind.Maxmind;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Get the {@code maxmind} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code maxmind} kind.
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	public Maxmind maxmind() {
+		return TaggedUnionUtils.get(this, Kind.Maxmind);
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+	/**
+	 * Is this variant instance of kind {@code ipinfo}?
+	 */
+	public boolean isIpinfo() {
+		return _kind == Kind.Ipinfo;
+	}
+
+	/**
+	 * Get the {@code ipinfo} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ipinfo} kind.
+	 */
+	public Ipinfo ipinfo() {
+		return TaggedUnionUtils.get(this, Kind.Ipinfo);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeStartObject();
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("maxmind");
-		this.maxmind.serialize(generator, mapper);
+		generator.writeKey(_kind.jsonValue());
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		}
+
+		generator.writeEnd();
 
 	}
 
@@ -124,18 +194,13 @@ public class DatabaseConfiguration implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link DatabaseConfiguration}.
-	 */
-
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DatabaseConfiguration> {
-		private String name;
+		private Kind _kind;
+		private Object _value;
 
-		private Maxmind maxmind;
+		private String name;
 
 		/**
 		 * Required - The provider-assigned name of the IP geolocation database to
@@ -148,64 +213,62 @@ public class DatabaseConfiguration implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Required - The configuration necessary to identify which IP geolocation
-		 * provider to use to download the database, as well as any provider-specific
-		 * configuration necessary for such downloading. At present, the only supported
-		 * provider is maxmind, and the maxmind provider requires that an account_id
-		 * (string) is configured.
-		 * <p>
-		 * API name: {@code maxmind}
-		 */
-		public final Builder maxmind(Maxmind value) {
-			this.maxmind = value;
-			return this;
-		}
-
-		/**
-		 * Required - The configuration necessary to identify which IP geolocation
-		 * provider to use to download the database, as well as any provider-specific
-		 * configuration necessary for such downloading. At present, the only supported
-		 * provider is maxmind, and the maxmind provider requires that an account_id
-		 * (string) is configured.
-		 * <p>
-		 * API name: {@code maxmind}
-		 */
-		public final Builder maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
-			return this.maxmind(fn.apply(new Maxmind.Builder()).build());
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ContainerBuilder maxmind(Maxmind v) {
+			this._kind = Kind.Maxmind;
+			this._value = v;
+			return new ContainerBuilder();
+		}
 
-		/**
-		 * Builds a {@link DatabaseConfiguration}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ContainerBuilder maxmind(Function<Maxmind.Builder, ObjectBuilder<Maxmind>> fn) {
+			return this.maxmind(fn.apply(new Maxmind.Builder()).build());
+		}
+
+		public ContainerBuilder ipinfo(Ipinfo v) {
+			this._kind = Kind.Ipinfo;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder ipinfo(Function<Ipinfo.Builder, ObjectBuilder<Ipinfo>> fn) {
+			return this.ipinfo(fn.apply(new Ipinfo.Builder()).build());
+		}
+
 		public DatabaseConfiguration build() {
 			_checkSingleUse();
-
 			return new DatabaseConfiguration(this);
+		}
+
+		public class ContainerBuilder implements ObjectBuilder<DatabaseConfiguration> {
+
+			/**
+			 * Required - The provider-assigned name of the IP geolocation database to
+			 * download.
+			 * <p>
+			 * API name: {@code name}
+			 */
+			public final ContainerBuilder name(String value) {
+				Builder.this.name = value;
+				return this;
+			}
+
+			public DatabaseConfiguration build() {
+				return Builder.this.build();
+			}
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link DatabaseConfiguration}
-	 */
-	public static final JsonpDeserializer<DatabaseConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DatabaseConfiguration::setupDatabaseConfigurationDeserializer);
-
-	protected static void setupDatabaseConfigurationDeserializer(ObjectDeserializer<DatabaseConfiguration.Builder> op) {
+	protected static void setupDatabaseConfigurationDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::maxmind, Maxmind._DESERIALIZER, "maxmind");
+		op.add(Builder::ipinfo, Ipinfo._DESERIALIZER, "ipinfo");
 
 	}
 
+	public static final JsonpDeserializer<DatabaseConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DatabaseConfiguration::setupDatabaseConfigurationDeserializer, Builder::build);
 }

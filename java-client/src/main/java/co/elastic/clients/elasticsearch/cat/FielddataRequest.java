@@ -57,11 +57,11 @@ import javax.annotation.Nullable;
 // typedef: cat.fielddata.Request
 
 /**
- * Get field data cache information. Get the amount of heap memory currently
- * used by the field data cache on every data node in the cluster. IMPORTANT:
- * cat APIs are only intended for human consumption using the command line or
- * Kibana console. They are not intended for use by applications. For
- * application consumption, use the nodes stats API.
+ * Returns the amount of heap memory currently used by the field data cache on
+ * every data node in the cluster. IMPORTANT: cat APIs are only intended for
+ * human consumption using the command line or Kibana console. They are not
+ * intended for use by applications. For application consumption, use the nodes
+ * stats API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.fielddata.Request">API
  *      specification</a>

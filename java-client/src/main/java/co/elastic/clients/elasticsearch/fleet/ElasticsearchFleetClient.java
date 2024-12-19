@@ -70,9 +70,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: fleet.search
 
 	/**
-	 * Run a Fleet search. The purpose of the Fleet search API is to provide an API
-	 * where the search will be run only after the provided checkpoint has been
-	 * processed and is visible for searches inside of Elasticsearch.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
@@ -88,9 +88,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Run a Fleet search. The purpose of the Fleet search API is to provide an API
-	 * where the search will be run only after the provided checkpoint has been
-	 * processed and is visible for searches inside of Elasticsearch.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,9 +105,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Run a Fleet search. The purpose of the Fleet search API is to provide an API
-	 * where the search will be run only after the provided checkpoint has been
-	 * processed and is visible for searches inside of Elasticsearch.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
@@ -123,9 +123,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Run a Fleet search. The purpose of the Fleet search API is to provide an API
-	 * where the search will be run only after the provided checkpoint has been
-	 * processed and is visible for searches inside of Elasticsearch.
+	 * The purpose of the fleet search api is to provide a search api where the
+	 * search will only be executed after provided checkpoint has been processed and
+	 * is visible for searches inside of Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

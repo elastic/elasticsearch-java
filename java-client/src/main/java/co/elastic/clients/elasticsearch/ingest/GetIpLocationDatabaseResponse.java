@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core.health_report;
+package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch.ingest.get_ip_location_database.DatabaseConfigurationMetadata;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,8 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
-import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,45 +51,35 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.health_report.FileSettingsIndicatorDetails
+// typedef: ingest.get_ip_location_database.Response
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_global.health_report.FileSettingsIndicatorDetails">API
+ *      "../doc-files/api-spec.html#ingest.get_ip_location_database.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class FileSettingsIndicatorDetails implements JsonpSerializable {
-	private final long failureStreak;
-
-	private final String mostRecentFailure;
+public class GetIpLocationDatabaseResponse implements JsonpSerializable {
+	private final List<DatabaseConfigurationMetadata> databases;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private FileSettingsIndicatorDetails(Builder builder) {
+	private GetIpLocationDatabaseResponse(Builder builder) {
 
-		this.failureStreak = ApiTypeHelper.requireNonNull(builder.failureStreak, this, "failureStreak");
-		this.mostRecentFailure = ApiTypeHelper.requireNonNull(builder.mostRecentFailure, this, "mostRecentFailure");
+		this.databases = ApiTypeHelper.unmodifiableRequired(builder.databases, this, "databases");
 
 	}
 
-	public static FileSettingsIndicatorDetails of(Function<Builder, ObjectBuilder<FileSettingsIndicatorDetails>> fn) {
+	public static GetIpLocationDatabaseResponse of(Function<Builder, ObjectBuilder<GetIpLocationDatabaseResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code failure_streak}
+	 * Required - API name: {@code databases}
 	 */
-	public final long failureStreak() {
-		return this.failureStreak;
-	}
-
-	/**
-	 * Required - API name: {@code most_recent_failure}
-	 */
-	public final String mostRecentFailure() {
-		return this.mostRecentFailure;
+	public final List<DatabaseConfigurationMetadata> databases() {
+		return this.databases;
 	}
 
 	/**
@@ -103,11 +93,16 @@ public class FileSettingsIndicatorDetails implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("failure_streak");
-		generator.write(this.failureStreak);
+		if (ApiTypeHelper.isDefined(this.databases)) {
+			generator.writeKey("databases");
+			generator.writeStartArray();
+			for (DatabaseConfigurationMetadata item0 : this.databases) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("most_recent_failure");
-		generator.write(this.mostRecentFailure);
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -119,30 +114,42 @@ public class FileSettingsIndicatorDetails implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link FileSettingsIndicatorDetails}.
+	 * Builder for {@link GetIpLocationDatabaseResponse}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<FileSettingsIndicatorDetails> {
-		private Long failureStreak;
-
-		private String mostRecentFailure;
+				ObjectBuilder<GetIpLocationDatabaseResponse> {
+		private List<DatabaseConfigurationMetadata> databases;
 
 		/**
-		 * Required - API name: {@code failure_streak}
+		 * Required - API name: {@code databases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>databases</code>.
 		 */
-		public final Builder failureStreak(long value) {
-			this.failureStreak = value;
+		public final Builder databases(List<DatabaseConfigurationMetadata> list) {
+			this.databases = _listAddAll(this.databases, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code most_recent_failure}
+		 * Required - API name: {@code databases}
+		 * <p>
+		 * Adds one or more values to <code>databases</code>.
 		 */
-		public final Builder mostRecentFailure(String value) {
-			this.mostRecentFailure = value;
+		public final Builder databases(DatabaseConfigurationMetadata value, DatabaseConfigurationMetadata... values) {
+			this.databases = _listAdd(this.databases, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code databases}
+		 * <p>
+		 * Adds a value to <code>databases</code> using a builder lambda.
+		 */
+		public final Builder databases(
+				Function<DatabaseConfigurationMetadata.Builder, ObjectBuilder<DatabaseConfigurationMetadata>> fn) {
+			return databases(fn.apply(new DatabaseConfigurationMetadata.Builder()).build());
 		}
 
 		@Override
@@ -151,31 +158,31 @@ public class FileSettingsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link FileSettingsIndicatorDetails}.
+		 * Builds a {@link GetIpLocationDatabaseResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public FileSettingsIndicatorDetails build() {
+		public GetIpLocationDatabaseResponse build() {
 			_checkSingleUse();
 
-			return new FileSettingsIndicatorDetails(this);
+			return new GetIpLocationDatabaseResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link FileSettingsIndicatorDetails}
+	 * Json deserializer for {@link GetIpLocationDatabaseResponse}
 	 */
-	public static final JsonpDeserializer<FileSettingsIndicatorDetails> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FileSettingsIndicatorDetails::setupFileSettingsIndicatorDetailsDeserializer);
+	public static final JsonpDeserializer<GetIpLocationDatabaseResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetIpLocationDatabaseResponse::setupGetIpLocationDatabaseResponseDeserializer);
 
-	protected static void setupFileSettingsIndicatorDetailsDeserializer(
-			ObjectDeserializer<FileSettingsIndicatorDetails.Builder> op) {
+	protected static void setupGetIpLocationDatabaseResponseDeserializer(
+			ObjectDeserializer<GetIpLocationDatabaseResponse.Builder> op) {
 
-		op.add(Builder::failureStreak, JsonpDeserializer.longDeserializer(), "failure_streak");
-		op.add(Builder::mostRecentFailure, JsonpDeserializer.stringDeserializer(), "most_recent_failure");
+		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(DatabaseConfigurationMetadata._DESERIALIZER),
+				"databases");
 
 	}
 

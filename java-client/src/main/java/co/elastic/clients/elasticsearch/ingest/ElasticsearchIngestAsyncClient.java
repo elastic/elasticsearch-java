@@ -100,6 +100,40 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 		return deleteGeoipDatabase(fn.apply(new DeleteGeoipDatabaseRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: ingest.delete_ip_location_database
+
+	/**
+	 * Deletes an IP location database configuration.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteIpLocationDatabaseResponse> deleteIpLocationDatabase(
+			DeleteIpLocationDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteIpLocationDatabaseRequest, DeleteIpLocationDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteIpLocationDatabaseRequest, DeleteIpLocationDatabaseResponse, ErrorResponse>) DeleteIpLocationDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an IP location database configuration.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteIpLocationDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteIpLocationDatabaseResponse> deleteIpLocationDatabase(
+			Function<DeleteIpLocationDatabaseRequest.Builder, ObjectBuilder<DeleteIpLocationDatabaseRequest>> fn) {
+		return deleteIpLocationDatabase(fn.apply(new DeleteIpLocationDatabaseRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
@@ -195,6 +229,53 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	public CompletableFuture<GetGeoipDatabaseResponse> getGeoipDatabase() {
 		return this.transport.performRequestAsync(new GetGeoipDatabaseRequest.Builder().build(),
 				GetGeoipDatabaseRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: ingest.get_ip_location_database
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetIpLocationDatabaseResponse> getIpLocationDatabase(
+			GetIpLocationDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetIpLocationDatabaseRequest, GetIpLocationDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIpLocationDatabaseRequest, GetIpLocationDatabaseResponse, ErrorResponse>) GetIpLocationDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetIpLocationDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetIpLocationDatabaseResponse> getIpLocationDatabase(
+			Function<GetIpLocationDatabaseRequest.Builder, ObjectBuilder<GetIpLocationDatabaseRequest>> fn) {
+		return getIpLocationDatabase(fn.apply(new GetIpLocationDatabaseRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetIpLocationDatabaseResponse> getIpLocationDatabase() {
+		return this.transport.performRequestAsync(new GetIpLocationDatabaseRequest.Builder().build(),
+				GetIpLocationDatabaseRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.get_pipeline
@@ -297,6 +378,40 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	public final CompletableFuture<PutGeoipDatabaseResponse> putGeoipDatabase(
 			Function<PutGeoipDatabaseRequest.Builder, ObjectBuilder<PutGeoipDatabaseRequest>> fn) {
 		return putGeoipDatabase(fn.apply(new PutGeoipDatabaseRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: ingest.put_ip_location_database
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutIpLocationDatabaseResponse> putIpLocationDatabase(
+			PutIpLocationDatabaseRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutIpLocationDatabaseRequest, PutIpLocationDatabaseResponse, ErrorResponse> endpoint = (JsonEndpoint<PutIpLocationDatabaseRequest, PutIpLocationDatabaseResponse, ErrorResponse>) PutIpLocationDatabaseRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about one or more IP location database configurations.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutIpLocationDatabaseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutIpLocationDatabaseResponse> putIpLocationDatabase(
+			Function<PutIpLocationDatabaseRequest.Builder, ObjectBuilder<PutIpLocationDatabaseRequest>> fn) {
+		return putIpLocationDatabase(fn.apply(new PutIpLocationDatabaseRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ingest.put_pipeline

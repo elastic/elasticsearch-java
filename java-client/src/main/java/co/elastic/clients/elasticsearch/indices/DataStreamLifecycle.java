@@ -30,7 +30,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,29 +67,20 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	private final DataStreamLifecycleDownsampling downsampling;
 
-	@Nullable
-	private final Boolean enabled;
-
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreamLifecycle(AbstractBuilder<?> builder) {
+	private DataStreamLifecycle(Builder builder) {
 
 		this.dataRetention = builder.dataRetention;
 		this.downsampling = builder.downsampling;
-		this.enabled = builder.enabled;
 
 	}
 
-	public static DataStreamLifecycle dataStreamLifecycleOf(Function<Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
+	public static DataStreamLifecycle of(Function<Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * If defined, every document added to this data stream will be stored at least
-	 * for this time frame. Any time after this duration the document could be
-	 * deleted. When empty, every document in this data stream will be stored
-	 * indefinitely.
-	 * <p>
 	 * API name: {@code data_retention}
 	 */
 	@Nullable
@@ -99,27 +89,11 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * The downsampling configuration to execute for the managed backing index after
-	 * rollover.
-	 * <p>
 	 * API name: {@code downsampling}
 	 */
 	@Nullable
 	public final DataStreamLifecycleDownsampling downsampling() {
 		return this.downsampling;
-	}
-
-	/**
-	 * If defined, it turns data stream lifecycle on/off
-	 * (<code>true</code>/<code>false</code>) for this data stream. A data stream
-	 * lifecycle that's disabled (enabled: <code>false</code>) will have no effect
-	 * on the data stream.
-	 * <p>
-	 * API name: {@code enabled}
-	 */
-	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
 	}
 
 	/**
@@ -143,11 +117,6 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			this.downsampling.serialize(generator, mapper);
 
 		}
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
-
-		}
 
 	}
 
@@ -162,9 +131,46 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	 * Builder for {@link DataStreamLifecycle}.
 	 */
 
-	public static class Builder extends DataStreamLifecycle.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataStreamLifecycle> {
+		@Nullable
+		private Time dataRetention;
+
+		@Nullable
+		private DataStreamLifecycleDownsampling downsampling;
+
+		/**
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(@Nullable Time value) {
+			this.dataRetention = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
+			this.downsampling = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(
+				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -183,82 +189,6 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		}
 	}
 
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
-		@Nullable
-		private Time dataRetention;
-
-		@Nullable
-		private DataStreamLifecycleDownsampling downsampling;
-
-		@Nullable
-		private Boolean enabled;
-
-		/**
-		 * If defined, every document added to this data stream will be stored at least
-		 * for this time frame. Any time after this duration the document could be
-		 * deleted. When empty, every document in this data stream will be stored
-		 * indefinitely.
-		 * <p>
-		 * API name: {@code data_retention}
-		 */
-		public final BuilderT dataRetention(@Nullable Time value) {
-			this.dataRetention = value;
-			return self();
-		}
-
-		/**
-		 * If defined, every document added to this data stream will be stored at least
-		 * for this time frame. Any time after this duration the document could be
-		 * deleted. When empty, every document in this data stream will be stored
-		 * indefinitely.
-		 * <p>
-		 * API name: {@code data_retention}
-		 */
-		public final BuilderT dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.dataRetention(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * The downsampling configuration to execute for the managed backing index after
-		 * rollover.
-		 * <p>
-		 * API name: {@code downsampling}
-		 */
-		public final BuilderT downsampling(@Nullable DataStreamLifecycleDownsampling value) {
-			this.downsampling = value;
-			return self();
-		}
-
-		/**
-		 * The downsampling configuration to execute for the managed backing index after
-		 * rollover.
-		 * <p>
-		 * API name: {@code downsampling}
-		 */
-		public final BuilderT downsampling(
-				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
-			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
-		}
-
-		/**
-		 * If defined, it turns data stream lifecycle on/off
-		 * (<code>true</code>/<code>false</code>) for this data stream. A data stream
-		 * lifecycle that's disabled (enabled: <code>false</code>) will have no effect
-		 * on the data stream.
-		 * <p>
-		 * API name: {@code enabled}
-		 */
-		public final BuilderT enabled(@Nullable Boolean value) {
-			this.enabled = value;
-			return self();
-		}
-
-		protected abstract BuilderT self();
-
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -267,12 +197,10 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	public static final JsonpDeserializer<DataStreamLifecycle> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new, DataStreamLifecycle::setupDataStreamLifecycleDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataStreamLifecycleDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static void setupDataStreamLifecycleDeserializer(ObjectDeserializer<DataStreamLifecycle.Builder> op) {
 
-		op.add(AbstractBuilder::dataRetention, Time._DESERIALIZER, "data_retention");
-		op.add(AbstractBuilder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
-		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
 
 	}
 

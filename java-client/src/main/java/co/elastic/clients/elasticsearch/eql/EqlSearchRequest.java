@@ -39,7 +39,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
@@ -106,9 +105,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean keepOnCompletion;
 
-	@Nullable
-	private final Integer maxSamplesPerKey;
-
 	private final String query;
 
 	@Nullable
@@ -143,7 +139,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
-		this.maxSamplesPerKey = builder.maxSamplesPerKey;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.resultPosition = builder.resultPosition;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -254,21 +249,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean keepOnCompletion() {
 		return this.keepOnCompletion;
-	}
-
-	/**
-	 * By default, the response of a sample query contains up to <code>10</code>
-	 * samples, with one sample per unique set of join keys. Use the
-	 * <code>size</code> parameter to get a smaller or larger set of samples. To
-	 * retrieve more than one sample per set of join keys, use the
-	 * <code>max_samples_per_key</code> parameter. Pipes are not supported for
-	 * sample queries.
-	 * <p>
-	 * API name: {@code max_samples_per_key}
-	 */
-	@Nullable
-	public final Integer maxSamplesPerKey() {
-		return this.maxSamplesPerKey;
 	}
 
 	/**
@@ -390,11 +370,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.keepOnCompletion);
 
 		}
-		if (this.maxSamplesPerKey != null) {
-			generator.writeKey("max_samples_per_key");
-			generator.write(this.maxSamplesPerKey);
-
-		}
 		generator.writeKey("query");
 		generator.write(this.query);
 
@@ -476,9 +451,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Boolean keepOnCompletion;
-
-		@Nullable
-		private Integer maxSamplesPerKey;
 
 		private String query;
 
@@ -690,21 +662,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * By default, the response of a sample query contains up to <code>10</code>
-		 * samples, with one sample per unique set of join keys. Use the
-		 * <code>size</code> parameter to get a smaller or larger set of samples. To
-		 * retrieve more than one sample per set of join keys, use the
-		 * <code>max_samples_per_key</code> parameter. Pipes are not supported for
-		 * sample queries.
-		 * <p>
-		 * API name: {@code max_samples_per_key}
-		 */
-		public final Builder maxSamplesPerKey(@Nullable Integer value) {
-			this.maxSamplesPerKey = value;
-			return this;
-		}
-
-		/**
 		 * Required - EQL query you wish to run.
 		 * <p>
 		 * API name: {@code query}
@@ -833,7 +790,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
-		op.add(Builder::maxSamplesPerKey, JsonpDeserializer.integerDeserializer(), "max_samples_per_key");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::resultPosition, ResultPosition._DESERIALIZER, "result_position");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

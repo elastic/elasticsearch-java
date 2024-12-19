@@ -19,12 +19,16 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -56,15 +60,22 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
+public class DataStreamLifecycleWithRollover implements JsonpSerializable {
+	@Nullable
+	private final Time dataRetention;
+
+	@Nullable
+	private final DataStreamLifecycleDownsampling downsampling;
+
 	@Nullable
 	private final DataStreamLifecycleRolloverConditions rollover;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamLifecycleWithRollover(Builder builder) {
-		super(builder);
 
+		this.dataRetention = builder.dataRetention;
+		this.downsampling = builder.downsampling;
 		this.rollover = builder.rollover;
 
 	}
@@ -72,6 +83,30 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 	public static DataStreamLifecycleWithRollover of(
 			Function<Builder, ObjectBuilder<DataStreamLifecycleWithRollover>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If defined, every document added to this data stream will be stored at least
+	 * for this time frame. Any time after this duration the document could be
+	 * deleted. When empty, every document in this data stream will be stored
+	 * indefinitely.
+	 * <p>
+	 * API name: {@code data_retention}
+	 */
+	@Nullable
+	public final Time dataRetention() {
+		return this.dataRetention;
+	}
+
+	/**
+	 * The downsampling configuration to execute for the managed backing index after
+	 * rollover.
+	 * <p>
+	 * API name: {@code downsampling}
+	 */
+	@Nullable
+	public final DataStreamLifecycleDownsampling downsampling() {
+		return this.downsampling;
 	}
 
 	/**
@@ -89,9 +124,27 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 		return this.rollover;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		if (this.dataRetention != null) {
+			generator.writeKey("data_retention");
+			this.dataRetention.serialize(generator, mapper);
+
+		}
+		if (this.downsampling != null) {
+			generator.writeKey("downsampling");
+			this.downsampling.serialize(generator, mapper);
+
+		}
 		if (this.rollover != null) {
 			generator.writeKey("rollover");
 			this.rollover.serialize(generator, mapper);
@@ -100,17 +153,75 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link DataStreamLifecycleWithRollover}.
 	 */
 
-	public static class Builder extends DataStreamLifecycle.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataStreamLifecycleWithRollover> {
 		@Nullable
+		private Time dataRetention;
+
+		@Nullable
+		private DataStreamLifecycleDownsampling downsampling;
+
+		@Nullable
 		private DataStreamLifecycleRolloverConditions rollover;
+
+		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(@Nullable Time value) {
+			this.dataRetention = value;
+			return this;
+		}
+
+		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
+			this.downsampling = value;
+			return this;
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(
+				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
+		}
 
 		/**
 		 * The conditions which will trigger the rollover of a backing index as
@@ -170,7 +281,9 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 
 	protected static void setupDataStreamLifecycleWithRolloverDeserializer(
 			ObjectDeserializer<DataStreamLifecycleWithRollover.Builder> op) {
-		DataStreamLifecycle.setupDataStreamLifecycleDeserializer(op);
+
+		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
 		op.add(Builder::rollover, DataStreamLifecycleRolloverConditions._DESERIALIZER, "rollover");
 
 	}

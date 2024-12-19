@@ -70,8 +70,15 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.ack_watch
 
 	/**
-	 * Acknowledges a watch, manually throttling the execution of the watch's
-	 * actions.
+	 * Acknowledge a watch. Acknowledging a watch enables you to manually throttle
+	 * the execution of the watch's actions.
+	 * <p>
+	 * The acknowledgement state of an action is stored in the
+	 * <code>status.actions.&lt;id&gt;.ack.state</code> structure.
+	 * <p>
+	 * IMPORTANT: If the specified watch is currently being executed, this API will
+	 * return an error The reason for this behavior is to prevent overwriting the
+	 * watch status from a watch execution.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html">Documentation
@@ -86,8 +93,15 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Acknowledges a watch, manually throttling the execution of the watch's
-	 * actions.
+	 * Acknowledge a watch. Acknowledging a watch enables you to manually throttle
+	 * the execution of the watch's actions.
+	 * <p>
+	 * The acknowledgement state of an action is stored in the
+	 * <code>status.actions.&lt;id&gt;.ack.state</code> structure.
+	 * <p>
+	 * IMPORTANT: If the specified watch is currently being executed, this API will
+	 * return an error The reason for this behavior is to prevent overwriting the
+	 * watch status from a watch execution.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -105,7 +119,7 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.activate_watch
 
 	/**
-	 * Activates a currently inactive watch.
+	 * Activate a watch. A watch can be either active or inactive.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html">Documentation
@@ -120,7 +134,7 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Activates a currently inactive watch.
+	 * Activate a watch. A watch can be either active or inactive.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -138,7 +152,7 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.deactivate_watch
 
 	/**
-	 * Deactivates a currently active watch.
+	 * Deactivate a watch. A watch can be either active or inactive.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html">Documentation
@@ -153,7 +167,7 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Deactivates a currently active watch.
+	 * Deactivate a watch. A watch can be either active or inactive.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -171,7 +185,18 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.delete_watch
 
 	/**
-	 * Removes a watch from Watcher.
+	 * Delete a watch. When the watch is removed, the document representing the
+	 * watch in the <code>.watches</code> index is gone and it will never be run
+	 * again.
+	 * <p>
+	 * Deleting a watch does not delete any watch execution records related to this
+	 * watch from the watch history.
+	 * <p>
+	 * IMPORTANT: Deleting a watch must be done by using only this API. Do not
+	 * delete the watch directly from the <code>.watches</code> index using the
+	 * Elasticsearch delete document API When Elasticsearch security features are
+	 * enabled, make sure no write privileges are granted to anyone for the
+	 * <code>.watches</code> index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html">Documentation
@@ -186,7 +211,18 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Removes a watch from Watcher.
+	 * Delete a watch. When the watch is removed, the document representing the
+	 * watch in the <code>.watches</code> index is gone and it will never be run
+	 * again.
+	 * <p>
+	 * Deleting a watch does not delete any watch execution records related to this
+	 * watch from the watch history.
+	 * <p>
+	 * IMPORTANT: Deleting a watch must be done by using only this API. Do not
+	 * delete the watch directly from the <code>.watches</code> index using the
+	 * Elasticsearch delete document API When Elasticsearch security features are
+	 * enabled, make sure no write privileges are granted to anyone for the
+	 * <code>.watches</code> index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -204,13 +240,19 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.execute_watch
 
 	/**
-	 * This API can be used to force execution of the watch outside of its
-	 * triggering logic or to simulate the watch execution for debugging purposes.
+	 * Run a watch. This API can be used to force execution of the watch outside of
+	 * its triggering logic or to simulate the watch execution for debugging
+	 * purposes.
+	 * <p>
 	 * For testing and debugging purposes, you also have fine-grained control on how
-	 * the watch runs. You can execute the watch without executing all of its
-	 * actions or alternatively by simulating them. You can also force execution by
-	 * ignoring the watch condition and control whether a watch record would be
-	 * written to the watch history after execution.
+	 * the watch runs. You can run the watch without running all of its actions or
+	 * alternatively by simulating them. You can also force execution by ignoring
+	 * the watch condition and control whether a watch record would be written to
+	 * the watch history after it runs.
+	 * <p>
+	 * You can use the run watch API to run watches that are not yet registered by
+	 * specifying the watch definition inline. This serves as great tool for testing
+	 * and debugging your watches prior to adding them to Watcher.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
@@ -225,13 +267,19 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * This API can be used to force execution of the watch outside of its
-	 * triggering logic or to simulate the watch execution for debugging purposes.
+	 * Run a watch. This API can be used to force execution of the watch outside of
+	 * its triggering logic or to simulate the watch execution for debugging
+	 * purposes.
+	 * <p>
 	 * For testing and debugging purposes, you also have fine-grained control on how
-	 * the watch runs. You can execute the watch without executing all of its
-	 * actions or alternatively by simulating them. You can also force execution by
-	 * ignoring the watch condition and control whether a watch record would be
-	 * written to the watch history after execution.
+	 * the watch runs. You can run the watch without running all of its actions or
+	 * alternatively by simulating them. You can also force execution by ignoring
+	 * the watch condition and control whether a watch record would be written to
+	 * the watch history after it runs.
+	 * <p>
+	 * You can use the run watch API to run watches that are not yet registered by
+	 * specifying the watch definition inline. This serves as great tool for testing
+	 * and debugging your watches prior to adding them to Watcher.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -247,13 +295,19 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * This API can be used to force execution of the watch outside of its
-	 * triggering logic or to simulate the watch execution for debugging purposes.
+	 * Run a watch. This API can be used to force execution of the watch outside of
+	 * its triggering logic or to simulate the watch execution for debugging
+	 * purposes.
+	 * <p>
 	 * For testing and debugging purposes, you also have fine-grained control on how
-	 * the watch runs. You can execute the watch without executing all of its
-	 * actions or alternatively by simulating them. You can also force execution by
-	 * ignoring the watch condition and control whether a watch record would be
-	 * written to the watch history after execution.
+	 * the watch runs. You can run the watch without running all of its actions or
+	 * alternatively by simulating them. You can also force execution by ignoring
+	 * the watch condition and control whether a watch record would be written to
+	 * the watch history after it runs.
+	 * <p>
+	 * You can use the run watch API to run watches that are not yet registered by
+	 * specifying the watch definition inline. This serves as great tool for testing
+	 * and debugging your watches prior to adding them to Watcher.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
@@ -268,7 +322,7 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.get_watch
 
 	/**
-	 * Retrieves a watch by its ID.
+	 * Get a watch.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html">Documentation
@@ -283,7 +337,7 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Retrieves a watch by its ID.
+	 * Get a watch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -301,7 +355,23 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.put_watch
 
 	/**
-	 * Creates a new watch, or updates an existing one.
+	 * Create or update a watch. When a watch is registered, a new document that
+	 * represents the watch is added to the <code>.watches</code> index and its
+	 * trigger is immediately registered with the relevant trigger engine. Typically
+	 * for the <code>schedule</code> trigger, the scheduler is the trigger engine.
+	 * <p>
+	 * IMPORTANT: You must use Kibana or this API to create a watch. Do not add a
+	 * watch directly to the <code>.watches</code> index by using the Elasticsearch
+	 * index API. If Elasticsearch security features are enabled, do not give users
+	 * write privileges on the <code>.watches</code> index.
+	 * <p>
+	 * When you add a watch you can also define its initial active state by setting
+	 * the <em>active</em> parameter.
+	 * <p>
+	 * When Elasticsearch security features are enabled, your watch can index or
+	 * search only on indices for which the user that stored the watch has
+	 * privileges. If the user is able to read index <code>a</code>, but not index
+	 * <code>b</code>, the same will apply when the watch runs.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html">Documentation
@@ -316,7 +386,23 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Creates a new watch, or updates an existing one.
+	 * Create or update a watch. When a watch is registered, a new document that
+	 * represents the watch is added to the <code>.watches</code> index and its
+	 * trigger is immediately registered with the relevant trigger engine. Typically
+	 * for the <code>schedule</code> trigger, the scheduler is the trigger engine.
+	 * <p>
+	 * IMPORTANT: You must use Kibana or this API to create a watch. Do not add a
+	 * watch directly to the <code>.watches</code> index by using the Elasticsearch
+	 * index API. If Elasticsearch security features are enabled, do not give users
+	 * write privileges on the <code>.watches</code> index.
+	 * <p>
+	 * When you add a watch you can also define its initial active state by setting
+	 * the <em>active</em> parameter.
+	 * <p>
+	 * When Elasticsearch security features are enabled, your watch can index or
+	 * search only on indices for which the user that stored the watch has
+	 * privileges. If the user is able to read index <code>a</code>, but not index
+	 * <code>b</code>, the same will apply when the watch runs.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -334,7 +420,8 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.query_watches
 
 	/**
-	 * Retrieves stored watches.
+	 * Query watches. Get all registered watches in a paginated manner and
+	 * optionally filter watches by a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
@@ -349,7 +436,8 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Retrieves stored watches.
+	 * Query watches. Get all registered watches in a paginated manner and
+	 * optionally filter watches by a query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -365,7 +453,8 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Retrieves stored watches.
+	 * Query watches. Get all registered watches in a paginated manner and
+	 * optionally filter watches by a query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
@@ -380,7 +469,8 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.start
 
 	/**
-	 * Starts Watcher if it is not already running.
+	 * Start the watch service. Start the Watcher service if it is not already
+	 * running.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
@@ -394,7 +484,7 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.stats
 
 	/**
-	 * Retrieves the current Watcher metrics.
+	 * Get Watcher statistics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
@@ -409,7 +499,7 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Retrieves the current Watcher metrics.
+	 * Get Watcher statistics.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -425,7 +515,7 @@ public class ElasticsearchWatcherAsyncClient
 	}
 
 	/**
-	 * Retrieves the current Watcher metrics.
+	 * Get Watcher statistics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
@@ -440,7 +530,7 @@ public class ElasticsearchWatcherAsyncClient
 	// ----- Endpoint: watcher.stop
 
 	/**
-	 * Stops Watcher if it is running.
+	 * Stop the watch service. Stop the Watcher service if it is running.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation

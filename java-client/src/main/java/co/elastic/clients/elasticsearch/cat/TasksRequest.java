@@ -20,6 +20,8 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -58,10 +60,10 @@ import javax.annotation.Nullable;
 // typedef: cat.tasks.Request
 
 /**
- * Get task information. Get information about tasks currently running in the
- * cluster. IMPORTANT: cat APIs are only intended for human consumption using
- * the command line or Kibana console. They are not intended for use by
- * applications. For application consumption, use the task management API.
+ * Returns information about tasks currently executing in the cluster.
+ * IMPORTANT: cat APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
+ * application consumption, use the task management API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.tasks.Request">API
  *      specification</a>
@@ -73,10 +75,19 @@ public class TasksRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean detailed;
 
-	private final List<String> nodeId;
+	private final List<String> nodes;
 
 	@Nullable
 	private final String parentTaskId;
+
+	@Nullable
+	private final TimeUnit time;
+
+	@Nullable
+	private final Time timeout;
+
+	@Nullable
+	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,8 +95,11 @@ public class TasksRequest extends CatRequestBase {
 
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
-		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
+		this.time = builder.time;
+		this.timeout = builder.timeout;
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -116,10 +130,10 @@ public class TasksRequest extends CatRequestBase {
 	/**
 	 * Unique node identifiers, which are used to limit the response.
 	 * <p>
-	 * API name: {@code node_id}
+	 * API name: {@code nodes}
 	 */
-	public final List<String> nodeId() {
-		return this.nodeId;
+	public final List<String> nodes() {
+		return this.nodes;
 	}
 
 	/**
@@ -130,6 +144,37 @@ public class TasksRequest extends CatRequestBase {
 	@Nullable
 	public final String parentTaskId() {
 		return this.parentTaskId;
+	}
+
+	/**
+	 * Unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * If <code>true</code>, the request blocks until the task has completed.
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public final Boolean waitForCompletion() {
+		return this.waitForCompletion;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -146,10 +191,19 @@ public class TasksRequest extends CatRequestBase {
 		private Boolean detailed;
 
 		@Nullable
-		private List<String> nodeId;
+		private List<String> nodes;
 
 		@Nullable
 		private String parentTaskId;
+
+		@Nullable
+		private TimeUnit time;
+
+		@Nullable
+		private Time timeout;
+
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * The task action names, which are used to limit the response.
@@ -189,24 +243,24 @@ public class TasksRequest extends CatRequestBase {
 		/**
 		 * Unique node identifiers, which are used to limit the response.
 		 * <p>
-		 * API name: {@code node_id}
+		 * API name: {@code nodes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public final Builder nodeId(List<String> list) {
-			this.nodeId = _listAddAll(this.nodeId, list);
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Unique node identifiers, which are used to limit the response.
 		 * <p>
-		 * API name: {@code node_id}
+		 * API name: {@code nodes}
 		 * <p>
-		 * Adds one or more values to <code>nodeId</code>.
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodeId(String value, String... values) {
-			this.nodeId = _listAdd(this.nodeId, value, values);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
@@ -217,6 +271,47 @@ public class TasksRequest extends CatRequestBase {
 		 */
 		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * If <code>true</code>, the request blocks until the task has completed.
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public final Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 
@@ -267,17 +362,26 @@ public class TasksRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (ApiTypeHelper.isDefined(request.nodes)) {
+					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
 				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
 				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
+				}
 				if (ApiTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ApiTypeHelper.isDefined(request.nodeId)) {
-					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

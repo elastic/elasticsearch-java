@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -58,10 +59,10 @@ import javax.annotation.Nullable;
 // typedef: cat.allocation.Request
 
 /**
- * Get shard allocation information. Get a snapshot of the number of shards
- * allocated to each data node and their disk space. IMPORTANT: cat APIs are
- * only intended for human consumption using the command line or Kibana console.
- * They are not intended for use by applications.
+ * Provides a snapshot of the number of shards allocated to each data node and
+ * their disk space. IMPORTANT: cat APIs are only intended for human consumption
+ * using the command line or Kibana console. They are not intended for use by
+ * applications.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.allocation.Request">API
  *      specification</a>
@@ -74,6 +75,9 @@ public class AllocationRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -82,6 +86,7 @@ public class AllocationRequest extends CatRequestBase {
 
 		this.bytes = builder.bytes;
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
@@ -115,6 +120,16 @@ public class AllocationRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Comma-separated list of node identifiers or names used to limit the returned
 	 * information.
 	 * <p>
@@ -138,6 +153,9 @@ public class AllocationRequest extends CatRequestBase {
 
 		@Nullable
 		private Boolean local;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> nodeId;
@@ -164,6 +182,25 @@ public class AllocationRequest extends CatRequestBase {
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -274,6 +311,9 @@ public class AllocationRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
 				}

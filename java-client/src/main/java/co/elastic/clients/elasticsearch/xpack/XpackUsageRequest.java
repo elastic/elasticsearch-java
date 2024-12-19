@@ -55,8 +55,9 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.Request
 
 /**
- * This API provides information about which features are currently enabled and
- * available under the current license and some usage statistics.
+ * Get usage information. Get information about the features that are currently
+ * enabled and available under the current license. The API also provides some
+ * usage statistics.
  * 
  * @see <a href="../doc-files/api-spec.html#xpack.usage.Request">API
  *      specification</a>

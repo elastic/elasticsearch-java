@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: watcher.stats.Request
 
 /**
- * Retrieves the current Watcher metrics.
+ * Get Watcher statistics.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.stats.Request">API
  *      specification</a>

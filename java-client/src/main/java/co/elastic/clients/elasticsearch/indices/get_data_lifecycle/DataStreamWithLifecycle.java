@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_lifecycle;
 
-import co.elastic.clients.elasticsearch.indices.DataStreamLifecycleWithRollover;
+import co.elastic.clients.elasticsearch.indices.DataStreamLifecycle;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -64,7 +64,7 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final DataStreamLifecycleWithRollover lifecycle;
+	private final DataStreamLifecycle lifecycle;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 	 * API name: {@code lifecycle}
 	 */
 	@Nullable
-	public final DataStreamLifecycleWithRollover lifecycle() {
+	public final DataStreamLifecycle lifecycle() {
 		return this.lifecycle;
 	}
 
@@ -133,7 +133,7 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private DataStreamLifecycleWithRollover lifecycle;
+		private DataStreamLifecycle lifecycle;
 
 		/**
 		 * Required - API name: {@code name}
@@ -146,7 +146,7 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(@Nullable DataStreamLifecycleWithRollover value) {
+		public final Builder lifecycle(@Nullable DataStreamLifecycle value) {
 			this.lifecycle = value;
 			return this;
 		}
@@ -154,9 +154,8 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code lifecycle}
 		 */
-		public final Builder lifecycle(
-				Function<DataStreamLifecycleWithRollover.Builder, ObjectBuilder<DataStreamLifecycleWithRollover>> fn) {
-			return this.lifecycle(fn.apply(new DataStreamLifecycleWithRollover.Builder()).build());
+		public final Builder lifecycle(Function<DataStreamLifecycle.Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
+			return this.lifecycle(fn.apply(new DataStreamLifecycle.Builder()).build());
 		}
 
 		@Override
@@ -189,7 +188,7 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 			ObjectDeserializer<DataStreamWithLifecycle.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::lifecycle, DataStreamLifecycle._DESERIALIZER, "lifecycle");
 
 	}
 

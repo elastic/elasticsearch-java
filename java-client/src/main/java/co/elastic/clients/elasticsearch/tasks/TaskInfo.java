@@ -142,6 +142,15 @@ public class TaskInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * Human readable text that identifies the particular request that the task is
+	 * performing. For example, it might identify the search request being performed
+	 * by a search task. Other kinds of tasks have different descriptions, like
+	 * <code>_reindex</code> which has the source and the destination, or
+	 * <code>_bulk</code> which just has the number of requests and the destination
+	 * indices. Many requests will have only an empty description because more
+	 * detailed information about the request is not easily available or
+	 * particularly helpful in identifying the request.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -193,7 +202,12 @@ public class TaskInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Task status information can vary wildly from task to task.
+	 * The internal status of the task, which varies from task to task. The format
+	 * also varies. While the goal is to keep the status for a particular task
+	 * consistent from version to version, this is not always possible because
+	 * sometimes the implementation changes. Fields might be removed from the status
+	 * for a particular request so any parsing you do of the status might break in
+	 * minor releases.
 	 * <p>
 	 * API name: {@code status}
 	 */
@@ -377,6 +391,15 @@ public class TaskInfo implements JsonpSerializable {
 		}
 
 		/**
+		 * Human readable text that identifies the particular request that the task is
+		 * performing. For example, it might identify the search request being performed
+		 * by a search task. Other kinds of tasks have different descriptions, like
+		 * <code>_reindex</code> which has the source and the destination, or
+		 * <code>_bulk</code> which just has the number of requests and the destination
+		 * indices. Many requests will have only an empty description because more
+		 * detailed information about the request is not easily available or
+		 * particularly helpful in identifying the request.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public final BuilderT description(@Nullable String value) {
@@ -452,7 +475,12 @@ public class TaskInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Task status information can vary wildly from task to task.
+		 * The internal status of the task, which varies from task to task. The format
+		 * also varies. While the goal is to keep the status for a particular task
+		 * consistent from version to version, this is not always possible because
+		 * sometimes the implementation changes. Fields might be removed from the status
+		 * for a particular request so any parsing you do of the status might break in
+		 * minor releases.
 		 * <p>
 		 * API name: {@code status}
 		 */

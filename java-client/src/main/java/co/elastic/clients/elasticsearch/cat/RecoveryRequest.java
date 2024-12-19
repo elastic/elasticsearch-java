@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -58,15 +59,15 @@ import javax.annotation.Nullable;
 // typedef: cat.recovery.Request
 
 /**
- * Get shard recovery information. Get information about ongoing and completed
- * shard recoveries. Shard recovery is the process of initializing a shard copy,
- * such as restoring a primary shard from a snapshot or syncing a replica shard
- * from a primary shard. When a shard recovery completes, the recovered shard is
- * available for search and indexing. For data streams, the API returns
- * information about the stream’s backing indices. IMPORTANT: cat APIs are only
- * intended for human consumption using the command line or Kibana console. They
- * are not intended for use by applications. For application consumption, use
- * the index recovery API.
+ * Returns information about ongoing and completed shard recoveries. Shard
+ * recovery is the process of initializing a shard copy, such as restoring a
+ * primary shard from a snapshot or syncing a replica shard from a primary
+ * shard. When a shard recovery completes, the recovered shard is available for
+ * search and indexing. For data streams, the API returns information about the
+ * stream’s backing indices. IMPORTANT: cat APIs are only intended for human
+ * consumption using the command line or Kibana console. They are not intended
+ * for use by applications. For application consumption, use the index recovery
+ * API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.recovery.Request">API
  *      specification</a>
@@ -84,6 +85,9 @@ public class RecoveryRequest extends CatRequestBase {
 
 	private final List<String> index;
 
+	@Nullable
+	private final TimeUnit time;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RecoveryRequest(Builder builder) {
@@ -92,6 +96,7 @@ public class RecoveryRequest extends CatRequestBase {
 		this.bytes = builder.bytes;
 		this.detailed = builder.detailed;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.time = builder.time;
 
 	}
 
@@ -141,6 +146,16 @@ public class RecoveryRequest extends CatRequestBase {
 		return this.index;
 	}
 
+	/**
+	 * Unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -161,6 +176,9 @@ public class RecoveryRequest extends CatRequestBase {
 
 		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private TimeUnit time;
 
 		/**
 		 * If <code>true</code>, the response only includes ongoing shard recoveries.
@@ -218,6 +236,16 @@ public class RecoveryRequest extends CatRequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
 			return this;
 		}
 
@@ -310,6 +338,9 @@ public class RecoveryRequest extends CatRequestBase {
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
 				}
 				return params;
 

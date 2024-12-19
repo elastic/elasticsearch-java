@@ -61,7 +61,23 @@ import javax.annotation.Nullable;
 // typedef: watcher.put_watch.Request
 
 /**
- * Creates a new watch, or updates an existing one.
+ * Create or update a watch. When a watch is registered, a new document that
+ * represents the watch is added to the <code>.watches</code> index and its
+ * trigger is immediately registered with the relevant trigger engine. Typically
+ * for the <code>schedule</code> trigger, the scheduler is the trigger engine.
+ * <p>
+ * IMPORTANT: You must use Kibana or this API to create a watch. Do not add a
+ * watch directly to the <code>.watches</code> index by using the Elasticsearch
+ * index API. If Elasticsearch security features are enabled, do not give users
+ * write privileges on the <code>.watches</code> index.
+ * <p>
+ * When you add a watch you can also define its initial active state by setting
+ * the <em>active</em> parameter.
+ * <p>
+ * When Elasticsearch security features are enabled, your watch can index or
+ * search only on indices for which the user that stored the watch has
+ * privileges. If the user is able to read index <code>a</code>, but not index
+ * <code>b</code>, the same will apply when the watch runs.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.put_watch.Request">API
  *      specification</a>

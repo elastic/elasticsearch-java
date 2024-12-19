@@ -17,23 +17,17 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cat.help;
+package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,103 +44,66 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: cat.help.HelpRecord
+// typedef: ingest.delete_ip_location_database.Response
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#cat.help.HelpRecord">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ingest.delete_ip_location_database.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class HelpRecord implements JsonpSerializable {
-	private final String endpoint;
-
+public class DeleteIpLocationDatabaseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private HelpRecord(Builder builder) {
-
-		this.endpoint = ApiTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
+	private DeleteIpLocationDatabaseResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	public static HelpRecord of(Function<Builder, ObjectBuilder<HelpRecord>> fn) {
+	public static DeleteIpLocationDatabaseResponse of(
+			Function<Builder, ObjectBuilder<DeleteIpLocationDatabaseResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * Required - API name: {@code endpoint}
-	 */
-	public final String endpoint() {
-		return this.endpoint;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("endpoint");
-		generator.write(this.endpoint);
-
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link HelpRecord}.
+	 * Builder for {@link DeleteIpLocationDatabaseResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HelpRecord> {
-		private String endpoint;
-
-		/**
-		 * Required - API name: {@code endpoint}
-		 */
-		public final Builder endpoint(String value) {
-			this.endpoint = value;
-			return this;
-		}
-
+	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<DeleteIpLocationDatabaseResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link HelpRecord}.
+		 * Builds a {@link DeleteIpLocationDatabaseResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public HelpRecord build() {
+		public DeleteIpLocationDatabaseResponse build() {
 			_checkSingleUse();
 
-			return new HelpRecord(this);
+			return new DeleteIpLocationDatabaseResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link HelpRecord}
+	 * Json deserializer for {@link DeleteIpLocationDatabaseResponse}
 	 */
-	public static final JsonpDeserializer<HelpRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HelpRecord::setupHelpRecordDeserializer);
+	public static final JsonpDeserializer<DeleteIpLocationDatabaseResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteIpLocationDatabaseResponse::setupDeleteIpLocationDatabaseResponseDeserializer);
 
-	protected static void setupHelpRecordDeserializer(ObjectDeserializer<HelpRecord.Builder> op) {
-
-		op.add(Builder::endpoint, JsonpDeserializer.stringDeserializer(), "endpoint");
+	protected static void setupDeleteIpLocationDatabaseResponseDeserializer(
+			ObjectDeserializer<DeleteIpLocationDatabaseResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

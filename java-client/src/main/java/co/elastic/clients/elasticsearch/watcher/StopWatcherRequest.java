@@ -50,7 +50,7 @@ import java.util.Objects;
 // typedef: watcher.stop.Request
 
 /**
- * Stops Watcher if it is running.
+ * Stop the watch service. Stop the Watcher service if it is running.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.stop.Request">API
  *      specification</a>

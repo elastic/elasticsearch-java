@@ -31,8 +31,6 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -74,15 +72,6 @@ public class CalendarEvent implements JsonpSerializable {
 
 	private final DateTime startTime;
 
-	@Nullable
-	private final Boolean skipResult;
-
-	@Nullable
-	private final Boolean skipModelUpdate;
-
-	@Nullable
-	private final Integer forceTimeShift;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private CalendarEvent(Builder builder) {
@@ -92,9 +81,6 @@ public class CalendarEvent implements JsonpSerializable {
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.endTime = ApiTypeHelper.requireNonNull(builder.endTime, this, "endTime");
 		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
-		this.skipResult = builder.skipResult;
-		this.skipModelUpdate = builder.skipModelUpdate;
-		this.forceTimeShift = builder.forceTimeShift;
 
 	}
 
@@ -150,37 +136,6 @@ public class CalendarEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * When true the model will not create results for this calendar period.
-	 * <p>
-	 * API name: {@code skip_result}
-	 */
-	@Nullable
-	public final Boolean skipResult() {
-		return this.skipResult;
-	}
-
-	/**
-	 * When true the model will not be updated for this calendar period.
-	 * <p>
-	 * API name: {@code skip_model_update}
-	 */
-	@Nullable
-	public final Boolean skipModelUpdate() {
-		return this.skipModelUpdate;
-	}
-
-	/**
-	 * Shift time by this many seconds. For example adjust time for daylight savings
-	 * changes
-	 * <p>
-	 * API name: {@code force_time_shift}
-	 */
-	@Nullable
-	public final Integer forceTimeShift() {
-		return this.forceTimeShift;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -208,21 +163,6 @@ public class CalendarEvent implements JsonpSerializable {
 		this.endTime.serialize(generator, mapper);
 		generator.writeKey("start_time");
 		this.startTime.serialize(generator, mapper);
-		if (this.skipResult != null) {
-			generator.writeKey("skip_result");
-			generator.write(this.skipResult);
-
-		}
-		if (this.skipModelUpdate != null) {
-			generator.writeKey("skip_model_update");
-			generator.write(this.skipModelUpdate);
-
-		}
-		if (this.forceTimeShift != null) {
-			generator.writeKey("force_time_shift");
-			generator.write(this.forceTimeShift);
-
-		}
 
 	}
 
@@ -249,15 +189,6 @@ public class CalendarEvent implements JsonpSerializable {
 		private DateTime endTime;
 
 		private DateTime startTime;
-
-		@Nullable
-		private Boolean skipResult;
-
-		@Nullable
-		private Boolean skipModelUpdate;
-
-		@Nullable
-		private Integer forceTimeShift;
 
 		/**
 		 * A string that uniquely identifies a calendar.
@@ -309,37 +240,6 @@ public class CalendarEvent implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * When true the model will not create results for this calendar period.
-		 * <p>
-		 * API name: {@code skip_result}
-		 */
-		public final Builder skipResult(@Nullable Boolean value) {
-			this.skipResult = value;
-			return this;
-		}
-
-		/**
-		 * When true the model will not be updated for this calendar period.
-		 * <p>
-		 * API name: {@code skip_model_update}
-		 */
-		public final Builder skipModelUpdate(@Nullable Boolean value) {
-			this.skipModelUpdate = value;
-			return this;
-		}
-
-		/**
-		 * Shift time by this many seconds. For example adjust time for daylight savings
-		 * changes
-		 * <p>
-		 * API name: {@code force_time_shift}
-		 */
-		public final Builder forceTimeShift(@Nullable Integer value) {
-			this.forceTimeShift = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -373,9 +273,6 @@ public class CalendarEvent implements JsonpSerializable {
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::endTime, DateTime._DESERIALIZER, "end_time");
 		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
-		op.add(Builder::skipResult, JsonpDeserializer.booleanDeserializer(), "skip_result");
-		op.add(Builder::skipModelUpdate, JsonpDeserializer.booleanDeserializer(), "skip_model_update");
-		op.add(Builder::forceTimeShift, JsonpDeserializer.integerDeserializer(), "force_time_shift");
 
 	}
 

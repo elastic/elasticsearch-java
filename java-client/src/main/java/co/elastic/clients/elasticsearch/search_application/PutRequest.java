@@ -71,7 +71,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 	private final String name;
 
-	private final SearchApplicationParameters searchApplication;
+	private final SearchApplication searchApplication;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Required - Request body.
 	 */
-	public final SearchApplicationParameters searchApplication() {
+	public final SearchApplication searchApplication() {
 		return this.searchApplication;
 	}
 
@@ -134,7 +134,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		private String name;
 
-		private SearchApplicationParameters searchApplication;
+		private SearchApplication searchApplication;
 
 		/**
 		 * If <code>true</code>, this request cannot replace or update existing Search
@@ -160,7 +160,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Required - Request body.
 		 */
-		public final Builder searchApplication(SearchApplicationParameters value) {
+		public final Builder searchApplication(SearchApplication value) {
 			this.searchApplication = value;
 			return this;
 		}
@@ -169,16 +169,15 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		 * Required - Request body.
 		 */
 		public final Builder searchApplication(
-				Function<SearchApplicationParameters.Builder, ObjectBuilder<SearchApplicationParameters>> fn) {
-			return this.searchApplication(fn.apply(new SearchApplicationParameters.Builder()).build());
+				Function<SearchApplication.Builder, ObjectBuilder<SearchApplication>> fn) {
+			return this.searchApplication(fn.apply(new SearchApplication.Builder()).build());
 		}
 
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 
 			@SuppressWarnings("unchecked")
-			SearchApplicationParameters value = (SearchApplicationParameters) SearchApplicationParameters._DESERIALIZER
-					.deserialize(parser, mapper);
+			SearchApplication value = (SearchApplication) SearchApplication._DESERIALIZER.deserialize(parser, mapper);
 			return this.searchApplication(value);
 		}
 
@@ -203,7 +202,7 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
 	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
 
-		JsonpDeserializer<SearchApplicationParameters> valueDeserializer = SearchApplicationParameters._DESERIALIZER;
+		JsonpDeserializer<SearchApplication> valueDeserializer = SearchApplication._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
 				.searchApplication(valueDeserializer.deserialize(parser, mapper, event)).build());

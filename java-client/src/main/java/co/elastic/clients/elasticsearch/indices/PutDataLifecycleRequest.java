@@ -34,7 +34,6 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +70,12 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutDataLifecycleRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Time dataRetention;
+
+	@Nullable
+	private final DataStreamLifecycleDownsampling downsampling;
+
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
@@ -81,22 +86,46 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Time timeout;
 
-	private final DataStreamLifecycle lifecycle;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private PutDataLifecycleRequest(Builder builder) {
 
+		this.dataRetention = builder.dataRetention;
+		this.downsampling = builder.downsampling;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
-		this.lifecycle = ApiTypeHelper.requireNonNull(builder.lifecycle, this, "lifecycle");
 
 	}
 
 	public static PutDataLifecycleRequest of(Function<Builder, ObjectBuilder<PutDataLifecycleRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If defined, every document added to this data stream will be stored at least
+	 * for this time frame. Any time after this duration the document could be
+	 * deleted. When empty, every document in this data stream will be stored
+	 * indefinitely.
+	 * <p>
+	 * API name: {@code data_retention}
+	 */
+	@Nullable
+	public final Time dataRetention() {
+		return this.dataRetention;
+	}
+
+	/**
+	 * If defined, every backing index will execute the configured downsampling
+	 * configuration after the backing index is not the data stream write index
+	 * anymore.
+	 * <p>
+	 * API name: {@code downsampling}
+	 */
+	@Nullable
+	public final DataStreamLifecycleDownsampling downsampling() {
+		return this.downsampling;
 	}
 
 	/**
@@ -145,17 +174,26 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - Request body.
-	 */
-	public final DataStreamLifecycle lifecycle() {
-		return this.lifecycle;
-	}
-
-	/**
-	 * Serialize this value to JSON.
+	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.lifecycle.serialize(generator, mapper);
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.dataRetention != null) {
+			generator.writeKey("data_retention");
+			this.dataRetention.serialize(generator, mapper);
+
+		}
+		if (this.downsampling != null) {
+			generator.writeKey("downsampling");
+			this.downsampling.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -169,6 +207,12 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 			implements
 				ObjectBuilder<PutDataLifecycleRequest> {
 		@Nullable
+		private Time dataRetention;
+
+		@Nullable
+		private DataStreamLifecycleDownsampling downsampling;
+
+		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
@@ -179,7 +223,54 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Time timeout;
 
-		private DataStreamLifecycle lifecycle;
+		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(@Nullable Time value) {
+			this.dataRetention = value;
+			return this;
+		}
+
+		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * If defined, every backing index will execute the configured downsampling
+		 * configuration after the backing index is not the data stream write index
+		 * anymore.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
+			this.downsampling = value;
+			return this;
+		}
+
+		/**
+		 * If defined, every backing index will execute the configured downsampling
+		 * configuration after the backing index is not the data stream write index
+		 * anymore.
+		 * <p>
+		 * API name: {@code downsampling}
+		 */
+		public final Builder downsampling(
+				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
+		}
 
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
@@ -281,30 +372,6 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
-		/**
-		 * Required - Request body.
-		 */
-		public final Builder lifecycle(DataStreamLifecycle value) {
-			this.lifecycle = value;
-			return this;
-		}
-
-		/**
-		 * Required - Request body.
-		 */
-		public final Builder lifecycle(Function<DataStreamLifecycle.Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
-			return this.lifecycle(fn.apply(new DataStreamLifecycle.Builder()).build());
-		}
-
-		@Override
-		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
-
-			@SuppressWarnings("unchecked")
-			DataStreamLifecycle value = (DataStreamLifecycle) DataStreamLifecycle._DESERIALIZER.deserialize(parser,
-					mapper);
-			return this.lifecycle(value);
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -323,13 +390,20 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
-	public static final JsonpDeserializer<PutDataLifecycleRequest> _DESERIALIZER = createPutDataLifecycleRequestDeserializer();
-	protected static JsonpDeserializer<PutDataLifecycleRequest> createPutDataLifecycleRequestDeserializer() {
+	// ---------------------------------------------------------------------------------------------
 
-		JsonpDeserializer<DataStreamLifecycle> valueDeserializer = DataStreamLifecycle._DESERIALIZER;
+	/**
+	 * Json deserializer for {@link PutDataLifecycleRequest}
+	 */
+	public static final JsonpDeserializer<PutDataLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataLifecycleRequest::setupPutDataLifecycleRequestDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.lifecycle(valueDeserializer.deserialize(parser, mapper, event)).build());
+	protected static void setupPutDataLifecycleRequestDeserializer(
+			ObjectDeserializer<PutDataLifecycleRequest.Builder> op) {
+
+		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
