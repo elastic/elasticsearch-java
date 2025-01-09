@@ -78,8 +78,49 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public DeleteLicenseResponse delete(DeleteLicenseRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse>) DeleteLicenseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete the license. When the license expires, your subscription level reverts
+	 * to Basic.
+	 * <p>
+	 * If the operator privileges feature is enabled, only operator users can use
+	 * this API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteLicenseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteLicenseResponse delete(
+			Function<DeleteLicenseRequest.Builder, ObjectBuilder<DeleteLicenseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return delete(fn.apply(new DeleteLicenseRequest.Builder()).build());
+	}
+
+	/**
+	 * Delete the license. When the license expires, your subscription level reverts
+	 * to Basic.
+	 * <p>
+	 * If the operator privileges feature is enabled, only operator users can use
+	 * this API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public DeleteLicenseResponse delete() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest._ENDPOINT,
+		return this.transport.performRequest(new DeleteLicenseRequest.Builder().build(), DeleteLicenseRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -344,7 +385,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your trial, use the get trial status API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -372,7 +413,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostStartTrialRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -395,7 +436,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your trial, use the get trial status API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

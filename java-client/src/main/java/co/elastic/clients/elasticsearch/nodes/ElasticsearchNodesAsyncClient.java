@@ -72,7 +72,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 * metering information in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-repositories-metering-archive-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/clear-repositories-metering-archive-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -92,7 +92,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearRepositoriesMeteringArchiveRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-repositories-metering-archive-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/clear-repositories-metering-archive-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -113,7 +113,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 * restarts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-repositories-metering-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-repositories-metering-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,7 +137,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoriesMeteringInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-repositories-metering-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-repositories-metering-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

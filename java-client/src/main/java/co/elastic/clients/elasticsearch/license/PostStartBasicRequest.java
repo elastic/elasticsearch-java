@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -77,11 +78,19 @@ public class PostStartBasicRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
 
+	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PostStartBasicRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
+		this.masterTimeout = builder.masterTimeout;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -99,6 +108,27 @@ public class PostStartBasicRequest extends RequestBase {
 		return this.acknowledge;
 	}
 
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -111,6 +141,12 @@ public class PostStartBasicRequest extends RequestBase {
 		@Nullable
 		private Boolean acknowledge;
 
+		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
+		private Time timeout;
+
 		/**
 		 * whether the user has acknowledged acknowledge messages (default: false)
 		 * <p>
@@ -119,6 +155,46 @@ public class PostStartBasicRequest extends RequestBase {
 		public final Builder acknowledge(@Nullable Boolean value) {
 			this.acknowledge = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -167,8 +243,14 @@ public class PostStartBasicRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.acknowledge != null) {
 					params.put("acknowledge", String.valueOf(request.acknowledge));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

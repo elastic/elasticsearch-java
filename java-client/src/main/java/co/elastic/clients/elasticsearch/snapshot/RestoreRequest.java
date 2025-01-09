@@ -156,6 +156,15 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The feature states to restore. If <code>include_global_state</code> is
+	 * <code>true</code>, the request restores all feature states in the snapshot by
+	 * default. If <code>include_global_state</code> is <code>false</code>, the
+	 * request restores no feature states by default. Note that specifying an empty
+	 * array will result in the default behavior. To restore no feature states,
+	 * regardless of the <code>include_global_state</code> value, specify an array
+	 * containing only the value <code>none</code>
+	 * (<code>[&quot;none&quot;]</code>).
+	 * <p>
 	 * API name: {@code feature_states}
 	 */
 	public final List<String> featureStates() {
@@ -163,6 +172,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The index settings to not restore from the snapshot. You can't use this
+	 * option to ignore <code>index.number_of_shards</code>.
+	 * <p>
+	 * For data streams, this option applies only to restored backing indices. New
+	 * backing indices are configured using the data stream's matching index
+	 * template.
+	 * <p>
 	 * API name: {@code ignore_index_settings}
 	 */
 	public final List<String> ignoreIndexSettings() {
@@ -170,6 +186,10 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the request ignores any index or data stream in indices
+	 * that's missing from the snapshot. If <code>false</code>, the request returns
+	 * an error for any missing index or data stream.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -178,6 +198,10 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the request restores aliases for any restored data
+	 * streams and indices. If <code>false</code>, the request doesn’t restore
+	 * aliases.
+	 * <p>
 	 * API name: {@code include_aliases}
 	 */
 	@Nullable
@@ -186,6 +210,31 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, restore the cluster state. The cluster state includes:
+	 * <ul>
+	 * <li>Persistent cluster settings</li>
+	 * <li>Index templates</li>
+	 * <li>Legacy index templates</li>
+	 * <li>Ingest pipelines</li>
+	 * <li>Index lifecycle management (ILM) policies</li>
+	 * <li>Stored scripts</li>
+	 * <li>For snapshots taken after 7.12.0, feature states</li>
+	 * </ul>
+	 * <p>
+	 * If <code>include_global_state</code> is <code>true</code>, the restore
+	 * operation merges the legacy index templates in your cluster with the
+	 * templates contained in the snapshot, replacing any existing ones whose name
+	 * matches one in the snapshot. It completely removes all persistent settings,
+	 * non-legacy index templates, ingest pipelines, and ILM lifecycle policies that
+	 * exist in your cluster and replaces them with the corresponding items from the
+	 * snapshot.
+	 * <p>
+	 * Use the <code>feature_states</code> parameter to configure how feature states
+	 * are restored.
+	 * <p>
+	 * If <code>include_global_state</code> is <code>true</code> and a snapshot was
+	 * created without a global state then the restore request will fail.
+	 * <p>
 	 * API name: {@code include_global_state}
 	 */
 	@Nullable
@@ -194,6 +243,14 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Index settings to add or change in restored indices, including backing
+	 * indices. You can't use this option to change
+	 * <code>index.number_of_shards</code>.
+	 * <p>
+	 * For data streams, this option applies only to restored backing indices. New
+	 * backing indices are configured using the data stream's matching index
+	 * template.
+	 * <p>
 	 * API name: {@code index_settings}
 	 */
 	@Nullable
@@ -202,6 +259,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * A comma-separated list of indices and data streams to restore. It supports a
+	 * multi-target syntax. The default behavior is all regular indices and regular
+	 * data streams in the snapshot.
+	 * <p>
+	 * You can't use this parameter to restore system indices or system data
+	 * streams. Use <code>feature_states</code> instead.
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	public final List<String> indices() {
@@ -209,7 +273,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -219,6 +285,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>false</code>, the entire restore operation will fail if one or more
+	 * indices included in the snapshot do not have all primary shards available.
+	 * <p>
+	 * If true, it allows restoring a partial snapshot of indices with unavailable
+	 * shards. Only shards that were successfully included in the snapshot will be
+	 * restored. All missing shards will be recreated as empty.
+	 * <p>
 	 * API name: {@code partial}
 	 */
 	@Nullable
@@ -227,6 +300,14 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * A rename pattern to apply to restored data streams and indices. Data streams
+	 * and indices matching the rename pattern will be renamed according to
+	 * <code>rename_replacement</code>.
+	 * <p>
+	 * The rename pattern is applied as defined by the regular expression that
+	 * supports referencing the original text, according to the
+	 * <code>appendReplacement</code> logic.
+	 * <p>
 	 * API name: {@code rename_pattern}
 	 */
 	@Nullable
@@ -235,6 +316,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The rename replacement string that is used with the
+	 * <code>rename_pattern</code>.
+	 * <p>
 	 * API name: {@code rename_replacement}
 	 */
 	@Nullable
@@ -243,7 +327,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A repository name
+	 * Required - The name of the repository to restore a snapshot from.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -252,7 +336,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A snapshot name
+	 * Required - The name of the snapshot to restore.
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -261,7 +345,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Should this request wait until the operation has completed before returning
+	 * If <code>true</code>, the request returns a response when the restore
+	 * operation completes. The operation is complete when it finishes all attempts
+	 * to recover primary shards for restored indices. This applies even if one or
+	 * more of the recovery attempts fail.
+	 * <p>
+	 * If <code>false</code>, the request returns a response when the restore
+	 * operation initializes.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -397,6 +487,15 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		private Boolean waitForCompletion;
 
 		/**
+		 * The feature states to restore. If <code>include_global_state</code> is
+		 * <code>true</code>, the request restores all feature states in the snapshot by
+		 * default. If <code>include_global_state</code> is <code>false</code>, the
+		 * request restores no feature states by default. Note that specifying an empty
+		 * array will result in the default behavior. To restore no feature states,
+		 * regardless of the <code>include_global_state</code> value, specify an array
+		 * containing only the value <code>none</code>
+		 * (<code>[&quot;none&quot;]</code>).
+		 * <p>
 		 * API name: {@code feature_states}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
@@ -407,6 +506,15 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The feature states to restore. If <code>include_global_state</code> is
+		 * <code>true</code>, the request restores all feature states in the snapshot by
+		 * default. If <code>include_global_state</code> is <code>false</code>, the
+		 * request restores no feature states by default. Note that specifying an empty
+		 * array will result in the default behavior. To restore no feature states,
+		 * regardless of the <code>include_global_state</code> value, specify an array
+		 * containing only the value <code>none</code>
+		 * (<code>[&quot;none&quot;]</code>).
+		 * <p>
 		 * API name: {@code feature_states}
 		 * <p>
 		 * Adds one or more values to <code>featureStates</code>.
@@ -417,6 +525,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The index settings to not restore from the snapshot. You can't use this
+		 * option to ignore <code>index.number_of_shards</code>.
+		 * <p>
+		 * For data streams, this option applies only to restored backing indices. New
+		 * backing indices are configured using the data stream's matching index
+		 * template.
+		 * <p>
 		 * API name: {@code ignore_index_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
@@ -427,6 +542,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The index settings to not restore from the snapshot. You can't use this
+		 * option to ignore <code>index.number_of_shards</code>.
+		 * <p>
+		 * For data streams, this option applies only to restored backing indices. New
+		 * backing indices are configured using the data stream's matching index
+		 * template.
+		 * <p>
 		 * API name: {@code ignore_index_settings}
 		 * <p>
 		 * Adds one or more values to <code>ignoreIndexSettings</code>.
@@ -437,6 +559,10 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the request ignores any index or data stream in indices
+		 * that's missing from the snapshot. If <code>false</code>, the request returns
+		 * an error for any missing index or data stream.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -445,6 +571,10 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the request restores aliases for any restored data
+		 * streams and indices. If <code>false</code>, the request doesn’t restore
+		 * aliases.
+		 * <p>
 		 * API name: {@code include_aliases}
 		 */
 		public final Builder includeAliases(@Nullable Boolean value) {
@@ -453,6 +583,31 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, restore the cluster state. The cluster state includes:
+		 * <ul>
+		 * <li>Persistent cluster settings</li>
+		 * <li>Index templates</li>
+		 * <li>Legacy index templates</li>
+		 * <li>Ingest pipelines</li>
+		 * <li>Index lifecycle management (ILM) policies</li>
+		 * <li>Stored scripts</li>
+		 * <li>For snapshots taken after 7.12.0, feature states</li>
+		 * </ul>
+		 * <p>
+		 * If <code>include_global_state</code> is <code>true</code>, the restore
+		 * operation merges the legacy index templates in your cluster with the
+		 * templates contained in the snapshot, replacing any existing ones whose name
+		 * matches one in the snapshot. It completely removes all persistent settings,
+		 * non-legacy index templates, ingest pipelines, and ILM lifecycle policies that
+		 * exist in your cluster and replaces them with the corresponding items from the
+		 * snapshot.
+		 * <p>
+		 * Use the <code>feature_states</code> parameter to configure how feature states
+		 * are restored.
+		 * <p>
+		 * If <code>include_global_state</code> is <code>true</code> and a snapshot was
+		 * created without a global state then the restore request will fail.
+		 * <p>
 		 * API name: {@code include_global_state}
 		 */
 		public final Builder includeGlobalState(@Nullable Boolean value) {
@@ -461,6 +616,14 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Index settings to add or change in restored indices, including backing
+		 * indices. You can't use this option to change
+		 * <code>index.number_of_shards</code>.
+		 * <p>
+		 * For data streams, this option applies only to restored backing indices. New
+		 * backing indices are configured using the data stream's matching index
+		 * template.
+		 * <p>
 		 * API name: {@code index_settings}
 		 */
 		public final Builder indexSettings(@Nullable IndexSettings value) {
@@ -469,6 +632,14 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Index settings to add or change in restored indices, including backing
+		 * indices. You can't use this option to change
+		 * <code>index.number_of_shards</code>.
+		 * <p>
+		 * For data streams, this option applies only to restored backing indices. New
+		 * backing indices are configured using the data stream's matching index
+		 * template.
+		 * <p>
 		 * API name: {@code index_settings}
 		 */
 		public final Builder indexSettings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
@@ -476,6 +647,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A comma-separated list of indices and data streams to restore. It supports a
+		 * multi-target syntax. The default behavior is all regular indices and regular
+		 * data streams in the snapshot.
+		 * <p>
+		 * You can't use this parameter to restore system indices or system data
+		 * streams. Use <code>feature_states</code> instead.
+		 * <p>
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
@@ -486,6 +664,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A comma-separated list of indices and data streams to restore. It supports a
+		 * multi-target syntax. The default behavior is all regular indices and regular
+		 * data streams in the snapshot.
+		 * <p>
+		 * You can't use this parameter to restore system indices or system data
+		 * streams. Use <code>feature_states</code> instead.
+		 * <p>
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
@@ -496,7 +681,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -506,7 +693,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -515,6 +704,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>false</code>, the entire restore operation will fail if one or more
+		 * indices included in the snapshot do not have all primary shards available.
+		 * <p>
+		 * If true, it allows restoring a partial snapshot of indices with unavailable
+		 * shards. Only shards that were successfully included in the snapshot will be
+		 * restored. All missing shards will be recreated as empty.
+		 * <p>
 		 * API name: {@code partial}
 		 */
 		public final Builder partial(@Nullable Boolean value) {
@@ -523,6 +719,14 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A rename pattern to apply to restored data streams and indices. Data streams
+		 * and indices matching the rename pattern will be renamed according to
+		 * <code>rename_replacement</code>.
+		 * <p>
+		 * The rename pattern is applied as defined by the regular expression that
+		 * supports referencing the original text, according to the
+		 * <code>appendReplacement</code> logic.
+		 * <p>
 		 * API name: {@code rename_pattern}
 		 */
 		public final Builder renamePattern(@Nullable String value) {
@@ -531,6 +735,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The rename replacement string that is used with the
+		 * <code>rename_pattern</code>.
+		 * <p>
 		 * API name: {@code rename_replacement}
 		 */
 		public final Builder renameReplacement(@Nullable String value) {
@@ -539,7 +746,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A repository name
+		 * Required - The name of the repository to restore a snapshot from.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -549,7 +756,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A snapshot name
+		 * Required - The name of the snapshot to restore.
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -559,7 +766,13 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Should this request wait until the operation has completed before returning
+		 * If <code>true</code>, the request returns a response when the restore
+		 * operation completes. The operation is complete when it finishes all attempts
+		 * to recover primary shards for restored indices. This applies even if one or
+		 * more of the recovery attempts fail.
+		 * <p>
+		 * If <code>false</code>, the request returns a response when the restore
+		 * operation initializes.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: ingest.get_ip_location_database.Request
 
 /**
- * Returns information about one or more IP location database configurations.
+ * Get IP geolocation database configurations.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.get_ip_location_database.Request">API
@@ -96,8 +96,9 @@ public class GetIpLocationDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
+	 * A value of <code>-1</code> indicates that the request should never time out.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -150,8 +151,9 @@ public class GetIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * A value of <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -161,8 +163,9 @@ public class GetIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * A value of <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

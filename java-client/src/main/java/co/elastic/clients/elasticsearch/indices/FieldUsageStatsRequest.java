@@ -22,7 +22,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -66,6 +65,11 @@ import javax.annotation.Nullable;
  * are running on a cluster. A shard-level search request that accesses a given
  * field, even if multiple times during that request, is counted as a single
  * use.
+ * <p>
+ * The response body reports the per-shard usage count of the data structures
+ * that back the fields in the index. A given request will increment each count
+ * by a maximum value of 1, even if the request accesses the same field multiple
+ * times.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.field_usage_stats.Request">API
@@ -86,12 +90,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final Time masterTimeout;
-
-	@Nullable
-	private final Time timeout;
-
-	@Nullable
 	private final WaitForActiveShards waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
@@ -103,8 +101,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
@@ -172,28 +168,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
-
-	/**
 	 * The number of shard copies that must be active before proceeding with the
 	 * operation. Set to all or any positive integer up to the total number of
 	 * shards in the index (<code>number_of_replicas+1</code>).
@@ -227,12 +201,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		private List<String> index;
-
-		@Nullable
-		private Time masterTimeout;
-
-		@Nullable
-		private Time timeout;
 
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
@@ -346,48 +314,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
 		 * The number of shard copies that must be active before proceeding with the
 		 * operation. Set to all or any positive integer up to the total number of
 		 * shards in the index (<code>number_of_replicas+1</code>).
@@ -480,9 +406,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
@@ -498,9 +421,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

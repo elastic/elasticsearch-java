@@ -388,6 +388,106 @@ public class ElasticsearchConnectorAsyncClient
 		return syncJobCancel(fn.apply(new SyncJobCancelRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: connector.sync_job_check_in
+
+	/**
+	 * Check in a connector sync job. Check in a connector sync job and set the
+	 * <code>last_seen</code> field to the current time before updating it in the
+	 * internal index.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/check-in-connector-sync-job-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SyncJobCheckInResponse> syncJobCheckIn(SyncJobCheckInRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SyncJobCheckInRequest, SyncJobCheckInResponse, ErrorResponse> endpoint = (JsonEndpoint<SyncJobCheckInRequest, SyncJobCheckInResponse, ErrorResponse>) SyncJobCheckInRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Check in a connector sync job. Check in a connector sync job and set the
+	 * <code>last_seen</code> field to the current time before updating it in the
+	 * internal index.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SyncJobCheckInRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/check-in-connector-sync-job-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SyncJobCheckInResponse> syncJobCheckIn(
+			Function<SyncJobCheckInRequest.Builder, ObjectBuilder<SyncJobCheckInRequest>> fn) {
+		return syncJobCheckIn(fn.apply(new SyncJobCheckInRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: connector.sync_job_claim
+
+	/**
+	 * Claim a connector sync job. This action updates the job status to
+	 * <code>in_progress</code> and sets the <code>last_seen</code> and
+	 * <code>started_at</code> timestamps to the current time. Additionally, it can
+	 * set the <code>sync_cursor</code> property for the sync job.
+	 * <p>
+	 * This API is not intended for direct connector management by users. It
+	 * supports the implementation of services that utilize the connector protocol
+	 * to communicate with Elasticsearch.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/claim-connector-sync-job-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SyncJobClaimResponse> syncJobClaim(SyncJobClaimRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SyncJobClaimRequest, SyncJobClaimResponse, ErrorResponse> endpoint = (JsonEndpoint<SyncJobClaimRequest, SyncJobClaimResponse, ErrorResponse>) SyncJobClaimRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Claim a connector sync job. This action updates the job status to
+	 * <code>in_progress</code> and sets the <code>last_seen</code> and
+	 * <code>started_at</code> timestamps to the current time. Additionally, it can
+	 * set the <code>sync_cursor</code> property for the sync job.
+	 * <p>
+	 * This API is not intended for direct connector management by users. It
+	 * supports the implementation of services that utilize the connector protocol
+	 * to communicate with Elasticsearch.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SyncJobClaimRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/claim-connector-sync-job-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SyncJobClaimResponse> syncJobClaim(
+			Function<SyncJobClaimRequest.Builder, ObjectBuilder<SyncJobClaimRequest>> fn) {
+		return syncJobClaim(fn.apply(new SyncJobClaimRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: connector.sync_job_delete
 
 	/**
@@ -425,6 +525,49 @@ public class ElasticsearchConnectorAsyncClient
 	public final CompletableFuture<SyncJobDeleteResponse> syncJobDelete(
 			Function<SyncJobDeleteRequest.Builder, ObjectBuilder<SyncJobDeleteRequest>> fn) {
 		return syncJobDelete(fn.apply(new SyncJobDeleteRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: connector.sync_job_error
+
+	/**
+	 * Set a connector sync job error. Set the <code>error</code> field for a
+	 * connector sync job and set its <code>status</code> to <code>error</code>.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/set-connector-sync-job-error-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SyncJobErrorResponse> syncJobError(SyncJobErrorRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SyncJobErrorRequest, SyncJobErrorResponse, ErrorResponse> endpoint = (JsonEndpoint<SyncJobErrorRequest, SyncJobErrorResponse, ErrorResponse>) SyncJobErrorRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Set a connector sync job error. Set the <code>error</code> field for a
+	 * connector sync job and set its <code>status</code> to <code>error</code>.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SyncJobErrorRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/set-connector-sync-job-error-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SyncJobErrorResponse> syncJobError(
+			Function<SyncJobErrorRequest.Builder, ObjectBuilder<SyncJobErrorRequest>> fn) {
+		return syncJobError(fn.apply(new SyncJobErrorRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: connector.sync_job_get
@@ -552,6 +695,55 @@ public class ElasticsearchConnectorAsyncClient
 	public final CompletableFuture<SyncJobPostResponse> syncJobPost(
 			Function<SyncJobPostRequest.Builder, ObjectBuilder<SyncJobPostRequest>> fn) {
 		return syncJobPost(fn.apply(new SyncJobPostRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: connector.sync_job_update_stats
+
+	/**
+	 * Set the connector sync job stats. Stats include:
+	 * <code>deleted_document_count</code>, <code>indexed_document_count</code>,
+	 * <code>indexed_document_volume</code>, and <code>total_document_count</code>.
+	 * You can also update <code>last_seen</code>. This API is mainly used by the
+	 * connector service for updating sync job information.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/set-connector-sync-job-stats-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SyncJobUpdateStatsResponse> syncJobUpdateStats(SyncJobUpdateStatsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SyncJobUpdateStatsRequest, SyncJobUpdateStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<SyncJobUpdateStatsRequest, SyncJobUpdateStatsResponse, ErrorResponse>) SyncJobUpdateStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Set the connector sync job stats. Stats include:
+	 * <code>deleted_document_count</code>, <code>indexed_document_count</code>,
+	 * <code>indexed_document_volume</code>, and <code>total_document_count</code>.
+	 * You can also update <code>last_seen</code>. This API is mainly used by the
+	 * connector service for updating sync job information.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SyncJobUpdateStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/set-connector-sync-job-stats-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SyncJobUpdateStatsResponse> syncJobUpdateStats(
+			Function<SyncJobUpdateStatsRequest.Builder, ObjectBuilder<SyncJobUpdateStatsRequest>> fn) {
+		return syncJobUpdateStats(fn.apply(new SyncJobUpdateStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: connector.update_active_filtering
@@ -713,6 +905,69 @@ public class ElasticsearchConnectorAsyncClient
 	public final CompletableFuture<UpdateErrorResponse> updateError(
 			Function<UpdateErrorRequest.Builder, ObjectBuilder<UpdateErrorRequest>> fn) {
 		return updateError(fn.apply(new UpdateErrorRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: connector.update_features
+
+	/**
+	 * Update the connector features. Update the connector features in the connector
+	 * document. This API can be used to control the following aspects of a
+	 * connector:
+	 * <ul>
+	 * <li>document-level security</li>
+	 * <li>incremental syncs</li>
+	 * <li>advanced sync rules</li>
+	 * <li>basic sync rules</li>
+	 * </ul>
+	 * <p>
+	 * Normally, the running connector service automatically manages these features.
+	 * However, you can use this API to override the default behavior.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/update-connector-features-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateFeaturesResponse> updateFeatures(UpdateFeaturesRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateFeaturesRequest, UpdateFeaturesResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateFeaturesRequest, UpdateFeaturesResponse, ErrorResponse>) UpdateFeaturesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update the connector features. Update the connector features in the connector
+	 * document. This API can be used to control the following aspects of a
+	 * connector:
+	 * <ul>
+	 * <li>document-level security</li>
+	 * <li>incremental syncs</li>
+	 * <li>advanced sync rules</li>
+	 * <li>basic sync rules</li>
+	 * </ul>
+	 * <p>
+	 * Normally, the running connector service automatically manages these features.
+	 * However, you can use this API to override the default behavior.
+	 * <p>
+	 * To sync data using self-managed connectors, you need to deploy the Elastic
+	 * connector service on your own infrastructure. This service runs automatically
+	 * on Elastic Cloud for Elastic managed connectors.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateFeaturesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/update-connector-features-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<UpdateFeaturesResponse> updateFeatures(
+			Function<UpdateFeaturesRequest.Builder, ObjectBuilder<UpdateFeaturesRequest>> fn) {
+		return updateFeatures(fn.apply(new UpdateFeaturesRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: connector.update_filtering

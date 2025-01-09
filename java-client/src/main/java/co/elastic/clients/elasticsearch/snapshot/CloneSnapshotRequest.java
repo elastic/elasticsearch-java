@@ -98,14 +98,19 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * Required - A comma-separated list of indices to include in the snapshot.
+	 * Multi-target syntax is supported.
+	 * <p>
+	 * API name: {@code indices}
 	 */
 	public final String indices() {
 		return this.indices;
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -115,7 +120,8 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - A repository name
+	 * Required - The name of the snapshot repository that both source and target
+	 * snapshot belong to.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -124,7 +130,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - The name of the snapshot to clone from
+	 * Required - The source snapshot name.
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -133,7 +139,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - The name of the cloned snapshot to create
+	 * Required - The target snapshot name.
 	 * <p>
 	 * API name: {@code target_snapshot}
 	 */
@@ -142,6 +148,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * The period of time to wait for a response. If no response is received before
+	 * the timeout expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -189,7 +198,10 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		private Time timeout;
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - A comma-separated list of indices to include in the snapshot.
+		 * Multi-target syntax is supported.
+		 * <p>
+		 * API name: {@code indices}
 		 */
 		public final Builder indices(String value) {
 			this.indices = value;
@@ -197,7 +209,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -207,7 +221,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -216,7 +232,8 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - A repository name
+		 * Required - The name of the snapshot repository that both source and target
+		 * snapshot belong to.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -226,7 +243,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - The name of the snapshot to clone from
+		 * Required - The source snapshot name.
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -236,7 +253,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - The name of the cloned snapshot to create
+		 * Required - The target snapshot name.
 		 * <p>
 		 * API name: {@code target_snapshot}
 		 */
@@ -246,6 +263,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * The period of time to wait for a response. If no response is received before
+		 * the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(@Nullable Time value) {
@@ -254,6 +274,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * The period of time to wait for a response. If no response is received before
+		 * the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {

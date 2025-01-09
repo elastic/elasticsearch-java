@@ -101,7 +101,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-delete-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-delete-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -168,7 +168,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -192,7 +192,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetJobsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -211,7 +211,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -239,7 +239,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </ol>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-rollup-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRollupCapsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-rollup-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -296,7 +296,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </ol>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-rollup-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -320,7 +320,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-rollup-index-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -347,7 +347,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRollupIndexCapsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-get-rollup-index-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -378,7 +378,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * start rollup jobs API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-put-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -412,7 +412,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-put-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -429,9 +429,50 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * the original data. It rewrites standard Query DSL into a format that matches
 	 * the rollup documents then takes the response and rewrites it back to what a
 	 * client would expect given the original query.
+	 * <p>
+	 * The request body supports a subset of features from the regular search API.
+	 * The following functionality is not available:
+	 * <p>
+	 * <code>size</code>: Because rollups work on pre-aggregated data, no search
+	 * hits can be returned and so size must be set to zero or omitted entirely.
+	 * <code>highlighter</code>, <code>suggestors</code>, <code>post_filter</code>,
+	 * <code>profile</code>, <code>explain</code>: These are similarly disallowed.
+	 * <p>
+	 * <strong>Searching both historical rollup and non-rollup data</strong>
+	 * <p>
+	 * The rollup search API has the capability to search across both
+	 * &quot;live&quot; non-rollup data and the aggregated rollup data. This is done
+	 * by simply adding the live indices to the URI. For example:
+	 * 
+	 * <pre>
+	 * <code>GET sensor-1,sensor_rollup/_rollup_search
+	 * {
+	 *   &quot;size&quot;: 0,
+	 *   &quot;aggregations&quot;: {
+	 *      &quot;max_temperature&quot;: {
+	 *       &quot;max&quot;: {
+	 *         &quot;field&quot;: &quot;temperature&quot;
+	 *       }
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The rollup search endpoint does two things when the search runs:
+	 * <ul>
+	 * <li>The original request is sent to the non-rollup index unaltered.</li>
+	 * <li>A rewritten version of the original request is sent to the rollup
+	 * index.</li>
+	 * </ul>
+	 * <p>
+	 * When the two responses are received, the endpoint rewrites the rollup
+	 * response and merges the two together. During the merging process, if there is
+	 * any overlap in buckets between the two responses, the buckets from the
+	 * non-rollup index are used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -452,12 +493,53 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * the original data. It rewrites standard Query DSL into a format that matches
 	 * the rollup documents then takes the response and rewrites it back to what a
 	 * client would expect given the original query.
+	 * <p>
+	 * The request body supports a subset of features from the regular search API.
+	 * The following functionality is not available:
+	 * <p>
+	 * <code>size</code>: Because rollups work on pre-aggregated data, no search
+	 * hits can be returned and so size must be set to zero or omitted entirely.
+	 * <code>highlighter</code>, <code>suggestors</code>, <code>post_filter</code>,
+	 * <code>profile</code>, <code>explain</code>: These are similarly disallowed.
+	 * <p>
+	 * <strong>Searching both historical rollup and non-rollup data</strong>
+	 * <p>
+	 * The rollup search API has the capability to search across both
+	 * &quot;live&quot; non-rollup data and the aggregated rollup data. This is done
+	 * by simply adding the live indices to the URI. For example:
+	 * 
+	 * <pre>
+	 * <code>GET sensor-1,sensor_rollup/_rollup_search
+	 * {
+	 *   &quot;size&quot;: 0,
+	 *   &quot;aggregations&quot;: {
+	 *      &quot;max_temperature&quot;: {
+	 *       &quot;max&quot;: {
+	 *         &quot;field&quot;: &quot;temperature&quot;
+	 *       }
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The rollup search endpoint does two things when the search runs:
+	 * <ul>
+	 * <li>The original request is sent to the non-rollup index unaltered.</li>
+	 * <li>A rewritten version of the original request is sent to the rollup
+	 * index.</li>
+	 * </ul>
+	 * <p>
+	 * When the two responses are received, the endpoint rewrites the rollup
+	 * response and merges the two together. During the merging process, if there is
+	 * any overlap in buckets between the two responses, the buckets from the
+	 * non-rollup index are used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RollupSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -473,9 +555,50 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * the original data. It rewrites standard Query DSL into a format that matches
 	 * the rollup documents then takes the response and rewrites it back to what a
 	 * client would expect given the original query.
+	 * <p>
+	 * The request body supports a subset of features from the regular search API.
+	 * The following functionality is not available:
+	 * <p>
+	 * <code>size</code>: Because rollups work on pre-aggregated data, no search
+	 * hits can be returned and so size must be set to zero or omitted entirely.
+	 * <code>highlighter</code>, <code>suggestors</code>, <code>post_filter</code>,
+	 * <code>profile</code>, <code>explain</code>: These are similarly disallowed.
+	 * <p>
+	 * <strong>Searching both historical rollup and non-rollup data</strong>
+	 * <p>
+	 * The rollup search API has the capability to search across both
+	 * &quot;live&quot; non-rollup data and the aggregated rollup data. This is done
+	 * by simply adding the live indices to the URI. For example:
+	 * 
+	 * <pre>
+	 * <code>GET sensor-1,sensor_rollup/_rollup_search
+	 * {
+	 *   &quot;size&quot;: 0,
+	 *   &quot;aggregations&quot;: {
+	 *      &quot;max_temperature&quot;: {
+	 *       &quot;max&quot;: {
+	 *         &quot;field&quot;: &quot;temperature&quot;
+	 *       }
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The rollup search endpoint does two things when the search runs:
+	 * <ul>
+	 * <li>The original request is sent to the non-rollup index unaltered.</li>
+	 * <li>A rewritten version of the original request is sent to the rollup
+	 * index.</li>
+	 * </ul>
+	 * <p>
+	 * When the two responses are received, the endpoint rewrites the rollup
+	 * response and merges the two together. During the merging process, if there is
+	 * any overlap in buckets between the two responses, the buckets from the
+	 * non-rollup index are used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -496,12 +619,53 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * the original data. It rewrites standard Query DSL into a format that matches
 	 * the rollup documents then takes the response and rewrites it back to what a
 	 * client would expect given the original query.
+	 * <p>
+	 * The request body supports a subset of features from the regular search API.
+	 * The following functionality is not available:
+	 * <p>
+	 * <code>size</code>: Because rollups work on pre-aggregated data, no search
+	 * hits can be returned and so size must be set to zero or omitted entirely.
+	 * <code>highlighter</code>, <code>suggestors</code>, <code>post_filter</code>,
+	 * <code>profile</code>, <code>explain</code>: These are similarly disallowed.
+	 * <p>
+	 * <strong>Searching both historical rollup and non-rollup data</strong>
+	 * <p>
+	 * The rollup search API has the capability to search across both
+	 * &quot;live&quot; non-rollup data and the aggregated rollup data. This is done
+	 * by simply adding the live indices to the URI. For example:
+	 * 
+	 * <pre>
+	 * <code>GET sensor-1,sensor_rollup/_rollup_search
+	 * {
+	 *   &quot;size&quot;: 0,
+	 *   &quot;aggregations&quot;: {
+	 *      &quot;max_temperature&quot;: {
+	 *       &quot;max&quot;: {
+	 *         &quot;field&quot;: &quot;temperature&quot;
+	 *       }
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The rollup search endpoint does two things when the search runs:
+	 * <ul>
+	 * <li>The original request is sent to the non-rollup index unaltered.</li>
+	 * <li>A rewritten version of the original request is sent to the rollup
+	 * index.</li>
+	 * </ul>
+	 * <p>
+	 * When the two responses are received, the endpoint rewrites the rollup
+	 * response and merges the two together. During the merging process, if there is
+	 * any overlap in buckets between the two responses, the buckets from the
+	 * non-rollup index are used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RollupSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -518,7 +682,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * happens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-start-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -538,7 +702,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link StartJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-start-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -552,9 +716,23 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	/**
 	 * Stop rollup jobs. If you try to stop a job that does not exist, an exception
 	 * occurs. If you try to stop a job that is already stopped, nothing happens.
+	 * <p>
+	 * Since only a stopped job can be deleted, it can be useful to block the API
+	 * until the indexer has fully stopped. This is accomplished with the
+	 * <code>wait_for_completion</code> query parameter, and optionally a timeout.
+	 * For example:
+	 * 
+	 * <pre>
+	 * <code>POST _rollup/job/sensor/_stop?wait_for_completion=true&amp;timeout=10s
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The parameter blocks the API call from returning until either the job has
+	 * moved to STOPPED or the specified time has elapsed. If the specified time
+	 * elapses without the job moving to STOPPED, a timeout exception occurs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-stop-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -568,12 +746,26 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	/**
 	 * Stop rollup jobs. If you try to stop a job that does not exist, an exception
 	 * occurs. If you try to stop a job that is already stopped, nothing happens.
+	 * <p>
+	 * Since only a stopped job can be deleted, it can be useful to block the API
+	 * until the indexer has fully stopped. This is accomplished with the
+	 * <code>wait_for_completion</code> query parameter, and optionally a timeout.
+	 * For example:
+	 * 
+	 * <pre>
+	 * <code>POST _rollup/job/sensor/_stop?wait_for_completion=true&amp;timeout=10s
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The parameter blocks the API call from returning until either the job has
+	 * moved to STOPPED or the specified time has elapsed. If the specified time
+	 * elapses without the job moving to STOPPED, a timeout exception occurs.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link StopJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/rollup-stop-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

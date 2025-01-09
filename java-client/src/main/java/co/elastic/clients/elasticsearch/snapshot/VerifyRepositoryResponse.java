@@ -77,7 +77,10 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code nodes}
+	 * Required - Information about the nodes connected to the snapshot repository.
+	 * The key is the ID of the node.
+	 * <p>
+	 * API name: {@code nodes}
 	 */
 	public final Map<String, CompactNodeInfo> nodes() {
 		return this.nodes;
@@ -125,7 +128,10 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 		private Map<String, CompactNodeInfo> nodes;
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * Required - Information about the nodes connected to the snapshot repository.
+		 * The key is the ID of the node.
+		 * <p>
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
@@ -135,7 +141,10 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * Required - Information about the nodes connected to the snapshot repository.
+		 * The key is the ID of the node.
+		 * <p>
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code>.
 		 */
@@ -145,7 +154,10 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * Required - Information about the nodes connected to the snapshot repository.
+		 * The key is the ID of the node.
+		 * <p>
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */

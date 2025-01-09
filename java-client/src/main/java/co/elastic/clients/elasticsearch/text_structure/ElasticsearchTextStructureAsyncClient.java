@@ -67,6 +67,116 @@ public class ElasticsearchTextStructureAsyncClient
 		return new ElasticsearchTextStructureAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: text_structure.find_field_structure
+
+	/**
+	 * Find the structure of a text field. Find the structure of a text field in an
+	 * Elasticsearch index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-field-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FindFieldStructureResponse> findFieldStructure(FindFieldStructureRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FindFieldStructureRequest, FindFieldStructureResponse, ErrorResponse> endpoint = (JsonEndpoint<FindFieldStructureRequest, FindFieldStructureResponse, ErrorResponse>) FindFieldStructureRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Find the structure of a text field. Find the structure of a text field in an
+	 * Elasticsearch index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link FindFieldStructureRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-field-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<FindFieldStructureResponse> findFieldStructure(
+			Function<FindFieldStructureRequest.Builder, ObjectBuilder<FindFieldStructureRequest>> fn) {
+		return findFieldStructure(fn.apply(new FindFieldStructureRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: text_structure.find_message_structure
+
+	/**
+	 * Find the structure of text messages. Find the structure of a list of text
+	 * messages. The messages must contain data that is suitable to be ingested into
+	 * Elasticsearch.
+	 * <p>
+	 * This API provides a starting point for ingesting data into Elasticsearch in a
+	 * format that is suitable for subsequent use with other Elastic Stack
+	 * functionality. Use this API rather than the find text structure API if your
+	 * input text has already been split up into separate messages by some other
+	 * process. The response from the API contains:
+	 * <ul>
+	 * <li>Sample messages.</li>
+	 * <li>Statistics that reveal the most common values for all fields detected
+	 * within the text and basic numeric statistics for numeric fields.</li>
+	 * <li>Information about the structure of the text, which is useful when you
+	 * write ingest configurations to index it or similarly formatted text.
+	 * Appropriate mappings for an Elasticsearch index, which you could use to
+	 * ingest the text.</li>
+	 * </ul>
+	 * <p>
+	 * All this information can be calculated by the structure finder with no
+	 * guidance. However, you can optionally override some of the decisions about
+	 * the text structure by specifying one or more query parameters.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-message-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FindMessageStructureResponse> findMessageStructure(FindMessageStructureRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FindMessageStructureRequest, FindMessageStructureResponse, ErrorResponse> endpoint = (JsonEndpoint<FindMessageStructureRequest, FindMessageStructureResponse, ErrorResponse>) FindMessageStructureRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Find the structure of text messages. Find the structure of a list of text
+	 * messages. The messages must contain data that is suitable to be ingested into
+	 * Elasticsearch.
+	 * <p>
+	 * This API provides a starting point for ingesting data into Elasticsearch in a
+	 * format that is suitable for subsequent use with other Elastic Stack
+	 * functionality. Use this API rather than the find text structure API if your
+	 * input text has already been split up into separate messages by some other
+	 * process. The response from the API contains:
+	 * <ul>
+	 * <li>Sample messages.</li>
+	 * <li>Statistics that reveal the most common values for all fields detected
+	 * within the text and basic numeric statistics for numeric fields.</li>
+	 * <li>Information about the structure of the text, which is useful when you
+	 * write ingest configurations to index it or similarly formatted text.
+	 * Appropriate mappings for an Elasticsearch index, which you could use to
+	 * ingest the text.</li>
+	 * </ul>
+	 * <p>
+	 * All this information can be calculated by the structure finder with no
+	 * guidance. However, you can optionally override some of the decisions about
+	 * the text structure by specifying one or more query parameters.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link FindMessageStructureRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-message-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<FindMessageStructureResponse> findMessageStructure(
+			Function<FindMessageStructureRequest.Builder, ObjectBuilder<FindMessageStructureRequest>> fn) {
+		return findMessageStructure(fn.apply(new FindMessageStructureRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: text_structure.test_grok_pattern
 
 	/**

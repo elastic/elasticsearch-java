@@ -83,6 +83,16 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Big files can be broken down into multiple smaller blobs in the blob store
+	 * during snapshotting. It is not recommended to change this value from its
+	 * default unless there is an explicit reason for limiting the size of blobs in
+	 * the repository. Setting a value lower than the default can result in an
+	 * increased number of API calls to the blob store during snapshot create and
+	 * restore operations compared to using the default value and thus make both
+	 * operations slower and more costly. Specify the chunk size as a byte unit, for
+	 * example: <code>10MB</code>, <code>5KB</code>, 500B. The default varies by
+	 * repository type.
+	 * <p>
 	 * API name: {@code chunk_size}
 	 */
 	@Nullable
@@ -91,6 +101,10 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 	}
 
 	/**
+	 * When set to <code>true</code>, metadata files are stored in compressed
+	 * format. This setting doesn't affect index files that are already compressed
+	 * by default.
+	 * <p>
 	 * API name: {@code compress}
 	 */
 	@Nullable
@@ -99,6 +113,9 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum snapshot restore rate per node. It defaults to unlimited. Note
+	 * that restores are also throttled through recovery settings.
+	 * <p>
 	 * API name: {@code max_restore_bytes_per_sec}
 	 */
 	@Nullable
@@ -107,6 +124,11 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum snapshot creation rate per node. It defaults to 40mb per second.
+	 * Note that if the recovery settings for managed services are set, then it
+	 * defaults to unlimited, and the rate is additionally throttled through
+	 * recovery settings.
+	 * <p>
 	 * API name: {@code max_snapshot_bytes_per_sec}
 	 */
 	@Nullable
@@ -169,6 +191,16 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 		private String maxSnapshotBytesPerSec;
 
 		/**
+		 * Big files can be broken down into multiple smaller blobs in the blob store
+		 * during snapshotting. It is not recommended to change this value from its
+		 * default unless there is an explicit reason for limiting the size of blobs in
+		 * the repository. Setting a value lower than the default can result in an
+		 * increased number of API calls to the blob store during snapshot create and
+		 * restore operations compared to using the default value and thus make both
+		 * operations slower and more costly. Specify the chunk size as a byte unit, for
+		 * example: <code>10MB</code>, <code>5KB</code>, 500B. The default varies by
+		 * repository type.
+		 * <p>
 		 * API name: {@code chunk_size}
 		 */
 		public final BuilderT chunkSize(@Nullable String value) {
@@ -177,6 +209,10 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 		}
 
 		/**
+		 * When set to <code>true</code>, metadata files are stored in compressed
+		 * format. This setting doesn't affect index files that are already compressed
+		 * by default.
+		 * <p>
 		 * API name: {@code compress}
 		 */
 		public final BuilderT compress(@Nullable Boolean value) {
@@ -185,6 +221,9 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum snapshot restore rate per node. It defaults to unlimited. Note
+		 * that restores are also throttled through recovery settings.
+		 * <p>
 		 * API name: {@code max_restore_bytes_per_sec}
 		 */
 		public final BuilderT maxRestoreBytesPerSec(@Nullable String value) {
@@ -193,6 +232,11 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum snapshot creation rate per node. It defaults to 40mb per second.
+		 * Note that if the recovery settings for managed services are set, then it
+		 * defaults to unlimited, and the rate is additionally throttled through
+		 * recovery settings.
+		 * <p>
 		 * API name: {@code max_snapshot_bytes_per_sec}
 		 */
 		public final BuilderT maxSnapshotBytesPerSec(@Nullable String value) {

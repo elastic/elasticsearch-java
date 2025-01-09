@@ -58,8 +58,8 @@ import javax.annotation.Nullable;
 // typedef: ingest.put_geoip_database.Request
 
 /**
- * Create or update GeoIP database configurations. Create or update IP
- * geolocation database configurations.
+ * Create or update a GeoIP database configuration. Refer to the create or
+ * update IP geolocation database configuration API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.put_geoip_database.Request">API

@@ -102,63 +102,86 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code build_date}
+	 * Required - The Elasticsearch Git commit's date.
+	 * <p>
+	 * API name: {@code build_date}
 	 */
 	public final DateTime buildDate() {
 		return this.buildDate;
 	}
 
 	/**
-	 * Required - API name: {@code build_flavor}
+	 * Required - The build flavor. For example, <code>default</code>.
+	 * <p>
+	 * API name: {@code build_flavor}
 	 */
 	public final String buildFlavor() {
 		return this.buildFlavor;
 	}
 
 	/**
-	 * Required - API name: {@code build_hash}
+	 * Required - The Elasticsearch Git commit's SHA hash.
+	 * <p>
+	 * API name: {@code build_hash}
 	 */
 	public final String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
-	 * Required - API name: {@code build_snapshot}
+	 * Required - Indicates whether the Elasticsearch build was a snapshot.
+	 * <p>
+	 * API name: {@code build_snapshot}
 	 */
 	public final boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
 	/**
-	 * Required - API name: {@code build_type}
+	 * Required - The build type that corresponds to how Elasticsearch was
+	 * installed. For example, <code>docker</code>, <code>rpm</code>, or
+	 * <code>tar</code>.
+	 * <p>
+	 * API name: {@code build_type}
 	 */
 	public final String buildType() {
 		return this.buildType;
 	}
 
 	/**
-	 * Required - API name: {@code lucene_version}
+	 * Required - The version number of Elasticsearch's underlying Lucene software.
+	 * <p>
+	 * API name: {@code lucene_version}
 	 */
 	public final String luceneVersion() {
 		return this.luceneVersion;
 	}
 
 	/**
-	 * Required - API name: {@code minimum_index_compatibility_version}
+	 * Required - The minimum index version with which the responding node can read
+	 * from disk.
+	 * <p>
+	 * API name: {@code minimum_index_compatibility_version}
 	 */
 	public final String minimumIndexCompatibilityVersion() {
 		return this.minimumIndexCompatibilityVersion;
 	}
 
 	/**
-	 * Required - API name: {@code minimum_wire_compatibility_version}
+	 * Required - The minimum node version with which the responding node can
+	 * communicate. Also the minimum version from which you can perform a rolling
+	 * upgrade.
+	 * <p>
+	 * API name: {@code minimum_wire_compatibility_version}
 	 */
 	public final String minimumWireCompatibilityVersion() {
 		return this.minimumWireCompatibilityVersion;
 	}
 
 	/**
-	 * Required - API name: {@code number}
+	 * Required - The Elasticsearch version number.
+	 * <p>
+	 * API name: {@code number}
 	 */
 	public final String number() {
 		return this.number;
@@ -236,7 +259,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		private String number;
 
 		/**
-		 * Required - API name: {@code build_date}
+		 * Required - The Elasticsearch Git commit's date.
+		 * <p>
+		 * API name: {@code build_date}
 		 */
 		public final Builder buildDate(DateTime value) {
 			this.buildDate = value;
@@ -244,7 +269,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code build_flavor}
+		 * Required - The build flavor. For example, <code>default</code>.
+		 * <p>
+		 * API name: {@code build_flavor}
 		 */
 		public final Builder buildFlavor(String value) {
 			this.buildFlavor = value;
@@ -252,7 +279,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code build_hash}
+		 * Required - The Elasticsearch Git commit's SHA hash.
+		 * <p>
+		 * API name: {@code build_hash}
 		 */
 		public final Builder buildHash(String value) {
 			this.buildHash = value;
@@ -260,7 +289,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code build_snapshot}
+		 * Required - Indicates whether the Elasticsearch build was a snapshot.
+		 * <p>
+		 * API name: {@code build_snapshot}
 		 */
 		public final Builder buildSnapshot(boolean value) {
 			this.buildSnapshot = value;
@@ -268,7 +299,11 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code build_type}
+		 * Required - The build type that corresponds to how Elasticsearch was
+		 * installed. For example, <code>docker</code>, <code>rpm</code>, or
+		 * <code>tar</code>.
+		 * <p>
+		 * API name: {@code build_type}
 		 */
 		public final Builder buildType(String value) {
 			this.buildType = value;
@@ -276,7 +311,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code lucene_version}
+		 * Required - The version number of Elasticsearch's underlying Lucene software.
+		 * <p>
+		 * API name: {@code lucene_version}
 		 */
 		public final Builder luceneVersion(String value) {
 			this.luceneVersion = value;
@@ -284,7 +321,10 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code minimum_index_compatibility_version}
+		 * Required - The minimum index version with which the responding node can read
+		 * from disk.
+		 * <p>
+		 * API name: {@code minimum_index_compatibility_version}
 		 */
 		public final Builder minimumIndexCompatibilityVersion(String value) {
 			this.minimumIndexCompatibilityVersion = value;
@@ -292,7 +332,11 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code minimum_wire_compatibility_version}
+		 * Required - The minimum node version with which the responding node can
+		 * communicate. Also the minimum version from which you can perform a rolling
+		 * upgrade.
+		 * <p>
+		 * API name: {@code minimum_wire_compatibility_version}
 		 */
 		public final Builder minimumWireCompatibilityVersion(String value) {
 			this.minimumWireCompatibilityVersion = value;
@@ -300,7 +344,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code number}
+		 * Required - The Elasticsearch version number.
+		 * <p>
+		 * API name: {@code number}
 		 */
 		public final Builder number(String value) {
 			this.number = value;

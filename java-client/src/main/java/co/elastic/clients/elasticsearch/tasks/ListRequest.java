@@ -76,9 +76,6 @@ public class ListRequest extends RequestBase {
 	@Nullable
 	private final GroupBy groupBy;
 
-	@Nullable
-	private final Time masterTimeout;
-
 	private final List<String> nodes;
 
 	@Nullable
@@ -97,7 +94,6 @@ public class ListRequest extends RequestBase {
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
 		this.groupBy = builder.groupBy;
-		this.masterTimeout = builder.masterTimeout;
 		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
 		this.timeout = builder.timeout;
@@ -139,17 +135,6 @@ public class ListRequest extends RequestBase {
 	@Nullable
 	public final GroupBy groupBy() {
 		return this.groupBy;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -210,9 +195,6 @@ public class ListRequest extends RequestBase {
 		private GroupBy groupBy;
 
 		@Nullable
-		private Time masterTimeout;
-
-		@Nullable
 		private List<String> nodes;
 
 		@Nullable
@@ -270,27 +252,6 @@ public class ListRequest extends RequestBase {
 		public final Builder groupBy(@Nullable GroupBy value) {
 			this.groupBy = value;
 			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -405,9 +366,6 @@ public class ListRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (ApiTypeHelper.isDefined(request.nodes)) {
 					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

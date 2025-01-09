@@ -59,7 +59,16 @@ import javax.annotation.Nullable;
 // typedef: query_rules.put_ruleset.Request
 
 /**
- * Create or update a query ruleset.
+ * Create or update a query ruleset. There is a limit of 100 rules per ruleset.
+ * This limit can be increased by using the
+ * <code>xpack.applications.rules.max_rules_per_ruleset</code> cluster setting.
+ * <p>
+ * IMPORTANT: Due to limitations within pinned queries, you can only select
+ * documents using <code>ids</code> or <code>docs</code>, but cannot use both in
+ * single rule. It is advised to use one or the other in query rulesets, to
+ * avoid errors. Additionally, pinned queries have a maximum limit of 100 pinned
+ * hits. If multiple matching rules pin more than 100 documents, only the first
+ * 100 documents are pinned in the order they are specified in the ruleset.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.put_ruleset.Request">API
  *      specification</a>
@@ -92,7 +101,7 @@ public class PutRulesetRequest extends RequestBase implements JsonpSerializable 
 
 	/**
 	 * Required - The unique identifier of the query ruleset to be created or
-	 * updated
+	 * updated.
 	 * <p>
 	 * API name: {@code ruleset_id}
 	 */
@@ -168,7 +177,7 @@ public class PutRulesetRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - The unique identifier of the query ruleset to be created or
-		 * updated
+		 * updated.
 		 * <p>
 		 * API name: {@code ruleset_id}
 		 */

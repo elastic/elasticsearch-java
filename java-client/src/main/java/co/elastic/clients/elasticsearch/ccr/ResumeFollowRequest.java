@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -74,6 +73,9 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	private final String index;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final Long maxOutstandingReadRequests;
 
 	@Nullable
@@ -108,6 +110,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	private ResumeFollowRequest(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.masterTimeout = builder.masterTimeout;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -132,6 +135,16 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public final String index() {
 		return this.index;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -290,6 +303,9 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		private String index;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private Long maxOutstandingReadRequests;
 
 		@Nullable
@@ -327,6 +343,25 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		public final Builder index(String value) {
 			this.index = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -519,7 +554,11 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, ResumeFollowResponse._DESERIALIZER);
 }

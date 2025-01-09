@@ -89,8 +89,8 @@ public class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * If <code>true</code>, the request gets information from the local node only.
+	 * If <code>false</code>, the request gets information from the master node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -100,7 +100,9 @@ public class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -110,7 +112,12 @@ public class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of repository names
+	 * A comma-separated list of snapshot repository names used to limit the
+	 * request. Wildcard (<code>*</code>) expressions are supported including
+	 * combining wildcards with exclude patterns starting with <code>-</code>.
+	 * <p>
+	 * To get information about all snapshot repositories registered in the cluster,
+	 * omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -137,8 +144,8 @@ public class GetRepositoryRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * If <code>true</code>, the request gets information from the local node only.
+		 * If <code>false</code>, the request gets information from the master node.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -148,7 +155,9 @@ public class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -158,7 +167,9 @@ public class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -167,7 +178,12 @@ public class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of repository names
+		 * A comma-separated list of snapshot repository names used to limit the
+		 * request. Wildcard (<code>*</code>) expressions are supported including
+		 * combining wildcards with exclude patterns starting with <code>-</code>.
+		 * <p>
+		 * To get information about all snapshot repositories registered in the cluster,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code repository}
 		 * <p>
@@ -179,7 +195,12 @@ public class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of repository names
+		 * A comma-separated list of snapshot repository names used to limit the
+		 * request. Wildcard (<code>*</code>) expressions are supported including
+		 * combining wildcards with exclude patterns starting with <code>-</code>.
+		 * <p>
+		 * To get information about all snapshot repositories registered in the cluster,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code repository}
 		 * <p>

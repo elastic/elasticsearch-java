@@ -225,8 +225,42 @@ public class ElasticsearchEnrichClient extends ApiClient<ElasticsearchTransport,
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public EnrichStatsResponse stats(EnrichStatsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse>) EnrichStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get enrich stats. Returns enrich coordinator statistics and information about
+	 * enrich policies that are currently executing.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link EnrichStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final EnrichStatsResponse stats(Function<EnrichStatsRequest.Builder, ObjectBuilder<EnrichStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stats(fn.apply(new EnrichStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get enrich stats. Returns enrich coordinator statistics and information about
+	 * enrich policies that are currently executing.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public EnrichStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(EnrichStatsRequest._INSTANCE, EnrichStatsRequest._ENDPOINT,
+		return this.transport.performRequest(new EnrichStatsRequest.Builder().build(), EnrichStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

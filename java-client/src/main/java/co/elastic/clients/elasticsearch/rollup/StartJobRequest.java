@@ -62,8 +62,9 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.start_job.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
-
+@Deprecated
 public class StartJobRequest extends RequestBase {
 	private final String id;
 
@@ -93,7 +94,7 @@ public class StartJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartJobRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<StartJobRequest> {
 		private String id;
 

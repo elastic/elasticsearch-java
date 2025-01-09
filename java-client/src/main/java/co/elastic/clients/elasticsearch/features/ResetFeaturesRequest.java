@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -30,7 +31,11 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -79,13 +84,79 @@ import java.util.Objects;
  */
 
 public class ResetFeaturesRequest extends RequestBase {
-	public ResetFeaturesRequest() {
+	@Nullable
+	private final Time masterTimeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private ResetFeaturesRequest(Builder builder) {
+
+		this.masterTimeout = builder.masterTimeout;
+
+	}
+
+	public static ResetFeaturesRequest of(Function<Builder, ObjectBuilder<ResetFeaturesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link ResetFeaturesRequest}.
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
 	 */
-	public static final ResetFeaturesRequest _INSTANCE = new ResetFeaturesRequest();
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ResetFeaturesRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ResetFeaturesRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ResetFeaturesRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ResetFeaturesRequest build() {
+			_checkSingleUse();
+
+			return new ResetFeaturesRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -114,7 +185,11 @@ public class ResetFeaturesRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, ResetFeaturesResponse._DESERIALIZER);
 }

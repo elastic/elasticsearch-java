@@ -61,16 +61,16 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 	private final String bucket;
 
 	@Nullable
-	private final String client;
+	private final String applicationName;
 
 	@Nullable
 	private final String basePath;
 
 	@Nullable
-	private final Boolean readonly;
+	private final String client;
 
 	@Nullable
-	private final String applicationName;
+	private final Boolean readonly;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,10 +78,10 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		super(builder);
 
 		this.bucket = ApiTypeHelper.requireNonNull(builder.bucket, this, "bucket");
-		this.client = builder.client;
-		this.basePath = builder.basePath;
-		this.readonly = builder.readonly;
 		this.applicationName = builder.applicationName;
+		this.basePath = builder.basePath;
+		this.client = builder.client;
+		this.readonly = builder.readonly;
 
 	}
 
@@ -90,21 +90,36 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
-	 * Required - API name: {@code bucket}
+	 * Required - The name of the bucket to be used for snapshots.
+	 * <p>
+	 * API name: {@code bucket}
 	 */
 	public final String bucket() {
 		return this.bucket;
 	}
 
 	/**
-	 * API name: {@code client}
+	 * The name used by the client when it uses the Google Cloud Storage service.
+	 * <p>
+	 * API name: {@code application_name}
+	 * 
+	 * @deprecated 6.3.0
 	 */
+	@Deprecated
 	@Nullable
-	public final String client() {
-		return this.client;
+	public final String applicationName() {
+		return this.applicationName;
 	}
 
 	/**
+	 * The path to the repository data within the bucket. It defaults to the root of
+	 * the bucket.
+	 * <p>
+	 * NOTE: Don't set <code>base_path</code> when configuring a snapshot repository
+	 * for Elastic Cloud Enterprise. Elastic Cloud Enterprise automatically
+	 * generates the <code>base_path</code> for each deployment so that multiple
+	 * deployments can share the same bucket.
+	 * <p>
 	 * API name: {@code base_path}
 	 */
 	@Nullable
@@ -113,19 +128,37 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The name of the client to use to connect to Google Cloud Storage.
+	 * <p>
+	 * API name: {@code client}
+	 */
+	@Nullable
+	public final String client() {
+		return this.client;
+	}
+
+	/**
+	 * If <code>true</code>, the repository is read-only. The cluster can retrieve
+	 * and restore snapshots from the repository but not write to the repository or
+	 * create snapshots in it.
+	 * <p>
+	 * Only a cluster with write access can create snapshots in the repository. All
+	 * other clusters connected to the repository should have the
+	 * <code>readonly</code> parameter set to <code>true</code>.
+	 * <p>
+	 * If <code>false</code>, the cluster can write to the repository and create
+	 * snapshots in it.
+	 * <p>
+	 * IMPORTANT: If you register the same snapshot repository with multiple
+	 * clusters, only one cluster should have write access to the repository. Having
+	 * multiple clusters write to the repository at the same time risks corrupting
+	 * the contents of the repository.
+	 * <p>
 	 * API name: {@code readonly}
 	 */
 	@Nullable
 	public final Boolean readonly() {
 		return this.readonly;
-	}
-
-	/**
-	 * API name: {@code application_name}
-	 */
-	@Nullable
-	public final String applicationName() {
-		return this.applicationName;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -134,9 +167,9 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		generator.writeKey("bucket");
 		generator.write(this.bucket);
 
-		if (this.client != null) {
-			generator.writeKey("client");
-			generator.write(this.client);
+		if (this.applicationName != null) {
+			generator.writeKey("application_name");
+			generator.write(this.applicationName);
 
 		}
 		if (this.basePath != null) {
@@ -144,14 +177,14 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 			generator.write(this.basePath);
 
 		}
+		if (this.client != null) {
+			generator.writeKey("client");
+			generator.write(this.client);
+
+		}
 		if (this.readonly != null) {
 			generator.writeKey("readonly");
 			generator.write(this.readonly);
-
-		}
-		if (this.applicationName != null) {
-			generator.writeKey("application_name");
-			generator.write(this.applicationName);
 
 		}
 
@@ -169,19 +202,21 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		private String bucket;
 
 		@Nullable
-		private String client;
+		private String applicationName;
 
 		@Nullable
 		private String basePath;
 
 		@Nullable
-		private Boolean readonly;
+		private String client;
 
 		@Nullable
-		private String applicationName;
+		private Boolean readonly;
 
 		/**
-		 * Required - API name: {@code bucket}
+		 * Required - The name of the bucket to be used for snapshots.
+		 * <p>
+		 * API name: {@code bucket}
 		 */
 		public final Builder bucket(String value) {
 			this.bucket = value;
@@ -189,14 +224,27 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
-		 * API name: {@code client}
+		 * The name used by the client when it uses the Google Cloud Storage service.
+		 * <p>
+		 * API name: {@code application_name}
+		 * 
+		 * @deprecated 6.3.0
 		 */
-		public final Builder client(@Nullable String value) {
-			this.client = value;
+		@Deprecated
+		public final Builder applicationName(@Nullable String value) {
+			this.applicationName = value;
 			return this;
 		}
 
 		/**
+		 * The path to the repository data within the bucket. It defaults to the root of
+		 * the bucket.
+		 * <p>
+		 * NOTE: Don't set <code>base_path</code> when configuring a snapshot repository
+		 * for Elastic Cloud Enterprise. Elastic Cloud Enterprise automatically
+		 * generates the <code>base_path</code> for each deployment so that multiple
+		 * deployments can share the same bucket.
+		 * <p>
 		 * API name: {@code base_path}
 		 */
 		public final Builder basePath(@Nullable String value) {
@@ -205,18 +253,36 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
-		 * API name: {@code readonly}
+		 * The name of the client to use to connect to Google Cloud Storage.
+		 * <p>
+		 * API name: {@code client}
 		 */
-		public final Builder readonly(@Nullable Boolean value) {
-			this.readonly = value;
+		public final Builder client(@Nullable String value) {
+			this.client = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code application_name}
+		 * If <code>true</code>, the repository is read-only. The cluster can retrieve
+		 * and restore snapshots from the repository but not write to the repository or
+		 * create snapshots in it.
+		 * <p>
+		 * Only a cluster with write access can create snapshots in the repository. All
+		 * other clusters connected to the repository should have the
+		 * <code>readonly</code> parameter set to <code>true</code>.
+		 * <p>
+		 * If <code>false</code>, the cluster can write to the repository and create
+		 * snapshots in it.
+		 * <p>
+		 * IMPORTANT: If you register the same snapshot repository with multiple
+		 * clusters, only one cluster should have write access to the repository. Having
+		 * multiple clusters write to the repository at the same time risks corrupting
+		 * the contents of the repository.
+		 * <p>
+		 * API name: {@code readonly}
 		 */
-		public final Builder applicationName(@Nullable String value) {
-			this.applicationName = value;
+		public final Builder readonly(@Nullable Boolean value) {
+			this.readonly = value;
 			return this;
 		}
 
@@ -249,10 +315,10 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 	protected static void setupGcsRepositorySettingsDeserializer(ObjectDeserializer<GcsRepositorySettings.Builder> op) {
 		RepositorySettingsBase.setupRepositorySettingsBaseDeserializer(op);
 		op.add(Builder::bucket, JsonpDeserializer.stringDeserializer(), "bucket");
-		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
-		op.add(Builder::basePath, JsonpDeserializer.stringDeserializer(), "base_path");
-		op.add(Builder::readonly, JsonpDeserializer.booleanDeserializer(), "readonly");
 		op.add(Builder::applicationName, JsonpDeserializer.stringDeserializer(), "application_name");
+		op.add(Builder::basePath, JsonpDeserializer.stringDeserializer(), "base_path");
+		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
+		op.add(Builder::readonly, JsonpDeserializer.booleanDeserializer(), "readonly");
 
 	}
 

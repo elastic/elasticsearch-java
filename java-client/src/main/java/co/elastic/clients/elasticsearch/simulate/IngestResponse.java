@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.simulate;
+package co.elastic.clients.elasticsearch.simulate;
 
+import co.elastic.clients.elasticsearch.ingest.SimulateDocumentResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,9 +31,10 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -49,36 +51,34 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.simulate.Redact
+// typedef: simulate.ingest.Response
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#ingest.simulate.Redact">API
+ * @see <a href="../doc-files/api-spec.html#simulate.ingest.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Redact implements JsonpSerializable {
-	private final boolean isRedacted;
+public class IngestResponse implements JsonpSerializable {
+	private final List<SimulateDocumentResult> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Redact(Builder builder) {
+	private IngestResponse(Builder builder) {
 
-		this.isRedacted = ApiTypeHelper.requireNonNull(builder.isRedacted, this, "isRedacted");
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
-	public static Redact of(Function<Builder, ObjectBuilder<Redact>> fn) {
+	public static IngestResponse of(Function<Builder, ObjectBuilder<IngestResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - indicates if document has been redacted
-	 * <p>
-	 * API name: {@code _is_redacted}
+	 * Required - API name: {@code docs}
 	 */
-	public final boolean isRedacted() {
-		return this.isRedacted;
+	public final List<SimulateDocumentResult> docs() {
+		return this.docs;
 	}
 
 	/**
@@ -92,8 +92,16 @@ public class Redact implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_is_redacted");
-		generator.write(this.isRedacted);
+		if (ApiTypeHelper.isDefined(this.docs)) {
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (SimulateDocumentResult item0 : this.docs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -105,20 +113,39 @@ public class Redact implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Redact}.
+	 * Builder for {@link IngestResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Redact> {
-		private Boolean isRedacted;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IngestResponse> {
+		private List<SimulateDocumentResult> docs;
 
 		/**
-		 * Required - indicates if document has been redacted
+		 * Required - API name: {@code docs}
 		 * <p>
-		 * API name: {@code _is_redacted}
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public final Builder isRedacted(boolean value) {
-			this.isRedacted = value;
+		public final Builder docs(List<SimulateDocumentResult> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
+		 */
+		public final Builder docs(SimulateDocumentResult value, SimulateDocumentResult... values) {
+			this.docs = _listAdd(this.docs, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
+		 */
+		public final Builder docs(Function<SimulateDocumentResult.Builder, ObjectBuilder<SimulateDocumentResult>> fn) {
+			return docs(fn.apply(new SimulateDocumentResult.Builder()).build());
 		}
 
 		@Override
@@ -127,29 +154,29 @@ public class Redact implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Redact}.
+		 * Builds a {@link IngestResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Redact build() {
+		public IngestResponse build() {
 			_checkSingleUse();
 
-			return new Redact(this);
+			return new IngestResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Redact}
+	 * Json deserializer for {@link IngestResponse}
 	 */
-	public static final JsonpDeserializer<Redact> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Redact::setupRedactDeserializer);
+	public static final JsonpDeserializer<IngestResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IngestResponse::setupIngestResponseDeserializer);
 
-	protected static void setupRedactDeserializer(ObjectDeserializer<Redact.Builder> op) {
+	protected static void setupIngestResponseDeserializer(ObjectDeserializer<IngestResponse.Builder> op) {
 
-		op.add(Builder::isRedacted, JsonpDeserializer.booleanDeserializer(), "_is_redacted");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(SimulateDocumentResult._DESERIALIZER), "docs");
 
 	}
 

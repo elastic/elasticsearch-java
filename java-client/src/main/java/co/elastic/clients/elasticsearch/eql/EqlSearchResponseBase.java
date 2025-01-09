@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
+import co.elastic.clients.elasticsearch._types.ShardFailure;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -80,6 +82,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 
 	private final EqlHits<TEvent> hits;
 
+	private final List<ShardFailure> shardFailures;
+
 	@Nullable
 	private final JsonpSerializer<TEvent> tEventSerializer;
 
@@ -93,6 +97,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		this.took = builder.took;
 		this.timedOut = builder.timedOut;
 		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.shardFailures = ApiTypeHelper.unmodifiable(builder.shardFailures);
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
@@ -158,6 +163,16 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	}
 
 	/**
+	 * Contains information about shard failures (if any), in case
+	 * allow_partial_search_results=true
+	 * <p>
+	 * API name: {@code shard_failures}
+	 */
+	public final List<ShardFailure> shardFailures() {
+		return this.shardFailures;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -196,6 +211,17 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
+		if (ApiTypeHelper.isDefined(this.shardFailures)) {
+			generator.writeKey("shard_failures");
+			generator.writeStartArray();
+			for (ShardFailure item0 : this.shardFailures) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+
 	}
 
 	@Override
@@ -222,6 +248,9 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		private Boolean timedOut;
 
 		private EqlHits<TEvent> hits;
+
+		@Nullable
+		private List<ShardFailure> shardFailures;
 
 		@Nullable
 		private JsonpSerializer<TEvent> tEventSerializer;
@@ -298,6 +327,44 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		}
 
 		/**
+		 * Contains information about shard failures (if any), in case
+		 * allow_partial_search_results=true
+		 * <p>
+		 * API name: {@code shard_failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shardFailures</code>.
+		 */
+		public final BuilderT shardFailures(List<ShardFailure> list) {
+			this.shardFailures = _listAddAll(this.shardFailures, list);
+			return self();
+		}
+
+		/**
+		 * Contains information about shard failures (if any), in case
+		 * allow_partial_search_results=true
+		 * <p>
+		 * API name: {@code shard_failures}
+		 * <p>
+		 * Adds one or more values to <code>shardFailures</code>.
+		 */
+		public final BuilderT shardFailures(ShardFailure value, ShardFailure... values) {
+			this.shardFailures = _listAdd(this.shardFailures, value, values);
+			return self();
+		}
+
+		/**
+		 * Contains information about shard failures (if any), in case
+		 * allow_partial_search_results=true
+		 * <p>
+		 * API name: {@code shard_failures}
+		 * <p>
+		 * Adds a value to <code>shardFailures</code> using a builder lambda.
+		 */
+		public final BuilderT shardFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+			return shardFailures(fn.apply(new ShardFailure.Builder()).build());
+		}
+
+		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
@@ -320,6 +387,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		op.add(AbstractBuilder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(AbstractBuilder::hits, EqlHits.createEqlHitsDeserializer(tEventDeserializer), "hits");
+		op.add(AbstractBuilder::shardFailures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER),
+				"shard_failures");
 
 	}
 

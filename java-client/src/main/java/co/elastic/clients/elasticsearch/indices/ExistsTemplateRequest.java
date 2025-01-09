@@ -61,8 +61,13 @@ import javax.annotation.Nullable;
 // typedef: indices.exists_template.Request
 
 /**
- * Check existence of index templates. Returns information about whether a
- * particular index template exists.
+ * Check existence of index templates. Get information about whether index
+ * templates exist. Index templates define settings, mappings, and aliases that
+ * can be applied automatically to new indices.
+ * <p>
+ * IMPORTANT: This documentation is about legacy index templates, which are
+ * deprecated and will be replaced by the composable templates introduced in
+ * Elasticsearch 7.8.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.exists_template.Request">API
  *      specification</a>
@@ -96,7 +101,7 @@ public class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * Indicates whether to use a flat format for the response.
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -106,8 +111,7 @@ public class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * Indicates whether to get information from the local node only.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -117,7 +121,9 @@ public class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -127,7 +133,8 @@ public class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The comma separated names of the index templates
+	 * Required - A comma-separated list of index template names used to limit the
+	 * request. Wildcard (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -156,7 +163,7 @@ public class ExistsTemplateRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Return settings in flat format (default: false)
+		 * Indicates whether to use a flat format for the response.
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -166,8 +173,7 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * Indicates whether to get information from the local node only.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -177,7 +183,9 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -187,7 +195,9 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -196,7 +206,8 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The comma separated names of the index templates
+		 * Required - A comma-separated list of index template names used to limit the
+		 * request. Wildcard (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -208,7 +219,8 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The comma separated names of the index templates
+		 * Required - A comma-separated list of index template names used to limit the
+		 * request. Wildcard (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

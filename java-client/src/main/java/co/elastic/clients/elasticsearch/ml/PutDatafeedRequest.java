@@ -72,12 +72,15 @@ import javax.annotation.Nullable;
  * an anomaly detection job. You can associate only one datafeed with each
  * anomaly detection job. The datafeed contains a query that runs at a defined
  * interval (<code>frequency</code>). If you are concerned about delayed data,
- * you can add a delay (<code>query_delay</code>) at each interval. When
- * Elasticsearch security features are enabled, your datafeed remembers which
- * roles the user who created it had at the time of creation and runs the query
- * using those same roles. If you provide secondary authorization headers, those
- * credentials are used instead. You must use Kibana, this API, or the create
- * anomaly detection jobs API to create a datafeed. Do not add a datafeed
+ * you can add a delay
+ * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
+ * {&quot;boost&quot;: 1}}`.
+ * <p>
+ * When Elasticsearch security features are enabled, your datafeed remembers
+ * which roles the user who created it had at the time of creation and runs the
+ * query using those same roles. If you provide secondary authorization headers,
+ * those credentials are used instead. You must use Kibana, this API, or the
+ * create anomaly detection jobs API to create a datafeed. Do not add a datafeed
  * directly to the <code>.ml-config</code> index. Do not give users
  * <code>write</code> privileges on the <code>.ml-config</code> index.
  * 

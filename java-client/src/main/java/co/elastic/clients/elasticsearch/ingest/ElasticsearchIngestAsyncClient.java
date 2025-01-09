@@ -103,7 +103,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.delete_ip_location_database
 
 	/**
-	 * Deletes an IP location database configuration.
+	 * Delete IP geolocation database configurations.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
@@ -119,7 +119,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Deletes an IP location database configuration.
+	 * Delete IP geolocation database configurations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -234,7 +234,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.get_ip_location_database
 
 	/**
-	 * Returns information about one or more IP location database configurations.
+	 * Get IP geolocation database configurations.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
@@ -250,7 +250,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Returns information about one or more IP location database configurations.
+	 * Get IP geolocation database configurations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -266,7 +266,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Returns information about one or more IP location database configurations.
+	 * Get IP geolocation database configurations.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
@@ -348,8 +348,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.put_geoip_database
 
 	/**
-	 * Create or update GeoIP database configurations. Create or update IP
-	 * geolocation database configurations.
+	 * Create or update a GeoIP database configuration. Refer to the create or
+	 * update IP geolocation database configuration API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-geoip-database-api.html">Documentation
@@ -364,8 +364,8 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Create or update GeoIP database configurations. Create or update IP
-	 * geolocation database configurations.
+	 * Create or update a GeoIP database configuration. Refer to the create or
+	 * update IP geolocation database configuration API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -383,7 +383,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.put_ip_location_database
 
 	/**
-	 * Returns information about one or more IP location database configurations.
+	 * Create or update an IP geolocation database configuration.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
@@ -399,7 +399,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Returns information about one or more IP location database configurations.
+	 * Create or update an IP geolocation database configuration.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

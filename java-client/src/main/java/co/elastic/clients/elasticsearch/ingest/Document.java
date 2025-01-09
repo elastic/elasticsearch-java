@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.simulate;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -51,11 +51,11 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.simulate.Document
+// typedef: ingest._types.Document
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#ingest.simulate.Document">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.Document">API
  *      specification</a>
  */
 @JsonpDeserializable

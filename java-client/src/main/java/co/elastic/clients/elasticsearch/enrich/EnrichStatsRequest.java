@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -30,7 +31,11 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -58,13 +63,79 @@ import java.util.Objects;
  */
 
 public class EnrichStatsRequest extends RequestBase {
-	public EnrichStatsRequest() {
+	@Nullable
+	private final Time masterTimeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private EnrichStatsRequest(Builder builder) {
+
+		this.masterTimeout = builder.masterTimeout;
+
+	}
+
+	public static EnrichStatsRequest of(Function<Builder, ObjectBuilder<EnrichStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link EnrichStatsRequest}.
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
 	 */
-	public static final EnrichStatsRequest _INSTANCE = new EnrichStatsRequest();
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link EnrichStatsRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<EnrichStatsRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link EnrichStatsRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public EnrichStatsRequest build() {
+			_checkSingleUse();
+
+			return new EnrichStatsRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +164,11 @@ public class EnrichStatsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, EnrichStatsResponse._DESERIALIZER);
 }

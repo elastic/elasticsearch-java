@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: ingest.delete_ip_location_database.Request
 
 /**
- * Deletes an IP location database configuration.
+ * Delete IP geolocation database configurations.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.delete_ip_location_database.Request">API
@@ -90,8 +90,7 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of IP location database configurations to
-	 * delete
+	 * Required - A comma-separated list of IP location database configurations.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -100,8 +99,9 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
+	 * A value of <code>-1</code> indicates that the request should never time out.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -111,8 +111,9 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error. A value of
+	 * <code>-1</code> indicates that the request should never time out.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -139,8 +140,7 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - A comma-separated list of IP location database configurations to
-		 * delete
+		 * Required - A comma-separated list of IP location database configurations.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -152,8 +152,7 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of IP location database configurations to
-		 * delete
+		 * Required - A comma-separated list of IP location database configurations.
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
@@ -165,8 +164,9 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * A value of <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -176,8 +176,9 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * A value of <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -186,8 +187,9 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error. A value of
+		 * <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -197,8 +199,9 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error. A value of
+		 * <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

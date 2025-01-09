@@ -84,13 +84,21 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
-	 * Required - API name: {@code location}
+	 * Required - The location of the shared filesystem used to store and retrieve
+	 * snapshots. This location must be registered in the <code>path.repo</code>
+	 * setting on all master and data nodes in the cluster. Unlike
+	 * <code>path.repo</code>, this setting supports only a single file path.
+	 * <p>
+	 * API name: {@code location}
 	 */
 	public final String location() {
 		return this.location;
 	}
 
 	/**
+	 * The maximum number of snapshots the repository can contain. The default is
+	 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
+	 * <p>
 	 * API name: {@code max_number_of_snapshots}
 	 */
 	@Nullable
@@ -99,6 +107,22 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * If <code>true</code>, the repository is read-only. The cluster can retrieve
+	 * and restore snapshots from the repository but not write to the repository or
+	 * create snapshots in it.
+	 * <p>
+	 * Only a cluster with write access can create snapshots in the repository. All
+	 * other clusters connected to the repository should have the
+	 * <code>readonly</code> parameter set to <code>true</code>.
+	 * <p>
+	 * If <code>false</code>, the cluster can write to the repository and create
+	 * snapshots in it.
+	 * <p>
+	 * IMPORTANT: If you register the same snapshot repository with multiple
+	 * clusters, only one cluster should have write access to the repository. Having
+	 * multiple clusters write to the repository at the same time risks corrupting
+	 * the contents of the repository.
+	 * <p>
 	 * API name: {@code readonly}
 	 */
 	@Nullable
@@ -143,7 +167,12 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 		private Boolean readonly;
 
 		/**
-		 * Required - API name: {@code location}
+		 * Required - The location of the shared filesystem used to store and retrieve
+		 * snapshots. This location must be registered in the <code>path.repo</code>
+		 * setting on all master and data nodes in the cluster. Unlike
+		 * <code>path.repo</code>, this setting supports only a single file path.
+		 * <p>
+		 * API name: {@code location}
 		 */
 		public final Builder location(String value) {
 			this.location = value;
@@ -151,6 +180,9 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * The maximum number of snapshots the repository can contain. The default is
+		 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
+		 * <p>
 		 * API name: {@code max_number_of_snapshots}
 		 */
 		public final Builder maxNumberOfSnapshots(@Nullable Integer value) {
@@ -159,6 +191,22 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * If <code>true</code>, the repository is read-only. The cluster can retrieve
+		 * and restore snapshots from the repository but not write to the repository or
+		 * create snapshots in it.
+		 * <p>
+		 * Only a cluster with write access can create snapshots in the repository. All
+		 * other clusters connected to the repository should have the
+		 * <code>readonly</code> parameter set to <code>true</code>.
+		 * <p>
+		 * If <code>false</code>, the cluster can write to the repository and create
+		 * snapshots in it.
+		 * <p>
+		 * IMPORTANT: If you register the same snapshot repository with multiple
+		 * clusters, only one cluster should have write access to the repository. Having
+		 * multiple clusters write to the repository at the same time risks corrupting
+		 * the contents of the repository.
+		 * <p>
 		 * API name: {@code readonly}
 		 */
 		public final Builder readonly(@Nullable Boolean value) {

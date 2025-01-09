@@ -72,8 +72,9 @@ import javax.annotation.Nullable;
  *
  * @see <a href="../doc-files/api-spec.html#rollup.get_rollup_caps.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
-
+@Deprecated
 public class GetRollupCapsRequest extends RequestBase {
 	@Nullable
 	private final String id;
@@ -106,7 +107,7 @@ public class GetRollupCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupCapsRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetRollupCapsRequest> {

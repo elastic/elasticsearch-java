@@ -36,7 +36,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +87,9 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	private final List<String> leaderIndexPatterns;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final Integer maxOutstandingReadRequests;
 
 	@Nullable
@@ -130,6 +132,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		this.followIndexPattern = builder.followIndexPattern;
 		this.leaderIndexExclusionPatterns = ApiTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
 		this.leaderIndexPatterns = ApiTypeHelper.unmodifiable(builder.leaderIndexPatterns);
+		this.masterTimeout = builder.masterTimeout;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -183,6 +186,16 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	 */
 	public final List<String> leaderIndexPatterns() {
 		return this.leaderIndexPatterns;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -447,6 +460,9 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		private List<String> leaderIndexPatterns;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private Integer maxOutstandingReadRequests;
 
 		@Nullable
@@ -551,6 +567,25 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		public final Builder leaderIndexPatterns(String value, String... values) {
 			this.leaderIndexPatterns = _listAdd(this.leaderIndexPatterns, value, values);
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -839,7 +874,11 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutAutoFollowPatternResponse._DESERIALIZER);
 }

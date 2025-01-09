@@ -481,8 +481,43 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public StartWatcherResponse start(StartWatcherRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StartWatcherRequest, StartWatcherResponse, ErrorResponse> endpoint = (JsonEndpoint<StartWatcherRequest, StartWatcherResponse, ErrorResponse>) StartWatcherRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Start the watch service. Start the Watcher service if it is not already
+	 * running.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StartWatcherRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StartWatcherResponse start(
+			Function<StartWatcherRequest.Builder, ObjectBuilder<StartWatcherRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return start(fn.apply(new StartWatcherRequest.Builder()).build());
+	}
+
+	/**
+	 * Start the watch service. Start the Watcher service if it is not already
+	 * running.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public StartWatcherResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StartWatcherRequest._INSTANCE, StartWatcherRequest._ENDPOINT,
+		return this.transport.performRequest(new StartWatcherRequest.Builder().build(), StartWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -542,8 +577,40 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public StopWatcherResponse stop(StopWatcherRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse> endpoint = (JsonEndpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse>) StopWatcherRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Stop the watch service. Stop the Watcher service if it is running.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StopWatcherRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StopWatcherResponse stop(Function<StopWatcherRequest.Builder, ObjectBuilder<StopWatcherRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stop(fn.apply(new StopWatcherRequest.Builder()).build());
+	}
+
+	/**
+	 * Stop the watch service. Stop the Watcher service if it is running.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public StopWatcherResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest._ENDPOINT,
+		return this.transport.performRequest(new StopWatcherRequest.Builder().build(), StopWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

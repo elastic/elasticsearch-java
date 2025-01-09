@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -61,27 +62,64 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetSnapshotResponse implements JsonpSerializable {
-	private final List<SnapshotResponseItem> responses;
-
-	private final List<SnapshotInfo> snapshots;
+	private final int remaining;
 
 	private final int total;
 
-	private final int remaining;
+	@Nullable
+	private final String next;
+
+	private final List<SnapshotResponseItem> responses;
+
+	private final List<SnapshotInfo> snapshots;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetSnapshotResponse(Builder builder) {
 
+		this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.next = builder.next;
 		this.responses = ApiTypeHelper.unmodifiable(builder.responses);
 		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining");
 
 	}
 
 	public static GetSnapshotResponse of(Function<Builder, ObjectBuilder<GetSnapshotResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - The number of remaining snapshots that were not returned due to
+	 * size limits and that can be fetched by additional requests using the
+	 * <code>next</code> field value.
+	 * <p>
+	 * API name: {@code remaining}
+	 */
+	public final int remaining() {
+		return this.remaining;
+	}
+
+	/**
+	 * Required - The total number of snapshots that match the request when ignoring
+	 * the size limit or <code>after</code> query parameter.
+	 * <p>
+	 * API name: {@code total}
+	 */
+	public final int total() {
+		return this.total;
+	}
+
+	/**
+	 * If the request contained a size limit and there might be more results, a
+	 * <code>next</code> field will be added to the response. It can be used as the
+	 * <code>after</code> query parameter to fetch additional results.
+	 * <p>
+	 * API name: {@code next}
+	 */
+	@Nullable
+	public final String next() {
+		return this.next;
 	}
 
 	/**
@@ -99,27 +137,6 @@ public class GetSnapshotResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The total number of snapshots that match the request when ignoring
-	 * size limit or after query parameter.
-	 * <p>
-	 * API name: {@code total}
-	 */
-	public final int total() {
-		return this.total;
-	}
-
-	/**
-	 * Required - The number of remaining snapshots that were not returned due to
-	 * size limits and that can be fetched by additional requests using the next
-	 * field value.
-	 * <p>
-	 * API name: {@code remaining}
-	 */
-	public final int remaining() {
-		return this.remaining;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -130,6 +147,17 @@ public class GetSnapshotResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("remaining");
+		generator.write(this.remaining);
+
+		generator.writeKey("total");
+		generator.write(this.total);
+
+		if (this.next != null) {
+			generator.writeKey("next");
+			generator.write(this.next);
+
+		}
 		if (ApiTypeHelper.isDefined(this.responses)) {
 			generator.writeKey("responses");
 			generator.writeStartArray();
@@ -150,11 +178,6 @@ public class GetSnapshotResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("total");
-		generator.write(this.total);
-
-		generator.writeKey("remaining");
-		generator.write(this.remaining);
 
 	}
 
@@ -172,15 +195,53 @@ public class GetSnapshotResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetSnapshotResponse> {
+		private Integer remaining;
+
+		private Integer total;
+
+		@Nullable
+		private String next;
+
 		@Nullable
 		private List<SnapshotResponseItem> responses;
 
 		@Nullable
 		private List<SnapshotInfo> snapshots;
 
-		private Integer total;
+		/**
+		 * Required - The number of remaining snapshots that were not returned due to
+		 * size limits and that can be fetched by additional requests using the
+		 * <code>next</code> field value.
+		 * <p>
+		 * API name: {@code remaining}
+		 */
+		public final Builder remaining(int value) {
+			this.remaining = value;
+			return this;
+		}
 
-		private Integer remaining;
+		/**
+		 * Required - The total number of snapshots that match the request when ignoring
+		 * the size limit or <code>after</code> query parameter.
+		 * <p>
+		 * API name: {@code total}
+		 */
+		public final Builder total(int value) {
+			this.total = value;
+			return this;
+		}
+
+		/**
+		 * If the request contained a size limit and there might be more results, a
+		 * <code>next</code> field will be added to the response. It can be used as the
+		 * <code>after</code> query parameter to fetch additional results.
+		 * <p>
+		 * API name: {@code next}
+		 */
+		public final Builder next(@Nullable String value) {
+			this.next = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code responses}
@@ -240,29 +301,6 @@ public class GetSnapshotResponse implements JsonpSerializable {
 			return snapshots(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
-		/**
-		 * Required - The total number of snapshots that match the request when ignoring
-		 * size limit or after query parameter.
-		 * <p>
-		 * API name: {@code total}
-		 */
-		public final Builder total(int value) {
-			this.total = value;
-			return this;
-		}
-
-		/**
-		 * Required - The number of remaining snapshots that were not returned due to
-		 * size limits and that can be fetched by additional requests using the next
-		 * field value.
-		 * <p>
-		 * API name: {@code remaining}
-		 */
-		public final Builder remaining(int value) {
-			this.remaining = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -291,11 +329,12 @@ public class GetSnapshotResponse implements JsonpSerializable {
 
 	protected static void setupGetSnapshotResponseDeserializer(ObjectDeserializer<GetSnapshotResponse.Builder> op) {
 
+		op.add(Builder::remaining, JsonpDeserializer.integerDeserializer(), "remaining");
+		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+		op.add(Builder::next, JsonpDeserializer.stringDeserializer(), "next");
 		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem._DESERIALIZER),
 				"responses");
 		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");
-		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
-		op.add(Builder::remaining, JsonpDeserializer.integerDeserializer(), "remaining");
 
 	}
 

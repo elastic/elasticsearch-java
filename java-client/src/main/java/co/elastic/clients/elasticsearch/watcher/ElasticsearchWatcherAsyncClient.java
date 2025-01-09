@@ -476,9 +476,43 @@ public class ElasticsearchWatcherAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<StartWatcherResponse> start(StartWatcherRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StartWatcherRequest, StartWatcherResponse, ErrorResponse> endpoint = (JsonEndpoint<StartWatcherRequest, StartWatcherResponse, ErrorResponse>) StartWatcherRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Start the watch service. Start the Watcher service if it is not already
+	 * running.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StartWatcherRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<StartWatcherResponse> start(
+			Function<StartWatcherRequest.Builder, ObjectBuilder<StartWatcherRequest>> fn) {
+		return start(fn.apply(new StartWatcherRequest.Builder()).build());
+	}
+
+	/**
+	 * Start the watch service. Start the Watcher service if it is not already
+	 * running.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<StartWatcherResponse> start() {
-		return this.transport.performRequestAsync(StartWatcherRequest._INSTANCE, StartWatcherRequest._ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new StartWatcherRequest.Builder().build(),
+				StartWatcherRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: watcher.stats
@@ -536,9 +570,41 @@ public class ElasticsearchWatcherAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<StopWatcherResponse> stop(StopWatcherRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse> endpoint = (JsonEndpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse>) StopWatcherRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Stop the watch service. Stop the Watcher service if it is running.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StopWatcherRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<StopWatcherResponse> stop(
+			Function<StopWatcherRequest.Builder, ObjectBuilder<StopWatcherRequest>> fn) {
+		return stop(fn.apply(new StopWatcherRequest.Builder()).build());
+	}
+
+	/**
+	 * Stop the watch service. Stop the Watcher service if it is running.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<StopWatcherResponse> stop() {
-		return this.transport.performRequestAsync(StopWatcherRequest._INSTANCE, StopWatcherRequest._ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new StopWatcherRequest.Builder().build(),
+				StopWatcherRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

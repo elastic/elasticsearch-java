@@ -55,8 +55,8 @@ import java.util.Objects;
  * Check which features need to be migrated and the status of any migrations
  * that are in progress.
  * <p>
- * TIP: This API is designed for indirect use by the Upgrade Assistant. We
- * strongly recommend you use the Upgrade Assistant.
+ * TIP: This API is designed for indirect use by the Upgrade Assistant. You are
+ * strongly recommended to use the Upgrade Assistant.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#migration.get_feature_upgrade_status.Request">API

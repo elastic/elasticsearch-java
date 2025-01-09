@@ -61,8 +61,39 @@ import javax.annotation.Nullable;
 // typedef: indices.open.Request
 
 /**
- * Opens a closed index. For data streams, the API opens any closed backing
+ * Open a closed index. For data streams, the API opens any closed backing
  * indices.
+ * <p>
+ * A closed index is blocked for read/write operations and does not allow all
+ * operations that opened indices allow. It is not possible to index documents
+ * or to search for documents in a closed index. This allows closed indices to
+ * not have to maintain internal data structures for indexing or searching
+ * documents, resulting in a smaller overhead on the cluster.
+ * <p>
+ * When opening or closing an index, the master is responsible for restarting
+ * the index shards to reflect the new state of the index. The shards will then
+ * go through the normal recovery process. The data of opened or closed indices
+ * is automatically replicated by the cluster to ensure that enough shard copies
+ * are safely kept around at all times.
+ * <p>
+ * You can open and close multiple indices. An error is thrown if the request
+ * explicitly refers to a missing index. This behavior can be turned off by
+ * using the <code>ignore_unavailable=true</code> parameter.
+ * <p>
+ * By default, you must explicitly name the indices you are opening or closing.
+ * To open or close indices with <code>_all</code>, <code>*</code>, or other
+ * wildcard expressions, change the
+ * <code>action.destructive_requires_name</code> setting to <code>false</code>.
+ * This setting can also be changed with the cluster update settings API.
+ * <p>
+ * Closed indices consume a significant amount of disk-space which can cause
+ * problems in managed environments. Closing indices can be turned off with the
+ * cluster settings API by setting <code>cluster.indices.close.enable</code> to
+ * <code>false</code>.
+ * <p>
+ * Because opening or closing an index allocates its shards, the
+ * <code>wait_for_active_shards</code> setting on index creation applies to the
+ * <code>_open</code> and <code>_close</code> index actions as well.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.open.Request">API
  *      specification</a>

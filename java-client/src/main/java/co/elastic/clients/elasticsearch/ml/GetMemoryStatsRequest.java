@@ -30,7 +30,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,9 +65,6 @@ import javax.annotation.Nullable;
 
 public class GetMemoryStatsRequest extends RequestBase {
 	@Nullable
-	private final Boolean human;
-
-	@Nullable
 	private final Time masterTimeout;
 
 	@Nullable
@@ -81,7 +77,6 @@ public class GetMemoryStatsRequest extends RequestBase {
 
 	private GetMemoryStatsRequest(Builder builder) {
 
-		this.human = builder.human;
 		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = builder.nodeId;
 		this.timeout = builder.timeout;
@@ -90,18 +85,6 @@ public class GetMemoryStatsRequest extends RequestBase {
 
 	public static GetMemoryStatsRequest of(Function<Builder, ObjectBuilder<GetMemoryStatsRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Specify this query parameter to include the fields with units in the
-	 * response. Otherwise only the <code>_in_bytes</code> sizes are returned in the
-	 * response.
-	 * <p>
-	 * API name: {@code human}
-	 */
-	@Nullable
-	public final Boolean human() {
-		return this.human;
 	}
 
 	/**
@@ -147,9 +130,6 @@ public class GetMemoryStatsRequest extends RequestBase {
 			implements
 				ObjectBuilder<GetMemoryStatsRequest> {
 		@Nullable
-		private Boolean human;
-
-		@Nullable
 		private Time masterTimeout;
 
 		@Nullable
@@ -157,18 +137,6 @@ public class GetMemoryStatsRequest extends RequestBase {
 
 		@Nullable
 		private Time timeout;
-
-		/**
-		 * Specify this query parameter to include the fields with units in the
-		 * response. Otherwise only the <code>_in_bytes</code> sizes are returned in the
-		 * response.
-		 * <p>
-		 * API name: {@code human}
-		 */
-		public final Builder human(@Nullable Boolean value) {
-			this.human = value;
-			return this;
-		}
 
 		/**
 		 * Period to wait for a connection to the master node. If no response is
@@ -307,9 +275,6 @@ public class GetMemoryStatsRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.human != null) {
-					params.put("human", String.valueOf(request.human));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

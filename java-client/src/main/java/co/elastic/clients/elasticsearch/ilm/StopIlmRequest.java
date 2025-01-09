@@ -90,6 +90,9 @@ public class StopIlmRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -98,6 +101,9 @@ public class StopIlmRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -119,6 +125,9 @@ public class StopIlmRequest extends RequestBase {
 		private Time timeout;
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public final Builder masterTimeout(@Nullable Time value) {
@@ -127,6 +136,9 @@ public class StopIlmRequest extends RequestBase {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -134,6 +146,9 @@ public class StopIlmRequest extends RequestBase {
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(@Nullable Time value) {
@@ -142,6 +157,9 @@ public class StopIlmRequest extends RequestBase {
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {

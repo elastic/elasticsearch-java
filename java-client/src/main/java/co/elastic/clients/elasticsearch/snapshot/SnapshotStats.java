@@ -88,14 +88,22 @@ public class SnapshotStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code incremental}
+	 * Required - The number and size of files that still need to be copied as part
+	 * of the incremental snapshot. For completed snapshots, this property indicates
+	 * the number and size of files that were not already in the repository and were
+	 * copied as part of the incremental snapshot.
+	 * <p>
+	 * API name: {@code incremental}
 	 */
 	public final FileCountSnapshotStats incremental() {
 		return this.incremental;
 	}
 
 	/**
-	 * Required - API name: {@code start_time_in_millis}
+	 * Required - The time, in milliseconds, when the snapshot creation process
+	 * started.
+	 * <p>
+	 * API name: {@code start_time_in_millis}
 	 */
 	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
@@ -110,14 +118,20 @@ public class SnapshotStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code time_in_millis}
+	 * Required - The total time, in milliseconds, that it took for the snapshot
+	 * process to complete.
+	 * <p>
+	 * API name: {@code time_in_millis}
 	 */
 	public final long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Required - The total number and size of files that are referenced by the
+	 * snapshot.
+	 * <p>
+	 * API name: {@code total}
 	 */
 	public final FileCountSnapshotStats total() {
 		return this.total;
@@ -177,7 +191,12 @@ public class SnapshotStats implements JsonpSerializable {
 		private FileCountSnapshotStats total;
 
 		/**
-		 * Required - API name: {@code incremental}
+		 * Required - The number and size of files that still need to be copied as part
+		 * of the incremental snapshot. For completed snapshots, this property indicates
+		 * the number and size of files that were not already in the repository and were
+		 * copied as part of the incremental snapshot.
+		 * <p>
+		 * API name: {@code incremental}
 		 */
 		public final Builder incremental(FileCountSnapshotStats value) {
 			this.incremental = value;
@@ -185,7 +204,12 @@ public class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code incremental}
+		 * Required - The number and size of files that still need to be copied as part
+		 * of the incremental snapshot. For completed snapshots, this property indicates
+		 * the number and size of files that were not already in the repository and were
+		 * copied as part of the incremental snapshot.
+		 * <p>
+		 * API name: {@code incremental}
 		 */
 		public final Builder incremental(
 				Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
@@ -193,7 +217,10 @@ public class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code start_time_in_millis}
+		 * Required - The time, in milliseconds, when the snapshot creation process
+		 * started.
+		 * <p>
+		 * API name: {@code start_time_in_millis}
 		 */
 		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
@@ -216,7 +243,10 @@ public class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code time_in_millis}
+		 * Required - The total time, in milliseconds, that it took for the snapshot
+		 * process to complete.
+		 * <p>
+		 * API name: {@code time_in_millis}
 		 */
 		public final Builder timeInMillis(long value) {
 			this.timeInMillis = value;
@@ -224,7 +254,10 @@ public class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - The total number and size of files that are referenced by the
+		 * snapshot.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(FileCountSnapshotStats value) {
 			this.total = value;
@@ -232,7 +265,10 @@ public class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - The total number and size of files that are referenced by the
+		 * snapshot.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
 			return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());

@@ -104,7 +104,7 @@ public class ResolveClusterInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The skip_unavailable setting for a remote cluster.
+	 * Required - The <code>skip_unavailable</code> setting for a remote cluster.
 	 * <p>
 	 * API name: {@code skip_unavailable}
 	 */
@@ -125,8 +125,8 @@ public class ResolveClusterInfo implements JsonpSerializable {
 
 	/**
 	 * Provides error messages that are likely to occur if you do a search with this
-	 * index expression on the specified cluster (e.g., lack of security privileges
-	 * to query an index).
+	 * index expression on the specified cluster (for example, lack of security
+	 * privileges to query an index).
 	 * <p>
 	 * API name: {@code error}
 	 */
@@ -219,7 +219,7 @@ public class ResolveClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The skip_unavailable setting for a remote cluster.
+		 * Required - The <code>skip_unavailable</code> setting for a remote cluster.
 		 * <p>
 		 * API name: {@code skip_unavailable}
 		 */
@@ -241,8 +241,8 @@ public class ResolveClusterInfo implements JsonpSerializable {
 
 		/**
 		 * Provides error messages that are likely to occur if you do a search with this
-		 * index expression on the specified cluster (e.g., lack of security privileges
-		 * to query an index).
+		 * index expression on the specified cluster (for example, lack of security
+		 * privileges to query an index).
 		 * <p>
 		 * API name: {@code error}
 		 */

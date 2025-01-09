@@ -79,7 +79,9 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Required - The repository settings.
+	 * <p>
+	 * API name: {@code settings}
 	 */
 	public final AzureRepositorySettings settings() {
 		return this.settings;
@@ -106,7 +108,9 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 		private AzureRepositorySettings settings;
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(AzureRepositorySettings value) {
 			this.settings = value;
@@ -114,7 +118,9 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(
 				Function<AzureRepositorySettings.Builder, ObjectBuilder<AzureRepositorySettings>> fn) {

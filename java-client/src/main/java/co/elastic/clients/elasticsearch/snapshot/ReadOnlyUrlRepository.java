@@ -80,7 +80,9 @@ public class ReadOnlyUrlRepository extends RepositoryBase implements RepositoryV
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Required - The repository settings.
+	 * <p>
+	 * API name: {@code settings}
 	 */
 	public final ReadOnlyUrlRepositorySettings settings() {
 		return this.settings;
@@ -107,7 +109,9 @@ public class ReadOnlyUrlRepository extends RepositoryBase implements RepositoryV
 		private ReadOnlyUrlRepositorySettings settings;
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(ReadOnlyUrlRepositorySettings value) {
 			this.settings = value;
@@ -115,7 +119,9 @@ public class ReadOnlyUrlRepository extends RepositoryBase implements RepositoryV
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(
 				Function<ReadOnlyUrlRepositorySettings.Builder, ObjectBuilder<ReadOnlyUrlRepositorySettings>> fn) {

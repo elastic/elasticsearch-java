@@ -213,6 +213,91 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 		return bulkPutRole(fn.apply(new BulkPutRoleRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: security.bulk_update_api_keys
+
+	/**
+	 * Bulk update API keys. Update the attributes for multiple API keys.
+	 * <p>
+	 * IMPORTANT: It is not possible to use an API key as the authentication
+	 * credential for this API. To update API keys, the owner user's credentials are
+	 * required.
+	 * <p>
+	 * This API is similar to the update API key API but enables you to apply the
+	 * same update to multiple API keys in one API call. This operation can greatly
+	 * improve performance over making individual updates.
+	 * <p>
+	 * It is not possible to update expired or invalidated API keys.
+	 * <p>
+	 * This API supports updates to API key access scope, metadata and expiration.
+	 * The access scope of each API key is derived from the
+	 * <code>role_descriptors</code> you specify in the request and a snapshot of
+	 * the owner user's permissions at the time of the request. The snapshot of the
+	 * owner's permissions is updated automatically on every call.
+	 * <p>
+	 * IMPORTANT: If you don't specify <code>role_descriptors</code> in the request,
+	 * a call to this API might still change an API key's access scope. This change
+	 * can occur if the owner user's permissions have changed since the API key was
+	 * created or last modified.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the IDs of all
+	 * updated API keys, the IDs of API keys that already had the requested changes
+	 * and did not require an update, and error details for any failed update.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-bulk-update-api-keys.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BulkUpdateApiKeysResponse bulkUpdateApiKeys(BulkUpdateApiKeysRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkUpdateApiKeysRequest, BulkUpdateApiKeysResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkUpdateApiKeysRequest, BulkUpdateApiKeysResponse, ErrorResponse>) BulkUpdateApiKeysRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Bulk update API keys. Update the attributes for multiple API keys.
+	 * <p>
+	 * IMPORTANT: It is not possible to use an API key as the authentication
+	 * credential for this API. To update API keys, the owner user's credentials are
+	 * required.
+	 * <p>
+	 * This API is similar to the update API key API but enables you to apply the
+	 * same update to multiple API keys in one API call. This operation can greatly
+	 * improve performance over making individual updates.
+	 * <p>
+	 * It is not possible to update expired or invalidated API keys.
+	 * <p>
+	 * This API supports updates to API key access scope, metadata and expiration.
+	 * The access scope of each API key is derived from the
+	 * <code>role_descriptors</code> you specify in the request and a snapshot of
+	 * the owner user's permissions at the time of the request. The snapshot of the
+	 * owner's permissions is updated automatically on every call.
+	 * <p>
+	 * IMPORTANT: If you don't specify <code>role_descriptors</code> in the request,
+	 * a call to this API might still change an API key's access scope. This change
+	 * can occur if the owner user's permissions have changed since the API key was
+	 * created or last modified.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the IDs of all
+	 * updated API keys, the IDs of API keys that already had the requested changes
+	 * and did not require an update, and error details for any failed update.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkUpdateApiKeysRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-bulk-update-api-keys.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BulkUpdateApiKeysResponse bulkUpdateApiKeys(
+			Function<BulkUpdateApiKeysRequest.Builder, ObjectBuilder<BulkUpdateApiKeysRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulkUpdateApiKeys(fn.apply(new BulkUpdateApiKeysRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.change_password
 
 	/**
@@ -661,6 +746,74 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 			Function<CreateServiceTokenRequest.Builder, ObjectBuilder<CreateServiceTokenRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return createServiceToken(fn.apply(new CreateServiceTokenRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.delegate_pki
+
+	/**
+	 * Delegate PKI authentication. This API implements the exchange of an
+	 * X509Certificate chain for an Elasticsearch access token. The certificate
+	 * chain is validated, according to RFC 5280, by sequentially considering the
+	 * trust configuration of every installed PKI realm that has
+	 * <code>delegation.enabled</code> set to <code>true</code>. A successfully
+	 * trusted client certificate is also subject to the validation of the subject
+	 * distinguished name according to thw <code>username_pattern</code> of the
+	 * respective realm.
+	 * <p>
+	 * This API is called by smart and trusted proxies, such as Kibana, which
+	 * terminate the user's TLS session but still want to authenticate the user by
+	 * using a PKI realm—-​as if the user connected directly to Elasticsearch.
+	 * <p>
+	 * IMPORTANT: The association between the subject public key in the target
+	 * certificate and the corresponding private key is not validated. This is part
+	 * of the TLS authentication process and it is delegated to the proxy that calls
+	 * this API. The proxy is trusted to have performed the TLS authentication and
+	 * this API translates that authentication into an Elasticsearch access token.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-delegate-pki-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DelegatePkiResponse delegatePki(DelegatePkiRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DelegatePkiRequest, DelegatePkiResponse, ErrorResponse> endpoint = (JsonEndpoint<DelegatePkiRequest, DelegatePkiResponse, ErrorResponse>) DelegatePkiRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delegate PKI authentication. This API implements the exchange of an
+	 * X509Certificate chain for an Elasticsearch access token. The certificate
+	 * chain is validated, according to RFC 5280, by sequentially considering the
+	 * trust configuration of every installed PKI realm that has
+	 * <code>delegation.enabled</code> set to <code>true</code>. A successfully
+	 * trusted client certificate is also subject to the validation of the subject
+	 * distinguished name according to thw <code>username_pattern</code> of the
+	 * respective realm.
+	 * <p>
+	 * This API is called by smart and trusted proxies, such as Kibana, which
+	 * terminate the user's TLS session but still want to authenticate the user by
+	 * using a PKI realm—-​as if the user connected directly to Elasticsearch.
+	 * <p>
+	 * IMPORTANT: The association between the subject public key in the target
+	 * certificate and the corresponding private key is not validated. This is part
+	 * of the TLS authentication process and it is delegated to the proxy that calls
+	 * this API. The proxy is trusted to have performed the TLS authentication and
+	 * this API translates that authentication into an Elasticsearch access token.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DelegatePkiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-delegate-pki-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DelegatePkiResponse delegatePki(
+			Function<DelegatePkiRequest.Builder, ObjectBuilder<DelegatePkiRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return delegatePki(fn.apply(new DelegatePkiRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.delete_privileges
@@ -1900,6 +2053,193 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	public InvalidateTokenResponse invalidateToken() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new InvalidateTokenRequest.Builder().build(),
 				InvalidateTokenRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: security.oidc_authenticate
+
+	/**
+	 * Authenticate OpenID Connect. Exchange an OpenID Connect authentication
+	 * response message for an Elasticsearch internal access token and refresh token
+	 * that can be subsequently used for authentication.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-authenticate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public OidcAuthenticateResponse oidcAuthenticate(OidcAuthenticateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<OidcAuthenticateRequest, OidcAuthenticateResponse, ErrorResponse> endpoint = (JsonEndpoint<OidcAuthenticateRequest, OidcAuthenticateResponse, ErrorResponse>) OidcAuthenticateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Authenticate OpenID Connect. Exchange an OpenID Connect authentication
+	 * response message for an Elasticsearch internal access token and refresh token
+	 * that can be subsequently used for authentication.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link OidcAuthenticateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-authenticate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final OidcAuthenticateResponse oidcAuthenticate(
+			Function<OidcAuthenticateRequest.Builder, ObjectBuilder<OidcAuthenticateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return oidcAuthenticate(fn.apply(new OidcAuthenticateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.oidc_logout
+
+	/**
+	 * Logout of OpenID Connect. Invalidate an access token and a refresh token that
+	 * were generated as a response to the <code>/_security/oidc/authenticate</code>
+	 * API.
+	 * <p>
+	 * If the OpenID Connect authentication realm in Elasticsearch is accordingly
+	 * configured, the response to this call will contain a URI pointing to the end
+	 * session endpoint of the OpenID Connect Provider in order to perform single
+	 * logout.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-logout.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public OidcLogoutResponse oidcLogout(OidcLogoutRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<OidcLogoutRequest, OidcLogoutResponse, ErrorResponse> endpoint = (JsonEndpoint<OidcLogoutRequest, OidcLogoutResponse, ErrorResponse>) OidcLogoutRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Logout of OpenID Connect. Invalidate an access token and a refresh token that
+	 * were generated as a response to the <code>/_security/oidc/authenticate</code>
+	 * API.
+	 * <p>
+	 * If the OpenID Connect authentication realm in Elasticsearch is accordingly
+	 * configured, the response to this call will contain a URI pointing to the end
+	 * session endpoint of the OpenID Connect Provider in order to perform single
+	 * logout.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link OidcLogoutRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-logout.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final OidcLogoutResponse oidcLogout(Function<OidcLogoutRequest.Builder, ObjectBuilder<OidcLogoutRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return oidcLogout(fn.apply(new OidcLogoutRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.oidc_prepare_authentication
+
+	/**
+	 * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
+	 * request as a URL string based on the configuration of the OpenID Connect
+	 * authentication realm in Elasticsearch.
+	 * <p>
+	 * The response of this API is a URL pointing to the Authorization Endpoint of
+	 * the configured OpenID Connect Provider, which can be used to redirect the
+	 * browser of the user in order to continue the authentication process.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-prepare-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public OidcPrepareAuthenticationResponse oidcPrepareAuthentication(OidcPrepareAuthenticationRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<OidcPrepareAuthenticationRequest, OidcPrepareAuthenticationResponse, ErrorResponse> endpoint = (JsonEndpoint<OidcPrepareAuthenticationRequest, OidcPrepareAuthenticationResponse, ErrorResponse>) OidcPrepareAuthenticationRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
+	 * request as a URL string based on the configuration of the OpenID Connect
+	 * authentication realm in Elasticsearch.
+	 * <p>
+	 * The response of this API is a URL pointing to the Authorization Endpoint of
+	 * the configured OpenID Connect Provider, which can be used to redirect the
+	 * browser of the user in order to continue the authentication process.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link OidcPrepareAuthenticationRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-prepare-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final OidcPrepareAuthenticationResponse oidcPrepareAuthentication(
+			Function<OidcPrepareAuthenticationRequest.Builder, ObjectBuilder<OidcPrepareAuthenticationRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return oidcPrepareAuthentication(fn.apply(new OidcPrepareAuthenticationRequest.Builder()).build());
+	}
+
+	/**
+	 * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
+	 * request as a URL string based on the configuration of the OpenID Connect
+	 * authentication realm in Elasticsearch.
+	 * <p>
+	 * The response of this API is a URL pointing to the Authorization Endpoint of
+	 * the configured OpenID Connect Provider, which can be used to redirect the
+	 * browser of the user in order to continue the authentication process.
+	 * <p>
+	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
+	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
+	 * order to provide OpenID Connect based authentication, but can also be used by
+	 * other, custom web applications or other clients.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/security-api-oidc-prepare-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public OidcPrepareAuthenticationResponse oidcPrepareAuthentication() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new OidcPrepareAuthenticationRequest.Builder().build(),
+				OidcPrepareAuthenticationRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_privileges

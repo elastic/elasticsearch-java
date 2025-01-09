@@ -60,8 +60,9 @@ import javax.annotation.Nullable;
  * The configuration necessary to identify which IP geolocation provider to use
  * to download a database, as well as any provider-specific configuration
  * necessary for such downloading. At present, the only supported providers are
- * maxmind and ipinfo, and the maxmind provider requires that an account_id
- * (string) is configured. A provider (either maxmind or ipinfo) must be
+ * <code>maxmind</code> and <code>ipinfo</code>, and the <code>maxmind</code>
+ * provider requires that an <code>account_id</code> (string) is configured. A
+ * provider (either <code>maxmind</code> or <code>ipinfo</code>) must be
  * specified. The web and local providers can be returned as read only
  * configurations.
  * 

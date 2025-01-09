@@ -104,6 +104,9 @@ import javax.annotation.Nullable;
  */
 
 public class PostVotingConfigExclusionsRequest extends RequestBase {
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> nodeIds;
 
 	private final List<String> nodeNames;
@@ -115,6 +118,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 
 	private PostVotingConfigExclusionsRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.nodeIds = ApiTypeHelper.unmodifiable(builder.nodeIds);
 		this.nodeNames = ApiTypeHelper.unmodifiable(builder.nodeNames);
 		this.timeout = builder.timeout;
@@ -124,6 +128,16 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	public static PostVotingConfigExclusionsRequest of(
 			Function<Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -169,6 +183,9 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 			implements
 				ObjectBuilder<PostVotingConfigExclusionsRequest> {
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private List<String> nodeIds;
 
 		@Nullable
@@ -176,6 +193,25 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 
 		@Nullable
 		private Time timeout;
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * A comma-separated list of the persistent ids of the nodes to exclude from the
@@ -300,6 +336,9 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (ApiTypeHelper.isDefined(request.nodeNames)) {
 					params.put("node_names", request.nodeNames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

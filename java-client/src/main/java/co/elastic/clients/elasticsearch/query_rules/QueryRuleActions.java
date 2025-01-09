@@ -80,6 +80,10 @@ public class QueryRuleActions implements JsonpSerializable {
 	}
 
 	/**
+	 * The unique document IDs of the documents to apply the rule to. Only one of
+	 * <code>ids</code> or <code>docs</code> may be specified and at least one must
+	 * be specified.
+	 * <p>
 	 * API name: {@code ids}
 	 */
 	public final List<String> ids() {
@@ -87,6 +91,15 @@ public class QueryRuleActions implements JsonpSerializable {
 	}
 
 	/**
+	 * The documents to apply the rule to. Only one of <code>ids</code> or
+	 * <code>docs</code> may be specified and at least one must be specified. There
+	 * is a maximum value of 100 documents in a rule. You can specify the following
+	 * attributes for each document:
+	 * <ul>
+	 * <li><code>_index</code>: The index of the document to pin.</li>
+	 * <li><code>_id</code>: The unique document ID.</li>
+	 * </ul>
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	public final List<PinnedDoc> docs() {
@@ -146,6 +159,10 @@ public class QueryRuleActions implements JsonpSerializable {
 		private List<PinnedDoc> docs;
 
 		/**
+		 * The unique document IDs of the documents to apply the rule to. Only one of
+		 * <code>ids</code> or <code>docs</code> may be specified and at least one must
+		 * be specified.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
@@ -156,6 +173,10 @@ public class QueryRuleActions implements JsonpSerializable {
 		}
 
 		/**
+		 * The unique document IDs of the documents to apply the rule to. Only one of
+		 * <code>ids</code> or <code>docs</code> may be specified and at least one must
+		 * be specified.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds one or more values to <code>ids</code>.
@@ -166,6 +187,15 @@ public class QueryRuleActions implements JsonpSerializable {
 		}
 
 		/**
+		 * The documents to apply the rule to. Only one of <code>ids</code> or
+		 * <code>docs</code> may be specified and at least one must be specified. There
+		 * is a maximum value of 100 documents in a rule. You can specify the following
+		 * attributes for each document:
+		 * <ul>
+		 * <li><code>_index</code>: The index of the document to pin.</li>
+		 * <li><code>_id</code>: The unique document ID.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
@@ -176,6 +206,15 @@ public class QueryRuleActions implements JsonpSerializable {
 		}
 
 		/**
+		 * The documents to apply the rule to. Only one of <code>ids</code> or
+		 * <code>docs</code> may be specified and at least one must be specified. There
+		 * is a maximum value of 100 documents in a rule. You can specify the following
+		 * attributes for each document:
+		 * <ul>
+		 * <li><code>_index</code>: The index of the document to pin.</li>
+		 * <li><code>_id</code>: The unique document ID.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
@@ -186,6 +225,15 @@ public class QueryRuleActions implements JsonpSerializable {
 		}
 
 		/**
+		 * The documents to apply the rule to. Only one of <code>ids</code> or
+		 * <code>docs</code> may be specified and at least one must be specified. There
+		 * is a maximum value of 100 documents in a rule. You can specify the following
+		 * attributes for each document:
+		 * <ul>
+		 * <li><code>_index</code>: The index of the document to pin.</li>
+		 * <li><code>_id</code>: The unique document ID.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.

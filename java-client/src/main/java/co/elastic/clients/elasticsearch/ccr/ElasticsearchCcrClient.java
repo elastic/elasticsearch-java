@@ -588,8 +588,42 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CcrStatsResponse stats(CcrStatsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CcrStatsRequest, CcrStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<CcrStatsRequest, CcrStatsResponse, ErrorResponse>) CcrStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get cross-cluster replication stats. This API returns stats about
+	 * auto-following and the same shard-level stats as the get follower stats API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CcrStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CcrStatsResponse stats(Function<CcrStatsRequest.Builder, ObjectBuilder<CcrStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stats(fn.apply(new CcrStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get cross-cluster replication stats. This API returns stats about
+	 * auto-following and the same shard-level stats as the get follower stats API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CcrStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest._ENDPOINT,
+		return this.transport.performRequest(new CcrStatsRequest.Builder().build(), CcrStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

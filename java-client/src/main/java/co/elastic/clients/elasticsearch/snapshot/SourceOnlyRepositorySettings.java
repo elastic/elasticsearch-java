@@ -83,6 +83,10 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The delegated repository type. For valid values, refer to the
+	 * <code>type</code> parameter. Source repositories can use
+	 * <code>settings</code> properties for its delegated repository type.
+	 * <p>
 	 * API name: {@code delegate_type}
 	 */
 	@Nullable
@@ -91,6 +95,9 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The maximum number of snapshots the repository can contain. The default is
+	 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
+	 * <p>
 	 * API name: {@code max_number_of_snapshots}
 	 */
 	@Nullable
@@ -99,6 +106,22 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * If <code>true</code>, the repository is read-only. The cluster can retrieve
+	 * and restore snapshots from the repository but not write to the repository or
+	 * create snapshots in it.
+	 * <p>
+	 * Only a cluster with write access can create snapshots in the repository. All
+	 * other clusters connected to the repository should have the
+	 * <code>readonly</code> parameter set to <code>true</code>.
+	 * <p>
+	 * If <code>false</code>, the cluster can write to the repository and create
+	 * snapshots in it.
+	 * <p>
+	 * IMPORTANT: If you register the same snapshot repository with multiple
+	 * clusters, only one cluster should have write access to the repository. Having
+	 * multiple clusters write to the repository at the same time risks corrupting
+	 * the contents of the repository.
+	 * <p>
 	 * API name: {@code read_only}
 	 */
 	@Nullable
@@ -146,6 +169,10 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 		private Boolean readOnly;
 
 		/**
+		 * The delegated repository type. For valid values, refer to the
+		 * <code>type</code> parameter. Source repositories can use
+		 * <code>settings</code> properties for its delegated repository type.
+		 * <p>
 		 * API name: {@code delegate_type}
 		 */
 		public final Builder delegateType(@Nullable String value) {
@@ -154,6 +181,9 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * The maximum number of snapshots the repository can contain. The default is
+		 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
+		 * <p>
 		 * API name: {@code max_number_of_snapshots}
 		 */
 		public final Builder maxNumberOfSnapshots(@Nullable Integer value) {
@@ -162,6 +192,22 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * If <code>true</code>, the repository is read-only. The cluster can retrieve
+		 * and restore snapshots from the repository but not write to the repository or
+		 * create snapshots in it.
+		 * <p>
+		 * Only a cluster with write access can create snapshots in the repository. All
+		 * other clusters connected to the repository should have the
+		 * <code>readonly</code> parameter set to <code>true</code>.
+		 * <p>
+		 * If <code>false</code>, the cluster can write to the repository and create
+		 * snapshots in it.
+		 * <p>
+		 * IMPORTANT: If you register the same snapshot repository with multiple
+		 * clusters, only one cluster should have write access to the repository. Having
+		 * multiple clusters write to the repository at the same time risks corrupting
+		 * the contents of the repository.
+		 * <p>
 		 * API name: {@code read_only}
 		 */
 		public final Builder readOnly(@Nullable Boolean value) {

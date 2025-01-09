@@ -66,7 +66,9 @@ import javax.annotation.Nullable;
 /**
  * Create an anomaly detection job. If you include a
  * <code>datafeed_config</code>, you must have read index privileges on the
- * source index.
+ * source index. If you include a <code>datafeed_config</code> but do not
+ * provide a query, the datafeed uses
+ * <code>{&quot;match_all&quot;: {&quot;boost&quot;: 1}}</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_job.Request">API
  *      specification</a>

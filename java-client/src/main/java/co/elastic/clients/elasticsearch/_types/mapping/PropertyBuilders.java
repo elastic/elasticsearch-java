@@ -657,6 +657,25 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link PassthroughObjectProperty passthrough}
+	 * {@code Property} variant.
+	 */
+	public static PassthroughObjectProperty.Builder passthrough() {
+		return new PassthroughObjectProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link PassthroughObjectProperty passthrough}
+	 * {@code Property} variant.
+	 */
+	public static Property passthrough(
+			Function<PassthroughObjectProperty.Builder, ObjectBuilder<PassthroughObjectProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.passthrough(fn.apply(new PassthroughObjectProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link PercolatorProperty percolator}
 	 * {@code Property} variant.
 	 */

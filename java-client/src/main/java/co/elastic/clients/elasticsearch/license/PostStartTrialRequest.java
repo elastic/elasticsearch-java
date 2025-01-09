@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -77,6 +78,9 @@ public class PostStartTrialRequest extends RequestBase {
 	private final Boolean acknowledge;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String typeQueryString;
 
 	// ---------------------------------------------------------------------------------------------
@@ -84,6 +88,7 @@ public class PostStartTrialRequest extends RequestBase {
 	private PostStartTrialRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
+		this.masterTimeout = builder.masterTimeout;
 		this.typeQueryString = builder.typeQueryString;
 
 	}
@@ -100,6 +105,16 @@ public class PostStartTrialRequest extends RequestBase {
 	@Nullable
 	public final Boolean acknowledge() {
 		return this.acknowledge;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -123,6 +138,9 @@ public class PostStartTrialRequest extends RequestBase {
 		private Boolean acknowledge;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private String typeQueryString;
 
 		/**
@@ -133,6 +151,25 @@ public class PostStartTrialRequest extends RequestBase {
 		public final Builder acknowledge(@Nullable Boolean value) {
 			this.acknowledge = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -189,6 +226,9 @@ public class PostStartTrialRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.typeQueryString != null) {
 					params.put("type_query_string", request.typeQueryString);
 				}

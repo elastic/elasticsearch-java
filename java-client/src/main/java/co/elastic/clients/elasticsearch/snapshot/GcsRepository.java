@@ -79,7 +79,9 @@ public class GcsRepository extends RepositoryBase implements RepositoryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Required - The repository settings.
+	 * <p>
+	 * API name: {@code settings}
 	 */
 	public final GcsRepositorySettings settings() {
 		return this.settings;
@@ -106,7 +108,9 @@ public class GcsRepository extends RepositoryBase implements RepositoryVariant {
 		private GcsRepositorySettings settings;
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(GcsRepositorySettings value) {
 			this.settings = value;
@@ -114,7 +118,9 @@ public class GcsRepository extends RepositoryBase implements RepositoryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(
 				Function<GcsRepositorySettings.Builder, ObjectBuilder<GcsRepositorySettings>> fn) {

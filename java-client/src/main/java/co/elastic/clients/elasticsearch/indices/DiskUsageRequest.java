@@ -63,6 +63,14 @@ import javax.annotation.Nullable;
  * index or data stream. This API might not support indices created in previous
  * Elasticsearch versions. The result of a small index can be inaccurate as some
  * parts of an index might not be analyzed by the API.
+ * <p>
+ * NOTE: The total size of fields of the analyzed shards of the index in the
+ * response is usually smaller than the index <code>store_size</code> value
+ * because some small metadata files are ignored and some parts of data files
+ * might not be scanned by the API. Since stored fields are stored together in a
+ * compressed format, the sizes of stored fields are also estimates and can be
+ * inaccurate. The stored size of the <code>_id</code> field is likely
+ * underestimated while the <code>_source</code> field is overestimated.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.disk_usage.Request">API
  *      specification</a>

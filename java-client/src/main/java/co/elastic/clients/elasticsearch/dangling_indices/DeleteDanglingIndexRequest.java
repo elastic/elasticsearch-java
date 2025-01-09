@@ -57,11 +57,9 @@ import javax.annotation.Nullable;
 // typedef: dangling_indices.delete_dangling_index.Request
 
 /**
- * Delete a dangling index.
- * <p>
- * If Elasticsearch encounters index data that is absent from the current
- * cluster state, those indices are considered to be dangling. For example, this
- * can happen if you delete more than
+ * Delete a dangling index. If Elasticsearch encounters index data that is
+ * absent from the current cluster state, those indices are considered to be
+ * dangling. For example, this can happen if you delete more than
  * <code>cluster.indices.tombstones.size</code> indices while an Elasticsearch
  * node is offline.
  * 

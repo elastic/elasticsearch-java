@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -85,6 +86,9 @@ public class SearchShardsRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String preference;
 
 	@Nullable
@@ -99,6 +103,7 @@ public class SearchShardsRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 
@@ -170,6 +175,16 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
 	 * Specifies the node or shard the operation should be performed on. Random by
 	 * default.
 	 * <p>
@@ -213,6 +228,9 @@ public class SearchShardsRequest extends RequestBase {
 
 		@Nullable
 		private Boolean local;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private String preference;
@@ -318,6 +336,25 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Specifies the node or shard the operation should be performed on. Random by
 		 * default.
 		 * <p>
@@ -416,6 +453,9 @@ public class SearchShardsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}

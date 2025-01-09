@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -69,12 +70,16 @@ public class DeleteTrainedModelRequest extends RequestBase {
 
 	private final String modelId;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteTrainedModelRequest(Builder builder) {
 
 		this.force = builder.force;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.timeout = builder.timeout;
 
 	}
 
@@ -102,6 +107,17 @@ public class DeleteTrainedModelRequest extends RequestBase {
 		return this.modelId;
 	}
 
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -115,6 +131,9 @@ public class DeleteTrainedModelRequest extends RequestBase {
 		private Boolean force;
 
 		private String modelId;
+
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Forcefully deletes a trained model that is referenced by ingest pipelines or
@@ -135,6 +154,27 @@ public class DeleteTrainedModelRequest extends RequestBase {
 		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -209,6 +249,9 @@ public class DeleteTrainedModelRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

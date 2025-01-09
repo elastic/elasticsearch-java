@@ -77,7 +77,9 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Number of binary large objects (blobs) removed during cleanup.
+	 * Required - The number of binary large objects (blobs) removed from the
+	 * snapshot repository during cleanup operations. A non-zero value indicates
+	 * that unreferenced blobs were found and subsequently cleaned up.
 	 * <p>
 	 * API name: {@code deleted_blobs}
 	 */
@@ -86,7 +88,7 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Number of bytes freed by cleanup operations.
+	 * Required - The number of bytes freed by cleanup operations.
 	 * <p>
 	 * API name: {@code deleted_bytes}
 	 */
@@ -132,7 +134,9 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 		private Long deletedBytes;
 
 		/**
-		 * Required - Number of binary large objects (blobs) removed during cleanup.
+		 * Required - The number of binary large objects (blobs) removed from the
+		 * snapshot repository during cleanup operations. A non-zero value indicates
+		 * that unreferenced blobs were found and subsequently cleaned up.
 		 * <p>
 		 * API name: {@code deleted_blobs}
 		 */
@@ -142,7 +146,7 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Number of bytes freed by cleanup operations.
+		 * Required - The number of bytes freed by cleanup operations.
 		 * <p>
 		 * API name: {@code deleted_bytes}
 		 */

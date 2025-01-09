@@ -81,7 +81,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/delete-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -109,7 +109,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/delete-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -135,7 +135,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -164,7 +164,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -188,7 +188,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -206,6 +206,9 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
 	 * supported.
 	 * <p>
+	 * If you specify a node that is offline, it will be prepared for shut down when
+	 * it rejoins the cluster.
+	 * <p>
 	 * If the operator privileges feature is enabled, you must be an operator to use
 	 * this API.
 	 * <p>
@@ -222,7 +225,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 * node shutdown status to determine when it is safe to stop Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -239,6 +242,9 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
 	 * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
 	 * supported.
+	 * <p>
+	 * If you specify a node that is offline, it will be prepared for shut down when
+	 * it rejoins the cluster.
 	 * <p>
 	 * If the operator privileges feature is enabled, you must be an operator to use
 	 * this API.
@@ -259,7 +265,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
