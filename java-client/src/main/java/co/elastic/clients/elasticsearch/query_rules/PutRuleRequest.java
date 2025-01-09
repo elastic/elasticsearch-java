@@ -62,6 +62,13 @@ import javax.annotation.Nullable;
 /**
  * Create or update a query rule. Create or update a query rule within a query
  * ruleset.
+ * <p>
+ * IMPORTANT: Due to limitations within pinned queries, you can only pin
+ * documents using ids or docs, but cannot use both in single rule. It is
+ * advised to use one or the other in query rulesets, to avoid errors.
+ * Additionally, pinned queries have a maximum limit of 100 pinned hits. If
+ * multiple matching rules pin more than 100 documents, only the first 100
+ * documents are pinned in the order they are specified in the ruleset.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.put_rule.Request">API
  *      specification</a>
@@ -99,14 +106,21 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code actions}
+	 * Required - The actions to take when the rule is matched. The format of this
+	 * action depends on the rule type.
+	 * <p>
+	 * API name: {@code actions}
 	 */
 	public final QueryRuleActions actions() {
 		return this.actions;
 	}
 
 	/**
-	 * Required - API name: {@code criteria}
+	 * Required - The criteria that must be met for the rule to be applied. If
+	 * multiple criteria are specified for a rule, all criteria must be met for the
+	 * rule to be applied.
+	 * <p>
+	 * API name: {@code criteria}
 	 */
 	public final List<QueryRuleCriteria> criteria() {
 		return this.criteria;
@@ -122,7 +136,7 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Required - The unique identifier of the query rule within the specified
-	 * ruleset to be created or updated
+	 * ruleset to be created or updated.
 	 * <p>
 	 * API name: {@code rule_id}
 	 */
@@ -132,7 +146,7 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Required - The unique identifier of the query ruleset containing the rule to
-	 * be created or updated
+	 * be created or updated.
 	 * <p>
 	 * API name: {@code ruleset_id}
 	 */
@@ -141,7 +155,9 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - The type of rule.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final QueryRuleType type() {
 		return this.type;
@@ -202,7 +218,10 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		private QueryRuleType type;
 
 		/**
-		 * Required - API name: {@code actions}
+		 * Required - The actions to take when the rule is matched. The format of this
+		 * action depends on the rule type.
+		 * <p>
+		 * API name: {@code actions}
 		 */
 		public final Builder actions(QueryRuleActions value) {
 			this.actions = value;
@@ -210,14 +229,21 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code actions}
+		 * Required - The actions to take when the rule is matched. The format of this
+		 * action depends on the rule type.
+		 * <p>
+		 * API name: {@code actions}
 		 */
 		public final Builder actions(Function<QueryRuleActions.Builder, ObjectBuilder<QueryRuleActions>> fn) {
 			return this.actions(fn.apply(new QueryRuleActions.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code criteria}
+		 * Required - The criteria that must be met for the rule to be applied. If
+		 * multiple criteria are specified for a rule, all criteria must be met for the
+		 * rule to be applied.
+		 * <p>
+		 * API name: {@code criteria}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>criteria</code>.
 		 */
@@ -227,7 +253,11 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code criteria}
+		 * Required - The criteria that must be met for the rule to be applied. If
+		 * multiple criteria are specified for a rule, all criteria must be met for the
+		 * rule to be applied.
+		 * <p>
+		 * API name: {@code criteria}
 		 * <p>
 		 * Adds one or more values to <code>criteria</code>.
 		 */
@@ -237,7 +267,11 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code criteria}
+		 * Required - The criteria that must be met for the rule to be applied. If
+		 * multiple criteria are specified for a rule, all criteria must be met for the
+		 * rule to be applied.
+		 * <p>
+		 * API name: {@code criteria}
 		 * <p>
 		 * Adds a value to <code>criteria</code> using a builder lambda.
 		 */
@@ -255,7 +289,7 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Required - The unique identifier of the query rule within the specified
-		 * ruleset to be created or updated
+		 * ruleset to be created or updated.
 		 * <p>
 		 * API name: {@code rule_id}
 		 */
@@ -266,7 +300,7 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Required - The unique identifier of the query ruleset containing the rule to
-		 * be created or updated
+		 * be created or updated.
 		 * <p>
 		 * API name: {@code ruleset_id}
 		 */
@@ -276,7 +310,9 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - The type of rule.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(QueryRuleType value) {
 			this.type = value;

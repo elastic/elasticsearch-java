@@ -135,6 +135,7 @@ import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchAp
 import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
 import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownClient;
+import co.elastic.clients.elasticsearch.simulate.ElasticsearchSimulateClient;
 import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
@@ -308,6 +309,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchShutdownClient shutdown() {
 		return new ElasticsearchShutdownClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchSimulateClient simulate() {
+		return new ElasticsearchSimulateClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSlmClient slm() {
@@ -1334,10 +1339,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: info
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster info. Get basic build, version, and cluster information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/rest-api-root.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public InfoResponse info() throws IOException, ElasticsearchException {

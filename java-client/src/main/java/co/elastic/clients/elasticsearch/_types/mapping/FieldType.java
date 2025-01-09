@@ -73,6 +73,8 @@ public enum FieldType implements JsonEnum {
 
 	Object("object"),
 
+	Passthrough("passthrough"),
+
 	Version("version"),
 
 	Murmur3("murmur3"),

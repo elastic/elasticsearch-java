@@ -62,6 +62,23 @@ import javax.annotation.Nullable;
  * Refresh an index. A refresh makes recent operations performed on one or more
  * indices available for search. For data streams, the API runs the refresh
  * operation on the stream’s backing indices.
+ * <p>
+ * By default, Elasticsearch periodically refreshes indices every second, but
+ * only on indices that have received one search request or more in the last 30
+ * seconds. You can change this default interval with the
+ * <code>index.refresh_interval</code> setting.
+ * <p>
+ * Refresh requests are synchronous and do not return a response until the
+ * refresh operation completes.
+ * <p>
+ * Refreshes are resource-intensive. To ensure good cluster performance, it's
+ * recommended to wait for Elasticsearch's periodic refresh rather than
+ * performing an explicit refresh when possible.
+ * <p>
+ * If your application workflow indexes documents and then runs a search to
+ * retrieve the indexed document, it's recommended to use the index API's
+ * <code>refresh=wait_for</code> query parameter option. This option ensures the
+ * indexing operation waits for a periodic refresh before running the search.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.refresh.Request">API
  *      specification</a>

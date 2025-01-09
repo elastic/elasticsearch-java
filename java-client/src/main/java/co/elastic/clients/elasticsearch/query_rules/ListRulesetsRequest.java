@@ -83,7 +83,7 @@ public class ListRulesetsRequest extends RequestBase {
 	}
 
 	/**
-	 * Starting offset (default: 0)
+	 * The offset from the first result to fetch.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -93,7 +93,7 @@ public class ListRulesetsRequest extends RequestBase {
 	}
 
 	/**
-	 * specifies a max number of results to get
+	 * The maximum number of results to retrieve.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -118,7 +118,7 @@ public class ListRulesetsRequest extends RequestBase {
 		private Integer size;
 
 		/**
-		 * Starting offset (default: 0)
+		 * The offset from the first result to fetch.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -128,7 +128,7 @@ public class ListRulesetsRequest extends RequestBase {
 		}
 
 		/**
-		 * specifies a max number of results to get
+		 * The maximum number of results to retrieve.
 		 * <p>
 		 * API name: {@code size}
 		 */

@@ -88,8 +88,9 @@ import javax.annotation.Nullable;
  *
  * @see <a href="../doc-files/api-spec.html#rollup.delete_job.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
-
+@Deprecated
 public class DeleteJobRequest extends RequestBase {
 	private final String id;
 
@@ -119,7 +120,7 @@ public class DeleteJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteJobRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteJobRequest> {

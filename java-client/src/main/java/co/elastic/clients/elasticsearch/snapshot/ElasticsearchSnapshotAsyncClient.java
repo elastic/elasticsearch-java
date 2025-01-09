@@ -75,7 +75,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clean-up-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -95,7 +95,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CleanupRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clean-up-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -111,7 +111,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * the same repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clone-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +130,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clone-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -146,7 +146,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -165,7 +165,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -225,7 +225,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Delete snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -243,7 +243,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -261,7 +261,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * place.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -282,7 +282,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -297,7 +297,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Get snapshot information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -315,7 +315,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -330,7 +330,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -348,7 +348,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -361,7 +361,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -425,7 +425,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * NOTE: This API may not work correctly in a mixed-version cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-repo-integrity-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -493,7 +493,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoryVerifyIntegrityRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-repo-integrity-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -533,7 +533,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * restore the Enterprise Search encryption key before you restore the snapshot.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/restore-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -576,7 +576,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RestoreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/restore-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -605,7 +605,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -637,7 +637,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -664,7 +664,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -680,7 +680,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * snapshot repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -699,7 +699,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link VerifyRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

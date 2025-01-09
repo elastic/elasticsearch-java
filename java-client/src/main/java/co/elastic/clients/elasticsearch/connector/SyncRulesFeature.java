@@ -78,6 +78,8 @@ public class SyncRulesFeature implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether advanced sync rules are enabled.
+	 * <p>
 	 * API name: {@code advanced}
 	 */
 	@Nullable
@@ -86,6 +88,8 @@ public class SyncRulesFeature implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether basic sync rules are enabled.
+	 * <p>
 	 * API name: {@code basic}
 	 */
 	@Nullable
@@ -136,6 +140,8 @@ public class SyncRulesFeature implements JsonpSerializable {
 		private FeatureEnabled basic;
 
 		/**
+		 * Indicates whether advanced sync rules are enabled.
+		 * <p>
 		 * API name: {@code advanced}
 		 */
 		public final Builder advanced(@Nullable FeatureEnabled value) {
@@ -144,6 +150,8 @@ public class SyncRulesFeature implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether advanced sync rules are enabled.
+		 * <p>
 		 * API name: {@code advanced}
 		 */
 		public final Builder advanced(Function<FeatureEnabled.Builder, ObjectBuilder<FeatureEnabled>> fn) {
@@ -151,6 +159,8 @@ public class SyncRulesFeature implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether basic sync rules are enabled.
+		 * <p>
 		 * API name: {@code basic}
 		 */
 		public final Builder basic(@Nullable FeatureEnabled value) {
@@ -159,6 +169,8 @@ public class SyncRulesFeature implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether basic sync rules are enabled.
+		 * <p>
 		 * API name: {@code basic}
 		 */
 		public final Builder basic(Function<FeatureEnabled.Builder, ObjectBuilder<FeatureEnabled>> fn) {

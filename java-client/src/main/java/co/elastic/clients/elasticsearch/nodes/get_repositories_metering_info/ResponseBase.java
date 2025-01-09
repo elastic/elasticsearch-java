@@ -76,9 +76,8 @@ public abstract class ResponseBase extends NodesResponseBase {
 	}
 
 	/**
-	 * Required - Name of the cluster. Based on the <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#cluster-name">Cluster
-	 * name setting</a>.
+	 * Required - Name of the cluster. Based on the <code>cluster.name</code>
+	 * setting.
 	 * <p>
 	 * API name: {@code cluster_name}
 	 */
@@ -124,9 +123,8 @@ public abstract class ResponseBase extends NodesResponseBase {
 		private Map<String, RepositoryMeteringInformation> nodes;
 
 		/**
-		 * Required - Name of the cluster. Based on the <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#cluster-name">Cluster
-		 * name setting</a>.
+		 * Required - Name of the cluster. Based on the <code>cluster.name</code>
+		 * setting.
 		 * <p>
 		 * API name: {@code cluster_name}
 		 */

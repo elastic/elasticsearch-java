@@ -81,7 +81,9 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.put_job.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
+@Deprecated
 @JsonpDeserializable
 public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	private final String cron;
@@ -300,7 +302,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutJobRequest> {
 		private String cron;
 

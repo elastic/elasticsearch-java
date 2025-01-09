@@ -79,6 +79,18 @@ import javax.annotation.Nullable;
  * </li>
  * </ul>
  * <p>
+ * You can do make an index read-only with the following request using the add
+ * index block API:
+ * 
+ * <pre>
+ * <code>PUT /my_source_index/_block/write
+ * </code>
+ * </pre>
+ * <p>
+ * The current write index on a data stream cannot be split. In order to split
+ * the current write index, the data stream must first be rolled over so that a
+ * new write index is created and then the previous write index can be split.
+ * <p>
  * The number of times the index can be split (and the number of shards that
  * each original shard can be split into) is determined by the
  * <code>index.number_of_routing_shards</code> setting. The number of routing

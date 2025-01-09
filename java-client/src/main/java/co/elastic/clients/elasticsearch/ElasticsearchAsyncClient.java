@@ -134,6 +134,7 @@ import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchAp
 import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsAsyncClient;
 import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityAsyncClient;
 import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownAsyncClient;
+import co.elastic.clients.elasticsearch.simulate.ElasticsearchSimulateAsyncClient;
 import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmAsyncClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotAsyncClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
@@ -307,6 +308,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchShutdownAsyncClient shutdown() {
 		return new ElasticsearchShutdownAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchSimulateAsyncClient simulate() {
+		return new ElasticsearchSimulateAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSlmAsyncClient slm() {
@@ -1315,10 +1320,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: info
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster info. Get basic build, version, and cluster information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/rest-api-root.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<InfoResponse> info() {

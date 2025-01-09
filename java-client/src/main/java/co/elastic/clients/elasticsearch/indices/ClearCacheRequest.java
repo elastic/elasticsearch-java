@@ -61,6 +61,11 @@ import javax.annotation.Nullable;
 /**
  * Clear the cache. Clear the cache of one or more indices. For data streams,
  * the API clears the caches of the stream's backing indices.
+ * <p>
+ * By default, the clear cache API clears all caches. To clear only specific
+ * caches, use the <code>fielddata</code>, <code>query</code>, or
+ * <code>request</code> parameters. To clear the cache only of specific fields,
+ * use the <code>fields</code> parameter.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.clear_cache.Request">API
  *      specification</a>

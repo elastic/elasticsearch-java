@@ -87,7 +87,9 @@ public class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cluster_name}
+	 * Required - The responding cluster's name.
+	 * <p>
+	 * API name: {@code cluster_name}
 	 */
 	public final String clusterName() {
 		return this.clusterName;
@@ -101,7 +103,9 @@ public class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - The responding node's name.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
@@ -115,7 +119,9 @@ public class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * Required - The running version of Elasticsearch.
+	 * <p>
+	 * API name: {@code version}
 	 */
 	public final ElasticsearchVersionInfo version() {
 		return this.version;
@@ -172,7 +178,9 @@ public class InfoResponse implements JsonpSerializable {
 		private ElasticsearchVersionInfo version;
 
 		/**
-		 * Required - API name: {@code cluster_name}
+		 * Required - The responding cluster's name.
+		 * <p>
+		 * API name: {@code cluster_name}
 		 */
 		public final Builder clusterName(String value) {
 			this.clusterName = value;
@@ -188,7 +196,9 @@ public class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - The responding node's name.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
@@ -204,7 +214,9 @@ public class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * Required - The running version of Elasticsearch.
+		 * <p>
+		 * API name: {@code version}
 		 */
 		public final Builder version(ElasticsearchVersionInfo value) {
 			this.version = value;
@@ -212,7 +224,9 @@ public class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * Required - The running version of Elasticsearch.
+		 * <p>
+		 * API name: {@code version}
 		 */
 		public final Builder version(
 				Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_template.Request
 
 /**
- * Deletes a legacy index template.
+ * Delete a legacy index template.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_template.Request">API
  *      specification</a>

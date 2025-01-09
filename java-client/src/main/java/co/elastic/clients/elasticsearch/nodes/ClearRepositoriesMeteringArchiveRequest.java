@@ -87,9 +87,8 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Specifies the maximum <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-repositories-metering-api.html#get-repositories-metering-api-response-body">archive_version</a>
-	 * to be cleared from the archive.
+	 * Required - Specifies the maximum <code>archive_version</code> to be cleared
+	 * from the archive.
 	 * <p>
 	 * API name: {@code max_archive_version}
 	 */
@@ -99,8 +98,7 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 
 	/**
 	 * Required - Comma-separated list of node IDs or names used to limit returned
-	 * information. All the nodes selective options are explained <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html#cluster-nodes">here</a>.
+	 * information.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -122,9 +120,8 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 		private List<String> nodeId;
 
 		/**
-		 * Required - Specifies the maximum <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-repositories-metering-api.html#get-repositories-metering-api-response-body">archive_version</a>
-		 * to be cleared from the archive.
+		 * Required - Specifies the maximum <code>archive_version</code> to be cleared
+		 * from the archive.
 		 * <p>
 		 * API name: {@code max_archive_version}
 		 */
@@ -135,8 +132,7 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 
 		/**
 		 * Required - Comma-separated list of node IDs or names used to limit returned
-		 * information. All the nodes selective options are explained <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html#cluster-nodes">here</a>.
+		 * information.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -149,8 +145,7 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 
 		/**
 		 * Required - Comma-separated list of node IDs or names used to limit returned
-		 * information. All the nodes selective options are explained <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html#cluster-nodes">here</a>.
+		 * information.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>

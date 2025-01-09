@@ -66,6 +66,11 @@ import javax.annotation.Nullable;
  * are running on a cluster. A shard-level search request that accesses a given
  * field, even if multiple times during that request, is counted as a single
  * use.
+ * <p>
+ * The response body reports the per-shard usage count of the data structures
+ * that back the fields in the index. A given request will increment each count
+ * by a maximum value of 1, even if the request accesses the same field multiple
+ * times.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.field_usage_stats.Request">API

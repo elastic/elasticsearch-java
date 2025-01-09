@@ -140,6 +140,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		Object("object"),
 
+		Passthrough("passthrough"),
+
 		Percolator("percolator"),
 
 		Point("point"),
@@ -813,6 +815,23 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	}
 
 	/**
+	 * Is this variant instance of kind {@code passthrough}?
+	 */
+	public boolean isPassthrough() {
+		return _kind == Kind.Passthrough;
+	}
+
+	/**
+	 * Get the {@code passthrough} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code passthrough} kind.
+	 */
+	public PassthroughObjectProperty passthrough() {
+		return TaggedUnionUtils.get(this, Kind.Passthrough);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code percolator}?
 	 */
 	public boolean isPercolator() {
@@ -1483,6 +1502,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.object(fn.apply(new ObjectProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> passthrough(PassthroughObjectProperty v) {
+			this._kind = Kind.Passthrough;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> passthrough(
+				Function<PassthroughObjectProperty.Builder, ObjectBuilder<PassthroughObjectProperty>> fn) {
+			return this.passthrough(fn.apply(new PassthroughObjectProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> percolator(PercolatorProperty v) {
 			this._kind = Kind.Percolator;
 			this._value = v;
@@ -1703,6 +1733,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::murmur3, Murmur3HashProperty._DESERIALIZER, "murmur3");
 		op.add(Builder::nested, NestedProperty._DESERIALIZER, "nested");
 		op.add(Builder::object, ObjectProperty._DESERIALIZER, "object");
+		op.add(Builder::passthrough, PassthroughObjectProperty._DESERIALIZER, "passthrough");
 		op.add(Builder::percolator, PercolatorProperty._DESERIALIZER, "percolator");
 		op.add(Builder::point, PointProperty._DESERIALIZER, "point");
 		op.add(Builder::rankFeature, RankFeatureProperty._DESERIALIZER, "rank_feature");

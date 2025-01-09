@@ -143,7 +143,8 @@ public class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names
+	 * A comma-separated list of data streams, indices, and aliases to clear from
+	 * the cache. It supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -244,7 +245,8 @@ public class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of data streams, indices, and aliases to clear from
+		 * the cache. It supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -256,7 +258,8 @@ public class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of data streams, indices, and aliases to clear from
+		 * the cache. It supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

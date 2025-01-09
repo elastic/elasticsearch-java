@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.elasticsearch.ingest.simulate.SimulateDocumentResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

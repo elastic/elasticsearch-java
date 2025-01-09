@@ -84,6 +84,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Evaluation results for a classification analysis. It outputs a prediction
+	 * that identifies to which of the classes each document belongs.
+	 * <p>
 	 * API name: {@code classification}
 	 */
 	@Nullable
@@ -92,6 +95,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Evaluation results for an outlier detection analysis. It outputs the
+	 * probability that each document is an outlier.
+	 * <p>
 	 * API name: {@code outlier_detection}
 	 */
 	@Nullable
@@ -100,6 +106,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Evaluation results for a regression analysis which outputs a prediction of
+	 * values.
+	 * <p>
 	 * API name: {@code regression}
 	 */
 	@Nullable
@@ -160,6 +169,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		private DataframeRegressionSummary regression;
 
 		/**
+		 * Evaluation results for a classification analysis. It outputs a prediction
+		 * that identifies to which of the classes each document belongs.
+		 * <p>
 		 * API name: {@code classification}
 		 */
 		public final Builder classification(@Nullable DataframeClassificationSummary value) {
@@ -168,6 +180,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Evaluation results for a classification analysis. It outputs a prediction
+		 * that identifies to which of the classes each document belongs.
+		 * <p>
 		 * API name: {@code classification}
 		 */
 		public final Builder classification(
@@ -176,6 +191,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Evaluation results for an outlier detection analysis. It outputs the
+		 * probability that each document is an outlier.
+		 * <p>
 		 * API name: {@code outlier_detection}
 		 */
 		public final Builder outlierDetection(@Nullable DataframeOutlierDetectionSummary value) {
@@ -184,6 +202,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Evaluation results for an outlier detection analysis. It outputs the
+		 * probability that each document is an outlier.
+		 * <p>
 		 * API name: {@code outlier_detection}
 		 */
 		public final Builder outlierDetection(
@@ -192,6 +213,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Evaluation results for a regression analysis which outputs a prediction of
+		 * values.
+		 * <p>
 		 * API name: {@code regression}
 		 */
 		public final Builder regression(@Nullable DataframeRegressionSummary value) {
@@ -200,6 +224,9 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Evaluation results for a regression analysis which outputs a prediction of
+		 * values.
+		 * <p>
 		 * API name: {@code regression}
 		 */
 		public final Builder regression(

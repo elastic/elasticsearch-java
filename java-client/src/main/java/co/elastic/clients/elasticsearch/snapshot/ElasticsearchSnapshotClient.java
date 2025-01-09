@@ -73,7 +73,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clean-up-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -94,7 +94,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CleanupRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clean-up-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -111,7 +111,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * the same repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clone-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +130,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/clone-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -166,7 +166,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -229,7 +229,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Delete snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -247,7 +247,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -266,7 +266,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * place.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -288,7 +288,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -304,7 +304,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Get snapshot information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -322,7 +322,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -337,7 +337,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -356,7 +356,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -370,7 +370,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -434,7 +434,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * NOTE: This API may not work correctly in a mixed-version cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-repo-integrity-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -502,7 +502,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoryVerifyIntegrityRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-repo-integrity-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -543,7 +543,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * restore the Enterprise Search encryption key before you restore the snapshot.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/restore-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -586,7 +586,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RestoreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/restore-snapshot-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -615,7 +615,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -647,7 +647,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -675,7 +675,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-snapshot-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -691,7 +691,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * snapshot repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -711,7 +711,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link VerifyRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/verify-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -85,6 +85,8 @@ public class StartIlmRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -93,6 +95,8 @@ public class StartIlmRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -114,6 +118,8 @@ public class StartIlmRequest extends RequestBase {
 		private Time timeout;
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public final Builder masterTimeout(@Nullable Time value) {
@@ -122,6 +128,8 @@ public class StartIlmRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -129,6 +137,8 @@ public class StartIlmRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(@Nullable Time value) {
@@ -137,6 +147,8 @@ public class StartIlmRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {

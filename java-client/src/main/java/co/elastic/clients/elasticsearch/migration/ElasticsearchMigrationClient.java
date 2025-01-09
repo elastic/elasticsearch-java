@@ -72,11 +72,11 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * and index level settings that use deprecated features that will be removed or
 	 * changed in the next major version.
 	 * <p>
-	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
+	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -92,14 +92,14 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * and index level settings that use deprecated features that will be removed or
 	 * changed in the next major version.
 	 * <p>
-	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
+	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeprecationsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -114,11 +114,11 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * and index level settings that use deprecated features that will be removed or
 	 * changed in the next major version.
 	 * <p>
-	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
+	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -135,11 +135,11 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * Check which features need to be migrated and the status of any migrations
 	 * that are in progress.
 	 * <p>
-	 * TIP: This API is designed for indirect use by the Upgrade Assistant. We
-	 * strongly recommend you use the Upgrade Assistant.
+	 * TIP: This API is designed for indirect use by the Upgrade Assistant. You are
+	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-feature-upgrade.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/feature-migration-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetFeatureUpgradeStatusResponse getFeatureUpgradeStatus() throws IOException, ElasticsearchException {
@@ -161,7 +161,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * strongly recommend you use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-feature-upgrade.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/feature-migration-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public PostFeatureUpgradeResponse postFeatureUpgrade() throws IOException, ElasticsearchException {

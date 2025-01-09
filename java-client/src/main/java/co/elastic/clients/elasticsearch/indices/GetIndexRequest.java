@@ -61,8 +61,8 @@ import javax.annotation.Nullable;
 // typedef: indices.get.Request
 
 /**
- * Get index information. Returns information about one or more indices. For
- * data streams, the API returns information about the stream’s backing indices.
+ * Get index information. Get information about one or more indices. For data
+ * streams, the API returns information about the stream’s backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get.Request">API
  *      specification</a>

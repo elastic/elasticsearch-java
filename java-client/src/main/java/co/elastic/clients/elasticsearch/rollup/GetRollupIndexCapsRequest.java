@@ -72,8 +72,9 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "../doc-files/api-spec.html#rollup.get_rollup_index_caps.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
-
+@Deprecated
 public class GetRollupIndexCapsRequest extends RequestBase {
 	private final List<String> index;
 
@@ -104,7 +105,7 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupIndexCapsRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetRollupIndexCapsRequest> {

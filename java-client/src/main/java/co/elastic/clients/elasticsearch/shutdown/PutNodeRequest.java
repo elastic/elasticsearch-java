@@ -64,6 +64,9 @@ import javax.annotation.Nullable;
  * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
  * supported.
  * <p>
+ * If you specify a node that is offline, it will be prepared for shut down when
+ * it rejoins the cluster.
+ * <p>
  * If the operator privileges feature is enabled, you must be an operator to use
  * this API.
  * <p>
@@ -136,7 +139,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -147,7 +150,9 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The node id of node to be shut down
+	 * Required - The node identifier. This parameter is not validated against the
+	 * cluster's active nodes. This enables you to register a node for shut down
+	 * while it is offline. No error is thrown if you specify an invalid node ID.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -181,8 +186,8 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -280,7 +285,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -291,7 +296,9 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The node id of node to be shut down
+		 * Required - The node identifier. This parameter is not validated against the
+		 * cluster's active nodes. This enables you to register a node for shut down
+		 * while it is offline. No error is thrown if you specify an invalid node ID.
 		 * <p>
 		 * API name: {@code node_id}
 		 */
@@ -327,8 +334,8 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

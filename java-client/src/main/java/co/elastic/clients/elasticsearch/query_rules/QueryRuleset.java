@@ -74,7 +74,7 @@ public abstract class QueryRuleset implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Query Ruleset unique identifier
+	 * Required - A unique identifier for the ruleset.
 	 * <p>
 	 * API name: {@code ruleset_id}
 	 */
@@ -83,7 +83,7 @@ public abstract class QueryRuleset implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Rules associated with the query ruleset
+	 * Required - Rules associated with the query ruleset.
 	 * <p>
 	 * API name: {@code rules}
 	 */
@@ -131,7 +131,7 @@ public abstract class QueryRuleset implements JsonpSerializable {
 		private List<QueryRule> rules;
 
 		/**
-		 * Required - Query Ruleset unique identifier
+		 * Required - A unique identifier for the ruleset.
 		 * <p>
 		 * API name: {@code ruleset_id}
 		 */
@@ -141,7 +141,7 @@ public abstract class QueryRuleset implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Rules associated with the query ruleset
+		 * Required - Rules associated with the query ruleset.
 		 * <p>
 		 * API name: {@code rules}
 		 * <p>
@@ -153,7 +153,7 @@ public abstract class QueryRuleset implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Rules associated with the query ruleset
+		 * Required - Rules associated with the query ruleset.
 		 * <p>
 		 * API name: {@code rules}
 		 * <p>
@@ -165,7 +165,7 @@ public abstract class QueryRuleset implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Rules associated with the query ruleset
+		 * Required - Rules associated with the query ruleset.
 		 * <p>
 		 * API name: {@code rules}
 		 * <p>

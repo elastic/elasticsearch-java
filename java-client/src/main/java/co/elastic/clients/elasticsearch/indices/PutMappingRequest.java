@@ -70,10 +70,41 @@ import javax.annotation.Nullable;
 // typedef: indices.put_mapping.Request
 
 /**
- * Update field mappings. Adds new fields to an existing data stream or index.
- * You can also use this API to change the search settings of existing fields.
- * For data streams, these changes are applied to all backing indices by
- * default.
+ * Update field mappings. Add new fields to an existing data stream or index.
+ * You can also use this API to change the search settings of existing fields
+ * and add new properties to existing object fields. For data streams, these
+ * changes are applied to all backing indices by default.
+ * <p>
+ * <strong>Add multi-fields to an existing field</strong>
+ * <p>
+ * Multi-fields let you index the same field in different ways. You can use this
+ * API to update the fields mapping parameter and enable multi-fields for an
+ * existing field. WARNING: If an index (or data stream) contains documents when
+ * you add a multi-field, those documents will not have values for the new
+ * multi-field. You can populate the new multi-field with the update by query
+ * API.
+ * <p>
+ * <strong>Change supported mapping parameters for an existing field</strong>
+ * <p>
+ * The documentation for each mapping parameter indicates whether you can update
+ * it for an existing field using this API. For example, you can use the update
+ * mapping API to update the <code>ignore_above</code> parameter.
+ * <p>
+ * <strong>Change the mapping of an existing field</strong>
+ * <p>
+ * Except for supported mapping parameters, you can't change the mapping or
+ * field type of an existing field. Changing an existing field could invalidate
+ * data that's already indexed.
+ * <p>
+ * If you need to change the mapping of a field in a data stream's backing
+ * indices, refer to documentation about modifying data streams. If you need to
+ * change the mapping of a field in other indices, create a new index with the
+ * correct mapping and reindex your data into that index.
+ * <p>
+ * <strong>Rename a field</strong>
+ * <p>
+ * Renaming a field would invalidate data already indexed under the old field
+ * name. Instead, add an alias field to create an alternate field name.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_mapping.Request">API
  *      specification</a>

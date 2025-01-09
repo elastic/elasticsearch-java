@@ -94,9 +94,7 @@ public class CacheStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
+	 * The names of the nodes in the cluster to target.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -135,9 +133,7 @@ public class CacheStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * The names of the nodes in the cluster to target.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -149,9 +145,7 @@ public class CacheStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * The names of the nodes in the cluster to target.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>

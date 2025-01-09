@@ -107,42 +107,58 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code removed_legacy_template}
+	 * Required - The name of the legacy index template that was deleted. This
+	 * information is missing if no legacy index templates were deleted.
+	 * <p>
+	 * API name: {@code removed_legacy_template}
 	 */
 	public final String removedLegacyTemplate() {
 		return this.removedLegacyTemplate;
 	}
 
 	/**
-	 * Required - API name: {@code migrated_ilm_policies}
+	 * Required - The ILM policies that were updated.
+	 * <p>
+	 * API name: {@code migrated_ilm_policies}
 	 */
 	public final List<String> migratedIlmPolicies() {
 		return this.migratedIlmPolicies;
 	}
 
 	/**
-	 * Required - API name: {@code migrated_indices}
+	 * Required - The indices that were migrated to tier preference routing.
+	 * <p>
+	 * API name: {@code migrated_indices}
 	 */
 	public final List<String> migratedIndices() {
 		return this.migratedIndices;
 	}
 
 	/**
-	 * Required - API name: {@code migrated_legacy_templates}
+	 * Required - The legacy index templates that were updated to not contain custom
+	 * routing settings for the provided data attribute.
+	 * <p>
+	 * API name: {@code migrated_legacy_templates}
 	 */
 	public final List<String> migratedLegacyTemplates() {
 		return this.migratedLegacyTemplates;
 	}
 
 	/**
-	 * Required - API name: {@code migrated_composable_templates}
+	 * Required - The composable index templates that were updated to not contain
+	 * custom routing settings for the provided data attribute.
+	 * <p>
+	 * API name: {@code migrated_composable_templates}
 	 */
 	public final List<String> migratedComposableTemplates() {
 		return this.migratedComposableTemplates;
 	}
 
 	/**
-	 * Required - API name: {@code migrated_component_templates}
+	 * Required - The component templates that were updated to not contain custom
+	 * routing settings for the provided data attribute.
+	 * <p>
+	 * API name: {@code migrated_component_templates}
 	 */
 	public final List<String> migratedComponentTemplates() {
 		return this.migratedComponentTemplates;
@@ -255,7 +271,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code removed_legacy_template}
+		 * Required - The name of the legacy index template that was deleted. This
+		 * information is missing if no legacy index templates were deleted.
+		 * <p>
+		 * API name: {@code removed_legacy_template}
 		 */
 		public final Builder removedLegacyTemplate(String value) {
 			this.removedLegacyTemplate = value;
@@ -263,7 +282,9 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_ilm_policies}
+		 * Required - The ILM policies that were updated.
+		 * <p>
+		 * API name: {@code migrated_ilm_policies}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>migratedIlmPolicies</code>.
 		 */
@@ -273,7 +294,9 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_ilm_policies}
+		 * Required - The ILM policies that were updated.
+		 * <p>
+		 * API name: {@code migrated_ilm_policies}
 		 * <p>
 		 * Adds one or more values to <code>migratedIlmPolicies</code>.
 		 */
@@ -283,7 +306,9 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_indices}
+		 * Required - The indices that were migrated to tier preference routing.
+		 * <p>
+		 * API name: {@code migrated_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>migratedIndices</code>.
 		 */
@@ -293,7 +318,9 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_indices}
+		 * Required - The indices that were migrated to tier preference routing.
+		 * <p>
+		 * API name: {@code migrated_indices}
 		 * <p>
 		 * Adds one or more values to <code>migratedIndices</code>.
 		 */
@@ -303,7 +330,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_legacy_templates}
+		 * Required - The legacy index templates that were updated to not contain custom
+		 * routing settings for the provided data attribute.
+		 * <p>
+		 * API name: {@code migrated_legacy_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>migratedLegacyTemplates</code>.
@@ -314,7 +344,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_legacy_templates}
+		 * Required - The legacy index templates that were updated to not contain custom
+		 * routing settings for the provided data attribute.
+		 * <p>
+		 * API name: {@code migrated_legacy_templates}
 		 * <p>
 		 * Adds one or more values to <code>migratedLegacyTemplates</code>.
 		 */
@@ -324,7 +357,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_composable_templates}
+		 * Required - The composable index templates that were updated to not contain
+		 * custom routing settings for the provided data attribute.
+		 * <p>
+		 * API name: {@code migrated_composable_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>migratedComposableTemplates</code>.
@@ -335,7 +371,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_composable_templates}
+		 * Required - The composable index templates that were updated to not contain
+		 * custom routing settings for the provided data attribute.
+		 * <p>
+		 * API name: {@code migrated_composable_templates}
 		 * <p>
 		 * Adds one or more values to <code>migratedComposableTemplates</code>.
 		 */
@@ -345,7 +384,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_component_templates}
+		 * Required - The component templates that were updated to not contain custom
+		 * routing settings for the provided data attribute.
+		 * <p>
+		 * API name: {@code migrated_component_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>migratedComponentTemplates</code>.
@@ -356,7 +398,10 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code migrated_component_templates}
+		 * Required - The component templates that were updated to not contain custom
+		 * routing settings for the provided data attribute.
+		 * <p>
+		 * API name: {@code migrated_component_templates}
 		 * <p>
 		 * Adds one or more values to <code>migratedComponentTemplates</code>.
 		 */

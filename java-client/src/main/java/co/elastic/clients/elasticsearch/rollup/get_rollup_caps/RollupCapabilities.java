@@ -75,7 +75,11 @@ public class RollupCapabilities implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code rollup_jobs}
+	 * Required - There can be multiple, independent jobs configured for a single
+	 * index or index pattern. Each of these jobs may have different configurations,
+	 * so the API returns a list of all the various configurations available.
+	 * <p>
+	 * API name: {@code rollup_jobs}
 	 */
 	public final List<RollupCapabilitySummary> rollupJobs() {
 		return this.rollupJobs;
@@ -122,7 +126,11 @@ public class RollupCapabilities implements JsonpSerializable {
 		private List<RollupCapabilitySummary> rollupJobs;
 
 		/**
-		 * Required - API name: {@code rollup_jobs}
+		 * Required - There can be multiple, independent jobs configured for a single
+		 * index or index pattern. Each of these jobs may have different configurations,
+		 * so the API returns a list of all the various configurations available.
+		 * <p>
+		 * API name: {@code rollup_jobs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>.
 		 */
@@ -132,7 +140,11 @@ public class RollupCapabilities implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code rollup_jobs}
+		 * Required - There can be multiple, independent jobs configured for a single
+		 * index or index pattern. Each of these jobs may have different configurations,
+		 * so the API returns a list of all the various configurations available.
+		 * <p>
+		 * API name: {@code rollup_jobs}
 		 * <p>
 		 * Adds one or more values to <code>rollupJobs</code>.
 		 */
@@ -142,7 +154,11 @@ public class RollupCapabilities implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code rollup_jobs}
+		 * Required - There can be multiple, independent jobs configured for a single
+		 * index or index pattern. Each of these jobs may have different configurations,
+		 * so the API returns a list of all the various configurations available.
+		 * <p>
+		 * API name: {@code rollup_jobs}
 		 * <p>
 		 * Adds a value to <code>rollupJobs</code> using a builder lambda.
 		 */
