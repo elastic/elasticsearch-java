@@ -1334,10 +1334,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: info
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster info. Get basic build, version, and cluster information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/rest-api-root.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public InfoResponse info() throws IOException, ElasticsearchException {

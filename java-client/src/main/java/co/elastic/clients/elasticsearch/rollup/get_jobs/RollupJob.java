@@ -79,21 +79,30 @@ public class RollupJob implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code config}
+	 * Required - The rollup job configuration.
+	 * <p>
+	 * API name: {@code config}
 	 */
 	public final RollupJobConfiguration config() {
 		return this.config;
 	}
 
 	/**
-	 * Required - API name: {@code stats}
+	 * Required - Transient statistics about the rollup job, such as how many
+	 * documents have been processed and how many rollup summary docs have been
+	 * indexed. These stats are not persisted. If a node is restarted, these stats
+	 * are reset.
+	 * <p>
+	 * API name: {@code stats}
 	 */
 	public final RollupJobStats stats() {
 		return this.stats;
 	}
 
 	/**
-	 * Required - API name: {@code status}
+	 * Required - The current status of the indexer for the rollup job.
+	 * <p>
+	 * API name: {@code status}
 	 */
 	public final RollupJobStatus status() {
 		return this.status;
@@ -140,7 +149,9 @@ public class RollupJob implements JsonpSerializable {
 		private RollupJobStatus status;
 
 		/**
-		 * Required - API name: {@code config}
+		 * Required - The rollup job configuration.
+		 * <p>
+		 * API name: {@code config}
 		 */
 		public final Builder config(RollupJobConfiguration value) {
 			this.config = value;
@@ -148,7 +159,9 @@ public class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code config}
+		 * Required - The rollup job configuration.
+		 * <p>
+		 * API name: {@code config}
 		 */
 		public final Builder config(
 				Function<RollupJobConfiguration.Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
@@ -156,7 +169,12 @@ public class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code stats}
+		 * Required - Transient statistics about the rollup job, such as how many
+		 * documents have been processed and how many rollup summary docs have been
+		 * indexed. These stats are not persisted. If a node is restarted, these stats
+		 * are reset.
+		 * <p>
+		 * API name: {@code stats}
 		 */
 		public final Builder stats(RollupJobStats value) {
 			this.stats = value;
@@ -164,14 +182,21 @@ public class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code stats}
+		 * Required - Transient statistics about the rollup job, such as how many
+		 * documents have been processed and how many rollup summary docs have been
+		 * indexed. These stats are not persisted. If a node is restarted, these stats
+		 * are reset.
+		 * <p>
+		 * API name: {@code stats}
 		 */
 		public final Builder stats(Function<RollupJobStats.Builder, ObjectBuilder<RollupJobStats>> fn) {
 			return this.stats(fn.apply(new RollupJobStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code status}
+		 * Required - The current status of the indexer for the rollup job.
+		 * <p>
+		 * API name: {@code status}
 		 */
 		public final Builder status(RollupJobStatus value) {
 			this.status = value;
@@ -179,7 +204,9 @@ public class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code status}
+		 * Required - The current status of the indexer for the rollup job.
+		 * <p>
+		 * API name: {@code status}
 		 */
 		public final Builder status(Function<RollupJobStatus.Builder, ObjectBuilder<RollupJobStatus>> fn) {
 			return this.status(fn.apply(new RollupJobStatus.Builder()).build());

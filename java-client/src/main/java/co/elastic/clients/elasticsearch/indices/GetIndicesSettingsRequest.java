@@ -60,8 +60,8 @@ import javax.annotation.Nullable;
 // typedef: indices.get_settings.Request
 
 /**
- * Get index settings. Returns setting information for one or more indices. For
- * data streams, returns setting information for the stream’s backing indices.
+ * Get index settings. Get setting information for one or more indices. For data
+ * streams, it returns setting information for the stream's backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_settings.Request">API
  *      specification</a>

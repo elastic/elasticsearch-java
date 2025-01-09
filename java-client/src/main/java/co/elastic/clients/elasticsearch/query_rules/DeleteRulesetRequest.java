@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 // typedef: query_rules.delete_ruleset.Request
 
 /**
- * Delete a query ruleset.
+ * Delete a query ruleset. Remove a query ruleset and its associated data. This
+ * is a destructive action that is not recoverable.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#query_rules.delete_ruleset.Request">API

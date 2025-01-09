@@ -70,11 +70,20 @@ public class ElasticsearchShutdownAsyncClient
 	// ----- Endpoint: shutdown.delete_node
 
 	/**
-	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
-	 * and ECK. Direct use is not supported.
+	 * Cancel node shutdown preparations. Remove a node from the shutdown list so it
+	 * can resume normal operations. You must explicitly clear the shutdown request
+	 * when a node rejoins the cluster or when a node has permanently left the
+	 * cluster. Shutdown requests are never removed automatically by Elasticsearch.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
+	 * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+	 * supported.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/delete-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -86,14 +95,23 @@ public class ElasticsearchShutdownAsyncClient
 	}
 
 	/**
-	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
-	 * and ECK. Direct use is not supported.
+	 * Cancel node shutdown preparations. Remove a node from the shutdown list so it
+	 * can resume normal operations. You must explicitly clear the shutdown request
+	 * when a node rejoins the cluster or when a node has permanently left the
+	 * cluster. Shutdown requests are never removed automatically by Elasticsearch.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
+	 * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+	 * supported.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/delete-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,12 +123,21 @@ public class ElasticsearchShutdownAsyncClient
 	// ----- Endpoint: shutdown.get_node
 
 	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting
-	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+	 * Get the shutdown status.
+	 * <p>
+	 * Get information about nodes that are ready to be shut down, have shut down
+	 * preparations still in progress, or have stalled. The API returns status
+	 * information for each part of the shut down process.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+	 * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
 	 * supported.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -122,15 +149,24 @@ public class ElasticsearchShutdownAsyncClient
 	}
 
 	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting
-	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+	 * Get the shutdown status.
+	 * <p>
+	 * Get information about nodes that are ready to be shut down, have shut down
+	 * preparations still in progress, or have stalled. The API returns status
+	 * information for each part of the shut down process.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+	 * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
 	 * supported.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -140,12 +176,21 @@ public class ElasticsearchShutdownAsyncClient
 	}
 
 	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting
-	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+	 * Get the shutdown status.
+	 * <p>
+	 * Get information about nodes that are ready to be shut down, have shut down
+	 * preparations still in progress, or have stalled. The API returns status
+	 * information for each part of the shut down process.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elasticsearch Service,
+	 * Elastic Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
 	 * supported.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,11 +202,32 @@ public class ElasticsearchShutdownAsyncClient
 	// ----- Endpoint: shutdown.put_node
 
 	/**
-	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
-	 * Direct use is not supported.
+	 * Prepare a node to be shut down.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
+	 * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+	 * supported.
+	 * <p>
+	 * If you specify a node that is offline, it will be prepared for shut down when
+	 * it rejoins the cluster.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
+	 * <p>
+	 * The API migrates ongoing tasks and index shards to other nodes as needed to
+	 * prepare a node to be restarted or shut down and removed from the cluster.
+	 * This ensures that Elasticsearch can be stopped safely with minimal disruption
+	 * to the cluster.
+	 * <p>
+	 * You must specify the type of shutdown: <code>restart</code>,
+	 * <code>remove</code>, or <code>replace</code>. If a node is already being
+	 * prepared for shutdown, you can use this API to change the shutdown type.
+	 * <p>
+	 * IMPORTANT: This API does NOT terminate the Elasticsearch process. Monitor the
+	 * node shutdown status to determine when it is safe to stop Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/put-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -173,14 +239,35 @@ public class ElasticsearchShutdownAsyncClient
 	}
 
 	/**
-	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
-	 * Direct use is not supported.
+	 * Prepare a node to be shut down.
+	 * <p>
+	 * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
+	 * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
+	 * supported.
+	 * <p>
+	 * If you specify a node that is offline, it will be prepared for shut down when
+	 * it rejoins the cluster.
+	 * <p>
+	 * If the operator privileges feature is enabled, you must be an operator to use
+	 * this API.
+	 * <p>
+	 * The API migrates ongoing tasks and index shards to other nodes as needed to
+	 * prepare a node to be restarted or shut down and removed from the cluster.
+	 * This ensures that Elasticsearch can be stopped safely with minimal disruption
+	 * to the cluster.
+	 * <p>
+	 * You must specify the type of shutdown: <code>restart</code>,
+	 * <code>remove</code>, or <code>replace</code>. If a node is already being
+	 * prepared for shutdown, you can use this API to change the shutdown type.
+	 * <p>
+	 * IMPORTANT: This API does NOT terminate the Elasticsearch process. Monitor the
+	 * node shutdown status to determine when it is safe to stop Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/put-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

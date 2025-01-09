@@ -86,6 +86,9 @@ public class IlmPolicy implements JsonpSerializable {
 	}
 
 	/**
+	 * Arbitrary metadata that is not automatically generated or used by
+	 * Elasticsearch.
+	 * <p>
 	 * API name: {@code _meta}
 	 */
 	public final Map<String, JsonData> meta() {
@@ -153,6 +156,9 @@ public class IlmPolicy implements JsonpSerializable {
 		}
 
 		/**
+		 * Arbitrary metadata that is not automatically generated or used by
+		 * Elasticsearch.
+		 * <p>
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
@@ -163,6 +169,9 @@ public class IlmPolicy implements JsonpSerializable {
 		}
 
 		/**
+		 * Arbitrary metadata that is not automatically generated or used by
+		 * Elasticsearch.
+		 * <p>
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds an entry to <code>meta</code>.

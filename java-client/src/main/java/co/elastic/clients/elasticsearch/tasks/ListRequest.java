@@ -60,8 +60,8 @@ import javax.annotation.Nullable;
 // typedef: tasks.list.Request
 
 /**
- * The task management API returns information about tasks currently executing
- * on one or more nodes in the cluster.
+ * Get all tasks. Get information about the tasks currently running on one or
+ * more nodes in the cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#tasks.list.Request">API
  *      specification</a>
@@ -121,7 +121,8 @@ public class ListRequest extends RequestBase {
 
 	/**
 	 * If <code>true</code>, the response includes detailed information about shard
-	 * recoveries.
+	 * recoveries. This information is useful to distinguish tasks from each other
+	 * but is more costly to run.
 	 * <p>
 	 * API name: {@code detailed}
 	 */
@@ -251,7 +252,8 @@ public class ListRequest extends RequestBase {
 
 		/**
 		 * If <code>true</code>, the response includes detailed information about shard
-		 * recoveries.
+		 * recoveries. This information is useful to distinguish tasks from each other
+		 * but is more costly to run.
 		 * <p>
 		 * API name: {@code detailed}
 		 */

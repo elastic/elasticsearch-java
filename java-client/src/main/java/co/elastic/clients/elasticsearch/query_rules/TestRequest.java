@@ -85,7 +85,11 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code match_criteria}
+	 * Required - The match criteria to apply to rules in the given query ruleset.
+	 * Match criteria should match the keys defined in the
+	 * <code>criteria.metadata</code> field of the rule.
+	 * <p>
+	 * API name: {@code match_criteria}
 	 */
 	public final Map<String, JsonData> matchCriteria() {
 		return this.matchCriteria;
@@ -138,7 +142,11 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 		private String rulesetId;
 
 		/**
-		 * Required - API name: {@code match_criteria}
+		 * Required - The match criteria to apply to rules in the given query ruleset.
+		 * Match criteria should match the keys defined in the
+		 * <code>criteria.metadata</code> field of the rule.
+		 * <p>
+		 * API name: {@code match_criteria}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>matchCriteria</code>.
 		 */
@@ -148,7 +156,11 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code match_criteria}
+		 * Required - The match criteria to apply to rules in the given query ruleset.
+		 * Match criteria should match the keys defined in the
+		 * <code>criteria.metadata</code> field of the rule.
+		 * <p>
+		 * API name: {@code match_criteria}
 		 * <p>
 		 * Adds an entry to <code>matchCriteria</code>.
 		 */

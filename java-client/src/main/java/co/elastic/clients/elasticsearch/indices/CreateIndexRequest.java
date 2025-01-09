@@ -60,7 +60,38 @@ import javax.annotation.Nullable;
 // typedef: indices.create.Request
 
 /**
- * Create an index. Creates a new index.
+ * Create an index. You can use the create index API to add a new index to an
+ * Elasticsearch cluster. When creating an index, you can specify the following:
+ * <ul>
+ * <li>Settings for the index.</li>
+ * <li>Mappings for fields in the index.</li>
+ * <li>Index aliases</li>
+ * </ul>
+ * <p>
+ * <strong>Wait for active shards</strong>
+ * <p>
+ * By default, index creation will only return a response to the client when the
+ * primary copies of each shard have been started, or the request times out. The
+ * index creation response will indicate what happened. For example,
+ * <code>acknowledged</code> indicates whether the index was successfully
+ * created in the cluster, <code>while shards_acknowledged</code> indicates
+ * whether the requisite number of shard copies were started for each shard in
+ * the index before timing out. Note that it is still possible for either
+ * <code>acknowledged</code> or <code>shards_acknowledged</code> to be
+ * <code>false</code>, but for the index creation to be successful. These values
+ * simply indicate whether the operation completed before the timeout. If
+ * <code>acknowledged</code> is false, the request timed out before the cluster
+ * state was updated with the newly created index, but it probably will be
+ * created sometime soon. If <code>shards_acknowledged</code> is false, then the
+ * request timed out before the requisite number of shards were started (by
+ * default just the primaries), even if the cluster state was successfully
+ * updated to reflect the newly created index (that is to say,
+ * <code>acknowledged</code> is <code>true</code>).
+ * <p>
+ * You can change the default of only waiting for the primary shards to start
+ * through the index setting <code>index.write.wait_for_active_shards</code>.
+ * Note that changing this setting will also affect the
+ * <code>wait_for_active_shards</code> value on all subsequent write operations.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.create.Request">API
  *      specification</a>

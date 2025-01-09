@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: ingest.put_ip_location_database.Request
 
 /**
- * Returns information about one or more IP location database configurations.
+ * Create or update an IP geolocation database configuration.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.put_ip_location_database.Request">API
@@ -93,7 +93,7 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Required - ID of the database configuration to create or update.
+	 * Required - The database configuration identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -102,8 +102,9 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
+	 * A value of <code>-1</code> indicates that the request should never time out.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -113,8 +114,11 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response from all relevant nodes in the cluster
+	 * after updating the cluster metadata. If no response is received before the
+	 * timeout expires, the cluster metadata update still applies but the response
+	 * indicates that it was not completely acknowledged. A value of <code>-1</code>
+	 * indicates that the request should never time out.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -158,7 +162,7 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 		private DatabaseConfiguration configuration;
 
 		/**
-		 * Required - ID of the database configuration to create or update.
+		 * Required - The database configuration identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -168,8 +172,9 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * A value of <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -179,8 +184,9 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * A value of <code>-1</code> indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -189,8 +195,11 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response from all relevant nodes in the cluster
+		 * after updating the cluster metadata. If no response is received before the
+		 * timeout expires, the cluster metadata update still applies but the response
+		 * indicates that it was not completely acknowledged. A value of <code>-1</code>
+		 * indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -200,8 +209,11 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response from all relevant nodes in the cluster
+		 * after updating the cluster metadata. If no response is received before the
+		 * timeout expires, the cluster metadata update still applies but the response
+		 * indicates that it was not completely acknowledged. A value of <code>-1</code>
+		 * indicates that the request should never time out.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

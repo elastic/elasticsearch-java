@@ -86,6 +86,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether document-level security is enabled.
+	 * <p>
 	 * API name: {@code document_level_security}
 	 */
 	@Nullable
@@ -94,6 +96,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether incremental syncs are enabled.
+	 * <p>
 	 * API name: {@code incremental_sync}
 	 */
 	@Nullable
@@ -102,6 +106,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether managed connector API keys are enabled.
+	 * <p>
 	 * API name: {@code native_connector_api_keys}
 	 */
 	@Nullable
@@ -176,6 +182,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 		private SyncRulesFeature syncRules;
 
 		/**
+		 * Indicates whether document-level security is enabled.
+		 * <p>
 		 * API name: {@code document_level_security}
 		 */
 		public final Builder documentLevelSecurity(@Nullable FeatureEnabled value) {
@@ -184,6 +192,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether document-level security is enabled.
+		 * <p>
 		 * API name: {@code document_level_security}
 		 */
 		public final Builder documentLevelSecurity(Function<FeatureEnabled.Builder, ObjectBuilder<FeatureEnabled>> fn) {
@@ -191,6 +201,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether incremental syncs are enabled.
+		 * <p>
 		 * API name: {@code incremental_sync}
 		 */
 		public final Builder incrementalSync(@Nullable FeatureEnabled value) {
@@ -199,6 +211,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether incremental syncs are enabled.
+		 * <p>
 		 * API name: {@code incremental_sync}
 		 */
 		public final Builder incrementalSync(Function<FeatureEnabled.Builder, ObjectBuilder<FeatureEnabled>> fn) {
@@ -206,6 +220,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether managed connector API keys are enabled.
+		 * <p>
 		 * API name: {@code native_connector_api_keys}
 		 */
 		public final Builder nativeConnectorApiKeys(@Nullable FeatureEnabled value) {
@@ -214,6 +230,8 @@ public class ConnectorFeatures implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether managed connector API keys are enabled.
+		 * <p>
 		 * API name: {@code native_connector_api_keys}
 		 */
 		public final Builder nativeConnectorApiKeys(

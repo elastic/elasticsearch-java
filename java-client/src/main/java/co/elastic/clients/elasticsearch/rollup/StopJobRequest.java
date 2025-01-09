@@ -57,12 +57,28 @@ import javax.annotation.Nullable;
 // typedef: rollup.stop_job.Request
 
 /**
- * Stops an existing, started rollup job.
+ * Stop rollup jobs. If you try to stop a job that does not exist, an exception
+ * occurs. If you try to stop a job that is already stopped, nothing happens.
+ * <p>
+ * Since only a stopped job can be deleted, it can be useful to block the API
+ * until the indexer has fully stopped. This is accomplished with the
+ * <code>wait_for_completion</code> query parameter, and optionally a timeout.
+ * For example:
+ * 
+ * <pre>
+ * <code>POST _rollup/job/sensor/_stop?wait_for_completion=true&amp;timeout=10s
+ * </code>
+ * </pre>
+ * <p>
+ * The parameter blocks the API call from returning until either the job has
+ * moved to STOPPED or the specified time has elapsed. If the specified time
+ * elapses without the job moving to STOPPED, a timeout exception occurs.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.stop_job.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
-
+@Deprecated
 public class StopJobRequest extends RequestBase {
 	private final String id;
 
@@ -99,7 +115,9 @@ public class StopJobRequest extends RequestBase {
 	 * If <code>wait_for_completion</code> is <code>true</code>, the API blocks for
 	 * (at maximum) the specified duration while waiting for the job to stop. If
 	 * more than <code>timeout</code> time has passed, the API throws a timeout
-	 * exception.
+	 * exception. NOTE: Even if a timeout occurs, the stop request is still
+	 * processing and eventually moves the job to STOPPED. The timeout simply means
+	 * the API call itself timed out while waiting for the status change.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -125,7 +143,7 @@ public class StopJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopJobRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<StopJobRequest> {
 		private String id;
 
@@ -149,7 +167,9 @@ public class StopJobRequest extends RequestBase {
 		 * If <code>wait_for_completion</code> is <code>true</code>, the API blocks for
 		 * (at maximum) the specified duration while waiting for the job to stop. If
 		 * more than <code>timeout</code> time has passed, the API throws a timeout
-		 * exception.
+		 * exception. NOTE: Even if a timeout occurs, the stop request is still
+		 * processing and eventually moves the job to STOPPED. The timeout simply means
+		 * the API call itself timed out while waiting for the status change.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -162,7 +182,9 @@ public class StopJobRequest extends RequestBase {
 		 * If <code>wait_for_completion</code> is <code>true</code>, the API blocks for
 		 * (at maximum) the specified duration while waiting for the job to stop. If
 		 * more than <code>timeout</code> time has passed, the API throws a timeout
-		 * exception.
+		 * exception. NOTE: Even if a timeout occurs, the stop request is still
+		 * processing and eventually moves the job to STOPPED. The timeout simply means
+		 * the API call itself timed out while waiting for the status change.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

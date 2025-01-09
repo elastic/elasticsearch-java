@@ -82,6 +82,8 @@ public class StepKey implements JsonpSerializable {
 	}
 
 	/**
+	 * The optional action to which the index will be moved.
+	 * <p>
 	 * API name: {@code action}
 	 */
 	@Nullable
@@ -90,6 +92,8 @@ public class StepKey implements JsonpSerializable {
 	}
 
 	/**
+	 * The optional step name to which the index will be moved.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -151,6 +155,8 @@ public class StepKey implements JsonpSerializable {
 		private String phase;
 
 		/**
+		 * The optional action to which the index will be moved.
+		 * <p>
 		 * API name: {@code action}
 		 */
 		public final Builder action(@Nullable String value) {
@@ -159,6 +165,8 @@ public class StepKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The optional step name to which the index will be moved.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public final Builder name(@Nullable String value) {

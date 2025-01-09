@@ -68,7 +68,9 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.delete_lifecycle
 
 	/**
-	 * Deletes an existing snapshot lifecycle policy.
+	 * Delete a policy. Delete a snapshot lifecycle policy definition. This
+	 * operation prevents any future snapshots from being taken but does not cancel
+	 * in-progress snapshots or remove previously-taken snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
@@ -84,7 +86,9 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Deletes an existing snapshot lifecycle policy.
+	 * Delete a policy. Delete a snapshot lifecycle policy definition. This
+	 * operation prevents any future snapshots from being taken but does not cancel
+	 * in-progress snapshots or remove previously-taken snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -103,8 +107,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.execute_lifecycle
 
 	/**
-	 * Immediately creates a snapshot according to the lifecycle policy, without
-	 * waiting for the scheduled time.
+	 * Run a policy. Immediately create a snapshot according to the snapshot
+	 * lifecycle policy without waiting for the scheduled time. The snapshot policy
+	 * is normally applied according to its schedule, but you might want to manually
+	 * run a policy before performing an upgrade or other maintenance.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
@@ -120,8 +126,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Immediately creates a snapshot according to the lifecycle policy, without
-	 * waiting for the scheduled time.
+	 * Run a policy. Immediately create a snapshot according to the snapshot
+	 * lifecycle policy without waiting for the scheduled time. The snapshot policy
+	 * is normally applied according to its schedule, but you might want to manually
+	 * run a policy before performing an upgrade or other maintenance.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -140,23 +148,65 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.execute_retention
 
 	/**
-	 * Deletes any snapshots that are expired according to the policy's retention
-	 * rules.
+	 * Run a retention policy. Manually apply the retention policy to force
+	 * immediate removal of snapshots that are expired according to the snapshot
+	 * lifecycle policy retention rules. The retention policy is normally applied
+	 * according to its schedule.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public ExecuteRetentionResponse executeRetention(ExecuteRetentionRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ErrorResponse>) ExecuteRetentionRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Run a retention policy. Manually apply the retention policy to force
+	 * immediate removal of snapshots that are expired according to the snapshot
+	 * lifecycle policy retention rules. The retention policy is normally applied
+	 * according to its schedule.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ExecuteRetentionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ExecuteRetentionResponse executeRetention(
+			Function<ExecuteRetentionRequest.Builder, ObjectBuilder<ExecuteRetentionRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return executeRetention(fn.apply(new ExecuteRetentionRequest.Builder()).build());
+	}
+
+	/**
+	 * Run a retention policy. Manually apply the retention policy to force
+	 * immediate removal of snapshots that are expired according to the snapshot
+	 * lifecycle policy retention rules. The retention policy is normally applied
+	 * according to its schedule.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public ExecuteRetentionResponse executeRetention() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest._ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequest(new ExecuteRetentionRequest.Builder().build(),
+				ExecuteRetentionRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_lifecycle
 
 	/**
-	 * Retrieves one or more snapshot lifecycle policy definitions and information
-	 * about the latest snapshot attempts.
+	 * Get policy information. Get snapshot lifecycle policy definitions and
+	 * information about the latest snapshot attempts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
@@ -171,8 +221,8 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Retrieves one or more snapshot lifecycle policy definitions and information
-	 * about the latest snapshot attempts.
+	 * Get policy information. Get snapshot lifecycle policy definitions and
+	 * information about the latest snapshot attempts.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -189,8 +239,8 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Retrieves one or more snapshot lifecycle policy definitions and information
-	 * about the latest snapshot attempts.
+	 * Get policy information. Get snapshot lifecycle policy definitions and
+	 * information about the latest snapshot attempts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
@@ -205,36 +255,105 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.get_stats
 
 	/**
-	 * Returns global and policy-level statistics about actions taken by snapshot
-	 * lifecycle management.
+	 * Get snapshot lifecycle management statistics. Get global and policy-level
+	 * statistics about actions taken by snapshot lifecycle management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public GetStatsResponse getStats(GetStatsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetStatsRequest, GetStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetStatsRequest, GetStatsResponse, ErrorResponse>) GetStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get snapshot lifecycle management statistics. Get global and policy-level
+	 * statistics about actions taken by snapshot lifecycle management.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetStatsResponse getStats(Function<GetStatsRequest.Builder, ObjectBuilder<GetStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getStats(fn.apply(new GetStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get snapshot lifecycle management statistics. Get global and policy-level
+	 * statistics about actions taken by snapshot lifecycle management.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public GetStatsResponse getStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetStatsRequest._INSTANCE, GetStatsRequest._ENDPOINT,
+		return this.transport.performRequest(new GetStatsRequest.Builder().build(), GetStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_status
 
 	/**
-	 * Retrieves the status of snapshot lifecycle management (SLM).
+	 * Get the snapshot lifecycle management status.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public GetSlmStatusResponse getStatus(GetSlmStatusRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSlmStatusRequest, GetSlmStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSlmStatusRequest, GetSlmStatusResponse, ErrorResponse>) GetSlmStatusRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get the snapshot lifecycle management status.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSlmStatusRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetSlmStatusResponse getStatus(
+			Function<GetSlmStatusRequest.Builder, ObjectBuilder<GetSlmStatusRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getStatus(fn.apply(new GetSlmStatusRequest.Builder()).build());
+	}
+
+	/**
+	 * Get the snapshot lifecycle management status.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public GetSlmStatusResponse getStatus() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(GetSlmStatusRequest._INSTANCE, GetSlmStatusRequest._ENDPOINT,
+		return this.transport.performRequest(new GetSlmStatusRequest.Builder().build(), GetSlmStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.put_lifecycle
 
 	/**
-	 * Creates or updates a snapshot lifecycle policy.
+	 * Create or update a policy. Create or update a snapshot lifecycle policy. If
+	 * the policy already exists, this request increments the policy version. Only
+	 * the latest version of a policy is stored.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
@@ -249,7 +368,9 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Creates or updates a snapshot lifecycle policy.
+	 * Create or update a policy. Create or update a snapshot lifecycle policy. If
+	 * the policy already exists, this request increments the policy version. Only
+	 * the latest version of a policy is stored.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -268,28 +389,129 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.start
 
 	/**
-	 * Turns on snapshot lifecycle management (SLM).
+	 * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
+	 * starts automatically when a cluster is formed. Manually starting SLM is
+	 * necessary only if it has been stopped using the stop SLM API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public StartSlmResponse start(StartSlmRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StartSlmRequest, StartSlmResponse, ErrorResponse> endpoint = (JsonEndpoint<StartSlmRequest, StartSlmResponse, ErrorResponse>) StartSlmRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
+	 * starts automatically when a cluster is formed. Manually starting SLM is
+	 * necessary only if it has been stopped using the stop SLM API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StartSlmRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StartSlmResponse start(Function<StartSlmRequest.Builder, ObjectBuilder<StartSlmRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return start(fn.apply(new StartSlmRequest.Builder()).build());
+	}
+
+	/**
+	 * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
+	 * starts automatically when a cluster is formed. Manually starting SLM is
+	 * necessary only if it has been stopped using the stop SLM API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public StartSlmResponse start() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StartSlmRequest._INSTANCE, StartSlmRequest._ENDPOINT,
+		return this.transport.performRequest(new StartSlmRequest.Builder().build(), StartSlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.stop
 
 	/**
-	 * Turns off snapshot lifecycle management (SLM).
+	 * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
+	 * (SLM) operations and the SLM plugin. This API is useful when you are
+	 * performing maintenance on a cluster and need to prevent SLM from performing
+	 * any actions on your data streams or indices. Stopping SLM does not stop any
+	 * snapshots that are in progress. You can manually trigger snapshots with the
+	 * run snapshot lifecycle policy API even if SLM is stopped.
+	 * <p>
+	 * The API returns a response as soon as the request is acknowledged, but the
+	 * plugin might continue to run until in-progress operations complete and it can
+	 * be safely stopped. Use the get snapshot lifecycle management status API to
+	 * see if SLM is running.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public StopSlmResponse stop(StopSlmRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StopSlmRequest, StopSlmResponse, ErrorResponse> endpoint = (JsonEndpoint<StopSlmRequest, StopSlmResponse, ErrorResponse>) StopSlmRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
+	 * (SLM) operations and the SLM plugin. This API is useful when you are
+	 * performing maintenance on a cluster and need to prevent SLM from performing
+	 * any actions on your data streams or indices. Stopping SLM does not stop any
+	 * snapshots that are in progress. You can manually trigger snapshots with the
+	 * run snapshot lifecycle policy API even if SLM is stopped.
+	 * <p>
+	 * The API returns a response as soon as the request is acknowledged, but the
+	 * plugin might continue to run until in-progress operations complete and it can
+	 * be safely stopped. Use the get snapshot lifecycle management status API to
+	 * see if SLM is running.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StopSlmRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StopSlmResponse stop(Function<StopSlmRequest.Builder, ObjectBuilder<StopSlmRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stop(fn.apply(new StopSlmRequest.Builder()).build());
+	}
+
+	/**
+	 * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
+	 * (SLM) operations and the SLM plugin. This API is useful when you are
+	 * performing maintenance on a cluster and need to prevent SLM from performing
+	 * any actions on your data streams or indices. Stopping SLM does not stop any
+	 * snapshots that are in progress. You can manually trigger snapshots with the
+	 * run snapshot lifecycle policy API even if SLM is stopped.
+	 * <p>
+	 * The API returns a response as soon as the request is acknowledged, but the
+	 * plugin might continue to run until in-progress operations complete and it can
+	 * be safely stopped. Use the get snapshot lifecycle management status API to
+	 * see if SLM is running.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public StopSlmResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StopSlmRequest._INSTANCE, StopSlmRequest._ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(new StopSlmRequest.Builder().build(), StopSlmRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

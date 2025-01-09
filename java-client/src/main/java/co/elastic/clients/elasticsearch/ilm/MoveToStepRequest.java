@@ -106,7 +106,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - API name: {@code current_step}
+	 * Required - The step that the index is expected to be in.
+	 * <p>
+	 * API name: {@code current_step}
 	 */
 	public final StepKey currentStep() {
 		return this.currentStep;
@@ -122,7 +124,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - API name: {@code next_step}
+	 * Required - The step that you want to run.
+	 * <p>
+	 * API name: {@code next_step}
 	 */
 	public final StepKey nextStep() {
 		return this.nextStep;
@@ -163,7 +167,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		private StepKey nextStep;
 
 		/**
-		 * Required - API name: {@code current_step}
+		 * Required - The step that the index is expected to be in.
+		 * <p>
+		 * API name: {@code current_step}
 		 */
 		public final Builder currentStep(StepKey value) {
 			this.currentStep = value;
@@ -171,7 +177,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - API name: {@code current_step}
+		 * Required - The step that the index is expected to be in.
+		 * <p>
+		 * API name: {@code current_step}
 		 */
 		public final Builder currentStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
 			return this.currentStep(fn.apply(new StepKey.Builder()).build());
@@ -188,7 +196,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - API name: {@code next_step}
+		 * Required - The step that you want to run.
+		 * <p>
+		 * API name: {@code next_step}
 		 */
 		public final Builder nextStep(StepKey value) {
 			this.nextStep = value;
@@ -196,7 +206,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - API name: {@code next_step}
+		 * Required - The step that you want to run.
+		 * <p>
+		 * API name: {@code next_step}
 		 */
 		public final Builder nextStep(Function<StepKey.Builder, ObjectBuilder<StepKey>> fn) {
 			return this.nextStep(fn.apply(new StepKey.Builder()).build());

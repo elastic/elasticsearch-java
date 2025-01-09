@@ -223,7 +223,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.list
 
 	/**
-	 * Returns the existing search applications.
+	 * Get search applications. Get information about search applications.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-search-applications.html">Documentation
@@ -238,7 +238,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Returns the existing search applications.
+	 * Get search applications. Get information about search applications.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -253,7 +253,7 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Returns the existing search applications.
+	 * Get search applications. Get information about search applications.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-search-applications.html">Documentation
@@ -263,6 +263,40 @@ public class ElasticsearchSearchApplicationAsyncClient
 	public CompletableFuture<ListResponse> list() {
 		return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: search_application.post_behavioral_analytics_event
+
+	/**
+	 * Create a behavioral analytics collection event.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/post-analytics-collection-event.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PostBehavioralAnalyticsEventResponse> postBehavioralAnalyticsEvent(
+			PostBehavioralAnalyticsEventRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PostBehavioralAnalyticsEventRequest, PostBehavioralAnalyticsEventResponse, ErrorResponse> endpoint = (JsonEndpoint<PostBehavioralAnalyticsEventRequest, PostBehavioralAnalyticsEventResponse, ErrorResponse>) PostBehavioralAnalyticsEventRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a behavioral analytics collection event.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PostBehavioralAnalyticsEventRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/post-analytics-collection-event.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PostBehavioralAnalyticsEventResponse> postBehavioralAnalyticsEvent(
+			Function<PostBehavioralAnalyticsEventRequest.Builder, ObjectBuilder<PostBehavioralAnalyticsEventRequest>> fn) {
+		return postBehavioralAnalyticsEvent(fn.apply(new PostBehavioralAnalyticsEventRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: search_application.put
@@ -329,6 +363,57 @@ public class ElasticsearchSearchApplicationAsyncClient
 	public final CompletableFuture<PutBehavioralAnalyticsResponse> putBehavioralAnalytics(
 			Function<PutBehavioralAnalyticsRequest.Builder, ObjectBuilder<PutBehavioralAnalyticsRequest>> fn) {
 		return putBehavioralAnalytics(fn.apply(new PutBehavioralAnalyticsRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: search_application.render_query
+
+	/**
+	 * Render a search application query. Generate an Elasticsearch query using the
+	 * specified query parameters and the search template associated with the search
+	 * application or a default template if none is specified. If a parameter used
+	 * in the search template is not specified in <code>params</code>, the
+	 * parameter's default value will be used. The API returns the specific
+	 * Elasticsearch query that would be generated and run by calling the search
+	 * application search API.
+	 * <p>
+	 * You must have <code>read</code> privileges on the backing alias of the search
+	 * application.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/search-application-render-query.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RenderQueryResponse> renderQuery(RenderQueryRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RenderQueryRequest, RenderQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<RenderQueryRequest, RenderQueryResponse, ErrorResponse>) RenderQueryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Render a search application query. Generate an Elasticsearch query using the
+	 * specified query parameters and the search template associated with the search
+	 * application or a default template if none is specified. If a parameter used
+	 * in the search template is not specified in <code>params</code>, the
+	 * parameter's default value will be used. The API returns the specific
+	 * Elasticsearch query that would be generated and run by calling the search
+	 * application search API.
+	 * <p>
+	 * You must have <code>read</code> privileges on the backing alias of the search
+	 * application.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RenderQueryRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/search-application-render-query.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<RenderQueryResponse> renderQuery(
+			Function<RenderQueryRequest.Builder, ObjectBuilder<RenderQueryRequest>> fn) {
+		return renderQuery(fn.apply(new RenderQueryRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: search_application.search

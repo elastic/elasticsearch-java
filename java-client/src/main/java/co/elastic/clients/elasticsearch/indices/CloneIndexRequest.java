@@ -89,13 +89,45 @@ import javax.annotation.Nullable;
  * IMPORTANT: Indices can only be cloned if they meet the following
  * requirements:
  * <ul>
+ * <li>The index must be marked as read-only and have a cluster health status of
+ * green.</li>
  * <li>The target index must not exist.</li>
  * <li>The source index must have the same number of primary shards as the
  * target index.</li>
  * <li>The node handling the clone process must have sufficient free disk space
  * to accommodate a second copy of the existing index.</li>
  * </ul>
- *
+ * <p>
+ * The current write index on a data stream cannot be cloned. In order to clone
+ * the current write index, the data stream must first be rolled over so that a
+ * new write index is created and then the previous write index can be cloned.
+ * <p>
+ * NOTE: Mappings cannot be specified in the <code>_clone</code> request. The
+ * mappings of the source index will be used for the target index.
+ * <p>
+ * <strong>Monitor the cloning process</strong>
+ * <p>
+ * The cloning process can be monitored with the cat recovery API or the cluster
+ * health API can be used to wait until all primary shards have been allocated
+ * by setting the <code>wait_for_status</code> parameter to <code>yellow</code>.
+ * <p>
+ * The <code>_clone</code> API returns as soon as the target index has been
+ * added to the cluster state, before any shards have been allocated. At this
+ * point, all shards are in the state unassigned. If, for any reason, the target
+ * index can't be allocated, its primary shard will remain unassigned until it
+ * can be allocated on that node.
+ * <p>
+ * Once the primary shard is allocated, it moves to state initializing, and the
+ * clone process begins. When the clone operation completes, the shard will
+ * become active. At that point, Elasticsearch will try to allocate any replicas
+ * and may decide to relocate the primary shard to another node.
+ * <p>
+ * <strong>Wait for active shards</strong>
+ * <p>
+ * Because the clone operation creates a new index to clone the shards to, the
+ * wait for active shards setting on index creation applies to the clone index
+ * action as well.
+ * 
  * @see <a href="../doc-files/api-spec.html#indices.clone.Request">API
  *      specification</a>
  */

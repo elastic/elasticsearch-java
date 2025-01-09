@@ -84,13 +84,44 @@ public class QueryRuleCriteria implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - The type of criteria. The following criteria types are supported:
+	 * <ul>
+	 * <li><code>always</code>: Matches all queries, regardless of input.</li>
+	 * <li><code>contains</code>: Matches that contain this value anywhere in the
+	 * field meet the criteria defined by the rule. Only applicable for string
+	 * values.</li>
+	 * <li><code>exact</code>: Only exact matches meet the criteria defined by the
+	 * rule. Applicable for string or numerical values.</li>
+	 * <li><code>fuzzy</code>: Exact matches or matches within the allowed
+	 * Levenshtein Edit Distance meet the criteria defined by the rule. Only
+	 * applicable for string values.</li>
+	 * <li><code>gt</code>: Matches with a value greater than this value meet the
+	 * criteria defined by the rule. Only applicable for numerical values.</li>
+	 * <li><code>gte</code>: Matches with a value greater than or equal to this
+	 * value meet the criteria defined by the rule. Only applicable for numerical
+	 * values.</li>
+	 * <li><code>lt</code>: Matches with a value less than this value meet the
+	 * criteria defined by the rule. Only applicable for numerical values.</li>
+	 * <li><code>lte</code>: Matches with a value less than or equal to this value
+	 * meet the criteria defined by the rule. Only applicable for numerical
+	 * values.</li>
+	 * <li><code>prefix</code>: Matches that start with this value meet the criteria
+	 * defined by the rule. Only applicable for string values.</li>
+	 * <li><code>suffix</code>: Matches that end with this value meet the criteria
+	 * defined by the rule. Only applicable for string values.</li>
+	 * </ul>
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final QueryRuleCriteriaType type() {
 		return this.type;
 	}
 
 	/**
+	 * The metadata field to match against. This metadata will be used to match
+	 * against <code>match_criteria</code> sent in the rule. It is required for all
+	 * criteria types except <code>always</code>.
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	@Nullable
@@ -99,6 +130,10 @@ public class QueryRuleCriteria implements JsonpSerializable {
 	}
 
 	/**
+	 * The values to match against the <code>metadata</code> field. Only one value
+	 * must match for the criteria to be met. It is required for all criteria types
+	 * except <code>always</code>.
+	 * <p>
 	 * API name: {@code values}
 	 */
 	public final List<JsonData> values() {
@@ -157,7 +192,34 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		private List<JsonData> values;
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - The type of criteria. The following criteria types are supported:
+		 * <ul>
+		 * <li><code>always</code>: Matches all queries, regardless of input.</li>
+		 * <li><code>contains</code>: Matches that contain this value anywhere in the
+		 * field meet the criteria defined by the rule. Only applicable for string
+		 * values.</li>
+		 * <li><code>exact</code>: Only exact matches meet the criteria defined by the
+		 * rule. Applicable for string or numerical values.</li>
+		 * <li><code>fuzzy</code>: Exact matches or matches within the allowed
+		 * Levenshtein Edit Distance meet the criteria defined by the rule. Only
+		 * applicable for string values.</li>
+		 * <li><code>gt</code>: Matches with a value greater than this value meet the
+		 * criteria defined by the rule. Only applicable for numerical values.</li>
+		 * <li><code>gte</code>: Matches with a value greater than or equal to this
+		 * value meet the criteria defined by the rule. Only applicable for numerical
+		 * values.</li>
+		 * <li><code>lt</code>: Matches with a value less than this value meet the
+		 * criteria defined by the rule. Only applicable for numerical values.</li>
+		 * <li><code>lte</code>: Matches with a value less than or equal to this value
+		 * meet the criteria defined by the rule. Only applicable for numerical
+		 * values.</li>
+		 * <li><code>prefix</code>: Matches that start with this value meet the criteria
+		 * defined by the rule. Only applicable for string values.</li>
+		 * <li><code>suffix</code>: Matches that end with this value meet the criteria
+		 * defined by the rule. Only applicable for string values.</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(QueryRuleCriteriaType value) {
 			this.type = value;
@@ -165,6 +227,10 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		}
 
 		/**
+		 * The metadata field to match against. This metadata will be used to match
+		 * against <code>match_criteria</code> sent in the rule. It is required for all
+		 * criteria types except <code>always</code>.
+		 * <p>
 		 * API name: {@code metadata}
 		 */
 		public final Builder metadata(@Nullable String value) {
@@ -173,6 +239,10 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		}
 
 		/**
+		 * The values to match against the <code>metadata</code> field. Only one value
+		 * must match for the criteria to be met. It is required for all criteria types
+		 * except <code>always</code>.
+		 * <p>
 		 * API name: {@code values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>values</code>.
@@ -183,6 +253,10 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		}
 
 		/**
+		 * The values to match against the <code>metadata</code> field. Only one value
+		 * must match for the criteria to be met. It is required for all criteria types
+		 * except <code>always</code>.
+		 * <p>
 		 * API name: {@code values}
 		 * <p>
 		 * Adds one or more values to <code>values</code>.

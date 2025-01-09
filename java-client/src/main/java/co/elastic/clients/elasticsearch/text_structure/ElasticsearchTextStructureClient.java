@@ -68,10 +68,126 @@ public class ElasticsearchTextStructureClient
 		return new ElasticsearchTextStructureClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: text_structure.find_field_structure
+
+	/**
+	 * Find the structure of a text field. Find the structure of a text field in an
+	 * Elasticsearch index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/find-field-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public FindFieldStructureResponse findFieldStructure(FindFieldStructureRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FindFieldStructureRequest, FindFieldStructureResponse, ErrorResponse> endpoint = (JsonEndpoint<FindFieldStructureRequest, FindFieldStructureResponse, ErrorResponse>) FindFieldStructureRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Find the structure of a text field. Find the structure of a text field in an
+	 * Elasticsearch index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link FindFieldStructureRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/find-field-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final FindFieldStructureResponse findFieldStructure(
+			Function<FindFieldStructureRequest.Builder, ObjectBuilder<FindFieldStructureRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return findFieldStructure(fn.apply(new FindFieldStructureRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: text_structure.find_message_structure
+
+	/**
+	 * Find the structure of text messages. Find the structure of a list of text
+	 * messages. The messages must contain data that is suitable to be ingested into
+	 * Elasticsearch.
+	 * <p>
+	 * This API provides a starting point for ingesting data into Elasticsearch in a
+	 * format that is suitable for subsequent use with other Elastic Stack
+	 * functionality. Use this API rather than the find text structure API if your
+	 * input text has already been split up into separate messages by some other
+	 * process. The response from the API contains:
+	 * <ul>
+	 * <li>Sample messages.</li>
+	 * <li>Statistics that reveal the most common values for all fields detected
+	 * within the text and basic numeric statistics for numeric fields.</li>
+	 * <li>Information about the structure of the text, which is useful when you
+	 * write ingest configurations to index it or similarly formatted text.
+	 * Appropriate mappings for an Elasticsearch index, which you could use to
+	 * ingest the text.</li>
+	 * </ul>
+	 * <p>
+	 * All this information can be calculated by the structure finder with no
+	 * guidance. However, you can optionally override some of the decisions about
+	 * the text structure by specifying one or more query parameters.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/find-message-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public FindMessageStructureResponse findMessageStructure(FindMessageStructureRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FindMessageStructureRequest, FindMessageStructureResponse, ErrorResponse> endpoint = (JsonEndpoint<FindMessageStructureRequest, FindMessageStructureResponse, ErrorResponse>) FindMessageStructureRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Find the structure of text messages. Find the structure of a list of text
+	 * messages. The messages must contain data that is suitable to be ingested into
+	 * Elasticsearch.
+	 * <p>
+	 * This API provides a starting point for ingesting data into Elasticsearch in a
+	 * format that is suitable for subsequent use with other Elastic Stack
+	 * functionality. Use this API rather than the find text structure API if your
+	 * input text has already been split up into separate messages by some other
+	 * process. The response from the API contains:
+	 * <ul>
+	 * <li>Sample messages.</li>
+	 * <li>Statistics that reveal the most common values for all fields detected
+	 * within the text and basic numeric statistics for numeric fields.</li>
+	 * <li>Information about the structure of the text, which is useful when you
+	 * write ingest configurations to index it or similarly formatted text.
+	 * Appropriate mappings for an Elasticsearch index, which you could use to
+	 * ingest the text.</li>
+	 * </ul>
+	 * <p>
+	 * All this information can be calculated by the structure finder with no
+	 * guidance. However, you can optionally override some of the decisions about
+	 * the text structure by specifying one or more query parameters.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link FindMessageStructureRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/find-message-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final FindMessageStructureResponse findMessageStructure(
+			Function<FindMessageStructureRequest.Builder, ObjectBuilder<FindMessageStructureRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return findMessageStructure(fn.apply(new FindMessageStructureRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: text_structure.test_grok_pattern
 
 	/**
-	 * Tests a Grok pattern on some text.
+	 * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
+	 * API indicates whether the lines match the pattern together with the offsets
+	 * and lengths of the matched substrings.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern.html">Documentation
@@ -87,7 +203,9 @@ public class ElasticsearchTextStructureClient
 	}
 
 	/**
-	 * Tests a Grok pattern on some text.
+	 * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
+	 * API indicates whether the lines match the pattern together with the offsets
+	 * and lengths of the matched substrings.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

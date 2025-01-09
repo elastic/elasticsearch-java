@@ -87,7 +87,7 @@ public class QueryRulesetListItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Ruleset unique identifier
+	 * Required - A unique identifier for the ruleset.
 	 * <p>
 	 * API name: {@code ruleset_id}
 	 */
@@ -96,7 +96,7 @@ public class QueryRulesetListItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The number of rules associated with this ruleset
+	 * Required - The number of rules associated with the ruleset.
 	 * <p>
 	 * API name: {@code rule_total_count}
 	 */
@@ -105,8 +105,12 @@ public class QueryRulesetListItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A map of criteria type (e.g. exact) to the number of rules of that
-	 * type
+	 * Required - A map of criteria type (for example, <code>exact</code>) to the
+	 * number of rules of that type.
+	 * <p>
+	 * NOTE: The counts in <code>rule_criteria_types_counts</code> may be larger
+	 * than the value of <code>rule_total_count</code> because a rule may have
+	 * multiple criteria.
 	 * <p>
 	 * API name: {@code rule_criteria_types_counts}
 	 */
@@ -115,8 +119,8 @@ public class QueryRulesetListItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A map of rule type (e.g. pinned) to the number of rules of that
-	 * type
+	 * Required - A map of rule type (for example, <code>pinned</code>) to the
+	 * number of rules of that type.
 	 * <p>
 	 * API name: {@code rule_type_counts}
 	 */
@@ -189,7 +193,7 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		private Map<String, Integer> ruleTypeCounts;
 
 		/**
-		 * Required - Ruleset unique identifier
+		 * Required - A unique identifier for the ruleset.
 		 * <p>
 		 * API name: {@code ruleset_id}
 		 */
@@ -199,7 +203,7 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The number of rules associated with this ruleset
+		 * Required - The number of rules associated with the ruleset.
 		 * <p>
 		 * API name: {@code rule_total_count}
 		 */
@@ -209,8 +213,12 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A map of criteria type (e.g. exact) to the number of rules of that
-		 * type
+		 * Required - A map of criteria type (for example, <code>exact</code>) to the
+		 * number of rules of that type.
+		 * <p>
+		 * NOTE: The counts in <code>rule_criteria_types_counts</code> may be larger
+		 * than the value of <code>rule_total_count</code> because a rule may have
+		 * multiple criteria.
 		 * <p>
 		 * API name: {@code rule_criteria_types_counts}
 		 * <p>
@@ -222,8 +230,12 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A map of criteria type (e.g. exact) to the number of rules of that
-		 * type
+		 * Required - A map of criteria type (for example, <code>exact</code>) to the
+		 * number of rules of that type.
+		 * <p>
+		 * NOTE: The counts in <code>rule_criteria_types_counts</code> may be larger
+		 * than the value of <code>rule_total_count</code> because a rule may have
+		 * multiple criteria.
 		 * <p>
 		 * API name: {@code rule_criteria_types_counts}
 		 * <p>
@@ -235,8 +247,8 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A map of rule type (e.g. pinned) to the number of rules of that
-		 * type
+		 * Required - A map of rule type (for example, <code>pinned</code>) to the
+		 * number of rules of that type.
 		 * <p>
 		 * API name: {@code rule_type_counts}
 		 * <p>
@@ -248,8 +260,8 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A map of rule type (e.g. pinned) to the number of rules of that
-		 * type
+		 * Required - A map of rule type (for example, <code>pinned</code>) to the
+		 * number of rules of that type.
 		 * <p>
 		 * API name: {@code rule_type_counts}
 		 * <p>

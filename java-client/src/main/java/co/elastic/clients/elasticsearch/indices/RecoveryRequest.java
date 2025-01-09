@@ -62,6 +62,9 @@ import javax.annotation.Nullable;
  * shard recoveries for one or more indices. For data streams, the API returns
  * information for the stream's backing indices.
  * <p>
+ * All recoveries, whether ongoing or complete, are kept in the cluster state
+ * and may be reported on at any time.
+ * <p>
  * Shard recovery is the process of initializing a shard copy, such as restoring
  * a primary shard from a snapshot or creating a replica shard from a primary
  * shard. When a shard recovery completes, the recovered shard is available for

@@ -95,6 +95,8 @@ public class Deprecation implements JsonpSerializable {
 	}
 
 	/**
+	 * Optional details about the deprecation warning.
+	 * <p>
 	 * API name: {@code details}
 	 */
 	@Nullable
@@ -112,14 +114,19 @@ public class Deprecation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code message}
+	 * Required - Descriptive information about the deprecation warning.
+	 * <p>
+	 * API name: {@code message}
 	 */
 	public final String message() {
 		return this.message;
 	}
 
 	/**
-	 * Required - API name: {@code url}
+	 * Required - A link to the breaking change documentation, where you can find
+	 * more information about this change.
+	 * <p>
+	 * API name: {@code url}
 	 */
 	public final String url() {
 		return this.url;
@@ -207,6 +214,8 @@ public class Deprecation implements JsonpSerializable {
 		private Map<String, JsonData> meta;
 
 		/**
+		 * Optional details about the deprecation warning.
+		 * <p>
 		 * API name: {@code details}
 		 */
 		public final Builder details(@Nullable String value) {
@@ -225,7 +234,9 @@ public class Deprecation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code message}
+		 * Required - Descriptive information about the deprecation warning.
+		 * <p>
+		 * API name: {@code message}
 		 */
 		public final Builder message(String value) {
 			this.message = value;
@@ -233,7 +244,10 @@ public class Deprecation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code url}
+		 * Required - A link to the breaking change documentation, where you can find
+		 * more information about this change.
+		 * <p>
+		 * API name: {@code url}
 		 */
 		public final Builder url(String value) {
 			this.url = value;

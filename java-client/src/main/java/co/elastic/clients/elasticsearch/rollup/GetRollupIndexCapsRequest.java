@@ -58,14 +58,23 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_rollup_index_caps.Request
 
 /**
- * Returns the rollup capabilities of all jobs inside of a rollup index (for
- * example, the index where rollup data is stored).
- * 
+ * Get the rollup index capabilities. Get the rollup capabilities of all jobs
+ * inside of a rollup index. A single rollup index may store the data for
+ * multiple rollup jobs and may have a variety of capabilities depending on
+ * those jobs. This API enables you to determine:
+ * <ul>
+ * <li>What jobs are stored in an index (or indices specified via a
+ * pattern)?</li>
+ * <li>What target indices were rolled up, what fields were used in those
+ * rollups, and what aggregations can be performed on each job?</li>
+ * </ul>
+ *
  * @see <a href=
  *      "../doc-files/api-spec.html#rollup.get_rollup_index_caps.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
-
+@Deprecated
 public class GetRollupIndexCapsRequest extends RequestBase {
 	private final List<String> index;
 
@@ -96,7 +105,7 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupIndexCapsRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetRollupIndexCapsRequest> {

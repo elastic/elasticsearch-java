@@ -344,7 +344,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your trial, use the get trial status API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -372,7 +372,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostStartTrialRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -395,7 +395,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your trial, use the get trial status API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/start-trial.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

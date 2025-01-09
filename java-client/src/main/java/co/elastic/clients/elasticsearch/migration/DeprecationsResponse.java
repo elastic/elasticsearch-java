@@ -89,14 +89,20 @@ public class DeprecationsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cluster_settings}
+	 * Required - Cluster-level deprecation warnings.
+	 * <p>
+	 * API name: {@code cluster_settings}
 	 */
 	public final List<Deprecation> clusterSettings() {
 		return this.clusterSettings;
 	}
 
 	/**
-	 * Required - API name: {@code index_settings}
+	 * Required - Index warnings are sectioned off per index and can be filtered
+	 * using an index-pattern in the query. This section includes warnings for the
+	 * backing indices of data streams specified in the request path.
+	 * <p>
+	 * API name: {@code index_settings}
 	 */
 	public final Map<String, List<Deprecation>> indexSettings() {
 		return this.indexSettings;
@@ -110,14 +116,20 @@ public class DeprecationsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code node_settings}
+	 * Required - Node-level deprecation warnings. Since only a subset of your nodes
+	 * might incorporate these settings, it is important to read the details section
+	 * for more information about which nodes are affected.
+	 * <p>
+	 * API name: {@code node_settings}
 	 */
 	public final List<Deprecation> nodeSettings() {
 		return this.nodeSettings;
 	}
 
 	/**
-	 * Required - API name: {@code ml_settings}
+	 * Required - Machine learning-related deprecation warnings.
+	 * <p>
+	 * API name: {@code ml_settings}
 	 */
 	public final List<Deprecation> mlSettings() {
 		return this.mlSettings;
@@ -228,7 +240,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		private List<Deprecation> mlSettings;
 
 		/**
-		 * Required - API name: {@code cluster_settings}
+		 * Required - Cluster-level deprecation warnings.
+		 * <p>
+		 * API name: {@code cluster_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>clusterSettings</code>.
 		 */
@@ -238,7 +252,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code cluster_settings}
+		 * Required - Cluster-level deprecation warnings.
+		 * <p>
+		 * API name: {@code cluster_settings}
 		 * <p>
 		 * Adds one or more values to <code>clusterSettings</code>.
 		 */
@@ -248,7 +264,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code cluster_settings}
+		 * Required - Cluster-level deprecation warnings.
+		 * <p>
+		 * API name: {@code cluster_settings}
 		 * <p>
 		 * Adds a value to <code>clusterSettings</code> using a builder lambda.
 		 */
@@ -257,7 +275,11 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index_settings}
+		 * Required - Index warnings are sectioned off per index and can be filtered
+		 * using an index-pattern in the query. This section includes warnings for the
+		 * backing indices of data streams specified in the request path.
+		 * <p>
+		 * API name: {@code index_settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indexSettings</code>.
 		 */
@@ -267,7 +289,11 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index_settings}
+		 * Required - Index warnings are sectioned off per index and can be filtered
+		 * using an index-pattern in the query. This section includes warnings for the
+		 * backing indices of data streams specified in the request path.
+		 * <p>
+		 * API name: {@code index_settings}
 		 * <p>
 		 * Adds an entry to <code>indexSettings</code>.
 		 */
@@ -297,7 +323,11 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node_settings}
+		 * Required - Node-level deprecation warnings. Since only a subset of your nodes
+		 * might incorporate these settings, it is important to read the details section
+		 * for more information about which nodes are affected.
+		 * <p>
+		 * API name: {@code node_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeSettings</code>.
 		 */
@@ -307,7 +337,11 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node_settings}
+		 * Required - Node-level deprecation warnings. Since only a subset of your nodes
+		 * might incorporate these settings, it is important to read the details section
+		 * for more information about which nodes are affected.
+		 * <p>
+		 * API name: {@code node_settings}
 		 * <p>
 		 * Adds one or more values to <code>nodeSettings</code>.
 		 */
@@ -317,7 +351,11 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node_settings}
+		 * Required - Node-level deprecation warnings. Since only a subset of your nodes
+		 * might incorporate these settings, it is important to read the details section
+		 * for more information about which nodes are affected.
+		 * <p>
+		 * API name: {@code node_settings}
 		 * <p>
 		 * Adds a value to <code>nodeSettings</code> using a builder lambda.
 		 */
@@ -326,7 +364,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code ml_settings}
+		 * Required - Machine learning-related deprecation warnings.
+		 * <p>
+		 * API name: {@code ml_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mlSettings</code>.
 		 */
@@ -336,7 +376,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code ml_settings}
+		 * Required - Machine learning-related deprecation warnings.
+		 * <p>
+		 * API name: {@code ml_settings}
 		 * <p>
 		 * Adds one or more values to <code>mlSettings</code>.
 		 */
@@ -346,7 +388,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code ml_settings}
+		 * Required - Machine learning-related deprecation warnings.
+		 * <p>
+		 * API name: {@code ml_settings}
 		 * <p>
 		 * Adds a value to <code>mlSettings</code> using a builder lambda.
 		 */

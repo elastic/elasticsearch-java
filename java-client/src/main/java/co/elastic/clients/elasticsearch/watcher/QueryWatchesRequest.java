@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
 // typedef: watcher.query_watches.Request
 
 /**
- * Retrieves stored watches.
+ * Query watches. Get all registered watches in a paginated manner and
+ * optionally filter watches by a query.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.query_watches.Request">API
  *      specification</a>

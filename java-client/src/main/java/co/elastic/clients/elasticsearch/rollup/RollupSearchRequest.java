@@ -63,11 +63,58 @@ import javax.annotation.Nullable;
 // typedef: rollup.rollup_search.Request
 
 /**
- * Enables searching rolled-up data using the standard Query DSL.
+ * Search rolled-up data. The rollup search endpoint is needed because,
+ * internally, rolled-up documents utilize a different document structure than
+ * the original data. It rewrites standard Query DSL into a format that matches
+ * the rollup documents then takes the response and rewrites it back to what a
+ * client would expect given the original query.
+ * <p>
+ * The request body supports a subset of features from the regular search API.
+ * The following functionality is not available:
+ * <p>
+ * <code>size</code>: Because rollups work on pre-aggregated data, no search
+ * hits can be returned and so size must be set to zero or omitted entirely.
+ * <code>highlighter</code>, <code>suggestors</code>, <code>post_filter</code>,
+ * <code>profile</code>, <code>explain</code>: These are similarly disallowed.
+ * <p>
+ * <strong>Searching both historical rollup and non-rollup data</strong>
+ * <p>
+ * The rollup search API has the capability to search across both
+ * &quot;live&quot; non-rollup data and the aggregated rollup data. This is done
+ * by simply adding the live indices to the URI. For example:
+ * 
+ * <pre>
+ * <code>GET sensor-1,sensor_rollup/_rollup_search
+ * {
+ *   &quot;size&quot;: 0,
+ *   &quot;aggregations&quot;: {
+ *      &quot;max_temperature&quot;: {
+ *       &quot;max&quot;: {
+ *         &quot;field&quot;: &quot;temperature&quot;
+ *       }
+ *     }
+ *   }
+ * }
+ * </code>
+ * </pre>
+ * <p>
+ * The rollup search endpoint does two things when the search runs:
+ * <ul>
+ * <li>The original request is sent to the non-rollup index unaltered.</li>
+ * <li>A rewritten version of the original request is sent to the rollup
+ * index.</li>
+ * </ul>
+ * <p>
+ * When the two responses are received, the endpoint rewrites the rollup
+ * response and merges the two together. During the merging process, if there is
+ * any overlap in buckets between the two responses, the buckets from the
+ * non-rollup index are used.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.rollup_search.Request">API
  *      specification</a>
+ * @deprecated 8.11.0
  */
+@Deprecated
 @JsonpDeserializable
 public class RollupSearchRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
@@ -105,7 +152,20 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - Enables searching rolled-up data using the standard Query DSL.
+	 * Required - A comma-separated list of data streams and indices used to limit
+	 * the request. This parameter has the following rules:
+	 * <ul>
+	 * <li>At least one data stream, index, or wildcard expression must be
+	 * specified. This target can include a rollup or non-rollup index. For data
+	 * streams, the stream's backing indices can only serve as non-rollup indices.
+	 * Omitting the parameter or using <code>_all</code> are not permitted.</li>
+	 * <li>Multiple non-rollup indices may be specified.</li>
+	 * <li>Only one rollup index may be specified. If more than one are supplied, an
+	 * exception occurs.</li>
+	 * <li>Wildcard expressions (<code>*</code>) may be used. If they match more
+	 * than one rollup index, an exception occurs. However, you can use an
+	 * expression to match multiple non-rollup indices or data streams.</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -114,7 +174,7 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Specifies a DSL query.
+	 * Specifies a DSL query that is subject to some limitations.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -173,7 +233,7 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link RollupSearchRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RollupSearchRequest> {
@@ -224,7 +284,20 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Required - Enables searching rolled-up data using the standard Query DSL.
+		 * Required - A comma-separated list of data streams and indices used to limit
+		 * the request. This parameter has the following rules:
+		 * <ul>
+		 * <li>At least one data stream, index, or wildcard expression must be
+		 * specified. This target can include a rollup or non-rollup index. For data
+		 * streams, the stream's backing indices can only serve as non-rollup indices.
+		 * Omitting the parameter or using <code>_all</code> are not permitted.</li>
+		 * <li>Multiple non-rollup indices may be specified.</li>
+		 * <li>Only one rollup index may be specified. If more than one are supplied, an
+		 * exception occurs.</li>
+		 * <li>Wildcard expressions (<code>*</code>) may be used. If they match more
+		 * than one rollup index, an exception occurs. However, you can use an
+		 * expression to match multiple non-rollup indices or data streams.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -236,7 +309,20 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Required - Enables searching rolled-up data using the standard Query DSL.
+		 * Required - A comma-separated list of data streams and indices used to limit
+		 * the request. This parameter has the following rules:
+		 * <ul>
+		 * <li>At least one data stream, index, or wildcard expression must be
+		 * specified. This target can include a rollup or non-rollup index. For data
+		 * streams, the stream's backing indices can only serve as non-rollup indices.
+		 * Omitting the parameter or using <code>_all</code> are not permitted.</li>
+		 * <li>Multiple non-rollup indices may be specified.</li>
+		 * <li>Only one rollup index may be specified. If more than one are supplied, an
+		 * exception occurs.</li>
+		 * <li>Wildcard expressions (<code>*</code>) may be used. If they match more
+		 * than one rollup index, an exception occurs. However, you can use an
+		 * expression to match multiple non-rollup indices or data streams.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -248,7 +334,7 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies a DSL query.
+		 * Specifies a DSL query that is subject to some limitations.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -258,7 +344,7 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Specifies a DSL query.
+		 * Specifies a DSL query that is subject to some limitations.
 		 * <p>
 		 * API name: {@code query}
 		 */

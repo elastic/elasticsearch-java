@@ -64,13 +64,13 @@ public class Pipeline implements JsonpSerializable {
 
 	private final DateTime lastModified;
 
-	private final PipelineMetadata pipelineMetadata;
-
-	private final String username;
-
 	private final String pipeline;
 
+	private final PipelineMetadata pipelineMetadata;
+
 	private final PipelineSettings pipelineSettings;
+
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,10 +78,10 @@ public class Pipeline implements JsonpSerializable {
 
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.lastModified = ApiTypeHelper.requireNonNull(builder.lastModified, this, "lastModified");
-		this.pipelineMetadata = ApiTypeHelper.requireNonNull(builder.pipelineMetadata, this, "pipelineMetadata");
-		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 		this.pipeline = ApiTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
+		this.pipelineMetadata = ApiTypeHelper.requireNonNull(builder.pipelineMetadata, this, "pipelineMetadata");
 		this.pipelineSettings = ApiTypeHelper.requireNonNull(builder.pipelineSettings, this, "pipelineSettings");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
@@ -90,7 +90,7 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Description of the pipeline. This description is not used by
+	 * Required - A description of the pipeline. This description is not used by
 	 * Elasticsearch or Logstash.
 	 * <p>
 	 * API name: {@code description}
@@ -100,7 +100,7 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Date the pipeline was last updated. Must be in the
+	 * Required - The date the pipeline was last updated. It must be in the
 	 * <code>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</code> strict_date_time format.
 	 * <p>
 	 * API name: {@code last_modified}
@@ -110,26 +110,7 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Optional metadata about the pipeline. May have any contents. This
-	 * metadata is not generated or used by Elasticsearch or Logstash.
-	 * <p>
-	 * API name: {@code pipeline_metadata}
-	 */
-	public final PipelineMetadata pipelineMetadata() {
-		return this.pipelineMetadata;
-	}
-
-	/**
-	 * Required - User who last updated the pipeline.
-	 * <p>
-	 * API name: {@code username}
-	 */
-	public final String username() {
-		return this.username;
-	}
-
-	/**
-	 * Required - Configuration for the pipeline.
+	 * Required - The configuration for the pipeline.
 	 * <p>
 	 * API name: {@code pipeline}
 	 */
@@ -138,13 +119,32 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Settings for the pipeline. Supports only flat keys in dot
+	 * Required - Optional metadata about the pipeline, which can have any contents.
+	 * This metadata is not generated or used by Elasticsearch or Logstash.
+	 * <p>
+	 * API name: {@code pipeline_metadata}
+	 */
+	public final PipelineMetadata pipelineMetadata() {
+		return this.pipelineMetadata;
+	}
+
+	/**
+	 * Required - Settings for the pipeline. It supports only flat keys in dot
 	 * notation.
 	 * <p>
 	 * API name: {@code pipeline_settings}
 	 */
 	public final PipelineSettings pipelineSettings() {
 		return this.pipelineSettings;
+	}
+
+	/**
+	 * Required - The user who last updated the pipeline.
+	 * <p>
+	 * API name: {@code username}
+	 */
+	public final String username() {
+		return this.username;
 	}
 
 	/**
@@ -163,17 +163,17 @@ public class Pipeline implements JsonpSerializable {
 
 		generator.writeKey("last_modified");
 		this.lastModified.serialize(generator, mapper);
-		generator.writeKey("pipeline_metadata");
-		this.pipelineMetadata.serialize(generator, mapper);
-
-		generator.writeKey("username");
-		generator.write(this.username);
-
 		generator.writeKey("pipeline");
 		generator.write(this.pipeline);
 
+		generator.writeKey("pipeline_metadata");
+		this.pipelineMetadata.serialize(generator, mapper);
+
 		generator.writeKey("pipeline_settings");
 		this.pipelineSettings.serialize(generator, mapper);
+
+		generator.writeKey("username");
+		generator.write(this.username);
 
 	}
 
@@ -193,16 +193,16 @@ public class Pipeline implements JsonpSerializable {
 
 		private DateTime lastModified;
 
-		private PipelineMetadata pipelineMetadata;
-
-		private String username;
-
 		private String pipeline;
+
+		private PipelineMetadata pipelineMetadata;
 
 		private PipelineSettings pipelineSettings;
 
+		private String username;
+
 		/**
-		 * Required - Description of the pipeline. This description is not used by
+		 * Required - A description of the pipeline. This description is not used by
 		 * Elasticsearch or Logstash.
 		 * <p>
 		 * API name: {@code description}
@@ -213,7 +213,7 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Date the pipeline was last updated. Must be in the
+		 * Required - The date the pipeline was last updated. It must be in the
 		 * <code>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</code> strict_date_time format.
 		 * <p>
 		 * API name: {@code last_modified}
@@ -224,38 +224,7 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Optional metadata about the pipeline. May have any contents. This
-		 * metadata is not generated or used by Elasticsearch or Logstash.
-		 * <p>
-		 * API name: {@code pipeline_metadata}
-		 */
-		public final Builder pipelineMetadata(PipelineMetadata value) {
-			this.pipelineMetadata = value;
-			return this;
-		}
-
-		/**
-		 * Required - Optional metadata about the pipeline. May have any contents. This
-		 * metadata is not generated or used by Elasticsearch or Logstash.
-		 * <p>
-		 * API name: {@code pipeline_metadata}
-		 */
-		public final Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
-			return this.pipelineMetadata(fn.apply(new PipelineMetadata.Builder()).build());
-		}
-
-		/**
-		 * Required - User who last updated the pipeline.
-		 * <p>
-		 * API name: {@code username}
-		 */
-		public final Builder username(String value) {
-			this.username = value;
-			return this;
-		}
-
-		/**
-		 * Required - Configuration for the pipeline.
+		 * Required - The configuration for the pipeline.
 		 * <p>
 		 * API name: {@code pipeline}
 		 */
@@ -265,7 +234,28 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Settings for the pipeline. Supports only flat keys in dot
+		 * Required - Optional metadata about the pipeline, which can have any contents.
+		 * This metadata is not generated or used by Elasticsearch or Logstash.
+		 * <p>
+		 * API name: {@code pipeline_metadata}
+		 */
+		public final Builder pipelineMetadata(PipelineMetadata value) {
+			this.pipelineMetadata = value;
+			return this;
+		}
+
+		/**
+		 * Required - Optional metadata about the pipeline, which can have any contents.
+		 * This metadata is not generated or used by Elasticsearch or Logstash.
+		 * <p>
+		 * API name: {@code pipeline_metadata}
+		 */
+		public final Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
+			return this.pipelineMetadata(fn.apply(new PipelineMetadata.Builder()).build());
+		}
+
+		/**
+		 * Required - Settings for the pipeline. It supports only flat keys in dot
 		 * notation.
 		 * <p>
 		 * API name: {@code pipeline_settings}
@@ -276,13 +266,23 @@ public class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Settings for the pipeline. Supports only flat keys in dot
+		 * Required - Settings for the pipeline. It supports only flat keys in dot
 		 * notation.
 		 * <p>
 		 * API name: {@code pipeline_settings}
 		 */
 		public final Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
 			return this.pipelineSettings(fn.apply(new PipelineSettings.Builder()).build());
+		}
+
+		/**
+		 * Required - The user who last updated the pipeline.
+		 * <p>
+		 * API name: {@code username}
+		 */
+		public final Builder username(String value) {
+			this.username = value;
+			return this;
 		}
 
 		@Override
@@ -315,10 +315,10 @@ public class Pipeline implements JsonpSerializable {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::lastModified, DateTime._DESERIALIZER, "last_modified");
-		op.add(Builder::pipelineMetadata, PipelineMetadata._DESERIALIZER, "pipeline_metadata");
-		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
+		op.add(Builder::pipelineMetadata, PipelineMetadata._DESERIALIZER, "pipeline_metadata");
 		op.add(Builder::pipelineSettings, PipelineSettings._DESERIALIZER, "pipeline_settings");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 

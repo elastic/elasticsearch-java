@@ -1883,7 +1883,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.info
 
 	/**
-	 * Return ML defaults and limits. Returns defaults and limits used by machine
+	 * Get machine learning information. Get defaults and limits used by machine
 	 * learning. This endpoint is designed to be used by a user interface that needs
 	 * to fully understand machine learning configurations where some options are
 	 * not specified, meaning that the defaults should be used. This endpoint may be
@@ -3287,7 +3287,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.validate
 
 	/**
-	 * Validates an anomaly detection job.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
@@ -3302,7 +3302,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Validates an anomaly detection job.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3318,7 +3318,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Validates an anomaly detection job.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
@@ -3333,7 +3333,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	// ----- Endpoint: ml.validate_detector
 
 	/**
-	 * Validates an anomaly detection detector.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
@@ -3349,7 +3349,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Validates an anomaly detection detector.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3366,7 +3366,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
-	 * Validates an anomaly detection detector.
+	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation

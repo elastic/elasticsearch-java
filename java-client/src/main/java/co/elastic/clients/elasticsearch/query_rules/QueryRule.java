@@ -89,28 +89,41 @@ public class QueryRule implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code rule_id}
+	 * Required - A unique identifier for the rule.
+	 * <p>
+	 * API name: {@code rule_id}
 	 */
 	public final String ruleId() {
 		return this.ruleId;
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - The type of rule. <code>pinned</code> will identify and pin
+	 * specific documents to the top of search results. <code>exclude</code> will
+	 * exclude specific documents from search results.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final QueryRuleType type() {
 		return this.type;
 	}
 
 	/**
-	 * Required - API name: {@code criteria}
+	 * Required - The criteria that must be met for the rule to be applied. If
+	 * multiple criteria are specified for a rule, all criteria must be met for the
+	 * rule to be applied.
+	 * <p>
+	 * API name: {@code criteria}
 	 */
 	public final List<QueryRuleCriteria> criteria() {
 		return this.criteria;
 	}
 
 	/**
-	 * Required - API name: {@code actions}
+	 * Required - The actions to take when the rule is matched. The format of this
+	 * action depends on the rule type.
+	 * <p>
+	 * API name: {@code actions}
 	 */
 	public final QueryRuleActions actions() {
 		return this.actions;
@@ -206,7 +219,9 @@ public class QueryRule implements JsonpSerializable {
 		private Integer priority;
 
 		/**
-		 * Required - API name: {@code rule_id}
+		 * Required - A unique identifier for the rule.
+		 * <p>
+		 * API name: {@code rule_id}
 		 */
 		public final BuilderT ruleId(String value) {
 			this.ruleId = value;
@@ -214,7 +229,11 @@ public class QueryRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - The type of rule. <code>pinned</code> will identify and pin
+		 * specific documents to the top of search results. <code>exclude</code> will
+		 * exclude specific documents from search results.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final BuilderT type(QueryRuleType value) {
 			this.type = value;
@@ -222,7 +241,11 @@ public class QueryRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code criteria}
+		 * Required - The criteria that must be met for the rule to be applied. If
+		 * multiple criteria are specified for a rule, all criteria must be met for the
+		 * rule to be applied.
+		 * <p>
+		 * API name: {@code criteria}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>criteria</code>.
 		 */
@@ -232,7 +255,11 @@ public class QueryRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code criteria}
+		 * Required - The criteria that must be met for the rule to be applied. If
+		 * multiple criteria are specified for a rule, all criteria must be met for the
+		 * rule to be applied.
+		 * <p>
+		 * API name: {@code criteria}
 		 * <p>
 		 * Adds one or more values to <code>criteria</code>.
 		 */
@@ -242,7 +269,11 @@ public class QueryRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code criteria}
+		 * Required - The criteria that must be met for the rule to be applied. If
+		 * multiple criteria are specified for a rule, all criteria must be met for the
+		 * rule to be applied.
+		 * <p>
+		 * API name: {@code criteria}
 		 * <p>
 		 * Adds a value to <code>criteria</code> using a builder lambda.
 		 */
@@ -251,7 +282,10 @@ public class QueryRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code actions}
+		 * Required - The actions to take when the rule is matched. The format of this
+		 * action depends on the rule type.
+		 * <p>
+		 * API name: {@code actions}
 		 */
 		public final BuilderT actions(QueryRuleActions value) {
 			this.actions = value;
@@ -259,7 +293,10 @@ public class QueryRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code actions}
+		 * Required - The actions to take when the rule is matched. The format of this
+		 * action depends on the rule type.
+		 * <p>
+		 * API name: {@code actions}
 		 */
 		public final BuilderT actions(Function<QueryRuleActions.Builder, ObjectBuilder<QueryRuleActions>> fn) {
 			return this.actions(fn.apply(new QueryRuleActions.Builder()).build());

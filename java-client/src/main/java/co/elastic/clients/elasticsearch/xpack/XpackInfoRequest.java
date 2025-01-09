@@ -59,8 +59,14 @@ import javax.annotation.Nullable;
 // typedef: xpack.info.Request
 
 /**
- * Provides general information about the installed X-Pack features.
- * 
+ * Get information. The information provided by the API includes:
+ * <ul>
+ * <li>Build information including the build number and timestamp.</li>
+ * <li>License information about the currently installed license.</li>
+ * <li>Feature information for the features that are currently enabled and
+ * available under the current license.</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#xpack.info.Request">API
  *      specification</a>
  */
