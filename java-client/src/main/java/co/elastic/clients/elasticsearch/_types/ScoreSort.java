@@ -77,7 +77,7 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	 */
 	@Override
 	public SortOptions.Kind _sortOptionsKind() {
-		return SortOptions.Kind.Doc;
+		return SortOptions.Kind.Score;
 	}
 
 	/**
