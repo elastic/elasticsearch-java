@@ -59,12 +59,7 @@ import java.util.stream.Collectors;
 public class EsqlArticle {
 
     public static void main(String[] args) throws IOException, SQLException, InterruptedException {
-        String dir = System.getProperty("user.dir");
-        Properties prop = new Properties();
-        Path path = Paths.get(dir, "examples", "esql-article", "src", "main", "resources", "application" +
-            ".conf");
-        prop.load(new FileInputStream(path.toString()));
-
+        
         String serverUrl = System.getenv("server-url");
         String apiKey = System.getenv("api-key");
         String booksUrl = "https://raw.githubusercontent" +
