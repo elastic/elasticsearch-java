@@ -21,7 +21,7 @@ allprojects {
     group = "co.elastic.clients"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
     // also need to add the qualifier in case it's a staging build
-    version = if(System.getenv("VERSION").isNullOrEmpty()) (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
+    version = if(System.getenv("VERSION")==null) (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
               else System.getenv("VERSION") + "-" + File(project.rootDir, "config/version-qualifier.txt").readText().trim()
 
     repositories {
