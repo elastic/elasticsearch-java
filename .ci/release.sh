@@ -46,18 +46,36 @@ DRA_CREDS=$(vault kv get -field=data -format=json kv/ci-shared/release/dra-role)
 chmod -R a+r $PWD/.ci/output/*
 chmod -R a+w $PWD/.ci/output
 # Artifacts should be generated
-docker run --rm \
-       --name release-manager \
-       -e VAULT_ADDR="$(echo "$DRA_CREDS" | jq -r '.vault_addr')" \
-       -e VAULT_ROLE_ID="$(echo "$DRA_CREDS" | jq -r '.role_id')" \
-       -e VAULT_SECRET_ID="$(echo "$DRA_CREDS" | jq -r '.secret_id')" \
-       --mount type=bind,readonly=false,src="$PWD",target=/artifacts \
-       docker.elastic.co/infra/release-manager:latest \
-       cli collect \
-       --project elasticsearch-java \
-       --branch "$BRANCH" \
-       --commit "$(git rev-parse HEAD)" \
-       --workflow "$WORKFLOW" \
-       --version "$STACK_VERSION" \
-       --qualifier "$VERSION_QUALIFIER" \
-       --artifact-set main
+if [ "$WORKFLOW" = "staging" ]; then
+  docker run --rm \
+         --name release-manager \
+         -e VAULT_ADDR="$(echo "$DRA_CREDS" | jq -r '.vault_addr')" \
+         -e VAULT_ROLE_ID="$(echo "$DRA_CREDS" | jq -r '.role_id')" \
+         -e VAULT_SECRET_ID="$(echo "$DRA_CREDS" | jq -r '.secret_id')" \
+         --mount type=bind,readonly=false,src="$PWD",target=/artifacts \
+         docker.elastic.co/infra/release-manager:latest \
+         cli collect \
+         --project elasticsearch-java \
+         --branch "$BRANCH" \
+         --commit "$(git rev-parse HEAD)" \
+         --workflow "$WORKFLOW" \
+         --version "$STACK_VERSION" \
+         --artifact-set main
+fi
+if [ "$WORKFLOW" = "snapshot" ]; then
+  docker run --rm \
+         --name release-manager \
+         -e VAULT_ADDR="$(echo "$DRA_CREDS" | jq -r '.vault_addr')" \
+         -e VAULT_ROLE_ID="$(echo "$DRA_CREDS" | jq -r '.role_id')" \
+         -e VAULT_SECRET_ID="$(echo "$DRA_CREDS" | jq -r '.secret_id')" \
+         --mount type=bind,readonly=false,src="$PWD",target=/artifacts \
+         docker.elastic.co/infra/release-manager:latest \
+         cli collect \
+         --project elasticsearch-java \
+         --branch "$BRANCH" \
+         --commit "$(git rev-parse HEAD)" \
+         --workflow "$WORKFLOW" \
+         --version "$STACK_VERSION" \
+         --qualifier "$VERSION_QUALIFIER" \
+         --artifact-set main
+fi
