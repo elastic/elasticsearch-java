@@ -25,6 +25,9 @@ allprojects {
     if (System.getenv("VERSION")==null) {
         version = (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
     }
+    else if (System.getenv("VERSION").endsWith("-SNAPSHOT")) {
+        version = System.getenv("VERSION")
+    }
     else {
         version = System.getenv("VERSION") + "-" + File(project.rootDir, "config/version-qualifier.txt").readText().trim()
     }
