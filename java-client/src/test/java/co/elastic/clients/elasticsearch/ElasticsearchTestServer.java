@@ -118,8 +118,9 @@ public class ElasticsearchTestServer implements AutoCloseable {
     }
 
     private Version selectLatestVersion(Version version, String info) {
-        if (info.contains(version.toString())) {
-            return version;
+        Version simpleVersion = new Version(version.major(), version.minor(), version.maintenance(),false);
+        if (info.contains(simpleVersion.toString())) {
+            return simpleVersion;
         }
         // if no version X.Y.0 was found, we give up
         if (version.maintenance() == 0) {
@@ -177,19 +178,24 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
         // using specific stable version for tests with plugins
         if (plugins.length > 0) {
-            version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) : new Version(8, 16, 0,
+            version = Version.VERSION.major() < 8 ? new Version(7, 17, 25, false) : new Version(8, 16, 1,
                 false);
         }
 
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
+        // only snapshot version available for new releases
+        if (version.maintenance() == 0) {
+            esImage = esImage+"-SNAPSHOT";
+        }
 
         DockerImageName image;
         if (plugins.length == 0) {
             image = DockerImageName.parse(esImage);
         } else {
+            String finalEsImage = esImage;
             String esWithPluginsImage = new ImageFromDockerfile()
                 .withDockerfileFromBuilder(b -> {
-                        b.from(esImage);
+                        b.from(finalEsImage);
                         for (String plugin : plugins) {
                             b.run("/usr/share/elasticsearch/bin/elasticsearch-plugin", "install", plugin);
                         }
