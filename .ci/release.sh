@@ -27,7 +27,7 @@ VERSION_QUALIFIER=$(cat config/version-qualifier.txt)
 # Branch: BRANCH env var > Buildkite's BUILDKITE_BRANCH var > minor version
 BRANCH=${BRANCH:-${BUILDKITE_BRANCH:-${STACK_VERSION%.*}}}
 
-if [[ "$BRANCH" = "main" && "$WORKFLOW" = "staging" && -z "$VERSION_QUALIFIER"]]; then
+if [[ "$BRANCH" = "main" && "$WORKFLOW" = "staging" && [-z "$VERSION_QUALIFIER"]]]; then
   echo "No staging build for the main branch - skipping"
   exit 0
 fi
