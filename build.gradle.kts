@@ -21,8 +21,7 @@ allprojects {
     group = "co.elastic.clients"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
     version = System.getenv("VERSION") ?:
-            (File(project.rootDir, "config/version.txt").readText().trim() + "-" +
-             File(project.rootDir, "config/version-qualifier.txt").readText().trim() + "-SNAPSHOT")
+            (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
     repositories {
         maven {
             name = "Elastic-Snapshots"
