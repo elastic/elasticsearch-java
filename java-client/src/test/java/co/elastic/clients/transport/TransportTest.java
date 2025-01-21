@@ -20,26 +20,41 @@
 package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.testkit.MockHttpClient;
+import co.elastic.clients.transport.endpoints.EndpointBase;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.SimpleJsonEndpoint;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
+import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import co.elastic.clients.util.BinaryData;
 import com.sun.net.httpserver.HttpServer;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
+import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import static co.elastic.clients.util.ContentType.APPLICATION_JSON;
 
@@ -150,6 +165,62 @@ public class TransportTest extends Assertions {
                 }
                 br.close();
             assertEquals("definitely not json",sb.toString());
+        }
+    }
+
+    @Test
+    public void testNoBodyForEmptyObject() throws Exception {
+
+        List<TransportHttpClient.Request> requests = new ArrayList<>();
+
+        MockHttpClient httpClient = new MockHttpClient() {
+            @Override
+            public Response performRequest(String endpointId, @Nullable Node node, Request request, TransportOptions option) throws IOException {
+                requests.add(request);
+                return super.performRequest(endpointId, node, request, option);
+            }
+        };
+
+        httpClient.add("/test", "text/plain", "hello");
+
+        JsonpMapper mapper = new JacksonJsonpMapper();
+        ElasticsearchTransport transport = new ElasticsearchTransportBase(httpClient, null, mapper) {};
+
+        // Send empty object = true (legacy constructor)
+        SimpleEndpoint<TestValue, Void> endpoint = new SimpleEndpoint<>(
+            "test-endpoint",
+            x -> "GET",
+            x -> "/test",
+            x -> Collections.emptyMap(), // path params
+            x -> Collections.emptyMap(), // query params
+            x -> Collections.emptyMap(), // headers
+            EndpointBase.nonEmptyJsonObject(x -> x),
+            null
+        );
+
+        transport.performRequest(new TestValue(null), endpoint, null);
+        transport.performRequest(new TestValue("hi"), endpoint, null);
+
+        assertNull(requests.get(0).body());
+        assertNotNull(requests.get(1).body());
+
+    }
+
+    private static class TestValue implements JsonpSerializable {
+
+        private final String value;
+
+        public TestValue(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            generator.writeStartObject();
+            if (value != null) {
+                generator.write("value", value);
+            }
+            generator.writeEnd();
         }
     }
 }

@@ -21,6 +21,7 @@ package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.json.DelegatingJsonGenerator;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
@@ -260,8 +261,10 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(body, generator);
                 generator.close();
-                bodyBuffers = Collections.singletonList(baos.asByteBuffer());
-                headers = JsonContentTypeHeaders;
+                if (baos.size() > 0) {
+                    bodyBuffers = Collections.singletonList(baos.asByteBuffer());
+                    headers = JsonContentTypeHeaders;
+                }
             }
         }
 

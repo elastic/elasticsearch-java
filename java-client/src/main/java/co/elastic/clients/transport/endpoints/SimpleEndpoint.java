@@ -52,7 +52,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         Function<RequestT, Map<String, String>> pathParameters,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
-        boolean hasResponseBody,
+        boolean hasRequestBody,
         JsonpDeserializer<ResponseT> responseParser
     ) {
         this(
@@ -62,7 +62,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             pathParameters,
             queryParameters,
             headers,
-            hasResponseBody ? returnSelf() : returnNull(),
+            hasRequestBody ? returnSelf() : returnNull(),
             responseParser
         );
     }

@@ -21,11 +21,14 @@ package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.json.DelegatingJsonGenerator;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.transport.Endpoint;
+import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
@@ -67,6 +70,58 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
     @SuppressWarnings("unchecked")
     static <T, U> Function<T, U> returnSelf() {
         return (Function<T, U>) RETURN_SELF;
+    }
+
+    /**
+     * Wraps a function's result with a serializable object that will serialize to nothing if the wrapped
+     * object's serialization has no property, i.e. it will either produce an empty object or nothing.
+     */
+    public static <T, U extends JsonpSerializable> Function<T, Object> nonEmptyJsonObject(Function<T, U> getter) {
+        return (x -> x == null ? null : new NonEmptySerializable(getter.apply(x)));
+    }
+
+    private static final class NonEmptySerializable implements JsonpSerializable {
+        private final Object value;
+
+        public NonEmptySerializable(Object value) {
+            this.value = value;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            // Track the first property to start the top-level object, and end it if needed in close()
+            JsonGenerator filter = new DelegatingJsonGenerator(generator) {
+                boolean gotKey = false;
+
+                @Override
+                public JsonGenerator writeStartObject() {
+                    if (gotKey) {
+                        super.writeStartObject();
+                    }
+                    return this;
+                }
+
+                @Override
+                public JsonGenerator writeKey(String s) {
+                    if (!gotKey) {
+                        gotKey = true;
+                        super.writeStartObject();
+                    }
+                    super.writeKey(s);
+                    return this;
+                }
+
+                @Override
+                public JsonGenerator writeEnd() {
+                    if (gotKey) {
+                        super.writeEnd();
+                    }
+                    return this;
+                }
+            };
+
+            mapper.serialize(value, filter);
+        }
     }
 
     protected final String id;
