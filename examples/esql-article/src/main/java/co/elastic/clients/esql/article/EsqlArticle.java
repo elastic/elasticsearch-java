@@ -38,7 +38,6 @@ import org.apache.http.HttpHost;
 import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,20 +45,17 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class EsqlArticle {
 
     public static void main(String[] args) throws IOException, SQLException, InterruptedException {
-        
+
         String serverUrl = System.getenv("server-url");
         String apiKey = System.getenv("api-key");
         String booksUrl = "https://raw.githubusercontent" +

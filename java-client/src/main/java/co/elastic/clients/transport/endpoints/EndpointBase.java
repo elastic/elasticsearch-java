@@ -83,7 +83,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
     private static final class NonEmptySerializable implements JsonpSerializable {
         private final Object value;
 
-        public NonEmptySerializable(Object value) {
+        NonEmptySerializable(Object value) {
             this.value = value;
         }
 

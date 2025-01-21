@@ -21,7 +21,6 @@ package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.json.DelegatingJsonGenerator;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
