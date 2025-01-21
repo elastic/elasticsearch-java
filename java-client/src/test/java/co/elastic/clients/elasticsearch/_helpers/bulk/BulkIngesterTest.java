@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -223,7 +224,7 @@ class BulkIngesterTest extends Assertions {
     public void sizeLimitTest() throws Exception {
         TestTransport transport = new TestTransport();
 
-        long operationSize = IngesterOperation.of(operation, transport.jsonpMapper()).size();
+        long operationSize = IngesterOperation.of(new BulkOperationRepeatable<>(operation,null,Optional.empty()), transport.jsonpMapper()).size();
 
         BulkIngester<?> ingester = BulkIngester.of(b -> b
             .client(new ElasticsearchAsyncClient(transport))
@@ -447,7 +448,7 @@ class BulkIngesterTest extends Assertions {
         String createStr = JsonpUtils.toJsonString(create, mapper);
         assertEquals(json, createStr);
 
-        BulkOperation create1 = IngesterOperation.of(create, mapper).operation();
+        BulkOperation create1 = IngesterOperation.of(new BulkOperationRepeatable<>(create,null, Optional.empty()), mapper).operation().getOperation();
 
         String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);
