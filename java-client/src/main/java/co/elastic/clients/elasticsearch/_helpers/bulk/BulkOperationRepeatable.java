@@ -10,14 +10,15 @@ import java.util.Optional;
 public class BulkOperationRepeatable<Context> {
     private final BulkOperation operation;
     private final Context context;
-    private final Optional<Iterator<Long>> retries;
-    private Instant nextRetry;
+    private final Iterator<Long> retries;
+    private Instant retryTime;
 
-    public BulkOperationRepeatable(BulkOperation request, Context context, Optional<Iterator<Long>> retries) {
+    public BulkOperationRepeatable(BulkOperation request, Context context, Iterator<Long> retries) {
         this.operation = request;
         this.context = context;
         this.retries = retries;
-        this.nextRetry = Instant.now().plus(retries.map(Iterator::next).orElse(0L), ChronoUnit.MILLIS);
+        // if the retries iterator is null it means that it's not a retry, otherwise calculating retry time
+        this.retryTime = Optional.ofNullable(retries).map(r -> Instant.now().plus(r.next(), ChronoUnit.MILLIS)).orElse(Instant.now());
     }
 
     public BulkOperation getOperation() {
@@ -28,15 +29,19 @@ public class BulkOperationRepeatable<Context> {
         return context;
     }
 
-    public Optional<Iterator<Long>> getRetries() {
+    public Iterator<Long> getRetries() {
         return retries;
     }
 
-    public Instant getNextRetry() {
-        return this.nextRetry;
-    }
+//    public Instant getCurrentRetryTime() {
+//        return this.retryTime;
+//    }
+//
+//    public Instant getNextRetryTime() {
+//        return Instant.now().plus(retries.next(), ChronoUnit.MILLIS);
+//    }
 
-    public boolean canRetry() {
-        return this.retries.map(Iterator::hasNext).orElse(true);
+    public boolean isSendable() {
+        return retryTime.isBefore(Instant.now());
     }
 }
