@@ -151,7 +151,7 @@ public class BulkIngester<Context> implements AutoCloseable {
             });
             retryScheduler.scheduleWithFixedDelay(
                 this::retryFlush,
-                1000,1000, // TODO should we hardcode this?
+                1000, 1000, // TODO should we hardcode this?
                 TimeUnit.MILLISECONDS
             );
         }
@@ -374,7 +374,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                         .filter(i -> i.error() != null && i.status() == 429)
                         .collect(Collectors.toList());
 
-                    if (failedRequestsCanRetry.isEmpty() || !backoffPolicy.equals(BackoffPolicy.noBackoff())) {
+                    if (failedRequestsCanRetry.isEmpty() || backoffPolicy.equals(BackoffPolicy.noBackoff())) {
                         // Total success! ...or there's no retry policy implemented. Either way, can call
                         // listener after bulk
                         if (listener != null) {
@@ -395,7 +395,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                         for (BulkResponseItem bulkItemResponse : failedRequestsCanRetry) {
                             int index = resp.items().indexOf(bulkItemResponse);
                             BulkOperationRepeatable<Context> original = sentRequests.get(index);
-                            if (original.getRetries().hasNext()) {
+                            if (original.canRetry()) {
                                 Iterator<Long> retries =
                                     Optional.ofNullable(original.getRetries()).orElse(backoffPolicy.iterator());
                                 addRetry(new BulkOperationRepeatable<>(original.getOperation(),
@@ -403,8 +403,10 @@ public class BulkIngester<Context> implements AutoCloseable {
                                 // TODO remove after checking
                                 assert (bulkItemResponse.operationType().toString().equals(sentRequests.get(index).getOperation()._kind().toString()));
                             }
-                            // TODO should print some message?
-
+                            else{
+                                System.out.println("Retries finished");
+                                // TODO should print some message?
+                            }
                         }
                     }
                 } else {
@@ -513,6 +515,10 @@ public class BulkIngester<Context> implements AutoCloseable {
 
         if (scheduler != null && !isExternalScheduler) {
             scheduler.shutdownNow();
+        }
+
+        if (retryScheduler != null) {
+            retryScheduler.shutdownNow();
         }
     }
 

@@ -33,13 +33,13 @@ public class BulkOperationRepeatable<Context> {
         return retries;
     }
 
-//    public Instant getCurrentRetryTime() {
-//        return this.retryTime;
-//    }
-//
-//    public Instant getNextRetryTime() {
-//        return Instant.now().plus(retries.next(), ChronoUnit.MILLIS);
-//    }
+    public Instant getCurrentRetryTime() {
+        return this.retryTime;
+    }
+
+    public boolean canRetry() {
+        return Optional.ofNullable(retries).map(Iterator::hasNext).orElse(true);
+    }
 
     public boolean isSendable() {
         return retryTime.isBefore(Instant.now());
