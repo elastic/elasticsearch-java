@@ -698,5 +698,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ValidateQueryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), SimpleEndpoint.nonEmptyJsonObject(SimpleEndpoint.returnSelf()),
+			ValidateQueryResponse._DESERIALIZER);
 }

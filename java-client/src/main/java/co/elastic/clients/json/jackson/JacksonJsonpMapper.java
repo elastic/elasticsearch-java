@@ -21,6 +21,7 @@ package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.json.BufferingJsonGenerator;
 import co.elastic.clients.json.BufferingJsonpMapper;
+import co.elastic.clients.json.DelegatingJsonGenerator;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
@@ -95,14 +96,21 @@ public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJson
     @Override
     public <T> void serialize(T value, JsonGenerator generator) {
 
-        if (!(generator instanceof JacksonJsonpGenerator)) {
-            throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
-        }
-
         JsonpSerializer<T> serializer = findSerializer(value);
         if (serializer != null) {
             serializer.serialize(value, generator, this);
             return;
+        }
+
+        // Delegating generators are used in higher levels of serialization (e.g. filter empty top-level objects).
+        // At this point the object is not a JsonpSerializable and we can assume we're in a nested property holding
+        // a user-provided type and can unwrap to find the underlying non-delegating generator.
+        while (generator instanceof DelegatingJsonGenerator) {
+            generator = ((DelegatingJsonGenerator) generator).unwrap();
+        }
+
+        if (!(generator instanceof JacksonJsonpGenerator)) {
+            throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
         }
 
         com.fasterxml.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator)generator).jacksonGenerator();
