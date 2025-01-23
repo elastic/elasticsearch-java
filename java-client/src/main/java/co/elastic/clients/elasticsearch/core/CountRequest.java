@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
 
 /**
  * Count search results. Get the number of documents matching a query.
- *
+ * 
  * @see <a href="../doc-files/api-spec.html#_global.count.Request">API
  *      specification</a>
  */
