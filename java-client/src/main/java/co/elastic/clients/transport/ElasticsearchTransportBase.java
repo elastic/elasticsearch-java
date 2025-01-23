@@ -65,22 +65,15 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     private static final String USER_AGENT_VALUE = getUserAgent();
     private static final String CLIENT_META_VALUE = getClientMeta();
-    private static final String ELASTIC_API_VERSION;
     public static final String JSON_CONTENT_TYPE;
 
     static {
-        if (VersionInfo.FLAVOR.equals("serverless")) {
+        if (Version.VERSION == null) {
             JSON_CONTENT_TYPE = ContentType.APPLICATION_JSON;
-            ELASTIC_API_VERSION = "2023-10-31";
-        }
-        else if (Version.VERSION == null) {
-            JSON_CONTENT_TYPE = ContentType.APPLICATION_JSON;
-            ELASTIC_API_VERSION = null;
         } else {
             JSON_CONTENT_TYPE =
                 "application/vnd.elasticsearch+json; compatible-with=" +
-                Version.VERSION.major();
-            ELASTIC_API_VERSION = null;
+                    Version.VERSION.major();
         }
     }
 
@@ -480,9 +473,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         headers.put(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
         headers.put(HeaderMap.CLIENT_META, CLIENT_META_VALUE);
         headers.put(HeaderMap.ACCEPT, JSON_CONTENT_TYPE);
-        if (ELASTIC_API_VERSION != null) {
-            headers.put("Elastic-Api-Version", ELASTIC_API_VERSION);
-        }
     }
 
     private static String getUserAgent() {
@@ -499,15 +489,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         String flavorKey;
         String transportVersion;
 
-        if (VersionInfo.FLAVOR.equals("serverless")) {
-            flavorKey = "esv=";
-            int pos = VersionInfo.VERSION.indexOf('+');
-            // Strip API version from the transport version
-            transportVersion = pos > 0 ? VersionInfo.VERSION.substring(0, pos) : VersionInfo.VERSION;
-        } else {
-            flavorKey = "es=";
-            transportVersion = VersionInfo.VERSION;
-        }
+        flavorKey = "es=";
+        transportVersion = VersionInfo.VERSION;
 
         // service, language, transport, followed by additional information
         return flavorKey
