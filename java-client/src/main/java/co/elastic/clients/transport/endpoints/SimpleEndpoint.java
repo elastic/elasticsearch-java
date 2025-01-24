@@ -20,8 +20,12 @@
 package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.json.DelegatingJsonGenerator;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.transport.JsonEndpoint;
+import jakarta.json.stream.JsonGenerator;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -52,7 +56,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
         Function<RequestT, Map<String, String>> pathParameters,
         Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
-        boolean hasResponseBody,
+        boolean hasRequestBody,
         JsonpDeserializer<ResponseT> responseParser
     ) {
         this(
@@ -62,7 +66,7 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             pathParameters,
             queryParameters,
             headers,
-            hasResponseBody ? returnSelf() : returnNull(),
+            hasRequestBody ? returnSelf() : returnNull(),
             responseParser
         );
     }
@@ -85,5 +89,57 @@ public class SimpleEndpoint<RequestT, ResponseT> extends EndpointBase<RequestT, 
             body,
             newResponseParser
         );
+    }
+
+    /**
+     * Wraps a function's result with a serializable object that will serialize to nothing if the wrapped
+     * object's serialization has no property, i.e. it will either produce an empty object or nothing.
+     */
+    public static <T, U extends JsonpSerializable> Function<T, Object> nonEmptyJsonObject(Function<T, U> getter) {
+        return (x -> x == null ? null : new NonEmptySerializable(getter.apply(x)));
+    }
+
+    private static final class NonEmptySerializable implements JsonpSerializable {
+        private final Object value;
+
+        NonEmptySerializable(Object value) {
+            this.value = value;
+        }
+
+        @Override
+        public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+            // Track the first property to start the top-level object, and end it if needed in close()
+            JsonGenerator filter = new DelegatingJsonGenerator(generator) {
+                boolean gotKey = false;
+
+                @Override
+                public JsonGenerator writeStartObject() {
+                    if (gotKey) {
+                        super.writeStartObject();
+                    }
+                    return this;
+                }
+
+                @Override
+                public JsonGenerator writeKey(String s) {
+                    if (!gotKey) {
+                        gotKey = true;
+                        super.writeStartObject();
+                    }
+                    super.writeKey(s);
+                    return this;
+                }
+
+                @Override
+                public JsonGenerator writeEnd() {
+                    if (gotKey) {
+                        super.writeEnd();
+                    }
+                    return this;
+                }
+            };
+
+            mapper.serialize(value, filter);
+        }
     }
 }

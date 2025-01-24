@@ -704,7 +704,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ExplainResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), SimpleEndpoint.nonEmptyJsonObject(SimpleEndpoint.returnSelf()),
+			ExplainResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code explain}" endpoint.

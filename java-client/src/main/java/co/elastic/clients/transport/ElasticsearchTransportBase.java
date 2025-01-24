@@ -257,9 +257,24 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 NoCopyByteArrayOutputStream baos = new NoCopyByteArrayOutputStream();
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(body, generator);
-                generator.close();
-                bodyBuffers = Collections.singletonList(baos.asByteBuffer());
-                headers = JsonContentTypeHeaders;
+
+                // Some generators (e.g. Parsson) throw an exception if we close a generator
+                // that hasn't received any event. In that case, we ignore the exception
+                RuntimeException closeException = null;
+                try {
+                    generator.close();
+                } catch (RuntimeException e) {
+                    closeException = e;
+                }
+
+                if (baos.size() > 0) {
+                    if (closeException != null) {
+                        // We got some content and close failed
+                        throw closeException;
+                    }
+                    bodyBuffers = Collections.singletonList(baos.asByteBuffer());
+                    headers = JsonContentTypeHeaders;
+                }
             }
         }
 

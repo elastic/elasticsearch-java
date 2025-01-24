@@ -65,7 +65,7 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
      * that the input and output generic parameters are different, making it suitable for use in a wider range of use cases.
      */
     @SuppressWarnings("unchecked")
-    static <T, U> Function<T, U> returnSelf() {
+    public static <T, U> Function<T, U> returnSelf() {
         return (Function<T, U>) RETURN_SELF;
     }
 
