@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
  */
-public class IngesterOperation {
+class IngesterOperation {
     private final BulkOperationRepeatable repeatableOp;
     private final long size;
 
