@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executors;
@@ -301,7 +300,8 @@ public class BulkIngester<Context> implements AutoCloseable {
         RequestExecution<Context> exec = sendRequestCondition.whenReadyIf(
             () -> {
                 // May happen on manual and periodic flushes
-                return !operations.isEmpty();
+                return !operations.isEmpty() && operations.stream()
+                    .anyMatch(BulkOperationRepeatable::isSendable);
             },
             () -> {
                 // Selecting operations that can be sent immediately
@@ -319,9 +319,10 @@ public class BulkIngester<Context> implements AutoCloseable {
                     .collect(Collectors.toList());
 
                 // If all contexts are null, no need for the list
-                if (contexts.stream().allMatch(Objects::isNull)) {
-                    contexts = null;
-                }
+                // TODO want to keep?
+//                if (contexts.stream().allMatch(Objects::isNull)) {
+//                    contexts = new ArrayList<>();
+//                }
 
                 // Build the request
                 BulkRequest request = newRequest().operations(immediateOps).build();
@@ -379,6 +380,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                         // Partial success, retrying failed requests if policy allows it
                         // Keeping list of retryables, to exclude them for calling listener later
                         List<BulkOperationRepeatable<Context>> retryableReq = new ArrayList<>();
+                        List<BulkOperationRepeatable<Context>> refires = new ArrayList<>();
                         List<BulkResponseItem> retryableResp = new ArrayList<>();
                         for (BulkResponseItem bulkItemResponse : failedRequestsCanRetry) {
                             int index = resp.items().indexOf(bulkItemResponse);
@@ -392,7 +394,8 @@ public class BulkIngester<Context> implements AutoCloseable {
                                 BulkOperationRepeatable<Context> refire =
                                     new BulkOperationRepeatable<>(original.getOperation(),
                                         original.getContext(), retries);
-                                retryableReq.add(refire);
+                                retryableReq.add(original);
+                                refires.add(refire);
                                 addRetry(refire);
                                 logger.warn("Added failed request back in queue, retrying in : " + refire.getCurrentRetryTimeDelay() + " ms");
                                 // TODO remove after checking
@@ -402,10 +405,10 @@ public class BulkIngester<Context> implements AutoCloseable {
                             }
                         }
                         // Scheduling flushes for just sent out retryable requests
-                        if (!retryableReq.isEmpty()) {
+                        if (!refires.isEmpty()) {
                             // if size <= 3, all times
                             // if size > 3, schedule just first, last and median
-                            scheduleRetries(retryableReq);
+                            scheduleRetries(refires);
                         }
                         // Retrieving list of remaining successful or not retryable requests
                         sentRequests.removeAll(retryableReq);
@@ -422,7 +425,7 @@ public class BulkIngester<Context> implements AutoCloseable {
                                     .map(BulkOperationRepeatable::getContext)
                                     .collect(Collectors.toList());
                                 // Filtering response
-                                List<BulkResponseItem> partialItems = resp.items();
+                                List<BulkResponseItem> partialItems = new ArrayList<>(resp.items());
                                 partialItems.removeAll(retryableResp);
 
                                 BulkResponse partialResp = BulkResponse.of(br -> br
