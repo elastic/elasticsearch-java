@@ -58,7 +58,7 @@ class IngesterOperation {
         }
     }
 
-    public BulkOperationRepeatable operation() {
+    public BulkOperationRepeatable repeatableOperation() {
         return this.repeatableOp;
     }
 

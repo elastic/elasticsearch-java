@@ -536,7 +536,7 @@ public class BulkIngester<Context> implements AutoCloseable {
         IngesterOperation ingestOp = IngesterOperation.of(repeatableOp, client._jsonpMapper());
 
         addCondition.whenReady(() -> {
-            operations.add(ingestOp.operation());
+            operations.add(ingestOp.repeatableOperation());
             currentSize += ingestOp.size();
 
             if (!canAddOperation()) {

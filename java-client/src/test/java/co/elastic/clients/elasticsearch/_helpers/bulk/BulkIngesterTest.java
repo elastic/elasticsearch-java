@@ -32,7 +32,6 @@ import co.elastic.clients.elasticsearch.indices.IndicesStatsResponse;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.SimpleJsonpMapper;
-import co.elastic.clients.transport.BackoffPolicy;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
@@ -142,7 +141,7 @@ class BulkIngesterTest extends Assertions {
         for (int i = 0; i < numThreads; i++) {
             new Thread(() -> {
                 try {
-                    Thread.sleep((long) (Math.random() * 100));
+                    Thread.sleep((long)(Math.random() * 100));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -169,8 +168,7 @@ class BulkIngesterTest extends Assertions {
         assertEquals(expectedOperations, listener.operations.get());
         assertEquals(expectedOperations, transport.operations.get());
 
-        int expectedRequests =
-            expectedOperations / maxOperations + ((expectedOperations % maxOperations == 0) ? 0 : 1);
+        int expectedRequests = expectedOperations / maxOperations + ((expectedOperations % maxOperations == 0) ? 0 : 1) ;
 
         assertEquals(expectedRequests, ingester.requestCount());
         assertEquals(expectedRequests, listener.requests.get());
@@ -185,8 +183,7 @@ class BulkIngesterTest extends Assertions {
 
         // DISCLAIMER: this configuration is highly inefficient and only used here to showcase an extreme
         // situation where the number of adding threads greatly exceeds the number of concurrent requests
-        // handled by the ingester. It's strongly recommended to always tweak maxConcurrentRequests
-        // accordingly.
+        // handled by the ingester. It's strongly recommended to always tweak maxConcurrentRequests accordingly.
         BulkIngester<?> ingester = BulkIngester.of(b -> b
             .client(client)
             .globalSettings(s -> s.index(index))
@@ -212,22 +209,21 @@ class BulkIngesterTest extends Assertions {
             executor.submit(thread);
         }
 
-        executor.awaitTermination(10, TimeUnit.SECONDS);
+        executor.awaitTermination(10,TimeUnit.SECONDS);
         ingester.close();
 
         client.indices().refresh();
 
         IndicesStatsResponse indexStats = client.indices().stats(g -> g.index(index));
 
-        assertTrue(indexStats.indices().get(index).primaries().docs().count() == 100000);
+        assertTrue(indexStats.indices().get(index).primaries().docs().count()==100000);
     }
 
     @Test
     public void sizeLimitTest() throws Exception {
         TestTransport transport = new TestTransport();
 
-        long operationSize = IngesterOperation.of(new BulkOperationRepeatable<>(operation, null, null),
-            transport.jsonpMapper()).size();
+        long operationSize = IngesterOperation.of(new BulkOperationRepeatable<>(operation, null, null), transport.jsonpMapper()).size();
 
         BulkIngester<?> ingester = BulkIngester.of(b -> b
             .client(new ElasticsearchAsyncClient(transport))
@@ -257,7 +253,7 @@ class BulkIngesterTest extends Assertions {
             // Disable other flushing limits
             .maxSize(-1)
             .maxOperations(-1)
-            .maxConcurrentRequests(Integer.MAX_VALUE - 1)
+            .maxConcurrentRequests(Integer.MAX_VALUE-1)
         );
 
         // Add an operation every 100 ms to give time
@@ -297,8 +293,7 @@ class BulkIngesterTest extends Assertions {
             }
 
             @Override
-            public void afterBulk(long executionId, BulkRequest request, List<Void> contexts,
-                                  BulkResponse response) {
+            public void afterBulk(long executionId, BulkRequest request, List<Void> contexts, BulkResponse response) {
                 if (executionId == 2) {
                     // Fail after the request is sent
                     failureCount.incrementAndGet();
@@ -307,8 +302,7 @@ class BulkIngesterTest extends Assertions {
             }
 
             @Override
-            public void afterBulk(long executionId, BulkRequest request, List<Void> contexts,
-                                  Throwable failure) {
+            public void afterBulk(long executionId, BulkRequest request, List<Void> contexts, Throwable failure) {
 
             }
         };
@@ -361,13 +355,11 @@ class BulkIngesterTest extends Assertions {
             }
 
             @Override
-            public void afterBulk(long executionId, BulkRequest request, List<Integer> contexts,
-                                  BulkResponse response) {
+            public void afterBulk(long executionId, BulkRequest request, List<Integer> contexts, BulkResponse response) {
             }
 
             @Override
-            public void afterBulk(long executionId, BulkRequest request, List<Integer> contexts,
-                                  Throwable failure) {
+            public void afterBulk(long executionId, BulkRequest request, List<Integer> contexts, Throwable failure) {
             }
         };
 
@@ -381,7 +373,7 @@ class BulkIngesterTest extends Assertions {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 // Set a context only after 5, so that we test filling with nulls.
-                Integer context = j < 5 ? null : i * 10 + j;
+                Integer context = j < 5 ? null : i*10 + j;
                 ingester.add(operation, context);
             }
         }
@@ -399,7 +391,7 @@ class BulkIngesterTest extends Assertions {
                 if (j < 5) {
                     assertNull(contexts.get(j));
                 } else {
-                    assertEquals(contexts.get(j), i * 10 + j);
+                    assertEquals(contexts.get(j), i*10 + j);
                 }
             }
         }
@@ -441,8 +433,7 @@ class BulkIngesterTest extends Assertions {
 
     @Test
     public void pipelineTest() {
-        String json = "{\"create\":{\"_id\":\"some_id\",\"_index\":\"some_idx\",\"pipeline\":\"pipe\"," +
-            "\"require_alias\":true}}";
+        String json = "{\"create\":{\"_id\":\"some_id\",\"_index\":\"some_idx\",\"pipeline\":\"pipe\",\"require_alias\":true}}";
         JsonpMapper mapper = new SimpleJsonpMapper();
 
         BulkOperation create = BulkOperation.of(o -> o.create(c -> c
@@ -456,8 +447,7 @@ class BulkIngesterTest extends Assertions {
         String createStr = JsonpUtils.toJsonString(create, mapper);
         assertEquals(json, createStr);
 
-        BulkOperation create1 = IngesterOperation.of(new BulkOperationRepeatable<>(create, null, null),
-            mapper).operation().getOperation();
+        BulkOperation create1 = IngesterOperation.of(new BulkOperationRepeatable<>(create, null, null), mapper).repeatableOperation().getOperation();
 
         String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);
@@ -546,15 +536,13 @@ class BulkIngesterTest extends Assertions {
     private static class CountingListener implements BulkListener<Void> {
         public final AtomicInteger operations = new AtomicInteger();
         public final AtomicInteger requests = new AtomicInteger();
-
         @Override
         public void beforeBulk(long executionId, BulkRequest request, List<Void> contexts) {
 
         }
 
         @Override
-        public void afterBulk(long executionId, BulkRequest request, List<Void> contexts,
-                              BulkResponse response) {
+        public void afterBulk(long executionId, BulkRequest request, List<Void> contexts, BulkResponse response) {
             operations.addAndGet(request.operations().size());
             requests.incrementAndGet();
         }
@@ -607,7 +595,7 @@ class BulkIngesterTest extends Assertions {
             });
 
             @SuppressWarnings("unchecked")
-            CompletableFuture<ResponseT> result = (CompletableFuture<ResponseT>) response;
+            CompletableFuture<ResponseT> result = (CompletableFuture<ResponseT>)response;
             return result;
         }
 
