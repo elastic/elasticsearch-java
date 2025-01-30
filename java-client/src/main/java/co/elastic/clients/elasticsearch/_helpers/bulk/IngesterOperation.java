@@ -38,7 +38,7 @@ class IngesterOperation {
     private final BulkOperationRepeatable repeatableOp;
     private final long size;
 
-    public IngesterOperation(BulkOperationRepeatable repeatableOp, long size) {
+    IngesterOperation(BulkOperationRepeatable repeatableOp, long size) {
         this.repeatableOp = repeatableOp;
         this.size = size;
     }

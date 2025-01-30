@@ -447,7 +447,8 @@ class BulkIngesterTest extends Assertions {
         String createStr = JsonpUtils.toJsonString(create, mapper);
         assertEquals(json, createStr);
 
-        BulkOperation create1 = IngesterOperation.of(new BulkOperationRepeatable<>(create, null, null), mapper).repeatableOperation().getOperation();
+        BulkOperation create1 = IngesterOperation.of(new BulkOperationRepeatable<>(create, null, null), mapper)
+            .repeatableOperation().getOperation();
 
         String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);
