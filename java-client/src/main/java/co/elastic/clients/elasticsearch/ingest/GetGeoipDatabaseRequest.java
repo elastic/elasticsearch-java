@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ingest.get_geoip_database.Request
 
 /**
- * Get GeoIP database configurations. Get information about one or more IP
- * geolocation database configurations.
+ * Get GeoIP database configurations.
+ * <p>
+ * Get information about one or more IP geolocation database configurations.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.get_geoip_database.Request">API
@@ -82,7 +83,7 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+	 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 	 * (<code>*</code>) expressions are supported. To get all database
 	 * configurations, omit this parameter or use <code>*</code>.
 	 * <p>
@@ -105,7 +106,7 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		private List<String> id;
 
 		/**
-		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+		 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 		 * (<code>*</code>) expressions are supported. To get all database
 		 * configurations, omit this parameter or use <code>*</code>.
 		 * <p>
@@ -119,7 +120,7 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+		 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 		 * (<code>*</code>) expressions are supported. To get all database
 		 * configurations, omit this parameter or use <code>*</code>.
 		 * <p>

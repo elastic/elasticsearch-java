@@ -73,9 +73,34 @@ public class ElasticsearchTextStructureClient
 	/**
 	 * Find the structure of a text field. Find the structure of a text field in an
 	 * Elasticsearch index.
+	 * <p>
+	 * This API provides a starting point for extracting further information from
+	 * log messages already ingested into Elasticsearch. For example, if you have
+	 * ingested data into a very simple index that has just <code>@timestamp</code>
+	 * and message fields, you can use this API to see what common structure exists
+	 * in the message field.
+	 * <p>
+	 * The response from the API contains:
+	 * <ul>
+	 * <li>Sample messages.</li>
+	 * <li>Statistics that reveal the most common values for all fields detected
+	 * within the text and basic numeric statistics for numeric fields.</li>
+	 * <li>Information about the structure of the text, which is useful when you
+	 * write ingest configurations to index it or similarly formatted text.</li>
+	 * <li>Appropriate mappings for an Elasticsearch index, which you could use to
+	 * ingest the text.</li>
+	 * </ul>
+	 * <p>
+	 * All this information can be calculated by the structure finder with no
+	 * guidance. However, you can optionally override some of the decisions about
+	 * the text structure by specifying one or more query parameters.
+	 * <p>
+	 * If the structure finder produces unexpected results, specify the
+	 * <code>explain</code> query parameter and an explanation will appear in the
+	 * response. It helps determine why the returned structure was chosen.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-field-structure.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-text_structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -90,12 +115,37 @@ public class ElasticsearchTextStructureClient
 	/**
 	 * Find the structure of a text field. Find the structure of a text field in an
 	 * Elasticsearch index.
+	 * <p>
+	 * This API provides a starting point for extracting further information from
+	 * log messages already ingested into Elasticsearch. For example, if you have
+	 * ingested data into a very simple index that has just <code>@timestamp</code>
+	 * and message fields, you can use this API to see what common structure exists
+	 * in the message field.
+	 * <p>
+	 * The response from the API contains:
+	 * <ul>
+	 * <li>Sample messages.</li>
+	 * <li>Statistics that reveal the most common values for all fields detected
+	 * within the text and basic numeric statistics for numeric fields.</li>
+	 * <li>Information about the structure of the text, which is useful when you
+	 * write ingest configurations to index it or similarly formatted text.</li>
+	 * <li>Appropriate mappings for an Elasticsearch index, which you could use to
+	 * ingest the text.</li>
+	 * </ul>
+	 * <p>
+	 * All this information can be calculated by the structure finder with no
+	 * guidance. However, you can optionally override some of the decisions about
+	 * the text structure by specifying one or more query parameters.
+	 * <p>
+	 * If the structure finder produces unexpected results, specify the
+	 * <code>explain</code> query parameter and an explanation will appear in the
+	 * response. It helps determine why the returned structure was chosen.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FindFieldStructureRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-field-structure.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-text_structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -116,7 +166,9 @@ public class ElasticsearchTextStructureClient
 	 * format that is suitable for subsequent use with other Elastic Stack
 	 * functionality. Use this API rather than the find text structure API if your
 	 * input text has already been split up into separate messages by some other
-	 * process. The response from the API contains:
+	 * process.
+	 * <p>
+	 * The response from the API contains:
 	 * <ul>
 	 * <li>Sample messages.</li>
 	 * <li>Statistics that reveal the most common values for all fields detected
@@ -130,9 +182,13 @@ public class ElasticsearchTextStructureClient
 	 * All this information can be calculated by the structure finder with no
 	 * guidance. However, you can optionally override some of the decisions about
 	 * the text structure by specifying one or more query parameters.
+	 * <p>
+	 * If the structure finder produces unexpected results, specify the
+	 * <code>explain</code> query parameter and an explanation will appear in the
+	 * response. It helps determine why the returned structure was chosen.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-message-structure.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-find-message-structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -153,7 +209,9 @@ public class ElasticsearchTextStructureClient
 	 * format that is suitable for subsequent use with other Elastic Stack
 	 * functionality. Use this API rather than the find text structure API if your
 	 * input text has already been split up into separate messages by some other
-	 * process. The response from the API contains:
+	 * process.
+	 * <p>
+	 * The response from the API contains:
 	 * <ul>
 	 * <li>Sample messages.</li>
 	 * <li>Statistics that reveal the most common values for all fields detected
@@ -167,12 +225,16 @@ public class ElasticsearchTextStructureClient
 	 * All this information can be calculated by the structure finder with no
 	 * guidance. However, you can optionally override some of the decisions about
 	 * the text structure by specifying one or more query parameters.
+	 * <p>
+	 * If the structure finder produces unexpected results, specify the
+	 * <code>explain</code> query parameter and an explanation will appear in the
+	 * response. It helps determine why the returned structure was chosen.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FindMessageStructureRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/find-message-structure.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-find-message-structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -190,7 +252,7 @@ public class ElasticsearchTextStructureClient
 	 * and lengths of the matched substrings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-test-grok-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -211,7 +273,7 @@ public class ElasticsearchTextStructureClient
 	 *            a function that initializes a builder to create the
 	 *            {@link TestGrokPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/test-grok-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-test-grok-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 

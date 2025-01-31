@@ -105,8 +105,8 @@ public class TemplateConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * ID of the search template to use. If no source is specified, this parameter
-	 * is required.
+	 * The ID of the search template to use. If no <code>source</code> is specified,
+	 * this parameter is required.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -137,8 +137,8 @@ public class TemplateConfig implements JsonpSerializable {
 
 	/**
 	 * An inline search template. Supports the same parameters as the search API's
-	 * request body. Also supports Mustache variables. If no id is specified, this
-	 * parameter is required.
+	 * request body. It also supports Mustache variables. If no <code>id</code> is
+	 * specified, this parameter is required.
 	 * <p>
 	 * API name: {@code source}
 	 */
@@ -231,8 +231,8 @@ public class TemplateConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * ID of the search template to use. If no source is specified, this parameter
-		 * is required.
+		 * The ID of the search template to use. If no <code>source</code> is specified,
+		 * this parameter is required.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -279,8 +279,8 @@ public class TemplateConfig implements JsonpSerializable {
 
 		/**
 		 * An inline search template. Supports the same parameters as the search API's
-		 * request body. Also supports Mustache variables. If no id is specified, this
-		 * parameter is required.
+		 * request body. It also supports Mustache variables. If no <code>id</code> is
+		 * specified, this parameter is required.
 		 * <p>
 		 * API name: {@code source}
 		 */

@@ -59,7 +59,15 @@ import javax.annotation.Nullable;
 
 /**
  * Get application privileges.
- * 
+ * <p>
+ * To use this API, you must have one of the following privileges:
+ * <ul>
+ * <li>The <code>read_security</code> cluster privilege (or a greater privilege
+ * such as <code>manage_security</code> or <code>all</code>).</li>
+ * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+ * application being referenced in the request.</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#security.get_privileges.Request">API
  *      specification</a>
  */
@@ -84,7 +92,9 @@ public class GetPrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Application name
+	 * The name of the application. Application privileges are always associated
+	 * with exactly one application. If you do not specify this parameter, the API
+	 * returns information about all privileges for all applications.
 	 * <p>
 	 * API name: {@code application}
 	 */
@@ -94,7 +104,8 @@ public class GetPrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Privilege name
+	 * The name of the privilege. If you do not specify this parameter, the API
+	 * returns information about all privileges for the requested application.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -118,7 +129,9 @@ public class GetPrivilegesRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Application name
+		 * The name of the application. Application privileges are always associated
+		 * with exactly one application. If you do not specify this parameter, the API
+		 * returns information about all privileges for all applications.
 		 * <p>
 		 * API name: {@code application}
 		 */
@@ -128,7 +141,8 @@ public class GetPrivilegesRequest extends RequestBase {
 		}
 
 		/**
-		 * Privilege name
+		 * The name of the privilege. If you do not specify this parameter, the API
+		 * returns information about all privileges for the requested application.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -140,7 +154,8 @@ public class GetPrivilegesRequest extends RequestBase {
 		}
 
 		/**
-		 * Privilege name
+		 * The name of the privilege. If you do not specify this parameter, the API
+		 * returns information about all privileges for the requested application.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

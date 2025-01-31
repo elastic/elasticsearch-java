@@ -100,7 +100,7 @@ public class QueryUserResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A list of user information.
+	 * Required - A list of users that match the query.
 	 * <p>
 	 * API name: {@code users}
 	 */
@@ -177,7 +177,7 @@ public class QueryUserResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of user information.
+		 * Required - A list of users that match the query.
 		 * <p>
 		 * API name: {@code users}
 		 * <p>
@@ -189,7 +189,7 @@ public class QueryUserResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of user information.
+		 * Required - A list of users that match the query.
 		 * <p>
 		 * API name: {@code users}
 		 * <p>
@@ -201,7 +201,7 @@ public class QueryUserResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of user information.
+		 * Required - A list of users that match the query.
 		 * <p>
 		 * API name: {@code users}
 		 * <p>

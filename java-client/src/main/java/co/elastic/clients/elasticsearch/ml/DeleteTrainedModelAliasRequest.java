@@ -56,10 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_trained_model_alias.Request
 
 /**
- * Delete a trained model alias. This API deletes an existing model alias that
- * refers to a trained model. If the model alias is missing or refers to a model
- * other than the one identified by the <code>model_id</code>, this API returns
- * an error.
+ * Delete a trained model alias.
+ * <p>
+ * This API deletes an existing model alias that refers to a trained model. If
+ * the model alias is missing or refers to a model other than the one identified
+ * by the <code>model_id</code>, this API returns an error.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.delete_trained_model_alias.Request">API

@@ -71,6 +71,56 @@ import javax.annotation.Nullable;
  * <p>
  * Get information and statistics about terms in the fields of a particular
  * document.
+ * <p>
+ * You can retrieve term vectors for documents stored in the index or for
+ * artificial documents passed in the body of the request. You can specify the
+ * fields you are interested in through the <code>fields</code> parameter or by
+ * adding the fields to the request body. For example:
+ * 
+ * <pre>
+ * <code>GET /my-index-000001/_termvectors/1?fields=message
+ * </code>
+ * </pre>
+ * <p>
+ * Fields can be specified using wildcards, similar to the multi match query.
+ * <p>
+ * Term vectors are real-time by default, not near real-time. This can be
+ * changed by setting <code>realtime</code> parameter to <code>false</code>.
+ * <p>
+ * You can request three types of values: <em>term information</em>, <em>term
+ * statistics</em>, and <em>field statistics</em>. By default, all term
+ * information and field statistics are returned for all fields but term
+ * statistics are excluded.
+ * <p>
+ * <strong>Term information</strong>
+ * <ul>
+ * <li>term frequency in the field (always returned)</li>
+ * <li>term positions (<code>positions: true</code>)</li>
+ * <li>start and end offsets (<code>offsets: true</code>)</li>
+ * <li>term payloads (<code>payloads: true</code>), as base64 encoded bytes</li>
+ * </ul>
+ * <p>
+ * If the requested information wasn't stored in the index, it will be computed
+ * on the fly if possible. Additionally, term vectors could be computed for
+ * documents not even existing in the index, but instead provided by the user.
+ * <blockquote>
+ * <p>
+ * warn Start and end offsets assume UTF-16 encoding is being used. If you want
+ * to use these offsets in order to get the original text that produced this
+ * token, you should make sure that the string you are taking a sub-string of is
+ * also encoded using UTF-16.
+ * </p>
+ * </blockquote>
+ * <p>
+ * <strong>Behaviour</strong>
+ * <p>
+ * The term and field statistics are not accurate. Deleted documents are not
+ * taken into account. The information is only retrieved for the shard the
+ * requested document resides in. The term and field statistics are therefore
+ * only useful as relative measures whereas the absolute numbers have no meaning
+ * in this context. By default, when requesting term vectors of artificial
+ * documents, a shard to get the statistics from is randomly selected. Use
+ * <code>routing</code> only to hit a particular shard.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.termvectors.Request">API
  *      specification</a>
@@ -166,8 +216,14 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * If <code>true</code>, the response includes the document count, sum of
-	 * document frequencies, and sum of total term frequencies.
+	 * If <code>true</code>, the response includes:
+	 * <ul>
+	 * <li>The document count (how many documents contain this field).</li>
+	 * <li>The sum of document frequencies (the sum of document frequencies for all
+	 * terms in this field).</li>
+	 * <li>The sum of total term frequencies (the sum of total term frequencies of
+	 * each term in this field).</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code field_statistics}
 	 */
@@ -177,10 +233,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Comma-separated list or wildcard expressions of fields to include in the
-	 * statistics. Used as the default list unless a specific field list is provided
-	 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
-	 * parameters.
+	 * A comma-separated list or wildcard expressions of fields to include in the
+	 * statistics. It is used as the default list unless a specific field list is
+	 * provided in the <code>completion_fields</code> or
+	 * <code>fielddata_fields</code> parameters.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -189,7 +245,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Filter terms based on their tf-idf scores.
+	 * Filter terms based on their tf-idf scores. This could be useful in order find
+	 * out a good characteristic vector of a document. This feature works in a
+	 * similar manner to the second phase of the More Like This Query.
 	 * <p>
 	 * API name: {@code filter}
 	 */
@@ -199,7 +257,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Unique identifier of the document.
+	 * A unique identifier for the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -209,7 +267,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Required - Name of the index that contains the document.
+	 * Required - The name of the index that contains the document.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -238,7 +296,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Overrides the default per-field analyzer.
+	 * Override the default per-field analyzer. This is useful in order to generate
+	 * term vectors in any fashion, especially when using artificial documents. When
+	 * providing an analyzer for a field that already stores term vectors, the term
+	 * vectors will be regenerated.
 	 * <p>
 	 * API name: {@code per_field_analyzer}
 	 */
@@ -257,7 +318,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
+	 * The node or shard the operation should be performed on. It is random by
 	 * default.
 	 * <p>
 	 * API name: {@code preference}
@@ -278,7 +339,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value that is used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -288,8 +349,15 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * If <code>true</code>, the response includes term frequency and document
-	 * frequency.
+	 * If <code>true</code>, the response includes:
+	 * <ul>
+	 * <li>The total term frequency (how often a term occurs in all documents).</li>
+	 * <li>The document frequency (the number of documents containing the current
+	 * term).</li>
+	 * </ul>
+	 * <p>
+	 * By default these values are not returned since term statistics can have a
+	 * serious performance impact.
 	 * <p>
 	 * API name: {@code term_statistics}
 	 */
@@ -309,7 +377,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Specific version type.
+	 * The version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -424,8 +492,14 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * If <code>true</code>, the response includes the document count, sum of
-		 * document frequencies, and sum of total term frequencies.
+		 * If <code>true</code>, the response includes:
+		 * <ul>
+		 * <li>The document count (how many documents contain this field).</li>
+		 * <li>The sum of document frequencies (the sum of document frequencies for all
+		 * terms in this field).</li>
+		 * <li>The sum of total term frequencies (the sum of total term frequencies of
+		 * each term in this field).</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code field_statistics}
 		 */
@@ -435,10 +509,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Comma-separated list or wildcard expressions of fields to include in the
-		 * statistics. Used as the default list unless a specific field list is provided
-		 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
-		 * parameters.
+		 * A comma-separated list or wildcard expressions of fields to include in the
+		 * statistics. It is used as the default list unless a specific field list is
+		 * provided in the <code>completion_fields</code> or
+		 * <code>fielddata_fields</code> parameters.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -450,10 +524,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Comma-separated list or wildcard expressions of fields to include in the
-		 * statistics. Used as the default list unless a specific field list is provided
-		 * in the <code>completion_fields</code> or <code>fielddata_fields</code>
-		 * parameters.
+		 * A comma-separated list or wildcard expressions of fields to include in the
+		 * statistics. It is used as the default list unless a specific field list is
+		 * provided in the <code>completion_fields</code> or
+		 * <code>fielddata_fields</code> parameters.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -465,7 +539,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Filter terms based on their tf-idf scores.
+		 * Filter terms based on their tf-idf scores. This could be useful in order find
+		 * out a good characteristic vector of a document. This feature works in a
+		 * similar manner to the second phase of the More Like This Query.
 		 * <p>
 		 * API name: {@code filter}
 		 */
@@ -475,7 +551,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Filter terms based on their tf-idf scores.
+		 * Filter terms based on their tf-idf scores. This could be useful in order find
+		 * out a good characteristic vector of a document. This feature works in a
+		 * similar manner to the second phase of the More Like This Query.
 		 * <p>
 		 * API name: {@code filter}
 		 */
@@ -484,7 +562,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Unique identifier of the document.
+		 * A unique identifier for the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -494,7 +572,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Required - Name of the index that contains the document.
+		 * Required - The name of the index that contains the document.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -524,7 +602,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Overrides the default per-field analyzer.
+		 * Override the default per-field analyzer. This is useful in order to generate
+		 * term vectors in any fashion, especially when using artificial documents. When
+		 * providing an analyzer for a field that already stores term vectors, the term
+		 * vectors will be regenerated.
 		 * <p>
 		 * API name: {@code per_field_analyzer}
 		 * <p>
@@ -536,7 +617,10 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Overrides the default per-field analyzer.
+		 * Override the default per-field analyzer. This is useful in order to generate
+		 * term vectors in any fashion, especially when using artificial documents. When
+		 * providing an analyzer for a field that already stores term vectors, the term
+		 * vectors will be regenerated.
 		 * <p>
 		 * API name: {@code per_field_analyzer}
 		 * <p>
@@ -558,7 +642,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
+		 * The node or shard the operation should be performed on. It is random by
 		 * default.
 		 * <p>
 		 * API name: {@code preference}
@@ -579,7 +663,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -589,8 +673,15 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * If <code>true</code>, the response includes term frequency and document
-		 * frequency.
+		 * If <code>true</code>, the response includes:
+		 * <ul>
+		 * <li>The total term frequency (how often a term occurs in all documents).</li>
+		 * <li>The document frequency (the number of documents containing the current
+		 * term).</li>
+		 * </ul>
+		 * <p>
+		 * By default these values are not returned since term statistics can have a
+		 * serious performance impact.
 		 * <p>
 		 * API name: {@code term_statistics}
 		 */
@@ -610,7 +701,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Specific version type.
+		 * The version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

@@ -70,10 +70,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.delete_transform
 
 	/**
-	 * Delete a transform. Deletes a transform.
+	 * Delete a transform.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-delete-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -86,13 +86,13 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Delete a transform. Deletes a transform.
+	 * Delete a transform.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-delete-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,10 +105,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.get_transform
 
 	/**
-	 * Get transforms. Retrieves configuration information for transforms.
+	 * Get transforms. Get configuration information for transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -120,13 +120,13 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get transforms. Retrieves configuration information for transforms.
+	 * Get transforms. Get configuration information for transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,10 +137,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get transforms. Retrieves configuration information for transforms.
+	 * Get transforms. Get configuration information for transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -152,10 +152,12 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.get_transform_stats
 
 	/**
-	 * Get transform stats. Retrieves usage information for transforms.
+	 * Get transform stats.
+	 * <p>
+	 * Get usage information for transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -168,13 +170,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get transform stats. Retrieves usage information for transforms.
+	 * Get transform stats.
+	 * <p>
+	 * Get usage information for transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTransformStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -196,7 +200,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -224,7 +228,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -244,7 +248,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -272,7 +276,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -317,7 +321,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * privileges on <code>.data-frame-internal*</code> indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-put-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -364,7 +368,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-put-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -377,12 +381,14 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.reset_transform
 
 	/**
-	 * Reset a transform. Resets a transform. Before you can reset it, you must stop
-	 * it; alternatively, use the <code>force</code> query parameter. If the
-	 * destination index was created by the transform, it is deleted.
+	 * Reset a transform.
+	 * <p>
+	 * Before you can reset it, you must stop it; alternatively, use the
+	 * <code>force</code> query parameter. If the destination index was created by
+	 * the transform, it is deleted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-reset-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -395,15 +401,17 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Reset a transform. Resets a transform. Before you can reset it, you must stop
-	 * it; alternatively, use the <code>force</code> query parameter. If the
-	 * destination index was created by the transform, it is deleted.
+	 * Reset a transform.
+	 * <p>
+	 * Before you can reset it, you must stop it; alternatively, use the
+	 * <code>force</code> query parameter. If the destination index was created by
+	 * the transform, it is deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ResetTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-reset-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -416,16 +424,16 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.schedule_now_transform
 
 	/**
-	 * Schedule a transform to start now. Instantly runs a transform to process
-	 * data.
+	 * Schedule a transform to start now.
 	 * <p>
-	 * If you _schedule_now a transform, it will process the new data instantly,
-	 * without waiting for the configured frequency interval. After _schedule_now
-	 * API is called, the transform will be processed again at now + frequency
-	 * unless _schedule_now API is called again in the meantime.
+	 * Instantly run a transform to process data. If you run this API, the transform
+	 * will process the new data instantly, without waiting for the configured
+	 * frequency interval. After the API is called, the transform will be processed
+	 * again at <code>now + frequency</code> unless the API is called again in the
+	 * meantime.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/schedule-now-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-schedule-now-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -438,19 +446,19 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Schedule a transform to start now. Instantly runs a transform to process
-	 * data.
+	 * Schedule a transform to start now.
 	 * <p>
-	 * If you _schedule_now a transform, it will process the new data instantly,
-	 * without waiting for the configured frequency interval. After _schedule_now
-	 * API is called, the transform will be processed again at now + frequency
-	 * unless _schedule_now API is called again in the meantime.
+	 * Instantly run a transform to process data. If you run this API, the transform
+	 * will process the new data instantly, without waiting for the configured
+	 * frequency interval. After the API is called, the transform will be processed
+	 * again at <code>now + frequency</code> unless the API is called again in the
+	 * meantime.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ScheduleNowTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/schedule-now-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-schedule-now-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -463,7 +471,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.start_transform
 
 	/**
-	 * Start a transform. Starts a transform.
+	 * Start a transform.
 	 * <p>
 	 * When you start a transform, it creates the destination index if it does not
 	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
@@ -488,7 +496,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * unauthorized operations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-start-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -501,7 +509,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Start a transform. Starts a transform.
+	 * Start a transform.
 	 * <p>
 	 * When you start a transform, it creates the destination index if it does not
 	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
@@ -529,7 +537,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link StartTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-start-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -545,7 +553,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * Stop transforms. Stops one or more transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-stop-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -564,7 +572,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link StopTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-stop-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -589,7 +597,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * at the time of update and runs with those privileges.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -617,7 +625,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -630,13 +638,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.upgrade_transforms
 
 	/**
-	 * Upgrade all transforms. Transforms are compatible across minor versions and
-	 * between supported major versions. However, over time, the format of transform
-	 * configuration information may change. This API identifies transforms that
-	 * have a legacy configuration format and upgrades them to the latest version.
-	 * It also cleans up the internal data structures that store the transform state
-	 * and checkpoints. The upgrade does not affect the source and destination
-	 * indices. The upgrade also does not affect the roles that transforms use when
+	 * Upgrade all transforms.
+	 * <p>
+	 * Transforms are compatible across minor versions and between supported major
+	 * versions. However, over time, the format of transform configuration
+	 * information may change. This API identifies transforms that have a legacy
+	 * configuration format and upgrades them to the latest version. It also cleans
+	 * up the internal data structures that store the transform state and
+	 * checkpoints. The upgrade does not affect the source and destination indices.
+	 * The upgrade also does not affect the roles that transforms use when
 	 * Elasticsearch security features are enabled; the role used to read source
 	 * data and write to the destination index remains unchanged.
 	 * <p>
@@ -650,7 +660,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -663,13 +673,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Upgrade all transforms. Transforms are compatible across minor versions and
-	 * between supported major versions. However, over time, the format of transform
-	 * configuration information may change. This API identifies transforms that
-	 * have a legacy configuration format and upgrades them to the latest version.
-	 * It also cleans up the internal data structures that store the transform state
-	 * and checkpoints. The upgrade does not affect the source and destination
-	 * indices. The upgrade also does not affect the roles that transforms use when
+	 * Upgrade all transforms.
+	 * <p>
+	 * Transforms are compatible across minor versions and between supported major
+	 * versions. However, over time, the format of transform configuration
+	 * information may change. This API identifies transforms that have a legacy
+	 * configuration format and upgrades them to the latest version. It also cleans
+	 * up the internal data structures that store the transform state and
+	 * checkpoints. The upgrade does not affect the source and destination indices.
+	 * The upgrade also does not affect the roles that transforms use when
 	 * Elasticsearch security features are enabled; the role used to read source
 	 * data and write to the destination index remains unchanged.
 	 * <p>
@@ -686,7 +698,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpgradeTransformsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -697,13 +709,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Upgrade all transforms. Transforms are compatible across minor versions and
-	 * between supported major versions. However, over time, the format of transform
-	 * configuration information may change. This API identifies transforms that
-	 * have a legacy configuration format and upgrades them to the latest version.
-	 * It also cleans up the internal data structures that store the transform state
-	 * and checkpoints. The upgrade does not affect the source and destination
-	 * indices. The upgrade also does not affect the roles that transforms use when
+	 * Upgrade all transforms.
+	 * <p>
+	 * Transforms are compatible across minor versions and between supported major
+	 * versions. However, over time, the format of transform configuration
+	 * information may change. This API identifies transforms that have a legacy
+	 * configuration format and upgrades them to the latest version. It also cleans
+	 * up the internal data structures that store the transform state and
+	 * checkpoints. The upgrade does not affect the source and destination indices.
+	 * The upgrade also does not affect the roles that transforms use when
 	 * Elasticsearch security features are enabled; the role used to read source
 	 * data and write to the destination index remains unchanged.
 	 * <p>
@@ -717,7 +731,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 

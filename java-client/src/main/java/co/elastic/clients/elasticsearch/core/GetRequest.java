@@ -61,8 +61,78 @@ import javax.annotation.Nullable;
 // typedef: _global.get.Request
 
 /**
- * Get a document by its ID. Retrieves the document with the specified ID from
- * an index.
+ * Get a document by its ID.
+ * <p>
+ * Get a document and its source or stored fields from an index.
+ * <p>
+ * By default, this API is realtime and is not affected by the refresh rate of
+ * the index (when data will become visible for search). In the case where
+ * stored fields are requested with the <code>stored_fields</code> parameter and
+ * the document has been updated but is not yet refreshed, the API will have to
+ * parse and analyze the source to extract the stored fields. To turn off
+ * realtime behavior, set the <code>realtime</code> parameter to false.
+ * <p>
+ * <strong>Source filtering</strong>
+ * <p>
+ * By default, the API returns the contents of the <code>_source</code> field
+ * unless you have used the <code>stored_fields</code> parameter or the
+ * <code>_source</code> field is turned off. You can turn off
+ * <code>_source</code> retrieval by using the <code>_source</code> parameter:
+ * 
+ * <pre>
+ * <code>GET my-index-000001/_doc/0?_source=false
+ * </code>
+ * </pre>
+ * <p>
+ * If you only need one or two fields from the <code>_source</code>, use the
+ * <code>_source_includes</code> or <code>_source_excludes</code> parameters to
+ * include or filter out particular fields. This can be helpful with large
+ * documents where partial retrieval can save on network overhead Both
+ * parameters take a comma separated list of fields or wildcard expressions. For
+ * example:
+ * 
+ * <pre>
+ * <code>GET my-index-000001/_doc/0?_source_includes=*.id&amp;_source_excludes=entities
+ * </code>
+ * </pre>
+ * <p>
+ * If you only want to specify includes, you can use a shorter notation:
+ * 
+ * <pre>
+ * <code>GET my-index-000001/_doc/0?_source=*.id
+ * </code>
+ * </pre>
+ * <p>
+ * <strong>Routing</strong>
+ * <p>
+ * If routing is used during indexing, the routing value also needs to be
+ * specified to retrieve a document. For example:
+ * 
+ * <pre>
+ * <code>GET my-index-000001/_doc/2?routing=user1
+ * </code>
+ * </pre>
+ * <p>
+ * This request gets the document with ID 2, but it is routed based on the user.
+ * The document is not fetched if the correct routing is not specified.
+ * <p>
+ * <strong>Distributed</strong>
+ * <p>
+ * The GET operation is hashed into a specific shard ID. It is then redirected
+ * to one of the replicas within that shard ID and returns the result. The
+ * replicas are the primary shard and its replicas within that shard ID group.
+ * This means that the more replicas you have, the better your GET scaling will
+ * be.
+ * <p>
+ * <strong>Versioning support</strong>
+ * <p>
+ * You can use the <code>version</code> parameter to retrieve the document only
+ * if its current version is equal to the specified one.
+ * <p>
+ * Internally, Elasticsearch has marked the old document as deleted and added an
+ * entirely new document. The old version of the document doesn't disappear
+ * immediately, although you won't be able to access it. Elasticsearch cleans up
+ * deleted documents in the background as you continue to index more data.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.get.Request">API
  *      specification</a>
@@ -128,8 +198,8 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return.
+	 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+	 * or <code>false</code>) or lists the fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -139,7 +209,10 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of source fields to exclude in the response.
+	 * A comma-separated list of source fields to exclude from the response. You can
+	 * also use this parameter to exclude fields from the subset specified in
+	 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+	 * parameter is <code>false</code>, this parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -148,7 +221,11 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of source fields to include in the response.
+	 * A comma-separated list of source fields to include in the response. If this
+	 * parameter is specified, only these source fields are returned. You can
+	 * exclude fields from this subset using the <code>_source_excludes</code> query
+	 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+	 * parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -157,10 +234,10 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Should this request force synthetic _source? Use this to test if the mapping
-	 * supports synthetic _source and to get a sense of the worst case performance.
-	 * Fetches with this enabled will be slower the enabling synthetic source
-	 * natively in the index.
+	 * Indicates whether the request forces synthetic <code>_source</code>. Use this
+	 * paramater to test if the mapping supports synthetic <code>_source</code> and
+	 * to get a sense of the worst case performance. Fetches with this parameter
+	 * enabled will be slower than enabling synthetic source natively in the index.
 	 * <p>
 	 * API name: {@code force_synthetic_source}
 	 */
@@ -170,7 +247,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Unique identifier of the document.
+	 * Required - A unique document identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -179,7 +256,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Name of the index that contains the document.
+	 * Required - The name of the index that contains the document.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -188,8 +265,15 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
-	 * default.
+	 * The node or shard the operation should be performed on. By default, the
+	 * operation is randomized between the shard replicas.
+	 * <p>
+	 * If it is set to <code>_local</code>, the operation will prefer to be run on a
+	 * local allocated shard when possible. If it is set to a custom value, the
+	 * value is used to guarantee that the same shards will be used for the same
+	 * custom value. This can help with &quot;jumping values&quot; when hitting
+	 * different shards in different refresh states. A sample value can be something
+	 * like the web session ID or the user name.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -209,8 +293,10 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, Elasticsearch refreshes the affected shards to make this operation
-	 * visible to search. If false, do nothing with refreshes.
+	 * If <code>true</code>, the request refreshes the relevant shards before
+	 * retrieving the document. Setting it to <code>true</code> should be done after
+	 * careful thought and verification that this does not cause a heavy load on the
+	 * system (and slow down indexing).
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -220,7 +306,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Target the specified primary shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -230,9 +316,12 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * List of stored fields to return as part of a hit. If no fields are specified,
-	 * no stored fields are included in the response. If this field is specified,
-	 * the <code>_source</code> parameter defaults to false.
+	 * A comma-separated list of stored fields to return as part of a hit. If no
+	 * fields are specified, no stored fields are included in the response. If this
+	 * field is specified, the <code>_source</code> parameter defaults to
+	 * <code>false</code>. Only leaf fields can be retrieved with the
+	 * <code>stored_field</code> option. Object fields can't be returned;​if
+	 * specified, the request fails.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -241,8 +330,8 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit version number for concurrency control. The specified version must
-	 * match the current version of the document for the request to succeed.
+	 * The version number for concurrency control. It must match the current version
+	 * of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -252,7 +341,7 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific version type: internal, external, external_gte.
+	 * The version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -306,8 +395,8 @@ public class GetRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -317,8 +406,8 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -327,7 +416,10 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to exclude in the response.
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+		 * parameter is <code>false</code>, this parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -339,7 +431,10 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to exclude in the response.
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+		 * parameter is <code>false</code>, this parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -351,7 +446,11 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to include in the response.
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -363,7 +462,11 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to include in the response.
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -375,10 +478,10 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Should this request force synthetic _source? Use this to test if the mapping
-		 * supports synthetic _source and to get a sense of the worst case performance.
-		 * Fetches with this enabled will be slower the enabling synthetic source
-		 * natively in the index.
+		 * Indicates whether the request forces synthetic <code>_source</code>. Use this
+		 * paramater to test if the mapping supports synthetic <code>_source</code> and
+		 * to get a sense of the worst case performance. Fetches with this parameter
+		 * enabled will be slower than enabling synthetic source natively in the index.
 		 * <p>
 		 * API name: {@code force_synthetic_source}
 		 */
@@ -388,7 +491,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Unique identifier of the document.
+		 * Required - A unique document identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -398,7 +501,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Name of the index that contains the document.
+		 * Required - The name of the index that contains the document.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -408,8 +511,15 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
-		 * default.
+		 * The node or shard the operation should be performed on. By default, the
+		 * operation is randomized between the shard replicas.
+		 * <p>
+		 * If it is set to <code>_local</code>, the operation will prefer to be run on a
+		 * local allocated shard when possible. If it is set to a custom value, the
+		 * value is used to guarantee that the same shards will be used for the same
+		 * custom value. This can help with &quot;jumping values&quot; when hitting
+		 * different shards in different refresh states. A sample value can be something
+		 * like the web session ID or the user name.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -429,8 +539,10 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, Elasticsearch refreshes the affected shards to make this operation
-		 * visible to search. If false, do nothing with refreshes.
+		 * If <code>true</code>, the request refreshes the relevant shards before
+		 * retrieving the document. Setting it to <code>true</code> should be done after
+		 * careful thought and verification that this does not cause a heavy load on the
+		 * system (and slow down indexing).
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -440,7 +552,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Target the specified primary shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -450,9 +562,12 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the <code>_source</code> parameter defaults to false.
+		 * A comma-separated list of stored fields to return as part of a hit. If no
+		 * fields are specified, no stored fields are included in the response. If this
+		 * field is specified, the <code>_source</code> parameter defaults to
+		 * <code>false</code>. Only leaf fields can be retrieved with the
+		 * <code>stored_field</code> option. Object fields can't be returned;​if
+		 * specified, the request fails.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -464,9 +579,12 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the <code>_source</code> parameter defaults to false.
+		 * A comma-separated list of stored fields to return as part of a hit. If no
+		 * fields are specified, no stored fields are included in the response. If this
+		 * field is specified, the <code>_source</code> parameter defaults to
+		 * <code>false</code>. Only leaf fields can be retrieved with the
+		 * <code>stored_field</code> option. Object fields can't be returned;​if
+		 * specified, the request fails.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -478,8 +596,8 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit version number for concurrency control. The specified version must
-		 * match the current version of the document for the request to succeed.
+		 * The version number for concurrency control. It must match the current version
+		 * of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -489,7 +607,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific version type: internal, external, external_gte.
+		 * The version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

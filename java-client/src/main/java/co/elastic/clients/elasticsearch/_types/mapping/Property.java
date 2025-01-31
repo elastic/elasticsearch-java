@@ -84,6 +84,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		ConstantKeyword("constant_keyword"),
 
+		CountedKeyword("counted_keyword"),
+
 		DateNanos("date_nanos"),
 
 		Date("date"),
@@ -334,6 +336,24 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	 */
 	public ConstantKeywordProperty constantKeyword() {
 		return TaggedUnionUtils.get(this, Kind.ConstantKeyword);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code counted_keyword}?
+	 */
+	public boolean isCountedKeyword() {
+		return _kind == Kind.CountedKeyword;
+	}
+
+	/**
+	 * Get the {@code counted_keyword} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code counted_keyword}
+	 *             kind.
+	 */
+	public CountedKeywordProperty countedKeyword() {
+		return TaggedUnionUtils.get(this, Kind.CountedKeyword);
 	}
 
 	/**
@@ -1201,6 +1221,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.constantKeyword(fn.apply(new ConstantKeywordProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> countedKeyword(CountedKeywordProperty v) {
+			this._kind = Kind.CountedKeyword;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> countedKeyword(
+				Function<CountedKeywordProperty.Builder, ObjectBuilder<CountedKeywordProperty>> fn) {
+			return this.countedKeyword(fn.apply(new CountedKeywordProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> dateNanos(DateNanosProperty v) {
 			this._kind = Kind.DateNanos;
 			this._value = v;
@@ -1705,6 +1736,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::byte_, ByteNumberProperty._DESERIALIZER, "byte");
 		op.add(Builder::completion, CompletionProperty._DESERIALIZER, "completion");
 		op.add(Builder::constantKeyword, ConstantKeywordProperty._DESERIALIZER, "constant_keyword");
+		op.add(Builder::countedKeyword, CountedKeywordProperty._DESERIALIZER, "counted_keyword");
 		op.add(Builder::dateNanos, DateNanosProperty._DESERIALIZER, "date_nanos");
 		op.add(Builder::date, DateProperty._DESERIALIZER, "date");
 		op.add(Builder::dateRange, DateRangeProperty._DESERIALIZER, "date_range");

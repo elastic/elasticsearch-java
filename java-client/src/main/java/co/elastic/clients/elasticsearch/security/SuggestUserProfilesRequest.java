@@ -62,6 +62,12 @@ import javax.annotation.Nullable;
  * Suggest a user profile.
  * <p>
  * Get suggestions for user profiles that match specified search criteria.
+ * <p>
+ * NOTE: The user profile feature is designed only for use by Kibana and
+ * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+ * Individual users and external applications should not call this API directly.
+ * Elastic reserves the right to change or remove this feature in future
+ * releases without prior notice.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.suggest_user_profiles.Request">API
@@ -96,10 +102,12 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * List of filters for the <code>data</code> field of the profile document. To
-	 * return all content use <code>data=*</code>. To return a subset of content use
-	 * <code>data=&lt;key&gt;</code> to retrieve content nested under the specified
-	 * <code>&lt;key&gt;</code>. By default returns no <code>data</code> content.
+	 * A comma-separated list of filters for the <code>data</code> field of the
+	 * profile document. To return all content use <code>data=*</code>. To return a
+	 * subset of content, use <code>data=&lt;key&gt;</code> to retrieve content
+	 * nested under the specified <code>&lt;key&gt;</code>. By default, the API
+	 * returns no <code>data</code> content. It is an error to specify
+	 * <code>data</code> as both the query parameter and the request body field.
 	 * <p>
 	 * API name: {@code data}
 	 */
@@ -110,8 +118,8 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Extra search criteria to improve relevance of the suggestion result. Profiles
 	 * matching the spcified hint are ranked higher in the response. Profiles not
-	 * matching the hint don't exclude the profile from the response as long as the
-	 * profile matches the <code>name</code> field query.
+	 * matching the hint aren't excluded from the response as long as the profile
+	 * matches the <code>name</code> field query.
 	 * <p>
 	 * API name: {@code hint}
 	 */
@@ -121,7 +129,7 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * Query string used to match name-related fields in user profile documents.
+	 * A query string used to match name-related fields in user profile documents.
 	 * Name-related fields are the user's <code>username</code>,
 	 * <code>full_name</code>, and <code>email</code>.
 	 * <p>
@@ -133,7 +141,7 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * Number of profiles to return.
+	 * The number of profiles to return.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -203,10 +211,12 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		private Long size;
 
 		/**
-		 * List of filters for the <code>data</code> field of the profile document. To
-		 * return all content use <code>data=*</code>. To return a subset of content use
-		 * <code>data=&lt;key&gt;</code> to retrieve content nested under the specified
-		 * <code>&lt;key&gt;</code>. By default returns no <code>data</code> content.
+		 * A comma-separated list of filters for the <code>data</code> field of the
+		 * profile document. To return all content use <code>data=*</code>. To return a
+		 * subset of content, use <code>data=&lt;key&gt;</code> to retrieve content
+		 * nested under the specified <code>&lt;key&gt;</code>. By default, the API
+		 * returns no <code>data</code> content. It is an error to specify
+		 * <code>data</code> as both the query parameter and the request body field.
 		 * <p>
 		 * API name: {@code data}
 		 * <p>
@@ -218,10 +228,12 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * List of filters for the <code>data</code> field of the profile document. To
-		 * return all content use <code>data=*</code>. To return a subset of content use
-		 * <code>data=&lt;key&gt;</code> to retrieve content nested under the specified
-		 * <code>&lt;key&gt;</code>. By default returns no <code>data</code> content.
+		 * A comma-separated list of filters for the <code>data</code> field of the
+		 * profile document. To return all content use <code>data=*</code>. To return a
+		 * subset of content, use <code>data=&lt;key&gt;</code> to retrieve content
+		 * nested under the specified <code>&lt;key&gt;</code>. By default, the API
+		 * returns no <code>data</code> content. It is an error to specify
+		 * <code>data</code> as both the query parameter and the request body field.
 		 * <p>
 		 * API name: {@code data}
 		 * <p>
@@ -235,8 +247,8 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * Extra search criteria to improve relevance of the suggestion result. Profiles
 		 * matching the spcified hint are ranked higher in the response. Profiles not
-		 * matching the hint don't exclude the profile from the response as long as the
-		 * profile matches the <code>name</code> field query.
+		 * matching the hint aren't excluded from the response as long as the profile
+		 * matches the <code>name</code> field query.
 		 * <p>
 		 * API name: {@code hint}
 		 */
@@ -248,8 +260,8 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		/**
 		 * Extra search criteria to improve relevance of the suggestion result. Profiles
 		 * matching the spcified hint are ranked higher in the response. Profiles not
-		 * matching the hint don't exclude the profile from the response as long as the
-		 * profile matches the <code>name</code> field query.
+		 * matching the hint aren't excluded from the response as long as the profile
+		 * matches the <code>name</code> field query.
 		 * <p>
 		 * API name: {@code hint}
 		 */
@@ -258,7 +270,7 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Query string used to match name-related fields in user profile documents.
+		 * A query string used to match name-related fields in user profile documents.
 		 * Name-related fields are the user's <code>username</code>,
 		 * <code>full_name</code>, and <code>email</code>.
 		 * <p>
@@ -270,7 +282,7 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Number of profiles to return.
+		 * The number of profiles to return.
 		 * <p>
 		 * API name: {@code size}
 		 */

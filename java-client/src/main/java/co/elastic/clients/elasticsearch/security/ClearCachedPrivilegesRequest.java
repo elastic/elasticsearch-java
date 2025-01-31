@@ -83,7 +83,9 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of application names
+	 * Required - A comma-separated list of applications. To clear all applications,
+	 * use an asterism (<code>*</code>). It does not support other wildcard
+	 * patterns.
 	 * <p>
 	 * API name: {@code application}
 	 */
@@ -103,7 +105,9 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 		private String application;
 
 		/**
-		 * Required - A comma-separated list of application names
+		 * Required - A comma-separated list of applications. To clear all applications,
+		 * use an asterism (<code>*</code>). It does not support other wildcard
+		 * patterns.
 		 * <p>
 		 * API name: {@code application}
 		 */

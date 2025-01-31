@@ -54,6 +54,10 @@ import java.util.Objects;
  * <p>
  * Enable a Kibana instance to configure itself for communication with a secured
  * Elasticsearch cluster.
+ * <p>
+ * NOTE: This API is currently intended for internal use only by Kibana. Kibana
+ * uses this API internally to configure itself for communications with an
+ * Elasticsearch cluster that already has security features enabled.
  * 
  * @see <a href="../doc-files/api-spec.html#security.enroll_kibana.Request">API
  *      specification</a>

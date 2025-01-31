@@ -59,6 +59,11 @@ import javax.annotation.Nullable;
  * Create SAML service provider metadata.
  * <p>
  * Generate SAML metadata for a SAML 2.0 Service Provider.
+ * <p>
+ * The SAML 2.0 specification provides a mechanism for Service Providers to
+ * describe their capabilities and configuration using a metadata file. This API
+ * generates Service Provider metadata based on the configuration of a SAML
+ * realm in Elasticsearch.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.saml_service_provider_metadata.Request">API

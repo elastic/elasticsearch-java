@@ -78,14 +78,19 @@ public class QueryWatchesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - The total number of watches found.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code watches}
+	 * Required - A list of watches based on the <code>from</code>,
+	 * <code>size</code>, or <code>search_after</code> request body parameters.
+	 * <p>
+	 * API name: {@code watches}
 	 */
 	public final List<QueryWatch> watches() {
 		return this.watches;
@@ -137,7 +142,9 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		private List<QueryWatch> watches;
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - The total number of watches found.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -145,7 +152,10 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watches}
+		 * Required - A list of watches based on the <code>from</code>,
+		 * <code>size</code>, or <code>search_after</code> request body parameters.
+		 * <p>
+		 * API name: {@code watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>watches</code>.
 		 */
@@ -155,7 +165,10 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watches}
+		 * Required - A list of watches based on the <code>from</code>,
+		 * <code>size</code>, or <code>search_after</code> request body parameters.
+		 * <p>
+		 * API name: {@code watches}
 		 * <p>
 		 * Adds one or more values to <code>watches</code>.
 		 */
@@ -165,7 +178,10 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watches}
+		 * Required - A list of watches based on the <code>from</code>,
+		 * <code>size</code>, or <code>search_after</code> request body parameters.
+		 * <p>
+		 * API name: {@code watches}
 		 * <p>
 		 * Adds a value to <code>watches</code> using a builder lambda.
 		 */

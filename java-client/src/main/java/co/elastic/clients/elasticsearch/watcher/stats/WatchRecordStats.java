@@ -88,14 +88,18 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	}
 
 	/**
-	 * Required - API name: {@code execution_phase}
+	 * Required - The current watch execution phase.
+	 * <p>
+	 * API name: {@code execution_phase}
 	 */
 	public final ExecutionPhase executionPhase() {
 		return this.executionPhase;
 	}
 
 	/**
-	 * Required - API name: {@code triggered_time}
+	 * Required - The time the watch was triggered by the trigger engine.
+	 * <p>
+	 * API name: {@code triggered_time}
 	 */
 	public final DateTime triggeredTime() {
 		return this.triggeredTime;
@@ -116,7 +120,9 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	}
 
 	/**
-	 * Required - API name: {@code watch_record_id}
+	 * Required - The watch record identifier.
+	 * <p>
+	 * API name: {@code watch_record_id}
 	 */
 	public final String watchRecordId() {
 		return this.watchRecordId;
@@ -168,7 +174,9 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		private String watchRecordId;
 
 		/**
-		 * Required - API name: {@code execution_phase}
+		 * Required - The current watch execution phase.
+		 * <p>
+		 * API name: {@code execution_phase}
 		 */
 		public final Builder executionPhase(ExecutionPhase value) {
 			this.executionPhase = value;
@@ -176,7 +184,9 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * Required - API name: {@code triggered_time}
+		 * Required - The time the watch was triggered by the trigger engine.
+		 * <p>
+		 * API name: {@code triggered_time}
 		 */
 		public final Builder triggeredTime(DateTime value) {
 			this.triggeredTime = value;
@@ -212,7 +222,9 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * Required - API name: {@code watch_record_id}
+		 * Required - The watch record identifier.
+		 * <p>
+		 * API name: {@code watch_record_id}
 		 */
 		public final Builder watchRecordId(String value) {
 			this.watchRecordId = value;

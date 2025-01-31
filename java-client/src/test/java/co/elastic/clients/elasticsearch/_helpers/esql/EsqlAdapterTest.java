@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
-import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
+import co.elastic.clients.elasticsearch.esql.EsqlFormat;
 import co.elastic.clients.json.JsonpMappingException;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.testkit.MockHttpClient;

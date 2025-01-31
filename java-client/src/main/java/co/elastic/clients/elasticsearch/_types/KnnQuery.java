@@ -80,6 +80,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Float similarity;
 
+	@Nullable
+	private final RescoreVector rescoreVector;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private KnnQuery(Builder builder) {
@@ -92,6 +95,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		this.k = builder.k;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.similarity = builder.similarity;
+		this.rescoreVector = builder.rescoreVector;
 
 	}
 
@@ -175,6 +179,16 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		return this.similarity;
 	}
 
+	/**
+	 * Apply oversampling and rescoring to quantized vectors *
+	 * <p>
+	 * API name: {@code rescore_vector}
+	 */
+	@Nullable
+	public final RescoreVector rescoreVector() {
+		return this.rescoreVector;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -221,6 +235,11 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			generator.write(this.similarity);
 
 		}
+		if (this.rescoreVector != null) {
+			generator.writeKey("rescore_vector");
+			this.rescoreVector.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -250,6 +269,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 
 		@Nullable
 		private Float similarity;
+
+		@Nullable
+		private RescoreVector rescoreVector;
 
 		/**
 		 * Required - The name of the vector field to search against
@@ -372,6 +394,25 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			return this;
 		}
 
+		/**
+		 * Apply oversampling and rescoring to quantized vectors *
+		 * <p>
+		 * API name: {@code rescore_vector}
+		 */
+		public final Builder rescoreVector(@Nullable RescoreVector value) {
+			this.rescoreVector = value;
+			return this;
+		}
+
+		/**
+		 * Apply oversampling and rescoring to quantized vectors *
+		 * <p>
+		 * API name: {@code rescore_vector}
+		 */
+		public final Builder rescoreVector(Function<RescoreVector.Builder, ObjectBuilder<RescoreVector>> fn) {
+			return this.rescoreVector(fn.apply(new RescoreVector.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -408,6 +449,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
+		op.add(Builder::rescoreVector, RescoreVector._DESERIALIZER, "rescore_vector");
 
 	}
 

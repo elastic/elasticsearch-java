@@ -56,12 +56,14 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_job.Request
 
 /**
- * Delete an anomaly detection job. All job configuration, model state and
- * results are deleted. It is not currently possible to delete multiple jobs
- * using wildcards or a comma separated list. If you delete a job that has a
- * datafeed, the request first tries to delete the datafeed. This behavior is
- * equivalent to calling the delete datafeed API with the same timeout and force
- * parameters as the delete job request.
+ * Delete an anomaly detection job.
+ * <p>
+ * All job configuration, model state and results are deleted. It is not
+ * currently possible to delete multiple jobs using wildcards or a comma
+ * separated list. If you delete a job that has a datafeed, the request first
+ * tries to delete the datafeed. This behavior is equivalent to calling the
+ * delete datafeed API with the same timeout and force parameters as the delete
+ * job request.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_job.Request">API
  *      specification</a>

@@ -57,11 +57,12 @@ import javax.annotation.Nullable;
 // typedef: ml.evaluate_data_frame.Request
 
 /**
- * Evaluate data frame analytics. The API packages together commonly used
- * evaluation metrics for various types of machine learning features. This has
- * been designed for use on indexes created by data frame analytics. Evaluation
- * requires both a ground truth field and an analytics result field to be
- * present.
+ * Evaluate data frame analytics.
+ * <p>
+ * The API packages together commonly used evaluation metrics for various types
+ * of machine learning features. This has been designed for use on indexes
+ * created by data frame analytics. Evaluation requires both a ground truth
+ * field and an analytics result field to be present.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.evaluate_data_frame.Request">API
  *      specification</a>

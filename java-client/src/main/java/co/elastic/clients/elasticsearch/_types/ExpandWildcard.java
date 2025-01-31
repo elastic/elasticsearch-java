@@ -62,8 +62,8 @@ public enum ExpandWildcard implements JsonEnum {
 	Closed("closed"),
 
 	/**
-	 * Match hidden data streams and hidden indices. Must be combined with open,
-	 * closed, or both.
+	 * Match hidden data streams and hidden indices. Must be combined with
+	 * <code>open</code>, <code>closed</code>, or <code>both</code>.
 	 */
 	Hidden("hidden"),
 

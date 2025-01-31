@@ -155,6 +155,25 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link CountedKeywordProperty counted_keyword}
+	 * {@code Property} variant.
+	 */
+	public static CountedKeywordProperty.Builder countedKeyword() {
+		return new CountedKeywordProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link CountedKeywordProperty counted_keyword}
+	 * {@code Property} variant.
+	 */
+	public static Property countedKeyword(
+			Function<CountedKeywordProperty.Builder, ObjectBuilder<CountedKeywordProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.countedKeyword(fn.apply(new CountedKeywordProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DateNanosProperty date_nanos}
 	 * {@code Property} variant.
 	 */

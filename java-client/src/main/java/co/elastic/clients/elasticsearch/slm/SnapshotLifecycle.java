@@ -132,6 +132,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	}
 
 	/**
+	 * The last time the policy was modified.
+	 * <p>
 	 * API name: {@code modified_date}
 	 */
 	@Nullable
@@ -147,6 +149,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	}
 
 	/**
+	 * The next time the policy will run.
+	 * <p>
 	 * API name: {@code next_execution}
 	 */
 	@Nullable
@@ -169,7 +173,10 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * Required - The version of the snapshot policy. Only the latest version is
+	 * stored and incremented when the policy is updated.
+	 * <p>
+	 * API name: {@code version}
 	 */
 	public final long version() {
 		return this.version;
@@ -316,6 +323,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
+		 * The last time the policy was modified.
+		 * <p>
 		 * API name: {@code modified_date}
 		 */
 		public final Builder modifiedDate(@Nullable DateTime value) {
@@ -332,6 +341,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
+		 * The next time the policy will run.
+		 * <p>
 		 * API name: {@code next_execution}
 		 */
 		public final Builder nextExecution(@Nullable DateTime value) {
@@ -363,7 +374,10 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * Required - The version of the snapshot policy. Only the latest version is
+		 * stored and incremented when the policy is updated.
+		 * <p>
+		 * API name: {@code version}
 		 */
 		public final Builder version(long value) {
 			this.version = value;

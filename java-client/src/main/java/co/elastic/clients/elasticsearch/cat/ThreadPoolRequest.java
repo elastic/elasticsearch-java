@@ -59,11 +59,13 @@ import javax.annotation.Nullable;
 // typedef: cat.thread_pool.Request
 
 /**
- * Get thread pool statistics. Get thread pool statistics for each node in a
- * cluster. Returned information includes all built-in thread pools and custom
- * thread pools. IMPORTANT: cat APIs are only intended for human consumption
- * using the command line or Kibana console. They are not intended for use by
- * applications. For application consumption, use the nodes info API.
+ * Get thread pool statistics.
+ * <p>
+ * Get thread pool statistics for each node in a cluster. Returned information
+ * includes all built-in thread pools and custom thread pools. IMPORTANT: cat
+ * APIs are only intended for human consumption using the command line or Kibana
+ * console. They are not intended for use by applications. For application
+ * consumption, use the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.thread_pool.Request">API
  *      specification</a>

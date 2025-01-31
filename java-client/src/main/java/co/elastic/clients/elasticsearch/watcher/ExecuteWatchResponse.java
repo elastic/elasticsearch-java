@@ -78,14 +78,20 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * Required - The watch record identifier as it would be stored in the
+	 * <code>.watcher-history</code> index.
+	 * <p>
+	 * API name: {@code _id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code watch_record}
+	 * Required - The watch record document as it would be stored in the
+	 * <code>.watcher-history</code> index.
+	 * <p>
+	 * API name: {@code watch_record}
 	 */
 	public final WatchRecord watchRecord() {
 		return this.watchRecord;
@@ -129,7 +135,10 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 		private WatchRecord watchRecord;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * Required - The watch record identifier as it would be stored in the
+		 * <code>.watcher-history</code> index.
+		 * <p>
+		 * API name: {@code _id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -137,7 +146,10 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watch_record}
+		 * Required - The watch record document as it would be stored in the
+		 * <code>.watcher-history</code> index.
+		 * <p>
+		 * API name: {@code watch_record}
 		 */
 		public final Builder watchRecord(WatchRecord value) {
 			this.watchRecord = value;
@@ -145,7 +157,10 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watch_record}
+		 * Required - The watch record document as it would be stored in the
+		 * <code>.watcher-history</code> index.
+		 * <p>
+		 * API name: {@code watch_record}
 		 */
 		public final Builder watchRecord(Function<WatchRecord.Builder, ObjectBuilder<WatchRecord>> fn) {
 			return this.watchRecord(fn.apply(new WatchRecord.Builder()).build());

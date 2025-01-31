@@ -73,7 +73,361 @@ import javax.annotation.Nullable;
 /**
  * Search a vector tile.
  * <p>
- * Search a vector tile for geospatial values.
+ * Search a vector tile for geospatial values. Before using this API, you should
+ * be familiar with the Mapbox vector tile specification. The API returns
+ * results as a binary mapbox vector tile.
+ * <p>
+ * Internally, Elasticsearch translates a vector tile search API request into a
+ * search containing:
+ * <ul>
+ * <li>A <code>geo_bounding_box</code> query on the <code>&lt;field&gt;</code>.
+ * The query uses the <code>&lt;zoom&gt;/&lt;x&gt;/&lt;y&gt;</code> tile as a
+ * bounding box.</li>
+ * <li>A <code>geotile_grid</code> or <code>geohex_grid</code> aggregation on
+ * the <code>&lt;field&gt;</code>. The <code>grid_agg</code> parameter
+ * determines the aggregation type. The aggregation uses the
+ * <code>&lt;zoom&gt;/&lt;x&gt;/&lt;y&gt;</code> tile as a bounding box.</li>
+ * <li>Optionally, a <code>geo_bounds</code> aggregation on the
+ * <code>&lt;field&gt;</code>. The search only includes this aggregation if the
+ * <code>exact_bounds</code> parameter is <code>true</code>.</li>
+ * <li>If the optional parameter <code>with_labels</code> is <code>true</code>,
+ * the internal search will include a dynamic runtime field that calls the
+ * <code>getLabelPosition</code> function of the geometry doc value. This
+ * enables the generation of new point features containing suggested geometry
+ * labels, so that, for example, multi-polygons will have only one label.</li>
+ * </ul>
+ * <p>
+ * For example, Elasticsearch may translate a vector tile search API request
+ * with a <code>grid_agg</code> argument of <code>geotile</code> and an
+ * <code>exact_bounds</code> argument of <code>true</code> into the following
+ * search
+ * 
+ * <pre>
+ * <code>GET my-index/_search
+ * {
+ *   &quot;size&quot;: 10000,
+ *   &quot;query&quot;: {
+ *     &quot;geo_bounding_box&quot;: {
+ *       &quot;my-geo-field&quot;: {
+ *         &quot;top_left&quot;: {
+ *           &quot;lat&quot;: -40.979898069620134,
+ *           &quot;lon&quot;: -45
+ *         },
+ *         &quot;bottom_right&quot;: {
+ *           &quot;lat&quot;: -66.51326044311186,
+ *           &quot;lon&quot;: 0
+ *         }
+ *       }
+ *     }
+ *   },
+ *   &quot;aggregations&quot;: {
+ *     &quot;grid&quot;: {
+ *       &quot;geotile_grid&quot;: {
+ *         &quot;field&quot;: &quot;my-geo-field&quot;,
+ *         &quot;precision&quot;: 11,
+ *         &quot;size&quot;: 65536,
+ *         &quot;bounds&quot;: {
+ *           &quot;top_left&quot;: {
+ *             &quot;lat&quot;: -40.979898069620134,
+ *             &quot;lon&quot;: -45
+ *           },
+ *           &quot;bottom_right&quot;: {
+ *             &quot;lat&quot;: -66.51326044311186,
+ *             &quot;lon&quot;: 0
+ *           }
+ *         }
+ *       }
+ *     },
+ *     &quot;bounds&quot;: {
+ *       &quot;geo_bounds&quot;: {
+ *         &quot;field&quot;: &quot;my-geo-field&quot;,
+ *         &quot;wrap_longitude&quot;: false
+ *       }
+ *     }
+ *   }
+ * }
+ * </code>
+ * </pre>
+ * <p>
+ * The API returns results as a binary Mapbox vector tile. Mapbox vector tiles
+ * are encoded as Google Protobufs (PBF). By default, the tile contains three
+ * layers:
+ * <ul>
+ * <li>A <code>hits</code> layer containing a feature for each
+ * <code>&lt;field&gt;</code> value matching the <code>geo_bounding_box</code>
+ * query.</li>
+ * <li>An <code>aggs</code> layer containing a feature for each cell of the
+ * <code>geotile_grid</code> or <code>geohex_grid</code>. The layer only
+ * contains features for cells with matching data.</li>
+ * <li>A meta layer containing:
+ * <ul>
+ * <li>A feature containing a bounding box. By default, this is the bounding box
+ * of the tile.</li>
+ * <li>Value ranges for any sub-aggregations on the <code>geotile_grid</code> or
+ * <code>geohex_grid</code>.</li>
+ * <li>Metadata for the search.</li>
+ * </ul>
+ * </li>
+ * </ul>
+ * <p>
+ * The API only returns features that can display at its zoom level. For
+ * example, if a polygon feature has no area at its zoom level, the API omits
+ * it. The API returns errors as UTF-8 encoded JSON.
+ * <p>
+ * IMPORTANT: You can specify several options for this API as either a query
+ * parameter or request body parameter. If you specify both parameters, the
+ * query parameter takes precedence.
+ * <p>
+ * <strong>Grid precision for geotile</strong>
+ * <p>
+ * For a <code>grid_agg</code> of <code>geotile</code>, you can use cells in the
+ * <code>aggs</code> layer as tiles for lower zoom levels.
+ * <code>grid_precision</code> represents the additional zoom levels available
+ * through these cells. The final precision is computed by as follows:
+ * <code>&lt;zoom&gt; + grid_precision</code>. For example, if
+ * <code>&lt;zoom&gt;</code> is 7 and <code>grid_precision</code> is 8, then the
+ * <code>geotile_grid</code> aggregation will use a precision of 15. The maximum
+ * final precision is 29. The <code>grid_precision</code> also determines the
+ * number of cells for the grid as follows:
+ * <code>(2^grid_precision) x (2^grid_precision)</code>. For example, a value of
+ * 8 divides the tile into a grid of 256 x 256 cells. The <code>aggs</code>
+ * layer only contains features for cells with matching data.
+ * <p>
+ * <strong>Grid precision for geohex</strong>
+ * <p>
+ * For a <code>grid_agg</code> of <code>geohex</code>, Elasticsearch uses
+ * <code>&lt;zoom&gt;</code> and <code>grid_precision</code> to calculate a
+ * final precision as follows: <code>&lt;zoom&gt; + grid_precision</code>.
+ * <p>
+ * This precision determines the H3 resolution of the hexagonal cells produced
+ * by the <code>geohex</code> aggregation. The following table maps the H3
+ * resolution for each precision. For example, if <code>&lt;zoom&gt;</code> is 3
+ * and <code>grid_precision</code> is 3, the precision is 6. At a precision of
+ * 6, hexagonal cells have an H3 resolution of 2. If <code>&lt;zoom&gt;</code>
+ * is 3 and <code>grid_precision</code> is 4, the precision is 7. At a precision
+ * of 7, hexagonal cells have an H3 resolution of 3.
+ * <table>
+ * <thead>
+ * <tr>
+ * <th>Precision</th>
+ * <th>Unique tile bins</th>
+ * <th>H3 resolution</th>
+ * <th>Unique hex bins</th>
+ * <th>Ratio</th>
+ * </tr>
+ * </thead> <tbody>
+ * <tr>
+ * <td>1</td>
+ * <td>4</td>
+ * <td>0</td>
+ * <td>122</td>
+ * <td>30.5</td>
+ * </tr>
+ * <tr>
+ * <td>2</td>
+ * <td>16</td>
+ * <td>0</td>
+ * <td>122</td>
+ * <td>7.625</td>
+ * </tr>
+ * <tr>
+ * <td>3</td>
+ * <td>64</td>
+ * <td>1</td>
+ * <td>842</td>
+ * <td>13.15625</td>
+ * </tr>
+ * <tr>
+ * <td>4</td>
+ * <td>256</td>
+ * <td>1</td>
+ * <td>842</td>
+ * <td>3.2890625</td>
+ * </tr>
+ * <tr>
+ * <td>5</td>
+ * <td>1024</td>
+ * <td>2</td>
+ * <td>5882</td>
+ * <td>5.744140625</td>
+ * </tr>
+ * <tr>
+ * <td>6</td>
+ * <td>4096</td>
+ * <td>2</td>
+ * <td>5882</td>
+ * <td>1.436035156</td>
+ * </tr>
+ * <tr>
+ * <td>7</td>
+ * <td>16384</td>
+ * <td>3</td>
+ * <td>41162</td>
+ * <td>2.512329102</td>
+ * </tr>
+ * <tr>
+ * <td>8</td>
+ * <td>65536</td>
+ * <td>3</td>
+ * <td>41162</td>
+ * <td>0.6280822754</td>
+ * </tr>
+ * <tr>
+ * <td>9</td>
+ * <td>262144</td>
+ * <td>4</td>
+ * <td>288122</td>
+ * <td>1.099098206</td>
+ * </tr>
+ * <tr>
+ * <td>10</td>
+ * <td>1048576</td>
+ * <td>4</td>
+ * <td>288122</td>
+ * <td>0.2747745514</td>
+ * </tr>
+ * <tr>
+ * <td>11</td>
+ * <td>4194304</td>
+ * <td>5</td>
+ * <td>2016842</td>
+ * <td>0.4808526039</td>
+ * </tr>
+ * <tr>
+ * <td>12</td>
+ * <td>16777216</td>
+ * <td>6</td>
+ * <td>14117882</td>
+ * <td>0.8414913416</td>
+ * </tr>
+ * <tr>
+ * <td>13</td>
+ * <td>67108864</td>
+ * <td>6</td>
+ * <td>14117882</td>
+ * <td>0.2103728354</td>
+ * </tr>
+ * <tr>
+ * <td>14</td>
+ * <td>268435456</td>
+ * <td>7</td>
+ * <td>98825162</td>
+ * <td>0.3681524172</td>
+ * </tr>
+ * <tr>
+ * <td>15</td>
+ * <td>1073741824</td>
+ * <td>8</td>
+ * <td>691776122</td>
+ * <td>0.644266719</td>
+ * </tr>
+ * <tr>
+ * <td>16</td>
+ * <td>4294967296</td>
+ * <td>8</td>
+ * <td>691776122</td>
+ * <td>0.1610666797</td>
+ * </tr>
+ * <tr>
+ * <td>17</td>
+ * <td>17179869184</td>
+ * <td>9</td>
+ * <td>4842432842</td>
+ * <td>0.2818666889</td>
+ * </tr>
+ * <tr>
+ * <td>18</td>
+ * <td>68719476736</td>
+ * <td>10</td>
+ * <td>33897029882</td>
+ * <td>0.4932667053</td>
+ * </tr>
+ * <tr>
+ * <td>19</td>
+ * <td>274877906944</td>
+ * <td>11</td>
+ * <td>237279209162</td>
+ * <td>0.8632167343</td>
+ * </tr>
+ * <tr>
+ * <td>20</td>
+ * <td>1099511627776</td>
+ * <td>11</td>
+ * <td>237279209162</td>
+ * <td>0.2158041836</td>
+ * </tr>
+ * <tr>
+ * <td>21</td>
+ * <td>4398046511104</td>
+ * <td>12</td>
+ * <td>1660954464122</td>
+ * <td>0.3776573213</td>
+ * </tr>
+ * <tr>
+ * <td>22</td>
+ * <td>17592186044416</td>
+ * <td>13</td>
+ * <td>11626681248842</td>
+ * <td>0.6609003122</td>
+ * </tr>
+ * <tr>
+ * <td>23</td>
+ * <td>70368744177664</td>
+ * <td>13</td>
+ * <td>11626681248842</td>
+ * <td>0.165225078</td>
+ * </tr>
+ * <tr>
+ * <td>24</td>
+ * <td>281474976710656</td>
+ * <td>14</td>
+ * <td>81386768741882</td>
+ * <td>0.2891438866</td>
+ * </tr>
+ * <tr>
+ * <td>25</td>
+ * <td>1125899906842620</td>
+ * <td>15</td>
+ * <td>569707381193162</td>
+ * <td>0.5060018015</td>
+ * </tr>
+ * <tr>
+ * <td>26</td>
+ * <td>4503599627370500</td>
+ * <td>15</td>
+ * <td>569707381193162</td>
+ * <td>0.1265004504</td>
+ * </tr>
+ * <tr>
+ * <td>27</td>
+ * <td>18014398509482000</td>
+ * <td>15</td>
+ * <td>569707381193162</td>
+ * <td>0.03162511259</td>
+ * </tr>
+ * <tr>
+ * <td>28</td>
+ * <td>72057594037927900</td>
+ * <td>15</td>
+ * <td>569707381193162</td>
+ * <td>0.007906278149</td>
+ * </tr>
+ * <tr>
+ * <td>29</td>
+ * <td>288230376151712000</td>
+ * <td>15</td>
+ * <td>569707381193162</td>
+ * <td>0.001976569537</td>
+ * </tr>
+ * </tbody>
+ * </table>
+ * <p>
+ * Hexagonal cells don't align perfectly on a vector tile. Some cells may
+ * intersect more than one vector tile. To compute the H3 resolution for each
+ * precision, Elasticsearch compares the average density of hexagonal bins at
+ * each resolution with the average density of tile bins at each zoom level.
+ * Elasticsearch uses the H3 resolution that is closest to the corresponding
+ * geotile density.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search_mvt.Request">API
  *      specification</a>
@@ -161,14 +515,24 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Sub-aggregations for the geotile_grid.
 	 * <p>
-	 * Supports the following aggregation types:
+	 * It supports the following aggregation types:
 	 * <ul>
-	 * <li>avg</li>
-	 * <li>cardinality</li>
-	 * <li>max</li>
-	 * <li>min</li>
-	 * <li>sum</li>
+	 * <li><code>avg</code></li>
+	 * <li><code>boxplot</code></li>
+	 * <li><code>cardinality</code></li>
+	 * <li><code>extended stats</code></li>
+	 * <li><code>max</code></li>
+	 * <li><code>median absolute deviation</code></li>
+	 * <li><code>min</code></li>
+	 * <li><code>percentile</code></li>
+	 * <li><code>percentile-rank</code></li>
+	 * <li><code>stats</code></li>
+	 * <li><code>sum</code></li>
+	 * <li><code>value count</code></li>
 	 * </ul>
+	 * <p>
+	 * The aggregation names can't start with <code>_mvt_</code>. The
+	 * <code>_mvt_</code> prefix is reserved for internal aggregations.
 	 * <p>
 	 * API name: {@code aggs}
 	 */
@@ -177,9 +541,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Size, in pixels, of a clipping buffer outside the tile. This allows renderers
-	 * to avoid outline artifacts from geometries that extend past the extent of the
-	 * tile.
+	 * The size, in pixels, of a clipping buffer outside the tile. This allows
+	 * renderers to avoid outline artifacts from geometries that extend past the
+	 * extent of the tile.
 	 * <p>
 	 * API name: {@code buffer}
 	 */
@@ -189,11 +553,13 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If false, the meta layer’s feature is the bounding box of the tile. If true,
-	 * the meta layer’s feature is a bounding box resulting from a geo_bounds
-	 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
-	 * &lt;zoom&gt;/&lt;x&gt;/&lt;y&gt; tile with wrap_longitude set to false. The
-	 * resulting bounding box may be larger than the vector tile.
+	 * If <code>false</code>, the meta layer's feature is the bounding box of the
+	 * tile. If <code>true</code>, the meta layer's feature is a bounding box
+	 * resulting from a <code>geo_bounds</code> aggregation. The aggregation runs on
+	 * &lt;field&gt; values that intersect the
+	 * <code>&lt;zoom&gt;/&lt;x&gt;/&lt;y&gt;</code> tile with
+	 * <code>wrap_longitude</code> set to <code>false</code>. The resulting bounding
+	 * box may be larger than the vector tile.
 	 * <p>
 	 * API name: {@code exact_bounds}
 	 */
@@ -203,8 +569,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Size, in pixels, of a side of the tile. Vector tiles are square with equal
-	 * sides.
+	 * The size, in pixels, of a side of the tile. Vector tiles are square with
+	 * equal sides.
 	 * <p>
 	 * API name: {@code extent}
 	 */
@@ -223,7 +589,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Fields to return in the <code>hits</code> layer. Supports wildcards
+	 * The fields to return in the <code>hits</code> layer. It supports wildcards
 	 * (<code>*</code>). This parameter does not support fields with array values.
 	 * Fields with array values may return inconsistent results.
 	 * <p>
@@ -234,7 +600,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Aggregation used to create a grid for the <code>field</code>.
+	 * The aggregation used to create a grid for the <code>field</code>.
 	 * <p>
 	 * API name: {@code grid_agg}
 	 */
@@ -245,8 +611,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Additional zoom levels available through the aggs layer. For example, if
-	 * &lt;zoom&gt; is 7 and grid_precision is 8, you can zoom in up to level 15.
-	 * Accepts 0-8. If 0, results don’t include the aggs layer.
+	 * <code>&lt;zoom&gt;</code> is <code>7</code> and <code>grid_precision</code>
+	 * is <code>8</code>, you can zoom in up to level 15. Accepts 0-8. If 0, results
+	 * don't include the aggs layer.
 	 * <p>
 	 * API name: {@code grid_precision}
 	 */
@@ -257,9 +624,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Determines the geometry type for features in the aggs layer. In the aggs
-	 * layer, each feature represents a geotile_grid cell. If 'grid' each feature is
-	 * a Polygon of the cells bounding box. If 'point' each feature is a Point that
-	 * is the centroid of the cell.
+	 * layer, each feature represents a <code>geotile_grid</code> cell. If
+	 * <code>grid, each feature is a polygon of the cells bounding box. If </code>point`,
+	 * each feature is a Point that is the centroid of the cell.
 	 * <p>
 	 * API name: {@code grid_type}
 	 */
@@ -279,7 +646,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Query DSL used to filter documents for the search.
+	 * The query DSL used to filter documents for the search.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -299,8 +666,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Maximum number of features to return in the hits layer. Accepts 0-10000. If
-	 * 0, results don’t include the hits layer.
+	 * The maximum number of features to return in the hits layer. Accepts 0-10000.
+	 * If 0, results don't include the hits layer.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -310,9 +677,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Sorts features in the hits layer. By default, the API calculates a bounding
-	 * box for each feature. It sorts features based on this box’s diagonal length,
-	 * from longest to shortest.
+	 * Sort the features in the hits layer. By default, the API calculates a
+	 * bounding box for each feature. It sorts features based on this box's diagonal
+	 * length, from longest to shortest.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -321,10 +688,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Number of hits matching the query to count accurately. If <code>true</code>,
-	 * the exact number of hits is returned at the cost of some performance. If
-	 * <code>false</code>, the response does not include the total number of hits
-	 * matching the query.
+	 * The number of hits matching the query to count accurately. If
+	 * <code>true</code>, the exact number of hits is returned at the cost of some
+	 * performance. If <code>false</code>, the response does not include the total
+	 * number of hits matching the query.
 	 * <p>
 	 * API name: {@code track_total_hits}
 	 */
@@ -336,6 +703,21 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * If <code>true</code>, the hits and aggs layers will contain additional point
 	 * features representing suggested label positions for the original features.
+	 * <ul>
+	 * <li><code>Point</code> and <code>MultiPoint</code> features will have one of
+	 * the points selected.</li>
+	 * <li><code>Polygon</code> and <code>MultiPolygon</code> features will have a
+	 * single point generated, either the centroid, if it is within the polygon, or
+	 * another point within the polygon selected from the sorted triangle-tree.</li>
+	 * <li><code>LineString</code> features will likewise provide a roughly central
+	 * point selected from the triangle-tree.</li>
+	 * <li>The aggregation results will provide one central point for each
+	 * aggregation bucket.</li>
+	 * </ul>
+	 * <p>
+	 * All attributes from the original features will also be copied to the new
+	 * label features. In addition, the new features will be distinguishable using
+	 * the tag <code>_mvt_label_position</code>.
 	 * <p>
 	 * API name: {@code with_labels}
 	 */
@@ -539,14 +921,24 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Sub-aggregations for the geotile_grid.
 		 * <p>
-		 * Supports the following aggregation types:
+		 * It supports the following aggregation types:
 		 * <ul>
-		 * <li>avg</li>
-		 * <li>cardinality</li>
-		 * <li>max</li>
-		 * <li>min</li>
-		 * <li>sum</li>
+		 * <li><code>avg</code></li>
+		 * <li><code>boxplot</code></li>
+		 * <li><code>cardinality</code></li>
+		 * <li><code>extended stats</code></li>
+		 * <li><code>max</code></li>
+		 * <li><code>median absolute deviation</code></li>
+		 * <li><code>min</code></li>
+		 * <li><code>percentile</code></li>
+		 * <li><code>percentile-rank</code></li>
+		 * <li><code>stats</code></li>
+		 * <li><code>sum</code></li>
+		 * <li><code>value count</code></li>
 		 * </ul>
+		 * <p>
+		 * The aggregation names can't start with <code>_mvt_</code>. The
+		 * <code>_mvt_</code> prefix is reserved for internal aggregations.
 		 * <p>
 		 * API name: {@code aggs}
 		 * <p>
@@ -560,14 +952,24 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Sub-aggregations for the geotile_grid.
 		 * <p>
-		 * Supports the following aggregation types:
+		 * It supports the following aggregation types:
 		 * <ul>
-		 * <li>avg</li>
-		 * <li>cardinality</li>
-		 * <li>max</li>
-		 * <li>min</li>
-		 * <li>sum</li>
+		 * <li><code>avg</code></li>
+		 * <li><code>boxplot</code></li>
+		 * <li><code>cardinality</code></li>
+		 * <li><code>extended stats</code></li>
+		 * <li><code>max</code></li>
+		 * <li><code>median absolute deviation</code></li>
+		 * <li><code>min</code></li>
+		 * <li><code>percentile</code></li>
+		 * <li><code>percentile-rank</code></li>
+		 * <li><code>stats</code></li>
+		 * <li><code>sum</code></li>
+		 * <li><code>value count</code></li>
 		 * </ul>
+		 * <p>
+		 * The aggregation names can't start with <code>_mvt_</code>. The
+		 * <code>_mvt_</code> prefix is reserved for internal aggregations.
 		 * <p>
 		 * API name: {@code aggs}
 		 * <p>
@@ -581,14 +983,24 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Sub-aggregations for the geotile_grid.
 		 * <p>
-		 * Supports the following aggregation types:
+		 * It supports the following aggregation types:
 		 * <ul>
-		 * <li>avg</li>
-		 * <li>cardinality</li>
-		 * <li>max</li>
-		 * <li>min</li>
-		 * <li>sum</li>
+		 * <li><code>avg</code></li>
+		 * <li><code>boxplot</code></li>
+		 * <li><code>cardinality</code></li>
+		 * <li><code>extended stats</code></li>
+		 * <li><code>max</code></li>
+		 * <li><code>median absolute deviation</code></li>
+		 * <li><code>min</code></li>
+		 * <li><code>percentile</code></li>
+		 * <li><code>percentile-rank</code></li>
+		 * <li><code>stats</code></li>
+		 * <li><code>sum</code></li>
+		 * <li><code>value count</code></li>
 		 * </ul>
+		 * <p>
+		 * The aggregation names can't start with <code>_mvt_</code>. The
+		 * <code>_mvt_</code> prefix is reserved for internal aggregations.
 		 * <p>
 		 * API name: {@code aggs}
 		 * <p>
@@ -599,9 +1011,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Size, in pixels, of a clipping buffer outside the tile. This allows renderers
-		 * to avoid outline artifacts from geometries that extend past the extent of the
-		 * tile.
+		 * The size, in pixels, of a clipping buffer outside the tile. This allows
+		 * renderers to avoid outline artifacts from geometries that extend past the
+		 * extent of the tile.
 		 * <p>
 		 * API name: {@code buffer}
 		 */
@@ -611,11 +1023,13 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If false, the meta layer’s feature is the bounding box of the tile. If true,
-		 * the meta layer’s feature is a bounding box resulting from a geo_bounds
-		 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
-		 * &lt;zoom&gt;/&lt;x&gt;/&lt;y&gt; tile with wrap_longitude set to false. The
-		 * resulting bounding box may be larger than the vector tile.
+		 * If <code>false</code>, the meta layer's feature is the bounding box of the
+		 * tile. If <code>true</code>, the meta layer's feature is a bounding box
+		 * resulting from a <code>geo_bounds</code> aggregation. The aggregation runs on
+		 * &lt;field&gt; values that intersect the
+		 * <code>&lt;zoom&gt;/&lt;x&gt;/&lt;y&gt;</code> tile with
+		 * <code>wrap_longitude</code> set to <code>false</code>. The resulting bounding
+		 * box may be larger than the vector tile.
 		 * <p>
 		 * API name: {@code exact_bounds}
 		 */
@@ -625,8 +1039,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Size, in pixels, of a side of the tile. Vector tiles are square with equal
-		 * sides.
+		 * The size, in pixels, of a side of the tile. Vector tiles are square with
+		 * equal sides.
 		 * <p>
 		 * API name: {@code extent}
 		 */
@@ -646,7 +1060,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Fields to return in the <code>hits</code> layer. Supports wildcards
+		 * The fields to return in the <code>hits</code> layer. It supports wildcards
 		 * (<code>*</code>). This parameter does not support fields with array values.
 		 * Fields with array values may return inconsistent results.
 		 * <p>
@@ -660,7 +1074,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Fields to return in the <code>hits</code> layer. Supports wildcards
+		 * The fields to return in the <code>hits</code> layer. It supports wildcards
 		 * (<code>*</code>). This parameter does not support fields with array values.
 		 * Fields with array values may return inconsistent results.
 		 * <p>
@@ -674,7 +1088,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Aggregation used to create a grid for the <code>field</code>.
+		 * The aggregation used to create a grid for the <code>field</code>.
 		 * <p>
 		 * API name: {@code grid_agg}
 		 */
@@ -685,8 +1099,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Additional zoom levels available through the aggs layer. For example, if
-		 * &lt;zoom&gt; is 7 and grid_precision is 8, you can zoom in up to level 15.
-		 * Accepts 0-8. If 0, results don’t include the aggs layer.
+		 * <code>&lt;zoom&gt;</code> is <code>7</code> and <code>grid_precision</code>
+		 * is <code>8</code>, you can zoom in up to level 15. Accepts 0-8. If 0, results
+		 * don't include the aggs layer.
 		 * <p>
 		 * API name: {@code grid_precision}
 		 */
@@ -697,9 +1112,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Determines the geometry type for features in the aggs layer. In the aggs
-		 * layer, each feature represents a geotile_grid cell. If 'grid' each feature is
-		 * a Polygon of the cells bounding box. If 'point' each feature is a Point that
-		 * is the centroid of the cell.
+		 * layer, each feature represents a <code>geotile_grid</code> cell. If
+		 * <code>grid, each feature is a polygon of the cells bounding box. If </code>point`,
+		 * each feature is a Point that is the centroid of the cell.
 		 * <p>
 		 * API name: {@code grid_type}
 		 */
@@ -735,7 +1150,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query DSL used to filter documents for the search.
+		 * The query DSL used to filter documents for the search.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -745,7 +1160,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query DSL used to filter documents for the search.
+		 * The query DSL used to filter documents for the search.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -793,8 +1208,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Maximum number of features to return in the hits layer. Accepts 0-10000. If
-		 * 0, results don’t include the hits layer.
+		 * The maximum number of features to return in the hits layer. Accepts 0-10000.
+		 * If 0, results don't include the hits layer.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -804,9 +1219,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sorts features in the hits layer. By default, the API calculates a bounding
-		 * box for each feature. It sorts features based on this box’s diagonal length,
-		 * from longest to shortest.
+		 * Sort the features in the hits layer. By default, the API calculates a
+		 * bounding box for each feature. It sorts features based on this box's diagonal
+		 * length, from longest to shortest.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -818,9 +1233,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sorts features in the hits layer. By default, the API calculates a bounding
-		 * box for each feature. It sorts features based on this box’s diagonal length,
-		 * from longest to shortest.
+		 * Sort the features in the hits layer. By default, the API calculates a
+		 * bounding box for each feature. It sorts features based on this box's diagonal
+		 * length, from longest to shortest.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -832,9 +1247,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Sorts features in the hits layer. By default, the API calculates a bounding
-		 * box for each feature. It sorts features based on this box’s diagonal length,
-		 * from longest to shortest.
+		 * Sort the features in the hits layer. By default, the API calculates a
+		 * bounding box for each feature. It sorts features based on this box's diagonal
+		 * length, from longest to shortest.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -845,10 +1260,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Number of hits matching the query to count accurately. If <code>true</code>,
-		 * the exact number of hits is returned at the cost of some performance. If
-		 * <code>false</code>, the response does not include the total number of hits
-		 * matching the query.
+		 * The number of hits matching the query to count accurately. If
+		 * <code>true</code>, the exact number of hits is returned at the cost of some
+		 * performance. If <code>false</code>, the response does not include the total
+		 * number of hits matching the query.
 		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
@@ -858,10 +1273,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Number of hits matching the query to count accurately. If <code>true</code>,
-		 * the exact number of hits is returned at the cost of some performance. If
-		 * <code>false</code>, the response does not include the total number of hits
-		 * matching the query.
+		 * The number of hits matching the query to count accurately. If
+		 * <code>true</code>, the exact number of hits is returned at the cost of some
+		 * performance. If <code>false</code>, the response does not include the total
+		 * number of hits matching the query.
 		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
@@ -872,6 +1287,21 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * If <code>true</code>, the hits and aggs layers will contain additional point
 		 * features representing suggested label positions for the original features.
+		 * <ul>
+		 * <li><code>Point</code> and <code>MultiPoint</code> features will have one of
+		 * the points selected.</li>
+		 * <li><code>Polygon</code> and <code>MultiPolygon</code> features will have a
+		 * single point generated, either the centroid, if it is within the polygon, or
+		 * another point within the polygon selected from the sorted triangle-tree.</li>
+		 * <li><code>LineString</code> features will likewise provide a roughly central
+		 * point selected from the triangle-tree.</li>
+		 * <li>The aggregation results will provide one central point for each
+		 * aggregation bucket.</li>
+		 * </ul>
+		 * <p>
+		 * All attributes from the original features will also be copied to the new
+		 * label features. In addition, the new features will be distinguishable using
+		 * the tag <code>_mvt_label_position</code>.
 		 * <p>
 		 * API name: {@code with_labels}
 		 */

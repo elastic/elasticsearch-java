@@ -57,8 +57,10 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_trained_model.Request
 
 /**
- * Delete an unreferenced trained model. The request deletes a trained inference
- * model that is not referenced by an ingest pipeline.
+ * Delete an unreferenced trained model.
+ * <p>
+ * The request deletes a trained inference model that is not referenced by an
+ * ingest pipeline.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_trained_model.Request">API
  *      specification</a>

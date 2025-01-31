@@ -58,7 +58,19 @@ import javax.annotation.Nullable;
 /**
  * Invalidate SAML.
  * <p>
- * Submits a SAML LogoutRequest message to Elasticsearch for consumption.
+ * Submit a SAML LogoutRequest message to Elasticsearch for consumption.
+ * <p>
+ * NOTE: This API is intended for use by custom web applications other than
+ * Kibana. If you are using Kibana, refer to the documentation for configuring
+ * SAML single-sign-on on the Elastic Stack.
+ * <p>
+ * The logout request comes from the SAML IdP during an IdP initiated Single
+ * Logout. The custom web application can use this API to have Elasticsearch
+ * process the <code>LogoutRequest</code>. After successful validation of the
+ * request, Elasticsearch invalidates the access token and refresh token that
+ * corresponds to that specific SAML principal and provides a URL that contains
+ * a SAML LogoutResponse message. Thus the user can be redirected back to their
+ * IdP.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.saml_invalidate.Request">API
@@ -91,7 +103,7 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * The Assertion Consumer Service URL that matches the one of the SAML realm in
 	 * Elasticsearch that should be used. You must specify either this parameter or
-	 * the realm parameter.
+	 * the <code>realm</code> parameter.
 	 * <p>
 	 * API name: {@code acs}
 	 */
@@ -103,12 +115,13 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Required - The query part of the URL that the user was redirected to by the
 	 * SAML IdP to initiate the Single Logout. This query should include a single
-	 * parameter named SAMLRequest that contains a SAML logout request that is
-	 * deflated and Base64 encoded. If the SAML IdP has signed the logout request,
-	 * the URL should include two extra parameters named SigAlg and Signature that
-	 * contain the algorithm used for the signature and the signature value itself.
-	 * In order for Elasticsearch to be able to verify the IdP’s signature, the
-	 * value of the query_string field must be an exact match to the string provided
+	 * parameter named <code>SAMLRequest</code> that contains a SAML logout request
+	 * that is deflated and Base64 encoded. If the SAML IdP has signed the logout
+	 * request, the URL should include two extra parameters named
+	 * <code>SigAlg</code> and <code>Signature</code> that contain the algorithm
+	 * used for the signature and the signature value itself. In order for
+	 * Elasticsearch to be able to verify the IdP's signature, the value of the
+	 * <code>query_string</code> field must be an exact match to the string provided
 	 * by the browser. The client application must not attempt to parse or process
 	 * the string in any way.
 	 * <p>
@@ -120,7 +133,7 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 
 	/**
 	 * The name of the SAML realm in Elasticsearch the configuration. You must
-	 * specify either this parameter or the acs parameter.
+	 * specify either this parameter or the <code>acs</code> parameter.
 	 * <p>
 	 * API name: {@code realm}
 	 */
@@ -176,7 +189,7 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * The Assertion Consumer Service URL that matches the one of the SAML realm in
 		 * Elasticsearch that should be used. You must specify either this parameter or
-		 * the realm parameter.
+		 * the <code>realm</code> parameter.
 		 * <p>
 		 * API name: {@code acs}
 		 */
@@ -188,12 +201,13 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * Required - The query part of the URL that the user was redirected to by the
 		 * SAML IdP to initiate the Single Logout. This query should include a single
-		 * parameter named SAMLRequest that contains a SAML logout request that is
-		 * deflated and Base64 encoded. If the SAML IdP has signed the logout request,
-		 * the URL should include two extra parameters named SigAlg and Signature that
-		 * contain the algorithm used for the signature and the signature value itself.
-		 * In order for Elasticsearch to be able to verify the IdP’s signature, the
-		 * value of the query_string field must be an exact match to the string provided
+		 * parameter named <code>SAMLRequest</code> that contains a SAML logout request
+		 * that is deflated and Base64 encoded. If the SAML IdP has signed the logout
+		 * request, the URL should include two extra parameters named
+		 * <code>SigAlg</code> and <code>Signature</code> that contain the algorithm
+		 * used for the signature and the signature value itself. In order for
+		 * Elasticsearch to be able to verify the IdP's signature, the value of the
+		 * <code>query_string</code> field must be an exact match to the string provided
 		 * by the browser. The client application must not attempt to parse or process
 		 * the string in any way.
 		 * <p>
@@ -206,7 +220,7 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * The name of the SAML realm in Elasticsearch the configuration. You must
-		 * specify either this parameter or the acs parameter.
+		 * specify either this parameter or the <code>acs</code> parameter.
 		 * <p>
 		 * API name: {@code realm}
 		 */

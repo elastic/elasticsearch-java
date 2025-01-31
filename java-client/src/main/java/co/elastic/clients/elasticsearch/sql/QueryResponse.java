@@ -62,6 +62,11 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class QueryResponse implements JsonpSerializable {
+	private final List<Column> columns;
+
+	@Nullable
+	private final String cursor;
+
 	@Nullable
 	private final String id;
 
@@ -71,22 +76,17 @@ public class QueryResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean isPartial;
 
-	private final List<Column> columns;
-
-	@Nullable
-	private final String cursor;
-
 	private final List<List<JsonData>> rows;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryResponse(Builder builder) {
 
+		this.columns = ApiTypeHelper.unmodifiable(builder.columns);
+		this.cursor = builder.cursor;
 		this.id = builder.id;
 		this.isRunning = builder.isRunning;
 		this.isPartial = builder.isPartial;
-		this.columns = ApiTypeHelper.unmodifiable(builder.columns);
-		this.cursor = builder.cursor;
 		this.rows = ApiTypeHelper.unmodifiableRequired(builder.rows, this, "rows");
 
 	}
@@ -96,9 +96,29 @@ public class QueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Identifier for the search. This value is only returned for async and saved
-	 * synchronous searches. For CSV, TSV, and TXT responses, this value is returned
-	 * in the <code>Async-ID</code> HTTP header.
+	 * Column headings for the search results. Each object is a column.
+	 * <p>
+	 * API name: {@code columns}
+	 */
+	public final List<Column> columns() {
+		return this.columns;
+	}
+
+	/**
+	 * The cursor for the next set of paginated results. For CSV, TSV, and TXT
+	 * responses, this value is returned in the <code>Cursor</code> HTTP header.
+	 * <p>
+	 * API name: {@code cursor}
+	 */
+	@Nullable
+	public final String cursor() {
+		return this.cursor;
+	}
+
+	/**
+	 * The identifier for the search. This value is returned only for async and
+	 * saved synchronous searches. For CSV, TSV, and TXT responses, this value is
+	 * returned in the <code>Async-ID</code> HTTP header.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -108,10 +128,10 @@ public class QueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * If <code>true</code>, the search is still running. If false, the search has
-	 * finished. This value is only returned for async and saved synchronous
-	 * searches. For CSV, TSV, and TXT responses, this value is returned in the
-	 * <code>Async-partial</code> HTTP header.
+	 * If <code>true</code>, the search is still running. If <code>false</code>, the
+	 * search has finished. This value is returned only for async and saved
+	 * synchronous searches. For CSV, TSV, and TXT responses, this value is returned
+	 * in the <code>Async-partial</code> HTTP header.
 	 * <p>
 	 * API name: {@code is_running}
 	 */
@@ -125,7 +145,7 @@ public class QueryResponse implements JsonpSerializable {
 	 * If <code>is_partial</code> is <code>true</code> and <code>is_running</code>
 	 * is <code>true</code>, the search is still running. If <code>is_partial</code>
 	 * is <code>true</code> but <code>is_running</code> is <code>false</code>, the
-	 * results are partial due to a failure or timeout. This value is only returned
+	 * results are partial due to a failure or timeout. This value is returned only
 	 * for async and saved synchronous searches. For CSV, TSV, and TXT responses,
 	 * this value is returned in the <code>Async-partial</code> HTTP header.
 	 * <p>
@@ -137,27 +157,7 @@ public class QueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Column headings for the search results. Each object is a column.
-	 * <p>
-	 * API name: {@code columns}
-	 */
-	public final List<Column> columns() {
-		return this.columns;
-	}
-
-	/**
-	 * Cursor for the next set of paginated results. For CSV, TSV, and TXT
-	 * responses, this value is returned in the <code>Cursor</code> HTTP header.
-	 * <p>
-	 * API name: {@code cursor}
-	 */
-	@Nullable
-	public final String cursor() {
-		return this.cursor;
-	}
-
-	/**
-	 * Required - Values for the search results.
+	 * Required - The values for the search results.
 	 * <p>
 	 * API name: {@code rows}
 	 */
@@ -176,21 +176,6 @@ public class QueryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.id != null) {
-			generator.writeKey("id");
-			generator.write(this.id);
-
-		}
-		if (this.isRunning != null) {
-			generator.writeKey("is_running");
-			generator.write(this.isRunning);
-
-		}
-		if (this.isPartial != null) {
-			generator.writeKey("is_partial");
-			generator.write(this.isPartial);
-
-		}
 		if (ApiTypeHelper.isDefined(this.columns)) {
 			generator.writeKey("columns");
 			generator.writeStartArray();
@@ -204,6 +189,21 @@ public class QueryResponse implements JsonpSerializable {
 		if (this.cursor != null) {
 			generator.writeKey("cursor");
 			generator.write(this.cursor);
+
+		}
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
+
+		}
+		if (this.isRunning != null) {
+			generator.writeKey("is_running");
+			generator.write(this.isRunning);
+
+		}
+		if (this.isPartial != null) {
+			generator.writeKey("is_partial");
+			generator.write(this.isPartial);
 
 		}
 		if (ApiTypeHelper.isDefined(this.rows)) {
@@ -239,6 +239,12 @@ public class QueryResponse implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryResponse> {
 		@Nullable
+		private List<Column> columns;
+
+		@Nullable
+		private String cursor;
+
+		@Nullable
 		private String id;
 
 		@Nullable
@@ -247,54 +253,7 @@ public class QueryResponse implements JsonpSerializable {
 		@Nullable
 		private Boolean isPartial;
 
-		@Nullable
-		private List<Column> columns;
-
-		@Nullable
-		private String cursor;
-
 		private List<List<JsonData>> rows;
-
-		/**
-		 * Identifier for the search. This value is only returned for async and saved
-		 * synchronous searches. For CSV, TSV, and TXT responses, this value is returned
-		 * in the <code>Async-ID</code> HTTP header.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the search is still running. If false, the search has
-		 * finished. This value is only returned for async and saved synchronous
-		 * searches. For CSV, TSV, and TXT responses, this value is returned in the
-		 * <code>Async-partial</code> HTTP header.
-		 * <p>
-		 * API name: {@code is_running}
-		 */
-		public final Builder isRunning(@Nullable Boolean value) {
-			this.isRunning = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the response does not contain complete search results.
-		 * If <code>is_partial</code> is <code>true</code> and <code>is_running</code>
-		 * is <code>true</code>, the search is still running. If <code>is_partial</code>
-		 * is <code>true</code> but <code>is_running</code> is <code>false</code>, the
-		 * results are partial due to a failure or timeout. This value is only returned
-		 * for async and saved synchronous searches. For CSV, TSV, and TXT responses,
-		 * this value is returned in the <code>Async-partial</code> HTTP header.
-		 * <p>
-		 * API name: {@code is_partial}
-		 */
-		public final Builder isPartial(@Nullable Boolean value) {
-			this.isPartial = value;
-			return this;
-		}
 
 		/**
 		 * Column headings for the search results. Each object is a column.
@@ -332,7 +291,7 @@ public class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Cursor for the next set of paginated results. For CSV, TSV, and TXT
+		 * The cursor for the next set of paginated results. For CSV, TSV, and TXT
 		 * responses, this value is returned in the <code>Cursor</code> HTTP header.
 		 * <p>
 		 * API name: {@code cursor}
@@ -343,7 +302,48 @@ public class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Values for the search results.
+		 * The identifier for the search. This value is returned only for async and
+		 * saved synchronous searches. For CSV, TSV, and TXT responses, this value is
+		 * returned in the <code>Async-ID</code> HTTP header.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the search is still running. If <code>false</code>, the
+		 * search has finished. This value is returned only for async and saved
+		 * synchronous searches. For CSV, TSV, and TXT responses, this value is returned
+		 * in the <code>Async-partial</code> HTTP header.
+		 * <p>
+		 * API name: {@code is_running}
+		 */
+		public final Builder isRunning(@Nullable Boolean value) {
+			this.isRunning = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response does not contain complete search results.
+		 * If <code>is_partial</code> is <code>true</code> and <code>is_running</code>
+		 * is <code>true</code>, the search is still running. If <code>is_partial</code>
+		 * is <code>true</code> but <code>is_running</code> is <code>false</code>, the
+		 * results are partial due to a failure or timeout. This value is returned only
+		 * for async and saved synchronous searches. For CSV, TSV, and TXT responses,
+		 * this value is returned in the <code>Async-partial</code> HTTP header.
+		 * <p>
+		 * API name: {@code is_partial}
+		 */
+		public final Builder isPartial(@Nullable Boolean value) {
+			this.isPartial = value;
+			return this;
+		}
+
+		/**
+		 * Required - The values for the search results.
 		 * <p>
 		 * API name: {@code rows}
 		 * <p>
@@ -355,7 +355,7 @@ public class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Values for the search results.
+		 * Required - The values for the search results.
 		 * <p>
 		 * API name: {@code rows}
 		 * <p>
@@ -394,11 +394,11 @@ public class QueryResponse implements JsonpSerializable {
 
 	protected static void setupQueryResponseDeserializer(ObjectDeserializer<QueryResponse.Builder> op) {
 
+		op.add(Builder::columns, JsonpDeserializer.arrayDeserializer(Column._DESERIALIZER), "columns");
+		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
 		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
-		op.add(Builder::columns, JsonpDeserializer.arrayDeserializer(Column._DESERIALIZER), "columns");
-		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::rows,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER)),
 				"rows");

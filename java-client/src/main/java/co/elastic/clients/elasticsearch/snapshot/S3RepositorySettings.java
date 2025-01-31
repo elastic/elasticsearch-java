@@ -280,8 +280,8 @@ public class S3RepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
-	 * When set to <code>true</code>m files are encrypted on server side using an
-	 * AES256 algorithm. server_default false
+	 * When set to <code>true</code>, files are encrypted on server side using an
+	 * AES256 algorithm.
 	 * <p>
 	 * API name: {@code server_side_encryption}
 	 */
@@ -630,8 +630,8 @@ public class S3RepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
-		 * When set to <code>true</code>m files are encrypted on server side using an
-		 * AES256 algorithm. server_default false
+		 * When set to <code>true</code>, files are encrypted on server side using an
+		 * AES256 algorithm.
 		 * <p>
 		 * API name: {@code server_side_encryption}
 		 */

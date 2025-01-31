@@ -78,8 +78,6 @@ public class Features implements JsonpSerializable {
 	@Nullable
 	private final Feature esql;
 
-	private final Feature frozenIndices;
-
 	private final Feature graph;
 
 	private final Feature ilm;
@@ -132,7 +130,6 @@ public class Features implements JsonpSerializable {
 		this.enterpriseSearch = builder.enterpriseSearch;
 		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
 		this.esql = builder.esql;
-		this.frozenIndices = ApiTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
@@ -222,13 +219,6 @@ public class Features implements JsonpSerializable {
 	@Nullable
 	public final Feature esql() {
 		return this.esql;
-	}
-
-	/**
-	 * Required - API name: {@code frozen_indices}
-	 */
-	public final Feature frozenIndices() {
-		return this.frozenIndices;
 	}
 
 	/**
@@ -402,9 +392,6 @@ public class Features implements JsonpSerializable {
 			this.esql.serialize(generator, mapper);
 
 		}
-		generator.writeKey("frozen_indices");
-		this.frozenIndices.serialize(generator, mapper);
-
 		generator.writeKey("graph");
 		this.graph.serialize(generator, mapper);
 
@@ -499,8 +486,6 @@ public class Features implements JsonpSerializable {
 
 		@Nullable
 		private Feature esql;
-
-		private Feature frozenIndices;
 
 		private Feature graph;
 
@@ -674,21 +659,6 @@ public class Features implements JsonpSerializable {
 		 */
 		public final Builder esql(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.esql(fn.apply(new Feature.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code frozen_indices}
-		 */
-		public final Builder frozenIndices(Feature value) {
-			this.frozenIndices = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code frozen_indices}
-		 */
-		public final Builder frozenIndices(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.frozenIndices(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -998,7 +968,6 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::enterpriseSearch, Feature._DESERIALIZER, "enterprise_search");
 		op.add(Builder::eql, Feature._DESERIALIZER, "eql");
 		op.add(Builder::esql, Feature._DESERIALIZER, "esql");
-		op.add(Builder::frozenIndices, Feature._DESERIALIZER, "frozen_indices");
 		op.add(Builder::graph, Feature._DESERIALIZER, "graph");
 		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
 		op.add(Builder::logstash, Feature._DESERIALIZER, "logstash");

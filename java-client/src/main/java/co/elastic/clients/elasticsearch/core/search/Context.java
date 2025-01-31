@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * document's field for the text.
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/query-dsl-mlt-query.html#_document_input_parameters">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html#_document_input_parameters">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.search._types.Context">API

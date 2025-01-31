@@ -165,6 +165,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	private final List<Map<String, Double>> indicesBoost;
 
 	@Nullable
+	private final Time keepAlive;
+
+	@Nullable
 	private final Boolean keepOnCompletion;
 
 	private final List<KnnSearch> knn;
@@ -275,6 +278,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
+		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
 		this.lenient = builder.lenient;
@@ -536,6 +540,17 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<Map<String, Double>> indicesBoost() {
 		return this.indicesBoost;
+	}
+
+	/**
+	 * Specifies how long the async search needs to be available. Ongoing async
+	 * searches and any saved search results are deleted after this period.
+	 * <p>
+	 * API name: {@code keep_alive}
+	 */
+	@Nullable
+	public final Time keepAlive() {
+		return this.keepAlive;
 	}
 
 	/**
@@ -1185,6 +1200,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
+		private Time keepAlive;
+
+		@Nullable
 		private Boolean keepOnCompletion;
 
 		@Nullable
@@ -1664,6 +1682,27 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		public final Builder indicesBoost(Map<String, Double> value, Map<String, Double>... values) {
 			this.indicesBoost = _listAdd(this.indicesBoost, value, values);
 			return this;
+		}
+
+		/**
+		 * Specifies how long the async search needs to be available. Ongoing async
+		 * searches and any saved search results are deleted after this period.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(@Nullable Time value) {
+			this.keepAlive = value;
+			return this;
+		}
+
+		/**
+		 * Specifies how long the async search needs to be available. Ongoing async
+		 * searches and any saved search results are deleted after this period.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -2472,6 +2511,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.defaultOperator != null) {
 					params.put("default_operator", request.defaultOperator.jsonValue());
+				}
+				if (request.keepAlive != null) {
+					params.put("keep_alive", request.keepAlive._toJsonString());
 				}
 				if (request.requestCache != null) {
 					params.put("request_cache", String.valueOf(request.requestCache));

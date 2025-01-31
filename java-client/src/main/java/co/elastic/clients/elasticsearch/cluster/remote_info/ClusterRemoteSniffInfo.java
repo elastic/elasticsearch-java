@@ -105,42 +105,63 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 	}
 
 	/**
-	 * Required - API name: {@code connected}
+	 * Required - If it is <code>true</code>, there is at least one open connection
+	 * to the remote cluster. If it is <code>false</code>, it means that the cluster
+	 * no longer has an open connection to the remote cluster. It does not
+	 * necessarily mean that the remote cluster is down or unavailable, just that at
+	 * some point a connection was lost.
+	 * <p>
+	 * API name: {@code connected}
 	 */
 	public final boolean connected() {
 		return this.connected;
 	}
 
 	/**
-	 * Required - API name: {@code max_connections_per_cluster}
+	 * Required - The maximum number of connections maintained for the remote
+	 * cluster when sniff mode is configured.
+	 * <p>
+	 * API name: {@code max_connections_per_cluster}
 	 */
 	public final int maxConnectionsPerCluster() {
 		return this.maxConnectionsPerCluster;
 	}
 
 	/**
-	 * Required - API name: {@code num_nodes_connected}
+	 * Required - The number of connected nodes in the remote cluster when sniff
+	 * mode is configured.
+	 * <p>
+	 * API name: {@code num_nodes_connected}
 	 */
 	public final long numNodesConnected() {
 		return this.numNodesConnected;
 	}
 
 	/**
-	 * Required - API name: {@code initial_connect_timeout}
+	 * Required - The initial connect timeout for remote cluster connections.
+	 * <p>
+	 * API name: {@code initial_connect_timeout}
 	 */
 	public final Time initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
 	/**
-	 * Required - API name: {@code skip_unavailable}
+	 * Required - If <code>true</code>, cross-cluster search skips the remote
+	 * cluster when its nodes are unavailable during the search and ignores errors
+	 * returned by the remote cluster.
+	 * <p>
+	 * API name: {@code skip_unavailable}
 	 */
 	public final boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
 	/**
-	 * Required - API name: {@code seeds}
+	 * Required - The initial seed transport addresses of the remote cluster when
+	 * sniff mode is configured.
+	 * <p>
+	 * API name: {@code seeds}
 	 */
 	public final List<String> seeds() {
 		return this.seeds;
@@ -214,7 +235,13 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		private List<String> seeds;
 
 		/**
-		 * Required - API name: {@code connected}
+		 * Required - If it is <code>true</code>, there is at least one open connection
+		 * to the remote cluster. If it is <code>false</code>, it means that the cluster
+		 * no longer has an open connection to the remote cluster. It does not
+		 * necessarily mean that the remote cluster is down or unavailable, just that at
+		 * some point a connection was lost.
+		 * <p>
+		 * API name: {@code connected}
 		 */
 		public final Builder connected(boolean value) {
 			this.connected = value;
@@ -222,7 +249,10 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code max_connections_per_cluster}
+		 * Required - The maximum number of connections maintained for the remote
+		 * cluster when sniff mode is configured.
+		 * <p>
+		 * API name: {@code max_connections_per_cluster}
 		 */
 		public final Builder maxConnectionsPerCluster(int value) {
 			this.maxConnectionsPerCluster = value;
@@ -230,7 +260,10 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code num_nodes_connected}
+		 * Required - The number of connected nodes in the remote cluster when sniff
+		 * mode is configured.
+		 * <p>
+		 * API name: {@code num_nodes_connected}
 		 */
 		public final Builder numNodesConnected(long value) {
 			this.numNodesConnected = value;
@@ -238,7 +271,9 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code initial_connect_timeout}
+		 * Required - The initial connect timeout for remote cluster connections.
+		 * <p>
+		 * API name: {@code initial_connect_timeout}
 		 */
 		public final Builder initialConnectTimeout(Time value) {
 			this.initialConnectTimeout = value;
@@ -246,14 +281,20 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code initial_connect_timeout}
+		 * Required - The initial connect timeout for remote cluster connections.
+		 * <p>
+		 * API name: {@code initial_connect_timeout}
 		 */
 		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code skip_unavailable}
+		 * Required - If <code>true</code>, cross-cluster search skips the remote
+		 * cluster when its nodes are unavailable during the search and ignores errors
+		 * returned by the remote cluster.
+		 * <p>
+		 * API name: {@code skip_unavailable}
 		 */
 		public final Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
@@ -261,7 +302,10 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code seeds}
+		 * Required - The initial seed transport addresses of the remote cluster when
+		 * sniff mode is configured.
+		 * <p>
+		 * API name: {@code seeds}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>seeds</code>.
 		 */
@@ -271,7 +315,10 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code seeds}
+		 * Required - The initial seed transport addresses of the remote cluster when
+		 * sniff mode is configured.
+		 * <p>
+		 * API name: {@code seeds}
 		 * <p>
 		 * Adds one or more values to <code>seeds</code>.
 		 */

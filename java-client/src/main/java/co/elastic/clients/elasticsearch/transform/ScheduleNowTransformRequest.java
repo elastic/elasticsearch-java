@@ -56,13 +56,13 @@ import javax.annotation.Nullable;
 // typedef: transform.schedule_now_transform.Request
 
 /**
- * Schedule a transform to start now. Instantly runs a transform to process
- * data.
+ * Schedule a transform to start now.
  * <p>
- * If you _schedule_now a transform, it will process the new data instantly,
- * without waiting for the configured frequency interval. After _schedule_now
- * API is called, the transform will be processed again at now + frequency
- * unless _schedule_now API is called again in the meantime.
+ * Instantly run a transform to process data. If you run this API, the transform
+ * will process the new data instantly, without waiting for the configured
+ * frequency interval. After the API is called, the transform will be processed
+ * again at <code>now + frequency</code> unless the API is called again in the
+ * meantime.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.schedule_now_transform.Request">API

@@ -27,7 +27,6 @@ import co.elastic.clients.elasticsearch.xpack.usage.DataStreams;
 import co.elastic.clients.elasticsearch.xpack.usage.DataTiers;
 import co.elastic.clients.elasticsearch.xpack.usage.Eql;
 import co.elastic.clients.elasticsearch.xpack.usage.Flattened;
-import co.elastic.clients.elasticsearch.xpack.usage.FrozenIndices;
 import co.elastic.clients.elasticsearch.xpack.usage.HealthStatistics;
 import co.elastic.clients.elasticsearch.xpack.usage.Ilm;
 import co.elastic.clients.elasticsearch.xpack.usage.MachineLearning;
@@ -107,8 +106,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 	@Nullable
 	private final Flattened flattened;
 
-	private final FrozenIndices frozenIndices;
-
 	private final Base graph;
 
 	@Nullable
@@ -160,7 +157,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.enrich = builder.enrich;
 		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
 		this.flattened = builder.flattened;
-		this.frozenIndices = ApiTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
 		this.healthApi = builder.healthApi;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
@@ -272,13 +268,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 	@Nullable
 	public final Flattened flattened() {
 		return this.flattened;
-	}
-
-	/**
-	 * Required - API name: {@code frozen_indices}
-	 */
-	public final FrozenIndices frozenIndices() {
-		return this.frozenIndices;
 	}
 
 	/**
@@ -453,9 +442,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 			this.flattened.serialize(generator, mapper);
 
 		}
-		generator.writeKey("frozen_indices");
-		this.frozenIndices.serialize(generator, mapper);
-
 		generator.writeKey("graph");
 		this.graph.serialize(generator, mapper);
 
@@ -554,8 +540,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 		@Nullable
 		private Flattened flattened;
-
-		private FrozenIndices frozenIndices;
 
 		private Base graph;
 
@@ -770,21 +754,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder flattened(Function<Flattened.Builder, ObjectBuilder<Flattened>> fn) {
 			return this.flattened(fn.apply(new Flattened.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code frozen_indices}
-		 */
-		public final Builder frozenIndices(FrozenIndices value) {
-			this.frozenIndices = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code frozen_indices}
-		 */
-		public final Builder frozenIndices(Function<FrozenIndices.Builder, ObjectBuilder<FrozenIndices>> fn) {
-			return this.frozenIndices(fn.apply(new FrozenIndices.Builder()).build());
 		}
 
 		/**
@@ -1068,7 +1037,6 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::enrich, Base._DESERIALIZER, "enrich");
 		op.add(Builder::eql, Eql._DESERIALIZER, "eql");
 		op.add(Builder::flattened, Flattened._DESERIALIZER, "flattened");
-		op.add(Builder::frozenIndices, FrozenIndices._DESERIALIZER, "frozen_indices");
 		op.add(Builder::graph, Base._DESERIALIZER, "graph");
 		op.add(Builder::healthApi, HealthStatistics._DESERIALIZER, "health_api");
 		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");

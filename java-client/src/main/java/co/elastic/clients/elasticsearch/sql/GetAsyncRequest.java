@@ -58,6 +58,9 @@ import javax.annotation.Nullable;
 /**
  * Get async SQL search results. Get the current status and available results
  * for an async SQL search or stored synchronous SQL search.
+ * <p>
+ * If the Elasticsearch security features are enabled, only the user who first
+ * submitted the SQL search can retrieve the search using this API.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.get_async.Request">API
  *      specification</a>
@@ -95,7 +98,7 @@ public class GetAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Separator for CSV results. The API only supports this parameter for CSV
+	 * The separator for CSV results. The API supports this parameter only for CSV
 	 * responses.
 	 * <p>
 	 * API name: {@code delimiter}
@@ -106,8 +109,9 @@ public class GetAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Format for the response. You must specify a format using this parameter or
-	 * the Accept HTTP header. If you specify both, the API uses this parameter.
+	 * The format for the response. You must specify a format using this parameter
+	 * or the <code>Accept</code> HTTP header. If you specify both, the API uses
+	 * this parameter.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -117,7 +121,7 @@ public class GetAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier for the search.
+	 * Required - The identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -126,7 +130,7 @@ public class GetAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Retention period for the search and its results. Defaults to the
+	 * The retention period for the search and its results. It defaults to the
 	 * <code>keep_alive</code> period for the original SQL search.
 	 * <p>
 	 * API name: {@code keep_alive}
@@ -137,8 +141,8 @@ public class GetAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for complete results. Defaults to no timeout, meaning the
-	 * request waits for complete search results.
+	 * The period to wait for complete results. It defaults to no timeout, meaning
+	 * the request waits for complete search results.
 	 * <p>
 	 * API name: {@code wait_for_completion_timeout}
 	 */
@@ -169,7 +173,7 @@ public class GetAsyncRequest extends RequestBase {
 		private Time waitForCompletionTimeout;
 
 		/**
-		 * Separator for CSV results. The API only supports this parameter for CSV
+		 * The separator for CSV results. The API supports this parameter only for CSV
 		 * responses.
 		 * <p>
 		 * API name: {@code delimiter}
@@ -180,8 +184,9 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Format for the response. You must specify a format using this parameter or
-		 * the Accept HTTP header. If you specify both, the API uses this parameter.
+		 * The format for the response. You must specify a format using this parameter
+		 * or the <code>Accept</code> HTTP header. If you specify both, the API uses
+		 * this parameter.
 		 * <p>
 		 * API name: {@code format}
 		 */
@@ -191,7 +196,7 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Identifier for the search.
+		 * Required - The identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -201,7 +206,7 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Retention period for the search and its results. Defaults to the
+		 * The retention period for the search and its results. It defaults to the
 		 * <code>keep_alive</code> period for the original SQL search.
 		 * <p>
 		 * API name: {@code keep_alive}
@@ -212,7 +217,7 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Retention period for the search and its results. Defaults to the
+		 * The retention period for the search and its results. It defaults to the
 		 * <code>keep_alive</code> period for the original SQL search.
 		 * <p>
 		 * API name: {@code keep_alive}
@@ -222,8 +227,8 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for complete results. Defaults to no timeout, meaning the
-		 * request waits for complete search results.
+		 * The period to wait for complete results. It defaults to no timeout, meaning
+		 * the request waits for complete search results.
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
@@ -233,8 +238,8 @@ public class GetAsyncRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for complete results. Defaults to no timeout, meaning the
-		 * request waits for complete search results.
+		 * The period to wait for complete results. It defaults to no timeout, meaning
+		 * the request waits for complete search results.
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */

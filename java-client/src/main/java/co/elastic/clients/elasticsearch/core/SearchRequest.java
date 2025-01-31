@@ -92,6 +92,29 @@ import javax.annotation.Nullable;
  * Get search hits that match the query defined in the request. You can provide
  * search queries using the <code>q</code> query string parameter or the request
  * body. If both are specified, only the query parameter is used.
+ * <p>
+ * If the Elasticsearch security features are enabled, you must have the read
+ * index privilege for the target data stream, index, or alias. For
+ * cross-cluster search, refer to the documentation about configuring CCS
+ * privileges. To search a point in time (PIT) for an alias, you must have the
+ * <code>read</code> index privilege for the alias's data streams or indices.
+ * <p>
+ * <strong>Search slicing</strong>
+ * <p>
+ * When paging through a large number of documents, it can be helpful to split
+ * the search into multiple slices to consume them independently with the
+ * <code>slice</code> and <code>pit</code> properties. By default the splitting
+ * is done first on the shards, then locally on each shard. The local splitting
+ * partitions the shard into contiguous ranges based on Lucene document IDs.
+ * <p>
+ * For instance if the number of shards is equal to 2 and you request 4 slices,
+ * the slices 0 and 2 are assigned to the first shard and the slices 1 and 3 are
+ * assigned to the second shard.
+ * <p>
+ * IMPORTANT: The same point-in-time ID should be used for all slices. If
+ * different PIT IDs are used, slices can overlap and miss documents. This
+ * situation can occur because the splitting criterion is based on Lucene
+ * document IDs, which are not stable across changes to the index.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search.Request">API
  *      specification</a>
@@ -319,8 +342,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Indicates which source fields are returned for matching documents. These
-	 * fields are returned in the hits._source property of the search response.
+	 * The source fields that are returned for matching documents. These fields are
+	 * returned in the <code>hits._source</code> property of the search response. If
+	 * the <code>stored_fields</code> property is specified, the
+	 * <code>_source</code> property defaults to <code>false</code>. Otherwise, it
+	 * defaults to <code>true</code>.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -354,8 +380,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, returns partial results if there are shard request timeouts or shard
-	 * failures. If false, returns an error with no partial results.
+	 * If <code>true</code> and there are shard request timeouts or shard failures,
+	 * the request returns partial results. If <code>false</code>, it returns an
+	 * error with no partial results.
+	 * <p>
+	 * To override the default behavior, you can set the
+	 * <code>search.default_allow_partial_results</code> cluster setting to
+	 * <code>false</code>.
 	 * <p>
 	 * API name: {@code allow_partial_search_results}
 	 */
@@ -365,8 +396,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, wildcard and prefix queries are analyzed. This parameter can only be
-	 * used when the q query string parameter is specified.
+	 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+	 * parameter can be used only when the <code>q</code> query string parameter is
+	 * specified.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -376,8 +408,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Analyzer to use for the query string. This parameter can only be used when
-	 * the q query string parameter is specified.
+	 * The analyzer to use for the query string. This parameter can be used only
+	 * when the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -388,9 +420,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * The number of shard results that should be reduced at once on the
-	 * coordinating node. This value should be used as a protection mechanism to
-	 * reduce the memory overhead per search request if the potential number of
-	 * shards in the request can be large.
+	 * coordinating node. If the potential number of shards in the request can be
+	 * large, this value should be used as a protection mechanism to reduce the
+	 * memory overhead per search request.
 	 * <p>
 	 * API name: {@code batched_reduce_size}
 	 */
@@ -400,8 +432,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, network round-trips between the coordinating node and the remote
-	 * clusters are minimized when executing cross-cluster search (CCS) requests.
+	 * If <code>true</code>, network round-trips between the coordinating node and
+	 * the remote clusters are minimized when running cross-cluster search (CCS)
+	 * requests.
 	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
@@ -421,8 +454,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The default operator for query string query: AND or OR. This parameter can
-	 * only be used when the <code>q</code> query string parameter is specified.
+	 * The default operator for the query string query: <code>AND</code> or
+	 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+	 * query string parameter is specified.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -432,9 +466,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Field to use as default where no field prefix is given in the query string.
-	 * This parameter can only be used when the q query string parameter is
-	 * specified.
+	 * The field to use as a default when no field prefix is given in the query
+	 * string. This parameter can be used only when the <code>q</code> query string
+	 * parameter is specified.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -444,9 +478,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Array of wildcard (<code>*</code>) patterns. The request returns doc values
-	 * for field names matching these patterns in the <code>hits.fields</code>
-	 * property of the response.
+	 * An array of wildcard (<code>*</code>) field patterns. The request returns doc
+	 * values for field names matching these patterns in the
+	 * <code>hits.fields</code> property of the response.
 	 * <p>
 	 * API name: {@code docvalue_fields}
 	 */
@@ -455,9 +489,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Type of index that wildcard patterns can match. If the request can target
+	 * The type of index that wildcard patterns can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
-	 * hidden data streams. Supports comma-separated values, such as
+	 * hidden data streams. It supports comma-separated values such as
 	 * <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
@@ -467,8 +501,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, returns detailed information about score computation as part of a
-	 * hit.
+	 * If <code>true</code>, the request returns detailed information about score
+	 * computation as part of a hit.
 	 * <p>
 	 * API name: {@code explain}
 	 */
@@ -487,9 +521,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Array of wildcard (<code>*</code>) patterns. The request returns values for
-	 * field names matching these patterns in the <code>hits.fields</code> property
-	 * of the response.
+	 * An array of wildcard (<code>*</code>) field patterns. The request returns
+	 * values for field names matching these patterns in the
+	 * <code>hits.fields</code> property of the response.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -511,8 +545,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Starting document offset. Needs to be non-negative. By default, you cannot
-	 * page through more than 10,000 hits using the <code>from</code> and
+	 * The starting document offset, which must be non-negative. By default, you
+	 * cannot page through more than 10,000 hits using the <code>from</code> and
 	 * <code>size</code> parameters. To page through more hits, use the
 	 * <code>search_after</code> parameter.
 	 * <p>
@@ -539,7 +573,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * when frozen.
 	 * <p>
 	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
@@ -557,8 +594,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and aliases to search.
-	 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+	 * A comma-separated list of data streams, indices, and aliases to search. It
+	 * supports wildcards (<code>*</code>). To search all data streams and indices,
 	 * omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
@@ -568,7 +605,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Boosts the _score of documents from specified indices.
+	 * Boost the <code>_score</code> of documents from specified indices. The boost
+	 * value is the factor by which scores are multiplied. A boost value greater
+	 * than <code>1.0</code> increases the score. A boost value between
+	 * <code>0</code> and <code>1.0</code> decreases the score.
 	 * <p>
 	 * API name: {@code indices_boost}
 	 */
@@ -577,7 +617,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines the approximate kNN search to run.
+	 * The approximate kNN search to run.
 	 * <p>
 	 * API name: {@code knn}
 	 */
@@ -587,8 +627,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * If <code>true</code>, format-based query failures (such as providing text to
-	 * a numeric field) in the query string will be ignored. This parameter can only
-	 * be used when the <code>q</code> query string parameter is specified.
+	 * a numeric field) in the query string will be ignored. This parameter can be
+	 * used only when the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -598,7 +638,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines the number of concurrent shard requests per node this search executes
+	 * The number of concurrent shard requests per node that the search runs
 	 * concurrently. This value should be used to limit the impact of the search on
 	 * the cluster in order to limit the number of concurrent shard requests.
 	 * <p>
@@ -610,8 +650,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Minimum <code>_score</code> for matching documents. Documents with a lower
-	 * <code>_score</code> are not included in the search results.
+	 * The minimum <code>_score</code> for matching documents. Documents with a
+	 * lower <code>_score</code> are not included in the search results.
 	 * <p>
 	 * API name: {@code min_score}
 	 */
@@ -621,7 +661,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+	 * Limit the search to a point in time (PIT). If you provide a PIT, you cannot
 	 * specify an <code>&lt;index&gt;</code> in the request path.
 	 * <p>
 	 * API name: {@code pit}
@@ -644,15 +684,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines a threshold that enforces a pre-filter roundtrip to prefilter search
-	 * shards based on query rewriting if the number of shards the search request
-	 * expands to exceeds the threshold. This filter roundtrip can limit the number
-	 * of shards significantly if for instance a shard can not match any documents
+	 * A threshold that enforces a pre-filter roundtrip to prefilter search shards
+	 * based on query rewriting if the number of shards the search request expands
+	 * to exceeds the threshold. This filter roundtrip can limit the number of
+	 * shards significantly if for instance a shard can not match any documents
 	 * based on its rewrite method (if date filters are mandatory to match but the
 	 * shard bounds and the query are disjoint). When unspecified, the pre-filter
-	 * phase is executed if any of these conditions is met: the request targets more
-	 * than 128 shards; the request targets one or more read-only index; the primary
-	 * sort of the query targets an indexed field.
+	 * phase is executed if any of these conditions is met:
+	 * <ul>
+	 * <li>The request targets more than 128 shards.</li>
+	 * <li>The request targets one or more read-only index.</li>
+	 * <li>The primary sort of the query targets an indexed field.</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code pre_filter_shard_size}
 	 */
@@ -662,22 +705,29 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Nodes and shards used for the search. By default, Elasticsearch selects from
-	 * eligible nodes and shards using adaptive replica selection, accounting for
-	 * allocation awareness. Valid values are: <code>_only_local</code> to run the
-	 * search only on shards on the local node; <code>_local</code> to, if possible,
-	 * run the search on shards on the local node, or if not, select shards using
-	 * the default method; <code>_only_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code>
-	 * to run the search on only the specified nodes IDs, where, if suitable shards
-	 * exist on more than one selected node, use shards on those nodes using the
-	 * default method, or if none of the specified nodes are available, select
-	 * shards from any available node using the default method;
-	 * <code>_prefer_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to if possible,
-	 * run the search on the specified nodes IDs, or if not, select shards using the
-	 * default method; <code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to run the
-	 * search only on the specified shards; <code>&lt;custom-string&gt;</code> (any
-	 * string that does not start with <code>_</code>) to route searches with the
-	 * same <code>&lt;custom-string&gt;</code> to the same shards in the same order.
+	 * The nodes and shards used for the search. By default, Elasticsearch selects
+	 * from eligible nodes and shards using adaptive replica selection, accounting
+	 * for allocation awareness. Valid values are:
+	 * <ul>
+	 * <li><code>_only_local</code> to run the search only on shards on the local
+	 * node.</li>
+	 * <li><code>_local</code> to, if possible, run the search on shards on the
+	 * local node, or if not, select shards using the default method.</li>
+	 * <li><code>_only_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to run the
+	 * search on only the specified nodes IDs. If suitable shards exist on more than
+	 * one selected node, use shards on those nodes using the default method. If
+	 * none of the specified nodes are available, select shards from any available
+	 * node using the default method.</li>
+	 * <li><code>_prefer_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to if
+	 * possible, run the search on the specified nodes IDs. If not, select shards
+	 * using the default method. <code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to
+	 * run the search only on the specified shards. You can combine this value with
+	 * other <code>preference</code> values. However, the <code>_shards</code> value
+	 * must come first. For example: <code>_shards:2,3|_local</code>.
+	 * <code>&lt;custom-string&gt;</code> (any string that does not start with
+	 * <code>_</code>) to route searches with the same
+	 * <code>&lt;custom-string&gt;</code> to the same shards in the same order.</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -699,9 +749,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Query in the Lucene query string syntax using query parameter search. Query
-	 * parameter searches do not support the full Elasticsearch Query DSL but are
-	 * handy for testing.
+	 * A query in the Lucene query string syntax. Query parameter searches do not
+	 * support the full Elasticsearch Query DSL but are handy for testing.
+	 * <p>
+	 * IMPORTANT: This parameter overrides the query parameter in the request body.
+	 * If both parameters are specified, documents matching the query request body
+	 * parameter are not returned.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -711,7 +764,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines the search definition using the Query DSL.
+	 * The search definition using the Query DSL.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -721,7 +774,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines the Reciprocal Rank Fusion (RRF) to use.
+	 * The Reciprocal Rank Fusion (RRF) to use.
 	 * <p>
 	 * API name: {@code rank}
 	 */
@@ -732,7 +785,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * If <code>true</code>, the caching of search results is enabled for requests
-	 * where <code>size</code> is <code>0</code>. Defaults to index level settings.
+	 * where <code>size</code> is <code>0</code>. It defaults to index level
+	 * settings.
 	 * <p>
 	 * API name: {@code request_cache}
 	 */
@@ -755,7 +809,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * A retriever is a specification to describe top documents returned from a
 	 * search. A retriever replaces other elements of the search API that also
-	 * return top documents such as query and knn.
+	 * return top documents such as <code>query</code> and <code>knn</code>.
 	 * <p>
 	 * API name: {@code retriever}
 	 */
@@ -765,7 +819,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value that is used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -775,7 +829,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines one or more runtime fields in the search request. These fields take
+	 * One or more runtime fields in the search request. These fields take
 	 * precedence over mapped fields with the same name.
 	 * <p>
 	 * API name: {@code runtime_mappings}
@@ -794,10 +848,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to retain the search context for scrolling. See Scroll search results.
-	 * By default, this value cannot exceed <code>1d</code> (24 hours). You can
-	 * change this limit using the <code>search.max_keep_alive</code> cluster-level
-	 * setting.
+	 * The period to retain the search context for scrolling. By default, this value
+	 * cannot exceed <code>1d</code> (24 hours). You can change this limit by using
+	 * the <code>search.max_keep_alive</code> cluster-level setting.
 	 * <p>
 	 * API name: {@code scroll}
 	 */
@@ -817,7 +870,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * How distributed term frequencies are calculated for relevance scoring.
+	 * Indicates how distributed term frequencies are calculated for relevance
+	 * scoring.
 	 * <p>
 	 * API name: {@code search_type}
 	 */
@@ -827,8 +881,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If <code>true</code>, returns sequence number and primary term of the last
-	 * modification of each hit.
+	 * If <code>true</code>, the request returns sequence number and primary term of
+	 * the last modification of each hit.
 	 * <p>
 	 * API name: {@code seq_no_primary_term}
 	 */
@@ -838,9 +892,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of hits to return. By default, you cannot page through more than
-	 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
-	 * page through more hits, use the <code>search_after</code> parameter.
+	 * The number of hits to return, which must not be negative. By default, you
+	 * cannot page through more than 10,000 hits using the <code>from</code> and
+	 * <code>size</code> parameters. To page through more hits, use the
+	 * <code>search_after</code> property.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -850,8 +905,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Can be used to split a scrolled search into multiple slices that can be
-	 * consumed independently.
+	 * Split a scrolled search into multiple slices that can be consumed
+	 * independently.
 	 * <p>
 	 * API name: {@code slice}
 	 */
@@ -870,9 +925,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Stats groups to associate with the search. Each group maintains a statistics
-	 * aggregation for its associated searches. You can retrieve these stats using
-	 * the indices stats API.
+	 * The stats groups to associate with the search. Each group maintains a
+	 * statistics aggregation for its associated searches. You can retrieve these
+	 * stats using the indices stats API.
 	 * <p>
 	 * API name: {@code stats}
 	 */
@@ -881,11 +936,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * List of stored fields to return as part of a hit. If no fields are specified,
-	 * no stored fields are included in the response. If this field is specified,
-	 * the <code>_source</code> parameter defaults to <code>false</code>. You can
-	 * pass <code>_source: true</code> to return both source fields and stored
-	 * fields in the search response.
+	 * A comma-separated list of stored fields to return as part of a hit. If no
+	 * fields are specified, no stored fields are included in the response. If this
+	 * field is specified, the <code>_source</code> property defaults to
+	 * <code>false</code>. You can pass <code>_source: true</code> to return both
+	 * source fields and stored fields in the search response.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -905,14 +960,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Maximum number of documents to collect for each shard. If a query reaches
+	 * The maximum number of documents to collect for each shard. If a query reaches
 	 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
-	 * documents before sorting. Use with caution. Elasticsearch applies this
-	 * parameter to each shard handling the request. When possible, let
-	 * Elasticsearch perform early termination automatically. Avoid specifying this
-	 * parameter for requests that target data streams with backing indices across
-	 * multiple data tiers. If set to <code>0</code> (default), the query does not
-	 * terminate early.
+	 * documents before sorting.
+	 * <p>
+	 * IMPORTANT: Use with caution. Elasticsearch applies this property to each
+	 * shard handling the request. When possible, let Elasticsearch perform early
+	 * termination automatically. Avoid specifying this property for requests that
+	 * target data streams with backing indices across multiple data tiers.
+	 * <p>
+	 * If set to <code>0</code> (default), the query does not terminate early.
 	 * <p>
 	 * API name: {@code terminate_after}
 	 */
@@ -922,9 +979,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the period of time to wait for a response from each shard. If no
-	 * response is received before the timeout expires, the request fails and
-	 * returns an error. Defaults to no timeout.
+	 * The period of time to wait for a response from each shard. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * Defaults to no timeout.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -934,8 +991,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, calculate and return document scores, even if the scores are not
-	 * used for sorting.
+	 * If <code>true</code>, calculate and return document scores, even if the
+	 * scores are not used for sorting.
 	 * <p>
 	 * API name: {@code track_scores}
 	 */
@@ -958,7 +1015,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, returns document version as part of a hit.
+	 * If <code>true</code>, the request returns the document version as part of a
+	 * hit.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -1410,8 +1468,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Boolean version;
 
 		/**
-		 * Indicates which source fields are returned for matching documents. These
-		 * fields are returned in the hits._source property of the search response.
+		 * The source fields that are returned for matching documents. These fields are
+		 * returned in the <code>hits._source</code> property of the search response. If
+		 * the <code>stored_fields</code> property is specified, the
+		 * <code>_source</code> property defaults to <code>false</code>. Otherwise, it
+		 * defaults to <code>true</code>.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -1421,8 +1482,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Indicates which source fields are returned for matching documents. These
-		 * fields are returned in the hits._source property of the search response.
+		 * The source fields that are returned for matching documents. These fields are
+		 * returned in the <code>hits._source</code> property of the search response. If
+		 * the <code>stored_fields</code> property is specified, the
+		 * <code>_source</code> property defaults to <code>false</code>. Otherwise, it
+		 * defaults to <code>true</code>.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -1481,8 +1545,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, returns partial results if there are shard request timeouts or shard
-		 * failures. If false, returns an error with no partial results.
+		 * If <code>true</code> and there are shard request timeouts or shard failures,
+		 * the request returns partial results. If <code>false</code>, it returns an
+		 * error with no partial results.
+		 * <p>
+		 * To override the default behavior, you can set the
+		 * <code>search.default_allow_partial_results</code> cluster setting to
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code allow_partial_search_results}
 		 */
@@ -1492,8 +1561,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, wildcard and prefix queries are analyzed. This parameter can only be
-		 * used when the q query string parameter is specified.
+		 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+		 * parameter can be used only when the <code>q</code> query string parameter is
+		 * specified.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -1503,8 +1573,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Analyzer to use for the query string. This parameter can only be used when
-		 * the q query string parameter is specified.
+		 * The analyzer to use for the query string. This parameter can be used only
+		 * when the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -1515,9 +1585,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * The number of shard results that should be reduced at once on the
-		 * coordinating node. This value should be used as a protection mechanism to
-		 * reduce the memory overhead per search request if the potential number of
-		 * shards in the request can be large.
+		 * coordinating node. If the potential number of shards in the request can be
+		 * large, this value should be used as a protection mechanism to reduce the
+		 * memory overhead per search request.
 		 * <p>
 		 * API name: {@code batched_reduce_size}
 		 */
@@ -1527,8 +1597,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, network round-trips between the coordinating node and the remote
-		 * clusters are minimized when executing cross-cluster search (CCS) requests.
+		 * If <code>true</code>, network round-trips between the coordinating node and
+		 * the remote clusters are minimized when running cross-cluster search (CCS)
+		 * requests.
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
@@ -1557,8 +1628,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The default operator for query string query: AND or OR. This parameter can
-		 * only be used when the <code>q</code> query string parameter is specified.
+		 * The default operator for the query string query: <code>AND</code> or
+		 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+		 * query string parameter is specified.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -1568,9 +1640,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Field to use as default where no field prefix is given in the query string.
-		 * This parameter can only be used when the q query string parameter is
-		 * specified.
+		 * The field to use as a default when no field prefix is given in the query
+		 * string. This parameter can be used only when the <code>q</code> query string
+		 * parameter is specified.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -1580,9 +1652,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of wildcard (<code>*</code>) patterns. The request returns doc values
-		 * for field names matching these patterns in the <code>hits.fields</code>
-		 * property of the response.
+		 * An array of wildcard (<code>*</code>) field patterns. The request returns doc
+		 * values for field names matching these patterns in the
+		 * <code>hits.fields</code> property of the response.
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
@@ -1594,9 +1666,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of wildcard (<code>*</code>) patterns. The request returns doc values
-		 * for field names matching these patterns in the <code>hits.fields</code>
-		 * property of the response.
+		 * An array of wildcard (<code>*</code>) field patterns. The request returns doc
+		 * values for field names matching these patterns in the
+		 * <code>hits.fields</code> property of the response.
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
@@ -1608,9 +1680,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of wildcard (<code>*</code>) patterns. The request returns doc values
-		 * for field names matching these patterns in the <code>hits.fields</code>
-		 * property of the response.
+		 * An array of wildcard (<code>*</code>) field patterns. The request returns doc
+		 * values for field names matching these patterns in the
+		 * <code>hits.fields</code> property of the response.
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
@@ -1621,9 +1693,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Type of index that wildcard patterns can match. If the request can target
+		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
-		 * hidden data streams. Supports comma-separated values, such as
+		 * hidden data streams. It supports comma-separated values such as
 		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
@@ -1636,9 +1708,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Type of index that wildcard patterns can match. If the request can target
+		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
-		 * hidden data streams. Supports comma-separated values, such as
+		 * hidden data streams. It supports comma-separated values such as
 		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
@@ -1651,8 +1723,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, returns detailed information about score computation as part of a
-		 * hit.
+		 * If <code>true</code>, the request returns detailed information about score
+		 * computation as part of a hit.
 		 * <p>
 		 * API name: {@code explain}
 		 */
@@ -1686,9 +1758,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of wildcard (<code>*</code>) patterns. The request returns values for
-		 * field names matching these patterns in the <code>hits.fields</code> property
-		 * of the response.
+		 * An array of wildcard (<code>*</code>) field patterns. The request returns
+		 * values for field names matching these patterns in the
+		 * <code>hits.fields</code> property of the response.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -1700,9 +1772,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of wildcard (<code>*</code>) patterns. The request returns values for
-		 * field names matching these patterns in the <code>hits.fields</code> property
-		 * of the response.
+		 * An array of wildcard (<code>*</code>) field patterns. The request returns
+		 * values for field names matching these patterns in the
+		 * <code>hits.fields</code> property of the response.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -1714,9 +1786,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of wildcard (<code>*</code>) patterns. The request returns values for
-		 * field names matching these patterns in the <code>hits.fields</code> property
-		 * of the response.
+		 * An array of wildcard (<code>*</code>) field patterns. The request returns
+		 * values for field names matching these patterns in the
+		 * <code>hits.fields</code> property of the response.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -1740,8 +1812,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Starting document offset. Needs to be non-negative. By default, you cannot
-		 * page through more than 10,000 hits using the <code>from</code> and
+		 * The starting document offset, which must be non-negative. By default, you
+		 * cannot page through more than 10,000 hits using the <code>from</code> and
 		 * <code>size</code> parameters. To page through more hits, use the
 		 * <code>search_after</code> parameter.
 		 * <p>
@@ -1778,7 +1850,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * when frozen.
 		 * <p>
 		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0
 		 */
+		@Deprecated
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
@@ -1796,8 +1871,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
 		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
@@ -1810,8 +1885,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
 		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
@@ -1824,7 +1899,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Boosts the _score of documents from specified indices.
+		 * Boost the <code>_score</code> of documents from specified indices. The boost
+		 * value is the factor by which scores are multiplied. A boost value greater
+		 * than <code>1.0</code> increases the score. A boost value between
+		 * <code>0</code> and <code>1.0</code> decreases the score.
 		 * <p>
 		 * API name: {@code indices_boost}
 		 * <p>
@@ -1836,7 +1914,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Boosts the _score of documents from specified indices.
+		 * Boost the <code>_score</code> of documents from specified indices. The boost
+		 * value is the factor by which scores are multiplied. A boost value greater
+		 * than <code>1.0</code> increases the score. A boost value between
+		 * <code>0</code> and <code>1.0</code> decreases the score.
 		 * <p>
 		 * API name: {@code indices_boost}
 		 * <p>
@@ -1848,7 +1929,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the approximate kNN search to run.
+		 * The approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
 		 * <p>
@@ -1860,7 +1941,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the approximate kNN search to run.
+		 * The approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
 		 * <p>
@@ -1872,7 +1953,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the approximate kNN search to run.
+		 * The approximate kNN search to run.
 		 * <p>
 		 * API name: {@code knn}
 		 * <p>
@@ -1884,8 +1965,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * If <code>true</code>, format-based query failures (such as providing text to
-		 * a numeric field) in the query string will be ignored. This parameter can only
-		 * be used when the <code>q</code> query string parameter is specified.
+		 * a numeric field) in the query string will be ignored. This parameter can be
+		 * used only when the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -1895,7 +1976,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the number of concurrent shard requests per node this search executes
+		 * The number of concurrent shard requests per node that the search runs
 		 * concurrently. This value should be used to limit the impact of the search on
 		 * the cluster in order to limit the number of concurrent shard requests.
 		 * <p>
@@ -1907,8 +1988,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Minimum <code>_score</code> for matching documents. Documents with a lower
-		 * <code>_score</code> are not included in the search results.
+		 * The minimum <code>_score</code> for matching documents. Documents with a
+		 * lower <code>_score</code> are not included in the search results.
 		 * <p>
 		 * API name: {@code min_score}
 		 */
@@ -1918,7 +1999,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+		 * Limit the search to a point in time (PIT). If you provide a PIT, you cannot
 		 * specify an <code>&lt;index&gt;</code> in the request path.
 		 * <p>
 		 * API name: {@code pit}
@@ -1929,7 +2010,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+		 * Limit the search to a point in time (PIT). If you provide a PIT, you cannot
 		 * specify an <code>&lt;index&gt;</code> in the request path.
 		 * <p>
 		 * API name: {@code pit}
@@ -1962,15 +2043,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines a threshold that enforces a pre-filter roundtrip to prefilter search
-		 * shards based on query rewriting if the number of shards the search request
-		 * expands to exceeds the threshold. This filter roundtrip can limit the number
-		 * of shards significantly if for instance a shard can not match any documents
+		 * A threshold that enforces a pre-filter roundtrip to prefilter search shards
+		 * based on query rewriting if the number of shards the search request expands
+		 * to exceeds the threshold. This filter roundtrip can limit the number of
+		 * shards significantly if for instance a shard can not match any documents
 		 * based on its rewrite method (if date filters are mandatory to match but the
 		 * shard bounds and the query are disjoint). When unspecified, the pre-filter
-		 * phase is executed if any of these conditions is met: the request targets more
-		 * than 128 shards; the request targets one or more read-only index; the primary
-		 * sort of the query targets an indexed field.
+		 * phase is executed if any of these conditions is met:
+		 * <ul>
+		 * <li>The request targets more than 128 shards.</li>
+		 * <li>The request targets one or more read-only index.</li>
+		 * <li>The primary sort of the query targets an indexed field.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
@@ -1980,22 +2064,29 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Nodes and shards used for the search. By default, Elasticsearch selects from
-		 * eligible nodes and shards using adaptive replica selection, accounting for
-		 * allocation awareness. Valid values are: <code>_only_local</code> to run the
-		 * search only on shards on the local node; <code>_local</code> to, if possible,
-		 * run the search on shards on the local node, or if not, select shards using
-		 * the default method; <code>_only_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code>
-		 * to run the search on only the specified nodes IDs, where, if suitable shards
-		 * exist on more than one selected node, use shards on those nodes using the
-		 * default method, or if none of the specified nodes are available, select
-		 * shards from any available node using the default method;
-		 * <code>_prefer_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to if possible,
-		 * run the search on the specified nodes IDs, or if not, select shards using the
-		 * default method; <code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to run the
-		 * search only on the specified shards; <code>&lt;custom-string&gt;</code> (any
-		 * string that does not start with <code>_</code>) to route searches with the
-		 * same <code>&lt;custom-string&gt;</code> to the same shards in the same order.
+		 * The nodes and shards used for the search. By default, Elasticsearch selects
+		 * from eligible nodes and shards using adaptive replica selection, accounting
+		 * for allocation awareness. Valid values are:
+		 * <ul>
+		 * <li><code>_only_local</code> to run the search only on shards on the local
+		 * node.</li>
+		 * <li><code>_local</code> to, if possible, run the search on shards on the
+		 * local node, or if not, select shards using the default method.</li>
+		 * <li><code>_only_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to run the
+		 * search on only the specified nodes IDs. If suitable shards exist on more than
+		 * one selected node, use shards on those nodes using the default method. If
+		 * none of the specified nodes are available, select shards from any available
+		 * node using the default method.</li>
+		 * <li><code>_prefer_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to if
+		 * possible, run the search on the specified nodes IDs. If not, select shards
+		 * using the default method. <code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to
+		 * run the search only on the specified shards. You can combine this value with
+		 * other <code>preference</code> values. However, the <code>_shards</code> value
+		 * must come first. For example: <code>_shards:2,3|_local</code>.
+		 * <code>&lt;custom-string&gt;</code> (any string that does not start with
+		 * <code>_</code>) to route searches with the same
+		 * <code>&lt;custom-string&gt;</code> to the same shards in the same order.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -2017,9 +2108,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query in the Lucene query string syntax using query parameter search. Query
-		 * parameter searches do not support the full Elasticsearch Query DSL but are
-		 * handy for testing.
+		 * A query in the Lucene query string syntax. Query parameter searches do not
+		 * support the full Elasticsearch Query DSL but are handy for testing.
+		 * <p>
+		 * IMPORTANT: This parameter overrides the query parameter in the request body.
+		 * If both parameters are specified, documents matching the query request body
+		 * parameter are not returned.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -2029,7 +2123,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the search definition using the Query DSL.
+		 * The search definition using the Query DSL.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -2039,7 +2133,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the search definition using the Query DSL.
+		 * The search definition using the Query DSL.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -2048,7 +2142,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the Reciprocal Rank Fusion (RRF) to use.
+		 * The Reciprocal Rank Fusion (RRF) to use.
 		 * <p>
 		 * API name: {@code rank}
 		 */
@@ -2058,7 +2152,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines the Reciprocal Rank Fusion (RRF) to use.
+		 * The Reciprocal Rank Fusion (RRF) to use.
 		 * <p>
 		 * API name: {@code rank}
 		 */
@@ -2068,7 +2162,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * If <code>true</code>, the caching of search results is enabled for requests
-		 * where <code>size</code> is <code>0</code>. Defaults to index level settings.
+		 * where <code>size</code> is <code>0</code>. It defaults to index level
+		 * settings.
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
@@ -2121,7 +2216,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * A retriever is a specification to describe top documents returned from a
 		 * search. A retriever replaces other elements of the search API that also
-		 * return top documents such as query and knn.
+		 * return top documents such as <code>query</code> and <code>knn</code>.
 		 * <p>
 		 * API name: {@code retriever}
 		 */
@@ -2133,7 +2228,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * A retriever is a specification to describe top documents returned from a
 		 * search. A retriever replaces other elements of the search API that also
-		 * return top documents such as query and knn.
+		 * return top documents such as <code>query</code> and <code>knn</code>.
 		 * <p>
 		 * API name: {@code retriever}
 		 */
@@ -2142,7 +2237,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -2152,7 +2247,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines one or more runtime fields in the search request. These fields take
+		 * One or more runtime fields in the search request. These fields take
 		 * precedence over mapped fields with the same name.
 		 * <p>
 		 * API name: {@code runtime_mappings}
@@ -2165,7 +2260,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines one or more runtime fields in the search request. These fields take
+		 * One or more runtime fields in the search request. These fields take
 		 * precedence over mapped fields with the same name.
 		 * <p>
 		 * API name: {@code runtime_mappings}
@@ -2178,7 +2273,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines one or more runtime fields in the search request. These fields take
+		 * One or more runtime fields in the search request. These fields take
 		 * precedence over mapped fields with the same name.
 		 * <p>
 		 * API name: {@code runtime_mappings}
@@ -2226,10 +2321,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to retain the search context for scrolling. See Scroll search results.
-		 * By default, this value cannot exceed <code>1d</code> (24 hours). You can
-		 * change this limit using the <code>search.max_keep_alive</code> cluster-level
-		 * setting.
+		 * The period to retain the search context for scrolling. By default, this value
+		 * cannot exceed <code>1d</code> (24 hours). You can change this limit by using
+		 * the <code>search.max_keep_alive</code> cluster-level setting.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -2239,10 +2333,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to retain the search context for scrolling. See Scroll search results.
-		 * By default, this value cannot exceed <code>1d</code> (24 hours). You can
-		 * change this limit using the <code>search.max_keep_alive</code> cluster-level
-		 * setting.
+		 * The period to retain the search context for scrolling. By default, this value
+		 * cannot exceed <code>1d</code> (24 hours). You can change this limit by using
+		 * the <code>search.max_keep_alive</code> cluster-level setting.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -2361,7 +2454,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * How distributed term frequencies are calculated for relevance scoring.
+		 * Indicates how distributed term frequencies are calculated for relevance
+		 * scoring.
 		 * <p>
 		 * API name: {@code search_type}
 		 */
@@ -2371,8 +2465,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If <code>true</code>, returns sequence number and primary term of the last
-		 * modification of each hit.
+		 * If <code>true</code>, the request returns sequence number and primary term of
+		 * the last modification of each hit.
 		 * <p>
 		 * API name: {@code seq_no_primary_term}
 		 */
@@ -2382,9 +2476,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of hits to return. By default, you cannot page through more than
-		 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
-		 * page through more hits, use the <code>search_after</code> parameter.
+		 * The number of hits to return, which must not be negative. By default, you
+		 * cannot page through more than 10,000 hits using the <code>from</code> and
+		 * <code>size</code> parameters. To page through more hits, use the
+		 * <code>search_after</code> property.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -2394,8 +2489,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Can be used to split a scrolled search into multiple slices that can be
-		 * consumed independently.
+		 * Split a scrolled search into multiple slices that can be consumed
+		 * independently.
 		 * <p>
 		 * API name: {@code slice}
 		 */
@@ -2405,8 +2500,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Can be used to split a scrolled search into multiple slices that can be
-		 * consumed independently.
+		 * Split a scrolled search into multiple slices that can be consumed
+		 * independently.
 		 * <p>
 		 * API name: {@code slice}
 		 */
@@ -2450,9 +2545,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Stats groups to associate with the search. Each group maintains a statistics
-		 * aggregation for its associated searches. You can retrieve these stats using
-		 * the indices stats API.
+		 * The stats groups to associate with the search. Each group maintains a
+		 * statistics aggregation for its associated searches. You can retrieve these
+		 * stats using the indices stats API.
 		 * <p>
 		 * API name: {@code stats}
 		 * <p>
@@ -2464,9 +2559,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Stats groups to associate with the search. Each group maintains a statistics
-		 * aggregation for its associated searches. You can retrieve these stats using
-		 * the indices stats API.
+		 * The stats groups to associate with the search. Each group maintains a
+		 * statistics aggregation for its associated searches. You can retrieve these
+		 * stats using the indices stats API.
 		 * <p>
 		 * API name: {@code stats}
 		 * <p>
@@ -2478,11 +2573,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the <code>_source</code> parameter defaults to <code>false</code>. You can
-		 * pass <code>_source: true</code> to return both source fields and stored
-		 * fields in the search response.
+		 * A comma-separated list of stored fields to return as part of a hit. If no
+		 * fields are specified, no stored fields are included in the response. If this
+		 * field is specified, the <code>_source</code> property defaults to
+		 * <code>false</code>. You can pass <code>_source: true</code> to return both
+		 * source fields and stored fields in the search response.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -2494,11 +2589,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the <code>_source</code> parameter defaults to <code>false</code>. You can
-		 * pass <code>_source: true</code> to return both source fields and stored
-		 * fields in the search response.
+		 * A comma-separated list of stored fields to return as part of a hit. If no
+		 * fields are specified, no stored fields are included in the response. If this
+		 * field is specified, the <code>_source</code> property defaults to
+		 * <code>false</code>. You can pass <code>_source: true</code> to return both
+		 * source fields and stored fields in the search response.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -2531,14 +2626,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Maximum number of documents to collect for each shard. If a query reaches
+		 * The maximum number of documents to collect for each shard. If a query reaches
 		 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
-		 * documents before sorting. Use with caution. Elasticsearch applies this
-		 * parameter to each shard handling the request. When possible, let
-		 * Elasticsearch perform early termination automatically. Avoid specifying this
-		 * parameter for requests that target data streams with backing indices across
-		 * multiple data tiers. If set to <code>0</code> (default), the query does not
-		 * terminate early.
+		 * documents before sorting.
+		 * <p>
+		 * IMPORTANT: Use with caution. Elasticsearch applies this property to each
+		 * shard handling the request. When possible, let Elasticsearch perform early
+		 * termination automatically. Avoid specifying this property for requests that
+		 * target data streams with backing indices across multiple data tiers.
+		 * <p>
+		 * If set to <code>0</code> (default), the query does not terminate early.
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
@@ -2548,9 +2645,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the period of time to wait for a response from each shard. If no
-		 * response is received before the timeout expires, the request fails and
-		 * returns an error. Defaults to no timeout.
+		 * The period of time to wait for a response from each shard. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * Defaults to no timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -2560,8 +2657,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, calculate and return document scores, even if the scores are not
-		 * used for sorting.
+		 * If <code>true</code>, calculate and return document scores, even if the
+		 * scores are not used for sorting.
 		 * <p>
 		 * API name: {@code track_scores}
 		 */
@@ -2596,7 +2693,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, returns document version as part of a hit.
+		 * If <code>true</code>, the request returns the document version as part of a
+		 * hit.
 		 * <p>
 		 * API name: {@code version}
 		 */

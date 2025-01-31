@@ -76,14 +76,18 @@ public class Retries implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code bulk}
+	 * Required - The number of bulk actions retried.
+	 * <p>
+	 * API name: {@code bulk}
 	 */
 	public final long bulk() {
 		return this.bulk;
 	}
 
 	/**
-	 * Required - API name: {@code search}
+	 * Required - The number of search actions retried.
+	 * <p>
+	 * API name: {@code search}
 	 */
 	public final long search() {
 		return this.search;
@@ -125,7 +129,9 @@ public class Retries implements JsonpSerializable {
 		private Long search;
 
 		/**
-		 * Required - API name: {@code bulk}
+		 * Required - The number of bulk actions retried.
+		 * <p>
+		 * API name: {@code bulk}
 		 */
 		public final Builder bulk(long value) {
 			this.bulk = value;
@@ -133,7 +139,9 @@ public class Retries implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code search}
+		 * Required - The number of search actions retried.
+		 * <p>
+		 * API name: {@code search}
 		 */
 		public final Builder search(long value) {
 			this.search = value;
