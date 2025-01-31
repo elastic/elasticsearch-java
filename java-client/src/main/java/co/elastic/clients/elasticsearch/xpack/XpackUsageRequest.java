@@ -80,8 +80,9 @@ public class XpackUsageRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
+	 * To indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -103,8 +104,9 @@ public class XpackUsageRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * To indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -114,8 +116,9 @@ public class XpackUsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * To indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

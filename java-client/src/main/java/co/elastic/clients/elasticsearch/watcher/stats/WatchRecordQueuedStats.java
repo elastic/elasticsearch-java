@@ -76,7 +76,10 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code execution_time}
+	 * Required - The time the watch was run. This is just before the input is being
+	 * run.
+	 * <p>
+	 * API name: {@code execution_time}
 	 */
 	public final DateTime executionTime() {
 		return this.executionTime;
@@ -136,7 +139,10 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 		private DateTime executionTime;
 
 		/**
-		 * Required - API name: {@code execution_time}
+		 * Required - The time the watch was run. This is just before the input is being
+		 * run.
+		 * <p>
+		 * API name: {@code execution_time}
 		 */
 		public final BuilderT executionTime(DateTime value) {
 			this.executionTime = value;

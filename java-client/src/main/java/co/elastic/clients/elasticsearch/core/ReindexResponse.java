@@ -141,6 +141,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of scroll responses that were pulled back by the reindex.
+	 * <p>
 	 * API name: {@code batches}
 	 */
 	@Nullable
@@ -149,6 +151,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully created.
+	 * <p>
 	 * API name: {@code created}
 	 */
 	@Nullable
@@ -157,6 +161,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully deleted.
+	 * <p>
 	 * API name: {@code deleted}
 	 */
 	@Nullable
@@ -165,6 +171,13 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * If there were any unrecoverable errors during the process, it is an array of
+	 * those failures. If this array is not empty, the request ended because of
+	 * those failures. Reindex is implemented using batches and any failure causes
+	 * the entire process to end but all failures in the current batch are collected
+	 * into the array. You can use the <code>conflicts</code> option to prevent the
+	 * reindex from ending on version conflicts.
+	 * <p>
 	 * API name: {@code failures}
 	 */
 	public final List<BulkIndexByScrollFailure> failures() {
@@ -172,6 +185,9 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were ignored because the script used for the
+	 * reindex returned a <code>noop</code> value for <code>ctx.op</code>.
+	 * <p>
 	 * API name: {@code noops}
 	 */
 	@Nullable
@@ -180,6 +196,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of retries attempted by reindex.
+	 * <p>
 	 * API name: {@code retries}
 	 */
 	@Nullable
@@ -188,6 +206,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of requests per second effectively run during the reindex.
+	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
@@ -212,6 +232,9 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of milliseconds the request slept to conform to
+	 * <code>requests_per_second</code>.
+	 * <p>
 	 * API name: {@code throttled_millis}
 	 */
 	@Nullable
@@ -220,6 +243,11 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * This field should always be equal to zero in a reindex response. It has
+	 * meaning only when using the task API, where it indicates the next time (in
+	 * milliseconds since epoch) that a throttled request will be run again in order
+	 * to conform to <code>requests_per_second</code>.
+	 * <p>
 	 * API name: {@code throttled_until_millis}
 	 */
 	@Nullable
@@ -228,6 +256,9 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * If any of the requests that ran during the reindex timed out, it is
+	 * <code>true</code>.
+	 * <p>
 	 * API name: {@code timed_out}
 	 */
 	@Nullable
@@ -236,6 +267,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The total milliseconds the entire operation took.
+	 * <p>
 	 * API name: {@code took}
 	 */
 	@Nullable
@@ -244,6 +277,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully processed.
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -252,6 +287,9 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully updated. That is to say, a
+	 * document with the same ID already existed before the reindex updated it.
+	 * <p>
 	 * API name: {@code updated}
 	 */
 	@Nullable
@@ -260,6 +298,8 @@ public class ReindexResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of version conflicts that occurred.
+	 * <p>
 	 * API name: {@code version_conflicts}
 	 */
 	@Nullable
@@ -427,6 +467,8 @@ public class ReindexResponse implements JsonpSerializable {
 		private Long versionConflicts;
 
 		/**
+		 * The number of scroll responses that were pulled back by the reindex.
+		 * <p>
 		 * API name: {@code batches}
 		 */
 		public final Builder batches(@Nullable Long value) {
@@ -435,6 +477,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully created.
+		 * <p>
 		 * API name: {@code created}
 		 */
 		public final Builder created(@Nullable Long value) {
@@ -443,6 +487,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully deleted.
+		 * <p>
 		 * API name: {@code deleted}
 		 */
 		public final Builder deleted(@Nullable Long value) {
@@ -451,6 +497,13 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * If there were any unrecoverable errors during the process, it is an array of
+		 * those failures. If this array is not empty, the request ended because of
+		 * those failures. Reindex is implemented using batches and any failure causes
+		 * the entire process to end but all failures in the current batch are collected
+		 * into the array. You can use the <code>conflicts</code> option to prevent the
+		 * reindex from ending on version conflicts.
+		 * <p>
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failures</code>.
@@ -461,6 +514,13 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * If there were any unrecoverable errors during the process, it is an array of
+		 * those failures. If this array is not empty, the request ended because of
+		 * those failures. Reindex is implemented using batches and any failure causes
+		 * the entire process to end but all failures in the current batch are collected
+		 * into the array. You can use the <code>conflicts</code> option to prevent the
+		 * reindex from ending on version conflicts.
+		 * <p>
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds one or more values to <code>failures</code>.
@@ -471,6 +531,13 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * If there were any unrecoverable errors during the process, it is an array of
+		 * those failures. If this array is not empty, the request ended because of
+		 * those failures. Reindex is implemented using batches and any failure causes
+		 * the entire process to end but all failures in the current batch are collected
+		 * into the array. You can use the <code>conflicts</code> option to prevent the
+		 * reindex from ending on version conflicts.
+		 * <p>
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds a value to <code>failures</code> using a builder lambda.
@@ -481,6 +548,9 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were ignored because the script used for the
+		 * reindex returned a <code>noop</code> value for <code>ctx.op</code>.
+		 * <p>
 		 * API name: {@code noops}
 		 */
 		public final Builder noops(@Nullable Long value) {
@@ -489,6 +559,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of retries attempted by reindex.
+		 * <p>
 		 * API name: {@code retries}
 		 */
 		public final Builder retries(@Nullable Retries value) {
@@ -497,6 +569,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of retries attempted by reindex.
+		 * <p>
 		 * API name: {@code retries}
 		 */
 		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
@@ -504,6 +578,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of requests per second effectively run during the reindex.
+		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
 		public final Builder requestsPerSecond(@Nullable Float value) {
@@ -528,6 +604,9 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of milliseconds the request slept to conform to
+		 * <code>requests_per_second</code>.
+		 * <p>
 		 * API name: {@code throttled_millis}
 		 */
 		public final Builder throttledMillis(@Nullable Long value) {
@@ -536,6 +615,11 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * This field should always be equal to zero in a reindex response. It has
+		 * meaning only when using the task API, where it indicates the next time (in
+		 * milliseconds since epoch) that a throttled request will be run again in order
+		 * to conform to <code>requests_per_second</code>.
+		 * <p>
 		 * API name: {@code throttled_until_millis}
 		 */
 		public final Builder throttledUntilMillis(@Nullable Long value) {
@@ -544,6 +628,9 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * If any of the requests that ran during the reindex timed out, it is
+		 * <code>true</code>.
+		 * <p>
 		 * API name: {@code timed_out}
 		 */
 		public final Builder timedOut(@Nullable Boolean value) {
@@ -552,6 +639,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The total milliseconds the entire operation took.
+		 * <p>
 		 * API name: {@code took}
 		 */
 		public final Builder took(@Nullable Long value) {
@@ -560,6 +649,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully processed.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(@Nullable Long value) {
@@ -568,6 +659,9 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully updated. That is to say, a
+		 * document with the same ID already existed before the reindex updated it.
+		 * <p>
 		 * API name: {@code updated}
 		 */
 		public final Builder updated(@Nullable Long value) {
@@ -576,6 +670,8 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of version conflicts that occurred.
+		 * <p>
 		 * API name: {@code version_conflicts}
 		 */
 		public final Builder versionConflicts(@Nullable Long value) {

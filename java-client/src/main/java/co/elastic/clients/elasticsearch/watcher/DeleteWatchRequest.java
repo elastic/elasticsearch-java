@@ -89,7 +89,7 @@ public class DeleteWatchRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Watch ID
+	 * Required - The watch identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -109,7 +109,7 @@ public class DeleteWatchRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - Watch ID
+		 * Required - The watch identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */

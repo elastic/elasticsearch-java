@@ -73,7 +73,11 @@ public class PutUserResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code created}
+	 * Required - A successful call returns a JSON structure that shows whether the
+	 * user has been created or updated. When an existing user is updated,
+	 * <code>created</code> is set to <code>false</code>.
+	 * <p>
+	 * API name: {@code created}
 	 */
 	public final boolean created() {
 		return this.created;
@@ -110,7 +114,11 @@ public class PutUserResponse implements JsonpSerializable {
 		private Boolean created;
 
 		/**
-		 * Required - API name: {@code created}
+		 * Required - A successful call returns a JSON structure that shows whether the
+		 * user has been created or updated. When an existing user is updated,
+		 * <code>created</code> is set to <code>false</code>.
+		 * <p>
+		 * API name: {@code created}
 		 */
 		public final Builder created(boolean value) {
 			this.created = value;

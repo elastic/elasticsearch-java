@@ -97,7 +97,7 @@ public class DeleteUserRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - username
+	 * Required - An identifier for the user.
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -133,7 +133,7 @@ public class DeleteUserRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - username
+		 * Required - An identifier for the user.
 		 * <p>
 		 * API name: {@code username}
 		 */

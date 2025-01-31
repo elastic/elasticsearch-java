@@ -50,7 +50,9 @@ import java.util.Objects;
 // typedef: ilm.get_status.Request
 
 /**
- * Get the ILM status. Get the current index lifecycle management status.
+ * Get the ILM status.
+ * <p>
+ * Get the current index lifecycle management status.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.get_status.Request">API
  *      specification</a>

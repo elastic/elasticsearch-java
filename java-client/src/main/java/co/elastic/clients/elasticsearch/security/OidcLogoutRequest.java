@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: security.oidc_logout.Request
 
 /**
- * Logout of OpenID Connect. Invalidate an access token and a refresh token that
- * were generated as a response to the <code>/_security/oidc/authenticate</code>
- * API.
+ * Logout of OpenID Connect.
+ * <p>
+ * Invalidate an access token and a refresh token that were generated as a
+ * response to the <code>/_security/oidc/authenticate</code> API.
  * <p>
  * If the OpenID Connect authentication realm in Elasticsearch is accordingly
  * configured, the response to this call will contain a URI pointing to the end

@@ -68,34 +68,82 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: license.delete
 
 	/**
-	 * Delete the license. When the license expires, your subscription level reverts
-	 * to Basic.
+	 * Delete the license.
+	 * <p>
+	 * When the license expires, your subscription level reverts to Basic.
 	 * <p>
 	 * If the operator privileges feature is enabled, only operator users can use
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public DeleteLicenseResponse delete(DeleteLicenseRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse>) DeleteLicenseRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete the license.
+	 * <p>
+	 * When the license expires, your subscription level reverts to Basic.
+	 * <p>
+	 * If the operator privileges feature is enabled, only operator users can use
+	 * this API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteLicenseRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteLicenseResponse delete(
+			Function<DeleteLicenseRequest.Builder, ObjectBuilder<DeleteLicenseRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return delete(fn.apply(new DeleteLicenseRequest.Builder()).build());
+	}
+
+	/**
+	 * Delete the license.
+	 * <p>
+	 * When the license expires, your subscription level reverts to Basic.
+	 * <p>
+	 * If the operator privileges feature is enabled, only operator users can use
+	 * this API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-license.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public DeleteLicenseResponse delete() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest._ENDPOINT,
+		return this.transport.performRequest(new DeleteLicenseRequest.Builder().build(), DeleteLicenseRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
 	// ----- Endpoint: license.get
 
 	/**
-	 * Get license information. Get information about your Elastic license including
-	 * its type, its status, when it was issued, and when it expires.
+	 * Get license information.
 	 * <p>
-	 * NOTE: If the master node is generating a new cluster state, the get license
+	 * Get information about your Elastic license including its type, its status,
+	 * when it was issued, and when it expires. <blockquote>
+	 * <p>
+	 * info If the master node is generating a new cluster state, the get license
 	 * API may return a <code>404 Not Found</code> response. If you receive an
 	 * unexpected 404 response after cluster startup, wait a short period and retry
 	 * the request.
-	 * 
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -107,19 +155,23 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get license information. Get information about your Elastic license including
-	 * its type, its status, when it was issued, and when it expires.
+	 * Get license information.
 	 * <p>
-	 * NOTE: If the master node is generating a new cluster state, the get license
+	 * Get information about your Elastic license including its type, its status,
+	 * when it was issued, and when it expires. <blockquote>
+	 * <p>
+	 * info If the master node is generating a new cluster state, the get license
 	 * API may return a <code>404 Not Found</code> response. If you receive an
 	 * unexpected 404 response after cluster startup, wait a short period and retry
 	 * the request.
-	 * 
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetLicenseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -129,16 +181,20 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get license information. Get information about your Elastic license including
-	 * its type, its status, when it was issued, and when it expires.
+	 * Get license information.
 	 * <p>
-	 * NOTE: If the master node is generating a new cluster state, the get license
+	 * Get information about your Elastic license including its type, its status,
+	 * when it was issued, and when it expires. <blockquote>
+	 * <p>
+	 * info If the master node is generating a new cluster state, the get license
 	 * API may return a <code>404 Not Found</code> response. If you receive an
 	 * unexpected 404 response after cluster startup, wait a short period and retry
 	 * the request.
-	 * 
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -153,7 +209,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * Get the basic license status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-basic-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetBasicStatusResponse getBasicStatus() throws IOException, ElasticsearchException {
@@ -167,7 +223,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * Get the trial status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-trial-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetTrialStatusResponse getTrialStatus() throws IOException, ElasticsearchException {
@@ -178,11 +234,13 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: license.post
 
 	/**
-	 * Update the license. You can update your license at runtime without shutting
-	 * down your nodes. License updates take effect immediately. If the license you
-	 * are installing does not support all of the features that were available with
-	 * your previous license, however, you are notified in the response. You must
-	 * then re-submit the API request with the acknowledge parameter set to true.
+	 * Update the license.
+	 * <p>
+	 * You can update your license at runtime without shutting down your nodes.
+	 * License updates take effect immediately. If the license you are installing
+	 * does not support all of the features that were available with your previous
+	 * license, however, you are notified in the response. You must then re-submit
+	 * the API request with the acknowledge parameter set to true.
 	 * <p>
 	 * NOTE: If Elasticsearch security features are enabled and you are installing a
 	 * gold or higher license, you must enable TLS on the transport networking layer
@@ -190,7 +248,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * enabled, only operator users can use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -202,11 +260,13 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update the license. You can update your license at runtime without shutting
-	 * down your nodes. License updates take effect immediately. If the license you
-	 * are installing does not support all of the features that were available with
-	 * your previous license, however, you are notified in the response. You must
-	 * then re-submit the API request with the acknowledge parameter set to true.
+	 * Update the license.
+	 * <p>
+	 * You can update your license at runtime without shutting down your nodes.
+	 * License updates take effect immediately. If the license you are installing
+	 * does not support all of the features that were available with your previous
+	 * license, however, you are notified in the response. You must then re-submit
+	 * the API request with the acknowledge parameter set to true.
 	 * <p>
 	 * NOTE: If Elasticsearch security features are enabled and you are installing a
 	 * gold or higher license, you must enable TLS on the transport networking layer
@@ -217,7 +277,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -227,11 +287,13 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update the license. You can update your license at runtime without shutting
-	 * down your nodes. License updates take effect immediately. If the license you
-	 * are installing does not support all of the features that were available with
-	 * your previous license, however, you are notified in the response. You must
-	 * then re-submit the API request with the acknowledge parameter set to true.
+	 * Update the license.
+	 * <p>
+	 * You can update your license at runtime without shutting down your nodes.
+	 * License updates take effect immediately. If the license you are installing
+	 * does not support all of the features that were available with your previous
+	 * license, however, you are notified in the response. You must then re-submit
+	 * the API request with the acknowledge parameter set to true.
 	 * <p>
 	 * NOTE: If Elasticsearch security features are enabled and you are installing a
 	 * gold or higher license, you must enable TLS on the transport networking layer
@@ -239,7 +301,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * enabled, only operator users can use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,8 +313,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: license.post_start_basic
 
 	/**
-	 * Start a basic license. Start an indefinite basic license, which gives access
-	 * to all the basic features.
+	 * Start a basic license.
+	 * <p>
+	 * Start an indefinite basic license, which gives access to all the basic
+	 * features.
 	 * <p>
 	 * NOTE: In order to start a basic license, you must not currently have a basic
 	 * license.
@@ -265,7 +329,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your basic license, use the get basic license API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/start-basic.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -278,8 +342,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Start a basic license. Start an indefinite basic license, which gives access
-	 * to all the basic features.
+	 * Start a basic license.
+	 * <p>
+	 * Start an indefinite basic license, which gives access to all the basic
+	 * features.
 	 * <p>
 	 * NOTE: In order to start a basic license, you must not currently have a basic
 	 * license.
@@ -295,7 +361,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostStartBasicRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/start-basic.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -306,8 +372,10 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Start a basic license. Start an indefinite basic license, which gives access
-	 * to all the basic features.
+	 * Start a basic license.
+	 * <p>
+	 * Start an indefinite basic license, which gives access to all the basic
+	 * features.
 	 * <p>
 	 * NOTE: In order to start a basic license, you must not currently have a basic
 	 * license.
@@ -320,7 +388,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your basic license, use the get basic license API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/start-basic.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

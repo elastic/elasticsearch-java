@@ -59,12 +59,14 @@ import javax.annotation.Nullable;
 // typedef: ml.open_job.Request
 
 /**
- * Open anomaly detection jobs. An anomaly detection job must be opened to be
- * ready to receive and analyze data. It can be opened and closed multiple times
- * throughout its lifecycle. When you open a new job, it starts with an empty
- * model. When you open an existing job, the most recent model state is
- * automatically loaded. The job is ready to resume its analysis from where it
- * left off, once new data is received.
+ * Open anomaly detection jobs.
+ * <p>
+ * An anomaly detection job must be opened to be ready to receive and analyze
+ * data. It can be opened and closed multiple times throughout its lifecycle.
+ * When you open a new job, it starts with an empty model. When you open an
+ * existing job, the most recent model state is automatically loaded. The job is
+ * ready to resume its analysis from where it left off, once new data is
+ * received.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.open_job.Request">API
  *      specification</a>

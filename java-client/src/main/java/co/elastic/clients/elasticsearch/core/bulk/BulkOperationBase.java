@@ -105,7 +105,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Name of the index or index alias to perform the action on.
+	 * The name of the index or index alias to perform the action on.
 	 * <p>
 	 * API name: {@code _index}
 	 */
@@ -115,7 +115,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -244,7 +244,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Name of the index or index alias to perform the action on.
+		 * The name of the index or index alias to perform the action on.
 		 * <p>
 		 * API name: {@code _index}
 		 */
@@ -254,7 +254,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */

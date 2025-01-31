@@ -73,6 +73,9 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 	@Nullable
 	private final Float similarity;
 
+	@Nullable
+	private final RescoreVector rescoreVector;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private KnnRetriever(Builder builder) {
@@ -84,6 +87,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
 		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
 		this.similarity = builder.similarity;
+		this.rescoreVector = builder.rescoreVector;
 
 	}
 
@@ -157,6 +161,16 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		return this.similarity;
 	}
 
+	/**
+	 * Apply oversampling and rescoring to quantized vectors *
+	 * <p>
+	 * API name: {@code rescore_vector}
+	 */
+	@Nullable
+	public final RescoreVector rescoreVector() {
+		return this.rescoreVector;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -189,6 +203,11 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 			generator.write(this.similarity);
 
 		}
+		if (this.rescoreVector != null) {
+			generator.writeKey("rescore_vector");
+			this.rescoreVector.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -213,6 +232,9 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 
 		@Nullable
 		private Float similarity;
+
+		@Nullable
+		private RescoreVector rescoreVector;
 
 		/**
 		 * Required - The name of the vector field to search against.
@@ -302,6 +324,25 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 			return this;
 		}
 
+		/**
+		 * Apply oversampling and rescoring to quantized vectors *
+		 * <p>
+		 * API name: {@code rescore_vector}
+		 */
+		public final Builder rescoreVector(@Nullable RescoreVector value) {
+			this.rescoreVector = value;
+			return this;
+		}
+
+		/**
+		 * Apply oversampling and rescoring to quantized vectors *
+		 * <p>
+		 * API name: {@code rescore_vector}
+		 */
+		public final Builder rescoreVector(Function<RescoreVector.Builder, ObjectBuilder<RescoreVector>> fn) {
+			return this.rescoreVector(fn.apply(new RescoreVector.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -337,6 +378,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
 		op.add(Builder::numCandidates, JsonpDeserializer.integerDeserializer(), "num_candidates");
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
+		op.add(Builder::rescoreVector, RescoreVector._DESERIALIZER, "rescore_vector");
 
 	}
 

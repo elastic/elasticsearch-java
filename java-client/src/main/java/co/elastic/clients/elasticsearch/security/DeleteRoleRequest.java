@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 /**
  * Delete roles.
  * <p>
- * Delete roles in the native realm.
+ * Delete roles in the native realm. The role management APIs are generally the
+ * preferred way to manage roles, rather than using file-based role management.
+ * The delete roles API cannot remove roles that are defined in roles files.
  * 
  * @see <a href="../doc-files/api-spec.html#security.delete_role.Request">API
  *      specification</a>
@@ -84,7 +86,7 @@ public class DeleteRoleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Role name
+	 * Required - The name of the role.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -120,7 +122,7 @@ public class DeleteRoleRequest extends RequestBase {
 		private Refresh refresh;
 
 		/**
-		 * Required - Role name
+		 * Required - The name of the role.
 		 * <p>
 		 * API name: {@code name}
 		 */

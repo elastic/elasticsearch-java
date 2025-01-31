@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -69,11 +69,15 @@ import javax.annotation.Nullable;
 public class PauseFollowRequest extends RequestBase {
 	private final String index;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PauseFollowRequest(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.masterTimeout = builder.masterTimeout;
 
 	}
 
@@ -91,6 +95,16 @@ public class PauseFollowRequest extends RequestBase {
 		return this.index;
 	}
 
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -102,6 +116,9 @@ public class PauseFollowRequest extends RequestBase {
 				ObjectBuilder<PauseFollowRequest> {
 		private String index;
 
+		@Nullable
+		private Time masterTimeout;
+
 		/**
 		 * Required - The name of the follower index that should pause following its
 		 * leader index.
@@ -111,6 +128,25 @@ public class PauseFollowRequest extends RequestBase {
 		public final Builder index(String value) {
 			this.index = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -182,7 +218,11 @@ public class PauseFollowRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, PauseFollowResponse._DESERIALIZER);
 }

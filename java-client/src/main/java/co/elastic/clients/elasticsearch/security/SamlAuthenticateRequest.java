@@ -59,7 +59,28 @@ import javax.annotation.Nullable;
 /**
  * Authenticate SAML.
  * <p>
- * Submits a SAML response message to Elasticsearch for consumption.
+ * Submit a SAML response message to Elasticsearch for consumption.
+ * <p>
+ * NOTE: This API is intended for use by custom web applications other than
+ * Kibana. If you are using Kibana, refer to the documentation for configuring
+ * SAML single-sign-on on the Elastic Stack.
+ * <p>
+ * The SAML message that is submitted can be:
+ * <ul>
+ * <li>A response to a SAML authentication request that was previously created
+ * using the SAML prepare authentication API.</li>
+ * <li>An unsolicited SAML message in the case of an IdP-initiated single
+ * sign-on (SSO) flow.</li>
+ * </ul>
+ * <p>
+ * In either case, the SAML message needs to be a base64 encoded XML document
+ * with a root element of <code>&lt;Response&gt;</code>.
+ * <p>
+ * After successful validation, Elasticsearch responds with an Elasticsearch
+ * internal access token and refresh token that can be subsequently used for
+ * authentication. This API endpoint essentially exchanges SAML responses that
+ * indicate successful authentication in the IdP for Elasticsearch access and
+ * refresh tokens, which can be used for authentication against Elasticsearch.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.saml_authenticate.Request">API
@@ -89,7 +110,7 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - The SAML response as it was sent by the user’s browser, usually a
+	 * Required - The SAML response as it was sent by the user's browser, usually a
 	 * Base64 encoded XML document.
 	 * <p>
 	 * API name: {@code content}
@@ -99,7 +120,7 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Required - A json array with all the valid SAML Request Ids that the caller
+	 * Required - A JSON array with all the valid SAML Request Ids that the caller
 	 * of the API has for the current user.
 	 * <p>
 	 * API name: {@code ids}
@@ -168,7 +189,7 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 		private String realm;
 
 		/**
-		 * Required - The SAML response as it was sent by the user’s browser, usually a
+		 * Required - The SAML response as it was sent by the user's browser, usually a
 		 * Base64 encoded XML document.
 		 * <p>
 		 * API name: {@code content}
@@ -179,7 +200,7 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Required - A json array with all the valid SAML Request Ids that the caller
+		 * Required - A JSON array with all the valid SAML Request Ids that the caller
 		 * of the API has for the current user.
 		 * <p>
 		 * API name: {@code ids}
@@ -192,7 +213,7 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Required - A json array with all the valid SAML Request Ids that the caller
+		 * Required - A JSON array with all the valid SAML Request Ids that the caller
 		 * of the API has for the current user.
 		 * <p>
 		 * API name: {@code ids}

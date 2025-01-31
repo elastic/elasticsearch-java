@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: nodes.info.Request
 
 /**
- * Get node information. By default, the API returns all attributes and core
- * settings for cluster nodes.
+ * Get node information.
+ * <p>
+ * By default, the API returns all attributes and core settings for cluster
+ * nodes.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.info.Request">API
  *      specification</a>
@@ -69,9 +71,6 @@ import javax.annotation.Nullable;
 public class NodesInfoRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
-
-	@Nullable
-	private final Time masterTimeout;
 
 	private final List<String> metric;
 
@@ -85,7 +84,6 @@ public class NodesInfoRequest extends RequestBase {
 	private NodesInfoRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
-		this.masterTimeout = builder.masterTimeout;
 		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
@@ -104,17 +102,6 @@ public class NodesInfoRequest extends RequestBase {
 	@Nullable
 	public final Boolean flatSettings() {
 		return this.flatSettings;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -160,9 +147,6 @@ public class NodesInfoRequest extends RequestBase {
 		private Boolean flatSettings;
 
 		@Nullable
-		private Time masterTimeout;
-
-		@Nullable
 		private List<String> metric;
 
 		@Nullable
@@ -179,27 +163,6 @@ public class NodesInfoRequest extends RequestBase {
 		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -384,9 +347,6 @@ public class NodesInfoRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}

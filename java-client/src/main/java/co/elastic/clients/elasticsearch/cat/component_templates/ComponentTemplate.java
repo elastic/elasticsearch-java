@@ -62,6 +62,7 @@ import javax.annotation.Nullable;
 public class ComponentTemplate implements JsonpSerializable {
 	private final String name;
 
+	@Nullable
 	private final String version;
 
 	private final String aliasCount;
@@ -79,7 +80,7 @@ public class ComponentTemplate implements JsonpSerializable {
 	private ComponentTemplate(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = builder.version;
 		this.aliasCount = ApiTypeHelper.requireNonNull(builder.aliasCount, this, "aliasCount");
 		this.mappingCount = ApiTypeHelper.requireNonNull(builder.mappingCount, this, "mappingCount");
 		this.settingsCount = ApiTypeHelper.requireNonNull(builder.settingsCount, this, "settingsCount");
@@ -100,8 +101,9 @@ public class ComponentTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
+	@Nullable
 	public final String version() {
 		return this.version;
 	}
@@ -155,9 +157,11 @@ public class ComponentTemplate implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
+		}
 		generator.writeKey("alias_count");
 		generator.write(this.aliasCount);
 
@@ -189,6 +193,7 @@ public class ComponentTemplate implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ComponentTemplate> {
 		private String name;
 
+		@Nullable
 		private String version;
 
 		private String aliasCount;
@@ -210,9 +215,9 @@ public class ComponentTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public final Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}

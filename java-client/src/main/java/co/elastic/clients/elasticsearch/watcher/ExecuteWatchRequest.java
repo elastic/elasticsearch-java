@@ -72,6 +72,15 @@ import javax.annotation.Nullable;
  * You can use the run watch API to run watches that are not yet registered by
  * specifying the watch definition inline. This serves as great tool for testing
  * and debugging your watches prior to adding them to Watcher.
+ * <p>
+ * When Elasticsearch security features are enabled on your cluster, watches are
+ * run with the privileges of the user that stored the watches. If your user is
+ * allowed to read index <code>a</code>, but not index <code>b</code>, then the
+ * exact same set of rules will apply during execution of a watch.
+ * <p>
+ * When using the run watch API, the authorization data of the user that called
+ * the API will be used as a base, instead of the information who stored the
+ * watch.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.execute_watch.Request">API
  *      specification</a>
@@ -153,7 +162,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Identifier for the watch.
+	 * The watch identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -177,8 +186,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	 * When set to <code>true</code>, the watch record representing the watch
 	 * execution result is persisted to the <code>.watcher-history</code> index for
 	 * the current time. In addition, the status of the watch is updated, possibly
-	 * throttling subsequent executions. This can also be specified as an HTTP
-	 * parameter.
+	 * throttling subsequent runs. This can also be specified as an HTTP parameter.
 	 * <p>
 	 * API name: {@code record_execution}
 	 */
@@ -197,7 +205,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * This structure is parsed as the data of the trigger event that will be used
-	 * during the watch execution
+	 * during the watch execution.
 	 * <p>
 	 * API name: {@code trigger_data}
 	 */
@@ -208,7 +216,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * When present, this watch is used instead of the one specified in the request.
-	 * This watch is not persisted to the index and record_execution cannot be set.
+	 * This watch is not persisted to the index and <code>record_execution</code>
+	 * cannot be set.
 	 * <p>
 	 * API name: {@code watch}
 	 */
@@ -374,7 +383,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Identifier for the watch.
+		 * The watch identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -398,8 +407,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		 * When set to <code>true</code>, the watch record representing the watch
 		 * execution result is persisted to the <code>.watcher-history</code> index for
 		 * the current time. In addition, the status of the watch is updated, possibly
-		 * throttling subsequent executions. This can also be specified as an HTTP
-		 * parameter.
+		 * throttling subsequent runs. This can also be specified as an HTTP parameter.
 		 * <p>
 		 * API name: {@code record_execution}
 		 */
@@ -425,7 +433,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * This structure is parsed as the data of the trigger event that will be used
-		 * during the watch execution
+		 * during the watch execution.
 		 * <p>
 		 * API name: {@code trigger_data}
 		 */
@@ -436,7 +444,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * This structure is parsed as the data of the trigger event that will be used
-		 * during the watch execution
+		 * during the watch execution.
 		 * <p>
 		 * API name: {@code trigger_data}
 		 */
@@ -447,7 +455,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * When present, this watch is used instead of the one specified in the request.
-		 * This watch is not persisted to the index and record_execution cannot be set.
+		 * This watch is not persisted to the index and <code>record_execution</code>
+		 * cannot be set.
 		 * <p>
 		 * API name: {@code watch}
 		 */
@@ -458,7 +467,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * When present, this watch is used instead of the one specified in the request.
-		 * This watch is not persisted to the index and record_execution cannot be set.
+		 * This watch is not persisted to the index and <code>record_execution</code>
+		 * cannot be set.
 		 * <p>
 		 * API name: {@code watch}
 		 */

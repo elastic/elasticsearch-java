@@ -85,7 +85,8 @@ public class StartIlmRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -95,7 +96,8 @@ public class StartIlmRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -118,7 +120,8 @@ public class StartIlmRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -128,7 +131,8 @@ public class StartIlmRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -137,7 +141,8 @@ public class StartIlmRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -147,7 +152,8 @@ public class StartIlmRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

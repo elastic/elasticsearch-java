@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -59,11 +60,13 @@ import javax.annotation.Nullable;
 // typedef: license.post.Request
 
 /**
- * Update the license. You can update your license at runtime without shutting
- * down your nodes. License updates take effect immediately. If the license you
- * are installing does not support all of the features that were available with
- * your previous license, however, you are notified in the response. You must
- * then re-submit the API request with the acknowledge parameter set to true.
+ * Update the license.
+ * <p>
+ * You can update your license at runtime without shutting down your nodes.
+ * License updates take effect immediately. If the license you are installing
+ * does not support all of the features that were available with your previous
+ * license, however, you are notified in the response. You must then re-submit
+ * the API request with the acknowledge parameter set to true.
  * <p>
  * NOTE: If Elasticsearch security features are enabled and you are installing a
  * gold or higher license, you must enable TLS on the transport networking layer
@@ -83,6 +86,12 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<License> licenses;
 
+	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PostRequest(Builder builder) {
@@ -90,6 +99,8 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
 		this.licenses = ApiTypeHelper.unmodifiable(builder.licenses);
+		this.masterTimeout = builder.masterTimeout;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -122,6 +133,27 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<License> licenses() {
 		return this.licenses;
+	}
+
+	/**
+	 * The period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -168,6 +200,12 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<License> licenses;
+
+		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Specifies whether you acknowledge the license changes.
@@ -227,6 +265,46 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder licenses(Function<License.Builder, ObjectBuilder<License>> fn) {
 			return licenses(fn.apply(new License.Builder()).build());
+		}
+
+		/**
+		 * The period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -290,8 +368,14 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.acknowledge != null) {
 					params.put("acknowledge", String.valueOf(request.acknowledge));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -59,6 +59,16 @@ import javax.annotation.Nullable;
  * Throttle a reindex operation.
  * <p>
  * Change the number of requests per second for a particular reindex operation.
+ * For example:
+ * 
+ * <pre>
+ * <code>POST _reindex/r1A2WoRbTwKZ516z6NEs5A:36619/_rethrottle?requests_per_second=-1
+ * </code>
+ * </pre>
+ * <p>
+ * Rethrottling that speeds up the query takes effect immediately. Rethrottling
+ * that slows down the query will take effect after completing the current
+ * batch. This behavior prevents scroll timeouts.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.reindex_rethrottle.Request">API
@@ -85,7 +95,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second.
+	 * The throttle for this request in sub-requests per second. It can be either
+	 * <code>-1</code> to turn off throttling or any decimal number like
+	 * <code>1.7</code> or <code>12</code> to throttle to that level.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -95,7 +107,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier for the task.
+	 * Required - The task identifier, which can be found by using the tasks API.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -118,7 +130,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 		private String taskId;
 
 		/**
-		 * The throttle for this request in sub-requests per second.
+		 * The throttle for this request in sub-requests per second. It can be either
+		 * <code>-1</code> to turn off throttling or any decimal number like
+		 * <code>1.7</code> or <code>12</code> to throttle to that level.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
@@ -128,7 +142,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Identifier for the task.
+		 * Required - The task identifier, which can be found by using the tasks API.
 		 * <p>
 		 * API name: {@code task_id}
 		 */

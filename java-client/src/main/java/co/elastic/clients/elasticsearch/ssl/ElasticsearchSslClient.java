@@ -98,7 +98,7 @@ public class ElasticsearchSslClient extends ApiClient<ElasticsearchTransport, El
 	 * certificates might not be in active use within the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-ssl.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CertificatesResponse certificates() throws IOException, ElasticsearchException {

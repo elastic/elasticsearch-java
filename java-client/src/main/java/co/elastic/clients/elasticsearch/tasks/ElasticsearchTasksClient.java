@@ -68,13 +68,18 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: tasks.cancel
 
 	/**
-	 * Cancel a task. A task may continue to run for some time after it has been
-	 * cancelled because it may not be able to safely stop its current activity
-	 * straight away. It is also possible that Elasticsearch must complete its work
-	 * on other tasks before it can process the cancellation. The get task
-	 * information API will continue to list these cancelled tasks until they
-	 * complete. The cancelled flag in the response indicates that the cancellation
-	 * command has been processed and the task will stop as soon as possible.
+	 * Cancel a task.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * A task may continue to run for some time after it has been cancelled because
+	 * it may not be able to safely stop its current activity straight away. It is
+	 * also possible that Elasticsearch must complete its work on other tasks before
+	 * it can process the cancellation. The get task information API will continue
+	 * to list these cancelled tasks until they complete. The cancelled flag in the
+	 * response indicates that the cancellation command has been processed and the
+	 * task will stop as soon as possible.
 	 * <p>
 	 * To troubleshoot why a cancelled task does not complete promptly, use the get
 	 * task information API with the <code>?detailed</code> parameter to identify
@@ -95,13 +100,18 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Cancel a task. A task may continue to run for some time after it has been
-	 * cancelled because it may not be able to safely stop its current activity
-	 * straight away. It is also possible that Elasticsearch must complete its work
-	 * on other tasks before it can process the cancellation. The get task
-	 * information API will continue to list these cancelled tasks until they
-	 * complete. The cancelled flag in the response indicates that the cancellation
-	 * command has been processed and the task will stop as soon as possible.
+	 * Cancel a task.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * A task may continue to run for some time after it has been cancelled because
+	 * it may not be able to safely stop its current activity straight away. It is
+	 * also possible that Elasticsearch must complete its work on other tasks before
+	 * it can process the cancellation. The get task information API will continue
+	 * to list these cancelled tasks until they complete. The cancelled flag in the
+	 * response indicates that the cancellation command has been processed and the
+	 * task will stop as soon as possible.
 	 * <p>
 	 * To troubleshoot why a cancelled task does not complete promptly, use the get
 	 * task information API with the <code>?detailed</code> parameter to identify
@@ -123,13 +133,18 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Cancel a task. A task may continue to run for some time after it has been
-	 * cancelled because it may not be able to safely stop its current activity
-	 * straight away. It is also possible that Elasticsearch must complete its work
-	 * on other tasks before it can process the cancellation. The get task
-	 * information API will continue to list these cancelled tasks until they
-	 * complete. The cancelled flag in the response indicates that the cancellation
-	 * command has been processed and the task will stop as soon as possible.
+	 * Cancel a task.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * A task may continue to run for some time after it has been cancelled because
+	 * it may not be able to safely stop its current activity straight away. It is
+	 * also possible that Elasticsearch must complete its work on other tasks before
+	 * it can process the cancellation. The get task information API will continue
+	 * to list these cancelled tasks until they complete. The cancelled flag in the
+	 * response indicates that the cancellation command has been processed and the
+	 * task will stop as soon as possible.
 	 * <p>
 	 * To troubleshoot why a cancelled task does not complete promptly, use the get
 	 * task information API with the <code>?detailed</code> parameter to identify
@@ -152,6 +167,12 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	/**
 	 * Get task information. Get information about a task currently running in the
 	 * cluster.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * If the task identifier is not found, a 404 response code indicates that there
+	 * are no resources that match the request.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/tasks.html">Documentation
@@ -168,6 +189,12 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	/**
 	 * Get task information. Get information about a task currently running in the
 	 * cluster.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * If the task identifier is not found, a 404 response code indicates that there
+	 * are no resources that match the request.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -187,6 +214,70 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	/**
 	 * Get all tasks. Get information about the tasks currently running on one or
 	 * more nodes in the cluster.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * <strong>Identifying running tasks</strong>
+	 * <p>
+	 * The <code>X-Opaque-Id header</code>, when provided on the HTTP request
+	 * header, is going to be returned as a header in the response as well as in the
+	 * headers field for in the task information. This enables you to track certain
+	 * calls or associate certain tasks with the client that started them. For
+	 * example:
+	 * 
+	 * <pre>
+	 * <code>curl -i -H &quot;X-Opaque-Id: 123456&quot; &quot;http://localhost:9200/_tasks?group_by=parents&quot;
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The API returns the following result:
+	 * 
+	 * <pre>
+	 * <code>HTTP/1.1 200 OK
+	 * X-Opaque-Id: 123456
+	 * content-type: application/json; charset=UTF-8
+	 * content-length: 831
+	 *
+	 * {
+	 *   &quot;tasks&quot; : {
+	 *     &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot; : {
+	 *       &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+	 *       &quot;id&quot; : 45,
+	 *       &quot;type&quot; : &quot;transport&quot;,
+	 *       &quot;action&quot; : &quot;cluster:monitor/tasks/lists&quot;,
+	 *       &quot;start_time_in_millis&quot; : 1513823752749,
+	 *       &quot;running_time_in_nanos&quot; : 293139,
+	 *       &quot;cancellable&quot; : false,
+	 *       &quot;headers&quot; : {
+	 *         &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+	 *       },
+	 *       &quot;children&quot; : [
+	 *         {
+	 *           &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+	 *           &quot;id&quot; : 46,
+	 *           &quot;type&quot; : &quot;direct&quot;,
+	 *           &quot;action&quot; : &quot;cluster:monitor/tasks/lists[n]&quot;,
+	 *           &quot;start_time_in_millis&quot; : 1513823752750,
+	 *           &quot;running_time_in_nanos&quot; : 92133,
+	 *           &quot;cancellable&quot; : false,
+	 *           &quot;parent_task_id&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot;,
+	 *           &quot;headers&quot; : {
+	 *             &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+	 *           }
+	 *         }
+	 *       ]
+	 *     }
+	 *   }
+	 *  }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * In this example, <code>X-Opaque-Id: 123456</code> is the ID as a part of the
+	 * response header. The <code>X-Opaque-Id</code> in the task
+	 * <code>headers</code> is the ID for the task that was initiated by the REST
+	 * request. The <code>X-Opaque-Id</code> in the children <code>headers</code> is
+	 * the child task of the task that was initiated by the REST request.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/tasks.html">Documentation
@@ -203,6 +294,70 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	/**
 	 * Get all tasks. Get information about the tasks currently running on one or
 	 * more nodes in the cluster.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * <strong>Identifying running tasks</strong>
+	 * <p>
+	 * The <code>X-Opaque-Id header</code>, when provided on the HTTP request
+	 * header, is going to be returned as a header in the response as well as in the
+	 * headers field for in the task information. This enables you to track certain
+	 * calls or associate certain tasks with the client that started them. For
+	 * example:
+	 * 
+	 * <pre>
+	 * <code>curl -i -H &quot;X-Opaque-Id: 123456&quot; &quot;http://localhost:9200/_tasks?group_by=parents&quot;
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The API returns the following result:
+	 * 
+	 * <pre>
+	 * <code>HTTP/1.1 200 OK
+	 * X-Opaque-Id: 123456
+	 * content-type: application/json; charset=UTF-8
+	 * content-length: 831
+	 *
+	 * {
+	 *   &quot;tasks&quot; : {
+	 *     &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot; : {
+	 *       &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+	 *       &quot;id&quot; : 45,
+	 *       &quot;type&quot; : &quot;transport&quot;,
+	 *       &quot;action&quot; : &quot;cluster:monitor/tasks/lists&quot;,
+	 *       &quot;start_time_in_millis&quot; : 1513823752749,
+	 *       &quot;running_time_in_nanos&quot; : 293139,
+	 *       &quot;cancellable&quot; : false,
+	 *       &quot;headers&quot; : {
+	 *         &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+	 *       },
+	 *       &quot;children&quot; : [
+	 *         {
+	 *           &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+	 *           &quot;id&quot; : 46,
+	 *           &quot;type&quot; : &quot;direct&quot;,
+	 *           &quot;action&quot; : &quot;cluster:monitor/tasks/lists[n]&quot;,
+	 *           &quot;start_time_in_millis&quot; : 1513823752750,
+	 *           &quot;running_time_in_nanos&quot; : 92133,
+	 *           &quot;cancellable&quot; : false,
+	 *           &quot;parent_task_id&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot;,
+	 *           &quot;headers&quot; : {
+	 *             &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+	 *           }
+	 *         }
+	 *       ]
+	 *     }
+	 *   }
+	 *  }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * In this example, <code>X-Opaque-Id: 123456</code> is the ID as a part of the
+	 * response header. The <code>X-Opaque-Id</code> in the task
+	 * <code>headers</code> is the ID for the task that was initiated by the REST
+	 * request. The <code>X-Opaque-Id</code> in the children <code>headers</code> is
+	 * the child task of the task that was initiated by the REST request.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -220,6 +375,70 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	/**
 	 * Get all tasks. Get information about the tasks currently running on one or
 	 * more nodes in the cluster.
+	 * <p>
+	 * WARNING: The task management API is new and should still be considered a beta
+	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * <strong>Identifying running tasks</strong>
+	 * <p>
+	 * The <code>X-Opaque-Id header</code>, when provided on the HTTP request
+	 * header, is going to be returned as a header in the response as well as in the
+	 * headers field for in the task information. This enables you to track certain
+	 * calls or associate certain tasks with the client that started them. For
+	 * example:
+	 * 
+	 * <pre>
+	 * <code>curl -i -H &quot;X-Opaque-Id: 123456&quot; &quot;http://localhost:9200/_tasks?group_by=parents&quot;
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * The API returns the following result:
+	 * 
+	 * <pre>
+	 * <code>HTTP/1.1 200 OK
+	 * X-Opaque-Id: 123456
+	 * content-type: application/json; charset=UTF-8
+	 * content-length: 831
+	 *
+	 * {
+	 *   &quot;tasks&quot; : {
+	 *     &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot; : {
+	 *       &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+	 *       &quot;id&quot; : 45,
+	 *       &quot;type&quot; : &quot;transport&quot;,
+	 *       &quot;action&quot; : &quot;cluster:monitor/tasks/lists&quot;,
+	 *       &quot;start_time_in_millis&quot; : 1513823752749,
+	 *       &quot;running_time_in_nanos&quot; : 293139,
+	 *       &quot;cancellable&quot; : false,
+	 *       &quot;headers&quot; : {
+	 *         &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+	 *       },
+	 *       &quot;children&quot; : [
+	 *         {
+	 *           &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+	 *           &quot;id&quot; : 46,
+	 *           &quot;type&quot; : &quot;direct&quot;,
+	 *           &quot;action&quot; : &quot;cluster:monitor/tasks/lists[n]&quot;,
+	 *           &quot;start_time_in_millis&quot; : 1513823752750,
+	 *           &quot;running_time_in_nanos&quot; : 92133,
+	 *           &quot;cancellable&quot; : false,
+	 *           &quot;parent_task_id&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot;,
+	 *           &quot;headers&quot; : {
+	 *             &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+	 *           }
+	 *         }
+	 *       ]
+	 *     }
+	 *   }
+	 *  }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * In this example, <code>X-Opaque-Id: 123456</code> is the ID as a part of the
+	 * response header. The <code>X-Opaque-Id</code> in the task
+	 * <code>headers</code> is the ID for the task that was initiated by the REST
+	 * request. The <code>X-Opaque-Id</code> in the children <code>headers</code> is
+	 * the child task of the task that was initiated by the REST request.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/tasks.html">Documentation

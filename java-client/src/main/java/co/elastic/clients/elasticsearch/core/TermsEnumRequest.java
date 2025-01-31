@@ -64,19 +64,16 @@ import javax.annotation.Nullable;
 /**
  * Get terms in an index.
  * <p>
- * Discover terms that match a partial string in an index. This &quot;terms
- * enum&quot; API is designed for low-latency look-ups used in auto-complete
- * scenarios.
+ * Discover terms that match a partial string in an index. This API is designed
+ * for low-latency look-ups used in auto-complete scenarios. <blockquote>
  * <p>
- * If the <code>complete</code> property in the response is false, the returned
- * terms set may be incomplete and should be treated as approximate. This can
- * occur due to a few reasons, such as a request timeout or a node error.
- * <p>
- * NOTE: The terms enum API may return terms from deleted documents. Deleted
+ * info The terms enum API may return terms from deleted documents. Deleted
  * documents are initially only marked as deleted. It is not until their
  * segments are merged that documents are actually deleted. Until that happens,
  * the terms enum API will return terms from these documents.
- * 
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="../doc-files/api-spec.html#_global.terms_enum.Request">API
  *      specification</a>
  */
@@ -124,8 +121,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * When true the provided search string is matched against index terms without
-	 * case sensitivity.
+	 * When <code>true</code>, the provided search string is matched against index
+	 * terms without case sensitivity.
 	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
@@ -145,8 +142,10 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Comma-separated list of data streams, indices, and index aliases
-	 * to search. Wildcard (*) expressions are supported.
+	 * Required - A comma-separated list of data streams, indices, and index aliases
+	 * to search. Wildcard (<code>*</code>) expressions are supported. To search all
+	 * data streams or indices, omit this parameter or use <code>*</code> or
+	 * <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -155,7 +154,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Allows to filter an index shard if the provided query rewrites to match_none.
+	 * Filter an index shard if the provided query rewrites to
+	 * <code>match_none</code>.
 	 * <p>
 	 * API name: {@code index_filter}
 	 */
@@ -165,6 +165,10 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The string after which terms in the index should be returned. It allows for a
+	 * form of pagination if the last result from one request is passed as the
+	 * <code>search_after</code> parameter for a subsequent request.
+	 * <p>
 	 * API name: {@code search_after}
 	 */
 	@Nullable
@@ -173,7 +177,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * How many matching terms to return.
+	 * The number of matching terms to return.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -183,9 +187,13 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The string after which terms in the index should be returned. Allows for a
-	 * form of pagination if the last result from one request is passed as the
-	 * search_after parameter for a subsequent request.
+	 * The string to match at the start of indexed terms. If it is not provided, all
+	 * terms in the field are considered. <blockquote>
+	 * <p>
+	 * info The prefix string cannot be larger than the largest possible keyword
+	 * value, which is Lucene's term byte-length limit of 32766.
+	 * </p>
+	 * </blockquote>
 	 * <p>
 	 * API name: {@code string}
 	 */
@@ -195,9 +203,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum length of time to spend collecting results. Defaults to
-	 * &quot;1s&quot; (one second). If the timeout is exceeded the complete flag set
-	 * to false in the response and the results may be partial or empty.
+	 * The maximum length of time to spend collecting results. If the timeout is
+	 * exceeded the <code>complete</code> flag set to <code>false</code> in the
+	 * response and the results may be partial or empty.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -285,8 +293,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
-		 * When true the provided search string is matched against index terms without
-		 * case sensitivity.
+		 * When <code>true</code>, the provided search string is matched against index
+		 * terms without case sensitivity.
 		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
@@ -307,8 +315,10 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and index aliases
-		 * to search. Wildcard (*) expressions are supported.
+		 * Required - A comma-separated list of data streams, indices, and index aliases
+		 * to search. Wildcard (<code>*</code>) expressions are supported. To search all
+		 * data streams or indices, omit this parameter or use <code>*</code> or
+		 * <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -318,7 +328,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Allows to filter an index shard if the provided query rewrites to match_none.
+		 * Filter an index shard if the provided query rewrites to
+		 * <code>match_none</code>.
 		 * <p>
 		 * API name: {@code index_filter}
 		 */
@@ -328,7 +339,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Allows to filter an index shard if the provided query rewrites to match_none.
+		 * Filter an index shard if the provided query rewrites to
+		 * <code>match_none</code>.
 		 * <p>
 		 * API name: {@code index_filter}
 		 */
@@ -337,6 +349,10 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The string after which terms in the index should be returned. It allows for a
+		 * form of pagination if the last result from one request is passed as the
+		 * <code>search_after</code> parameter for a subsequent request.
+		 * <p>
 		 * API name: {@code search_after}
 		 */
 		public final Builder searchAfter(@Nullable String value) {
@@ -345,7 +361,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * How many matching terms to return.
+		 * The number of matching terms to return.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -355,9 +371,13 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The string after which terms in the index should be returned. Allows for a
-		 * form of pagination if the last result from one request is passed as the
-		 * search_after parameter for a subsequent request.
+		 * The string to match at the start of indexed terms. If it is not provided, all
+		 * terms in the field are considered. <blockquote>
+		 * <p>
+		 * info The prefix string cannot be larger than the largest possible keyword
+		 * value, which is Lucene's term byte-length limit of 32766.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code string}
 		 */
@@ -367,9 +387,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum length of time to spend collecting results. Defaults to
-		 * &quot;1s&quot; (one second). If the timeout is exceeded the complete flag set
-		 * to false in the response and the results may be partial or empty.
+		 * The maximum length of time to spend collecting results. If the timeout is
+		 * exceeded the <code>complete</code> flag set to <code>false</code> in the
+		 * response and the results may be partial or empty.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -379,9 +399,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum length of time to spend collecting results. Defaults to
-		 * &quot;1s&quot; (one second). If the timeout is exceeded the complete flag set
-		 * to false in the response and the results may be partial or empty.
+		 * The maximum length of time to spend collecting results. If the timeout is
+		 * exceeded the <code>complete</code> flag set to <code>false</code> in the
+		 * response and the results may be partial or empty.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

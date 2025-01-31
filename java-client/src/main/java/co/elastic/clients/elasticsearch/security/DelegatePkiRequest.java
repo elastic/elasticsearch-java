@@ -57,14 +57,15 @@ import javax.annotation.Nullable;
 // typedef: security.delegate_pki.Request
 
 /**
- * Delegate PKI authentication. This API implements the exchange of an
- * X509Certificate chain for an Elasticsearch access token. The certificate
- * chain is validated, according to RFC 5280, by sequentially considering the
- * trust configuration of every installed PKI realm that has
- * <code>delegation.enabled</code> set to <code>true</code>. A successfully
- * trusted client certificate is also subject to the validation of the subject
- * distinguished name according to thw <code>username_pattern</code> of the
- * respective realm.
+ * Delegate PKI authentication.
+ * <p>
+ * This API implements the exchange of an X509Certificate chain for an
+ * Elasticsearch access token. The certificate chain is validated, according to
+ * RFC 5280, by sequentially considering the trust configuration of every
+ * installed PKI realm that has <code>delegation.enabled</code> set to
+ * <code>true</code>. A successfully trusted client certificate is also subject
+ * to the validation of the subject distinguished name according to thw
+ * <code>username_pattern</code> of the respective realm.
  * <p>
  * This API is called by smart and trusted proxies, such as Kibana, which
  * terminate the user's TLS session but still want to authenticate the user by

@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -67,12 +68,16 @@ import javax.annotation.Nullable;
 
 public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final Boolean waitForRemoval;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteVotingConfigExclusionsRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.waitForRemoval = builder.waitForRemoval;
 
 	}
@@ -80,6 +85,16 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	public static DeleteVotingConfigExclusionsRequest of(
 			Function<Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -107,7 +122,29 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 			implements
 				ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private Boolean waitForRemoval;
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Specifies whether to wait for all excluded nodes to be removed from the
@@ -170,6 +207,9 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.waitForRemoval != null) {
 					params.put("wait_for_removal", String.valueOf(request.waitForRemoval));
 				}

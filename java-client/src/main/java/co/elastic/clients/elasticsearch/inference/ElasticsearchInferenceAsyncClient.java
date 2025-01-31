@@ -73,7 +73,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * Delete an inference endpoint
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,7 +91,7 @@ public class ElasticsearchInferenceAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteInferenceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -106,7 +106,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * Get an inference endpoint
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -124,7 +124,7 @@ public class ElasticsearchInferenceAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetInferenceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,7 +137,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * Get an inference endpoint
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -149,10 +149,27 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.inference
 
 	/**
-	 * Perform inference on the service
-	 * 
+	 * Perform inference on the service.
+	 * <p>
+	 * This API enables you to use machine learning models to perform specific tasks
+	 * on data that you provide as an input. It returns a response with the results
+	 * of the tasks. The inference endpoint you use can perform one specific task
+	 * that has been defined when the endpoint was created with the create inference
+	 * API. <blockquote>
+	 * <p>
+	 * info The inference APIs enable you to use certain services, such as built-in
+	 * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+	 * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+	 * Hugging Face. For built-in models and models uploaded through Eland, the
+	 * inference APIs offer an alternative way to use and manage trained models.
+	 * However, if you do not plan to use the inference APIs to use these models or
+	 * if you want to use non-NLP models, use the machine learning trained model
+	 * APIs.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/post-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/post-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -164,13 +181,30 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform inference on the service
-	 * 
+	 * Perform inference on the service.
+	 * <p>
+	 * This API enables you to use machine learning models to perform specific tasks
+	 * on data that you provide as an input. It returns a response with the results
+	 * of the tasks. The inference endpoint you use can perform one specific task
+	 * that has been defined when the endpoint was created with the create inference
+	 * API. <blockquote>
+	 * <p>
+	 * info The inference APIs enable you to use certain services, such as built-in
+	 * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+	 * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+	 * Hugging Face. For built-in models and models uploaded through Eland, the
+	 * inference APIs offer an alternative way to use and manage trained models.
+	 * However, if you do not plan to use the inference APIs to use these models or
+	 * if you want to use non-NLP models, use the machine learning trained model
+	 * APIs.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link InferenceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/post-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/post-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -203,7 +237,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * machine learning trained model APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -239,12 +273,73 @@ public class ElasticsearchInferenceAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-inference-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutResponse> put(Function<PutRequest.Builder, ObjectBuilder<PutRequest>> fn) {
 		return put(fn.apply(new PutRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.update
+
+	/**
+	 * Update an inference endpoint.
+	 * <p>
+	 * Modify <code>task_settings</code>, secrets (within
+	 * <code>service_settings</code>), or <code>num_allocations</code> for an
+	 * inference endpoint, depending on the specific endpoint service and
+	 * <code>task_type</code>.
+	 * <p>
+	 * IMPORTANT: The inference APIs enable you to use certain services, such as
+	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
+	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
+	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
+	 * Eland, the inference APIs offer an alternative way to use and manage trained
+	 * models. However, if you do not plan to use the inference APIs to use these
+	 * models or if you want to use non-NLP models, use the machine learning trained
+	 * model APIs.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateInferenceResponse> update(UpdateInferenceRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateInferenceRequest, UpdateInferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateInferenceRequest, UpdateInferenceResponse, ErrorResponse>) UpdateInferenceRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update an inference endpoint.
+	 * <p>
+	 * Modify <code>task_settings</code>, secrets (within
+	 * <code>service_settings</code>), or <code>num_allocations</code> for an
+	 * inference endpoint, depending on the specific endpoint service and
+	 * <code>task_type</code>.
+	 * <p>
+	 * IMPORTANT: The inference APIs enable you to use certain services, such as
+	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
+	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
+	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
+	 * Eland, the inference APIs offer an alternative way to use and manage trained
+	 * models. However, if you do not plan to use the inference APIs to use these
+	 * models or if you want to use non-NLP models, use the machine learning trained
+	 * model APIs.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateInferenceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<UpdateInferenceResponse> update(
+			Function<UpdateInferenceRequest.Builder, ObjectBuilder<UpdateInferenceRequest>> fn) {
+		return update(fn.apply(new UpdateInferenceRequest.Builder()).build());
 	}
 
 }

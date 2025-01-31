@@ -80,9 +80,6 @@ public class ExplainLifecycleRequest extends RequestBase {
 	@Nullable
 	private final Boolean onlyManaged;
 
-	@Nullable
-	private final Time timeout;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private ExplainLifecycleRequest(Builder builder) {
@@ -91,7 +88,6 @@ public class ExplainLifecycleRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.onlyErrors = builder.onlyErrors;
 		this.onlyManaged = builder.onlyManaged;
-		this.timeout = builder.timeout;
 
 	}
 
@@ -143,17 +139,6 @@ public class ExplainLifecycleRequest extends RequestBase {
 		return this.onlyManaged;
 	}
 
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -173,9 +158,6 @@ public class ExplainLifecycleRequest extends RequestBase {
 
 		@Nullable
 		private Boolean onlyManaged;
-
-		@Nullable
-		private Time timeout;
 
 		/**
 		 * Required - Comma-separated list of data streams, indices, and aliases to
@@ -230,27 +212,6 @@ public class ExplainLifecycleRequest extends RequestBase {
 		public final Builder onlyManaged(@Nullable Boolean value) {
 			this.onlyManaged = value;
 			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -331,9 +292,6 @@ public class ExplainLifecycleRequest extends RequestBase {
 				}
 				if (request.onlyManaged != null) {
 					params.put("only_managed", String.valueOf(request.onlyManaged));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -59,6 +59,26 @@ import javax.annotation.Nullable;
  * Activate a user profile.
  * <p>
  * Create or update a user profile on behalf of another user.
+ * <p>
+ * NOTE: The user profile feature is designed only for use by Kibana and
+ * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+ * Individual users and external applications should not call this API directly.
+ * The calling application must have either an <code>access_token</code> or a
+ * combination of <code>username</code> and <code>password</code> for the user
+ * that the profile document is intended for. Elastic reserves the right to
+ * change or remove this feature in future releases without prior notice.
+ * <p>
+ * This API creates or updates a profile document for end users with information
+ * that is extracted from the user's authentication object including
+ * <code>username</code>, <code>full_name,</code> <code>roles</code>, and the
+ * authentication realm. For example, in the JWT <code>access_token</code> case,
+ * the profile user's <code>username</code> is extracted from the JWT token
+ * claim pointed to by the <code>claims.principal</code> setting of the JWT
+ * realm that authenticated the token.
+ * <p>
+ * When updating a profile document, the API enables the document if it was
+ * disabled. Any updates do not change existing content for either the
+ * <code>labels</code> or <code>data</code> fields.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.activate_user_profile.Request">API
@@ -93,6 +113,12 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
+	 * The user's Elasticsearch access token or JWT. Both <code>access</code> and
+	 * <code>id</code> JWT token types are supported and they depend on the
+	 * underlying JWT realm configuration. If you specify the
+	 * <code>access_token</code> grant type, this parameter is required. It is not
+	 * valid with other grant types.
+	 * <p>
 	 * API name: {@code access_token}
 	 */
 	@Nullable
@@ -101,13 +127,18 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * Required - API name: {@code grant_type}
+	 * Required - The type of grant.
+	 * <p>
+	 * API name: {@code grant_type}
 	 */
 	public final GrantType grantType() {
 		return this.grantType;
 	}
 
 	/**
+	 * The user's password. If you specify the <code>password</code> grant type,
+	 * this parameter is required. It is not valid with other grant types.
+	 * <p>
 	 * API name: {@code password}
 	 */
 	@Nullable
@@ -116,6 +147,10 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
+	 * The username that identifies the user. If you specify the
+	 * <code>password</code> grant type, this parameter is required. It is not valid
+	 * with other grant types.
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -175,6 +210,12 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 		private String username;
 
 		/**
+		 * The user's Elasticsearch access token or JWT. Both <code>access</code> and
+		 * <code>id</code> JWT token types are supported and they depend on the
+		 * underlying JWT realm configuration. If you specify the
+		 * <code>access_token</code> grant type, this parameter is required. It is not
+		 * valid with other grant types.
+		 * <p>
 		 * API name: {@code access_token}
 		 */
 		public final Builder accessToken(@Nullable String value) {
@@ -183,7 +224,9 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Required - API name: {@code grant_type}
+		 * Required - The type of grant.
+		 * <p>
+		 * API name: {@code grant_type}
 		 */
 		public final Builder grantType(GrantType value) {
 			this.grantType = value;
@@ -191,6 +234,9 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
+		 * The user's password. If you specify the <code>password</code> grant type,
+		 * this parameter is required. It is not valid with other grant types.
+		 * <p>
 		 * API name: {@code password}
 		 */
 		public final Builder password(@Nullable String value) {
@@ -199,6 +245,10 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
+		 * The username that identifies the user. If you specify the
+		 * <code>password</code> grant type, this parameter is required. It is not valid
+		 * with other grant types.
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public final Builder username(@Nullable String value) {

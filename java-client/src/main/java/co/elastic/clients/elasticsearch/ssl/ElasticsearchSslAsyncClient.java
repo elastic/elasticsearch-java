@@ -97,7 +97,7 @@ public class ElasticsearchSslAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * certificates might not be in active use within the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-ssl.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<CertificatesResponse> certificates() {

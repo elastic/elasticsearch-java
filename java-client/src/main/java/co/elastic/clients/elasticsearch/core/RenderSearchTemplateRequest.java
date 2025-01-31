@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -104,8 +103,11 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * ID of the search template to render. If no <code>source</code> is specified,
-	 * this or the <code>id</code> request body parameter is required.
+	 * The ID of the search template to render. If no <code>source</code> is
+	 * specified, this or the <code>&lt;template-id&gt;</code> request path
+	 * parameter is required. If you specify both this parameter and the
+	 * <code>&lt;template-id&gt;</code> parameter, the API uses only
+	 * <code>&lt;template-id&gt;</code>.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -125,8 +127,8 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * An inline search template. Supports the same parameters as the search API's
-	 * request body. These parameters also support Mustache variables. If no
+	 * An inline search template. It supports the same parameters as the search
+	 * API's request body. These parameters also support Mustache variables. If no
 	 * <code>id</code> or <code>&lt;templated-id&gt;</code> is specified, this
 	 * parameter is required.
 	 * <p>
@@ -151,6 +153,11 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		if (this.file != null) {
 			generator.writeKey("file");
 			generator.write(this.file);
+
+		}
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
 
 		}
 		if (ApiTypeHelper.isDefined(this.params)) {
@@ -202,8 +209,11 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * ID of the search template to render. If no <code>source</code> is specified,
-		 * this or the <code>id</code> request body parameter is required.
+		 * The ID of the search template to render. If no <code>source</code> is
+		 * specified, this or the <code>&lt;template-id&gt;</code> request path
+		 * parameter is required. If you specify both this parameter and the
+		 * <code>&lt;template-id&gt;</code> parameter, the API uses only
+		 * <code>&lt;template-id&gt;</code>.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -239,8 +249,8 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * An inline search template. Supports the same parameters as the search API's
-		 * request body. These parameters also support Mustache variables. If no
+		 * An inline search template. It supports the same parameters as the search
+		 * API's request body. These parameters also support Mustache variables. If no
 		 * <code>id</code> or <code>&lt;templated-id&gt;</code> is specified, this
 		 * parameter is required.
 		 * <p>
@@ -281,6 +291,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 			ObjectDeserializer<RenderSearchTemplateRequest.Builder> op) {
 
 		op.add(Builder::file, JsonpDeserializer.stringDeserializer(), "file");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
@@ -302,47 +313,13 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= _id;
-
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_render");
-					buf.append("/template");
-					return buf.toString();
-				}
-				if (propsSet == (_id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_render");
-					buf.append("/template");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+				return "/_render/template";
 
 			},
 
 			// Path parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				final int _id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= _id;
-
-				if (propsSet == 0) {
-				}
-				if (propsSet == (_id)) {
-					params.put("id", request.id);
-				}
-				return params;
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

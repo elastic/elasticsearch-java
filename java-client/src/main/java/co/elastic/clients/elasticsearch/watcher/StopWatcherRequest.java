@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -30,7 +31,11 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -57,13 +62,85 @@ import java.util.Objects;
  */
 
 public class StopWatcherRequest extends RequestBase {
-	public StopWatcherRequest() {
+	@Nullable
+	private final Time masterTimeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private StopWatcherRequest(Builder builder) {
+
+		this.masterTimeout = builder.masterTimeout;
+
+	}
+
+	public static StopWatcherRequest of(Function<Builder, ObjectBuilder<StopWatcherRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link StopWatcherRequest}.
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
+	 * <p>
+	 * API name: {@code master_timeout}
 	 */
-	public static final StopWatcherRequest _INSTANCE = new StopWatcherRequest();
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link StopWatcherRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<StopWatcherRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		/**
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link StopWatcherRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public StopWatcherRequest build() {
+			_checkSingleUse();
+
+			return new StopWatcherRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,7 +169,11 @@ public class StopWatcherRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, StopWatcherResponse._DESERIALIZER);
 }

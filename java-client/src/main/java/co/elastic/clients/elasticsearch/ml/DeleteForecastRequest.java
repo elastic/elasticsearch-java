@@ -57,10 +57,12 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_forecast.Request
 
 /**
- * Delete forecasts from a job. By default, forecasts are retained for 14 days.
- * You can specify a different retention period with the <code>expires_in</code>
- * parameter in the forecast jobs API. The delete forecast API enables you to
- * delete one or more forecasts before they expire.
+ * Delete forecasts from a job.
+ * <p>
+ * By default, forecasts are retained for 14 days. You can specify a different
+ * retention period with the <code>expires_in</code> parameter in the forecast
+ * jobs API. The delete forecast API enables you to delete one or more forecasts
+ * before they expire.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_forecast.Request">API
  *      specification</a>

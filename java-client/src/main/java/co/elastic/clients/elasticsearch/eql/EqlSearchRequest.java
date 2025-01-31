@@ -175,6 +175,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Allow query execution also in case of shard failures. If true, the query will
+	 * keep running and will return results based on the available shards. For
+	 * sequences, the behavior can be further refined using
+	 * allow_partial_sequence_results
+	 * <p>
 	 * API name: {@code allow_partial_search_results}
 	 */
 	@Nullable
@@ -183,6 +188,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * This flag applies only to sequences and has effect only if
+	 * allow_partial_search_results=true. If true, the sequence query will return
+	 * results based on the available shards, ignoring the others. If false, the
+	 * sequence query will return successfully, but will always have empty results.
+	 * <p>
 	 * API name: {@code allow_partial_sequence_results}
 	 */
 	@Nullable
@@ -549,6 +559,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Allow query execution also in case of shard failures. If true, the query will
+		 * keep running and will return results based on the available shards. For
+		 * sequences, the behavior can be further refined using
+		 * allow_partial_sequence_results
+		 * <p>
 		 * API name: {@code allow_partial_search_results}
 		 */
 		public final Builder allowPartialSearchResults(@Nullable Boolean value) {
@@ -557,6 +572,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * This flag applies only to sequences and has effect only if
+		 * allow_partial_search_results=true. If true, the sequence query will return
+		 * results based on the available shards, ignoring the others. If false, the
+		 * sequence query will return successfully, but will always have empty results.
+		 * <p>
 		 * API name: {@code allow_partial_sequence_results}
 		 */
 		public final Builder allowPartialSequenceResults(@Nullable Boolean value) {

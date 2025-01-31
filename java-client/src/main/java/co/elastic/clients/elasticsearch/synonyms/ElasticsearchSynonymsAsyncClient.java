@@ -71,9 +71,30 @@ public class ElasticsearchSynonymsAsyncClient
 
 	/**
 	 * Delete a synonym set.
+	 * <p>
+	 * You can only delete a synonyms set that is not in use by any index analyzer.
+	 * <p>
+	 * Synonyms sets can be used in synonym graph token filters and synonym token
+	 * filters. These synonym filters can be used as part of search analyzers.
+	 * <p>
+	 * Analyzers need to be loaded when an index is restored (such as when a node
+	 * starts, or the index becomes open). Even if the analyzer is not used on any
+	 * field mapping, it still needs to be loaded on the index recovery phase.
+	 * <p>
+	 * If any analyzers cannot be loaded, the index becomes unavailable and the
+	 * cluster status becomes red or yellow as index shards are not available. To
+	 * prevent that, synonyms sets that are used in analyzers can't be deleted. A
+	 * delete request in this case will return a 400 response code.
+	 * <p>
+	 * To remove a synonyms set, you must first remove all indices that contain
+	 * analyzers using it. You can migrate an index by creating a new index that
+	 * does not contain the token filter with the synonyms set, and use the reindex
+	 * API in order to copy over the index data. Once finished, you can delete the
+	 * index. When the synonyms set is not used in analyzers, you will be able to
+	 * delete it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-synonyms-set.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -86,12 +107,33 @@ public class ElasticsearchSynonymsAsyncClient
 
 	/**
 	 * Delete a synonym set.
+	 * <p>
+	 * You can only delete a synonyms set that is not in use by any index analyzer.
+	 * <p>
+	 * Synonyms sets can be used in synonym graph token filters and synonym token
+	 * filters. These synonym filters can be used as part of search analyzers.
+	 * <p>
+	 * Analyzers need to be loaded when an index is restored (such as when a node
+	 * starts, or the index becomes open). Even if the analyzer is not used on any
+	 * field mapping, it still needs to be loaded on the index recovery phase.
+	 * <p>
+	 * If any analyzers cannot be loaded, the index becomes unavailable and the
+	 * cluster status becomes red or yellow as index shards are not available. To
+	 * prevent that, synonyms sets that are used in analyzers can't be deleted. A
+	 * delete request in this case will return a 400 response code.
+	 * <p>
+	 * To remove a synonyms set, you must first remove all indices that contain
+	 * analyzers using it. You can migrate an index by creating a new index that
+	 * does not contain the token filter with the synonyms set, and use the reindex
+	 * API in order to copy over the index data. Once finished, you can delete the
+	 * index. When the synonyms set is not used in analyzers, you will be able to
+	 * delete it.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSynonymRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-synonyms-set.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -106,7 +148,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Delete a synonym rule. Delete a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-synonym-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-synonym-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -124,7 +166,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSynonymRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-synonym-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-synonym-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -139,7 +181,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Get a synonym set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-synonyms-set.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +199,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSynonymRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-synonyms-set.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +214,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Get a synonym rule. Get a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-synonym-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonym-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -190,7 +232,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSynonymRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-synonym-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonym-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -205,7 +247,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Get all synonym sets. Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-synonyms-sets.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -223,7 +265,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSynonymsSetsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-synonyms-sets.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -236,7 +278,7 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Get all synonym sets. Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-synonyms-sets.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,9 +293,14 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Create or update a synonym set. Synonyms sets are limited to a maximum of
 	 * 10,000 synonym rules per set. If you need to manage more synonym rules, you
 	 * can create multiple synonym sets.
+	 * <p>
+	 * When an existing synonyms set is updated, the search analyzers that use the
+	 * synonyms set are reloaded automatically for all indices. This is equivalent
+	 * to invoking the reload search analyzers API for all indices that use the
+	 * synonyms set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonyms-set.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -268,12 +315,17 @@ public class ElasticsearchSynonymsAsyncClient
 	 * Create or update a synonym set. Synonyms sets are limited to a maximum of
 	 * 10,000 synonym rules per set. If you need to manage more synonym rules, you
 	 * can create multiple synonym sets.
+	 * <p>
+	 * When an existing synonyms set is updated, the search analyzers that use the
+	 * synonyms set are reloaded automatically for all indices. This is equivalent
+	 * to invoking the reload search analyzers API for all indices that use the
+	 * synonyms set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSynonymRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonyms-set.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-synonyms-set.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -287,9 +339,14 @@ public class ElasticsearchSynonymsAsyncClient
 	/**
 	 * Create or update a synonym rule. Create or update a synonym rule in a synonym
 	 * set.
+	 * <p>
+	 * If any of the synonym rules included is invalid, the API returns an error.
+	 * <p>
+	 * When you update a synonym rule, all analyzers using the synonyms set will be
+	 * reloaded automatically to reflect the new rule.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonym-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-synonym-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -303,12 +360,17 @@ public class ElasticsearchSynonymsAsyncClient
 	/**
 	 * Create or update a synonym rule. Create or update a synonym rule in a synonym
 	 * set.
+	 * <p>
+	 * If any of the synonym rules included is invalid, the API returns an error.
+	 * <p>
+	 * When you update a synonym rule, all analyzers using the synonyms set will be
+	 * reloaded automatically to reflect the new rule.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSynonymRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-synonym-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-synonym-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

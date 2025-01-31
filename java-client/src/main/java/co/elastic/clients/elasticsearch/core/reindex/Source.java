@@ -107,7 +107,7 @@ public class Source implements JsonpSerializable {
 
 	/**
 	 * Required - The name of the data stream, index, or alias you are copying from.
-	 * Accepts a comma-separated list to reindex from multiple sources.
+	 * It accepts a comma-separated list to reindex from multiple sources.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -116,7 +116,7 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the documents to reindex using the Query DSL.
+	 * The documents to reindex, which is defined with Query DSL.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -136,9 +136,9 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of documents to index per batch. Use when indexing from remote to
-	 * ensure that the batches fit within the on-heap buffer, which defaults to a
-	 * maximum size of 100 MB.
+	 * The number of documents to index per batch. Use it when you are indexing from
+	 * remote to ensure that the batches fit within the on-heap buffer, which
+	 * defaults to a maximum size of 100 MB.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -159,14 +159,27 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
+	 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs
+	 * to sort by before indexing. Use it in conjunction with <code>max_docs</code>
+	 * to control what documents are reindexed.
+	 * <p>
+	 * WARNING: Sort in reindex is deprecated. Sorting in reindex was never
+	 * guaranteed to index documents in order and prevents further development of
+	 * reindex such as resilience and performance improvements. If used in
+	 * combination with <code>max_docs</code>, consider using a query filter
+	 * instead.
+	 * <p>
 	 * API name: {@code sort}
+	 * 
+	 * @deprecated 7.6.0
 	 */
+	@Deprecated
 	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
 	/**
-	 * If <code>true</code> reindexes all source fields. Set to a list to reindex
+	 * If <code>true</code>, reindex all source fields. Set it to a list to reindex
 	 * select fields.
 	 * <p>
 	 * API name: {@code _source}
@@ -294,7 +307,7 @@ public class Source implements JsonpSerializable {
 
 		/**
 		 * Required - The name of the data stream, index, or alias you are copying from.
-		 * Accepts a comma-separated list to reindex from multiple sources.
+		 * It accepts a comma-separated list to reindex from multiple sources.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -307,7 +320,7 @@ public class Source implements JsonpSerializable {
 
 		/**
 		 * Required - The name of the data stream, index, or alias you are copying from.
-		 * Accepts a comma-separated list to reindex from multiple sources.
+		 * It accepts a comma-separated list to reindex from multiple sources.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -319,7 +332,7 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the documents to reindex using the Query DSL.
+		 * The documents to reindex, which is defined with Query DSL.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -329,7 +342,7 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the documents to reindex using the Query DSL.
+		 * The documents to reindex, which is defined with Query DSL.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -357,9 +370,9 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of documents to index per batch. Use when indexing from remote to
-		 * ensure that the batches fit within the on-heap buffer, which defaults to a
-		 * maximum size of 100 MB.
+		 * The number of documents to index per batch. Use it when you are indexing from
+		 * remote to ensure that the batches fit within the on-heap buffer, which
+		 * defaults to a maximum size of 100 MB.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -390,36 +403,75 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs
+		 * to sort by before indexing. Use it in conjunction with <code>max_docs</code>
+		 * to control what documents are reindexed.
+		 * <p>
+		 * WARNING: Sort in reindex is deprecated. Sorting in reindex was never
+		 * guaranteed to index documents in order and prevents further development of
+		 * reindex such as resilience and performance improvements. If used in
+		 * combination with <code>max_docs</code>, consider using a query filter
+		 * instead.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
+		 * 
+		 * @deprecated 7.6.0
 		 */
+		@Deprecated
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs
+		 * to sort by before indexing. Use it in conjunction with <code>max_docs</code>
+		 * to control what documents are reindexed.
+		 * <p>
+		 * WARNING: Sort in reindex is deprecated. Sorting in reindex was never
+		 * guaranteed to index documents in order and prevents further development of
+		 * reindex such as resilience and performance improvements. If used in
+		 * combination with <code>max_docs</code>, consider using a query filter
+		 * instead.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
+		 * 
+		 * @deprecated 7.6.0
 		 */
+		@Deprecated
 		public final Builder sort(SortOptions value, SortOptions... values) {
 			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs
+		 * to sort by before indexing. Use it in conjunction with <code>max_docs</code>
+		 * to control what documents are reindexed.
+		 * <p>
+		 * WARNING: Sort in reindex is deprecated. Sorting in reindex was never
+		 * guaranteed to index documents in order and prevents further development of
+		 * reindex such as resilience and performance improvements. If used in
+		 * combination with <code>max_docs</code>, consider using a query filter
+		 * instead.
+		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.
+		 * 
+		 * @deprecated 7.6.0
 		 */
+		@Deprecated
 		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
 			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**
-		 * If <code>true</code> reindexes all source fields. Set to a list to reindex
+		 * If <code>true</code>, reindex all source fields. Set it to a list to reindex
 		 * select fields.
 		 * <p>
 		 * API name: {@code _source}
@@ -432,7 +484,7 @@ public class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * If <code>true</code> reindexes all source fields. Set to a list to reindex
+		 * If <code>true</code>, reindex all source fields. Set it to a list to reindex
 		 * select fields.
 		 * <p>
 		 * API name: {@code _source}

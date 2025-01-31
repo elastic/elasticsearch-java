@@ -78,10 +78,10 @@ public abstract class WriteOperation extends BulkOperationBase {
 	}
 
 	/**
-	 * A map from the full name of fields to the name of dynamic templates. Defaults
-	 * to an empty map. If a name matches a dynamic template, then that template
+	 * A map from the full name of fields to the name of dynamic templates. It
+	 * defaults to an empty map. If a name matches a dynamic template, that template
 	 * will be applied regardless of other match predicates defined in the template.
-	 * If a field is already defined in the mapping, then this parameter won’t be
+	 * If a field is already defined in the mapping, then this parameter won't be
 	 * used.
 	 * <p>
 	 * API name: {@code dynamic_templates}
@@ -91,10 +91,10 @@ public abstract class WriteOperation extends BulkOperationBase {
 	}
 
 	/**
-	 * ID of the pipeline to use to preprocess incoming documents. If the index has
-	 * a default ingest pipeline specified, then setting the value to
-	 * <code>_none</code> disables the default ingest pipeline for this request. If
-	 * a final pipeline is configured it will always run, regardless of the value of
+	 * The ID of the pipeline to use to preprocess incoming documents. If the index
+	 * has a default ingest pipeline specified, setting the value to
+	 * <code>_none</code> turns off the default ingest pipeline for this request. If
+	 * a final pipeline is configured, it will always run regardless of the value of
 	 * this parameter.
 	 * <p>
 	 * API name: {@code pipeline}
@@ -105,7 +105,7 @@ public abstract class WriteOperation extends BulkOperationBase {
 	}
 
 	/**
-	 * If <code>true</code>, the request’s actions must target an index alias.
+	 * If <code>true</code>, the request's actions must target an index alias.
 	 * <p>
 	 * API name: {@code require_alias}
 	 */
@@ -154,10 +154,10 @@ public abstract class WriteOperation extends BulkOperationBase {
 		private Boolean requireAlias;
 
 		/**
-		 * A map from the full name of fields to the name of dynamic templates. Defaults
-		 * to an empty map. If a name matches a dynamic template, then that template
+		 * A map from the full name of fields to the name of dynamic templates. It
+		 * defaults to an empty map. If a name matches a dynamic template, that template
 		 * will be applied regardless of other match predicates defined in the template.
-		 * If a field is already defined in the mapping, then this parameter won’t be
+		 * If a field is already defined in the mapping, then this parameter won't be
 		 * used.
 		 * <p>
 		 * API name: {@code dynamic_templates}
@@ -170,10 +170,10 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
-		 * A map from the full name of fields to the name of dynamic templates. Defaults
-		 * to an empty map. If a name matches a dynamic template, then that template
+		 * A map from the full name of fields to the name of dynamic templates. It
+		 * defaults to an empty map. If a name matches a dynamic template, that template
 		 * will be applied regardless of other match predicates defined in the template.
-		 * If a field is already defined in the mapping, then this parameter won’t be
+		 * If a field is already defined in the mapping, then this parameter won't be
 		 * used.
 		 * <p>
 		 * API name: {@code dynamic_templates}
@@ -186,10 +186,10 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
-		 * ID of the pipeline to use to preprocess incoming documents. If the index has
-		 * a default ingest pipeline specified, then setting the value to
-		 * <code>_none</code> disables the default ingest pipeline for this request. If
-		 * a final pipeline is configured it will always run, regardless of the value of
+		 * The ID of the pipeline to use to preprocess incoming documents. If the index
+		 * has a default ingest pipeline specified, setting the value to
+		 * <code>_none</code> turns off the default ingest pipeline for this request. If
+		 * a final pipeline is configured, it will always run regardless of the value of
 		 * this parameter.
 		 * <p>
 		 * API name: {@code pipeline}
@@ -200,7 +200,7 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
-		 * If <code>true</code>, the request’s actions must target an index alias.
+		 * If <code>true</code>, the request's actions must target an index alias.
 		 * <p>
 		 * API name: {@code require_alias}
 		 */

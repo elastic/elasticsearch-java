@@ -77,6 +77,9 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private final int maxProxySocketConnections;
 
+	@Nullable
+	private final String clusterCredentials;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ClusterRemoteProxyInfo(Builder builder) {
@@ -91,6 +94,7 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 				"numProxySocketsConnected");
 		this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(builder.maxProxySocketConnections, this,
 				"maxProxySocketConnections");
+		this.clusterCredentials = builder.clusterCredentials;
 
 	}
 
@@ -107,28 +111,42 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	}
 
 	/**
-	 * Required - API name: {@code connected}
+	 * Required - If it is <code>true</code>, there is at least one open connection
+	 * to the remote cluster. If it is <code>false</code>, it means that the cluster
+	 * no longer has an open connection to the remote cluster. It does not
+	 * necessarily mean that the remote cluster is down or unavailable, just that at
+	 * some point a connection was lost.
+	 * <p>
+	 * API name: {@code connected}
 	 */
 	public final boolean connected() {
 		return this.connected;
 	}
 
 	/**
-	 * Required - API name: {@code initial_connect_timeout}
+	 * Required - The initial connect timeout for remote cluster connections.
+	 * <p>
+	 * API name: {@code initial_connect_timeout}
 	 */
 	public final Time initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
 	/**
-	 * Required - API name: {@code skip_unavailable}
+	 * Required - If <code>true</code>, cross-cluster search skips the remote
+	 * cluster when its nodes are unavailable during the search and ignores errors
+	 * returned by the remote cluster.
+	 * <p>
+	 * API name: {@code skip_unavailable}
 	 */
 	public final boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
 	/**
-	 * Required - API name: {@code proxy_address}
+	 * Required - The address for remote connections when proxy mode is configured.
+	 * <p>
+	 * API name: {@code proxy_address}
 	 */
 	public final String proxyAddress() {
 		return this.proxyAddress;
@@ -142,17 +160,35 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	}
 
 	/**
-	 * Required - API name: {@code num_proxy_sockets_connected}
+	 * Required - The number of open socket connections to the remote cluster when
+	 * proxy mode is configured.
+	 * <p>
+	 * API name: {@code num_proxy_sockets_connected}
 	 */
 	public final int numProxySocketsConnected() {
 		return this.numProxySocketsConnected;
 	}
 
 	/**
-	 * Required - API name: {@code max_proxy_socket_connections}
+	 * Required - The maximum number of socket connections to the remote cluster
+	 * when proxy mode is configured.
+	 * <p>
+	 * API name: {@code max_proxy_socket_connections}
 	 */
 	public final int maxProxySocketConnections() {
 		return this.maxProxySocketConnections;
+	}
+
+	/**
+	 * This field presents and has value of ::es_redacted:: only when the remote
+	 * cluster is configured with the API key based model. Otherwise, the field is
+	 * not present.
+	 * <p>
+	 * API name: {@code cluster_credentials}
+	 */
+	@Nullable
+	public final String clusterCredentials() {
+		return this.clusterCredentials;
 	}
 
 	/**
@@ -189,6 +225,12 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		generator.writeKey("max_proxy_socket_connections");
 		generator.write(this.maxProxySocketConnections);
 
+		if (this.clusterCredentials != null) {
+			generator.writeKey("cluster_credentials");
+			generator.write(this.clusterCredentials);
+
+		}
+
 	}
 
 	@Override
@@ -219,8 +261,17 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 		private Integer maxProxySocketConnections;
 
+		@Nullable
+		private String clusterCredentials;
+
 		/**
-		 * Required - API name: {@code connected}
+		 * Required - If it is <code>true</code>, there is at least one open connection
+		 * to the remote cluster. If it is <code>false</code>, it means that the cluster
+		 * no longer has an open connection to the remote cluster. It does not
+		 * necessarily mean that the remote cluster is down or unavailable, just that at
+		 * some point a connection was lost.
+		 * <p>
+		 * API name: {@code connected}
 		 */
 		public final Builder connected(boolean value) {
 			this.connected = value;
@@ -228,7 +279,9 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code initial_connect_timeout}
+		 * Required - The initial connect timeout for remote cluster connections.
+		 * <p>
+		 * API name: {@code initial_connect_timeout}
 		 */
 		public final Builder initialConnectTimeout(Time value) {
 			this.initialConnectTimeout = value;
@@ -236,14 +289,20 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code initial_connect_timeout}
+		 * Required - The initial connect timeout for remote cluster connections.
+		 * <p>
+		 * API name: {@code initial_connect_timeout}
 		 */
 		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code skip_unavailable}
+		 * Required - If <code>true</code>, cross-cluster search skips the remote
+		 * cluster when its nodes are unavailable during the search and ignores errors
+		 * returned by the remote cluster.
+		 * <p>
+		 * API name: {@code skip_unavailable}
 		 */
 		public final Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
@@ -251,7 +310,9 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code proxy_address}
+		 * Required - The address for remote connections when proxy mode is configured.
+		 * <p>
+		 * API name: {@code proxy_address}
 		 */
 		public final Builder proxyAddress(String value) {
 			this.proxyAddress = value;
@@ -267,7 +328,10 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code num_proxy_sockets_connected}
+		 * Required - The number of open socket connections to the remote cluster when
+		 * proxy mode is configured.
+		 * <p>
+		 * API name: {@code num_proxy_sockets_connected}
 		 */
 		public final Builder numProxySocketsConnected(int value) {
 			this.numProxySocketsConnected = value;
@@ -275,10 +339,25 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code max_proxy_socket_connections}
+		 * Required - The maximum number of socket connections to the remote cluster
+		 * when proxy mode is configured.
+		 * <p>
+		 * API name: {@code max_proxy_socket_connections}
 		 */
 		public final Builder maxProxySocketConnections(int value) {
 			this.maxProxySocketConnections = value;
+			return this;
+		}
+
+		/**
+		 * This field presents and has value of ::es_redacted:: only when the remote
+		 * cluster is configured with the API key based model. Otherwise, the field is
+		 * not present.
+		 * <p>
+		 * API name: {@code cluster_credentials}
+		 */
+		public final Builder clusterCredentials(@Nullable String value) {
+			this.clusterCredentials = value;
 			return this;
 		}
 
@@ -320,6 +399,7 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 				"num_proxy_sockets_connected");
 		op.add(Builder::maxProxySocketConnections, JsonpDeserializer.integerDeserializer(),
 				"max_proxy_socket_connections");
+		op.add(Builder::clusterCredentials, JsonpDeserializer.stringDeserializer(), "cluster_credentials");
 
 		op.ignore("mode");
 	}

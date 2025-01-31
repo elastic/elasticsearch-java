@@ -62,6 +62,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetAsyncStatusResponse implements JsonpSerializable {
+	private final long expirationTimeInMillis;
+
 	private final String id;
 
 	private final boolean isRunning;
@@ -70,8 +72,6 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 	private final long startTimeInMillis;
 
-	private final long expirationTimeInMillis;
-
 	@Nullable
 	private final Number completionStatus;
 
@@ -79,12 +79,12 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 	private GetAsyncStatusResponse(Builder builder) {
 
+		this.expirationTimeInMillis = ApiTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
+				"expirationTimeInMillis");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
 		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.expirationTimeInMillis = ApiTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
-				"expirationTimeInMillis");
 		this.completionStatus = builder.completionStatus;
 
 	}
@@ -94,7 +94,18 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Identifier for the search.
+	 * Required - The timestamp, in milliseconds since the Unix epoch, when
+	 * Elasticsearch will delete the search and its results, even if the search is
+	 * still running.
+	 * <p>
+	 * API name: {@code expiration_time_in_millis}
+	 */
+	public final long expirationTimeInMillis() {
+		return this.expirationTimeInMillis;
+	}
+
+	/**
+	 * Required - The identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -126,8 +137,8 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Timestamp, in milliseconds since the Unix epoch, when the search
-	 * started. The API only returns this property for running searches.
+	 * Required - The timestamp, in milliseconds since the Unix epoch, when the
+	 * search started. The API returns this property only for running searches.
 	 * <p>
 	 * API name: {@code start_time_in_millis}
 	 */
@@ -136,18 +147,7 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Timestamp, in milliseconds since the Unix epoch, when
-	 * Elasticsearch will delete the search and its results, even if the search is
-	 * still running.
-	 * <p>
-	 * API name: {@code expiration_time_in_millis}
-	 */
-	public final long expirationTimeInMillis() {
-		return this.expirationTimeInMillis;
-	}
-
-	/**
-	 * HTTP status code for the search. The API only returns this property for
+	 * The HTTP status code for the search. The API returns this property only for
 	 * completed searches.
 	 * <p>
 	 * API name: {@code completion_status}
@@ -168,6 +168,9 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("expiration_time_in_millis");
+		generator.write(this.expirationTimeInMillis);
+
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -179,9 +182,6 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 		generator.writeKey("start_time_in_millis");
 		generator.write(this.startTimeInMillis);
-
-		generator.writeKey("expiration_time_in_millis");
-		generator.write(this.expirationTimeInMillis);
 
 		if (this.completionStatus != null) {
 			generator.writeKey("completion_status");
@@ -205,6 +205,8 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetAsyncStatusResponse> {
+		private Long expirationTimeInMillis;
+
 		private String id;
 
 		private Boolean isRunning;
@@ -213,13 +215,23 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 		private Long startTimeInMillis;
 
-		private Long expirationTimeInMillis;
-
 		@Nullable
 		private Number completionStatus;
 
 		/**
-		 * Required - Identifier for the search.
+		 * Required - The timestamp, in milliseconds since the Unix epoch, when
+		 * Elasticsearch will delete the search and its results, even if the search is
+		 * still running.
+		 * <p>
+		 * API name: {@code expiration_time_in_millis}
+		 */
+		public final Builder expirationTimeInMillis(long value) {
+			this.expirationTimeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * Required - The identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -254,8 +266,8 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Timestamp, in milliseconds since the Unix epoch, when the search
-		 * started. The API only returns this property for running searches.
+		 * Required - The timestamp, in milliseconds since the Unix epoch, when the
+		 * search started. The API returns this property only for running searches.
 		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
@@ -265,19 +277,7 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Timestamp, in milliseconds since the Unix epoch, when
-		 * Elasticsearch will delete the search and its results, even if the search is
-		 * still running.
-		 * <p>
-		 * API name: {@code expiration_time_in_millis}
-		 */
-		public final Builder expirationTimeInMillis(long value) {
-			this.expirationTimeInMillis = value;
-			return this;
-		}
-
-		/**
-		 * HTTP status code for the search. The API only returns this property for
+		 * The HTTP status code for the search. The API returns this property only for
 		 * completed searches.
 		 * <p>
 		 * API name: {@code completion_status}
@@ -316,11 +316,11 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	protected static void setupGetAsyncStatusResponseDeserializer(
 			ObjectDeserializer<GetAsyncStatusResponse.Builder> op) {
 
+		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.longDeserializer(), "expiration_time_in_millis");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
 		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.longDeserializer(), "expiration_time_in_millis");
 		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
 
 	}

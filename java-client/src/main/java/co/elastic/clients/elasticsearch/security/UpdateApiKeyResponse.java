@@ -75,7 +75,7 @@ public class UpdateApiKeyResponse implements JsonpSerializable {
 
 	/**
 	 * Required - If <code>true</code>, the API key was updated. If
-	 * <code>false</code>, the API key didn’t change because no change was detected.
+	 * <code>false</code>, the API key didn't change because no change was detected.
 	 * <p>
 	 * API name: {@code updated}
 	 */
@@ -117,7 +117,7 @@ public class UpdateApiKeyResponse implements JsonpSerializable {
 
 		/**
 		 * Required - If <code>true</code>, the API key was updated. If
-		 * <code>false</code>, the API key didn’t change because no change was detected.
+		 * <code>false</code>, the API key didn't change because no change was detected.
 		 * <p>
 		 * API name: {@code updated}
 		 */

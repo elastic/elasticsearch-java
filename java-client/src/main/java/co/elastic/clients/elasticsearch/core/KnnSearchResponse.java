@@ -105,7 +105,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Milliseconds it took Elasticsearch to execute the request.
+	 * Required - The milliseconds it took Elasticsearch to run the request.
 	 * <p>
 	 * API name: {@code took}
 	 */
@@ -124,7 +124,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains a count of shards used for the request.
+	 * Required - A count of shards used for the request.
 	 * <p>
 	 * API name: {@code _shards}
 	 */
@@ -133,7 +133,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains returned documents and metadata.
+	 * Required - The returned documents and metadata.
 	 * <p>
 	 * API name: {@code hits}
 	 */
@@ -142,8 +142,8 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains field values for the documents. These fields must be specified in
-	 * the request using the <code>fields</code> parameter.
+	 * The field values for the documents. These fields must be specified in the
+	 * request using the <code>fields</code> parameter.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -152,8 +152,8 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Highest returned document score. This value is null for requests that do not
-	 * sort by score.
+	 * The highest returned document score. This value is null for requests that do
+	 * not sort by score.
 	 * <p>
 	 * API name: {@code max_score}
 	 */
@@ -236,7 +236,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Required - Milliseconds it took Elasticsearch to execute the request.
+		 * Required - The milliseconds it took Elasticsearch to run the request.
 		 * <p>
 		 * API name: {@code took}
 		 */
@@ -257,7 +257,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains a count of shards used for the request.
+		 * Required - A count of shards used for the request.
 		 * <p>
 		 * API name: {@code _shards}
 		 */
@@ -267,7 +267,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains a count of shards used for the request.
+		 * Required - A count of shards used for the request.
 		 * <p>
 		 * API name: {@code _shards}
 		 */
@@ -276,7 +276,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains returned documents and metadata.
+		 * Required - The returned documents and metadata.
 		 * <p>
 		 * API name: {@code hits}
 		 */
@@ -286,7 +286,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains returned documents and metadata.
+		 * Required - The returned documents and metadata.
 		 * <p>
 		 * API name: {@code hits}
 		 */
@@ -296,8 +296,8 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains field values for the documents. These fields must be specified in
-		 * the request using the <code>fields</code> parameter.
+		 * The field values for the documents. These fields must be specified in the
+		 * request using the <code>fields</code> parameter.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -309,8 +309,8 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains field values for the documents. These fields must be specified in
-		 * the request using the <code>fields</code> parameter.
+		 * The field values for the documents. These fields must be specified in the
+		 * request using the <code>fields</code> parameter.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -322,8 +322,8 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Highest returned document score. This value is null for requests that do not
-		 * sort by score.
+		 * The highest returned document score. This value is null for requests that do
+		 * not sort by score.
 		 * <p>
 		 * API name: {@code max_score}
 		 */

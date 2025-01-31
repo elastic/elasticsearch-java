@@ -60,7 +60,57 @@ import javax.annotation.Nullable;
 // typedef: _global.delete.Request
 
 /**
- * Delete a document. Removes a JSON document from the specified index.
+ * Delete a document.
+ * <p>
+ * Remove a JSON document from the specified index.
+ * <p>
+ * NOTE: You cannot send deletion requests directly to a data stream. To delete
+ * a document in a data stream, you must target the backing index containing the
+ * document.
+ * <p>
+ * <strong>Optimistic concurrency control</strong>
+ * <p>
+ * Delete operations can be made conditional and only be performed if the last
+ * modification to the document was assigned the sequence number and primary
+ * term specified by the <code>if_seq_no</code> and <code>if_primary_term</code>
+ * parameters. If a mismatch is detected, the operation will result in a
+ * <code>VersionConflictException</code> and a status code of <code>409</code>.
+ * <p>
+ * <strong>Versioning</strong>
+ * <p>
+ * Each document indexed is versioned. When deleting a document, the version can
+ * be specified to make sure the relevant document you are trying to delete is
+ * actually being deleted and it has not changed in the meantime. Every write
+ * operation run on a document, deletes included, causes its version to be
+ * incremented. The version number of a deleted document remains available for a
+ * short time after deletion to allow for control of concurrent operations. The
+ * length of time for which a deleted document's version remains available is
+ * determined by the <code>index.gc_deletes</code> index setting.
+ * <p>
+ * <strong>Routing</strong>
+ * <p>
+ * If routing is used during indexing, the routing value also needs to be
+ * specified to delete a document.
+ * <p>
+ * If the <code>_routing</code> mapping is set to <code>required</code> and no
+ * routing value is specified, the delete API throws a
+ * <code>RoutingMissingException</code> and rejects the request.
+ * <p>
+ * For example:
+ * 
+ * <pre>
+ * <code>DELETE /my-index-000001/_doc/1?routing=shard-1
+ * </code>
+ * </pre>
+ * <p>
+ * This request deletes the document with ID 1, but it is routed based on the
+ * user. The document is not deleted if the correct routing is not specified.
+ * <p>
+ * <strong>Distributed</strong>
+ * <p>
+ * The delete operation gets hashed into a specific shard ID. It then gets
+ * redirected into the primary shard within that ID group and replicated (if
+ * needed) to shard replicas within that ID group.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.delete.Request">API
  *      specification</a>
@@ -117,7 +167,7 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Unique identifier for the document.
+	 * Required - A unique identifier for the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -146,7 +196,7 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Name of the target index.
+	 * Required - The name of the target index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -156,10 +206,9 @@ public class DeleteRequest extends RequestBase {
 
 	/**
 	 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
-	 * this operation visible to search, if <code>wait_for</code> then wait for a
-	 * refresh to make this operation visible to search, if <code>false</code> do
-	 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
-	 * <code>wait_for</code>.
+	 * this operation visible to search. If <code>wait_for</code>, it waits for a
+	 * refresh to make this operation visible to search. If <code>false</code>, it
+	 * does nothing with refreshes.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -169,7 +218,7 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -179,7 +228,14 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for active shards.
+	 * The period to wait for active shards.
+	 * <p>
+	 * This parameter is useful for situations where the primary shard assigned to
+	 * perform the delete operation might not be available when the delete operation
+	 * runs. Some reasons for this might be that the primary shard is currently
+	 * recovering from a store or undergoing relocation. By default, the delete
+	 * operation will wait on the primary shard to become available for up to 1
+	 * minute before failing and responding with an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -189,8 +245,8 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit version number for concurrency control. The specified version must
-	 * match the current version of the document for the request to succeed.
+	 * An explicit version number for concurrency control. It must match the current
+	 * version of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -200,7 +256,7 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific version type: <code>external</code>, <code>external_gte</code>.
+	 * The version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -210,9 +266,11 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * The number of shard copies that must be active before proceeding with the
-	 * operation. Set to <code>all</code> or any positive integer up to the total
-	 * number of shards in the index (<code>number_of_replicas+1</code>).
+	 * The minimum number of shard copies that must be active before proceeding with
+	 * the operation. You can set it to <code>all</code> or any positive integer up
+	 * to the total number of shards in the index
+	 * (<code>number_of_replicas+1</code>). The default value of <code>1</code>
+	 * means it waits for each primary shard to be active.
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -257,7 +315,7 @@ public class DeleteRequest extends RequestBase {
 		private WaitForActiveShards waitForActiveShards;
 
 		/**
-		 * Required - Unique identifier for the document.
+		 * Required - A unique identifier for the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -287,7 +345,7 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Name of the target index.
+		 * Required - The name of the target index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -298,10 +356,9 @@ public class DeleteRequest extends RequestBase {
 
 		/**
 		 * If <code>true</code>, Elasticsearch refreshes the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> do
-		 * nothing with refreshes. Valid values: <code>true</code>, <code>false</code>,
-		 * <code>wait_for</code>.
+		 * this operation visible to search. If <code>wait_for</code>, it waits for a
+		 * refresh to make this operation visible to search. If <code>false</code>, it
+		 * does nothing with refreshes.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -311,7 +368,7 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -321,7 +378,14 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for active shards.
+		 * The period to wait for active shards.
+		 * <p>
+		 * This parameter is useful for situations where the primary shard assigned to
+		 * perform the delete operation might not be available when the delete operation
+		 * runs. Some reasons for this might be that the primary shard is currently
+		 * recovering from a store or undergoing relocation. By default, the delete
+		 * operation will wait on the primary shard to become available for up to 1
+		 * minute before failing and responding with an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -331,7 +395,14 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for active shards.
+		 * The period to wait for active shards.
+		 * <p>
+		 * This parameter is useful for situations where the primary shard assigned to
+		 * perform the delete operation might not be available when the delete operation
+		 * runs. Some reasons for this might be that the primary shard is currently
+		 * recovering from a store or undergoing relocation. By default, the delete
+		 * operation will wait on the primary shard to become available for up to 1
+		 * minute before failing and responding with an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -340,8 +411,8 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit version number for concurrency control. The specified version must
-		 * match the current version of the document for the request to succeed.
+		 * An explicit version number for concurrency control. It must match the current
+		 * version of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -351,7 +422,7 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific version type: <code>external</code>, <code>external_gte</code>.
+		 * The version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */
@@ -361,9 +432,11 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operation. Set to <code>all</code> or any positive integer up to the total
-		 * number of shards in the index (<code>number_of_replicas+1</code>).
+		 * The minimum number of shard copies that must be active before proceeding with
+		 * the operation. You can set it to <code>all</code> or any positive integer up
+		 * to the total number of shards in the index
+		 * (<code>number_of_replicas+1</code>). The default value of <code>1</code>
+		 * means it waits for each primary shard to be active.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -373,9 +446,11 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operation. Set to <code>all</code> or any positive integer up to the total
-		 * number of shards in the index (<code>number_of_replicas+1</code>).
+		 * The minimum number of shard copies that must be active before proceeding with
+		 * the operation. You can set it to <code>all</code> or any positive integer up
+		 * to the total number of shards in the index
+		 * (<code>number_of_replicas+1</code>). The default value of <code>1</code>
+		 * means it waits for each primary shard to be active.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */

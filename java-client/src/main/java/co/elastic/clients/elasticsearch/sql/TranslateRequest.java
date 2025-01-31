@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 
 /**
  * Translate SQL into Elasticsearch queries. Translate an SQL search into a
- * search API request containing Query DSL.
+ * search API request containing Query DSL. It accepts the same request body
+ * parameters as the SQL search API, excluding <code>cursor</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.translate.Request">API
  *      specification</a>
@@ -103,7 +104,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Elasticsearch query DSL for additional filtering.
+	 * The Elasticsearch query DSL for additional filtering.
 	 * <p>
 	 * API name: {@code filter}
 	 */
@@ -113,7 +114,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - SQL query to run.
+	 * Required - The SQL query to run.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -122,7 +123,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * ISO-8601 time zone ID for the search.
+	 * The ISO-8601 time zone ID for the search.
 	 * <p>
 	 * API name: {@code time_zone}
 	 */
@@ -194,7 +195,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Elasticsearch query DSL for additional filtering.
+		 * The Elasticsearch query DSL for additional filtering.
 		 * <p>
 		 * API name: {@code filter}
 		 */
@@ -204,7 +205,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Elasticsearch query DSL for additional filtering.
+		 * The Elasticsearch query DSL for additional filtering.
 		 * <p>
 		 * API name: {@code filter}
 		 */
@@ -213,7 +214,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - SQL query to run.
+		 * Required - The SQL query to run.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -223,7 +224,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * ISO-8601 time zone ID for the search.
+		 * The ISO-8601 time zone ID for the search.
 		 * <p>
 		 * API name: {@code time_zone}
 		 */

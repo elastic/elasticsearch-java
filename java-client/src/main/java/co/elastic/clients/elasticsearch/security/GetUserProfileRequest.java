@@ -60,6 +60,12 @@ import javax.annotation.Nullable;
  * Get a user profile.
  * <p>
  * Get a user's profile using the unique profile ID.
+ * <p>
+ * NOTE: The user profile feature is designed only for use by Kibana and
+ * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+ * Individual users and external applications should not call this API directly.
+ * Elastic reserves the right to change or remove this feature in future
+ * releases without prior notice.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_user_profile.Request">API
@@ -85,10 +91,11 @@ public class GetUserProfileRequest extends RequestBase {
 	}
 
 	/**
-	 * List of filters for the <code>data</code> field of the profile document. To
-	 * return all content use <code>data=*</code>. To return a subset of content use
-	 * <code>data=&lt;key&gt;</code> to retrieve content nested under the specified
-	 * <code>&lt;key&gt;</code>. By default returns no <code>data</code> content.
+	 * A comma-separated list of filters for the <code>data</code> field of the
+	 * profile document. To return all content use <code>data=*</code>. To return a
+	 * subset of content use <code>data=&lt;key&gt;</code> to retrieve content
+	 * nested under the specified <code>&lt;key&gt;</code>. By default returns no
+	 * <code>data</code> content.
 	 * <p>
 	 * API name: {@code data}
 	 */
@@ -120,10 +127,11 @@ public class GetUserProfileRequest extends RequestBase {
 		private List<String> uid;
 
 		/**
-		 * List of filters for the <code>data</code> field of the profile document. To
-		 * return all content use <code>data=*</code>. To return a subset of content use
-		 * <code>data=&lt;key&gt;</code> to retrieve content nested under the specified
-		 * <code>&lt;key&gt;</code>. By default returns no <code>data</code> content.
+		 * A comma-separated list of filters for the <code>data</code> field of the
+		 * profile document. To return all content use <code>data=*</code>. To return a
+		 * subset of content use <code>data=&lt;key&gt;</code> to retrieve content
+		 * nested under the specified <code>&lt;key&gt;</code>. By default returns no
+		 * <code>data</code> content.
 		 * <p>
 		 * API name: {@code data}
 		 * <p>
@@ -135,10 +143,11 @@ public class GetUserProfileRequest extends RequestBase {
 		}
 
 		/**
-		 * List of filters for the <code>data</code> field of the profile document. To
-		 * return all content use <code>data=*</code>. To return a subset of content use
-		 * <code>data=&lt;key&gt;</code> to retrieve content nested under the specified
-		 * <code>&lt;key&gt;</code>. By default returns no <code>data</code> content.
+		 * A comma-separated list of filters for the <code>data</code> field of the
+		 * profile document. To return all content use <code>data=*</code>. To return a
+		 * subset of content use <code>data=&lt;key&gt;</code> to retrieve content
+		 * nested under the specified <code>&lt;key&gt;</code>. By default returns no
+		 * <code>data</code> content.
 		 * <p>
 		 * API name: {@code data}
 		 * <p>

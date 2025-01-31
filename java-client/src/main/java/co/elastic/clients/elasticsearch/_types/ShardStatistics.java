@@ -88,14 +88,17 @@ public class ShardStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code failed}
+	 * Required - The number of shards the operation or search attempted to run on
+	 * but failed.
+	 * <p>
+	 * API name: {@code failed}
 	 */
 	public final Number failed() {
 		return this.failed;
 	}
 
 	/**
-	 * Required - Indicates how many shards have successfully run the search.
+	 * Required - The number of shards the operation or search succeeded on.
 	 * <p>
 	 * API name: {@code successful}
 	 */
@@ -104,7 +107,7 @@ public class ShardStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Indicates how many shards the search will run on overall.
+	 * Required - The number of shards the operation or search will run on overall.
 	 * <p>
 	 * API name: {@code total}
 	 */
@@ -190,7 +193,10 @@ public class ShardStatistics implements JsonpSerializable {
 		private Number skipped;
 
 		/**
-		 * Required - API name: {@code failed}
+		 * Required - The number of shards the operation or search attempted to run on
+		 * but failed.
+		 * <p>
+		 * API name: {@code failed}
 		 */
 		public final Builder failed(Number value) {
 			this.failed = value;
@@ -198,7 +204,7 @@ public class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Indicates how many shards have successfully run the search.
+		 * Required - The number of shards the operation or search succeeded on.
 		 * <p>
 		 * API name: {@code successful}
 		 */
@@ -208,7 +214,7 @@ public class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Indicates how many shards the search will run on overall.
+		 * Required - The number of shards the operation or search will run on overall.
 		 * <p>
 		 * API name: {@code total}
 		 */

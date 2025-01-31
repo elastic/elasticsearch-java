@@ -74,15 +74,9 @@ public class ClearCacheRequest extends RequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
-	private final Boolean human;
-
-	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	private final List<String> index;
-
-	@Nullable
-	private final Boolean pretty;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,10 +84,8 @@ public class ClearCacheRequest extends RequestBase {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.human = builder.human;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
-		this.pretty = builder.pretty;
 
 	}
 
@@ -124,14 +116,6 @@ public class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code human}
-	 */
-	@Nullable
-	public final Boolean human() {
-		return this.human;
-	}
-
-	/**
 	 * Whether specified concrete indices should be ignored when unavailable
 	 * (missing or closed)
 	 * <p>
@@ -152,14 +136,6 @@ public class ClearCacheRequest extends RequestBase {
 		return this.index;
 	}
 
-	/**
-	 * API name: {@code pretty}
-	 */
-	@Nullable
-	public final Boolean pretty() {
-		return this.pretty;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -176,16 +152,10 @@ public class ClearCacheRequest extends RequestBase {
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
-		private Boolean human;
-
-		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private Boolean pretty;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -226,14 +196,6 @@ public class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code human}
-		 */
-		public final Builder human(@Nullable Boolean value) {
-			this.human = value;
-			return this;
-		}
-
-		/**
 		 * Whether specified concrete indices should be ignored when unavailable
 		 * (missing or closed)
 		 * <p>
@@ -267,14 +229,6 @@ public class ClearCacheRequest extends RequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
-
-		/**
-		 * API name: {@code pretty}
-		 */
-		public final Builder pretty(@Nullable Boolean value) {
-			this.pretty = value;
 			return this;
 		}
 
@@ -360,9 +314,6 @@ public class ClearCacheRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.pretty != null) {
-					params.put("pretty", String.valueOf(request.pretty));
-				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
@@ -372,9 +323,6 @@ public class ClearCacheRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.human != null) {
-					params.put("human", String.valueOf(request.human));
 				}
 				return params;
 

@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ingest.get_geoip_database.Request
 
 /**
- * Get GeoIP database configurations. Get information about one or more IP
- * geolocation database configurations.
+ * Get GeoIP database configurations.
+ * <p>
+ * Get information about one or more IP geolocation database configurations.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.get_geoip_database.Request">API
@@ -69,15 +70,11 @@ import javax.annotation.Nullable;
 public class GetGeoipDatabaseRequest extends RequestBase {
 	private final List<String> id;
 
-	@Nullable
-	private final Time masterTimeout;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private GetGeoipDatabaseRequest(Builder builder) {
 
 		this.id = ApiTypeHelper.unmodifiable(builder.id);
-		this.masterTimeout = builder.masterTimeout;
 
 	}
 
@@ -86,7 +83,7 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+	 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 	 * (<code>*</code>) expressions are supported. To get all database
 	 * configurations, omit this parameter or use <code>*</code>.
 	 * <p>
@@ -94,17 +91,6 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 	 */
 	public final List<String> id() {
 		return this.id;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -119,11 +105,8 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		@Nullable
 		private List<String> id;
 
-		@Nullable
-		private Time masterTimeout;
-
 		/**
-		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+		 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 		 * (<code>*</code>) expressions are supported. To get all database
 		 * configurations, omit this parameter or use <code>*</code>.
 		 * <p>
@@ -137,7 +120,7 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
+		 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 		 * (<code>*</code>) expressions are supported. To get all database
 		 * configurations, omit this parameter or use <code>*</code>.
 		 * <p>
@@ -148,27 +131,6 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		public final Builder id(String value, String... values) {
 			this.id = _listAdd(this.id, value, values);
 			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -252,11 +214,7 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), false, GetGeoipDatabaseResponse._DESERIALIZER);
 }

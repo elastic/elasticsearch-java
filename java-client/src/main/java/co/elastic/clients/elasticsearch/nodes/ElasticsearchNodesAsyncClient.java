@@ -201,8 +201,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	// ----- Endpoint: nodes.info
 
 	/**
-	 * Get node information. By default, the API returns all attributes and core
-	 * settings for cluster nodes.
+	 * Get node information.
+	 * <p>
+	 * By default, the API returns all attributes and core settings for cluster
+	 * nodes.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cluster-nodes-info.html">Documentation
@@ -217,8 +219,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Get node information. By default, the API returns all attributes and core
-	 * settings for cluster nodes.
+	 * Get node information.
+	 * <p>
+	 * By default, the API returns all attributes and core settings for cluster
+	 * nodes.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -234,8 +238,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
-	 * Get node information. By default, the API returns all attributes and core
-	 * settings for cluster nodes.
+	 * Get node information.
+	 * <p>
+	 * By default, the API returns all attributes and core settings for cluster
+	 * nodes.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cluster-nodes-info.html">Documentation
@@ -268,7 +274,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 * password.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cluster-nodes-reload-secure-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -301,7 +307,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ReloadSecureSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cluster-nodes-reload-secure-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -329,7 +335,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 * password.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cluster-nodes-reload-secure-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

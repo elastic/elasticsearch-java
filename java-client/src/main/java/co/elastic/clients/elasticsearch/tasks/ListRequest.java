@@ -62,6 +62,70 @@ import javax.annotation.Nullable;
 /**
  * Get all tasks. Get information about the tasks currently running on one or
  * more nodes in the cluster.
+ * <p>
+ * WARNING: The task management API is new and should still be considered a beta
+ * feature. The API may change in ways that are not backwards compatible.
+ * <p>
+ * <strong>Identifying running tasks</strong>
+ * <p>
+ * The <code>X-Opaque-Id header</code>, when provided on the HTTP request
+ * header, is going to be returned as a header in the response as well as in the
+ * headers field for in the task information. This enables you to track certain
+ * calls or associate certain tasks with the client that started them. For
+ * example:
+ * 
+ * <pre>
+ * <code>curl -i -H &quot;X-Opaque-Id: 123456&quot; &quot;http://localhost:9200/_tasks?group_by=parents&quot;
+ * </code>
+ * </pre>
+ * <p>
+ * The API returns the following result:
+ * 
+ * <pre>
+ * <code>HTTP/1.1 200 OK
+ * X-Opaque-Id: 123456
+ * content-type: application/json; charset=UTF-8
+ * content-length: 831
+ *
+ * {
+ *   &quot;tasks&quot; : {
+ *     &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot; : {
+ *       &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+ *       &quot;id&quot; : 45,
+ *       &quot;type&quot; : &quot;transport&quot;,
+ *       &quot;action&quot; : &quot;cluster:monitor/tasks/lists&quot;,
+ *       &quot;start_time_in_millis&quot; : 1513823752749,
+ *       &quot;running_time_in_nanos&quot; : 293139,
+ *       &quot;cancellable&quot; : false,
+ *       &quot;headers&quot; : {
+ *         &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+ *       },
+ *       &quot;children&quot; : [
+ *         {
+ *           &quot;node&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA&quot;,
+ *           &quot;id&quot; : 46,
+ *           &quot;type&quot; : &quot;direct&quot;,
+ *           &quot;action&quot; : &quot;cluster:monitor/tasks/lists[n]&quot;,
+ *           &quot;start_time_in_millis&quot; : 1513823752750,
+ *           &quot;running_time_in_nanos&quot; : 92133,
+ *           &quot;cancellable&quot; : false,
+ *           &quot;parent_task_id&quot; : &quot;u5lcZHqcQhu-rUoFaqDphA:45&quot;,
+ *           &quot;headers&quot; : {
+ *             &quot;X-Opaque-Id&quot; : &quot;123456&quot;
+ *           }
+ *         }
+ *       ]
+ *     }
+ *   }
+ *  }
+ * </code>
+ * </pre>
+ * <p>
+ * In this example, <code>X-Opaque-Id: 123456</code> is the ID as a part of the
+ * response header. The <code>X-Opaque-Id</code> in the task
+ * <code>headers</code> is the ID for the task that was initiated by the REST
+ * request. The <code>X-Opaque-Id</code> in the children <code>headers</code> is
+ * the child task of the task that was initiated by the REST request.
  * 
  * @see <a href="../doc-files/api-spec.html#tasks.list.Request">API
  *      specification</a>
@@ -75,9 +139,6 @@ public class ListRequest extends RequestBase {
 
 	@Nullable
 	private final GroupBy groupBy;
-
-	@Nullable
-	private final Time masterTimeout;
 
 	private final List<String> nodes;
 
@@ -97,7 +158,6 @@ public class ListRequest extends RequestBase {
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
 		this.groupBy = builder.groupBy;
-		this.masterTimeout = builder.masterTimeout;
 		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
 		this.timeout = builder.timeout;
@@ -110,8 +170,9 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list or wildcard expression of actions used to limit the
-	 * request.
+	 * A comma-separated list or wildcard expression of actions used to limit the
+	 * request. For example, you can use <code>cluser:*</code> to retrieve all
+	 * cluster-related tasks.
 	 * <p>
 	 * API name: {@code actions}
 	 */
@@ -120,9 +181,9 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the response includes detailed information about shard
-	 * recoveries. This information is useful to distinguish tasks from each other
-	 * but is more costly to run.
+	 * If <code>true</code>, the response includes detailed information about the
+	 * running tasks. This information is useful to distinguish tasks from each
+	 * other but is more costly to run.
 	 * <p>
 	 * API name: {@code detailed}
 	 */
@@ -132,7 +193,8 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Key used to group tasks in the response.
+	 * A key that is used to group tasks in the response. The task lists can be
+	 * grouped either by nodes or by parent tasks.
 	 * <p>
 	 * API name: {@code group_by}
 	 */
@@ -142,18 +204,8 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Comma-separated list of node IDs or names used to limit returned information.
+	 * A comma-separated list of node IDs or names that is used to limit the
+	 * returned information.
 	 * <p>
 	 * API name: {@code nodes}
 	 */
@@ -162,8 +214,9 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Parent task ID used to limit returned information. To return all tasks, omit
-	 * this parameter or use a value of <code>-1</code>.
+	 * A parent task identifier that is used to limit returned information. To
+	 * return all tasks, omit this parameter or use a value of <code>-1</code>. If
+	 * the parent task is not found, the API does not return a 404 response code.
 	 * <p>
 	 * API name: {@code parent_task_id}
 	 */
@@ -173,8 +226,10 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for each node to respond. If a node does not respond
+	 * before its timeout expires, the response does not include its information.
+	 * However, timed out nodes are included in the <code>node_failures</code>
+	 * property.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -210,9 +265,6 @@ public class ListRequest extends RequestBase {
 		private GroupBy groupBy;
 
 		@Nullable
-		private Time masterTimeout;
-
-		@Nullable
 		private List<String> nodes;
 
 		@Nullable
@@ -225,8 +277,9 @@ public class ListRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Comma-separated list or wildcard expression of actions used to limit the
-		 * request.
+		 * A comma-separated list or wildcard expression of actions used to limit the
+		 * request. For example, you can use <code>cluser:*</code> to retrieve all
+		 * cluster-related tasks.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -238,8 +291,9 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list or wildcard expression of actions used to limit the
-		 * request.
+		 * A comma-separated list or wildcard expression of actions used to limit the
+		 * request. For example, you can use <code>cluser:*</code> to retrieve all
+		 * cluster-related tasks.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -251,9 +305,9 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code>, the response includes detailed information about shard
-		 * recoveries. This information is useful to distinguish tasks from each other
-		 * but is more costly to run.
+		 * If <code>true</code>, the response includes detailed information about the
+		 * running tasks. This information is useful to distinguish tasks from each
+		 * other but is more costly to run.
 		 * <p>
 		 * API name: {@code detailed}
 		 */
@@ -263,7 +317,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Key used to group tasks in the response.
+		 * A key that is used to group tasks in the response. The task lists can be
+		 * grouped either by nodes or by parent tasks.
 		 * <p>
 		 * API name: {@code group_by}
 		 */
@@ -273,28 +328,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * A comma-separated list of node IDs or names that is used to limit the
+		 * returned information.
 		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
@@ -306,7 +341,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * A comma-separated list of node IDs or names that is used to limit the
+		 * returned information.
 		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
@@ -318,8 +354,9 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Parent task ID used to limit returned information. To return all tasks, omit
-		 * this parameter or use a value of <code>-1</code>.
+		 * A parent task identifier that is used to limit returned information. To
+		 * return all tasks, omit this parameter or use a value of <code>-1</code>. If
+		 * the parent task is not found, the API does not return a 404 response code.
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
@@ -329,8 +366,10 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for each node to respond. If a node does not respond
+		 * before its timeout expires, the response does not include its information.
+		 * However, timed out nodes are included in the <code>node_failures</code>
+		 * property.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -340,8 +379,10 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for each node to respond. If a node does not respond
+		 * before its timeout expires, the response does not include its information.
+		 * However, timed out nodes are included in the <code>node_failures</code>
+		 * property.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -405,9 +446,6 @@ public class ListRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (ApiTypeHelper.isDefined(request.nodes)) {
 					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

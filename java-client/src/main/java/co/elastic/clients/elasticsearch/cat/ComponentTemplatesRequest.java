@@ -55,12 +55,14 @@ import javax.annotation.Nullable;
 // typedef: cat.component_templates.Request
 
 /**
- * Get component templates. Returns information about component templates in a
- * cluster. Component templates are building blocks for constructing index
- * templates that specify index mappings, settings, and aliases.
+ * Get component templates.
  * <p>
- * CAT APIs are only intended for human consumption using the command line or
- * Kibana console. They are not intended for use by applications. For
+ * Get information about component templates in a cluster. Component templates
+ * are building blocks for constructing index templates that specify index
+ * mappings, settings, and aliases.
+ * <p>
+ * IMPORTANT: CAT APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
  * application consumption, use the get component template API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.component_templates.Request">API
@@ -106,7 +108,7 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -116,8 +118,8 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The name of the component template. Accepts wildcard expressions. If omitted,
-	 * all component templates are returned.
+	 * The name of the component template. It accepts wildcard expressions. If it is
+	 * omitted, all component templates are returned.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -159,7 +161,7 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -169,7 +171,7 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -178,8 +180,8 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The name of the component template. Accepts wildcard expressions. If omitted,
-		 * all component templates are returned.
+		 * The name of the component template. It accepts wildcard expressions. If it is
+		 * omitted, all component templates are returned.
 		 * <p>
 		 * API name: {@code name}
 		 */

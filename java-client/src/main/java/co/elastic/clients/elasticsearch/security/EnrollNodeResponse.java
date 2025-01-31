@@ -90,42 +90,64 @@ public class EnrollNodeResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code http_ca_key}
+	 * Required - The CA private key that can be used by the new node in order to
+	 * sign its certificate for the HTTP layer, as a Base64 encoded string of the
+	 * ASN.1 DER encoding of the key.
+	 * <p>
+	 * API name: {@code http_ca_key}
 	 */
 	public final String httpCaKey() {
 		return this.httpCaKey;
 	}
 
 	/**
-	 * Required - API name: {@code http_ca_cert}
+	 * Required - The CA certificate that can be used by the new node in order to
+	 * sign its certificate for the HTTP layer, as a Base64 encoded string of the
+	 * ASN.1 DER encoding of the certificate.
+	 * <p>
+	 * API name: {@code http_ca_cert}
 	 */
 	public final String httpCaCert() {
 		return this.httpCaCert;
 	}
 
 	/**
-	 * Required - API name: {@code transport_ca_cert}
+	 * Required - The CA certificate that is used to sign the TLS certificate for
+	 * the transport layer, as a Base64 encoded string of the ASN.1 DER encoding of
+	 * the certificate.
+	 * <p>
+	 * API name: {@code transport_ca_cert}
 	 */
 	public final String transportCaCert() {
 		return this.transportCaCert;
 	}
 
 	/**
-	 * Required - API name: {@code transport_key}
+	 * Required - The private key that the node can use for TLS for its transport
+	 * layer, as a Base64 encoded string of the ASN.1 DER encoding of the key.
+	 * <p>
+	 * API name: {@code transport_key}
 	 */
 	public final String transportKey() {
 		return this.transportKey;
 	}
 
 	/**
-	 * Required - API name: {@code transport_cert}
+	 * Required - The certificate that the node can use for TLS for its transport
+	 * layer, as a Base64 encoded string of the ASN.1 DER encoding of the
+	 * certificate.
+	 * <p>
+	 * API name: {@code transport_cert}
 	 */
 	public final String transportCert() {
 		return this.transportCert;
 	}
 
 	/**
-	 * Required - API name: {@code nodes_addresses}
+	 * Required - A list of transport addresses in the form of
+	 * <code>host:port</code> for the nodes that are already members of the cluster.
+	 * <p>
+	 * API name: {@code nodes_addresses}
 	 */
 	public final List<String> nodesAddresses() {
 		return this.nodesAddresses;
@@ -197,7 +219,11 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		private List<String> nodesAddresses;
 
 		/**
-		 * Required - API name: {@code http_ca_key}
+		 * Required - The CA private key that can be used by the new node in order to
+		 * sign its certificate for the HTTP layer, as a Base64 encoded string of the
+		 * ASN.1 DER encoding of the key.
+		 * <p>
+		 * API name: {@code http_ca_key}
 		 */
 		public final Builder httpCaKey(String value) {
 			this.httpCaKey = value;
@@ -205,7 +231,11 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code http_ca_cert}
+		 * Required - The CA certificate that can be used by the new node in order to
+		 * sign its certificate for the HTTP layer, as a Base64 encoded string of the
+		 * ASN.1 DER encoding of the certificate.
+		 * <p>
+		 * API name: {@code http_ca_cert}
 		 */
 		public final Builder httpCaCert(String value) {
 			this.httpCaCert = value;
@@ -213,7 +243,11 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport_ca_cert}
+		 * Required - The CA certificate that is used to sign the TLS certificate for
+		 * the transport layer, as a Base64 encoded string of the ASN.1 DER encoding of
+		 * the certificate.
+		 * <p>
+		 * API name: {@code transport_ca_cert}
 		 */
 		public final Builder transportCaCert(String value) {
 			this.transportCaCert = value;
@@ -221,7 +255,10 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport_key}
+		 * Required - The private key that the node can use for TLS for its transport
+		 * layer, as a Base64 encoded string of the ASN.1 DER encoding of the key.
+		 * <p>
+		 * API name: {@code transport_key}
 		 */
 		public final Builder transportKey(String value) {
 			this.transportKey = value;
@@ -229,7 +266,11 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport_cert}
+		 * Required - The certificate that the node can use for TLS for its transport
+		 * layer, as a Base64 encoded string of the ASN.1 DER encoding of the
+		 * certificate.
+		 * <p>
+		 * API name: {@code transport_cert}
 		 */
 		public final Builder transportCert(String value) {
 			this.transportCert = value;
@@ -237,7 +278,10 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code nodes_addresses}
+		 * Required - A list of transport addresses in the form of
+		 * <code>host:port</code> for the nodes that are already members of the cluster.
+		 * <p>
+		 * API name: {@code nodes_addresses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodesAddresses</code>.
 		 */
@@ -247,7 +291,10 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code nodes_addresses}
+		 * Required - A list of transport addresses in the form of
+		 * <code>host:port</code> for the nodes that are already members of the cluster.
+		 * <p>
+		 * API name: {@code nodes_addresses}
 		 * <p>
 		 * Adds one or more values to <code>nodesAddresses</code>.
 		 */

@@ -55,14 +55,18 @@ import javax.annotation.Nullable;
 // typedef: license.get.Request
 
 /**
- * Get license information. Get information about your Elastic license including
- * its type, its status, when it was issued, and when it expires.
+ * Get license information.
  * <p>
- * NOTE: If the master node is generating a new cluster state, the get license
+ * Get information about your Elastic license including its type, its status,
+ * when it was issued, and when it expires. <blockquote>
+ * <p>
+ * info If the master node is generating a new cluster state, the get license
  * API may return a <code>404 Not Found</code> response. If you receive an
  * unexpected 404 response after cluster startup, wait a short period and retry
  * the request.
- * 
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="../doc-files/api-spec.html#license.get.Request">API
  *      specification</a>
  */
