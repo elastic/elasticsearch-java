@@ -97,8 +97,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Context in which the script or search template should run. To prevent errors,
-	 * the API immediately compiles the script or template in this context.
+	 * The context in which the script or search template should run. To prevent
+	 * errors, the API immediately compiles the script or template in this context.
 	 * <p>
 	 * API name: {@code context}
 	 */
@@ -108,8 +108,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Identifier for the stored script or search template. Must be
-	 * unique within the cluster.
+	 * Required - The identifier for the stored script or search template. It must
+	 * be unique within the cluster.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -118,8 +118,10 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
+	 * It can also be set to <code>-1</code> to indicate that the request should
+	 * never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -129,8 +131,7 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains the script or search template, its parameters, and its
-	 * language.
+	 * Required - The script or search template, its parameters, and its language.
 	 * <p>
 	 * API name: {@code script}
 	 */
@@ -139,8 +140,9 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error. It can also be set
+	 * to <code>-1</code> to indicate that the request should never timeout.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -188,8 +190,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
-		 * Context in which the script or search template should run. To prevent errors,
-		 * the API immediately compiles the script or template in this context.
+		 * The context in which the script or search template should run. To prevent
+		 * errors, the API immediately compiles the script or template in this context.
 		 * <p>
 		 * API name: {@code context}
 		 */
@@ -199,8 +201,8 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Identifier for the stored script or search template. Must be
-		 * unique within the cluster.
+		 * Required - The identifier for the stored script or search template. It must
+		 * be unique within the cluster.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -210,8 +212,10 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * It can also be set to <code>-1</code> to indicate that the request should
+		 * never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -221,8 +225,10 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
+		 * It can also be set to <code>-1</code> to indicate that the request should
+		 * never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -231,8 +237,7 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains the script or search template, its parameters, and its
-		 * language.
+		 * Required - The script or search template, its parameters, and its language.
 		 * <p>
 		 * API name: {@code script}
 		 */
@@ -242,8 +247,7 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains the script or search template, its parameters, and its
-		 * language.
+		 * Required - The script or search template, its parameters, and its language.
 		 * <p>
 		 * API name: {@code script}
 		 */
@@ -252,8 +256,9 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error. It can also be set
+		 * to <code>-1</code> to indicate that the request should never timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -263,8 +268,9 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error. It can also be set
+		 * to <code>-1</code> to indicate that the request should never timeout.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

@@ -100,7 +100,14 @@ public class QueryRoleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The list of roles.
+	 * Required - A list of roles that match the query. The returned role format is
+	 * an extension of the role definition format. It adds the
+	 * <code>transient_metadata.enabled</code> and the <code>_sort</code> fields.
+	 * <code>transient_metadata.enabled</code> is set to <code>false</code> in case
+	 * the role is automatically disabled, for example when the role grants
+	 * privileges that are not allowed by the installed license. <code>_sort</code>
+	 * is present when the search query sorts on some field. It contains the array
+	 * of values that have been used for sorting.
 	 * <p>
 	 * API name: {@code roles}
 	 */
@@ -177,7 +184,14 @@ public class QueryRoleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The list of roles.
+		 * Required - A list of roles that match the query. The returned role format is
+		 * an extension of the role definition format. It adds the
+		 * <code>transient_metadata.enabled</code> and the <code>_sort</code> fields.
+		 * <code>transient_metadata.enabled</code> is set to <code>false</code> in case
+		 * the role is automatically disabled, for example when the role grants
+		 * privileges that are not allowed by the installed license. <code>_sort</code>
+		 * is present when the search query sorts on some field. It contains the array
+		 * of values that have been used for sorting.
 		 * <p>
 		 * API name: {@code roles}
 		 * <p>
@@ -189,7 +203,14 @@ public class QueryRoleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The list of roles.
+		 * Required - A list of roles that match the query. The returned role format is
+		 * an extension of the role definition format. It adds the
+		 * <code>transient_metadata.enabled</code> and the <code>_sort</code> fields.
+		 * <code>transient_metadata.enabled</code> is set to <code>false</code> in case
+		 * the role is automatically disabled, for example when the role grants
+		 * privileges that are not allowed by the installed license. <code>_sort</code>
+		 * is present when the search query sorts on some field. It contains the array
+		 * of values that have been used for sorting.
 		 * <p>
 		 * API name: {@code roles}
 		 * <p>
@@ -201,7 +222,14 @@ public class QueryRoleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The list of roles.
+		 * Required - A list of roles that match the query. The returned role format is
+		 * an extension of the role definition format. It adds the
+		 * <code>transient_metadata.enabled</code> and the <code>_sort</code> fields.
+		 * <code>transient_metadata.enabled</code> is set to <code>false</code> in case
+		 * the role is automatically disabled, for example when the role grants
+		 * privileges that are not allowed by the installed license. <code>_sort</code>
+		 * is present when the search query sorts on some field. It contains the array
+		 * of values that have been used for sorting.
 		 * <p>
 		 * API name: {@code roles}
 		 * <p>

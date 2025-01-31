@@ -63,16 +63,23 @@ import javax.annotation.Nullable;
  * Create an API key on behalf of another user. This API is similar to the
  * create API keys API, however it creates the API key for a user that is
  * different than the user that runs the API. The caller must have
- * authentication credentials (either an access token, or a username and
- * password) for the user on whose behalf the API key will be created. It is not
- * possible to use this API to create an API key without that user’s
- * credentials. The user, for whom the authentication credentials is provided,
- * can optionally &quot;run as&quot; (impersonate) another user. In this case,
- * the API key will be created on behalf of the impersonated user.
+ * authentication credentials for the user on whose behalf the API key will be
+ * created. It is not possible to use this API to create an API key without that
+ * user's credentials. The supported user authentication credential types are:
+ * <ul>
+ * <li>username and password</li>
+ * <li>Elasticsearch access tokens</li>
+ * <li>JWTs</li>
+ * </ul>
+ * <p>
+ * The user, for whom the authentication credentials is provided, can optionally
+ * &quot;run as&quot; (impersonate) another user. In this case, the API key will
+ * be created on behalf of the impersonated user.
  * <p>
  * This API is intended be used by applications that need to create and manage
  * API keys for end users, but cannot guarantee that those users have permission
- * to create API keys on their own behalf.
+ * to create API keys on their own behalf. The API keys are created by the
+ * Elasticsearch API key service, which is automatically enabled.
  * <p>
  * A successful grant API key API call returns a JSON structure that contains
  * the API key, its unique id, and its name. If applicable, it also returns
@@ -120,7 +127,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The user’s access token. If you specify the <code>access_token</code> grant
+	 * The user's access token. If you specify the <code>access_token</code> grant
 	 * type, this parameter is required. It is not valid with other grant types.
 	 * <p>
 	 * API name: {@code access_token}
@@ -131,7 +138,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - Defines the API key.
+	 * Required - The API key.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -150,7 +157,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The user’s password. If you specify the <code>password</code> grant type,
+	 * The user's password. If you specify the <code>password</code> grant type,
 	 * this parameter is required. It is not valid with other grant types.
 	 * <p>
 	 * API name: {@code password}
@@ -247,7 +254,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		private String username;
 
 		/**
-		 * The user’s access token. If you specify the <code>access_token</code> grant
+		 * The user's access token. If you specify the <code>access_token</code> grant
 		 * type, this parameter is required. It is not valid with other grant types.
 		 * <p>
 		 * API name: {@code access_token}
@@ -258,7 +265,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Required - Defines the API key.
+		 * Required - The API key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -268,7 +275,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Required - Defines the API key.
+		 * Required - The API key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -288,7 +295,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The user’s password. If you specify the <code>password</code> grant type,
+		 * The user's password. If you specify the <code>password</code> grant type,
 		 * this parameter is required. It is not valid with other grant types.
 		 * <p>
 		 * API name: {@code password}

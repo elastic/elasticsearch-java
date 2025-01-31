@@ -76,6 +76,139 @@ import javax.annotation.Nullable;
  * query is specified, performs an update on every document in the data stream
  * or index without modifying the source, which is useful for picking up mapping
  * changes.
+ * <p>
+ * If the Elasticsearch security features are enabled, you must have the
+ * following index privileges for the target data stream, index, or alias:
+ * <ul>
+ * <li><code>read</code></li>
+ * <li><code>index</code> or <code>write</code></li>
+ * </ul>
+ * <p>
+ * You can specify the query criteria in the request URI or the request body
+ * using the same syntax as the search API.
+ * <p>
+ * When you submit an update by query request, Elasticsearch gets a snapshot of
+ * the data stream or index when it begins processing the request and updates
+ * matching documents using internal versioning. When the versions match, the
+ * document is updated and the version number is incremented. If a document
+ * changes between the time that the snapshot is taken and the update operation
+ * is processed, it results in a version conflict and the operation fails. You
+ * can opt to count version conflicts instead of halting and returning by
+ * setting <code>conflicts</code> to <code>proceed</code>. Note that if you opt
+ * to count version conflicts, the operation could attempt to update more
+ * documents from the source than <code>max_docs</code> until it has
+ * successfully updated <code>max_docs</code> documents or it has gone through
+ * every document in the source query.
+ * <p>
+ * NOTE: Documents with a version equal to 0 cannot be updated using update by
+ * query because internal versioning does not support 0 as a valid version
+ * number.
+ * <p>
+ * While processing an update by query request, Elasticsearch performs multiple
+ * search requests sequentially to find all of the matching documents. A bulk
+ * update request is performed for each batch of matching documents. Any query
+ * or update failures cause the update by query request to fail and the failures
+ * are shown in the response. Any update requests that completed successfully
+ * still stick, they are not rolled back.
+ * <p>
+ * <strong>Throttling update requests</strong>
+ * <p>
+ * To control the rate at which update by query issues batches of update
+ * operations, you can set <code>requests_per_second</code> to any positive
+ * decimal number. This pads each batch with a wait time to throttle the rate.
+ * Set <code>requests_per_second</code> to <code>-1</code> to turn off
+ * throttling.
+ * <p>
+ * Throttling uses a wait time between batches so that the internal scroll
+ * requests can be given a timeout that takes the request padding into account.
+ * The padding time is the difference between the batch size divided by the
+ * <code>requests_per_second</code> and the time spent writing. By default the
+ * batch size is 1000, so if <code>requests_per_second</code> is set to
+ * <code>500</code>:
+ * 
+ * <pre>
+ * <code>target_time = 1000 / 500 per second = 2 seconds
+ * wait_time = target_time - write_time = 2 seconds - .5 seconds = 1.5 seconds
+ * </code>
+ * </pre>
+ * <p>
+ * Since the batch is issued as a single _bulk request, large batch sizes cause
+ * Elasticsearch to create many requests and wait before starting the next set.
+ * This is &quot;bursty&quot; instead of &quot;smooth&quot;.
+ * <p>
+ * <strong>Slicing</strong>
+ * <p>
+ * Update by query supports sliced scroll to parallelize the update process.
+ * This can improve efficiency and provide a convenient way to break the request
+ * down into smaller parts.
+ * <p>
+ * Setting <code>slices</code> to <code>auto</code> chooses a reasonable number
+ * for most data streams and indices. This setting will use one slice per shard,
+ * up to a certain limit. If there are multiple source data streams or indices,
+ * it will choose the number of slices based on the index or backing index with
+ * the smallest number of shards.
+ * <p>
+ * Adding <code>slices</code> to <code>_update_by_query</code> just automates
+ * the manual process of creating sub-requests, which means it has some quirks:
+ * <ul>
+ * <li>You can see these requests in the tasks APIs. These sub-requests are
+ * &quot;child&quot; tasks of the task for the request with slices.</li>
+ * <li>Fetching the status of the task for the request with <code>slices</code>
+ * only contains the status of completed slices.</li>
+ * <li>These sub-requests are individually addressable for things like
+ * cancellation and rethrottling.</li>
+ * <li>Rethrottling the request with <code>slices</code> will rethrottle the
+ * unfinished sub-request proportionally.</li>
+ * <li>Canceling the request with slices will cancel each sub-request.</li>
+ * <li>Due to the nature of slices each sub-request won't get a perfectly even
+ * portion of the documents. All documents will be addressed, but some slices
+ * may be larger than others. Expect larger slices to have a more even
+ * distribution.</li>
+ * <li>Parameters like <code>requests_per_second</code> and
+ * <code>max_docs</code> on a request with slices are distributed proportionally
+ * to each sub-request. Combine that with the point above about distribution
+ * being uneven and you should conclude that using <code>max_docs</code> with
+ * <code>slices</code> might not result in exactly <code>max_docs</code>
+ * documents being updated.</li>
+ * <li>Each sub-request gets a slightly different snapshot of the source data
+ * stream or index though these are all taken at approximately the same
+ * time.</li>
+ * </ul>
+ * <p>
+ * If you're slicing manually or otherwise tuning automatic slicing, keep in
+ * mind that:
+ * <ul>
+ * <li>Query performance is most efficient when the number of slices is equal to
+ * the number of shards in the index or backing index. If that number is large
+ * (for example, 500), choose a lower number as too many slices hurts
+ * performance. Setting slices higher than the number of shards generally does
+ * not improve efficiency and adds overhead.</li>
+ * <li>Update performance scales linearly across available resources with the
+ * number of slices.</li>
+ * </ul>
+ * <p>
+ * Whether query or update performance dominates the runtime depends on the
+ * documents being reindexed and cluster resources.
+ * <p>
+ * <strong>Update the document source</strong>
+ * <p>
+ * Update by query supports scripts to update the document source. As with the
+ * update API, you can set <code>ctx.op</code> to change the operation that is
+ * performed.
+ * <p>
+ * Set <code>ctx.op = &quot;noop&quot;</code> if your script decides that it
+ * doesn't have to make any changes. The update by query operation skips
+ * updating the document and increments the <code>noop</code> counter.
+ * <p>
+ * Set <code>ctx.op = &quot;delete&quot;</code> if your script decides that the
+ * document should be deleted. The update by query operation deletes the
+ * document and increments the <code>deleted</code> counter.
+ * <p>
+ * Update by query supports only <code>index</code>, <code>noop</code>, and
+ * <code>delete</code>. Setting <code>ctx.op</code> to anything else is an
+ * error. Setting any other field in <code>ctx</code> is an error. This API
+ * enables you to only modify the source of matching documents; you cannot move
+ * them.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.update_by_query.Request">API
  *      specification</a>
@@ -245,7 +378,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * If <code>true</code>, wildcard and prefix queries are analyzed.
+	 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+	 * parameter can be used only when the <code>q</code> query string parameter is
+	 * specified.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -255,7 +390,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Analyzer to use for the query string.
+	 * The analyzer to use for the query string. This parameter can be used only
+	 * when the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -265,8 +401,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * What to do if update by query hits version conflicts: <code>abort</code> or
-	 * <code>proceed</code>.
+	 * The preferred behavior when update by query hits version conflicts:
+	 * <code>abort</code> or <code>proceed</code>.
 	 * <p>
 	 * API name: {@code conflicts}
 	 */
@@ -277,7 +413,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	/**
 	 * The default operator for query string query: <code>AND</code> or
-	 * <code>OR</code>.
+	 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+	 * query string parameter is specified.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -287,7 +424,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Field to use as default where no field prefix is given in the query string.
+	 * The field to use as default where no field prefix is given in the query
+	 * string. This parameter can be used only when the <code>q</code> query string
+	 * parameter is specified.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -297,9 +436,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Type of index that wildcard patterns can match. If the request can target
+	 * The type of index that wildcard patterns can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
-	 * hidden data streams. Supports comma-separated values, such as
+	 * hidden data streams. It supports comma-separated values, such as
 	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
 	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
 	 * <code>none</code>.
@@ -332,8 +471,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - Comma-separated list of data streams, indices, and aliases to
-	 * search. Supports wildcards (<code>*</code>). To search all data streams or
+	 * Required - A comma-separated list of data streams, indices, and aliases to
+	 * search. It supports wildcards (<code>*</code>). To search all data streams or
 	 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
@@ -344,7 +483,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	/**
 	 * If <code>true</code>, format-based query failures (such as providing text to
-	 * a numeric field) in the query string will be ignored.
+	 * a numeric field) in the query string will be ignored. This parameter can be
+	 * used only when the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -364,8 +504,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * ID of the pipeline to use to preprocess incoming documents. If the index has
-	 * a default ingest pipeline specified, then setting the value to
+	 * The ID of the pipeline to use to preprocess incoming documents. If the index
+	 * has a default ingest pipeline specified, then setting the value to
 	 * <code>_none</code> disables the default ingest pipeline for this request. If
 	 * a final pipeline is configured it will always run, regardless of the value of
 	 * this parameter.
@@ -378,7 +518,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
+	 * The node or shard the operation should be performed on. It is random by
 	 * default.
 	 * <p>
 	 * API name: {@code preference}
@@ -389,7 +529,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Query in the Lucene query string syntax.
+	 * A query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -399,7 +539,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specifies the documents to update using the Query DSL.
+	 * The documents to update using the Query DSL.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -410,7 +550,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	/**
 	 * If <code>true</code>, Elasticsearch refreshes affected shards to make the
-	 * operation visible to search.
+	 * operation visible to search after the request completes. This is different
+	 * than the update API's <code>refresh</code> parameter, which causes just the
+	 * shard that received the request to be refreshed.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -420,7 +562,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * If <code>true</code>, the request cache is used for this request.
+	 * If <code>true</code>, the request cache is used for this request. It defaults
+	 * to the index-level setting.
 	 * <p>
 	 * API name: {@code request_cache}
 	 */
@@ -440,7 +583,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -460,7 +603,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Period to retain the search context for scrolling.
+	 * The period to retain the search context for scrolling.
 	 * <p>
 	 * API name: {@code scroll}
 	 */
@@ -470,7 +613,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Size of the scroll request that powers the operation.
+	 * The size of the scroll request that powers the operation.
 	 * <p>
 	 * API name: {@code scroll_size}
 	 */
@@ -480,7 +623,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Explicit timeout for each search request.
+	 * An explicit timeout for each search request. By default, there is no timeout.
 	 * <p>
 	 * API name: {@code search_timeout}
 	 */
@@ -490,8 +633,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The type of the search operation. Available options:
-	 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
+	 * The type of the search operation. Available options include
+	 * <code>query_then_fetch</code> and <code>dfs_query_then_fetch</code>.
 	 * <p>
 	 * API name: {@code search_type}
 	 */
@@ -531,7 +674,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Specific <code>tag</code> of the request for logging and statistical
+	 * The specific <code>tag</code> of the request for logging and statistical
 	 * purposes.
 	 * <p>
 	 * API name: {@code stats}
@@ -541,13 +684,14 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Maximum number of documents to collect for each shard. If a query reaches
+	 * The maximum number of documents to collect for each shard. If a query reaches
 	 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
-	 * documents before sorting. Use with caution. Elasticsearch applies this
-	 * parameter to each shard handling the request. When possible, let
-	 * Elasticsearch perform early termination automatically. Avoid specifying this
-	 * parameter for requests that target data streams with backing indices across
-	 * multiple data tiers.
+	 * documents before sorting.
+	 * <p>
+	 * IMPORTANT: Use with caution. Elasticsearch applies this parameter to each
+	 * shard handling the request. When possible, let Elasticsearch perform early
+	 * termination automatically. Avoid specifying this parameter for requests that
+	 * target data streams with backing indices across multiple data tiers.
 	 * <p>
 	 * API name: {@code terminate_after}
 	 */
@@ -557,8 +701,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Period each update request waits for the following operations: dynamic
-	 * mapping updates, waiting for active shards.
+	 * The period each update request waits for the following operations: dynamic
+	 * mapping updates, waiting for active shards. By default, it is one minute.
+	 * This guarantees Elasticsearch waits for at least the timeout before failing.
+	 * The actual wait time could be longer, particularly when multiple waits occur.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -591,7 +737,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * The number of shard copies that must be active before proceeding with the
 	 * operation. Set to <code>all</code> or any positive integer up to the total
-	 * number of shards in the index (<code>number_of_replicas+1</code>).
+	 * number of shards in the index (<code>number_of_replicas+1</code>). The
+	 * <code>timeout</code> parameter controls how long each write request waits for
+	 * unavailable shards to become available. Both work exactly the way they work
+	 * in the bulk API.
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -601,7 +750,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * If <code>true</code>, the request blocks until the operation is complete.
+	 * If <code>true</code>, the request blocks until the operation is complete. If
+	 * <code>false</code>, Elasticsearch performs some preflight checks, launches
+	 * the request, and returns a task ID that you can use to cancel or get the
+	 * status of the task. Elasticsearch creates a record of this task as a document
+	 * at <code>.tasks/task/${taskId}</code>.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -777,7 +930,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * If <code>true</code>, wildcard and prefix queries are analyzed.
+		 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+		 * parameter can be used only when the <code>q</code> query string parameter is
+		 * specified.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -787,7 +942,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Analyzer to use for the query string.
+		 * The analyzer to use for the query string. This parameter can be used only
+		 * when the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -797,8 +953,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * What to do if update by query hits version conflicts: <code>abort</code> or
-		 * <code>proceed</code>.
+		 * The preferred behavior when update by query hits version conflicts:
+		 * <code>abort</code> or <code>proceed</code>.
 		 * <p>
 		 * API name: {@code conflicts}
 		 */
@@ -809,7 +965,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * The default operator for query string query: <code>AND</code> or
-		 * <code>OR</code>.
+		 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+		 * query string parameter is specified.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -819,7 +976,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Field to use as default where no field prefix is given in the query string.
+		 * The field to use as default where no field prefix is given in the query
+		 * string. This parameter can be used only when the <code>q</code> query string
+		 * parameter is specified.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -829,9 +988,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Type of index that wildcard patterns can match. If the request can target
+		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
-		 * hidden data streams. Supports comma-separated values, such as
+		 * hidden data streams. It supports comma-separated values, such as
 		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
 		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
 		 * <code>none</code>.
@@ -846,9 +1005,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Type of index that wildcard patterns can match. If the request can target
+		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
-		 * hidden data streams. Supports comma-separated values, such as
+		 * hidden data streams. It supports comma-separated values, such as
 		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
 		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
 		 * <code>none</code>.
@@ -884,8 +1043,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and aliases to
-		 * search. Supports wildcards (<code>*</code>). To search all data streams or
+		 * Required - A comma-separated list of data streams, indices, and aliases to
+		 * search. It supports wildcards (<code>*</code>). To search all data streams or
 		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
@@ -898,8 +1057,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and aliases to
-		 * search. Supports wildcards (<code>*</code>). To search all data streams or
+		 * Required - A comma-separated list of data streams, indices, and aliases to
+		 * search. It supports wildcards (<code>*</code>). To search all data streams or
 		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
@@ -913,7 +1072,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * If <code>true</code>, format-based query failures (such as providing text to
-		 * a numeric field) in the query string will be ignored.
+		 * a numeric field) in the query string will be ignored. This parameter can be
+		 * used only when the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -933,8 +1093,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * ID of the pipeline to use to preprocess incoming documents. If the index has
-		 * a default ingest pipeline specified, then setting the value to
+		 * The ID of the pipeline to use to preprocess incoming documents. If the index
+		 * has a default ingest pipeline specified, then setting the value to
 		 * <code>_none</code> disables the default ingest pipeline for this request. If
 		 * a final pipeline is configured it will always run, regardless of the value of
 		 * this parameter.
@@ -947,7 +1107,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
+		 * The node or shard the operation should be performed on. It is random by
 		 * default.
 		 * <p>
 		 * API name: {@code preference}
@@ -958,7 +1118,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Query in the Lucene query string syntax.
+		 * A query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -968,7 +1128,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specifies the documents to update using the Query DSL.
+		 * The documents to update using the Query DSL.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -978,7 +1138,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specifies the documents to update using the Query DSL.
+		 * The documents to update using the Query DSL.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -988,7 +1148,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * If <code>true</code>, Elasticsearch refreshes affected shards to make the
-		 * operation visible to search.
+		 * operation visible to search after the request completes. This is different
+		 * than the update API's <code>refresh</code> parameter, which causes just the
+		 * shard that received the request to be refreshed.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -998,7 +1160,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * If <code>true</code>, the request cache is used for this request.
+		 * If <code>true</code>, the request cache is used for this request. It defaults
+		 * to the index-level setting.
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
@@ -1018,7 +1181,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -1047,7 +1210,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Period to retain the search context for scrolling.
+		 * The period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -1057,7 +1220,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Period to retain the search context for scrolling.
+		 * The period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -1066,7 +1229,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Size of the scroll request that powers the operation.
+		 * The size of the scroll request that powers the operation.
 		 * <p>
 		 * API name: {@code scroll_size}
 		 */
@@ -1076,7 +1239,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Explicit timeout for each search request.
+		 * An explicit timeout for each search request. By default, there is no timeout.
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
@@ -1086,7 +1249,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Explicit timeout for each search request.
+		 * An explicit timeout for each search request. By default, there is no timeout.
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
@@ -1095,8 +1258,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The type of the search operation. Available options:
-		 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
+		 * The type of the search operation. Available options include
+		 * <code>query_then_fetch</code> and <code>dfs_query_then_fetch</code>.
 		 * <p>
 		 * API name: {@code search_type}
 		 */
@@ -1170,7 +1333,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specific <code>tag</code> of the request for logging and statistical
+		 * The specific <code>tag</code> of the request for logging and statistical
 		 * purposes.
 		 * <p>
 		 * API name: {@code stats}
@@ -1183,7 +1346,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Specific <code>tag</code> of the request for logging and statistical
+		 * The specific <code>tag</code> of the request for logging and statistical
 		 * purposes.
 		 * <p>
 		 * API name: {@code stats}
@@ -1196,13 +1359,14 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Maximum number of documents to collect for each shard. If a query reaches
+		 * The maximum number of documents to collect for each shard. If a query reaches
 		 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
-		 * documents before sorting. Use with caution. Elasticsearch applies this
-		 * parameter to each shard handling the request. When possible, let
-		 * Elasticsearch perform early termination automatically. Avoid specifying this
-		 * parameter for requests that target data streams with backing indices across
-		 * multiple data tiers.
+		 * documents before sorting.
+		 * <p>
+		 * IMPORTANT: Use with caution. Elasticsearch applies this parameter to each
+		 * shard handling the request. When possible, let Elasticsearch perform early
+		 * termination automatically. Avoid specifying this parameter for requests that
+		 * target data streams with backing indices across multiple data tiers.
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
@@ -1212,8 +1376,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Period each update request waits for the following operations: dynamic
-		 * mapping updates, waiting for active shards.
+		 * The period each update request waits for the following operations: dynamic
+		 * mapping updates, waiting for active shards. By default, it is one minute.
+		 * This guarantees Elasticsearch waits for at least the timeout before failing.
+		 * The actual wait time could be longer, particularly when multiple waits occur.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -1223,8 +1389,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Period each update request waits for the following operations: dynamic
-		 * mapping updates, waiting for active shards.
+		 * The period each update request waits for the following operations: dynamic
+		 * mapping updates, waiting for active shards. By default, it is one minute.
+		 * This guarantees Elasticsearch waits for at least the timeout before failing.
+		 * The actual wait time could be longer, particularly when multiple waits occur.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -1256,7 +1424,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * The number of shard copies that must be active before proceeding with the
 		 * operation. Set to <code>all</code> or any positive integer up to the total
-		 * number of shards in the index (<code>number_of_replicas+1</code>).
+		 * number of shards in the index (<code>number_of_replicas+1</code>). The
+		 * <code>timeout</code> parameter controls how long each write request waits for
+		 * unavailable shards to become available. Both work exactly the way they work
+		 * in the bulk API.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -1268,7 +1439,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * The number of shard copies that must be active before proceeding with the
 		 * operation. Set to <code>all</code> or any positive integer up to the total
-		 * number of shards in the index (<code>number_of_replicas+1</code>).
+		 * number of shards in the index (<code>number_of_replicas+1</code>). The
+		 * <code>timeout</code> parameter controls how long each write request waits for
+		 * unavailable shards to become available. Both work exactly the way they work
+		 * in the bulk API.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -1278,7 +1452,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * If <code>true</code>, the request blocks until the operation is complete.
+		 * If <code>true</code>, the request blocks until the operation is complete. If
+		 * <code>false</code>, Elasticsearch performs some preflight checks, launches
+		 * the request, and returns a task ID that you can use to cancel or get the
+		 * status of the task. Elasticsearch creates a record of this task as a document
+		 * at <code>.tasks/task/${taskId}</code>.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

@@ -89,7 +89,7 @@ public class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -109,8 +109,8 @@ public class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -138,7 +138,7 @@ public class GetLifecycleRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -149,7 +149,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -183,8 +183,8 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -194,8 +194,8 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

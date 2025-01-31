@@ -109,8 +109,8 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains service account credentials collected from all nodes of
-	 * the cluster
+	 * Required - Service account credentials collected from all nodes of the
+	 * cluster.
 	 * <p>
 	 * API name: {@code nodes_credentials}
 	 */
@@ -218,8 +218,8 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains service account credentials collected from all nodes of
-		 * the cluster
+		 * Required - Service account credentials collected from all nodes of the
+		 * cluster.
 		 * <p>
 		 * API name: {@code nodes_credentials}
 		 */
@@ -229,8 +229,8 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains service account credentials collected from all nodes of
-		 * the cluster
+		 * Required - Service account credentials collected from all nodes of the
+		 * cluster.
 		 * <p>
 		 * API name: {@code nodes_credentials}
 		 */

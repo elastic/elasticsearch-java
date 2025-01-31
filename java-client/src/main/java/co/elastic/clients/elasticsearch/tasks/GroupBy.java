@@ -46,12 +46,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 @JsonpDeserializable
 public enum GroupBy implements JsonEnum {
 	/**
-	 * Node ID
+	 * Group tasks by node ID.
 	 */
 	Nodes("nodes"),
 
 	/**
-	 * Parent task ID
+	 * Group tasks by parent task ID.
 	 */
 	Parents("parents"),
 

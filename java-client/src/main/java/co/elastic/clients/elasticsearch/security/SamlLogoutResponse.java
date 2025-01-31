@@ -74,7 +74,11 @@ public class SamlLogoutResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code redirect}
+	 * Required - A URL that contains a SAML logout request as a parameter. You can
+	 * use this URL to be redirected back to the SAML IdP and to initiate Single
+	 * Logout.
+	 * <p>
+	 * API name: {@code redirect}
 	 */
 	public final String redirect() {
 		return this.redirect;
@@ -113,7 +117,11 @@ public class SamlLogoutResponse implements JsonpSerializable {
 		private String redirect;
 
 		/**
-		 * Required - API name: {@code redirect}
+		 * Required - A URL that contains a SAML logout request as a parameter. You can
+		 * use this URL to be redirected back to the SAML IdP and to initiate Single
+		 * Logout.
+		 * <p>
+		 * API name: {@code redirect}
 		 */
 		public final Builder redirect(String value) {
 			this.redirect = value;

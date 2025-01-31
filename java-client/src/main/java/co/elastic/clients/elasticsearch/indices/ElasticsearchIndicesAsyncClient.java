@@ -1630,7 +1630,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get aliases. Retrieves information for one or more data stream or index
 	 * aliases.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request) {
@@ -1647,7 +1649,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAliasRequest}
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetAliasResponse> getAlias(
@@ -1659,7 +1663,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get aliases. Retrieves information for one or more data stream or index
 	 * aliases.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias() {
@@ -3649,7 +3655,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index from an existing index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/{master}/indices-simulate-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3669,7 +3675,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/{master}/indices-simulate-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

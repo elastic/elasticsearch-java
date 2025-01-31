@@ -73,7 +73,11 @@ public class DeleteUserResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code found}
+	 * Required - If the user is successfully deleted, the request returns
+	 * <code>{&quot;found&quot;: true}</code>. Otherwise, <code>found</code> is set
+	 * to <code>false</code>.
+	 * <p>
+	 * API name: {@code found}
 	 */
 	public final boolean found() {
 		return this.found;
@@ -112,7 +116,11 @@ public class DeleteUserResponse implements JsonpSerializable {
 		private Boolean found;
 
 		/**
-		 * Required - API name: {@code found}
+		 * Required - If the user is successfully deleted, the request returns
+		 * <code>{&quot;found&quot;: true}</code>. Otherwise, <code>found</code> is set
+		 * to <code>false</code>.
+		 * <p>
+		 * API name: {@code found}
 		 */
 		public final Builder found(boolean value) {
 			this.found = value;

@@ -77,9 +77,14 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * IMPORTANT: If the specified watch is currently being executed, this API will
 	 * return an error The reason for this behavior is to prevent overwriting the
 	 * watch status from a watch execution.
+	 * <p>
+	 * Acknowledging an action throttles further executions of that action until its
+	 * <code>ack.state</code> is reset to <code>awaits_successful_execution</code>.
+	 * This happens when the condition of the watch is not met (the condition
+	 * evaluates to false).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-ack-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -100,12 +105,17 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * IMPORTANT: If the specified watch is currently being executed, this API will
 	 * return an error The reason for this behavior is to prevent overwriting the
 	 * watch status from a watch execution.
+	 * <p>
+	 * Acknowledging an action throttles further executions of that action until its
+	 * <code>ack.state</code> is reset to <code>awaits_successful_execution</code>.
+	 * This happens when the condition of the watch is not met (the condition
+	 * evaluates to false).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AckWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-ack-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -120,7 +130,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * Activate a watch. A watch can be either active or inactive.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-activate-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -139,7 +149,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ActivateWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-activate-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -155,7 +165,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * Deactivate a watch. A watch can be either active or inactive.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-deactivate-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -174,7 +184,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeactivateWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-deactivate-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -201,7 +211,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * <code>.watches</code> index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-delete-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -230,7 +240,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-delete-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -256,9 +266,18 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * You can use the run watch API to run watches that are not yet registered by
 	 * specifying the watch definition inline. This serves as great tool for testing
 	 * and debugging your watches prior to adding them to Watcher.
+	 * <p>
+	 * When Elasticsearch security features are enabled on your cluster, watches are
+	 * run with the privileges of the user that stored the watches. If your user is
+	 * allowed to read index <code>a</code>, but not index <code>b</code>, then the
+	 * exact same set of rules will apply during execution of a watch.
+	 * <p>
+	 * When using the run watch API, the authorization data of the user that called
+	 * the API will be used as a base, instead of the information who stored the
+	 * watch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-execute-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -283,12 +302,21 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * You can use the run watch API to run watches that are not yet registered by
 	 * specifying the watch definition inline. This serves as great tool for testing
 	 * and debugging your watches prior to adding them to Watcher.
+	 * <p>
+	 * When Elasticsearch security features are enabled on your cluster, watches are
+	 * run with the privileges of the user that stored the watches. If your user is
+	 * allowed to read index <code>a</code>, but not index <code>b</code>, then the
+	 * exact same set of rules will apply during execution of a watch.
+	 * <p>
+	 * When using the run watch API, the authorization data of the user that called
+	 * the API will be used as a base, instead of the information who stored the
+	 * watch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecuteWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-execute-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -312,9 +340,18 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * You can use the run watch API to run watches that are not yet registered by
 	 * specifying the watch definition inline. This serves as great tool for testing
 	 * and debugging your watches prior to adding them to Watcher.
+	 * <p>
+	 * When Elasticsearch security features are enabled on your cluster, watches are
+	 * run with the privileges of the user that stored the watches. If your user is
+	 * allowed to read index <code>a</code>, but not index <code>b</code>, then the
+	 * exact same set of rules will apply during execution of a watch.
+	 * <p>
+	 * When using the run watch API, the authorization data of the user that called
+	 * the API will be used as a base, instead of the information who stored the
+	 * watch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-execute-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -323,13 +360,70 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: watcher.get_settings
+
+	/**
+	 * Get Watcher index settings. Get settings for the Watcher internal index
+	 * (<code>.watches</code>). Only a subset of settings are shown, for example
+	 * <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetWatcherSettingsResponse getSettings(GetWatcherSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetWatcherSettingsRequest, GetWatcherSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetWatcherSettingsRequest, GetWatcherSettingsResponse, ErrorResponse>) GetWatcherSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get Watcher index settings. Get settings for the Watcher internal index
+	 * (<code>.watches</code>). Only a subset of settings are shown, for example
+	 * <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetWatcherSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetWatcherSettingsResponse getSettings(
+			Function<GetWatcherSettingsRequest.Builder, ObjectBuilder<GetWatcherSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getSettings(fn.apply(new GetWatcherSettingsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get Watcher index settings. Get settings for the Watcher internal index
+	 * (<code>.watches</code>). Only a subset of settings are shown, for example
+	 * <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetWatcherSettingsResponse getSettings() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetWatcherSettingsRequest.Builder().build(),
+				GetWatcherSettingsRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: watcher.get_watch
 
 	/**
 	 * Get a watch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-get-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -347,7 +441,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-get-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -378,7 +472,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * <code>b</code>, the same will apply when the watch runs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-put-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -412,7 +506,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-put-watch.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -426,9 +520,12 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Query watches. Get all registered watches in a paginated manner and
 	 * optionally filter watches by a query.
+	 * <p>
+	 * Note that only the <code>_id</code> and <code>metadata.*</code> fields are
+	 * queryable or sortable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-query-watches.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -442,12 +539,15 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Query watches. Get all registered watches in a paginated manner and
 	 * optionally filter watches by a query.
+	 * <p>
+	 * Note that only the <code>_id</code> and <code>metadata.*</code> fields are
+	 * queryable or sortable.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryWatchesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-query-watches.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -460,9 +560,12 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Query watches. Get all registered watches in a paginated manner and
 	 * optionally filter watches by a query.
+	 * <p>
+	 * Note that only the <code>_id</code> and <code>metadata.*</code> fields are
+	 * queryable or sortable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-query-watches.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -478,7 +581,7 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public StartWatcherResponse start() throws IOException, ElasticsearchException {
@@ -489,10 +592,11 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: watcher.stats
 
 	/**
-	 * Get Watcher statistics.
+	 * Get Watcher statistics. This API always returns basic metrics. You retrieve
+	 * more metrics by using the metric parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -504,13 +608,14 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get Watcher statistics.
+	 * Get Watcher statistics. This API always returns basic metrics. You retrieve
+	 * more metrics by using the metric parameter.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link WatcherStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -521,10 +626,11 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get Watcher statistics.
+	 * Get Watcher statistics. This API always returns basic metrics. You retrieve
+	 * more metrics by using the metric parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -539,12 +645,101 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * Stop the watch service. Stop the Watcher service if it is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public StopWatcherResponse stop(StopWatcherRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse> endpoint = (JsonEndpoint<StopWatcherRequest, StopWatcherResponse, ErrorResponse>) StopWatcherRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Stop the watch service. Stop the Watcher service if it is running.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StopWatcherRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StopWatcherResponse stop(Function<StopWatcherRequest.Builder, ObjectBuilder<StopWatcherRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stop(fn.apply(new StopWatcherRequest.Builder()).build());
+	}
+
+	/**
+	 * Stop the watch service. Stop the Watcher service if it is running.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-stop.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public StopWatcherResponse stop() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(StopWatcherRequest._INSTANCE, StopWatcherRequest._ENDPOINT,
+		return this.transport.performRequest(new StopWatcherRequest.Builder().build(), StopWatcherRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: watcher.update_settings
+
+	/**
+	 * Update Watcher index settings. Update settings for the Watcher internal index
+	 * (<code>.watches</code>). Only a subset of settings can be modified. This
+	 * includes <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateSettingsResponse updateSettings(UpdateSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateSettingsRequest, UpdateSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateSettingsRequest, UpdateSettingsResponse, ErrorResponse>) UpdateSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update Watcher index settings. Update settings for the Watcher internal index
+	 * (<code>.watches</code>). Only a subset of settings can be modified. This
+	 * includes <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final UpdateSettingsResponse updateSettings(
+			Function<UpdateSettingsRequest.Builder, ObjectBuilder<UpdateSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return updateSettings(fn.apply(new UpdateSettingsRequest.Builder()).build());
+	}
+
+	/**
+	 * Update Watcher index settings. Update settings for the Watcher internal index
+	 * (<code>.watches</code>). Only a subset of settings can be modified. This
+	 * includes <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/watcher-api-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateSettingsResponse updateSettings() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new UpdateSettingsRequest.Builder().build(),
+				UpdateSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

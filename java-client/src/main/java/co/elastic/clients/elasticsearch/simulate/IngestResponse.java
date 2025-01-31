@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.simulate;
+package co.elastic.clients.elasticsearch.simulate;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch.ingest.SimulateDocumentResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,65 +51,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.simulate.Document
+// typedef: simulate.ingest.Response
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#ingest.simulate.Document">API
+ * @see <a href="../doc-files/api-spec.html#simulate.ingest.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Document implements JsonpSerializable {
-	@Nullable
-	private final String id;
-
-	@Nullable
-	private final String index;
-
-	private final JsonData source;
+public class IngestResponse implements JsonpSerializable {
+	private final List<SimulateDocumentResult> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Document(Builder builder) {
+	private IngestResponse(Builder builder) {
 
-		this.id = builder.id;
-		this.index = builder.index;
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
-	public static Document of(Function<Builder, ObjectBuilder<Document>> fn) {
+	public static IngestResponse of(Function<Builder, ObjectBuilder<IngestResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Unique identifier for the document. This ID must be unique within the
-	 * <code>_index</code>.
-	 * <p>
-	 * API name: {@code _id}
+	 * Required - API name: {@code docs}
 	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
-
-	/**
-	 * Name of the index containing the document.
-	 * <p>
-	 * API name: {@code _index}
-	 */
-	@Nullable
-	public final String index() {
-		return this.index;
-	}
-
-	/**
-	 * Required - JSON body for the document.
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	public final JsonData source() {
-		return this.source;
+	public final List<SimulateDocumentResult> docs() {
+		return this.docs;
 	}
 
 	/**
@@ -123,18 +92,16 @@ public class Document implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.id != null) {
-			generator.writeKey("_id");
-			generator.write(this.id);
+		if (ApiTypeHelper.isDefined(this.docs)) {
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (SimulateDocumentResult item0 : this.docs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		if (this.index != null) {
-			generator.writeKey("_index");
-			generator.write(this.index);
-
-		}
-		generator.writeKey("_source");
-		this.source.serialize(generator, mapper);
 
 	}
 
@@ -146,47 +113,39 @@ public class Document implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Document}.
+	 * Builder for {@link IngestResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Document> {
-		@Nullable
-		private String id;
-
-		@Nullable
-		private String index;
-
-		private JsonData source;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IngestResponse> {
+		private List<SimulateDocumentResult> docs;
 
 		/**
-		 * Unique identifier for the document. This ID must be unique within the
-		 * <code>_index</code>.
+		 * Required - API name: {@code docs}
 		 * <p>
-		 * API name: {@code _id}
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
+		public final Builder docs(List<SimulateDocumentResult> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
-		 * Name of the index containing the document.
+		 * Required - API name: {@code docs}
 		 * <p>
-		 * API name: {@code _index}
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder index(@Nullable String value) {
-			this.index = value;
+		public final Builder docs(SimulateDocumentResult value, SimulateDocumentResult... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - JSON body for the document.
+		 * Required - API name: {@code docs}
 		 * <p>
-		 * API name: {@code _source}
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public final Builder source(JsonData value) {
-			this.source = value;
-			return this;
+		public final Builder docs(Function<SimulateDocumentResult.Builder, ObjectBuilder<SimulateDocumentResult>> fn) {
+			return docs(fn.apply(new SimulateDocumentResult.Builder()).build());
 		}
 
 		@Override
@@ -195,31 +154,29 @@ public class Document implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Document}.
+		 * Builds a {@link IngestResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Document build() {
+		public IngestResponse build() {
 			_checkSingleUse();
 
-			return new Document(this);
+			return new IngestResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Document}
+	 * Json deserializer for {@link IngestResponse}
 	 */
-	public static final JsonpDeserializer<Document> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Document::setupDocumentDeserializer);
+	public static final JsonpDeserializer<IngestResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IngestResponse::setupIngestResponseDeserializer);
 
-	protected static void setupDocumentDeserializer(ObjectDeserializer<Document.Builder> op) {
+	protected static void setupIngestResponseDeserializer(ObjectDeserializer<IngestResponse.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::source, JsonData._DESERIALIZER, "_source");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(SimulateDocumentResult._DESERIALIZER), "docs");
 
 	}
 

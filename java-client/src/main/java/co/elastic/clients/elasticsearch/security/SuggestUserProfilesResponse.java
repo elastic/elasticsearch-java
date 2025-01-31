@@ -83,21 +83,29 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Required - Metadata about the number of matching profiles.
+	 * <p>
+	 * API name: {@code total}
 	 */
 	public final TotalUserProfiles total() {
 		return this.total;
 	}
 
 	/**
-	 * Required - API name: {@code took}
+	 * Required - The number of milliseconds it took Elasticsearch to run the
+	 * request.
+	 * <p>
+	 * API name: {@code took}
 	 */
 	public final long took() {
 		return this.took;
 	}
 
 	/**
-	 * Required - API name: {@code profiles}
+	 * Required - A list of profile documents, ordered by relevance, that match the
+	 * search criteria.
+	 * <p>
+	 * API name: {@code profiles}
 	 */
 	public final List<UserProfile> profiles() {
 		return this.profiles;
@@ -154,7 +162,9 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 		private List<UserProfile> profiles;
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - Metadata about the number of matching profiles.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(TotalUserProfiles value) {
 			this.total = value;
@@ -162,14 +172,19 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - Metadata about the number of matching profiles.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(Function<TotalUserProfiles.Builder, ObjectBuilder<TotalUserProfiles>> fn) {
 			return this.total(fn.apply(new TotalUserProfiles.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code took}
+		 * Required - The number of milliseconds it took Elasticsearch to run the
+		 * request.
+		 * <p>
+		 * API name: {@code took}
 		 */
 		public final Builder took(long value) {
 			this.took = value;
@@ -177,7 +192,10 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code profiles}
+		 * Required - A list of profile documents, ordered by relevance, that match the
+		 * search criteria.
+		 * <p>
+		 * API name: {@code profiles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>profiles</code>.
 		 */
@@ -187,7 +205,10 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code profiles}
+		 * Required - A list of profile documents, ordered by relevance, that match the
+		 * search criteria.
+		 * <p>
+		 * API name: {@code profiles}
 		 * <p>
 		 * Adds one or more values to <code>profiles</code>.
 		 */
@@ -197,7 +218,10 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code profiles}
+		 * Required - A list of profile documents, ordered by relevance, that match the
+		 * search criteria.
+		 * <p>
+		 * API name: {@code profiles}
 		 * <p>
 		 * Adds a value to <code>profiles</code> using a builder lambda.
 		 */

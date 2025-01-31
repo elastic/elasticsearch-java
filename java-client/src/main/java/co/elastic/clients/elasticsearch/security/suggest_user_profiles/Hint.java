@@ -80,7 +80,7 @@ public class Hint implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of Profile UIDs to match against.
+	 * A list of profile UIDs to match against.
 	 * <p>
 	 * API name: {@code uids}
 	 */
@@ -159,7 +159,7 @@ public class Hint implements JsonpSerializable {
 		private Map<String, List<String>> labels;
 
 		/**
-		 * A list of Profile UIDs to match against.
+		 * A list of profile UIDs to match against.
 		 * <p>
 		 * API name: {@code uids}
 		 * <p>
@@ -171,7 +171,7 @@ public class Hint implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of Profile UIDs to match against.
+		 * A list of profile UIDs to match against.
 		 * <p>
 		 * API name: {@code uids}
 		 * <p>

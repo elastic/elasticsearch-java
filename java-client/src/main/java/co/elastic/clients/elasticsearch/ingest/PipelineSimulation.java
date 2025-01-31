@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.simulate;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
@@ -51,12 +51,12 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.simulate.PipelineSimulation
+// typedef: ingest._types.PipelineSimulation
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#ingest.simulate.PipelineSimulation">API
+ *      "../doc-files/api-spec.html#ingest._types.PipelineSimulation">API
  *      specification</a>
  */
 @JsonpDeserializable

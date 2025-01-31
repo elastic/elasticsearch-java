@@ -80,7 +80,10 @@ public class FieldCapsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * Required - The list of indices where this field has the same type family, or
+	 * null if all indices have the same type family for the field.
+	 * <p>
+	 * API name: {@code indices}
 	 */
 	public final List<String> indices() {
 		return this.indices;
@@ -153,7 +156,10 @@ public class FieldCapsResponse implements JsonpSerializable {
 		private Map<String, Map<String, FieldCapability>> fields;
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - The list of indices where this field has the same type family, or
+		 * null if all indices have the same type family for the field.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
@@ -163,7 +169,10 @@ public class FieldCapsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - The list of indices where this field has the same type family, or
+		 * null if all indices have the same type family for the field.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */

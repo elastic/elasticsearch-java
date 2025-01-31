@@ -74,7 +74,11 @@ public class DeleteServiceTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code found}
+	 * Required - If the service account token is successfully deleted, the request
+	 * returns <code>{&quot;found&quot;: true}</code>. Otherwise, the response will
+	 * have status code 404 and <code>found</code> is set to <code>false</code>.
+	 * <p>
+	 * API name: {@code found}
 	 */
 	public final boolean found() {
 		return this.found;
@@ -113,7 +117,11 @@ public class DeleteServiceTokenResponse implements JsonpSerializable {
 		private Boolean found;
 
 		/**
-		 * Required - API name: {@code found}
+		 * Required - If the service account token is successfully deleted, the request
+		 * returns <code>{&quot;found&quot;: true}</code>. Otherwise, the response will
+		 * have status code 404 and <code>found</code> is set to <code>false</code>.
+		 * <p>
+		 * API name: {@code found}
 		 */
 		public final Builder found(boolean value) {
 			this.found = value;

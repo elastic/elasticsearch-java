@@ -92,8 +92,8 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	/**
 	 * Required - A list of the privileges that you want to check for the specified
-	 * resources. May be either application privilege names, or the names of actions
-	 * that are granted by those privileges
+	 * resources. It may be either application privilege names or the names of
+	 * actions that are granted by those privileges
 	 * <p>
 	 * API name: {@code privileges}
 	 */
@@ -103,7 +103,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	/**
 	 * Required - A list of resource names against which the privileges should be
-	 * checked
+	 * checked.
 	 * <p>
 	 * API name: {@code resources}
 	 */
@@ -180,8 +180,8 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 		/**
 		 * Required - A list of the privileges that you want to check for the specified
-		 * resources. May be either application privilege names, or the names of actions
-		 * that are granted by those privileges
+		 * resources. It may be either application privilege names or the names of
+		 * actions that are granted by those privileges
 		 * <p>
 		 * API name: {@code privileges}
 		 * <p>
@@ -194,8 +194,8 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 		/**
 		 * Required - A list of the privileges that you want to check for the specified
-		 * resources. May be either application privilege names, or the names of actions
-		 * that are granted by those privileges
+		 * resources. It may be either application privilege names or the names of
+		 * actions that are granted by those privileges
 		 * <p>
 		 * API name: {@code privileges}
 		 * <p>
@@ -208,7 +208,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 		/**
 		 * Required - A list of resource names against which the privileges should be
-		 * checked
+		 * checked.
 		 * <p>
 		 * API name: {@code resources}
 		 * <p>
@@ -221,7 +221,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 		/**
 		 * Required - A list of resource names against which the privileges should be
-		 * checked
+		 * checked.
 		 * <p>
 		 * API name: {@code resources}
 		 * <p>

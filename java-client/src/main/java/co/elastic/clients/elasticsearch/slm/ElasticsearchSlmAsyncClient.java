@@ -72,7 +72,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * in-progress snapshots or remove previously-taken snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-delete-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -92,7 +92,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-delete-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -110,7 +110,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * run a policy before performing an upgrade or other maintenance.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-execute-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -131,7 +131,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecuteLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-execute-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -149,7 +149,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * according to its schedule.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -170,7 +170,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecuteRetentionRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -186,7 +186,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * according to its schedule.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -202,7 +202,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * information about the latest snapshot attempts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -221,7 +221,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -235,7 +235,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * information about the latest snapshot attempts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +251,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * statistics about actions taken by snapshot lifecycle management.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -284,7 +284,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * statistics about actions taken by snapshot lifecycle management.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -299,7 +299,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Get the snapshot lifecycle management status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -317,7 +317,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSlmStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -330,7 +330,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Get the snapshot lifecycle management status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -347,7 +347,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * the latest version of a policy is stored.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-put-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -367,7 +367,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-put-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -384,7 +384,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * necessary only if it has been stopped using the stop SLM API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -404,7 +404,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link StartSlmRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -419,7 +419,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * necessary only if it has been stopped using the stop SLM API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -444,7 +444,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * see if SLM is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -472,7 +472,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link StopSlmRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -495,7 +495,7 @@ public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * see if SLM is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

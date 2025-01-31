@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: cat.snapshots.Request
 
 /**
- * Returns information about the snapshots stored in one or more repositories. A
+ * Get snapshot information.
+ * <p>
+ * Get information about the snapshots stored in one or more repositories. A
  * snapshot is a backup of an index or running Elasticsearch cluster. IMPORTANT:
  * cat APIs are only intended for human consumption using the command line or
  * Kibana console. They are not intended for use by applications. For

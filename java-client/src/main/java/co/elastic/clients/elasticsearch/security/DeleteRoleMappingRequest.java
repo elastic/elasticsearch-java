@@ -57,6 +57,11 @@ import javax.annotation.Nullable;
 
 /**
  * Delete role mappings.
+ * <p>
+ * Role mappings define which roles are assigned to each user. The role mapping
+ * APIs are generally the preferred way to manage role mappings rather than
+ * using role mapping files. The delete role mappings API cannot remove role
+ * mappings that are defined in role mapping files.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.delete_role_mapping.Request">API
@@ -83,7 +88,9 @@ public class DeleteRoleMappingRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Role-mapping name
+	 * Required - The distinct name that identifies the role mapping. The name is
+	 * used solely as an identifier to facilitate interaction via the API; it does
+	 * not affect the behavior of the mapping in any way.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -119,7 +126,9 @@ public class DeleteRoleMappingRequest extends RequestBase {
 		private Refresh refresh;
 
 		/**
-		 * Required - Role-mapping name
+		 * Required - The distinct name that identifies the role mapping. The name is
+		 * used solely as an identifier to facilitate interaction via the API; it does
+		 * not affect the behavior of the mapping in any way.
 		 * <p>
 		 * API name: {@code name}
 		 */

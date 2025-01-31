@@ -82,21 +82,30 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cluster}
+	 * Required - The list of cluster privileges that are understood by this version
+	 * of Elasticsearch.
+	 * <p>
+	 * API name: {@code cluster}
 	 */
 	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * Required - The list of index privileges that are understood by this version
+	 * of Elasticsearch.
+	 * <p>
+	 * API name: {@code index}
 	 */
 	public final List<String> index() {
 		return this.index;
 	}
 
 	/**
-	 * Required - API name: {@code remote_cluster}
+	 * Required - The list of remote_cluster privileges that are understood by this
+	 * version of Elasticsearch.
+	 * <p>
+	 * API name: {@code remote_cluster}
 	 */
 	public final List<RemoteClusterPrivilege> remoteCluster() {
 		return this.remoteCluster;
@@ -166,7 +175,10 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		private List<RemoteClusterPrivilege> remoteCluster;
 
 		/**
-		 * Required - API name: {@code cluster}
+		 * Required - The list of cluster privileges that are understood by this version
+		 * of Elasticsearch.
+		 * <p>
+		 * API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
@@ -176,7 +188,10 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code cluster}
+		 * Required - The list of cluster privileges that are understood by this version
+		 * of Elasticsearch.
+		 * <p>
+		 * API name: {@code cluster}
 		 * <p>
 		 * Adds one or more values to <code>cluster</code>.
 		 */
@@ -186,7 +201,10 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - The list of index privileges that are understood by this version
+		 * of Elasticsearch.
+		 * <p>
+		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
@@ -196,7 +214,10 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - The list of index privileges that are understood by this version
+		 * of Elasticsearch.
+		 * <p>
+		 * API name: {@code index}
 		 * <p>
 		 * Adds one or more values to <code>index</code>.
 		 */
@@ -206,7 +227,10 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code remote_cluster}
+		 * Required - The list of remote_cluster privileges that are understood by this
+		 * version of Elasticsearch.
+		 * <p>
+		 * API name: {@code remote_cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>remoteCluster</code>.
 		 */
@@ -216,7 +240,10 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code remote_cluster}
+		 * Required - The list of remote_cluster privileges that are understood by this
+		 * version of Elasticsearch.
+		 * <p>
+		 * API name: {@code remote_cluster}
 		 * <p>
 		 * Adds one or more values to <code>remoteCluster</code>.
 		 */

@@ -1648,7 +1648,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Get aliases. Retrieves information for one or more data stream or index
 	 * aliases.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, ElasticsearchException {
@@ -1665,7 +1667,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAliasRequest}
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetAliasResponse getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
@@ -1677,7 +1681,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Get aliases. Retrieves information for one or more data stream or index
 	 * aliases.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetAliasResponse getAlias() throws IOException, ElasticsearchException {
@@ -3697,7 +3703,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * specified index from an existing index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/{master}/indices-simulate-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3717,7 +3723,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/{master}/indices-simulate-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

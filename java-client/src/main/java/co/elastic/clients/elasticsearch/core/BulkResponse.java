@@ -87,21 +87,30 @@ public class BulkResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code errors}
+	 * Required - If <code>true</code>, one or more of the operations in the bulk
+	 * request did not complete successfully.
+	 * <p>
+	 * API name: {@code errors}
 	 */
 	public final boolean errors() {
 		return this.errors;
 	}
 
 	/**
-	 * Required - API name: {@code items}
+	 * Required - The result of each operation in the bulk request, in the order
+	 * they were submitted.
+	 * <p>
+	 * API name: {@code items}
 	 */
 	public final List<BulkResponseItem> items() {
 		return this.items;
 	}
 
 	/**
-	 * Required - API name: {@code took}
+	 * Required - The length of time, in milliseconds, it took to process the bulk
+	 * request.
+	 * <p>
+	 * API name: {@code took}
 	 */
 	public final long took() {
 		return this.took;
@@ -172,7 +181,10 @@ public class BulkResponse implements JsonpSerializable {
 		private Long ingestTook;
 
 		/**
-		 * Required - API name: {@code errors}
+		 * Required - If <code>true</code>, one or more of the operations in the bulk
+		 * request did not complete successfully.
+		 * <p>
+		 * API name: {@code errors}
 		 */
 		public final Builder errors(boolean value) {
 			this.errors = value;
@@ -180,7 +192,10 @@ public class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code items}
+		 * Required - The result of each operation in the bulk request, in the order
+		 * they were submitted.
+		 * <p>
+		 * API name: {@code items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 */
@@ -190,7 +205,10 @@ public class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code items}
+		 * Required - The result of each operation in the bulk request, in the order
+		 * they were submitted.
+		 * <p>
+		 * API name: {@code items}
 		 * <p>
 		 * Adds one or more values to <code>items</code>.
 		 */
@@ -200,7 +218,10 @@ public class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code items}
+		 * Required - The result of each operation in the bulk request, in the order
+		 * they were submitted.
+		 * <p>
+		 * API name: {@code items}
 		 * <p>
 		 * Adds a value to <code>items</code> using a builder lambda.
 		 */
@@ -209,7 +230,10 @@ public class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code took}
+		 * Required - The length of time, in milliseconds, it took to process the bulk
+		 * request.
+		 * <p>
+		 * API name: {@code took}
 		 */
 		public final Builder took(long value) {
 			this.took = value;

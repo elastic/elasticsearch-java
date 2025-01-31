@@ -79,6 +79,9 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 	@Nullable
 	private final String rolloverAlias;
 
+	@Nullable
+	private final Boolean preferIlm;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettingsLifecycle(Builder builder) {
@@ -89,6 +92,7 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 		this.parseOriginationDate = builder.parseOriginationDate;
 		this.step = builder.step;
 		this.rolloverAlias = builder.rolloverAlias;
+		this.preferIlm = builder.preferIlm;
 
 	}
 
@@ -170,6 +174,17 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 	}
 
 	/**
+	 * Preference for the system that manages a data stream backing index
+	 * (preferring ILM when both ILM and DLM are applicable for an index).
+	 * <p>
+	 * API name: {@code prefer_ilm}
+	 */
+	@Nullable
+	public final Boolean preferIlm() {
+		return this.preferIlm;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -210,6 +225,11 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 			generator.write(this.rolloverAlias);
 
 		}
+		if (this.preferIlm != null) {
+			generator.writeKey("prefer_ilm");
+			generator.write(this.preferIlm);
+
+		}
 
 	}
 
@@ -244,6 +264,9 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 
 		@Nullable
 		private String rolloverAlias;
+
+		@Nullable
+		private Boolean preferIlm;
 
 		/**
 		 * The name of the policy to use to manage the index. For information about how
@@ -326,6 +349,17 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Preference for the system that manages a data stream backing index
+		 * (preferring ILM when both ILM and DLM are applicable for an index).
+		 * <p>
+		 * API name: {@code prefer_ilm}
+		 */
+		public final Builder preferIlm(@Nullable Boolean value) {
+			this.preferIlm = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -361,6 +395,7 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 		op.add(Builder::parseOriginationDate, JsonpDeserializer.booleanDeserializer(), "parse_origination_date");
 		op.add(Builder::step, IndexSettingsLifecycleStep._DESERIALIZER, "step");
 		op.add(Builder::rolloverAlias, JsonpDeserializer.stringDeserializer(), "rollover_alias");
+		op.add(Builder::preferIlm, JsonpDeserializer.booleanDeserializer(), "prefer_ilm");
 
 	}
 

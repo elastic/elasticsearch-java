@@ -80,14 +80,19 @@ public class GetSynonymsSetsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - The total number of synonyms sets defined.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code results}
+	 * Required - The identifier and total number of defined synonym rules for each
+	 * synonyms set.
+	 * <p>
+	 * API name: {@code results}
 	 */
 	public final List<SynonymsSetItem> results() {
 		return this.results;
@@ -139,7 +144,9 @@ public class GetSynonymsSetsResponse implements JsonpSerializable {
 		private List<SynonymsSetItem> results;
 
 		/**
-		 * Required - API name: {@code count}
+		 * Required - The total number of synonyms sets defined.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -147,7 +154,10 @@ public class GetSynonymsSetsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code results}
+		 * Required - The identifier and total number of defined synonym rules for each
+		 * synonyms set.
+		 * <p>
+		 * API name: {@code results}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>results</code>.
 		 */
@@ -157,7 +167,10 @@ public class GetSynonymsSetsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code results}
+		 * Required - The identifier and total number of defined synonym rules for each
+		 * synonyms set.
+		 * <p>
+		 * API name: {@code results}
 		 * <p>
 		 * Adds one or more values to <code>results</code>.
 		 */
@@ -167,7 +180,10 @@ public class GetSynonymsSetsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code results}
+		 * Required - The identifier and total number of defined synonym rules for each
+		 * synonyms set.
+		 * <p>
+		 * API name: {@code results}
 		 * <p>
 		 * Adds a value to <code>results</code> using a builder lambda.
 		 */

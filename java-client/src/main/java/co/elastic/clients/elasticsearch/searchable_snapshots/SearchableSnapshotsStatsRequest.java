@@ -85,7 +85,8 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names
+	 * A comma-separated list of data streams and indices to retrieve statistics
+	 * for.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -119,7 +120,8 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		private StatsLevel level;
 
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of data streams and indices to retrieve statistics
+		 * for.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -131,7 +133,8 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of data streams and indices to retrieve statistics
+		 * for.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

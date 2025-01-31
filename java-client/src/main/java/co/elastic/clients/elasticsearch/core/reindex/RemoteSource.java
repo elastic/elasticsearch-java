@@ -95,7 +95,7 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
-	 * The remote connection timeout. Defaults to 30 seconds.
+	 * The remote connection timeout.
 	 * <p>
 	 * API name: {@code connect_timeout}
 	 */
@@ -115,7 +115,7 @@ public class RemoteSource implements JsonpSerializable {
 
 	/**
 	 * Required - The URL for the remote instance of Elasticsearch that you want to
-	 * index from.
+	 * index from. This information is required when you're indexing from remote.
 	 * <p>
 	 * API name: {@code host}
 	 */
@@ -144,7 +144,7 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
-	 * The remote socket read timeout. Defaults to 30 seconds.
+	 * The remote socket read timeout.
 	 * <p>
 	 * API name: {@code socket_timeout}
 	 */
@@ -231,7 +231,7 @@ public class RemoteSource implements JsonpSerializable {
 		private Time socketTimeout;
 
 		/**
-		 * The remote connection timeout. Defaults to 30 seconds.
+		 * The remote connection timeout.
 		 * <p>
 		 * API name: {@code connect_timeout}
 		 */
@@ -241,7 +241,7 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * The remote connection timeout. Defaults to 30 seconds.
+		 * The remote connection timeout.
 		 * <p>
 		 * API name: {@code connect_timeout}
 		 */
@@ -275,7 +275,7 @@ public class RemoteSource implements JsonpSerializable {
 
 		/**
 		 * Required - The URL for the remote instance of Elasticsearch that you want to
-		 * index from.
+		 * index from. This information is required when you're indexing from remote.
 		 * <p>
 		 * API name: {@code host}
 		 */
@@ -305,7 +305,7 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * The remote socket read timeout. Defaults to 30 seconds.
+		 * The remote socket read timeout.
 		 * <p>
 		 * API name: {@code socket_timeout}
 		 */
@@ -315,7 +315,7 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * The remote socket read timeout. Defaults to 30 seconds.
+		 * The remote socket read timeout.
 		 * <p>
 		 * API name: {@code socket_timeout}
 		 */

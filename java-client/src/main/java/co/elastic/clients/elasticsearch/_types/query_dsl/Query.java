@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.QueryContainer
 
 /**
- *
+ * An Elasticsearch Query DSL (Domain Specific Language) object that defines a
+ * query.
+ * 
  * @see <a href=
  *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API
  *      specification</a>

@@ -100,6 +100,9 @@ public class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
+	 * If the path refers to a container file (a jks keystore, or a PKCS#12 file),
+	 * it is the alias of the certificate. Otherwise, it is null.
+	 * <p>
 	 * API name: {@code alias}
 	 */
 	@Nullable
@@ -108,27 +111,38 @@ public class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code expiry}
+	 * Required - The ISO formatted date of the certificate's expiry (not-after)
+	 * date.
+	 * <p>
+	 * API name: {@code expiry}
 	 */
 	public final DateTime expiry() {
 		return this.expiry;
 	}
 
 	/**
-	 * Required - API name: {@code format}
+	 * Required - The format of the file. Valid values include <code>jks</code>,
+	 * <code>PKCS12</code>, and <code>PEM</code>.
+	 * <p>
+	 * API name: {@code format}
 	 */
 	public final String format() {
 		return this.format;
 	}
 
 	/**
-	 * Required - API name: {@code has_private_key}
+	 * Required - Indicates whether Elasticsearch has access to the private key for
+	 * this certificate.
+	 * <p>
+	 * API name: {@code has_private_key}
 	 */
 	public final boolean hasPrivateKey() {
 		return this.hasPrivateKey;
 	}
 
 	/**
+	 * The Distinguished Name of the certificate's issuer.
+	 * <p>
 	 * API name: {@code issuer}
 	 */
 	@Nullable
@@ -137,21 +151,28 @@ public class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code path}
+	 * Required - The path to the certificate, as configured in the
+	 * <code>elasticsearch.yml</code> file.
+	 * <p>
+	 * API name: {@code path}
 	 */
 	public final String path() {
 		return this.path;
 	}
 
 	/**
-	 * Required - API name: {@code serial_number}
+	 * Required - The hexadecimal representation of the certificate's serial number.
+	 * <p>
+	 * API name: {@code serial_number}
 	 */
 	public final String serialNumber() {
 		return this.serialNumber;
 	}
 
 	/**
-	 * Required - API name: {@code subject_dn}
+	 * Required - The Distinguished Name of the certificate's subject.
+	 * <p>
+	 * API name: {@code subject_dn}
 	 */
 	public final String subjectDn() {
 		return this.subjectDn;
@@ -230,6 +251,9 @@ public class CertificateInformation implements JsonpSerializable {
 		private String subjectDn;
 
 		/**
+		 * If the path refers to a container file (a jks keystore, or a PKCS#12 file),
+		 * it is the alias of the certificate. Otherwise, it is null.
+		 * <p>
 		 * API name: {@code alias}
 		 */
 		public final Builder alias(@Nullable String value) {
@@ -238,7 +262,10 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code expiry}
+		 * Required - The ISO formatted date of the certificate's expiry (not-after)
+		 * date.
+		 * <p>
+		 * API name: {@code expiry}
 		 */
 		public final Builder expiry(DateTime value) {
 			this.expiry = value;
@@ -246,7 +273,10 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code format}
+		 * Required - The format of the file. Valid values include <code>jks</code>,
+		 * <code>PKCS12</code>, and <code>PEM</code>.
+		 * <p>
+		 * API name: {@code format}
 		 */
 		public final Builder format(String value) {
 			this.format = value;
@@ -254,7 +284,10 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code has_private_key}
+		 * Required - Indicates whether Elasticsearch has access to the private key for
+		 * this certificate.
+		 * <p>
+		 * API name: {@code has_private_key}
 		 */
 		public final Builder hasPrivateKey(boolean value) {
 			this.hasPrivateKey = value;
@@ -262,6 +295,8 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
+		 * The Distinguished Name of the certificate's issuer.
+		 * <p>
 		 * API name: {@code issuer}
 		 */
 		public final Builder issuer(@Nullable String value) {
@@ -270,7 +305,10 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code path}
+		 * Required - The path to the certificate, as configured in the
+		 * <code>elasticsearch.yml</code> file.
+		 * <p>
+		 * API name: {@code path}
 		 */
 		public final Builder path(String value) {
 			this.path = value;
@@ -278,7 +316,9 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code serial_number}
+		 * Required - The hexadecimal representation of the certificate's serial number.
+		 * <p>
+		 * API name: {@code serial_number}
 		 */
 		public final Builder serialNumber(String value) {
 			this.serialNumber = value;
@@ -286,7 +326,9 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code subject_dn}
+		 * Required - The Distinguished Name of the certificate's subject.
+		 * <p>
+		 * API name: {@code subject_dn}
 		 */
 		public final Builder subjectDn(String value) {
 			this.subjectDn = value;

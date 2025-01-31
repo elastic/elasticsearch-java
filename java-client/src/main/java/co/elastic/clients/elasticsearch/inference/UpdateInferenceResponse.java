@@ -17,20 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ingest.simulate;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -49,107 +43,64 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest.simulate.Redact
+// typedef: inference.update.Response
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#ingest.simulate.Redact">API
+ * @see <a href="../doc-files/api-spec.html#inference.update.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Redact implements JsonpSerializable {
-	private final boolean isRedacted;
-
+public class UpdateInferenceResponse extends InferenceEndpointInfo {
 	// ---------------------------------------------------------------------------------------------
 
-	private Redact(Builder builder) {
-
-		this.isRedacted = ApiTypeHelper.requireNonNull(builder.isRedacted, this, "isRedacted");
+	private UpdateInferenceResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	public static Redact of(Function<Builder, ObjectBuilder<Redact>> fn) {
+	public static UpdateInferenceResponse of(Function<Builder, ObjectBuilder<UpdateInferenceResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * Required - indicates if document has been redacted
-	 * <p>
-	 * API name: {@code _is_redacted}
-	 */
-	public final boolean isRedacted() {
-		return this.isRedacted;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("_is_redacted");
-		generator.write(this.isRedacted);
-
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Redact}.
+	 * Builder for {@link UpdateInferenceResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Redact> {
-		private Boolean isRedacted;
-
-		/**
-		 * Required - indicates if document has been redacted
-		 * <p>
-		 * API name: {@code _is_redacted}
-		 */
-		public final Builder isRedacted(boolean value) {
-			this.isRedacted = value;
-			return this;
-		}
-
+	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<UpdateInferenceResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link Redact}.
+		 * Builds a {@link UpdateInferenceResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Redact build() {
+		public UpdateInferenceResponse build() {
 			_checkSingleUse();
 
-			return new Redact(this);
+			return new UpdateInferenceResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Redact}
+	 * Json deserializer for {@link UpdateInferenceResponse}
 	 */
-	public static final JsonpDeserializer<Redact> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Redact::setupRedactDeserializer);
+	public static final JsonpDeserializer<UpdateInferenceResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateInferenceResponse::setupUpdateInferenceResponseDeserializer);
 
-	protected static void setupRedactDeserializer(ObjectDeserializer<Redact.Builder> op) {
-
-		op.add(Builder::isRedacted, JsonpDeserializer.booleanDeserializer(), "_is_redacted");
+	protected static void setupUpdateInferenceResponseDeserializer(
+			ObjectDeserializer<UpdateInferenceResponse.Builder> op) {
+		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
 
 	}
 

@@ -62,6 +62,12 @@ import javax.annotation.Nullable;
  * <p>
  * Determine whether the users associated with the specified user profile IDs
  * have all the requested privileges.
+ * <p>
+ * NOTE: The user profile feature is designed only for use by Kibana and
+ * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+ * Individual users and external applications should not call this API directly.
+ * Elastic reserves the right to change or remove this feature in future
+ * releases without prior notice.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.has_privileges_user_profile.Request">API
@@ -88,7 +94,9 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 	}
 
 	/**
-	 * Required - API name: {@code privileges}
+	 * Required - An object containing all the privileges to be checked.
+	 * <p>
+	 * API name: {@code privileges}
 	 */
 	public final PrivilegesCheck privileges() {
 		return this.privileges;
@@ -145,7 +153,9 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 		private List<String> uids;
 
 		/**
-		 * Required - API name: {@code privileges}
+		 * Required - An object containing all the privileges to be checked.
+		 * <p>
+		 * API name: {@code privileges}
 		 */
 		public final Builder privileges(PrivilegesCheck value) {
 			this.privileges = value;
@@ -153,7 +163,9 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Required - API name: {@code privileges}
+		 * Required - An object containing all the privileges to be checked.
+		 * <p>
+		 * API name: {@code privileges}
 		 */
 		public final Builder privileges(Function<PrivilegesCheck.Builder, ObjectBuilder<PrivilegesCheck>> fn) {
 			return this.privileges(fn.apply(new PrivilegesCheck.Builder()).build());

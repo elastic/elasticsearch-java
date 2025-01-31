@@ -121,7 +121,7 @@ public class ErrorCause implements JsonpSerializable {
 	}
 
 	/**
-	 * A human-readable explanation of the error, in english
+	 * A human-readable explanation of the error, in English.
 	 * <p>
 	 * API name: {@code reason}
 	 */
@@ -287,7 +287,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * A human-readable explanation of the error, in english
+		 * A human-readable explanation of the error, in English.
 		 * <p>
 		 * API name: {@code reason}
 		 */

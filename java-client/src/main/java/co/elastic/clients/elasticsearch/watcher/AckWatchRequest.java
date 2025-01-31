@@ -67,6 +67,11 @@ import javax.annotation.Nullable;
  * IMPORTANT: If the specified watch is currently being executed, this API will
  * return an error The reason for this behavior is to prevent overwriting the
  * watch status from a watch execution.
+ * <p>
+ * Acknowledging an action throttles further executions of that action until its
+ * <code>ack.state</code> is reset to <code>awaits_successful_execution</code>.
+ * This happens when the condition of the watch is not met (the condition
+ * evaluates to false).
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.ack_watch.Request">API
  *      specification</a>
@@ -91,7 +96,8 @@ public class AckWatchRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of the action ids to be acked
+	 * A comma-separated list of the action identifiers to acknowledge. If you omit
+	 * this parameter, all of the actions of the watch are acknowledged.
 	 * <p>
 	 * API name: {@code action_id}
 	 */
@@ -100,7 +106,7 @@ public class AckWatchRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Watch ID
+	 * Required - The watch identifier.
 	 * <p>
 	 * API name: {@code watch_id}
 	 */
@@ -121,7 +127,8 @@ public class AckWatchRequest extends RequestBase {
 		private String watchId;
 
 		/**
-		 * A comma-separated list of the action ids to be acked
+		 * A comma-separated list of the action identifiers to acknowledge. If you omit
+		 * this parameter, all of the actions of the watch are acknowledged.
 		 * <p>
 		 * API name: {@code action_id}
 		 * <p>
@@ -133,7 +140,8 @@ public class AckWatchRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of the action ids to be acked
+		 * A comma-separated list of the action identifiers to acknowledge. If you omit
+		 * this parameter, all of the actions of the watch are acknowledged.
 		 * <p>
 		 * API name: {@code action_id}
 		 * <p>
@@ -145,7 +153,7 @@ public class AckWatchRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Watch ID
+		 * Required - The watch identifier.
 		 * <p>
 		 * API name: {@code watch_id}
 		 */

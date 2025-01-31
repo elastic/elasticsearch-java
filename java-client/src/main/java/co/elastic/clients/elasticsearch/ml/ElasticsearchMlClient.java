@@ -2255,7 +2255,15 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	/**
 	 * Create a data frame analytics job. This API creates a data frame analytics
 	 * job that performs an analysis on the source indices and stores the outcome in
-	 * a destination index.
+	 * a destination index. By default, the query used in the source configuration
+	 * is <code>{&quot;match_all&quot;: {}}</code>.
+	 * <p>
+	 * If the destination index does not exist, it is created automatically when you
+	 * start the job.
+	 * <p>
+	 * If you supply only a subset of the regression or classification parameters,
+	 * hyperparameter optimization occurs. It determines a value for each of the
+	 * undefined parameters.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.17/put-dfanalytics.html">Documentation
@@ -2273,7 +2281,15 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	/**
 	 * Create a data frame analytics job. This API creates a data frame analytics
 	 * job that performs an analysis on the source indices and stores the outcome in
-	 * a destination index.
+	 * a destination index. By default, the query used in the source configuration
+	 * is <code>{&quot;match_all&quot;: {}}</code>.
+	 * <p>
+	 * If the destination index does not exist, it is created automatically when you
+	 * start the job.
+	 * <p>
+	 * If you supply only a subset of the regression or classification parameters,
+	 * hyperparameter optimization occurs. It determines a value for each of the
+	 * undefined parameters.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2297,8 +2313,16 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 * anomaly detection job. The datafeed contains a query that runs at a defined
 	 * interval (<code>frequency</code>). If you are concerned about delayed data,
 	 * you can add a delay
-	 * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
-	 * index.
+	 * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
+	 * {&quot;boost&quot;: 1}}`.
+	 * <p>
+	 * When Elasticsearch security features are enabled, your datafeed remembers
+	 * which roles the user who created it had at the time of creation and runs the
+	 * query using those same roles. If you provide secondary authorization headers,
+	 * those credentials are used instead. You must use Kibana, this API, or the
+	 * create anomaly detection jobs API to create a datafeed. Do not add a datafeed
+	 * directly to the <code>.ml-config</code> index. Do not give users
+	 * <code>write</code> privileges on the <code>.ml-config</code> index.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
@@ -2318,8 +2342,16 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 * anomaly detection job. The datafeed contains a query that runs at a defined
 	 * interval (<code>frequency</code>). If you are concerned about delayed data,
 	 * you can add a delay
-	 * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
-	 * index.
+	 * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
+	 * {&quot;boost&quot;: 1}}`.
+	 * <p>
+	 * When Elasticsearch security features are enabled, your datafeed remembers
+	 * which roles the user who created it had at the time of creation and runs the
+	 * query using those same roles. If you provide secondary authorization headers,
+	 * those credentials are used instead. You must use Kibana, this API, or the
+	 * create anomaly detection jobs API to create a datafeed. Do not add a datafeed
+	 * directly to the <code>.ml-config</code> index. Do not give users
+	 * <code>write</code> privileges on the <code>.ml-config</code> index.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2377,7 +2409,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	/**
 	 * Create an anomaly detection job. If you include a
 	 * <code>datafeed_config</code>, you must have read index privileges on the
-	 * source index.
+	 * source index. If you include a <code>datafeed_config</code> but do not
+	 * provide a query, the datafeed uses
+	 * <code>{&quot;match_all&quot;: {&quot;boost&quot;: 1}}</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html">Documentation
@@ -2394,7 +2428,9 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	/**
 	 * Create an anomaly detection job. If you include a
 	 * <code>datafeed_config</code>, you must have read index privileges on the
-	 * source index.
+	 * source index. If you include a <code>datafeed_config</code> but do not
+	 * provide a query, the datafeed uses
+	 * <code>{&quot;match_all&quot;: {&quot;boost&quot;: 1}}</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

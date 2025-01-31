@@ -64,7 +64,11 @@ import javax.annotation.Nullable;
  * Get the indices and shards that a search request would be run against. This
  * information can be useful for working out issues or planning optimizations
  * with routing and shard preferences. When filtered aliases are used, the
- * filter is returned as part of the indices section.
+ * filter is returned as part of the <code>indices</code> section.
+ * <p>
+ * If the Elasticsearch security features are enabled, you must have the
+ * <code>view_index_metadata</code> or <code>manage</code> index privilege for
+ * the target data stream, index, or alias.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search_shards.Request">API
  *      specification</a>
@@ -149,8 +153,9 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Returns the indices and shards that a search request would be executed
-	 * against.
+	 * A comma-separated list of data streams, indices, and aliases to search. It
+	 * supports wildcards (<code>*</code>). To search all data streams and indices,
+	 * omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -170,7 +175,7 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
+	 * The node or shard the operation should be performed on. It is random by
 	 * default.
 	 * <p>
 	 * API name: {@code preference}
@@ -181,7 +186,7 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -281,8 +286,9 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns the indices and shards that a search request would be executed
-		 * against.
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -294,8 +300,9 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns the indices and shards that a search request would be executed
-		 * against.
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -318,7 +325,7 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
+		 * The node or shard the operation should be performed on. It is random by
 		 * default.
 		 * <p>
 		 * API name: {@code preference}
@@ -329,7 +336,7 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */

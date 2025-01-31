@@ -59,7 +59,15 @@ import javax.annotation.Nullable;
 
 /**
  * Delete application privileges.
- * 
+ * <p>
+ * To use this API, you must have one of the following privileges:
+ * <ul>
+ * <li>The <code>manage_security</code> cluster privilege (or a greater
+ * privilege such as <code>all</code>).</li>
+ * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+ * application being referenced in the request.</li>
+ * </ul>
+ *
  * @see <a href=
  *      "../doc-files/api-spec.html#security.delete_privileges.Request">API
  *      specification</a>
@@ -88,7 +96,8 @@ public class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Application name
+	 * Required - The name of the application. Application privileges are always
+	 * associated with exactly one application.
 	 * <p>
 	 * API name: {@code application}
 	 */
@@ -97,7 +106,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Privilege name
+	 * Required - The name of the privilege.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -135,7 +144,8 @@ public class DeletePrivilegesRequest extends RequestBase {
 		private Refresh refresh;
 
 		/**
-		 * Required - Application name
+		 * Required - The name of the application. Application privileges are always
+		 * associated with exactly one application.
 		 * <p>
 		 * API name: {@code application}
 		 */
@@ -145,7 +155,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Privilege name
+		 * Required - The name of the privilege.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -157,7 +167,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Privilege name
+		 * Required - The name of the privilege.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
