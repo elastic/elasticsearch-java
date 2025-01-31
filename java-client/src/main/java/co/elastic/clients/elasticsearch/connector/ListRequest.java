@@ -30,6 +30,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
@@ -73,6 +74,9 @@ public class ListRequest extends RequestBase {
 	@Nullable
 	private final Integer from;
 
+	@Nullable
+	private final Boolean includeDeleted;
+
 	private final List<String> indexName;
 
 	@Nullable
@@ -89,6 +93,7 @@ public class ListRequest extends RequestBase {
 
 		this.connectorName = ApiTypeHelper.unmodifiable(builder.connectorName);
 		this.from = builder.from;
+		this.includeDeleted = builder.includeDeleted;
 		this.indexName = ApiTypeHelper.unmodifiable(builder.indexName);
 		this.query = builder.query;
 		this.serviceType = ApiTypeHelper.unmodifiable(builder.serviceType);
@@ -117,6 +122,17 @@ public class ListRequest extends RequestBase {
 	@Nullable
 	public final Integer from() {
 		return this.from;
+	}
+
+	/**
+	 * A flag to indicate if the desired connector should be fetched, even if it was
+	 * soft-deleted.
+	 * <p>
+	 * API name: {@code include_deleted}
+	 */
+	@Nullable
+	public final Boolean includeDeleted() {
+		return this.includeDeleted;
 	}
 
 	/**
@@ -174,6 +190,9 @@ public class ListRequest extends RequestBase {
 		private Integer from;
 
 		@Nullable
+		private Boolean includeDeleted;
+
+		@Nullable
 		private List<String> indexName;
 
 		@Nullable
@@ -216,6 +235,17 @@ public class ListRequest extends RequestBase {
 		 */
 		public final Builder from(@Nullable Integer value) {
 			this.from = value;
+			return this;
+		}
+
+		/**
+		 * A flag to indicate if the desired connector should be fetched, even if it was
+		 * soft-deleted.
+		 * <p>
+		 * API name: {@code include_deleted}
+		 */
+		public final Builder includeDeleted(@Nullable Boolean value) {
+			this.includeDeleted = value;
 			return this;
 		}
 
@@ -350,6 +380,9 @@ public class ListRequest extends RequestBase {
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
+				}
+				if (request.includeDeleted != null) {
+					params.put("include_deleted", String.valueOf(request.includeDeleted));
 				}
 				if (ApiTypeHelper.isDefined(request.connectorName)) {
 					params.put("connector_name",

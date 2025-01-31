@@ -90,8 +90,8 @@ public class DeleteInferenceRequest extends RequestBase {
 	}
 
 	/**
-	 * When true, the endpoint is not deleted, and a list of ingest processors which
-	 * reference this endpoint is returned
+	 * When true, the endpoint is not deleted and a list of ingest processors which
+	 * reference this endpoint is returned.
 	 * <p>
 	 * API name: {@code dry_run}
 	 */
@@ -102,7 +102,7 @@ public class DeleteInferenceRequest extends RequestBase {
 
 	/**
 	 * When true, the inference endpoint is forcefully deleted even if it is still
-	 * being used by ingest processors or semantic text fields
+	 * being used by ingest processors or semantic text fields.
 	 * <p>
 	 * API name: {@code force}
 	 */
@@ -112,7 +112,7 @@ public class DeleteInferenceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The inference Id
+	 * Required - The inference identifier.
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
@@ -151,8 +151,8 @@ public class DeleteInferenceRequest extends RequestBase {
 		private TaskType taskType;
 
 		/**
-		 * When true, the endpoint is not deleted, and a list of ingest processors which
-		 * reference this endpoint is returned
+		 * When true, the endpoint is not deleted and a list of ingest processors which
+		 * reference this endpoint is returned.
 		 * <p>
 		 * API name: {@code dry_run}
 		 */
@@ -163,7 +163,7 @@ public class DeleteInferenceRequest extends RequestBase {
 
 		/**
 		 * When true, the inference endpoint is forcefully deleted even if it is still
-		 * being used by ingest processors or semantic text fields
+		 * being used by ingest processors or semantic text fields.
 		 * <p>
 		 * API name: {@code force}
 		 */
@@ -173,7 +173,7 @@ public class DeleteInferenceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The inference Id
+		 * Required - The inference identifier.
 		 * <p>
 		 * API name: {@code inference_id}
 		 */

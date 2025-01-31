@@ -85,7 +85,11 @@ public class EnrollKibanaResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code http_ca}
+	 * Required - The CA certificate used to sign the node certificates that
+	 * Elasticsearch uses for TLS on the HTTP layer. The certificate is returned as
+	 * a Base64 encoded string of the ASN.1 DER encoding of the certificate.
+	 * <p>
+	 * API name: {@code http_ca}
 	 */
 	public final String httpCa() {
 		return this.httpCa;
@@ -144,7 +148,11 @@ public class EnrollKibanaResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code http_ca}
+		 * Required - The CA certificate used to sign the node certificates that
+		 * Elasticsearch uses for TLS on the HTTP layer. The certificate is returned as
+		 * a Base64 encoded string of the ASN.1 DER encoding of the certificate.
+		 * <p>
+		 * API name: {@code http_ca}
 		 */
 		public final Builder httpCa(String value) {
 			this.httpCa = value;

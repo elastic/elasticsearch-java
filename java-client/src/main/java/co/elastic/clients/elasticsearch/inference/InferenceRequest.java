@@ -60,8 +60,25 @@ import javax.annotation.Nullable;
 // typedef: inference.inference.Request
 
 /**
- * Perform inference on the service
- * 
+ * Perform inference on the service.
+ * <p>
+ * This API enables you to use machine learning models to perform specific tasks
+ * on data that you provide as an input. It returns a response with the results
+ * of the tasks. The inference endpoint you use can perform one specific task
+ * that has been defined when the endpoint was created with the create inference
+ * API. <blockquote>
+ * <p>
+ * info The inference APIs enable you to use certain services, such as built-in
+ * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+ * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+ * Hugging Face. For built-in models and models uploaded through Eland, the
+ * inference APIs offer an alternative way to use and manage trained models.
+ * However, if you do not plan to use the inference APIs to use these models or
+ * if you want to use non-NLP models, use the machine learning trained model
+ * APIs.
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="../doc-files/api-spec.html#inference.inference.Request">API
  *      specification</a>
  */
@@ -101,7 +118,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The inference Id
+	 * Required - The unique identifier for the inference endpoint.
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
@@ -110,7 +127,13 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Inference input. Either a string or an array of strings.
+	 * Required - The text on which you want to perform the inference task. It can
+	 * be a single string or an array. <blockquote>
+	 * <p>
+	 * info Inference endpoints for the <code>completion</code> task type currently
+	 * only support a single string as input.
+	 * </p>
+	 * </blockquote>
 	 * <p>
 	 * API name: {@code input}
 	 */
@@ -119,7 +142,8 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Query input, required for rerank task. Not required for other tasks.
+	 * The query input, which is required only for the <code>rerank</code> task. It
+	 * is not required for other tasks.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -129,7 +153,9 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the task type you specified and override the task settings
+	 * specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -139,7 +165,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The task type
+	 * The type of inference task that the model performs.
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -149,7 +175,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the amount of time to wait for the inference request to complete.
+	 * The amount of time to wait for the inference request to complete.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -218,7 +244,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
-		 * Required - The inference Id
+		 * Required - The unique identifier for the inference endpoint.
 		 * <p>
 		 * API name: {@code inference_id}
 		 */
@@ -228,7 +254,13 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Inference input. Either a string or an array of strings.
+		 * Required - The text on which you want to perform the inference task. It can
+		 * be a single string or an array. <blockquote>
+		 * <p>
+		 * info Inference endpoints for the <code>completion</code> task type currently
+		 * only support a single string as input.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -240,7 +272,13 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Inference input. Either a string or an array of strings.
+		 * Required - The text on which you want to perform the inference task. It can
+		 * be a single string or an array. <blockquote>
+		 * <p>
+		 * info Inference endpoints for the <code>completion</code> task type currently
+		 * only support a single string as input.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -252,7 +290,8 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query input, required for rerank task. Not required for other tasks.
+		 * The query input, which is required only for the <code>rerank</code> task. It
+		 * is not required for other tasks.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -262,7 +301,9 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the task type you specified and override the task settings
+		 * specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */
@@ -272,7 +313,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The task type
+		 * The type of inference task that the model performs.
 		 * <p>
 		 * API name: {@code task_type}
 		 */
@@ -282,7 +323,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the amount of time to wait for the inference request to complete.
+		 * The amount of time to wait for the inference request to complete.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -292,7 +333,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the amount of time to wait for the inference request to complete.
+		 * The amount of time to wait for the inference request to complete.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

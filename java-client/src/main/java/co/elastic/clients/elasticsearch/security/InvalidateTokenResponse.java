@@ -87,13 +87,19 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code error_count}
+	 * Required - The number of errors that were encountered when invalidating the
+	 * tokens.
+	 * <p>
+	 * API name: {@code error_count}
 	 */
 	public final long errorCount() {
 		return this.errorCount;
 	}
 
 	/**
+	 * Details about the errors. This field is not present in the response when
+	 * <code>error_count</code> is <code>0</code>.
+	 * <p>
 	 * API name: {@code error_details}
 	 */
 	public final List<ErrorCause> errorDetails() {
@@ -101,14 +107,19 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code invalidated_tokens}
+	 * Required - The number of the tokens that were invalidated as part of this
+	 * request.
+	 * <p>
+	 * API name: {@code invalidated_tokens}
 	 */
 	public final long invalidatedTokens() {
 		return this.invalidatedTokens;
 	}
 
 	/**
-	 * Required - API name: {@code previously_invalidated_tokens}
+	 * Required - The number of tokens that were already invalidated.
+	 * <p>
+	 * API name: {@code previously_invalidated_tokens}
 	 */
 	public final long previouslyInvalidatedTokens() {
 		return this.previouslyInvalidatedTokens;
@@ -170,7 +181,10 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		private Long previouslyInvalidatedTokens;
 
 		/**
-		 * Required - API name: {@code error_count}
+		 * Required - The number of errors that were encountered when invalidating the
+		 * tokens.
+		 * <p>
+		 * API name: {@code error_count}
 		 */
 		public final Builder errorCount(long value) {
 			this.errorCount = value;
@@ -178,6 +192,9 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Details about the errors. This field is not present in the response when
+		 * <code>error_count</code> is <code>0</code>.
+		 * <p>
 		 * API name: {@code error_details}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
@@ -188,6 +205,9 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Details about the errors. This field is not present in the response when
+		 * <code>error_count</code> is <code>0</code>.
+		 * <p>
 		 * API name: {@code error_details}
 		 * <p>
 		 * Adds one or more values to <code>errorDetails</code>.
@@ -198,6 +218,9 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Details about the errors. This field is not present in the response when
+		 * <code>error_count</code> is <code>0</code>.
+		 * <p>
 		 * API name: {@code error_details}
 		 * <p>
 		 * Adds a value to <code>errorDetails</code> using a builder lambda.
@@ -207,7 +230,10 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code invalidated_tokens}
+		 * Required - The number of the tokens that were invalidated as part of this
+		 * request.
+		 * <p>
+		 * API name: {@code invalidated_tokens}
 		 */
 		public final Builder invalidatedTokens(long value) {
 			this.invalidatedTokens = value;
@@ -215,7 +241,9 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code previously_invalidated_tokens}
+		 * Required - The number of tokens that were already invalidated.
+		 * <p>
+		 * API name: {@code previously_invalidated_tokens}
 		 */
 		public final Builder previouslyInvalidatedTokens(long value) {
 			this.previouslyInvalidatedTokens = value;

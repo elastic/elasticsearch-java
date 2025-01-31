@@ -59,6 +59,17 @@ import javax.annotation.Nullable;
  * Disable a user profile.
  * <p>
  * Disable user profiles so that they are not visible in user profile searches.
+ * <p>
+ * NOTE: The user profile feature is designed only for use by Kibana and
+ * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+ * Individual users and external applications should not call this API directly.
+ * Elastic reserves the right to change or remove this feature in future
+ * releases without prior notice.
+ * <p>
+ * When you activate a user profile, its automatically enabled and visible in
+ * user profile searches. You can use the disable user profile API to disable a
+ * user profile so it’s not visible in these searches. To re-enable a disabled
+ * user profile, use the enable user profile API .
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.disable_user_profile.Request">API
@@ -86,8 +97,8 @@ public class DisableUserProfileRequest extends RequestBase {
 
 	/**
 	 * If 'true', Elasticsearch refreshes the affected shards to make this operation
-	 * visible to search, if 'wait_for' then wait for a refresh to make this
-	 * operation visible to search, if 'false' do nothing with refreshes.
+	 * visible to search. If 'wait_for', it waits for a refresh to make this
+	 * operation visible to search. If 'false', it does nothing with refreshes.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -121,8 +132,8 @@ public class DisableUserProfileRequest extends RequestBase {
 
 		/**
 		 * If 'true', Elasticsearch refreshes the affected shards to make this operation
-		 * visible to search, if 'wait_for' then wait for a refresh to make this
-		 * operation visible to search, if 'false' do nothing with refreshes.
+		 * visible to search. If 'wait_for', it waits for a refresh to make this
+		 * operation visible to search. If 'false', it does nothing with refreshes.
 		 * <p>
 		 * API name: {@code refresh}
 		 */

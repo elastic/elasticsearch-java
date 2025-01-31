@@ -49,7 +49,9 @@ import java.util.Objects;
 // typedef: cat.help.Request
 
 /**
- * Get CAT help. Returns help for the CAT APIs.
+ * Get CAT help.
+ * <p>
+ * Get help for the CAT APIs.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.help.Request">API
  *      specification</a>

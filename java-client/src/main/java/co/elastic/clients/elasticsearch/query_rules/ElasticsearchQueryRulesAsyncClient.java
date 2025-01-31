@@ -75,7 +75,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * the create or update query rule API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/delete-query-rule.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-delete-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -95,7 +95,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/delete-query-rule.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-delete-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -111,7 +111,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * is a destructive action that is not recoverable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/delete-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-delete-ruleset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +130,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRulesetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/delete-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-delete-ruleset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -145,7 +145,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * Get a query rule. Get details about a query rule within a query ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-query-rule.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-get-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -163,7 +163,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-query-rule.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-get-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -178,7 +178,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * Get a query ruleset. Get details about a query ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-get-ruleset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -196,7 +196,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRulesetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-get-ruleset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -211,7 +211,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/list-query-rulesets.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-list-rulesets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -229,7 +229,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRulesetsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/list-query-rulesets.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-list-rulesets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -242,7 +242,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/list-query-rulesets.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-list-rulesets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -265,7 +265,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * documents are pinned in the order they are specified in the ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-query-rule.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-put-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -291,7 +291,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-query-rule.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-put-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -315,7 +315,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * 100 documents are pinned in the order they are specified in the ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-put-ruleset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -342,7 +342,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRulesetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-put-ruleset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -358,7 +358,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 * identify the rules that would match that criteria.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/test-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-test">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -377,7 +377,7 @@ public class ElasticsearchQueryRulesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link TestRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/test-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-query-rules-test">Documentation
 	 *      on elastic.co</a>
 	 */
 

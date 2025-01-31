@@ -50,10 +50,24 @@ import java.util.Objects;
 // typedef: cluster.remote_info.Request
 
 /**
- * Get remote cluster information. Get all of the configured remote cluster
- * information. This API returns connection and endpoint information keyed by
- * the configured remote cluster alias.
- * 
+ * Get remote cluster information.
+ * <p>
+ * Get information about configured remote clusters. The API returns connection
+ * and endpoint information keyed by the configured remote cluster alias.
+ * <blockquote>
+ * <p>
+ * info This API returns information that reflects current state on the local
+ * cluster. The <code>connected</code> field does not necessarily reflect
+ * whether a remote cluster is down or unavailable, only whether there is
+ * currently an open connection to it. Elasticsearch does not spontaneously try
+ * to reconnect to a disconnected remote cluster. To trigger a reconnection,
+ * attempt a cross-cluster search, ES|QL cross-cluster search, or try the
+ * <a href=
+ * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-cluster">resolve
+ * cluster endpoint</a>.
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="../doc-files/api-spec.html#cluster.remote_info.Request">API
  *      specification</a>
  */

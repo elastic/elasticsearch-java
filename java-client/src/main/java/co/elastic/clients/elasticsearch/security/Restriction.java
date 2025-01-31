@@ -75,7 +75,11 @@ public class Restriction implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code workflows}
+	 * Required - A list of workflows to which the API key is restricted. NOTE: In
+	 * order to use a role restriction, an API key must be created with a single
+	 * role descriptor.
+	 * <p>
+	 * API name: {@code workflows}
 	 */
 	public final List<String> workflows() {
 		return this.workflows;
@@ -120,7 +124,11 @@ public class Restriction implements JsonpSerializable {
 		private List<String> workflows;
 
 		/**
-		 * Required - API name: {@code workflows}
+		 * Required - A list of workflows to which the API key is restricted. NOTE: In
+		 * order to use a role restriction, an API key must be created with a single
+		 * role descriptor.
+		 * <p>
+		 * API name: {@code workflows}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>workflows</code>.
 		 */
@@ -130,7 +138,11 @@ public class Restriction implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code workflows}
+		 * Required - A list of workflows to which the API key is restricted. NOTE: In
+		 * order to use a role restriction, an API key must be created with a single
+		 * role descriptor.
+		 * <p>
+		 * API name: {@code workflows}
 		 * <p>
 		 * Adds one or more values to <code>workflows</code>.
 		 */

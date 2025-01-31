@@ -76,7 +76,10 @@ public class SamlServiceProviderMetadataResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code metadata}
+	 * Required - An XML string that contains a SAML Service Provider's metadata for
+	 * the realm.
+	 * <p>
+	 * API name: {@code metadata}
 	 */
 	public final String metadata() {
 		return this.metadata;
@@ -115,7 +118,10 @@ public class SamlServiceProviderMetadataResponse implements JsonpSerializable {
 		private String metadata;
 
 		/**
-		 * Required - API name: {@code metadata}
+		 * Required - An XML string that contains a SAML Service Provider's metadata for
+		 * the realm.
+		 * <p>
+		 * API name: {@code metadata}
 		 */
 		public final Builder metadata(String value) {
 			this.metadata = value;

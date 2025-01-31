@@ -77,14 +77,21 @@ public class Token implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - The name of the bearer token for the <code>elastic/kibana</code>
+	 * service account.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
 	}
 
 	/**
-	 * Required - API name: {@code value}
+	 * Required - The value of the bearer token for the <code>elastic/kibana</code>
+	 * service account. Use this value to authenticate the service account with
+	 * Elasticsearch.
+	 * <p>
+	 * API name: {@code value}
 	 */
 	public final String value() {
 		return this.value;
@@ -126,7 +133,10 @@ public class Token implements JsonpSerializable {
 		private String value;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - The name of the bearer token for the <code>elastic/kibana</code>
+		 * service account.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
@@ -134,7 +144,11 @@ public class Token implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code value}
+		 * Required - The value of the bearer token for the <code>elastic/kibana</code>
+		 * service account. Use this value to authenticate the service account with
+		 * Elasticsearch.
+		 * <p>
+		 * API name: {@code value}
 		 */
 		public final Builder value(String value) {
 			this.value = value;

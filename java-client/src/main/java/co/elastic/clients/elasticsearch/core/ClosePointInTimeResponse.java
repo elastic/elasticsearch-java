@@ -78,14 +78,19 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code succeeded}
+	 * Required - If <code>true</code>, all search contexts associated with the
+	 * point-in-time ID were successfully closed.
+	 * <p>
+	 * API name: {@code succeeded}
 	 */
 	public final boolean succeeded() {
 		return this.succeeded;
 	}
 
 	/**
-	 * Required - API name: {@code num_freed}
+	 * Required - The number of search contexts that were successfully closed.
+	 * <p>
+	 * API name: {@code num_freed}
 	 */
 	public final int numFreed() {
 		return this.numFreed;
@@ -129,7 +134,10 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 		private Integer numFreed;
 
 		/**
-		 * Required - API name: {@code succeeded}
+		 * Required - If <code>true</code>, all search contexts associated with the
+		 * point-in-time ID were successfully closed.
+		 * <p>
+		 * API name: {@code succeeded}
 		 */
 		public final Builder succeeded(boolean value) {
 			this.succeeded = value;
@@ -137,7 +145,9 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code num_freed}
+		 * Required - The number of search contexts that were successfully closed.
+		 * <p>
+		 * API name: {@code num_freed}
 		 */
 		public final Builder numFreed(int value) {
 			this.numFreed = value;

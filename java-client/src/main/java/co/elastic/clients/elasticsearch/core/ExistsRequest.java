@@ -63,7 +63,29 @@ import javax.annotation.Nullable;
 // typedef: _global.exists.Request
 
 /**
- * Check a document. Checks if a specified document exists.
+ * Check a document.
+ * <p>
+ * Verify that a document exists. For example, check to see if a document with
+ * the <code>_id</code> 0 exists:
+ * 
+ * <pre>
+ * <code>HEAD my-index-000001/_doc/0
+ * </code>
+ * </pre>
+ * <p>
+ * If the document exists, the API returns a status code of
+ * <code>200 - OK</code>. If the document doesn’t exist, the API returns
+ * <code>404 - Not Found</code>.
+ * <p>
+ * <strong>Versioning support</strong>
+ * <p>
+ * You can use the <code>version</code> parameter to check the document only if
+ * its current version is equal to the specified one.
+ * <p>
+ * Internally, Elasticsearch has marked the old document as deleted and added an
+ * entirely new document. The old version of the document doesn't disappear
+ * immediately, although you won't be able to access it. Elasticsearch cleans up
+ * deleted documents in the background as you continue to index more data.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.exists.Request">API
  *      specification</a>
@@ -125,8 +147,8 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * <code>true</code> or <code>false</code> to return the <code>_source</code>
-	 * field or not, or a list of fields to return.
+	 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+	 * or <code>false</code>) or lists the fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -136,7 +158,10 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of source fields to exclude in the response.
+	 * A comma-separated list of source fields to exclude from the response. You can
+	 * also use this parameter to exclude fields from the subset specified in
+	 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+	 * parameter is <code>false</code>, this parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -145,7 +170,11 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of source fields to include in the response.
+	 * A comma-separated list of source fields to include in the response. If this
+	 * parameter is specified, only these source fields are returned. You can
+	 * exclude fields from this subset using the <code>_source_excludes</code> query
+	 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+	 * parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -154,7 +183,7 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier of the document.
+	 * Required - A unique document identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -163,8 +192,8 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of data streams, indices, and aliases.
-	 * Supports wildcards (<code>*</code>).
+	 * Required - A comma-separated list of data streams, indices, and aliases. It
+	 * supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -173,8 +202,15 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
-	 * default.
+	 * The node or shard the operation should be performed on. By default, the
+	 * operation is randomized between the shard replicas.
+	 * <p>
+	 * If it is set to <code>_local</code>, the operation will prefer to be run on a
+	 * local allocated shard when possible. If it is set to a custom value, the
+	 * value is used to guarantee that the same shards will be used for the same
+	 * custom value. This can help with &quot;jumping values&quot; when hitting
+	 * different shards in different refresh states. A sample value can be something
+	 * like the web session ID or the user name.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -194,8 +230,10 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
-	 * delete by query after the request completes.
+	 * If <code>true</code>, the request refreshes the relevant shards before
+	 * retrieving the document. Setting it to <code>true</code> should be done after
+	 * careful thought and verification that this does not cause a heavy load on the
+	 * system (and slow down indexing).
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -205,7 +243,7 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Target the specified primary shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -215,9 +253,10 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * List of stored fields to return as part of a hit. If no fields are specified,
-	 * no stored fields are included in the response. If this field is specified,
-	 * the <code>_source</code> parameter defaults to false.
+	 * A comma-separated list of stored fields to return as part of a hit. If no
+	 * fields are specified, no stored fields are included in the response. If this
+	 * field is specified, the <code>_source</code> parameter defaults to
+	 * <code>false</code>.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -237,7 +276,7 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific version type: <code>external</code>, <code>external_gte</code>.
+	 * The version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -288,8 +327,8 @@ public class ExistsRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
-		 * field or not, or a list of fields to return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -299,8 +338,8 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
-		 * field or not, or a list of fields to return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -309,7 +348,10 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to exclude in the response.
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+		 * parameter is <code>false</code>, this parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -321,7 +363,10 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to exclude in the response.
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+		 * parameter is <code>false</code>, this parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -333,7 +378,11 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to include in the response.
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -345,7 +394,11 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of source fields to include in the response.
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -357,7 +410,7 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Identifier of the document.
+		 * Required - A unique document identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -367,8 +420,8 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and aliases.
-		 * Supports wildcards (<code>*</code>).
+		 * Required - A comma-separated list of data streams, indices, and aliases. It
+		 * supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -378,8 +431,15 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
-		 * default.
+		 * The node or shard the operation should be performed on. By default, the
+		 * operation is randomized between the shard replicas.
+		 * <p>
+		 * If it is set to <code>_local</code>, the operation will prefer to be run on a
+		 * local allocated shard when possible. If it is set to a custom value, the
+		 * value is used to guarantee that the same shards will be used for the same
+		 * custom value. This can help with &quot;jumping values&quot; when hitting
+		 * different shards in different refresh states. A sample value can be something
+		 * like the web session ID or the user name.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -399,8 +459,10 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
-		 * delete by query after the request completes.
+		 * If <code>true</code>, the request refreshes the relevant shards before
+		 * retrieving the document. Setting it to <code>true</code> should be done after
+		 * careful thought and verification that this does not cause a heavy load on the
+		 * system (and slow down indexing).
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -410,7 +472,7 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Target the specified primary shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -420,9 +482,10 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the <code>_source</code> parameter defaults to false.
+		 * A comma-separated list of stored fields to return as part of a hit. If no
+		 * fields are specified, no stored fields are included in the response. If this
+		 * field is specified, the <code>_source</code> parameter defaults to
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -434,9 +497,10 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the <code>_source</code> parameter defaults to false.
+		 * A comma-separated list of stored fields to return as part of a hit. If no
+		 * fields are specified, no stored fields are included in the response. If this
+		 * field is specified, the <code>_source</code> parameter defaults to
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -459,7 +523,7 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific version type: <code>external</code>, <code>external_gte</code>.
+		 * The version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

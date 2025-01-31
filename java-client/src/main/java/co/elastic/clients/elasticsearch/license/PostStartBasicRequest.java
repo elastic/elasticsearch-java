@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: license.post_start_basic.Request
 
 /**
- * Start a basic license. Start an indefinite basic license, which gives access
- * to all the basic features.
+ * Start a basic license.
+ * <p>
+ * Start an indefinite basic license, which gives access to all the basic
+ * features.
  * <p>
  * NOTE: In order to start a basic license, you must not currently have a basic
  * license.

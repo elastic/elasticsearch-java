@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: indices.create_data_stream.Request
 
 /**
- * Create a data stream. Creates a data stream. You must have a matching index
- * template with data stream enabled.
+ * Create a data stream.
+ * <p>
+ * You must have a matching index template with data stream enabled.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.create_data_stream.Request">API

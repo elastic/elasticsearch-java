@@ -72,7 +72,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-delete-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,7 +91,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-delete-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -106,7 +106,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Run an enrich policy. Create the enrich index for an existing enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/execute-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-execute-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -124,7 +124,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecutePolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/execute-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-execute-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -139,7 +139,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-get-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-get-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -170,7 +170,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-get-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -185,7 +185,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Create an enrich policy. Creates an enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-put-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -203,7 +203,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/put-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-put-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -219,7 +219,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * enrich policies that are currently executing.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -238,7 +238,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link EnrichStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -252,7 +252,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * enrich policies that are currently executing.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-enrich-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 

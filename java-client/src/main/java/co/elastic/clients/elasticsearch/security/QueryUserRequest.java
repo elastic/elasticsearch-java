@@ -68,6 +68,9 @@ import javax.annotation.Nullable;
  * <p>
  * Get information for users in a paginated manner. You can optionally filter
  * the results with a query.
+ * <p>
+ * NOTE: As opposed to the get user API, built-in users are excluded from the
+ * result. This API is only for native users.
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_user.Request">API
  *      specification</a>
@@ -108,9 +111,10 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Starting document offset. By default, you cannot page through more than
-	 * 10,000 hits using the from and size parameters. To page through more hits,
-	 * use the <code>search_after</code> parameter.
+	 * The starting document offset. It must not be negative. By default, you cannot
+	 * page through more than 10,000 hits using the <code>from</code> and
+	 * <code>size</code> parameters. To page through more hits, use the
+	 * <code>search_after</code> parameter.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -127,7 +131,8 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 	 * <code>prefix</code>, <code>wildcard</code>, <code>exists</code>,
 	 * <code>range</code>, and <code>simple_query_string</code>. You can query the
 	 * following information associated with user: <code>username</code>,
-	 * <code>roles</code>, <code>enabled</code>
+	 * <code>roles</code>, <code>enabled</code>, <code>full_name</code>, and
+	 * <code>email</code>.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -137,7 +142,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Search after definition
+	 * The search after definition
 	 * <p>
 	 * API name: {@code search_after}
 	 */
@@ -146,9 +151,10 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of hits to return. By default, you cannot page through more than
-	 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
-	 * page through more hits, use the <code>search_after</code> parameter.
+	 * The number of hits to return. It must not be negative. By default, you cannot
+	 * page through more than 10,000 hits using the <code>from</code> and
+	 * <code>size</code> parameters. To page through more hits, use the
+	 * <code>search_after</code> parameter.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -158,8 +164,9 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Fields eligible for sorting are: username, roles, enabled In addition, sort
-	 * can also be applied to the <code>_doc</code> field to sort by index order.
+	 * The sort definition. Fields eligible for sorting are: <code>username</code>,
+	 * <code>roles</code>, <code>enabled</code>. In addition, sort can also be
+	 * applied to the <code>_doc</code> field to sort by index order.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -168,8 +175,8 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If true will return the User Profile ID for the users in the query result, if
-	 * any.
+	 * Determines whether to retrieve the user profile UID, if it exists, for the
+	 * users.
 	 * <p>
 	 * API name: {@code with_profile_uid}
 	 */
@@ -255,9 +262,10 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		private Boolean withProfileUid;
 
 		/**
-		 * Starting document offset. By default, you cannot page through more than
-		 * 10,000 hits using the from and size parameters. To page through more hits,
-		 * use the <code>search_after</code> parameter.
+		 * The starting document offset. It must not be negative. By default, you cannot
+		 * page through more than 10,000 hits using the <code>from</code> and
+		 * <code>size</code> parameters. To page through more hits, use the
+		 * <code>search_after</code> parameter.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -274,7 +282,8 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		 * <code>prefix</code>, <code>wildcard</code>, <code>exists</code>,
 		 * <code>range</code>, and <code>simple_query_string</code>. You can query the
 		 * following information associated with user: <code>username</code>,
-		 * <code>roles</code>, <code>enabled</code>
+		 * <code>roles</code>, <code>enabled</code>, <code>full_name</code>, and
+		 * <code>email</code>.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -291,7 +300,8 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		 * <code>prefix</code>, <code>wildcard</code>, <code>exists</code>,
 		 * <code>range</code>, and <code>simple_query_string</code>. You can query the
 		 * following information associated with user: <code>username</code>,
-		 * <code>roles</code>, <code>enabled</code>
+		 * <code>roles</code>, <code>enabled</code>, <code>full_name</code>, and
+		 * <code>email</code>.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -300,7 +310,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -312,7 +322,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -324,7 +334,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -341,7 +351,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -358,7 +368,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -375,7 +385,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -392,7 +402,7 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -403,9 +413,10 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of hits to return. By default, you cannot page through more than
-		 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
-		 * page through more hits, use the <code>search_after</code> parameter.
+		 * The number of hits to return. It must not be negative. By default, you cannot
+		 * page through more than 10,000 hits using the <code>from</code> and
+		 * <code>size</code> parameters. To page through more hits, use the
+		 * <code>search_after</code> parameter.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -415,8 +426,9 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Fields eligible for sorting are: username, roles, enabled In addition, sort
-		 * can also be applied to the <code>_doc</code> field to sort by index order.
+		 * The sort definition. Fields eligible for sorting are: <code>username</code>,
+		 * <code>roles</code>, <code>enabled</code>. In addition, sort can also be
+		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -428,8 +440,9 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Fields eligible for sorting are: username, roles, enabled In addition, sort
-		 * can also be applied to the <code>_doc</code> field to sort by index order.
+		 * The sort definition. Fields eligible for sorting are: <code>username</code>,
+		 * <code>roles</code>, <code>enabled</code>. In addition, sort can also be
+		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -441,8 +454,9 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Fields eligible for sorting are: username, roles, enabled In addition, sort
-		 * can also be applied to the <code>_doc</code> field to sort by index order.
+		 * The sort definition. Fields eligible for sorting are: <code>username</code>,
+		 * <code>roles</code>, <code>enabled</code>. In addition, sort can also be
+		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -453,8 +467,8 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If true will return the User Profile ID for the users in the query result, if
-		 * any.
+		 * Determines whether to retrieve the user profile UID, if it exists, for the
+		 * users.
 		 * <p>
 		 * API name: {@code with_profile_uid}
 		 */

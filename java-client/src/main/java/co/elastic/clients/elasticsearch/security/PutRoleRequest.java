@@ -218,6 +218,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * A list of remote indices permissions entries.
 	 * <p>
+	 * NOTE: Remote indices are effective for remote clusters configured with the
+	 * API key based model. They have no effect for remote clusters configured with
+	 * the certificate based model.
+	 * <p>
 	 * API name: {@code remote_indices}
 	 */
 	public final List<RemoteIndicesPrivileges> remoteIndices() {
@@ -631,6 +635,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * A list of remote indices permissions entries.
 		 * <p>
+		 * NOTE: Remote indices are effective for remote clusters configured with the
+		 * API key based model. They have no effect for remote clusters configured with
+		 * the certificate based model.
+		 * <p>
 		 * API name: {@code remote_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>remoteIndices</code>.
@@ -643,6 +651,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * A list of remote indices permissions entries.
 		 * <p>
+		 * NOTE: Remote indices are effective for remote clusters configured with the
+		 * API key based model. They have no effect for remote clusters configured with
+		 * the certificate based model.
+		 * <p>
 		 * API name: {@code remote_indices}
 		 * <p>
 		 * Adds one or more values to <code>remoteIndices</code>.
@@ -654,6 +666,10 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * A list of remote indices permissions entries.
+		 * <p>
+		 * NOTE: Remote indices are effective for remote clusters configured with the
+		 * API key based model. They have no effect for remote clusters configured with
+		 * the certificate based model.
 		 * <p>
 		 * API name: {@code remote_indices}
 		 * <p>

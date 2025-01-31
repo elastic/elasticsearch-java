@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ingest.delete_geoip_database.Request
 
 /**
- * Delete GeoIP database configurations. Delete one or more IP geolocation
- * database configurations.
+ * Delete GeoIP database configurations.
+ * <p>
+ * Delete one or more IP geolocation database configurations.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ingest.delete_geoip_database.Request">API
@@ -99,7 +100,7 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -110,8 +111,8 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -162,7 +163,7 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -173,7 +174,7 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -183,8 +184,8 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -194,8 +195,8 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

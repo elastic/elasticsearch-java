@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.indices.migrate_reindex;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,9 +30,10 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,44 +50,35 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.unfreeze.Response
+// typedef: indices.migrate_reindex.SourceIndex
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#indices.unfreeze.Response">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#indices.migrate_reindex.SourceIndex">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class UnfreezeResponse implements AcknowledgedResponse, JsonpSerializable {
-	private final boolean acknowledged;
-
-	private final boolean shardsAcknowledged;
+public class SourceIndex implements JsonpSerializable {
+	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private UnfreezeResponse(Builder builder) {
+	private SourceIndex(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public static UnfreezeResponse of(Function<Builder, ObjectBuilder<UnfreezeResponse>> fn) {
+	public static SourceIndex of(Function<Builder, ObjectBuilder<SourceIndex>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code acknowledged}
+	 * Required - API name: {@code index}
 	 */
-	public final boolean acknowledged() {
-		return this.acknowledged;
-	}
-
-	/**
-	 * Required - API name: {@code shards_acknowledged}
-	 */
-	public final boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
+	public final String index() {
+		return this.index;
 	}
 
 	/**
@@ -101,11 +92,8 @@ public class UnfreezeResponse implements AcknowledgedResponse, JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("acknowledged");
-		generator.write(this.acknowledged);
-
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
+		generator.writeKey("index");
+		generator.write(this.index);
 
 	}
 
@@ -117,27 +105,17 @@ public class UnfreezeResponse implements AcknowledgedResponse, JsonpSerializable
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link UnfreezeResponse}.
+	 * Builder for {@link SourceIndex}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<UnfreezeResponse> {
-		private Boolean acknowledged;
-
-		private Boolean shardsAcknowledged;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SourceIndex> {
+		private String index;
 
 		/**
-		 * Required - API name: {@code acknowledged}
+		 * Required - API name: {@code index}
 		 */
-		public final Builder acknowledged(boolean value) {
-			this.acknowledged = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public final Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
+		public final Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -147,30 +125,29 @@ public class UnfreezeResponse implements AcknowledgedResponse, JsonpSerializable
 		}
 
 		/**
-		 * Builds a {@link UnfreezeResponse}.
+		 * Builds a {@link SourceIndex}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public UnfreezeResponse build() {
+		public SourceIndex build() {
 			_checkSingleUse();
 
-			return new UnfreezeResponse(this);
+			return new SourceIndex(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link UnfreezeResponse}
+	 * Json deserializer for {@link SourceIndex}
 	 */
-	public static final JsonpDeserializer<UnfreezeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UnfreezeResponse::setupUnfreezeResponseDeserializer);
+	public static final JsonpDeserializer<SourceIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SourceIndex::setupSourceIndexDeserializer);
 
-	protected static void setupUnfreezeResponseDeserializer(ObjectDeserializer<UnfreezeResponse.Builder> op) {
+	protected static void setupSourceIndexDeserializer(ObjectDeserializer<SourceIndex.Builder> op) {
 
-		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
 	}
 

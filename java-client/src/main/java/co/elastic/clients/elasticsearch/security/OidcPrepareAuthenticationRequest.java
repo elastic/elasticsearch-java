@@ -55,9 +55,10 @@ import javax.annotation.Nullable;
 // typedef: security.oidc_prepare_authentication.Request
 
 /**
- * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
- * request as a URL string based on the configuration of the OpenID Connect
- * authentication realm in Elasticsearch.
+ * Prepare OpenID connect authentication.
+ * <p>
+ * Create an oAuth 2.0 authentication request as a URL string based on the
+ * configuration of the OpenID Connect authentication realm in Elasticsearch.
  * <p>
  * The response of this API is a URL pointing to the Authorization Endpoint of
  * the configured OpenID Connect Provider, which can be used to redirect the

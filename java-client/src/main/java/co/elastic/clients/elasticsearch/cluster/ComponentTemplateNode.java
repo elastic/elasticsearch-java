@@ -31,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
@@ -70,6 +71,9 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 	private final Map<String, JsonData> meta;
 
+	@Nullable
+	private final Boolean deprecated;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ComponentTemplateNode(Builder builder) {
@@ -77,6 +81,7 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 		this.version = builder.version;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.deprecated = builder.deprecated;
 
 	}
 
@@ -104,6 +109,14 @@ public class ComponentTemplateNode implements JsonpSerializable {
 	 */
 	public final Map<String, JsonData> meta() {
 		return this.meta;
+	}
+
+	/**
+	 * API name: {@code deprecated}
+	 */
+	@Nullable
+	public final Boolean deprecated() {
+		return this.deprecated;
 	}
 
 	/**
@@ -136,6 +149,11 @@ public class ComponentTemplateNode implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.deprecated != null) {
+			generator.writeKey("deprecated");
+			generator.write(this.deprecated);
+
+		}
 
 	}
 
@@ -160,6 +178,9 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, JsonData> meta;
+
+		@Nullable
+		private Boolean deprecated;
 
 		/**
 		 * Required - API name: {@code template}
@@ -205,6 +226,14 @@ public class ComponentTemplateNode implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code deprecated}
+		 */
+		public final Builder deprecated(@Nullable Boolean value) {
+			this.deprecated = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -236,6 +265,7 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		op.add(Builder::template, ComponentTemplateSummary._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
 
 	}
 

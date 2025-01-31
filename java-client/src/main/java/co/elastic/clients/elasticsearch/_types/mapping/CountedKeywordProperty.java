@@ -17,19 +17,19 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.xpack.usage;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -46,59 +46,77 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: xpack.usage.FrozenIndices
+// typedef: _types.mapping.CountedKeywordProperty
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#xpack.usage.FrozenIndices">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.mapping.CountedKeywordProperty">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class FrozenIndices extends Base {
-	private final long indicesCount;
+public class CountedKeywordProperty extends PropertyBase implements PropertyVariant {
+	@Nullable
+	private final Boolean index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private FrozenIndices(Builder builder) {
+	private CountedKeywordProperty(Builder builder) {
 		super(builder);
 
-		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
+		this.index = builder.index;
 
 	}
 
-	public static FrozenIndices of(Function<Builder, ObjectBuilder<FrozenIndices>> fn) {
+	public static CountedKeywordProperty of(Function<Builder, ObjectBuilder<CountedKeywordProperty>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code indices_count}
+	 * Property variant kind.
 	 */
-	public final long indicesCount() {
-		return this.indicesCount;
+	@Override
+	public Property.Kind _propertyKind() {
+		return Property.Kind.CountedKeyword;
+	}
+
+	/**
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final Boolean index() {
+		return this.index;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.write("type", "counted_keyword");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("indices_count");
-		generator.write(this.indicesCount);
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link FrozenIndices}.
+	 * Builder for {@link CountedKeywordProperty}.
 	 */
 
-	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<FrozenIndices> {
-		private Long indicesCount;
+	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<CountedKeywordProperty> {
+		@Nullable
+		private Boolean index;
 
 		/**
-		 * Required - API name: {@code indices_count}
+		 * API name: {@code index}
 		 */
-		public final Builder indicesCount(long value) {
-			this.indicesCount = value;
+		public final Builder index(@Nullable Boolean value) {
+			this.index = value;
 			return this;
 		}
 
@@ -108,30 +126,32 @@ public class FrozenIndices extends Base {
 		}
 
 		/**
-		 * Builds a {@link FrozenIndices}.
+		 * Builds a {@link CountedKeywordProperty}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public FrozenIndices build() {
+		public CountedKeywordProperty build() {
 			_checkSingleUse();
 
-			return new FrozenIndices(this);
+			return new CountedKeywordProperty(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link FrozenIndices}
+	 * Json deserializer for {@link CountedKeywordProperty}
 	 */
-	public static final JsonpDeserializer<FrozenIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FrozenIndices::setupFrozenIndicesDeserializer);
+	public static final JsonpDeserializer<CountedKeywordProperty> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CountedKeywordProperty::setupCountedKeywordPropertyDeserializer);
 
-	protected static void setupFrozenIndicesDeserializer(ObjectDeserializer<FrozenIndices.Builder> op) {
-		Base.setupBaseDeserializer(op);
-		op.add(Builder::indicesCount, JsonpDeserializer.longDeserializer(), "indices_count");
+	protected static void setupCountedKeywordPropertyDeserializer(
+			ObjectDeserializer<CountedKeywordProperty.Builder> op) {
+		PropertyBase.setupPropertyBaseDeserializer(op);
+		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 
+		op.ignore("type");
 	}
 
 }

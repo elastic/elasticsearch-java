@@ -78,7 +78,7 @@ public class ElasticsearchDanglingIndicesClient
 	 * node is offline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/dangling-index-delete.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-delete-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -101,7 +101,7 @@ public class ElasticsearchDanglingIndicesClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDanglingIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/dangling-index-delete.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-delete-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -123,7 +123,7 @@ public class ElasticsearchDanglingIndicesClient
 	 * node is offline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/dangling-index-import.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-import-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -148,7 +148,7 @@ public class ElasticsearchDanglingIndicesClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ImportDanglingIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/dangling-index-import.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-import-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +172,7 @@ public class ElasticsearchDanglingIndicesClient
 	 * Use this API to list dangling indices, which you can then import or delete.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/dangling-indices-list.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-list-dangling-indices">Documentation
 	 *      on elastic.co</a>
 	 */
 	public ListDanglingIndicesResponse listDanglingIndices() throws IOException, ElasticsearchException {

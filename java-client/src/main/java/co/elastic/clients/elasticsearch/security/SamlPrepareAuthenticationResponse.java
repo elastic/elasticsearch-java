@@ -82,21 +82,29 @@ public class SamlPrepareAuthenticationResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - A unique identifier for the SAML Request to be stored by the
+	 * caller of the API.
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code realm}
+	 * Required - The name of the Elasticsearch realm that was used to construct the
+	 * authentication request.
+	 * <p>
+	 * API name: {@code realm}
 	 */
 	public final String realm() {
 		return this.realm;
 	}
 
 	/**
-	 * Required - API name: {@code redirect}
+	 * Required - The URL to redirect the user to.
+	 * <p>
+	 * API name: {@code redirect}
 	 */
 	public final String redirect() {
 		return this.redirect;
@@ -145,7 +153,10 @@ public class SamlPrepareAuthenticationResponse implements JsonpSerializable {
 		private String redirect;
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - A unique identifier for the SAML Request to be stored by the
+		 * caller of the API.
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -153,7 +164,10 @@ public class SamlPrepareAuthenticationResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code realm}
+		 * Required - The name of the Elasticsearch realm that was used to construct the
+		 * authentication request.
+		 * <p>
+		 * API name: {@code realm}
 		 */
 		public final Builder realm(String value) {
 			this.realm = value;
@@ -161,7 +175,9 @@ public class SamlPrepareAuthenticationResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code redirect}
+		 * Required - The URL to redirect the user to.
+		 * <p>
+		 * API name: {@code redirect}
 		 */
 		public final Builder redirect(String value) {
 			this.redirect = value;

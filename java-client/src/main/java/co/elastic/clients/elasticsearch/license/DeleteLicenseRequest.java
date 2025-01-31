@@ -55,8 +55,9 @@ import javax.annotation.Nullable;
 // typedef: license.delete.Request
 
 /**
- * Delete the license. When the license expires, your subscription level reverts
- * to Basic.
+ * Delete the license.
+ * <p>
+ * When the license expires, your subscription level reverts to Basic.
  * <p>
  * If the operator privileges feature is enabled, only operator users can use
  * this API.
@@ -86,7 +87,7 @@ public class DeleteLicenseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -96,8 +97,8 @@ public class DeleteLicenseRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -122,7 +123,7 @@ public class DeleteLicenseRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -132,7 +133,7 @@ public class DeleteLicenseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -141,8 +142,8 @@ public class DeleteLicenseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -152,8 +153,8 @@ public class DeleteLicenseRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

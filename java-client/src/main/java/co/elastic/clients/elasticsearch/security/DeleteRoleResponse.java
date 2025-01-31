@@ -73,7 +73,10 @@ public class DeleteRoleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code found}
+	 * Required - If the role is successfully deleted, <code>found</code> is
+	 * <code>true</code>. Otherwise, <code>found</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code found}
 	 */
 	public final boolean found() {
 		return this.found;
@@ -112,7 +115,10 @@ public class DeleteRoleResponse implements JsonpSerializable {
 		private Boolean found;
 
 		/**
-		 * Required - API name: {@code found}
+		 * Required - If the role is successfully deleted, <code>found</code> is
+		 * <code>true</code>. Otherwise, <code>found</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code found}
 		 */
 		public final Builder found(boolean value) {
 			this.found = value;

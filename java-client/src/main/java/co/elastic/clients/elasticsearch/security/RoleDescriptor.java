@@ -137,7 +137,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of cluster permissions for remote clusters. Note - this is limited a
+	 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 	 * subset of the cluster permissions.
 	 * <p>
 	 * API name: {@code remote_cluster}
@@ -177,7 +177,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of users that the API keys can impersonate. <em>Note</em>: in
+	 * A list of users that the API keys can impersonate. NOTE: In Elastic Cloud
 	 * Serverless, the run-as feature is disabled. For API compatibility, you can
 	 * still specify an empty <code>run_as</code> field, but a non-empty list will
 	 * be rejected.
@@ -497,7 +497,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 		 * subset of the cluster permissions.
 		 * <p>
 		 * API name: {@code remote_cluster}
@@ -510,7 +510,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 		 * subset of the cluster permissions.
 		 * <p>
 		 * API name: {@code remote_cluster}
@@ -523,7 +523,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 		 * subset of the cluster permissions.
 		 * <p>
 		 * API name: {@code remote_cluster}
@@ -639,7 +639,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate. <em>Note</em>: in
+		 * A list of users that the API keys can impersonate. NOTE: In Elastic Cloud
 		 * Serverless, the run-as feature is disabled. For API compatibility, you can
 		 * still specify an empty <code>run_as</code> field, but a non-empty list will
 		 * be rejected.
@@ -654,7 +654,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate. <em>Note</em>: in
+		 * A list of users that the API keys can impersonate. NOTE: In Elastic Cloud
 		 * Serverless, the run-as feature is disabled. For API compatibility, you can
 		 * still specify an empty <code>run_as</code> field, but a non-empty list will
 		 * be rejected.

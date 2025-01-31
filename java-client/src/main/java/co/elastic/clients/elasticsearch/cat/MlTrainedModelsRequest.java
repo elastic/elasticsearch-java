@@ -60,12 +60,13 @@ import javax.annotation.Nullable;
 // typedef: cat.ml_trained_models.Request
 
 /**
- * Get trained models. Returns configuration and usage information about
- * inference trained models.
+ * Get trained models.
  * <p>
- * CAT APIs are only intended for human consumption using the Kibana console or
- * command line. They are not intended for use by applications. For application
- * consumption, use the get trained models statistics API.
+ * Get configuration and usage information about inference trained models.
+ * <p>
+ * IMPORTANT: CAT APIs are only intended for human consumption using the Kibana
+ * console or command line. They are not intended for use by applications. For
+ * application consumption, use the get trained models statistics API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.ml_trained_models.Request">API
  *      specification</a>

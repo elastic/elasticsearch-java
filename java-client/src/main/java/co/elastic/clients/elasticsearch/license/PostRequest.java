@@ -60,11 +60,13 @@ import javax.annotation.Nullable;
 // typedef: license.post.Request
 
 /**
- * Update the license. You can update your license at runtime without shutting
- * down your nodes. License updates take effect immediately. If the license you
- * are installing does not support all of the features that were available with
- * your previous license, however, you are notified in the response. You must
- * then re-submit the API request with the acknowledge parameter set to true.
+ * Update the license.
+ * <p>
+ * You can update your license at runtime without shutting down your nodes.
+ * License updates take effect immediately. If the license you are installing
+ * does not support all of the features that were available with your previous
+ * license, however, you are notified in the response. You must then re-submit
+ * the API request with the acknowledge parameter set to true.
  * <p>
  * NOTE: If Elasticsearch security features are enabled and you are installing a
  * gold or higher license, you must enable TLS on the transport networking layer
@@ -134,7 +136,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -144,8 +146,8 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -266,7 +268,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -276,7 +278,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -285,8 +287,8 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -296,8 +298,8 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

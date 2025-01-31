@@ -64,6 +64,28 @@ import javax.annotation.Nullable;
  * <p>
  * Update specific data for the user profile that is associated with a unique
  * ID.
+ * <p>
+ * NOTE: The user profile feature is designed only for use by Kibana and
+ * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+ * Individual users and external applications should not call this API directly.
+ * Elastic reserves the right to change or remove this feature in future
+ * releases without prior notice.
+ * <p>
+ * To use this API, you must have one of the following privileges:
+ * <ul>
+ * <li>The <code>manage_user_profile</code> cluster privilege.</li>
+ * <li>The <code>update_profile_data</code> global privilege for the namespaces
+ * that are referenced in the request.</li>
+ * </ul>
+ * <p>
+ * This API updates the <code>labels</code> and <code>data</code> fields of an
+ * existing user profile document with JSON objects. New keys and their values
+ * are added to the profile document and conflicting keys are replaced by data
+ * that's included in the request.
+ * <p>
+ * For both labels and data, content is namespaced by the top-level fields. The
+ * <code>update_profile_data</code> global privilege grants privileges for
+ * updating only the allowed namespaces.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.update_user_profile_data.Request">API
@@ -105,7 +127,10 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	/**
 	 * Non-searchable data that you want to associate with the user profile. This
-	 * field supports a nested data structure.
+	 * field supports a nested data structure. Within the <code>data</code> object,
+	 * top-level keys cannot begin with an underscore (<code>_</code>) or contain a
+	 * period (<code>.</code>). The data object is not searchable, but can be
+	 * retrieved with the get user profile API.
 	 * <p>
 	 * API name: {@code data}
 	 */
@@ -135,7 +160,9 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	/**
 	 * Searchable data that you want to associate with the user profile. This field
-	 * supports a nested data structure.
+	 * supports a nested data structure. Within the labels object, top-level keys
+	 * cannot begin with an underscore (<code>_</code>) or contain a period
+	 * (<code>.</code>).
 	 * <p>
 	 * API name: {@code labels}
 	 */
@@ -145,8 +172,8 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	/**
 	 * If 'true', Elasticsearch refreshes the affected shards to make this operation
-	 * visible to search, if 'wait_for' then wait for a refresh to make this
-	 * operation visible to search, if 'false' do nothing with refreshes.
+	 * visible to search. If 'wait_for', it waits for a refresh to make this
+	 * operation visible to search. If 'false', nothing is done with refreshes.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -228,7 +255,10 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * Non-searchable data that you want to associate with the user profile. This
-		 * field supports a nested data structure.
+		 * field supports a nested data structure. Within the <code>data</code> object,
+		 * top-level keys cannot begin with an underscore (<code>_</code>) or contain a
+		 * period (<code>.</code>). The data object is not searchable, but can be
+		 * retrieved with the get user profile API.
 		 * <p>
 		 * API name: {@code data}
 		 * <p>
@@ -241,7 +271,10 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * Non-searchable data that you want to associate with the user profile. This
-		 * field supports a nested data structure.
+		 * field supports a nested data structure. Within the <code>data</code> object,
+		 * top-level keys cannot begin with an underscore (<code>_</code>) or contain a
+		 * period (<code>.</code>). The data object is not searchable, but can be
+		 * retrieved with the get user profile API.
 		 * <p>
 		 * API name: {@code data}
 		 * <p>
@@ -274,7 +307,9 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * Searchable data that you want to associate with the user profile. This field
-		 * supports a nested data structure.
+		 * supports a nested data structure. Within the labels object, top-level keys
+		 * cannot begin with an underscore (<code>_</code>) or contain a period
+		 * (<code>.</code>).
 		 * <p>
 		 * API name: {@code labels}
 		 * <p>
@@ -287,7 +322,9 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * Searchable data that you want to associate with the user profile. This field
-		 * supports a nested data structure.
+		 * supports a nested data structure. Within the labels object, top-level keys
+		 * cannot begin with an underscore (<code>_</code>) or contain a period
+		 * (<code>.</code>).
 		 * <p>
 		 * API name: {@code labels}
 		 * <p>
@@ -300,8 +337,8 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * If 'true', Elasticsearch refreshes the affected shards to make this operation
-		 * visible to search, if 'wait_for' then wait for a refresh to make this
-		 * operation visible to search, if 'false' do nothing with refreshes.
+		 * visible to search. If 'wait_for', it waits for a refresh to make this
+		 * operation visible to search. If 'false', nothing is done with refreshes.
 		 * <p>
 		 * API name: {@code refresh}
 		 */

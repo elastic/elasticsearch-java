@@ -143,9 +143,9 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Name of the index associated with the operation. If the operation
-	 * targeted a data stream, this is the backing index into which the document was
-	 * written.
+	 * Required - The name of the index associated with the operation. If the
+	 * operation targeted a data stream, this is the backing index into which the
+	 * document was written.
 	 * <p>
 	 * API name: {@code _index}
 	 */
@@ -154,7 +154,7 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - HTTP status code returned for the operation.
+	 * Required - The HTTP status code returned for the operation.
 	 * <p>
 	 * API name: {@code status}
 	 */
@@ -163,8 +163,8 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains additional information about the failed operation. The parameter is
-	 * only returned for failed operations.
+	 * Additional information about the failed operation. The property is returned
+	 * only for failed operations.
 	 * <p>
 	 * API name: {@code error}
 	 */
@@ -174,7 +174,8 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * The primary term assigned to the document for the operation.
+	 * The primary term assigned to the document for the operation. This property is
+	 * returned only for successful operations.
 	 * <p>
 	 * API name: {@code _primary_term}
 	 */
@@ -184,7 +185,7 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Result of the operation. Successful values are <code>created</code>,
+	 * The result of the operation. Successful values are <code>created</code>,
 	 * <code>deleted</code>, and <code>updated</code>.
 	 * <p>
 	 * API name: {@code result}
@@ -196,7 +197,7 @@ public class BulkResponseItem implements JsonpSerializable {
 
 	/**
 	 * The sequence number assigned to the document for the operation. Sequence
-	 * numbers are used to ensure an older version of a document doesn’t overwrite a
+	 * numbers are used to ensure an older version of a document doesn't overwrite a
 	 * newer version.
 	 * <p>
 	 * API name: {@code _seq_no}
@@ -207,7 +208,7 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains shard information for the operation.
+	 * Shard information for the operation.
 	 * <p>
 	 * API name: {@code _shards}
 	 */
@@ -218,7 +219,8 @@ public class BulkResponseItem implements JsonpSerializable {
 
 	/**
 	 * The document version associated with the operation. The document version is
-	 * incremented each time the document is updated.
+	 * incremented each time the document is updated. This property is returned only
+	 * for successful actions.
 	 * <p>
 	 * API name: {@code _version}
 	 */
@@ -375,9 +377,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Name of the index associated with the operation. If the operation
-		 * targeted a data stream, this is the backing index into which the document was
-		 * written.
+		 * Required - The name of the index associated with the operation. If the
+		 * operation targeted a data stream, this is the backing index into which the
+		 * document was written.
 		 * <p>
 		 * API name: {@code _index}
 		 */
@@ -387,7 +389,7 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - HTTP status code returned for the operation.
+		 * Required - The HTTP status code returned for the operation.
 		 * <p>
 		 * API name: {@code status}
 		 */
@@ -397,8 +399,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains additional information about the failed operation. The parameter is
-		 * only returned for failed operations.
+		 * Additional information about the failed operation. The property is returned
+		 * only for failed operations.
 		 * <p>
 		 * API name: {@code error}
 		 */
@@ -408,8 +410,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains additional information about the failed operation. The parameter is
-		 * only returned for failed operations.
+		 * Additional information about the failed operation. The property is returned
+		 * only for failed operations.
 		 * <p>
 		 * API name: {@code error}
 		 */
@@ -418,7 +420,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * The primary term assigned to the document for the operation.
+		 * The primary term assigned to the document for the operation. This property is
+		 * returned only for successful operations.
 		 * <p>
 		 * API name: {@code _primary_term}
 		 */
@@ -428,7 +431,7 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Result of the operation. Successful values are <code>created</code>,
+		 * The result of the operation. Successful values are <code>created</code>,
 		 * <code>deleted</code>, and <code>updated</code>.
 		 * <p>
 		 * API name: {@code result}
@@ -440,7 +443,7 @@ public class BulkResponseItem implements JsonpSerializable {
 
 		/**
 		 * The sequence number assigned to the document for the operation. Sequence
-		 * numbers are used to ensure an older version of a document doesn’t overwrite a
+		 * numbers are used to ensure an older version of a document doesn't overwrite a
 		 * newer version.
 		 * <p>
 		 * API name: {@code _seq_no}
@@ -451,7 +454,7 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains shard information for the operation.
+		 * Shard information for the operation.
 		 * <p>
 		 * API name: {@code _shards}
 		 */
@@ -461,7 +464,7 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains shard information for the operation.
+		 * Shard information for the operation.
 		 * <p>
 		 * API name: {@code _shards}
 		 */
@@ -471,7 +474,8 @@ public class BulkResponseItem implements JsonpSerializable {
 
 		/**
 		 * The document version associated with the operation. The document version is
-		 * incremented each time the document is updated.
+		 * incremented each time the document is updated. This property is returned only
+		 * for successful actions.
 		 * <p>
 		 * API name: {@code _version}
 		 */

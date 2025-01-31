@@ -58,15 +58,17 @@ import javax.annotation.Nullable;
 // typedef: cat.ml_datafeeds.Request
 
 /**
- * Get datafeeds. Returns configuration and usage information about datafeeds.
- * This API returns a maximum of 10,000 datafeeds. If the Elasticsearch security
- * features are enabled, you must have <code>monitor_ml</code>,
- * <code>monitor</code>, <code>manage_ml</code>, or <code>manage</code> cluster
- * privileges to use this API.
+ * Get datafeeds.
  * <p>
- * CAT APIs are only intended for human consumption using the Kibana console or
- * command line. They are not intended for use by applications. For application
- * consumption, use the get datafeed statistics API.
+ * Get configuration and usage information about datafeeds. This API returns a
+ * maximum of 10,000 datafeeds. If the Elasticsearch security features are
+ * enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
+ * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
+ * API.
+ * <p>
+ * IMPORTANT: CAT APIs are only intended for human consumption using the Kibana
+ * console or command line. They are not intended for use by applications. For
+ * application consumption, use the get datafeed statistics API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.ml_datafeeds.Request">API
  *      specification</a>

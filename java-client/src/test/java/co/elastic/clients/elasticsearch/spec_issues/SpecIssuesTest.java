@@ -161,6 +161,7 @@ public class SpecIssuesTest extends ModelTestCase {
         new Suggester.Builder().suggesters("song-suggest", s -> s.completion(c->c.field("suggest"))).build();
     }
 
+    @Disabled("Stable version 9 not yet available")
     @Test
     // update: icu_collation_keyword has been released and added to the spec
     public void i0249_variantKind() throws Exception {

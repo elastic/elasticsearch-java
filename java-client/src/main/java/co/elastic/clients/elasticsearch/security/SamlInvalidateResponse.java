@@ -82,21 +82,29 @@ public class SamlInvalidateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code invalidated}
+	 * Required - The number of tokens that were invalidated as part of this logout.
+	 * <p>
+	 * API name: {@code invalidated}
 	 */
 	public final int invalidated() {
 		return this.invalidated;
 	}
 
 	/**
-	 * Required - API name: {@code realm}
+	 * Required - The realm name of the SAML realm in Elasticsearch that
+	 * authenticated the user.
+	 * <p>
+	 * API name: {@code realm}
 	 */
 	public final String realm() {
 		return this.realm;
 	}
 
 	/**
-	 * Required - API name: {@code redirect}
+	 * Required - A SAML logout response as a parameter so that the user can be
+	 * redirected back to the SAML IdP.
+	 * <p>
+	 * API name: {@code redirect}
 	 */
 	public final String redirect() {
 		return this.redirect;
@@ -145,7 +153,9 @@ public class SamlInvalidateResponse implements JsonpSerializable {
 		private String redirect;
 
 		/**
-		 * Required - API name: {@code invalidated}
+		 * Required - The number of tokens that were invalidated as part of this logout.
+		 * <p>
+		 * API name: {@code invalidated}
 		 */
 		public final Builder invalidated(int value) {
 			this.invalidated = value;
@@ -153,7 +163,10 @@ public class SamlInvalidateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code realm}
+		 * Required - The realm name of the SAML realm in Elasticsearch that
+		 * authenticated the user.
+		 * <p>
+		 * API name: {@code realm}
 		 */
 		public final Builder realm(String value) {
 			this.realm = value;
@@ -161,7 +174,10 @@ public class SamlInvalidateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code redirect}
+		 * Required - A SAML logout response as a parameter so that the user can be
+		 * redirected back to the SAML IdP.
+		 * <p>
+		 * API name: {@code redirect}
 		 */
 		public final Builder redirect(String value) {
 			this.redirect = value;

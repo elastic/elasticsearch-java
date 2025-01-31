@@ -73,8 +73,8 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	 * monitoring data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
-	 *      on elastic.co</a>
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
+	 *      elastic.co</a>
 	 */
 
 	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
@@ -92,8 +92,8 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
-	 *      on elastic.co</a>
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
+	 *      elastic.co</a>
 	 */
 
 	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)

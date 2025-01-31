@@ -63,8 +63,16 @@ import javax.annotation.Nullable;
 // typedef: _global.exists_source.Request
 
 /**
- * Check for a document source. Checks if a document's <code>_source</code> is
- * stored.
+ * Check for a document source.
+ * <p>
+ * Check whether a document source exists in an index. For example:
+ * 
+ * <pre>
+ * <code>HEAD my-index-000001/_source/1
+ * </code>
+ * </pre>
+ * <p>
+ * A document's source is not available if it is disabled in the mapping.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.exists_source.Request">API
  *      specification</a>
@@ -123,8 +131,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * <code>true</code> or <code>false</code> to return the <code>_source</code>
-	 * field or not, or a list of fields to return.
+	 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+	 * or <code>false</code>) or lists the fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -152,7 +160,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier of the document.
+	 * Required - A unique identifier for the document.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -161,8 +169,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of data streams, indices, and aliases.
-	 * Supports wildcards (<code>*</code>).
+	 * Required - A comma-separated list of data streams, indices, and aliases. It
+	 * supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -171,8 +179,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
-	 * default.
+	 * The node or shard the operation should be performed on. By default, the
+	 * operation is randomized between the shard replicas.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -182,7 +190,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, the request is real-time as opposed to near-real-time.
+	 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -192,8 +200,10 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
-	 * delete by query after the request completes.
+	 * If <code>true</code>, the request refreshes the relevant shards before
+	 * retrieving the document. Setting it to <code>true</code> should be done after
+	 * careful thought and verification that this does not cause a heavy load on the
+	 * system (and slow down indexing).
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -203,7 +213,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Target the specified primary shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -213,8 +223,8 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit version number for concurrency control. The specified version must
-	 * match the current version of the document for the request to succeed.
+	 * The version number for concurrency control. It must match the current version
+	 * of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -224,7 +234,7 @@ public class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific version type: <code>external</code>, <code>external_gte</code>.
+	 * The version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -274,8 +284,8 @@ public class ExistsSourceRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
-		 * field or not, or a list of fields to return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -285,8 +295,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * <code>true</code> or <code>false</code> to return the <code>_source</code>
-		 * field or not, or a list of fields to return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -343,7 +353,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Identifier of the document.
+		 * Required - A unique identifier for the document.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -353,8 +363,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, and aliases.
-		 * Supports wildcards (<code>*</code>).
+		 * Required - A comma-separated list of data streams, indices, and aliases. It
+		 * supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -364,8 +374,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
-		 * default.
+		 * The node or shard the operation should be performed on. By default, the
+		 * operation is randomized between the shard replicas.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -375,7 +385,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, the request is real-time as opposed to near-real-time.
+		 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -385,8 +395,10 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code>, Elasticsearch refreshes all shards involved in the
-		 * delete by query after the request completes.
+		 * If <code>true</code>, the request refreshes the relevant shards before
+		 * retrieving the document. Setting it to <code>true</code> should be done after
+		 * careful thought and verification that this does not cause a heavy load on the
+		 * system (and slow down indexing).
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -396,7 +408,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Target the specified primary shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -406,8 +418,8 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit version number for concurrency control. The specified version must
-		 * match the current version of the document for the request to succeed.
+		 * The version number for concurrency control. It must match the current version
+		 * of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -417,7 +429,7 @@ public class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific version type: <code>external</code>, <code>external_gte</code>.
+		 * The version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

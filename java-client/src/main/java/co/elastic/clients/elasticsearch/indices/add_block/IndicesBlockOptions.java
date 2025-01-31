@@ -46,12 +46,24 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum IndicesBlockOptions implements JsonEnum {
+	/**
+	 * Disable metadata changes, such as closing the index.
+	 */
 	Metadata("metadata"),
 
+	/**
+	 * Disable read operations.
+	 */
 	Read("read"),
 
+	/**
+	 * Disable write operations and metadata changes.
+	 */
 	ReadOnly("read_only"),
 
+	/**
+	 * Disable write operations. However, metadata changes are still allowed.
+	 */
 	Write("write"),
 
 	;

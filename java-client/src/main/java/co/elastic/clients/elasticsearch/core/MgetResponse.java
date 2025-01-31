@@ -83,7 +83,12 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code docs}
+	 * Required - The response includes a docs array that contains the documents in
+	 * the order specified in the request. The structure of the returned documents
+	 * is similar to that returned by the get API. If there is a failure getting a
+	 * particular document, the error is included in place of the document.
+	 * <p>
+	 * API name: {@code docs}
 	 */
 	public final List<MultiGetResponseItem<TDocument>> docs() {
 		return this.docs;
@@ -133,7 +138,12 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Required - API name: {@code docs}
+		 * Required - The response includes a docs array that contains the documents in
+		 * the order specified in the request. The structure of the returned documents
+		 * is similar to that returned by the get API. If there is a failure getting a
+		 * particular document, the error is included in place of the document.
+		 * <p>
+		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
@@ -143,7 +153,12 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code docs}
+		 * Required - The response includes a docs array that contains the documents in
+		 * the order specified in the request. The structure of the returned documents
+		 * is similar to that returned by the get API. If there is a failure getting a
+		 * particular document, the error is included in place of the document.
+		 * <p>
+		 * API name: {@code docs}
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
 		 */
@@ -154,7 +169,12 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code docs}
+		 * Required - The response includes a docs array that contains the documents in
+		 * the order specified in the request. The structure of the returned documents
+		 * is similar to that returned by the get API. If there is a failure getting a
+		 * particular document, the error is included in place of the document.
+		 * <p>
+		 * API name: {@code docs}
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */

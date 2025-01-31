@@ -56,11 +56,12 @@ import javax.annotation.Nullable;
 // typedef: cat.pending_tasks.Request
 
 /**
- * Get pending task information. Get information about cluster-level changes
- * that have not yet taken effect. IMPORTANT: cat APIs are only intended for
- * human consumption using the command line or Kibana console. They are not
- * intended for use by applications. For application consumption, use the
- * pending cluster tasks API.
+ * Get pending task information.
+ * <p>
+ * Get information about cluster-level changes that have not yet taken effect.
+ * IMPORTANT: cat APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
+ * application consumption, use the pending cluster tasks API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.pending_tasks.Request">API
  *      specification</a>

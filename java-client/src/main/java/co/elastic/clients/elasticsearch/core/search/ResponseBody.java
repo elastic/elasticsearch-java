@@ -131,28 +131,53 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code took}
+	 * Required - The number of milliseconds it took Elasticsearch to run the
+	 * request. This value is calculated by measuring the time elapsed between
+	 * receipt of a request on the coordinating node and the time at which the
+	 * coordinating node is ready to send the response. It includes:
+	 * <ul>
+	 * <li>Communication time between the coordinating node and data nodes</li>
+	 * <li>Time the request spends in the search thread pool, queued for
+	 * execution</li>
+	 * <li>Actual run time</li>
+	 * </ul>
+	 * <p>
+	 * It does not include:
+	 * <ul>
+	 * <li>Time needed to send the request to Elasticsearch</li>
+	 * <li>Time needed to serialize the JSON response</li>
+	 * <li>Time needed to send the response to a client</li>
+	 * </ul>
+	 * <p>
+	 * API name: {@code took}
 	 */
 	public final long took() {
 		return this.took;
 	}
 
 	/**
-	 * Required - API name: {@code timed_out}
+	 * Required - If <code>true</code>, the request timed out before completion;
+	 * returned results may be partial or empty.
+	 * <p>
+	 * API name: {@code timed_out}
 	 */
 	public final boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
-	 * Required - API name: {@code _shards}
+	 * Required - A count of shards used for the request.
+	 * <p>
+	 * API name: {@code _shards}
 	 */
 	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * Required - API name: {@code hits}
+	 * Required - The returned documents and metadata.
+	 * <p>
+	 * API name: {@code hits}
 	 */
 	public final HitsMetadata<TDocument> hits() {
 		return this.hits;
@@ -213,6 +238,11 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 	}
 
 	/**
+	 * The identifier for the search and its search context. You can use this scroll
+	 * ID with the scroll API to retrieve the next batch of search results for the
+	 * request. This property is returned only if the <code>scroll</code> query
+	 * parameter is specified in the request.
+	 * <p>
 	 * API name: {@code _scroll_id}
 	 */
 	@Nullable
@@ -367,7 +397,25 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Required - API name: {@code took}
+		 * Required - The number of milliseconds it took Elasticsearch to run the
+		 * request. This value is calculated by measuring the time elapsed between
+		 * receipt of a request on the coordinating node and the time at which the
+		 * coordinating node is ready to send the response. It includes:
+		 * <ul>
+		 * <li>Communication time between the coordinating node and data nodes</li>
+		 * <li>Time the request spends in the search thread pool, queued for
+		 * execution</li>
+		 * <li>Actual run time</li>
+		 * </ul>
+		 * <p>
+		 * It does not include:
+		 * <ul>
+		 * <li>Time needed to send the request to Elasticsearch</li>
+		 * <li>Time needed to serialize the JSON response</li>
+		 * <li>Time needed to send the response to a client</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code took}
 		 */
 		public final BuilderT took(long value) {
 			this.took = value;
@@ -375,7 +423,10 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timed_out}
+		 * Required - If <code>true</code>, the request timed out before completion;
+		 * returned results may be partial or empty.
+		 * <p>
+		 * API name: {@code timed_out}
 		 */
 		public final BuilderT timedOut(boolean value) {
 			this.timedOut = value;
@@ -383,7 +434,9 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - A count of shards used for the request.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(ShardStatistics value) {
 			this.shards = value;
@@ -391,14 +444,18 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - A count of shards used for the request.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code hits}
+		 * Required - The returned documents and metadata.
+		 * <p>
+		 * API name: {@code hits}
 		 */
 		public final BuilderT hits(HitsMetadata<TDocument> value) {
 			this.hits = value;
@@ -406,7 +463,9 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code hits}
+		 * Required - The returned documents and metadata.
+		 * <p>
+		 * API name: {@code hits}
 		 */
 		public final BuilderT hits(
 				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
@@ -517,6 +576,11 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * The identifier for the search and its search context. You can use this scroll
+		 * ID with the scroll API to retrieve the next batch of search results for the
+		 * request. This property is returned only if the <code>scroll</code> query
+		 * parameter is specified in the request.
+		 * <p>
 		 * API name: {@code _scroll_id}
 		 */
 		public final BuilderT scrollId(@Nullable String value) {

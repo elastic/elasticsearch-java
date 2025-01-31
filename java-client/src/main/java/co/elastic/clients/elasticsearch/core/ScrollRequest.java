@@ -105,7 +105,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Period to retain the search context for scrolling.
+	 * The period to retain the search context for scrolling.
 	 * <p>
 	 * API name: {@code scroll}
 	 */
@@ -115,7 +115,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Scroll ID of the search.
+	 * Required - The scroll ID of the search.
 	 * <p>
 	 * API name: {@code scroll_id}
 	 */
@@ -157,7 +157,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 		private String scrollId;
 
 		/**
-		 * Period to retain the search context for scrolling.
+		 * The period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -167,7 +167,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Period to retain the search context for scrolling.
+		 * The period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -176,7 +176,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Scroll ID of the search.
+		 * Required - The scroll ID of the search.
 		 * <p>
 		 * API name: {@code scroll_id}
 		 */

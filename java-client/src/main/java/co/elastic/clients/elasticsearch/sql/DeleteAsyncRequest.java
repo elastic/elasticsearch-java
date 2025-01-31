@@ -58,7 +58,14 @@ import javax.annotation.Nullable;
 /**
  * Delete an async SQL search. Delete an async SQL search or a stored
  * synchronous SQL search. If the search is still running, the API cancels it.
- * 
+ * <p>
+ * If the Elasticsearch security features are enabled, only the following users
+ * can use this API to delete a search:
+ * <ul>
+ * <li>Users with the <code>cancel_task</code> cluster privilege.</li>
+ * <li>The user who first submitted the search.</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#sql.delete_async.Request">API
  *      specification</a>
  */
@@ -79,7 +86,7 @@ public class DeleteAsyncRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Identifier for the search.
+	 * Required - The identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -99,7 +106,7 @@ public class DeleteAsyncRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * Required - Identifier for the search.
+		 * Required - The identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */

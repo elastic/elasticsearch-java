@@ -83,7 +83,9 @@ public class ClearCachedRolesRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Role name
+	 * Required - A comma-separated list of roles to evict from the role cache. To
+	 * evict all roles, use an asterisk (<code>*</code>). It does not support other
+	 * wildcard patterns.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -103,7 +105,9 @@ public class ClearCachedRolesRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Required - Role name
+		 * Required - A comma-separated list of roles to evict from the role cache. To
+		 * evict all roles, use an asterisk (<code>*</code>). It does not support other
+		 * wildcard patterns.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -115,7 +119,9 @@ public class ClearCachedRolesRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Role name
+		 * Required - A comma-separated list of roles to evict from the role cache. To
+		 * evict all roles, use an asterisk (<code>*</code>). It does not support other
+		 * wildcard patterns.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>

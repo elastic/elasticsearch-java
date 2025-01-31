@@ -59,6 +59,16 @@ import javax.annotation.Nullable;
  * Logout of SAML.
  * <p>
  * Submits a request to invalidate an access token and refresh token.
+ * <p>
+ * NOTE: This API is intended for use by custom web applications other than
+ * Kibana. If you are using Kibana, refer to the documentation for configuring
+ * SAML single-sign-on on the Elastic Stack.
+ * <p>
+ * This API invalidates the tokens that were generated for a user by the SAML
+ * authenticate API. If the SAML realm in Elasticsearch is configured
+ * accordingly and the SAML IdP supports this, the Elasticsearch response
+ * contains a URL to redirect the user to the IdP that contains a SAML logout
+ * request (starting an SP-initiated SAML Single Logout).
  * 
  * @see <a href="../doc-files/api-spec.html#security.saml_logout.Request">API
  *      specification</a>
@@ -98,7 +108,7 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Required - The access token that was returned as a response to calling the
 	 * SAML authenticate API. Alternatively, the most recent token that was received
-	 * after refreshing the original one by using a refresh_token.
+	 * after refreshing the original one by using a <code>refresh_token</code>.
 	 * <p>
 	 * API name: {@code token}
 	 */
@@ -156,7 +166,7 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * Required - The access token that was returned as a response to calling the
 		 * SAML authenticate API. Alternatively, the most recent token that was received
-		 * after refreshing the original one by using a refresh_token.
+		 * after refreshing the original one by using a <code>refresh_token</code>.
 		 * <p>
 		 * API name: {@code token}
 		 */

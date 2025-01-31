@@ -79,7 +79,7 @@ public class DeactivateWatchRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Watch ID
+	 * Required - The watch identifier.
 	 * <p>
 	 * API name: {@code watch_id}
 	 */
@@ -99,7 +99,7 @@ public class DeactivateWatchRequest extends RequestBase {
 		private String watchId;
 
 		/**
-		 * Required - Watch ID
+		 * Required - The watch identifier.
 		 * <p>
 		 * API name: {@code watch_id}
 		 */

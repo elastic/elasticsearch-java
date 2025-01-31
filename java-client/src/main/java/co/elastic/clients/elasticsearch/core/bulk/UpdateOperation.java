@@ -137,7 +137,7 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 	}
 
 	/**
-	 * If <code>true</code>, the request’s actions must target an index alias.
+	 * If <code>true</code>, the request's actions must target an index alias.
 	 * <p>
 	 * API name: {@code require_alias}
 	 */
@@ -147,6 +147,9 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 	}
 
 	/**
+	 * The number of times an update should be retried in the case of a version
+	 * conflict.
+	 * <p>
 	 * API name: {@code retry_on_conflict}
 	 */
 	@Nullable
@@ -233,7 +236,7 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
-		 * If <code>true</code>, the request’s actions must target an index alias.
+		 * If <code>true</code>, the request's actions must target an index alias.
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
@@ -243,6 +246,9 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		}
 
 		/**
+		 * The number of times an update should be retried in the case of a version
+		 * conflict.
+		 * <p>
 		 * API name: {@code retry_on_conflict}
 		 */
 		public final Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Integer value) {
