@@ -68,6 +68,24 @@ import javax.annotation.Nullable;
  * index in the request URI, you only need to specify the document IDs in the
  * request body. To ensure fast responses, this multi get (mget) API responds
  * with partial results if one or more shards fail.
+ * <p>
+ * <strong>Filter source fields</strong>
+ * <p>
+ * By default, the <code>_source</code> field is returned for every document (if
+ * stored). Use the <code>_source</code> and <code>_source_include</code> or
+ * <code>source_exclude</code> attributes to filter what fields are returned for
+ * a particular document. You can include the <code>_source</code>,
+ * <code>_source_includes</code>, and <code>_source_excludes</code> query
+ * parameters in the request URI to specify the defaults to use when there are
+ * no per-document instructions.
+ * <p>
+ * <strong>Get stored fields</strong>
+ * <p>
+ * Use the <code>stored_fields</code> attribute to specify the set of stored
+ * fields you want to retrieve. Any requested fields that are not stored are
+ * ignored. You can include the <code>stored_fields</code> query parameter in
+ * the request URI to specify the defaults to use when there are no per-document
+ * instructions.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.mget.Request">API
  *      specification</a>

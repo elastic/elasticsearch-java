@@ -76,7 +76,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Update operation result
+	 * Required - The update operation result.
 	 * <p>
 	 * API name: {@code result}
 	 */
@@ -86,7 +86,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 
 	/**
 	 * Required - Updating synonyms in a synonym set reloads the associated
-	 * analyzers. This is the analyzers reloading result
+	 * analyzers. This information is the analyzers reloading result.
 	 * <p>
 	 * API name: {@code reload_analyzers_details}
 	 */
@@ -125,7 +125,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 		private ReloadResult reloadAnalyzersDetails;
 
 		/**
-		 * Required - Update operation result
+		 * Required - The update operation result.
 		 * <p>
 		 * API name: {@code result}
 		 */
@@ -136,7 +136,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 
 		/**
 		 * Required - Updating synonyms in a synonym set reloads the associated
-		 * analyzers. This is the analyzers reloading result
+		 * analyzers. This information is the analyzers reloading result.
 		 * <p>
 		 * API name: {@code reload_analyzers_details}
 		 */
@@ -147,7 +147,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 
 		/**
 		 * Required - Updating synonyms in a synonym set reloads the associated
-		 * analyzers. This is the analyzers reloading result
+		 * analyzers. This information is the analyzers reloading result.
 		 * <p>
 		 * API name: {@code reload_analyzers_details}
 		 */

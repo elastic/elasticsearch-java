@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -86,6 +87,9 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	private final String index;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final Boolean primary;
 
 	@Nullable
@@ -99,6 +103,7 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		this.includeDiskInfo = builder.includeDiskInfo;
 		this.includeYesDecisions = builder.includeYesDecisions;
 		this.index = builder.index;
+		this.masterTimeout = builder.masterTimeout;
 		this.primary = builder.primary;
 		this.shard = builder.shard;
 
@@ -147,6 +152,16 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public final String index() {
 		return this.index;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -225,6 +240,9 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		private String index;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private Boolean primary;
 
 		@Nullable
@@ -269,6 +287,25 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -355,6 +392,9 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.includeDiskInfo != null) {
 					params.put("include_disk_info", String.valueOf(request.includeDiskInfo));
 				}

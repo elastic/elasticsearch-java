@@ -67,6 +67,47 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 		return new ElasticsearchEsqlAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: esql.async_query_stop
+
+	/**
+	 * Stop async ES|QL query.
+	 * <p>
+	 * This API interrupts the query execution and returns the results so far. If
+	 * the Elasticsearch security features are enabled, only the user who first
+	 * submitted the ES|QL query can stop it.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/esql-async-query-stop-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<BinaryResponse> asyncQueryStop(AsyncQueryStopRequest request) {
+		@SuppressWarnings("unchecked")
+		Endpoint<AsyncQueryStopRequest, BinaryResponse, ErrorResponse> endpoint = (Endpoint<AsyncQueryStopRequest, BinaryResponse, ErrorResponse>) AsyncQueryStopRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Stop async ES|QL query.
+	 * <p>
+	 * This API interrupts the query execution and returns the results so far. If
+	 * the Elasticsearch security features are enabled, only the user who first
+	 * submitted the ES|QL query can stop it.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link AsyncQueryStopRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/esql-async-query-stop-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<BinaryResponse> asyncQueryStop(
+			Function<AsyncQueryStopRequest.Builder, ObjectBuilder<AsyncQueryStopRequest>> fn) {
+		return asyncQueryStop(fn.apply(new AsyncQueryStopRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: esql.query
 
 	/**
@@ -74,7 +115,7 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	 * language) query.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/esql-rest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/esql-rest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -93,7 +134,7 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/esql-rest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/esql-rest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

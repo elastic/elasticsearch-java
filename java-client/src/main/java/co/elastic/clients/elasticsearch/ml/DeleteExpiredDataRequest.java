@@ -59,14 +59,16 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_expired_data.Request
 
 /**
- * Delete expired ML data. Deletes all job results, model snapshots and forecast
- * data that have exceeded their retention days period. Machine learning state
- * documents that are not associated with any job are also deleted. You can
- * limit the request to a single or set of anomaly detection jobs by using a job
- * identifier, a group name, a comma-separated list of jobs, or a wildcard
- * expression. You can delete expired data for all anomaly detection jobs by
- * using _all, by specifying * as the &lt;job_id&gt;, or by omitting the
- * &lt;job_id&gt;.
+ * Delete expired ML data.
+ * <p>
+ * Delete all job results, model snapshots and forecast data that have exceeded
+ * their retention days period. Machine learning state documents that are not
+ * associated with any job are also deleted. You can limit the request to a
+ * single or set of anomaly detection jobs by using a job identifier, a group
+ * name, a comma-separated list of jobs, or a wildcard expression. You can
+ * delete expired data for all anomaly detection jobs by using
+ * <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_expired_data.Request">API
  *      specification</a>

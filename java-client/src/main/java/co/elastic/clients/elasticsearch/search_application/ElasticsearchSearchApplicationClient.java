@@ -73,11 +73,13 @@ public class ElasticsearchSearchApplicationClient
 	// ----- Endpoint: search_application.delete
 
 	/**
-	 * Delete a search application. Remove a search application and its associated
-	 * alias. Indices attached to the search application are not removed.
+	 * Delete a search application.
+	 * <p>
+	 * Remove a search application and its associated alias. Indices attached to the
+	 * search application are not removed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -90,14 +92,16 @@ public class ElasticsearchSearchApplicationClient
 	}
 
 	/**
-	 * Delete a search application. Remove a search application and its associated
-	 * alias. Indices attached to the search application are not removed.
+	 * Delete a search application.
+	 * <p>
+	 * Remove a search application and its associated alias. Indices attached to the
+	 * search application are not removed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSearchApplicationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -114,7 +118,7 @@ public class ElasticsearchSearchApplicationClient
 	 * deleted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -134,7 +138,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteBehavioralAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -150,7 +154,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get search application details.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -169,7 +173,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSearchApplicationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -185,7 +189,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get behavioral analytics collections.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -204,7 +208,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetBehavioralAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -218,7 +222,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get behavioral analytics collections.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -233,7 +237,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get search applications. Get information about search applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-search-applications.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +255,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-search-applications.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -264,7 +268,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get search applications. Get information about search applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/list-search-applications.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -279,7 +283,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Create a behavioral analytics collection event.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/post-analytics-collection-event.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-analytics-collection-event.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -298,7 +302,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PostBehavioralAnalyticsEventRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/post-analytics-collection-event.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-analytics-collection-event.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -314,7 +318,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Create or update a search application.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -332,7 +336,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-search-application.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-search-application.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -347,7 +351,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Create a behavioral analytics collection.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -366,7 +370,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutBehavioralAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-analytics-collection.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-analytics-collection.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -391,7 +395,7 @@ public class ElasticsearchSearchApplicationClient
 	 * application.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/search-application-render-query.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-application-render-query.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -418,7 +422,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RenderQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/search-application-render-query.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-application-render-query.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -437,7 +441,7 @@ public class ElasticsearchSearchApplicationClient
 	 * are assigned their default values if applicable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-application-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -462,7 +466,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchApplicationSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-application-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -479,7 +483,7 @@ public class ElasticsearchSearchApplicationClient
 	 * are assigned their default values if applicable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-application-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -504,7 +508,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchApplicationSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-application-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-application-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

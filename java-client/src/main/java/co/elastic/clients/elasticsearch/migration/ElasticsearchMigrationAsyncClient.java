@@ -78,7 +78,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/migration-api-deprecation.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -101,7 +101,7 @@ public class ElasticsearchMigrationAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeprecationsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/migration-api-deprecation.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -119,7 +119,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/migration-api-deprecation.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -140,7 +140,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/feature-migration-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/feature-migration-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetFeatureUpgradeStatusResponse> getFeatureUpgradeStatus() {
@@ -162,7 +162,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommend you use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/feature-migration-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/feature-migration-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<PostFeatureUpgradeResponse> postFeatureUpgrade() {

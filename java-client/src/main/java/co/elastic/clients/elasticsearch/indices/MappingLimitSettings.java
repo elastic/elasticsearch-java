@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * Mapping Limit Settings
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/mapping-settings-limit.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/mapping-settings-limit.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../doc-files/api-spec.html#indices._types.MappingLimitSettings">API
@@ -85,6 +85,9 @@ public class MappingLimitSettings implements JsonpSerializable {
 	private final MappingLimitSettingsDimensionFields dimensionFields;
 
 	@Nullable
+	private final MappingLimitSettingsSourceFields source;
+
+	@Nullable
 	private final Boolean ignoreMalformed;
 
 	// ---------------------------------------------------------------------------------------------
@@ -98,6 +101,7 @@ public class MappingLimitSettings implements JsonpSerializable {
 		this.nestedObjects = builder.nestedObjects;
 		this.fieldNameLength = builder.fieldNameLength;
 		this.dimensionFields = builder.dimensionFields;
+		this.source = builder.source;
 		this.ignoreMalformed = builder.ignoreMalformed;
 
 	}
@@ -163,6 +167,14 @@ public class MappingLimitSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code source}
+	 */
+	@Nullable
+	public final MappingLimitSettingsSourceFields source() {
+		return this.source;
+	}
+
+	/**
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
@@ -216,6 +228,11 @@ public class MappingLimitSettings implements JsonpSerializable {
 			this.dimensionFields.serialize(generator, mapper);
 
 		}
+		if (this.source != null) {
+			generator.writeKey("source");
+			this.source.serialize(generator, mapper);
+
+		}
 		if (this.ignoreMalformed != null) {
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
@@ -258,6 +275,9 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 		@Nullable
 		private MappingLimitSettingsDimensionFields dimensionFields;
+
+		@Nullable
+		private MappingLimitSettingsSourceFields source;
 
 		@Nullable
 		private Boolean ignoreMalformed;
@@ -367,6 +387,22 @@ public class MappingLimitSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(@Nullable MappingLimitSettingsSourceFields value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(
+				Function<MappingLimitSettingsSourceFields.Builder, ObjectBuilder<MappingLimitSettingsSourceFields>> fn) {
+			return this.source(fn.apply(new MappingLimitSettingsSourceFields.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code ignore_malformed}
 		 */
 		public final Builder ignoreMalformed(@Nullable Boolean value) {
@@ -409,6 +445,7 @@ public class MappingLimitSettings implements JsonpSerializable {
 		op.add(Builder::nestedObjects, MappingLimitSettingsNestedObjects._DESERIALIZER, "nested_objects");
 		op.add(Builder::fieldNameLength, MappingLimitSettingsFieldNameLength._DESERIALIZER, "field_name_length");
 		op.add(Builder::dimensionFields, MappingLimitSettingsDimensionFields._DESERIALIZER, "dimension_fields");
+		op.add(Builder::source, MappingLimitSettingsSourceFields._DESERIALIZER, "source");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 
 	}

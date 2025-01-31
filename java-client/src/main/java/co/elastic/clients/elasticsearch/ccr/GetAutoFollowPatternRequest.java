@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -30,7 +31,6 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -64,18 +64,32 @@ import javax.annotation.Nullable;
 
 public class GetAutoFollowPatternRequest extends RequestBase {
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetAutoFollowPatternRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
 
 	}
 
 	public static GetAutoFollowPatternRequest of(Function<Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -99,7 +113,29 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 			implements
 				ObjectBuilder<GetAutoFollowPatternRequest> {
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private String name;
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Specifies the auto-follow pattern collection that you want to retrieve. If
@@ -191,7 +227,11 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetAutoFollowPatternResponse._DESERIALIZER);
 }

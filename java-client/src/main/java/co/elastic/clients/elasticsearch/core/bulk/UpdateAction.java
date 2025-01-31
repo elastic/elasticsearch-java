@@ -112,8 +112,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * Set to false to disable setting 'result' in the response to 'noop' if no
-	 * change to the document occurred.
+	 * If true, the <code>result</code> in the response is set to 'noop' when no
+	 * changes to the document occur.
 	 * <p>
 	 * API name: {@code detect_noop}
 	 */
@@ -133,7 +133,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * Set to true to use the contents of 'doc' as the value of 'upsert'
+	 * Set to <code>true</code> to use the contents of <code>doc</code> as the value
+	 * of <code>upsert</code>.
 	 * <p>
 	 * API name: {@code doc_as_upsert}
 	 */
@@ -143,7 +144,7 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * Script to execute to update the document.
+	 * The script to run to update the document.
 	 * <p>
 	 * API name: {@code script}
 	 */
@@ -153,7 +154,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * Set to true to execute the script whether or not the document exists.
+	 * Set to <code>true</code> to run the script whether or not the document
+	 * exists.
 	 * <p>
 	 * API name: {@code scripted_upsert}
 	 */
@@ -163,7 +165,7 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * Set to false to disable source retrieval. You can also specify a
+	 * If <code>false</code>, source retrieval is turned off. You can also specify a
 	 * comma-separated list of the fields you want to retrieve.
 	 * <p>
 	 * API name: {@code _source}
@@ -174,8 +176,9 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * If the document does not already exist, the contents of 'upsert' are inserted
-	 * as a new document. If the document exists, the 'script' is executed.
+	 * If the document does not already exist, the contents of <code>upsert</code>
+	 * are inserted as a new document. If the document exists, the
+	 * <code>script</code> is run.
 	 * <p>
 	 * API name: {@code upsert}
 	 */
@@ -277,8 +280,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
-		 * Set to false to disable setting 'result' in the response to 'noop' if no
-		 * change to the document occurred.
+		 * If true, the <code>result</code> in the response is set to 'noop' when no
+		 * changes to the document occur.
 		 * <p>
 		 * API name: {@code detect_noop}
 		 */
@@ -298,7 +301,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Set to true to use the contents of 'doc' as the value of 'upsert'
+		 * Set to <code>true</code> to use the contents of <code>doc</code> as the value
+		 * of <code>upsert</code>.
 		 * <p>
 		 * API name: {@code doc_as_upsert}
 		 */
@@ -308,7 +312,7 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Script to execute to update the document.
+		 * The script to run to update the document.
 		 * <p>
 		 * API name: {@code script}
 		 */
@@ -318,7 +322,7 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Script to execute to update the document.
+		 * The script to run to update the document.
 		 * <p>
 		 * API name: {@code script}
 		 */
@@ -327,7 +331,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Set to true to execute the script whether or not the document exists.
+		 * Set to <code>true</code> to run the script whether or not the document
+		 * exists.
 		 * <p>
 		 * API name: {@code scripted_upsert}
 		 */
@@ -337,7 +342,7 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Set to false to disable source retrieval. You can also specify a
+		 * If <code>false</code>, source retrieval is turned off. You can also specify a
 		 * comma-separated list of the fields you want to retrieve.
 		 * <p>
 		 * API name: {@code _source}
@@ -348,7 +353,7 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Set to false to disable source retrieval. You can also specify a
+		 * If <code>false</code>, source retrieval is turned off. You can also specify a
 		 * comma-separated list of the fields you want to retrieve.
 		 * <p>
 		 * API name: {@code _source}
@@ -359,8 +364,9 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * If the document does not already exist, the contents of 'upsert' are inserted
-		 * as a new document. If the document exists, the 'script' is executed.
+		 * If the document does not already exist, the contents of <code>upsert</code>
+		 * are inserted as a new document. If the document exists, the
+		 * <code>script</code> is run.
 		 * <p>
 		 * API name: {@code upsert}
 		 */

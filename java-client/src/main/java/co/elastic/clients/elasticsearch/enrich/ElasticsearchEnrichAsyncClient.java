@@ -72,7 +72,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,7 +91,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -106,7 +106,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Run an enrich policy. Create the enrich index for an existing enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/execute-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/execute-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -124,7 +124,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecutePolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/execute-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/execute-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -139,7 +139,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -170,7 +170,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Get an enrich policy. Returns information about an enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -185,7 +185,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Create an enrich policy. Creates an enrich policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -203,7 +203,7 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-enrich-policy-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -219,12 +219,46 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 * enrich policies that are currently executing.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/enrich-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public CompletableFuture<EnrichStatsResponse> stats(EnrichStatsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse>) EnrichStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get enrich stats. Returns enrich coordinator statistics and information about
+	 * enrich policies that are currently executing.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link EnrichStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/enrich-stats-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<EnrichStatsResponse> stats(
+			Function<EnrichStatsRequest.Builder, ObjectBuilder<EnrichStatsRequest>> fn) {
+		return stats(fn.apply(new EnrichStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get enrich stats. Returns enrich coordinator statistics and information about
+	 * enrich policies that are currently executing.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/enrich-stats-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public CompletableFuture<EnrichStatsResponse> stats() {
-		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest._ENDPOINT,
-				this.transportOptions);
+		return this.transport.performRequestAsync(new EnrichStatsRequest.Builder().build(),
+				EnrichStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

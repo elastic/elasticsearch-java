@@ -83,7 +83,7 @@ public class ElasticsearchShutdownAsyncClient
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -111,7 +111,7 @@ public class ElasticsearchShutdownAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,7 +137,7 @@ public class ElasticsearchShutdownAsyncClient
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -166,7 +166,7 @@ public class ElasticsearchShutdownAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -190,7 +190,7 @@ public class ElasticsearchShutdownAsyncClient
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -227,7 +227,7 @@ public class ElasticsearchShutdownAsyncClient
 	 * node shutdown status to determine when it is safe to stop Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -267,7 +267,7 @@ public class ElasticsearchShutdownAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutNodeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-shutdown.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-shutdown.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

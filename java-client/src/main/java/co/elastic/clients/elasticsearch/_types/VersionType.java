@@ -52,19 +52,23 @@ public enum VersionType implements JsonEnum {
 	Internal("internal"),
 
 	/**
-	 * Only index the document if the given version is strictly higher than the
+	 * Only index the document if the specified version is strictly higher than the
 	 * version of the stored document or if there is no existing document.
 	 */
 	External("external"),
 
 	/**
-	 * Only index the document if the given version is equal or higher than the
-	 * version of the stored document or if there is no existing document. Note: the
-	 * external_gte version type is meant for special use cases and should be used
-	 * with care. If used incorrectly, it can result in loss of data.
+	 * Only index the document if the specified version is equal or higher than the
+	 * version of the stored document or if there is no existing document. NOTE: The
+	 * <code>external_gte</code> version type is meant for special use cases and
+	 * should be used with care. If used incorrectly, it can result in loss of data.
 	 */
 	ExternalGte("external_gte"),
 
+	/**
+	 * This option is deprecated because it can cause primary and replica shards to
+	 * diverge.
+	 */
 	Force("force"),
 
 	;

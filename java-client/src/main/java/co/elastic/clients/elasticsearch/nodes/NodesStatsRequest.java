@@ -88,9 +88,6 @@ public class NodesStatsRequest extends RequestBase {
 	@Nullable
 	private final Level level;
 
-	@Nullable
-	private final Time masterTimeout;
-
 	private final List<String> metric;
 
 	private final List<String> nodeId;
@@ -112,7 +109,6 @@ public class NodesStatsRequest extends RequestBase {
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.indexMetric = ApiTypeHelper.unmodifiable(builder.indexMetric);
 		this.level = builder.level;
-		this.masterTimeout = builder.masterTimeout;
 		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
@@ -208,17 +204,6 @@ public class NodesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
 	 * Limit the information returned to the specified metrics
 	 * <p>
 	 * API name: {@code metric}
@@ -288,9 +273,6 @@ public class NodesStatsRequest extends RequestBase {
 
 		@Nullable
 		private Level level;
-
-		@Nullable
-		private Time masterTimeout;
 
 		@Nullable
 		private List<String> metric;
@@ -449,27 +431,6 @@ public class NodesStatsRequest extends RequestBase {
 		public final Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -724,9 +685,6 @@ public class NodesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (ApiTypeHelper.isDefined(request.types)) {
 					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

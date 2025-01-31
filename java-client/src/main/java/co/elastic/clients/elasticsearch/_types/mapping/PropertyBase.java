@@ -73,6 +73,9 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	private final Map<String, Property> fields;
 
+	@Nullable
+	private final SyntheticSourceKeepEnum syntheticSourceKeep;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected PropertyBase(AbstractBuilder<?> builder) {
@@ -82,6 +85,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		this.ignoreAbove = builder.ignoreAbove;
 		this.dynamic = builder.dynamic;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.syntheticSourceKeep = builder.syntheticSourceKeep;
 
 	}
 
@@ -122,6 +126,14 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 */
 	public final Map<String, Property> fields() {
 		return this.fields;
+	}
+
+	/**
+	 * API name: {@code synthetic_source_keep}
+	 */
+	@Nullable
+	public final SyntheticSourceKeepEnum syntheticSourceKeep() {
+		return this.syntheticSourceKeep;
 	}
 
 	/**
@@ -177,6 +189,10 @@ public abstract class PropertyBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.syntheticSourceKeep != null) {
+			generator.writeKey("synthetic_source_keep");
+			this.syntheticSourceKeep.serialize(generator, mapper);
+		}
 
 	}
 
@@ -202,6 +218,9 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, Property> fields;
+
+		@Nullable
+		private SyntheticSourceKeepEnum syntheticSourceKeep;
 
 		/**
 		 * Metadata about the field.
@@ -301,6 +320,14 @@ public abstract class PropertyBase implements JsonpSerializable {
 			return fields(key, fn.apply(new Property.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code synthetic_source_keep}
+		 */
+		public final BuilderT syntheticSourceKeep(@Nullable SyntheticSourceKeepEnum value) {
+			this.syntheticSourceKeep = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -316,6 +343,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		op.add(AbstractBuilder::ignoreAbove, JsonpDeserializer.integerDeserializer(), "ignore_above");
 		op.add(AbstractBuilder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "fields");
+		op.add(AbstractBuilder::syntheticSourceKeep, SyntheticSourceKeepEnum._DESERIALIZER, "synthetic_source_keep");
 
 	}
 

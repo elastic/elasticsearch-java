@@ -96,20 +96,26 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * Required - The unique identifier for the added document.
+	 * <p>
+	 * API name: {@code _id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code _index}
+	 * Required - The name of the index the document was added to.
+	 * <p>
+	 * API name: {@code _index}
 	 */
 	public final String index() {
 		return this.index;
 	}
 
 	/**
+	 * The primary term assigned to the document for the indexing operation.
+	 * <p>
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
@@ -118,13 +124,20 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code result}
+	 * Required - The result of the indexing operation: <code>created</code> or
+	 * <code>updated</code>.
+	 * <p>
+	 * API name: {@code result}
 	 */
 	public final Result result() {
 		return this.result;
 	}
 
 	/**
+	 * The sequence number assigned to the document for the indexing operation.
+	 * Sequence numbers are used to ensure an older version of a document doesn't
+	 * overwrite a newer version.
+	 * <p>
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
@@ -133,14 +146,19 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _shards}
+	 * Required - Information about the replication process of the operation.
+	 * <p>
+	 * API name: {@code _shards}
 	 */
 	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * Required - API name: {@code _version}
+	 * Required - The document version, which is incremented each time the document
+	 * is updated.
+	 * <p>
+	 * API name: {@code _version}
 	 */
 	public final long version() {
 		return this.version;
@@ -225,7 +243,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		private Boolean forcedRefresh;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * Required - The unique identifier for the added document.
+		 * <p>
+		 * API name: {@code _id}
 		 */
 		public final BuilderT id(String value) {
 			this.id = value;
@@ -233,7 +253,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _index}
+		 * Required - The name of the index the document was added to.
+		 * <p>
+		 * API name: {@code _index}
 		 */
 		public final BuilderT index(String value) {
 			this.index = value;
@@ -241,6 +263,8 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The primary term assigned to the document for the indexing operation.
+		 * <p>
 		 * API name: {@code _primary_term}
 		 */
 		public final BuilderT primaryTerm(@Nullable Long value) {
@@ -249,7 +273,10 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code result}
+		 * Required - The result of the indexing operation: <code>created</code> or
+		 * <code>updated</code>.
+		 * <p>
+		 * API name: {@code result}
 		 */
 		public final BuilderT result(Result value) {
 			this.result = value;
@@ -257,6 +284,10 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The sequence number assigned to the document for the indexing operation.
+		 * Sequence numbers are used to ensure an older version of a document doesn't
+		 * overwrite a newer version.
+		 * <p>
 		 * API name: {@code _seq_no}
 		 */
 		public final BuilderT seqNo(@Nullable Long value) {
@@ -265,7 +296,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Information about the replication process of the operation.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(ShardStatistics value) {
 			this.shards = value;
@@ -273,14 +306,19 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _shards}
+		 * Required - Information about the replication process of the operation.
+		 * <p>
+		 * API name: {@code _shards}
 		 */
 		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code _version}
+		 * Required - The document version, which is incremented each time the document
+		 * is updated.
+		 * <p>
+		 * API name: {@code _version}
 		 */
 		public final BuilderT version(long value) {
 			this.version = value;

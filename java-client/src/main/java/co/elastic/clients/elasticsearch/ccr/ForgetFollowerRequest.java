@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +34,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -99,6 +99,9 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final String leaderRemoteCluster;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ForgetFollowerRequest(Builder builder) {
@@ -108,6 +111,7 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		this.followerIndexUuid = builder.followerIndexUuid;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.leaderRemoteCluster = builder.leaderRemoteCluster;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -155,6 +159,17 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	public final String leaderRemoteCluster() {
 		return this.leaderRemoteCluster;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -214,6 +229,9 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private String leaderRemoteCluster;
 
+		@Nullable
+		private Time timeout;
+
 		/**
 		 * API name: {@code follower_cluster}
 		 */
@@ -255,6 +273,27 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		public final Builder leaderRemoteCluster(@Nullable String value) {
 			this.leaderRemoteCluster = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -343,7 +382,11 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, ForgetFollowerResponse._DESERIALIZER);
 }

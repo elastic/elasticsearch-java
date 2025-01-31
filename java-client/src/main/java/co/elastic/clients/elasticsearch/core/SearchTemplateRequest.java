@@ -166,7 +166,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Type of index that wildcard patterns can match. If the request can target
+	 * The type of index that wildcard patterns can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
 	 * hidden data streams. Supports comma-separated values, such as
 	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
@@ -181,7 +181,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 	/**
 	 * If <code>true</code>, returns detailed information about score calculation as
-	 * part of each hit.
+	 * part of each hit. If you specify both this and the <code>explain</code> query
+	 * parameter, the API uses only the query parameter.
 	 * <p>
 	 * API name: {@code explain}
 	 */
@@ -191,8 +192,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * ID of the search template to use. If no source is specified, this parameter
-	 * is required.
+	 * The ID of the search template to use. If no <code>source</code> is specified,
+	 * this parameter is required.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -206,7 +207,10 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	 * not included in the response when throttled.
 	 * <p>
 	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
@@ -224,8 +228,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and aliases to search.
-	 * Supports wildcards (*).
+	 * A comma-separated list of data streams, indices, and aliases to search. It
+	 * supports wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -244,7 +248,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
+	 * The node or shard the operation should be performed on. It is random by
 	 * default.
 	 * <p>
 	 * API name: {@code preference}
@@ -265,7 +269,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -297,8 +301,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 	/**
 	 * An inline search template. Supports the same parameters as the search API's
-	 * request body. Also supports Mustache variables. If no id is specified, this
-	 * parameter is required.
+	 * request body. It also supports Mustache variables. If no <code>id</code> is
+	 * specified, this parameter is required.
 	 * <p>
 	 * API name: {@code source}
 	 */
@@ -433,7 +437,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Type of index that wildcard patterns can match. If the request can target
+		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as
 		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
@@ -450,7 +454,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Type of index that wildcard patterns can match. If the request can target
+		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as
 		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
@@ -468,7 +472,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * If <code>true</code>, returns detailed information about score calculation as
-		 * part of each hit.
+		 * part of each hit. If you specify both this and the <code>explain</code> query
+		 * parameter, the API uses only the query parameter.
 		 * <p>
 		 * API name: {@code explain}
 		 */
@@ -478,8 +483,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * ID of the search template to use. If no source is specified, this parameter
-		 * is required.
+		 * The ID of the search template to use. If no <code>source</code> is specified,
+		 * this parameter is required.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -493,7 +498,10 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * not included in the response when throttled.
 		 * <p>
 		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0
 		 */
+		@Deprecated
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
@@ -511,8 +519,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (*).
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -524,8 +532,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (*).
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -563,7 +571,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
+		 * The node or shard the operation should be performed on. It is random by
 		 * default.
 		 * <p>
 		 * API name: {@code preference}
@@ -584,7 +592,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -626,8 +634,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * An inline search template. Supports the same parameters as the search API's
-		 * request body. Also supports Mustache variables. If no id is specified, this
-		 * parameter is required.
+		 * request body. It also supports Mustache variables. If no <code>id</code> is
+		 * specified, this parameter is required.
 		 * <p>
 		 * API name: {@code source}
 		 */

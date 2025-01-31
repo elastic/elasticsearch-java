@@ -57,6 +57,19 @@ import javax.annotation.Nullable;
 
 /**
  * Get service account credentials.
+ * <p>
+ * To use this API, you must have at least the <code>read_security</code>
+ * cluster privilege (or a greater privilege such as
+ * <code>manage_service_account</code> or <code>manage_security</code>).
+ * <p>
+ * The response includes service account tokens that were created with the
+ * create service account tokens API as well as file-backed tokens from all
+ * nodes of the cluster.
+ * <p>
+ * NOTE: For tokens backed by the <code>service_tokens</code> file, the API
+ * collects them from all nodes of the cluster. Tokens with the same name from
+ * different nodes are assumed to be the same token and are only counted once
+ * towards the total number of service tokens.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_service_credentials.Request">API
@@ -82,7 +95,7 @@ public class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Name of the namespace.
+	 * Required - The name of the namespace.
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -91,7 +104,7 @@ public class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Name of the service name.
+	 * Required - The service name.
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -113,7 +126,7 @@ public class GetServiceCredentialsRequest extends RequestBase {
 		private String service;
 
 		/**
-		 * Required - Name of the namespace.
+		 * Required - The name of the namespace.
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -123,7 +136,7 @@ public class GetServiceCredentialsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Name of the service name.
+		 * Required - The service name.
 		 * <p>
 		 * API name: {@code service}
 		 */

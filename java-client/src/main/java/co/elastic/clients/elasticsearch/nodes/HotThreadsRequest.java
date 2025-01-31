@@ -76,9 +76,6 @@ public class HotThreadsRequest extends RequestBase {
 	@Nullable
 	private final Time interval;
 
-	@Nullable
-	private final Time masterTimeout;
-
 	private final List<String> nodeId;
 
 	@Nullable
@@ -102,7 +99,6 @@ public class HotThreadsRequest extends RequestBase {
 
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
-		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.snapshots = builder.snapshots;
 		this.sort = builder.sort;
@@ -135,17 +131,6 @@ public class HotThreadsRequest extends RequestBase {
 	@Nullable
 	public final Time interval() {
 		return this.interval;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -224,9 +209,6 @@ public class HotThreadsRequest extends RequestBase {
 		private Time interval;
 
 		@Nullable
-		private Time masterTimeout;
-
-		@Nullable
 		private List<String> nodeId;
 
 		@Nullable
@@ -272,27 +254,6 @@ public class HotThreadsRequest extends RequestBase {
 		 */
 		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.interval(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -463,9 +424,6 @@ public class HotThreadsRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.snapshots != null) {
 					params.put("snapshots", String.valueOf(request.snapshots));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.threads != null) {
 					params.put("threads", String.valueOf(request.threads));

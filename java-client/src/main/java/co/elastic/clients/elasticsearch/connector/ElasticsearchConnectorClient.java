@@ -74,7 +74,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * current timestamp.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/check-in-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/check-in-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -95,7 +95,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link CheckInRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/check-in-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/check-in-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -115,7 +115,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * to be removed manually.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -138,7 +138,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteConnectorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -156,7 +156,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Get the details about a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -176,7 +176,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link GetConnectorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -193,7 +193,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Get information about all connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -213,7 +213,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -228,7 +228,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Get information about all connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -249,7 +249,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * self-managed on your infrastructure.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -273,7 +273,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -292,7 +292,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * self-managed on your infrastructure.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -307,7 +307,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Create or update a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -325,7 +325,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -338,7 +338,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Create or update a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -358,7 +358,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * cancelled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cancel-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/cancel-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -382,7 +382,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobCancelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/cancel-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/cancel-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -404,7 +404,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/check-in-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/check-in-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -429,7 +429,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobCheckInRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/check-in-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/check-in-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -456,7 +456,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/claim-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/claim-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -485,7 +485,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobClaimRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/claim-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/claim-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -504,7 +504,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * action that is not recoverable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -526,7 +526,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobDeleteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -547,7 +547,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/set-connector-sync-job-error-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/set-connector-sync-job-error-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -570,7 +570,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobErrorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/set-connector-sync-job-error-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/set-connector-sync-job-error-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -586,7 +586,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Get a connector sync job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -604,7 +604,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -622,7 +622,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * date in ascending order.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-connector-sync-jobs-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-connector-sync-jobs-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -643,7 +643,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-connector-sync-jobs-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-connector-sync-jobs-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -660,7 +660,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * date in ascending order.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-connector-sync-jobs-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-connector-sync-jobs-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -678,7 +678,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * counters and timestamps with default values.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -699,7 +699,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobPostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/create-connector-sync-job-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/create-connector-sync-job-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -723,7 +723,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/set-connector-sync-job-stats-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/set-connector-sync-job-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -750,7 +750,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobUpdateStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/set-connector-sync-job-stats-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/set-connector-sync-job-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -768,7 +768,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Activates the valid draft filtering for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-filtering-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -789,7 +789,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateActiveFilteringRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-filtering-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -811,7 +811,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Self-managed connectors (connector clients) do not use this field.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-api-key-id-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-api-key-id-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -836,7 +836,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateApiKeyIdRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-api-key-id-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-api-key-id-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -854,7 +854,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the configuration field in the connector document.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-configuration-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-configuration-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -875,7 +875,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateConfigurationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-configuration-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-configuration-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -895,7 +895,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * the error is reset to null, the connector status is updated to connected.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-error-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-error-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -917,7 +917,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateErrorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-error-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-error-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -948,7 +948,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-features-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -982,7 +982,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFeaturesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-features-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1003,7 +1003,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * configure sync rules (both basic and advanced) for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-filtering-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1027,7 +1027,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFilteringRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-filtering-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1045,7 +1045,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the draft filtering validation info for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-filtering-validation-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-validation-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1066,7 +1066,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFilteringValidationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-filtering-validation-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-validation-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1085,7 +1085,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * where the data ingested by the connector is stored.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-index-name-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-index-name-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1107,7 +1107,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateIndexNameRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-index-name-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-index-name-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1123,7 +1123,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the connector name and description.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-name-description-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-name-description-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1141,7 +1141,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateNameRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-name-description-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-name-description-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1156,7 +1156,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the connector is_native flag.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-native-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-native-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1174,7 +1174,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateNativeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-native-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-native-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1193,7 +1193,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * populated with default settings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1215,7 +1215,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdatePipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1231,7 +1231,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the connector scheduling.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-scheduling-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-scheduling-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1250,7 +1250,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateSchedulingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-scheduling-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-scheduling-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1266,7 +1266,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the connector service type.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-service-type-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-service-type-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1285,7 +1285,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateServiceTypeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-service-type-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-service-type-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1301,7 +1301,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the connector status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-status-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1319,7 +1319,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-connector-status-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-status-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

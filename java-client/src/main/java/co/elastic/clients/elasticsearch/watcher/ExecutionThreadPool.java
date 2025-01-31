@@ -77,14 +77,20 @@ public class ExecutionThreadPool implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code max_size}
+	 * Required - The largest size of the execution thread pool, which indicates the
+	 * largest number of concurrent running watches.
+	 * <p>
+	 * API name: {@code max_size}
 	 */
 	public final long maxSize() {
 		return this.maxSize;
 	}
 
 	/**
-	 * Required - API name: {@code queue_size}
+	 * Required - The number of watches that were triggered and are currently
+	 * queued.
+	 * <p>
+	 * API name: {@code queue_size}
 	 */
 	public final long queueSize() {
 		return this.queueSize;
@@ -128,7 +134,10 @@ public class ExecutionThreadPool implements JsonpSerializable {
 		private Long queueSize;
 
 		/**
-		 * Required - API name: {@code max_size}
+		 * Required - The largest size of the execution thread pool, which indicates the
+		 * largest number of concurrent running watches.
+		 * <p>
+		 * API name: {@code max_size}
 		 */
 		public final Builder maxSize(long value) {
 			this.maxSize = value;
@@ -136,7 +145,10 @@ public class ExecutionThreadPool implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code queue_size}
+		 * Required - The number of watches that were triggered and are currently
+		 * queued.
+		 * <p>
+		 * API name: {@code queue_size}
 		 */
 		public final Builder queueSize(long value) {
 			this.queueSize = value;

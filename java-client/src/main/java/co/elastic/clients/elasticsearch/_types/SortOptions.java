@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/sort-search-results.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/sort-search-results.html">Documentation
  *      on elastic.co</a>
  * @see <a href="../doc-files/api-spec.html#_types.SortOptions">API
  *      specification</a>

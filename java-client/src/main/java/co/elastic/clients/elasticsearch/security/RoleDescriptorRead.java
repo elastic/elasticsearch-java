@@ -138,7 +138,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of cluster permissions for remote clusters. Note - this is limited a
+	 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 	 * subset of the cluster permissions.
 	 * <p>
 	 * API name: {@code remote_cluster}
@@ -187,7 +187,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Optional description of the role descriptor
+	 * An optional description of the role descriptor.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -197,7 +197,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Restriction for when the role descriptor is allowed to be effective.
+	 * A restriction for when the role descriptor is allowed to be effective.
 	 * <p>
 	 * API name: {@code restriction}
 	 */
@@ -472,7 +472,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 		 * subset of the cluster permissions.
 		 * <p>
 		 * API name: {@code remote_cluster}
@@ -485,7 +485,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 		 * subset of the cluster permissions.
 		 * <p>
 		 * API name: {@code remote_cluster}
@@ -498,7 +498,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of cluster permissions for remote clusters. Note - this is limited a
+		 * A list of cluster permissions for remote clusters. NOTE: This is limited a
 		 * subset of the cluster permissions.
 		 * <p>
 		 * API name: {@code remote_cluster}
@@ -638,7 +638,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Optional description of the role descriptor
+		 * An optional description of the role descriptor.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -648,7 +648,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Restriction for when the role descriptor is allowed to be effective.
+		 * A restriction for when the role descriptor is allowed to be effective.
 		 * <p>
 		 * API name: {@code restriction}
 		 */
@@ -658,7 +658,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Restriction for when the role descriptor is allowed to be effective.
+		 * A restriction for when the role descriptor is allowed to be effective.
 		 * <p>
 		 * API name: {@code restriction}
 		 */

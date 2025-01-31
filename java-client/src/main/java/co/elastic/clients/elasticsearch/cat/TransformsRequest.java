@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: cat.transforms.Request
 
 /**
- * Get transforms. Returns configuration and usage information about transforms.
+ * Get transform information.
+ * <p>
+ * Get configuration and usage information about transforms.
  * <p>
  * CAT APIs are only intended for human consumption using the Kibana console or
  * command line. They are not intended for use by applications. For application

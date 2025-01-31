@@ -104,13 +104,13 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 	}
 
 	/**
-	 * This needs to be set to true (default is false) if using wildcards or regexps
-	 * for patterns that cover restricted indices. Implicitly, restricted indices do
-	 * not match index patterns because restricted indices usually have limited
-	 * privileges and including them in pattern tests would render most such tests
-	 * false. If restricted indices are explicitly included in the names list,
-	 * privileges will be checked against them regardless of the value of
-	 * allow_restricted_indices.
+	 * This needs to be set to <code>true</code> (default is <code>false</code>) if
+	 * using wildcards or regexps for patterns that cover restricted indices.
+	 * Implicitly, restricted indices do not match index patterns because restricted
+	 * indices usually have limited privileges and including them in pattern tests
+	 * would render most such tests false. If restricted indices are explicitly
+	 * included in the names list, privileges will be checked against them
+	 * regardless of the value of <code>allow_restricted_indices</code>.
 	 * <p>
 	 * API name: {@code allow_restricted_indices}
 	 */
@@ -230,13 +230,13 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * This needs to be set to true (default is false) if using wildcards or regexps
-		 * for patterns that cover restricted indices. Implicitly, restricted indices do
-		 * not match index patterns because restricted indices usually have limited
-		 * privileges and including them in pattern tests would render most such tests
-		 * false. If restricted indices are explicitly included in the names list,
-		 * privileges will be checked against them regardless of the value of
-		 * allow_restricted_indices.
+		 * This needs to be set to <code>true</code> (default is <code>false</code>) if
+		 * using wildcards or regexps for patterns that cover restricted indices.
+		 * Implicitly, restricted indices do not match index patterns because restricted
+		 * indices usually have limited privileges and including them in pattern tests
+		 * would render most such tests false. If restricted indices are explicitly
+		 * included in the names list, privileges will be checked against them
+		 * regardless of the value of <code>allow_restricted_indices</code>.
 		 * <p>
 		 * API name: {@code allow_restricted_indices}
 		 */

@@ -71,11 +71,13 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.add_block
 
 	/**
-	 * Add an index block. Limits the operations allowed on an index by blocking
-	 * specific operation types.
+	 * Add an index block.
+	 * <p>
+	 * Add an index block to an index. Index blocks limit the operations allowed on
+	 * an index by blocking specific operation types.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/index-modules-blocks.html#add-index-block">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -87,14 +89,16 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Add an index block. Limits the operations allowed on an index by blocking
-	 * specific operation types.
+	 * Add an index block.
+	 * <p>
+	 * Add an index block to an index. Index blocks limit the operations allowed on
+	 * an index by blocking specific operation types.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AddBlockRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/index-modules-blocks.html#add-index-block">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -116,7 +120,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index will always use <code>10000</code> as its limit.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -141,7 +145,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -161,13 +165,50 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index will always use <code>10000</code> as its limit.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-analyze.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<AnalyzeResponse> analyze() {
 		return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.cancel_migrate_reindex
+
+	/**
+	 * Cancel a migration reindex operation.
+	 * <p>
+	 * Cancel a migration reindex attempt for a data stream or index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CancelMigrateReindexResponse> cancelMigrateReindex(CancelMigrateReindexRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CancelMigrateReindexRequest, CancelMigrateReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<CancelMigrateReindexRequest, CancelMigrateReindexResponse, ErrorResponse>) CancelMigrateReindexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Cancel a migration reindex operation.
+	 * <p>
+	 * Cancel a migration reindex attempt for a data stream or index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CancelMigrateReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CancelMigrateReindexResponse> cancelMigrateReindex(
+			Function<CancelMigrateReindexRequest.Builder, ObjectBuilder<CancelMigrateReindexRequest>> fn) {
+		return cancelMigrateReindex(fn.apply(new CancelMigrateReindexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.clear_cache
@@ -182,7 +223,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * use the <code>fields</code> parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-clearcache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -206,7 +247,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-clearcache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -225,7 +266,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * use the <code>fields</code> parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-clearcache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -306,7 +347,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * action as well.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-clone-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -390,7 +431,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-clone-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -431,7 +472,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * <code>false</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -475,7 +516,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -521,7 +562,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * <code>wait_for_active_shards</code> value on all subsequent write operations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-create-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -570,7 +611,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-create-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-create-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -582,11 +623,12 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.create_data_stream
 
 	/**
-	 * Create a data stream. Creates a data stream. You must have a matching index
-	 * template with data stream enabled.
+	 * Create a data stream.
+	 * <p>
+	 * You must have a matching index template with data stream enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-create-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -598,14 +640,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Create a data stream. Creates a data stream. You must have a matching index
-	 * template with data stream enabled.
+	 * Create a data stream.
+	 * <p>
+	 * You must have a matching index template with data stream enabled.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-create-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -614,13 +657,54 @@ public class ElasticsearchIndicesAsyncClient
 		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.create_from
+
+	/**
+	 * Create an index from a source index.
+	 * <p>
+	 * Copy the mappings and settings from the source index to a destination index
+	 * while allowing request settings and mappings to override the source values.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CreateFromResponse> createFrom(CreateFromRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateFromRequest, CreateFromResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateFromRequest, CreateFromResponse, ErrorResponse>) CreateFromRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an index from a source index.
+	 * <p>
+	 * Copy the mappings and settings from the source index to a destination index
+	 * while allowing request settings and mappings to override the source values.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateFromRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CreateFromResponse> createFrom(
+			Function<CreateFromRequest.Builder, ObjectBuilder<CreateFromRequest>> fn) {
+		return createFrom(fn.apply(new CreateFromRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.data_streams_stats
 
 	/**
-	 * Get data stream stats. Retrieves statistics for one or more data streams.
+	 * Get data stream stats.
+	 * <p>
+	 * Get statistics for one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-stream-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -632,13 +716,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get data stream stats. Retrieves statistics for one or more data streams.
+	 * Get data stream stats.
+	 * <p>
+	 * Get statistics for one or more data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DataStreamsStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-stream-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -648,10 +734,12 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get data stream stats. Retrieves statistics for one or more data streams.
+	 * Get data stream stats.
+	 * <p>
+	 * Get statistics for one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-stream-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -672,7 +760,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * You can then use the delete index API to delete the previous write index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -696,7 +784,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -711,7 +799,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Delete an alias. Removes a data stream or index from an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-alias.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-alias.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -729,7 +817,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-alias.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-alias.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -745,7 +833,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream, rendering it not managed by the data stream lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-delete-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -764,7 +852,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-delete-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-delete-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -780,7 +868,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -799,7 +887,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -817,7 +905,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * match completely with existing templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -838,7 +926,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -853,7 +941,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Delete a legacy index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-template-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-template-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -871,7 +959,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-delete-template-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-template-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -897,7 +985,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * underestimated while the <code>_source</code> field is overestimated.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-disk-usage.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -926,7 +1014,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DiskUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-disk-usage.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-disk-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -951,7 +1039,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * index must be read only (<code>index.blocks.write: true</code>).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-downsample-data-stream.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-downsample-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -979,7 +1067,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DownsampleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-downsample-data-stream.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-downsample-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -995,7 +1083,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-exists.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-exists.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1014,7 +1102,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-exists.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-exists.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1026,10 +1114,12 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.exists_alias
 
 	/**
-	 * Check aliases. Checks if one or more data stream or index aliases exist.
+	 * Check aliases.
+	 * <p>
+	 * Check if one or more data stream or index aliases exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-exists-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1041,13 +1131,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Check aliases. Checks if one or more data stream or index aliases exist.
+	 * Check aliases.
+	 * <p>
+	 * Check if one or more data stream or index aliases exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-exists-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1059,10 +1151,12 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.exists_index_template
 
 	/**
-	 * Check index templates. Check whether index templates exist.
+	 * Check index templates.
+	 * <p>
+	 * Check whether index templates exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-exists-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1074,13 +1168,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Check index templates. Check whether index templates exist.
+	 * Check index templates.
+	 * <p>
+	 * Check whether index templates exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-templates.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-exists-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1101,7 +1197,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-template-exists-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-template-exists-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1125,7 +1221,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-template-exists-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-template-exists-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1143,7 +1239,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-explain-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1164,7 +1260,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams-explain-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-explain-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1188,7 +1284,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * times.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/field-usage-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/field-usage-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1215,7 +1311,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FieldUsageStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/field-usage-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/field-usage-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1249,7 +1345,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * before the flush API was called.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1286,7 +1382,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1318,7 +1414,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * before the flush API was called.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-flush.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-flush.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1405,7 +1501,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-forcemerge.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-forcemerge.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1495,7 +1591,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ForcemergeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-forcemerge.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-forcemerge.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1580,7 +1676,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-forcemerge.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-forcemerge.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1596,7 +1692,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * streams, the API returns information about the stream’s backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1615,7 +1711,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1630,7 +1726,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get aliases. Retrieves information for one or more data stream or index
 	 * aliases.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request) {
@@ -1647,7 +1745,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAliasRequest}
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetAliasResponse> getAlias(
@@ -1659,7 +1759,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get aliases. Retrieves information for one or more data stream or index
 	 * aliases.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-alias.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias() {
@@ -1670,11 +1772,12 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_data_lifecycle
 
 	/**
-	 * Get data stream lifecycles. Retrieves the data stream lifecycle configuration
-	 * of one or more data streams.
+	 * Get data stream lifecycles.
+	 * <p>
+	 * Get the data stream lifecycle configuration of one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-get-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1686,14 +1789,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get data stream lifecycles. Retrieves the data stream lifecycle configuration
-	 * of one or more data streams.
+	 * Get data stream lifecycles.
+	 * <p>
+	 * Get the data stream lifecycle configuration of one or more data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-get-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-get-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1709,7 +1813,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * are managed by a data stream lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/data-streams-get-lifecycle-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/data-streams-get-lifecycle-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetDataLifecycleStatsResponse> getDataLifecycleStats() {
@@ -1720,10 +1824,12 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_data_stream
 
 	/**
-	 * Get data streams. Retrieves information about one or more data streams.
+	 * Get data streams.
+	 * <p>
+	 * Get information about one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1735,13 +1841,15 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get data streams. Retrieves information about one or more data streams.
+	 * Get data streams.
+	 * <p>
+	 * Get information about one or more data streams.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1751,10 +1859,12 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get data streams. Retrieves information about one or more data streams.
+	 * Get data streams.
+	 * <p>
+	 * Get information about one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-data-stream.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1774,7 +1884,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * mapping contains a large number of fields.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-field-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-field-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1797,7 +1907,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetFieldMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-field-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-field-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1812,7 +1922,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get index templates. Get information about one or more index templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1830,7 +1940,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1843,7 +1953,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get index templates. Get information about one or more index templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1859,7 +1969,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream’s backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1878,7 +1988,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1892,13 +2002,51 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream’s backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetMappingResponse> getMapping() {
 		return this.transport.performRequestAsync(new GetMappingRequest.Builder().build(), GetMappingRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.get_migrate_reindex_status
+
+	/**
+	 * Get the migration reindexing status.
+	 * <p>
+	 * Get the status of a migration reindex attempt for a data stream or index.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetMigrateReindexStatusResponse> getMigrateReindexStatus(
+			GetMigrateReindexStatusRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetMigrateReindexStatusRequest, GetMigrateReindexStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<GetMigrateReindexStatusRequest, GetMigrateReindexStatusResponse, ErrorResponse>) GetMigrateReindexStatusRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get the migration reindexing status.
+	 * <p>
+	 * Get the status of a migration reindex attempt for a data stream or index.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetMigrateReindexStatusRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetMigrateReindexStatusResponse> getMigrateReindexStatus(
+			Function<GetMigrateReindexStatusRequest.Builder, ObjectBuilder<GetMigrateReindexStatusRequest>> fn) {
+		return getMigrateReindexStatus(fn.apply(new GetMigrateReindexStatusRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_settings
@@ -1908,7 +2056,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * streams, it returns setting information for the stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1927,7 +2075,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndicesSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1941,7 +2089,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * streams, it returns setting information for the stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1960,7 +2108,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-template-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-template-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1982,7 +2130,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-template-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-template-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1999,13 +2147,71 @@ public class ElasticsearchIndicesAsyncClient
 	 * Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-get-template-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-template-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetTemplateResponse> getTemplate() {
 		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(),
 				GetTemplateRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: indices.migrate_reindex
+
+	/**
+	 * Reindex legacy backing indices.
+	 * <p>
+	 * Reindex all legacy backing indices for a data stream. This operation occurs
+	 * in a persistent task. The persistent task ID is returned immediately and the
+	 * reindexing work is completed in that task.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MigrateReindexResponse> migrateReindex(MigrateReindexRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MigrateReindexRequest, MigrateReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<MigrateReindexRequest, MigrateReindexResponse, ErrorResponse>) MigrateReindexRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Reindex legacy backing indices.
+	 * <p>
+	 * Reindex all legacy backing indices for a data stream. This operation occurs
+	 * in a persistent task. The persistent task ID is returned immediately and the
+	 * reindexing work is completed in that task.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MigrateReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<MigrateReindexResponse> migrateReindex(
+			Function<MigrateReindexRequest.Builder, ObjectBuilder<MigrateReindexRequest>> fn) {
+		return migrateReindex(fn.apply(new MigrateReindexRequest.Builder()).build());
+	}
+
+	/**
+	 * Reindex legacy backing indices.
+	 * <p>
+	 * Reindex all legacy backing indices for a data stream. This operation occurs
+	 * in a persistent task. The persistent task ID is returned immediately and the
+	 * reindexing work is completed in that task.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrate-data-stream.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MigrateReindexResponse> migrateReindex() {
+		return this.transport.performRequestAsync(new MigrateReindexRequest.Builder().build(),
+				MigrateReindexRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -2130,7 +2336,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * <code>_open</code> and <code>_close</code> index actions as well.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-open-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-open-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2180,7 +2386,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-open-close.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-open-close.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2472,7 +2678,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * name. Instead, add an alias field to create an alternate field name.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-put-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-put-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2524,7 +2730,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-put-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-put-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2557,7 +2763,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indices, you must create a new data stream and reindex your data into it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-update-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2593,7 +2799,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndicesSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-update-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2624,7 +2830,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indices, you must create a new data stream and reindex your data into it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-update-settings.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-update-settings.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2668,7 +2874,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * non-deterministic merging order.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-templates-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-templates-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2715,7 +2921,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-templates-v1.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-templates-v1.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2763,7 +2969,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the recovery API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-recovery.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-recovery.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2814,7 +3020,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-recovery.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-recovery.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2860,7 +3066,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the recovery API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-recovery.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-recovery.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2894,7 +3100,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indexing operation waits for a periodic refresh before running the search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-refresh.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-refresh.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2931,7 +3137,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RefreshRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-refresh.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-refresh.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2963,7 +3169,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indexing operation waits for a periodic refresh before running the search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-refresh.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-refresh.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2999,7 +3205,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * in case shards are relocated in the future.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-reload-analyzers.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-reload-analyzers.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3039,7 +3245,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ReloadSearchAnalyzersRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-reload-analyzers.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-reload-analyzers.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3051,9 +3257,12 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.resolve_cluster
 
 	/**
-	 * Resolve the cluster. Resolve the specified index expressions to return
-	 * information about each cluster, including the local cluster, if included.
-	 * Multiple patterns and remote clusters are supported.
+	 * Resolve the cluster.
+	 * <p>
+	 * Resolve the specified index expressions to return information about each
+	 * cluster, including the local &quot;querying&quot; cluster, if included. If no
+	 * index expression is provided, the API will return information about all the
+	 * remote clusters that are configured on the querying cluster.
 	 * <p>
 	 * This endpoint is useful before doing a cross-cluster search in order to
 	 * determine which remote clusters should be included in a search.
@@ -3065,7 +3274,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * For each cluster in the index expression, information is returned about:
 	 * <ul>
 	 * <li>Whether the querying (&quot;local&quot;) cluster is currently connected
-	 * to each remote cluster in the index expression scope.</li>
+	 * to each remote cluster specified in the index expression. Note that this
+	 * endpoint actively attempts to contact the remote clusters, unlike the
+	 * <code>remote/info</code> endpoint.</li>
 	 * <li>Whether each remote cluster is configured with
 	 * <code>skip_unavailable</code> as <code>true</code> or
 	 * <code>false</code>.</li>
@@ -3084,9 +3295,15 @@ public class ElasticsearchIndicesAsyncClient
 	 * start with the alias <code>cluster*</code>. Each cluster returns information
 	 * about whether it has any indices, aliases or data streams that match
 	 * <code>my-index-*</code>.
+	 * <h2>Note on backwards compatibility</h2>
 	 * <p>
-	 * <strong>Advantages of using this endpoint before a cross-cluster
-	 * search</strong>
+	 * The ability to query without an index expression was added in version 8.18,
+	 * so when querying remote clusters older than that, the local cluster will send
+	 * the index expression <code>dummy*</code> to those remote clusters. Thus, if
+	 * an errors occur, you may see a reference to that index expression even though
+	 * you didn't request it. If it causes a problem, you can instead include an
+	 * index expression like <code>*:*</code> to bypass the issue.
+	 * <h2>Advantages of using this endpoint before a cross-cluster search</h2>
 	 * <p>
 	 * You may want to exclude a cluster or index from a search when:
 	 * <ul>
@@ -3107,9 +3324,23 @@ public class ElasticsearchIndicesAsyncClient
 	 * <li>A remote cluster is an older version that does not support the feature
 	 * you want to use in your search.</li>
 	 * </ul>
-	 *
+	 * <h2>Test availability of remote clusters</h2>
+	 * <p>
+	 * The <code>remote/info</code> endpoint is commonly used to test whether the
+	 * &quot;local&quot; cluster (the cluster being queried) is connected to its
+	 * remote clusters, but it does not necessarily reflect whether the remote
+	 * cluster is available or not. The remote cluster may be available, while the
+	 * local cluster is not currently connected to it.
+	 * <p>
+	 * You can use the <code>_resolve/cluster</code> API to attempt to reconnect to
+	 * remote clusters. For example with <code>GET _resolve/cluster</code> or
+	 * <code>GET _resolve/cluster/*:*</code>. The <code>connected</code> field in
+	 * the response will indicate whether it was successful. If a connection was
+	 * (re-)established, this will also cause the <code>remote/info</code> endpoint
+	 * to now indicate a connected status.
+	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-resolve-cluster-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-resolve-cluster-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3121,9 +3352,12 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Resolve the cluster. Resolve the specified index expressions to return
-	 * information about each cluster, including the local cluster, if included.
-	 * Multiple patterns and remote clusters are supported.
+	 * Resolve the cluster.
+	 * <p>
+	 * Resolve the specified index expressions to return information about each
+	 * cluster, including the local &quot;querying&quot; cluster, if included. If no
+	 * index expression is provided, the API will return information about all the
+	 * remote clusters that are configured on the querying cluster.
 	 * <p>
 	 * This endpoint is useful before doing a cross-cluster search in order to
 	 * determine which remote clusters should be included in a search.
@@ -3135,7 +3369,9 @@ public class ElasticsearchIndicesAsyncClient
 	 * For each cluster in the index expression, information is returned about:
 	 * <ul>
 	 * <li>Whether the querying (&quot;local&quot;) cluster is currently connected
-	 * to each remote cluster in the index expression scope.</li>
+	 * to each remote cluster specified in the index expression. Note that this
+	 * endpoint actively attempts to contact the remote clusters, unlike the
+	 * <code>remote/info</code> endpoint.</li>
 	 * <li>Whether each remote cluster is configured with
 	 * <code>skip_unavailable</code> as <code>true</code> or
 	 * <code>false</code>.</li>
@@ -3154,9 +3390,15 @@ public class ElasticsearchIndicesAsyncClient
 	 * start with the alias <code>cluster*</code>. Each cluster returns information
 	 * about whether it has any indices, aliases or data streams that match
 	 * <code>my-index-*</code>.
+	 * <h2>Note on backwards compatibility</h2>
 	 * <p>
-	 * <strong>Advantages of using this endpoint before a cross-cluster
-	 * search</strong>
+	 * The ability to query without an index expression was added in version 8.18,
+	 * so when querying remote clusters older than that, the local cluster will send
+	 * the index expression <code>dummy*</code> to those remote clusters. Thus, if
+	 * an errors occur, you may see a reference to that index expression even though
+	 * you didn't request it. If it causes a problem, you can instead include an
+	 * index expression like <code>*:*</code> to bypass the issue.
+	 * <h2>Advantages of using this endpoint before a cross-cluster search</h2>
 	 * <p>
 	 * You may want to exclude a cluster or index from a search when:
 	 * <ul>
@@ -3177,18 +3419,125 @@ public class ElasticsearchIndicesAsyncClient
 	 * <li>A remote cluster is an older version that does not support the feature
 	 * you want to use in your search.</li>
 	 * </ul>
-	 *
+	 * <h2>Test availability of remote clusters</h2>
+	 * <p>
+	 * The <code>remote/info</code> endpoint is commonly used to test whether the
+	 * &quot;local&quot; cluster (the cluster being queried) is connected to its
+	 * remote clusters, but it does not necessarily reflect whether the remote
+	 * cluster is available or not. The remote cluster may be available, while the
+	 * local cluster is not currently connected to it.
+	 * <p>
+	 * You can use the <code>_resolve/cluster</code> API to attempt to reconnect to
+	 * remote clusters. For example with <code>GET _resolve/cluster</code> or
+	 * <code>GET _resolve/cluster/*:*</code>. The <code>connected</code> field in
+	 * the response will indicate whether it was successful. If a connection was
+	 * (re-)established, this will also cause the <code>remote/info</code> endpoint
+	 * to now indicate a connected status.
+	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveClusterRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-resolve-cluster-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-resolve-cluster-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ResolveClusterResponse> resolveCluster(
 			Function<ResolveClusterRequest.Builder, ObjectBuilder<ResolveClusterRequest>> fn) {
 		return resolveCluster(fn.apply(new ResolveClusterRequest.Builder()).build());
+	}
+
+	/**
+	 * Resolve the cluster.
+	 * <p>
+	 * Resolve the specified index expressions to return information about each
+	 * cluster, including the local &quot;querying&quot; cluster, if included. If no
+	 * index expression is provided, the API will return information about all the
+	 * remote clusters that are configured on the querying cluster.
+	 * <p>
+	 * This endpoint is useful before doing a cross-cluster search in order to
+	 * determine which remote clusters should be included in a search.
+	 * <p>
+	 * You use the same index expression with this endpoint as you would for
+	 * cross-cluster search. Index and cluster exclusions are also supported with
+	 * this endpoint.
+	 * <p>
+	 * For each cluster in the index expression, information is returned about:
+	 * <ul>
+	 * <li>Whether the querying (&quot;local&quot;) cluster is currently connected
+	 * to each remote cluster specified in the index expression. Note that this
+	 * endpoint actively attempts to contact the remote clusters, unlike the
+	 * <code>remote/info</code> endpoint.</li>
+	 * <li>Whether each remote cluster is configured with
+	 * <code>skip_unavailable</code> as <code>true</code> or
+	 * <code>false</code>.</li>
+	 * <li>Whether there are any indices, aliases, or data streams on that cluster
+	 * that match the index expression.</li>
+	 * <li>Whether the search is likely to have errors returned when you do the
+	 * cross-cluster search (including any authorization errors if you do not have
+	 * permission to query the index).</li>
+	 * <li>Cluster version information, including the Elasticsearch server
+	 * version.</li>
+	 * </ul>
+	 * <p>
+	 * For example,
+	 * <code>GET /_resolve/cluster/my-index-*,cluster*:my-index-*</code> returns
+	 * information about the local cluster and all remotely configured clusters that
+	 * start with the alias <code>cluster*</code>. Each cluster returns information
+	 * about whether it has any indices, aliases or data streams that match
+	 * <code>my-index-*</code>.
+	 * <h2>Note on backwards compatibility</h2>
+	 * <p>
+	 * The ability to query without an index expression was added in version 8.18,
+	 * so when querying remote clusters older than that, the local cluster will send
+	 * the index expression <code>dummy*</code> to those remote clusters. Thus, if
+	 * an errors occur, you may see a reference to that index expression even though
+	 * you didn't request it. If it causes a problem, you can instead include an
+	 * index expression like <code>*:*</code> to bypass the issue.
+	 * <h2>Advantages of using this endpoint before a cross-cluster search</h2>
+	 * <p>
+	 * You may want to exclude a cluster or index from a search when:
+	 * <ul>
+	 * <li>A remote cluster is not currently connected and is configured with
+	 * <code>skip_unavailable=false</code>. Running a cross-cluster search under
+	 * those conditions will cause the entire search to fail.</li>
+	 * <li>A cluster has no matching indices, aliases or data streams for the index
+	 * expression (or your user does not have permissions to search them). For
+	 * example, suppose your index expression is <code>logs*,remote1:logs*</code>
+	 * and the remote1 cluster has no indices, aliases or data streams that match
+	 * <code>logs*</code>. In that case, that cluster will return no results from
+	 * that cluster if you include it in a cross-cluster search.</li>
+	 * <li>The index expression (combined with any query parameters you specify)
+	 * will likely cause an exception to be thrown when you do the search. In these
+	 * cases, the &quot;error&quot; field in the <code>_resolve/cluster</code>
+	 * response will be present. (This is also where security/permission errors will
+	 * be shown.)</li>
+	 * <li>A remote cluster is an older version that does not support the feature
+	 * you want to use in your search.</li>
+	 * </ul>
+	 * <h2>Test availability of remote clusters</h2>
+	 * <p>
+	 * The <code>remote/info</code> endpoint is commonly used to test whether the
+	 * &quot;local&quot; cluster (the cluster being queried) is connected to its
+	 * remote clusters, but it does not necessarily reflect whether the remote
+	 * cluster is available or not. The remote cluster may be available, while the
+	 * local cluster is not currently connected to it.
+	 * <p>
+	 * You can use the <code>_resolve/cluster</code> API to attempt to reconnect to
+	 * remote clusters. For example with <code>GET _resolve/cluster</code> or
+	 * <code>GET _resolve/cluster/*:*</code>. The <code>connected</code> field in
+	 * the response will indicate whether it was successful. If a connection was
+	 * (re-)established, this will also cause the <code>remote/info</code> endpoint
+	 * to now indicate a connected status.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-resolve-cluster-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ResolveClusterResponse> resolveCluster() {
+		return this.transport.performRequestAsync(new ResolveClusterRequest.Builder().build(),
+				ResolveClusterRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.resolve_index
@@ -3199,7 +3548,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-resolve-index-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-resolve-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3219,7 +3568,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-resolve-index-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-resolve-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3284,7 +3633,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * 2099, the new index's name is <code>my-index-2099.05.07-000002</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-rollover-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3352,7 +3701,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RolloverRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-rollover-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-rollover-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3369,7 +3718,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-segments.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-segments.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3389,7 +3738,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-segments.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-segments.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3404,7 +3753,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-segments.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-segments.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3433,7 +3782,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-shards-stores.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-shards-stores.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3465,7 +3814,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardStoresRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-shards-stores.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-shards-stores.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3492,7 +3841,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-shards-stores.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-shards-stores.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3561,7 +3910,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-shrink-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3633,7 +3982,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-shrink-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-shrink-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3649,7 +3998,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index from an existing index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/{master}/indices-simulate-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3669,7 +4018,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/{master}/indices-simulate-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-simulate-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3685,7 +4034,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * by a particular index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-simulate-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3704,7 +4053,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-simulate-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3718,7 +4067,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * by a particular index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-simulate-template.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-simulate-template.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3795,7 +4144,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-split-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3875,7 +4224,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-split-index.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-split-index.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3904,7 +4253,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3936,7 +4285,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3963,7 +4312,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/indices-stats.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3979,7 +4328,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the normal recovery process and becomes writeable again.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/unfreeze-index-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/unfreeze-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3998,7 +4347,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UnfreezeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/unfreeze-index-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/unfreeze-index-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

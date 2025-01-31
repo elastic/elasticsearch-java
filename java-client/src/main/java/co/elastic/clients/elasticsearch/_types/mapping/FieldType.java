@@ -127,6 +127,8 @@ public enum FieldType implements JsonEnum {
 
 	ConstantKeyword("constant_keyword"),
 
+	CountedKeyword("counted_keyword"),
+
 	AggregateMetricDouble("aggregate_metric_double"),
 
 	DenseVector("dense_vector"),

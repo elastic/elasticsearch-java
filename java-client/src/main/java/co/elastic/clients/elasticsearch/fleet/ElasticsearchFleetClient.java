@@ -74,7 +74,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 * search will only be executed after provided checkpoint has been processed and
 	 * is visible for searches inside of Elasticsearch.
 	 * 
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/fleet-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> FleetSearchResponse<TDocument> search(FleetSearchRequest request,
@@ -95,7 +97,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FleetSearchRequest}
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/fleet-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> FleetSearchResponse<TDocument> search(
@@ -109,7 +113,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 * search will only be executed after provided checkpoint has been processed and
 	 * is visible for searches inside of Elasticsearch.
 	 * 
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/fleet-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> FleetSearchResponse<TDocument> search(FleetSearchRequest request, Type tDocumentType)
@@ -130,7 +136,9 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FleetSearchRequest}
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/fleet-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> FleetSearchResponse<TDocument> search(

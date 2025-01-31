@@ -100,7 +100,7 @@ public class ElasticsearchSimulateClient extends ApiClient<ElasticsearchTranspor
 	 * within this request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/simulate-ingest-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/simulate-ingest-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchSimulateClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link IngestRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/simulate-ingest-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/simulate-ingest-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -59,12 +59,14 @@ import javax.annotation.Nullable;
 // typedef: cat.aliases.Request
 
 /**
- * Get aliases. Retrieves the cluster’s index aliases, including filter and
- * routing information. The API does not return data stream aliases.
+ * Get aliases.
  * <p>
- * CAT APIs are only intended for human consumption using the command line or
- * the Kibana console. They are not intended for use by applications. For
- * application consumption, use the aliases API.
+ * Get the cluster's index aliases, including filter and routing information.
+ * This API does not return data stream aliases.
+ * <p>
+ * IMPORTANT: CAT APIs are only intended for human consumption using the command
+ * line or the Kibana console. They are not intended for use by applications.
+ * For application consumption, use the aliases API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.aliases.Request">API
  *      specification</a>
@@ -97,8 +99,10 @@ public class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * The type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. It supports comma-separated values, such as
+	 * <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -121,7 +125,10 @@ public class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. To indicated that the request should never timeout, you can set it to
+	 * <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -163,8 +170,10 @@ public class AliasesRequest extends CatRequestBase {
 		private List<String> name;
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * The type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. It supports comma-separated values, such as
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -176,8 +185,10 @@ public class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * The type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. It supports comma-separated values, such as
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -203,7 +214,10 @@ public class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. To indicated that the request should never timeout, you can set it to
+		 * <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -213,7 +227,10 @@ public class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. To indicated that the request should never timeout, you can set it to
+		 * <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

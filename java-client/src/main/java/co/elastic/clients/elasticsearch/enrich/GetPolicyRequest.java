@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,18 +65,32 @@ import javax.annotation.Nullable;
  */
 
 public class GetPolicyRequest extends RequestBase {
+	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetPolicyRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
 	public static GetPolicyRequest of(Function<Builder, ObjectBuilder<GetPolicyRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -99,7 +113,29 @@ public class GetPolicyRequest extends RequestBase {
 			implements
 				ObjectBuilder<GetPolicyRequest> {
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private List<String> name;
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Comma-separated list of enrich policy names used to limit the request. To
@@ -206,7 +242,11 @@ public class GetPolicyRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetPolicyResponse._DESERIALIZER);
 }

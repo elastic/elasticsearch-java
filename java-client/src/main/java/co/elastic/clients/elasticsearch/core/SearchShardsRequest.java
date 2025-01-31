@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -64,7 +65,11 @@ import javax.annotation.Nullable;
  * Get the indices and shards that a search request would be run against. This
  * information can be useful for working out issues or planning optimizations
  * with routing and shard preferences. When filtered aliases are used, the
- * filter is returned as part of the indices section.
+ * filter is returned as part of the <code>indices</code> section.
+ * <p>
+ * If the Elasticsearch security features are enabled, you must have the
+ * <code>view_index_metadata</code> or <code>manage</code> index privilege for
+ * the target data stream, index, or alias.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search_shards.Request">API
  *      specification</a>
@@ -85,6 +90,9 @@ public class SearchShardsRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String preference;
 
 	@Nullable
@@ -99,6 +107,7 @@ public class SearchShardsRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 
@@ -149,8 +158,9 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Returns the indices and shards that a search request would be executed
-	 * against.
+	 * A comma-separated list of data streams, indices, and aliases to search. It
+	 * supports wildcards (<code>*</code>). To search all data streams and indices,
+	 * omit this parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -170,7 +180,20 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. IT can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * The node or shard the operation should be performed on. It is random by
 	 * default.
 	 * <p>
 	 * API name: {@code preference}
@@ -181,7 +204,7 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -213,6 +236,9 @@ public class SearchShardsRequest extends RequestBase {
 
 		@Nullable
 		private Boolean local;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private String preference;
@@ -281,8 +307,9 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns the indices and shards that a search request would be executed
-		 * against.
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -294,8 +321,9 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Returns the indices and shards that a search request would be executed
-		 * against.
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * omit this parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -318,7 +346,32 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. IT can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. IT can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The node or shard the operation should be performed on. It is random by
 		 * default.
 		 * <p>
 		 * API name: {@code preference}
@@ -329,7 +382,7 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -416,6 +469,9 @@ public class SearchShardsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}

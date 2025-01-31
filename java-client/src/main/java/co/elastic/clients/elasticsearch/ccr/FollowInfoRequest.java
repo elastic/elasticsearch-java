@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,11 +70,15 @@ import javax.annotation.Nullable;
 public class FollowInfoRequest extends RequestBase {
 	private final List<String> index;
 
+	@Nullable
+	private final Time masterTimeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FollowInfoRequest(Builder builder) {
 
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.masterTimeout = builder.masterTimeout;
 
 	}
 
@@ -92,6 +96,16 @@ public class FollowInfoRequest extends RequestBase {
 		return this.index;
 	}
 
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -102,6 +116,9 @@ public class FollowInfoRequest extends RequestBase {
 			implements
 				ObjectBuilder<FollowInfoRequest> {
 		private List<String> index;
+
+		@Nullable
+		private Time masterTimeout;
 
 		/**
 		 * Required - A comma-separated list of index patterns; use <code>_all</code> to
@@ -127,6 +144,25 @@ public class FollowInfoRequest extends RequestBase {
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -198,7 +234,11 @@ public class FollowInfoRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, FollowInfoResponse._DESERIALIZER);
 }

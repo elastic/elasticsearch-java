@@ -64,14 +64,20 @@ import javax.annotation.Nullable;
  * APIs. Invalidated API keys fail authentication, but they can still be viewed
  * using the get API key information and query API key information APIs, for at
  * least the configured retention period, until they are automatically deleted.
- * The <code>manage_api_key</code> privilege allows deleting any API keys. The
- * <code>manage_own_api_key</code> only allows deleting API keys that are owned
- * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
- * an invalidation request must be issued in one of the three formats:
+ * <p>
+ * To use this API, you must have at least the <code>manage_security</code>,
+ * <code>manage_api_key</code>, or <code>manage_own_api_key</code> cluster
+ * privileges. The <code>manage_security</code> privilege allows deleting any
+ * API key, including both REST and cross cluster API keys. The
+ * <code>manage_api_key</code> privilege allows deleting any REST API key, but
+ * not cross cluster API keys. The <code>manage_own_api_key</code> only allows
+ * deleting REST API keys that are owned by the user. In addition, with the
+ * <code>manage_own_api_key</code> privilege, an invalidation request must be
+ * issued in one of the three formats:
  * <ul>
  * <li>Set the parameter <code>owner=true</code>.</li>
  * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
- * the user’s identity.</li>
+ * the user's identity.</li>
  * <li>Or, if the request is issued by an API key, that is to say an API key
  * invalidates itself, specify its ID in the <code>ids</code> field.</li>
  * </ul>
@@ -146,10 +152,14 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Can be used to query API keys owned by the currently authenticated user. The
+	 * Query API keys owned by the currently authenticated user. The
 	 * <code>realm_name</code> or <code>username</code> parameters cannot be
 	 * specified when this parameter is set to <code>true</code> as they are assumed
 	 * to be the currently authenticated ones.
+	 * <p>
+	 * NOTE: At least one of <code>ids</code>, <code>name</code>,
+	 * <code>username</code>, and <code>realm_name</code> must be specified if
+	 * <code>owner</code> is <code>false</code>.
 	 * <p>
 	 * API name: {@code owner}
 	 */
@@ -172,7 +182,7 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 
 	/**
 	 * The username of a user. This parameter cannot be used with either
-	 * <code>ids</code> or <code>name</code>, or when <code>owner</code> flag is set
+	 * <code>ids</code> or <code>name</code> or when <code>owner</code> flag is set
 	 * to <code>true</code>.
 	 * <p>
 	 * API name: {@code username}
@@ -304,10 +314,14 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Can be used to query API keys owned by the currently authenticated user. The
+		 * Query API keys owned by the currently authenticated user. The
 		 * <code>realm_name</code> or <code>username</code> parameters cannot be
 		 * specified when this parameter is set to <code>true</code> as they are assumed
 		 * to be the currently authenticated ones.
+		 * <p>
+		 * NOTE: At least one of <code>ids</code>, <code>name</code>,
+		 * <code>username</code>, and <code>realm_name</code> must be specified if
+		 * <code>owner</code> is <code>false</code>.
 		 * <p>
 		 * API name: {@code owner}
 		 */
@@ -330,7 +344,7 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * The username of a user. This parameter cannot be used with either
-		 * <code>ids</code> or <code>name</code>, or when <code>owner</code> flag is set
+		 * <code>ids</code> or <code>name</code> or when <code>owner</code> flag is set
 		 * to <code>true</code>.
 		 * <p>
 		 * API name: {@code username}

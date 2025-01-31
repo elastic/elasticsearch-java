@@ -56,13 +56,14 @@ import javax.annotation.Nullable;
 // typedef: cat.count.Request
 
 /**
- * Get a document count. Provides quick access to a document count for a data
- * stream, an index, or an entire cluster. The document count only includes live
- * documents, not deleted documents which have not yet been removed by the merge
- * process.
+ * Get a document count.
  * <p>
- * CAT APIs are only intended for human consumption using the command line or
- * Kibana console. They are not intended for use by applications. For
+ * Get quick access to a document count for a data stream, an index, or an
+ * entire cluster. The document count only includes live documents, not deleted
+ * documents which have not yet been removed by the merge process.
+ * <p>
+ * IMPORTANT: CAT APIs are only intended for human consumption using the command
+ * line or Kibana console. They are not intended for use by applications. For
  * application consumption, use the count API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.count.Request">API
@@ -85,9 +86,10 @@ public class CountRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and aliases used to limit the
-	 * request. Supports wildcards (<code>*</code>). To target all data streams and
-	 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
+	 * A comma-separated list of data streams, indices, and aliases used to limit
+	 * the request. It supports wildcards (<code>*</code>). To target all data
+	 * streams and indices, omit this parameter or use <code>*</code> or
+	 * <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -106,9 +108,10 @@ public class CountRequest extends CatRequestBase {
 		private List<String> index;
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases used to limit the
-		 * request. Supports wildcards (<code>*</code>). To target all data streams and
-		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
+		 * A comma-separated list of data streams, indices, and aliases used to limit
+		 * the request. It supports wildcards (<code>*</code>). To target all data
+		 * streams and indices, omit this parameter or use <code>*</code> or
+		 * <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -120,9 +123,10 @@ public class CountRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases used to limit the
-		 * request. Supports wildcards (<code>*</code>). To target all data streams and
-		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
+		 * A comma-separated list of data streams, indices, and aliases used to limit
+		 * the request. It supports wildcards (<code>*</code>). To target all data
+		 * streams and indices, omit this parameter or use <code>*</code> or
+		 * <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

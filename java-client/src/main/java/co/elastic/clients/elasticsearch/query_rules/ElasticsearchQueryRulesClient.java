@@ -74,7 +74,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * the create or update query rule API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-query-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-query-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -94,7 +94,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-query-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-query-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -110,7 +110,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * is a destructive action that is not recoverable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +130,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRulesetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/delete-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -146,7 +146,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * Get a query rule. Get details about a query rule within a query ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-query-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-query-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -164,7 +164,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-query-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-query-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -179,7 +179,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * Get a query ruleset. Get details about a query ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -197,7 +197,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRulesetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -212,7 +212,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-query-rulesets.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-query-rulesets.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -230,7 +230,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRulesetsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-query-rulesets.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-query-rulesets.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -244,7 +244,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * Get all query rulesets. Get summarized information about the query rulesets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/list-query-rulesets.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/list-query-rulesets.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -267,7 +267,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * documents are pinned in the order they are specified in the ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-query-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-query-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -293,7 +293,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-query-rule.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-query-rule.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -317,7 +317,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * 100 documents are pinned in the order they are specified in the ruleset.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -344,7 +344,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRulesetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -360,7 +360,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 * identify the rules that would match that criteria.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/test-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/test-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -379,7 +379,7 @@ public class ElasticsearchQueryRulesClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link TestRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/test-query-ruleset.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/test-query-ruleset.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

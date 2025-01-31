@@ -77,7 +77,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-delete-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-delete-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -100,7 +100,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-delete-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-delete-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -136,7 +136,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * make autoscaling decisions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -176,7 +176,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoscalingCapacityRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -210,7 +210,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * make autoscaling decisions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -229,7 +229,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +251,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-put-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-put-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -292,7 +292,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/autoscaling-put-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/autoscaling-put-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: indices.data_streams_stats.Request
 
 /**
- * Get data stream stats. Retrieves statistics for one or more data streams.
+ * Get data stream stats.
+ * <p>
+ * Get statistics for one or more data streams.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.data_streams_stats.Request">API

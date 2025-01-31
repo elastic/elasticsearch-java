@@ -66,7 +66,23 @@ import javax.annotation.Nullable;
 
 /**
  * Run multiple templated searches.
+ * <p>
+ * Run multiple templated searches with a single request. If you are providing a
+ * text file or text input to <code>curl</code>, use the
+ * <code>--data-binary</code> flag instead of <code>-d</code> to preserve
+ * newlines. For example:
  * 
+ * <pre>
+ * <code>$ cat requests
+ * { &quot;index&quot;: &quot;my-index&quot; }
+ * { &quot;id&quot;: &quot;my-search-template&quot;, &quot;params&quot;: { &quot;query_string&quot;: &quot;hello world&quot;, &quot;from&quot;: 0, &quot;size&quot;: 10 }}
+ * { &quot;index&quot;: &quot;my-other-index&quot; }
+ * { &quot;id&quot;: &quot;my-other-search-template&quot;, &quot;params&quot;: { &quot;query_type&quot;: &quot;match_all&quot; }}
+ *
+ * $ curl -H &quot;Content-Type: application/x-ndjson&quot; -XGET localhost:9200/_msearch/template --data-binary &quot;@requests&quot;; echo
+ * </code>
+ * </pre>
+ *
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.msearch_template.Request">API
  *      specification</a>
@@ -118,8 +134,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and aliases to search.
-	 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+	 * A comma-separated list of data streams, indices, and aliases to search. It
+	 * supports wildcards (<code>*</code>). To search all data streams and indices,
 	 * omit this parameter or use <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
@@ -129,7 +145,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * Maximum number of concurrent searches the API can run.
+	 * The maximum number of concurrent searches the API can run.
 	 * <p>
 	 * API name: {@code max_concurrent_searches}
 	 */
@@ -139,8 +155,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * The type of the search operation. Available options:
-	 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
+	 * The type of the search operation.
 	 * <p>
 	 * API name: {@code search_type}
 	 */
@@ -204,8 +219,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
 		 * omit this parameter or use <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
@@ -218,8 +233,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases to search.
-		 * Supports wildcards (<code>*</code>). To search all data streams and indices,
+		 * A comma-separated list of data streams, indices, and aliases to search. It
+		 * supports wildcards (<code>*</code>). To search all data streams and indices,
 		 * omit this parameter or use <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
@@ -232,7 +247,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * Maximum number of concurrent searches the API can run.
+		 * The maximum number of concurrent searches the API can run.
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
@@ -242,8 +257,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 
 		/**
-		 * The type of the search operation. Available options:
-		 * <code>query_then_fetch</code>, <code>dfs_query_then_fetch</code>.
+		 * The type of the search operation.
 		 * <p>
 		 * API name: {@code search_type}
 		 */

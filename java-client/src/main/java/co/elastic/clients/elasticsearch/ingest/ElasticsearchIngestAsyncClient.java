@@ -68,11 +68,12 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.delete_geoip_database
 
 	/**
-	 * Delete GeoIP database configurations. Delete one or more IP geolocation
-	 * database configurations.
+	 * Delete GeoIP database configurations.
+	 * <p>
+	 * Delete one or more IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-delete-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -84,14 +85,15 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Delete GeoIP database configurations. Delete one or more IP geolocation
-	 * database configurations.
+	 * Delete GeoIP database configurations.
+	 * <p>
+	 * Delete one or more IP geolocation database configurations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-delete-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -106,7 +108,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Delete IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -125,7 +127,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIpLocationDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -140,7 +142,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Delete pipelines. Delete one or more ingest pipelines.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -158,7 +160,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/delete-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -174,7 +176,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * used with the GeoIP processor.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/geoip-processor.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/geoip-processor.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GeoIpStatsResponse> geoIpStats() {
@@ -185,11 +187,12 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.get_geoip_database
 
 	/**
-	 * Get GeoIP database configurations. Get information about one or more IP
-	 * geolocation database configurations.
+	 * Get GeoIP database configurations.
+	 * <p>
+	 * Get information about one or more IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-get-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -201,14 +204,15 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Get GeoIP database configurations. Get information about one or more IP
-	 * geolocation database configurations.
+	 * Get GeoIP database configurations.
+	 * <p>
+	 * Get information about one or more IP geolocation database configurations.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-get-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -218,11 +222,12 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Get GeoIP database configurations. Get information about one or more IP
-	 * geolocation database configurations.
+	 * Get GeoIP database configurations.
+	 * <p>
+	 * Get information about one or more IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-get-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -237,7 +242,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Get IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -256,7 +261,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIpLocationDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -269,7 +274,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Get IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -281,11 +286,13 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.get_pipeline
 
 	/**
-	 * Get pipelines. Get information about one or more ingest pipelines. This API
-	 * returns a local reference of the pipeline.
+	 * Get pipelines.
+	 * <p>
+	 * Get information about one or more ingest pipelines. This API returns a local
+	 * reference of the pipeline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -297,14 +304,16 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Get pipelines. Get information about one or more ingest pipelines. This API
-	 * returns a local reference of the pipeline.
+	 * Get pipelines.
+	 * <p>
+	 * Get information about one or more ingest pipelines. This API returns a local
+	 * reference of the pipeline.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -314,11 +323,13 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Get pipelines. Get information about one or more ingest pipelines. This API
-	 * returns a local reference of the pipeline.
+	 * Get pipelines.
+	 * <p>
+	 * Get information about one or more ingest pipelines. This API returns a local
+	 * reference of the pipeline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -337,7 +348,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * reused.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/grok-processor.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/grok-processor.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ProcessorGrokResponse> processorGrok() {
@@ -348,11 +359,12 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.put_geoip_database
 
 	/**
-	 * Create or update a GeoIP database configuration. Refer to the create or
-	 * update IP geolocation database configuration API.
+	 * Create or update a GeoIP database configuration.
+	 * <p>
+	 * Refer to the create or update IP geolocation database configuration API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-put-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -364,14 +376,15 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Create or update a GeoIP database configuration. Refer to the create or
-	 * update IP geolocation database configuration API.
+	 * Create or update a GeoIP database configuration.
+	 * <p>
+	 * Refer to the create or update IP geolocation database configuration API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-geoip-database-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ingest-put-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -386,7 +399,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * Create or update an IP geolocation database configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -405,7 +418,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIpLocationDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-ip-location-database-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-ip-location-database-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -421,7 +434,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 * immediately.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/ingest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/ingest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -440,7 +453,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/ingest.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/ingest.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -452,13 +465,14 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	// ----- Endpoint: ingest.simulate
 
 	/**
-	 * Simulate a pipeline. Run an ingest pipeline against a set of provided
-	 * documents. You can either specify an existing pipeline to use with the
-	 * provided documents or supply a pipeline definition in the body of the
-	 * request.
+	 * Simulate a pipeline.
+	 * <p>
+	 * Run an ingest pipeline against a set of provided documents. You can either
+	 * specify an existing pipeline to use with the provided documents or supply a
+	 * pipeline definition in the body of the request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/simulate-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -470,16 +484,17 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
-	 * Simulate a pipeline. Run an ingest pipeline against a set of provided
-	 * documents. You can either specify an existing pipeline to use with the
-	 * provided documents or supply a pipeline definition in the body of the
-	 * request.
+	 * Simulate a pipeline.
+	 * <p>
+	 * Run an ingest pipeline against a set of provided documents. You can either
+	 * specify an existing pipeline to use with the provided documents or supply a
+	 * pipeline definition in the body of the request.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/simulate-pipeline-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -80,6 +80,9 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	private final String leaderIndex;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final Long maxOutstandingReadRequests;
 
 	@Nullable
@@ -124,6 +127,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		this.dataStreamName = builder.dataStreamName;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
+		this.masterTimeout = builder.masterTimeout;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -171,6 +175,16 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final String leaderIndex() {
 		return this.leaderIndex;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -413,6 +427,9 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		private String leaderIndex;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private Long maxOutstandingReadRequests;
 
 		@Nullable
@@ -479,6 +496,25 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		public final Builder leaderIndex(String value) {
 			this.leaderIndex = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -774,6 +810,9 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}

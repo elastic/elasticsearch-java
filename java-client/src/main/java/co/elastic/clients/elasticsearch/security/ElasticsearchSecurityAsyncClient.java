@@ -74,9 +74,29 @@ public class ElasticsearchSecurityAsyncClient
 	 * Activate a user profile.
 	 * <p>
 	 * Create or update a user profile on behalf of another user.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * The calling application must have either an <code>access_token</code> or a
+	 * combination of <code>username</code> and <code>password</code> for the user
+	 * that the profile document is intended for. Elastic reserves the right to
+	 * change or remove this feature in future releases without prior notice.
+	 * <p>
+	 * This API creates or updates a profile document for end users with information
+	 * that is extracted from the user's authentication object including
+	 * <code>username</code>, <code>full_name,</code> <code>roles</code>, and the
+	 * authentication realm. For example, in the JWT <code>access_token</code> case,
+	 * the profile user's <code>username</code> is extracted from the JWT token
+	 * claim pointed to by the <code>claims.principal</code> setting of the JWT
+	 * realm that authenticated the token.
+	 * <p>
+	 * When updating a profile document, the API enables the document if it was
+	 * disabled. Any updates do not change existing content for either the
+	 * <code>labels</code> or <code>data</code> fields.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-activate-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,12 +111,32 @@ public class ElasticsearchSecurityAsyncClient
 	 * Activate a user profile.
 	 * <p>
 	 * Create or update a user profile on behalf of another user.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * The calling application must have either an <code>access_token</code> or a
+	 * combination of <code>username</code> and <code>password</code> for the user
+	 * that the profile document is intended for. Elastic reserves the right to
+	 * change or remove this feature in future releases without prior notice.
+	 * <p>
+	 * This API creates or updates a profile document for end users with information
+	 * that is extracted from the user's authentication object including
+	 * <code>username</code>, <code>full_name,</code> <code>roles</code>, and the
+	 * authentication realm. For example, in the JWT <code>access_token</code> case,
+	 * the profile user's <code>username</code> is extracted from the JWT token
+	 * claim pointed to by the <code>claims.principal</code> setting of the JWT
+	 * realm that authenticated the token.
+	 * <p>
+	 * When updating a profile document, the API enables the document if it was
+	 * disabled. Any updates do not change existing content for either the
+	 * <code>labels</code> or <code>data</code> fields.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ActivateUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-activate-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -120,7 +160,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * returns a 401 status code.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<AuthenticateResponse> authenticate() {
@@ -138,7 +178,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * cannot delete roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-delete-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-bulk-delete-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -160,7 +200,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkDeleteRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-delete-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-bulk-delete-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -179,7 +219,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * API cannot update roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-put-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-bulk-put-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -201,7 +241,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkPutRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-bulk-put-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-bulk-put-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -241,7 +281,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * and did not require an update, and error details for any failed update.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-bulk-update-api-keys.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-bulk-update-api-keys.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -284,7 +324,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkUpdateApiKeysRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-bulk-update-api-keys.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-bulk-update-api-keys.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -301,7 +341,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Change the passwords of users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-change-password.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -321,7 +361,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ChangePasswordRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-change-password.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -336,7 +376,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Change the passwords of users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-change-password.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -354,7 +394,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * automatically cleared on state changes of the security index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-api-key-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -375,7 +415,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearApiKeyCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-api-key-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -394,7 +434,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * updated.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-privilege-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -417,7 +457,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-privilege-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -433,9 +473,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Evict users from the user cache. You can completely clear the cache or evict
 	 * specific users.
+	 * <p>
+	 * User credentials are cached in memory on each node to avoid connecting to a
+	 * remote authentication service or hitting the disk for every incoming request.
+	 * There are realm settings that you can use to configure the user cache. For
+	 * more information, refer to the documentation about controlling the user
+	 * cache.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -451,12 +497,18 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Evict users from the user cache. You can completely clear the cache or evict
 	 * specific users.
+	 * <p>
+	 * User credentials are cached in memory on each node to avoid connecting to a
+	 * remote authentication service or hitting the disk for every incoming request.
+	 * There are realm settings that you can use to configure the user cache. For
+	 * more information, refer to the documentation about controlling the user
+	 * cache.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedRealmsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -473,7 +525,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Evict roles from the native role cache.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-role-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -493,7 +545,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedRolesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-role-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -507,10 +559,19 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Clear service account token caches.
 	 * <p>
-	 * Evict a subset of all entries from the service account token caches.
+	 * Evict a subset of all entries from the service account token caches. Two
+	 * separate caches exist for service account tokens: one cache for tokens backed
+	 * by the <code>service_tokens</code> file, and another for tokens backed by the
+	 * <code>.security</code> index. This API clears matching entries from both
+	 * caches.
+	 * <p>
+	 * The cache for service account tokens backed by the <code>.security</code>
+	 * index is cleared automatically on state changes of the security index. The
+	 * cache for tokens backed by the <code>service_tokens</code> file is cleared
+	 * automatically on file changes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-service-token-caches.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -525,13 +586,22 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Clear service account token caches.
 	 * <p>
-	 * Evict a subset of all entries from the service account token caches.
+	 * Evict a subset of all entries from the service account token caches. Two
+	 * separate caches exist for service account tokens: one cache for tokens backed
+	 * by the <code>service_tokens</code> file, and another for tokens backed by the
+	 * <code>.security</code> index. This API clears matching entries from both
+	 * caches.
+	 * <p>
+	 * The cache for service account tokens backed by the <code>.security</code>
+	 * index is cleared automatically on state changes of the security index. The
+	 * cache for tokens backed by the <code>service_tokens</code> file is cleared
+	 * automatically on file changes.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedServiceTokensRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-clear-service-token-caches.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -545,14 +615,25 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Create an API key.
 	 * <p>
-	 * Create an API key for access without requiring basic authentication. A
-	 * successful request returns a JSON structure that contains the API key, its
+	 * Create an API key for access without requiring basic authentication.
+	 * <p>
+	 * IMPORTANT: If the credential that is used to authenticate this request is an
+	 * API key, the derived API key cannot have any privileges. If you specify
+	 * privileges, the API returns an error.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the API key, its
 	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds. NOTE: By default, API keys never
-	 * expire. You can specify expiration information when you create the API keys.
+	 * information for the API key in milliseconds.
+	 * <p>
+	 * NOTE: By default, API keys never expire. You can specify expiration
+	 * information when you create the API keys.
+	 * <p>
+	 * The API keys are created by the Elasticsearch API key service, which is
+	 * automatically enabled. To configure or turn off the API key service, refer to
+	 * API key service setting documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -566,17 +647,28 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Create an API key.
 	 * <p>
-	 * Create an API key for access without requiring basic authentication. A
-	 * successful request returns a JSON structure that contains the API key, its
+	 * Create an API key for access without requiring basic authentication.
+	 * <p>
+	 * IMPORTANT: If the credential that is used to authenticate this request is an
+	 * API key, the derived API key cannot have any privileges. If you specify
+	 * privileges, the API returns an error.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the API key, its
 	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds. NOTE: By default, API keys never
-	 * expire. You can specify expiration information when you create the API keys.
+	 * information for the API key in milliseconds.
+	 * <p>
+	 * NOTE: By default, API keys never expire. You can specify expiration
+	 * information when you create the API keys.
+	 * <p>
+	 * The API keys are created by the Elasticsearch API key service, which is
+	 * automatically enabled. To configure or turn off the API key service, refer to
+	 * API key service setting documentation.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -588,14 +680,25 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Create an API key.
 	 * <p>
-	 * Create an API key for access without requiring basic authentication. A
-	 * successful request returns a JSON structure that contains the API key, its
+	 * Create an API key for access without requiring basic authentication.
+	 * <p>
+	 * IMPORTANT: If the credential that is used to authenticate this request is an
+	 * API key, the derived API key cannot have any privileges. If you specify
+	 * privileges, the API returns an error.
+	 * <p>
+	 * A successful request returns a JSON structure that contains the API key, its
 	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds. NOTE: By default, API keys never
-	 * expire. You can specify expiration information when you create the API keys.
+	 * information for the API key in milliseconds.
+	 * <p>
+	 * NOTE: By default, API keys never expire. You can specify expiration
+	 * information when you create the API keys.
+	 * <p>
+	 * The API keys are created by the Elasticsearch API key service, which is
+	 * automatically enabled. To configure or turn off the API key service, refer to
+	 * API key service setting documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -636,7 +739,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * bulk update REST API keys API will result in an error.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-cross-cluster-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-cross-cluster-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -681,7 +784,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateCrossClusterApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-cross-cluster-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-cross-cluster-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -697,9 +800,12 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Create a service accounts token for access without requiring basic
 	 * authentication.
+	 * <p>
+	 * NOTE: Service account tokens never expire. You must actively delete them if
+	 * they are no longer needed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-service-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -715,12 +821,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Create a service accounts token for access without requiring basic
 	 * authentication.
+	 * <p>
+	 * NOTE: Service account tokens never expire. You must actively delete them if
+	 * they are no longer needed.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateServiceTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-create-service-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -732,14 +841,15 @@ public class ElasticsearchSecurityAsyncClient
 	// ----- Endpoint: security.delegate_pki
 
 	/**
-	 * Delegate PKI authentication. This API implements the exchange of an
-	 * X509Certificate chain for an Elasticsearch access token. The certificate
-	 * chain is validated, according to RFC 5280, by sequentially considering the
-	 * trust configuration of every installed PKI realm that has
-	 * <code>delegation.enabled</code> set to <code>true</code>. A successfully
-	 * trusted client certificate is also subject to the validation of the subject
-	 * distinguished name according to thw <code>username_pattern</code> of the
-	 * respective realm.
+	 * Delegate PKI authentication.
+	 * <p>
+	 * This API implements the exchange of an X509Certificate chain for an
+	 * Elasticsearch access token. The certificate chain is validated, according to
+	 * RFC 5280, by sequentially considering the trust configuration of every
+	 * installed PKI realm that has <code>delegation.enabled</code> set to
+	 * <code>true</code>. A successfully trusted client certificate is also subject
+	 * to the validation of the subject distinguished name according to thw
+	 * <code>username_pattern</code> of the respective realm.
 	 * <p>
 	 * This API is called by smart and trusted proxies, such as Kibana, which
 	 * terminate the user's TLS session but still want to authenticate the user by
@@ -752,7 +862,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * this API translates that authentication into an Elasticsearch access token.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-delegate-pki-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delegate-pki-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -764,14 +874,15 @@ public class ElasticsearchSecurityAsyncClient
 	}
 
 	/**
-	 * Delegate PKI authentication. This API implements the exchange of an
-	 * X509Certificate chain for an Elasticsearch access token. The certificate
-	 * chain is validated, according to RFC 5280, by sequentially considering the
-	 * trust configuration of every installed PKI realm that has
-	 * <code>delegation.enabled</code> set to <code>true</code>. A successfully
-	 * trusted client certificate is also subject to the validation of the subject
-	 * distinguished name according to thw <code>username_pattern</code> of the
-	 * respective realm.
+	 * Delegate PKI authentication.
+	 * <p>
+	 * This API implements the exchange of an X509Certificate chain for an
+	 * Elasticsearch access token. The certificate chain is validated, according to
+	 * RFC 5280, by sequentially considering the trust configuration of every
+	 * installed PKI realm that has <code>delegation.enabled</code> set to
+	 * <code>true</code>. A successfully trusted client certificate is also subject
+	 * to the validation of the subject distinguished name according to thw
+	 * <code>username_pattern</code> of the respective realm.
 	 * <p>
 	 * This API is called by smart and trusted proxies, such as Kibana, which
 	 * terminate the user's TLS session but still want to authenticate the user by
@@ -787,7 +898,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DelegatePkiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-delegate-pki-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delegate-pki-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -800,9 +911,17 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Delete application privileges.
-	 * 
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_security</code> cluster privilege (or a greater
+	 * privilege such as <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-privilege.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -815,12 +934,20 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Delete application privileges.
-	 * 
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_security</code> cluster privilege (or a greater
+	 * privilege such as <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-privilege.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -834,10 +961,12 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Delete roles.
 	 * <p>
-	 * Delete roles in the native realm.
+	 * Delete roles in the native realm. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The delete roles API cannot remove roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -851,13 +980,15 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Delete roles.
 	 * <p>
-	 * Delete roles in the native realm.
+	 * Delete roles in the native realm. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The delete roles API cannot remove roles that are defined in roles files.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -870,9 +1001,14 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Delete role mappings.
+	 * <p>
+	 * Role mappings define which roles are assigned to each user. The role mapping
+	 * APIs are generally the preferred way to manage role mappings rather than
+	 * using role mapping files. The delete role mappings API cannot remove role
+	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -885,12 +1021,17 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Delete role mappings.
+	 * <p>
+	 * Role mappings define which roles are assigned to each user. The role mapping
+	 * APIs are generally the preferred way to manage role mappings rather than
+	 * using role mapping files. The delete role mappings API cannot remove role
+	 * mappings that are defined in role mapping files.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -907,7 +1048,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Delete service account tokens for a service in a specified namespace.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-service-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -927,7 +1068,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteServiceTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-service-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -944,7 +1085,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Delete users from the native realm.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -964,7 +1105,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-delete-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -978,10 +1119,11 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Disable users.
 	 * <p>
-	 * Disable users in the native realm.
+	 * Disable users in the native realm. By default, when you create users, they
+	 * are enabled. You can use this API to revoke a user's access to Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-disable-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -995,13 +1137,14 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Disable users.
 	 * <p>
-	 * Disable users in the native realm.
+	 * Disable users in the native realm. By default, when you create users, they
+	 * are enabled. You can use this API to revoke a user's access to Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DisableUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-disable-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1016,9 +1159,20 @@ public class ElasticsearchSecurityAsyncClient
 	 * Disable a user profile.
 	 * <p>
 	 * Disable user profiles so that they are not visible in user profile searches.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
+	 * <p>
+	 * When you activate a user profile, its automatically enabled and visible in
+	 * user profile searches. You can use the disable user profile API to disable a
+	 * user profile so it’s not visible in these searches. To re-enable a disabled
+	 * user profile, use the enable user profile API .
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-disable-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1033,12 +1187,23 @@ public class ElasticsearchSecurityAsyncClient
 	 * Disable a user profile.
 	 * <p>
 	 * Disable user profiles so that they are not visible in user profile searches.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
+	 * <p>
+	 * When you activate a user profile, its automatically enabled and visible in
+	 * user profile searches. You can use the disable user profile API to disable a
+	 * user profile so it’s not visible in these searches. To re-enable a disabled
+	 * user profile, use the enable user profile API .
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DisableUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-disable-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1052,10 +1217,11 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Enable users.
 	 * <p>
-	 * Enable users in the native realm.
+	 * Enable users in the native realm. By default, when you create users, they are
+	 * enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-enable-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1069,13 +1235,14 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Enable users.
 	 * <p>
-	 * Enable users in the native realm.
+	 * Enable users in the native realm. By default, when you create users, they are
+	 * enabled.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link EnableUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-enable-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1090,9 +1257,19 @@ public class ElasticsearchSecurityAsyncClient
 	 * Enable a user profile.
 	 * <p>
 	 * Enable user profiles to make them visible in user profile searches.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
+	 * <p>
+	 * When you activate a user profile, it's automatically enabled and visible in
+	 * user profile searches. If you later disable the user profile, you can use the
+	 * enable user profile API to make the profile visible in these searches again.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-enable-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1107,12 +1284,22 @@ public class ElasticsearchSecurityAsyncClient
 	 * Enable a user profile.
 	 * <p>
 	 * Enable user profiles to make them visible in user profile searches.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
+	 * <p>
+	 * When you activate a user profile, it's automatically enabled and visible in
+	 * user profile searches. If you later disable the user profile, you can use the
+	 * enable user profile API to make the profile visible in these searches again.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link EnableUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-enable-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1128,9 +1315,13 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Enable a Kibana instance to configure itself for communication with a secured
 	 * Elasticsearch cluster.
+	 * <p>
+	 * NOTE: This API is currently intended for internal use only by Kibana. Kibana
+	 * uses this API internally to configure itself for communications with an
+	 * Elasticsearch cluster that already has security features enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-kibana-enrollment.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-kibana-enrollment.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<EnrollKibanaResponse> enrollKibana() {
@@ -1145,9 +1336,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Enroll a new node to allow it to join an existing cluster with security
 	 * features enabled.
+	 * <p>
+	 * The response contains all the necessary information for the joining node to
+	 * bootstrap discovery and security related settings so that it can successfully
+	 * join the cluster. The response contains key and certificate material that
+	 * allows the caller to generate valid signed certificates for the HTTP layer of
+	 * all nodes in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-node-enrollment.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-node-enrollment.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<EnrollNodeResponse> enrollNode() {
@@ -1168,7 +1365,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1193,7 +1390,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1213,7 +1410,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1231,7 +1428,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * this version of Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-builtin-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-builtin-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges() {
@@ -1243,9 +1440,17 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get application privileges.
-	 * 
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>read_security</code> cluster privilege (or a greater privilege
+	 * such as <code>manage_security</code> or <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1258,12 +1463,20 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get application privileges.
-	 * 
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>read_security</code> cluster privilege (or a greater privilege
+	 * such as <code>manage_security</code> or <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1274,9 +1487,17 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get application privileges.
-	 * 
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>read_security</code> cluster privilege (or a greater privilege
+	 * such as <code>manage_security</code> or <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1295,7 +1516,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1317,7 +1538,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1334,7 +1555,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1354,7 +1575,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1377,7 +1598,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1395,7 +1616,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1410,9 +1631,12 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get service accounts.
 	 * <p>
 	 * Get a list of service accounts that match the provided path parameters.
+	 * <p>
+	 * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
+	 * is available.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-service-accounts.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1427,12 +1651,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get service accounts.
 	 * <p>
 	 * Get a list of service accounts that match the provided path parameters.
+	 * <p>
+	 * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
+	 * is available.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetServiceAccountsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-service-accounts.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1445,9 +1672,12 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get service accounts.
 	 * <p>
 	 * Get a list of service accounts that match the provided path parameters.
+	 * <p>
+	 * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
+	 * is available.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-service-accounts.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1460,9 +1690,22 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get service account credentials.
+	 * <p>
+	 * To use this API, you must have at least the <code>read_security</code>
+	 * cluster privilege (or a greater privilege such as
+	 * <code>manage_service_account</code> or <code>manage_security</code>).
+	 * <p>
+	 * The response includes service account tokens that were created with the
+	 * create service account tokens API as well as file-backed tokens from all
+	 * nodes of the cluster.
+	 * <p>
+	 * NOTE: For tokens backed by the <code>service_tokens</code> file, the API
+	 * collects them from all nodes of the cluster. Tokens with the same name from
+	 * different nodes are assumed to be the same token and are only counted once
+	 * towards the total number of service tokens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-service-credentials.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1476,12 +1719,25 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get service account credentials.
+	 * <p>
+	 * To use this API, you must have at least the <code>read_security</code>
+	 * cluster privilege (or a greater privilege such as
+	 * <code>manage_service_account</code> or <code>manage_security</code>).
+	 * <p>
+	 * The response includes service account tokens that were created with the
+	 * create service account tokens API as well as file-backed tokens from all
+	 * nodes of the cluster.
+	 * <p>
+	 * NOTE: For tokens backed by the <code>service_tokens</code> file, the API
+	 * collects them from all nodes of the cluster. Tokens with the same name from
+	 * different nodes are assumed to be the same token and are only counted once
+	 * towards the total number of service tokens.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetServiceCredentialsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-service-credentials.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1490,15 +1746,105 @@ public class ElasticsearchSecurityAsyncClient
 		return getServiceCredentials(fn.apply(new GetServiceCredentialsRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: security.get_settings
+
+	/**
+	 * Get security index settings.
+	 * <p>
+	 * Get the user-configurable settings for the security internal index
+	 * (<code>.security</code> and associated indices). Only a subset of the index
+	 * settings — those that are user-configurable—will be shown. This includes:
+	 * <ul>
+	 * <li><code>index.auto_expand_replicas</code></li>
+	 * <li><code>index.number_of_replicas</code></li>
+	 * </ul>
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetSecuritySettingsResponse> getSettings(GetSecuritySettingsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSecuritySettingsRequest, GetSecuritySettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSecuritySettingsRequest, GetSecuritySettingsResponse, ErrorResponse>) GetSecuritySettingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get security index settings.
+	 * <p>
+	 * Get the user-configurable settings for the security internal index
+	 * (<code>.security</code> and associated indices). Only a subset of the index
+	 * settings — those that are user-configurable—will be shown. This includes:
+	 * <ul>
+	 * <li><code>index.auto_expand_replicas</code></li>
+	 * <li><code>index.number_of_replicas</code></li>
+	 * </ul>
+	 *
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSecuritySettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetSecuritySettingsResponse> getSettings(
+			Function<GetSecuritySettingsRequest.Builder, ObjectBuilder<GetSecuritySettingsRequest>> fn) {
+		return getSettings(fn.apply(new GetSecuritySettingsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get security index settings.
+	 * <p>
+	 * Get the user-configurable settings for the security internal index
+	 * (<code>.security</code> and associated indices). Only a subset of the index
+	 * settings — those that are user-configurable—will be shown. This includes:
+	 * <ul>
+	 * <li><code>index.auto_expand_replicas</code></li>
+	 * <li><code>index.number_of_replicas</code></li>
+	 * </ul>
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetSecuritySettingsResponse> getSettings() {
+		return this.transport.performRequestAsync(new GetSecuritySettingsRequest.Builder().build(),
+				GetSecuritySettingsRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: security.get_token
 
 	/**
 	 * Get a token.
 	 * <p>
-	 * Create a bearer token for access without requiring basic authentication.
+	 * Create a bearer token for access without requiring basic authentication. The
+	 * tokens are created by the Elasticsearch Token Service, which is automatically
+	 * enabled when you configure TLS on the HTTP interface. Alternatively, you can
+	 * explicitly enable the <code>xpack.security.authc.token.enabled</code>
+	 * setting. When you are running in production mode, a bootstrap check prevents
+	 * you from enabling the token service unless you also enable TLS on the HTTP
+	 * interface.
+	 * <p>
+	 * The get token API takes the same parameters as a typical OAuth 2.0 token API
+	 * except for the use of a JSON request body.
+	 * <p>
+	 * A successful get token API call returns a JSON structure that contains the
+	 * access token, the amount of time (seconds) that the token expires in, the
+	 * type, and the scope if available.
+	 * <p>
+	 * The tokens returned by the get token API have a finite period of time for
+	 * which they are valid and after that time period, they can no longer be used.
+	 * That time period is defined by the
+	 * <code>xpack.security.authc.token.timeout</code> setting. If you want to
+	 * invalidate a token immediately, you can do so by using the invalidate token
+	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1512,13 +1858,33 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Get a token.
 	 * <p>
-	 * Create a bearer token for access without requiring basic authentication.
+	 * Create a bearer token for access without requiring basic authentication. The
+	 * tokens are created by the Elasticsearch Token Service, which is automatically
+	 * enabled when you configure TLS on the HTTP interface. Alternatively, you can
+	 * explicitly enable the <code>xpack.security.authc.token.enabled</code>
+	 * setting. When you are running in production mode, a bootstrap check prevents
+	 * you from enabling the token service unless you also enable TLS on the HTTP
+	 * interface.
+	 * <p>
+	 * The get token API takes the same parameters as a typical OAuth 2.0 token API
+	 * except for the use of a JSON request body.
+	 * <p>
+	 * A successful get token API call returns a JSON structure that contains the
+	 * access token, the amount of time (seconds) that the token expires in, the
+	 * type, and the scope if available.
+	 * <p>
+	 * The tokens returned by the get token API have a finite period of time for
+	 * which they are valid and after that time period, they can no longer be used.
+	 * That time period is defined by the
+	 * <code>xpack.security.authc.token.timeout</code> setting. If you want to
+	 * invalidate a token immediately, you can do so by using the invalidate token
+	 * API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1530,10 +1896,30 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Get a token.
 	 * <p>
-	 * Create a bearer token for access without requiring basic authentication.
+	 * Create a bearer token for access without requiring basic authentication. The
+	 * tokens are created by the Elasticsearch Token Service, which is automatically
+	 * enabled when you configure TLS on the HTTP interface. Alternatively, you can
+	 * explicitly enable the <code>xpack.security.authc.token.enabled</code>
+	 * setting. When you are running in production mode, a bootstrap check prevents
+	 * you from enabling the token service unless you also enable TLS on the HTTP
+	 * interface.
+	 * <p>
+	 * The get token API takes the same parameters as a typical OAuth 2.0 token API
+	 * except for the use of a JSON request body.
+	 * <p>
+	 * A successful get token API call returns a JSON structure that contains the
+	 * access token, the amount of time (seconds) that the token expires in, the
+	 * type, and the scope if available.
+	 * <p>
+	 * The tokens returned by the get token API have a finite period of time for
+	 * which they are valid and after that time period, they can no longer be used.
+	 * That time period is defined by the
+	 * <code>xpack.security.authc.token.timeout</code> setting. If you want to
+	 * invalidate a token immediately, you can do so by using the invalidate token
+	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1550,7 +1936,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get information about users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1570,7 +1956,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1585,7 +1971,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get information about users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1598,9 +1984,14 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get user privileges.
+	 * <p>
+	 * Get the security privileges for the logged in user. All users can use this
+	 * API, but only to determine their own privileges. To check the privileges of
+	 * other users, you must use the run as feature. To check whether a user has a
+	 * specific list of privileges, use the has privileges API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1613,12 +2004,17 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get user privileges.
+	 * <p>
+	 * Get the security privileges for the logged in user. All users can use this
+	 * API, but only to determine their own privileges. To check the privileges of
+	 * other users, you must use the run as feature. To check whether a user has a
+	 * specific list of privileges, use the has privileges API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1629,9 +2025,14 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Get user privileges.
+	 * <p>
+	 * Get the security privileges for the logged in user. All users can use this
+	 * API, but only to determine their own privileges. To check the privileges of
+	 * other users, you must use the run as feature. To check whether a user has a
+	 * specific list of privileges, use the has privileges API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1646,9 +2047,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get a user profile.
 	 * <p>
 	 * Get a user's profile using the unique profile ID.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1663,12 +2070,18 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get a user profile.
 	 * <p>
 	 * Get a user's profile using the unique profile ID.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1685,16 +2098,23 @@ public class ElasticsearchSecurityAsyncClient
 	 * Create an API key on behalf of another user. This API is similar to the
 	 * create API keys API, however it creates the API key for a user that is
 	 * different than the user that runs the API. The caller must have
-	 * authentication credentials (either an access token, or a username and
-	 * password) for the user on whose behalf the API key will be created. It is not
-	 * possible to use this API to create an API key without that user’s
-	 * credentials. The user, for whom the authentication credentials is provided,
-	 * can optionally &quot;run as&quot; (impersonate) another user. In this case,
-	 * the API key will be created on behalf of the impersonated user.
+	 * authentication credentials for the user on whose behalf the API key will be
+	 * created. It is not possible to use this API to create an API key without that
+	 * user's credentials. The supported user authentication credential types are:
+	 * <ul>
+	 * <li>username and password</li>
+	 * <li>Elasticsearch access tokens</li>
+	 * <li>JWTs</li>
+	 * </ul>
+	 * <p>
+	 * The user, for whom the authentication credentials is provided, can optionally
+	 * &quot;run as&quot; (impersonate) another user. In this case, the API key will
+	 * be created on behalf of the impersonated user.
 	 * <p>
 	 * This API is intended be used by applications that need to create and manage
 	 * API keys for end users, but cannot guarantee that those users have permission
-	 * to create API keys on their own behalf.
+	 * to create API keys on their own behalf. The API keys are created by the
+	 * Elasticsearch API key service, which is automatically enabled.
 	 * <p>
 	 * A successful grant API key API call returns a JSON structure that contains
 	 * the API key, its unique id, and its name. If applicable, it also returns
@@ -1704,7 +2124,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * when you create the API keys.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-grant-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1721,16 +2141,23 @@ public class ElasticsearchSecurityAsyncClient
 	 * Create an API key on behalf of another user. This API is similar to the
 	 * create API keys API, however it creates the API key for a user that is
 	 * different than the user that runs the API. The caller must have
-	 * authentication credentials (either an access token, or a username and
-	 * password) for the user on whose behalf the API key will be created. It is not
-	 * possible to use this API to create an API key without that user’s
-	 * credentials. The user, for whom the authentication credentials is provided,
-	 * can optionally &quot;run as&quot; (impersonate) another user. In this case,
-	 * the API key will be created on behalf of the impersonated user.
+	 * authentication credentials for the user on whose behalf the API key will be
+	 * created. It is not possible to use this API to create an API key without that
+	 * user's credentials. The supported user authentication credential types are:
+	 * <ul>
+	 * <li>username and password</li>
+	 * <li>Elasticsearch access tokens</li>
+	 * <li>JWTs</li>
+	 * </ul>
+	 * <p>
+	 * The user, for whom the authentication credentials is provided, can optionally
+	 * &quot;run as&quot; (impersonate) another user. In this case, the API key will
+	 * be created on behalf of the impersonated user.
 	 * <p>
 	 * This API is intended be used by applications that need to create and manage
 	 * API keys for end users, but cannot guarantee that those users have permission
-	 * to create API keys on their own behalf.
+	 * to create API keys on their own behalf. The API keys are created by the
+	 * Elasticsearch API key service, which is automatically enabled.
 	 * <p>
 	 * A successful grant API key API call returns a JSON structure that contains
 	 * the API key, its unique id, and its name. If applicable, it also returns
@@ -1743,7 +2170,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GrantApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-grant-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1757,10 +2184,12 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Check user privileges.
 	 * <p>
-	 * Determine whether the specified user has a specified list of privileges.
+	 * Determine whether the specified user has a specified list of privileges. All
+	 * users can use this API, but only to determine their own privileges. To check
+	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-has-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1774,13 +2203,15 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Check user privileges.
 	 * <p>
-	 * Determine whether the specified user has a specified list of privileges.
+	 * Determine whether the specified user has a specified list of privileges. All
+	 * users can use this API, but only to determine their own privileges. To check
+	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HasPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-has-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1792,10 +2223,12 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Check user privileges.
 	 * <p>
-	 * Determine whether the specified user has a specified list of privileges.
+	 * Determine whether the specified user has a specified list of privileges. All
+	 * users can use this API, but only to determine their own privileges. To check
+	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-has-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1811,9 +2244,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Determine whether the users associated with the specified user profile IDs
 	 * have all the requested privileges.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-has-privileges-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1830,12 +2269,18 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Determine whether the users associated with the specified user profile IDs
 	 * have all the requested privileges.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HasPrivilegesUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-has-privileges-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1853,20 +2298,26 @@ public class ElasticsearchSecurityAsyncClient
 	 * APIs. Invalidated API keys fail authentication, but they can still be viewed
 	 * using the get API key information and query API key information APIs, for at
 	 * least the configured retention period, until they are automatically deleted.
-	 * The <code>manage_api_key</code> privilege allows deleting any API keys. The
-	 * <code>manage_own_api_key</code> only allows deleting API keys that are owned
-	 * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
-	 * an invalidation request must be issued in one of the three formats:
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_security</code>,
+	 * <code>manage_api_key</code>, or <code>manage_own_api_key</code> cluster
+	 * privileges. The <code>manage_security</code> privilege allows deleting any
+	 * API key, including both REST and cross cluster API keys. The
+	 * <code>manage_api_key</code> privilege allows deleting any REST API key, but
+	 * not cross cluster API keys. The <code>manage_own_api_key</code> only allows
+	 * deleting REST API keys that are owned by the user. In addition, with the
+	 * <code>manage_own_api_key</code> privilege, an invalidation request must be
+	 * issued in one of the three formats:
 	 * <ul>
 	 * <li>Set the parameter <code>owner=true</code>.</li>
 	 * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
-	 * the user’s identity.</li>
+	 * the user's identity.</li>
 	 * <li>Or, if the request is issued by an API key, that is to say an API key
 	 * invalidates itself, specify its ID in the <code>ids</code> field.</li>
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-invalidate-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1884,14 +2335,20 @@ public class ElasticsearchSecurityAsyncClient
 	 * APIs. Invalidated API keys fail authentication, but they can still be viewed
 	 * using the get API key information and query API key information APIs, for at
 	 * least the configured retention period, until they are automatically deleted.
-	 * The <code>manage_api_key</code> privilege allows deleting any API keys. The
-	 * <code>manage_own_api_key</code> only allows deleting API keys that are owned
-	 * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
-	 * an invalidation request must be issued in one of the three formats:
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_security</code>,
+	 * <code>manage_api_key</code>, or <code>manage_own_api_key</code> cluster
+	 * privileges. The <code>manage_security</code> privilege allows deleting any
+	 * API key, including both REST and cross cluster API keys. The
+	 * <code>manage_api_key</code> privilege allows deleting any REST API key, but
+	 * not cross cluster API keys. The <code>manage_own_api_key</code> only allows
+	 * deleting REST API keys that are owned by the user. In addition, with the
+	 * <code>manage_own_api_key</code> privilege, an invalidation request must be
+	 * issued in one of the three formats:
 	 * <ul>
 	 * <li>Set the parameter <code>owner=true</code>.</li>
 	 * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
-	 * the user’s identity.</li>
+	 * the user's identity.</li>
 	 * <li>Or, if the request is issued by an API key, that is to say an API key
 	 * invalidates itself, specify its ID in the <code>ids</code> field.</li>
 	 * </ul>
@@ -1900,7 +2357,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link InvalidateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-invalidate-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1916,20 +2373,26 @@ public class ElasticsearchSecurityAsyncClient
 	 * APIs. Invalidated API keys fail authentication, but they can still be viewed
 	 * using the get API key information and query API key information APIs, for at
 	 * least the configured retention period, until they are automatically deleted.
-	 * The <code>manage_api_key</code> privilege allows deleting any API keys. The
-	 * <code>manage_own_api_key</code> only allows deleting API keys that are owned
-	 * by the user. In addition, with the <code>manage_own_api_key</code> privilege,
-	 * an invalidation request must be issued in one of the three formats:
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_security</code>,
+	 * <code>manage_api_key</code>, or <code>manage_own_api_key</code> cluster
+	 * privileges. The <code>manage_security</code> privilege allows deleting any
+	 * API key, including both REST and cross cluster API keys. The
+	 * <code>manage_api_key</code> privilege allows deleting any REST API key, but
+	 * not cross cluster API keys. The <code>manage_own_api_key</code> only allows
+	 * deleting REST API keys that are owned by the user. In addition, with the
+	 * <code>manage_own_api_key</code> privilege, an invalidation request must be
+	 * issued in one of the three formats:
 	 * <ul>
 	 * <li>Set the parameter <code>owner=true</code>.</li>
 	 * <li>Or, set both <code>username</code> and <code>realm_name</code> to match
-	 * the user’s identity.</li>
+	 * the user's identity.</li>
 	 * <li>Or, if the request is issued by an API key, that is to say an API key
 	 * invalidates itself, specify its ID in the <code>ids</code> field.</li>
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-invalidate-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1951,9 +2414,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * The refresh tokens returned by the get token API are only valid for 24 hours.
 	 * They can also be used exactly once. If you want to invalidate one or more
 	 * access or refresh tokens immediately, use this invalidate token API.
+	 * <p>
+	 * NOTE: While all parameters are optional, at least one of them is required.
+	 * More specifically, either one of <code>token</code> or
+	 * <code>refresh_token</code> parameters is required. If none of these two are
+	 * specified, then <code>realm_name</code> and/or <code>username</code> need to
+	 * be specified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-invalidate-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1975,12 +2444,18 @@ public class ElasticsearchSecurityAsyncClient
 	 * The refresh tokens returned by the get token API are only valid for 24 hours.
 	 * They can also be used exactly once. If you want to invalidate one or more
 	 * access or refresh tokens immediately, use this invalidate token API.
+	 * <p>
+	 * NOTE: While all parameters are optional, at least one of them is required.
+	 * More specifically, either one of <code>token</code> or
+	 * <code>refresh_token</code> parameters is required. If none of these two are
+	 * specified, then <code>realm_name</code> and/or <code>username</code> need to
+	 * be specified.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link InvalidateTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-invalidate-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2000,9 +2475,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * The refresh tokens returned by the get token API are only valid for 24 hours.
 	 * They can also be used exactly once. If you want to invalidate one or more
 	 * access or refresh tokens immediately, use this invalidate token API.
+	 * <p>
+	 * NOTE: While all parameters are optional, at least one of them is required.
+	 * More specifically, either one of <code>token</code> or
+	 * <code>refresh_token</code> parameters is required. If none of these two are
+	 * specified, then <code>realm_name</code> and/or <code>username</code> need to
+	 * be specified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-invalidate-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2014,9 +2495,11 @@ public class ElasticsearchSecurityAsyncClient
 	// ----- Endpoint: security.oidc_authenticate
 
 	/**
-	 * Authenticate OpenID Connect. Exchange an OpenID Connect authentication
-	 * response message for an Elasticsearch internal access token and refresh token
-	 * that can be subsequently used for authentication.
+	 * Authenticate OpenID Connect.
+	 * <p>
+	 * Exchange an OpenID Connect authentication response message for an
+	 * Elasticsearch internal access token and refresh token that can be
+	 * subsequently used for authentication.
 	 * <p>
 	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
 	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
@@ -2024,7 +2507,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-authenticate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2036,9 +2519,11 @@ public class ElasticsearchSecurityAsyncClient
 	}
 
 	/**
-	 * Authenticate OpenID Connect. Exchange an OpenID Connect authentication
-	 * response message for an Elasticsearch internal access token and refresh token
-	 * that can be subsequently used for authentication.
+	 * Authenticate OpenID Connect.
+	 * <p>
+	 * Exchange an OpenID Connect authentication response message for an
+	 * Elasticsearch internal access token and refresh token that can be
+	 * subsequently used for authentication.
 	 * <p>
 	 * Elasticsearch exposes all the necessary OpenID Connect related functionality
 	 * with the OpenID Connect APIs. These APIs are used internally by Kibana in
@@ -2049,7 +2534,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcAuthenticateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-authenticate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2061,9 +2546,10 @@ public class ElasticsearchSecurityAsyncClient
 	// ----- Endpoint: security.oidc_logout
 
 	/**
-	 * Logout of OpenID Connect. Invalidate an access token and a refresh token that
-	 * were generated as a response to the <code>/_security/oidc/authenticate</code>
-	 * API.
+	 * Logout of OpenID Connect.
+	 * <p>
+	 * Invalidate an access token and a refresh token that were generated as a
+	 * response to the <code>/_security/oidc/authenticate</code> API.
 	 * <p>
 	 * If the OpenID Connect authentication realm in Elasticsearch is accordingly
 	 * configured, the response to this call will contain a URI pointing to the end
@@ -2076,7 +2562,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-logout.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-logout.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2088,9 +2574,10 @@ public class ElasticsearchSecurityAsyncClient
 	}
 
 	/**
-	 * Logout of OpenID Connect. Invalidate an access token and a refresh token that
-	 * were generated as a response to the <code>/_security/oidc/authenticate</code>
-	 * API.
+	 * Logout of OpenID Connect.
+	 * <p>
+	 * Invalidate an access token and a refresh token that were generated as a
+	 * response to the <code>/_security/oidc/authenticate</code> API.
 	 * <p>
 	 * If the OpenID Connect authentication realm in Elasticsearch is accordingly
 	 * configured, the response to this call will contain a URI pointing to the end
@@ -2106,7 +2593,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-logout.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-logout.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2118,9 +2605,10 @@ public class ElasticsearchSecurityAsyncClient
 	// ----- Endpoint: security.oidc_prepare_authentication
 
 	/**
-	 * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
-	 * request as a URL string based on the configuration of the OpenID Connect
-	 * authentication realm in Elasticsearch.
+	 * Prepare OpenID connect authentication.
+	 * <p>
+	 * Create an oAuth 2.0 authentication request as a URL string based on the
+	 * configuration of the OpenID Connect authentication realm in Elasticsearch.
 	 * <p>
 	 * The response of this API is a URL pointing to the Authorization Endpoint of
 	 * the configured OpenID Connect Provider, which can be used to redirect the
@@ -2132,7 +2620,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-prepare-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-prepare-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2145,9 +2633,10 @@ public class ElasticsearchSecurityAsyncClient
 	}
 
 	/**
-	 * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
-	 * request as a URL string based on the configuration of the OpenID Connect
-	 * authentication realm in Elasticsearch.
+	 * Prepare OpenID connect authentication.
+	 * <p>
+	 * Create an oAuth 2.0 authentication request as a URL string based on the
+	 * configuration of the OpenID Connect authentication realm in Elasticsearch.
 	 * <p>
 	 * The response of this API is a URL pointing to the Authorization Endpoint of
 	 * the configured OpenID Connect Provider, which can be used to redirect the
@@ -2162,7 +2651,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcPrepareAuthenticationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-prepare-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-prepare-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2172,9 +2661,10 @@ public class ElasticsearchSecurityAsyncClient
 	}
 
 	/**
-	 * Prepare OpenID connect authentication. Create an oAuth 2.0 authentication
-	 * request as a URL string based on the configuration of the OpenID Connect
-	 * authentication realm in Elasticsearch.
+	 * Prepare OpenID connect authentication.
+	 * <p>
+	 * Create an oAuth 2.0 authentication request as a URL string based on the
+	 * configuration of the OpenID Connect authentication realm in Elasticsearch.
 	 * <p>
 	 * The response of this API is a URL pointing to the Authorization Endpoint of
 	 * the configured OpenID Connect Provider, which can be used to redirect the
@@ -2186,7 +2676,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-oidc-prepare-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-oidc-prepare-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2199,9 +2689,40 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Create or update application privileges.
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_security</code> cluster privilege (or a greater
+	 * privilege such as <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 * <p>
+	 * Application names are formed from a prefix, with an optional suffix that
+	 * conform to the following rules:
+	 * <ul>
+	 * <li>The prefix must begin with a lowercase ASCII letter.</li>
+	 * <li>The prefix must contain only ASCII letters or digits.</li>
+	 * <li>The prefix must be at least 3 characters long.</li>
+	 * <li>If the suffix exists, it must begin with either a dash <code>-</code> or
+	 * <code>_</code>.</li>
+	 * <li>The suffix cannot contain any of the following characters:
+	 * <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>,
+	 * <code>&quot;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>,
+	 * <code>,</code>, <code>*</code>.</li>
+	 * <li>No part of the name can contain whitespace.</li>
+	 * </ul>
+	 * <p>
+	 * Privilege names must begin with a lowercase ASCII letter and must contain
+	 * only ASCII letters and digits along with the characters <code>_</code>,
+	 * <code>-</code>, and <code>.</code>.
+	 * <p>
+	 * Action names can contain any number of printable ASCII characters and must
+	 * contain at least one of the following characters: <code>/</code>,
+	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2214,12 +2735,43 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Create or update application privileges.
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_security</code> cluster privilege (or a greater
+	 * privilege such as <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 * <p>
+	 * Application names are formed from a prefix, with an optional suffix that
+	 * conform to the following rules:
+	 * <ul>
+	 * <li>The prefix must begin with a lowercase ASCII letter.</li>
+	 * <li>The prefix must contain only ASCII letters or digits.</li>
+	 * <li>The prefix must be at least 3 characters long.</li>
+	 * <li>If the suffix exists, it must begin with either a dash <code>-</code> or
+	 * <code>_</code>.</li>
+	 * <li>The suffix cannot contain any of the following characters:
+	 * <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>,
+	 * <code>&quot;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>,
+	 * <code>,</code>, <code>*</code>.</li>
+	 * <li>No part of the name can contain whitespace.</li>
+	 * </ul>
+	 * <p>
+	 * Privilege names must begin with a lowercase ASCII letter and must contain
+	 * only ASCII letters and digits along with the characters <code>_</code>,
+	 * <code>-</code>, and <code>.</code>.
+	 * <p>
+	 * Action names can contain any number of printable ASCII characters and must
+	 * contain at least one of the following characters: <code>/</code>,
+	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2230,9 +2782,40 @@ public class ElasticsearchSecurityAsyncClient
 
 	/**
 	 * Create or update application privileges.
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_security</code> cluster privilege (or a greater
+	 * privilege such as <code>all</code>).</li>
+	 * <li>The &quot;Manage Application Privileges&quot; global privilege for the
+	 * application being referenced in the request.</li>
+	 * </ul>
+	 * <p>
+	 * Application names are formed from a prefix, with an optional suffix that
+	 * conform to the following rules:
+	 * <ul>
+	 * <li>The prefix must begin with a lowercase ASCII letter.</li>
+	 * <li>The prefix must contain only ASCII letters or digits.</li>
+	 * <li>The prefix must be at least 3 characters long.</li>
+	 * <li>If the suffix exists, it must begin with either a dash <code>-</code> or
+	 * <code>_</code>.</li>
+	 * <li>The suffix cannot contain any of the following characters:
+	 * <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>,
+	 * <code>&quot;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>,
+	 * <code>,</code>, <code>*</code>.</li>
+	 * <li>No part of the name can contain whitespace.</li>
+	 * </ul>
+	 * <p>
+	 * Privilege names must begin with a lowercase ASCII letter and must contain
+	 * only ASCII letters and digits along with the characters <code>_</code>,
+	 * <code>-</code>, and <code>.</code>.
+	 * <p>
+	 * Action names can contain any number of printable ASCII characters and must
+	 * contain at least one of the following characters: <code>/</code>,
+	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2252,7 +2835,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * File-based role management is not available in Elastic Serverless.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2275,7 +2858,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2296,11 +2879,38 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings API cannot update role mappings that are defined in role mapping
 	 * files.
 	 * <p>
-	 * This API does not create roles. Rather, it maps users to existing roles.
-	 * Roles can be created by using the create or update roles API or roles files.
+	 * NOTE: This API does not create roles. Rather, it maps users to existing
+	 * roles. Roles can be created by using the create or update roles API or roles
+	 * files.
+	 * <p>
+	 * <strong>Role templates</strong>
+	 * <p>
+	 * The most common use for role mappings is to create a mapping from a known
+	 * value on the user to a fixed role name. For example, all users in the
+	 * <code>cn=admin,dc=example,dc=com</code> LDAP group should be given the
+	 * superuser role in Elasticsearch. The <code>roles</code> field is used for
+	 * this purpose.
+	 * <p>
+	 * For more complex needs, it is possible to use Mustache templates to
+	 * dynamically determine the names of the roles that should be granted to the
+	 * user. The <code>role_templates</code> field is used for this purpose.
+	 * <p>
+	 * NOTE: To use role templates successfully, the relevant scripting feature must
+	 * be enabled. Otherwise, all attempts to create a role mapping with role
+	 * templates fail.
+	 * <p>
+	 * All of the user fields that are available in the role mapping rules are also
+	 * available in the role templates. Thus it is possible to assign a user to a
+	 * role that reflects their username, their groups, or the name of the realm to
+	 * which they authenticated.
+	 * <p>
+	 * By default a template is evaluated to produce a single string that is the
+	 * name of the role which should be assigned to the user. If the format of the
+	 * template is set to &quot;json&quot; then the template is expected to produce
+	 * a JSON string or an array of JSON strings for the role names.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2321,14 +2931,41 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings API cannot update role mappings that are defined in role mapping
 	 * files.
 	 * <p>
-	 * This API does not create roles. Rather, it maps users to existing roles.
-	 * Roles can be created by using the create or update roles API or roles files.
+	 * NOTE: This API does not create roles. Rather, it maps users to existing
+	 * roles. Roles can be created by using the create or update roles API or roles
+	 * files.
+	 * <p>
+	 * <strong>Role templates</strong>
+	 * <p>
+	 * The most common use for role mappings is to create a mapping from a known
+	 * value on the user to a fixed role name. For example, all users in the
+	 * <code>cn=admin,dc=example,dc=com</code> LDAP group should be given the
+	 * superuser role in Elasticsearch. The <code>roles</code> field is used for
+	 * this purpose.
+	 * <p>
+	 * For more complex needs, it is possible to use Mustache templates to
+	 * dynamically determine the names of the roles that should be granted to the
+	 * user. The <code>role_templates</code> field is used for this purpose.
+	 * <p>
+	 * NOTE: To use role templates successfully, the relevant scripting feature must
+	 * be enabled. Otherwise, all attempts to create a role mapping with role
+	 * templates fail.
+	 * <p>
+	 * All of the user fields that are available in the role mapping rules are also
+	 * available in the role templates. Thus it is possible to assign a user to a
+	 * role that reflects their username, their groups, or the name of the realm to
+	 * which they authenticated.
+	 * <p>
+	 * By default a template is evaluated to produce a single string that is the
+	 * name of the role which should be assigned to the user. If the format of the
+	 * template is set to &quot;json&quot; then the template is expected to produce
+	 * a JSON string or an array of JSON strings for the role names.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2342,12 +2979,12 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Create or update users.
 	 * <p>
-	 * A password is required for adding a new user but is optional when updating an
-	 * existing user. To change a user’s password without updating any other fields,
-	 * use the change password API.
+	 * Add and update users in the native realm. A password is required for adding a
+	 * new user but is optional when updating an existing user. To change a user's
+	 * password without updating any other fields, use the change password API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2361,15 +2998,15 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Create or update users.
 	 * <p>
-	 * A password is required for adding a new user but is optional when updating an
-	 * existing user. To change a user’s password without updating any other fields,
-	 * use the change password API.
+	 * Add and update users in the native realm. A password is required for adding a
+	 * new user but is optional when updating an existing user. To change a user's
+	 * password without updating any other fields, use the change password API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-put-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2385,9 +3022,17 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Get a paginated list of API keys and their information. You can optionally
 	 * filter the results with a query.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_own_api_key</code>
+	 * or the <code>read_security</code> cluster privileges. If you have only the
+	 * <code>manage_own_api_key</code> privilege, this API returns only the API keys
+	 * that you own. If you have the <code>read_security</code>,
+	 * <code>manage_api_key</code>, or greater privileges (including
+	 * <code>manage_security</code>), this API returns all API keys regardless of
+	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2403,12 +3048,20 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Get a paginated list of API keys and their information. You can optionally
 	 * filter the results with a query.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_own_api_key</code>
+	 * or the <code>read_security</code> cluster privileges. If you have only the
+	 * <code>manage_own_api_key</code> privilege, this API returns only the API keys
+	 * that you own. If you have the <code>read_security</code>,
+	 * <code>manage_api_key</code>, or greater privileges (including
+	 * <code>manage_security</code>), this API returns all API keys regardless of
+	 * ownership.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryApiKeysRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2422,9 +3075,17 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Get a paginated list of API keys and their information. You can optionally
 	 * filter the results with a query.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_own_api_key</code>
+	 * or the <code>read_security</code> cluster privileges. If you have only the
+	 * <code>manage_own_api_key</code> privilege, this API returns only the API keys
+	 * that you own. If you have the <code>read_security</code>,
+	 * <code>manage_api_key</code>, or greater privileges (including
+	 * <code>manage_security</code>), this API returns all API keys regardless of
+	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2438,11 +3099,14 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Find roles with a query.
 	 * <p>
-	 * Get roles in a paginated manner. You can optionally filter the results with a
-	 * query.
+	 * Get roles in a paginated manner. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The query roles API does not retrieve roles that are defined in roles files,
+	 * nor built-in ones. You can optionally filter the results with a query. Also,
+	 * the results can be paginated and sorted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2456,14 +3120,17 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Find roles with a query.
 	 * <p>
-	 * Get roles in a paginated manner. You can optionally filter the results with a
-	 * query.
+	 * Get roles in a paginated manner. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The query roles API does not retrieve roles that are defined in roles files,
+	 * nor built-in ones. You can optionally filter the results with a query. Also,
+	 * the results can be paginated and sorted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2475,11 +3142,14 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Find roles with a query.
 	 * <p>
-	 * Get roles in a paginated manner. You can optionally filter the results with a
-	 * query.
+	 * Get roles in a paginated manner. The role management APIs are generally the
+	 * preferred way to manage roles, rather than using file-based role management.
+	 * The query roles API does not retrieve roles that are defined in roles files,
+	 * nor built-in ones. You can optionally filter the results with a query. Also,
+	 * the results can be paginated and sorted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-role.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2495,9 +3165,12 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Get information for users in a paginated manner. You can optionally filter
 	 * the results with a query.
+	 * <p>
+	 * NOTE: As opposed to the get user API, built-in users are excluded from the
+	 * result. This API is only for native users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2513,12 +3186,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Get information for users in a paginated manner. You can optionally filter
 	 * the results with a query.
+	 * <p>
+	 * NOTE: As opposed to the get user API, built-in users are excluded from the
+	 * result. This API is only for native users.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2532,9 +3208,12 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Get information for users in a paginated manner. You can optionally filter
 	 * the results with a query.
+	 * <p>
+	 * NOTE: As opposed to the get user API, built-in users are excluded from the
+	 * result. This API is only for native users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-user.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-query-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2548,10 +3227,31 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Authenticate SAML.
 	 * <p>
-	 * Submits a SAML response message to Elasticsearch for consumption.
+	 * Submit a SAML response message to Elasticsearch for consumption.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * The SAML message that is submitted can be:
+	 * <ul>
+	 * <li>A response to a SAML authentication request that was previously created
+	 * using the SAML prepare authentication API.</li>
+	 * <li>An unsolicited SAML message in the case of an IdP-initiated single
+	 * sign-on (SSO) flow.</li>
+	 * </ul>
+	 * <p>
+	 * In either case, the SAML message needs to be a base64 encoded XML document
+	 * with a root element of <code>&lt;Response&gt;</code>.
+	 * <p>
+	 * After successful validation, Elasticsearch responds with an Elasticsearch
+	 * internal access token and refresh token that can be subsequently used for
+	 * authentication. This API endpoint essentially exchanges SAML responses that
+	 * indicate successful authentication in the IdP for Elasticsearch access and
+	 * refresh tokens, which can be used for authentication against Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-authenticate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2565,13 +3265,34 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Authenticate SAML.
 	 * <p>
-	 * Submits a SAML response message to Elasticsearch for consumption.
+	 * Submit a SAML response message to Elasticsearch for consumption.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * The SAML message that is submitted can be:
+	 * <ul>
+	 * <li>A response to a SAML authentication request that was previously created
+	 * using the SAML prepare authentication API.</li>
+	 * <li>An unsolicited SAML message in the case of an IdP-initiated single
+	 * sign-on (SSO) flow.</li>
+	 * </ul>
+	 * <p>
+	 * In either case, the SAML message needs to be a base64 encoded XML document
+	 * with a root element of <code>&lt;Response&gt;</code>.
+	 * <p>
+	 * After successful validation, Elasticsearch responds with an Elasticsearch
+	 * internal access token and refresh token that can be subsequently used for
+	 * authentication. This API endpoint essentially exchanges SAML responses that
+	 * indicate successful authentication in the IdP for Elasticsearch access and
+	 * refresh tokens, which can be used for authentication against Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlAuthenticateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-authenticate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2586,9 +3307,21 @@ public class ElasticsearchSecurityAsyncClient
 	 * Logout of SAML completely.
 	 * <p>
 	 * Verifies the logout response sent from the SAML IdP.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * The SAML IdP may send a logout response back to the SP after handling the
+	 * SP-initiated SAML Single Logout. This API verifies the response by ensuring
+	 * the content is relevant and validating its signature. An empty response is
+	 * returned if the verification process is successful. The response can be sent
+	 * by the IdP with either the HTTP-Redirect or the HTTP-Post binding. The caller
+	 * of this API must prepare the request accordingly so that this API can handle
+	 * either of them.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-complete-logout.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-complete-logout.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2603,12 +3336,24 @@ public class ElasticsearchSecurityAsyncClient
 	 * Logout of SAML completely.
 	 * <p>
 	 * Verifies the logout response sent from the SAML IdP.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * The SAML IdP may send a logout response back to the SP after handling the
+	 * SP-initiated SAML Single Logout. This API verifies the response by ensuring
+	 * the content is relevant and validating its signature. An empty response is
+	 * returned if the verification process is successful. The response can be sent
+	 * by the IdP with either the HTTP-Redirect or the HTTP-Post binding. The caller
+	 * of this API must prepare the request accordingly so that this API can handle
+	 * either of them.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlCompleteLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-complete-logout.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-complete-logout.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2622,10 +3367,22 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Invalidate SAML.
 	 * <p>
-	 * Submits a SAML LogoutRequest message to Elasticsearch for consumption.
+	 * Submit a SAML LogoutRequest message to Elasticsearch for consumption.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * The logout request comes from the SAML IdP during an IdP initiated Single
+	 * Logout. The custom web application can use this API to have Elasticsearch
+	 * process the <code>LogoutRequest</code>. After successful validation of the
+	 * request, Elasticsearch invalidates the access token and refresh token that
+	 * corresponds to that specific SAML principal and provides a URL that contains
+	 * a SAML LogoutResponse message. Thus the user can be redirected back to their
+	 * IdP.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-invalidate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-invalidate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2639,13 +3396,25 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Invalidate SAML.
 	 * <p>
-	 * Submits a SAML LogoutRequest message to Elasticsearch for consumption.
+	 * Submit a SAML LogoutRequest message to Elasticsearch for consumption.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * The logout request comes from the SAML IdP during an IdP initiated Single
+	 * Logout. The custom web application can use this API to have Elasticsearch
+	 * process the <code>LogoutRequest</code>. After successful validation of the
+	 * request, Elasticsearch invalidates the access token and refresh token that
+	 * corresponds to that specific SAML principal and provides a URL that contains
+	 * a SAML LogoutResponse message. Thus the user can be redirected back to their
+	 * IdP.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlInvalidateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-invalidate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-invalidate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2660,9 +3429,19 @@ public class ElasticsearchSecurityAsyncClient
 	 * Logout of SAML.
 	 * <p>
 	 * Submits a request to invalidate an access token and refresh token.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * This API invalidates the tokens that were generated for a user by the SAML
+	 * authenticate API. If the SAML realm in Elasticsearch is configured
+	 * accordingly and the SAML IdP supports this, the Elasticsearch response
+	 * contains a URL to redirect the user to the IdP that contains a SAML logout
+	 * request (starting an SP-initiated SAML Single Logout).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-logout.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-logout.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2677,12 +3456,22 @@ public class ElasticsearchSecurityAsyncClient
 	 * Logout of SAML.
 	 * <p>
 	 * Submits a request to invalidate an access token and refresh token.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * This API invalidates the tokens that were generated for a user by the SAML
+	 * authenticate API. If the SAML realm in Elasticsearch is configured
+	 * accordingly and the SAML IdP supports this, the Elasticsearch response
+	 * contains a URL to redirect the user to the IdP that contains a SAML logout
+	 * request (starting an SP-initiated SAML Single Logout).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-logout.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-logout.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2696,12 +3485,28 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Prepare SAML authentication.
 	 * <p>
-	 * Creates a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as
-	 * a URL string, based on the configuration of the respective SAML realm in
+	 * Create a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as a
+	 * URL string based on the configuration of the respective SAML realm in
 	 * Elasticsearch.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * This API returns a URL pointing to the SAML Identity Provider. You can use
+	 * the URL to redirect the browser of the user in order to continue the
+	 * authentication process. The URL includes a single parameter named
+	 * <code>SAMLRequest</code>, which contains a SAML Authentication request that
+	 * is deflated and Base64 encoded. If the configuration dictates that SAML
+	 * authentication requests should be signed, the URL has two extra parameters
+	 * named <code>SigAlg</code> and <code>Signature</code>. These parameters
+	 * contain the algorithm used for the signature and the signature value itself.
+	 * It also returns a random string that uniquely identifies this SAML
+	 * Authentication request. The caller of this API needs to store this identifier
+	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-prepare-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-prepare-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2716,15 +3521,31 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Prepare SAML authentication.
 	 * <p>
-	 * Creates a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as
-	 * a URL string, based on the configuration of the respective SAML realm in
+	 * Create a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as a
+	 * URL string based on the configuration of the respective SAML realm in
 	 * Elasticsearch.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * This API returns a URL pointing to the SAML Identity Provider. You can use
+	 * the URL to redirect the browser of the user in order to continue the
+	 * authentication process. The URL includes a single parameter named
+	 * <code>SAMLRequest</code>, which contains a SAML Authentication request that
+	 * is deflated and Base64 encoded. If the configuration dictates that SAML
+	 * authentication requests should be signed, the URL has two extra parameters
+	 * named <code>SigAlg</code> and <code>Signature</code>. These parameters
+	 * contain the algorithm used for the signature and the signature value itself.
+	 * It also returns a random string that uniquely identifies this SAML
+	 * Authentication request. The caller of this API needs to store this identifier
+	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlPrepareAuthenticationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-prepare-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-prepare-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2736,12 +3557,28 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Prepare SAML authentication.
 	 * <p>
-	 * Creates a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as
-	 * a URL string, based on the configuration of the respective SAML realm in
+	 * Create a SAML authentication request (<code>&lt;AuthnRequest&gt;</code>) as a
+	 * URL string based on the configuration of the respective SAML realm in
 	 * Elasticsearch.
+	 * <p>
+	 * NOTE: This API is intended for use by custom web applications other than
+	 * Kibana. If you are using Kibana, refer to the documentation for configuring
+	 * SAML single-sign-on on the Elastic Stack.
+	 * <p>
+	 * This API returns a URL pointing to the SAML Identity Provider. You can use
+	 * the URL to redirect the browser of the user in order to continue the
+	 * authentication process. The URL includes a single parameter named
+	 * <code>SAMLRequest</code>, which contains a SAML Authentication request that
+	 * is deflated and Base64 encoded. If the configuration dictates that SAML
+	 * authentication requests should be signed, the URL has two extra parameters
+	 * named <code>SigAlg</code> and <code>Signature</code>. These parameters
+	 * contain the algorithm used for the signature and the signature value itself.
+	 * It also returns a random string that uniquely identifies this SAML
+	 * Authentication request. The caller of this API needs to store this identifier
+	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-prepare-authentication.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-prepare-authentication.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2756,9 +3593,14 @@ public class ElasticsearchSecurityAsyncClient
 	 * Create SAML service provider metadata.
 	 * <p>
 	 * Generate SAML metadata for a SAML 2.0 Service Provider.
+	 * <p>
+	 * The SAML 2.0 specification provides a mechanism for Service Providers to
+	 * describe their capabilities and configuration using a metadata file. This API
+	 * generates Service Provider metadata based on the configuration of a SAML
+	 * realm in Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-sp-metadata.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-sp-metadata.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2774,12 +3616,17 @@ public class ElasticsearchSecurityAsyncClient
 	 * Create SAML service provider metadata.
 	 * <p>
 	 * Generate SAML metadata for a SAML 2.0 Service Provider.
+	 * <p>
+	 * The SAML 2.0 specification provides a mechanism for Service Providers to
+	 * describe their capabilities and configuration using a metadata file. This API
+	 * generates Service Provider metadata based on the configuration of a SAML
+	 * realm in Elasticsearch.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlServiceProviderMetadataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-sp-metadata.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-saml-sp-metadata.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2794,9 +3641,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * Suggest a user profile.
 	 * <p>
 	 * Get suggestions for user profiles that match specified search criteria.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-suggest-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2811,12 +3664,18 @@ public class ElasticsearchSecurityAsyncClient
 	 * Suggest a user profile.
 	 * <p>
 	 * Get suggestions for user profiles that match specified search criteria.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SuggestUserProfilesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-suggest-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2829,9 +3688,15 @@ public class ElasticsearchSecurityAsyncClient
 	 * Suggest a user profile.
 	 * <p>
 	 * Get suggestions for user profiles that match specified search criteria.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-suggest-user-profile.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2845,27 +3710,35 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Update an API key.
 	 * <p>
-	 * Updates attributes of an existing API key. Users can only update API keys
-	 * that they created or that were granted to them. Use this API to update API
-	 * keys created by the create API Key or grant API Key APIs. If you need to
-	 * apply the same update to many API keys, you can use bulk update API Keys to
-	 * reduce overhead. It’s not possible to update expired API keys, or API keys
-	 * that have been invalidated by invalidate API Key. This API supports updates
-	 * to an API key’s access scope and metadata. The access scope of an API key is
-	 * derived from the <code>role_descriptors</code> you specify in the request,
-	 * and a snapshot of the owner user’s permissions at the time of the request.
-	 * The snapshot of the owner’s permissions is updated automatically on every
-	 * call. If you don’t specify <code>role_descriptors</code> in the request, a
-	 * call to this API might still change the API key’s access scope. This change
-	 * can occur if the owner user’s permissions have changed since the API key was
-	 * created or last modified. To update another user’s API key, use the
+	 * Update attributes of an existing API key. This API supports updates to an API
+	 * key's access scope, expiration, and metadata.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_own_api_key</code>
+	 * cluster privilege. Users can only update API keys that they created or that
+	 * were granted to them. To update another user’s API key, use the
 	 * <code>run_as</code> feature to submit a request on behalf of another user.
-	 * IMPORTANT: It’s not possible to use an API key as the authentication
-	 * credential for this API. To update an API key, the owner user’s credentials
-	 * are required.
+	 * <p>
+	 * IMPORTANT: It's not possible to use an API key as the authentication
+	 * credential for this API. The owner user’s credentials are required.
+	 * <p>
+	 * Use this API to update API keys created by the create API key or grant API
+	 * Key APIs. If you need to apply the same update to many API keys, you can use
+	 * the bulk update API keys API to reduce overhead. It's not possible to update
+	 * expired API keys or API keys that have been invalidated by the invalidate API
+	 * key API.
+	 * <p>
+	 * The access scope of an API key is derived from the
+	 * <code>role_descriptors</code> you specify in the request and a snapshot of
+	 * the owner user's permissions at the time of the request. The snapshot of the
+	 * owner's permissions is updated automatically on every call.
+	 * <p>
+	 * IMPORTANT: If you don't specify <code>role_descriptors</code> in the request,
+	 * a call to this API might still change the API key's access scope. This change
+	 * can occur if the owner user's permissions have changed since the API key was
+	 * created or last modified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2879,30 +3752,38 @@ public class ElasticsearchSecurityAsyncClient
 	/**
 	 * Update an API key.
 	 * <p>
-	 * Updates attributes of an existing API key. Users can only update API keys
-	 * that they created or that were granted to them. Use this API to update API
-	 * keys created by the create API Key or grant API Key APIs. If you need to
-	 * apply the same update to many API keys, you can use bulk update API Keys to
-	 * reduce overhead. It’s not possible to update expired API keys, or API keys
-	 * that have been invalidated by invalidate API Key. This API supports updates
-	 * to an API key’s access scope and metadata. The access scope of an API key is
-	 * derived from the <code>role_descriptors</code> you specify in the request,
-	 * and a snapshot of the owner user’s permissions at the time of the request.
-	 * The snapshot of the owner’s permissions is updated automatically on every
-	 * call. If you don’t specify <code>role_descriptors</code> in the request, a
-	 * call to this API might still change the API key’s access scope. This change
-	 * can occur if the owner user’s permissions have changed since the API key was
-	 * created or last modified. To update another user’s API key, use the
+	 * Update attributes of an existing API key. This API supports updates to an API
+	 * key's access scope, expiration, and metadata.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_own_api_key</code>
+	 * cluster privilege. Users can only update API keys that they created or that
+	 * were granted to them. To update another user’s API key, use the
 	 * <code>run_as</code> feature to submit a request on behalf of another user.
-	 * IMPORTANT: It’s not possible to use an API key as the authentication
-	 * credential for this API. To update an API key, the owner user’s credentials
-	 * are required.
+	 * <p>
+	 * IMPORTANT: It's not possible to use an API key as the authentication
+	 * credential for this API. The owner user’s credentials are required.
+	 * <p>
+	 * Use this API to update API keys created by the create API key or grant API
+	 * Key APIs. If you need to apply the same update to many API keys, you can use
+	 * the bulk update API keys API to reduce overhead. It's not possible to update
+	 * expired API keys or API keys that have been invalidated by the invalidate API
+	 * key API.
+	 * <p>
+	 * The access scope of an API key is derived from the
+	 * <code>role_descriptors</code> you specify in the request and a snapshot of
+	 * the owner user's permissions at the time of the request. The snapshot of the
+	 * owner's permissions is updated automatically on every call.
+	 * <p>
+	 * IMPORTANT: If you don't specify <code>role_descriptors</code> in the request,
+	 * a call to this API might still change the API key's access scope. This change
+	 * can occur if the owner user's permissions have changed since the API key was
+	 * created or last modified.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2918,9 +3799,28 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Update the attributes of an existing cross-cluster API key, which is used for
 	 * API key based remote cluster access.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_security</code>
+	 * cluster privilege. Users can only update API keys that they created. To
+	 * update another user's API key, use the <code>run_as</code> feature to submit
+	 * a request on behalf of another user.
+	 * <p>
+	 * IMPORTANT: It's not possible to use an API key as the authentication
+	 * credential for this API. To update an API key, the owner user's credentials
+	 * are required.
+	 * <p>
+	 * It's not possible to update expired API keys, or API keys that have been
+	 * invalidated by the invalidate API key API.
+	 * <p>
+	 * This API supports updates to an API key's access scope, metadata, and
+	 * expiration. The owner user's information, such as the <code>username</code>
+	 * and <code>realm</code>, is also updated automatically on every call.
+	 * <p>
+	 * NOTE: This API cannot update REST API keys, which should be updated by either
+	 * the update API key or bulk update API keys API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-cross-cluster-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-cross-cluster-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2937,18 +3837,122 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Update the attributes of an existing cross-cluster API key, which is used for
 	 * API key based remote cluster access.
+	 * <p>
+	 * To use this API, you must have at least the <code>manage_security</code>
+	 * cluster privilege. Users can only update API keys that they created. To
+	 * update another user's API key, use the <code>run_as</code> feature to submit
+	 * a request on behalf of another user.
+	 * <p>
+	 * IMPORTANT: It's not possible to use an API key as the authentication
+	 * credential for this API. To update an API key, the owner user's credentials
+	 * are required.
+	 * <p>
+	 * It's not possible to update expired API keys, or API keys that have been
+	 * invalidated by the invalidate API key API.
+	 * <p>
+	 * This API supports updates to an API key's access scope, metadata, and
+	 * expiration. The owner user's information, such as the <code>username</code>
+	 * and <code>realm</code>, is also updated automatically on every call.
+	 * <p>
+	 * NOTE: This API cannot update REST API keys, which should be updated by either
+	 * the update API key or bulk update API keys API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateCrossClusterApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-cross-cluster-api-key.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-cross-cluster-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateCrossClusterApiKeyResponse> updateCrossClusterApiKey(
 			Function<UpdateCrossClusterApiKeyRequest.Builder, ObjectBuilder<UpdateCrossClusterApiKeyRequest>> fn) {
 		return updateCrossClusterApiKey(fn.apply(new UpdateCrossClusterApiKeyRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.update_settings
+
+	/**
+	 * Update security index settings.
+	 * <p>
+	 * Update the user-configurable settings for the security internal index
+	 * (<code>.security</code> and associated indices). Only a subset of settings
+	 * are allowed to be modified. This includes
+	 * <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * <p>
+	 * NOTE: If <code>index.auto_expand_replicas</code> is set,
+	 * <code>index.number_of_replicas</code> will be ignored during updates.
+	 * <p>
+	 * If a specific index is not in use on the system and settings are provided for
+	 * it, the request will be rejected. This API does not yet support configuring
+	 * the settings for indices before they are in use.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateSettingsResponse> updateSettings(UpdateSettingsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateSettingsRequest, UpdateSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateSettingsRequest, UpdateSettingsResponse, ErrorResponse>) UpdateSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update security index settings.
+	 * <p>
+	 * Update the user-configurable settings for the security internal index
+	 * (<code>.security</code> and associated indices). Only a subset of settings
+	 * are allowed to be modified. This includes
+	 * <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * <p>
+	 * NOTE: If <code>index.auto_expand_replicas</code> is set,
+	 * <code>index.number_of_replicas</code> will be ignored during updates.
+	 * <p>
+	 * If a specific index is not in use on the system and settings are provided for
+	 * it, the request will be rejected. This API does not yet support configuring
+	 * the settings for indices before they are in use.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<UpdateSettingsResponse> updateSettings(
+			Function<UpdateSettingsRequest.Builder, ObjectBuilder<UpdateSettingsRequest>> fn) {
+		return updateSettings(fn.apply(new UpdateSettingsRequest.Builder()).build());
+	}
+
+	/**
+	 * Update security index settings.
+	 * <p>
+	 * Update the user-configurable settings for the security internal index
+	 * (<code>.security</code> and associated indices). Only a subset of settings
+	 * are allowed to be modified. This includes
+	 * <code>index.auto_expand_replicas</code> and
+	 * <code>index.number_of_replicas</code>.
+	 * <p>
+	 * NOTE: If <code>index.auto_expand_replicas</code> is set,
+	 * <code>index.number_of_replicas</code> will be ignored during updates.
+	 * <p>
+	 * If a specific index is not in use on the system and settings are provided for
+	 * it, the request will be rejected. This API does not yet support configuring
+	 * the settings for indices before they are in use.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateSettingsResponse> updateSettings() {
+		return this.transport.performRequestAsync(new UpdateSettingsRequest.Builder().build(),
+				UpdateSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.update_user_profile_data
@@ -2958,9 +3962,31 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Update specific data for the user profile that is associated with a unique
 	 * ID.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_user_profile</code> cluster privilege.</li>
+	 * <li>The <code>update_profile_data</code> global privilege for the namespaces
+	 * that are referenced in the request.</li>
+	 * </ul>
+	 * <p>
+	 * This API updates the <code>labels</code> and <code>data</code> fields of an
+	 * existing user profile document with JSON objects. New keys and their values
+	 * are added to the profile document and conflicting keys are replaced by data
+	 * that's included in the request.
+	 * <p>
+	 * For both labels and data, content is namespaced by the top-level fields. The
+	 * <code>update_profile_data</code> global privilege grants privileges for
+	 * updating only the allowed namespaces.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-user-profile-data.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2977,12 +4003,34 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * Update specific data for the user profile that is associated with a unique
 	 * ID.
+	 * <p>
+	 * NOTE: The user profile feature is designed only for use by Kibana and
+	 * Elastic's Observability, Enterprise Search, and Elastic Security solutions.
+	 * Individual users and external applications should not call this API directly.
+	 * Elastic reserves the right to change or remove this feature in future
+	 * releases without prior notice.
+	 * <p>
+	 * To use this API, you must have one of the following privileges:
+	 * <ul>
+	 * <li>The <code>manage_user_profile</code> cluster privilege.</li>
+	 * <li>The <code>update_profile_data</code> global privilege for the namespaces
+	 * that are referenced in the request.</li>
+	 * </ul>
+	 * <p>
+	 * This API updates the <code>labels</code> and <code>data</code> fields of an
+	 * existing user profile document with JSON objects. New keys and their values
+	 * are added to the profile document and conflicting keys are replaced by data
+	 * that's included in the request.
+	 * <p>
+	 * For both labels and data, content is namespaced by the top-level fields. The
+	 * <code>update_profile_data</code> global privilege grants privileges for
+	 * updating only the allowed namespaces.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateUserProfileDataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-update-user-profile-data.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

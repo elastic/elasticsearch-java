@@ -77,14 +77,19 @@ public class ClearScrollResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code succeeded}
+	 * Required - If <code>true</code>, the request succeeded. This does not
+	 * indicate whether any scrolling search requests were cleared.
+	 * <p>
+	 * API name: {@code succeeded}
 	 */
 	public final boolean succeeded() {
 		return this.succeeded;
 	}
 
 	/**
-	 * Required - API name: {@code num_freed}
+	 * Required - The number of scrolling search requests cleared.
+	 * <p>
+	 * API name: {@code num_freed}
 	 */
 	public final int numFreed() {
 		return this.numFreed;
@@ -128,7 +133,10 @@ public class ClearScrollResponse implements JsonpSerializable {
 		private Integer numFreed;
 
 		/**
-		 * Required - API name: {@code succeeded}
+		 * Required - If <code>true</code>, the request succeeded. This does not
+		 * indicate whether any scrolling search requests were cleared.
+		 * <p>
+		 * API name: {@code succeeded}
 		 */
 		public final Builder succeeded(boolean value) {
 			this.succeeded = value;
@@ -136,7 +144,9 @@ public class ClearScrollResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code num_freed}
+		 * Required - The number of scrolling search requests cleared.
+		 * <p>
+		 * API name: {@code num_freed}
 		 */
 		public final Builder numFreed(int value) {
 			this.numFreed = value;
