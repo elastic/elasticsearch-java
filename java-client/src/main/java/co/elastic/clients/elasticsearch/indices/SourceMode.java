@@ -45,11 +45,11 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SourceMode implements JsonEnum {
-	Disabled("disabled"),
+	Disabled("DISABLED"),
 
-	Stored("stored"),
+	Stored("STORED"),
 
-	Synthetic("synthetic"),
+	Synthetic("SYNTHETIC"),
 
 	;
 
