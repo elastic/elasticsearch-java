@@ -81,7 +81,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 	}
 
 	/**
-	 * Required - Indicates how many shards have run the query so far.
+	 * Required - The number of shards that have run the query so far.
 	 * <p>
 	 * API name: {@code _shards}
 	 */
@@ -90,8 +90,8 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 	}
 
 	/**
-	 * Metadata about clusters involved in the cross-cluster search. Not shown for
-	 * local-only searches.
+	 * Metadata about clusters involved in the cross-cluster search. It is not shown
+	 * for local-only searches.
 	 * <p>
 	 * API name: {@code _clusters}
 	 */
@@ -102,8 +102,9 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 
 	/**
 	 * If the async search completed, this field shows the status code of the
-	 * search. For example, 200 indicates that the async search was successfully
-	 * completed. 503 indicates that the async search was completed with an error.
+	 * search. For example, <code>200</code> indicates that the async search was
+	 * successfully completed. <code>503</code> indicates that the async search was
+	 * completed with an error.
 	 * <p>
 	 * API name: {@code completion_status}
 	 */
@@ -143,7 +144,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		private Integer completionStatus;
 
 		/**
-		 * Required - Indicates how many shards have run the query so far.
+		 * Required - The number of shards that have run the query so far.
 		 * <p>
 		 * API name: {@code _shards}
 		 */
@@ -153,7 +154,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		}
 
 		/**
-		 * Required - Indicates how many shards have run the query so far.
+		 * Required - The number of shards that have run the query so far.
 		 * <p>
 		 * API name: {@code _shards}
 		 */
@@ -162,8 +163,8 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		}
 
 		/**
-		 * Metadata about clusters involved in the cross-cluster search. Not shown for
-		 * local-only searches.
+		 * Metadata about clusters involved in the cross-cluster search. It is not shown
+		 * for local-only searches.
 		 * <p>
 		 * API name: {@code _clusters}
 		 */
@@ -173,8 +174,8 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 		}
 
 		/**
-		 * Metadata about clusters involved in the cross-cluster search. Not shown for
-		 * local-only searches.
+		 * Metadata about clusters involved in the cross-cluster search. It is not shown
+		 * for local-only searches.
 		 * <p>
 		 * API name: {@code _clusters}
 		 */
@@ -184,8 +185,9 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 
 		/**
 		 * If the async search completed, this field shows the status code of the
-		 * search. For example, 200 indicates that the async search was successfully
-		 * completed. 503 indicates that the async search was completed with an error.
+		 * search. For example, <code>200</code> indicates that the async search was
+		 * successfully completed. <code>503</code> indicates that the async search was
+		 * completed with an error.
 		 * <p>
 		 * API name: {@code completion_status}
 		 */

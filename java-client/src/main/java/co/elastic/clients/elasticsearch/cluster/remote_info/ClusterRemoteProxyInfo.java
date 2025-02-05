@@ -180,9 +180,9 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	}
 
 	/**
-	 * This field presents and has value of ::es_redacted:: only when the remote
-	 * cluster is configured with the API key based model. Otherwise, the field is
-	 * not present.
+	 * This field is present and has a value of <code>::es_redacted::</code> only
+	 * when the remote cluster is configured with the API key based model.
+	 * Otherwise, the field is not present.
 	 * <p>
 	 * API name: {@code cluster_credentials}
 	 */
@@ -350,9 +350,9 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 
 		/**
-		 * This field presents and has value of ::es_redacted:: only when the remote
-		 * cluster is configured with the API key based model. Otherwise, the field is
-		 * not present.
+		 * This field is present and has a value of <code>::es_redacted::</code> only
+		 * when the remote cluster is configured with the API key based model.
+		 * Otherwise, the field is not present.
 		 * <p>
 		 * API name: {@code cluster_credentials}
 		 */

@@ -60,9 +60,15 @@ import javax.annotation.Nullable;
  * <p>
  * Get the status of a previously submitted async search request given its
  * identifier, without retrieving search results. If the Elasticsearch security
- * features are enabled, use of this API is restricted to the
- * <code>monitoring_user</code> role.
- * 
+ * features are enabled, the access to the status of a specific async search is
+ * restricted to:
+ * <ul>
+ * <li>The user or API key that submitted the original async search
+ * request.</li>
+ * <li>Users that have the <code>monitor</code> cluster privilege or greater
+ * privileges.</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#async_search.status.Request">API
  *      specification</a>
  */
@@ -96,7 +102,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies how long the async search needs to be available. Ongoing async
+	 * The length of time that the async search needs to be available. Ongoing async
 	 * searches and any saved search results are deleted after this period.
 	 * <p>
 	 * API name: {@code keep_alive}
@@ -131,7 +137,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies how long the async search needs to be available. Ongoing async
+		 * The length of time that the async search needs to be available. Ongoing async
 		 * searches and any saved search results are deleted after this period.
 		 * <p>
 		 * API name: {@code keep_alive}
@@ -142,7 +148,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies how long the async search needs to be available. Ongoing async
+		 * The length of time that the async search needs to be available. Ongoing async
 		 * searches and any saved search results are deleted after this period.
 		 * <p>
 		 * API name: {@code keep_alive}

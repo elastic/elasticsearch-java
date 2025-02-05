@@ -152,7 +152,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.get_transform_stats
 
 	/**
-	 * Get transform stats. Get usage information for transforms.
+	 * Get transform stats.
+	 * <p>
+	 * Get usage information for transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-transform-stats.html">Documentation
@@ -168,7 +170,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get transform stats. Get usage information for transforms.
+	 * Get transform stats.
+	 * <p>
+	 * Get usage information for transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -377,9 +381,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.reset_transform
 
 	/**
-	 * Reset a transform. Resets a transform. Before you can reset it, you must stop
-	 * it; alternatively, use the <code>force</code> query parameter. If the
-	 * destination index was created by the transform, it is deleted.
+	 * Reset a transform.
+	 * <p>
+	 * Before you can reset it, you must stop it; alternatively, use the
+	 * <code>force</code> query parameter. If the destination index was created by
+	 * the transform, it is deleted.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/reset-transform.html">Documentation
@@ -395,9 +401,11 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Reset a transform. Resets a transform. Before you can reset it, you must stop
-	 * it; alternatively, use the <code>force</code> query parameter. If the
-	 * destination index was created by the transform, it is deleted.
+	 * Reset a transform.
+	 * <p>
+	 * Before you can reset it, you must stop it; alternatively, use the
+	 * <code>force</code> query parameter. If the destination index was created by
+	 * the transform, it is deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -416,13 +424,13 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.schedule_now_transform
 
 	/**
-	 * Schedule a transform to start now. Instantly runs a transform to process
-	 * data.
+	 * Schedule a transform to start now.
 	 * <p>
-	 * If you _schedule_now a transform, it will process the new data instantly,
-	 * without waiting for the configured frequency interval. After _schedule_now
-	 * API is called, the transform will be processed again at now + frequency
-	 * unless _schedule_now API is called again in the meantime.
+	 * Instantly run a transform to process data. If you run this API, the transform
+	 * will process the new data instantly, without waiting for the configured
+	 * frequency interval. After the API is called, the transform will be processed
+	 * again at <code>now + frequency</code> unless the API is called again in the
+	 * meantime.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/schedule-now-transform.html">Documentation
@@ -438,13 +446,13 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Schedule a transform to start now. Instantly runs a transform to process
-	 * data.
+	 * Schedule a transform to start now.
 	 * <p>
-	 * If you _schedule_now a transform, it will process the new data instantly,
-	 * without waiting for the configured frequency interval. After _schedule_now
-	 * API is called, the transform will be processed again at now + frequency
-	 * unless _schedule_now API is called again in the meantime.
+	 * Instantly run a transform to process data. If you run this API, the transform
+	 * will process the new data instantly, without waiting for the configured
+	 * frequency interval. After the API is called, the transform will be processed
+	 * again at <code>now + frequency</code> unless the API is called again in the
+	 * meantime.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -463,7 +471,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.start_transform
 
 	/**
-	 * Start a transform. Starts a transform.
+	 * Start a transform.
 	 * <p>
 	 * When you start a transform, it creates the destination index if it does not
 	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
@@ -501,7 +509,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Start a transform. Starts a transform.
+	 * Start a transform.
 	 * <p>
 	 * When you start a transform, it creates the destination index if it does not
 	 * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
@@ -630,13 +638,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.upgrade_transforms
 
 	/**
-	 * Upgrade all transforms. Transforms are compatible across minor versions and
-	 * between supported major versions. However, over time, the format of transform
-	 * configuration information may change. This API identifies transforms that
-	 * have a legacy configuration format and upgrades them to the latest version.
-	 * It also cleans up the internal data structures that store the transform state
-	 * and checkpoints. The upgrade does not affect the source and destination
-	 * indices. The upgrade also does not affect the roles that transforms use when
+	 * Upgrade all transforms.
+	 * <p>
+	 * Transforms are compatible across minor versions and between supported major
+	 * versions. However, over time, the format of transform configuration
+	 * information may change. This API identifies transforms that have a legacy
+	 * configuration format and upgrades them to the latest version. It also cleans
+	 * up the internal data structures that store the transform state and
+	 * checkpoints. The upgrade does not affect the source and destination indices.
+	 * The upgrade also does not affect the roles that transforms use when
 	 * Elasticsearch security features are enabled; the role used to read source
 	 * data and write to the destination index remains unchanged.
 	 * <p>
@@ -663,13 +673,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Upgrade all transforms. Transforms are compatible across minor versions and
-	 * between supported major versions. However, over time, the format of transform
-	 * configuration information may change. This API identifies transforms that
-	 * have a legacy configuration format and upgrades them to the latest version.
-	 * It also cleans up the internal data structures that store the transform state
-	 * and checkpoints. The upgrade does not affect the source and destination
-	 * indices. The upgrade also does not affect the roles that transforms use when
+	 * Upgrade all transforms.
+	 * <p>
+	 * Transforms are compatible across minor versions and between supported major
+	 * versions. However, over time, the format of transform configuration
+	 * information may change. This API identifies transforms that have a legacy
+	 * configuration format and upgrades them to the latest version. It also cleans
+	 * up the internal data structures that store the transform state and
+	 * checkpoints. The upgrade does not affect the source and destination indices.
+	 * The upgrade also does not affect the roles that transforms use when
 	 * Elasticsearch security features are enabled; the role used to read source
 	 * data and write to the destination index remains unchanged.
 	 * <p>
@@ -697,13 +709,15 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Upgrade all transforms. Transforms are compatible across minor versions and
-	 * between supported major versions. However, over time, the format of transform
-	 * configuration information may change. This API identifies transforms that
-	 * have a legacy configuration format and upgrades them to the latest version.
-	 * It also cleans up the internal data structures that store the transform state
-	 * and checkpoints. The upgrade does not affect the source and destination
-	 * indices. The upgrade also does not affect the roles that transforms use when
+	 * Upgrade all transforms.
+	 * <p>
+	 * Transforms are compatible across minor versions and between supported major
+	 * versions. However, over time, the format of transform configuration
+	 * information may change. This API identifies transforms that have a legacy
+	 * configuration format and upgrades them to the latest version. It also cleans
+	 * up the internal data structures that store the transform state and
+	 * checkpoints. The upgrade does not affect the source and destination indices.
+	 * The upgrade also does not affect the roles that transforms use when
 	 * Elasticsearch security features are enabled; the role used to read source
 	 * data and write to the destination index remains unchanged.
 	 * <p>

@@ -56,11 +56,13 @@ import javax.annotation.Nullable;
 // typedef: ccr.resume_auto_follow_pattern.Request
 
 /**
- * Resume an auto-follow pattern. Resume a cross-cluster replication auto-follow
- * pattern that was paused. The auto-follow pattern will resume configuring
- * following indices for newly created indices that match its patterns on the
- * remote cluster. Remote indices created while the pattern was paused will also
- * be followed unless they have been deleted or closed in the interim.
+ * Resume an auto-follow pattern.
+ * <p>
+ * Resume a cross-cluster replication auto-follow pattern that was paused. The
+ * auto-follow pattern will resume configuring following indices for newly
+ * created indices that match its patterns on the remote cluster. Remote indices
+ * created while the pattern was paused will also be followed unless they have
+ * been deleted or closed in the interim.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.resume_auto_follow_pattern.Request">API
@@ -88,7 +90,10 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. It can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -98,8 +103,7 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the auto follow pattern to resume discovering new
-	 * indices to follow.
+	 * Required - The name of the auto-follow pattern to resume.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -122,7 +126,10 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -132,7 +139,10 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -141,8 +151,7 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the auto follow pattern to resume discovering new
-		 * indices to follow.
+		 * Required - The name of the auto-follow pattern to resume.
 		 * <p>
 		 * API name: {@code name}
 		 */

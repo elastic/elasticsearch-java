@@ -58,9 +58,11 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow_stats.Request
 
 /**
- * Get follower stats. Get cross-cluster replication follower stats. The API
- * returns shard-level stats about the &quot;following tasks&quot; associated
- * with each shard for the specified indices.
+ * Get follower stats.
+ * <p>
+ * Get cross-cluster replication follower stats. The API returns shard-level
+ * stats about the &quot;following tasks&quot; associated with each shard for
+ * the specified indices.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.follow_stats.Request">API
  *      specification</a>
@@ -86,8 +88,7 @@ public class FollowStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of index patterns; use <code>_all</code> to
-	 * perform the operation on all indices
+	 * Required - A comma-delimited list of index patterns.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -96,8 +97,8 @@ public class FollowStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -121,8 +122,7 @@ public class FollowStatsRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Required - A comma-separated list of index patterns; use <code>_all</code> to
-		 * perform the operation on all indices
+		 * Required - A comma-delimited list of index patterns.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -134,8 +134,7 @@ public class FollowStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of index patterns; use <code>_all</code> to
-		 * perform the operation on all indices
+		 * Required - A comma-delimited list of index patterns.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -147,8 +146,8 @@ public class FollowStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -158,8 +157,8 @@ public class FollowStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
