@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.ml;
+package co.elastic.clients.elasticsearch.simulate.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -29,7 +29,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,52 +48,37 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ml._types.GeoResults
+// typedef: simulate.ingest.SimulateIngestDocumentResult
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ml._types.GeoResults">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#simulate.ingest.SimulateIngestDocumentResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class GeoResults implements JsonpSerializable {
+public class SimulateIngestDocumentResult implements JsonpSerializable {
 	@Nullable
-	private final String actualPoint;
-
-	@Nullable
-	private final String typicalPoint;
+	private final IngestDocumentSimulation doc;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GeoResults(Builder builder) {
+	private SimulateIngestDocumentResult(Builder builder) {
 
-		this.actualPoint = builder.actualPoint;
-		this.typicalPoint = builder.typicalPoint;
+		this.doc = builder.doc;
 
 	}
 
-	public static GeoResults of(Function<Builder, ObjectBuilder<GeoResults>> fn) {
+	public static SimulateIngestDocumentResult of(Function<Builder, ObjectBuilder<SimulateIngestDocumentResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The actual value for the bucket formatted as a <code>geo_point</code>.
-	 * <p>
-	 * API name: {@code actual_point}
+	 * API name: {@code doc}
 	 */
 	@Nullable
-	public final String actualPoint() {
-		return this.actualPoint;
-	}
-
-	/**
-	 * The typical value for the bucket formatted as a <code>geo_point</code>.
-	 * <p>
-	 * API name: {@code typical_point}
-	 */
-	@Nullable
-	public final String typicalPoint() {
-		return this.typicalPoint;
+	public final IngestDocumentSimulation doc() {
+		return this.doc;
 	}
 
 	/**
@@ -108,14 +92,9 @@ public class GeoResults implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actualPoint != null) {
-			generator.writeKey("actual_point");
-			generator.write(this.actualPoint);
-
-		}
-		if (this.typicalPoint != null) {
-			generator.writeKey("typical_point");
-			generator.write(this.typicalPoint);
+		if (this.doc != null) {
+			generator.writeKey("doc");
+			this.doc.serialize(generator, mapper);
 
 		}
 
@@ -129,34 +108,29 @@ public class GeoResults implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GeoResults}.
+	 * Builder for {@link SimulateIngestDocumentResult}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoResults> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SimulateIngestDocumentResult> {
 		@Nullable
-		private String actualPoint;
-
-		@Nullable
-		private String typicalPoint;
+		private IngestDocumentSimulation doc;
 
 		/**
-		 * The actual value for the bucket formatted as a <code>geo_point</code>.
-		 * <p>
-		 * API name: {@code actual_point}
+		 * API name: {@code doc}
 		 */
-		public final Builder actualPoint(@Nullable String value) {
-			this.actualPoint = value;
+		public final Builder doc(@Nullable IngestDocumentSimulation value) {
+			this.doc = value;
 			return this;
 		}
 
 		/**
-		 * The typical value for the bucket formatted as a <code>geo_point</code>.
-		 * <p>
-		 * API name: {@code typical_point}
+		 * API name: {@code doc}
 		 */
-		public final Builder typicalPoint(@Nullable String value) {
-			this.typicalPoint = value;
-			return this;
+		public final Builder doc(
+				Function<IngestDocumentSimulation.Builder, ObjectBuilder<IngestDocumentSimulation>> fn) {
+			return this.doc(fn.apply(new IngestDocumentSimulation.Builder()).build());
 		}
 
 		@Override
@@ -165,30 +139,30 @@ public class GeoResults implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link GeoResults}.
+		 * Builds a {@link SimulateIngestDocumentResult}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GeoResults build() {
+		public SimulateIngestDocumentResult build() {
 			_checkSingleUse();
 
-			return new GeoResults(this);
+			return new SimulateIngestDocumentResult(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GeoResults}
+	 * Json deserializer for {@link SimulateIngestDocumentResult}
 	 */
-	public static final JsonpDeserializer<GeoResults> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoResults::setupGeoResultsDeserializer);
+	public static final JsonpDeserializer<SimulateIngestDocumentResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimulateIngestDocumentResult::setupSimulateIngestDocumentResultDeserializer);
 
-	protected static void setupGeoResultsDeserializer(ObjectDeserializer<GeoResults.Builder> op) {
+	protected static void setupSimulateIngestDocumentResultDeserializer(
+			ObjectDeserializer<SimulateIngestDocumentResult.Builder> op) {
 
-		op.add(Builder::actualPoint, JsonpDeserializer.stringDeserializer(), "actual_point");
-		op.add(Builder::typicalPoint, JsonpDeserializer.stringDeserializer(), "typical_point");
+		op.add(Builder::doc, IngestDocumentSimulation._DESERIALIZER, "doc");
 
 	}
 
