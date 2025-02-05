@@ -58,10 +58,11 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow_info.Request
 
 /**
- * Get follower information. Get information about all cross-cluster replication
- * follower indices. For example, the results include follower index names,
- * leader index names, replication options, and whether the follower indices are
- * active or paused.
+ * Get follower information.
+ * <p>
+ * Get information about all cross-cluster replication follower indices. For
+ * example, the results include follower index names, leader index names,
+ * replication options, and whether the follower indices are active or paused.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.follow_info.Request">API
  *      specification</a>
@@ -87,8 +88,7 @@ public class FollowInfoRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of index patterns; use <code>_all</code> to
-	 * perform the operation on all indices
+	 * Required - A comma-delimited list of follower index patterns.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -97,7 +97,10 @@ public class FollowInfoRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. It can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -121,8 +124,7 @@ public class FollowInfoRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Required - A comma-separated list of index patterns; use <code>_all</code> to
-		 * perform the operation on all indices
+		 * Required - A comma-delimited list of follower index patterns.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -134,8 +136,7 @@ public class FollowInfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of index patterns; use <code>_all</code> to
-		 * perform the operation on all indices
+		 * Required - A comma-delimited list of follower index patterns.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -147,7 +148,10 @@ public class FollowInfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -157,7 +161,10 @@ public class FollowInfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

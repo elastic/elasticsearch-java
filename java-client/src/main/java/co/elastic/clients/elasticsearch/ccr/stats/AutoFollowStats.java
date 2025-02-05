@@ -100,28 +100,43 @@ public class AutoFollowStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code number_of_failed_follow_indices}
+	 * Required - The number of indices that the auto-follow coordinator failed to
+	 * automatically follow. The causes of recent failures are captured in the logs
+	 * of the elected master node and in the
+	 * <code>auto_follow_stats.recent_auto_follow_errors</code> field.
+	 * <p>
+	 * API name: {@code number_of_failed_follow_indices}
 	 */
 	public final long numberOfFailedFollowIndices() {
 		return this.numberOfFailedFollowIndices;
 	}
 
 	/**
-	 * Required - API name: {@code number_of_failed_remote_cluster_state_requests}
+	 * Required - The number of times that the auto-follow coordinator failed to
+	 * retrieve the cluster state from a remote cluster registered in a collection
+	 * of auto-follow patterns.
+	 * <p>
+	 * API name: {@code number_of_failed_remote_cluster_state_requests}
 	 */
 	public final long numberOfFailedRemoteClusterStateRequests() {
 		return this.numberOfFailedRemoteClusterStateRequests;
 	}
 
 	/**
-	 * Required - API name: {@code number_of_successful_follow_indices}
+	 * Required - The number of indices that the auto-follow coordinator
+	 * successfully followed.
+	 * <p>
+	 * API name: {@code number_of_successful_follow_indices}
 	 */
 	public final long numberOfSuccessfulFollowIndices() {
 		return this.numberOfSuccessfulFollowIndices;
 	}
 
 	/**
-	 * Required - API name: {@code recent_auto_follow_errors}
+	 * Required - An array of objects representing failures by the auto-follow
+	 * coordinator.
+	 * <p>
+	 * API name: {@code recent_auto_follow_errors}
 	 */
 	public final List<ErrorCause> recentAutoFollowErrors() {
 		return this.recentAutoFollowErrors;
@@ -223,7 +238,12 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code number_of_failed_follow_indices}
+		 * Required - The number of indices that the auto-follow coordinator failed to
+		 * automatically follow. The causes of recent failures are captured in the logs
+		 * of the elected master node and in the
+		 * <code>auto_follow_stats.recent_auto_follow_errors</code> field.
+		 * <p>
+		 * API name: {@code number_of_failed_follow_indices}
 		 */
 		public final Builder numberOfFailedFollowIndices(long value) {
 			this.numberOfFailedFollowIndices = value;
@@ -231,7 +251,11 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code number_of_failed_remote_cluster_state_requests}
+		 * Required - The number of times that the auto-follow coordinator failed to
+		 * retrieve the cluster state from a remote cluster registered in a collection
+		 * of auto-follow patterns.
+		 * <p>
+		 * API name: {@code number_of_failed_remote_cluster_state_requests}
 		 */
 		public final Builder numberOfFailedRemoteClusterStateRequests(long value) {
 			this.numberOfFailedRemoteClusterStateRequests = value;
@@ -239,7 +263,10 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code number_of_successful_follow_indices}
+		 * Required - The number of indices that the auto-follow coordinator
+		 * successfully followed.
+		 * <p>
+		 * API name: {@code number_of_successful_follow_indices}
 		 */
 		public final Builder numberOfSuccessfulFollowIndices(long value) {
 			this.numberOfSuccessfulFollowIndices = value;
@@ -247,7 +274,10 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code recent_auto_follow_errors}
+		 * Required - An array of objects representing failures by the auto-follow
+		 * coordinator.
+		 * <p>
+		 * API name: {@code recent_auto_follow_errors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>recentAutoFollowErrors</code>.
@@ -258,7 +288,10 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code recent_auto_follow_errors}
+		 * Required - An array of objects representing failures by the auto-follow
+		 * coordinator.
+		 * <p>
+		 * API name: {@code recent_auto_follow_errors}
 		 * <p>
 		 * Adds one or more values to <code>recentAutoFollowErrors</code>.
 		 */
@@ -268,7 +301,10 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code recent_auto_follow_errors}
+		 * Required - An array of objects representing failures by the auto-follow
+		 * coordinator.
+		 * <p>
+		 * API name: {@code recent_auto_follow_errors}
 		 * <p>
 		 * Adds a value to <code>recentAutoFollowErrors</code> using a builder lambda.
 		 */

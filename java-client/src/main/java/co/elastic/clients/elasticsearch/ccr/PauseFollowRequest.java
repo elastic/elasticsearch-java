@@ -56,11 +56,12 @@ import javax.annotation.Nullable;
 // typedef: ccr.pause_follow.Request
 
 /**
- * Pause a follower. Pause a cross-cluster replication follower index. The
- * follower index will not fetch any additional operations from the leader
- * index. You can resume following with the resume follower API. You can pause
- * and resume a follower index to change the configuration of the following
- * task.
+ * Pause a follower.
+ * <p>
+ * Pause a cross-cluster replication follower index. The follower index will not
+ * fetch any additional operations from the leader index. You can resume
+ * following with the resume follower API. You can pause and resume a follower
+ * index to change the configuration of the following task.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.pause_follow.Request">API
  *      specification</a>
@@ -86,8 +87,7 @@ public class PauseFollowRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the follower index that should pause following its
-	 * leader index.
+	 * Required - The name of the follower index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -96,7 +96,10 @@ public class PauseFollowRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. It can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -120,8 +123,7 @@ public class PauseFollowRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Required - The name of the follower index that should pause following its
-		 * leader index.
+		 * Required - The name of the follower index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -131,7 +133,10 @@ public class PauseFollowRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -141,7 +146,10 @@ public class PauseFollowRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

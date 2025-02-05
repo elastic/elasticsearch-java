@@ -196,21 +196,28 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code bytes_read}
+	 * Required - The total of transferred bytes read from the leader. This is only
+	 * an estimate and does not account for compression if enabled.
+	 * <p>
+	 * API name: {@code bytes_read}
 	 */
 	public final long bytesRead() {
 		return this.bytesRead;
 	}
 
 	/**
-	 * Required - API name: {@code failed_read_requests}
+	 * Required - The number of failed reads.
+	 * <p>
+	 * API name: {@code failed_read_requests}
 	 */
 	public final long failedReadRequests() {
 		return this.failedReadRequests;
 	}
 
 	/**
-	 * Required - API name: {@code failed_write_requests}
+	 * Required - The number of failed bulk write requests on the follower.
+	 * <p>
+	 * API name: {@code failed_write_requests}
 	 */
 	public final long failedWriteRequests() {
 		return this.failedWriteRequests;
@@ -225,133 +232,178 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code follower_aliases_version}
+	 * Required - The index aliases version the follower is synced up to.
+	 * <p>
+	 * API name: {@code follower_aliases_version}
 	 */
 	public final long followerAliasesVersion() {
 		return this.followerAliasesVersion;
 	}
 
 	/**
-	 * Required - API name: {@code follower_global_checkpoint}
+	 * Required - The current global checkpoint on the follower. The difference
+	 * between the <code>leader_global_checkpoint</code> and the
+	 * <code>follower_global_checkpoint</code> is an indication of how much the
+	 * follower is lagging the leader.
+	 * <p>
+	 * API name: {@code follower_global_checkpoint}
 	 */
 	public final long followerGlobalCheckpoint() {
 		return this.followerGlobalCheckpoint;
 	}
 
 	/**
-	 * Required - API name: {@code follower_index}
+	 * Required - The name of the follower index.
+	 * <p>
+	 * API name: {@code follower_index}
 	 */
 	public final String followerIndex() {
 		return this.followerIndex;
 	}
 
 	/**
-	 * Required - API name: {@code follower_mapping_version}
+	 * Required - The mapping version the follower is synced up to.
+	 * <p>
+	 * API name: {@code follower_mapping_version}
 	 */
 	public final long followerMappingVersion() {
 		return this.followerMappingVersion;
 	}
 
 	/**
-	 * Required - API name: {@code follower_max_seq_no}
+	 * Required - The current maximum sequence number on the follower.
+	 * <p>
+	 * API name: {@code follower_max_seq_no}
 	 */
 	public final long followerMaxSeqNo() {
 		return this.followerMaxSeqNo;
 	}
 
 	/**
-	 * Required - API name: {@code follower_settings_version}
+	 * Required - The index settings version the follower is synced up to.
+	 * <p>
+	 * API name: {@code follower_settings_version}
 	 */
 	public final long followerSettingsVersion() {
 		return this.followerSettingsVersion;
 	}
 
 	/**
-	 * Required - API name: {@code last_requested_seq_no}
+	 * Required - The starting sequence number of the last batch of operations
+	 * requested from the leader.
+	 * <p>
+	 * API name: {@code last_requested_seq_no}
 	 */
 	public final long lastRequestedSeqNo() {
 		return this.lastRequestedSeqNo;
 	}
 
 	/**
-	 * Required - API name: {@code leader_global_checkpoint}
+	 * Required - The current global checkpoint on the leader known to the follower
+	 * task.
+	 * <p>
+	 * API name: {@code leader_global_checkpoint}
 	 */
 	public final long leaderGlobalCheckpoint() {
 		return this.leaderGlobalCheckpoint;
 	}
 
 	/**
-	 * Required - API name: {@code leader_index}
+	 * Required - The name of the index in the leader cluster being followed.
+	 * <p>
+	 * API name: {@code leader_index}
 	 */
 	public final String leaderIndex() {
 		return this.leaderIndex;
 	}
 
 	/**
-	 * Required - API name: {@code leader_max_seq_no}
+	 * Required - The current maximum sequence number on the leader known to the
+	 * follower task.
+	 * <p>
+	 * API name: {@code leader_max_seq_no}
 	 */
 	public final long leaderMaxSeqNo() {
 		return this.leaderMaxSeqNo;
 	}
 
 	/**
-	 * Required - API name: {@code operations_read}
+	 * Required - The total number of operations read from the leader.
+	 * <p>
+	 * API name: {@code operations_read}
 	 */
 	public final long operationsRead() {
 		return this.operationsRead;
 	}
 
 	/**
-	 * Required - API name: {@code operations_written}
+	 * Required - The number of operations written on the follower.
+	 * <p>
+	 * API name: {@code operations_written}
 	 */
 	public final long operationsWritten() {
 		return this.operationsWritten;
 	}
 
 	/**
-	 * Required - API name: {@code outstanding_read_requests}
+	 * Required - The number of active read requests from the follower.
+	 * <p>
+	 * API name: {@code outstanding_read_requests}
 	 */
 	public final int outstandingReadRequests() {
 		return this.outstandingReadRequests;
 	}
 
 	/**
-	 * Required - API name: {@code outstanding_write_requests}
+	 * Required - The number of active bulk write requests on the follower.
+	 * <p>
+	 * API name: {@code outstanding_write_requests}
 	 */
 	public final int outstandingWriteRequests() {
 		return this.outstandingWriteRequests;
 	}
 
 	/**
-	 * Required - API name: {@code read_exceptions}
+	 * Required - An array of objects representing failed reads.
+	 * <p>
+	 * API name: {@code read_exceptions}
 	 */
 	public final List<ReadException> readExceptions() {
 		return this.readExceptions;
 	}
 
 	/**
-	 * Required - API name: {@code remote_cluster}
+	 * Required - The remote cluster containing the leader index.
+	 * <p>
+	 * API name: {@code remote_cluster}
 	 */
 	public final String remoteCluster() {
 		return this.remoteCluster;
 	}
 
 	/**
-	 * Required - API name: {@code shard_id}
+	 * Required - The numerical shard ID, with values from 0 to one less than the
+	 * number of replicas.
+	 * <p>
+	 * API name: {@code shard_id}
 	 */
 	public final int shardId() {
 		return this.shardId;
 	}
 
 	/**
-	 * Required - API name: {@code successful_read_requests}
+	 * Required - The number of successful fetches.
+	 * <p>
+	 * API name: {@code successful_read_requests}
 	 */
 	public final long successfulReadRequests() {
 		return this.successfulReadRequests;
 	}
 
 	/**
-	 * Required - API name: {@code successful_write_requests}
+	 * Required - The number of bulk write requests run on the follower.
+	 * <p>
+	 * API name: {@code successful_write_requests}
 	 */
 	public final long successfulWriteRequests() {
 		return this.successfulWriteRequests;
@@ -366,7 +418,12 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code time_since_last_read_millis}
+	 * Required - The number of milliseconds since a read request was sent to the
+	 * leader. When the follower is caught up to the leader, this number will
+	 * increase up to the configured <code>read_poll_timeout</code> at which point
+	 * another read request will be sent to the leader.
+	 * <p>
+	 * API name: {@code time_since_last_read_millis}
 	 */
 	public final long timeSinceLastReadMillis() {
 		return this.timeSinceLastReadMillis;
@@ -381,7 +438,9 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_read_remote_exec_time_millis}
+	 * Required - The total time reads spent running on the remote cluster.
+	 * <p>
+	 * API name: {@code total_read_remote_exec_time_millis}
 	 */
 	public final long totalReadRemoteExecTimeMillis() {
 		return this.totalReadRemoteExecTimeMillis;
@@ -396,7 +455,10 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_read_time_millis}
+	 * Required - The total time reads were outstanding, measured from the time a
+	 * read was sent to the leader to the time a reply was returned to the follower.
+	 * <p>
+	 * API name: {@code total_read_time_millis}
 	 */
 	public final long totalReadTimeMillis() {
 		return this.totalReadTimeMillis;
@@ -411,21 +473,28 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_write_time_millis}
+	 * Required - The total time spent writing on the follower.
+	 * <p>
+	 * API name: {@code total_write_time_millis}
 	 */
 	public final long totalWriteTimeMillis() {
 		return this.totalWriteTimeMillis;
 	}
 
 	/**
-	 * Required - API name: {@code write_buffer_operation_count}
+	 * Required - The number of write operations queued on the follower.
+	 * <p>
+	 * API name: {@code write_buffer_operation_count}
 	 */
 	public final long writeBufferOperationCount() {
 		return this.writeBufferOperationCount;
 	}
 
 	/**
-	 * Required - API name: {@code write_buffer_size_in_bytes}
+	 * Required - The total number of bytes of operations currently queued for
+	 * writing.
+	 * <p>
+	 * API name: {@code write_buffer_size_in_bytes}
 	 */
 	public final String writeBufferSizeInBytes() {
 		return this.writeBufferSizeInBytes;
@@ -644,7 +713,10 @@ public class ShardStats implements JsonpSerializable {
 		private String writeBufferSizeInBytes;
 
 		/**
-		 * Required - API name: {@code bytes_read}
+		 * Required - The total of transferred bytes read from the leader. This is only
+		 * an estimate and does not account for compression if enabled.
+		 * <p>
+		 * API name: {@code bytes_read}
 		 */
 		public final Builder bytesRead(long value) {
 			this.bytesRead = value;
@@ -652,7 +724,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code failed_read_requests}
+		 * Required - The number of failed reads.
+		 * <p>
+		 * API name: {@code failed_read_requests}
 		 */
 		public final Builder failedReadRequests(long value) {
 			this.failedReadRequests = value;
@@ -660,7 +734,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code failed_write_requests}
+		 * Required - The number of failed bulk write requests on the follower.
+		 * <p>
+		 * API name: {@code failed_write_requests}
 		 */
 		public final Builder failedWriteRequests(long value) {
 			this.failedWriteRequests = value;
@@ -683,7 +759,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follower_aliases_version}
+		 * Required - The index aliases version the follower is synced up to.
+		 * <p>
+		 * API name: {@code follower_aliases_version}
 		 */
 		public final Builder followerAliasesVersion(long value) {
 			this.followerAliasesVersion = value;
@@ -691,7 +769,12 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follower_global_checkpoint}
+		 * Required - The current global checkpoint on the follower. The difference
+		 * between the <code>leader_global_checkpoint</code> and the
+		 * <code>follower_global_checkpoint</code> is an indication of how much the
+		 * follower is lagging the leader.
+		 * <p>
+		 * API name: {@code follower_global_checkpoint}
 		 */
 		public final Builder followerGlobalCheckpoint(long value) {
 			this.followerGlobalCheckpoint = value;
@@ -699,7 +782,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follower_index}
+		 * Required - The name of the follower index.
+		 * <p>
+		 * API name: {@code follower_index}
 		 */
 		public final Builder followerIndex(String value) {
 			this.followerIndex = value;
@@ -707,7 +792,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follower_mapping_version}
+		 * Required - The mapping version the follower is synced up to.
+		 * <p>
+		 * API name: {@code follower_mapping_version}
 		 */
 		public final Builder followerMappingVersion(long value) {
 			this.followerMappingVersion = value;
@@ -715,7 +802,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follower_max_seq_no}
+		 * Required - The current maximum sequence number on the follower.
+		 * <p>
+		 * API name: {@code follower_max_seq_no}
 		 */
 		public final Builder followerMaxSeqNo(long value) {
 			this.followerMaxSeqNo = value;
@@ -723,7 +812,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follower_settings_version}
+		 * Required - The index settings version the follower is synced up to.
+		 * <p>
+		 * API name: {@code follower_settings_version}
 		 */
 		public final Builder followerSettingsVersion(long value) {
 			this.followerSettingsVersion = value;
@@ -731,7 +822,10 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code last_requested_seq_no}
+		 * Required - The starting sequence number of the last batch of operations
+		 * requested from the leader.
+		 * <p>
+		 * API name: {@code last_requested_seq_no}
 		 */
 		public final Builder lastRequestedSeqNo(long value) {
 			this.lastRequestedSeqNo = value;
@@ -739,7 +833,10 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code leader_global_checkpoint}
+		 * Required - The current global checkpoint on the leader known to the follower
+		 * task.
+		 * <p>
+		 * API name: {@code leader_global_checkpoint}
 		 */
 		public final Builder leaderGlobalCheckpoint(long value) {
 			this.leaderGlobalCheckpoint = value;
@@ -747,7 +844,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code leader_index}
+		 * Required - The name of the index in the leader cluster being followed.
+		 * <p>
+		 * API name: {@code leader_index}
 		 */
 		public final Builder leaderIndex(String value) {
 			this.leaderIndex = value;
@@ -755,7 +854,10 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code leader_max_seq_no}
+		 * Required - The current maximum sequence number on the leader known to the
+		 * follower task.
+		 * <p>
+		 * API name: {@code leader_max_seq_no}
 		 */
 		public final Builder leaderMaxSeqNo(long value) {
 			this.leaderMaxSeqNo = value;
@@ -763,7 +865,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code operations_read}
+		 * Required - The total number of operations read from the leader.
+		 * <p>
+		 * API name: {@code operations_read}
 		 */
 		public final Builder operationsRead(long value) {
 			this.operationsRead = value;
@@ -771,7 +875,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code operations_written}
+		 * Required - The number of operations written on the follower.
+		 * <p>
+		 * API name: {@code operations_written}
 		 */
 		public final Builder operationsWritten(long value) {
 			this.operationsWritten = value;
@@ -779,7 +885,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code outstanding_read_requests}
+		 * Required - The number of active read requests from the follower.
+		 * <p>
+		 * API name: {@code outstanding_read_requests}
 		 */
 		public final Builder outstandingReadRequests(int value) {
 			this.outstandingReadRequests = value;
@@ -787,7 +895,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code outstanding_write_requests}
+		 * Required - The number of active bulk write requests on the follower.
+		 * <p>
+		 * API name: {@code outstanding_write_requests}
 		 */
 		public final Builder outstandingWriteRequests(int value) {
 			this.outstandingWriteRequests = value;
@@ -795,7 +905,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code read_exceptions}
+		 * Required - An array of objects representing failed reads.
+		 * <p>
+		 * API name: {@code read_exceptions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>readExceptions</code>.
 		 */
@@ -805,7 +917,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code read_exceptions}
+		 * Required - An array of objects representing failed reads.
+		 * <p>
+		 * API name: {@code read_exceptions}
 		 * <p>
 		 * Adds one or more values to <code>readExceptions</code>.
 		 */
@@ -815,7 +929,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code read_exceptions}
+		 * Required - An array of objects representing failed reads.
+		 * <p>
+		 * API name: {@code read_exceptions}
 		 * <p>
 		 * Adds a value to <code>readExceptions</code> using a builder lambda.
 		 */
@@ -824,7 +940,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code remote_cluster}
+		 * Required - The remote cluster containing the leader index.
+		 * <p>
+		 * API name: {@code remote_cluster}
 		 */
 		public final Builder remoteCluster(String value) {
 			this.remoteCluster = value;
@@ -832,7 +950,10 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shard_id}
+		 * Required - The numerical shard ID, with values from 0 to one less than the
+		 * number of replicas.
+		 * <p>
+		 * API name: {@code shard_id}
 		 */
 		public final Builder shardId(int value) {
 			this.shardId = value;
@@ -840,7 +961,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code successful_read_requests}
+		 * Required - The number of successful fetches.
+		 * <p>
+		 * API name: {@code successful_read_requests}
 		 */
 		public final Builder successfulReadRequests(long value) {
 			this.successfulReadRequests = value;
@@ -848,7 +971,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code successful_write_requests}
+		 * Required - The number of bulk write requests run on the follower.
+		 * <p>
+		 * API name: {@code successful_write_requests}
 		 */
 		public final Builder successfulWriteRequests(long value) {
 			this.successfulWriteRequests = value;
@@ -871,7 +996,12 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code time_since_last_read_millis}
+		 * Required - The number of milliseconds since a read request was sent to the
+		 * leader. When the follower is caught up to the leader, this number will
+		 * increase up to the configured <code>read_poll_timeout</code> at which point
+		 * another read request will be sent to the leader.
+		 * <p>
+		 * API name: {@code time_since_last_read_millis}
 		 */
 		public final Builder timeSinceLastReadMillis(long value) {
 			this.timeSinceLastReadMillis = value;
@@ -894,7 +1024,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_read_remote_exec_time_millis}
+		 * Required - The total time reads spent running on the remote cluster.
+		 * <p>
+		 * API name: {@code total_read_remote_exec_time_millis}
 		 */
 		public final Builder totalReadRemoteExecTimeMillis(long value) {
 			this.totalReadRemoteExecTimeMillis = value;
@@ -917,7 +1049,10 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_read_time_millis}
+		 * Required - The total time reads were outstanding, measured from the time a
+		 * read was sent to the leader to the time a reply was returned to the follower.
+		 * <p>
+		 * API name: {@code total_read_time_millis}
 		 */
 		public final Builder totalReadTimeMillis(long value) {
 			this.totalReadTimeMillis = value;
@@ -940,7 +1075,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_write_time_millis}
+		 * Required - The total time spent writing on the follower.
+		 * <p>
+		 * API name: {@code total_write_time_millis}
 		 */
 		public final Builder totalWriteTimeMillis(long value) {
 			this.totalWriteTimeMillis = value;
@@ -948,7 +1085,9 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code write_buffer_operation_count}
+		 * Required - The number of write operations queued on the follower.
+		 * <p>
+		 * API name: {@code write_buffer_operation_count}
 		 */
 		public final Builder writeBufferOperationCount(long value) {
 			this.writeBufferOperationCount = value;
@@ -956,7 +1095,10 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code write_buffer_size_in_bytes}
+		 * Required - The total number of bytes of operations currently queued for
+		 * writing.
+		 * <p>
+		 * API name: {@code write_buffer_size_in_bytes}
 		 */
 		public final Builder writeBufferSizeInBytes(String value) {
 			this.writeBufferSizeInBytes = value;

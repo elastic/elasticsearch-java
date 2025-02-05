@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: transform.get_transform_stats.Request
 
 /**
- * Get transform stats. Get usage information for transforms.
+ * Get transform stats.
+ * <p>
+ * Get usage information for transforms.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.get_transform_stats.Request">API

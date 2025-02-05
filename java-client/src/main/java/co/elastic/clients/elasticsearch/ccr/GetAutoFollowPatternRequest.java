@@ -55,7 +55,9 @@ import javax.annotation.Nullable;
 // typedef: ccr.get_auto_follow_pattern.Request
 
 /**
- * Get auto-follow patterns. Get cross-cluster replication auto-follow patterns.
+ * Get auto-follow patterns.
+ * <p>
+ * Get cross-cluster replication auto-follow patterns.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.get_auto_follow_pattern.Request">API
@@ -83,7 +85,10 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. It can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -93,8 +98,8 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the auto-follow pattern collection that you want to retrieve. If
-	 * you do not specify a name, the API returns information for all collections.
+	 * The auto-follow pattern collection that you want to retrieve. If you do not
+	 * specify a name, the API returns information for all collections.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -119,7 +124,10 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -129,7 +137,10 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -138,8 +149,8 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the auto-follow pattern collection that you want to retrieve. If
-		 * you do not specify a name, the API returns information for all collections.
+		 * The auto-follow pattern collection that you want to retrieve. If you do not
+		 * specify a name, the API returns information for all collections.
 		 * <p>
 		 * API name: {@code name}
 		 */

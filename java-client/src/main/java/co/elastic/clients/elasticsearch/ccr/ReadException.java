@@ -82,21 +82,28 @@ public class ReadException implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code exception}
+	 * Required - The exception that caused the read to fail.
+	 * <p>
+	 * API name: {@code exception}
 	 */
 	public final ErrorCause exception() {
 		return this.exception;
 	}
 
 	/**
-	 * Required - API name: {@code from_seq_no}
+	 * Required - The starting sequence number of the batch requested from the
+	 * leader.
+	 * <p>
+	 * API name: {@code from_seq_no}
 	 */
 	public final long fromSeqNo() {
 		return this.fromSeqNo;
 	}
 
 	/**
-	 * Required - API name: {@code retries}
+	 * Required - The number of times the batch has been retried.
+	 * <p>
+	 * API name: {@code retries}
 	 */
 	public final int retries() {
 		return this.retries;
@@ -143,7 +150,9 @@ public class ReadException implements JsonpSerializable {
 		private Integer retries;
 
 		/**
-		 * Required - API name: {@code exception}
+		 * Required - The exception that caused the read to fail.
+		 * <p>
+		 * API name: {@code exception}
 		 */
 		public final Builder exception(ErrorCause value) {
 			this.exception = value;
@@ -151,14 +160,19 @@ public class ReadException implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code exception}
+		 * Required - The exception that caused the read to fail.
+		 * <p>
+		 * API name: {@code exception}
 		 */
 		public final Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.exception(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code from_seq_no}
+		 * Required - The starting sequence number of the batch requested from the
+		 * leader.
+		 * <p>
+		 * API name: {@code from_seq_no}
 		 */
 		public final Builder fromSeqNo(long value) {
 			this.fromSeqNo = value;
@@ -166,7 +180,9 @@ public class ReadException implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code retries}
+		 * Required - The number of times the batch has been retried.
+		 * <p>
+		 * API name: {@code retries}
 		 */
 		public final Builder retries(int value) {
 			this.retries = value;
