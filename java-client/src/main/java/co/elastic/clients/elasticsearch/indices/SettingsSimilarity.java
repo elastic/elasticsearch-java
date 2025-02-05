@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -29,10 +30,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,10 +63,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SettingsSimilarity
-		implements
-			TaggedUnion<SettingsSimilarity.Kind, SettingsSimilarityVariant>,
-			JsonpSerializable {
+public class SettingsSimilarity implements OpenTaggedUnion<SettingsSimilarity.Kind, Object>, JsonpSerializable {
 
 	/**
 	 * {@link SettingsSimilarity} variant kinds.
@@ -91,6 +90,9 @@ public class SettingsSimilarity
 
 		Scripted("scripted"),
 
+		/** A custom {@code SettingsSimilarity} defined by a plugin */
+		_Custom(null)
+
 		;
 
 		private final String jsonValue;
@@ -106,7 +108,7 @@ public class SettingsSimilarity
 	}
 
 	private final Kind _kind;
-	private final SettingsSimilarityVariant _value;
+	private final Object _value;
 
 	@Override
 	public final Kind _kind() {
@@ -114,7 +116,7 @@ public class SettingsSimilarity
 	}
 
 	@Override
-	public final SettingsSimilarityVariant _get() {
+	public final Object _get() {
 		return _value;
 	}
 
@@ -122,6 +124,7 @@ public class SettingsSimilarity
 
 		this._kind = ApiTypeHelper.requireNonNull(value._settingsSimilarityKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
 
 	}
 
@@ -129,11 +132,22 @@ public class SettingsSimilarity
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 	}
 
 	public static SettingsSimilarity of(Function<Builder, ObjectBuilder<SettingsSimilarity>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Build a custom plugin-defined {@code SettingsSimilarity}, given its kind and
+	 * some JSON data
+	 */
+	public SettingsSimilarity(String kind, JsonData value) {
+		this._kind = Kind._Custom;
+		this._value = value;
+		this._customKind = kind;
 	}
 
 	/**
@@ -273,6 +287,35 @@ public class SettingsSimilarity
 		return TaggedUnionUtils.get(this, Kind.Scripted);
 	}
 
+	@Nullable
+	private final String _customKind;
+
+	/**
+	 * Is this a custom {@code SettingsSimilarity} defined by a plugin?
+	 */
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
+	}
+
+	/**
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not {@link Kind#_Custom}.
+	 */
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
+	}
+
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -289,7 +332,8 @@ public class SettingsSimilarity
 			implements
 				ObjectBuilder<SettingsSimilarity> {
 		private Kind _kind;
-		private SettingsSimilarityVariant _value;
+		private Object _value;
+		private String _customKind;
 
 		@Override
 		protected Builder self() {
@@ -383,6 +427,22 @@ public class SettingsSimilarity
 			return this.scripted(fn.apply(new SettingsSimilarityScripted.Builder()).build());
 		}
 
+		/**
+		 * Define this {@code SettingsSimilarity} as a plugin-defined variant.
+		 *
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code SettingsSimilarity}. It is
+		 *            converted internally to {@link JsonData}.
+		 */
+		public ObjectBuilder<SettingsSimilarity> _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
+			return this;
+		}
+
 		public SettingsSimilarity build() {
 			_checkSingleUse();
 			return new SettingsSimilarity(this);
@@ -400,6 +460,11 @@ public class SettingsSimilarity
 		op.add(Builder::lmdirichlet, SettingsSimilarityLmd._DESERIALIZER, "LMDirichlet");
 		op.add(Builder::lmjelinekmercer, SettingsSimilarityLmj._DESERIALIZER, "LMJelinekMercer");
 		op.add(Builder::scripted, SettingsSimilarityScripted._DESERIALIZER, "scripted");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 		op.setTypeProperty("type", null);
 
