@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +61,7 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 	// Single key dictionary
 	private final String field;
 
-	private final String value;
+	private final FieldValue value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -102,7 +103,7 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public final String value() {
+	public final FieldValue value() {
 		return this.value;
 	}
 
@@ -111,7 +112,7 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 		generator.writeEnd();
 
@@ -134,13 +135,52 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 			return this;
 		}
 
-		private String value;
+		private FieldValue value;
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(FieldValue value) {
+			this.value = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code value}
 		 */
 		public final Builder value(String value) {
-			this.value = value;
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(long value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(double value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(boolean value) {
+			this.value = FieldValue.of(value);
 			return this;
 		}
 
@@ -172,10 +212,10 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 	protected static void setupSpanTermQueryDeserializer(ObjectDeserializer<SpanTermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value", "term");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("value");
+		op.shortcutProperty("value", true);
 
 	}
 

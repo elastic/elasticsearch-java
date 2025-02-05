@@ -40,10 +40,11 @@ import java.util.function.Function;
 /**
  * Builders for {@link InferenceResult} variants.
  * <p>
- * Variants <code>text_embedding_bytes</code>, <code>text_embedding</code>,
- * <code>sparse_embedding</code>, <code>completion</code>, <code>rerank</code>
- * are not available here as they don't have a dedicated class. Use
- * {@link InferenceResult}'s builder for these.
+ * Variants <code>text_embedding_bytes</code>, <code>text_embedding_bits</code>,
+ * <code>text_embedding</code>, <code>sparse_embedding</code>,
+ * <code>completion</code>, <code>rerank</code> are not available here as they
+ * don't have a dedicated class. Use {@link InferenceResult}'s builder for
+ * these.
  * 
  */
 public class InferenceResultBuilders {

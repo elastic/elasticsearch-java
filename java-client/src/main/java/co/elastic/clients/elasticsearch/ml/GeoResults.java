@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,16 +58,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GeoResults implements JsonpSerializable {
+	@Nullable
 	private final String actualPoint;
 
+	@Nullable
 	private final String typicalPoint;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoResults(Builder builder) {
 
-		this.actualPoint = ApiTypeHelper.requireNonNull(builder.actualPoint, this, "actualPoint");
-		this.typicalPoint = ApiTypeHelper.requireNonNull(builder.typicalPoint, this, "typicalPoint");
+		this.actualPoint = builder.actualPoint;
+		this.typicalPoint = builder.typicalPoint;
 
 	}
 
@@ -77,21 +78,21 @@ public class GeoResults implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The actual value for the bucket formatted as a
-	 * <code>geo_point</code>.
+	 * The actual value for the bucket formatted as a <code>geo_point</code>.
 	 * <p>
 	 * API name: {@code actual_point}
 	 */
+	@Nullable
 	public final String actualPoint() {
 		return this.actualPoint;
 	}
 
 	/**
-	 * Required - The typical value for the bucket formatted as a
-	 * <code>geo_point</code>.
+	 * The typical value for the bucket formatted as a <code>geo_point</code>.
 	 * <p>
 	 * API name: {@code typical_point}
 	 */
+	@Nullable
 	public final String typicalPoint() {
 		return this.typicalPoint;
 	}
@@ -107,11 +108,16 @@ public class GeoResults implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actual_point");
-		generator.write(this.actualPoint);
+		if (this.actualPoint != null) {
+			generator.writeKey("actual_point");
+			generator.write(this.actualPoint);
 
-		generator.writeKey("typical_point");
-		generator.write(this.typicalPoint);
+		}
+		if (this.typicalPoint != null) {
+			generator.writeKey("typical_point");
+			generator.write(this.typicalPoint);
+
+		}
 
 	}
 
@@ -127,28 +133,28 @@ public class GeoResults implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoResults> {
+		@Nullable
 		private String actualPoint;
 
+		@Nullable
 		private String typicalPoint;
 
 		/**
-		 * Required - The actual value for the bucket formatted as a
-		 * <code>geo_point</code>.
+		 * The actual value for the bucket formatted as a <code>geo_point</code>.
 		 * <p>
 		 * API name: {@code actual_point}
 		 */
-		public final Builder actualPoint(String value) {
+		public final Builder actualPoint(@Nullable String value) {
 			this.actualPoint = value;
 			return this;
 		}
 
 		/**
-		 * Required - The typical value for the bucket formatted as a
-		 * <code>geo_point</code>.
+		 * The typical value for the bucket formatted as a <code>geo_point</code>.
 		 * <p>
 		 * API name: {@code typical_point}
 		 */
-		public final Builder typicalPoint(String value) {
+		public final Builder typicalPoint(@Nullable String value) {
 			this.typicalPoint = value;
 			return this;
 		}

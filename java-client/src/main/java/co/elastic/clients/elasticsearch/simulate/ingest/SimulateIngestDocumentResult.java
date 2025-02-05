@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.sql;
+package co.elastic.clients.elasticsearch.simulate.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,11 +26,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,44 +48,37 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: sql._types.Column
+// typedef: simulate.ingest.SimulateIngestDocumentResult
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#sql._types.Column">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#simulate.ingest.SimulateIngestDocumentResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Column implements JsonpSerializable {
-	private final String name;
-
-	private final String type;
+public class SimulateIngestDocumentResult implements JsonpSerializable {
+	@Nullable
+	private final IngestDocumentSimulation doc;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Column(Builder builder) {
+	private SimulateIngestDocumentResult(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.doc = builder.doc;
 
 	}
 
-	public static Column of(Function<Builder, ObjectBuilder<Column>> fn) {
+	public static SimulateIngestDocumentResult of(Function<Builder, ObjectBuilder<SimulateIngestDocumentResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * API name: {@code doc}
 	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
+	@Nullable
+	public final IngestDocumentSimulation doc() {
+		return this.doc;
 	}
 
 	/**
@@ -101,11 +92,11 @@ public class Column implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (this.doc != null) {
+			generator.writeKey("doc");
+			this.doc.serialize(generator, mapper);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		}
 
 	}
 
@@ -117,28 +108,29 @@ public class Column implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Column}.
+	 * Builder for {@link SimulateIngestDocumentResult}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Column> {
-		private String name;
-
-		private String type;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SimulateIngestDocumentResult> {
+		@Nullable
+		private IngestDocumentSimulation doc;
 
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code doc}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder doc(@Nullable IngestDocumentSimulation value) {
+			this.doc = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * API name: {@code doc}
 		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
+		public final Builder doc(
+				Function<IngestDocumentSimulation.Builder, ObjectBuilder<IngestDocumentSimulation>> fn) {
+			return this.doc(fn.apply(new IngestDocumentSimulation.Builder()).build());
 		}
 
 		@Override
@@ -147,30 +139,30 @@ public class Column implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link Column}.
+		 * Builds a {@link SimulateIngestDocumentResult}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Column build() {
+		public SimulateIngestDocumentResult build() {
 			_checkSingleUse();
 
-			return new Column(this);
+			return new SimulateIngestDocumentResult(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Column}
+	 * Json deserializer for {@link SimulateIngestDocumentResult}
 	 */
-	public static final JsonpDeserializer<Column> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Column::setupColumnDeserializer);
+	public static final JsonpDeserializer<SimulateIngestDocumentResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimulateIngestDocumentResult::setupSimulateIngestDocumentResultDeserializer);
 
-	protected static void setupColumnDeserializer(ObjectDeserializer<Column.Builder> op) {
+	protected static void setupSimulateIngestDocumentResultDeserializer(
+			ObjectDeserializer<SimulateIngestDocumentResult.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::doc, IngestDocumentSimulation._DESERIALIZER, "doc");
 
 	}
 

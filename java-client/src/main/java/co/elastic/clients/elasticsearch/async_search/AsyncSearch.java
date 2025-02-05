@@ -142,7 +142,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	/**
 	 * Partial aggregations results, coming from the shards that have already
-	 * completed the execution of the query.
+	 * completed running the query.
 	 * <p>
 	 * API name: {@code aggregations}
 	 */
@@ -395,7 +395,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Partial aggregations results, coming from the shards that have already
-		 * completed the execution of the query.
+		 * completed running the query.
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
@@ -408,7 +408,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Partial aggregations results, coming from the shards that have already
-		 * completed the execution of the query.
+		 * completed running the query.
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
@@ -421,7 +421,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Partial aggregations results, coming from the shards that have already
-		 * completed the execution of the query.
+		 * completed running the query.
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>

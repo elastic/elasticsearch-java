@@ -81,7 +81,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	private DateIndexNameProcessor(Builder builder) {
 		super(builder);
 
-		this.dateFormats = ApiTypeHelper.unmodifiableRequired(builder.dateFormats, this, "dateFormats");
+		this.dateFormats = ApiTypeHelper.unmodifiable(builder.dateFormats);
 		this.dateRounding = ApiTypeHelper.requireNonNull(builder.dateRounding, this, "dateRounding");
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.indexNameFormat = builder.indexNameFormat;
@@ -104,9 +104,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * Required - An array of the expected date formats for parsing dates /
-	 * timestamps in the document being preprocessed. Can be a java time pattern or
-	 * one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+	 * An array of the expected date formats for parsing dates / timestamps in the
+	 * document being preprocessed. Can be a java time pattern or one of the
+	 * following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
 	 * <p>
 	 * API name: {@code date_formats}
 	 */
@@ -231,6 +231,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateIndexNameProcessor> {
+		@Nullable
 		private List<String> dateFormats;
 
 		private String dateRounding;
@@ -250,9 +251,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		private String timezone;
 
 		/**
-		 * Required - An array of the expected date formats for parsing dates /
-		 * timestamps in the document being preprocessed. Can be a java time pattern or
-		 * one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+		 * An array of the expected date formats for parsing dates / timestamps in the
+		 * document being preprocessed. Can be a java time pattern or one of the
+		 * following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
 		 * <p>
 		 * API name: {@code date_formats}
 		 * <p>
@@ -264,9 +265,9 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * Required - An array of the expected date formats for parsing dates /
-		 * timestamps in the document being preprocessed. Can be a java time pattern or
-		 * one of the following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
+		 * An array of the expected date formats for parsing dates / timestamps in the
+		 * document being preprocessed. Can be a java time pattern or one of the
+		 * following formats: ISO8601, UNIX, UNIX_MS, or TAI64N.
 		 * <p>
 		 * API name: {@code date_formats}
 		 * <p>
