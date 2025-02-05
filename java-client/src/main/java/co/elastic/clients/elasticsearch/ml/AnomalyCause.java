@@ -63,26 +63,39 @@ import javax.annotation.Nullable;
 public class AnomalyCause implements JsonpSerializable {
 	private final List<Double> actual;
 
+	@Nullable
 	private final String byFieldName;
 
+	@Nullable
 	private final String byFieldValue;
 
+	@Nullable
 	private final String correlatedByFieldValue;
 
+	@Nullable
 	private final String fieldName;
 
+	@Nullable
 	private final String function;
 
+	@Nullable
 	private final String functionDescription;
+
+	@Nullable
+	private final GeoResults geoResults;
 
 	private final List<Influence> influencers;
 
+	@Nullable
 	private final String overFieldName;
 
+	@Nullable
 	private final String overFieldValue;
 
+	@Nullable
 	private final String partitionFieldName;
 
+	@Nullable
 	private final String partitionFieldValue;
 
 	private final double probability;
@@ -93,23 +106,21 @@ public class AnomalyCause implements JsonpSerializable {
 
 	private AnomalyCause(Builder builder) {
 
-		this.actual = ApiTypeHelper.unmodifiableRequired(builder.actual, this, "actual");
-		this.byFieldName = ApiTypeHelper.requireNonNull(builder.byFieldName, this, "byFieldName");
-		this.byFieldValue = ApiTypeHelper.requireNonNull(builder.byFieldValue, this, "byFieldValue");
-		this.correlatedByFieldValue = ApiTypeHelper.requireNonNull(builder.correlatedByFieldValue, this,
-				"correlatedByFieldValue");
-		this.fieldName = ApiTypeHelper.requireNonNull(builder.fieldName, this, "fieldName");
-		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
-		this.functionDescription = ApiTypeHelper.requireNonNull(builder.functionDescription, this,
-				"functionDescription");
-		this.influencers = ApiTypeHelper.unmodifiableRequired(builder.influencers, this, "influencers");
-		this.overFieldName = ApiTypeHelper.requireNonNull(builder.overFieldName, this, "overFieldName");
-		this.overFieldValue = ApiTypeHelper.requireNonNull(builder.overFieldValue, this, "overFieldValue");
-		this.partitionFieldName = ApiTypeHelper.requireNonNull(builder.partitionFieldName, this, "partitionFieldName");
-		this.partitionFieldValue = ApiTypeHelper.requireNonNull(builder.partitionFieldValue, this,
-				"partitionFieldValue");
+		this.actual = ApiTypeHelper.unmodifiable(builder.actual);
+		this.byFieldName = builder.byFieldName;
+		this.byFieldValue = builder.byFieldValue;
+		this.correlatedByFieldValue = builder.correlatedByFieldValue;
+		this.fieldName = builder.fieldName;
+		this.function = builder.function;
+		this.functionDescription = builder.functionDescription;
+		this.geoResults = builder.geoResults;
+		this.influencers = ApiTypeHelper.unmodifiable(builder.influencers);
+		this.overFieldName = builder.overFieldName;
+		this.overFieldValue = builder.overFieldValue;
+		this.partitionFieldName = builder.partitionFieldName;
+		this.partitionFieldValue = builder.partitionFieldValue;
 		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
-		this.typical = ApiTypeHelper.unmodifiableRequired(builder.typical, this, "typical");
+		this.typical = ApiTypeHelper.unmodifiable(builder.typical);
 
 	}
 
@@ -118,85 +129,103 @@ public class AnomalyCause implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code actual}
+	 * API name: {@code actual}
 	 */
 	public final List<Double> actual() {
 		return this.actual;
 	}
 
 	/**
-	 * Required - API name: {@code by_field_name}
+	 * API name: {@code by_field_name}
 	 */
+	@Nullable
 	public final String byFieldName() {
 		return this.byFieldName;
 	}
 
 	/**
-	 * Required - API name: {@code by_field_value}
+	 * API name: {@code by_field_value}
 	 */
+	@Nullable
 	public final String byFieldValue() {
 		return this.byFieldValue;
 	}
 
 	/**
-	 * Required - API name: {@code correlated_by_field_value}
+	 * API name: {@code correlated_by_field_value}
 	 */
+	@Nullable
 	public final String correlatedByFieldValue() {
 		return this.correlatedByFieldValue;
 	}
 
 	/**
-	 * Required - API name: {@code field_name}
+	 * API name: {@code field_name}
 	 */
+	@Nullable
 	public final String fieldName() {
 		return this.fieldName;
 	}
 
 	/**
-	 * Required - API name: {@code function}
+	 * API name: {@code function}
 	 */
+	@Nullable
 	public final String function() {
 		return this.function;
 	}
 
 	/**
-	 * Required - API name: {@code function_description}
+	 * API name: {@code function_description}
 	 */
+	@Nullable
 	public final String functionDescription() {
 		return this.functionDescription;
 	}
 
 	/**
-	 * Required - API name: {@code influencers}
+	 * API name: {@code geo_results}
+	 */
+	@Nullable
+	public final GeoResults geoResults() {
+		return this.geoResults;
+	}
+
+	/**
+	 * API name: {@code influencers}
 	 */
 	public final List<Influence> influencers() {
 		return this.influencers;
 	}
 
 	/**
-	 * Required - API name: {@code over_field_name}
+	 * API name: {@code over_field_name}
 	 */
+	@Nullable
 	public final String overFieldName() {
 		return this.overFieldName;
 	}
 
 	/**
-	 * Required - API name: {@code over_field_value}
+	 * API name: {@code over_field_value}
 	 */
+	@Nullable
 	public final String overFieldValue() {
 		return this.overFieldValue;
 	}
 
 	/**
-	 * Required - API name: {@code partition_field_name}
+	 * API name: {@code partition_field_name}
 	 */
+	@Nullable
 	public final String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
 	/**
-	 * Required - API name: {@code partition_field_value}
+	 * API name: {@code partition_field_value}
 	 */
+	@Nullable
 	public final String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
@@ -209,7 +238,7 @@ public class AnomalyCause implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code typical}
+	 * API name: {@code typical}
 	 */
 	public final List<Double> typical() {
 		return this.typical;
@@ -236,24 +265,41 @@ public class AnomalyCause implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("by_field_name");
-		generator.write(this.byFieldName);
+		if (this.byFieldName != null) {
+			generator.writeKey("by_field_name");
+			generator.write(this.byFieldName);
 
-		generator.writeKey("by_field_value");
-		generator.write(this.byFieldValue);
+		}
+		if (this.byFieldValue != null) {
+			generator.writeKey("by_field_value");
+			generator.write(this.byFieldValue);
 
-		generator.writeKey("correlated_by_field_value");
-		generator.write(this.correlatedByFieldValue);
+		}
+		if (this.correlatedByFieldValue != null) {
+			generator.writeKey("correlated_by_field_value");
+			generator.write(this.correlatedByFieldValue);
 
-		generator.writeKey("field_name");
-		generator.write(this.fieldName);
+		}
+		if (this.fieldName != null) {
+			generator.writeKey("field_name");
+			generator.write(this.fieldName);
 
-		generator.writeKey("function");
-		generator.write(this.function);
+		}
+		if (this.function != null) {
+			generator.writeKey("function");
+			generator.write(this.function);
 
-		generator.writeKey("function_description");
-		generator.write(this.functionDescription);
+		}
+		if (this.functionDescription != null) {
+			generator.writeKey("function_description");
+			generator.write(this.functionDescription);
 
+		}
+		if (this.geoResults != null) {
+			generator.writeKey("geo_results");
+			this.geoResults.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.influencers)) {
 			generator.writeKey("influencers");
 			generator.writeStartArray();
@@ -264,18 +310,26 @@ public class AnomalyCause implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("over_field_name");
-		generator.write(this.overFieldName);
+		if (this.overFieldName != null) {
+			generator.writeKey("over_field_name");
+			generator.write(this.overFieldName);
 
-		generator.writeKey("over_field_value");
-		generator.write(this.overFieldValue);
+		}
+		if (this.overFieldValue != null) {
+			generator.writeKey("over_field_value");
+			generator.write(this.overFieldValue);
 
-		generator.writeKey("partition_field_name");
-		generator.write(this.partitionFieldName);
+		}
+		if (this.partitionFieldName != null) {
+			generator.writeKey("partition_field_name");
+			generator.write(this.partitionFieldName);
 
-		generator.writeKey("partition_field_value");
-		generator.write(this.partitionFieldValue);
+		}
+		if (this.partitionFieldValue != null) {
+			generator.writeKey("partition_field_value");
+			generator.write(this.partitionFieldValue);
 
+		}
 		generator.writeKey("probability");
 		generator.write(this.probability);
 
@@ -304,36 +358,52 @@ public class AnomalyCause implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AnomalyCause> {
+		@Nullable
 		private List<Double> actual;
 
+		@Nullable
 		private String byFieldName;
 
+		@Nullable
 		private String byFieldValue;
 
+		@Nullable
 		private String correlatedByFieldValue;
 
+		@Nullable
 		private String fieldName;
 
+		@Nullable
 		private String function;
 
+		@Nullable
 		private String functionDescription;
 
+		@Nullable
+		private GeoResults geoResults;
+
+		@Nullable
 		private List<Influence> influencers;
 
+		@Nullable
 		private String overFieldName;
 
+		@Nullable
 		private String overFieldValue;
 
+		@Nullable
 		private String partitionFieldName;
 
+		@Nullable
 		private String partitionFieldValue;
 
 		private Double probability;
 
+		@Nullable
 		private List<Double> typical;
 
 		/**
-		 * Required - API name: {@code actual}
+		 * API name: {@code actual}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actual</code>.
 		 */
@@ -343,7 +413,7 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code actual}
+		 * API name: {@code actual}
 		 * <p>
 		 * Adds one or more values to <code>actual</code>.
 		 */
@@ -353,55 +423,70 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code by_field_name}
+		 * API name: {@code by_field_name}
 		 */
-		public final Builder byFieldName(String value) {
+		public final Builder byFieldName(@Nullable String value) {
 			this.byFieldName = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code by_field_value}
+		 * API name: {@code by_field_value}
 		 */
-		public final Builder byFieldValue(String value) {
+		public final Builder byFieldValue(@Nullable String value) {
 			this.byFieldValue = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code correlated_by_field_value}
+		 * API name: {@code correlated_by_field_value}
 		 */
-		public final Builder correlatedByFieldValue(String value) {
+		public final Builder correlatedByFieldValue(@Nullable String value) {
 			this.correlatedByFieldValue = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code field_name}
+		 * API name: {@code field_name}
 		 */
-		public final Builder fieldName(String value) {
+		public final Builder fieldName(@Nullable String value) {
 			this.fieldName = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code function}
+		 * API name: {@code function}
 		 */
-		public final Builder function(String value) {
+		public final Builder function(@Nullable String value) {
 			this.function = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code function_description}
+		 * API name: {@code function_description}
 		 */
-		public final Builder functionDescription(String value) {
+		public final Builder functionDescription(@Nullable String value) {
 			this.functionDescription = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code influencers}
+		 * API name: {@code geo_results}
+		 */
+		public final Builder geoResults(@Nullable GeoResults value) {
+			this.geoResults = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code geo_results}
+		 */
+		public final Builder geoResults(Function<GeoResults.Builder, ObjectBuilder<GeoResults>> fn) {
+			return this.geoResults(fn.apply(new GeoResults.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencers</code>.
 		 */
@@ -411,7 +496,7 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code influencers}
+		 * API name: {@code influencers}
 		 * <p>
 		 * Adds one or more values to <code>influencers</code>.
 		 */
@@ -421,7 +506,7 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code influencers}
+		 * API name: {@code influencers}
 		 * <p>
 		 * Adds a value to <code>influencers</code> using a builder lambda.
 		 */
@@ -430,33 +515,33 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code over_field_name}
+		 * API name: {@code over_field_name}
 		 */
-		public final Builder overFieldName(String value) {
+		public final Builder overFieldName(@Nullable String value) {
 			this.overFieldName = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code over_field_value}
+		 * API name: {@code over_field_value}
 		 */
-		public final Builder overFieldValue(String value) {
+		public final Builder overFieldValue(@Nullable String value) {
 			this.overFieldValue = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code partition_field_name}
+		 * API name: {@code partition_field_name}
 		 */
-		public final Builder partitionFieldName(String value) {
+		public final Builder partitionFieldName(@Nullable String value) {
 			this.partitionFieldName = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code partition_field_value}
+		 * API name: {@code partition_field_value}
 		 */
-		public final Builder partitionFieldValue(String value) {
+		public final Builder partitionFieldValue(@Nullable String value) {
 			this.partitionFieldValue = value;
 			return this;
 		}
@@ -470,7 +555,7 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code typical}
+		 * API name: {@code typical}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typical</code>.
 		 */
@@ -480,7 +565,7 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code typical}
+		 * API name: {@code typical}
 		 * <p>
 		 * Adds one or more values to <code>typical</code>.
 		 */
@@ -524,6 +609,7 @@ public class AnomalyCause implements JsonpSerializable {
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
+		op.add(Builder::geoResults, GeoResults._DESERIALIZER, "geo_results");
 		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence._DESERIALIZER), "influencers");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::overFieldValue, JsonpDeserializer.stringDeserializer(), "over_field_value");
