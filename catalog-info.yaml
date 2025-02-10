@@ -21,7 +21,7 @@ spec:
       name: elasticsearch-java
     spec:
       repository: elastic/elasticsearch-java
-      pipeline_file: ".buildkite/release_dra.yml"
+      pipeline_file: ".buildkite/pipeline.yml"
       teams:
         devtools-team: {}
         everyone:
