@@ -8,4 +8,4 @@ steps:
         workflow:
           - "snapshot"
           - "staging"
-    command: ".ci/release.sh {{matrix.workflow}}"
+    command: ".ci/release_dra.sh {{matrix.workflow}}"
