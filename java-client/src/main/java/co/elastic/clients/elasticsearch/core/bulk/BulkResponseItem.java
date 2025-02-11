@@ -78,6 +78,9 @@ public class BulkResponseItem implements JsonpSerializable {
 	private final int status;
 
 	@Nullable
+	private final FailureStoreStatus failureStore;
+
+	@Nullable
 	private final ErrorCause error;
 
 	@Nullable
@@ -110,6 +113,7 @@ public class BulkResponseItem implements JsonpSerializable {
 		this.id = builder.id;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.failureStore = builder.failureStore;
 		this.error = builder.error;
 		this.primaryTerm = builder.primaryTerm;
 		this.result = builder.result;
@@ -160,6 +164,14 @@ public class BulkResponseItem implements JsonpSerializable {
 	 */
 	public final int status() {
 		return this.status;
+	}
+
+	/**
+	 * API name: {@code failure_store}
+	 */
+	@Nullable
+	public final FailureStoreStatus failureStore() {
+		return this.failureStore;
 	}
 
 	/**
@@ -268,6 +280,10 @@ public class BulkResponseItem implements JsonpSerializable {
 		generator.writeKey("status");
 		generator.write(this.status);
 
+		if (this.failureStore != null) {
+			generator.writeKey("failure_store");
+			this.failureStore.serialize(generator, mapper);
+		}
 		if (this.error != null) {
 			generator.writeKey("error");
 			this.error.serialize(generator, mapper);
@@ -343,6 +359,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		private Integer status;
 
 		@Nullable
+		private FailureStoreStatus failureStore;
+
+		@Nullable
 		private ErrorCause error;
 
 		@Nullable
@@ -395,6 +414,14 @@ public class BulkResponseItem implements JsonpSerializable {
 		 */
 		public final Builder status(int value) {
 			this.status = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code failure_store}
+		 */
+		public final Builder failureStore(@Nullable FailureStoreStatus value) {
+			this.failureStore = value;
 			return this;
 		}
 
@@ -539,6 +566,7 @@ public class BulkResponseItem implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
+		op.add(Builder::failureStore, FailureStoreStatus._DESERIALIZER, "failure_store");
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::result, JsonpDeserializer.stringDeserializer(), "result");

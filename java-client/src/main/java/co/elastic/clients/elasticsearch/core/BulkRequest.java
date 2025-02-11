@@ -241,6 +241,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	private final List<String> sourceIncludes;
 
 	@Nullable
+	private final Boolean includeSourceOnError;
+
+	@Nullable
 	private final String index;
 
 	@Nullable
@@ -276,6 +279,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.source = builder.source;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.includeSourceOnError = builder.includeSourceOnError;
 		this.index = builder.index;
 		this.listExecutedPipelines = builder.listExecutedPipelines;
 		this.pipeline = builder.pipeline;
@@ -331,6 +335,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 */
 	public final List<String> sourceIncludes() {
 		return this.sourceIncludes;
+	}
+
+	/**
+	 * True or false if to include the document source in the error message in case
+	 * of parsing errors.
+	 * <p>
+	 * API name: {@code include_source_on_error}
+	 */
+	@Nullable
+	public final Boolean includeSourceOnError() {
+		return this.includeSourceOnError;
 	}
 
 	/**
@@ -478,6 +493,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private List<String> sourceIncludes;
 
 		@Nullable
+		private Boolean includeSourceOnError;
+
+		@Nullable
 		private String index;
 
 		@Nullable
@@ -586,6 +604,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 */
 		public final Builder sourceIncludes(String value, String... values) {
 			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
+			return this;
+		}
+
+		/**
+		 * True or false if to include the document source in the error message in case
+		 * of parsing errors.
+		 * <p>
+		 * API name: {@code include_source_on_error}
+		 */
+		public final Builder includeSourceOnError(@Nullable Boolean value) {
+			this.includeSourceOnError = value;
 			return this;
 		}
 
@@ -834,6 +863,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
+				}
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
 				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));

@@ -122,6 +122,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	@Nullable
 	private final Long ifSeqNo;
 
+	@Nullable
+	private final Boolean includeSourceOnError;
+
 	private final String index;
 
 	@Nullable
@@ -171,6 +174,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.includeSourceOnError = builder.includeSourceOnError;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lang = builder.lang;
 		this.refresh = builder.refresh;
@@ -264,6 +268,17 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	@Nullable
 	public final Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * True or false if to include the document source in the error message in case
+	 * of parsing errors.
+	 * <p>
+	 * API name: {@code include_source_on_error}
+	 */
+	@Nullable
+	public final Boolean includeSourceOnError() {
+		return this.includeSourceOnError;
 	}
 
 	/**
@@ -465,6 +480,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		@Nullable
 		private Long ifSeqNo;
 
+		@Nullable
+		private Boolean includeSourceOnError;
+
 		private String index;
 
 		@Nullable
@@ -586,6 +604,17 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 */
 		public final Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * True or false if to include the document source in the error message in case
+		 * of parsing errors.
+		 * <p>
+		 * API name: {@code include_source_on_error}
+		 */
+		public final Builder<TDocument, TPartialDocument> includeSourceOnError(@Nullable Boolean value) {
+			this.includeSourceOnError = value;
 			return this;
 		}
 
@@ -876,6 +905,15 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
+				}
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
@@ -888,9 +926,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				if (request.ifSeqNo != null) {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
-				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
@@ -899,9 +934,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				if (request.retryOnConflict != null) {
 					params.put("retry_on_conflict", String.valueOf(request.retryOnConflict));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
