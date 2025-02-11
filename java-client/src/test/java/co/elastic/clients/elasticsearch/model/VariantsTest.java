@@ -34,7 +34,6 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
-import java.io.StringReader;
 import java.util.function.Consumer;
 
 public class VariantsTest extends ModelTestCase {
@@ -289,7 +288,16 @@ public class VariantsTest extends ModelTestCase {
     @Test
     public void testBooleanVariantTag() {
 
-        String jsonT = "{\"indices\":{\"test\":{\"index\":\"test\",\"managed\":true,\"policy\":\"my_policy\",\"index_creation_date_millis\":1736785235558,\"time_since_index_creation\":\"27.75d\",\"lifecycle_date_millis\":1736785235558,\"age\":\"27.75d\",\"phase\":\"warm\",\"phase_time_millis\":1739183166898,\"action\":\"migrate\",\"action_time_millis\":1739183166898,\"step\":\"check-migration\",\"step_time_millis\":1739183166898,\"step_info\":{\"message\":\"Waiting for all shard copies to be active\",\"shards_left_to_allocate\":-1,\"all_shards_active\":false,\"number_of_replicas\":1},\"phase_execution\":{\"policy\":\"my_policy\",\"phase_definition\":{\"min_age\":\"10d\",\"actions\":{\"forcemerge\":{\"max_num_segments\":1}}},\"version\":1,\"modified_date_in_millis\":1739183005443}}}}";
+        String jsonT = "{\"indices\":{\"test\":{\"index\":\"test\",\"managed\":true,\"policy\":\"my_policy\"," +
+            "\"index_creation_date_millis\":1736785235558,\"time_since_index_creation\":\"27.75d\"," +
+            "\"lifecycle_date_millis\":1736785235558,\"age\":\"27.75d\",\"phase\":\"warm\"," +
+            "\"phase_time_millis\":1739183166898,\"action\":\"migrate\",\"action_time_millis\":1739183166898," +
+            "\"step\":\"check-migration\",\"step_time_millis\":1739183166898," +
+            "\"step_info\":{\"message\":\"Waiting for all shard copies to be active\"," +
+            "\"shards_left_to_allocate\":-1,\"all_shards_active\":false,\"number_of_replicas\":1}," +
+            "\"phase_execution\":{\"policy\":\"my_policy\",\"phase_definition\":{\"min_age\":\"10d\"," +
+            "\"actions\":{\"forcemerge\":{\"max_num_segments\":1}}},\"version\":1," +
+            "\"modified_date_in_millis\":1739183005443}}}}";
 
         ExplainLifecycleResponse respT = fromJson(jsonT,ExplainLifecycleResponse.class);
 
