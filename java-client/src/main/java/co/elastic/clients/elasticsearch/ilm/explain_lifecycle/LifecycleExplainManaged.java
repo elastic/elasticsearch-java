@@ -85,7 +85,6 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	@Nullable
 	private final Integer failedStepRetryCount;
 
-	@Nullable
 	private final String index;
 
 	@Nullable
@@ -111,7 +110,19 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	@Nullable
 	private final Long phaseTimeMillis;
 
+	@Nullable
 	private final String policy;
+
+	private final Map<String, JsonData> previousStepInfo;
+
+	@Nullable
+	private final String repositoryName;
+
+	@Nullable
+	private final String snapshotName;
+
+	@Nullable
+	private final String shrinkIndexName;
 
 	@Nullable
 	private final String step;
@@ -140,7 +151,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		this.age = builder.age;
 		this.failedStep = builder.failedStep;
 		this.failedStepRetryCount = builder.failedStepRetryCount;
-		this.index = builder.index;
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.indexCreationDate = builder.indexCreationDate;
 		this.indexCreationDateMillis = builder.indexCreationDateMillis;
 		this.isAutoRetryableError = builder.isAutoRetryableError;
@@ -149,7 +160,11 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 		this.phaseTime = builder.phaseTime;
 		this.phaseTimeMillis = builder.phaseTimeMillis;
-		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.policy = builder.policy;
+		this.previousStepInfo = ApiTypeHelper.unmodifiable(builder.previousStepInfo);
+		this.repositoryName = builder.repositoryName;
+		this.snapshotName = builder.snapshotName;
+		this.shrinkIndexName = builder.shrinkIndexName;
 		this.step = builder.step;
 		this.stepInfo = ApiTypeHelper.unmodifiable(builder.stepInfo);
 		this.stepTime = builder.stepTime;
@@ -220,9 +235,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
-	@Nullable
 	public final String index() {
 		return this.index;
 	}
@@ -291,10 +305,42 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	}
 
 	/**
-	 * Required - API name: {@code policy}
+	 * API name: {@code policy}
 	 */
+	@Nullable
 	public final String policy() {
 		return this.policy;
+	}
+
+	/**
+	 * API name: {@code previous_step_info}
+	 */
+	public final Map<String, JsonData> previousStepInfo() {
+		return this.previousStepInfo;
+	}
+
+	/**
+	 * API name: {@code repository_name}
+	 */
+	@Nullable
+	public final String repositoryName() {
+		return this.repositoryName;
+	}
+
+	/**
+	 * API name: {@code snapshot_name}
+	 */
+	@Nullable
+	public final String snapshotName() {
+		return this.snapshotName;
+	}
+
+	/**
+	 * API name: {@code shrink_index_name}
+	 */
+	@Nullable
+	public final String shrinkIndexName() {
+		return this.shrinkIndexName;
 	}
 
 	/**
@@ -386,11 +432,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			generator.write(this.failedStepRetryCount);
 
 		}
-		if (this.index != null) {
-			generator.writeKey("index");
-			generator.write(this.index);
+		generator.writeKey("index");
+		generator.write(this.index);
 
-		}
 		if (this.indexCreationDate != null) {
 			generator.writeKey("index_creation_date");
 			this.indexCreationDate.serialize(generator, mapper);
@@ -426,9 +470,37 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			generator.write(this.phaseTimeMillis);
 
 		}
-		generator.writeKey("policy");
-		generator.write(this.policy);
+		if (this.policy != null) {
+			generator.writeKey("policy");
+			generator.write(this.policy);
 
+		}
+		if (ApiTypeHelper.isDefined(this.previousStepInfo)) {
+			generator.writeKey("previous_step_info");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.previousStepInfo.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.repositoryName != null) {
+			generator.writeKey("repository_name");
+			generator.write(this.repositoryName);
+
+		}
+		if (this.snapshotName != null) {
+			generator.writeKey("snapshot_name");
+			generator.write(this.snapshotName);
+
+		}
+		if (this.shrinkIndexName != null) {
+			generator.writeKey("shrink_index_name");
+			generator.write(this.shrinkIndexName);
+
+		}
 		if (this.step != null) {
 			generator.writeKey("step");
 			generator.write(this.step);
@@ -499,7 +571,6 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		@Nullable
 		private Integer failedStepRetryCount;
 
-		@Nullable
 		private String index;
 
 		@Nullable
@@ -525,7 +596,20 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		@Nullable
 		private Long phaseTimeMillis;
 
+		@Nullable
 		private String policy;
+
+		@Nullable
+		private Map<String, JsonData> previousStepInfo;
+
+		@Nullable
+		private String repositoryName;
+
+		@Nullable
+		private String snapshotName;
+
+		@Nullable
+		private String shrinkIndexName;
 
 		@Nullable
 		private String step;
@@ -601,9 +685,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
-		public final Builder index(@Nullable String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -673,10 +757,54 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code policy}
+		 * API name: {@code policy}
 		 */
-		public final Builder policy(String value) {
+		public final Builder policy(@Nullable String value) {
 			this.policy = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code previous_step_info}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>previousStepInfo</code>.
+		 */
+		public final Builder previousStepInfo(Map<String, JsonData> map) {
+			this.previousStepInfo = _mapPutAll(this.previousStepInfo, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code previous_step_info}
+		 * <p>
+		 * Adds an entry to <code>previousStepInfo</code>.
+		 */
+		public final Builder previousStepInfo(String key, JsonData value) {
+			this.previousStepInfo = _mapPut(this.previousStepInfo, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code repository_name}
+		 */
+		public final Builder repositoryName(@Nullable String value) {
+			this.repositoryName = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code snapshot_name}
+		 */
+		public final Builder snapshotName(@Nullable String value) {
+			this.snapshotName = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shrink_index_name}
+		 */
+		public final Builder shrinkIndexName(@Nullable String value) {
+			this.shrinkIndexName = value;
 			return this;
 		}
 
@@ -800,6 +928,11 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		op.add(Builder::phaseTime, DateTime._DESERIALIZER, "phase_time");
 		op.add(Builder::phaseTimeMillis, JsonpDeserializer.longDeserializer(), "phase_time_millis");
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
+		op.add(Builder::previousStepInfo, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"previous_step_info");
+		op.add(Builder::repositoryName, JsonpDeserializer.stringDeserializer(), "repository_name");
+		op.add(Builder::snapshotName, JsonpDeserializer.stringDeserializer(), "snapshot_name");
+		op.add(Builder::shrinkIndexName, JsonpDeserializer.stringDeserializer(), "shrink_index_name");
 		op.add(Builder::step, JsonpDeserializer.stringDeserializer(), "step");
 		op.add(Builder::stepInfo, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "step_info");
 		op.add(Builder::stepTime, DateTime._DESERIALIZER, "step_time");

@@ -56,9 +56,9 @@ import javax.annotation.Nullable;
 
 /**
  * The rerank result object representing a single ranked document id: the
- * original index of the document in the request score: the score of the
- * document relative to the query text: Optional, the text of the document, if
- * requested
+ * original index of the document in the request relevance_score: the
+ * relevance_score of the document relative to the query text: Optional, the
+ * text of the document, if requested
  * 
  * @see <a href="../doc-files/api-spec.html#inference._types.RankedDocument">API
  *      specification</a>
@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
 public class RankedDocument implements JsonpSerializable {
 	private final int index;
 
-	private final float score;
+	private final float relevanceScore;
 
 	@Nullable
 	private final String text;
@@ -77,7 +77,7 @@ public class RankedDocument implements JsonpSerializable {
 	private RankedDocument(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.relevanceScore = ApiTypeHelper.requireNonNull(builder.relevanceScore, this, "relevanceScore");
 		this.text = builder.text;
 
 	}
@@ -94,10 +94,10 @@ public class RankedDocument implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code score}
+	 * Required - API name: {@code relevance_score}
 	 */
-	public final float score() {
-		return this.score;
+	public final float relevanceScore() {
+		return this.relevanceScore;
 	}
 
 	/**
@@ -122,8 +122,8 @@ public class RankedDocument implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("score");
-		generator.write(this.score);
+		generator.writeKey("relevance_score");
+		generator.write(this.relevanceScore);
 
 		if (this.text != null) {
 			generator.writeKey("text");
@@ -147,7 +147,7 @@ public class RankedDocument implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RankedDocument> {
 		private Integer index;
 
-		private Float score;
+		private Float relevanceScore;
 
 		@Nullable
 		private String text;
@@ -161,10 +161,10 @@ public class RankedDocument implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code score}
+		 * Required - API name: {@code relevance_score}
 		 */
-		public final Builder score(float value) {
-			this.score = value;
+		public final Builder relevanceScore(float value) {
+			this.relevanceScore = value;
 			return this;
 		}
 
@@ -205,7 +205,7 @@ public class RankedDocument implements JsonpSerializable {
 	protected static void setupRankedDocumentDeserializer(ObjectDeserializer<RankedDocument.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.integerDeserializer(), "index");
-		op.add(Builder::score, JsonpDeserializer.floatDeserializer(), "score");
+		op.add(Builder::relevanceScore, JsonpDeserializer.floatDeserializer(), "relevance_score");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}

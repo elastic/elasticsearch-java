@@ -71,7 +71,10 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#ml.flush_job.Request">API
  *      specification</a>
+ * @deprecated 9.1.0 Forcing any buffered data to be processed is deprecated, in
+ *             a future major version a datafeed will be required.
  */
+@Deprecated
 @JsonpDeserializable
 public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -207,7 +210,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link FlushJobRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<FlushJobRequest> {
 		@Nullable
 		private DateTime advanceTime;
