@@ -336,7 +336,23 @@ public class JacksonJsonpParser implements LookAheadJsonParser, BufferingJsonPar
                 if (fieldName.equals(name)) {
                     // Found
                     tb.copyCurrentEvent(parser);
-                    expectNextEvent(JsonToken.VALUE_STRING);
+                    try {
+                        expectNextEvent(JsonToken.VALUE_STRING);
+                    }
+                    catch (UnexpectedJsonEventException e) {
+                        // checking if instead of a string it's a boolean
+                        String details = e.getMessage();
+                        if (details.contains("VALUE_TRUE")){
+                            expectEvent(JsonToken.VALUE_TRUE);
+                        }
+                        else if (details.contains("VALUE_FALSE")){
+                            expectEvent(JsonToken.VALUE_FALSE);
+                        }
+                        // not a boolean either, can throw exception
+                        else{
+                            throw e;
+                        }
+                    }
                     tb.copyCurrentEvent(parser);
 
                     return new AbstractMap.SimpleImmutableEntry<>(

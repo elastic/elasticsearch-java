@@ -26,11 +26,15 @@ import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScore;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.ilm.ExplainLifecycleResponse;
+import co.elastic.clients.elasticsearch.ilm.explain_lifecycle.LifecycleExplainManaged;
+import co.elastic.clients.elasticsearch.ilm.explain_lifecycle.LifecycleExplainUnmanaged;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
+import java.io.StringReader;
 import java.util.function.Consumer;
 
 public class VariantsTest extends ModelTestCase {
@@ -280,5 +284,29 @@ public class VariantsTest extends ModelTestCase {
             assertEquals(1.0, fsq2.functionScore().functions().get(0).weight(), 0.001);
             assertEquals(2.0, fsq2.functionScore().functions().get(0).linear().untyped().placement().decay(), 0.001);
         }
+    }
+
+    @Test
+    public void testBooleanVariantTag() {
+
+        String jsonT = "{\"indices\":{\"test\":{\"index\":\"test\",\"managed\":true,\"policy\":\"my_policy\",\"index_creation_date_millis\":1736785235558,\"time_since_index_creation\":\"27.75d\",\"lifecycle_date_millis\":1736785235558,\"age\":\"27.75d\",\"phase\":\"warm\",\"phase_time_millis\":1739183166898,\"action\":\"migrate\",\"action_time_millis\":1739183166898,\"step\":\"check-migration\",\"step_time_millis\":1739183166898,\"step_info\":{\"message\":\"Waiting for all shard copies to be active\",\"shards_left_to_allocate\":-1,\"all_shards_active\":false,\"number_of_replicas\":1},\"phase_execution\":{\"policy\":\"my_policy\",\"phase_definition\":{\"min_age\":\"10d\",\"actions\":{\"forcemerge\":{\"max_num_segments\":1}}},\"version\":1,\"modified_date_in_millis\":1739183005443}}}}";
+
+        ExplainLifecycleResponse respT = fromJson(jsonT,ExplainLifecycleResponse.class);
+
+        // if managed is "true" then the variant class must be Managed
+        assertTrue(respT.indices().get("test").isTrue());
+        assertTrue(respT.indices().get("test")._get().getClass().equals(LifecycleExplainManaged.class));
+
+        String jsonF = "{\"indices\":{\"test\":{\"index\":\"test\",\"managed\":false}}}";
+
+        ExplainLifecycleResponse respF = fromJson(jsonF,ExplainLifecycleResponse.class);
+
+        // if managed is "false" then the variant class must be Unmanaged
+        assertTrue(respF.indices().get("test").isFalse());
+        assertTrue(respF.indices().get("test")._get().getClass().equals(LifecycleExplainUnmanaged.class));
+
+        // roundtrip isn't the same
+        // ExplainLifecycleResponse respT2 = checkJsonRoundtrip(respT, jsonT);
+        // ExplainLifecycleResponse respF2 = checkJsonRoundtrip(respF, jsonF);
     }
 }

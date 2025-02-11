@@ -246,6 +246,15 @@ public class JsonpUtils {
             String result = object.getString(name, null);
 
             if (result == null) {
+                // checking if instead of a string it's a boolean
+                try{
+                    result = String.valueOf(object.getBoolean(name));
+                } catch (NullPointerException e) {
+                    // suppressed in favor of JsonpMappingException below
+                }
+            }
+
+            if (result == null) {
                 result = defaultValue;
             }
 
