@@ -1,0 +1,14 @@
+agents:
+  provider: "gcp"
+
+steps:
+  - label: ":java: :elasticsearch: Elasticsearch Java API client - Release"
+    key: "release"
+    command: ".ci/release_central.sh"
+    artifact_paths:
+      - ".ci/output/repository/**/*"
+
+#notify:
+#  - slack: "#devtools-notify"
+#    # skip slack messages if no failures and dry-run mode
+#    if: 'build.state != "passed" && build.env("dry_run") == "false"'
