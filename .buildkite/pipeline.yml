@@ -1,5 +1,5 @@
 steps:
-  - label: ":java: :elasticsearch: Elasticsearch Java API client - {{matrix.workflow}}"
+  - label: ":java: :elasticsearch: Elasticsearch Java API client DRA - {{matrix.workflow}}"
     agents:
       provider: "gcp"
     branches: [ "main", "7.17", "8.x", "8.17", "8.18", "9.0" ]
@@ -8,4 +8,4 @@ steps:
         workflow:
           - "snapshot"
           - "staging"
-    command: ".ci/release.sh {{matrix.workflow}}"
+    command: ".ci/release_dra.sh {{matrix.workflow}}"
