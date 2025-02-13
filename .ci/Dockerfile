@@ -50,6 +50,9 @@ COPY --chown=$BUILDER_UID:$BUILDER_GID config ./config/
 COPY --chown=$BUILDER_UID:$BUILDER_GID java-client/build.gradle.kts ./java-client/
 RUN ./gradlew resolveDependencies
 
+# Note: trailing '*' avoids failing if the file doesn't exist
+COPY --chown=$BUILDER_UID:$BUILDER_GID gradle.properties* ./
+
 # Build artifacts. Expects these mounted directories:
 # /elasticsearch-java/.git - git index (read-only)
 # /elasticsearch-java/java-client/src - source files (read-only)
