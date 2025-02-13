@@ -1,0 +1,56 @@
+name: "Release to Maven Central"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch or tag ref to run the workflow on"
+        required: true
+      version:
+        description: "The version to release. Must start with the one in config/version.txt"
+        required: true
+      dry_run:
+        description: Used to test other workflow steps, does not publish to Maven Central.
+        type: boolean
+        required: true
+        default: false
+
+env:
+  BRANCH: ${{ inputs.branch }}
+  VERSION: ${{ inputs.version }}
+  DRY_RUN: ${{ inputs.dry_run }}
+
+jobs:
+  validate-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: '1'
+      - name: Validate version
+        shell: bash
+        run: |
+          repo_version="$(cat config/version.txt)"
+          if [[ ! "$VERSION" = $repo_version* ]]; then
+            echo "Workflow version ($VERSION) and config/version.txt ($repo_version) do not match."
+            exit 1
+          fi
+
+  maven-central-deploy:
+    name: "Deploy to Maven Central (Buildkite)"
+    runs-on: ubuntu-latest
+    needs:
+      - validate-version
+    steps:
+      - id: buildkite-run
+        uses: elastic/oblt-actions/buildkite/run@v1
+        with:
+          pipeline: "elasticsearch-java-release"
+          wait-for: true
+          token: ${{ secrets.BUILDKITE_TOKEN }}
+          branch: ${{ inputs.branch }}
+          env-vars: |
+            DRY_RUN=${{ inputs.dry_run }}
+            VERSION=${{ inputs.version }}
