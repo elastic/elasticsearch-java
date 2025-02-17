@@ -140,8 +140,8 @@ publishing {
             name = "MavenCentralSnapshot"
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             credentials {
-                username = providers.gradleProperty("ossrhUsername").getOrNull()
-                password = providers.gradleProperty("ossrhPassword").getOrNull()
+                username = providers.gradleProperty("ossrhUsername").get()
+                password = providers.gradleProperty("ossrhPassword").get()
             }
         }
     }
