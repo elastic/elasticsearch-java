@@ -243,7 +243,23 @@ public class JsonpUtils {
         } else {
             // Unbuffered path: parse the object into a JsonObject, then extract the value and parse it again
             JsonObject object = parser.getObject();
-            String result = object.getString(name, null);
+
+            String result = null;
+            JsonValue value = object.get(name);
+            // Handle enums and booleans promoted to enums
+            if (value != null) {
+                if (value.getValueType() == JsonValue.ValueType.STRING) {
+                    result = ((JsonString) value).getString();
+                } else if (value.getValueType() == JsonValue.ValueType.TRUE) {
+                    result = "true";
+                } else if (value.getValueType() == JsonValue.ValueType.FALSE) {
+                    result = "false";
+                }
+            }
+
+            if (result == null) {
+                result = defaultValue;
+            }
 
             if (result == null) {
                 result = defaultValue;
