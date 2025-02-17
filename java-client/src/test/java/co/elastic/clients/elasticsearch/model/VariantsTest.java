@@ -26,6 +26,9 @@ import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScore;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.ilm.ExplainLifecycleResponse;
+import co.elastic.clients.elasticsearch.ilm.explain_lifecycle.LifecycleExplainManaged;
+import co.elastic.clients.elasticsearch.ilm.explain_lifecycle.LifecycleExplainUnmanaged;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.testkit.ModelTestCase;
@@ -280,5 +283,69 @@ public class VariantsTest extends ModelTestCase {
             assertEquals(1.0, fsq2.functionScore().functions().get(0).weight(), 0.001);
             assertEquals(2.0, fsq2.functionScore().functions().get(0).linear().untyped().placement().decay(), 0.001);
         }
+    }
+
+    @Test
+    public void testBooleanVariantTag() {
+
+        String jsonT = "{\n" +
+            "  \"indices\": {\n" +
+            "    \"test\": {\n" +
+            "      \"index\": \"test\",\n" +
+            "      \"managed\": true,\n" +
+            "      \"policy\": \"my_policy\",\n" +
+            "      \"index_creation_date_millis\": 1736785235558,\n" +
+            "      \"time_since_index_creation\": \"27.75d\",\n" +
+            "      \"lifecycle_date_millis\": 1736785235558,\n" +
+            "      \"age\": \"27.75d\",\n" +
+            "      \"phase\": \"warm\",\n" +
+            "      \"phase_time_millis\": 1739183166898,\n" +
+            "      \"action\": \"migrate\",\n" +
+            "      \"action_time_millis\": 1739183166898,\n" +
+            "      \"step\": \"check-migration\",\n" +
+            "      \"step_time_millis\": 1739183166898,\n" +
+            "      \"step_info\": {\n" +
+            "        \"message\": \"Waiting for all shard copies to be active\",\n" +
+            "        \"shards_left_to_allocate\": -1,\n" +
+            "        \"all_shards_active\": false,\n" +
+            "        \"number_of_replicas\": 1\n" +
+            "      },\n" +
+            "      \"phase_execution\": {\n" +
+            "        \"policy\": \"my_policy\",\n" +
+            "        \"phase_definition\": {\n" +
+            "          \"min_age\": \"10d\",\n" +
+            "          \"actions\": {\n" +
+            "            \"forcemerge\": {\n" +
+            "              \"max_num_segments\": 1\n" +
+            "            }\n" +
+            "          }\n" +
+            "        },\n" +
+            "        \"version\": 1,\n" +
+            "        \"modified_date_in_millis\": 1739183005443\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+
+        ExplainLifecycleResponse respT = fromJson(jsonT,ExplainLifecycleResponse.class);
+
+        // if managed is "true" then the variant class must be Managed
+        assertTrue(respT.indices().get("test").isTrue());
+        assertTrue(respT.indices().get("test")._get().getClass().equals(LifecycleExplainManaged.class));
+
+        String jsonF = "{\n" +
+            "  \"indices\": {\n" +
+            "    \"test\": {\n" +
+            "      \"index\": \"test\",\n" +
+            "      \"managed\": false\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+
+        ExplainLifecycleResponse respF = fromJson(jsonF,ExplainLifecycleResponse.class);
+
+        // if managed is "false" then the variant class must be Unmanaged
+        assertTrue(respF.indices().get("test").isFalse());
+        assertTrue(respF.indices().get("test")._get().getClass().equals(LifecycleExplainUnmanaged.class));
     }
 }
