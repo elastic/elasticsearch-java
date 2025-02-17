@@ -336,27 +336,27 @@ public class JacksonJsonpParser implements LookAheadJsonParser, BufferingJsonPar
                 if (fieldName.equals(name)) {
                     // Found
                     tb.copyCurrentEvent(parser);
-                    try {
-                        expectNextEvent(JsonToken.VALUE_STRING);
+
+                    String result = null;
+                    switch (parser.nextToken()) {
+                        case VALUE_STRING:
+                            result = parser.getText();
+                            break;
+                        // Handle booleans promoted to enums
+                        case VALUE_TRUE:
+                            result = "true";
+                            break;
+                        case VALUE_FALSE:
+                            result = "false";
+                            break;
+                        default:
+                            expectEvent(JsonToken.VALUE_STRING);
                     }
-                    catch (UnexpectedJsonEventException e) {
-                        // checking if instead of a string it's a boolean
-                        String details = e.getMessage();
-                        if (details.contains("VALUE_TRUE")){
-                            expectEvent(JsonToken.VALUE_TRUE);
-                        }
-                        else if (details.contains("VALUE_FALSE")){
-                            expectEvent(JsonToken.VALUE_FALSE);
-                        }
-                        // not a boolean either, can throw exception
-                        else{
-                            throw e;
-                        }
-                    }
+
                     tb.copyCurrentEvent(parser);
 
                     return new AbstractMap.SimpleImmutableEntry<>(
-                        parser.getText(),
+                        result,
                         new JacksonJsonpParser(
                             JsonParserSequence.createFlattened(false, tb.asParser(), parser),
                             mapper
