@@ -28,8 +28,8 @@ if grep -sq "signing.keyId" gradle.properties; then
   exit 0
 fi
 
-mkdir -p /tmp
-keyring_file="/tmp/keyring.gpg"
+mkdir -p /tmp/secured
+keyring_file="/tmp/secured/keyring.gpg"
 
 vault_path="kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java"
 

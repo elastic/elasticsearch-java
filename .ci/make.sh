@@ -201,6 +201,7 @@ if [[ "$CMD" == "release" ]]; then
   fi
   docker run --rm --env VERSION=$VERSION -u "$(id -u)" \
     $git_mount $src_mount $output_mount \
+    -v /tmp/secured:/tmp/secured \
     $docker_image \
     $gradle_task
 fi
