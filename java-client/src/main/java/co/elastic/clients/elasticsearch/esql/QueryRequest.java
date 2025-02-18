@@ -90,6 +90,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final EsqlFormat format;
 
 	@Nullable
+	private final Boolean includeCcsMetadata;
+
+	@Nullable
 	private final String locale;
 
 	private final List<FieldValue> params;
@@ -110,6 +113,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.dropNullColumns = builder.dropNullColumns;
 		this.filter = builder.filter;
 		this.format = builder.format;
+		this.includeCcsMetadata = builder.includeCcsMetadata;
 		this.locale = builder.locale;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
@@ -179,6 +183,19 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final EsqlFormat format() {
 		return this.format;
+	}
+
+	/**
+	 * When set to <code>true</code> and performing a cross-cluster query, the
+	 * response will include an extra <code>_clusters</code> object with information
+	 * about the clusters that participated in the search along with info such as
+	 * shards count.
+	 * <p>
+	 * API name: {@code include_ccs_metadata}
+	 */
+	@Nullable
+	public final Boolean includeCcsMetadata() {
+		return this.includeCcsMetadata;
 	}
 
 	/**
@@ -254,6 +271,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			this.filter.serialize(generator, mapper);
 
 		}
+		if (this.includeCcsMetadata != null) {
+			generator.writeKey("include_ccs_metadata");
+			generator.write(this.includeCcsMetadata);
+
+		}
 		if (this.locale != null) {
 			generator.writeKey("locale");
 			generator.write(this.locale);
@@ -320,6 +342,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private EsqlFormat format;
+
+		@Nullable
+		private Boolean includeCcsMetadata;
 
 		@Nullable
 		private String locale;
@@ -401,6 +426,19 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder format(@Nullable EsqlFormat value) {
 			this.format = value;
+			return this;
+		}
+
+		/**
+		 * When set to <code>true</code> and performing a cross-cluster query, the
+		 * response will include an extra <code>_clusters</code> object with information
+		 * about the clusters that participated in the search along with info such as
+		 * shards count.
+		 * <p>
+		 * API name: {@code include_ccs_metadata}
+		 */
+		public final Builder includeCcsMetadata(@Nullable Boolean value) {
+			this.includeCcsMetadata = value;
 			return this;
 		}
 
@@ -609,6 +647,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::includeCcsMetadata, JsonpDeserializer.booleanDeserializer(), "include_ccs_metadata");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
