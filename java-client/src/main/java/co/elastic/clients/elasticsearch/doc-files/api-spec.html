@@ -4,25 +4,26 @@
     <title>Elasticsearch API specification</title>
     <script>
         var paths = {
-            '_global.bulk.CreateOperation': '_global/bulk/types.ts#L132-L132',
-'_global.bulk.DeleteOperation': '_global/bulk/types.ts#L136-L136',
-'_global.bulk.IndexOperation': '_global/bulk/types.ts#L134-L134',
-'_global.bulk.OperationBase': '_global/bulk/types.ts#L92-L109',
-'_global.bulk.OperationContainer': '_global/bulk/types.ts#L150-L172',
-'_global.bulk.OperationType': '_global/bulk/types.ts#L85-L90',
-'_global.bulk.Request': '_global/bulk/BulkRequest.ts#L32-L242',
+            '_global.bulk.CreateOperation': '_global/bulk/types.ts#L140-L140',
+'_global.bulk.DeleteOperation': '_global/bulk/types.ts#L144-L144',
+'_global.bulk.FailureStoreStatus': '_global/bulk/types.ts#L86-L91',
+'_global.bulk.IndexOperation': '_global/bulk/types.ts#L142-L142',
+'_global.bulk.OperationBase': '_global/bulk/types.ts#L100-L117',
+'_global.bulk.OperationContainer': '_global/bulk/types.ts#L158-L180',
+'_global.bulk.OperationType': '_global/bulk/types.ts#L93-L98',
+'_global.bulk.Request': '_global/bulk/BulkRequest.ts#L32-L247',
 '_global.bulk.Response': '_global/bulk/BulkResponse.ts#L24-L45',
-'_global.bulk.ResponseItem': '_global/bulk/types.ts#L37-L83',
-'_global.bulk.UpdateAction': '_global/bulk/types.ts#L174-L209',
-'_global.bulk.UpdateOperation': '_global/bulk/types.ts#L138-L148',
-'_global.bulk.WriteOperation': '_global/bulk/types.ts#L111-L130',
+'_global.bulk.ResponseItem': '_global/bulk/types.ts#L37-L84',
+'_global.bulk.UpdateAction': '_global/bulk/types.ts#L182-L217',
+'_global.bulk.UpdateOperation': '_global/bulk/types.ts#L146-L156',
+'_global.bulk.WriteOperation': '_global/bulk/types.ts#L119-L138',
 '_global.clear_scroll.Request': '_global/clear_scroll/ClearScrollRequest.ts#L23-L61',
 '_global.clear_scroll.Response': '_global/clear_scroll/ClearScrollResponse.ts#L22-L43',
 '_global.close_point_in_time.Request': '_global/close_point_in_time/ClosePointInTimeRequest.ts#L23-L48',
 '_global.close_point_in_time.Response': '_global/close_point_in_time/ClosePointInTimeResponse.ts#L22-L42',
 '_global.count.Request': '_global/count/CountRequest.ts#L26-L154',
 '_global.count.Response': '_global/count/CountResponse.ts#L23-L25',
-'_global.create.Request': '_global/create/CreateRequest.ts#L32-L184',
+'_global.create.Request': '_global/create/CreateRequest.ts#L32-L189',
 '_global.create.Response': '_global/create/CreateResponse.ts#L22-L24',
 '_global.delete.Request': '_global/delete/DeleteRequest.ts#L34-L146',
 '_global.delete.Response': '_global/delete/DeleteResponse.ts#L22-L34',
@@ -87,7 +88,7 @@
 '_global.health_report.SlmIndicatorDetails': '_global/health_report/types.ts#L179-L183',
 '_global.health_report.SlmIndicatorUnhealthyPolicies': '_global/health_report/types.ts#L185-L188',
 '_global.health_report.StagnatingBackingIndices': '_global/health_report/types.ts#L157-L161',
-'_global.index.Request': '_global/index/IndexRequest.ts#L35-L263',
+'_global.index.Request': '_global/index/IndexRequest.ts#L35-L268',
 '_global.index.Response': '_global/index/IndexResponse.ts#L22-L24',
 '_global.info.Request': '_global/info/RootNodeInfoRequest.ts#L22-L39',
 '_global.info.Response': '_global/info/RootNodeInfoResponse.ts#L23-L40',
@@ -249,7 +250,7 @@
 '_global.termvectors.Term': '_global/termvectors/types.ts#L34-L40',
 '_global.termvectors.TermVector': '_global/termvectors/types.ts#L23-L26',
 '_global.termvectors.Token': '_global/termvectors/types.ts#L42-L47',
-'_global.update.Request': '_global/update/UpdateRequest.ts#L38-L189',
+'_global.update.Request': '_global/update/UpdateRequest.ts#L38-L194',
 '_global.update.Response': '_global/update/UpdateResponse.ts#L27-L29',
 '_global.update.UpdateWriteResponseBase': '_global/update/UpdateResponse.ts#L23-L25',
 '_global.update_by_query.Request': '_global/update_by_query/UpdateByQueryRequest.ts#L37-L336',
@@ -1363,7 +1364,7 @@
 'esql.async_query_stop.Request': 'esql/async_query_stop/AsyncQueryStopRequest.ts#L23-L50',
 'esql.async_query_stop.Response': 'esql/async_query_stop/AsyncQueryStopResponse.ts#L22-L24',
 'esql.query.EsqlFormat': 'esql/query/QueryParameters.ts#L20-L29',
-'esql.query.Request': 'esql/query/QueryRequest.ts#L27-L98',
+'esql.query.Request': 'esql/query/QueryRequest.ts#L27-L105',
 'esql.query.Response': 'esql/query/QueryResponse.ts#L22-L25',
 'features._types.Feature': 'features/_types/Feature.ts#L20-L23',
 'features.get_features.Request': 'features/get_features/GetFeaturesRequest.ts#L23-L53',
@@ -1397,10 +1398,10 @@
 'ilm._types.WaitForSnapshotAction': 'ilm/_types/Phase.ts#L145-L147',
 'ilm.delete_lifecycle.Request': 'ilm/delete_lifecycle/DeleteLifecycleRequest.ts#L24-L58',
 'ilm.delete_lifecycle.Response': 'ilm/delete_lifecycle/DeleteLifecycleResponse.ts#L22-L24',
-'ilm.explain_lifecycle.LifecycleExplain': 'ilm/explain_lifecycle/types.ts#L59-L62',
-'ilm.explain_lifecycle.LifecycleExplainManaged': 'ilm/explain_lifecycle/types.ts#L26-L52',
-'ilm.explain_lifecycle.LifecycleExplainPhaseExecution': 'ilm/explain_lifecycle/types.ts#L64-L68',
-'ilm.explain_lifecycle.LifecycleExplainUnmanaged': 'ilm/explain_lifecycle/types.ts#L54-L57',
+'ilm.explain_lifecycle.LifecycleExplain': 'ilm/explain_lifecycle/types.ts#L64-L67',
+'ilm.explain_lifecycle.LifecycleExplainManaged': 'ilm/explain_lifecycle/types.ts#L27-L57',
+'ilm.explain_lifecycle.LifecycleExplainPhaseExecution': 'ilm/explain_lifecycle/types.ts#L69-L74',
+'ilm.explain_lifecycle.LifecycleExplainUnmanaged': 'ilm/explain_lifecycle/types.ts#L59-L62',
 'ilm.explain_lifecycle.Request': 'ilm/explain_lifecycle/ExplainLifecycleRequest.ts#L24-L64',
 'ilm.explain_lifecycle.Response': 'ilm/explain_lifecycle/ExplainLifecycleResponse.ts#L24-L28',
 'ilm.get_lifecycle.Lifecycle': 'ilm/get_lifecycle/types.ts#L24-L28',
@@ -3063,10 +3064,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/95f36158ec82ea0697c95d3b84a2c584bb8a0e30/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/fcf7b116196e921cb9eaf1443b68a0db5f0e24ba/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/95f36158ec82ea0697c95d3b84a2c584bb8a0e30/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/fcf7b116196e921cb9eaf1443b68a0db5f0e24ba/specification/">Elasticsearch API specification</a>.
 </body>
 </html>

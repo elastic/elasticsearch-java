@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
+import co.elastic.clients.elasticsearch.ilm.Phase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -61,6 +62,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class LifecycleExplainPhaseExecution implements JsonpSerializable {
+	@Nullable
+	private final Phase phaseDefinition;
+
 	private final String policy;
 
 	private final long version;
@@ -71,6 +75,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 	private LifecycleExplainPhaseExecution(Builder builder) {
 
+		this.phaseDefinition = builder.phaseDefinition;
 		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.modifiedDateInMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateInMillis, this,
@@ -81,6 +86,14 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	public static LifecycleExplainPhaseExecution of(
 			Function<Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code phase_definition}
+	 */
+	@Nullable
+	public final Phase phaseDefinition() {
+		return this.phaseDefinition;
 	}
 
 	/**
@@ -115,6 +128,11 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.phaseDefinition != null) {
+			generator.writeKey("phase_definition");
+			this.phaseDefinition.serialize(generator, mapper);
+
+		}
 		generator.writeKey("policy");
 		generator.write(this.policy);
 
@@ -140,11 +158,29 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<LifecycleExplainPhaseExecution> {
+		@Nullable
+		private Phase phaseDefinition;
+
 		private String policy;
 
 		private Long version;
 
 		private Long modifiedDateInMillis;
+
+		/**
+		 * API name: {@code phase_definition}
+		 */
+		public final Builder phaseDefinition(@Nullable Phase value) {
+			this.phaseDefinition = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code phase_definition}
+		 */
+		public final Builder phaseDefinition(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
+			return this.phaseDefinition(fn.apply(new Phase.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code policy}
@@ -199,6 +235,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	protected static void setupLifecycleExplainPhaseExecutionDeserializer(
 			ObjectDeserializer<LifecycleExplainPhaseExecution.Builder> op) {
 
+		op.add(Builder::phaseDefinition, Phase._DESERIALIZER, "phase_definition");
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::modifiedDateInMillis, JsonpDeserializer.longDeserializer(), "modified_date_in_millis");
