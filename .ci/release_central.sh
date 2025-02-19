@@ -22,6 +22,13 @@
 
 set -euo pipefail
 
+# The version in version.txt must be a prefix of the version to release.
+repo_version="$(cat config/version.txt)"
+if [[ ! "$VERSION" = $repo_version* ]]; then
+  echo "Workflow version ($VERSION) and config/version.txt ($repo_version) do not match."
+  exit 1
+fi
+
 .ci/configure_signing.sh
 
 .ci/make.sh release $VERSION

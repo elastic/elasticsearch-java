@@ -191,7 +191,7 @@ if [[ "$CMD" == "release" ]]; then
   build_image
   echo -e "\033[34;1mINFO:\033[0m Building version ${VERSION}\033[0m"
 
-  if [[ "$DRY_RUN" = "true" ]]; then
+  if [[ "${DRY_RUN:-false}" = "true" ]]; then
     echo "Dry run: building and publishing to the local repository"
     gradle_task="java-client:publishAllPublicationsToBuildRepository"
   else
