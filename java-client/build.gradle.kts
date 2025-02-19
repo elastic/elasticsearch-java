@@ -138,7 +138,7 @@ publishing {
 
         maven {
             name = "MavenCentralSnapshot"
-            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             credentials {
                 run {
                     if (gradle.startParameter.taskNames.find { it.contains("ToMavenCentralSnapshotRepository") } != null) {

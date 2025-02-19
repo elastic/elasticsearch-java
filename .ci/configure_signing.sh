@@ -45,8 +45,6 @@ signing_key=$(vault kv get --field="key_id" $vault_path/gpg)
 maven_username=$(vault kv get --field="username" $vault_path/maven_central)
 maven_password=$(vault kv get --field="password" $vault_path/maven_central)
 
-echo "Lengths: ${#signing_key} - ${#maven_username} - ${#maven_password}"
-
 cat >> gradle.properties <<EOF
 signing.keyId=${signing_key: -8}
 signing.password=${signing_password}
