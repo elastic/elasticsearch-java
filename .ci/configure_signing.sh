@@ -24,9 +24,13 @@
 set -euo pipefail
 
 if grep -sq "signing.keyId" gradle.properties; then
+  echo "gradle.properties already contains signing information."
   # Keys already present
   exit 0
 fi
+
+echo "vault is at $VAULT_ADDR"
+echo "Running in branch $(git rev-parse --abbrev-ref HEAD)"
 
 mkdir -p /tmp/secured
 keyring_file="/tmp/secured/keyring.gpg"
@@ -40,6 +44,8 @@ signing_key=$(vault kv get --field="key_id" $vault_path/gpg)
 
 maven_username=$(vault kv get --field="username" $vault_path/maven_central)
 maven_password=$(vault kv get --field="password" $vault_path/maven_central)
+
+echo "Lengths: ${#signing_key} - ${#maven_username} - ${#maven_password}"
 
 cat >> gradle.properties <<EOF
 signing.keyId=${signing_key: -8}
