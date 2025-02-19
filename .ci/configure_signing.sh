@@ -30,7 +30,7 @@ if grep -sq "signing.keyId" gradle.properties; then
 fi
 
 echo "vault is at $VAULT_ADDR"
-echo "Running in branch $(git rev-parse --abbrev-ref HEAD)"
+echo "Running on branch $(git rev-parse --abbrev-ref HEAD) ($(git rev-parse HEAD))"
 
 mkdir -p /tmp/secured
 keyring_file="/tmp/secured/keyring.gpg"

@@ -138,12 +138,12 @@ publishing {
 
         maven {
             name = "MavenCentralSnapshot"
-            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
             credentials {
                 run {
                     if (gradle.startParameter.taskNames.find { it.contains("ToMavenCentralSnapshotRepository") } != null) {
-                        if (!providers.gradleProperty("ossrhUsername").isPresent) logger.error("ossrhUsername not set")
-                        if (!providers.gradleProperty("ossrhPassword").isPresent) logger.error("ossrhPassword not set")
+                        if (providers.gradleProperty("ossrhUsername").orNull.isNullOrEmpty()) logger.error("ossrhUsername not set")
+                        if (providers.gradleProperty("ossrhPassword").orNull.isNullOrEmpty()) logger.error("ossrhPassword not set")
                     }
                 }
                 username = providers.gradleProperty("ossrhUsername").orNull
