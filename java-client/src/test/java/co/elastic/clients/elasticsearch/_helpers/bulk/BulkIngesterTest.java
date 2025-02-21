@@ -185,9 +185,9 @@ class BulkIngesterTest extends Assertions {
         // situation where the number of adding threads greatly exceeds the number of concurrent requests
         // handled by the ingester. It's strongly recommended to always tweak maxConcurrentRequests accordingly.
         BulkIngester<?> ingester = BulkIngester.of(b -> b
-                .client(client)
-                .globalSettings(s -> s.index(index))
-                .flushInterval(5, TimeUnit.SECONDS)
+            .client(client)
+            .globalSettings(s -> s.index(index))
+            .flushInterval(5, TimeUnit.SECONDS)
         );
 
         RequestTest.AppData appData = new RequestTest.AppData();
@@ -223,7 +223,7 @@ class BulkIngesterTest extends Assertions {
     public void sizeLimitTest() throws Exception {
         TestTransport transport = new TestTransport();
 
-        long operationSize = IngesterOperation.of(operation, transport.jsonpMapper()).size();
+        long operationSize = IngesterOperation.of(new RetryableBulkOperation<>(operation, null, null), transport.jsonpMapper()).size();
 
         BulkIngester<?> ingester = BulkIngester.of(b -> b
             .client(new ElasticsearchAsyncClient(transport))
@@ -437,17 +437,18 @@ class BulkIngesterTest extends Assertions {
         JsonpMapper mapper = new SimpleJsonpMapper();
 
         BulkOperation create = BulkOperation.of(o -> o.create(c -> c
-                .pipeline("pipe")
-                .requireAlias(true)
-                .index("some_idx")
-                .id("some_id")
-                .document("Some doc")
+            .pipeline("pipe")
+            .requireAlias(true)
+            .index("some_idx")
+            .id("some_id")
+            .document("Some doc")
         ));
 
         String createStr = JsonpUtils.toJsonString(create, mapper);
         assertEquals(json, createStr);
 
-        BulkOperation create1 = IngesterOperation.of(create, mapper).operation();
+        BulkOperation create1 = IngesterOperation.of(new RetryableBulkOperation<>(create, null, null), mapper)
+            .repeatableOperation().operation();
 
         String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);
@@ -494,8 +495,8 @@ class BulkIngesterTest extends Assertions {
             assertEquals(
                 42,
                 client.get(b -> b
-                    .index(index)
-                    .id(id),
+                        .index(index)
+                        .id(id),
                     RequestTest.AppData.class
                 ).source().getIntValue()
             );
