@@ -82,7 +82,7 @@ public class GetSynonymRuleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the synonym rule to retrieve
+	 * Required - The ID of the synonym rule to retrieve.
 	 * <p>
 	 * API name: {@code rule_id}
 	 */
@@ -91,7 +91,7 @@ public class GetSynonymRuleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the synonym set to retrieve the synonym rule from
+	 * Required - The ID of the synonym set to retrieve the synonym rule from.
 	 * <p>
 	 * API name: {@code set_id}
 	 */
@@ -113,7 +113,7 @@ public class GetSynonymRuleRequest extends RequestBase {
 		private String setId;
 
 		/**
-		 * Required - The id of the synonym rule to retrieve
+		 * Required - The ID of the synonym rule to retrieve.
 		 * <p>
 		 * API name: {@code rule_id}
 		 */
@@ -123,7 +123,7 @@ public class GetSynonymRuleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The id of the synonym set to retrieve the synonym rule from
+		 * Required - The ID of the synonym set to retrieve the synonym rule from.
 		 * <p>
 		 * API name: {@code set_id}
 		 */

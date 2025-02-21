@@ -67,11 +67,12 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.delete_auto_follow_pattern
 
 	/**
-	 * Delete auto-follow patterns. Delete a collection of cross-cluster replication
-	 * auto-follow patterns.
+	 * Delete auto-follow patterns.
+	 * <p>
+	 * Delete a collection of cross-cluster replication auto-follow patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-delete-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-delete-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -84,14 +85,15 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Delete auto-follow patterns. Delete a collection of cross-cluster replication
-	 * auto-follow patterns.
+	 * Delete auto-follow patterns.
+	 * <p>
+	 * Delete a collection of cross-cluster replication auto-follow patterns.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-delete-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-delete-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -109,7 +111,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * leader index to the follower index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-put-follow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +132,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link FollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-put-follow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -142,13 +144,14 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.follow_info
 
 	/**
-	 * Get follower information. Get information about all cross-cluster replication
-	 * follower indices. For example, the results include follower index names,
-	 * leader index names, replication options, and whether the follower indices are
-	 * active or paused.
+	 * Get follower information.
+	 * <p>
+	 * Get information about all cross-cluster replication follower indices. For
+	 * example, the results include follower index names, leader index names,
+	 * replication options, and whether the follower indices are active or paused.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-follow-info.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -160,16 +163,17 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get follower information. Get information about all cross-cluster replication
-	 * follower indices. For example, the results include follower index names,
-	 * leader index names, replication options, and whether the follower indices are
-	 * active or paused.
+	 * Get follower information.
+	 * <p>
+	 * Get information about all cross-cluster replication follower indices. For
+	 * example, the results include follower index names, leader index names,
+	 * replication options, and whether the follower indices are active or paused.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FollowInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-follow-info.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -181,12 +185,14 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.follow_stats
 
 	/**
-	 * Get follower stats. Get cross-cluster replication follower stats. The API
-	 * returns shard-level stats about the &quot;following tasks&quot; associated
-	 * with each shard for the specified indices.
+	 * Get follower stats.
+	 * <p>
+	 * Get cross-cluster replication follower stats. The API returns shard-level
+	 * stats about the &quot;following tasks&quot; associated with each shard for
+	 * the specified indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-follow-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -198,15 +204,17 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get follower stats. Get cross-cluster replication follower stats. The API
-	 * returns shard-level stats about the &quot;following tasks&quot; associated
-	 * with each shard for the specified indices.
+	 * Get follower stats.
+	 * <p>
+	 * Get cross-cluster replication follower stats. The API returns shard-level
+	 * stats about the &quot;following tasks&quot; associated with each shard for
+	 * the specified indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FollowStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-follow-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -241,7 +249,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * retention leases after the unfollow API is invoked.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-forget-follower.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-forget-follower">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -279,7 +287,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ForgetFollowerRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-forget-follower.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-forget-follower">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -291,10 +299,12 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.get_auto_follow_pattern
 
 	/**
-	 * Get auto-follow patterns. Get cross-cluster replication auto-follow patterns.
+	 * Get auto-follow patterns.
+	 * <p>
+	 * Get cross-cluster replication auto-follow patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -306,13 +316,15 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get auto-follow patterns. Get cross-cluster replication auto-follow patterns.
+	 * Get auto-follow patterns.
+	 * <p>
+	 * Get cross-cluster replication auto-follow patterns.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -322,10 +334,12 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get auto-follow patterns. Get cross-cluster replication auto-follow patterns.
+	 * Get auto-follow patterns.
+	 * <p>
+	 * Get cross-cluster replication auto-follow patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -337,10 +351,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.pause_auto_follow_pattern
 
 	/**
-	 * Pause an auto-follow pattern. Pause a cross-cluster replication auto-follow
-	 * pattern. When the API returns, the auto-follow pattern is inactive. New
-	 * indices that are created on the remote cluster and match the auto-follow
-	 * patterns are ignored.
+	 * Pause an auto-follow pattern.
+	 * <p>
+	 * Pause a cross-cluster replication auto-follow pattern. When the API returns,
+	 * the auto-follow pattern is inactive. New indices that are created on the
+	 * remote cluster and match the auto-follow patterns are ignored.
 	 * <p>
 	 * You can resume auto-following with the resume auto-follow pattern API. When
 	 * it resumes, the auto-follow pattern is active again and automatically
@@ -350,7 +365,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * the interim.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-pause-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -363,10 +378,11 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Pause an auto-follow pattern. Pause a cross-cluster replication auto-follow
-	 * pattern. When the API returns, the auto-follow pattern is inactive. New
-	 * indices that are created on the remote cluster and match the auto-follow
-	 * patterns are ignored.
+	 * Pause an auto-follow pattern.
+	 * <p>
+	 * Pause a cross-cluster replication auto-follow pattern. When the API returns,
+	 * the auto-follow pattern is inactive. New indices that are created on the
+	 * remote cluster and match the auto-follow patterns are ignored.
 	 * <p>
 	 * You can resume auto-following with the resume auto-follow pattern API. When
 	 * it resumes, the auto-follow pattern is active again and automatically
@@ -379,7 +395,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PauseAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-pause-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -391,14 +407,15 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.pause_follow
 
 	/**
-	 * Pause a follower. Pause a cross-cluster replication follower index. The
-	 * follower index will not fetch any additional operations from the leader
-	 * index. You can resume following with the resume follower API. You can pause
-	 * and resume a follower index to change the configuration of the following
-	 * task.
+	 * Pause a follower.
+	 * <p>
+	 * Pause a cross-cluster replication follower index. The follower index will not
+	 * fetch any additional operations from the leader index. You can resume
+	 * following with the resume follower API. You can pause and resume a follower
+	 * index to change the configuration of the following task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-pause-follow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -410,17 +427,18 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Pause a follower. Pause a cross-cluster replication follower index. The
-	 * follower index will not fetch any additional operations from the leader
-	 * index. You can resume following with the resume follower API. You can pause
-	 * and resume a follower index to change the configuration of the following
-	 * task.
+	 * Pause a follower.
+	 * <p>
+	 * Pause a cross-cluster replication follower index. The follower index will not
+	 * fetch any additional operations from the leader index. You can resume
+	 * following with the resume follower API. You can pause and resume a follower
+	 * index to change the configuration of the following task.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PauseFollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-pause-follow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -445,7 +463,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-put-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-put-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -473,7 +491,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-put-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-put-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -485,14 +503,16 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.resume_auto_follow_pattern
 
 	/**
-	 * Resume an auto-follow pattern. Resume a cross-cluster replication auto-follow
-	 * pattern that was paused. The auto-follow pattern will resume configuring
-	 * following indices for newly created indices that match its patterns on the
-	 * remote cluster. Remote indices created while the pattern was paused will also
-	 * be followed unless they have been deleted or closed in the interim.
+	 * Resume an auto-follow pattern.
+	 * <p>
+	 * Resume a cross-cluster replication auto-follow pattern that was paused. The
+	 * auto-follow pattern will resume configuring following indices for newly
+	 * created indices that match its patterns on the remote cluster. Remote indices
+	 * created while the pattern was paused will also be followed unless they have
+	 * been deleted or closed in the interim.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-resume-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -505,17 +525,19 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Resume an auto-follow pattern. Resume a cross-cluster replication auto-follow
-	 * pattern that was paused. The auto-follow pattern will resume configuring
-	 * following indices for newly created indices that match its patterns on the
-	 * remote cluster. Remote indices created while the pattern was paused will also
-	 * be followed unless they have been deleted or closed in the interim.
+	 * Resume an auto-follow pattern.
+	 * <p>
+	 * Resume a cross-cluster replication auto-follow pattern that was paused. The
+	 * auto-follow pattern will resume configuring following indices for newly
+	 * created indices that match its patterns on the remote cluster. Remote indices
+	 * created while the pattern was paused will also be followed unless they have
+	 * been deleted or closed in the interim.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ResumeAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-resume-auto-follow-pattern.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -534,7 +556,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * follower index will resume fetching operations from the leader index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-resume-follow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -556,7 +578,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ResumeFollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-resume-follow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -568,11 +590,13 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.stats
 
 	/**
-	 * Get cross-cluster replication stats. This API returns stats about
-	 * auto-following and the same shard-level stats as the get follower stats API.
+	 * Get cross-cluster replication stats.
+	 * <p>
+	 * This API returns stats about auto-following and the same shard-level stats as
+	 * the get follower stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -584,14 +608,16 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get cross-cluster replication stats. This API returns stats about
-	 * auto-following and the same shard-level stats as the get follower stats API.
+	 * Get cross-cluster replication stats.
+	 * <p>
+	 * This API returns stats about auto-following and the same shard-level stats as
+	 * the get follower stats API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CcrStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -601,11 +627,13 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get cross-cluster replication stats. This API returns stats about
-	 * auto-following and the same shard-level stats as the get follower stats API.
+	 * Get cross-cluster replication stats.
+	 * <p>
+	 * This API returns stats about auto-following and the same shard-level stats as
+	 * the get follower stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-get-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -617,18 +645,22 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: ccr.unfollow
 
 	/**
-	 * Unfollow an index. Convert a cross-cluster replication follower index to a
-	 * regular index. The API stops the following task associated with a follower
-	 * index and removes index metadata and settings associated with cross-cluster
-	 * replication. The follower index must be paused and closed before you call the
-	 * unfollow API.
+	 * Unfollow an index.
 	 * <p>
-	 * NOTE: Currently cross-cluster replication does not support converting an
+	 * Convert a cross-cluster replication follower index to a regular index. The
+	 * API stops the following task associated with a follower index and removes
+	 * index metadata and settings associated with cross-cluster replication. The
+	 * follower index must be paused and closed before you call the unfollow API.
+	 * <blockquote>
+	 * <p>
+	 * info Currently cross-cluster replication does not support converting an
 	 * existing regular index to a follower index. Converting a follower index to a
 	 * regular index is an irreversible operation.
-	 * 
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-unfollow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-unfollow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -640,21 +672,25 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Unfollow an index. Convert a cross-cluster replication follower index to a
-	 * regular index. The API stops the following task associated with a follower
-	 * index and removes index metadata and settings associated with cross-cluster
-	 * replication. The follower index must be paused and closed before you call the
-	 * unfollow API.
+	 * Unfollow an index.
 	 * <p>
-	 * NOTE: Currently cross-cluster replication does not support converting an
+	 * Convert a cross-cluster replication follower index to a regular index. The
+	 * API stops the following task associated with a follower index and removes
+	 * index metadata and settings associated with cross-cluster replication. The
+	 * follower index must be paused and closed before you call the unfollow API.
+	 * <blockquote>
+	 * <p>
+	 * info Currently cross-cluster replication does not support converting an
 	 * existing regular index to a follower index. Converting a follower index to a
 	 * regular index is an irreversible operation.
-	 * 
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UnfollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/ccr-post-unfollow.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-unfollow">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -61,9 +61,11 @@ import javax.annotation.Nullable;
 // typedef: cluster.put_settings.Request
 
 /**
- * Update the cluster settings. Configure and update dynamic settings on a
- * running cluster. You can also configure dynamic settings locally on an
- * unstarted or shut down node in <code>elasticsearch.yml</code>.
+ * Update the cluster settings.
+ * <p>
+ * Configure and update dynamic settings on a running cluster. You can also
+ * configure dynamic settings locally on an unstarted or shut down node in
+ * <code>elasticsearch.yml</code>.
  * <p>
  * Updates made with this API can be persistent, which apply across cluster
  * restarts, or transient, which reset after a cluster restart. You can also

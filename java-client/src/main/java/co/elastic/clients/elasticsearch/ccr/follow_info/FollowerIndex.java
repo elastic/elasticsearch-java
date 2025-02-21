@@ -88,20 +88,27 @@ public class FollowerIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code follower_index}
+	 * Required - The name of the follower index.
+	 * <p>
+	 * API name: {@code follower_index}
 	 */
 	public final String followerIndex() {
 		return this.followerIndex;
 	}
 
 	/**
-	 * Required - API name: {@code leader_index}
+	 * Required - The name of the index in the leader cluster that is followed.
+	 * <p>
+	 * API name: {@code leader_index}
 	 */
 	public final String leaderIndex() {
 		return this.leaderIndex;
 	}
 
 	/**
+	 * An object that encapsulates cross-cluster replication parameters. If the
+	 * follower index's status is paused, this object is omitted.
+	 * <p>
 	 * API name: {@code parameters}
 	 */
 	@Nullable
@@ -110,14 +117,19 @@ public class FollowerIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code remote_cluster}
+	 * Required - The remote cluster that contains the leader index.
+	 * <p>
+	 * API name: {@code remote_cluster}
 	 */
 	public final String remoteCluster() {
 		return this.remoteCluster;
 	}
 
 	/**
-	 * Required - API name: {@code status}
+	 * Required - The status of the index following: <code>active</code> or
+	 * <code>paused</code>.
+	 * <p>
+	 * API name: {@code status}
 	 */
 	public final FollowerIndexStatus status() {
 		return this.status;
@@ -177,7 +189,9 @@ public class FollowerIndex implements JsonpSerializable {
 		private FollowerIndexStatus status;
 
 		/**
-		 * Required - API name: {@code follower_index}
+		 * Required - The name of the follower index.
+		 * <p>
+		 * API name: {@code follower_index}
 		 */
 		public final Builder followerIndex(String value) {
 			this.followerIndex = value;
@@ -185,7 +199,9 @@ public class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code leader_index}
+		 * Required - The name of the index in the leader cluster that is followed.
+		 * <p>
+		 * API name: {@code leader_index}
 		 */
 		public final Builder leaderIndex(String value) {
 			this.leaderIndex = value;
@@ -193,6 +209,9 @@ public class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
+		 * An object that encapsulates cross-cluster replication parameters. If the
+		 * follower index's status is paused, this object is omitted.
+		 * <p>
 		 * API name: {@code parameters}
 		 */
 		public final Builder parameters(@Nullable FollowerIndexParameters value) {
@@ -201,6 +220,9 @@ public class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
+		 * An object that encapsulates cross-cluster replication parameters. If the
+		 * follower index's status is paused, this object is omitted.
+		 * <p>
 		 * API name: {@code parameters}
 		 */
 		public final Builder parameters(
@@ -209,7 +231,9 @@ public class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code remote_cluster}
+		 * Required - The remote cluster that contains the leader index.
+		 * <p>
+		 * API name: {@code remote_cluster}
 		 */
 		public final Builder remoteCluster(String value) {
 			this.remoteCluster = value;
@@ -217,7 +241,10 @@ public class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code status}
+		 * Required - The status of the index following: <code>active</code> or
+		 * <code>paused</code>.
+		 * <p>
+		 * API name: {@code status}
 		 */
 		public final Builder status(FollowerIndexStatus value) {
 			this.status = value;

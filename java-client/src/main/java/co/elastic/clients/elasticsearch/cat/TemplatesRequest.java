@@ -55,12 +55,13 @@ import javax.annotation.Nullable;
 // typedef: cat.templates.Request
 
 /**
- * Get index template information. Get information about the index templates in
- * a cluster. You can use index templates to apply index settings and field
- * mappings to new indices at creation. IMPORTANT: cat APIs are only intended
- * for human consumption using the command line or Kibana console. They are not
- * intended for use by applications. For application consumption, use the get
- * index template API.
+ * Get index template information.
+ * <p>
+ * Get information about the index templates in a cluster. You can use index
+ * templates to apply index settings and field mappings to new indices at
+ * creation. IMPORTANT: cat APIs are only intended for human consumption using
+ * the command line or Kibana console. They are not intended for use by
+ * applications. For application consumption, use the get index template API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.templates.Request">API
  *      specification</a>

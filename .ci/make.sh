@@ -42,7 +42,9 @@
 # Bootstrap
 # ------------------------------------------------------- #
 
-script_path=$(dirname "$(realpath -s "$0")")
+set -euo pipefail
+
+script_path=$(dirname "$(realpath "$0")")
 repo=$(realpath "$script_path/../")
 
 # shellcheck disable=SC1090
@@ -51,7 +53,6 @@ TASK=$1
 TASK_ARGS=()
 VERSION=$2
 STACK_VERSION=$VERSION
-set -euo pipefail
 
 product="elastic/elasticsearch-java"
 output_folder=".ci/output"
@@ -81,6 +82,15 @@ case $CMD in
             exit 1
         fi
         echo -e "\033[36;1mTARGET: assemble artefact $VERSION\033[0m"
+        TASK=assemble
+        TASK_ARGS=("$VERSION" "$output_folder")
+        ;;
+    release)
+        if [ -z "$VERSION" ]; then
+            echo -e "\033[31;1mTARGET: release -> missing version parameter\033[0m"
+            exit 1
+        fi
+        echo -e "\033[36;1mTARGET: release artefact $VERSION\033[0m"
         TASK=release
         TASK_ARGS=("$VERSION" "$output_folder")
         ;;
@@ -159,7 +169,7 @@ if [[ "$CMD" == "assemble" ]]; then
   fi
 
   build_image
-    echo -e "\033[34;1mINFO:\033[0m Building version ${assemble_version}\033[0m"
+  echo -e "\033[34;1mINFO:\033[0m Building version ${assemble_version}\033[0m"
   docker run --rm --env VERSION=$assemble_version -u "$(id -u)" \
     $git_mount $src_mount $output_mount \
     $docker_image \
@@ -174,6 +184,25 @@ if [[ "$CMD" == "assemble" ]]; then
 		echo -e "\033[31;1mTARGET: assemble failed, empty workspace!\033[0m"
 		exit 1
 	fi
+fi
+
+if [[ "$CMD" == "release" ]]; then
+  rm -rf .ci/output/repository
+  build_image
+  echo -e "\033[34;1mINFO:\033[0m Building version ${VERSION}\033[0m"
+
+  if [[ "$DRY_RUN" = "true" ]]; then
+    echo "Dry run: building and publishing to the local repository"
+    gradle_task="java-client:publishAllPublicationsToBuildRepository"
+  else
+    echo "Releasing to Maven snapshot repo"
+    gradle_task="java-client:publishAllPublicationsToMavenCentralSnapshotRepository"
+  fi
+  docker run --rm --env VERSION=$VERSION -u "$(id -u)" \
+    $git_mount $src_mount $output_mount \
+    -v /tmp/secured:/tmp/secured \
+    $docker_image \
+    $gradle_task
 fi
 
 if [[ "$CMD" == "bump" ]]; then

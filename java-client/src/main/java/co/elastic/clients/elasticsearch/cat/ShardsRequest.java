@@ -59,10 +59,12 @@ import javax.annotation.Nullable;
 // typedef: cat.shards.Request
 
 /**
- * Get shard information. Get information about the shards in a cluster. For
- * data streams, the API returns information about the backing indices.
- * IMPORTANT: cat APIs are only intended for human consumption using the command
- * line or Kibana console. They are not intended for use by applications.
+ * Get shard information.
+ * <p>
+ * Get information about the shards in a cluster. For data streams, the API
+ * returns information about the backing indices. IMPORTANT: cat APIs are only
+ * intended for human consumption using the command line or Kibana console. They
+ * are not intended for use by applications.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.shards.Request">API
  *      specification</a>

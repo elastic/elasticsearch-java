@@ -69,8 +69,33 @@ import javax.annotation.Nullable;
 // typedef: _global.update.Request
 
 /**
- * Update a document. Updates a document by running a script or passing a
- * partial document.
+ * Update a document.
+ * <p>
+ * Update a document by running a script or passing a partial document.
+ * <p>
+ * If the Elasticsearch security features are enabled, you must have the
+ * <code>index</code> or <code>write</code> index privilege for the target index
+ * or index alias.
+ * <p>
+ * The script can update, delete, or skip modifying the document. The API also
+ * supports passing a partial document, which is merged into the existing
+ * document. To fully replace an existing document, use the index API. This
+ * operation:
+ * <ul>
+ * <li>Gets the document (collocated with the shard) from the index.</li>
+ * <li>Runs the specified script.</li>
+ * <li>Indexes the result.</li>
+ * </ul>
+ * <p>
+ * The document must still be reindexed, but using this API removes some network
+ * roundtrips and reduces chances of version conflicts between the GET and the
+ * index operation.
+ * <p>
+ * The <code>_source</code> field must be enabled to use this API. In addition
+ * to <code>_source</code>, you can access the following variables through the
+ * <code>ctx</code> map: <code>_index</code>, <code>_type</code>,
+ * <code>_id</code>, <code>_version</code>, <code>_routing</code>, and
+ * <code>_now</code> (the current timestamp).
  * 
  * @see <a href="../doc-files/api-spec.html#_global.update.Request">API
  *      specification</a>
@@ -96,6 +121,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 	@Nullable
 	private final Long ifSeqNo;
+
+	@Nullable
+	private final Boolean includeSourceOnError;
 
 	private final String index;
 
@@ -146,6 +174,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.includeSourceOnError = builder.includeSourceOnError;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lang = builder.lang;
 		this.refresh = builder.refresh;
@@ -168,7 +197,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Set to false to disable source retrieval. You can also specify a
+	 * If <code>false</code>, turn off source retrieval. You can also specify a
 	 * comma-separated list of the fields you want to retrieve.
 	 * <p>
 	 * API name: {@code _source}
@@ -179,8 +208,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Set to false to disable setting 'result' in the response to 'noop' if no
-	 * change to the document occurred.
+	 * If <code>true</code>, the <code>result</code> in the response is set to
+	 * <code>noop</code> (no operation) when there are no changes to the document.
 	 * <p>
 	 * API name: {@code detect_noop}
 	 */
@@ -190,7 +219,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * A partial update to an existing document.
+	 * A partial update to an existing document. If both <code>doc</code> and
+	 * <code>script</code> are specified, <code>doc</code> is ignored.
 	 * <p>
 	 * API name: {@code doc}
 	 */
@@ -200,7 +230,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Set to true to use the contents of 'doc' as the value of 'upsert'
+	 * If <code>true</code>, use the contents of 'doc' as the value of 'upsert'.
+	 * NOTE: Using ingest pipelines with <code>doc_as_upsert</code> is not
+	 * supported.
 	 * <p>
 	 * API name: {@code doc_as_upsert}
 	 */
@@ -210,7 +242,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Required - Document ID
+	 * Required - A unique identifier for the document to be updated.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -239,7 +271,19 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Required - The name of the index
+	 * True or false if to include the document source in the error message in case
+	 * of parsing errors.
+	 * <p>
+	 * API name: {@code include_source_on_error}
+	 */
+	@Nullable
+	public final Boolean includeSourceOnError() {
+		return this.includeSourceOnError;
+	}
+
+	/**
+	 * Required - The name of the target index. By default, the index is created
+	 * automatically if it doesn't exist.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -259,8 +303,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 	/**
 	 * If 'true', Elasticsearch refreshes the affected shards to make this operation
-	 * visible to search, if 'wait_for' then wait for a refresh to make this
-	 * operation visible to search, if 'false' do nothing with refreshes.
+	 * visible to search. If 'wait_for', it waits for a refresh to make this
+	 * operation visible to search. If 'false', it does nothing with refreshes.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -270,7 +314,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * If true, the destination must be an index alias.
+	 * If <code>true</code>, the destination must be an index alias.
 	 * <p>
 	 * API name: {@code require_alias}
 	 */
@@ -280,8 +324,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Specify how many times should the operation be retried when a conflict
-	 * occurs.
+	 * The number of times the operation should be retried when a conflict occurs.
 	 * <p>
 	 * API name: {@code retry_on_conflict}
 	 */
@@ -291,7 +334,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -301,7 +344,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Script to execute to update the document.
+	 * The script to run to update the document.
 	 * <p>
 	 * API name: {@code script}
 	 */
@@ -311,7 +354,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Set to true to execute the script whether or not the document exists.
+	 * If <code>true</code>, run the script whether or not the document exists.
 	 * <p>
 	 * API name: {@code scripted_upsert}
 	 */
@@ -321,9 +364,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * Period to wait for dynamic mapping updates and active shards. This guarantees
-	 * Elasticsearch waits for at least the timeout before failing. The actual wait
-	 * time could be longer, particularly when multiple waits occur.
+	 * The period to wait for the following operations: dynamic mapping updates and
+	 * waiting for active shards. Elasticsearch waits for at least the timeout
+	 * period before failing. The actual wait time could be longer, particularly
+	 * when multiple waits occur.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -334,7 +378,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 	/**
 	 * If the document does not already exist, the contents of 'upsert' are inserted
-	 * as a new document. If the document exists, the 'script' is executed.
+	 * as a new document. If the document exists, the 'script' is run.
 	 * <p>
 	 * API name: {@code upsert}
 	 */
@@ -344,10 +388,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * The number of shard copies that must be active before proceeding with the
-	 * operations. Set to 'all' or any positive integer up to the total number of
-	 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
-	 * shard.
+	 * The number of copies of each shard that must be active before proceeding with
+	 * the operation. Set to 'all' or any positive integer up to the total number of
+	 * shards in the index (<code>number_of_replicas</code>+1). The default value of
+	 * <code>1</code> means it waits for each primary shard to be active.
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -436,6 +480,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		@Nullable
 		private Long ifSeqNo;
 
+		@Nullable
+		private Boolean includeSourceOnError;
+
 		private String index;
 
 		@Nullable
@@ -475,7 +522,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
-		 * Set to false to disable source retrieval. You can also specify a
+		 * If <code>false</code>, turn off source retrieval. You can also specify a
 		 * comma-separated list of the fields you want to retrieve.
 		 * <p>
 		 * API name: {@code _source}
@@ -486,7 +533,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Set to false to disable source retrieval. You can also specify a
+		 * If <code>false</code>, turn off source retrieval. You can also specify a
 		 * comma-separated list of the fields you want to retrieve.
 		 * <p>
 		 * API name: {@code _source}
@@ -497,8 +544,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Set to false to disable setting 'result' in the response to 'noop' if no
-		 * change to the document occurred.
+		 * If <code>true</code>, the <code>result</code> in the response is set to
+		 * <code>noop</code> (no operation) when there are no changes to the document.
 		 * <p>
 		 * API name: {@code detect_noop}
 		 */
@@ -508,7 +555,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * A partial update to an existing document.
+		 * A partial update to an existing document. If both <code>doc</code> and
+		 * <code>script</code> are specified, <code>doc</code> is ignored.
 		 * <p>
 		 * API name: {@code doc}
 		 */
@@ -518,7 +566,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Set to true to use the contents of 'doc' as the value of 'upsert'
+		 * If <code>true</code>, use the contents of 'doc' as the value of 'upsert'.
+		 * NOTE: Using ingest pipelines with <code>doc_as_upsert</code> is not
+		 * supported.
 		 * <p>
 		 * API name: {@code doc_as_upsert}
 		 */
@@ -528,7 +578,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Required - Document ID
+		 * Required - A unique identifier for the document to be updated.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -558,7 +608,19 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Required - The name of the index
+		 * True or false if to include the document source in the error message in case
+		 * of parsing errors.
+		 * <p>
+		 * API name: {@code include_source_on_error}
+		 */
+		public final Builder<TDocument, TPartialDocument> includeSourceOnError(@Nullable Boolean value) {
+			this.includeSourceOnError = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the target index. By default, the index is created
+		 * automatically if it doesn't exist.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -579,8 +641,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 		/**
 		 * If 'true', Elasticsearch refreshes the affected shards to make this operation
-		 * visible to search, if 'wait_for' then wait for a refresh to make this
-		 * operation visible to search, if 'false' do nothing with refreshes.
+		 * visible to search. If 'wait_for', it waits for a refresh to make this
+		 * operation visible to search. If 'false', it does nothing with refreshes.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -590,7 +652,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * If true, the destination must be an index alias.
+		 * If <code>true</code>, the destination must be an index alias.
 		 * <p>
 		 * API name: {@code require_alias}
 		 */
@@ -600,8 +662,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Specify how many times should the operation be retried when a conflict
-		 * occurs.
+		 * The number of times the operation should be retried when a conflict occurs.
 		 * <p>
 		 * API name: {@code retry_on_conflict}
 		 */
@@ -611,7 +672,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -621,7 +682,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Script to execute to update the document.
+		 * The script to run to update the document.
 		 * <p>
 		 * API name: {@code script}
 		 */
@@ -631,7 +692,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Script to execute to update the document.
+		 * The script to run to update the document.
 		 * <p>
 		 * API name: {@code script}
 		 */
@@ -640,7 +701,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Set to true to execute the script whether or not the document exists.
+		 * If <code>true</code>, run the script whether or not the document exists.
 		 * <p>
 		 * API name: {@code scripted_upsert}
 		 */
@@ -650,9 +711,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Period to wait for dynamic mapping updates and active shards. This guarantees
-		 * Elasticsearch waits for at least the timeout before failing. The actual wait
-		 * time could be longer, particularly when multiple waits occur.
+		 * The period to wait for the following operations: dynamic mapping updates and
+		 * waiting for active shards. Elasticsearch waits for at least the timeout
+		 * period before failing. The actual wait time could be longer, particularly
+		 * when multiple waits occur.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -662,9 +724,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * Period to wait for dynamic mapping updates and active shards. This guarantees
-		 * Elasticsearch waits for at least the timeout before failing. The actual wait
-		 * time could be longer, particularly when multiple waits occur.
+		 * The period to wait for the following operations: dynamic mapping updates and
+		 * waiting for active shards. Elasticsearch waits for at least the timeout
+		 * period before failing. The actual wait time could be longer, particularly
+		 * when multiple waits occur.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -674,7 +737,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 		/**
 		 * If the document does not already exist, the contents of 'upsert' are inserted
-		 * as a new document. If the document exists, the 'script' is executed.
+		 * as a new document. If the document exists, the 'script' is run.
 		 * <p>
 		 * API name: {@code upsert}
 		 */
@@ -684,10 +747,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operations. Set to 'all' or any positive integer up to the total number of
-		 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
-		 * shard.
+		 * The number of copies of each shard that must be active before proceeding with
+		 * the operation. Set to 'all' or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas</code>+1). The default value of
+		 * <code>1</code> means it waits for each primary shard to be active.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -697,10 +760,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operations. Set to 'all' or any positive integer up to the total number of
-		 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
-		 * shard.
+		 * The number of copies of each shard that must be active before proceeding with
+		 * the operation. Set to 'all' or any positive integer up to the total number of
+		 * shards in the index (<code>number_of_replicas</code>+1). The default value of
+		 * <code>1</code> means it waits for each primary shard to be active.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -842,6 +905,15 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
+				}
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
@@ -854,9 +926,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				if (request.ifSeqNo != null) {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
-				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
@@ -865,9 +934,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				if (request.retryOnConflict != null) {
 					params.put("retry_on_conflict", String.valueOf(request.retryOnConflict));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

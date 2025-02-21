@@ -146,7 +146,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and index aliases used to
+	 * A comma-separated list of data streams, indices, and index aliases used to
 	 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
 	 * target all data streams and indices in a cluster, omit this parameter or use
 	 * <code>_all</code> or <code>*</code>.
@@ -296,7 +296,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
+		 * A comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
 		 * target all data streams and indices in a cluster, omit this parameter or use
 		 * <code>_all</code> or <code>*</code>.
@@ -311,7 +311,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
+		 * A comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
 		 * target all data streams and indices in a cluster, omit this parameter or use
 		 * <code>_all</code> or <code>*</code>.

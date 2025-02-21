@@ -80,7 +80,13 @@ public class GetUserProfileResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code profiles}
+	 * Required - A successful call returns the JSON representation of the user
+	 * profile and its internal versioning numbers. The API returns an empty object
+	 * if no profile document is found for the provided <code>uid</code>. The
+	 * content of the data field is not returned by default to avoid deserializing a
+	 * potential large payload.
+	 * <p>
+	 * API name: {@code profiles}
 	 */
 	public final List<UserProfileWithMetadata> profiles() {
 		return this.profiles;
@@ -143,7 +149,13 @@ public class GetUserProfileResponse implements JsonpSerializable {
 		private GetUserProfileErrors errors;
 
 		/**
-		 * Required - API name: {@code profiles}
+		 * Required - A successful call returns the JSON representation of the user
+		 * profile and its internal versioning numbers. The API returns an empty object
+		 * if no profile document is found for the provided <code>uid</code>. The
+		 * content of the data field is not returned by default to avoid deserializing a
+		 * potential large payload.
+		 * <p>
+		 * API name: {@code profiles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>profiles</code>.
 		 */
@@ -153,7 +165,13 @@ public class GetUserProfileResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code profiles}
+		 * Required - A successful call returns the JSON representation of the user
+		 * profile and its internal versioning numbers. The API returns an empty object
+		 * if no profile document is found for the provided <code>uid</code>. The
+		 * content of the data field is not returned by default to avoid deserializing a
+		 * potential large payload.
+		 * <p>
+		 * API name: {@code profiles}
 		 * <p>
 		 * Adds one or more values to <code>profiles</code>.
 		 */
@@ -163,7 +181,13 @@ public class GetUserProfileResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code profiles}
+		 * Required - A successful call returns the JSON representation of the user
+		 * profile and its internal versioning numbers. The API returns an empty object
+		 * if no profile document is found for the provided <code>uid</code>. The
+		 * content of the data field is not returned by default to avoid deserializing a
+		 * potential large payload.
+		 * <p>
+		 * API name: {@code profiles}
 		 * <p>
 		 * Adds a value to <code>profiles</code> using a builder lambda.
 		 */

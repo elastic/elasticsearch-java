@@ -59,11 +59,13 @@ import javax.annotation.Nullable;
 // typedef: cat.segments.Request
 
 /**
- * Get segment information. Get low-level information about the Lucene segments
- * in index shards. For data streams, the API returns information about the
- * backing indices. IMPORTANT: cat APIs are only intended for human consumption
- * using the command line or Kibana console. They are not intended for use by
- * applications. For application consumption, use the index segments API.
+ * Get segment information.
+ * <p>
+ * Get low-level information about the Lucene segments in index shards. For data
+ * streams, the API returns information about the backing indices. IMPORTANT:
+ * cat APIs are only intended for human consumption using the command line or
+ * Kibana console. They are not intended for use by applications. For
+ * application consumption, use the index segments API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.segments.Request">API
  *      specification</a>

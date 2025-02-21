@@ -73,12 +73,16 @@ public class DeleteConnectorRequest extends RequestBase {
 	@Nullable
 	private final Boolean deleteSyncJobs;
 
+	@Nullable
+	private final Boolean hard;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteConnectorRequest(Builder builder) {
 
 		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 		this.deleteSyncJobs = builder.deleteSyncJobs;
+		this.hard = builder.hard;
 
 	}
 
@@ -106,6 +110,16 @@ public class DeleteConnectorRequest extends RequestBase {
 		return this.deleteSyncJobs;
 	}
 
+	/**
+	 * A flag indicating if the connector should be hard deleted.
+	 * <p>
+	 * API name: {@code hard}
+	 */
+	@Nullable
+	public final Boolean hard() {
+		return this.hard;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -119,6 +133,9 @@ public class DeleteConnectorRequest extends RequestBase {
 
 		@Nullable
 		private Boolean deleteSyncJobs;
+
+		@Nullable
+		private Boolean hard;
 
 		/**
 		 * Required - The unique identifier of the connector to be deleted
@@ -138,6 +155,16 @@ public class DeleteConnectorRequest extends RequestBase {
 		 */
 		public final Builder deleteSyncJobs(@Nullable Boolean value) {
 			this.deleteSyncJobs = value;
+			return this;
+		}
+
+		/**
+		 * A flag indicating if the connector should be hard deleted.
+		 * <p>
+		 * API name: {@code hard}
+		 */
+		public final Builder hard(@Nullable Boolean value) {
+			this.hard = value;
 			return this;
 		}
 
@@ -212,6 +239,9 @@ public class DeleteConnectorRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.deleteSyncJobs != null) {
 					params.put("delete_sync_jobs", String.valueOf(request.deleteSyncJobs));
+				}
+				if (request.hard != null) {
+					params.put("hard", String.valueOf(request.hard));
 				}
 				return params;
 

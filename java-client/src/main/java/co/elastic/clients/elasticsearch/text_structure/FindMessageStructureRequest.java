@@ -69,7 +69,9 @@ import javax.annotation.Nullable;
  * format that is suitable for subsequent use with other Elastic Stack
  * functionality. Use this API rather than the find text structure API if your
  * input text has already been split up into separate messages by some other
- * process. The response from the API contains:
+ * process.
+ * <p>
+ * The response from the API contains:
  * <ul>
  * <li>Sample messages.</li>
  * <li>Statistics that reveal the most common values for all fields detected
@@ -83,6 +85,10 @@ import javax.annotation.Nullable;
  * All this information can be calculated by the structure finder with no
  * guidance. However, you can optionally override some of the decisions about
  * the text structure by specifying one or more query parameters.
+ * <p>
+ * If the structure finder produces unexpected results, specify the
+ * <code>explain</code> query parameter and an explanation will appear in the
+ * response. It helps determine why the returned structure was chosen.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#text_structure.find_message_structure.Request">API
@@ -268,7 +274,7 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 	 * If the format is <code>delimited</code>, you can specify whether values
 	 * between delimiters should have whitespace trimmed from them. If this
 	 * parameter is not specified and the delimiter is pipe (<code>|</code>), the
-	 * default value is true. Otherwise, the default value is false.
+	 * default value is true. Otherwise, the default value is <code>false</code>.
 	 * <p>
 	 * API name: {@code should_trim_fields}
 	 */
@@ -571,7 +577,7 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 		 * If the format is <code>delimited</code>, you can specify whether values
 		 * between delimiters should have whitespace trimmed from them. If this
 		 * parameter is not specified and the delimiter is pipe (<code>|</code>), the
-		 * default value is true. Otherwise, the default value is false.
+		 * default value is true. Otherwise, the default value is <code>false</code>.
 		 * <p>
 		 * API name: {@code should_trim_fields}
 		 */

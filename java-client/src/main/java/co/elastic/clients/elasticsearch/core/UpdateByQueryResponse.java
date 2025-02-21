@@ -142,6 +142,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of scroll responses pulled back by the update by query.
+	 * <p>
 	 * API name: {@code batches}
 	 */
 	@Nullable
@@ -150,6 +152,13 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Array of failures if there were any unrecoverable errors during the process.
+	 * If this is non-empty then the request ended because of those failures. Update
+	 * by query is implemented using batches. Any failure causes the entire process
+	 * to end, but all failures in the current batch are collected into the array.
+	 * You can use the <code>conflicts</code> option to prevent reindex from ending
+	 * when version conflicts occur.
+	 * <p>
 	 * API name: {@code failures}
 	 */
 	public final List<BulkIndexByScrollFailure> failures() {
@@ -157,6 +166,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were ignored because the script used for the
+	 * update by query returned a noop value for <code>ctx.op</code>.
+	 * <p>
 	 * API name: {@code noops}
 	 */
 	@Nullable
@@ -165,6 +177,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully deleted.
+	 * <p>
 	 * API name: {@code deleted}
 	 */
 	@Nullable
@@ -173,6 +187,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of requests per second effectively run during the update by query.
+	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
@@ -181,6 +197,10 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of retries attempted by update by query. <code>bulk</code> is the
+	 * number of bulk actions retried. <code>search</code> is the number of search
+	 * actions retried.
+	 * <p>
 	 * API name: {@code retries}
 	 */
 	@Nullable
@@ -197,6 +217,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * If true, some requests timed out during the update by query.
+	 * <p>
 	 * API name: {@code timed_out}
 	 */
 	@Nullable
@@ -205,6 +227,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of milliseconds from start to end of the whole operation.
+	 * <p>
 	 * API name: {@code took}
 	 */
 	@Nullable
@@ -213,6 +237,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully processed.
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -221,6 +247,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of documents that were successfully updated.
+	 * <p>
 	 * API name: {@code updated}
 	 */
 	@Nullable
@@ -229,6 +257,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of version conflicts that the update by query hit.
+	 * <p>
 	 * API name: {@code version_conflicts}
 	 */
 	@Nullable
@@ -245,6 +275,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of milliseconds the request slept to conform to
+	 * <code>requests_per_second</code>.
+	 * <p>
 	 * API name: {@code throttled_millis}
 	 */
 	@Nullable
@@ -261,6 +294,11 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * This field should always be equal to zero in an _update_by_query response. It
+	 * only has meaning when using the task API, where it indicates the next time
+	 * (in milliseconds since epoch) a throttled request will be run again in order
+	 * to conform to <code>requests_per_second</code>.
+	 * <p>
 	 * API name: {@code throttled_until_millis}
 	 */
 	@Nullable
@@ -430,6 +468,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		private Long throttledUntilMillis;
 
 		/**
+		 * The number of scroll responses pulled back by the update by query.
+		 * <p>
 		 * API name: {@code batches}
 		 */
 		public final Builder batches(@Nullable Long value) {
@@ -438,6 +478,13 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of failures if there were any unrecoverable errors during the process.
+		 * If this is non-empty then the request ended because of those failures. Update
+		 * by query is implemented using batches. Any failure causes the entire process
+		 * to end, but all failures in the current batch are collected into the array.
+		 * You can use the <code>conflicts</code> option to prevent reindex from ending
+		 * when version conflicts occur.
+		 * <p>
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failures</code>.
@@ -448,6 +495,13 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of failures if there were any unrecoverable errors during the process.
+		 * If this is non-empty then the request ended because of those failures. Update
+		 * by query is implemented using batches. Any failure causes the entire process
+		 * to end, but all failures in the current batch are collected into the array.
+		 * You can use the <code>conflicts</code> option to prevent reindex from ending
+		 * when version conflicts occur.
+		 * <p>
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds one or more values to <code>failures</code>.
@@ -458,6 +512,13 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Array of failures if there were any unrecoverable errors during the process.
+		 * If this is non-empty then the request ended because of those failures. Update
+		 * by query is implemented using batches. Any failure causes the entire process
+		 * to end, but all failures in the current batch are collected into the array.
+		 * You can use the <code>conflicts</code> option to prevent reindex from ending
+		 * when version conflicts occur.
+		 * <p>
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds a value to <code>failures</code> using a builder lambda.
@@ -468,6 +529,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were ignored because the script used for the
+		 * update by query returned a noop value for <code>ctx.op</code>.
+		 * <p>
 		 * API name: {@code noops}
 		 */
 		public final Builder noops(@Nullable Long value) {
@@ -476,6 +540,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully deleted.
+		 * <p>
 		 * API name: {@code deleted}
 		 */
 		public final Builder deleted(@Nullable Long value) {
@@ -484,6 +550,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of requests per second effectively run during the update by query.
+		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
 		public final Builder requestsPerSecond(@Nullable Float value) {
@@ -492,6 +560,10 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of retries attempted by update by query. <code>bulk</code> is the
+		 * number of bulk actions retried. <code>search</code> is the number of search
+		 * actions retried.
+		 * <p>
 		 * API name: {@code retries}
 		 */
 		public final Builder retries(@Nullable Retries value) {
@@ -500,6 +572,10 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of retries attempted by update by query. <code>bulk</code> is the
+		 * number of bulk actions retried. <code>search</code> is the number of search
+		 * actions retried.
+		 * <p>
 		 * API name: {@code retries}
 		 */
 		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
@@ -515,6 +591,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * If true, some requests timed out during the update by query.
+		 * <p>
 		 * API name: {@code timed_out}
 		 */
 		public final Builder timedOut(@Nullable Boolean value) {
@@ -523,6 +601,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of milliseconds from start to end of the whole operation.
+		 * <p>
 		 * API name: {@code took}
 		 */
 		public final Builder took(@Nullable Long value) {
@@ -531,6 +611,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully processed.
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public final Builder total(@Nullable Long value) {
@@ -539,6 +621,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of documents that were successfully updated.
+		 * <p>
 		 * API name: {@code updated}
 		 */
 		public final Builder updated(@Nullable Long value) {
@@ -547,6 +631,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of version conflicts that the update by query hit.
+		 * <p>
 		 * API name: {@code version_conflicts}
 		 */
 		public final Builder versionConflicts(@Nullable Long value) {
@@ -570,6 +656,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of milliseconds the request slept to conform to
+		 * <code>requests_per_second</code>.
+		 * <p>
 		 * API name: {@code throttled_millis}
 		 */
 		public final Builder throttledMillis(@Nullable Long value) {
@@ -593,6 +682,11 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * This field should always be equal to zero in an _update_by_query response. It
+		 * only has meaning when using the task API, where it indicates the next time
+		 * (in milliseconds since epoch) a throttled request will be run again in order
+		 * to conform to <code>requests_per_second</code>.
+		 * <p>
 		 * API name: {@code throttled_until_millis}
 		 */
 		public final Builder throttledUntilMillis(@Nullable Long value) {

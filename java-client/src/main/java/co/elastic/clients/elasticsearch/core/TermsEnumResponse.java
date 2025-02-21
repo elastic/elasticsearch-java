@@ -97,7 +97,11 @@ public class TermsEnumResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code complete}
+	 * Required - If <code>false</code>, the returned terms set may be incomplete
+	 * and should be treated as approximate. This can occur due to a few reasons,
+	 * such as a request timeout or a node error.
+	 * <p>
+	 * API name: {@code complete}
 	 */
 	public final boolean complete() {
 		return this.complete;
@@ -186,7 +190,11 @@ public class TermsEnumResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code complete}
+		 * Required - If <code>false</code>, the returned terms set may be incomplete
+		 * and should be treated as approximate. This can occur due to a few reasons,
+		 * such as a request timeout or a node error.
+		 * <p>
+		 * API name: {@code complete}
 		 */
 		public final Builder complete(boolean value) {
 			this.complete = value;

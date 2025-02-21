@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: ccr.delete_auto_follow_pattern.Request
 
 /**
- * Delete auto-follow patterns. Delete a collection of cross-cluster replication
- * auto-follow patterns.
+ * Delete auto-follow patterns.
+ * <p>
+ * Delete a collection of cross-cluster replication auto-follow patterns.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ccr.delete_auto_follow_pattern.Request">API
@@ -85,7 +86,10 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. It can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -95,7 +99,7 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the auto follow pattern.
+	 * Required - The auto-follow pattern collection to delete.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -118,7 +122,10 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -128,7 +135,10 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -137,7 +147,7 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the auto follow pattern.
+		 * Required - The auto-follow pattern collection to delete.
 		 * <p>
 		 * API name: {@code name}
 		 */

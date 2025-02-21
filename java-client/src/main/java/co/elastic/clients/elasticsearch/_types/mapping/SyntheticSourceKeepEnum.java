@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.esql.query;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,32 +40,40 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#esql.query.EsqlFormat">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.mapping.SyntheticSourceKeepEnum">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum EsqlFormat implements JsonEnum {
-	Csv("csv"),
+public enum SyntheticSourceKeepEnum implements JsonEnum {
+	/**
+	 * Synthetic source diverges from the original source (default)
+	 */
+	None("none"),
 
-	Json("json"),
+	/**
+	 * Arrays of the corresponding field or object preserve the original element
+	 * ordering and duplicate elements. The synthetic source fragment for such
+	 * arrays is not guaranteed to match the original source exactly, e.g. array [1,
+	 * 2, [5], [[4, [3]]], 5] may appear as-is or in an equivalent format like [1,
+	 * 2, 5, 4, 3, 5]. The exact format may change in the future, in an effort to
+	 * reduce the storage overhead of this option.
+	 */
+	Arrays("arrays"),
 
-	Tsv("tsv"),
-
-	Txt("txt"),
-
-	Yaml("yaml"),
-
-	Cbor("cbor"),
-
-	Smile("smile"),
-
-	Arrow("arrow"),
+	/**
+	 * The source for both singleton instances and arrays of the corresponding field
+	 * or object gets recorded. When applied to objects, the source of all
+	 * sub-objects and sub-fields gets captured. Furthermore, the original source of
+	 * arrays gets captured and appears in synthetic source with no modifications.
+	 */
+	All("all"),
 
 	;
 
 	private final String jsonValue;
 
-	EsqlFormat(String jsonValue) {
+	SyntheticSourceKeepEnum(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -73,6 +81,6 @@ public enum EsqlFormat implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<EsqlFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			EsqlFormat.values());
+	public static final JsonEnum.Deserializer<SyntheticSourceKeepEnum> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			SyntheticSourceKeepEnum.values());
 }

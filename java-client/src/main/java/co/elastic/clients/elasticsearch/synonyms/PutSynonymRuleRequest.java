@@ -60,6 +60,11 @@ import javax.annotation.Nullable;
 /**
  * Create or update a synonym rule. Create or update a synonym rule in a synonym
  * set.
+ * <p>
+ * If any of the synonym rules included is invalid, the API returns an error.
+ * <p>
+ * When you update a synonym rule, all analyzers using the synonyms set will be
+ * reloaded automatically to reflect the new rule.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.put_synonym_rule.Request">API
@@ -88,7 +93,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - The id of the synonym rule to be updated or created
+	 * Required - The ID of the synonym rule to be updated or created.
 	 * <p>
 	 * API name: {@code rule_id}
 	 */
@@ -97,7 +102,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - The id of the synonym set to be updated with the synonym rule
+	 * Required - The ID of the synonym set.
 	 * <p>
 	 * API name: {@code set_id}
 	 */
@@ -106,7 +111,10 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - API name: {@code synonyms}
+	 * Required - The synonym rule information definition, which must be in Solr
+	 * format.
+	 * <p>
+	 * API name: {@code synonyms}
 	 */
 	public final String synonyms() {
 		return this.synonyms;
@@ -144,7 +152,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 		private String synonyms;
 
 		/**
-		 * Required - The id of the synonym rule to be updated or created
+		 * Required - The ID of the synonym rule to be updated or created.
 		 * <p>
 		 * API name: {@code rule_id}
 		 */
@@ -154,7 +162,7 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Required - The id of the synonym set to be updated with the synonym rule
+		 * Required - The ID of the synonym set.
 		 * <p>
 		 * API name: {@code set_id}
 		 */
@@ -164,7 +172,10 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Required - API name: {@code synonyms}
+		 * Required - The synonym rule information definition, which must be in Solr
+		 * format.
+		 * <p>
+		 * API name: {@code synonyms}
 		 */
 		public final Builder synonyms(String value) {
 			this.synonyms = value;

@@ -27,6 +27,7 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
+    signing
     id("com.github.jk1.dependency-license-report") version "2.2"
     id("de.thetaphi.forbiddenapis") version "3.4"
 }
@@ -115,6 +116,12 @@ tasks.withType<Javadoc> {
     }
 }
 
+signing {
+    // Only sign if a key has been configured in gradle.properties
+    isRequired = providers.gradleProperty("signing.keyId").isPresent
+    sign(publishing.publications)
+}
+
 publishing {
     repositories {
         maven {
@@ -127,6 +134,21 @@ publishing {
         maven {
             name = "Build"
             url = uri("${rootProject.buildDir}/repository")
+        }
+
+        maven {
+            name = "MavenCentralSnapshot"
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            credentials {
+                run {
+                    if (gradle.startParameter.taskNames.find { it.contains("ToMavenCentralSnapshotRepository") } != null) {
+                        if (!providers.gradleProperty("ossrhUsername").isPresent) logger.error("ossrhUsername not set")
+                        if (!providers.gradleProperty("ossrhPassword").isPresent) logger.error("ossrhPassword not set")
+                    }
+                }
+                username = providers.gradleProperty("ossrhUsername").orNull
+                password = providers.gradleProperty("ossrhPassword").orNull
+            }
         }
     }
 

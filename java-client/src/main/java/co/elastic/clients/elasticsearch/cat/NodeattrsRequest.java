@@ -55,10 +55,12 @@ import javax.annotation.Nullable;
 // typedef: cat.nodeattrs.Request
 
 /**
- * Get node attribute information. Get information about custom node attributes.
- * IMPORTANT: cat APIs are only intended for human consumption using the command
- * line or Kibana console. They are not intended for use by applications. For
- * application consumption, use the nodes info API.
+ * Get node attribute information.
+ * <p>
+ * Get information about custom node attributes. IMPORTANT: cat APIs are only
+ * intended for human consumption using the command line or Kibana console. They
+ * are not intended for use by applications. For application consumption, use
+ * the nodes info API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.nodeattrs.Request">API
  *      specification</a>

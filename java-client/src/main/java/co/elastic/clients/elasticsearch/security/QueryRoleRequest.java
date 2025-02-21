@@ -63,8 +63,11 @@ import javax.annotation.Nullable;
 /**
  * Find roles with a query.
  * <p>
- * Get roles in a paginated manner. You can optionally filter the results with a
- * query.
+ * Get roles in a paginated manner. The role management APIs are generally the
+ * preferred way to manage roles, rather than using file-based role management.
+ * The query roles API does not retrieve roles that are defined in roles files,
+ * nor built-in ones. You can optionally filter the results with a query. Also,
+ * the results can be paginated and sorted.
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_role.Request">API
  *      specification</a>
@@ -101,9 +104,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Starting document offset. By default, you cannot page through more than
-	 * 10,000 hits using the from and size parameters. To page through more hits,
-	 * use the <code>search_after</code> parameter.
+	 * The starting document offset. It must not be negative. By default, you cannot
+	 * page through more than 10,000 hits using the <code>from</code> and
+	 * <code>size</code> parameters. To page through more hits, use the
+	 * <code>search_after</code> parameter.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -122,7 +126,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	 * following information associated with roles: <code>name</code>,
 	 * <code>description</code>, <code>metadata</code>,
 	 * <code>applications.application</code>, <code>applications.privileges</code>,
-	 * <code>applications.resources</code>.
+	 * and <code>applications.resources</code>.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -132,7 +136,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Search after definition
+	 * The search after definition.
 	 * <p>
 	 * API name: {@code search_after}
 	 */
@@ -141,9 +145,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of hits to return. By default, you cannot page through more than
-	 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
-	 * page through more hits, use the <code>search_after</code> parameter.
+	 * The number of hits to return. It must not be negative. By default, you cannot
+	 * page through more than 10,000 hits using the <code>from</code> and
+	 * <code>size</code> parameters. To page through more hits, use the
+	 * <code>search_after</code> parameter.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -153,8 +158,9 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * All public fields of a role are eligible for sorting. In addition, sort can
-	 * also be applied to the <code>_doc</code> field to sort by index order.
+	 * The sort definition. You can sort on <code>username</code>,
+	 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+	 * applied to the <code>_doc</code> field to sort by index order.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -236,9 +242,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		private List<SortOptions> sort;
 
 		/**
-		 * Starting document offset. By default, you cannot page through more than
-		 * 10,000 hits using the from and size parameters. To page through more hits,
-		 * use the <code>search_after</code> parameter.
+		 * The starting document offset. It must not be negative. By default, you cannot
+		 * page through more than 10,000 hits using the <code>from</code> and
+		 * <code>size</code> parameters. To page through more hits, use the
+		 * <code>search_after</code> parameter.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -257,7 +264,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		 * following information associated with roles: <code>name</code>,
 		 * <code>description</code>, <code>metadata</code>,
 		 * <code>applications.application</code>, <code>applications.privileges</code>,
-		 * <code>applications.resources</code>.
+		 * and <code>applications.resources</code>.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -276,7 +283,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		 * following information associated with roles: <code>name</code>,
 		 * <code>description</code>, <code>metadata</code>,
 		 * <code>applications.application</code>, <code>applications.privileges</code>,
-		 * <code>applications.resources</code>.
+		 * and <code>applications.resources</code>.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -285,7 +292,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -297,7 +304,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -309,7 +316,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -326,7 +333,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -343,7 +350,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -360,7 +367,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -377,7 +384,7 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Search after definition
+		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -388,9 +395,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of hits to return. By default, you cannot page through more than
-		 * 10,000 hits using the <code>from</code> and <code>size</code> parameters. To
-		 * page through more hits, use the <code>search_after</code> parameter.
+		 * The number of hits to return. It must not be negative. By default, you cannot
+		 * page through more than 10,000 hits using the <code>from</code> and
+		 * <code>size</code> parameters. To page through more hits, use the
+		 * <code>search_after</code> parameter.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -400,8 +408,9 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * All public fields of a role are eligible for sorting. In addition, sort can
-		 * also be applied to the <code>_doc</code> field to sort by index order.
+		 * The sort definition. You can sort on <code>username</code>,
+		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -413,8 +422,9 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * All public fields of a role are eligible for sorting. In addition, sort can
-		 * also be applied to the <code>_doc</code> field to sort by index order.
+		 * The sort definition. You can sort on <code>username</code>,
+		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -426,8 +436,9 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * All public fields of a role are eligible for sorting. In addition, sort can
-		 * also be applied to the <code>_doc</code> field to sort by index order.
+		 * The sort definition. You can sort on <code>username</code>,
+		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>

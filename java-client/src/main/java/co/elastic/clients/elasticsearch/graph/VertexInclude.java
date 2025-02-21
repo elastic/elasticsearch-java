@@ -60,7 +60,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class VertexInclude implements JsonpSerializable {
-	private final double boost;
+	@Nullable
+	private final Double boost;
 
 	private final String term;
 
@@ -68,7 +69,7 @@ public class VertexInclude implements JsonpSerializable {
 
 	private VertexInclude(Builder builder) {
 
-		this.boost = ApiTypeHelper.requireNonNull(builder.boost, this, "boost");
+		this.boost = builder.boost;
 		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
 
 	}
@@ -78,9 +79,10 @@ public class VertexInclude implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code boost}
+	 * API name: {@code boost}
 	 */
-	public final double boost() {
+	@Nullable
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -102,9 +104,11 @@ public class VertexInclude implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("boost");
-		generator.write(this.boost);
+		if (this.boost != null) {
+			generator.writeKey("boost");
+			generator.write(this.boost);
 
+		}
 		generator.writeKey("term");
 		generator.write(this.term);
 
@@ -122,14 +126,15 @@ public class VertexInclude implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<VertexInclude> {
+		@Nullable
 		private Double boost;
 
 		private String term;
 
 		/**
-		 * Required - API name: {@code boost}
+		 * API name: {@code boost}
 		 */
-		public final Builder boost(double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -172,6 +177,8 @@ public class VertexInclude implements JsonpSerializable {
 
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
+
+		op.shortcutProperty("term");
 
 	}
 

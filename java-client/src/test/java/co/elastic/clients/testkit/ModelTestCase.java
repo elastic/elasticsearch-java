@@ -58,25 +58,15 @@ public abstract class ModelTestCase extends Assertions {
         switch(jsonImpl) {
             case Jsonb:
                 System.out.println("Using a JsonB mapper (rand = " + rand + ").");
-                return new JsonbJsonpMapper() {
-                    @Override
-                    public boolean ignoreUnknownFields() {
-                        return false;
-                    }
-                };
+                return new JsonbJsonpMapper();
 
             case Jackson:
                 System.out.println("Using a Jackson mapper (rand = " + rand + ").");
-                return new JacksonJsonpMapper() {
-                    @Override
-                    public boolean ignoreUnknownFields() {
-                        return false;
-                    }
-                };
+                return new JacksonJsonpMapper();
 
             default:
                 System.out.println("Using a simple mapper (rand = " + rand + ").");
-                return SimpleJsonpMapper.INSTANCE_REJECT_UNKNOWN_FIELDS;
+                return SimpleJsonpMapper.INSTANCE;
         }
     }
 

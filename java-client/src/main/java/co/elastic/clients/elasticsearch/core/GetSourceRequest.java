@@ -61,8 +61,23 @@ import javax.annotation.Nullable;
 // typedef: _global.get_source.Request
 
 /**
- * Get a document's source. Returns the source of a document.
+ * Get a document's source.
+ * <p>
+ * Get the source of a document. For example:
  * 
+ * <pre>
+ * <code>GET my-index-000001/_source/1
+ * </code>
+ * </pre>
+ * <p>
+ * You can use the source filtering parameters to control which parts of the
+ * <code>_source</code> are returned:
+ * 
+ * <pre>
+ * <code>GET my-index-000001/_source/1/?_source_includes=*.id&amp;_source_excludes=entities
+ * </code>
+ * </pre>
+ *
  * @see <a href="../doc-files/api-spec.html#_global.get_source.Request">API
  *      specification</a>
  */
@@ -123,8 +138,8 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return.
+	 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+	 * or <code>false</code>) or lists the fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -152,7 +167,7 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Unique identifier of the document.
+	 * Required - A unique document identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -161,7 +176,7 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Name of the index that contains the document.
+	 * Required - The name of the index that contains the document.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -170,8 +185,8 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
-	 * default.
+	 * The node or shard the operation should be performed on. By default, the
+	 * operation is randomized between the shard replicas.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -181,7 +196,7 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Boolean) If true, the request is real-time as opposed to near-real-time.
+	 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -191,8 +206,10 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, Elasticsearch refreshes the affected shards to make this operation
-	 * visible to search. If false, do nothing with refreshes.
+	 * If <code>true</code>, the request refreshes the relevant shards before
+	 * retrieving the document. Setting it to <code>true</code> should be done after
+	 * careful thought and verification that this does not cause a heavy load on the
+	 * system (and slow down indexing).
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -202,7 +219,7 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Target the specified primary shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -212,6 +229,8 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of stored fields to return as part of a hit.
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	public final List<String> storedFields() {
@@ -219,8 +238,8 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit version number for concurrency control. The specified version must
-	 * match the current version of the document for the request to succeed.
+	 * The version number for concurrency control. It must match the current version
+	 * of the document for the request to succeed.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -230,7 +249,7 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * Specific version type: internal, external, external_gte.
+	 * The version type.
 	 * <p>
 	 * API name: {@code version_type}
 	 */
@@ -283,8 +302,8 @@ public class GetSourceRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -294,8 +313,8 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return.
+		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
+		 * or <code>false</code>) or lists the fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -352,7 +371,7 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Unique identifier of the document.
+		 * Required - A unique document identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -362,7 +381,7 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Name of the index that contains the document.
+		 * Required - The name of the index that contains the document.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -372,8 +391,8 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
-		 * default.
+		 * The node or shard the operation should be performed on. By default, the
+		 * operation is randomized between the shard replicas.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -383,7 +402,7 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Boolean) If true, the request is real-time as opposed to near-real-time.
+		 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -393,8 +412,10 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, Elasticsearch refreshes the affected shards to make this operation
-		 * visible to search. If false, do nothing with refreshes.
+		 * If <code>true</code>, the request refreshes the relevant shards before
+		 * retrieving the document. Setting it to <code>true</code> should be done after
+		 * careful thought and verification that this does not cause a heavy load on the
+		 * system (and slow down indexing).
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -404,7 +425,7 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Target the specified primary shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -414,6 +435,8 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return as part of a hit.
+		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
@@ -424,6 +447,8 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return as part of a hit.
+		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds one or more values to <code>storedFields</code>.
@@ -434,8 +459,8 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit version number for concurrency control. The specified version must
-		 * match the current version of the document for the request to succeed.
+		 * The version number for concurrency control. It must match the current version
+		 * of the document for the request to succeed.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -445,7 +470,7 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * Specific version type: internal, external, external_gte.
+		 * The version type.
 		 * <p>
 		 * API name: {@code version_type}
 		 */

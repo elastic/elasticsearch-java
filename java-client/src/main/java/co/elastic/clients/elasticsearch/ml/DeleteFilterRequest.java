@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_filter.Request
 
 /**
- * Delete a filter. If an anomaly detection job references the filter, you
- * cannot delete the filter. You must update or delete the job before you can
- * delete the filter.
+ * Delete a filter.
+ * <p>
+ * If an anomaly detection job references the filter, you cannot delete the
+ * filter. You must update or delete the job before you can delete the filter.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.delete_filter.Request">API
  *      specification</a>

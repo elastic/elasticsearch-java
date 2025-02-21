@@ -100,12 +100,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies how long the async search should be available in the cluster. When
-	 * not specified, the <code>keep_alive</code> set with the corresponding submit
-	 * async request will be used. Otherwise, it is possible to override the value
-	 * and extend the validity of the request. When this period expires, the search,
-	 * if still running, is cancelled. If the search is completed, its saved results
-	 * are deleted.
+	 * The length of time that the async search should be available in the cluster.
+	 * When not specified, the <code>keep_alive</code> set with the corresponding
+	 * submit async request will be used. Otherwise, it is possible to override the
+	 * value and extend the validity of the request. When this period expires, the
+	 * search, if still running, is cancelled. If the search is completed, its saved
+	 * results are deleted.
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
@@ -156,12 +156,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies how long the async search should be available in the cluster. When
-		 * not specified, the <code>keep_alive</code> set with the corresponding submit
-		 * async request will be used. Otherwise, it is possible to override the value
-		 * and extend the validity of the request. When this period expires, the search,
-		 * if still running, is cancelled. If the search is completed, its saved results
-		 * are deleted.
+		 * The length of time that the async search should be available in the cluster.
+		 * When not specified, the <code>keep_alive</code> set with the corresponding
+		 * submit async request will be used. Otherwise, it is possible to override the
+		 * value and extend the validity of the request. When this period expires, the
+		 * search, if still running, is cancelled. If the search is completed, its saved
+		 * results are deleted.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
@@ -171,12 +171,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies how long the async search should be available in the cluster. When
-		 * not specified, the <code>keep_alive</code> set with the corresponding submit
-		 * async request will be used. Otherwise, it is possible to override the value
-		 * and extend the validity of the request. When this period expires, the search,
-		 * if still running, is cancelled. If the search is completed, its saved results
-		 * are deleted.
+		 * The length of time that the async search should be available in the cluster.
+		 * When not specified, the <code>keep_alive</code> set with the corresponding
+		 * submit async request will be used. Otherwise, it is possible to override the
+		 * value and extend the validity of the request. When this period expires, the
+		 * search, if still running, is cancelled. If the search is completed, its saved
+		 * results are deleted.
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */

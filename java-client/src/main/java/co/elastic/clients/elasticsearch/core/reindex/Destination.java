@@ -102,8 +102,10 @@ public class Destination implements JsonpSerializable {
 	}
 
 	/**
-	 * Set to <code>create</code> to only index documents that do not already exist.
-	 * Important: To reindex to a data stream destination, this argument must be
+	 * If it is <code>create</code>, the operation will only index documents that do
+	 * not already exist (also known as &quot;put if absent&quot;).
+	 * <p>
+	 * IMPORTANT: To reindex to a data stream destination, this argument must be
 	 * <code>create</code>.
 	 * <p>
 	 * API name: {@code op_type}
@@ -124,9 +126,13 @@ public class Destination implements JsonpSerializable {
 	}
 
 	/**
-	 * By default, a document's routing is preserved unless it’s changed by the
-	 * script. Set to <code>discard</code> to set routing to <code>null</code>, or
-	 * <code>=value</code> to route using the specified <code>value</code>.
+	 * By default, a document's routing is preserved unless it's changed by the
+	 * script. If it is <code>keep</code>, the routing on the bulk request sent for
+	 * each match is set to the routing on the match. If it is <code>discard</code>,
+	 * the routing on the bulk request sent for each match is set to
+	 * <code>null</code>. If it is <code>=value</code>, the routing on the bulk
+	 * request sent for each match is set to all value specified after the equals
+	 * sign (<code>=</code>).
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -218,8 +224,10 @@ public class Destination implements JsonpSerializable {
 		}
 
 		/**
-		 * Set to <code>create</code> to only index documents that do not already exist.
-		 * Important: To reindex to a data stream destination, this argument must be
+		 * If it is <code>create</code>, the operation will only index documents that do
+		 * not already exist (also known as &quot;put if absent&quot;).
+		 * <p>
+		 * IMPORTANT: To reindex to a data stream destination, this argument must be
 		 * <code>create</code>.
 		 * <p>
 		 * API name: {@code op_type}
@@ -240,9 +248,13 @@ public class Destination implements JsonpSerializable {
 		}
 
 		/**
-		 * By default, a document's routing is preserved unless it’s changed by the
-		 * script. Set to <code>discard</code> to set routing to <code>null</code>, or
-		 * <code>=value</code> to route using the specified <code>value</code>.
+		 * By default, a document's routing is preserved unless it's changed by the
+		 * script. If it is <code>keep</code>, the routing on the bulk request sent for
+		 * each match is set to the routing on the match. If it is <code>discard</code>,
+		 * the routing on the bulk request sent for each match is set to
+		 * <code>null</code>. If it is <code>=value</code>, the routing on the bulk
+		 * request sent for each match is set to all value specified after the equals
+		 * sign (<code>=</code>).
 		 * <p>
 		 * API name: {@code routing}
 		 */

@@ -64,6 +64,25 @@ import javax.annotation.Nullable;
  * <p>
  * Update the attributes of an existing cross-cluster API key, which is used for
  * API key based remote cluster access.
+ * <p>
+ * To use this API, you must have at least the <code>manage_security</code>
+ * cluster privilege. Users can only update API keys that they created. To
+ * update another user's API key, use the <code>run_as</code> feature to submit
+ * a request on behalf of another user.
+ * <p>
+ * IMPORTANT: It's not possible to use an API key as the authentication
+ * credential for this API. To update an API key, the owner user's credentials
+ * are required.
+ * <p>
+ * It's not possible to update expired API keys, or API keys that have been
+ * invalidated by the invalidate API key API.
+ * <p>
+ * This API supports updates to an API key's access scope, metadata, and
+ * expiration. The owner user's information, such as the <code>username</code>
+ * and <code>realm</code>, is also updated automatically on every call.
+ * <p>
+ * NOTE: This API cannot update REST API keys, which should be updated by either
+ * the update API key or bulk update API keys API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.update_cross_cluster_api_key.Request">API
@@ -109,7 +128,7 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 	}
 
 	/**
-	 * Expiration time for the API key. By default, API keys never expire. This
+	 * The expiration time for the API key. By default, API keys never expire. This
 	 * property can be omitted to leave the value unchanged.
 	 * <p>
 	 * API name: {@code expiration}
@@ -218,7 +237,7 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Expiration time for the API key. By default, API keys never expire. This
+		 * The expiration time for the API key. By default, API keys never expire. This
 		 * property can be omitted to leave the value unchanged.
 		 * <p>
 		 * API name: {@code expiration}
@@ -229,7 +248,7 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Expiration time for the API key. By default, API keys never expire. This
+		 * The expiration time for the API key. By default, API keys never expire. This
 		 * property can be omitted to leave the value unchanged.
 		 * <p>
 		 * API name: {@code expiration}

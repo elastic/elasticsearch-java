@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: security.oidc_authenticate.Request
 
 /**
- * Authenticate OpenID Connect. Exchange an OpenID Connect authentication
- * response message for an Elasticsearch internal access token and refresh token
- * that can be subsequently used for authentication.
+ * Authenticate OpenID Connect.
+ * <p>
+ * Exchange an OpenID Connect authentication response message for an
+ * Elasticsearch internal access token and refresh token that can be
+ * subsequently used for authentication.
  * <p>
  * Elasticsearch exposes all the necessary OpenID Connect related functionality
  * with the OpenID Connect APIs. These APIs are used internally by Kibana in

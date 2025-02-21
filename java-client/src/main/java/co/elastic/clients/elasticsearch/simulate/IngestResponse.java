@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.simulate;
 
-import co.elastic.clients.elasticsearch.ingest.SimulateDocumentResult;
+import co.elastic.clients.elasticsearch.simulate.ingest.SimulateIngestDocumentResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IngestResponse implements JsonpSerializable {
-	private final List<SimulateDocumentResult> docs;
+	private final List<SimulateIngestDocumentResult> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class IngestResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public final List<SimulateDocumentResult> docs() {
+	public final List<SimulateIngestDocumentResult> docs() {
 		return this.docs;
 	}
 
@@ -95,7 +95,7 @@ public class IngestResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (SimulateDocumentResult item0 : this.docs) {
+			for (SimulateIngestDocumentResult item0 : this.docs) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -117,14 +117,14 @@ public class IngestResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IngestResponse> {
-		private List<SimulateDocumentResult> docs;
+		private List<SimulateIngestDocumentResult> docs;
 
 		/**
 		 * Required - API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public final Builder docs(List<SimulateDocumentResult> list) {
+		public final Builder docs(List<SimulateIngestDocumentResult> list) {
 			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
@@ -134,7 +134,7 @@ public class IngestResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder docs(SimulateDocumentResult value, SimulateDocumentResult... values) {
+		public final Builder docs(SimulateIngestDocumentResult value, SimulateIngestDocumentResult... values) {
 			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
@@ -144,8 +144,9 @@ public class IngestResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public final Builder docs(Function<SimulateDocumentResult.Builder, ObjectBuilder<SimulateDocumentResult>> fn) {
-			return docs(fn.apply(new SimulateDocumentResult.Builder()).build());
+		public final Builder docs(
+				Function<SimulateIngestDocumentResult.Builder, ObjectBuilder<SimulateIngestDocumentResult>> fn) {
+			return docs(fn.apply(new SimulateIngestDocumentResult.Builder()).build());
 		}
 
 		@Override
@@ -176,7 +177,7 @@ public class IngestResponse implements JsonpSerializable {
 
 	protected static void setupIngestResponseDeserializer(ObjectDeserializer<IngestResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(SimulateDocumentResult._DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(SimulateIngestDocumentResult._DESERIALIZER), "docs");
 
 	}
 

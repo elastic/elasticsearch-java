@@ -60,6 +60,9 @@ import javax.annotation.Nullable;
  * <p>
  * Create a service accounts token for access without requiring basic
  * authentication.
+ * <p>
+ * NOTE: Service account tokens never expire. You must actively delete them if
+ * they are no longer needed.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.create_service_token.Request">API
@@ -93,7 +96,17 @@ public class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the token name
+	 * The name for the service account token. If omitted, a random name will be
+	 * generated.
+	 * <p>
+	 * Token names must be at least one and no more than 256 characters. They can
+	 * contain alphanumeric characters (a-z, A-Z, 0-9), dashes (<code>-</code>), and
+	 * underscores (<code>_</code>), but cannot begin with an underscore.
+	 * <p>
+	 * NOTE: Token names must be unique in the context of the associated service
+	 * account. They must also be globally unique with their fully qualified names,
+	 * which are comprised of the service account principal and token name, such as
+	 * <code>&lt;namespace&gt;/&lt;service&gt;/&lt;token-name&gt;</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -103,7 +116,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - An identifier for the namespace
+	 * Required - The name of the namespace, which is a top-level grouping of
+	 * service accounts.
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -125,7 +139,7 @@ public class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - An identifier for the service name
+	 * Required - The name of the service.
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -153,7 +167,17 @@ public class CreateServiceTokenRequest extends RequestBase {
 		private String service;
 
 		/**
-		 * An identifier for the token name
+		 * The name for the service account token. If omitted, a random name will be
+		 * generated.
+		 * <p>
+		 * Token names must be at least one and no more than 256 characters. They can
+		 * contain alphanumeric characters (a-z, A-Z, 0-9), dashes (<code>-</code>), and
+		 * underscores (<code>_</code>), but cannot begin with an underscore.
+		 * <p>
+		 * NOTE: Token names must be unique in the context of the associated service
+		 * account. They must also be globally unique with their fully qualified names,
+		 * which are comprised of the service account principal and token name, such as
+		 * <code>&lt;namespace&gt;/&lt;service&gt;/&lt;token-name&gt;</code>.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -163,7 +187,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - An identifier for the namespace
+		 * Required - The name of the namespace, which is a top-level grouping of
+		 * service accounts.
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -186,7 +211,7 @@ public class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - An identifier for the service name
+		 * Required - The name of the service.
 		 * <p>
 		 * API name: {@code service}
 		 */

@@ -63,6 +63,9 @@ import javax.annotation.Nullable;
 /**
  * Query watches. Get all registered watches in a paginated manner and
  * optionally filter watches by a query.
+ * <p>
+ * Note that only the <code>_id</code> and <code>metadata.*</code> fields are
+ * queryable or sortable.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.query_watches.Request">API
  *      specification</a>
@@ -99,7 +102,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The offset from the first result to fetch. Needs to be non-negative.
+	 * The offset from the first result to fetch. It must be non-negative.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -109,7 +112,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Optional, query filter watches to be returned.
+	 * A query that filters the watches to be returned.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -119,7 +122,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Optional search After to do pagination using last hit’s sort values.
+	 * Retrieve the next page of hits using a set of sort values from the previous
+	 * page.
 	 * <p>
 	 * API name: {@code search_after}
 	 */
@@ -128,7 +132,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The number of hits to return. Needs to be non-negative.
+	 * The number of hits to return. It must be non-negative.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -138,7 +142,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Optional sort definition.
+	 * One or more fields used to sort the search results.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -220,7 +224,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		private List<SortOptions> sort;
 
 		/**
-		 * The offset from the first result to fetch. Needs to be non-negative.
+		 * The offset from the first result to fetch. It must be non-negative.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -230,7 +234,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional, query filter watches to be returned.
+		 * A query that filters the watches to be returned.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -240,7 +244,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional, query filter watches to be returned.
+		 * A query that filters the watches to be returned.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -249,7 +253,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -261,7 +266,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -273,7 +279,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -290,7 +297,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -307,7 +315,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -324,7 +333,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -341,7 +351,8 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional search After to do pagination using last hit’s sort values.
+		 * Retrieve the next page of hits using a set of sort values from the previous
+		 * page.
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
@@ -352,7 +363,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The number of hits to return. Needs to be non-negative.
+		 * The number of hits to return. It must be non-negative.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -362,7 +373,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional sort definition.
+		 * One or more fields used to sort the search results.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -374,7 +385,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional sort definition.
+		 * One or more fields used to sort the search results.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
@@ -386,7 +397,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Optional sort definition.
+		 * One or more fields used to sort the search results.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>

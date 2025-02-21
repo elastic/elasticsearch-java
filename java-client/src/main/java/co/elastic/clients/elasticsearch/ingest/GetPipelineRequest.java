@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: ingest.get_pipeline.Request
 
 /**
- * Get pipelines. Get information about one or more ingest pipelines. This API
- * returns a local reference of the pipeline.
+ * Get pipelines.
+ * <p>
+ * Get information about one or more ingest pipelines. This API returns a local
+ * reference of the pipeline.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.get_pipeline.Request">API
  *      specification</a>

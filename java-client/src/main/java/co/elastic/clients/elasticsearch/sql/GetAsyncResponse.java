@@ -93,7 +93,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Identifier for the search. This value is only returned for async
+	 * Required - Identifier for the search. This value is returned only for async
 	 * and saved synchronous searches. For CSV, TSV, and TXT responses, this value
 	 * is returned in the <code>Async-ID</code> HTTP header.
 	 * <p>
@@ -104,10 +104,10 @@ public class GetAsyncResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - If <code>true</code>, the search is still running. If false, the
-	 * search has finished. This value is only returned for async and saved
-	 * synchronous searches. For CSV, TSV, and TXT responses, this value is returned
-	 * in the <code>Async-partial</code> HTTP header.
+	 * Required - If <code>true</code>, the search is still running. If
+	 * <code>false</code>, the search has finished. This value is returned only for
+	 * async and saved synchronous searches. For CSV, TSV, and TXT responses, this
+	 * value is returned in the <code>Async-partial</code> HTTP header.
 	 * <p>
 	 * API name: {@code is_running}
 	 */
@@ -121,7 +121,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 	 * <code>is_running</code> is <code>true</code>, the search is still running. If
 	 * <code>is_partial</code> is <code>true</code> but <code>is_running</code> is
 	 * <code>false</code>, the results are partial due to a failure or timeout. This
-	 * value is only returned for async and saved synchronous searches. For CSV,
+	 * value is returned only for async and saved synchronous searches. For CSV,
 	 * TSV, and TXT responses, this value is returned in the
 	 * <code>Async-partial</code> HTTP header.
 	 * <p>
@@ -141,7 +141,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Cursor for the next set of paginated results. For CSV, TSV, and TXT
+	 * The cursor for the next set of paginated results. For CSV, TSV, and TXT
 	 * responses, this value is returned in the <code>Cursor</code> HTTP header.
 	 * <p>
 	 * API name: {@code cursor}
@@ -152,7 +152,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Values for the search results.
+	 * Required - The values for the search results.
 	 * <p>
 	 * API name: {@code rows}
 	 */
@@ -242,7 +242,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 		private List<List<JsonData>> rows;
 
 		/**
-		 * Required - Identifier for the search. This value is only returned for async
+		 * Required - Identifier for the search. This value is returned only for async
 		 * and saved synchronous searches. For CSV, TSV, and TXT responses, this value
 		 * is returned in the <code>Async-ID</code> HTTP header.
 		 * <p>
@@ -254,10 +254,10 @@ public class GetAsyncResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - If <code>true</code>, the search is still running. If false, the
-		 * search has finished. This value is only returned for async and saved
-		 * synchronous searches. For CSV, TSV, and TXT responses, this value is returned
-		 * in the <code>Async-partial</code> HTTP header.
+		 * Required - If <code>true</code>, the search is still running. If
+		 * <code>false</code>, the search has finished. This value is returned only for
+		 * async and saved synchronous searches. For CSV, TSV, and TXT responses, this
+		 * value is returned in the <code>Async-partial</code> HTTP header.
 		 * <p>
 		 * API name: {@code is_running}
 		 */
@@ -272,7 +272,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 		 * <code>is_running</code> is <code>true</code>, the search is still running. If
 		 * <code>is_partial</code> is <code>true</code> but <code>is_running</code> is
 		 * <code>false</code>, the results are partial due to a failure or timeout. This
-		 * value is only returned for async and saved synchronous searches. For CSV,
+		 * value is returned only for async and saved synchronous searches. For CSV,
 		 * TSV, and TXT responses, this value is returned in the
 		 * <code>Async-partial</code> HTTP header.
 		 * <p>
@@ -319,7 +319,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Cursor for the next set of paginated results. For CSV, TSV, and TXT
+		 * The cursor for the next set of paginated results. For CSV, TSV, and TXT
 		 * responses, this value is returned in the <code>Cursor</code> HTTP header.
 		 * <p>
 		 * API name: {@code cursor}
@@ -330,7 +330,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Values for the search results.
+		 * Required - The values for the search results.
 		 * <p>
 		 * API name: {@code rows}
 		 * <p>
@@ -342,7 +342,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Values for the search results.
+		 * Required - The values for the search results.
 		 * <p>
 		 * API name: {@code rows}
 		 * <p>

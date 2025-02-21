@@ -92,13 +92,19 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	/**
 	 * API name: {@code version}
+	 * 
+	 * @deprecated 7.14.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String version() {
 		return this.version;
 	}
 
 	/**
+	 * A pre-defined stop words list like <code>_english_</code> or an array
+	 * containing a list of stop words. Defaults to <code>_none_</code>.
+	 * <p>
 	 * API name: {@code stopwords}
 	 */
 	public final List<String> stopwords() {
@@ -106,6 +112,8 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
+	 * The path to a file containing stop words.
+	 * <p>
 	 * API name: {@code stopwords_path}
 	 */
 	@Nullable
@@ -172,13 +180,19 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code version}
+		 * 
+		 * @deprecated 7.14.0
 		 */
+		@Deprecated
 		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
@@ -189,6 +203,9 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds one or more values to <code>stopwords</code>.
@@ -199,6 +216,8 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * The path to a file containing stop words.
+		 * <p>
 		 * API name: {@code stopwords_path}
 		 */
 		public final Builder stopwordsPath(@Nullable String value) {

@@ -86,7 +86,7 @@ public class FieldAndFormat implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Wildcard pattern. The request returns values for field names
+	 * Required - A wildcard pattern. The request returns values for field names
 	 * matching this pattern.
 	 * <p>
 	 * API name: {@code field}
@@ -96,7 +96,7 @@ public class FieldAndFormat implements JsonpSerializable {
 	}
 
 	/**
-	 * Format in which the values are returned.
+	 * The format in which the values are returned.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -161,7 +161,7 @@ public class FieldAndFormat implements JsonpSerializable {
 		private Boolean includeUnmapped;
 
 		/**
-		 * Required - Wildcard pattern. The request returns values for field names
+		 * Required - A wildcard pattern. The request returns values for field names
 		 * matching this pattern.
 		 * <p>
 		 * API name: {@code field}
@@ -172,7 +172,7 @@ public class FieldAndFormat implements JsonpSerializable {
 		}
 
 		/**
-		 * Format in which the values are returned.
+		 * The format in which the values are returned.
 		 * <p>
 		 * API name: {@code format}
 		 */

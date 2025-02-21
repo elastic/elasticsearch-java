@@ -56,13 +56,15 @@ import javax.annotation.Nullable;
 // typedef: transform.upgrade_transforms.Request
 
 /**
- * Upgrade all transforms. Transforms are compatible across minor versions and
- * between supported major versions. However, over time, the format of transform
- * configuration information may change. This API identifies transforms that
- * have a legacy configuration format and upgrades them to the latest version.
- * It also cleans up the internal data structures that store the transform state
- * and checkpoints. The upgrade does not affect the source and destination
- * indices. The upgrade also does not affect the roles that transforms use when
+ * Upgrade all transforms.
+ * <p>
+ * Transforms are compatible across minor versions and between supported major
+ * versions. However, over time, the format of transform configuration
+ * information may change. This API identifies transforms that have a legacy
+ * configuration format and upgrades them to the latest version. It also cleans
+ * up the internal data structures that store the transform state and
+ * checkpoints. The upgrade does not affect the source and destination indices.
+ * The upgrade also does not affect the roles that transforms use when
  * Elasticsearch security features are enabled; the role used to read source
  * data and write to the destination index remains unchanged.
  * <p>

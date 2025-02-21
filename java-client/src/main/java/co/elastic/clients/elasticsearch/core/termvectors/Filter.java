@@ -108,7 +108,7 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
-	 * Maximum number of terms that must be returned per field.
+	 * The maximum number of terms that must be returned per field.
 	 * <p>
 	 * API name: {@code max_num_terms}
 	 */
@@ -118,7 +118,7 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
-	 * Ignore words with more than this frequency in the source doc. Defaults to
+	 * Ignore words with more than this frequency in the source doc. It defaults to
 	 * unbounded.
 	 * <p>
 	 * API name: {@code max_term_freq}
@@ -262,7 +262,7 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
-		 * Maximum number of terms that must be returned per field.
+		 * The maximum number of terms that must be returned per field.
 		 * <p>
 		 * API name: {@code max_num_terms}
 		 */
@@ -272,7 +272,7 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
-		 * Ignore words with more than this frequency in the source doc. Defaults to
+		 * Ignore words with more than this frequency in the source doc. It defaults to
 		 * unbounded.
 		 * <p>
 		 * API name: {@code max_term_freq}

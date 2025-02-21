@@ -56,10 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ml.delete_model_snapshot.Request
 
 /**
- * Delete a model snapshot. You cannot delete the active model snapshot. To
- * delete that snapshot, first revert to a different one. To identify the active
- * model snapshot, refer to the <code>model_snapshot_id</code> in the results
- * from the get jobs API.
+ * Delete a model snapshot.
+ * <p>
+ * You cannot delete the active model snapshot. To delete that snapshot, first
+ * revert to a different one. To identify the active model snapshot, refer to
+ * the <code>model_snapshot_id</code> in the results from the get jobs API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.delete_model_snapshot.Request">API

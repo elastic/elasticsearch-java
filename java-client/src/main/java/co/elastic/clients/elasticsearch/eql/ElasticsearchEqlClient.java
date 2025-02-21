@@ -74,7 +74,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * synchronous EQL search. The API also deletes results for the search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -93,7 +93,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlDeleteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -109,7 +109,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * for an async EQL search or a stored synchronous EQL search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -131,7 +131,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -145,7 +145,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * for an async EQL search or a stored synchronous EQL search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -167,7 +167,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-async-eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -183,7 +183,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * stored synchronous EQL search without returning results.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-async-eql-status-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -202,7 +202,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetEqlStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/get-async-eql-status-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -220,7 +220,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * to an event.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -243,7 +243,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -259,7 +259,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 * to an event.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -282,7 +282,7 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 

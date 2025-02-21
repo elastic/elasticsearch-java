@@ -67,12 +67,16 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	private final List<String> stopwords;
 
+	@Nullable
+	private final String stopwordsPath;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private StandardAnalyzer(Builder builder) {
 
 		this.maxTokenLength = builder.maxTokenLength;
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
@@ -89,6 +93,10 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
+	 * The maximum token length. If a token is seen that exceeds this length then it
+	 * is split at <code>max_token_length</code> intervals. Defaults to
+	 * <code>255</code>.
+	 * <p>
 	 * API name: {@code max_token_length}
 	 */
 	@Nullable
@@ -97,10 +105,23 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
+	 * A pre-defined stop words list like <code>_english_</code> or an array
+	 * containing a list of stop words. Defaults to <code>_none_</code>.
+	 * <p>
 	 * API name: {@code stopwords}
 	 */
 	public final List<String> stopwords() {
 		return this.stopwords;
+	}
+
+	/**
+	 * The path to a file containing stop words.
+	 * <p>
+	 * API name: {@code stopwords_path}
+	 */
+	@Nullable
+	public final String stopwordsPath() {
+		return this.stopwordsPath;
 	}
 
 	/**
@@ -131,6 +152,11 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.stopwordsPath != null) {
+			generator.writeKey("stopwords_path");
+			generator.write(this.stopwordsPath);
+
+		}
 
 	}
 
@@ -152,7 +178,14 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private List<String> stopwords;
 
+		@Nullable
+		private String stopwordsPath;
+
 		/**
+		 * The maximum token length. If a token is seen that exceeds this length then it
+		 * is split at <code>max_token_length</code> intervals. Defaults to
+		 * <code>255</code>.
+		 * <p>
 		 * API name: {@code max_token_length}
 		 */
 		public final Builder maxTokenLength(@Nullable Integer value) {
@@ -161,6 +194,9 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
@@ -171,12 +207,25 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds one or more values to <code>stopwords</code>.
 		 */
 		public final Builder stopwords(String value, String... values) {
 			this.stopwords = _listAdd(this.stopwords, value, values);
+			return this;
+		}
+
+		/**
+		 * The path to a file containing stop words.
+		 * <p>
+		 * API name: {@code stopwords_path}
+		 */
+		public final Builder stopwordsPath(@Nullable String value) {
+			this.stopwordsPath = value;
 			return this;
 		}
 
@@ -211,6 +260,7 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");
+		op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
 
 		op.ignore("type");
 	}

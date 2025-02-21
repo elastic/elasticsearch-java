@@ -94,6 +94,16 @@ public class WatcherNodeStats implements JsonpSerializable {
 	}
 
 	/**
+	 * The current executing watches metric gives insight into the watches that are
+	 * currently being executed by Watcher. Additional information is shared per
+	 * watch that is currently executing. This information includes the
+	 * <code>watch_id</code>, the time its execution started and its current
+	 * execution phase. To include this metric, the <code>metric</code> option
+	 * should be set to <code>current_watches</code> or <code>_all</code>. In
+	 * addition you can also specify the <code>emit_stacktraces=true</code>
+	 * parameter, which adds stack traces for each watch that is being run. These
+	 * stack traces can give you more insight into an execution of a watch.
+	 * <p>
 	 * API name: {@code current_watches}
 	 */
 	public final List<WatchRecordStats> currentWatches() {
@@ -108,6 +118,15 @@ public class WatcherNodeStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Watcher moderates the execution of watches such that their execution won't
+	 * put too much pressure on the node and its resources. If too many watches
+	 * trigger concurrently and there isn't enough capacity to run them all, some of
+	 * the watches are queued, waiting for the current running watches to finish.s
+	 * The queued watches metric gives insight on these queued watches.
+	 * <p>
+	 * To include this metric, the <code>metric</code> option should include
+	 * <code>queued_watches</code> or <code>_all</code>.
+	 * <p>
 	 * API name: {@code queued_watches}
 	 */
 	public final List<WatchRecordQueuedStats> queuedWatches() {
@@ -115,14 +134,18 @@ public class WatcherNodeStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code watch_count}
+	 * Required - The number of watches currently registered.
+	 * <p>
+	 * API name: {@code watch_count}
 	 */
 	public final long watchCount() {
 		return this.watchCount;
 	}
 
 	/**
-	 * Required - API name: {@code watcher_state}
+	 * Required - The current state of Watcher.
+	 * <p>
+	 * API name: {@code watcher_state}
 	 */
 	public final WatcherState watcherState() {
 		return this.watcherState;
@@ -206,6 +229,16 @@ public class WatcherNodeStats implements JsonpSerializable {
 		private String nodeId;
 
 		/**
+		 * The current executing watches metric gives insight into the watches that are
+		 * currently being executed by Watcher. Additional information is shared per
+		 * watch that is currently executing. This information includes the
+		 * <code>watch_id</code>, the time its execution started and its current
+		 * execution phase. To include this metric, the <code>metric</code> option
+		 * should be set to <code>current_watches</code> or <code>_all</code>. In
+		 * addition you can also specify the <code>emit_stacktraces=true</code>
+		 * parameter, which adds stack traces for each watch that is being run. These
+		 * stack traces can give you more insight into an execution of a watch.
+		 * <p>
 		 * API name: {@code current_watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>currentWatches</code>.
@@ -216,6 +249,16 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
+		 * The current executing watches metric gives insight into the watches that are
+		 * currently being executed by Watcher. Additional information is shared per
+		 * watch that is currently executing. This information includes the
+		 * <code>watch_id</code>, the time its execution started and its current
+		 * execution phase. To include this metric, the <code>metric</code> option
+		 * should be set to <code>current_watches</code> or <code>_all</code>. In
+		 * addition you can also specify the <code>emit_stacktraces=true</code>
+		 * parameter, which adds stack traces for each watch that is being run. These
+		 * stack traces can give you more insight into an execution of a watch.
+		 * <p>
 		 * API name: {@code current_watches}
 		 * <p>
 		 * Adds one or more values to <code>currentWatches</code>.
@@ -226,6 +269,16 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
+		 * The current executing watches metric gives insight into the watches that are
+		 * currently being executed by Watcher. Additional information is shared per
+		 * watch that is currently executing. This information includes the
+		 * <code>watch_id</code>, the time its execution started and its current
+		 * execution phase. To include this metric, the <code>metric</code> option
+		 * should be set to <code>current_watches</code> or <code>_all</code>. In
+		 * addition you can also specify the <code>emit_stacktraces=true</code>
+		 * parameter, which adds stack traces for each watch that is being run. These
+		 * stack traces can give you more insight into an execution of a watch.
+		 * <p>
 		 * API name: {@code current_watches}
 		 * <p>
 		 * Adds a value to <code>currentWatches</code> using a builder lambda.
@@ -251,6 +304,15 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Watcher moderates the execution of watches such that their execution won't
+		 * put too much pressure on the node and its resources. If too many watches
+		 * trigger concurrently and there isn't enough capacity to run them all, some of
+		 * the watches are queued, waiting for the current running watches to finish.s
+		 * The queued watches metric gives insight on these queued watches.
+		 * <p>
+		 * To include this metric, the <code>metric</code> option should include
+		 * <code>queued_watches</code> or <code>_all</code>.
+		 * <p>
 		 * API name: {@code queued_watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queuedWatches</code>.
@@ -261,6 +323,15 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Watcher moderates the execution of watches such that their execution won't
+		 * put too much pressure on the node and its resources. If too many watches
+		 * trigger concurrently and there isn't enough capacity to run them all, some of
+		 * the watches are queued, waiting for the current running watches to finish.s
+		 * The queued watches metric gives insight on these queued watches.
+		 * <p>
+		 * To include this metric, the <code>metric</code> option should include
+		 * <code>queued_watches</code> or <code>_all</code>.
+		 * <p>
 		 * API name: {@code queued_watches}
 		 * <p>
 		 * Adds one or more values to <code>queuedWatches</code>.
@@ -271,6 +342,15 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Watcher moderates the execution of watches such that their execution won't
+		 * put too much pressure on the node and its resources. If too many watches
+		 * trigger concurrently and there isn't enough capacity to run them all, some of
+		 * the watches are queued, waiting for the current running watches to finish.s
+		 * The queued watches metric gives insight on these queued watches.
+		 * <p>
+		 * To include this metric, the <code>metric</code> option should include
+		 * <code>queued_watches</code> or <code>_all</code>.
+		 * <p>
 		 * API name: {@code queued_watches}
 		 * <p>
 		 * Adds a value to <code>queuedWatches</code> using a builder lambda.
@@ -281,7 +361,9 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watch_count}
+		 * Required - The number of watches currently registered.
+		 * <p>
+		 * API name: {@code watch_count}
 		 */
 		public final Builder watchCount(long value) {
 			this.watchCount = value;
@@ -289,7 +371,9 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code watcher_state}
+		 * Required - The current state of Watcher.
+		 * <p>
+		 * API name: {@code watcher_state}
 		 */
 		public final Builder watcherState(WatcherState value) {
 			this.watcherState = value;

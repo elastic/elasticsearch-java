@@ -22,8 +22,8 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlClient;
+import co.elastic.clients.elasticsearch.esql.EsqlFormat;
 import co.elastic.clients.elasticsearch.esql.QueryRequest;
-import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 

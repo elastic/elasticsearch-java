@@ -73,7 +73,10 @@ public class PutRoleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code role}
+	 * Required - When an existing role is updated, <code>created</code> is set to
+	 * <code>false</code>.
+	 * <p>
+	 * API name: {@code role}
 	 */
 	public final CreatedStatus role() {
 		return this.role;
@@ -110,7 +113,10 @@ public class PutRoleResponse implements JsonpSerializable {
 		private CreatedStatus role;
 
 		/**
-		 * Required - API name: {@code role}
+		 * Required - When an existing role is updated, <code>created</code> is set to
+		 * <code>false</code>.
+		 * <p>
+		 * API name: {@code role}
 		 */
 		public final Builder role(CreatedStatus value) {
 			this.role = value;
@@ -118,7 +124,10 @@ public class PutRoleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code role}
+		 * Required - When an existing role is updated, <code>created</code> is set to
+		 * <code>false</code>.
+		 * <p>
+		 * API name: {@code role}
 		 */
 		public final Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
 			return this.role(fn.apply(new CreatedStatus.Builder()).build());

@@ -86,7 +86,7 @@ public class GetSynonymRequest extends RequestBase {
 	}
 
 	/**
-	 * Starting offset for query rules to be retrieved
+	 * The starting offset for query rules to retrieve.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -96,7 +96,7 @@ public class GetSynonymRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - &quot;The id of the synonyms set to be retrieved
+	 * Required - The synonyms set identifier to retrieve.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -105,7 +105,7 @@ public class GetSynonymRequest extends RequestBase {
 	}
 
 	/**
-	 * specifies a max number of query rules to retrieve
+	 * The max number of query rules to retrieve.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -132,7 +132,7 @@ public class GetSynonymRequest extends RequestBase {
 		private Integer size;
 
 		/**
-		 * Starting offset for query rules to be retrieved
+		 * The starting offset for query rules to retrieve.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -142,7 +142,7 @@ public class GetSynonymRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - &quot;The id of the synonyms set to be retrieved
+		 * Required - The synonyms set identifier to retrieve.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -152,7 +152,7 @@ public class GetSynonymRequest extends RequestBase {
 		}
 
 		/**
-		 * specifies a max number of query rules to retrieve
+		 * The max number of query rules to retrieve.
 		 * <p>
 		 * API name: {@code size}
 		 */

@@ -63,8 +63,9 @@ import javax.annotation.Nullable;
 // typedef: _global.explain.Request
 
 /**
- * Explain a document match result. Returns information about why a specific
- * document matches, or doesn’t match, a query.
+ * Explain a document match result. Get information about why a specific
+ * document matches, or doesn't match, a query. It computes a score explanation
+ * for a query and a specific document.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.explain.Request">API
  *      specification</a>
@@ -138,8 +139,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * True or false to return the <code>_source</code> field or not, or a list of
-	 * fields to return.
+	 * <code>True</code> or <code>false</code> to return the <code>_source</code>
+	 * field or not or a list of fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -149,7 +150,10 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of source fields to exclude from the response.
+	 * A comma-separated list of source fields to exclude from the response. You can
+	 * also use this parameter to exclude fields from the subset specified in
+	 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+	 * parameter is <code>false</code>, this parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -158,7 +162,11 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of source fields to include in the response.
+	 * A comma-separated list of source fields to include in the response. If this
+	 * parameter is specified, only these source fields are returned. You can
+	 * exclude fields from this subset using the <code>_source_excludes</code> query
+	 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+	 * parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -167,7 +175,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If <code>true</code>, wildcard and prefix queries are analyzed.
+	 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+	 * parameter can be used only when the <code>q</code> query string parameter is
+	 * specified.
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -177,8 +187,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Analyzer to use for the query string. This parameter can only be used when
-	 * the <code>q</code> query string parameter is specified.
+	 * The analyzer to use for the query string. This parameter can be used only
+	 * when the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code analyzer}
 	 */
@@ -189,7 +199,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * The default operator for query string query: <code>AND</code> or
-	 * <code>OR</code>.
+	 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+	 * query string parameter is specified.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -199,7 +210,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Field to use as default where no field prefix is given in the query string.
+	 * The field to use as default where no field prefix is given in the query
+	 * string. This parameter can be used only when the <code>q</code> query string
+	 * parameter is specified.
 	 * <p>
 	 * API name: {@code df}
 	 */
@@ -209,7 +222,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Defines the document ID.
+	 * Required - The document identifier.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -218,8 +231,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Index names used to limit the request. Only a single index name
-	 * can be provided to this parameter.
+	 * Required - Index names that are used to limit the request. Only a single
+	 * index name can be provided to this parameter.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -229,7 +242,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * If <code>true</code>, format-based query failures (such as providing text to
-	 * a numeric field) in the query string will be ignored.
+	 * a numeric field) in the query string will be ignored. This parameter can be
+	 * used only when the <code>q</code> query string parameter is specified.
 	 * <p>
 	 * API name: {@code lenient}
 	 */
@@ -239,7 +253,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the node or shard the operation should be performed on. Random by
+	 * The node or shard the operation should be performed on. It is random by
 	 * default.
 	 * <p>
 	 * API name: {@code preference}
@@ -250,7 +264,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Query in the Lucene query string syntax.
+	 * The query in the Lucene query string syntax.
 	 * <p>
 	 * API name: {@code q}
 	 */
@@ -270,7 +284,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -358,8 +372,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		private List<String> storedFields;
 
 		/**
-		 * True or false to return the <code>_source</code> field or not, or a list of
-		 * fields to return.
+		 * <code>True</code> or <code>false</code> to return the <code>_source</code>
+		 * field or not or a list of fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -369,8 +383,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * True or false to return the <code>_source</code> field or not, or a list of
-		 * fields to return.
+		 * <code>True</code> or <code>false</code> to return the <code>_source</code>
+		 * field or not or a list of fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -379,7 +393,10 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of source fields to exclude from the response.
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+		 * parameter is <code>false</code>, this parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -391,7 +408,10 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of source fields to exclude from the response.
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter. If the <code>_source</code>
+		 * parameter is <code>false</code>, this parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -403,7 +423,11 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of source fields to include in the response.
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -415,7 +439,11 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of source fields to include in the response.
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -427,7 +455,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If <code>true</code>, wildcard and prefix queries are analyzed.
+		 * If <code>true</code>, wildcard and prefix queries are analyzed. This
+		 * parameter can be used only when the <code>q</code> query string parameter is
+		 * specified.
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -437,8 +467,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Analyzer to use for the query string. This parameter can only be used when
-		 * the <code>q</code> query string parameter is specified.
+		 * The analyzer to use for the query string. This parameter can be used only
+		 * when the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code analyzer}
 		 */
@@ -449,7 +479,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * The default operator for query string query: <code>AND</code> or
-		 * <code>OR</code>.
+		 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+		 * query string parameter is specified.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
@@ -459,7 +490,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Field to use as default where no field prefix is given in the query string.
+		 * The field to use as default where no field prefix is given in the query
+		 * string. This parameter can be used only when the <code>q</code> query string
+		 * parameter is specified.
 		 * <p>
 		 * API name: {@code df}
 		 */
@@ -469,7 +502,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Defines the document ID.
+		 * Required - The document identifier.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -479,8 +512,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Index names used to limit the request. Only a single index name
-		 * can be provided to this parameter.
+		 * Required - Index names that are used to limit the request. Only a single
+		 * index name can be provided to this parameter.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -491,7 +524,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * If <code>true</code>, format-based query failures (such as providing text to
-		 * a numeric field) in the query string will be ignored.
+		 * a numeric field) in the query string will be ignored. This parameter can be
+		 * used only when the <code>q</code> query string parameter is specified.
 		 * <p>
 		 * API name: {@code lenient}
 		 */
@@ -501,7 +535,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
+		 * The node or shard the operation should be performed on. It is random by
 		 * default.
 		 * <p>
 		 * API name: {@code preference}
@@ -512,7 +546,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Query in the Lucene query string syntax.
+		 * The query in the Lucene query string syntax.
 		 * <p>
 		 * API name: {@code q}
 		 */
@@ -541,7 +575,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -704,7 +738,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ExplainResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), SimpleEndpoint.nonEmptyJsonObject(SimpleEndpoint.returnSelf()),
+			ExplainResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code explain}" endpoint.

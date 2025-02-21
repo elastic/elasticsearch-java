@@ -59,6 +59,12 @@ import javax.annotation.Nullable;
 /**
  * Get task information. Get information about a task currently running in the
  * cluster.
+ * <p>
+ * WARNING: The task management API is new and should still be considered a beta
+ * feature. The API may change in ways that are not backwards compatible.
+ * <p>
+ * If the task identifier is not found, a 404 response code indicates that there
+ * are no resources that match the request.
  * 
  * @see <a href="../doc-files/api-spec.html#tasks.get.Request">API
  *      specification</a>
@@ -88,7 +94,7 @@ public class GetTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - ID of the task.
+	 * Required - The task identifier.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -97,8 +103,8 @@ public class GetTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -133,7 +139,7 @@ public class GetTasksRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Required - ID of the task.
+		 * Required - The task identifier.
 		 * <p>
 		 * API name: {@code task_id}
 		 */
@@ -143,8 +149,8 @@ public class GetTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -154,8 +160,8 @@ public class GetTasksRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

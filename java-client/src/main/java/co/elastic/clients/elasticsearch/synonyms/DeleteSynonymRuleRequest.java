@@ -82,7 +82,7 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the synonym rule to be deleted
+	 * Required - The ID of the synonym rule to delete.
 	 * <p>
 	 * API name: {@code rule_id}
 	 */
@@ -91,7 +91,7 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the synonym set to be updated
+	 * Required - The ID of the synonym set to update.
 	 * <p>
 	 * API name: {@code set_id}
 	 */
@@ -113,7 +113,7 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 		private String setId;
 
 		/**
-		 * Required - The id of the synonym rule to be deleted
+		 * Required - The ID of the synonym rule to delete.
 		 * <p>
 		 * API name: {@code rule_id}
 		 */
@@ -123,7 +123,7 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The id of the synonym set to be updated
+		 * Required - The ID of the synonym set to update.
 		 * <p>
 		 * API name: {@code set_id}
 		 */

@@ -75,6 +75,8 @@ public class Connector implements JsonpSerializable {
 
 	private final Map<String, CustomScheduling> customScheduling;
 
+	private final boolean deleted;
+
 	@Nullable
 	private final String description;
 
@@ -156,6 +158,7 @@ public class Connector implements JsonpSerializable {
 		this.apiKeySecretId = builder.apiKeySecretId;
 		this.configuration = ApiTypeHelper.unmodifiableRequired(builder.configuration, this, "configuration");
 		this.customScheduling = ApiTypeHelper.unmodifiableRequired(builder.customScheduling, this, "customScheduling");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
 		this.description = builder.description;
 		this.error = builder.error;
 		this.features = builder.features;
@@ -217,6 +220,13 @@ public class Connector implements JsonpSerializable {
 	 */
 	public final Map<String, CustomScheduling> customScheduling() {
 		return this.customScheduling;
+	}
+
+	/**
+	 * Required - API name: {@code deleted}
+	 */
+	public final boolean deleted() {
+		return this.deleted;
 	}
 
 	/**
@@ -465,6 +475,9 @@ public class Connector implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("deleted");
+		generator.write(this.deleted);
+
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
@@ -629,6 +642,8 @@ public class Connector implements JsonpSerializable {
 
 		private Map<String, CustomScheduling> customScheduling;
 
+		private Boolean deleted;
+
 		@Nullable
 		private String description;
 
@@ -776,6 +791,14 @@ public class Connector implements JsonpSerializable {
 		public final BuilderT customScheduling(String key,
 				Function<CustomScheduling.Builder, ObjectBuilder<CustomScheduling>> fn) {
 			return customScheduling(key, fn.apply(new CustomScheduling.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code deleted}
+		 */
+		public final BuilderT deleted(boolean value) {
+			this.deleted = value;
+			return self();
 		}
 
 		/**
@@ -1050,6 +1073,7 @@ public class Connector implements JsonpSerializable {
 				JsonpDeserializer.stringMapDeserializer(ConnectorConfigProperties._DESERIALIZER), "configuration");
 		op.add(AbstractBuilder::customScheduling,
 				JsonpDeserializer.stringMapDeserializer(CustomScheduling._DESERIALIZER), "custom_scheduling");
+		op.add(AbstractBuilder::deleted, JsonpDeserializer.booleanDeserializer(), "deleted");
 		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(AbstractBuilder::error, JsonpDeserializer.stringDeserializer(), "error");
 		op.add(AbstractBuilder::features, ConnectorFeatures._DESERIALIZER, "features");

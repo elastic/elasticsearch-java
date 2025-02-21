@@ -81,7 +81,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * have the <code>cancel_task</code> cluster privilege.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,7 +105,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -125,7 +125,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -151,7 +151,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -170,7 +170,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -196,7 +196,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -212,11 +212,17 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * <p>
 	 * Get the status of a previously submitted async search request given its
 	 * identifier, without retrieving search results. If the Elasticsearch security
-	 * features are enabled, use of this API is restricted to the
-	 * <code>monitoring_user</code> role.
-	 * 
+	 * features are enabled, the access to the status of a specific async search is
+	 * restricted to:
+	 * <ul>
+	 * <li>The user or API key that submitted the original async search
+	 * request.</li>
+	 * <li>Users that have the <code>monitor</code> cluster privilege or greater
+	 * privileges.</li>
+	 * </ul>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -232,14 +238,20 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * <p>
 	 * Get the status of a previously submitted async search request given its
 	 * identifier, without retrieving search results. If the Elasticsearch security
-	 * features are enabled, use of this API is restricted to the
-	 * <code>monitoring_user</code> role.
-	 * 
+	 * features are enabled, the access to the status of a specific async search is
+	 * restricted to:
+	 * <ul>
+	 * <li>The user or API key that submitted the original async search
+	 * request.</li>
+	 * <li>Users that have the <code>monitor</code> cluster privilege or greater
+	 * privileges.</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AsyncSearchStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -267,7 +279,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * setting.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -302,7 +314,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -328,7 +340,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * setting.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -362,7 +374,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/async-search.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 

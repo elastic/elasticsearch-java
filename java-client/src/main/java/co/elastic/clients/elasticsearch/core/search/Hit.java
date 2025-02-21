@@ -95,7 +95,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 	private final List<String> ignored;
 
-	private final Map<String, List<FieldValue>> ignoredFieldValues;
+	private final Map<String, List<JsonData>> ignoredFieldValues;
 
 	@Nullable
 	private final String shard;
@@ -237,7 +237,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code ignored_field_values}
 	 */
-	public final Map<String, List<FieldValue>> ignoredFieldValues() {
+	public final Map<String, List<JsonData>> ignoredFieldValues() {
 		return this.ignoredFieldValues;
 	}
 
@@ -408,11 +408,11 @@ public class Hit<TDocument> implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.ignoredFieldValues)) {
 			generator.writeKey("ignored_field_values");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<FieldValue>> item0 : this.ignoredFieldValues.entrySet()) {
+			for (Map.Entry<String, List<JsonData>> item0 : this.ignoredFieldValues.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
 				if (item0.getValue() != null) {
-					for (FieldValue item1 : item0.getValue()) {
+					for (JsonData item1 : item0.getValue()) {
 						item1.serialize(generator, mapper);
 
 					}
@@ -520,7 +520,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		private List<String> ignored;
 
 		@Nullable
-		private Map<String, List<FieldValue>> ignoredFieldValues;
+		private Map<String, List<JsonData>> ignoredFieldValues;
 
 		@Nullable
 		private String shard;
@@ -723,7 +723,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>ignoredFieldValues</code>.
 		 */
-		public final Builder<TDocument> ignoredFieldValues(Map<String, List<FieldValue>> map) {
+		public final Builder<TDocument> ignoredFieldValues(Map<String, List<JsonData>> map) {
 			this.ignoredFieldValues = _mapPutAll(this.ignoredFieldValues, map);
 			return this;
 		}
@@ -733,7 +733,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>ignoredFieldValues</code>.
 		 */
-		public final Builder<TDocument> ignoredFieldValues(String key, List<FieldValue> value) {
+		public final Builder<TDocument> ignoredFieldValues(String key, List<JsonData> value) {
 			this.ignoredFieldValues = _mapPut(this.ignoredFieldValues, key, value);
 			return this;
 		}
@@ -955,7 +955,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::ignored, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_ignored");
 		op.add(Builder::ignoredFieldValues,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER)),
 				"ignored_field_values");
 		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "_shard");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");

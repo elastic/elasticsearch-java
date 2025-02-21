@@ -80,7 +80,7 @@ public class ElasticsearchClusterAsyncClient
 	 * when you might expect otherwise.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-allocation-explain.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -104,7 +104,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-allocation-explain.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -123,7 +123,7 @@ public class ElasticsearchClusterAsyncClient
 	 * when you might expect otherwise.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-allocation-explain.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -140,7 +140,7 @@ public class ElasticsearchClusterAsyncClient
 	 * aliases.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -161,7 +161,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -177,7 +177,7 @@ public class ElasticsearchClusterAsyncClient
 	 * voting configuration exclusion list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -197,7 +197,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -211,7 +211,7 @@ public class ElasticsearchClusterAsyncClient
 	 * voting configuration exclusion list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -227,7 +227,7 @@ public class ElasticsearchClusterAsyncClient
 	 * component template exists.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -246,7 +246,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -261,7 +261,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Get component templates. Get information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -279,7 +279,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -292,7 +292,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Get component templates. Get information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -308,7 +308,7 @@ public class ElasticsearchClusterAsyncClient
 	 * been explicitly defined.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-get-settings.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -327,7 +327,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetClusterSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-get-settings.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -341,7 +341,7 @@ public class ElasticsearchClusterAsyncClient
 	 * been explicitly defined.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-get-settings.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -353,9 +353,11 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.health
 
 	/**
-	 * Get the cluster health status. You can also use the API to get the health
-	 * status of only specified data streams and indices. For data streams, the API
-	 * retrieves the health status of the stream’s backing indices.
+	 * Get the cluster health status.
+	 * <p>
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices.
 	 * <p>
 	 * The cluster health status is: green, yellow or red. On the shard level, a red
 	 * status indicates that the specific shard is not allocated in the cluster.
@@ -368,7 +370,7 @@ public class ElasticsearchClusterAsyncClient
 	 * controlled by the worst index status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-health.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -380,9 +382,11 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Get the cluster health status. You can also use the API to get the health
-	 * status of only specified data streams and indices. For data streams, the API
-	 * retrieves the health status of the stream’s backing indices.
+	 * Get the cluster health status.
+	 * <p>
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices.
 	 * <p>
 	 * The cluster health status is: green, yellow or red. On the shard level, a red
 	 * status indicates that the specific shard is not allocated in the cluster.
@@ -398,7 +402,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-health.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -408,9 +412,11 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Get the cluster health status. You can also use the API to get the health
-	 * status of only specified data streams and indices. For data streams, the API
-	 * retrieves the health status of the stream’s backing indices.
+	 * Get the cluster health status.
+	 * <p>
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices.
 	 * <p>
 	 * The cluster health status is: green, yellow or red. On the shard level, a red
 	 * status indicates that the specific shard is not allocated in the cluster.
@@ -423,7 +429,7 @@ public class ElasticsearchClusterAsyncClient
 	 * controlled by the worst index status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-health.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -438,7 +444,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Get cluster info. Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-info.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -456,7 +462,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-info.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -480,7 +486,7 @@ public class ElasticsearchClusterAsyncClient
 	 * this task might be reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-pending.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -507,7 +513,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PendingTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-pending.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -529,7 +535,7 @@ public class ElasticsearchClusterAsyncClient
 	 * this task might be reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-pending.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -579,7 +585,7 @@ public class ElasticsearchClusterAsyncClient
 	 * half of the master-eligible nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -632,7 +638,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PostVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -680,7 +686,7 @@ public class ElasticsearchClusterAsyncClient
 	 * half of the master-eligible nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -721,7 +727,7 @@ public class ElasticsearchClusterAsyncClient
 	 * <code>composed_of</code> list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -765,7 +771,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/indices-component-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -777,9 +783,11 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.put_settings
 
 	/**
-	 * Update the cluster settings. Configure and update dynamic settings on a
-	 * running cluster. You can also configure dynamic settings locally on an
-	 * unstarted or shut down node in <code>elasticsearch.yml</code>.
+	 * Update the cluster settings.
+	 * <p>
+	 * Configure and update dynamic settings on a running cluster. You can also
+	 * configure dynamic settings locally on an unstarted or shut down node in
+	 * <code>elasticsearch.yml</code>.
 	 * <p>
 	 * Updates made with this API can be persistent, which apply across cluster
 	 * restarts, or transient, which reset after a cluster restart. You can also
@@ -806,7 +814,7 @@ public class ElasticsearchClusterAsyncClient
 	 * configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-update-settings.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -818,9 +826,11 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Update the cluster settings. Configure and update dynamic settings on a
-	 * running cluster. You can also configure dynamic settings locally on an
-	 * unstarted or shut down node in <code>elasticsearch.yml</code>.
+	 * Update the cluster settings.
+	 * <p>
+	 * Configure and update dynamic settings on a running cluster. You can also
+	 * configure dynamic settings locally on an unstarted or shut down node in
+	 * <code>elasticsearch.yml</code>.
 	 * <p>
 	 * Updates made with this API can be persistent, which apply across cluster
 	 * restarts, or transient, which reset after a cluster restart. You can also
@@ -850,7 +860,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutClusterSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-update-settings.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -860,9 +870,11 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Update the cluster settings. Configure and update dynamic settings on a
-	 * running cluster. You can also configure dynamic settings locally on an
-	 * unstarted or shut down node in <code>elasticsearch.yml</code>.
+	 * Update the cluster settings.
+	 * <p>
+	 * Configure and update dynamic settings on a running cluster. You can also
+	 * configure dynamic settings locally on an unstarted or shut down node in
+	 * <code>elasticsearch.yml</code>.
 	 * <p>
 	 * Updates made with this API can be persistent, which apply across cluster
 	 * restarts, or transient, which reset after a cluster restart. You can also
@@ -889,7 +901,7 @@ public class ElasticsearchClusterAsyncClient
 	 * configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-update-settings.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -901,12 +913,26 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.remote_info
 
 	/**
-	 * Get remote cluster information. Get all of the configured remote cluster
-	 * information. This API returns connection and endpoint information keyed by
-	 * the configured remote cluster alias.
-	 * 
+	 * Get remote cluster information.
+	 * <p>
+	 * Get information about configured remote clusters. The API returns connection
+	 * and endpoint information keyed by the configured remote cluster alias.
+	 * <blockquote>
+	 * <p>
+	 * info This API returns information that reflects current state on the local
+	 * cluster. The <code>connected</code> field does not necessarily reflect
+	 * whether a remote cluster is down or unavailable, only whether there is
+	 * currently an open connection to it. Elasticsearch does not spontaneously try
+	 * to reconnect to a disconnected remote cluster. To trigger a reconnection,
+	 * attempt a cross-cluster search, ES|QL cross-cluster search, or try the
+	 * <a href=
+	 * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-cluster">resolve
+	 * cluster endpoint</a>.
+	 * </p>
+	 * </blockquote>
+	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-remote-info.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-remote-info">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<RemoteInfoResponse> remoteInfo() {
@@ -946,7 +972,7 @@ public class ElasticsearchClusterAsyncClient
 	 * parameter, which will attempt a single retry round for these shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-reroute.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-reroute">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -990,7 +1016,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RerouteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-reroute.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-reroute">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1029,7 +1055,7 @@ public class ElasticsearchClusterAsyncClient
 	 * parameter, which will attempt a single retry round for these shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-reroute.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-reroute">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1073,7 +1099,7 @@ public class ElasticsearchClusterAsyncClient
 	 * using other more stable cluster APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-state.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1120,7 +1146,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-state.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1162,7 +1188,7 @@ public class ElasticsearchClusterAsyncClient
 	 * using other more stable cluster APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-state.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1179,7 +1205,7 @@ public class ElasticsearchClusterAsyncClient
 	 * (number, roles, os, jvm versions, memory usage, cpu and installed plugins).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1199,7 +1225,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1214,7 +1240,7 @@ public class ElasticsearchClusterAsyncClient
 	 * (number, roles, os, jvm versions, memory usage, cpu and installed plugins).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/9.0/cluster-stats.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 

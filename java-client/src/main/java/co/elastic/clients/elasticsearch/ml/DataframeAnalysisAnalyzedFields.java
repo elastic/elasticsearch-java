@@ -69,8 +69,8 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 
 	private DataframeAnalysisAnalyzedFields(Builder builder) {
 
-		this.includes = ApiTypeHelper.unmodifiableRequired(builder.includes, this, "includes");
-		this.excludes = ApiTypeHelper.unmodifiableRequired(builder.excludes, this, "excludes");
+		this.includes = ApiTypeHelper.unmodifiable(builder.includes);
+		this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
 
 	}
 
@@ -80,9 +80,9 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - An array of strings that defines the fields that will be excluded
-	 * from the analysis. You do not need to add fields with unsupported data types
-	 * to excludes, these fields are excluded from the analysis automatically.
+	 * An array of strings that defines the fields that will be excluded from the
+	 * analysis. You do not need to add fields with unsupported data types to
+	 * excludes, these fields are excluded from the analysis automatically.
 	 * <p>
 	 * API name: {@code includes}
 	 */
@@ -91,8 +91,8 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - An array of strings that defines the fields that will be included
-	 * in the analysis.
+	 * An array of strings that defines the fields that will be included in the
+	 * analysis.
 	 * <p>
 	 * API name: {@code excludes}
 	 */
@@ -148,14 +148,16 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisAnalyzedFields> {
+		@Nullable
 		private List<String> includes;
 
+		@Nullable
 		private List<String> excludes;
 
 		/**
-		 * Required - An array of strings that defines the fields that will be excluded
-		 * from the analysis. You do not need to add fields with unsupported data types
-		 * to excludes, these fields are excluded from the analysis automatically.
+		 * An array of strings that defines the fields that will be excluded from the
+		 * analysis. You do not need to add fields with unsupported data types to
+		 * excludes, these fields are excluded from the analysis automatically.
 		 * <p>
 		 * API name: {@code includes}
 		 * <p>
@@ -167,9 +169,9 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An array of strings that defines the fields that will be excluded
-		 * from the analysis. You do not need to add fields with unsupported data types
-		 * to excludes, these fields are excluded from the analysis automatically.
+		 * An array of strings that defines the fields that will be excluded from the
+		 * analysis. You do not need to add fields with unsupported data types to
+		 * excludes, these fields are excluded from the analysis automatically.
 		 * <p>
 		 * API name: {@code includes}
 		 * <p>
@@ -181,8 +183,8 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An array of strings that defines the fields that will be included
-		 * in the analysis.
+		 * An array of strings that defines the fields that will be included in the
+		 * analysis.
 		 * <p>
 		 * API name: {@code excludes}
 		 * <p>
@@ -194,8 +196,8 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An array of strings that defines the fields that will be included
-		 * in the analysis.
+		 * An array of strings that defines the fields that will be included in the
+		 * analysis.
 		 * <p>
 		 * API name: {@code excludes}
 		 * <p>

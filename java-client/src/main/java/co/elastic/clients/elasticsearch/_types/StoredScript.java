@@ -81,7 +81,8 @@ public class StoredScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Specifies the language the script is written in.
+	 * Required - The language the script is written in. For serach templates, use
+	 * <code>mustache</code>.
 	 * <p>
 	 * API name: {@code lang}
 	 */
@@ -97,7 +98,8 @@ public class StoredScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The script source.
+	 * Required - The script source. For search templates, an object containing the
+	 * search template.
 	 * <p>
 	 * API name: {@code source}
 	 */
@@ -155,7 +157,8 @@ public class StoredScript implements JsonpSerializable {
 		private String source;
 
 		/**
-		 * Required - Specifies the language the script is written in.
+		 * Required - The language the script is written in. For serach templates, use
+		 * <code>mustache</code>.
 		 * <p>
 		 * API name: {@code lang}
 		 */
@@ -165,7 +168,8 @@ public class StoredScript implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Specifies the language the script is written in.
+		 * Required - The language the script is written in. For serach templates, use
+		 * <code>mustache</code>.
 		 * <p>
 		 * API name: {@code lang}
 		 */
@@ -195,7 +199,8 @@ public class StoredScript implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The script source.
+		 * Required - The script source. For search templates, an object containing the
+		 * search template.
 		 * <p>
 		 * API name: {@code source}
 		 */

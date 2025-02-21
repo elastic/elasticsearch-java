@@ -30,8 +30,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -67,11 +67,15 @@ import javax.annotation.Nullable;
 public class GetConnectorRequest extends RequestBase {
 	private final String connectorId;
 
+	@Nullable
+	private final Boolean includeDeleted;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetConnectorRequest(Builder builder) {
 
 		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.includeDeleted = builder.includeDeleted;
 
 	}
 
@@ -88,6 +92,17 @@ public class GetConnectorRequest extends RequestBase {
 		return this.connectorId;
 	}
 
+	/**
+	 * A flag to indicate if the desired connector should be fetched, even if it was
+	 * soft-deleted.
+	 * <p>
+	 * API name: {@code include_deleted}
+	 */
+	@Nullable
+	public final Boolean includeDeleted() {
+		return this.includeDeleted;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -99,6 +114,9 @@ public class GetConnectorRequest extends RequestBase {
 				ObjectBuilder<GetConnectorRequest> {
 		private String connectorId;
 
+		@Nullable
+		private Boolean includeDeleted;
+
 		/**
 		 * Required - The unique identifier of the connector
 		 * <p>
@@ -106,6 +124,17 @@ public class GetConnectorRequest extends RequestBase {
 		 */
 		public final Builder connectorId(String value) {
 			this.connectorId = value;
+			return this;
+		}
+
+		/**
+		 * A flag to indicate if the desired connector should be fetched, even if it was
+		 * soft-deleted.
+		 * <p>
+		 * API name: {@code include_deleted}
+		 */
+		public final Builder includeDeleted(@Nullable Boolean value) {
+			this.includeDeleted = value;
 			return this;
 		}
 
@@ -177,7 +206,11 @@ public class GetConnectorRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.includeDeleted != null) {
+					params.put("include_deleted", String.valueOf(request.includeDeleted));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetConnectorResponse._DESERIALIZER);
 }

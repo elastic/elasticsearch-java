@@ -89,7 +89,8 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second.
+	 * The throttle for this request in sub-requests per second. To disable
+	 * throttling, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -122,7 +123,8 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 		private String taskId;
 
 		/**
-		 * The throttle for this request in sub-requests per second.
+		 * The throttle for this request in sub-requests per second. To disable
+		 * throttling, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */

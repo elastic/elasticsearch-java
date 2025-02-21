@@ -24,7 +24,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -55,6 +54,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class AzureRepository extends RepositoryBase implements RepositoryVariant {
+	@Nullable
 	private final AzureRepositorySettings settings;
 
 	// ---------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 	private AzureRepository(Builder builder) {
 		super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = builder.settings;
 
 	}
 
@@ -79,10 +79,11 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 	}
 
 	/**
-	 * Required - The repository settings.
+	 * The repository settings.
 	 * <p>
 	 * API name: {@code settings}
 	 */
+	@Nullable
 	public final AzureRepositorySettings settings() {
 		return this.settings;
 	}
@@ -91,8 +92,11 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 
 		generator.write("type", "azure");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("settings");
-		this.settings.serialize(generator, mapper);
+		if (this.settings != null) {
+			generator.writeKey("settings");
+			this.settings.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -105,20 +109,21 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 	public static class Builder extends RepositoryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AzureRepository> {
+		@Nullable
 		private AzureRepositorySettings settings;
 
 		/**
-		 * Required - The repository settings.
+		 * The repository settings.
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(AzureRepositorySettings value) {
+		public final Builder settings(@Nullable AzureRepositorySettings value) {
 			this.settings = value;
 			return this;
 		}
 
 		/**
-		 * Required - The repository settings.
+		 * The repository settings.
 		 * <p>
 		 * API name: {@code settings}
 		 */

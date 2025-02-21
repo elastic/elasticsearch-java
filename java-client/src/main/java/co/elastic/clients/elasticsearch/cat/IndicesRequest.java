@@ -62,8 +62,10 @@ import javax.annotation.Nullable;
 // typedef: cat.indices.Request
 
 /**
- * Get index information. Returns high-level information about indices in a
- * cluster, including backing indices for data streams.
+ * Get index information.
+ * <p>
+ * Get high-level information about indices in a cluster, including backing
+ * indices for data streams.
  * <p>
  * Use this request to get the following information for each index in a
  * cluster:
