@@ -98,7 +98,7 @@ public class JsonpMappingExceptionTest extends ModelTestCase {
         // Unknown field 'baz' (JSON path: properties['foo-bar'].baz) (...line no=1, column no=36, offset=35)
 
         JsonpMappingException e = assertThrows(JsonpMappingException.class, () -> {
-            fromJson(json, TypeMapping.class);
+            fromJson(json, TypeMapping.class, SimpleJsonpMapper.INSTANCE_REJECT_UNKNOWN_FIELDS);
         });
 
         // Check escaping of non identifier path elements and path from map elements
