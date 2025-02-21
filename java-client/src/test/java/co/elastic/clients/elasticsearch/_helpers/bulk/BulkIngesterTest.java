@@ -223,7 +223,7 @@ class BulkIngesterTest extends Assertions {
     public void sizeLimitTest() throws Exception {
         TestTransport transport = new TestTransport();
 
-        long operationSize = IngesterOperation.of(new BulkOperationRepeatable<>(operation, null, null), transport.jsonpMapper()).size();
+        long operationSize = IngesterOperation.of(new RetryableBulkOperation<>(operation, null, null), transport.jsonpMapper()).size();
 
         BulkIngester<?> ingester = BulkIngester.of(b -> b
             .client(new ElasticsearchAsyncClient(transport))
@@ -447,8 +447,8 @@ class BulkIngesterTest extends Assertions {
         String createStr = JsonpUtils.toJsonString(create, mapper);
         assertEquals(json, createStr);
 
-        BulkOperation create1 = IngesterOperation.of(new BulkOperationRepeatable<>(create, null, null), mapper)
-            .repeatableOperation().getOperation();
+        BulkOperation create1 = IngesterOperation.of(new RetryableBulkOperation<>(create, null, null), mapper)
+            .repeatableOperation().operation();
 
         String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);

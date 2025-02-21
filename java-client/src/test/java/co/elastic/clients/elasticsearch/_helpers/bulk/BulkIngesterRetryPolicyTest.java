@@ -223,7 +223,7 @@ public class BulkIngesterRetryPolicyTest {
 
         // One success, other will succeed after retrying, other will fail eventually
         {
-            BulkIngester<Integer> ingester = newBulkIngesterWithFlushAndContext(listener);
+            BulkIngester<Integer> ingester = newBulkIngesterWithFlushAndContextAndLongExponential(listener);
 
             ingester.add(create, 1);
             ingester.add(indexFail, 2);
@@ -253,7 +253,41 @@ public class BulkIngesterRetryPolicyTest {
     }
 
     @Test
-    public void multiThreadStressTest() throws InterruptedException, IOException {
+    public void retryTestNoFlushAndContextExponentialBackoff() throws Exception {
+
+        // One success, other will succeed after retrying, other will fail eventually
+        {
+            BulkIngester<Integer> ingester = newBulkIngesterNoFlushAndContextAndLongExponential(listener);
+
+            ingester.add(create, 1);
+            ingester.add(indexFail, 2);
+            ingester.add(index, 3);
+
+            ingester.close();
+
+            // should be 3 separate requests sent, one instant, one after a few retries, the last one error.
+            assertTrue(listener.requests.get() == 3);
+            // 2 will succeed, one will fail
+            assertTrue(listener.successOperations.get() == 2);
+            assertTrue(listener.errorOperations.get() == 1);
+            // between 8 and 10, depending on scheduler (first one + 2 retries for index + 8 retries for
+            // indexfail)
+            assertTrue(listener.sentRequestsTotal.get() >= 8 && listener.sentRequestsTotal.get() <= 11);
+            // checking order of contexts after send confirmed
+            Iterator iter = listener.sentContexts.iterator();
+            // first one being completed is create
+            assertTrue(iter.next().equals(1));
+            // second one is index, which will take only 2 retries
+            assertTrue(iter.next().equals(3));
+            // last one is indexFail, taking 8 retries to fail
+            assertTrue(iter.next().equals(2));
+        }
+
+        transport.close();
+    }
+
+    @Test
+    public void retryMultiThreadStressTest() throws InterruptedException, IOException {
 
         // DISCLAIMER: this configuration is highly inefficient and only used here to showcase an extreme
         // situation where the number of adding threads greatly exceeds the number of concurrent requests
@@ -487,14 +521,24 @@ public class BulkIngesterRetryPolicyTest {
         );
     }
 
-    private BulkIngester<Integer> newBulkIngesterWithFlushAndContext(BulkListener<Integer> listener) {
+    private BulkIngester<Integer> newBulkIngesterWithFlushAndContextAndLongExponential(BulkListener<Integer> listener) {
         return BulkIngester.of(b -> b
             .client(client)
             .maxOperations(10)
             .maxConcurrentRequests(10)
             .listener(listener)
             .flushInterval(1000, TimeUnit.MILLISECONDS)
-            .backoffPolicy(BackoffPolicy.constantBackoff(50L, 8))
+            .backoffPolicy(BackoffPolicy.exponentialBackoff(100L, 8))
+        );
+    }
+
+    private BulkIngester<Integer> newBulkIngesterNoFlushAndContextAndLongExponential(BulkListener<Integer> listener) {
+        return BulkIngester.of(b -> b
+            .client(client)
+            .maxOperations(10)
+            .maxConcurrentRequests(10)
+            .listener(listener)
+            .backoffPolicy(BackoffPolicy.exponentialBackoff(100L, 8))
         );
     }
 }

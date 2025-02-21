@@ -21,44 +21,38 @@ package co.elastic.clients.elasticsearch._helpers.bulk;
 
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 import java.util.Optional;
 
-class BulkOperationRepeatable<Context> {
+class RetryableBulkOperation<Context> {
     private final BulkOperation operation;
     private final Context context;
     private final Iterator<Long> retries;
-    private Long retryTime;
+    private final Long retryTime;
 
-    BulkOperationRepeatable(BulkOperation request, Context context, Iterator<Long> retries) {
+    RetryableBulkOperation(BulkOperation request, Context context, Iterator<Long> retries) {
         this.operation = request;
         this.context = context;
         this.retries = retries;
         // if the retries iterator is null it means that it's not a retry, otherwise calculating retry time
-        long currentMillis = getCurrentMillis();
+        long currentMillis = currentMillis();
         this.retryTime = Optional.ofNullable(retries).map(r -> currentMillis + r.next()).orElse(currentMillis);
     }
 
-    public BulkOperation getOperation() {
+    public BulkOperation operation() {
         return operation;
     }
 
-    public Context getContext() {
+    public Context context() {
         return context;
     }
 
-    public Iterator<Long> getRetries() {
+    public Iterator<Long> retries() {
         return retries;
     }
 
-    public Long getCurrentRetryTime() {
-        return this.retryTime;
-    }
-
-    public long getCurrentRetryTimeDelay() {
-        return this.retryTime - getCurrentMillis();
+    public long currentRetryTimeDelay() {
+        return this.retryTime - currentMillis();
     }
 
     public boolean canRetry() {
@@ -66,10 +60,10 @@ class BulkOperationRepeatable<Context> {
     }
 
     public boolean isSendable() {
-        return (this.retryTime - getCurrentMillis()) <= 0;
+        return (this.retryTime - currentMillis()) <= 0;
     }
 
-    private Long getCurrentMillis(){
+    private Long currentMillis(){
         return System.nanoTime()/1_000_000L;
     }
 }
