@@ -53,12 +53,12 @@ public class JsonEnums {
             for (T member : values) {
                 String jsonValue = member.jsonValue();
                 if (jsonValue != null) { // _Custom enum members have a null jsonValue
-                    this.lookupTable.put(jsonValue, member);
+                    this.lookupTable.put(jsonValue.toLowerCase(), member); // lookup must be case-insensitive
                 }
                 String[] aliases = member.aliases();
                 if (aliases != null) {
                     for (String alias: aliases) {
-                        this.lookupTable.put(alias, member);
+                        this.lookupTable.put(alias.toLowerCase(), member);
                     }
                 }
             }
@@ -79,7 +79,7 @@ public class JsonEnums {
          * @throws JsonParsingException if no matching enum was found
          */
         public T deserialize(String value, JsonParser parser) {
-            T result = this.lookupTable.get(value);
+            T result = this.lookupTable.get(value.toLowerCase());
             if (result == null) {
                 throw new JsonpMappingException("Invalid enum '" + value + "'", parser.getLocation());
             }
@@ -94,7 +94,7 @@ public class JsonEnums {
          * @throws IllegalArgumentException if no matching enum was found
          */
         public T parse(String value) {
-            T result = this.lookupTable.get(value);
+            T result = this.lookupTable.get(value.toLowerCase());
             if (result == null) {
                 throw new NoSuchElementException("Invalid enum '" + value + "'");
             }
