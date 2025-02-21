@@ -34,112 +34,112 @@ import javax.annotation.Nullable;
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
  */
-public class IngesterOperation {
-    private final BulkOperation operation;
+class IngesterOperation {
+    private final RetryableBulkOperation repeatableOp;
     private final long size;
 
-    public IngesterOperation(BulkOperation operation, long size) {
-        this.operation = operation;
+    IngesterOperation(RetryableBulkOperation repeatableOp, long size) {
+        this.repeatableOp = repeatableOp;
         this.size = size;
     }
 
-    public static IngesterOperation of(BulkOperation operation, JsonpMapper mapper) {
-        switch (operation._kind()) {
+    public static IngesterOperation of(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        switch (repeatableOp.operation()._kind()) {
             case Create:
-                return createOperation(operation, mapper);
+                return createOperation(repeatableOp, mapper);
             case Index:
-                return indexOperation(operation, mapper);
+                return indexOperation(repeatableOp, mapper);
             case Update:
-                return updateOperation(operation, mapper);
+                return updateOperation(repeatableOp, mapper);
             case Delete:
-                return deleteOperation(operation);
+                return deleteOperation(repeatableOp);
             default:
-                throw new IllegalStateException("Unknown bulk operation type " + operation._kind());
+                throw new IllegalStateException("Unknown bulk operation type " + repeatableOp.operation()._kind());
         }
     }
 
-    public BulkOperation operation() {
-        return this.operation;
+    public RetryableBulkOperation repeatableOperation() {
+        return this.repeatableOp;
     }
 
     public long size() {
         return this.size;
     }
 
-    private static IngesterOperation createOperation(BulkOperation operation, JsonpMapper mapper) {
-        CreateOperation<?> create = operation.create();
-        BulkOperation newOperation;
+    private static IngesterOperation createOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        CreateOperation<?> create = repeatableOp.operation().create();
+        RetryableBulkOperation newOperation;
 
         long size = basePropertiesSize(create);
 
         if (create.document() instanceof BinaryData) {
-            newOperation = operation;
+            newOperation = repeatableOp;
             size += ((BinaryData) create.document()).size();
 
         } else {
             BinaryData binaryDoc = BinaryData.of(create.document(), mapper);
             size += binaryDoc.size();
-            newOperation = BulkOperation.of(bo -> bo.create(idx -> {
+            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.create(idx -> {
                 copyCreateProperties(create, idx);
                 return idx.document(binaryDoc);
-            }));
+            })),repeatableOp.context(),repeatableOp.retries());
         }
 
         return new IngesterOperation(newOperation, size);
     }
 
-    private static IngesterOperation indexOperation(BulkOperation operation, JsonpMapper mapper) {
-        IndexOperation<?> index = operation.index();
-        BulkOperation newOperation;
+    private static IngesterOperation indexOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        IndexOperation<?> index = repeatableOp.operation().index();
+        RetryableBulkOperation newOperation;
 
         long size = basePropertiesSize(index);
 
         if (index.document() instanceof BinaryData) {
-            newOperation = operation;
+            newOperation = repeatableOp;
             size += ((BinaryData) index.document()).size();
 
         } else {
             BinaryData binaryDoc = BinaryData.of(index.document(), mapper);
             size += binaryDoc.size();
-            newOperation = BulkOperation.of(bo -> bo.index(idx -> {
+            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.index(idx -> {
                 copyIndexProperties(index, idx);
                 return idx.document(binaryDoc);
-            }));
+            })),repeatableOp.context(),repeatableOp.retries());
         }
 
         return new IngesterOperation(newOperation, size);
     }
 
-    private static IngesterOperation updateOperation(BulkOperation operation, JsonpMapper mapper) {
-        UpdateOperation<?, ?> update = operation.update();
-        BulkOperation newOperation;
+    private static IngesterOperation updateOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+        UpdateOperation<?, ?> update = repeatableOp.operation().update();
+        RetryableBulkOperation newOperation;
 
         long size = basePropertiesSize(update) +
             size("retry_on_conflict", update.retryOnConflict()) +
             size("require_alias", update.requireAlias());
 
         if (update.binaryAction() != null) {
-            newOperation = operation;
+            newOperation = repeatableOp;
             size += update.binaryAction().size();
 
         } else {
             BinaryData action = BinaryData.of(update.action(), mapper);
             size += action.size();
-            newOperation = BulkOperation.of(bo -> bo.update(u -> {
+            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.update(u -> {
                 copyBaseProperties(update, u);
                 return u
                     .binaryAction(action)
                     .requireAlias(update.requireAlias())
                     .retryOnConflict(update.retryOnConflict());
-            }));
+            })),repeatableOp.context(),repeatableOp.retries());
         }
 
         return new IngesterOperation(newOperation, size);
     }
 
-    private static IngesterOperation deleteOperation(BulkOperation operation) {
-        DeleteOperation delete = operation.delete();
-        return new IngesterOperation(operation, basePropertiesSize(delete));
+    private static IngesterOperation deleteOperation(RetryableBulkOperation repeatableOp) {
+        DeleteOperation delete = repeatableOp.operation().delete();
+        return new IngesterOperation(repeatableOp, basePropertiesSize(delete));
     }
 
 
