@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.put_behavioral_analytics.Request">API
  *      specification</a>
+ * @deprecated 9.0.0
  */
-
+@Deprecated
 public class PutBehavioralAnalyticsRequest extends RequestBase {
 	private final String name;
 
@@ -92,7 +93,7 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutBehavioralAnalyticsRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutBehavioralAnalyticsRequest> {

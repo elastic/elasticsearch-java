@@ -96,6 +96,8 @@ public class IndicesRequest extends CatRequestBase {
 
 	private final List<ExpandWildcard> expandWildcards;
 
+	private final List<String> h;
+
 	@Nullable
 	private final HealthStatus health;
 
@@ -110,6 +112,8 @@ public class IndicesRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean pri;
 
+	private final List<String> s;
+
 	@Nullable
 	private final TimeUnit time;
 
@@ -119,11 +123,13 @@ public class IndicesRequest extends CatRequestBase {
 
 		this.bytes = builder.bytes;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.health = builder.health;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.masterTimeout = builder.masterTimeout;
 		this.pri = builder.pri;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
 
 	}
@@ -149,6 +155,15 @@ public class IndicesRequest extends CatRequestBase {
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
 	}
 
 	/**
@@ -205,6 +220,17 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
+	}
+
+	/**
 	 * The unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
@@ -230,6 +256,9 @@ public class IndicesRequest extends CatRequestBase {
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private HealthStatus health;
 
 		@Nullable
@@ -243,6 +272,9 @@ public class IndicesRequest extends CatRequestBase {
 
 		@Nullable
 		private Boolean pri;
+
+		@Nullable
+		private List<String> s;
 
 		@Nullable
 		private TimeUnit time;
@@ -278,6 +310,30 @@ public class IndicesRequest extends CatRequestBase {
 		 */
 		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
 			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
 			return this;
 		}
 
@@ -357,6 +413,34 @@ public class IndicesRequest extends CatRequestBase {
 		 */
 		public final Builder pri(@Nullable Boolean value) {
 			this.pri = value;
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
 
@@ -454,6 +538,9 @@ public class IndicesRequest extends CatRequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
@@ -463,6 +550,9 @@ public class IndicesRequest extends CatRequestBase {
 				}
 				if (request.pri != null) {
 					params.put("pri", String.valueOf(request.pri));
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.health != null) {
 					params.put("health", request.health.jsonValue());

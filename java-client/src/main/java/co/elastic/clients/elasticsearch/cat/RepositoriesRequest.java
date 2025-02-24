@@ -27,14 +27,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -67,23 +71,38 @@ import javax.annotation.Nullable;
  */
 
 public class RepositoriesRequest extends CatRequestBase {
+	private final List<String> h;
+
 	@Nullable
 	private final Boolean local;
 
 	@Nullable
 	private final Time masterTimeout;
 
+	private final List<String> s;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RepositoriesRequest(Builder builder) {
 
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 
 	}
 
 	public static RepositoriesRequest of(Function<Builder, ObjectBuilder<RepositoriesRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
 	}
 
 	/**
@@ -110,6 +129,17 @@ public class RepositoriesRequest extends CatRequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -120,10 +150,40 @@ public class RepositoriesRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<RepositoriesRequest> {
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private List<String> s;
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
 
 		/**
 		 * If <code>true</code>, the request computes the list of selected nodes from
@@ -156,6 +216,34 @@ public class RepositoriesRequest extends CatRequestBase {
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
+			return this;
 		}
 
 		@Override
@@ -207,6 +295,12 @@ public class RepositoriesRequest extends CatRequestBase {
 				params.put("format", "json");
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
