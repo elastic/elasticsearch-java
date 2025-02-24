@@ -78,14 +78,18 @@ public class FollowIndexStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * Required - The name of the follower index.
+	 * <p>
+	 * API name: {@code index}
 	 */
 	public final String index() {
 		return this.index;
 	}
 
 	/**
-	 * Required - API name: {@code shards}
+	 * Required - An array of shard-level following task statistics.
+	 * <p>
+	 * API name: {@code shards}
 	 */
 	public final List<ShardStats> shards() {
 		return this.shards;
@@ -135,7 +139,9 @@ public class FollowIndexStats implements JsonpSerializable {
 		private List<ShardStats> shards;
 
 		/**
-		 * Required - API name: {@code index}
+		 * Required - The name of the follower index.
+		 * <p>
+		 * API name: {@code index}
 		 */
 		public final Builder index(String value) {
 			this.index = value;
@@ -143,7 +149,9 @@ public class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shards}
+		 * Required - An array of shard-level following task statistics.
+		 * <p>
+		 * API name: {@code shards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
@@ -153,7 +161,9 @@ public class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shards}
+		 * Required - An array of shard-level following task statistics.
+		 * <p>
+		 * API name: {@code shards}
 		 * <p>
 		 * Adds one or more values to <code>shards</code>.
 		 */
@@ -163,7 +173,9 @@ public class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shards}
+		 * Required - An array of shard-level following task statistics.
+		 * <p>
+		 * API name: {@code shards}
 		 * <p>
 		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */

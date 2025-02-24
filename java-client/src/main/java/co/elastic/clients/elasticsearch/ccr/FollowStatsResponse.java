@@ -74,7 +74,9 @@ public class FollowStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * Required - An array of follower index statistics.
+	 * <p>
+	 * API name: {@code indices}
 	 */
 	public final List<FollowIndexStats> indices() {
 		return this.indices;
@@ -121,7 +123,9 @@ public class FollowStatsResponse implements JsonpSerializable {
 		private List<FollowIndexStats> indices;
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - An array of follower index statistics.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
@@ -131,7 +135,9 @@ public class FollowStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - An array of follower index statistics.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
@@ -141,7 +147,9 @@ public class FollowStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - An array of follower index statistics.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */

@@ -71,9 +71,13 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
 	private final Boolean lowercase;
 
+	@Nullable
 	private final String pattern;
 
 	private final List<String> stopwords;
+
+	@Nullable
+	private final String stopwordsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,8 +86,9 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		this.version = builder.version;
 		this.flags = builder.flags;
 		this.lowercase = builder.lowercase;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.pattern = builder.pattern;
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
@@ -101,13 +106,19 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	/**
 	 * API name: {@code version}
+	 * 
+	 * @deprecated 7.14.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String version() {
 		return this.version;
 	}
 
 	/**
+	 * Java regular expression flags. Flags should be pipe-separated, eg
+	 * &quot;CASE_INSENSITIVE|COMMENTS&quot;.
+	 * <p>
 	 * API name: {@code flags}
 	 */
 	@Nullable
@@ -116,6 +127,8 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
+	 * Should terms be lowercased or not. Defaults to <code>true</code>.
+	 * <p>
 	 * API name: {@code lowercase}
 	 */
 	@Nullable
@@ -124,17 +137,33 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code pattern}
+	 * A Java regular expression. Defaults to <code>\W+</code>.
+	 * <p>
+	 * API name: {@code pattern}
 	 */
+	@Nullable
 	public final String pattern() {
 		return this.pattern;
 	}
 
 	/**
+	 * A pre-defined stop words list like <code>_english_</code> or an array
+	 * containing a list of stop words. Defaults to <code>_none_</code>.
+	 * <p>
 	 * API name: {@code stopwords}
 	 */
 	public final List<String> stopwords() {
 		return this.stopwords;
+	}
+
+	/**
+	 * The path to a file containing stop words.
+	 * <p>
+	 * API name: {@code stopwords_path}
+	 */
+	@Nullable
+	public final String stopwordsPath() {
+		return this.stopwordsPath;
 	}
 
 	/**
@@ -165,9 +194,11 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.write(this.lowercase);
 
 		}
-		generator.writeKey("pattern");
-		generator.write(this.pattern);
+		if (this.pattern != null) {
+			generator.writeKey("pattern");
+			generator.write(this.pattern);
 
+		}
 		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
 			generator.writeStartArray();
@@ -176,6 +207,11 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.stopwordsPath != null) {
+			generator.writeKey("stopwords_path");
+			generator.write(this.stopwordsPath);
 
 		}
 
@@ -202,20 +238,30 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private Boolean lowercase;
 
+		@Nullable
 		private String pattern;
 
 		@Nullable
 		private List<String> stopwords;
 
+		@Nullable
+		private String stopwordsPath;
+
 		/**
 		 * API name: {@code version}
+		 * 
+		 * @deprecated 7.14.0
 		 */
+		@Deprecated
 		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
+		 * Java regular expression flags. Flags should be pipe-separated, eg
+		 * &quot;CASE_INSENSITIVE|COMMENTS&quot;.
+		 * <p>
 		 * API name: {@code flags}
 		 */
 		public final Builder flags(@Nullable String value) {
@@ -224,6 +270,8 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * Should terms be lowercased or not. Defaults to <code>true</code>.
+		 * <p>
 		 * API name: {@code lowercase}
 		 */
 		public final Builder lowercase(@Nullable Boolean value) {
@@ -232,14 +280,19 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pattern}
+		 * A Java regular expression. Defaults to <code>\W+</code>.
+		 * <p>
+		 * API name: {@code pattern}
 		 */
-		public final Builder pattern(String value) {
+		public final Builder pattern(@Nullable String value) {
 			this.pattern = value;
 			return this;
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
@@ -250,12 +303,25 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds one or more values to <code>stopwords</code>.
 		 */
 		public final Builder stopwords(String value, String... values) {
 			this.stopwords = _listAdd(this.stopwords, value, values);
+			return this;
+		}
+
+		/**
+		 * The path to a file containing stop words.
+		 * <p>
+		 * API name: {@code stopwords_path}
+		 */
+		public final Builder stopwordsPath(@Nullable String value) {
+			this.stopwordsPath = value;
 			return this;
 		}
 
@@ -293,6 +359,7 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");
+		op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
 
 		op.ignore("type");
 	}

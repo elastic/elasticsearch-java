@@ -56,16 +56,20 @@ import javax.annotation.Nullable;
 // typedef: ccr.unfollow.Request
 
 /**
- * Unfollow an index. Convert a cross-cluster replication follower index to a
- * regular index. The API stops the following task associated with a follower
- * index and removes index metadata and settings associated with cross-cluster
- * replication. The follower index must be paused and closed before you call the
- * unfollow API.
+ * Unfollow an index.
  * <p>
- * NOTE: Currently cross-cluster replication does not support converting an
+ * Convert a cross-cluster replication follower index to a regular index. The
+ * API stops the following task associated with a follower index and removes
+ * index metadata and settings associated with cross-cluster replication. The
+ * follower index must be paused and closed before you call the unfollow API.
+ * <blockquote>
+ * <p>
+ * info Currently cross-cluster replication does not support converting an
  * existing regular index to a follower index. Converting a follower index to a
  * regular index is an irreversible operation.
- * 
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="../doc-files/api-spec.html#ccr.unfollow.Request">API
  *      specification</a>
  */
@@ -90,8 +94,7 @@ public class UnfollowRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the follower index that should be turned into a
-	 * regular index.
+	 * Required - The name of the follower index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -100,7 +103,10 @@ public class UnfollowRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. It can also be set to <code>-1</code> to indicate that the request
+	 * should never timeout.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -122,8 +128,7 @@ public class UnfollowRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Required - The name of the follower index that should be turned into a
-		 * regular index.
+		 * Required - The name of the follower index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -133,7 +138,10 @@ public class UnfollowRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -143,7 +151,10 @@ public class UnfollowRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. It can also be set to <code>-1</code> to indicate that the request
+		 * should never timeout.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -65,7 +66,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	private final String description;
 
 	@Nullable
-	private final String if_;
+	private final Script if_;
 
 	@Nullable
 	private final Boolean ignoreFailure;
@@ -104,7 +105,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 	 * API name: {@code if}
 	 */
 	@Nullable
-	public final String if_() {
+	public final Script if_() {
 		return this.if_;
 	}
 
@@ -155,7 +156,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 		if (this.if_ != null) {
 			generator.writeKey("if");
-			generator.write(this.if_);
+			this.if_.serialize(generator, mapper);
 
 		}
 		if (this.ignoreFailure != null) {
@@ -193,7 +194,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		private String description;
 
 		@Nullable
-		private String if_;
+		private Script if_;
 
 		@Nullable
 		private Boolean ignoreFailure;
@@ -220,9 +221,18 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code if}
 		 */
-		public final BuilderT if_(@Nullable String value) {
+		public final BuilderT if_(@Nullable Script value) {
 			this.if_ = value;
 			return self();
+		}
+
+		/**
+		 * Conditionally execute the processor.
+		 * <p>
+		 * API name: {@code if}
+		 */
+		public final BuilderT if_(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.if_(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -289,7 +299,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(AbstractBuilder::if_, JsonpDeserializer.stringDeserializer(), "if");
+		op.add(AbstractBuilder::if_, Script._DESERIALIZER, "if");
 		op.add(AbstractBuilder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
 		op.add(AbstractBuilder::tag, JsonpDeserializer.stringDeserializer(), "tag");

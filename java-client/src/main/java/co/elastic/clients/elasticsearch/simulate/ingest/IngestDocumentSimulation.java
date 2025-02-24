@@ -165,7 +165,7 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 	/**
 	 * A list of the fields that would be ignored at the indexing step. For example,
 	 * a field whose value is larger than the allowed limit would make it through
-	 * all of the pipoelines, but would not be indexed into Elasticsearch.
+	 * all of the pipelines, but would not be indexed into Elasticsearch.
 	 * <p>
 	 * API name: {@code ignored_fields}
 	 */
@@ -393,7 +393,7 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 		/**
 		 * A list of the fields that would be ignored at the indexing step. For example,
 		 * a field whose value is larger than the allowed limit would make it through
-		 * all of the pipoelines, but would not be indexed into Elasticsearch.
+		 * all of the pipelines, but would not be indexed into Elasticsearch.
 		 * <p>
 		 * API name: {@code ignored_fields}
 		 * <p>
@@ -407,7 +407,7 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 		/**
 		 * A list of the fields that would be ignored at the indexing step. For example,
 		 * a field whose value is larger than the allowed limit would make it through
-		 * all of the pipoelines, but would not be indexed into Elasticsearch.
+		 * all of the pipelines, but would not be indexed into Elasticsearch.
 		 * <p>
 		 * API name: {@code ignored_fields}
 		 * <p>

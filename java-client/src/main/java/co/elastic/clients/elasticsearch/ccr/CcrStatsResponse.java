@@ -78,14 +78,18 @@ public class CcrStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code auto_follow_stats}
+	 * Required - Statistics for the auto-follow coordinator.
+	 * <p>
+	 * API name: {@code auto_follow_stats}
 	 */
 	public final AutoFollowStats autoFollowStats() {
 		return this.autoFollowStats;
 	}
 
 	/**
-	 * Required - API name: {@code follow_stats}
+	 * Required - Shard-level statistics for follower indices.
+	 * <p>
+	 * API name: {@code follow_stats}
 	 */
 	public final FollowStats followStats() {
 		return this.followStats;
@@ -127,7 +131,9 @@ public class CcrStatsResponse implements JsonpSerializable {
 		private FollowStats followStats;
 
 		/**
-		 * Required - API name: {@code auto_follow_stats}
+		 * Required - Statistics for the auto-follow coordinator.
+		 * <p>
+		 * API name: {@code auto_follow_stats}
 		 */
 		public final Builder autoFollowStats(AutoFollowStats value) {
 			this.autoFollowStats = value;
@@ -135,14 +141,18 @@ public class CcrStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code auto_follow_stats}
+		 * Required - Statistics for the auto-follow coordinator.
+		 * <p>
+		 * API name: {@code auto_follow_stats}
 		 */
 		public final Builder autoFollowStats(Function<AutoFollowStats.Builder, ObjectBuilder<AutoFollowStats>> fn) {
 			return this.autoFollowStats(fn.apply(new AutoFollowStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code follow_stats}
+		 * Required - Shard-level statistics for follower indices.
+		 * <p>
+		 * API name: {@code follow_stats}
 		 */
 		public final Builder followStats(FollowStats value) {
 			this.followStats = value;
@@ -150,7 +160,9 @@ public class CcrStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code follow_stats}
+		 * Required - Shard-level statistics for follower indices.
+		 * <p>
+		 * API name: {@code follow_stats}
 		 */
 		public final Builder followStats(Function<FollowStats.Builder, ObjectBuilder<FollowStats>> fn) {
 			return this.followStats(fn.apply(new FollowStats.Builder()).build());

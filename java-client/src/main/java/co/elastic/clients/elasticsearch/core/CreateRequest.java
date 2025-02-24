@@ -41,6 +41,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -198,6 +199,9 @@ import javax.annotation.Nullable;
 public class CreateRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	private final String id;
 
+	@Nullable
+	private final Boolean includeSourceOnError;
+
 	private final String index;
 
 	@Nullable
@@ -231,6 +235,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	private CreateRequest(Builder<TDocument> builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.includeSourceOnError = builder.includeSourceOnError;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
@@ -257,6 +262,17 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 */
 	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * True or false if to include the document source in the error message in case
+	 * of parsing errors.
+	 * <p>
+	 * API name: {@code include_source_on_error}
+	 */
+	@Nullable
+	public final Boolean includeSourceOnError() {
+		return this.includeSourceOnError;
 	}
 
 	/**
@@ -391,6 +407,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 				ObjectBuilder<CreateRequest<TDocument>> {
 		private String id;
 
+		@Nullable
+		private Boolean includeSourceOnError;
+
 		private String index;
 
 		@Nullable
@@ -427,6 +446,17 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		 */
 		public final Builder<TDocument> id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * True or false if to include the document source in the error message in case
+		 * of parsing errors.
+		 * <p>
+		 * API name: {@code include_source_on_error}
+		 */
+		public final Builder<TDocument> includeSourceOnError(@Nullable Boolean value) {
+			this.includeSourceOnError = value;
 			return this;
 		}
 
@@ -695,6 +725,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
+				}
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.jsonValue());

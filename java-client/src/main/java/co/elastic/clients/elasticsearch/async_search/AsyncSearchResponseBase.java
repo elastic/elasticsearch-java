@@ -124,9 +124,13 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 	/**
 	 * Required - Indicates whether the search is still running or has completed.
-	 * NOTE: If the search failed after some shards returned their results or the
+	 * <blockquote>
+	 * <p>
+	 * info If the search failed after some shards returned their results or the
 	 * node that is coordinating the async search dies, results may be partial even
 	 * though <code>is_running</code> is <code>false</code>.
+	 * </p>
+	 * </blockquote>
 	 * <p>
 	 * API name: {@code is_running}
 	 */
@@ -167,8 +171,8 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Indicates when the async search completed. Only present when the search has
-	 * completed.
+	 * Indicates when the async search completed. It is present only when the search
+	 * has completed.
 	 * <p>
 	 * API name: {@code completion_time}
 	 */
@@ -287,9 +291,13 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 		/**
 		 * Required - Indicates whether the search is still running or has completed.
-		 * NOTE: If the search failed after some shards returned their results or the
+		 * <blockquote>
+		 * <p>
+		 * info If the search failed after some shards returned their results or the
 		 * node that is coordinating the async search dies, results may be partial even
 		 * though <code>is_running</code> is <code>false</code>.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code is_running}
 		 */
@@ -333,8 +341,8 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Indicates when the async search completed. Only present when the search has
-		 * completed.
+		 * Indicates when the async search completed. It is present only when the search
+		 * has completed.
 		 * <p>
 		 * API name: {@code completion_time}
 		 */

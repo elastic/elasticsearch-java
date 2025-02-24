@@ -63,6 +63,7 @@ public class Hop implements JsonpSerializable {
 	@Nullable
 	private final Hop connections;
 
+	@Nullable
 	private final Query query;
 
 	private final List<VertexDefinition> vertices;
@@ -72,7 +73,7 @@ public class Hop implements JsonpSerializable {
 	private Hop(Builder builder) {
 
 		this.connections = builder.connections;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = builder.query;
 		this.vertices = ApiTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
@@ -93,11 +94,12 @@ public class Hop implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - An optional guiding query that constrains the Graph API as it
-	 * explores connected terms.
+	 * An optional guiding query that constrains the Graph API as it explores
+	 * connected terms.
 	 * <p>
 	 * API name: {@code query}
 	 */
+	@Nullable
 	public final Query query() {
 		return this.query;
 	}
@@ -127,9 +129,11 @@ public class Hop implements JsonpSerializable {
 			this.connections.serialize(generator, mapper);
 
 		}
-		generator.writeKey("query");
-		this.query.serialize(generator, mapper);
+		if (this.query != null) {
+			generator.writeKey("query");
+			this.query.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
@@ -158,6 +162,7 @@ public class Hop implements JsonpSerializable {
 		@Nullable
 		private Hop connections;
 
+		@Nullable
 		private Query query;
 
 		private List<VertexDefinition> vertices;
@@ -184,19 +189,19 @@ public class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An optional guiding query that constrains the Graph API as it
-		 * explores connected terms.
+		 * An optional guiding query that constrains the Graph API as it explores
+		 * connected terms.
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
-		 * Required - An optional guiding query that constrains the Graph API as it
-		 * explores connected terms.
+		 * An optional guiding query that constrains the Graph API as it explores
+		 * connected terms.
 		 * <p>
 		 * API name: {@code query}
 		 */

@@ -273,6 +273,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Long ifSeqNo;
 
+	@Nullable
+	private final Boolean includeSourceOnError;
+
 	private final String index;
 
 	@Nullable
@@ -314,6 +317,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.id = builder.id;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.includeSourceOnError = builder.includeSourceOnError;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
@@ -364,6 +368,17 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	@Nullable
 	public final Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * True or false if to include the document source in the error message in case
+	 * of parsing errors.
+	 * <p>
+	 * API name: {@code include_source_on_error}
+	 */
+	@Nullable
+	public final Boolean includeSourceOnError() {
+		return this.includeSourceOnError;
 	}
 
 	/**
@@ -530,6 +545,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Long ifSeqNo;
 
+		@Nullable
+		private Boolean includeSourceOnError;
+
 		private String index;
 
 		@Nullable
@@ -593,6 +611,17 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder<TDocument> ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * True or false if to include the document source in the error message in case
+		 * of parsing errors.
+		 * <p>
+		 * API name: {@code include_source_on_error}
+		 */
+		public final Builder<TDocument> includeSourceOnError(@Nullable Boolean value) {
+			this.includeSourceOnError = value;
 			return this;
 		}
 
@@ -909,6 +938,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
+				}
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
 				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));

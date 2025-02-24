@@ -62,8 +62,9 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.delete_behavioral_analytics.Request">API
  *      specification</a>
+ * @deprecated 9.0.0
  */
-
+@Deprecated
 public class DeleteBehavioralAnalyticsRequest extends RequestBase {
 	private final String name;
 
@@ -94,7 +95,7 @@ public class DeleteBehavioralAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteBehavioralAnalyticsRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteBehavioralAnalyticsRequest> {

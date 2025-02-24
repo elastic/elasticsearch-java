@@ -84,7 +84,10 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	/**
 	 * API name: {@code version}
+	 * 
+	 * @deprecated 7.14.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String version() {
 		return this.version;
@@ -128,7 +131,10 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code version}
+		 * 
+		 * @deprecated 7.14.0
 		 */
+		@Deprecated
 		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;

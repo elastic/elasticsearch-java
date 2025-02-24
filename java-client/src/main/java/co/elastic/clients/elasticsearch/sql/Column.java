@@ -50,11 +50,12 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: sql.Column
+// typedef: sql._types.Column
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#sql.Column">API specification</a>
+ * @see <a href="../doc-files/api-spec.html#sql._types.Column">API
+ *      specification</a>
  */
 @JsonpDeserializable
 public class Column implements JsonpSerializable {

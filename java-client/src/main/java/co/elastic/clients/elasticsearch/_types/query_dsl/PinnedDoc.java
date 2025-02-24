@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
 public class PinnedDoc implements JsonpSerializable {
 	private final String id;
 
+	@Nullable
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ public class PinnedDoc implements JsonpSerializable {
 	private PinnedDoc(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = builder.index;
 
 	}
 
@@ -86,10 +87,11 @@ public class PinnedDoc implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The index that contains the document.
+	 * The index that contains the document.
 	 * <p>
 	 * API name: {@code _index}
 	 */
+	@Nullable
 	public final String index() {
 		return this.index;
 	}
@@ -108,8 +110,11 @@ public class PinnedDoc implements JsonpSerializable {
 		generator.writeKey("_id");
 		generator.write(this.id);
 
-		generator.writeKey("_index");
-		generator.write(this.index);
+		if (this.index != null) {
+			generator.writeKey("_index");
+			generator.write(this.index);
+
+		}
 
 	}
 
@@ -127,6 +132,7 @@ public class PinnedDoc implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PinnedDoc> {
 		private String id;
 
+		@Nullable
 		private String index;
 
 		/**
@@ -140,11 +146,11 @@ public class PinnedDoc implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The index that contains the document.
+		 * The index that contains the document.
 		 * <p>
 		 * API name: {@code _index}
 		 */
-		public final Builder index(String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}

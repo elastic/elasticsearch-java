@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -38,17 +39,33 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link InferenceResult} variants.
- * <p>
- * Variants <code>text_embedding_bytes</code>, <code>text_embedding_bits</code>,
- * <code>text_embedding</code>, <code>sparse_embedding</code>,
- * <code>completion</code>, <code>rerank</code> are not available here as they
- * don't have a dedicated class. Use {@link InferenceResult}'s builder for
- * these.
- * 
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_global.bulk.FailureStoreStatus">API
+ *      specification</a>
  */
-public class InferenceResultBuilders {
-	private InferenceResultBuilders() {
+@JsonpDeserializable
+public enum FailureStoreStatus implements JsonEnum {
+	NotApplicableOrUnknown("not_applicable_or_unknown"),
+
+	Used("used"),
+
+	NotEnabled("not_enabled"),
+
+	Failed("failed"),
+
+	;
+
+	private final String jsonValue;
+
+	FailureStoreStatus(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<FailureStoreStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			FailureStoreStatus.values());
 }

@@ -65,7 +65,9 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.post_behavioral_analytics_event.Request">API
  *      specification</a>
+ * @deprecated 9.0.0
  */
+@Deprecated
 @JsonpDeserializable
 public class PostBehavioralAnalyticsEventRequest extends RequestBase implements JsonpSerializable {
 	private final String collectionName;
@@ -141,7 +143,7 @@ public class PostBehavioralAnalyticsEventRequest extends RequestBase implements 
 	/**
 	 * Builder for {@link PostBehavioralAnalyticsEventRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PostBehavioralAnalyticsEventRequest> {

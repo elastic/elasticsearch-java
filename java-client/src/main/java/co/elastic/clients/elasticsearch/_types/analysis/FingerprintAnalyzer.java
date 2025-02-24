@@ -30,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -66,10 +65,10 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
 	private final String version;
 
-	private final int maxOutputSize;
+	@Nullable
+	private final Integer maxOutputSize;
 
-	private final boolean preserveOriginal;
-
+	@Nullable
 	private final String separator;
 
 	private final List<String> stopwords;
@@ -82,9 +81,8 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private FingerprintAnalyzer(Builder builder) {
 
 		this.version = builder.version;
-		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
-		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.maxOutputSize = builder.maxOutputSize;
+		this.separator = builder.separator;
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 		this.stopwordsPath = builder.stopwordsPath;
 
@@ -104,34 +102,40 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	/**
 	 * API name: {@code version}
+	 * 
+	 * @deprecated 7.14.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String version() {
 		return this.version;
 	}
 
 	/**
-	 * Required - API name: {@code max_output_size}
+	 * The maximum token size to emit. Tokens larger than this size will be
+	 * discarded. Defaults to <code>255</code>
+	 * <p>
+	 * API name: {@code max_output_size}
 	 */
-	public final int maxOutputSize() {
+	@Nullable
+	public final Integer maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
-	 * Required - API name: {@code preserve_original}
+	 * The character to use to concatenate the terms. Defaults to a space.
+	 * <p>
+	 * API name: {@code separator}
 	 */
-	public final boolean preserveOriginal() {
-		return this.preserveOriginal;
-	}
-
-	/**
-	 * Required - API name: {@code separator}
-	 */
+	@Nullable
 	public final String separator() {
 		return this.separator;
 	}
 
 	/**
+	 * A pre-defined stop words list like <code>_english_</code> or an array
+	 * containing a list of stop words. Defaults to <code>_none_</code>.
+	 * <p>
 	 * API name: {@code stopwords}
 	 */
 	public final List<String> stopwords() {
@@ -139,6 +143,8 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
+	 * The path to a file containing stop words.
+	 * <p>
 	 * API name: {@code stopwords_path}
 	 */
 	@Nullable
@@ -164,15 +170,16 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.write(this.version);
 
 		}
-		generator.writeKey("max_output_size");
-		generator.write(this.maxOutputSize);
+		if (this.maxOutputSize != null) {
+			generator.writeKey("max_output_size");
+			generator.write(this.maxOutputSize);
 
-		generator.writeKey("preserve_original");
-		generator.write(this.preserveOriginal);
+		}
+		if (this.separator != null) {
+			generator.writeKey("separator");
+			generator.write(this.separator);
 
-		generator.writeKey("separator");
-		generator.write(this.separator);
-
+		}
 		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
 			generator.writeStartArray();
@@ -208,10 +215,10 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String version;
 
+		@Nullable
 		private Integer maxOutputSize;
 
-		private Boolean preserveOriginal;
-
+		@Nullable
 		private String separator;
 
 		@Nullable
@@ -222,37 +229,40 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code version}
+		 * 
+		 * @deprecated 7.14.0
 		 */
+		@Deprecated
 		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_output_size}
+		 * The maximum token size to emit. Tokens larger than this size will be
+		 * discarded. Defaults to <code>255</code>
+		 * <p>
+		 * API name: {@code max_output_size}
 		 */
-		public final Builder maxOutputSize(int value) {
+		public final Builder maxOutputSize(@Nullable Integer value) {
 			this.maxOutputSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code preserve_original}
+		 * The character to use to concatenate the terms. Defaults to a space.
+		 * <p>
+		 * API name: {@code separator}
 		 */
-		public final Builder preserveOriginal(boolean value) {
-			this.preserveOriginal = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code separator}
-		 */
-		public final Builder separator(String value) {
+		public final Builder separator(@Nullable String value) {
 			this.separator = value;
 			return this;
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
@@ -263,6 +273,9 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * A pre-defined stop words list like <code>_english_</code> or an array
+		 * containing a list of stop words. Defaults to <code>_none_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds one or more values to <code>stopwords</code>.
@@ -273,6 +286,8 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
+		 * The path to a file containing stop words.
+		 * <p>
 		 * API name: {@code stopwords_path}
 		 */
 		public final Builder stopwordsPath(@Nullable String value) {
@@ -310,7 +325,6 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");
-		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stopwords");
