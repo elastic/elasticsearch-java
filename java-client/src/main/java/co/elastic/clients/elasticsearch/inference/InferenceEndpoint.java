@@ -62,6 +62,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class InferenceEndpoint implements JsonpSerializable {
+	@Nullable
+	private final InferenceChunkingSettings chunkingSettings;
+
 	private final String service;
 
 	private final JsonData serviceSettings;
@@ -73,6 +76,7 @@ public class InferenceEndpoint implements JsonpSerializable {
 
 	protected InferenceEndpoint(AbstractBuilder<?> builder) {
 
+		this.chunkingSettings = builder.chunkingSettings;
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
 		this.taskSettings = builder.taskSettings;
@@ -81,6 +85,16 @@ public class InferenceEndpoint implements JsonpSerializable {
 
 	public static InferenceEndpoint inferenceEndpointOf(Function<Builder, ObjectBuilder<InferenceEndpoint>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Chunking configuration object
+	 * <p>
+	 * API name: {@code chunking_settings}
+	 */
+	@Nullable
+	public final InferenceChunkingSettings chunkingSettings() {
+		return this.chunkingSettings;
 	}
 
 	/**
@@ -122,6 +136,11 @@ public class InferenceEndpoint implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.chunkingSettings != null) {
+			generator.writeKey("chunking_settings");
+			this.chunkingSettings.serialize(generator, mapper);
+
+		}
 		generator.writeKey("service");
 		generator.write(this.service);
 
@@ -171,12 +190,35 @@ public class InferenceEndpoint implements JsonpSerializable {
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
+		@Nullable
+		private InferenceChunkingSettings chunkingSettings;
+
 		private String service;
 
 		private JsonData serviceSettings;
 
 		@Nullable
 		private JsonData taskSettings;
+
+		/**
+		 * Chunking configuration object
+		 * <p>
+		 * API name: {@code chunking_settings}
+		 */
+		public final BuilderT chunkingSettings(@Nullable InferenceChunkingSettings value) {
+			this.chunkingSettings = value;
+			return self();
+		}
+
+		/**
+		 * Chunking configuration object
+		 * <p>
+		 * API name: {@code chunking_settings}
+		 */
+		public final BuilderT chunkingSettings(
+				Function<InferenceChunkingSettings.Builder, ObjectBuilder<InferenceChunkingSettings>> fn) {
+			return this.chunkingSettings(fn.apply(new InferenceChunkingSettings.Builder()).build());
+		}
 
 		/**
 		 * Required - The service type
@@ -223,6 +265,7 @@ public class InferenceEndpoint implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupInferenceEndpointDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
+		op.add(AbstractBuilder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 		op.add(AbstractBuilder::service, JsonpDeserializer.stringDeserializer(), "service");
 		op.add(AbstractBuilder::serviceSettings, JsonData._DESERIALIZER, "service_settings");
 		op.add(AbstractBuilder::taskSettings, JsonData._DESERIALIZER, "task_settings");
