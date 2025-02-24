@@ -84,7 +84,11 @@ public class RecoveryRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean detailed;
 
+	private final List<String> h;
+
 	private final List<String> index;
+
+	private final List<String> s;
 
 	@Nullable
 	private final TimeUnit time;
@@ -96,7 +100,9 @@ public class RecoveryRequest extends CatRequestBase {
 		this.activeOnly = builder.activeOnly;
 		this.bytes = builder.bytes;
 		this.detailed = builder.detailed;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
 
 	}
@@ -137,6 +143,15 @@ public class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
+	}
+
+	/**
 	 * A comma-separated list of data streams, indices, and aliases used to limit
 	 * the request. Supports wildcards (<code>*</code>). To target all data streams
 	 * and indices, omit this parameter or use <code>*</code> or <code>_all</code>.
@@ -145,6 +160,17 @@ public class RecoveryRequest extends CatRequestBase {
 	 */
 	public final List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
 	}
 
 	/**
@@ -176,7 +202,13 @@ public class RecoveryRequest extends CatRequestBase {
 		private Boolean detailed;
 
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private List<String> s;
 
 		@Nullable
 		private TimeUnit time;
@@ -213,6 +245,30 @@ public class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
 		 * A comma-separated list of data streams, indices, and aliases used to limit
 		 * the request. Supports wildcards (<code>*</code>). To target all data streams
 		 * and indices, omit this parameter or use <code>*</code> or <code>_all</code>.
@@ -237,6 +293,34 @@ public class RecoveryRequest extends CatRequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
 
@@ -331,6 +415,9 @@ public class RecoveryRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
 				}
@@ -339,6 +426,9 @@ public class RecoveryRequest extends CatRequestBase {
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

@@ -77,10 +77,14 @@ public class TasksRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean detailed;
 
+	private final List<String> h;
+
 	private final List<String> nodes;
 
 	@Nullable
 	private final String parentTaskId;
+
+	private final List<String> s;
 
 	@Nullable
 	private final TimeUnit time;
@@ -97,8 +101,10 @@ public class TasksRequest extends CatRequestBase {
 
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
@@ -130,6 +136,15 @@ public class TasksRequest extends CatRequestBase {
 	}
 
 	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
+	}
+
+	/**
 	 * Unique node identifiers, which are used to limit the response.
 	 * <p>
 	 * API name: {@code nodes}
@@ -146,6 +161,17 @@ public class TasksRequest extends CatRequestBase {
 	@Nullable
 	public final String parentTaskId() {
 		return this.parentTaskId;
+	}
+
+	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
 	}
 
 	/**
@@ -193,10 +219,16 @@ public class TasksRequest extends CatRequestBase {
 		private Boolean detailed;
 
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private List<String> nodes;
 
 		@Nullable
 		private String parentTaskId;
+
+		@Nullable
+		private List<String> s;
 
 		@Nullable
 		private TimeUnit time;
@@ -243,6 +275,30 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
 		 * Unique node identifiers, which are used to limit the response.
 		 * <p>
 		 * API name: {@code nodes}
@@ -273,6 +329,34 @@ public class TasksRequest extends CatRequestBase {
 		 */
 		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
 
@@ -370,8 +454,14 @@ public class TasksRequest extends CatRequestBase {
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
 				}
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

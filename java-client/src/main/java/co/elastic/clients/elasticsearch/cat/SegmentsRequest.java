@@ -75,6 +75,8 @@ public class SegmentsRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
+	private final List<String> h;
+
 	private final List<String> index;
 
 	@Nullable
@@ -83,14 +85,18 @@ public class SegmentsRequest extends CatRequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
+	private final List<String> s;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SegmentsRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 
 	}
 
@@ -106,6 +112,15 @@ public class SegmentsRequest extends CatRequestBase {
 	@Nullable
 	public final Bytes bytes() {
 		return this.bytes;
+	}
+
+	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
 	}
 
 	/**
@@ -143,6 +158,17 @@ public class SegmentsRequest extends CatRequestBase {
 		return this.masterTimeout;
 	}
 
+	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -156,6 +182,9 @@ public class SegmentsRequest extends CatRequestBase {
 		private Bytes bytes;
 
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private List<String> index;
 
 		@Nullable
@@ -164,6 +193,9 @@ public class SegmentsRequest extends CatRequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		@Nullable
+		private List<String> s;
+
 		/**
 		 * The unit used to display byte values.
 		 * <p>
@@ -171,6 +203,30 @@ public class SegmentsRequest extends CatRequestBase {
 		 */
 		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
 			return this;
 		}
 
@@ -233,6 +289,34 @@ public class SegmentsRequest extends CatRequestBase {
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
+			return this;
 		}
 
 		@Override
@@ -319,8 +403,14 @@ public class SegmentsRequest extends CatRequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));

@@ -231,7 +231,7 @@ public class UpdateInferenceRequest extends RequestBase implements JsonpSerializ
 
 			// Request method
 			request -> {
-				return "POST";
+				return "PUT";
 
 			},
 
