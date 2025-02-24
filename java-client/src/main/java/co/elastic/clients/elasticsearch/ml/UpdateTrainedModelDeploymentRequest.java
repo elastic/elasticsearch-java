@@ -67,6 +67,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final AdaptiveAllocationsSettings adaptiveAllocations;
+
 	private final String modelId;
 
 	@Nullable
@@ -76,6 +79,7 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 
 	private UpdateTrainedModelDeploymentRequest(Builder builder) {
 
+		this.adaptiveAllocations = builder.adaptiveAllocations;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numberOfAllocations = builder.numberOfAllocations;
 
@@ -84,6 +88,18 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 	public static UpdateTrainedModelDeploymentRequest of(
 			Function<Builder, ObjectBuilder<UpdateTrainedModelDeploymentRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Adaptive allocations configuration. When enabled, the number of allocations
+	 * is set based on the current load. If adaptive_allocations is enabled, do not
+	 * set the number of allocations manually.
+	 * <p>
+	 * API name: {@code adaptive_allocations}
+	 */
+	@Nullable
+	public final AdaptiveAllocationsSettings adaptiveAllocations() {
+		return this.adaptiveAllocations;
 	}
 
 	/**
@@ -102,7 +118,8 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 	 * separate set of threads to evaluate the model. Increasing this value
 	 * generally increases the throughput. If this setting is greater than the
 	 * number of hardware threads it will automatically be changed to a value less
-	 * than the number of hardware threads.
+	 * than the number of hardware threads. If adaptive_allocations is enabled, do
+	 * not set this value, because it’s automatically set.
 	 * <p>
 	 * API name: {@code number_of_allocations}
 	 */
@@ -122,6 +139,11 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.adaptiveAllocations != null) {
+			generator.writeKey("adaptive_allocations");
+			this.adaptiveAllocations.serialize(generator, mapper);
+
+		}
 		if (this.numberOfAllocations != null) {
 			generator.writeKey("number_of_allocations");
 			generator.write(this.numberOfAllocations);
@@ -139,10 +161,37 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateTrainedModelDeploymentRequest> {
+		@Nullable
+		private AdaptiveAllocationsSettings adaptiveAllocations;
+
 		private String modelId;
 
 		@Nullable
 		private Integer numberOfAllocations;
+
+		/**
+		 * Adaptive allocations configuration. When enabled, the number of allocations
+		 * is set based on the current load. If adaptive_allocations is enabled, do not
+		 * set the number of allocations manually.
+		 * <p>
+		 * API name: {@code adaptive_allocations}
+		 */
+		public final Builder adaptiveAllocations(@Nullable AdaptiveAllocationsSettings value) {
+			this.adaptiveAllocations = value;
+			return this;
+		}
+
+		/**
+		 * Adaptive allocations configuration. When enabled, the number of allocations
+		 * is set based on the current load. If adaptive_allocations is enabled, do not
+		 * set the number of allocations manually.
+		 * <p>
+		 * API name: {@code adaptive_allocations}
+		 */
+		public final Builder adaptiveAllocations(
+				Function<AdaptiveAllocationsSettings.Builder, ObjectBuilder<AdaptiveAllocationsSettings>> fn) {
+			return this.adaptiveAllocations(fn.apply(new AdaptiveAllocationsSettings.Builder()).build());
+		}
 
 		/**
 		 * Required - The unique identifier of the trained model. Currently, only
@@ -161,7 +210,8 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 		 * separate set of threads to evaluate the model. Increasing this value
 		 * generally increases the throughput. If this setting is greater than the
 		 * number of hardware threads it will automatically be changed to a value less
-		 * than the number of hardware threads.
+		 * than the number of hardware threads. If adaptive_allocations is enabled, do
+		 * not set this value, because it’s automatically set.
 		 * <p>
 		 * API name: {@code number_of_allocations}
 		 */
@@ -200,6 +250,7 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 	protected static void setupUpdateTrainedModelDeploymentRequestDeserializer(
 			ObjectDeserializer<UpdateTrainedModelDeploymentRequest.Builder> op) {
 
+		op.add(Builder::adaptiveAllocations, AdaptiveAllocationsSettings._DESERIALIZER, "adaptive_allocations");
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 
 	}

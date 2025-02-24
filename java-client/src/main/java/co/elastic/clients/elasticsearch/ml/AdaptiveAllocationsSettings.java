@@ -84,13 +84,18 @@ public class AdaptiveAllocationsSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code enabled}
+	 * Required - If true, adaptive_allocations is enabled
+	 * <p>
+	 * API name: {@code enabled}
 	 */
 	public final boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
+	 * Specifies the minimum number of allocations to scale to. If set, it must be
+	 * greater than or equal to 0. If not defined, the deployment scales to 0.
+	 * <p>
 	 * API name: {@code min_number_of_allocations}
 	 */
 	@Nullable
@@ -99,6 +104,9 @@ public class AdaptiveAllocationsSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies the maximum number of allocations to scale to. If set, it must be
+	 * greater than or equal to min_number_of_allocations.
+	 * <p>
 	 * API name: {@code max_number_of_allocations}
 	 */
 	@Nullable
@@ -156,7 +164,9 @@ public class AdaptiveAllocationsSettings implements JsonpSerializable {
 		private Integer maxNumberOfAllocations;
 
 		/**
-		 * Required - API name: {@code enabled}
+		 * Required - If true, adaptive_allocations is enabled
+		 * <p>
+		 * API name: {@code enabled}
 		 */
 		public final Builder enabled(boolean value) {
 			this.enabled = value;
@@ -164,6 +174,9 @@ public class AdaptiveAllocationsSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies the minimum number of allocations to scale to. If set, it must be
+		 * greater than or equal to 0. If not defined, the deployment scales to 0.
+		 * <p>
 		 * API name: {@code min_number_of_allocations}
 		 */
 		public final Builder minNumberOfAllocations(@Nullable Integer value) {
@@ -172,6 +185,9 @@ public class AdaptiveAllocationsSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies the maximum number of allocations to scale to. If set, it must be
+		 * greater than or equal to min_number_of_allocations.
+		 * <p>
 		 * API name: {@code max_number_of_allocations}
 		 */
 		public final Builder maxNumberOfAllocations(@Nullable Integer value) {

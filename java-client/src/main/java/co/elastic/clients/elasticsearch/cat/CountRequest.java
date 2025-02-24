@@ -71,18 +71,33 @@ import javax.annotation.Nullable;
  */
 
 public class CountRequest extends CatRequestBase {
+	private final List<String> h;
+
 	private final List<String> index;
+
+	private final List<String> s;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private CountRequest(Builder builder) {
 
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 
 	}
 
 	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
 	}
 
 	/**
@@ -97,6 +112,17 @@ public class CountRequest extends CatRequestBase {
 		return this.index;
 	}
 
+	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -105,7 +131,37 @@ public class CountRequest extends CatRequestBase {
 
 	public static class Builder extends CatRequestBase.AbstractBuilder<Builder> implements ObjectBuilder<CountRequest> {
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private List<String> s;
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of data streams, indices, and aliases used to limit
@@ -134,6 +190,34 @@ public class CountRequest extends CatRequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
 
@@ -218,6 +302,12 @@ public class CountRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);

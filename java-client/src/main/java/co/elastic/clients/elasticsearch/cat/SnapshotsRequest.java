@@ -72,6 +72,8 @@ import javax.annotation.Nullable;
  */
 
 public class SnapshotsRequest extends CatRequestBase {
+	private final List<String> h;
+
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
@@ -80,6 +82,8 @@ public class SnapshotsRequest extends CatRequestBase {
 
 	private final List<String> repository;
 
+	private final List<String> s;
+
 	@Nullable
 	private final TimeUnit time;
 
@@ -87,15 +91,26 @@ public class SnapshotsRequest extends CatRequestBase {
 
 	private SnapshotsRequest(Builder builder) {
 
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.repository = ApiTypeHelper.unmodifiable(builder.repository);
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
 
 	}
 
 	public static SnapshotsRequest of(Function<Builder, ObjectBuilder<SnapshotsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * List of columns to appear in the response. Supports simple wildcards.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<String> h() {
+		return this.h;
 	}
 
 	/**
@@ -131,6 +146,17 @@ public class SnapshotsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * List of columns that determine how the table should be sorted. Sorting
+	 * defaults to ascending and can be changed by setting <code>:asc</code> or
+	 * <code>:desc</code> as a suffix to the column name.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<String> s() {
+		return this.s;
+	}
+
+	/**
 	 * Unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
@@ -150,6 +176,9 @@ public class SnapshotsRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<SnapshotsRequest> {
 		@Nullable
+		private List<String> h;
+
+		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
@@ -159,7 +188,34 @@ public class SnapshotsRequest extends CatRequestBase {
 		private List<String> repository;
 
 		@Nullable
+		private List<String> s;
+
+		@Nullable
 		private TimeUnit time;
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<String> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * List of columns to appear in the response. Supports simple wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(String value, String... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
 
 		/**
 		 * If <code>true</code>, the response does not include information from
@@ -216,6 +272,34 @@ public class SnapshotsRequest extends CatRequestBase {
 		 */
 		public final Builder repository(String value, String... values) {
 			this.repository = _listAdd(this.repository, value, values);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<String> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * List of columns that determine how the table should be sorted. Sorting
+		 * defaults to ascending and can be changed by setting <code>:asc</code> or
+		 * <code>:desc</code> as a suffix to the column name.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(String value, String... values) {
+			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
 
@@ -314,8 +398,14 @@ public class SnapshotsRequest extends CatRequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -64,8 +66,11 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#ml.start_trained_model_deployment.Request">API
  *      specification</a>
  */
+@JsonpDeserializable
+public class StartTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final AdaptiveAllocationsSettings adaptiveAllocations;
 
-public class StartTrainedModelDeploymentRequest extends RequestBase {
 	@Nullable
 	private final String cacheSize;
 
@@ -96,6 +101,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 
 	private StartTrainedModelDeploymentRequest(Builder builder) {
 
+		this.adaptiveAllocations = builder.adaptiveAllocations;
 		this.cacheSize = builder.cacheSize;
 		this.deploymentId = builder.deploymentId;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
@@ -111,6 +117,18 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	public static StartTrainedModelDeploymentRequest of(
 			Function<Builder, ObjectBuilder<StartTrainedModelDeploymentRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Adaptive allocations configuration. When enabled, the number of allocations
+	 * is set based on the current load. If adaptive_allocations is enabled, do not
+	 * set the number of allocations manually.
+	 * <p>
+	 * API name: {@code adaptive_allocations}
+	 */
+	@Nullable
+	public final AdaptiveAllocationsSettings adaptiveAllocations() {
+		return this.adaptiveAllocations;
 	}
 
 	/**
@@ -152,7 +170,8 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	 * separate set of threads to evaluate the model. Increasing this value
 	 * generally increases the throughput. If this setting is greater than the
 	 * number of hardware threads it will automatically be changed to a value less
-	 * than the number of hardware threads.
+	 * than the number of hardware threads. If adaptive_allocations is enabled, do
+	 * not set this value, because it’s automatically set.
 	 * <p>
 	 * API name: {@code number_of_allocations}
 	 */
@@ -218,6 +237,25 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		return this.waitFor;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.adaptiveAllocations != null) {
+			generator.writeKey("adaptive_allocations");
+			this.adaptiveAllocations.serialize(generator, mapper);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -227,6 +265,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StartTrainedModelDeploymentRequest> {
+		@Nullable
+		private AdaptiveAllocationsSettings adaptiveAllocations;
+
 		@Nullable
 		private String cacheSize;
 
@@ -252,6 +293,30 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 
 		@Nullable
 		private DeploymentAllocationState waitFor;
+
+		/**
+		 * Adaptive allocations configuration. When enabled, the number of allocations
+		 * is set based on the current load. If adaptive_allocations is enabled, do not
+		 * set the number of allocations manually.
+		 * <p>
+		 * API name: {@code adaptive_allocations}
+		 */
+		public final Builder adaptiveAllocations(@Nullable AdaptiveAllocationsSettings value) {
+			this.adaptiveAllocations = value;
+			return this;
+		}
+
+		/**
+		 * Adaptive allocations configuration. When enabled, the number of allocations
+		 * is set based on the current load. If adaptive_allocations is enabled, do not
+		 * set the number of allocations manually.
+		 * <p>
+		 * API name: {@code adaptive_allocations}
+		 */
+		public final Builder adaptiveAllocations(
+				Function<AdaptiveAllocationsSettings.Builder, ObjectBuilder<AdaptiveAllocationsSettings>> fn) {
+			return this.adaptiveAllocations(fn.apply(new AdaptiveAllocationsSettings.Builder()).build());
+		}
 
 		/**
 		 * The inference cache size (in memory outside the JVM heap) per node for the
@@ -293,7 +358,8 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		 * separate set of threads to evaluate the model. Increasing this value
 		 * generally increases the throughput. If this setting is greater than the
 		 * number of hardware threads it will automatically be changed to a value less
-		 * than the number of hardware threads.
+		 * than the number of hardware threads. If adaptive_allocations is enabled, do
+		 * not set this value, because it’s automatically set.
 		 * <p>
 		 * API name: {@code number_of_allocations}
 		 */
@@ -389,6 +455,22 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
+	 * Json deserializer for {@link StartTrainedModelDeploymentRequest}
+	 */
+	public static final JsonpDeserializer<StartTrainedModelDeploymentRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					StartTrainedModelDeploymentRequest::setupStartTrainedModelDeploymentRequestDeserializer);
+
+	protected static void setupStartTrainedModelDeploymentRequestDeserializer(
+			ObjectDeserializer<StartTrainedModelDeploymentRequest.Builder> op) {
+
+		op.add(Builder::adaptiveAllocations, AdaptiveAllocationsSettings._DESERIALIZER, "adaptive_allocations");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
 	 * Endpoint "{@code ml.start_trained_model_deployment}".
 	 */
 	public static final Endpoint<StartTrainedModelDeploymentRequest, StartTrainedModelDeploymentResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
@@ -466,5 +548,5 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, StartTrainedModelDeploymentResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StartTrainedModelDeploymentResponse._DESERIALIZER);
 }
