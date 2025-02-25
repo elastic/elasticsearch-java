@@ -111,6 +111,10 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             instrumentation = NoopInstrumentation.INSTANCE;
         }
         this.instrumentation = instrumentation;
+
+        if (this.transportOptions.backoffPolicy()!=BackoffPolicy.noBackoff()){
+
+        }
     }
 
     @Override
