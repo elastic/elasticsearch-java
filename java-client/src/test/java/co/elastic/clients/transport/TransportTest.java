@@ -122,7 +122,7 @@ public class TransportTest extends Assertions {
         assertNotEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
         // setting transport option
-        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true);
+        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true,BackoffPolicy.noBackoff());
 
         ElasticsearchTransport transport = new RestClientTransport(
             restClient, new JacksonJsonpMapper(), options);
