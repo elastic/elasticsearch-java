@@ -49,4 +49,3 @@ signing.secretKeyRingFile=${keyring_file}
 ossrhUsername=${maven_username}
 ossrhPassword=${maven_password}
 EOF
-

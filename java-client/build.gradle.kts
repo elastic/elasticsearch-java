@@ -64,8 +64,8 @@ tasks.getByName<ProcessResources>("processResources") {
         if (name != "apis.json") {
             // Only process main source-set resources (test files are large)
             expand(
-                    "version" to version,
-                    "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")
+                "version" to version,
+                "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")
             )
         }
     }
@@ -140,8 +140,14 @@ publishing {
             name = "MavenCentralSnapshot"
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             credentials {
-                username = providers.gradleProperty("ossrhUsername").get()
-                password = providers.gradleProperty("ossrhPassword").get()
+                run {
+                    if (gradle.startParameter.taskNames.find { it.contains("ToMavenCentralSnapshotRepository") } != null) {
+                        if (!providers.gradleProperty("ossrhUsername").isPresent) logger.error("ossrhUsername not set")
+                        if (!providers.gradleProperty("ossrhPassword").isPresent) logger.error("ossrhPassword not set")
+                    }
+                }
+                username = providers.gradleProperty("ossrhUsername").orNull
+                password = providers.gradleProperty("ossrhPassword").orNull
             }
         }
     }
@@ -180,7 +186,7 @@ publishing {
                     // are the same as the one used in the dependency section below.
                     val xPathFactory = javax.xml.xpath.XPathFactory.newInstance()
                     val depSelector = xPathFactory.newXPath()
-                            .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
+                        .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
                     val versionSelector = xPathFactory.newXPath().compile("version")
 
                     var foundVersion = false;
@@ -289,15 +295,15 @@ licenseReport {
 class SpdxReporter(val dest: File) : ReportRenderer {
     // License names to their SPDX identifier
     val spdxIds = mapOf(
-            "The Apache License, Version 2.0" to "Apache-2.0",
-            "Apache License, Version 2.0" to "Apache-2.0",
-            "The Apache Software License, Version 2.0" to "Apache-2.0",
-            "BSD Zero Clause License" to "0BSD",
-            "Eclipse Public License 2.0" to "EPL-2.0",
-            "Eclipse Public License v. 2.0" to "EPL-2.0",
-            "Eclipse Public License - v 2.0" to "EPL-2.0",
-            "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
-            "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
+        "The Apache License, Version 2.0" to "Apache-2.0",
+        "Apache License, Version 2.0" to "Apache-2.0",
+        "The Apache Software License, Version 2.0" to "Apache-2.0",
+        "BSD Zero Clause License" to "0BSD",
+        "Eclipse Public License 2.0" to "EPL-2.0",
+        "Eclipse Public License v. 2.0" to "EPL-2.0",
+        "Eclipse Public License - v 2.0" to "EPL-2.0",
+        "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
+        "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
     )
 
     private fun quote(str: String): String {
