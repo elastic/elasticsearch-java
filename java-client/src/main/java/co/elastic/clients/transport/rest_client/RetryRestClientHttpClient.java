@@ -35,27 +35,48 @@ public class RetryRestClientHttpClient implements TransportHttpClient {
                 // synchronous retry
                 if (backoffIter.hasNext()) {
                     try {
-                        Thread.sleep(backoffIter.next()); // TODO ... no
+                        Thread.sleep(backoffIter.next()); // TODO ... no?
                     } catch (InterruptedException ie) {
                     }
                     System.out.println("Retrying");
                     return performRequestRetry(endpointId, node, request, options, backoffIter);
                 }
-                else {
-                    // retries finished
-                    throw e;
-                }
-            } else {
-                // error not retryable
-                throw e;
             }
+            // error not retryable
+            throw e;
         }
     }
 
     @Override
     public CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node,
                                                            Request request, TransportOptions options) {
-        return delegate.performRequestAsync(endpointId, node, request, options);
+        return performRequestAsyncRetry(endpointId, node, request, options, backoffPolicy.iterator());
+    }
+
+    public CompletableFuture<Response> performRequestAsyncRetry(String endpointId, @Nullable Node node,
+                                                                Request request,
+                                                                TransportOptions options,
+                                                                Iterator<Long> backoffIter) {
+        CompletableFuture<Response> fut = delegate.performRequestAsync(endpointId, node, request, options);
+        try {
+            fut.get(); // TODO is this problematic?
+            return fut;
+        } catch (Exception e) {
+            if (e.getCause() instanceof ResponseException) {
+                if (((ResponseException) e.getCause()).getResponse().getStatusLine().getStatusCode() == 503) { // TODO list of statuses
+                    if (backoffIter.hasNext()) {
+                        try {
+                            Thread.sleep(backoffIter.next()); // TODO ... no?
+                        } catch (InterruptedException ie) {
+                            fut.completeExceptionally(e); // TODO masking internal errors and just returning original error okay?
+                        }
+                        System.out.println("Retrying");
+                        return performRequestAsyncRetry(endpointId, node, request, options, backoffIter);
+                    }
+                }
+            }
+            return fut;
+        }
     }
 
     @Override

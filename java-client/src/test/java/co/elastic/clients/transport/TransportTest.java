@@ -19,19 +19,18 @@
 
 package co.elastic.clients.transport;
 
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.cat.IndicesResponse;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
-import co.elastic.clients.transport.rest_client.RetryRestClientHttpClient;
 import co.elastic.clients.util.BinaryData;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
-import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -42,8 +41,8 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static co.elastic.clients.util.ContentType.APPLICATION_JSON;
@@ -172,7 +171,7 @@ public class TransportTest extends Assertions {
             exchange.getResponseHeaders().put("Content-Type", Collections.singletonList(APPLICATION_JSON));
             exchange.getResponseHeaders().put("X-Elastic-Product", Collections.singletonList("Elasticsearch"
             ));
-            if (errorCounter.get()>6){
+            if (errorCounter.get() > 6) {
                 exchange.sendResponseHeaders(200, 0);
                 OutputStream out = exchange.getResponseBody();
                 String jsonRes = "  [{\n" +
@@ -190,8 +189,7 @@ public class TransportTest extends Assertions {
                     "  }]";
                 out.write(jsonRes.getBytes(StandardCharsets.UTF_8));
                 out.close();
-            }
-            else {
+            } else {
                 exchange.sendResponseHeaders(503, 0);
                 OutputStream out = exchange.getResponseBody();
                 out.write("{}".getBytes(StandardCharsets.UTF_8));
@@ -209,7 +207,7 @@ public class TransportTest extends Assertions {
 
         // setting transport option
         RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, false,
-            BackoffPolicy.constantBackoff(50L,8));
+            BackoffPolicy.constantBackoff(50L, 8));
 
         ElasticsearchTransport transport = new RestClientTransport(
             restClient, new JacksonJsonpMapper(), options);
@@ -221,6 +219,72 @@ public class TransportTest extends Assertions {
         httpServer.stop(0);
 
         assertTrue(errorCounter.get() == 7);
+        assertEquals("test", res.valueBody().get(0).index());
+    }
+
+    @Test
+    public void testRetryClientAsync() throws Exception {
+        HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(),
+            0), 0);
+
+        // server will return success after 7 retries
+        AtomicInteger errorCounter = new AtomicInteger();
+
+        httpServer.createContext("/_cat/indices", exchange -> {
+            exchange.getResponseHeaders().put("Content-Type", Collections.singletonList(APPLICATION_JSON));
+            exchange.getResponseHeaders().put("X-Elastic-Product", Collections.singletonList("Elasticsearch"
+            ));
+            if (errorCounter.get() > 6) {
+                exchange.sendResponseHeaders(200, 0);
+                OutputStream out = exchange.getResponseBody();
+                String jsonRes = "  [{\n" +
+                    "    \"health\": \"green\",\n" +
+                    "    \"status\": \"open\",\n" +
+                    "    \"index\": \"test\",\n" +
+                    "    \"uuid\": \"3iSkOlZAQVq2ir1hOtaVlw\",\n" +
+                    "    \"pri\": \"1\",\n" +
+                    "    \"rep\": \"1\",\n" +
+                    "    \"docs.count\": \"5\",\n" +
+                    "    \"docs.deleted\": \"0\",\n" +
+                    "    \"store.size\": \"8.8kb\",\n" +
+                    "    \"pri.store.size\": \"4.4kb\",\n" +
+                    "    \"dataset.size\": \"4.4kb\"\n" +
+                    "  }]";
+                out.write(jsonRes.getBytes(StandardCharsets.UTF_8));
+                out.close();
+            } else {
+                exchange.sendResponseHeaders(503, 0);
+                OutputStream out = exchange.getResponseBody();
+                out.write("{}".getBytes(StandardCharsets.UTF_8));
+                out.close();
+                errorCounter.incrementAndGet();
+            }
+        });
+
+        httpServer.start();
+        InetSocketAddress address = httpServer.getAddress();
+
+        RestClient restClient = RestClient
+            .builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
+            .build();
+
+        // setting transport option
+        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, false,
+            BackoffPolicy.constantBackoff(50L, 8));
+
+        ElasticsearchTransport transport = new RestClientTransport(
+            restClient, new JacksonJsonpMapper(), options);
+
+        ElasticsearchAsyncClient esClient = new ElasticsearchAsyncClient(transport);
+
+        CompletableFuture<IndicesResponse> fut = esClient.cat().indices();
+
+        IndicesResponse res = fut.get();
+
+        httpServer.stop(0);
+
+        assertTrue(errorCounter.get() == 7);
+        assertTrue(fut.isDone());
         assertEquals("test", res.valueBody().get(0).index());
     }
 }
