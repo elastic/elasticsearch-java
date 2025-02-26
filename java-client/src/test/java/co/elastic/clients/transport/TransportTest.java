@@ -20,15 +20,18 @@
 package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.cat.IndicesResponse;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.rest_client.RetryRestClientHttpClient;
 import co.elastic.clients.util.BinaryData;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
+import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -39,7 +42,9 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static co.elastic.clients.util.ContentType.APPLICATION_JSON;
 
@@ -122,7 +127,8 @@ public class TransportTest extends Assertions {
         assertNotEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
         // setting transport option
-        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true,BackoffPolicy.noBackoff());
+        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true,
+            BackoffPolicy.noBackoff());
 
         ElasticsearchTransport transport = new RestClientTransport(
             restClient, new JacksonJsonpMapper(), options);
@@ -139,17 +145,82 @@ public class TransportTest extends Assertions {
         assertEquals(200, ex.statusCode());
         assertEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
-        try (RepeatableBodyResponse repeatableResponse = (RepeatableBodyResponse) ex.response()){
+        try (RepeatableBodyResponse repeatableResponse = (RepeatableBodyResponse) ex.response()) {
             BinaryData body = repeatableResponse.body();
-                StringBuilder sb = new StringBuilder();
-                BufferedReader br = new BufferedReader(new InputStreamReader(body.asInputStream()));
-                String read;
+            StringBuilder sb = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(body.asInputStream()));
+            String read;
 
-                while ((read = br.readLine()) != null) {
-                    sb.append(read);
-                }
-                br.close();
-            assertEquals("definitely not json",sb.toString());
+            while ((read = br.readLine()) != null) {
+                sb.append(read);
+            }
+            br.close();
+            assertEquals("definitely not json", sb.toString());
         }
+    }
+
+
+    @Test
+    public void testRetryClientSync() throws Exception {
+        HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(),
+            0), 0);
+
+        // server will return success after 7 retries
+        AtomicInteger errorCounter = new AtomicInteger();
+
+        httpServer.createContext("/_cat/indices", exchange -> {
+            exchange.getResponseHeaders().put("Content-Type", Collections.singletonList(APPLICATION_JSON));
+            exchange.getResponseHeaders().put("X-Elastic-Product", Collections.singletonList("Elasticsearch"
+            ));
+            if (errorCounter.get()>6){
+                exchange.sendResponseHeaders(200, 0);
+                OutputStream out = exchange.getResponseBody();
+                String jsonRes = "  [{\n" +
+                    "    \"health\": \"green\",\n" +
+                    "    \"status\": \"open\",\n" +
+                    "    \"index\": \"test\",\n" +
+                    "    \"uuid\": \"3iSkOlZAQVq2ir1hOtaVlw\",\n" +
+                    "    \"pri\": \"1\",\n" +
+                    "    \"rep\": \"1\",\n" +
+                    "    \"docs.count\": \"5\",\n" +
+                    "    \"docs.deleted\": \"0\",\n" +
+                    "    \"store.size\": \"8.8kb\",\n" +
+                    "    \"pri.store.size\": \"4.4kb\",\n" +
+                    "    \"dataset.size\": \"4.4kb\"\n" +
+                    "  }]";
+                out.write(jsonRes.getBytes(StandardCharsets.UTF_8));
+                out.close();
+            }
+            else {
+                exchange.sendResponseHeaders(503, 0);
+                OutputStream out = exchange.getResponseBody();
+                out.write("{}".getBytes(StandardCharsets.UTF_8));
+                out.close();
+                errorCounter.incrementAndGet();
+            }
+        });
+
+        httpServer.start();
+        InetSocketAddress address = httpServer.getAddress();
+
+        RestClient restClient = RestClient
+            .builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
+            .build();
+
+        // setting transport option
+        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, false,
+            BackoffPolicy.constantBackoff(50L,8));
+
+        ElasticsearchTransport transport = new RestClientTransport(
+            restClient, new JacksonJsonpMapper(), options);
+
+        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+
+        IndicesResponse res = esClient.cat().indices();
+
+        httpServer.stop(0);
+
+        assertTrue(errorCounter.get() == 7);
+        assertEquals("test", res.valueBody().get(0).index());
     }
 }
