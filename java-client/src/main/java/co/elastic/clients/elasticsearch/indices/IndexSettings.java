@@ -32,6 +32,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -113,6 +114,8 @@ public class IndexSettings implements JsonpSerializable {
 
 	@Nullable
 	private final String autoExpandReplicas;
+
+	private final boolean isExpNullAutoExpandReplicas;
 
 	@Nullable
 	private final Merge merge;
@@ -259,6 +262,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.loadFixedBitsetFiltersEagerly = builder.loadFixedBitsetFiltersEagerly;
 		this.hidden = builder.hidden;
 		this.autoExpandReplicas = builder.autoExpandReplicas;
+		this.isExpNullAutoExpandReplicas = builder.isExpNullAutoExpandReplicas;
 		this.merge = builder.merge;
 		this.search = builder.search;
 		this.refreshInterval = builder.refreshInterval;
@@ -868,6 +872,12 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.autoExpandReplicas);
 
 		}
+
+		else if (isExpNullAutoExpandReplicas) {
+			generator.writeKey("auto_expand_replicas");
+			generator.write(JsonValue.NULL);
+
+		}
 		if (this.merge != null) {
 			generator.writeKey("merge");
 			this.merge.serialize(generator, mapper);
@@ -1169,6 +1179,8 @@ public class IndexSettings implements JsonpSerializable {
 		@Nullable
 		private String autoExpandReplicas;
 
+		private boolean isExpNullAutoExpandReplicas;
+
 		@Nullable
 		private Merge merge;
 
@@ -1437,6 +1449,16 @@ public class IndexSettings implements JsonpSerializable {
 		 */
 		public final Builder autoExpandReplicas(@Nullable String value) {
 			this.autoExpandReplicas = value;
+			this.isExpNullAutoExpandReplicas = false;
+			return this;
+		}
+
+		/**
+		 * API name: {@code auto_expand_replicas}
+		 */
+		public final Builder autoExpandReplicasWithNull() {
+			this.isExpNullAutoExpandReplicas = true;
+			this.autoExpandReplicas = null;
 			return this;
 		}
 
