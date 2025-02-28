@@ -5,7 +5,7 @@ mapped_pages:
 
 # Package structure and namespace clients [package-structure]
 
-The {{es}} API is large and is organized into feature groups, as can be seen in the [{{es}} API documentation](elasticsearch://docs/reference/elasticsearch/rest-apis/index.md).
+The {{es}} API is large and is organized into feature groups, as can be seen in the [{{es}} API documentation](elasticsearch://reference/elasticsearch/rest-apis/index.md).
 
 The Java API Client follows this structure: feature groups are called “namespaces”, and each namespace is located in a subpackage of `co.elastic.clients.elasticsearch`.
 
