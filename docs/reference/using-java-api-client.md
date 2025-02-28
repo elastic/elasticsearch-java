@@ -7,7 +7,7 @@ mapped_pages:
 
 The sections below provide tutorials on the most frequently used and some less obvious features of {{es}}.
 
-For a full reference, see the [Elasticsearch documentation](docs-content://get-started/index.md) and in particular the [REST APIs](elasticsearch://docs/reference/elasticsearch/rest-apis/index.md) section. The Java API Client follows closely the JSON structures described there, using the [Java API conventions](/reference/api-conventions.md).
+For a full reference, see the [Elasticsearch documentation](docs-content://get-started/index.md) and in particular the [REST APIs](elasticsearch://reference/elasticsearch/rest-apis/index.md) section. The Java API Client follows closely the JSON structures described there, using the [Java API conventions](/reference/api-conventions.md).
 
 If you’re new to Elasticsearch, make sure also to read [Elasticsearch’s quick start](docs-content://solutions/search/get-started.md) that provides a good introduction.
 

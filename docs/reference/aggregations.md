@@ -8,7 +8,7 @@ mapped_pages:
 An aggregation summarizes your data as metrics, statistics, or other analytics.
 
 ::::{note}
-See the [{{es}} documentation](elasticsearch://docs/reference/data-analysis/aggregations/index.md) for a full explanation of aggregations.
+See the [{{es}} documentation](elasticsearch://reference/data-analysis/aggregations/index.md) for a full explanation of aggregations.
 ::::
 
 
