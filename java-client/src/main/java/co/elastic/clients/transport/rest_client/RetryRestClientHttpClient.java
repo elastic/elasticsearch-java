@@ -31,12 +31,13 @@ public class RetryRestClientHttpClient implements TransportHttpClient {
         try {
             return delegate.performRequest(endpointId, node, request, options);
         } catch (ResponseException e) {
-            if (e.getResponse().getStatusLine().getStatusCode() == 503) { // TODO list of statuses
+            if (e.getResponse().getStatusLine().getStatusCode() == 503) { // TODO list of statuses, configurable or hardcoded?
                 // synchronous retry
                 if (backoffIter.hasNext()) {
                     try {
-                        Thread.sleep(backoffIter.next()); // TODO ... no?
+                        Thread.sleep(backoffIter.next());
                     } catch (InterruptedException ie) {
+                        throw e; // TODO okay with masking IE and just returning original exception?
                     }
                     System.out.println("Retrying");
                     return performRequestRetry(endpointId, node, request, options, backoffIter);
@@ -50,33 +51,41 @@ public class RetryRestClientHttpClient implements TransportHttpClient {
     @Override
     public CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node,
                                                            Request request, TransportOptions options) {
-        return performRequestAsyncRetry(endpointId, node, request, options, backoffPolicy.iterator());
+        RequestFuture<Response> futureResult = new RequestFuture<>();
+        return performRequestAsyncRetry(endpointId, node, request, options, backoffPolicy.iterator(),
+            futureResult);
     }
 
     public CompletableFuture<Response> performRequestAsyncRetry(String endpointId, @Nullable Node node,
                                                                 Request request,
                                                                 TransportOptions options,
-                                                                Iterator<Long> backoffIter) {
-        CompletableFuture<Response> fut = delegate.performRequestAsync(endpointId, node, request, options);
-        try {
-            fut.get(); // TODO is this problematic?
-            return fut;
-        } catch (Exception e) {
-            if (e.getCause() instanceof ResponseException) {
-                if (((ResponseException) e.getCause()).getResponse().getStatusLine().getStatusCode() == 503) { // TODO list of statuses
-                    if (backoffIter.hasNext()) {
-                        try {
-                            Thread.sleep(backoffIter.next()); // TODO ... no?
-                        } catch (InterruptedException ie) {
-                            fut.completeExceptionally(e); // TODO masking internal errors and just returning original error okay?
+                                                                Iterator<Long> backoffIter,
+                                                                CompletableFuture<Response> futureResult) {
+        CompletableFuture<Response> res = delegate.performRequestAsync(endpointId, node, request, options);
+
+        res.whenComplete((resp, e) -> {
+            if (e != null) {
+                if (e instanceof ResponseException) {
+                    if (((ResponseException) e).getResponse().getStatusLine().getStatusCode() == 503) { // TODO list of statuses, configurable or hardcoded?
+                        if (backoffIter.hasNext()) {
+                            try {
+                                Thread.sleep(backoffIter.next());
+                            } catch (InterruptedException ie) {
+                                // TODO okay with masking IE and just returning original exception?
+                                futureResult.completeExceptionally(e);
+                            }
+                            System.out.println("Retrying");
+                            performRequestAsyncRetry(endpointId, node, request, options, backoffIter,futureResult);
                         }
-                        System.out.println("Retrying");
-                        return performRequestAsyncRetry(endpointId, node, request, options, backoffIter);
                     }
                 }
             }
-            return fut;
-        }
+            else {
+                futureResult.complete(resp);
+            }
+        });
+
+        return futureResult;
     }
 
     @Override

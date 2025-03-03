@@ -49,23 +49,6 @@ public class RestClientHttpClient implements TransportHttpClient {
 
     private static final ConcurrentHashMap<String, ContentType> ContentTypeCache = new ConcurrentHashMap<>();
 
-    /**
-     * The {@code Future} implementation returned by async requests.
-     * It wraps the RestClient's cancellable and propagates cancellation.
-     */
-    private static class RequestFuture<T> extends CompletableFuture<T> {
-        private volatile Cancellable cancellable;
-
-        @Override
-        public boolean cancel(boolean mayInterruptIfRunning) {
-            boolean cancelled = super.cancel(mayInterruptIfRunning);
-            if (cancelled && cancellable != null) {
-                cancellable.cancel();
-            }
-            return cancelled;
-        }
-    }
-
     private final RestClient restClient;
 
     public RestClientHttpClient(RestClient restClient) {
@@ -110,7 +93,7 @@ public class RestClientHttpClient implements TransportHttpClient {
             return future;
         }
 
-        future.cancellable = restClient.performRequestAsync(restRequest, new ResponseListener() {
+        future.setCancellable(restClient.performRequestAsync(restRequest, new ResponseListener() {
             @Override
             public void onSuccess(org.elasticsearch.client.Response response) {
                 future.complete(new RestResponse(response));
@@ -120,7 +103,7 @@ public class RestClientHttpClient implements TransportHttpClient {
             public void onFailure(Exception exception) {
                 future.completeExceptionally(exception);
             }
-        });
+        }));
 
         return future;
     }
