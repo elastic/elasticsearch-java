@@ -34,6 +34,7 @@ import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
+import co.elastic.clients.transport.rest_client.RetryRestClientHttpClient;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.ByteArrayBinaryData;
@@ -100,8 +101,14 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         @Nullable Instrumentation instrumentation
     ) {
         this.mapper = jsonpMapper;
-        this.httpClient = httpClient;
         this.transportOptions = httpClient.createOptions(options);
+
+        if (this.transportOptions.backoffPolicy()!=BackoffPolicy.noBackoff()){
+            this.httpClient = new RetryRestClientHttpClient(httpClient,this.transportOptions.backoffPolicy());
+        }
+        else {
+            this.httpClient = httpClient;
+        }
 
         // If no instrumentation is provided, fallback to OpenTelemetry and ultimately noop
         if (instrumentation == null) {
