@@ -1,0 +1,62 @@
+toc:
+  - file: index.md
+  # TO DO: Do we want these to be separate pages?
+  - file: getting-started.md
+  - file: getting-started-serverless.md
+  # - file: elasticsearch/serverless/getting-started-3.md
+  - file: setup.md
+    children:
+      - file: installation.md
+      - file: connecting.md
+      - file: migrate-hlrc.md
+      - file: opentelemetry.md
+  - file: api-conventions.md
+    children:
+      - file: package-structure.md
+      - file: method-naming.md
+      - file: blocking-async.md
+      - file: building-objects.md
+      - file: lists-maps.md
+      - file: variant-types.md
+      - file: object-lifecycles.md
+      - file: loading-json.md
+      - file: exception-conventions.md
+  - file: using-java-api-client.md
+    children:
+      - file: esql.md
+      - file: indexing.md
+      - file: indexing-bulk.md
+      - file: reading.md
+      - file: searching.md
+      - file: aggregations.md
+  - file: javadoc-source-code.md
+  - file: external-resources.md
+  - file: java-low-level-rest-client.md
+    children:
+      - file: java-rest-low-usage.md
+        children:
+          - file: java-rest-low-javadoc.md
+          - file: java-rest-low-usage-maven.md
+          - file: java-rest-low-usage-dependencies.md
+          - file: java-rest-low-usage-shading.md
+          - file: java-rest-low-usage-initialization.md
+          - file: java-rest-low-usage-requests.md
+          - file: java-rest-low-usage-responses.md
+          - file: java-rest-low-usage-logging.md
+      - file: java-rest-low-config.md
+        children:
+          - file: _timeouts.md
+          - file: _number_of_threads.md
+          - file: _basic_authentication.md
+          - file: _other_authentication_methods.md
+          - file: _encrypted_communication.md
+          - file: _others.md
+          - file: _node_selector.md
+      - file: sniffer.md
+        children:
+          - file: java-rest-sniffer-javadoc.md
+          - file: _maven_repository.md
+          - file: _usage.md
+  - file: breaking-changes-policy.md
+  - file: release-highlights.md
+  - file: _license.md
