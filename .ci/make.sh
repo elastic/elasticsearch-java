@@ -202,7 +202,7 @@ if [[ "$CMD" == "release" ]]; then
     $git_mount $src_mount $output_mount \
     -v /tmp/secured:/tmp/secured \
     $docker_image \
-    $gradle_task
+    $gradle_task --scan
 fi
 
 if [[ "$CMD" == "bump" ]]; then
