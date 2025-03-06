@@ -138,7 +138,7 @@ publishing {
 
         maven {
             name = "MavenCentral"
-            url = uri("https://oss.sonatype.org/service/local/")
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
             credentials {
                 run {
                     if (gradle.startParameter.taskNames.find { it.contains("ToMavenCentralRepository") } != null) {
