@@ -5,7 +5,7 @@ mapped_pages:
 
 # Encrypted communication [_encrypted_communication]
 
-Encrypted communication using TLS can also be configured through the `HttpClientConfigCallback`. The [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.md) received as an argument exposes multiple methods to configure encrypted communication: `setSSLContext`, `setSSLSessionStrategy` and `setConnectionManager`, in order of precedence from the least important.
+Encrypted communication using TLS can also be configured through the `HttpClientConfigCallback`. The [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html) received as an argument exposes multiple methods to configure encrypted communication: `setSSLContext`, `setSSLSessionStrategy` and `setConnectionManager`, in order of precedence from the least important.
 
 When accessing an Elasticsearch cluster that is setup for TLS on the HTTP layer, the client needs to trust the certificate that Elasticsearch is using. The following is an example of setting up the client to trust the CA that has signed the certificate that Elasticsearch is using, when that CA certificate is available in a PKCS#12 keystore:
 

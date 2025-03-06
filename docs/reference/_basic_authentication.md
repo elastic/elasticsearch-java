@@ -5,7 +5,7 @@ mapped_pages:
 
 # Basic authentication [_basic_authentication]
 
-Configuring basic authentication can be done by providing an `HttpClientConfigCallback` while building the `RestClient` through its builder. The interface has one method that receives an instance of [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.md) as an argument and has the same return type. The http client builder can be modified and then returned. In the following example we set a default credentials provider that requires basic authentication.
+Configuring basic authentication can be done by providing an `HttpClientConfigCallback` while building the `RestClient` through its builder. The interface has one method that receives an instance of [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html) as an argument and has the same return type. The http client builder can be modified and then returned. In the following example we set a default credentials provider that requires basic authentication.
 
 ```java
 final CredentialsProvider credentialsProvider =
