@@ -20,7 +20,7 @@ String responseBody = EntityUtils.toString(response.getEntity()); <5>
 2. The host that returned the response
 3. The response status line, from which you can for instance retrieve the status code
 4. The response headers, which can also be retrieved by name though `getHeader(String)`
-5. The response body enclosed in an [`org.apache.http.HttpEntity`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpEntity.md) object
+5. The response body enclosed in an [`org.apache.http.HttpEntity`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpEntity.html) object
 
 
 When performing a request, an exception is thrown (or received as an argument in `ResponseListener#onFailure(Exception)` in the following scenarios:
@@ -38,4 +38,4 @@ A `ResponseException` is **not** thrown for `HEAD` requests that return a `404` 
 
 Note that the low-level client doesn’t expose any helper for json marshalling and un-marshalling. Users are free to use the library that they prefer for that purpose.
 
-The underlying Apache Async Http Client ships with different [`org.apache.http.HttpEntity`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpEntity.md) implementations that allow to provide the request body in different formats (stream, byte array, string etc.). As for reading the response body, the `HttpEntity#getContent` method comes handy which returns an `InputStream` reading from the previously buffered response body. As an alternative, it is possible to provide a custom [`org.apache.http.nio.protocol.HttpAsyncResponseConsumer`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore-nio/apidocs/org/apache/http/nio/protocol/HttpAsyncResponseConsumer.md) that controls how bytes are read and buffered.
+The underlying Apache Async Http Client ships with different [`org.apache.http.HttpEntity`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpEntity.html) implementations that allow to provide the request body in different formats (stream, byte array, string etc.). As for reading the response body, the `HttpEntity#getContent` method comes handy which returns an `InputStream` reading from the previously buffered response body. As an alternative, it is possible to provide a custom [`org.apache.http.nio.protocol.HttpAsyncResponseConsumer`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore-nio/apidocs/org/apache/http/nio/protocol/HttpAsyncResponseConsumer.html) that controls how bytes are read and buffered.

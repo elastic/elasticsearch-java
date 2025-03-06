@@ -5,7 +5,7 @@ mapped_pages:
 
 # Initialization [java-rest-low-usage-initialization]
 
-A `RestClient` instance can be built through the corresponding `RestClientBuilder` class, created via `RestClient#builder(HttpHost...)` static method. The only required argument is one or more hosts that the client will communicate with, provided as instances of [HttpHost](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpHost.md) as follows:
+A `RestClient` instance can be built through the corresponding `RestClientBuilder` class, created via `RestClient#builder(HttpHost...)` static method. The only required argument is one or more hosts that the client will communicate with, provided as instances of [HttpHost](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpHost.html) as follows:
 
 ```java
 RestClient restClient = RestClient.builder(
@@ -67,7 +67,7 @@ builder.setRequestConfigCallback(
     });
 ```
 
-1. Set a callback that allows to modify the default request configuration (e.g. request timeouts, authentication, or anything that the [`org.apache.http.client.config.RequestConfig.Builder`](https://hc.apache.org/httpcomponents-client-4.5.x/current/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.md) allows to set)
+1. Set a callback that allows to modify the default request configuration (e.g. request timeouts, authentication, or anything that the [`org.apache.http.client.config.RequestConfig.Builder`](https://hc.apache.org/httpcomponents-client-4.5.x/current/httpclient/apidocs/org/apache/http/client/config/RequestConfig.Builder.html) allows to set)
 
 
 ```java
@@ -83,6 +83,6 @@ builder.setHttpClientConfigCallback(new HttpClientConfigCallback() {
     });
 ```
 
-1. Set a callback that allows to modify the http client configuration (e.g. encrypted communication over ssl, or anything that the [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.md) allows to set)
+1. Set a callback that allows to modify the http client configuration (e.g. encrypted communication over ssl, or anything that the [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html) allows to set)
 
 

@@ -11,7 +11,7 @@ Be advised that shading a JAR also has implications. Shading the Commons Logging
 
 ## Maven configuration [java-rest-low-usage-shading-maven]
 
-Here is a configuration using the Maven [Shade](https://maven.apache.org/plugins/maven-shade-plugin/index.md) plugin. Add the following to your `pom.xml` file:
+Here is a configuration using the Maven [Shade](https://maven.apache.org/plugins/maven-shade-plugin/index.html) plugin. Add the following to your `pom.xml` file:
 
 ```xml
 <build>

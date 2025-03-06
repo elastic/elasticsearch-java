@@ -13,7 +13,7 @@ The request tracer logging can also be enabled to log every request and correspo
 
 ### Trace Logs [_trace_logs]
 
-In order to enable trace logs for logback, we have to use [jcl-over-slf4j bridging module](https://www.slf4j.org/legacy.md#jclOverSLF4J).
+In order to enable trace logs for logback, we have to use [jcl-over-slf4j bridging module](https://www.slf4j.org/legacy.html#jclOverSLF4J).
 
 1. Add the following to your Gradle setting:
 
