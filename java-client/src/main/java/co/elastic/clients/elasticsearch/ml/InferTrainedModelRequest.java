@@ -335,16 +335,6 @@ public class InferTrainedModelRequest extends RequestBase implements JsonpSerial
 					buf.append("/_infer");
 					return buf.toString();
 				}
-				if (propsSet == (_modelId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_ml");
-					buf.append("/trained_models");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId, buf);
-					buf.append("/deployment");
-					buf.append("/_infer");
-					return buf.toString();
-				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
@@ -358,9 +348,6 @@ public class InferTrainedModelRequest extends RequestBase implements JsonpSerial
 
 				propsSet |= _modelId;
 
-				if (propsSet == (_modelId)) {
-					params.put("modelId", request.modelId);
-				}
 				if (propsSet == (_modelId)) {
 					params.put("modelId", request.modelId);
 				}

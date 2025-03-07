@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,22 +40,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#indices._types.SourceMode">API
+ * @see <a href="../../doc-files/api-spec.html#_types.mapping.Subobjects">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum SourceMode implements JsonEnum {
-	Disabled("disabled"),
+public enum Subobjects implements JsonEnum {
+	True("true"),
 
-	Stored("stored"),
+	False("false"),
 
-	Synthetic("synthetic"),
+	Auto("auto"),
 
 	;
 
 	private final String jsonValue;
 
-	SourceMode(String jsonValue) {
+	Subobjects(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -63,6 +63,6 @@ public enum SourceMode implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<SourceMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SourceMode.values());
+	public static final JsonEnum.Deserializer<Subobjects> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			Subobjects.values());
 }

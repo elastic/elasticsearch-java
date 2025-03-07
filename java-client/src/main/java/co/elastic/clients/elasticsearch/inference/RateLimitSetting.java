@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -29,8 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,67 +49,39 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.AggregationRange
+// typedef: inference._types.RateLimitSetting
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.AggregationRange">API
+ *      "../doc-files/api-spec.html#inference._types.RateLimitSetting">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class AggregationRange implements JsonpSerializable {
+public class RateLimitSetting implements JsonpSerializable {
 	@Nullable
-	private final Double from;
-
-	@Nullable
-	private final String key;
-
-	@Nullable
-	private final Double to;
+	private final Integer requestsPerMinute;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private AggregationRange(Builder builder) {
+	private RateLimitSetting(Builder builder) {
 
-		this.from = builder.from;
-		this.key = builder.key;
-		this.to = builder.to;
+		this.requestsPerMinute = builder.requestsPerMinute;
 
 	}
 
-	public static AggregationRange of(Function<Builder, ObjectBuilder<AggregationRange>> fn) {
+	public static RateLimitSetting of(Function<Builder, ObjectBuilder<RateLimitSetting>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Start of the range (inclusive).
+	 * The number of requests allowed per minute.
 	 * <p>
-	 * API name: {@code from}
+	 * API name: {@code requests_per_minute}
 	 */
 	@Nullable
-	public final Double from() {
-		return this.from;
-	}
-
-	/**
-	 * Custom key to return the range with.
-	 * <p>
-	 * API name: {@code key}
-	 */
-	@Nullable
-	public final String key() {
-		return this.key;
-	}
-
-	/**
-	 * End of the range (exclusive).
-	 * <p>
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final Double to() {
-		return this.to;
+	public final Integer requestsPerMinute() {
+		return this.requestsPerMinute;
 	}
 
 	/**
@@ -124,19 +95,9 @@ public class AggregationRange implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
-
-		}
-		if (this.key != null) {
-			generator.writeKey("key");
-			generator.write(this.key);
-
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
+		if (this.requestsPerMinute != null) {
+			generator.writeKey("requests_per_minute");
+			generator.write(this.requestsPerMinute);
 
 		}
 
@@ -150,46 +111,20 @@ public class AggregationRange implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link AggregationRange}.
+	 * Builder for {@link RateLimitSetting}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AggregationRange> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RateLimitSetting> {
 		@Nullable
-		private Double from;
-
-		@Nullable
-		private String key;
-
-		@Nullable
-		private Double to;
+		private Integer requestsPerMinute;
 
 		/**
-		 * Start of the range (inclusive).
+		 * The number of requests allowed per minute.
 		 * <p>
-		 * API name: {@code from}
+		 * API name: {@code requests_per_minute}
 		 */
-		public final Builder from(@Nullable Double value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * Custom key to return the range with.
-		 * <p>
-		 * API name: {@code key}
-		 */
-		public final Builder key(@Nullable String value) {
-			this.key = value;
-			return this;
-		}
-
-		/**
-		 * End of the range (exclusive).
-		 * <p>
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable Double value) {
-			this.to = value;
+		public final Builder requestsPerMinute(@Nullable Integer value) {
+			this.requestsPerMinute = value;
 			return this;
 		}
 
@@ -199,31 +134,29 @@ public class AggregationRange implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link AggregationRange}.
+		 * Builds a {@link RateLimitSetting}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public AggregationRange build() {
+		public RateLimitSetting build() {
 			_checkSingleUse();
 
-			return new AggregationRange(this);
+			return new RateLimitSetting(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link AggregationRange}
+	 * Json deserializer for {@link RateLimitSetting}
 	 */
-	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregationRange::setupAggregationRangeDeserializer);
+	public static final JsonpDeserializer<RateLimitSetting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RateLimitSetting::setupRateLimitSettingDeserializer);
 
-	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
+	protected static void setupRateLimitSettingDeserializer(ObjectDeserializer<RateLimitSetting.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.doubleDeserializer(), "from");
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
+		op.add(Builder::requestsPerMinute, JsonpDeserializer.integerDeserializer(), "requests_per_minute");
 
 	}
 

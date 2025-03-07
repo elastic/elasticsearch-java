@@ -22,10 +22,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,19 +58,26 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ExtendedStatsAggregate extends StatsAggregate implements AggregateVariant {
-	private final double sumOfSquares;
+	@Nullable
+	private final Double sumOfSquares;
 
-	private final double variance;
+	@Nullable
+	private final Double variance;
 
-	private final double variancePopulation;
+	@Nullable
+	private final Double variancePopulation;
 
-	private final double varianceSampling;
+	@Nullable
+	private final Double varianceSampling;
 
-	private final double stdDeviation;
+	@Nullable
+	private final Double stdDeviation;
 
-	private final double stdDeviationPopulation;
+	@Nullable
+	private final Double stdDeviationPopulation;
 
-	private final double stdDeviationSampling;
+	@Nullable
+	private final Double stdDeviationSampling;
 
 	@Nullable
 	private final StandardDeviationBounds stdDeviationBounds;
@@ -100,15 +105,13 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	protected ExtendedStatsAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.sumOfSquares = ApiTypeHelper.requireNonNull(builder.sumOfSquares, this, "sumOfSquares");
-		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.variancePopulation = ApiTypeHelper.requireNonNull(builder.variancePopulation, this, "variancePopulation");
-		this.varianceSampling = ApiTypeHelper.requireNonNull(builder.varianceSampling, this, "varianceSampling");
-		this.stdDeviation = ApiTypeHelper.requireNonNull(builder.stdDeviation, this, "stdDeviation");
-		this.stdDeviationPopulation = ApiTypeHelper.requireNonNull(builder.stdDeviationPopulation, this,
-				"stdDeviationPopulation");
-		this.stdDeviationSampling = ApiTypeHelper.requireNonNull(builder.stdDeviationSampling, this,
-				"stdDeviationSampling");
+		this.sumOfSquares = builder.sumOfSquares;
+		this.variance = builder.variance;
+		this.variancePopulation = builder.variancePopulation;
+		this.varianceSampling = builder.varianceSampling;
+		this.stdDeviation = builder.stdDeviation;
+		this.stdDeviationPopulation = builder.stdDeviationPopulation;
+		this.stdDeviationSampling = builder.stdDeviationSampling;
 		this.stdDeviationBounds = builder.stdDeviationBounds;
 		this.sumOfSquaresAsString = builder.sumOfSquaresAsString;
 		this.varianceAsString = builder.varianceAsString;
@@ -133,65 +136,58 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	}
 
 	/**
-	 * Required - API name: {@code sum_of_squares}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code sum_of_squares}
 	 */
-	public final double sumOfSquares() {
+	@Nullable
+	public final Double sumOfSquares() {
 		return this.sumOfSquares;
 	}
 
 	/**
-	 * Required - API name: {@code variance}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code variance}
 	 */
-	public final double variance() {
+	@Nullable
+	public final Double variance() {
 		return this.variance;
 	}
 
 	/**
-	 * Required - API name: {@code variance_population}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code variance_population}
 	 */
-	public final double variancePopulation() {
+	@Nullable
+	public final Double variancePopulation() {
 		return this.variancePopulation;
 	}
 
 	/**
-	 * Required - API name: {@code variance_sampling}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code variance_sampling}
 	 */
-	public final double varianceSampling() {
+	@Nullable
+	public final Double varianceSampling() {
 		return this.varianceSampling;
 	}
 
 	/**
-	 * Required - API name: {@code std_deviation}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code std_deviation}
 	 */
-	public final double stdDeviation() {
+	@Nullable
+	public final Double stdDeviation() {
 		return this.stdDeviation;
 	}
 
 	/**
-	 * Required - API name: {@code std_deviation_population}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code std_deviation_population}
 	 */
-	public final double stdDeviationPopulation() {
+	@Nullable
+	public final Double stdDeviationPopulation() {
 		return this.stdDeviationPopulation;
 	}
 
 	/**
-	 * Required - API name: {@code std_deviation_sampling}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code std_deviation_sampling}
 	 */
-	public final double stdDeviationSampling() {
+	@Nullable
+	public final Double stdDeviationSampling() {
 		return this.stdDeviationSampling;
 	}
 
@@ -254,20 +250,41 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("sum_of_squares");
-		JsonpUtils.serializeDoubleOrNull(generator, this.sumOfSquares, 0);
-		generator.writeKey("variance");
-		JsonpUtils.serializeDoubleOrNull(generator, this.variance, 0);
-		generator.writeKey("variance_population");
-		JsonpUtils.serializeDoubleOrNull(generator, this.variancePopulation, 0);
-		generator.writeKey("variance_sampling");
-		JsonpUtils.serializeDoubleOrNull(generator, this.varianceSampling, 0);
-		generator.writeKey("std_deviation");
-		JsonpUtils.serializeDoubleOrNull(generator, this.stdDeviation, 0);
-		generator.writeKey("std_deviation_population");
-		JsonpUtils.serializeDoubleOrNull(generator, this.stdDeviationPopulation, 0);
-		generator.writeKey("std_deviation_sampling");
-		JsonpUtils.serializeDoubleOrNull(generator, this.stdDeviationSampling, 0);
+		if (this.sumOfSquares != null) {
+			generator.writeKey("sum_of_squares");
+			generator.write(this.sumOfSquares);
+
+		}
+		if (this.variance != null) {
+			generator.writeKey("variance");
+			generator.write(this.variance);
+
+		}
+		if (this.variancePopulation != null) {
+			generator.writeKey("variance_population");
+			generator.write(this.variancePopulation);
+
+		}
+		if (this.varianceSampling != null) {
+			generator.writeKey("variance_sampling");
+			generator.write(this.varianceSampling);
+
+		}
+		if (this.stdDeviation != null) {
+			generator.writeKey("std_deviation");
+			generator.write(this.stdDeviation);
+
+		}
+		if (this.stdDeviationPopulation != null) {
+			generator.writeKey("std_deviation_population");
+			generator.write(this.stdDeviationPopulation);
+
+		}
+		if (this.stdDeviationSampling != null) {
+			generator.writeKey("std_deviation_sampling");
+			generator.write(this.stdDeviationSampling);
+
+		}
 		if (this.stdDeviationBounds != null) {
 			generator.writeKey("std_deviation_bounds");
 			this.stdDeviationBounds.serialize(generator, mapper);
@@ -336,18 +353,25 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				StatsAggregate.AbstractBuilder<BuilderT> {
+		@Nullable
 		private Double sumOfSquares;
 
+		@Nullable
 		private Double variance;
 
+		@Nullable
 		private Double variancePopulation;
 
+		@Nullable
 		private Double varianceSampling;
 
+		@Nullable
 		private Double stdDeviation;
 
+		@Nullable
 		private Double stdDeviationPopulation;
 
+		@Nullable
 		private Double stdDeviationSampling;
 
 		@Nullable
@@ -372,71 +396,57 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 		private StandardDeviationBoundsAsString stdDeviationBoundsAsString;
 
 		/**
-		 * Required - API name: {@code sum_of_squares}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code sum_of_squares}
 		 */
-		public final BuilderT sumOfSquares(double value) {
+		public final BuilderT sumOfSquares(@Nullable Double value) {
 			this.sumOfSquares = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code variance}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code variance}
 		 */
-		public final BuilderT variance(double value) {
+		public final BuilderT variance(@Nullable Double value) {
 			this.variance = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code variance_population}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code variance_population}
 		 */
-		public final BuilderT variancePopulation(double value) {
+		public final BuilderT variancePopulation(@Nullable Double value) {
 			this.variancePopulation = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code variance_sampling}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code variance_sampling}
 		 */
-		public final BuilderT varianceSampling(double value) {
+		public final BuilderT varianceSampling(@Nullable Double value) {
 			this.varianceSampling = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code std_deviation}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code std_deviation}
 		 */
-		public final BuilderT stdDeviation(double value) {
+		public final BuilderT stdDeviation(@Nullable Double value) {
 			this.stdDeviation = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code std_deviation_population}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code std_deviation_population}
 		 */
-		public final BuilderT stdDeviationPopulation(double value) {
+		public final BuilderT stdDeviationPopulation(@Nullable Double value) {
 			this.stdDeviationPopulation = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code std_deviation_sampling}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code std_deviation_sampling}
 		 */
-		public final BuilderT stdDeviationSampling(double value) {
+		public final BuilderT stdDeviationSampling(@Nullable Double value) {
 			this.stdDeviationSampling = value;
 			return self();
 		}
@@ -526,16 +536,14 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupExtendedStatsAggregateDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		StatsAggregate.setupStatsAggregateDeserializer(op);
-		op.add(AbstractBuilder::sumOfSquares, JsonpDeserializer.doubleOrNullDeserializer(0), "sum_of_squares");
-		op.add(AbstractBuilder::variance, JsonpDeserializer.doubleOrNullDeserializer(0), "variance");
-		op.add(AbstractBuilder::variancePopulation, JsonpDeserializer.doubleOrNullDeserializer(0),
-				"variance_population");
-		op.add(AbstractBuilder::varianceSampling, JsonpDeserializer.doubleOrNullDeserializer(0), "variance_sampling");
-		op.add(AbstractBuilder::stdDeviation, JsonpDeserializer.doubleOrNullDeserializer(0), "std_deviation");
-		op.add(AbstractBuilder::stdDeviationPopulation, JsonpDeserializer.doubleOrNullDeserializer(0),
+		op.add(AbstractBuilder::sumOfSquares, JsonpDeserializer.doubleDeserializer(), "sum_of_squares");
+		op.add(AbstractBuilder::variance, JsonpDeserializer.doubleDeserializer(), "variance");
+		op.add(AbstractBuilder::variancePopulation, JsonpDeserializer.doubleDeserializer(), "variance_population");
+		op.add(AbstractBuilder::varianceSampling, JsonpDeserializer.doubleDeserializer(), "variance_sampling");
+		op.add(AbstractBuilder::stdDeviation, JsonpDeserializer.doubleDeserializer(), "std_deviation");
+		op.add(AbstractBuilder::stdDeviationPopulation, JsonpDeserializer.doubleDeserializer(),
 				"std_deviation_population");
-		op.add(AbstractBuilder::stdDeviationSampling, JsonpDeserializer.doubleOrNullDeserializer(0),
-				"std_deviation_sampling");
+		op.add(AbstractBuilder::stdDeviationSampling, JsonpDeserializer.doubleDeserializer(), "std_deviation_sampling");
 		op.add(AbstractBuilder::stdDeviationBounds, StandardDeviationBounds._DESERIALIZER, "std_deviation_bounds");
 		op.add(AbstractBuilder::sumOfSquaresAsString, JsonpDeserializer.stringDeserializer(),
 				"sum_of_squares_as_string");

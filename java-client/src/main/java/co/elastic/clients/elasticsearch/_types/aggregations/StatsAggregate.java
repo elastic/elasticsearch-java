@@ -22,7 +22,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -66,11 +65,14 @@ import javax.annotation.Nullable;
 public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
 
-	private final double min;
+	@Nullable
+	private final Double min;
 
-	private final double max;
+	@Nullable
+	private final Double max;
 
-	private final double avg;
+	@Nullable
+	private final Double avg;
 
 	private final double sum;
 
@@ -92,9 +94,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 		super(builder);
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.min = builder.min;
+		this.max = builder.max;
+		this.avg = builder.avg;
 		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
 		this.minAsString = builder.minAsString;
 		this.maxAsString = builder.maxAsString;
@@ -123,31 +125,26 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	}
 
 	/**
-	 * Required - API name: {@code min}
-	 * <p>
-	 * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
-	 * {@code null} value.
+	 * API name: {@code min}
 	 */
-	public final double min() {
+	@Nullable
+	public final Double min() {
 		return this.min;
 	}
 
 	/**
-	 * Required - API name: {@code max}
-	 * <p>
-	 * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
-	 * {@code null} value.
+	 * API name: {@code max}
 	 */
-	public final double max() {
+	@Nullable
+	public final Double max() {
 		return this.max;
 	}
 
 	/**
-	 * Required - API name: {@code avg}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code avg}
 	 */
-	public final double avg() {
+	@Nullable
+	public final Double avg() {
 		return this.avg;
 	}
 
@@ -196,12 +193,21 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("min");
-		JsonpUtils.serializeDoubleOrNull(generator, this.min, Double.POSITIVE_INFINITY);
-		generator.writeKey("max");
-		JsonpUtils.serializeDoubleOrNull(generator, this.max, Double.NEGATIVE_INFINITY);
-		generator.writeKey("avg");
-		JsonpUtils.serializeDoubleOrNull(generator, this.avg, 0);
+		if (this.min != null) {
+			generator.writeKey("min");
+			generator.write(this.min);
+
+		}
+		if (this.max != null) {
+			generator.writeKey("max");
+			generator.write(this.max);
+
+		}
+		if (this.avg != null) {
+			generator.writeKey("avg");
+			generator.write(this.avg);
+
+		}
 		generator.writeKey("sum");
 		generator.write(this.sum);
 
@@ -260,10 +266,13 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 				AggregateBase.AbstractBuilder<BuilderT> {
 		private Long count;
 
+		@Nullable
 		private Double min;
 
+		@Nullable
 		private Double max;
 
+		@Nullable
 		private Double avg;
 
 		private Double sum;
@@ -289,33 +298,25 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 		}
 
 		/**
-		 * Required - API name: {@code min}
-		 * <p>
-		 * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
-		 * {@code null} value.
+		 * API name: {@code min}
 		 */
-		public final BuilderT min(double value) {
+		public final BuilderT min(@Nullable Double value) {
 			this.min = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code max}
-		 * <p>
-		 * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
-		 * {@code null} value.
+		 * API name: {@code max}
 		 */
-		public final BuilderT max(double value) {
+		public final BuilderT max(@Nullable Double value) {
 			this.max = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code avg}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code avg}
 		 */
-		public final BuilderT avg(double value) {
+		public final BuilderT avg(@Nullable Double value) {
 			this.avg = value;
 			return self();
 		}
@@ -374,9 +375,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(AbstractBuilder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(AbstractBuilder::min, JsonpDeserializer.doubleOrNullDeserializer(Double.POSITIVE_INFINITY), "min");
-		op.add(AbstractBuilder::max, JsonpDeserializer.doubleOrNullDeserializer(Double.NEGATIVE_INFINITY), "max");
-		op.add(AbstractBuilder::avg, JsonpDeserializer.doubleOrNullDeserializer(0), "avg");
+		op.add(AbstractBuilder::min, JsonpDeserializer.doubleDeserializer(), "min");
+		op.add(AbstractBuilder::max, JsonpDeserializer.doubleDeserializer(), "max");
+		op.add(AbstractBuilder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
 		op.add(AbstractBuilder::sum, JsonpDeserializer.doubleDeserializer(), "sum");
 		op.add(AbstractBuilder::minAsString, JsonpDeserializer.stringDeserializer(), "min_as_string");
 		op.add(AbstractBuilder::maxAsString, JsonpDeserializer.stringDeserializer(), "max_as_string");

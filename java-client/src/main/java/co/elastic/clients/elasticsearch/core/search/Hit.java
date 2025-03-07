@@ -175,8 +175,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 	/**
 	 * API name: {@code _score}
-	 * <p>
-	 * Defaults to {@code Double.NaN} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Double score() {
@@ -333,7 +331,8 @@ public class Hit<TDocument> implements JsonpSerializable {
 		}
 		if (this.score != null) {
 			generator.writeKey("_score");
-			JsonpUtils.serializeDoubleOrNull(generator, this.score, Double.NaN);
+			generator.write(this.score);
+
 		}
 		if (this.explanation != null) {
 			generator.writeKey("_explanation");
@@ -570,8 +569,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _score}
-		 * <p>
-		 * Defaults to {@code Double.NaN} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder<TDocument> score(@Nullable Double value) {
 			this.score = value;
@@ -942,7 +939,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::score, JsonpDeserializer.doubleOrNullDeserializer(Double.NaN), "_score");
+		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
 		op.add(Builder::explanation, Explanation._DESERIALIZER, "_explanation");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::highlight, JsonpDeserializer.stringMapDeserializer(

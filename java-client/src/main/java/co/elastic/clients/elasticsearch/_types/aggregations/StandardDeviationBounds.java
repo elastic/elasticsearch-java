@@ -26,13 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -59,28 +59,34 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class StandardDeviationBounds implements JsonpSerializable {
-	private final double upper;
+	@Nullable
+	private final Double upper;
 
-	private final double lower;
+	@Nullable
+	private final Double lower;
 
-	private final double upperPopulation;
+	@Nullable
+	private final Double upperPopulation;
 
-	private final double lowerPopulation;
+	@Nullable
+	private final Double lowerPopulation;
 
-	private final double upperSampling;
+	@Nullable
+	private final Double upperSampling;
 
-	private final double lowerSampling;
+	@Nullable
+	private final Double lowerSampling;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private StandardDeviationBounds(Builder builder) {
 
-		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
-		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
-		this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
-		this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
-		this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
-		this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
+		this.upper = builder.upper;
+		this.lower = builder.lower;
+		this.upperPopulation = builder.upperPopulation;
+		this.lowerPopulation = builder.lowerPopulation;
+		this.upperSampling = builder.upperSampling;
+		this.lowerSampling = builder.lowerSampling;
 
 	}
 
@@ -89,56 +95,50 @@ public class StandardDeviationBounds implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code upper}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code upper}
 	 */
-	public final double upper() {
+	@Nullable
+	public final Double upper() {
 		return this.upper;
 	}
 
 	/**
-	 * Required - API name: {@code lower}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code lower}
 	 */
-	public final double lower() {
+	@Nullable
+	public final Double lower() {
 		return this.lower;
 	}
 
 	/**
-	 * Required - API name: {@code upper_population}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code upper_population}
 	 */
-	public final double upperPopulation() {
+	@Nullable
+	public final Double upperPopulation() {
 		return this.upperPopulation;
 	}
 
 	/**
-	 * Required - API name: {@code lower_population}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code lower_population}
 	 */
-	public final double lowerPopulation() {
+	@Nullable
+	public final Double lowerPopulation() {
 		return this.lowerPopulation;
 	}
 
 	/**
-	 * Required - API name: {@code upper_sampling}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code upper_sampling}
 	 */
-	public final double upperSampling() {
+	@Nullable
+	public final Double upperSampling() {
 		return this.upperSampling;
 	}
 
 	/**
-	 * Required - API name: {@code lower_sampling}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code lower_sampling}
 	 */
-	public final double lowerSampling() {
+	@Nullable
+	public final Double lowerSampling() {
 		return this.lowerSampling;
 	}
 
@@ -153,18 +153,36 @@ public class StandardDeviationBounds implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("upper");
-		JsonpUtils.serializeDoubleOrNull(generator, this.upper, 0);
-		generator.writeKey("lower");
-		JsonpUtils.serializeDoubleOrNull(generator, this.lower, 0);
-		generator.writeKey("upper_population");
-		JsonpUtils.serializeDoubleOrNull(generator, this.upperPopulation, 0);
-		generator.writeKey("lower_population");
-		JsonpUtils.serializeDoubleOrNull(generator, this.lowerPopulation, 0);
-		generator.writeKey("upper_sampling");
-		JsonpUtils.serializeDoubleOrNull(generator, this.upperSampling, 0);
-		generator.writeKey("lower_sampling");
-		JsonpUtils.serializeDoubleOrNull(generator, this.lowerSampling, 0);
+		if (this.upper != null) {
+			generator.writeKey("upper");
+			generator.write(this.upper);
+
+		}
+		if (this.lower != null) {
+			generator.writeKey("lower");
+			generator.write(this.lower);
+
+		}
+		if (this.upperPopulation != null) {
+			generator.writeKey("upper_population");
+			generator.write(this.upperPopulation);
+
+		}
+		if (this.lowerPopulation != null) {
+			generator.writeKey("lower_population");
+			generator.write(this.lowerPopulation);
+
+		}
+		if (this.upperSampling != null) {
+			generator.writeKey("upper_sampling");
+			generator.write(this.upperSampling);
+
+		}
+		if (this.lowerSampling != null) {
+			generator.writeKey("lower_sampling");
+			generator.write(this.lowerSampling);
+
+		}
 
 	}
 
@@ -182,74 +200,68 @@ public class StandardDeviationBounds implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<StandardDeviationBounds> {
+		@Nullable
 		private Double upper;
 
+		@Nullable
 		private Double lower;
 
+		@Nullable
 		private Double upperPopulation;
 
+		@Nullable
 		private Double lowerPopulation;
 
+		@Nullable
 		private Double upperSampling;
 
+		@Nullable
 		private Double lowerSampling;
 
 		/**
-		 * Required - API name: {@code upper}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code upper}
 		 */
-		public final Builder upper(double value) {
+		public final Builder upper(@Nullable Double value) {
 			this.upper = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code lower}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code lower}
 		 */
-		public final Builder lower(double value) {
+		public final Builder lower(@Nullable Double value) {
 			this.lower = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code upper_population}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code upper_population}
 		 */
-		public final Builder upperPopulation(double value) {
+		public final Builder upperPopulation(@Nullable Double value) {
 			this.upperPopulation = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code lower_population}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code lower_population}
 		 */
-		public final Builder lowerPopulation(double value) {
+		public final Builder lowerPopulation(@Nullable Double value) {
 			this.lowerPopulation = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code upper_sampling}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code upper_sampling}
 		 */
-		public final Builder upperSampling(double value) {
+		public final Builder upperSampling(@Nullable Double value) {
 			this.upperSampling = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code lower_sampling}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code lower_sampling}
 		 */
-		public final Builder lowerSampling(double value) {
+		public final Builder lowerSampling(@Nullable Double value) {
 			this.lowerSampling = value;
 			return this;
 		}
@@ -283,12 +295,12 @@ public class StandardDeviationBounds implements JsonpSerializable {
 	protected static void setupStandardDeviationBoundsDeserializer(
 			ObjectDeserializer<StandardDeviationBounds.Builder> op) {
 
-		op.add(Builder::upper, JsonpDeserializer.doubleOrNullDeserializer(0), "upper");
-		op.add(Builder::lower, JsonpDeserializer.doubleOrNullDeserializer(0), "lower");
-		op.add(Builder::upperPopulation, JsonpDeserializer.doubleOrNullDeserializer(0), "upper_population");
-		op.add(Builder::lowerPopulation, JsonpDeserializer.doubleOrNullDeserializer(0), "lower_population");
-		op.add(Builder::upperSampling, JsonpDeserializer.doubleOrNullDeserializer(0), "upper_sampling");
-		op.add(Builder::lowerSampling, JsonpDeserializer.doubleOrNullDeserializer(0), "lower_sampling");
+		op.add(Builder::upper, JsonpDeserializer.doubleDeserializer(), "upper");
+		op.add(Builder::lower, JsonpDeserializer.doubleDeserializer(), "lower");
+		op.add(Builder::upperPopulation, JsonpDeserializer.doubleDeserializer(), "upper_population");
+		op.add(Builder::lowerPopulation, JsonpDeserializer.doubleDeserializer(), "lower_population");
+		op.add(Builder::upperSampling, JsonpDeserializer.doubleDeserializer(), "upper_sampling");
+		op.add(Builder::lowerSampling, JsonpDeserializer.doubleDeserializer(), "lower_sampling");
 
 	}
 

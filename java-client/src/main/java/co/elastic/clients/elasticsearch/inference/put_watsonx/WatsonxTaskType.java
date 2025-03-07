@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch.inference.put_watsonx;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,84 +40,19 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#_types.analysis.Language">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_watsonx.WatsonxTaskType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum Language implements JsonEnum {
-	Arabic("Arabic"),
-
-	Armenian("Armenian"),
-
-	Basque("Basque"),
-
-	Brazilian("Brazilian"),
-
-	Bulgarian("Bulgarian"),
-
-	Catalan("Catalan"),
-
-	Chinese("Chinese"),
-
-	Cjk("Cjk"),
-
-	Czech("Czech"),
-
-	Danish("Danish"),
-
-	Dutch("Dutch"),
-
-	English("English"),
-
-	Estonian("Estonian"),
-
-	Finnish("Finnish"),
-
-	French("French"),
-
-	Galician("Galician"),
-
-	German("German"),
-
-	Greek("Greek"),
-
-	Hindi("Hindi"),
-
-	Hungarian("Hungarian"),
-
-	Indonesian("Indonesian"),
-
-	Irish("Irish"),
-
-	Italian("Italian"),
-
-	Latvian("Latvian"),
-
-	Norwegian("Norwegian"),
-
-	Persian("Persian"),
-
-	Portuguese("Portuguese"),
-
-	Romanian("Romanian"),
-
-	Russian("Russian"),
-
-	Sorani("Sorani"),
-
-	Spanish("Spanish"),
-
-	Swedish("Swedish"),
-
-	Turkish("Turkish"),
-
-	Thai("Thai"),
+public enum WatsonxTaskType implements JsonEnum {
+	TextEmbedding("text_embedding"),
 
 	;
 
 	private final String jsonValue;
 
-	Language(String jsonValue) {
+	WatsonxTaskType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -125,5 +60,6 @@ public enum Language implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<Language> _DESERIALIZER = new JsonEnum.Deserializer<>(Language.values());
+	public static final JsonEnum.Deserializer<WatsonxTaskType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			WatsonxTaskType.values());
 }

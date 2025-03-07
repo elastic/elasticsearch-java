@@ -63,7 +63,8 @@ import javax.annotation.Nullable;
 public class ArrayPercentilesItem implements JsonpSerializable {
 	private final String key;
 
-	private final double value;
+	@Nullable
+	private final Double value;
 
 	@Nullable
 	private final String valueAsString;
@@ -73,7 +74,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	private ArrayPercentilesItem(Builder builder) {
 
 		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = builder.value;
 		this.valueAsString = builder.valueAsString;
 
 	}
@@ -90,11 +91,10 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code value}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code value}
 	 */
-	public final double value() {
+	@Nullable
+	public final Double value() {
 		return this.value;
 	}
 
@@ -120,8 +120,11 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		generator.writeKey("key");
 		generator.write(this.key);
 
-		generator.writeKey("value");
-		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
+		if (this.value != null) {
+			generator.writeKey("value");
+			generator.write(this.value);
+
+		}
 		if (this.valueAsString != null) {
 			generator.writeKey("value_as_string");
 			generator.write(this.valueAsString);
@@ -146,6 +149,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 				ObjectBuilder<ArrayPercentilesItem> {
 		private String key;
 
+		@Nullable
 		private Double value;
 
 		@Nullable
@@ -160,11 +164,9 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code value}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code value}
 		 */
-		public final Builder value(double value) {
+		public final Builder value(@Nullable Double value) {
 			this.value = value;
 			return this;
 		}
@@ -206,7 +208,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	protected static void setupArrayPercentilesItemDeserializer(ObjectDeserializer<ArrayPercentilesItem.Builder> op) {
 
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
+		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
 	}

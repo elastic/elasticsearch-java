@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RuntimeField implements JsonpSerializable {
+public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 	private final Map<String, CompositeSubField> fields;
 
 	private final List<RuntimeFieldFetchFields> fetchFields;
@@ -100,6 +100,14 @@ public class RuntimeField implements JsonpSerializable {
 
 	public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * DynamicTemplate variant kind.
+	 */
+	@Override
+	public DynamicTemplate.Kind _dynamicTemplateKind() {
+		return DynamicTemplate.Kind.Runtime;
 	}
 
 	/**

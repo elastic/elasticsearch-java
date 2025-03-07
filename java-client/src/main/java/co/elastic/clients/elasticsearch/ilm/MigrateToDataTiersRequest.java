@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -91,6 +92,9 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 	private final String legacyTemplateToDelete;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String nodeAttribute;
 
 	// ---------------------------------------------------------------------------------------------
@@ -99,6 +103,7 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 
 		this.dryRun = builder.dryRun;
 		this.legacyTemplateToDelete = builder.legacyTemplateToDelete;
+		this.masterTimeout = builder.masterTimeout;
 		this.nodeAttribute = builder.nodeAttribute;
 
 	}
@@ -125,6 +130,19 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public final String legacyTemplateToDelete() {
 		return this.legacyTemplateToDelete;
+	}
+
+	/**
+	 * The period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * It can also be set to <code>-1</code> to indicate that the request should
+	 * never timeout.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -175,6 +193,9 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 		private String legacyTemplateToDelete;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private String nodeAttribute;
 
 		/**
@@ -195,6 +216,31 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 		public final Builder legacyTemplateToDelete(@Nullable String value) {
 			this.legacyTemplateToDelete = value;
 			return this;
+		}
+
+		/**
+		 * The period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * It can also be set to <code>-1</code> to indicate that the request should
+		 * never timeout.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * It can also be set to <code>-1</code> to indicate that the request should
+		 * never timeout.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -267,6 +313,9 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.dryRun != null) {
 					params.put("dry_run", String.valueOf(request.dryRun));
 				}

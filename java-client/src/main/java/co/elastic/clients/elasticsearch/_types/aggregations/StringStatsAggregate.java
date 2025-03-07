@@ -22,7 +22,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -64,13 +63,17 @@ import javax.annotation.Nullable;
 public class StringStatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
 
-	private final int minLength;
+	@Nullable
+	private final Integer minLength;
 
-	private final int maxLength;
+	@Nullable
+	private final Integer maxLength;
 
-	private final double avgLength;
+	@Nullable
+	private final Double avgLength;
 
-	private final double entropy;
+	@Nullable
+	private final Double entropy;
 
 	private final Map<String, Double> distribution;
 
@@ -89,10 +92,10 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		super(builder);
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
-		this.maxLength = ApiTypeHelper.requireNonNull(builder.maxLength, this, "maxLength");
-		this.avgLength = ApiTypeHelper.requireNonNull(builder.avgLength, this, "avgLength");
-		this.entropy = ApiTypeHelper.requireNonNull(builder.entropy, this, "entropy");
+		this.minLength = builder.minLength;
+		this.maxLength = builder.maxLength;
+		this.avgLength = builder.avgLength;
+		this.entropy = builder.entropy;
 		this.distribution = ApiTypeHelper.unmodifiable(builder.distribution);
 		this.minLengthAsString = builder.minLengthAsString;
 		this.maxLengthAsString = builder.maxLengthAsString;
@@ -120,38 +123,34 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	}
 
 	/**
-	 * Required - API name: {@code min_length}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code min_length}
 	 */
-	public final int minLength() {
+	@Nullable
+	public final Integer minLength() {
 		return this.minLength;
 	}
 
 	/**
-	 * Required - API name: {@code max_length}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code max_length}
 	 */
-	public final int maxLength() {
+	@Nullable
+	public final Integer maxLength() {
 		return this.maxLength;
 	}
 
 	/**
-	 * Required - API name: {@code avg_length}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code avg_length}
 	 */
-	public final double avgLength() {
+	@Nullable
+	public final Double avgLength() {
 		return this.avgLength;
 	}
 
 	/**
-	 * Required - API name: {@code entropy}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code entropy}
 	 */
-	public final double entropy() {
+	@Nullable
+	public final Double entropy() {
 		return this.entropy;
 	}
 
@@ -192,14 +191,26 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("min_length");
-		JsonpUtils.serializeIntOrNull(generator, this.minLength, 0);
-		generator.writeKey("max_length");
-		JsonpUtils.serializeIntOrNull(generator, this.maxLength, 0);
-		generator.writeKey("avg_length");
-		JsonpUtils.serializeDoubleOrNull(generator, this.avgLength, 0);
-		generator.writeKey("entropy");
-		JsonpUtils.serializeDoubleOrNull(generator, this.entropy, 0);
+		if (this.minLength != null) {
+			generator.writeKey("min_length");
+			generator.write(this.minLength);
+
+		}
+		if (this.maxLength != null) {
+			generator.writeKey("max_length");
+			generator.write(this.maxLength);
+
+		}
+		if (this.avgLength != null) {
+			generator.writeKey("avg_length");
+			generator.write(this.avgLength);
+
+		}
+		if (this.entropy != null) {
+			generator.writeKey("entropy");
+			generator.write(this.entropy);
+
+		}
 		if (ApiTypeHelper.isDefined(this.distribution)) {
 			generator.writeKey("distribution");
 			generator.writeStartObject();
@@ -240,12 +251,16 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 				ObjectBuilder<StringStatsAggregate> {
 		private Long count;
 
+		@Nullable
 		private Integer minLength;
 
+		@Nullable
 		private Integer maxLength;
 
+		@Nullable
 		private Double avgLength;
 
+		@Nullable
 		private Double entropy;
 
 		@Nullable
@@ -269,41 +284,33 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		}
 
 		/**
-		 * Required - API name: {@code min_length}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code min_length}
 		 */
-		public final Builder minLength(int value) {
+		public final Builder minLength(@Nullable Integer value) {
 			this.minLength = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_length}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code max_length}
 		 */
-		public final Builder maxLength(int value) {
+		public final Builder maxLength(@Nullable Integer value) {
 			this.maxLength = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code avg_length}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code avg_length}
 		 */
-		public final Builder avgLength(double value) {
+		public final Builder avgLength(@Nullable Double value) {
 			this.avgLength = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code entropy}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code entropy}
 		 */
-		public final Builder entropy(double value) {
+		public final Builder entropy(@Nullable Double value) {
 			this.entropy = value;
 			return this;
 		}
@@ -381,10 +388,10 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	protected static void setupStringStatsAggregateDeserializer(ObjectDeserializer<StringStatsAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::minLength, JsonpDeserializer.intOrNullDeserializer(0), "min_length");
-		op.add(Builder::maxLength, JsonpDeserializer.intOrNullDeserializer(0), "max_length");
-		op.add(Builder::avgLength, JsonpDeserializer.doubleOrNullDeserializer(0), "avg_length");
-		op.add(Builder::entropy, JsonpDeserializer.doubleOrNullDeserializer(0), "entropy");
+		op.add(Builder::minLength, JsonpDeserializer.integerDeserializer(), "min_length");
+		op.add(Builder::maxLength, JsonpDeserializer.integerDeserializer(), "max_length");
+		op.add(Builder::avgLength, JsonpDeserializer.doubleDeserializer(), "avg_length");
+		op.add(Builder::entropy, JsonpDeserializer.doubleDeserializer(), "entropy");
 		op.add(Builder::distribution, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"distribution");
 		op.add(Builder::minLengthAsString, JsonpDeserializer.stringDeserializer(), "min_length_as_string");

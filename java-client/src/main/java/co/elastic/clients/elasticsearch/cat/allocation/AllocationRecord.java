@@ -148,8 +148,6 @@ public class AllocationRecord implements JsonpSerializable {
 	 * Sum of index write load forecasts
 	 * <p>
 	 * API name: {@code write_load.forecast}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Double writeLoadForecast() {
@@ -290,7 +288,8 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 		if (this.writeLoadForecast != null) {
 			generator.writeKey("write_load.forecast");
-			JsonpUtils.serializeDoubleOrNull(generator, this.writeLoadForecast, 0);
+			generator.write(this.writeLoadForecast);
+
 		}
 		if (this.diskIndicesForecast != null) {
 			generator.writeKey("disk.indices.forecast");
@@ -421,8 +420,6 @@ public class AllocationRecord implements JsonpSerializable {
 		 * Sum of index write load forecasts
 		 * <p>
 		 * API name: {@code write_load.forecast}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder writeLoadForecast(@Nullable Double value) {
 			this.writeLoadForecast = value;
@@ -570,7 +567,7 @@ public class AllocationRecord implements JsonpSerializable {
 
 		op.add(Builder::shards, JsonpDeserializer.stringDeserializer(), "shards", "s");
 		op.add(Builder::shardsUndesired, JsonpDeserializer.stringDeserializer(), "shards.undesired");
-		op.add(Builder::writeLoadForecast, JsonpDeserializer.doubleOrNullDeserializer(0), "write_load.forecast", "wlf",
+		op.add(Builder::writeLoadForecast, JsonpDeserializer.doubleDeserializer(), "write_load.forecast", "wlf",
 				"writeLoadForecast");
 		op.add(Builder::diskIndicesForecast, JsonpDeserializer.stringDeserializer(), "disk.indices.forecast", "dif",
 				"diskIndicesForecast");
