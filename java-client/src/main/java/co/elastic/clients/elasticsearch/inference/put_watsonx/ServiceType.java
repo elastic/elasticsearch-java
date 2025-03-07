@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.inference.put_watsonx;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,22 +40,19 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#indices._types.SourceMode">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_watsonx.ServiceType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum SourceMode implements JsonEnum {
-	Disabled("disabled"),
-
-	Stored("stored"),
-
-	Synthetic("synthetic"),
+public enum ServiceType implements JsonEnum {
+	Watsonxai("watsonxai"),
 
 	;
 
 	private final String jsonValue;
 
-	SourceMode(String jsonValue) {
+	ServiceType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -63,6 +60,6 @@ public enum SourceMode implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<SourceMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SourceMode.values());
+	public static final JsonEnum.Deserializer<ServiceType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ServiceType.values());
 }

@@ -253,6 +253,23 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link GeoGridQuery geo_grid} {@code Query}
+	 * variant.
+	 */
+	public static GeoGridQuery.Builder geoGrid() {
+		return new GeoGridQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link GeoGridQuery geo_grid} {@code Query} variant.
+	 */
+	public static Query geoGrid(Function<GeoGridQuery.Builder, ObjectBuilder<GeoGridQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.geoGrid(fn.apply(new GeoGridQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GeoPolygonQuery geo_polygon} {@code Query}
 	 * variant.
 	 */

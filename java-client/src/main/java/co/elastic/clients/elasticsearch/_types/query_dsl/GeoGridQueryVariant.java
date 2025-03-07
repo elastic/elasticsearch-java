@@ -17,11 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
-
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,30 +35,10 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#indices._types.SourceMode">API
- *      specification</a>
+ * Base interface for {@link GeoGridQuery} variants.
  */
-@JsonpDeserializable
-public enum SourceMode implements JsonEnum {
-	Disabled("disabled"),
+public interface GeoGridQueryVariant {
 
-	Stored("stored"),
+	GeoGridQuery.Kind _geoGridQueryKind();
 
-	Synthetic("synthetic"),
-
-	;
-
-	private final String jsonValue;
-
-	SourceMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
-
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<SourceMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SourceMode.values());
 }

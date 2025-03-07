@@ -78,6 +78,9 @@ public class Role implements JsonpSerializable {
 
 	private final Map<String, JsonData> metadata;
 
+	@Nullable
+	private final String description;
+
 	private final List<String> runAs;
 
 	private final Map<String, JsonData> transientMetadata;
@@ -97,7 +100,8 @@ public class Role implements JsonpSerializable {
 		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);
 		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
-		this.runAs = ApiTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
+		this.description = builder.description;
+		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
@@ -145,7 +149,15 @@ public class Role implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code run_as}
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
+	}
+
+	/**
+	 * API name: {@code run_as}
 	 */
 	public final List<String> runAs() {
 		return this.runAs;
@@ -239,6 +251,11 @@ public class Role implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
 
 		}
 		if (ApiTypeHelper.isDefined(this.runAs)) {
@@ -343,6 +360,10 @@ public class Role implements JsonpSerializable {
 
 		private Map<String, JsonData> metadata;
 
+		@Nullable
+		private String description;
+
+		@Nullable
 		private List<String> runAs;
 
 		@Nullable
@@ -486,7 +507,15 @@ public class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code run_as}
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
@@ -496,7 +525,7 @@ public class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code run_as}
+		 * API name: {@code run_as}
 		 * <p>
 		 * Adds one or more values to <code>runAs</code>.
 		 */
@@ -640,6 +669,7 @@ public class Role implements JsonpSerializable {
 		op.add(Builder::remoteCluster, JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER),
 				"remote_cluster");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"transient_metadata");

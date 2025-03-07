@@ -63,20 +63,20 @@ public class DynamicTemplateBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link Property runtime} {@code DynamicTemplate}
-	 * variant.
+	 * Creates a builder for the {@link RuntimeField runtime}
+	 * {@code DynamicTemplate} variant.
 	 */
-	public static Property.Builder runtime() {
-		return new Property.Builder();
+	public static RuntimeField.Builder runtime() {
+		return new RuntimeField.Builder();
 	}
 
 	/**
-	 * Creates a DynamicTemplate of the {@link Property runtime}
+	 * Creates a DynamicTemplate of the {@link RuntimeField runtime}
 	 * {@code DynamicTemplate} variant.
 	 */
-	public static DynamicTemplate runtime(Function<Property.Builder, ObjectBuilder<Property>> fn) {
+	public static DynamicTemplate runtime(Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
 		DynamicTemplate.Builder builder = new DynamicTemplate.Builder();
-		builder.runtime(fn.apply(new Property.Builder()).build());
+		builder.runtime(fn.apply(new RuntimeField.Builder()).build());
 		return builder.build();
 	}
 

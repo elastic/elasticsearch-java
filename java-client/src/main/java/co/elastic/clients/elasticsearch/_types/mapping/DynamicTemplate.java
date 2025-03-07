@@ -235,7 +235,7 @@ public class DynamicTemplate implements TaggedUnion<DynamicTemplate.Kind, Object
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code runtime} kind.
 	 */
-	public Property runtime() {
+	public RuntimeField runtime() {
 		return TaggedUnionUtils.get(this, Kind.Runtime);
 	}
 
@@ -491,14 +491,14 @@ public class DynamicTemplate implements TaggedUnion<DynamicTemplate.Kind, Object
 			return this.mapping(fn.apply(new Property.Builder()).build());
 		}
 
-		public ContainerBuilder runtime(Property v) {
+		public ContainerBuilder runtime(RuntimeField v) {
 			this._kind = Kind.Runtime;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder runtime(Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.runtime(fn.apply(new Property.Builder()).build());
+		public ContainerBuilder runtime(Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.runtime(fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		public DynamicTemplate build() {
@@ -645,7 +645,7 @@ public class DynamicTemplate implements TaggedUnion<DynamicTemplate.Kind, Object
 	protected static void setupDynamicTemplateDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::mapping, Property._DESERIALIZER, "mapping");
-		op.add(Builder::runtime, Property._DESERIALIZER, "runtime");
+		op.add(Builder::runtime, RuntimeField._DESERIALIZER, "runtime");
 		op.add(Builder::match, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "match");
 		op.add(Builder::pathMatch, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"path_match");

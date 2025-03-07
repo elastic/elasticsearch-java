@@ -17,11 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,30 +38,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#indices._types.SourceMode">API
- *      specification</a>
+ * Builders for {@link GeoGridQuery} variants.
+ * <p>
+ * Variants <code>geogrid</code>, <code>geohash</code>, <code>geohex</code> are
+ * not available here as they don't have a dedicated class. Use
+ * {@link GeoGridQuery}'s builder for these.
+ * 
  */
-@JsonpDeserializable
-public enum SourceMode implements JsonEnum {
-	Disabled("disabled"),
-
-	Stored("stored"),
-
-	Synthetic("synthetic"),
-
-	;
-
-	private final String jsonValue;
-
-	SourceMode(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class GeoGridQueryBuilders {
+	private GeoGridQueryBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<SourceMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SourceMode.values());
 }

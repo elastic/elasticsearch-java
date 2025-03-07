@@ -31,7 +31,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -125,7 +124,7 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 
 		else if (isExpNullError) {
 			generator.writeKey("error");
-			generator.write(JsonValue.NULL);
+			generator.writeNull();
 
 		}
 

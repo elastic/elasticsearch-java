@@ -565,24 +565,6 @@ public class AnalyzerBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link LanguageAnalyzer language} {@code Analyzer}
-	 * variant.
-	 */
-	public static LanguageAnalyzer.Builder language() {
-		return new LanguageAnalyzer.Builder();
-	}
-
-	/**
-	 * Creates a Analyzer of the {@link LanguageAnalyzer language} {@code Analyzer}
-	 * variant.
-	 */
-	public static Analyzer language(Function<LanguageAnalyzer.Builder, ObjectBuilder<LanguageAnalyzer>> fn) {
-		Analyzer.Builder builder = new Analyzer.Builder();
-		builder.language(fn.apply(new LanguageAnalyzer.Builder()).build());
-		return builder.build();
-	}
-
-	/**
 	 * Creates a builder for the {@link LatvianAnalyzer latvian} {@code Analyzer}
 	 * variant.
 	 */
