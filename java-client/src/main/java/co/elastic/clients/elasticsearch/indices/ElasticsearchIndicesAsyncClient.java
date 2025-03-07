@@ -2228,7 +2228,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream. The write index for the alias becomes the write index for the stream.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-migrate-to-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2254,7 +2254,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link MigrateToDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-migrate-to-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2270,7 +2270,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * a single atomic operation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-modify-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2289,7 +2289,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ModifyDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-modify-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2415,7 +2415,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream and interfere with the data stream size and retention.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-promote-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2448,7 +2448,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PromoteDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-promote-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2463,7 +2463,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-put-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2481,7 +2481,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-put-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2497,7 +2497,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-put-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2516,7 +2516,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams-put-lifecycle.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-put-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2571,7 +2571,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * new definition.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-put-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2629,7 +2629,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-template.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-put-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4362,7 +4362,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4380,7 +4380,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateAliasesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4393,7 +4393,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4408,7 +4408,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-validate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4426,7 +4426,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ValidateQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-validate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4439,7 +4439,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/search-validate.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

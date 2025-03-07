@@ -17,10 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
-
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -38,17 +35,10 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link InferenceResult} variants.
- * <p>
- * Variants <code>text_embedding_bytes</code>, <code>text_embedding_bits</code>,
- * <code>text_embedding</code>, <code>sparse_embedding</code>,
- * <code>completion</code>, <code>rerank</code> are not available here as they
- * don't have a dedicated class. Use {@link InferenceResult}'s builder for
- * these.
- * 
+ * Base interface for {@link GeoGridQuery} variants.
  */
-public class InferenceResultBuilders {
-	private InferenceResultBuilders() {
-	}
+public interface GeoGridQueryVariant {
+
+	GeoGridQuery.Kind _geoGridQueryKind();
 
 }

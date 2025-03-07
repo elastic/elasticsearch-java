@@ -361,9 +361,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.health
 
 	/**
-	 * Get the cluster health status. You can also use the API to get the health
-	 * status of only specified data streams and indices. For data streams, the API
-	 * retrieves the health status of the stream’s backing indices.
+	 * Get the cluster health status.
+	 * <p>
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices.
 	 * <p>
 	 * The cluster health status is: green, yellow or red. On the shard level, a red
 	 * status indicates that the specific shard is not allocated in the cluster.
@@ -388,9 +390,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get the cluster health status. You can also use the API to get the health
-	 * status of only specified data streams and indices. For data streams, the API
-	 * retrieves the health status of the stream’s backing indices.
+	 * Get the cluster health status.
+	 * <p>
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices.
 	 * <p>
 	 * The cluster health status is: green, yellow or red. On the shard level, a red
 	 * status indicates that the specific shard is not allocated in the cluster.
@@ -416,9 +420,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get the cluster health status. You can also use the API to get the health
-	 * status of only specified data streams and indices. For data streams, the API
-	 * retrieves the health status of the stream’s backing indices.
+	 * Get the cluster health status.
+	 * <p>
+	 * You can also use the API to get the health status of only specified data
+	 * streams and indices. For data streams, the API retrieves the health status of
+	 * the stream’s backing indices.
 	 * <p>
 	 * The cluster health status is: green, yellow or red. On the shard level, a red
 	 * status indicates that the specific shard is not allocated in the cluster.
@@ -790,9 +796,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.put_settings
 
 	/**
-	 * Update the cluster settings. Configure and update dynamic settings on a
-	 * running cluster. You can also configure dynamic settings locally on an
-	 * unstarted or shut down node in <code>elasticsearch.yml</code>.
+	 * Update the cluster settings.
+	 * <p>
+	 * Configure and update dynamic settings on a running cluster. You can also
+	 * configure dynamic settings locally on an unstarted or shut down node in
+	 * <code>elasticsearch.yml</code>.
 	 * <p>
 	 * Updates made with this API can be persistent, which apply across cluster
 	 * restarts, or transient, which reset after a cluster restart. You can also
@@ -832,9 +840,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update the cluster settings. Configure and update dynamic settings on a
-	 * running cluster. You can also configure dynamic settings locally on an
-	 * unstarted or shut down node in <code>elasticsearch.yml</code>.
+	 * Update the cluster settings.
+	 * <p>
+	 * Configure and update dynamic settings on a running cluster. You can also
+	 * configure dynamic settings locally on an unstarted or shut down node in
+	 * <code>elasticsearch.yml</code>.
 	 * <p>
 	 * Updates made with this API can be persistent, which apply across cluster
 	 * restarts, or transient, which reset after a cluster restart. You can also
@@ -875,9 +885,11 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update the cluster settings. Configure and update dynamic settings on a
-	 * running cluster. You can also configure dynamic settings locally on an
-	 * unstarted or shut down node in <code>elasticsearch.yml</code>.
+	 * Update the cluster settings.
+	 * <p>
+	 * Configure and update dynamic settings on a running cluster. You can also
+	 * configure dynamic settings locally on an unstarted or shut down node in
+	 * <code>elasticsearch.yml</code>.
 	 * <p>
 	 * Updates made with this API can be persistent, which apply across cluster
 	 * restarts, or transient, which reset after a cluster restart. You can also

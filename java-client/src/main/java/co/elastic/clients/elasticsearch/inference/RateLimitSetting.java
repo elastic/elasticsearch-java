@@ -17,16 +17,19 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,104 +49,82 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.mapping.ObjectProperty
+// typedef: inference._types.RateLimitSetting
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.ObjectProperty">API
+ *      "../doc-files/api-spec.html#inference._types.RateLimitSetting">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
+public class RateLimitSetting implements JsonpSerializable {
 	@Nullable
-	private final Boolean enabled;
-
-	@Nullable
-	private final Subobjects subobjects;
+	private final Integer requestsPerMinute;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ObjectProperty(Builder builder) {
-		super(builder);
+	private RateLimitSetting(Builder builder) {
 
-		this.enabled = builder.enabled;
-		this.subobjects = builder.subobjects;
+		this.requestsPerMinute = builder.requestsPerMinute;
 
 	}
 
-	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+	public static RateLimitSetting of(Function<Builder, ObjectBuilder<RateLimitSetting>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Property variant kind.
+	 * The number of requests allowed per minute.
+	 * <p>
+	 * API name: {@code requests_per_minute}
 	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Object;
+	@Nullable
+	public final Integer requestsPerMinute() {
+		return this.requestsPerMinute;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Serialize this object to JSON.
 	 */
-	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
-	}
-
-	/**
-	 * API name: {@code subobjects}
-	 */
-	@Nullable
-	public final Subobjects subobjects() {
-		return this.subobjects;
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "object");
-		super.serializeInternal(generator, mapper);
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
+		if (this.requestsPerMinute != null) {
+			generator.writeKey("requests_per_minute");
+			generator.write(this.requestsPerMinute);
 
 		}
-		if (this.subobjects != null) {
-			generator.writeKey("subobjects");
-			this.subobjects.serialize(generator, mapper);
-		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ObjectProperty}.
+	 * Builder for {@link RateLimitSetting}.
 	 */
 
-	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ObjectProperty> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RateLimitSetting> {
 		@Nullable
-		private Boolean enabled;
-
-		@Nullable
-		private Subobjects subobjects;
+		private Integer requestsPerMinute;
 
 		/**
-		 * API name: {@code enabled}
+		 * The number of requests allowed per minute.
+		 * <p>
+		 * API name: {@code requests_per_minute}
 		 */
-		public final Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code subobjects}
-		 */
-		public final Builder subobjects(@Nullable Subobjects value) {
-			this.subobjects = value;
+		public final Builder requestsPerMinute(@Nullable Integer value) {
+			this.requestsPerMinute = value;
 			return this;
 		}
 
@@ -153,32 +134,30 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		}
 
 		/**
-		 * Builds a {@link ObjectProperty}.
+		 * Builds a {@link RateLimitSetting}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ObjectProperty build() {
+		public RateLimitSetting build() {
 			_checkSingleUse();
 
-			return new ObjectProperty(this);
+			return new RateLimitSetting(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ObjectProperty}
+	 * Json deserializer for {@link RateLimitSetting}
 	 */
-	public static final JsonpDeserializer<ObjectProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ObjectProperty::setupObjectPropertyDeserializer);
+	public static final JsonpDeserializer<RateLimitSetting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RateLimitSetting::setupRateLimitSettingDeserializer);
 
-	protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
-		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::subobjects, Subobjects._DESERIALIZER, "subobjects");
+	protected static void setupRateLimitSettingDeserializer(ObjectDeserializer<RateLimitSetting.Builder> op) {
 
-		op.ignore("type");
+		op.add(Builder::requestsPerMinute, JsonpDeserializer.integerDeserializer(), "requests_per_minute");
+
 	}
 
 }

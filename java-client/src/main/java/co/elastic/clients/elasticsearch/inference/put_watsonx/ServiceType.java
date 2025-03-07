@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.inference.put_watsonx;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -38,17 +39,27 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link InferenceResult} variants.
- * <p>
- * Variants <code>text_embedding_bytes</code>, <code>text_embedding_bits</code>,
- * <code>text_embedding</code>, <code>sparse_embedding</code>,
- * <code>completion</code>, <code>rerank</code> are not available here as they
- * don't have a dedicated class. Use {@link InferenceResult}'s builder for
- * these.
- * 
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_watsonx.ServiceType">API
+ *      specification</a>
  */
-public class InferenceResultBuilders {
-	private InferenceResultBuilders() {
+@JsonpDeserializable
+public enum ServiceType implements JsonEnum {
+	Watsonxai("watsonxai"),
+
+	;
+
+	private final String jsonValue;
+
+	ServiceType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<ServiceType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			ServiceType.values());
 }

@@ -106,7 +106,7 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
-	private final Map<String, IndexTemplate> indexTemplateSubtitutions;
+	private final Map<String, IndexTemplate> indexTemplateSubstitutions;
 
 	@Nullable
 	private final TypeMapping mappingAddition;
@@ -123,7 +123,7 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		this.componentTemplateSubstitutions = ApiTypeHelper.unmodifiable(builder.componentTemplateSubstitutions);
 		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 		this.index = builder.index;
-		this.indexTemplateSubtitutions = ApiTypeHelper.unmodifiable(builder.indexTemplateSubtitutions);
+		this.indexTemplateSubstitutions = ApiTypeHelper.unmodifiable(builder.indexTemplateSubstitutions);
 		this.mappingAddition = builder.mappingAddition;
 		this.pipeline = builder.pipeline;
 		this.pipelineSubstitutions = ApiTypeHelper.unmodifiable(builder.pipelineSubstitutions);
@@ -170,10 +170,10 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 	 * A map of index template names to substitute index template definition
 	 * objects.
 	 * <p>
-	 * API name: {@code index_template_subtitutions}
+	 * API name: {@code index_template_substitutions}
 	 */
-	public final Map<String, IndexTemplate> indexTemplateSubtitutions() {
-		return this.indexTemplateSubtitutions;
+	public final Map<String, IndexTemplate> indexTemplateSubstitutions() {
+		return this.indexTemplateSubstitutions;
 	}
 
 	/**
@@ -238,10 +238,10 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.indexTemplateSubtitutions)) {
-			generator.writeKey("index_template_subtitutions");
+		if (ApiTypeHelper.isDefined(this.indexTemplateSubstitutions)) {
+			generator.writeKey("index_template_substitutions");
 			generator.writeStartObject();
-			for (Map.Entry<String, IndexTemplate> item0 : this.indexTemplateSubtitutions.entrySet()) {
+			for (Map.Entry<String, IndexTemplate> item0 : this.indexTemplateSubstitutions.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -284,7 +284,7 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		private String index;
 
 		@Nullable
-		private Map<String, IndexTemplate> indexTemplateSubtitutions;
+		private Map<String, IndexTemplate> indexTemplateSubstitutions;
 
 		@Nullable
 		private TypeMapping mappingAddition;
@@ -388,13 +388,13 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		 * A map of index template names to substitute index template definition
 		 * objects.
 		 * <p>
-		 * API name: {@code index_template_subtitutions}
+		 * API name: {@code index_template_substitutions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to
-		 * <code>indexTemplateSubtitutions</code>.
+		 * <code>indexTemplateSubstitutions</code>.
 		 */
-		public final Builder indexTemplateSubtitutions(Map<String, IndexTemplate> map) {
-			this.indexTemplateSubtitutions = _mapPutAll(this.indexTemplateSubtitutions, map);
+		public final Builder indexTemplateSubstitutions(Map<String, IndexTemplate> map) {
+			this.indexTemplateSubstitutions = _mapPutAll(this.indexTemplateSubstitutions, map);
 			return this;
 		}
 
@@ -402,12 +402,12 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		 * A map of index template names to substitute index template definition
 		 * objects.
 		 * <p>
-		 * API name: {@code index_template_subtitutions}
+		 * API name: {@code index_template_substitutions}
 		 * <p>
-		 * Adds an entry to <code>indexTemplateSubtitutions</code>.
+		 * Adds an entry to <code>indexTemplateSubstitutions</code>.
 		 */
-		public final Builder indexTemplateSubtitutions(String key, IndexTemplate value) {
-			this.indexTemplateSubtitutions = _mapPut(this.indexTemplateSubtitutions, key, value);
+		public final Builder indexTemplateSubstitutions(String key, IndexTemplate value) {
+			this.indexTemplateSubstitutions = _mapPut(this.indexTemplateSubstitutions, key, value);
 			return this;
 		}
 
@@ -415,14 +415,14 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		 * A map of index template names to substitute index template definition
 		 * objects.
 		 * <p>
-		 * API name: {@code index_template_subtitutions}
+		 * API name: {@code index_template_substitutions}
 		 * <p>
-		 * Adds an entry to <code>indexTemplateSubtitutions</code> using a builder
+		 * Adds an entry to <code>indexTemplateSubstitutions</code> using a builder
 		 * lambda.
 		 */
-		public final Builder indexTemplateSubtitutions(String key,
+		public final Builder indexTemplateSubstitutions(String key,
 				Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
-			return indexTemplateSubtitutions(key, fn.apply(new IndexTemplate.Builder()).build());
+			return indexTemplateSubstitutions(key, fn.apply(new IndexTemplate.Builder()).build());
 		}
 
 		/**
@@ -524,8 +524,8 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 				JsonpDeserializer.stringMapDeserializer(ComponentTemplateNode._DESERIALIZER),
 				"component_template_substitutions");
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document._DESERIALIZER), "docs");
-		op.add(Builder::indexTemplateSubtitutions, JsonpDeserializer.stringMapDeserializer(IndexTemplate._DESERIALIZER),
-				"index_template_subtitutions");
+		op.add(Builder::indexTemplateSubstitutions,
+				JsonpDeserializer.stringMapDeserializer(IndexTemplate._DESERIALIZER), "index_template_substitutions");
 		op.add(Builder::mappingAddition, TypeMapping._DESERIALIZER, "mapping_addition");
 		op.add(Builder::pipelineSubstitutions, JsonpDeserializer.stringMapDeserializer(Pipeline._DESERIALIZER),
 				"pipeline_substitutions");
