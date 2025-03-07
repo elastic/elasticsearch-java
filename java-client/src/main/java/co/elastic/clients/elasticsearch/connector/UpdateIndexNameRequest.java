@@ -31,7 +31,6 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -125,7 +124,7 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 
 		else if (isExpNullIndexName) {
 			generator.writeKey("index_name");
-			generator.write(JsonValue.NULL);
+			generator.writeNull();
 
 		}
 

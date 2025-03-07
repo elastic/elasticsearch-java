@@ -57,68 +57,44 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.inference.Request
+// typedef: inference.text_embedding.Request
 
 /**
- * Perform inference on the service.
- * <p>
- * This API enables you to use machine learning models to perform specific tasks
- * on data that you provide as an input. It returns a response with the results
- * of the tasks. The inference endpoint you use can perform one specific task
- * that has been defined when the endpoint was created with the create inference
- * API. <blockquote>
- * <p>
- * info The inference APIs enable you to use certain services, such as built-in
- * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
- * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
- * Hugging Face. For built-in models and models uploaded through Eland, the
- * inference APIs offer an alternative way to use and manage trained models.
- * However, if you do not plan to use the inference APIs to use these models or
- * if you want to use non-NLP models, use the machine learning trained model
- * APIs.
- * </p>
- * </blockquote>
- *
- * @see <a href="../doc-files/api-spec.html#inference.inference.Request">API
+ * Perform text embedding inference on the service
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#inference.text_embedding.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferenceRequest extends RequestBase implements JsonpSerializable {
+public class TextEmbeddingRequest extends RequestBase implements JsonpSerializable {
 	private final String inferenceId;
 
 	private final List<String> input;
 
 	@Nullable
-	private final String query;
-
-	@Nullable
 	private final JsonData taskSettings;
-
-	@Nullable
-	private final TaskType taskType;
 
 	@Nullable
 	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private InferenceRequest(Builder builder) {
+	private TextEmbeddingRequest(Builder builder) {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
-		this.query = builder.query;
 		this.taskSettings = builder.taskSettings;
-		this.taskType = builder.taskType;
 		this.timeout = builder.timeout;
 
 	}
 
-	public static InferenceRequest of(Function<Builder, ObjectBuilder<InferenceRequest>> fn) {
+	public static TextEmbeddingRequest of(Function<Builder, ObjectBuilder<TextEmbeddingRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The unique identifier for the inference endpoint.
+	 * Required - The inference Id
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
@@ -127,13 +103,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The text on which you want to perform the inference task. It can
-	 * be a single string or an array. <blockquote>
-	 * <p>
-	 * info Inference endpoints for the <code>completion</code> task type currently
-	 * only support a single string as input.
-	 * </p>
-	 * </blockquote>
+	 * Required - Inference input. Either a string or an array of strings.
 	 * <p>
 	 * API name: {@code input}
 	 */
@@ -142,20 +112,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The query input, which is required only for the <code>rerank</code> task. It
-	 * is not required for other tasks.
-	 * <p>
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public final String query() {
-		return this.query;
-	}
-
-	/**
-	 * Task settings for the individual inference request. These settings are
-	 * specific to the task type you specified and override the task settings
-	 * specified when initializing the service.
+	 * Optional task settings
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -165,17 +122,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The type of inference task that the model performs.
-	 * <p>
-	 * API name: {@code task_type}
-	 */
-	@Nullable
-	public final TaskType taskType() {
-		return this.taskType;
-	}
-
-	/**
-	 * The amount of time to wait for the inference request to complete.
+	 * Specifies the amount of time to wait for the inference request to complete.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -205,11 +152,6 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.query != null) {
-			generator.writeKey("query");
-			generator.write(this.query);
-
-		}
 		if (this.taskSettings != null) {
 			generator.writeKey("task_settings");
 			this.taskSettings.serialize(generator, mapper);
@@ -221,30 +163,24 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link InferenceRequest}.
+	 * Builder for {@link TextEmbeddingRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<InferenceRequest> {
+				ObjectBuilder<TextEmbeddingRequest> {
 		private String inferenceId;
 
 		private List<String> input;
 
 		@Nullable
-		private String query;
-
-		@Nullable
 		private JsonData taskSettings;
-
-		@Nullable
-		private TaskType taskType;
 
 		@Nullable
 		private Time timeout;
 
 		/**
-		 * Required - The unique identifier for the inference endpoint.
+		 * Required - The inference Id
 		 * <p>
 		 * API name: {@code inference_id}
 		 */
@@ -254,13 +190,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The text on which you want to perform the inference task. It can
-		 * be a single string or an array. <blockquote>
-		 * <p>
-		 * info Inference endpoints for the <code>completion</code> task type currently
-		 * only support a single string as input.
-		 * </p>
-		 * </blockquote>
+		 * Required - Inference input. Either a string or an array of strings.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -272,13 +202,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The text on which you want to perform the inference task. It can
-		 * be a single string or an array. <blockquote>
-		 * <p>
-		 * info Inference endpoints for the <code>completion</code> task type currently
-		 * only support a single string as input.
-		 * </p>
-		 * </blockquote>
+		 * Required - Inference input. Either a string or an array of strings.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -290,20 +214,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The query input, which is required only for the <code>rerank</code> task. It
-		 * is not required for other tasks.
-		 * <p>
-		 * API name: {@code query}
-		 */
-		public final Builder query(@Nullable String value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * Task settings for the individual inference request. These settings are
-		 * specific to the task type you specified and override the task settings
-		 * specified when initializing the service.
+		 * Optional task settings
 		 * <p>
 		 * API name: {@code task_settings}
 		 */
@@ -313,17 +224,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The type of inference task that the model performs.
-		 * <p>
-		 * API name: {@code task_type}
-		 */
-		public final Builder taskType(@Nullable TaskType value) {
-			this.taskType = value;
-			return this;
-		}
-
-		/**
-		 * The amount of time to wait for the inference request to complete.
+		 * Specifies the amount of time to wait for the inference request to complete.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -333,7 +234,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The amount of time to wait for the inference request to complete.
+		 * Specifies the amount of time to wait for the inference request to complete.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -347,30 +248,29 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link InferenceRequest}.
+		 * Builds a {@link TextEmbeddingRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public InferenceRequest build() {
+		public TextEmbeddingRequest build() {
 			_checkSingleUse();
 
-			return new InferenceRequest(this);
+			return new TextEmbeddingRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link InferenceRequest}
+	 * Json deserializer for {@link TextEmbeddingRequest}
 	 */
-	public static final JsonpDeserializer<InferenceRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InferenceRequest::setupInferenceRequestDeserializer);
+	public static final JsonpDeserializer<TextEmbeddingRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TextEmbeddingRequest::setupTextEmbeddingRequestDeserializer);
 
-	protected static void setupInferenceRequestDeserializer(ObjectDeserializer<InferenceRequest.Builder> op) {
+	protected static void setupTextEmbeddingRequestDeserializer(ObjectDeserializer<TextEmbeddingRequest.Builder> op) {
 
 		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
-		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
 
 	}
@@ -378,10 +278,10 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code inference.inference}".
+	 * Endpoint "{@code inference.text_embedding}".
 	 */
-	public static final Endpoint<InferenceRequest, InferenceResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/inference.inference",
+	public static final Endpoint<TextEmbeddingRequest, TextEmbeddingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/inference.text_embedding",
 
 			// Request method
 			request -> {
@@ -392,26 +292,15 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 			// Request path
 			request -> {
 				final int _inferenceId = 1 << 0;
-				final int _taskType = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _inferenceId;
-				if (request.taskType() != null)
-					propsSet |= _taskType;
 
 				if (propsSet == (_inferenceId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_inference");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.inferenceId, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_taskType | _inferenceId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_inference");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.taskType.jsonValue(), buf);
+					buf.append("/text_embedding");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.inferenceId, buf);
 					return buf.toString();
@@ -424,19 +313,12 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _inferenceId = 1 << 0;
-				final int _taskType = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _inferenceId;
-				if (request.taskType() != null)
-					propsSet |= _taskType;
 
 				if (propsSet == (_inferenceId)) {
-					params.put("inferenceId", request.inferenceId);
-				}
-				if (propsSet == (_taskType | _inferenceId)) {
-					params.put("taskType", request.taskType.jsonValue());
 					params.put("inferenceId", request.inferenceId);
 				}
 				return params;
@@ -450,5 +332,5 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, InferenceResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TextEmbeddingResponse._DESERIALIZER);
 }

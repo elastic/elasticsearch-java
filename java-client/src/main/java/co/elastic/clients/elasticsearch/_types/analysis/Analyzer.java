@@ -130,8 +130,6 @@ public class Analyzer implements OpenTaggedUnion<Analyzer.Kind, Object>, JsonpSe
 
 		Kuromoji("kuromoji"),
 
-		Language("language"),
-
 		Latvian("latvian"),
 
 		Lithuanian("lithuanian"),
@@ -723,23 +721,6 @@ public class Analyzer implements OpenTaggedUnion<Analyzer.Kind, Object>, JsonpSe
 	 */
 	public KuromojiAnalyzer kuromoji() {
 		return TaggedUnionUtils.get(this, Kind.Kuromoji);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code language}?
-	 */
-	public boolean isLanguage() {
-		return _kind == Kind.Language;
-	}
-
-	/**
-	 * Get the {@code language} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code language} kind.
-	 */
-	public LanguageAnalyzer language() {
-		return TaggedUnionUtils.get(this, Kind.Language);
 	}
 
 	/**
@@ -1431,17 +1412,6 @@ public class Analyzer implements OpenTaggedUnion<Analyzer.Kind, Object>, JsonpSe
 			return this.kuromoji(fn.apply(new KuromojiAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> language(LanguageAnalyzer v) {
-			this._kind = Kind.Language;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Analyzer> language(
-				Function<LanguageAnalyzer.Builder, ObjectBuilder<LanguageAnalyzer>> fn) {
-			return this.language(fn.apply(new LanguageAnalyzer.Builder()).build());
-		}
-
 		public ObjectBuilder<Analyzer> latvian(LatvianAnalyzer v) {
 			this._kind = Kind.Latvian;
 			this._value = v;
@@ -1703,7 +1673,6 @@ public class Analyzer implements OpenTaggedUnion<Analyzer.Kind, Object>, JsonpSe
 		op.add(Builder::italian, ItalianAnalyzer._DESERIALIZER, "italian");
 		op.add(Builder::keyword, KeywordAnalyzer._DESERIALIZER, "keyword");
 		op.add(Builder::kuromoji, KuromojiAnalyzer._DESERIALIZER, "kuromoji");
-		op.add(Builder::language, LanguageAnalyzer._DESERIALIZER, "language");
 		op.add(Builder::latvian, LatvianAnalyzer._DESERIALIZER, "latvian");
 		op.add(Builder::lithuanian, LithuanianAnalyzer._DESERIALIZER, "lithuanian");
 		op.add(Builder::nori, NoriAnalyzer._DESERIALIZER, "nori");

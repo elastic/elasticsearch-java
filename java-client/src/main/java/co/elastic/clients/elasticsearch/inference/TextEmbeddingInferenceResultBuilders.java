@@ -17,11 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.analysis;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,91 +38,16 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../../doc-files/api-spec.html#_types.analysis.Language">API
- *      specification</a>
+ * Builders for {@link TextEmbeddingInferenceResult} variants.
+ * <p>
+ * Variants <code>text_embedding_bytes</code>, <code>text_embedding_bits</code>,
+ * <code>text_embedding</code> are not available here as they don't have a
+ * dedicated class. Use {@link TextEmbeddingInferenceResult}'s builder for
+ * these.
+ * 
  */
-@JsonpDeserializable
-public enum Language implements JsonEnum {
-	Arabic("Arabic"),
-
-	Armenian("Armenian"),
-
-	Basque("Basque"),
-
-	Brazilian("Brazilian"),
-
-	Bulgarian("Bulgarian"),
-
-	Catalan("Catalan"),
-
-	Chinese("Chinese"),
-
-	Cjk("Cjk"),
-
-	Czech("Czech"),
-
-	Danish("Danish"),
-
-	Dutch("Dutch"),
-
-	English("English"),
-
-	Estonian("Estonian"),
-
-	Finnish("Finnish"),
-
-	French("French"),
-
-	Galician("Galician"),
-
-	German("German"),
-
-	Greek("Greek"),
-
-	Hindi("Hindi"),
-
-	Hungarian("Hungarian"),
-
-	Indonesian("Indonesian"),
-
-	Irish("Irish"),
-
-	Italian("Italian"),
-
-	Latvian("Latvian"),
-
-	Norwegian("Norwegian"),
-
-	Persian("Persian"),
-
-	Portuguese("Portuguese"),
-
-	Romanian("Romanian"),
-
-	Russian("Russian"),
-
-	Sorani("Sorani"),
-
-	Spanish("Spanish"),
-
-	Swedish("Swedish"),
-
-	Turkish("Turkish"),
-
-	Thai("Thai"),
-
-	;
-
-	private final String jsonValue;
-
-	Language(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class TextEmbeddingInferenceResultBuilders {
+	private TextEmbeddingInferenceResultBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<Language> _DESERIALIZER = new JsonEnum.Deserializer<>(Language.values());
 }

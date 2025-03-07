@@ -54,23 +54,27 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.InferenceResult
+// typedef: inference._types.TextEmbeddingInferenceResult
 
 /**
- * InferenceResult is an aggregation of mutually exclusive variants
+ * TextEmbeddingInferenceResult is an aggregation of mutually exclusive
+ * text_embedding variants
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.InferenceResult">API
+ *      "../doc-files/api-spec.html#inference._types.TextEmbeddingInferenceResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object>, JsonpSerializable {
+public class TextEmbeddingInferenceResult
+		implements
+			TaggedUnion<TextEmbeddingInferenceResult.Kind, Object>,
+			JsonpSerializable {
 
 	/**
-	 * {@link InferenceResult} variant kinds.
+	 * {@link TextEmbeddingInferenceResult} variant kinds.
 	 * 
 	 * @see <a href=
-	 *      "../doc-files/api-spec.html#inference._types.InferenceResult">API
+	 *      "../doc-files/api-spec.html#inference._types.TextEmbeddingInferenceResult">API
 	 *      specification</a>
 	 */
 
@@ -80,12 +84,6 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 		TextEmbeddingBits("text_embedding_bits"),
 
 		TextEmbedding("text_embedding"),
-
-		SparseEmbedding("sparse_embedding"),
-
-		Completion("completion"),
-
-		Rerank("rerank"),
 
 		;
 
@@ -114,21 +112,21 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 		return _value;
 	}
 
-	public InferenceResult(InferenceResultVariant value) {
+	public TextEmbeddingInferenceResult(TextEmbeddingInferenceResultVariant value) {
 
-		this._kind = ApiTypeHelper.requireNonNull(value._inferenceResultKind(), this, "<variant kind>");
+		this._kind = ApiTypeHelper.requireNonNull(value._textEmbeddingInferenceResultKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
-	private InferenceResult(Builder builder) {
+	private TextEmbeddingInferenceResult(Builder builder) {
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static InferenceResult of(Function<Builder, ObjectBuilder<InferenceResult>> fn) {
+	public static TextEmbeddingInferenceResult of(Function<Builder, ObjectBuilder<TextEmbeddingInferenceResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -185,58 +183,6 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 		return TaggedUnionUtils.get(this, Kind.TextEmbedding);
 	}
 
-	/**
-	 * Is this variant instance of kind {@code sparse_embedding}?
-	 */
-	public boolean isSparseEmbedding() {
-		return _kind == Kind.SparseEmbedding;
-	}
-
-	/**
-	 * Get the {@code sparse_embedding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code sparse_embedding}
-	 *             kind.
-	 */
-	public List<SparseEmbeddingResult> sparseEmbedding() {
-		return TaggedUnionUtils.get(this, Kind.SparseEmbedding);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code completion}?
-	 */
-	public boolean isCompletion() {
-		return _kind == Kind.Completion;
-	}
-
-	/**
-	 * Get the {@code completion} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code completion} kind.
-	 */
-	public List<CompletionResult> completion() {
-		return TaggedUnionUtils.get(this, Kind.Completion);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code rerank}?
-	 */
-	public boolean isRerank() {
-		return _kind == Kind.Rerank;
-	}
-
-	/**
-	 * Get the {@code rerank} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code rerank} kind.
-	 */
-	public List<RankedDocument> rerank() {
-		return TaggedUnionUtils.get(this, Kind.Rerank);
-	}
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -275,33 +221,6 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 					generator.writeEnd();
 
 					break;
-				case SparseEmbedding :
-					generator.writeStartArray();
-					for (SparseEmbeddingResult item0 : ((List<SparseEmbeddingResult>) this._value)) {
-						item0.serialize(generator, mapper);
-
-					}
-					generator.writeEnd();
-
-					break;
-				case Completion :
-					generator.writeStartArray();
-					for (CompletionResult item0 : ((List<CompletionResult>) this._value)) {
-						item0.serialize(generator, mapper);
-
-					}
-					generator.writeEnd();
-
-					break;
-				case Rerank :
-					generator.writeStartArray();
-					for (RankedDocument item0 : ((List<RankedDocument>) this._value)) {
-						item0.serialize(generator, mapper);
-
-					}
-					generator.writeEnd();
-
-					break;
 			}
 		}
 
@@ -314,7 +233,9 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InferenceResult> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TextEmbeddingInferenceResult> {
 		private Kind _kind;
 		private Object _value;
 
@@ -322,50 +243,32 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<InferenceResult> textEmbeddingBytes(List<TextEmbeddingByteResult> v) {
+		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbeddingBytes(List<TextEmbeddingByteResult> v) {
 			this._kind = Kind.TextEmbeddingBytes;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<InferenceResult> textEmbeddingBits(List<TextEmbeddingByteResult> v) {
+		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbeddingBits(List<TextEmbeddingByteResult> v) {
 			this._kind = Kind.TextEmbeddingBits;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<InferenceResult> textEmbedding(List<TextEmbeddingResult> v) {
+		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbedding(List<TextEmbeddingResult> v) {
 			this._kind = Kind.TextEmbedding;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<InferenceResult> sparseEmbedding(List<SparseEmbeddingResult> v) {
-			this._kind = Kind.SparseEmbedding;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<InferenceResult> completion(List<CompletionResult> v) {
-			this._kind = Kind.Completion;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<InferenceResult> rerank(List<RankedDocument> v) {
-			this._kind = Kind.Rerank;
-			this._value = v;
-			return this;
-		}
-
-		public InferenceResult build() {
+		public TextEmbeddingInferenceResult build() {
 			_checkSingleUse();
-			return new InferenceResult(this);
+			return new TextEmbeddingInferenceResult(this);
 		}
 
 	}
 
-	protected static void setupInferenceResultDeserializer(ObjectDeserializer<Builder> op) {
+	protected static void setupTextEmbeddingInferenceResultDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::textEmbeddingBytes, JsonpDeserializer.arrayDeserializer(TextEmbeddingByteResult._DESERIALIZER),
 				"text_embedding_bytes");
@@ -373,13 +276,9 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 				"text_embedding_bits");
 		op.add(Builder::textEmbedding, JsonpDeserializer.arrayDeserializer(TextEmbeddingResult._DESERIALIZER),
 				"text_embedding");
-		op.add(Builder::sparseEmbedding, JsonpDeserializer.arrayDeserializer(SparseEmbeddingResult._DESERIALIZER),
-				"sparse_embedding");
-		op.add(Builder::completion, JsonpDeserializer.arrayDeserializer(CompletionResult._DESERIALIZER), "completion");
-		op.add(Builder::rerank, JsonpDeserializer.arrayDeserializer(RankedDocument._DESERIALIZER), "rerank");
 
 	}
 
-	public static final JsonpDeserializer<InferenceResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InferenceResult::setupInferenceResultDeserializer, Builder::build);
+	public static final JsonpDeserializer<TextEmbeddingInferenceResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, TextEmbeddingInferenceResult::setupTextEmbeddingInferenceResultDeserializer, Builder::build);
 }

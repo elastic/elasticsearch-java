@@ -87,9 +87,6 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	/**
 	 * API name: {@code rating}
-	 * <p>
-	 * Defaults to {@code Integer.MIN_VALUE} if parsed from a JSON {@code null}
-	 * value.
 	 */
 	@Nullable
 	public final Double rating() {
@@ -112,7 +109,8 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 		if (this.rating != null) {
 			generator.writeKey("rating");
-			JsonpUtils.serializeDoubleOrNull(generator, this.rating, Integer.MIN_VALUE);
+			generator.write(this.rating);
+
 		}
 
 	}
@@ -151,9 +149,6 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 		/**
 		 * API name: {@code rating}
-		 * <p>
-		 * Defaults to {@code Integer.MIN_VALUE} if parsed from a JSON {@code null}
-		 * value.
 		 */
 		public final Builder rating(@Nullable Double value) {
 			this.rating = value;
@@ -189,7 +184,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 	protected static void setupRankEvalHitItemDeserializer(ObjectDeserializer<RankEvalHitItem.Builder> op) {
 
 		op.add(Builder::hit, RankEvalHit._DESERIALIZER, "hit");
-		op.add(Builder::rating, JsonpDeserializer.doubleOrNullDeserializer(Integer.MIN_VALUE), "rating");
+		op.add(Builder::rating, JsonpDeserializer.doubleDeserializer(), "rating");
 
 	}
 

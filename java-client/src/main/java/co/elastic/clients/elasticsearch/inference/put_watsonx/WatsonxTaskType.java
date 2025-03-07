@@ -17,7 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.inference.put_watsonx;
+
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -35,14 +39,27 @@ package co.elastic.clients.elasticsearch.inference;
 //----------------------------------------------------------------
 
 /**
- * Base interface for {@link InferenceResult} variants.
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_watsonx.WatsonxTaskType">API
+ *      specification</a>
  */
-public interface InferenceResultVariant {
+@JsonpDeserializable
+public enum WatsonxTaskType implements JsonEnum {
+	TextEmbedding("text_embedding"),
 
-	InferenceResult.Kind _inferenceResultKind();
+	;
 
-	default InferenceResult _toInferenceResult() {
-		return new InferenceResult(this);
+	private final String jsonValue;
+
+	WatsonxTaskType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<WatsonxTaskType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			WatsonxTaskType.values());
 }

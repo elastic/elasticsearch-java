@@ -22,10 +22,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -59,7 +57,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TTestAggregate extends AggregateBase implements AggregateVariant {
-	private final double value;
+	@Nullable
+	private final Double value;
 
 	@Nullable
 	private final String valueAsString;
@@ -69,7 +68,7 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 	private TTestAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = builder.value;
 		this.valueAsString = builder.valueAsString;
 
 	}
@@ -87,11 +86,10 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 	}
 
 	/**
-	 * Required - API name: {@code value}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+	 * API name: {@code value}
 	 */
-	public final double value() {
+	@Nullable
+	public final Double value() {
 		return this.value;
 	}
 
@@ -106,8 +104,11 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
+		if (this.value != null) {
+			generator.writeKey("value");
+			generator.write(this.value);
+
+		}
 		if (this.valueAsString != null) {
 			generator.writeKey("value_as_string");
 			generator.write(this.valueAsString);
@@ -125,17 +126,16 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TTestAggregate> {
+		@Nullable
 		private Double value;
 
 		@Nullable
 		private String valueAsString;
 
 		/**
-		 * Required - API name: {@code value}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+		 * API name: {@code value}
 		 */
-		public final Builder value(double value) {
+		public final Builder value(@Nullable Double value) {
 			this.value = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 
 	protected static void setupTTestAggregateDeserializer(ObjectDeserializer<TTestAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
+		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
 	}

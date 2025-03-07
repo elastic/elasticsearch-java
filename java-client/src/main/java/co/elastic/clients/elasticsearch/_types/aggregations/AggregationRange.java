@@ -87,8 +87,6 @@ public class AggregationRange implements JsonpSerializable {
 	 * Start of the range (inclusive).
 	 * <p>
 	 * API name: {@code from}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Double from() {
@@ -109,8 +107,6 @@ public class AggregationRange implements JsonpSerializable {
 	 * End of the range (exclusive).
 	 * <p>
 	 * API name: {@code to}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Double to() {
@@ -130,7 +126,8 @@ public class AggregationRange implements JsonpSerializable {
 
 		if (this.from != null) {
 			generator.writeKey("from");
-			JsonpUtils.serializeDoubleOrNull(generator, this.from, 0);
+			generator.write(this.from);
+
 		}
 		if (this.key != null) {
 			generator.writeKey("key");
@@ -139,7 +136,8 @@ public class AggregationRange implements JsonpSerializable {
 		}
 		if (this.to != null) {
 			generator.writeKey("to");
-			JsonpUtils.serializeDoubleOrNull(generator, this.to, 0);
+			generator.write(this.to);
+
 		}
 
 	}
@@ -169,8 +167,6 @@ public class AggregationRange implements JsonpSerializable {
 		 * Start of the range (inclusive).
 		 * <p>
 		 * API name: {@code from}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder from(@Nullable Double value) {
 			this.from = value;
@@ -191,8 +187,6 @@ public class AggregationRange implements JsonpSerializable {
 		 * End of the range (exclusive).
 		 * <p>
 		 * API name: {@code to}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder to(@Nullable Double value) {
 			this.to = value;
@@ -227,9 +221,9 @@ public class AggregationRange implements JsonpSerializable {
 
 	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.doubleOrNullDeserializer(0), "from");
+		op.add(Builder::from, JsonpDeserializer.doubleDeserializer(), "from");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::to, JsonpDeserializer.doubleOrNullDeserializer(0), "to");
+		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
 
 	}
 
