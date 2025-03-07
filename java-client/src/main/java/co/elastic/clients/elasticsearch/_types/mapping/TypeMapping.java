@@ -104,7 +104,7 @@ public class TypeMapping implements JsonpSerializable {
 	private final Boolean enabled;
 
 	@Nullable
-	private final Boolean subobjects;
+	private final Subobjects subobjects;
 
 	@Nullable
 	private final DataStreamTimestamp dataStreamTimestamp;
@@ -256,7 +256,7 @@ public class TypeMapping implements JsonpSerializable {
 	 * API name: {@code subobjects}
 	 */
 	@Nullable
-	public final Boolean subobjects() {
+	public final Subobjects subobjects() {
 		return this.subobjects;
 	}
 
@@ -391,8 +391,7 @@ public class TypeMapping implements JsonpSerializable {
 		}
 		if (this.subobjects != null) {
 			generator.writeKey("subobjects");
-			generator.write(this.subobjects);
-
+			this.subobjects.serialize(generator, mapper);
 		}
 		if (this.dataStreamTimestamp != null) {
 			generator.writeKey("_data_stream_timestamp");
@@ -460,7 +459,7 @@ public class TypeMapping implements JsonpSerializable {
 		private Boolean enabled;
 
 		@Nullable
-		private Boolean subobjects;
+		private Subobjects subobjects;
 
 		@Nullable
 		private DataStreamTimestamp dataStreamTimestamp;
@@ -709,7 +708,7 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code subobjects}
 		 */
-		public final Builder subobjects(@Nullable Boolean value) {
+		public final Builder subobjects(@Nullable Subobjects value) {
 			this.subobjects = value;
 			return this;
 		}
@@ -775,7 +774,7 @@ public class TypeMapping implements JsonpSerializable {
 		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::subobjects, JsonpDeserializer.booleanDeserializer(), "subobjects");
+		op.add(Builder::subobjects, Subobjects._DESERIALIZER, "subobjects");
 		op.add(Builder::dataStreamTimestamp, DataStreamTimestamp._DESERIALIZER, "_data_stream_timestamp");
 
 	}

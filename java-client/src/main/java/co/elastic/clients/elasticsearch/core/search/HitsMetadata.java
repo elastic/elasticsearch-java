@@ -110,8 +110,6 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	/**
 	 * API name: {@code max_score}
-	 * <p>
-	 * Defaults to {@code Double.NaN} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Double maxScore() {
@@ -146,7 +144,8 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		}
 		if (this.maxScore != null) {
 			generator.writeKey("max_score");
-			JsonpUtils.serializeDoubleOrNull(generator, this.maxScore, Double.NaN);
+			generator.write(this.maxScore);
+
 		}
 
 	}
@@ -228,8 +227,6 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code max_score}
-		 * <p>
-		 * Defaults to {@code Double.NaN} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder<T> maxScore(@Nullable Double value) {
 			this.maxScore = value;
@@ -287,7 +284,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 		op.add(Builder::total, TotalHits._DESERIALIZER, "total");
 		op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(tDeserializer)), "hits");
-		op.add(Builder::maxScore, JsonpDeserializer.doubleOrNullDeserializer(Double.NaN), "max_score");
+		op.add(Builder::maxScore, JsonpDeserializer.doubleDeserializer(), "max_score");
 
 	}
 

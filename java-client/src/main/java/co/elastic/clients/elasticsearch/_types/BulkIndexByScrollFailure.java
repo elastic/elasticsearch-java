@@ -68,8 +68,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	private final int status;
 
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private BulkIndexByScrollFailure(Builder builder) {
@@ -78,7 +76,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -115,13 +112,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -143,9 +133,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 
 		generator.writeKey("status");
 		generator.write(this.status);
-
-		generator.writeKey("type");
-		generator.write(this.type);
 
 	}
 
@@ -170,8 +157,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		private String index;
 
 		private Integer status;
-
-		private String type;
 
 		/**
 		 * Required - API name: {@code cause}
@@ -212,14 +197,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -253,7 +230,6 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

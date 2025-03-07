@@ -22,10 +22,8 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,7 +57,8 @@ import javax.annotation.Nullable;
  */
 
 public abstract class SingleMetricAggregateBase extends AggregateBase {
-	private final double value;
+	@Nullable
+	private final Double value;
 
 	@Nullable
 	private final String valueAsString;
@@ -69,20 +68,19 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	protected SingleMetricAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = builder.value;
 		this.valueAsString = builder.valueAsString;
 
 	}
 
 	/**
-	 * Required - The metric value. A missing value generally means that there was
-	 * no data to aggregate, unless specified otherwise.
+	 * The metric value. A missing value generally means that there was no data to
+	 * aggregate, unless specified otherwise.
 	 * <p>
 	 * API name: {@code value}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
-	public final double value() {
+	@Nullable
+	public final Double value() {
 		return this.value;
 	}
 
@@ -97,8 +95,11 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
+		if (this.value != null) {
+			generator.writeKey("value");
+			generator.write(this.value);
+
+		}
 		if (this.valueAsString != null) {
 			generator.writeKey("value_as_string");
 			generator.write(this.valueAsString);
@@ -110,20 +111,19 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AggregateBase.AbstractBuilder<BuilderT> {
+		@Nullable
 		private Double value;
 
 		@Nullable
 		private String valueAsString;
 
 		/**
-		 * Required - The metric value. A missing value generally means that there was
-		 * no data to aggregate, unless specified otherwise.
+		 * The metric value. A missing value generally means that there was no data to
+		 * aggregate, unless specified otherwise.
 		 * <p>
 		 * API name: {@code value}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
-		public final BuilderT value(double value) {
+		public final BuilderT value(@Nullable Double value) {
 			this.value = value;
 			return self();
 		}
@@ -142,7 +142,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleMetricAggregateBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
+		op.add(AbstractBuilder::value, JsonpDeserializer.doubleDeserializer(), "value");
 		op.add(AbstractBuilder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
 	}

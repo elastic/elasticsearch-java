@@ -81,9 +81,6 @@ public class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
 	private final Include include;
 
-	@Nullable
-	private final Boolean includeModelDefinition;
-
 	private final List<String> modelId;
 
 	@Nullable
@@ -100,7 +97,6 @@ public class GetTrainedModelsRequest extends RequestBase {
 		this.excludeGenerated = builder.excludeGenerated;
 		this.from = builder.from;
 		this.include = builder.include;
-		this.includeModelDefinition = builder.includeModelDefinition;
 		this.modelId = ApiTypeHelper.unmodifiable(builder.modelId);
 		this.size = builder.size;
 		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
@@ -173,19 +169,6 @@ public class GetTrainedModelsRequest extends RequestBase {
 	}
 
 	/**
-	 * parameter is deprecated! Use [include=definition] instead
-	 * <p>
-	 * API name: {@code include_model_definition}
-	 * 
-	 * @deprecated 7.10.0
-	 */
-	@Deprecated
-	@Nullable
-	public final Boolean includeModelDefinition() {
-		return this.includeModelDefinition;
-	}
-
-	/**
 	 * The unique identifier of the trained model or a model alias.
 	 * <p>
 	 * You can get information for multiple trained models in a single API request
@@ -241,9 +224,6 @@ public class GetTrainedModelsRequest extends RequestBase {
 
 		@Nullable
 		private Include include;
-
-		@Nullable
-		private Boolean includeModelDefinition;
 
 		@Nullable
 		private List<String> modelId;
@@ -312,19 +292,6 @@ public class GetTrainedModelsRequest extends RequestBase {
 		 */
 		public final Builder include(@Nullable Include value) {
 			this.include = value;
-			return this;
-		}
-
-		/**
-		 * parameter is deprecated! Use [include=definition] instead
-		 * <p>
-		 * API name: {@code include_model_definition}
-		 * 
-		 * @deprecated 7.10.0
-		 */
-		@Deprecated
-		public final Builder includeModelDefinition(@Nullable Boolean value) {
-			this.includeModelDefinition = value;
 			return this;
 		}
 
@@ -491,9 +458,6 @@ public class GetTrainedModelsRequest extends RequestBase {
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
-				}
-				if (request.includeModelDefinition != null) {
-					params.put("include_model_definition", String.valueOf(request.includeModelDefinition));
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));

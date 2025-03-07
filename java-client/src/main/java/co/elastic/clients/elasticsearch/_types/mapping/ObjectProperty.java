@@ -60,7 +60,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	private final Boolean enabled;
 
 	@Nullable
-	private final Boolean subobjects;
+	private final Subobjects subobjects;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	 * API name: {@code subobjects}
 	 */
 	@Nullable
-	public final Boolean subobjects() {
+	public final Subobjects subobjects() {
 		return this.subobjects;
 	}
 
@@ -111,8 +111,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		}
 		if (this.subobjects != null) {
 			generator.writeKey("subobjects");
-			generator.write(this.subobjects);
-
+			this.subobjects.serialize(generator, mapper);
 		}
 
 	}
@@ -130,7 +129,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		private Boolean enabled;
 
 		@Nullable
-		private Boolean subobjects;
+		private Subobjects subobjects;
 
 		/**
 		 * API name: {@code enabled}
@@ -143,7 +142,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		/**
 		 * API name: {@code subobjects}
 		 */
-		public final Builder subobjects(@Nullable Boolean value) {
+		public final Builder subobjects(@Nullable Subobjects value) {
 			this.subobjects = value;
 			return this;
 		}
@@ -177,7 +176,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::subobjects, JsonpDeserializer.booleanDeserializer(), "subobjects");
+		op.add(Builder::subobjects, Subobjects._DESERIALIZER, "subobjects");
 
 		op.ignore("type");
 	}

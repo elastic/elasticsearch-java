@@ -170,8 +170,6 @@ public class LicenseInformation implements JsonpSerializable {
 
 	/**
 	 * API name: {@code max_resource_units}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Integer maxResourceUnits() {
@@ -244,7 +242,8 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 		if (this.maxResourceUnits != null) {
 			generator.writeKey("max_resource_units");
-			JsonpUtils.serializeIntOrNull(generator, this.maxResourceUnits, 0);
+			generator.write(this.maxResourceUnits);
+
 		}
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
@@ -358,8 +357,6 @@ public class LicenseInformation implements JsonpSerializable {
 
 		/**
 		 * API name: {@code max_resource_units}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder maxResourceUnits(@Nullable Integer value) {
 			this.maxResourceUnits = value;
@@ -433,7 +430,7 @@ public class LicenseInformation implements JsonpSerializable {
 		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
 		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
 		op.add(Builder::maxNodes, JsonpDeserializer.longDeserializer(), "max_nodes");
-		op.add(Builder::maxResourceUnits, JsonpDeserializer.intOrNullDeserializer(0), "max_resource_units");
+		op.add(Builder::maxResourceUnits, JsonpDeserializer.integerDeserializer(), "max_resource_units");
 		op.add(Builder::status, LicenseStatus._DESERIALIZER, "status");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");

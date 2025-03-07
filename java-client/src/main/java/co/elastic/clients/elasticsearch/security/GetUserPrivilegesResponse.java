@@ -65,9 +65,13 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	private final List<String> cluster;
 
+	private final List<RemoteClusterPrivileges> remoteCluster;
+
 	private final List<GlobalPrivilege> global;
 
 	private final List<UserIndicesPrivileges> indices;
+
+	private final List<RemoteUserIndicesPrivileges> remoteIndices;
 
 	private final List<String> runAs;
 
@@ -77,8 +81,10 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
 		this.global = ApiTypeHelper.unmodifiableRequired(builder.global, this, "global");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);
 		this.runAs = ApiTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
 
 	}
@@ -102,6 +108,13 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code remote_cluster}
+	 */
+	public final List<RemoteClusterPrivileges> remoteCluster() {
+		return this.remoteCluster;
+	}
+
+	/**
 	 * Required - API name: {@code global}
 	 */
 	public final List<GlobalPrivilege> global() {
@@ -113,6 +126,13 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 	 */
 	public final List<UserIndicesPrivileges> indices() {
 		return this.indices;
+	}
+
+	/**
+	 * API name: {@code remote_indices}
+	 */
+	public final List<RemoteUserIndicesPrivileges> remoteIndices() {
+		return this.remoteIndices;
 	}
 
 	/**
@@ -153,6 +173,16 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.remoteCluster)) {
+			generator.writeKey("remote_cluster");
+			generator.writeStartArray();
+			for (RemoteClusterPrivileges item0 : this.remoteCluster) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartArray();
@@ -167,6 +197,16 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (UserIndicesPrivileges item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.remoteIndices)) {
+			generator.writeKey("remote_indices");
+			generator.writeStartArray();
+			for (RemoteUserIndicesPrivileges item0 : this.remoteIndices) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -204,9 +244,15 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 		private List<String> cluster;
 
+		@Nullable
+		private List<RemoteClusterPrivileges> remoteCluster;
+
 		private List<GlobalPrivilege> global;
 
 		private List<UserIndicesPrivileges> indices;
+
+		@Nullable
+		private List<RemoteUserIndicesPrivileges> remoteIndices;
 
 		private List<String> runAs;
 
@@ -258,6 +304,36 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		public final Builder cluster(String value, String... values) {
 			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteCluster</code>.
+		 */
+		public final Builder remoteCluster(List<RemoteClusterPrivileges> list) {
+			this.remoteCluster = _listAddAll(this.remoteCluster, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds one or more values to <code>remoteCluster</code>.
+		 */
+		public final Builder remoteCluster(RemoteClusterPrivileges value, RemoteClusterPrivileges... values) {
+			this.remoteCluster = _listAdd(this.remoteCluster, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code remote_cluster}
+		 * <p>
+		 * Adds a value to <code>remoteCluster</code> using a builder lambda.
+		 */
+		public final Builder remoteCluster(
+				Function<RemoteClusterPrivileges.Builder, ObjectBuilder<RemoteClusterPrivileges>> fn) {
+			return remoteCluster(fn.apply(new RemoteClusterPrivileges.Builder()).build());
 		}
 
 		/**
@@ -319,6 +395,36 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>remoteIndices</code>.
+		 */
+		public final Builder remoteIndices(List<RemoteUserIndicesPrivileges> list) {
+			this.remoteIndices = _listAddAll(this.remoteIndices, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds one or more values to <code>remoteIndices</code>.
+		 */
+		public final Builder remoteIndices(RemoteUserIndicesPrivileges value, RemoteUserIndicesPrivileges... values) {
+			this.remoteIndices = _listAdd(this.remoteIndices, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code remote_indices}
+		 * <p>
+		 * Adds a value to <code>remoteIndices</code> using a builder lambda.
+		 */
+		public final Builder remoteIndices(
+				Function<RemoteUserIndicesPrivileges.Builder, ObjectBuilder<RemoteUserIndicesPrivileges>> fn) {
+			return remoteIndices(fn.apply(new RemoteUserIndicesPrivileges.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
@@ -371,8 +477,12 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 				"applications");
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
+		op.add(Builder::remoteCluster, JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER),
+				"remote_cluster");
 		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(UserIndicesPrivileges._DESERIALIZER), "indices");
+		op.add(Builder::remoteIndices, JsonpDeserializer.arrayDeserializer(RemoteUserIndicesPrivileges._DESERIALIZER),
+				"remote_indices");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}

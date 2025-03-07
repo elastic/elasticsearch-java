@@ -103,6 +103,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		GeoDistance("geo_distance"),
 
+		GeoGrid("geo_grid"),
+
 		GeoPolygon("geo_polygon"),
 
 		GeoShape("geo_shape"),
@@ -462,6 +464,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public GeoDistanceQuery geoDistance() {
 		return TaggedUnionUtils.get(this, Kind.GeoDistance);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_grid}?
+	 */
+	public boolean isGeoGrid() {
+		return _kind == Kind.GeoGrid;
+	}
+
+	/**
+	 * Get the {@code geo_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo_grid} kind.
+	 */
+	public GeoGridQuery geoGrid() {
+		return TaggedUnionUtils.get(this, Kind.GeoGrid);
 	}
 
 	/**
@@ -1470,6 +1489,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.geoDistance(fn.apply(new GeoDistanceQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> geoGrid(GeoGridQuery v) {
+			this._kind = Kind.GeoGrid;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> geoGrid(Function<GeoGridQuery.Builder, ObjectBuilder<GeoGridQuery>> fn) {
+			return this.geoGrid(fn.apply(new GeoGridQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery v) {
 			this._kind = Kind.GeoPolygon;
 			this._value = v;
@@ -2001,6 +2030,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::fuzzy, FuzzyQuery._DESERIALIZER, "fuzzy");
 		op.add(Builder::geoBoundingBox, GeoBoundingBoxQuery._DESERIALIZER, "geo_bounding_box");
 		op.add(Builder::geoDistance, GeoDistanceQuery._DESERIALIZER, "geo_distance");
+		op.add(Builder::geoGrid, GeoGridQuery._DESERIALIZER, "geo_grid");
 		op.add(Builder::geoPolygon, GeoPolygonQuery._DESERIALIZER, "geo_polygon");
 		op.add(Builder::geoShape, GeoShapeQuery._DESERIALIZER, "geo_shape");
 		op.add(Builder::hasChild, HasChildQuery._DESERIALIZER, "has_child");
