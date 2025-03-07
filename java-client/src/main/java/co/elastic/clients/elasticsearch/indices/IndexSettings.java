@@ -32,7 +32,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -875,7 +874,7 @@ public class IndexSettings implements JsonpSerializable {
 
 		else if (isExpNullAutoExpandReplicas) {
 			generator.writeKey("auto_expand_replicas");
-			generator.write(JsonValue.NULL);
+			generator.writeNull();
 
 		}
 		if (this.merge != null) {
