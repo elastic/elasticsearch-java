@@ -218,18 +218,18 @@ public class BuiltinTypesTest extends ModelTestCase {
         assertEquals(2.0, stats.max(), 0.01);
         assertEquals(5.0, stats.sum(), 0.01);
 
-        // Missing values (JSON null, Java infinite)
-        String json = "{\"count\":0,\"min\":null,\"max\":null,\"avg\":null,\"sum\":0.0}";
+        // Missing values (Java mapping same as json)
+        String json = "{\"count\":0,\"min\":null,\"max\":null,\"avg\":0.0,\"sum\":0.0}";
         stats = fromJson(json, StatsAggregate.class);
 
         assertEquals(0, stats.count());
-        assertTrue(Double.isInfinite(stats.min()));
+        assertEquals(null, stats.min());
         assertEquals(0.0, stats.avg(), 0.01);
-        assertTrue(Double.isInfinite(stats.max()));
+        assertEquals(null, stats.max());
         assertEquals(0.0, stats.sum(), 0.01);
 
-        // We don't serialize finite default values as null
-        assertEquals("{\"count\":0,\"min\":null,\"max\":null,\"avg\":0.0,\"sum\":0.0}", toJson(stats));
+        // We don't serialize null
+        assertEquals("{\"count\":0,\"avg\":0.0,\"sum\":0.0}", toJson(stats));
     }
 
     @Test
@@ -237,21 +237,23 @@ public class BuiltinTypesTest extends ModelTestCase {
         StringStatsAggregate stats = StringStatsAggregate.of(b -> b
             .count(1)
             .minLength(2)
-            .avgLength(3)
+            .avgLength(3D)
             .maxLength(4)
-            .entropy(0)
+            .entropy(0D)
         );
 
         stats = checkJsonRoundtrip(stats, "{\"count\":1,\"min_length\":2,\"max_length\":4,\"avg_length\":3.0,\"entropy\":0.0}");
         assertEquals(2, stats.minLength());
         assertEquals(4, stats.maxLength());
+        assertEquals(0, stats.entropy());
 
         // Missing values
         String json = "{\"count\":1,\"min_length\":null,\"max_length\":null,\"avg_length\":null,\"entropy\":null}";
         stats = fromJson(json, StringStatsAggregate.class);
-        assertEquals(0, stats.minLength());
-        assertEquals(0, stats.maxLength());
-        assertEquals(0.0, stats.entropy(), 0.01);
+        assertEquals(1, stats.count());
+        assertEquals(null, stats.minLength());
+        assertEquals(null, stats.maxLength());
+        assertEquals(null, stats.entropy());
     }
 
     @Test
