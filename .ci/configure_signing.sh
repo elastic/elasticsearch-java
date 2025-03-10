@@ -23,15 +23,13 @@
 
 set -euo pipefail
 
-if grep -sq "signing.keyId" gradle.properties; then
-  # Keys already present
-  exit 0
-fi
-
-mkdir -p /tmp/secured
-
 export TMP_WORKSPACE=/tmp/secured
 export KEY_FILE=$TMP_WORKSPACE"/private.key"
+
+# Secure home for our keyring
+export GNUPGHOME=$TMP_WORKSPACE"/keyring"
+mkdir -p $GNUPGHOME
+chmod -R 700 $TMP_WORKSPACE
 
 # Signing keys
 GPG_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/gpg

@@ -30,7 +30,7 @@ repositories {
     mavenCentral()
 }
 
-group = "co.elastic.clients.test"
+group = "co.elastic.clients"
 version = "9.1.0-test-10-03-2025"
 description = "Maven central publish test for elasticsearch java client"
 
