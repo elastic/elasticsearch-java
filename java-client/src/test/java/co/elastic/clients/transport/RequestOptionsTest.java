@@ -23,9 +23,9 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
-import org.apache.http.HttpHost;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.net.URLEncodedUtils;
 import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterEach;
@@ -59,9 +59,9 @@ public class RequestOptionsTest extends Assertions {
             }
 
             // Call to info()
-            // Send back all request headers with a 418 that will cause an exception where we can access the LLRC response
+            // Send back all request headers with a 501 that will cause an exception where we can access the LLRC response
             ex.getResponseHeaders().putAll(ex.getRequestHeaders());
-            ex.sendResponseHeaders(418, 0);
+            ex.sendResponseHeaders(501, 0);
             OutputStreamWriter out = new OutputStreamWriter(ex.getResponseBody(), StandardCharsets.UTF_8);
             for (Map.Entry<String, List<String>> header: ex.getRequestHeaders().entrySet()) {
                 out.write("header-");
@@ -81,9 +81,8 @@ public class RequestOptionsTest extends Assertions {
         });
 
         httpServer.start();
-        InetSocketAddress address = httpServer.getAddress();
-        restClient = RestClient.builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
-            .build();
+        restClient = RestClient.builder(new HttpHost("http",httpServer.getAddress().getHostString(),
+            httpServer.getAddress().getPort())).build();
     }
 
     @AfterEach
@@ -94,7 +93,7 @@ public class RequestOptionsTest extends Assertions {
 
     private Properties getProps(ElasticsearchClient client) throws IOException {
         ResponseException ex = assertThrows(ResponseException.class, client::info);
-        assertEquals(418, ex.getResponse().getStatusLine().getStatusCode());
+        assertEquals(501, ex.getResponse().getStatusCode());
         Properties result = new Properties();
         result.load(ex.getResponse().getEntity().getContent());
         return result;

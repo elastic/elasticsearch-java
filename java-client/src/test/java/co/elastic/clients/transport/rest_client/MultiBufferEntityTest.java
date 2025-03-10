@@ -24,7 +24,7 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.endpoints.BinaryResponse;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpHost;
+import org.apache.hc.core5.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

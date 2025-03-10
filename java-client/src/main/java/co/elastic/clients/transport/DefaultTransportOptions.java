@@ -101,6 +101,12 @@ public class DefaultTransportOptions implements TransportOptions {
     }
 
     @Override
+    public void updateToken(String token) {
+        this.headers.put("Authorization", "Bearer " + token);
+    }
+
+
+    @Override
     public boolean keepResponseBodyOnException() {
         return keepResponseBodyOnException;
     }

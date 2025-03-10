@@ -26,12 +26,13 @@ import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.entity.ContentType;
+
 import org.elasticsearch.client.Request;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;

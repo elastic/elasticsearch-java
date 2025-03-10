@@ -17,35 +17,12 @@
  * under the License.
  */
 
+//TODO rewrite
 package co.elastic.clients.documentation.getting_started;
-
-import co.elastic.clients.documentation.usage.Product;
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.TransportUtils;
-import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
-import io.opentelemetry.api.OpenTelemetry;
-import io.opentelemetry.sdk.OpenTelemetrySdk;
-import org.apache.http.Header;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.message.BasicHeader;
-import org.elasticsearch.client.RestClient;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import javax.net.ssl.SSLContext;
-import java.io.File;
 
 public class ConnectingTest {
 
-    @Disabled // we don't have a running ES
+    /*@Disabled // we don't have a running ES
     @Test
     public void createClient() throws Exception {
         //tag::create-client
@@ -208,6 +185,7 @@ public class ConnectingTest {
         //end::create-secure-client-fingerprint
     }
 
-    private void processProduct(Product p) {}
+    private void processProduct(Product p) {}*/
 
 }
+
