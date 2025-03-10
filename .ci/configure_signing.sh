@@ -50,12 +50,9 @@ export SECRING_ASC
 
 # Credentials
 NEXUS_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/maven_central
-maven_username=$(vault kv get --field="username" $NEXUS_SECRET)
-maven_password=$(vault kv get --field="password" $NEXUS_SECRET)
-
-ORG_GRADLE_PROJECT_sonatypeUsername=${maven_username}
+ORG_GRADLE_PROJECT_sonatypeUsername=$(vault kv get --field="username" $NEXUS_SECRET)
 export ORG_GRADLE_PROJECT_sonatypeUsername
-ORG_GRADLE_PROJECT_sonatypePassword=${maven_password}
+ORG_GRADLE_PROJECT_sonatypePassword=$(vault kv get --field="password" $NEXUS_SECRET)
 export ORG_GRADLE_PROJECT_sonatypePassword
 
 
