@@ -29,24 +29,28 @@ if grep -sq "signing.keyId" gradle.properties; then
 fi
 
 mkdir -p /tmp/secured
-keyring_file="/tmp/secured/keyring.gpg"
 
-vault_path="kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java"
-
-vault kv get --field="keyring" $vault_path/gpg | base64 -d > $keyring_file
+# Signing keys
+GPG_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/gpg
+vault kv get --field="keyring" $GPG_SECRET | base64 -d > $KEY_FILE
 ## NOTE: passphase is the name of the field.
-signing_password=$(vault kv get --field="passphase" $vault_path/gpg)
-signing_key=$(vault kv get --field="key_id" $vault_path/gpg)
-
-maven_username=$(vault kv get --field="username" $vault_path/maven_central)
-maven_password=$(vault kv get --field="password" $vault_path/maven_central)
-
-KEY_ID_SECRET=${signing_key: -8}
-export KEY_ID_SECRET
-KEYPASS_SECRET=${signing_password}
+KEYPASS_SECRET=$(vault kv get --field="passphase" $GPG_SECRET)
 export KEYPASS_SECRET
-SECRING_ASC=${keyring_file}
+KEY_ID=$(vault kv get --field="key_id" $GPG_SECRET)
+KEY_ID_SECRET=${KEY_ID: -8}
+export KEY_ID_SECRET
+
+# Import the key into the keyring
+echo "$KEYPASS_SECRET" | gpg --batch --import "$KEY_FILE"
+
+# Export the key in ascii armored format
+SECRING_ASC=$(gpg --pinentry-mode=loopback --passphrase "$KEYPASS_SECRET" --armor --export-secret-key "$KEY_ID_SECRET")
 export SECRING_ASC
+
+# Credentials
+NEXUS_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/maven_central
+maven_username=$(vault kv get --field="username" $NEXUS_SECRET)
+maven_password=$(vault kv get --field="password" $NEXUS_SECRET)
 
 ORG_GRADLE_PROJECT_sonatypeUsername=${maven_username}
 export ORG_GRADLE_PROJECT_sonatypeUsername
