@@ -24,8 +24,8 @@ import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.VisibleForTesting;
-import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-import org.apache.http.util.VersionInfo;
+import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
+import org.apache.hc.core5.util.VersionInfo;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.WarningsHandler;
 
@@ -100,6 +100,11 @@ public class RestClientOptions implements TransportOptions {
         }
 
         return warnings -> options.getWarningsHandler().warningsShouldFailRequest(warnings);
+    }
+
+    @Override
+    public void updateToken(String token) {
+        options.updateToken(token);
     }
 
     @Override
@@ -204,7 +209,7 @@ public class RestClientOptions implements TransportOptions {
     }
 
     static RestClientOptions initialOptions() {
-        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
+        return new RestClientOptions(RequestOptions.DEFAULT, false);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {

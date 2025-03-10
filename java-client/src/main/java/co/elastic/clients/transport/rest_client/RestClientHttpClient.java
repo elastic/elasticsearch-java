@@ -24,11 +24,12 @@ import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
-import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.HttpEntity;
-import org.apache.http.entity.ContentType;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HeaderElement;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.message.BasicHeaderValueParser;
 import org.elasticsearch.client.Cancellable;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
@@ -173,8 +174,6 @@ public class RestClientHttpClient implements TransportHttpClient {
             clientReq.setEntity(new MultiBufferEntity(body, ct));
         }
 
-        // Request parameter intercepted by LLRC
-        clientReq.addParameter("ignore", "400,401,403,404,405");
         return clientReq;
     }
 
@@ -192,7 +191,7 @@ public class RestClientHttpClient implements TransportHttpClient {
 
         @Override
         public int statusCode() {
-            return restResponse.getStatusLine().getStatusCode();
+            return restResponse.getStatusCode();
         }
 
         @Override
@@ -206,8 +205,9 @@ public class RestClientHttpClient implements TransportHttpClient {
             for (int i = 0; i < headers.length; i++) {
                 Header header = headers[i];
                 if (header.getName().equalsIgnoreCase(name)) {
-                    HeaderElement[] elements = header.getElements();
-                    return new AbstractList<String>() {
+                    BasicHeaderValueParser elementParser = new BasicHeaderValueParser();
+                    HeaderElement[] elements = elementParser.parseElements(header.getValue(), null);
+                    return new AbstractList<>() {
                         @Override
                         public String get(int index) {
                             return elements[index].getValue();
@@ -251,8 +251,8 @@ public class RestClientHttpClient implements TransportHttpClient {
 
         @Override
         public String contentType() {
-            Header h = entity.getContentType();
-            return h == null ? "application/octet-stream" : h.getValue();
+            String h = entity.getContentType();
+            return h == null ? "application/octet-stream" : h;
         }
 
         @Override

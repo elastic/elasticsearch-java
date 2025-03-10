@@ -65,6 +65,11 @@ public class DocTestsTransport implements ElasticsearchTransport {
         }
 
         @Override
+        public void updateToken(String token) {
+
+        }
+
+        @Override
         public boolean keepResponseBodyOnException() {
             return false;
         }

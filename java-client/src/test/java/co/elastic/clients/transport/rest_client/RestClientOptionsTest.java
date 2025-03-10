@@ -27,7 +27,7 @@ import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpServer;
-import org.apache.http.HttpHost;
+import org.apache.hc.core5.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterAll;
@@ -124,7 +124,7 @@ class RestClientOptionsTest extends Assertions {
     @Test
     void testNoRequestOptions() throws Exception {
         RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
+            new HttpHost("http",httpServer.getAddress().getHostString(), httpServer.getAddress().getPort())
         ).build();
 
         ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper());
@@ -137,7 +137,7 @@ class RestClientOptionsTest extends Assertions {
     @Test
     void testTransportRequestOptions() throws Exception {
         RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
+            new HttpHost("http",httpServer.getAddress().getHostString(), httpServer.getAddress().getPort())
         ).build();
 
         ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(),
@@ -152,7 +152,7 @@ class RestClientOptionsTest extends Assertions {
     @Test
     void testClientRequestOptions() throws Exception {
         RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
+            new HttpHost("http",httpServer.getAddress().getHostString(), httpServer.getAddress().getPort())
         ).build();
 
         ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper());
@@ -167,7 +167,7 @@ class RestClientOptionsTest extends Assertions {
     @Test
     void testLambdaOptionsBuilder() throws Exception {
         RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
+            new HttpHost("http",httpServer.getAddress().getHostString(), httpServer.getAddress().getPort())
         ).build();
 
         ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper());
@@ -189,7 +189,7 @@ class RestClientOptionsTest extends Assertions {
             .build();
 
         RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
+            new HttpHost("http",httpServer.getAddress().getHostString(), httpServer.getAddress().getPort())
         ).build();
 
         ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options,false));

@@ -38,8 +38,8 @@ checkstyle {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
 
     withJavadocJar()
     withSourcesJar()
@@ -200,13 +200,14 @@ signing {
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
-    val elasticsearchVersion = "8.10.0"
     val jacksonVersion = "2.17.0"
     val openTelemetryVersion = "1.29.0"
 
-    // Apache 2.0
-    // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
-    api("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+    // build the low level repo
+    implementation("co.elastic.lowclient", "low-level-java-client", "9.0.0")
+    // temporary, should eventually get these two from low level (something something gradle doesn't do transitive dep. from local)
+    api("commons-logging", "commons-logging", "1.3.3")
+    api("org.apache.httpcomponents.client5", "httpclient5", "5.4")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305

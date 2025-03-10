@@ -23,10 +23,9 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.json.SimpleJsonpMapper;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -39,6 +38,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+import java.util.Base64;
+import java.util.Optional;
 
 public class TransportUtilsTest extends Assertions {
 
@@ -88,17 +89,14 @@ public class TransportUtilsTest extends Assertions {
     private void checkConnection(SSLContext sslContext) throws Exception {
         ElasticsearchContainer container = ElasticsearchTestServer.global().container();
 
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
+        var creds = Base64.getEncoder().encodeToString("elastic:changeme".getBytes());
 
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200), "https"))
-            .setHttpClientConfigCallback(c -> c
-                .setSSLContext(sslContext)
-                .setDefaultCredentialsProvider(credsProv)
-            )
-            .build();
+        RestClient restClient = RestClient.builder(new HttpHost("https", "localhost",
+                container.getMappedPort(9200)))
+            .setSslContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()))
+            .setDefaultHeaders(new Header[]{
+                new BasicHeader("Authorization", "Basic " + creds)
+            }).build();
 
         RestClientTransport transport = new RestClientTransport(restClient, SimpleJsonpMapper.INSTANCE);
         ElasticsearchClient esClient = new ElasticsearchClient(transport);

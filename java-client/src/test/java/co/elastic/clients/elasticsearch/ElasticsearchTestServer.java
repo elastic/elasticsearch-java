@@ -30,10 +30,9 @@ import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
@@ -51,6 +50,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.Optional;
 
 public class ElasticsearchTestServer implements AutoCloseable {
 
@@ -62,6 +62,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
+
     private static final String artifactsApiUrl = "https://artifacts-api.elastic.co/v1/versions/";
 
     public static synchronized ElasticsearchTestServer global() {
@@ -103,16 +104,22 @@ public class ElasticsearchTestServer implements AutoCloseable {
     }
 
     protected void setup(String url, SSLContext sslContext) {
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        restClient = RestClient.builder(HttpHost.create(url))
-            .setHttpClientConfigCallback(hc -> hc
-                .setDefaultCredentialsProvider(credsProv)
-                .setSSLContext(sslContext)
-            )
-            .build();
+        try {
+            HttpHost host = HttpHost.create(url);
+
+            var pwd = Base64.getEncoder().encodeToString("elastic:changeme".getBytes());
+
+
+            restClient = RestClient.builder(HttpHost.create(url))
+                .setSslContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()))
+                .setDefaultHeaders(new Header[]{
+                    new BasicHeader("Authorization", "Basic " + pwd)
+                })
+                //.setCompressionEnabled(true)
+                .build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         transport = new RestClientTransport(restClient, mapper);
         client = new ElasticsearchClient(transport);
     }
