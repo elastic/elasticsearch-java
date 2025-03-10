@@ -16,6 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+plugins {
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
+}
+
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = "co.elastic.clients.test"
+version = "9.0.0-test-10-03-2025"
+description = "Maven central publish test for elasticsearch java client"
 
 allprojects {
     group = "co.elastic.clients"

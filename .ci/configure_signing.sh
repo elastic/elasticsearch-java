@@ -46,7 +46,7 @@ signing.keyId=${signing_key: -8}
 signing.password=${signing_password}
 signing.secretKeyRingFile=${keyring_file}
 
-ossrhUsername=${maven_username}
-ossrhPassword=${maven_password}
+ORG_GRADLE_PROJECT_sonatypeUsername=${maven_username}
+ORG_GRADLE_PROJECT_sonatypePassword=${maven_password}
 EOF
 
