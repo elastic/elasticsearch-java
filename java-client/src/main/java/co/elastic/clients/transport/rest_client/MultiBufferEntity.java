@@ -20,11 +20,14 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
-import org.apache.http.entity.AbstractHttpEntity;
-import org.apache.http.entity.ContentType;
-import org.apache.http.nio.ContentEncoder;
-import org.apache.http.nio.IOControl;
-import org.apache.http.nio.entity.HttpAsyncContentProducer;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpException;
+import org.apache.hc.core5.http.io.entity.AbstractHttpEntity;
+import org.apache.hc.core5.http.nio.AsyncRequestProducer;
+import org.apache.hc.core5.http.nio.DataStreamChannel;
+import org.apache.hc.core5.http.nio.RequestChannel;
+import org.apache.hc.core5.http.protocol.HttpContext;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +40,7 @@ import java.util.Iterator;
 /**
  * An HTTP entity based on a sequence of byte buffers.
  */
-class MultiBufferEntity extends AbstractHttpEntity implements HttpAsyncContentProducer {
+class MultiBufferEntity extends AbstractHttpEntity implements AsyncRequestProducer {
 
     private final Iterable<ByteBuffer> buffers;
 
@@ -45,11 +48,9 @@ class MultiBufferEntity extends AbstractHttpEntity implements HttpAsyncContentPr
     private volatile ByteBuffer currentBuffer;
 
     MultiBufferEntity(Iterable<ByteBuffer> buffers, ContentType contentType) {
+        //TODO where to find contentEncoding?
+        super(contentType.toString(),null, true);
         this.buffers = buffers;
-        setChunked(true);
-        if (contentType != null) {
-            setContentType(contentType.toString());
-        }
         init();
     }
 
@@ -69,8 +70,19 @@ class MultiBufferEntity extends AbstractHttpEntity implements HttpAsyncContentPr
     }
 
     @Override
+    public void sendRequest(RequestChannel channel, HttpContext context) throws HttpException, IOException {
+        //TODO looks the same as produce? check which one is actually called
+        System.out.println("s");
+    }
+
+    @Override
     public boolean isRepeatable() {
         return true;
+    }
+
+    @Override
+    public void failed(Exception cause) {
+
     }
 
     @Override
@@ -100,21 +112,33 @@ class MultiBufferEntity extends AbstractHttpEntity implements HttpAsyncContentPr
     }
 
     @Override
-    public void produceContent(ContentEncoder encoder, IOControl ioControl) throws IOException {
+    public int available() {
+        return currentBuffer.remaining();
+    }
+
+    @Override
+    public void produce(DataStreamChannel channel) throws IOException {
+        //TODO really not sure
+
         if (currentBuffer == null) {
-            encoder.complete();
+            channel.endStream();
             return;
         }
 
-        encoder.write(currentBuffer);
+        channel.write(currentBuffer);
 
         if (!currentBuffer.hasRemaining()) {
             if (iterator.hasNext()) {
                 currentBuffer = iterator.next().duplicate();
             } else {
                 currentBuffer = null;
-                encoder.complete();
+                channel.endStream();
             }
         }
+    }
+
+    @Override
+    public void releaseResources() {
+        //TODO probably clear buffers
     }
 }

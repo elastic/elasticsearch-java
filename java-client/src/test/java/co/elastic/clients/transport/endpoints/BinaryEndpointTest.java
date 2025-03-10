@@ -27,7 +27,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpHost;
+import org.apache.hc.core5.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -72,7 +72,7 @@ public class BinaryEndpointTest extends Assertions {
     @Test
     public void testMvtSearch() throws IOException {
         RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
+            new HttpHost("http",httpServer.getAddress().getHostString(), httpServer.getAddress().getPort())
         ).build();
 
         RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper());
