@@ -30,6 +30,9 @@ fi
 
 mkdir -p /tmp/secured
 
+export TMP_WORKSPACE=/tmp/secured
+export KEY_FILE=$TMP_WORKSPACE"/private.key"
+
 # Signing keys
 GPG_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/gpg
 vault kv get --field="keyring" $GPG_SECRET | base64 -d > $KEY_FILE
