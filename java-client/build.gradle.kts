@@ -25,8 +25,9 @@ import java.io.FileWriter
 plugins {
     java
     `java-library`
-    checkstyle
     `maven-publish`
+    publishing
+    checkstyle
     signing
     id("com.github.jk1.dependency-license-report") version "2.2"
     id("de.thetaphi.forbiddenapis") version "3.4"
@@ -128,21 +129,6 @@ publishing {
         maven {
             name = "Build"
             url = uri("${rootProject.buildDir}/repository")
-        }
-
-        maven {
-            name = "MavenCentral"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                run {
-                    if (gradle.startParameter.taskNames.find { it.contains("ToMavenCentralRepository") } != null) {
-                        if (!providers.gradleProperty("ossrhUsername").isPresent) logger.error("ossrhUsername not set")
-                        if (!providers.gradleProperty("ossrhPassword").isPresent) logger.error("ossrhPassword not set")
-                    }
-                }
-                username = providers.gradleProperty("ossrhUsername").orNull
-                password = providers.gradleProperty("ossrhPassword").orNull
-            }
         }
     }
 
