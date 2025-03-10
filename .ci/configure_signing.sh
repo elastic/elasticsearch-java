@@ -47,6 +47,8 @@ signing.password=${signing_password}
 signing.secretKeyRingFile=${keyring_file}
 
 ORG_GRADLE_PROJECT_sonatypeUsername=${maven_username}
+export ORG_GRADLE_PROJECT_sonatypeUsername
 ORG_GRADLE_PROJECT_sonatypePassword=${maven_password}
+export ORG_GRADLE_PROJECT_sonatypePassword
 EOF
 
