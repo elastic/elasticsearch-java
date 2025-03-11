@@ -193,10 +193,10 @@ if [[ "$CMD" == "release" ]]; then
 
   if [[ "$DRY_RUN" = "true" ]]; then
     echo "Dry run: building and publishing to the local repository"
-    gradle_task="java-client:publishAllPublicationsToDryRunRepository"
+    gradle_task="publishAllPublicationsToDryRunRepository"
   else
     echo "Releasing to Maven snapshot repo"
-    gradle_task="java-client:publishToSonatype closeAndReleaseStagingRepositories"
+    gradle_task="publishToSonatype closeAndReleaseStagingRepositories"
   fi
   docker run --rm --env VERSION=$VERSION -u "$(id -u)" \
     $git_mount $src_mount $output_mount \
