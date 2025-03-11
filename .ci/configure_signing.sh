@@ -23,36 +23,34 @@
 
 set -euo pipefail
 
-export TMP_WORKSPACE=/tmp/secured
-export KEY_FILE=$TMP_WORKSPACE"/private.key"
+if grep -sq "signing.keyId" gradle.properties; then
+  # Keys already present
+  exit 0
+fi
 
-# Secure home for our keyring
-export GNUPGHOME=$TMP_WORKSPACE"/keyring"
-mkdir -p $GNUPGHOME
-chmod -R 700 $TMP_WORKSPACE
+mkdir -p /tmp/secured
+keyring_file="/tmp/secured/keyring.gpg"
 
-# Signing keys
-GPG_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/gpg
-vault kv get --field="keyring" $GPG_SECRET | base64 -d > $KEY_FILE
+vault_path="kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java"
+
+vault kv get --field="keyring" $vault_path/gpg | base64 -d > $keyring_file
 ## NOTE: passphase is the name of the field.
-KEYPASS_SECRET=$(vault kv get --field="passphase" $GPG_SECRET)
-export KEYPASS_SECRET
-KEY_ID=$(vault kv get --field="key_id" $GPG_SECRET)
-KEY_ID_SECRET=${KEY_ID: -8}
-export KEY_ID_SECRET
+signing_password=$(vault kv get --field="passphase" $vault_path/gpg)
+signing_key=$(vault kv get --field="key_id" $vault_path/gpg)
 
-# Import the key into the keyring
-echo "$KEYPASS_SECRET" | gpg --batch --import "$KEY_FILE"
+maven_username=$(vault kv get --field="username" $vault_path/maven_central)
+maven_password=$(vault kv get --field="password" $vault_path/maven_central)
 
-# Export the key in ascii armored format
-SECRING_ASC=$(gpg --pinentry-mode=loopback --passphrase "$KEYPASS_SECRET" --armor --export-secret-key "$KEY_ID_SECRET")
-export SECRING_ASC
-
-# Credentials
-NEXUS_SECRET=kv/ci-shared/release-eng/team-release-secrets/elasticsearch-java/maven_central
-ORG_GRADLE_PROJECT_sonatypeUsername=$(vault kv get --field="username" $NEXUS_SECRET)
+ORG_GRADLE_PROJECT_sonatypeUsername=$(maven_username)
 export ORG_GRADLE_PROJECT_sonatypeUsername
-ORG_GRADLE_PROJECT_sonatypePassword=$(vault kv get --field="password" $NEXUS_SECRET)
+ORG_GRADLE_PROJECT_sonatypePassword=$(maven_password)
 export ORG_GRADLE_PROJECT_sonatypePassword
 
+cat >> gradle.properties <<EOF
+signing.keyId=${signing_key: -8}
+signing.password=${signing_password}
+signing.secretKeyRingFile=${keyring_file}
 
+ossrhUsername=${maven_username}
+ossrhPassword=${maven_password}
+EOF
