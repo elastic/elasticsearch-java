@@ -23,6 +23,7 @@ import co.elastic.clients.util.NoCopyByteArrayOutputStream;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.io.entity.AbstractHttpEntity;
+import org.apache.hc.core5.http.nio.AsyncDataProducer;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.DataStreamChannel;
 import org.apache.hc.core5.http.nio.RequestChannel;
@@ -40,7 +41,7 @@ import java.util.Iterator;
 /**
  * An HTTP entity based on a sequence of byte buffers.
  */
-class MultiBufferEntity extends AbstractHttpEntity implements AsyncRequestProducer {
+class MultiBufferEntity extends AbstractHttpEntity implements AsyncDataProducer {
 
     private final Iterable<ByteBuffer> buffers;
 
@@ -48,8 +49,7 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncRequestProduc
     private volatile ByteBuffer currentBuffer;
 
     MultiBufferEntity(Iterable<ByteBuffer> buffers, ContentType contentType) {
-        //TODO where to find contentEncoding?
-        super(contentType.toString(),null, true);
+        super(contentType,null,true);
         this.buffers = buffers;
         init();
     }
@@ -70,19 +70,8 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncRequestProduc
     }
 
     @Override
-    public void sendRequest(RequestChannel channel, HttpContext context) throws HttpException, IOException {
-        //TODO looks the same as produce? check which one is actually called
-        System.out.println("s");
-    }
-
-    @Override
     public boolean isRepeatable() {
         return true;
-    }
-
-    @Override
-    public void failed(Exception cause) {
-
     }
 
     @Override
@@ -118,8 +107,6 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncRequestProduc
 
     @Override
     public void produce(DataStreamChannel channel) throws IOException {
-        //TODO really not sure
-
         if (currentBuffer == null) {
             channel.endStream();
             return;
@@ -139,6 +126,6 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncRequestProduc
 
     @Override
     public void releaseResources() {
-        //TODO probably clear buffers
+        init();
     }
 }
