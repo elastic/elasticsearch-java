@@ -38,12 +38,9 @@ vault kv get --field="keyring" $vault_path/gpg | base64 -d > $keyring_file
 signing_password=$(vault kv get --field="passphase" $vault_path/gpg)
 signing_key=$(vault kv get --field="key_id" $vault_path/gpg)
 
-maven_username=$(vault kv get --field="username" $vault_path/maven_central)
-maven_password=$(vault kv get --field="password" $vault_path/maven_central)
-
-ORG_GRADLE_PROJECT_sonatypeUsername=${maven_username}
+ORG_GRADLE_PROJECT_sonatypeUsername=$(vault kv get --field="username" $vault_path/maven_central)
+ORG_GRADLE_PROJECT_sonatypePassword=$(vault kv get --field="password" $vault_path/maven_central)
 export ORG_GRADLE_PROJECT_sonatypeUsername
-ORG_GRADLE_PROJECT_sonatypePassword=${maven_password)}
 export ORG_GRADLE_PROJECT_sonatypePassword
 
 cat >> gradle.properties <<EOF
@@ -51,6 +48,6 @@ signing.keyId=${signing_key: -8}
 signing.password=${signing_password}
 signing.secretKeyRingFile=${keyring_file}
 
-ossrhUsername=${maven_username}
-ossrhPassword=${maven_password}
+ossrhUsername=${ORG_GRADLE_PROJECT_sonatypeUsername}
+ossrhPassword=${ORG_GRADLE_PROJECT_sonatypePassword}
 EOF
