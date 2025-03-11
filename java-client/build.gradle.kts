@@ -117,12 +117,6 @@ tasks.withType<Javadoc> {
     }
 }
 
-signing {
-    // Only sign if a key has been configured in gradle.properties
-    isRequired = providers.gradleProperty("signing.keyId").isPresent
-    sign(publishing.publications)
-}
-
 publishing {
     repositories {
         maven {
@@ -194,6 +188,13 @@ publishing {
             }
         }
     }
+}
+
+
+signing {
+    // Only sign if a key has been configured in gradle.properties
+    isRequired = providers.gradleProperty("signing.keyId").isPresent
+    sign(publishing.publications["maven"])
 }
 
 dependencies {
