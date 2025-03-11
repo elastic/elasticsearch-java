@@ -190,6 +190,13 @@ publishing {
     }
 }
 
+
+signing {
+    // Only sign if a key has been configured in gradle.properties
+    isRequired = providers.gradleProperty("signing.keyId").isPresent
+    sign(publishing.publications["maven"])
+}
+
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
