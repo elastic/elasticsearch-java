@@ -117,10 +117,6 @@ tasks.withType<Javadoc> {
     }
 }
 
-signing {
-    sign(publishing.publications)
-}
-
 publishing {
     repositories {
         maven {
@@ -192,6 +188,10 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    sign(publishing.publications["maven"])
 }
 
 dependencies {
