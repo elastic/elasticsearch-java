@@ -22,7 +22,9 @@ plugins {
 
 nexusPublishing {
     repositories {
-        sonatype()
+        sonatype{
+            nexusUrl.set(uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/"))
+        }
     }
 }
 
