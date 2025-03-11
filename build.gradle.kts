@@ -34,6 +34,11 @@ group = "co.elastic.clients"
 version = "9.1.0-test-10-03-2025"
 description = "Maven central publish test for elasticsearch java client"
 
+subprojects {
+    group = rootProject.group
+    version = rootProject.version
+}
+
 allprojects {
     group = "co.elastic.clients"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
