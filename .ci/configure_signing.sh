@@ -23,10 +23,10 @@
 
 set -euo pipefail
 
-if grep -sq "signing.keyId" gradle.properties; then
-  # Keys already present
-  exit 0
-fi
+#if grep -sq "signing.keyId" gradle.properties; then
+#  # Keys already present
+#  exit 0
+#fi
 
 mkdir -p /tmp/secured
 keyring_file="/tmp/secured/keyring.gpg"
