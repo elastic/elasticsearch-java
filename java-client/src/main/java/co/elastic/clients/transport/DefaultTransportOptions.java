@@ -38,6 +38,7 @@ public class DefaultTransportOptions implements TransportOptions {
     private final Map<String, String> parameters;
     private final Function<List<String>, Boolean> onWarnings;
     private boolean keepResponseBodyOnException;
+    private BackoffPolicy backoffPolicy;
 
     public static final DefaultTransportOptions EMPTY = new DefaultTransportOptions();
 
@@ -49,10 +50,12 @@ public class DefaultTransportOptions implements TransportOptions {
         @Nullable HeaderMap headers,
         @Nullable Map<String, String> parameters,
         @Nullable Function<List<String>, Boolean> onWarnings,
-        boolean keepResponseBodyOnException
+        boolean keepResponseBodyOnException,
+        BackoffPolicy backoffPolicy
     ) {
         this(headers,parameters,onWarnings);
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.backoffPolicy = backoffPolicy;
     }
 
     public DefaultTransportOptions(
@@ -65,10 +68,11 @@ public class DefaultTransportOptions implements TransportOptions {
             Collections.emptyMap() : Collections.unmodifiableMap(parameters);
         this.onWarnings = onWarnings;
         this.keepResponseBodyOnException = false;
+        this.backoffPolicy = BackoffPolicy.noBackoff();
     }
 
     protected DefaultTransportOptions(AbstractBuilder<?> builder) {
-        this(builder.headers, builder.parameters, builder.onWarnings, builder.keepResponseBodyOnException);
+        this(builder.headers, builder.parameters, builder.onWarnings, builder.keepResponseBodyOnException, builder.backoffPolicy);
     }
 
     public static DefaultTransportOptions of(@Nullable TransportOptions options) {
@@ -106,6 +110,11 @@ public class DefaultTransportOptions implements TransportOptions {
     }
 
     @Override
+    public BackoffPolicy backoffPolicy() {
+        return backoffPolicy;
+    }
+
+    @Override
     public Builder toBuilder() {
         return new Builder(this);
     }
@@ -129,6 +138,7 @@ public class DefaultTransportOptions implements TransportOptions {
         private Map<String, String> parameters;
         private Function<List<String>, Boolean> onWarnings;
         private boolean keepResponseBodyOnException;
+        private BackoffPolicy backoffPolicy;
 
         public AbstractBuilder() {
         }
@@ -138,6 +148,7 @@ public class DefaultTransportOptions implements TransportOptions {
             this.parameters = copyOrNull(options.parameters);
             this.onWarnings = options.onWarnings;
             this.keepResponseBodyOnException = options.keepResponseBodyOnException;
+            this.backoffPolicy = options.backoffPolicy;
         }
 
         protected abstract BuilderT self();
@@ -145,6 +156,12 @@ public class DefaultTransportOptions implements TransportOptions {
         @Override
         public BuilderT keepResponseBodyOnException(boolean value) {
             this.keepResponseBodyOnException = value;
+            return self();
+        }
+
+        @Override
+        public BuilderT backoffPolicy(BackoffPolicy policy) {
+            this.backoffPolicy = policy;
             return self();
         }
 
