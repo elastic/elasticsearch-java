@@ -19,6 +19,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
+      - name: Enable gradle wrapper execution
+        run: chmod +x gradlew
 
       - name: Run java client tests
         run: ./gradlew test -p java-client
