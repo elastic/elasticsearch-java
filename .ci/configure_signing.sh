@@ -48,6 +48,6 @@ signing.keyId=${signing_key: -8}
 signing.password=${signing_password}
 signing.secretKeyRingFile=${keyring_file}
 
-ORG_GRADLE_PROJECT_sonatypeUsername=${ORG_GRADLE_PROJECT_sonatypeUsername}
-ORG_GRADLE_PROJECT_sonatypePassword=${ORG_GRADLE_PROJECT_sonatypePassword}
+sonatypeUsername=${ORG_GRADLE_PROJECT_sonatypeUsername}
+sonatypePassword=${ORG_GRADLE_PROJECT_sonatypePassword}
 EOF

@@ -22,6 +22,6 @@
 
 set -euo pipefail
 
-source .ci/configure_signing.sh
+.ci/configure_signing.sh
 
 .ci/make.sh release $VERSION
