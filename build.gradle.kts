@@ -31,8 +31,7 @@ repositories {
 }
 
 group = "co.elastic.clients"
-version = "9.1.0-test-10-03-2025"
-description = "Maven central publish test for elasticsearch java client"
+description = "Maven central release of the official elasticsearch java client"
 
 subprojects {
     group = rootProject.group

@@ -137,7 +137,7 @@ publishing {
             from(components["java"])
             pom {
                 name.set("Elasticsearch Java API Client")
-                artifactId = "elasticsearch-java-test-publish"
+                artifactId = "elasticsearch-java"
                 description.set("Elasticsearch Java API Client")
                 url.set("https://github.com/elastic/elasticsearch-java/")
                 licenses {
