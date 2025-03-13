@@ -21,14 +21,9 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
 import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.io.entity.AbstractHttpEntity;
 import org.apache.hc.core5.http.nio.AsyncDataProducer;
-import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.DataStreamChannel;
-import org.apache.hc.core5.http.nio.RequestChannel;
-import org.apache.hc.core5.http.protocol.HttpContext;
-
 
 import java.io.IOException;
 import java.io.InputStream;
