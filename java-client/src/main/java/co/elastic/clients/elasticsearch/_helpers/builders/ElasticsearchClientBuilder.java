@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch._helpers.builders;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -47,35 +49,41 @@ public class ElasticsearchClientBuilder {
     private String apiKey;
     private SSLContext sslContext;
     private JsonpMapper mapper;
+    private RestClientOptions transportOptions;
 
-    public ElasticsearchClientBuilder withHost(String url) throws URISyntaxException {
+    public ElasticsearchClientBuilder host(String url) throws URISyntaxException {
         this.host = HttpHost.create(url);
         return this;
     }
 
-    public ElasticsearchClientBuilder withUsernameAndPassword(String username, String password) {
+    public ElasticsearchClientBuilder usernameAndPassword(String username, String password) {
         this.username = username;
         this.password = password;
         return this;
     }
 
-    public ElasticsearchClientBuilder withToken(String token) {
+    public ElasticsearchClientBuilder token(String token) {
         this.token = token;
         return this;
     }
 
-    public ElasticsearchClientBuilder withApiKey(String apiKey) {
+    public ElasticsearchClientBuilder apiKey(String apiKey) {
         this.apiKey = apiKey;
         return this;
     }
 
-    public ElasticsearchClientBuilder withSslContext(SSLContext sslContext) {
+    public ElasticsearchClientBuilder sslContext(SSLContext sslContext) {
         this.sslContext = sslContext;
         return this;
     }
 
-    public ElasticsearchClientBuilder withMapper(JsonpMapper mapper) {
+    public ElasticsearchClientBuilder jsonMapper(JsonpMapper mapper) {
         this.mapper = mapper;
+        return this;
+    }
+
+    public ElasticsearchClientBuilder transportOptions(RestClientOptions transportOptions) {
+        this.transportOptions = transportOptions;
         return this;
     }
 
@@ -118,7 +126,7 @@ public class ElasticsearchClientBuilder {
             this.mapper = new JacksonJsonpMapper(mapper);
         }
 
-        RestClientTransport transport = new RestClientTransport(restClientBuilder.build(), mapper);
+        RestClientTransport transport = new RestClientTransport(restClientBuilder.build(), mapper, transportOptions);
         return new ElasticsearchClient(transport);
     }
 }
