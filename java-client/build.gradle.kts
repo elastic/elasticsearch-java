@@ -25,9 +25,11 @@ import java.io.FileWriter
 plugins {
     java
     `java-library`
-    checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.1"
+    publishing
+    checkstyle
+    signing
+    id("com.github.jk1.dependency-license-report") version "2.2"
     id("de.thetaphi.forbiddenapis") version "3.4"
 }
 
