@@ -21,18 +21,4 @@ import java.nio.file.Paths
 
 rootProject.name = "elasticsearch-java"
 
-// Include as subprojects all subdirectories that have a "build.gradle.kts" and no ".gradle-standalone"
-fun listFiles(dir: File){
-    (dir.listFiles() ?: arrayOf<File>()).
-    filter { File(it, "build.gradle.kts").exists() }.
-    filter { !File(it, ".gradle-standalone").exists() }.
-    filter { it.name != "buildSrc" }.
-    toTypedArray().
-    forEach { dir ->
-        include(dir.name)
-        project(":" + dir.name).projectDir = dir
-    }
-}
-
-listFiles(rootProject.projectDir)
-listFiles(Paths.get(rootProject.projectDir.path,"examples").toFile())
+include("java-client")

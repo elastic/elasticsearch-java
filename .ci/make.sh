@@ -176,6 +176,25 @@ if [[ "$CMD" == "assemble" ]]; then
 	fi
 fi
 
+if [[ "$CMD" == "release" ]]; then
+  rm -rf .ci/output/repository
+  build_image
+  echo -e "\033[34;1mINFO:\033[0m Building version ${VERSION}\033[0m"
+
+  if [[ "$DRY_RUN" = "true" ]]; then
+    echo "Dry run: building and publishing to the local repository"
+    gradle_task="publishAllPublicationsToDryRunRepository"
+  else
+    echo "Releasing to Maven snapshot repo"
+    gradle_task="publishToSonatype closeAndReleaseStagingRepositories"
+  fi
+  docker run --rm --env VERSION=$VERSION -u "$(id -u)" \
+    $git_mount $src_mount $output_mount \
+    -v /tmp/secured:/tmp/secured \
+    $docker_image \
+    $gradle_task
+fi
+
 if [[ "$CMD" == "bump" ]]; then
   echo $VERSION > config/version.txt
 fi
