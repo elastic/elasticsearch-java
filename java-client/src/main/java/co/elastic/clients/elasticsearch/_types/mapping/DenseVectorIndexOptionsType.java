@@ -41,36 +41,60 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.RuntimeFieldType">API
+ *      "../../doc-files/api-spec.html#_types.mapping.DenseVectorIndexOptionsType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum RuntimeFieldType implements JsonEnum {
-	Boolean("boolean"),
+public enum DenseVectorIndexOptionsType implements JsonEnum {
+	/**
+	 * This utilizes a brute-force search algorithm for exact kNN search. This
+	 * supports all <code>element_type</code> values.
+	 */
+	Flat("flat"),
 
-	Composite("composite"),
+	/**
+	 * This utilizes the HNSW algorithm for scalable approximate kNN search. This
+	 * supports all <code>element_type</code> values.
+	 */
+	Hnsw("hnsw"),
 
-	Date("date"),
+	/**
+	 * This utilizes a brute-force search algorithm in addition to automatically
+	 * half-byte scalar quantization. Only supports <code>element_type</code> of
+	 * <code>float</code>.
+	 */
+	Int4Flat("int4_flat"),
 
-	Double("double"),
+	/**
+	 * This utilizes the HNSW algorithm in addition to automatically scalar
+	 * quantization for scalable approximate kNN search with
+	 * <code>element_type</code> of <code>float</code>.
+	 * <p>
+	 * This can reduce the memory footprint by 8x at the cost of some accuracy.
+	 */
+	Int4Hnsw("int4_hnsw"),
 
-	GeoPoint("geo_point"),
+	/**
+	 * This utilizes a brute-force search algorithm in addition to automatically
+	 * scalar quantization. Only supports <code>element_type</code> of
+	 * <code>float</code>.
+	 */
+	Int8Flat("int8_flat"),
 
-	GeoShape("geo_shape"),
-
-	Ip("ip"),
-
-	Keyword("keyword"),
-
-	Long("long"),
-
-	Lookup("lookup"),
+	/**
+	 * The default index type for <code>float</code> vectors. This utilizes the HNSW
+	 * algorithm in addition to automatically scalar quantization for scalable
+	 * approximate kNN search with <code>element_type</code> of <code>float</code>.
+	 * <p>
+	 * This can reduce the memory footprint by 4x at the cost of some accuracy.
+	 */
+	Int8Hnsw("int8_hnsw"),
 
 	;
 
 	private final String jsonValue;
 
-	RuntimeFieldType(String jsonValue) {
+	DenseVectorIndexOptionsType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -78,6 +102,6 @@ public enum RuntimeFieldType implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			RuntimeFieldType.values());
+	public static final JsonEnum.Deserializer<DenseVectorIndexOptionsType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			DenseVectorIndexOptionsType.values());
 }

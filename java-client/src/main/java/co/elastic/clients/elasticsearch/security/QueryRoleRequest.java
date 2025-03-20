@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch.security.query_role.RoleQuery;
+import co.elastic.clients.elasticsearch.security.query_role.RoleQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,7 +37,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
+import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -292,6 +293,25 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A query to filter which roles to return. If the query parameter is missing,
+		 * it is equivalent to a <code>match_all</code> query. The query supports a
+		 * subset of query types, including <code>match_all</code>, <code>bool</code>,
+		 * <code>term</code>, <code>terms</code>, <code>match</code>, <code>ids</code>,
+		 * <code>prefix</code>, <code>wildcard</code>, <code>exists</code>,
+		 * <code>range</code>, and <code>simple_query_string</code>. You can query the
+		 * following information associated with roles: <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(RoleQueryVariant value) {
+			this.query = value._toRoleQuery();
+			return this;
+		}
+
+		/**
 		 * The search after definition.
 		 * <p>
 		 * API name: {@code search_after}
@@ -320,15 +340,13 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(String value, String... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -337,15 +355,13 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(long value, long... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -354,15 +370,13 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(double value, double... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -371,15 +385,13 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(boolean value, boolean... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

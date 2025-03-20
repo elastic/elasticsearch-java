@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.modify_data_stream.Action;
+import co.elastic.clients.elasticsearch.indices.modify_data_stream.ActionVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,6 +146,21 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder actions(Action value, Action... values) {
 			this.actions = _listAdd(this.actions, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - Actions to perform.
+		 * <p>
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
+		 */
+		public final Builder actions(ActionVariant value, ActionVariant... values) {
+			this.actions = _listAdd(this.actions, value._toAction());
+			for (ActionVariant v : values) {
+				_listAdd(this.actions, v._toAction());
+			}
 			return this;
 		}
 

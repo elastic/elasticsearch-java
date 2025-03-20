@@ -273,6 +273,16 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
+		 * Defines a model to build a query vector.
+		 * <p>
+		 * API name: {@code query_vector_builder}
+		 */
+		public final Builder queryVectorBuilder(QueryVectorBuilderVariant value) {
+			this.queryVectorBuilder = value._toQueryVectorBuilder();
+			return this;
+		}
+
+		/**
 		 * Required - Number of nearest neighbors to return as top hits.
 		 * <p>
 		 * API name: {@code k}

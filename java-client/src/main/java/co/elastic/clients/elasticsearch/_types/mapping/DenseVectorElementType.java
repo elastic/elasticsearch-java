@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes;
+package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -38,26 +39,44 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link NodeReloadResult} variants.
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.mapping.DenseVectorElementType">API
+ *      specification</a>
  */
-public class NodeReloadResultBuilders {
-	private NodeReloadResultBuilders() {
-	}
+@JsonpDeserializable
+public enum DenseVectorElementType implements JsonEnum {
+	/**
+	 * Indexes a single bit per dimension. Useful for very high-dimensional vectors
+	 * or models that specifically support bit vectors.
+	 * <p>
+	 * NOTE: when using <code>bit</code>, the number of dimensions must be a
+	 * multiple of <code>8</code> and must represent the number of bits.
+	 */
+	Bit("bit"),
 
 	/**
-	 * Creates a builder for the {@link NodeReloadError error}
-	 * {@code NodeReloadResult} variant.
+	 * Indexes a 1-byte integer value per dimension.
 	 */
-	public static NodeReloadError.Builder error() {
-		return new NodeReloadError.Builder();
-	}
+	Byte("byte"),
 
 	/**
-	 * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
-	 * variant.
+	 * Indexes a 4-byte floating-point value per dimension.
 	 */
-	public static Stats.Builder stats() {
-		return new Stats.Builder();
+	Float("float"),
+
+	;
+
+	private final String jsonValue;
+
+	DenseVectorElementType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<DenseVectorElementType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			DenseVectorElementType.values());
 }

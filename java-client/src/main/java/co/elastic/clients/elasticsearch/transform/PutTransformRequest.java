@@ -565,6 +565,17 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Defines a retention policy for the transform. Data that meets the defined
+		 * criteria is deleted from the destination index.
+		 * <p>
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(RetentionPolicyVariant value) {
+			this.retentionPolicy = value._toRetentionPolicy();
+			return this;
+		}
+
+		/**
 		 * Defines optional transform settings.
 		 * <p>
 		 * API name: {@code settings}
@@ -619,6 +630,16 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
 			return this.sync(fn.apply(new Sync.Builder()).build());
+		}
+
+		/**
+		 * Defines the properties transforms require to run continuously.
+		 * <p>
+		 * API name: {@code sync}
+		 */
+		public final Builder sync(SyncVariant value) {
+			this.sync = value._toSync();
+			return this;
 		}
 
 		/**

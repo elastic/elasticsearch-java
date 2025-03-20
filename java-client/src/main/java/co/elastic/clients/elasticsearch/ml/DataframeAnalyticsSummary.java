@@ -376,6 +376,14 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code analysis}
+		 */
+		public final Builder analysis(DataframeAnalysisVariant value) {
+			this.analysis = value._toDataframeAnalysis();
+			return this;
+		}
+
+		/**
 		 * API name: {@code analyzed_fields}
 		 */
 		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {

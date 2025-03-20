@@ -222,6 +222,17 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		}
 
 		/**
+		 * Required - The nested retriever which will produce the first-level results,
+		 * that will later be used for reranking.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(RetrieverVariant value) {
+			this.retriever = value._toRetriever();
+			return this;
+		}
+
+		/**
 		 * This value determines how many documents we will consider from the nested
 		 * retriever.
 		 * <p>

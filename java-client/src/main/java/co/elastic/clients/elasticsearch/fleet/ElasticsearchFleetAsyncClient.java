@@ -105,6 +105,27 @@ public class ElasticsearchFleetAsyncClient extends ApiClient<ElasticsearchTransp
 	}
 
 	/**
+	 * Overload of {@link #search(FleetSearchRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<FleetSearchResponse<Void>> search(FleetSearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FleetSearchRequest, FleetSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<FleetSearchRequest, FleetSearchResponse<Void>, ErrorResponse>) FleetSearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #search(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<FleetSearchResponse<Void>> search(
+			Function<FleetSearchRequest.Builder, ObjectBuilder<FleetSearchRequest>> fn) {
+		return search(fn.apply(new FleetSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * The purpose of the fleet search api is to provide a search api where the
 	 * search will only be executed after provided checkpoint has been processed and
 	 * is visible for searches inside of Elasticsearch.

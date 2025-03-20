@@ -442,6 +442,18 @@ public class ApiKeyAggregation implements OpenTaggedUnion<ApiKeyAggregation.Kind
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, ApiKeyAggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toApiKeyAggregation());
+			return this;
+		}
+
+		/**
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key,
@@ -612,6 +624,18 @@ public class ApiKeyAggregation implements OpenTaggedUnion<ApiKeyAggregation.Kind
 			 */
 			public final ContainerBuilder aggregations(String key, ApiKeyAggregation value) {
 				Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value);
+				return this;
+			}
+
+			/**
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds an entry to <code>aggregations</code>.
+			 */
+			public final ContainerBuilder aggregations(String key, ApiKeyAggregationVariant value) {
+				Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value._toApiKeyAggregation());
 				return this;
 			}
 

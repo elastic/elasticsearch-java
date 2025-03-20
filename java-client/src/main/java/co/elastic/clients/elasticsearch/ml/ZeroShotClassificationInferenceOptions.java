@@ -272,6 +272,16 @@ public class ZeroShotClassificationInferenceOptions implements InferenceConfigCr
 		}
 
 		/**
+		 * The tokenization options to update when inferring
+		 * <p>
+		 * API name: {@code tokenization}
+		 */
+		public final Builder tokenization(TokenizationConfigVariant value) {
+			this.tokenization = value._toTokenizationConfig();
+			return this;
+		}
+
+		/**
 		 * Hypothesis template used when tokenizing labels for prediction
 		 * <p>
 		 * API name: {@code hypothesis_template}

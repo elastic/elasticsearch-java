@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.InnerHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -358,6 +359,17 @@ public class KnnSearch implements JsonpSerializable {
 		}
 
 		/**
+		 * The query vector builder. You must provide a query_vector_builder or
+		 * query_vector, but not both.
+		 * <p>
+		 * API name: {@code query_vector_builder}
+		 */
+		public final Builder queryVectorBuilder(QueryVectorBuilderVariant value) {
+			this.queryVectorBuilder = value._toQueryVectorBuilder();
+			return this;
+		}
+
+		/**
 		 * The final number of nearest neighbors to return as top hits
 		 * <p>
 		 * API name: {@code k}
@@ -408,6 +420,21 @@ public class KnnSearch implements JsonpSerializable {
 		 */
 		public final Builder filter(Query value, Query... values) {
 			this.filter = _listAdd(this.filter, value, values);
+			return this;
+		}
+
+		/**
+		 * Filters for the kNN search query
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final Builder filter(QueryVariant value, QueryVariant... values) {
+			this.filter = _listAdd(this.filter, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.filter, v._toQuery());
+			}
 			return this;
 		}
 

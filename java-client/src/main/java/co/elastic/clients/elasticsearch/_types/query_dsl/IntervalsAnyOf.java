@@ -188,6 +188,21 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		 * <p>
 		 * API name: {@code intervals}
 		 * <p>
+		 * Adds one or more values to <code>intervals</code>.
+		 */
+		public final Builder intervals(IntervalsVariant value, IntervalsVariant... values) {
+			this.intervals = _listAdd(this.intervals, value._toIntervals());
+			for (IntervalsVariant v : values) {
+				_listAdd(this.intervals, v._toIntervals());
+			}
+			return this;
+		}
+
+		/**
+		 * Required - An array of rules to match.
+		 * <p>
+		 * API name: {@code intervals}
+		 * <p>
 		 * Adds a value to <code>intervals</code> using a builder lambda.
 		 */
 		public final Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
@@ -211,6 +226,16 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		 */
 		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
 			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
+		}
+
+		/**
+		 * Rule used to filter returned intervals.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(IntervalsFilterVariant value) {
+			this.filter = value._toIntervalsFilter();
+			return this;
 		}
 
 		@Override

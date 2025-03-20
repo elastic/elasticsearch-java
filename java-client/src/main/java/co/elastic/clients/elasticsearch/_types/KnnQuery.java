@@ -308,6 +308,17 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * The query vector builder. You must provide a query_vector_builder or
+		 * query_vector, but not both.
+		 * <p>
+		 * API name: {@code query_vector_builder}
+		 */
+		public final Builder queryVectorBuilder(QueryVectorBuilderVariant value) {
+			this.queryVectorBuilder = value._toQueryVectorBuilder();
+			return this;
+		}
+
+		/**
 		 * The number of nearest neighbor candidates to consider per shard
 		 * <p>
 		 * API name: {@code num_candidates}
@@ -348,6 +359,21 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		 */
 		public final Builder filter(Query value, Query... values) {
 			this.filter = _listAdd(this.filter, value, values);
+			return this;
+		}
+
+		/**
+		 * Filters for the kNN search query
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final Builder filter(QueryVariant value, QueryVariant... values) {
+			this.filter = _listAdd(this.filter, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.filter, v._toQuery());
+			}
 			return this;
 		}
 

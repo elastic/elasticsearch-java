@@ -357,6 +357,18 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		}
 
 		/**
+		 * The analysis configuration, which contains the information necessary to
+		 * perform one of the following types of analysis: classification, outlier
+		 * detection, or regression.
+		 * <p>
+		 * API name: {@code analysis}
+		 */
+		public final Builder analysis(DataframeAnalysisVariant value) {
+			this.analysis = value._toDataframeAnalysis();
+			return this;
+		}
+
+		/**
 		 * Specify includes and/or excludes patterns to select which fields will be
 		 * included in the analysis. The patterns specified in excludes are applied
 		 * last, therefore excludes takes precedence. In other words, if the same field

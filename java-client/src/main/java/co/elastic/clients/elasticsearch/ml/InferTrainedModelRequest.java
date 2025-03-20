@@ -240,6 +240,16 @@ public class InferTrainedModelRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * The inference configuration updates to apply on the API call
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public final Builder inferenceConfig(InferenceConfigUpdateVariant value) {
+			this.inferenceConfig = value._toInferenceConfigUpdate();
+			return this;
+		}
+
+		/**
 		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}

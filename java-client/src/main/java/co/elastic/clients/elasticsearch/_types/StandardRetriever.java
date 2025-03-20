@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,7 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -232,6 +233,16 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		}
 
 		/**
+		 * Defines a query to retrieve a set of top documents.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Defines a search after object parameter used for pagination.
 		 * <p>
 		 * API name: {@code search_after}
@@ -260,15 +271,13 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(String value, String... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -277,15 +286,13 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(long value, long... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -294,15 +301,13 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(double value, double... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -311,15 +316,13 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(boolean value, boolean... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

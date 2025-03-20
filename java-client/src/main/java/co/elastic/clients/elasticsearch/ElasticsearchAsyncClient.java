@@ -1999,6 +1999,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
+	 * Overload of {@link #explain(ExplainRequest, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<ExplainResponse<Void>> explain(ExplainRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<Void>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #explain(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<ExplainResponse<Void>> explain(
+			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn) {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Explain a document match result. Get information about why a specific
 	 * document matches, or doesn't match, a query. It computes a score explanation
 	 * for a query and a specific document.
@@ -2279,6 +2300,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
 			Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn, Class<TDocument> tDocumentClass) {
 		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #get(GetRequest, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<GetResponse<Void>> get(GetRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRequest, GetResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<Void>, ErrorResponse>) GetRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #get(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<GetResponse<Void>> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) {
+		return get(fn.apply(new GetRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -2588,6 +2629,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
 			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Class<TDocument> tDocumentClass) {
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #getSource(GetSourceRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<GetSourceResponse<Void>> getSource(GetSourceRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSourceRequest, GetSourceResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<Void>, ErrorResponse>) GetSourceRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #getSource(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<GetSourceResponse<Void>> getSource(
+			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn) {
+		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -3298,6 +3360,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
+	 * Overload of {@link #knnSearch(KnnSearchRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<KnnSearchResponse<Void>> knnSearch(KnnSearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<Void>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #knnSearch(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<KnnSearchResponse<Void>> knnSearch(
+			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn) {
+		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run a knn search.
 	 * <p>
 	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
@@ -3469,6 +3552,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
+	 * Overload of {@link #mget(MgetRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<MgetResponse<Void>> mget(MgetRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MgetRequest, MgetResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<Void>, ErrorResponse>) MgetRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #mget(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<MgetResponse<Void>> mget(
+			Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn) {
+		return mget(fn.apply(new MgetRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Get multiple documents.
 	 * <p>
 	 * Get multiple JSON documents by ID from one or more indices. If you specify an
@@ -3624,6 +3728,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
+	 * Overload of {@link #msearch(MsearchRequest, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<MsearchResponse<Void>> msearch(MsearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchRequest, MsearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<Void>, ErrorResponse>) MsearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #msearch(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<MsearchResponse<Void>> msearch(
+			Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn) {
+		return msearch(fn.apply(new MsearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run multiple searches.
 	 * <p>
 	 * The format of the request is similar to the bulk API format and makes use of
@@ -3765,6 +3890,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) {
 		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #msearchTemplate(MsearchTemplateRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<MsearchTemplateResponse<Void>> msearchTemplate(MsearchTemplateRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<Void>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #msearchTemplate(Function, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<MsearchTemplateResponse<Void>> msearchTemplate(
+			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn) {
+		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -4861,6 +5007,29 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
+	 * Overload of
+	 * {@link #scriptsPainlessExecute(ScriptsPainlessExecuteRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<ScriptsPainlessExecuteResponse<Void>> scriptsPainlessExecute(
+			ScriptsPainlessExecuteRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<Void>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #scriptsPainlessExecute(Function, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<ScriptsPainlessExecuteResponse<Void>> scriptsPainlessExecute(
+			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn) {
+		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run a script. Runs a script and returns a result.
 	 * 
 	 * @see <a href=
@@ -4974,6 +5143,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<ScrollResponse<TDocument>> scroll(
 			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Class<TDocument> tDocumentClass) {
 		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #scroll(ScrollRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<ScrollResponse<Void>> scroll(ScrollRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScrollRequest, ScrollResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<Void>, ErrorResponse>) ScrollRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #scroll(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<ScrollResponse<Void>> scroll(
+			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn) {
+		return scroll(fn.apply(new ScrollRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -5141,6 +5331,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass) {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #search(SearchRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<SearchResponse<Void>> search(SearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchRequest, SearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<Void>, ErrorResponse>) SearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #search(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<SearchResponse<Void>> search(
+			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn) {
+		return search(fn.apply(new SearchRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -6084,6 +6295,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) {
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #searchTemplate(SearchTemplateRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<SearchTemplateResponse<Void>> searchTemplate(SearchTemplateRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<Void>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #searchTemplate(Function, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<SearchTemplateResponse<Void>> searchTemplate(
+			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
+		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), Void.class);
 	}
 
 	/**
