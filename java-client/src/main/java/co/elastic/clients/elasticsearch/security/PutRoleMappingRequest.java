@@ -486,6 +486,17 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * The rules that determine which users should be matched by the mapping. A rule
+		 * is a logical condition that is expressed by using a JSON DSL.
+		 * <p>
+		 * API name: {@code rules}
+		 */
+		public final Builder rules(RoleMappingRuleVariant value) {
+			this.rules = value._toRoleMappingRule();
+			return this;
+		}
+
+		/**
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.

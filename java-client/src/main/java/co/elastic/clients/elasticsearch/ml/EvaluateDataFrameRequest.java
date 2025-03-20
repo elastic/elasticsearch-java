@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -180,6 +181,16 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * Required - Defines the type of evaluation you want to perform.
+		 * <p>
+		 * API name: {@code evaluation}
+		 */
+		public final Builder evaluation(DataframeEvaluationVariant value) {
+			this.evaluation = value._toDataframeEvaluation();
+			return this;
+		}
+
+		/**
 		 * Required - Defines the <code>index</code> in which the evaluation will be
 		 * performed.
 		 * <p>
@@ -207,6 +218,16 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * A query clause that retrieves a subset of data from the source index.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		@Override

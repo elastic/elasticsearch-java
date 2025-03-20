@@ -160,6 +160,16 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 			return this.match(fn.apply(new SpanQuery.Builder()).build());
 		}
 
+		/**
+		 * Required - Can be any other span type query.
+		 * <p>
+		 * API name: {@code match}
+		 */
+		public final Builder match(SpanQueryVariant value) {
+			this.match = value._toSpanQuery();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

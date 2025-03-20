@@ -162,6 +162,27 @@ public class ElasticsearchAsyncSearchAsyncClient
 	}
 
 	/**
+	 * Overload of {@link #get(GetAsyncSearchRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<GetAsyncSearchResponse<Void>> get(GetAsyncSearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<Void>, ErrorResponse>) GetAsyncSearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #get(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<GetAsyncSearchResponse<Void>> get(
+			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn) {
+		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Get async search results.
 	 * <p>
 	 * Retrieve the results of a previously submitted asynchronous search request.
@@ -321,6 +342,27 @@ public class ElasticsearchAsyncSearchAsyncClient
 	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
 			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass) {
 		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #submit(SubmitRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<SubmitResponse<Void>> submit(SubmitRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SubmitRequest, SubmitResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<SubmitRequest, SubmitResponse<Void>, ErrorResponse>) SubmitRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #submit(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<SubmitResponse<Void>> submit(
+			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn) {
+		return submit(fn.apply(new SubmitRequest.Builder()).build(), Void.class);
 	}
 
 	/**

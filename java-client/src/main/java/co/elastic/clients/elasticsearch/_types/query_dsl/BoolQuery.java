@@ -283,6 +283,22 @@ public class BoolQuery extends QueryBase
 		 * <p>
 		 * API name: {@code filter}
 		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final Builder filter(QueryVariant value, QueryVariant... values) {
+			this.filter = _listAdd(this.filter, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.filter, v._toQuery());
+			}
+			return this;
+		}
+
+		/**
+		 * The clause (query) must appear in matching documents. However, unlike
+		 * <code>must</code>, the score of the query will be ignored.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
 		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -332,6 +348,22 @@ public class BoolQuery extends QueryBase
 		 * <p>
 		 * API name: {@code must}
 		 * <p>
+		 * Adds one or more values to <code>must</code>.
+		 */
+		public final Builder must(QueryVariant value, QueryVariant... values) {
+			this.must = _listAdd(this.must, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.must, v._toQuery());
+			}
+			return this;
+		}
+
+		/**
+		 * The clause (query) must appear in matching documents and will contribute to
+		 * the score.
+		 * <p>
+		 * API name: {@code must}
+		 * <p>
 		 * Adds a value to <code>must</code> using a builder lambda.
 		 */
 		public final Builder must(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -370,6 +402,22 @@ public class BoolQuery extends QueryBase
 		 * <p>
 		 * API name: {@code must_not}
 		 * <p>
+		 * Adds one or more values to <code>mustNot</code>.
+		 */
+		public final Builder mustNot(QueryVariant value, QueryVariant... values) {
+			this.mustNot = _listAdd(this.mustNot, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.mustNot, v._toQuery());
+			}
+			return this;
+		}
+
+		/**
+		 * The clause (query) must not appear in the matching documents. Because scoring
+		 * is ignored, a score of <code>0</code> is returned for all documents.
+		 * <p>
+		 * API name: {@code must_not}
+		 * <p>
 		 * Adds a value to <code>mustNot</code> using a builder lambda.
 		 */
 		public final Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -397,6 +445,21 @@ public class BoolQuery extends QueryBase
 		 */
 		public final Builder should(Query value, Query... values) {
 			this.should = _listAdd(this.should, value, values);
+			return this;
+		}
+
+		/**
+		 * The clause (query) should appear in the matching document.
+		 * <p>
+		 * API name: {@code should}
+		 * <p>
+		 * Adds one or more values to <code>should</code>.
+		 */
+		public final Builder should(QueryVariant value, QueryVariant... values) {
+			this.should = _listAdd(this.should, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.should, v._toQuery());
+			}
 			return this;
 		}
 

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes;
+package co.elastic.clients.elasticsearch.inference.chat_completion_unified;
 
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
@@ -38,26 +38,15 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link NodeReloadResult} variants.
+ * Builders for {@link MessageContent} variants.
+ * <p>
+ * Variants <code>object</code>, <code>string</code> are not available here as
+ * they don't have a dedicated class. Use {@link MessageContent}'s builder for
+ * these.
+ * 
  */
-public class NodeReloadResultBuilders {
-	private NodeReloadResultBuilders() {
-	}
-
-	/**
-	 * Creates a builder for the {@link NodeReloadError error}
-	 * {@code NodeReloadResult} variant.
-	 */
-	public static NodeReloadError.Builder error() {
-		return new NodeReloadError.Builder();
-	}
-
-	/**
-	 * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
-	 * variant.
-	 */
-	public static Stats.Builder stats() {
-		return new Stats.Builder();
+public class MessageContentBuilders {
+	private MessageContentBuilders() {
 	}
 
 }

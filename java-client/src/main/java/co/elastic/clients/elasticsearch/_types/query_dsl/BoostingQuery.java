@@ -172,6 +172,16 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - Query used to decrease the relevance score of matching documents.
+		 * <p>
+		 * API name: {@code negative}
+		 */
+		public final Builder negative(QueryVariant value) {
+			this.negative = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Required - Any returned documents must match this query.
 		 * <p>
 		 * API name: {@code positive}
@@ -188,6 +198,16 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		 */
 		public final Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.positive(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Required - Any returned documents must match this query.
+		 * <p>
+		 * API name: {@code positive}
+		 */
+		public final Builder positive(QueryVariant value) {
+			this.positive = value._toQuery();
+			return this;
 		}
 
 		@Override

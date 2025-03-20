@@ -71,6 +71,9 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 	private final Boolean ignoreZValue;
 
 	@Nullable
+	private final Boolean index;
+
+	@Nullable
 	private final GeoOrientation orientation;
 
 	@Nullable
@@ -84,6 +87,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		this.coerce = builder.coerce;
 		this.ignoreMalformed = builder.ignoreMalformed;
 		this.ignoreZValue = builder.ignoreZValue;
+		this.index = builder.index;
 		this.orientation = builder.orientation;
 		this.strategy = builder.strategy;
 
@@ -126,6 +130,14 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 	}
 
 	/**
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final Boolean index() {
+		return this.index;
+	}
+
+	/**
 	 * API name: {@code orientation}
 	 */
 	@Nullable
@@ -160,6 +172,11 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 			generator.write(this.ignoreZValue);
 
 		}
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
 		if (this.orientation != null) {
 			generator.writeKey("orientation");
 			this.orientation.serialize(generator, mapper);
@@ -190,6 +207,9 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		private Boolean ignoreZValue;
 
 		@Nullable
+		private Boolean index;
+
+		@Nullable
 		private GeoOrientation orientation;
 
 		@Nullable
@@ -216,6 +236,14 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		 */
 		public final Builder ignoreZValue(@Nullable Boolean value) {
 			this.ignoreZValue = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable Boolean value) {
+			this.index = value;
 			return this;
 		}
 
@@ -266,6 +294,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
+		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::orientation, GeoOrientation._DESERIALIZER, "orientation");
 		op.add(Builder::strategy, GeoStrategy._DESERIALIZER, "strategy");
 

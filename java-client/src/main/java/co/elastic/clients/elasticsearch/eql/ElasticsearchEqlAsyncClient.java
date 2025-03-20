@@ -139,6 +139,27 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
+	 * Overload of {@link #get(EqlGetRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<EqlGetResponse<Void>> get(EqlGetRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EqlGetRequest, EqlGetResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<EqlGetRequest, EqlGetResponse<Void>, ErrorResponse>) EqlGetRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #get(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<EqlGetResponse<Void>> get(
+			Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn) {
+		return get(fn.apply(new EqlGetRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Get async EQL search results. Get the current status and available results
 	 * for an async EQL search or a stored synchronous EQL search.
 	 * 
@@ -246,6 +267,27 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	public final <TEvent> CompletableFuture<EqlSearchResponse<TEvent>> search(
 			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass) {
 		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
+	}
+
+	/**
+	 * Overload of {@link #search(EqlSearchRequest, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<EqlSearchResponse<Void>> search(EqlSearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EqlSearchRequest, EqlSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<EqlSearchRequest, EqlSearchResponse<Void>, ErrorResponse>) EqlSearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #search(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<EqlSearchResponse<Void>> search(
+			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn) {
+		return search(fn.apply(new EqlSearchRequest.Builder()).build(), Void.class);
 	}
 
 	/**

@@ -180,6 +180,16 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - Query used to return documents.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Required - Script used to compute the score of documents returned by the
 		 * query. Important: final relevance scores from the <code>script_score</code>
 		 * query cannot be negative.

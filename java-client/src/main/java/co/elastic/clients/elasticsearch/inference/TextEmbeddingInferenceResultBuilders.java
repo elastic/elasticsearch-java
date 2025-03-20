@@ -19,6 +19,9 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------------------
@@ -35,14 +38,15 @@ package co.elastic.clients.elasticsearch.inference;
 //----------------------------------------------------------------
 
 /**
- * Base interface for {@link InferenceResult} variants.
+ * Builders for {@link TextEmbeddingInferenceResult} variants.
+ * <p>
+ * Variants <code>text_embedding_bytes</code>, <code>text_embedding</code> are
+ * not available here as they don't have a dedicated class. Use
+ * {@link TextEmbeddingInferenceResult}'s builder for these.
+ * 
  */
-public interface InferenceResultVariant {
-
-	InferenceResult.Kind _inferenceResultKind();
-
-	default InferenceResult _toInferenceResult() {
-		return new InferenceResult(this);
+public class TextEmbeddingInferenceResultBuilders {
+	private TextEmbeddingInferenceResultBuilders() {
 	}
 
 }

@@ -46,7 +46,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -233,10 +232,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * A comma-separated list or wildcard expressions of fields to include in the
-	 * statistics. It is used as the default list unless a specific field list is
-	 * provided in the <code>completion_fields</code> or
-	 * <code>fielddata_fields</code> parameters.
+	 * A list of fields to include in the statistics. It is used as the default list
+	 * unless a specific field list is provided in the
+	 * <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -402,9 +400,34 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			JsonpUtils.serialize(this.doc, generator, tDocumentSerializer, mapper);
 
 		}
+		if (this.fieldStatistics != null) {
+			generator.writeKey("field_statistics");
+			generator.write(this.fieldStatistics);
+
+		}
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.filter != null) {
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
+
+		}
+		if (this.offsets != null) {
+			generator.writeKey("offsets");
+			generator.write(this.offsets);
+
+		}
+		if (this.payloads != null) {
+			generator.writeKey("payloads");
+			generator.write(this.payloads);
 
 		}
 		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
@@ -417,6 +440,30 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			}
 			generator.writeEnd();
 
+		}
+		if (this.positions != null) {
+			generator.writeKey("positions");
+			generator.write(this.positions);
+
+		}
+		if (this.routing != null) {
+			generator.writeKey("routing");
+			generator.write(this.routing);
+
+		}
+		if (this.termStatistics != null) {
+			generator.writeKey("term_statistics");
+			generator.write(this.termStatistics);
+
+		}
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (this.versionType != null) {
+			generator.writeKey("version_type");
+			this.versionType.serialize(generator, mapper);
 		}
 
 	}
@@ -509,10 +556,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * A comma-separated list or wildcard expressions of fields to include in the
-		 * statistics. It is used as the default list unless a specific field list is
-		 * provided in the <code>completion_fields</code> or
-		 * <code>fielddata_fields</code> parameters.
+		 * A list of fields to include in the statistics. It is used as the default list
+		 * unless a specific field list is provided in the
+		 * <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -524,10 +570,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * A comma-separated list or wildcard expressions of fields to include in the
-		 * statistics. It is used as the default list unless a specific field list is
-		 * provided in the <code>completion_fields</code> or
-		 * <code>fielddata_fields</code> parameters.
+		 * A list of fields to include in the statistics. It is used as the default list
+		 * unless a specific field list is provided in the
+		 * <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -761,9 +806,18 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::doc, tDocumentDeserializer, "doc");
+		op.add(Builder::fieldStatistics, JsonpDeserializer.booleanDeserializer(), "field_statistics");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::filter, Filter._DESERIALIZER, "filter");
+		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
+		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
+		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 
@@ -837,38 +891,11 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
-				if (request.termStatistics != null) {
-					params.put("term_statistics", String.valueOf(request.termStatistics));
-				}
-				if (request.offsets != null) {
-					params.put("offsets", String.valueOf(request.offsets));
-				}
-				if (request.payloads != null) {
-					params.put("payloads", String.valueOf(request.payloads));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.jsonValue());
-				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
-				}
-				if (request.positions != null) {
-					params.put("positions", String.valueOf(request.positions));
-				}
-				if (request.fieldStatistics != null) {
-					params.put("field_statistics", String.valueOf(request.fieldStatistics));
-				}
-				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
 				}
 				return params;
 

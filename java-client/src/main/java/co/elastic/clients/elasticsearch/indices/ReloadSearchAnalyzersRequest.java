@@ -98,6 +98,9 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 
 	private final List<String> index;
 
+	@Nullable
+	private final String resource;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ReloadSearchAnalyzersRequest(Builder builder) {
@@ -106,6 +109,7 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.resource = builder.resource;
 
 	}
 
@@ -155,6 +159,16 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 		return this.index;
 	}
 
+	/**
+	 * Changed resource to reload analyzers from if applicable
+	 * <p>
+	 * API name: {@code resource}
+	 */
+	@Nullable
+	public final String resource() {
+		return this.resource;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -174,6 +188,9 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		private List<String> index;
+
+		@Nullable
+		private String resource;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -245,6 +262,16 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Changed resource to reload analyzers from if applicable
+		 * <p>
+		 * API name: {@code resource}
+		 */
+		public final Builder resource(@Nullable String value) {
+			this.resource = value;
 			return this;
 		}
 
@@ -323,6 +350,9 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.resource != null) {
+					params.put("resource", request.resource);
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));

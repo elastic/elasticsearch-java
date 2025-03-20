@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -512,6 +513,25 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.indexFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Filter indices if the provided query rewrites to <code>match_none</code> on
+		 * every shard.
+		 * <p>
+		 * IMPORTANT: The filtering is done on a best-effort basis, it uses index
+		 * statistics and mappings to rewrite queries to <code>match_none</code> instead
+		 * of fully running the request. For instance a range query over a date field
+		 * can rewrite to <code>match_none</code> if all documents within a shard
+		 * (including deleted documents) are outside of the provided range. However, not
+		 * all queries can rewrite to <code>match_none</code> so this API may return an
+		 * index even if the provided filter matches no document.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(QueryVariant value) {
+			this.indexFilter = value._toQuery();
+			return this;
 		}
 
 		/**
