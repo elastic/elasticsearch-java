@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.knn_search.KnnSearchQuery;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -420,6 +421,24 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder filter(Query value, Query... values) {
 			this.filter = _listAdd(this.filter, value, values);
+			return this;
+		}
+
+		/**
+		 * Query to filter the documents that can match. The kNN search will return the
+		 * top <code>k</code> documents that also match this filter. The value can be a
+		 * single query or a list of queries. If <code>filter</code> isn't provided, all
+		 * documents are allowed to match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final Builder filter(QueryVariant value, QueryVariant... values) {
+			this.filter = _listAdd(this.filter, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.filter, v._toQuery());
+			}
 			return this;
 		}
 

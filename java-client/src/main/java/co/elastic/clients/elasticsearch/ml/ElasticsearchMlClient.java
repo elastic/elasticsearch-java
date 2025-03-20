@@ -2128,6 +2128,29 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	}
 
 	/**
+	 * Overload of {@link #previewDatafeed(PreviewDatafeedRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public PreviewDatafeedResponse<Void> previewDatafeed(PreviewDatafeedRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<Void>, ErrorResponse>) PreviewDatafeedRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #previewDatafeed(Function, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final PreviewDatafeedResponse<Void> previewDatafeed(
+			Function<PreviewDatafeedRequest.Builder, ObjectBuilder<PreviewDatafeedRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return previewDatafeed(fn.apply(new PreviewDatafeedRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Preview a datafeed. This API returns the first &quot;page&quot; of search
 	 * results from a datafeed. You can preview an existing datafeed or provide
 	 * configuration details for a datafeed and anomaly detection job in the API.

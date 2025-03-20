@@ -847,6 +847,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
+	 * Overload of {@link #explain(ExplainRequest, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public ExplainResponse<Void> explain(ExplainRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<Void>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #explain(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final ExplainResponse<Void> explain(Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return explain(fn.apply(new ExplainRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Explain a document match result. Returns information about why a specific
 	 * document matches, or doesn’t match, a query.
 	 * 
@@ -989,6 +1010,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
+	 * Overload of {@link #get(GetRequest, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public GetResponse<Void> get(GetRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRequest, GetResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<Void>, ErrorResponse>) GetRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #get(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final GetResponse<Void> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return get(fn.apply(new GetRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Get a document by its ID. Retrieves the document with the specified ID from
 	 * an index.
 	 * 
@@ -1127,6 +1169,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #getSource(GetSourceRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public GetSourceResponse<Void> getSource(GetSourceRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSourceRequest, GetSourceResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<Void>, ErrorResponse>) GetSourceRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #getSource(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final GetSourceResponse<Void> getSource(
+			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -1413,6 +1477,28 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
+	 * Overload of {@link #knnSearch(KnnSearchRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public KnnSearchResponse<Void> knnSearch(KnnSearchRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<Void>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #knnSearch(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final KnnSearchResponse<Void> knnSearch(
+			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run a knn search.
 	 * <p>
 	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
@@ -1522,6 +1608,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #mget(MgetRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public MgetResponse<Void> mget(MgetRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MgetRequest, MgetResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<Void>, ErrorResponse>) MgetRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #mget(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final MgetResponse<Void> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return mget(fn.apply(new MgetRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -1646,6 +1753,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
+	 * Overload of {@link #msearch(MsearchRequest, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public MsearchResponse<Void> msearch(MsearchRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchRequest, MsearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<Void>, ErrorResponse>) MsearchRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #msearch(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final MsearchResponse<Void> msearch(Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return msearch(fn.apply(new MsearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run multiple searches.
 	 * <p>
 	 * The format of the request is similar to the bulk API format and makes use of
@@ -1756,6 +1884,29 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #msearchTemplate(MsearchTemplateRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public MsearchTemplateResponse<Void> msearchTemplate(MsearchTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<Void>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #msearchTemplate(Function, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final MsearchTemplateResponse<Void> msearchTemplate(
+			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -2179,6 +2330,30 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
+	 * Overload of
+	 * {@link #scriptsPainlessExecute(ScriptsPainlessExecuteRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public ScriptsPainlessExecuteResponse<Void> scriptsPainlessExecute(ScriptsPainlessExecuteRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<Void>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #scriptsPainlessExecute(Function, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final ScriptsPainlessExecuteResponse<Void> scriptsPainlessExecute(
+			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run a script. Runs a script and returns a result.
 	 * 
 	 * @see <a href=
@@ -2293,6 +2468,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #scroll(ScrollRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public ScrollResponse<Void> scroll(ScrollRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScrollRequest, ScrollResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<Void>, ErrorResponse>) ScrollRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #scroll(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final ScrollResponse<Void> scroll(Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return scroll(fn.apply(new ScrollRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -2417,6 +2613,27 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException, ElasticsearchException {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #search(SearchRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public SearchResponse<Void> search(SearchRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchRequest, SearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<Void>, ErrorResponse>) SearchRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #search(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final SearchResponse<Void> search(Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return search(fn.apply(new SearchRequest.Builder()).build(), Void.class);
 	}
 
 	/**
@@ -2597,6 +2814,29 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	/**
+	 * Overload of {@link #searchTemplate(SearchTemplateRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public SearchTemplateResponse<Void> searchTemplate(SearchTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<Void>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #searchTemplate(Function, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final SearchTemplateResponse<Void> searchTemplate(
+			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), Void.class);
 	}
 
 	/**

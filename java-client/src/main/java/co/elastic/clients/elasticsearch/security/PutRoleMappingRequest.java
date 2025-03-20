@@ -396,6 +396,14 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * API name: {@code rules}
+		 */
+		public final Builder rules(RoleMappingRuleVariant value) {
+			this.rules = value._toRoleMappingRule();
+			return this;
+		}
+
+		/**
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.

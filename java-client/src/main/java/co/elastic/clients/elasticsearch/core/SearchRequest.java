@@ -24,22 +24,27 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.KnnSearch;
 import co.elastic.clients.elasticsearch._types.Rank;
+import co.elastic.clients.elasticsearch._types.RankVariant;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Retriever;
+import co.elastic.clients.elasticsearch._types.RetrieverVariant;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch.core.search.Rescore;
+import co.elastic.clients.elasticsearch.core.search.RescoreVariant;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.elasticsearch.core.search.Suggester;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
@@ -60,7 +65,6 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1477,6 +1481,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, AggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * Defines the aggregations that are run as part of the search request.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -1991,6 +2007,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Use the <code>post_filter</code> parameter to filter search results. The
+		 * search hits are filtered after the aggregations are calculated. A post filter
+		 * has no impact on the aggregation results.
+		 * <p>
+		 * API name: {@code post_filter}
+		 */
+		public final Builder postFilter(QueryVariant value) {
+			this.postFilter = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Defines a threshold that enforces a pre-filter roundtrip to prefilter search
 		 * shards based on query rewriting if the number of shards the search request
 		 * expands to exceeds the threshold. This filter roundtrip can limit the number
@@ -2077,6 +2105,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Defines the Reciprocal Rank Fusion (RRF) to use.
 		 * <p>
 		 * API name: {@code rank}
@@ -2093,6 +2131,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder rank(Function<Rank.Builder, ObjectBuilder<Rank>> fn) {
 			return this.rank(fn.apply(new Rank.Builder()).build());
+		}
+
+		/**
+		 * Defines the Reciprocal Rank Fusion (RRF) to use.
+		 * <p>
+		 * API name: {@code rank}
+		 */
+		public final Builder rank(RankVariant value) {
+			this.rank = value._toRank();
+			return this;
 		}
 
 		/**
@@ -2141,6 +2189,23 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code rescore}
 		 * <p>
+		 * Adds one or more values to <code>rescore</code>.
+		 */
+		public final Builder rescore(RescoreVariant value, RescoreVariant... values) {
+			this.rescore = _listAdd(this.rescore, value._toRescore());
+			for (RescoreVariant v : values) {
+				_listAdd(this.rescore, v._toRescore());
+			}
+			return this;
+		}
+
+		/**
+		 * Can be used to improve precision by reordering just the top (for example 100
+		 * - 500) documents returned by the <code>query</code> and
+		 * <code>post_filter</code> phases.
+		 * <p>
+		 * API name: {@code rescore}
+		 * <p>
 		 * Adds a value to <code>rescore</code> using a builder lambda.
 		 */
 		public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
@@ -2168,6 +2233,18 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder retriever(Function<Retriever.Builder, ObjectBuilder<Retriever>> fn) {
 			return this.retriever(fn.apply(new Retriever.Builder()).build());
+		}
+
+		/**
+		 * A retriever is a specification to describe top documents returned from a
+		 * search. A retriever replaces other elements of the search API that also
+		 * return top documents such as query and knn.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(RetrieverVariant value) {
+			this.retriever = value._toRetriever();
+			return this;
 		}
 
 		/**
@@ -2311,15 +2388,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(String value, String... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -2329,15 +2404,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(long value, long... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -2347,15 +2420,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(double value, double... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -2365,15 +2436,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(boolean value, boolean... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

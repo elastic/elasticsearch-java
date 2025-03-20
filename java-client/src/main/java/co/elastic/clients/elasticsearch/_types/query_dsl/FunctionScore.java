@@ -338,6 +338,14 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 		}
 
 		/**
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(QueryVariant value) {
+			this.filter = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * API name: {@code weight}
 		 */
 		public final Builder weight(@Nullable Double value) {
@@ -432,6 +440,14 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			 */
 			public final ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 				return this.filter(fn.apply(new Query.Builder()).build());
+			}
+
+			/**
+			 * API name: {@code filter}
+			 */
+			public final ContainerBuilder filter(QueryVariant value) {
+				Builder.this.filter = value._toQuery();
+				return this;
 			}
 
 			/**

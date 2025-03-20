@@ -24,7 +24,9 @@ import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregation;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyAggregationVariant;
 import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
+import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +41,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -362,6 +363,25 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, ApiKeyAggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toApiKeyAggregation());
+			return this;
+		}
+
+		/**
+		 * Any aggregations to run over the corpus of returned API keys. Aggregations
+		 * and queries work together. Aggregations are computed only on the API keys
+		 * that match the query. This supports only a subset of aggregation types,
+		 * namely: <code>terms</code>, <code>range</code>, <code>date_range</code>,
+		 * <code>missing</code>, <code>cardinality</code>, <code>value_count</code>,
+		 * <code>composite</code>, <code>filter</code>, and <code>filters</code>.
+		 * Additionally, aggregations only run over the same subset of fields that query
+		 * works with.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key,
@@ -421,6 +441,26 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * A query to filter which API keys to return. If the query parameter is
+		 * missing, it is equivalent to a <code>match_all</code> query. The query
+		 * supports a subset of query types, including <code>match_all</code>,
+		 * <code>bool</code>, <code>term</code>, <code>terms</code>, <code>match</code>,
+		 * <code>ids</code>, <code>prefix</code>, <code>wildcard</code>,
+		 * <code>exists</code>, <code>range</code>, and
+		 * <code>simple_query_string</code>. You can query the following public
+		 * information associated with an API key: <code>id</code>, <code>type</code>,
+		 * <code>name</code>, <code>creation</code>, <code>expiration</code>,
+		 * <code>invalidated</code>, <code>invalidation</code>, <code>username</code>,
+		 * <code>realm</code>, and <code>metadata</code>.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(ApiKeyQueryVariant value) {
+			this.query = value._toApiKeyQuery();
+			return this;
+		}
+
+		/**
 		 * Search after definition
 		 * <p>
 		 * API name: {@code search_after}
@@ -449,15 +489,13 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(String value, String... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -466,15 +504,13 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(long value, long... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -483,15 +519,13 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(double value, double... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -500,15 +534,13 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(boolean value, boolean... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

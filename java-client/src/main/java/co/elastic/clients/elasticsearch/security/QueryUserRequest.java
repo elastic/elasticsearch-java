@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch.security.query_user.UserQuery;
+import co.elastic.clients.elasticsearch.security.query_user.UserQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +38,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.util.ArrayList;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -300,6 +301,23 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * A query to filter which users to return. If the query parameter is missing,
+		 * it is equivalent to a <code>match_all</code> query. The query supports a
+		 * subset of query types, including <code>match_all</code>, <code>bool</code>,
+		 * <code>term</code>, <code>terms</code>, <code>match</code>, <code>ids</code>,
+		 * <code>prefix</code>, <code>wildcard</code>, <code>exists</code>,
+		 * <code>range</code>, and <code>simple_query_string</code>. You can query the
+		 * following information associated with user: <code>username</code>,
+		 * <code>roles</code>, <code>enabled</code>
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(UserQueryVariant value) {
+			this.query = value._toUserQuery();
+			return this;
+		}
+
+		/**
 		 * Search after definition
 		 * <p>
 		 * API name: {@code search_after}
@@ -328,15 +346,13 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(String value, String... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -345,15 +361,13 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(long value, long... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -362,15 +376,13 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(double value, double... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
@@ -379,15 +391,13 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(boolean value, boolean... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

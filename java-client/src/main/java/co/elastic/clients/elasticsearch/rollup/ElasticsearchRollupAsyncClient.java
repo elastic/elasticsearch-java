@@ -302,6 +302,27 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
+	 * Overload of {@link #rollupSearch(RollupSearchRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<RollupSearchResponse<Void>> rollupSearch(RollupSearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<Void>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #rollupSearch(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<RollupSearchResponse<Void>> rollupSearch(
+			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn) {
+		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Enables searching rolled-up data using the standard Query DSL.
 	 * 
 	 * @see <a href=

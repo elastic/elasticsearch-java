@@ -286,6 +286,21 @@ public class Pipeline implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
+		 * Adds one or more values to <code>onFailure</code>.
+		 */
+		public final Builder onFailure(ProcessorVariant value, ProcessorVariant... values) {
+			this.onFailure = _listAdd(this.onFailure, value._toProcessor());
+			for (ProcessorVariant v : values) {
+				_listAdd(this.onFailure, v._toProcessor());
+			}
+			return this;
+		}
+
+		/**
+		 * Processors to run immediately after a processor failure.
+		 * <p>
+		 * API name: {@code on_failure}
+		 * <p>
 		 * Adds a value to <code>onFailure</code> using a builder lambda.
 		 */
 		public final Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
@@ -315,6 +330,22 @@ public class Pipeline implements JsonpSerializable {
 		 */
 		public final Builder processors(Processor value, Processor... values) {
 			this.processors = _listAdd(this.processors, value, values);
+			return this;
+		}
+
+		/**
+		 * Processors used to perform transformations on documents before indexing.
+		 * Processors run sequentially in the order specified.
+		 * <p>
+		 * API name: {@code processors}
+		 * <p>
+		 * Adds one or more values to <code>processors</code>.
+		 */
+		public final Builder processors(ProcessorVariant value, ProcessorVariant... values) {
+			this.processors = _listAdd(this.processors, value._toProcessor());
+			for (ProcessorVariant v : values) {
+				_listAdd(this.processors, v._toProcessor());
+			}
 			return this;
 		}
 

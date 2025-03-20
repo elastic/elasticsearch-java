@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Transform;
+import co.elastic.clients.elasticsearch._types.TransformVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -387,6 +388,14 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code condition}
+		 */
+		public final Builder condition(ConditionVariant value) {
+			this.condition = value._toCondition();
+			return this;
+		}
+
+		/**
 		 * Required - Watch ID
 		 * <p>
 		 * API name: {@code id}
@@ -434,6 +443,14 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code input}
+		 */
+		public final Builder input(InputVariant value) {
+			this.input = value._toInput();
+			return this;
+		}
+
+		/**
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
@@ -477,6 +494,14 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(TransformVariant value) {
+			this.transform = value._toTransform();
+			return this;
+		}
+
+		/**
 		 * API name: {@code trigger}
 		 */
 		public final Builder trigger(@Nullable Trigger value) {
@@ -489,6 +514,14 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code trigger}
+		 */
+		public final Builder trigger(TriggerVariant value) {
+			this.trigger = value._toTrigger();
+			return this;
 		}
 
 		/**

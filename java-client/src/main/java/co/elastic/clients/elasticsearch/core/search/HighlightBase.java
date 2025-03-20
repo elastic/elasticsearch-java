@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -714,6 +715,18 @@ public abstract class HighlightBase implements JsonpSerializable {
 		 */
 		public final BuilderT highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.highlightQuery(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Highlight matches for a query other than the search query. This is especially
+		 * useful if you use a rescore query because those are not taken into account by
+		 * highlighting by default.
+		 * <p>
+		 * API name: {@code highlight_query}
+		 */
+		public final BuilderT highlightQuery(QueryVariant value) {
+			this.highlightQuery = value._toQuery();
+			return self();
 		}
 
 		/**

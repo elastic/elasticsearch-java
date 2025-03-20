@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -39,7 +40,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -395,6 +395,17 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specify a Query DSL query in the filter parameter to filter the set of
+		 * documents that an ES|QL query runs on.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(QueryVariant value) {
+			this.filter = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * A short version of the Accept header, e.g. json, yaml.
 		 * <p>
 		 * API name: {@code format}
@@ -447,15 +458,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(String value, String... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -466,15 +475,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(long value, long... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -485,15 +492,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(double value, double... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -504,15 +509,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(boolean value, boolean... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 

@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -488,6 +489,17 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.indexFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Allows to filter indices if the provided query rewrites to match_none on
+		 * every shard.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(QueryVariant value) {
+			this.indexFilter = value._toQuery();
+			return this;
 		}
 
 		/**

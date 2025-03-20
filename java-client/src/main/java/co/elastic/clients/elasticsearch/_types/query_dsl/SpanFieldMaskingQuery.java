@@ -152,6 +152,14 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 			return this.query(fn.apply(new SpanQuery.Builder()).build());
 		}
 
+		/**
+		 * Required - API name: {@code query}
+		 */
+		public final Builder query(SpanQueryVariant value) {
+			this.query = value._toSpanQuery();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

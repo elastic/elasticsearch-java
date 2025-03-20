@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -159,6 +160,21 @@ public abstract class RetrieverBase implements JsonpSerializable {
 		 */
 		public final BuilderT filter(Query value, Query... values) {
 			this.filter = _listAdd(this.filter, value, values);
+			return self();
+		}
+
+		/**
+		 * Query to filter the documents that can match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final BuilderT filter(QueryVariant value, QueryVariant... values) {
+			this.filter = _listAdd(this.filter, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.filter, v._toQuery());
+			}
 			return self();
 		}
 

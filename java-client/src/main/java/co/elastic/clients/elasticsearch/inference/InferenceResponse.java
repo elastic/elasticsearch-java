@@ -117,6 +117,14 @@ public class InferenceResponse implements JsonpSerializable {
 			return this.valueBody(fn.apply(new InferenceResult.Builder()).build());
 		}
 
+		/**
+		 * Required - Response value.
+		 */
+		public final Builder valueBody(InferenceResultVariant value) {
+			this.valueBody = value._toInferenceResult();
+			return this;
+		}
+
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 

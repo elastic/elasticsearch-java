@@ -40,7 +40,10 @@ import co.elastic.clients.json.LazyDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
+import jakarta.json.stream.JsonParsingException;
 import org.junit.jupiter.api.Test;
+
+import static co.elastic.clients.elasticsearch._types.query_dsl.Query.Kind.MatchAll;
 
 public class BehaviorsTest extends ModelTestCase {
 
@@ -249,46 +252,87 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals("foo", req.query().term().field());
         assertEquals("bar", req.query().term().value().stringValue());
     }
-    
+
     @Test
     public void testFunctionScoreQuery() {
-        String shortcut =
-            "{" +
-            "  \"gauss\": {" +
-            "    \"date\": {" +
-            "      \"origin\": \"2013-09-17\", " +
-            "      \"scale\": \"10d\"," +
-            "      \"offset\": \"5d\",         " +
-            "      \"decay\": 0.5" +
-            "    }," +
-            "    \"multi_value_mode\": \"avg\"" +
-            "  }" +
+
+        String queryOnly = "{" +
+            "          \"query\": {\n" +
+            "            \"match_all\": {}\n" +
+            "          }\n" +
             "}";
 
         String full =
             "{" +
-            "  \"functions\": [" +
-            "    {" +
-            "      \"gauss\": {" +
-            "        \"date\": {" +
-            "          \"origin\": \"2013-09-17\"," +
-            "          \"scale\": \"10d\"," +
-            "          \"offset\": \"5d\"," +
-            "          \"decay\": 0.5" +
-            "        }," +
-            "        \"multi_value_mode\": \"avg\"" +
-            "      }" +
-            "    }" +
-            "  ]" +
-            "}";
+                "  \"functions\": [" +
+                "    {" +
+                "      \"gauss\": {" +
+                "        \"date\": {" +
+                "          \"origin\": \"2013-09-17\"," +
+                "          \"scale\": \"10d\"," +
+                "          \"offset\": \"5d\"," +
+                "          \"decay\": 0.5" +
+                "        }," +
+                "        \"multi_value_mode\": \"avg\"" +
+                "      }" +
+                "    }" +
+                "  ]" +
+                "}";
+
+        String nested =
+            "{\n" +
+                "      \"functions\": [\n" +
+                "        {\n" +
+                "      \"gauss\": {" +
+                "        \"date\": {" +
+                "          \"origin\": \"2013-09-17\"," +
+                "          \"scale\": \"10d\"," +
+                "          \"offset\": \"5d\"," +
+                "          \"decay\": 0.5" +
+                "        }," +
+                "        \"multi_value_mode\": \"avg\"" +
+                "          }\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"query\": {\n" +
+                "        \"function_score\": {\n" +
+                "          \"query\": {\n" +
+                "            \"match_all\": {}\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }";
+
+
+        String shortcut =
+            "{" +
+                "  \"gauss\": {" +
+                "    \"date\": {" +
+                "      \"origin\": \"2013-09-17\", " +
+                "      \"scale\": \"10d\"," +
+                "      \"offset\": \"5d\",         " +
+                "      \"decay\": 0.5" +
+                "    }," +
+                "    \"multi_value_mode\": \"avg\"" +
+                "  }" +
+                "}";
 
         FunctionScoreQuery fsq;
 
+        // should always work, this is just a function score query with just one "query" field
+        fsq = fromJson(queryOnly, FunctionScoreQuery.class);
+        assertEquals(MatchAll, fsq.query()._kind());
+
+        // should also work
         fsq = fromJson(full, FunctionScoreQuery.class);
         assertEquals(MultiValueMode.Avg, fsq.functions().get(0).gauss().untyped().multiValueMode());
 
-        fsq = fromJson(shortcut, FunctionScoreQuery.class);
-        assertEquals(MultiValueMode.Avg, fsq.functions().get(0).gauss().untyped().multiValueMode());
+        // should also work
+        fsq = fromJson(nested, FunctionScoreQuery.class);
+        assertEquals(MatchAll, fsq.query().functionScore().query()._kind());
+
+        // should not work, shortcut for function score query is currently not supported
+        assertThrows(JsonParsingException.class,() -> fromJson(shortcut, FunctionScoreQuery.class));
     }
 
     @Test

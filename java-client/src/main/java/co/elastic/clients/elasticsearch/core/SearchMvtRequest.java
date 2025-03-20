@@ -23,8 +23,10 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridAggregationType;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridType;
@@ -592,6 +594,27 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code aggs}
 		 * <p>
+		 * Adds an entry to <code>aggs</code>.
+		 */
+		public final Builder aggs(String key, AggregationVariant value) {
+			this.aggs = _mapPut(this.aggs, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * Sub-aggregations for the geotile_grid.
+		 * <p>
+		 * Supports the following aggregation types:
+		 * <ul>
+		 * <li>avg</li>
+		 * <li>cardinality</li>
+		 * <li>max</li>
+		 * <li>min</li>
+		 * <li>sum</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code aggs}
+		 * <p>
 		 * Adds an entry to <code>aggs</code> using a builder lambda.
 		 */
 		public final Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -751,6 +774,16 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Query DSL used to filter documents for the search.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		/**

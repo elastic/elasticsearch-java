@@ -174,6 +174,23 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		 * <p>
 		 * API name: {@code queries}
 		 * <p>
+		 * Adds one or more values to <code>queries</code>.
+		 */
+		public final Builder queries(QueryVariant value, QueryVariant... values) {
+			this.queries = _listAdd(this.queries, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.queries, v._toQuery());
+			}
+			return this;
+		}
+
+		/**
+		 * Required - One or more query clauses. Returned documents must match one or
+		 * more of these queries. If a document matches multiple queries, Elasticsearch
+		 * uses the highest relevance score.
+		 * <p>
+		 * API name: {@code queries}
+		 * <p>
 		 * Adds a value to <code>queries</code> using a builder lambda.
 		 */
 		public final Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
