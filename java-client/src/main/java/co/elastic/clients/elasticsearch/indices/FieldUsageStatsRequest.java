@@ -22,7 +22,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -89,9 +88,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 
 	private final List<String> index;
 
-	@Nullable
-	private final WaitForActiveShards waitForActiveShards;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private FieldUsageStatsRequest(Builder builder) {
@@ -101,7 +97,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
@@ -167,18 +162,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 		return this.index;
 	}
 
-	/**
-	 * The number of shard copies that must be active before proceeding with the
-	 * operation. Set to all or any positive integer up to the total number of
-	 * shards in the index (<code>number_of_replicas+1</code>).
-	 * <p>
-	 * API name: {@code wait_for_active_shards}
-	 */
-	@Nullable
-	public final WaitForActiveShards waitForActiveShards() {
-		return this.waitForActiveShards;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -201,9 +184,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		private List<String> index;
-
-		@Nullable
-		private WaitForActiveShards waitForActiveShards;
 
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
@@ -313,30 +293,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 			return this;
 		}
 
-		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operation. Set to all or any positive integer up to the total number of
-		 * shards in the index (<code>number_of_replicas+1</code>).
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
-			this.waitForActiveShards = value;
-			return this;
-		}
-
-		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operation. Set to all or any positive integer up to the total number of
-		 * shards in the index (<code>number_of_replicas+1</code>).
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public final Builder waitForActiveShards(
-				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -415,9 +371,6 @@ public class FieldUsageStatsRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));

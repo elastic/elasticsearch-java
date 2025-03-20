@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -262,6 +263,20 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * The Elasticsearch query domain-specific language (DSL). This value
+		 * corresponds to the query object in an Elasticsearch search POST body. All the
+		 * options that are supported by Elasticsearch can be used, as this object is
+		 * passed verbatim to Elasticsearch. By default, this property has the following
+		 * value: {&quot;match_all&quot;: {}}.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		/**

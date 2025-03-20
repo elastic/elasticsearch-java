@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics;
 
 import co.elastic.clients.elasticsearch.ml.DataframeAnalysis;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalysisAnalyzedFields;
+import co.elastic.clients.elasticsearch.ml.DataframeAnalysisVariant;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalyticsSource;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -222,6 +223,14 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		 */
 		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
 			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code analysis}
+		 */
+		public final Builder analysis(DataframeAnalysisVariant value) {
+			this.analysis = value._toDataframeAnalysis();
+			return this;
 		}
 
 		/**

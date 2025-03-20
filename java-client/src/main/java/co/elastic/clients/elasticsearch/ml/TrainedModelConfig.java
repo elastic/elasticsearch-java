@@ -728,6 +728,19 @@ public class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * The default configuration for inference. This can be either a regression,
+		 * classification, or one of the many NLP focused configurations. It must match
+		 * the underlying definition.trained_model's target_type. For pre-packaged
+		 * models such as ELSER the config is not required.
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public final BuilderT inferenceConfig(InferenceConfigCreateVariant value) {
+			this.inferenceConfig = value._toInferenceConfigCreate();
+			return self();
+		}
+
+		/**
 		 * Required - The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}

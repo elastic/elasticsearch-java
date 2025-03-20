@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -177,6 +178,18 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		 */
 		public final Builder filters(String key, Query value) {
 			this.filters = _mapPut(this.filters, key, value);
+			return this;
+		}
+
+		/**
+		 * Filters used to create buckets. At least one filter is required.
+		 * <p>
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds an entry to <code>filters</code>.
+		 */
+		public final Builder filters(String key, QueryVariant value) {
+			this.filters = _mapPut(this.filters, key, value._toQuery());
 			return this;
 		}
 

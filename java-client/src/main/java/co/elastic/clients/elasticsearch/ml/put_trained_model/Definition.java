@@ -167,6 +167,21 @@ public class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code preprocessors}
 		 * <p>
+		 * Adds one or more values to <code>preprocessors</code>.
+		 */
+		public final Builder preprocessors(PreprocessorVariant value, PreprocessorVariant... values) {
+			this.preprocessors = _listAdd(this.preprocessors, value._toPreprocessor());
+			for (PreprocessorVariant v : values) {
+				_listAdd(this.preprocessors, v._toPreprocessor());
+			}
+			return this;
+		}
+
+		/**
+		 * Collection of preprocessors
+		 * <p>
+		 * API name: {@code preprocessors}
+		 * <p>
 		 * Adds a value to <code>preprocessors</code> using a builder lambda.
 		 */
 		public final Builder preprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn) {

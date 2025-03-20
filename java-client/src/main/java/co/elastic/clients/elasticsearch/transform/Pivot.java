@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -197,6 +198,22 @@ public class Pivot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, AggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * Defines how to aggregate the grouped data. The following aggregations are
+		 * currently supported: average, bucket script, bucket selector, cardinality,
+		 * filter, geo bounds, geo centroid, geo line, max, median absolute deviation,
+		 * min, missing, percentiles, rare terms, scripted metric, stats, sum, terms,
+		 * top metrics, value count, weighted average.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -228,6 +245,20 @@ public class Pivot implements JsonpSerializable {
 		 */
 		public final Builder groupBy(String key, PivotGroupBy value) {
 			this.groupBy = _mapPut(this.groupBy, key, value);
+			return this;
+		}
+
+		/**
+		 * Defines how to group the data. More than one grouping can be defined per
+		 * pivot. The following groupings are currently supported: date histogram,
+		 * geotile grid, histogram, terms.
+		 * <p>
+		 * API name: {@code group_by}
+		 * <p>
+		 * Adds an entry to <code>groupBy</code>.
+		 */
+		public final Builder groupBy(String key, PivotGroupByVariant value) {
+			this.groupBy = _mapPut(this.groupBy, key, value._toPivotGroupBy());
 			return this;
 		}
 

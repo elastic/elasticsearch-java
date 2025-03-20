@@ -281,12 +281,155 @@ public class ElasticsearchInferenceAsyncClient
 		return put(fn.apply(new PutRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.put_eis
+
+	/**
+	 * Create an Elastic Inference Service (EIS) inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task through the Elastic
+	 * Inference Service (EIS).
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-eis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutEisResponse> putEis(PutEisRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutEisRequest, PutEisResponse, ErrorResponse> endpoint = (JsonEndpoint<PutEisRequest, PutEisResponse, ErrorResponse>) PutEisRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Elastic Inference Service (EIS) inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task through the Elastic
+	 * Inference Service (EIS).
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutEisRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-eis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutEisResponse> putEis(
+			Function<PutEisRequest.Builder, ObjectBuilder<PutEisRequest>> fn) {
+		return putEis(fn.apply(new PutEisRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_openai
+
+	/**
+	 * Create an OpenAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>openai</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-openai.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutOpenaiResponse> putOpenai(PutOpenaiRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutOpenaiRequest, PutOpenaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutOpenaiRequest, PutOpenaiResponse, ErrorResponse>) PutOpenaiRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an OpenAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>openai</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutOpenaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-openai.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutOpenaiResponse> putOpenai(
+			Function<PutOpenaiRequest.Builder, ObjectBuilder<PutOpenaiRequest>> fn) {
+		return putOpenai(fn.apply(new PutOpenaiRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_voyageai
+
+	/**
+	 * Create a VoyageAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>voyageai</code> service.
+	 * <p>
+	 * Avoid creating multiple endpoints for the same model unless required, as each
+	 * endpoint consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-voyageai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutVoyageaiResponse> putVoyageai(PutVoyageaiRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutVoyageaiRequest, PutVoyageaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutVoyageaiRequest, PutVoyageaiResponse, ErrorResponse>) PutVoyageaiRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a VoyageAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>voyageai</code> service.
+	 * <p>
+	 * Avoid creating multiple endpoints for the same model unless required, as each
+	 * endpoint consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutVoyageaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-voyageai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutVoyageaiResponse> putVoyageai(
+			Function<PutVoyageaiRequest.Builder, ObjectBuilder<PutVoyageaiRequest>> fn) {
+		return putVoyageai(fn.apply(new PutVoyageaiRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put_watsonx
 
 	/**
 	 * Create a Watsonx inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>watsonxai</code> service. You need an IBM Cloud Databases for
 	 * Elasticsearch deployment to use the <code>watsonxai</code> inference service.
 	 * You can provision one through the IBM catalog, the Cloud Databases CLI
@@ -303,7 +446,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-watsonx-ai.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-watsonx">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -317,7 +460,7 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create a Watsonx inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>watsonxai</code> service. You need an IBM Cloud Databases for
 	 * Elasticsearch deployment to use the <code>watsonxai</code> inference service.
 	 * You can provision one through the IBM catalog, the Cloud Databases CLI
@@ -337,7 +480,7 @@ public class ElasticsearchInferenceAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutWatsonxRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-watsonx-ai.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-watsonx">Documentation
 	 *      on elastic.co</a>
 	 */
 

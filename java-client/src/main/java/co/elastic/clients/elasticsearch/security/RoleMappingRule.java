@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -28,6 +29,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -184,7 +186,7 @@ public class RoleMappingRule
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code field} kind.
 	 */
-	public FieldRule field() {
+	public NamedValue<List<FieldValue>> field() {
 		return TaggedUnionUtils.get(this, Kind.Field);
 	}
 
@@ -234,6 +236,21 @@ public class RoleMappingRule
 					generator.writeEnd();
 
 					break;
+				case Field :
+					generator.writeStartObject();
+					generator.writeKey(((NamedValue<List<FieldValue>>) this._value).name());
+					generator.writeStartArray();
+					if (((NamedValue<List<FieldValue>>) this._value).value() != null) {
+						for (FieldValue item1 : ((NamedValue<List<FieldValue>>) this._value).value()) {
+							item1.serialize(generator, mapper);
+
+						}
+					}
+					generator.writeEnd();
+
+					generator.writeEnd();
+
+					break;
 			}
 		}
 
@@ -266,14 +283,10 @@ public class RoleMappingRule
 			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> field(FieldRule v) {
+		public ObjectBuilder<RoleMappingRule> field(NamedValue<List<FieldValue>> v) {
 			this._kind = Kind.Field;
 			this._value = v;
 			return this;
-		}
-
-		public ObjectBuilder<RoleMappingRule> field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> fn) {
-			return this.field(fn.apply(new FieldRule.Builder()).build());
 		}
 
 		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
@@ -298,7 +311,8 @@ public class RoleMappingRule
 
 		op.add(Builder::any, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "any");
 		op.add(Builder::all, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "all");
-		op.add(Builder::field, FieldRule._DESERIALIZER, "field");
+		op.add(Builder::field,
+				NamedValue.deserializer(() -> JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER)), "field");
 		op.add(Builder::except, RoleMappingRule._DESERIALIZER, "except");
 
 	}

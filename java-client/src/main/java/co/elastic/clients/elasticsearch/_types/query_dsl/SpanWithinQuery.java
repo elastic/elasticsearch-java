@@ -157,6 +157,17 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		 * Required - Can be any span query. Matching spans from <code>little</code>
 		 * that are enclosed within <code>big</code> are returned.
 		 * <p>
+		 * API name: {@code big}
+		 */
+		public final Builder big(SpanQueryVariant value) {
+			this.big = value._toSpanQuery();
+			return this;
+		}
+
+		/**
+		 * Required - Can be any span query. Matching spans from <code>little</code>
+		 * that are enclosed within <code>big</code> are returned.
+		 * <p>
 		 * API name: {@code little}
 		 */
 		public final Builder little(SpanQuery value) {
@@ -172,6 +183,17 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		 */
 		public final Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.little(fn.apply(new SpanQuery.Builder()).build());
+		}
+
+		/**
+		 * Required - Can be any span query. Matching spans from <code>little</code>
+		 * that are enclosed within <code>big</code> are returned.
+		 * <p>
+		 * API name: {@code little}
+		 */
+		public final Builder little(SpanQueryVariant value) {
+			this.little = value._toSpanQuery();
+			return this;
 		}
 
 		@Override

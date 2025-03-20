@@ -63,14 +63,19 @@ import javax.annotation.Nullable;
 public class SemanticTextProperty implements PropertyVariant, JsonpSerializable {
 	private final Map<String, String> meta;
 
+	@Nullable
 	private final String inferenceId;
+
+	@Nullable
+	private final String searchInferenceId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SemanticTextProperty(Builder builder) {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.inferenceId = builder.inferenceId;
+		this.searchInferenceId = builder.searchInferenceId;
 
 	}
 
@@ -94,10 +99,29 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	}
 
 	/**
-	 * Required - API name: {@code inference_id}
+	 * Inference endpoint that will be used to generate embeddings for the field.
+	 * This parameter cannot be updated. Use the Create inference API to create the
+	 * endpoint. If <code>search_inference_id</code> is specified, the inference
+	 * endpoint will only be used at index time.
+	 * <p>
+	 * API name: {@code inference_id}
 	 */
+	@Nullable
 	public final String inferenceId() {
 		return this.inferenceId;
+	}
+
+	/**
+	 * Inference endpoint that will be used to generate embeddings at query time.
+	 * You can update this parameter by using the Update mapping API. Use the Create
+	 * inference API to create the endpoint. If not specified, the inference
+	 * endpoint defined by inference_id will be used at both index and query time.
+	 * <p>
+	 * API name: {@code search_inference_id}
+	 */
+	@Nullable
+	public final String searchInferenceId() {
+		return this.searchInferenceId;
 	}
 
 	/**
@@ -124,8 +148,16 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		generator.writeKey("inference_id");
-		generator.write(this.inferenceId);
+		if (this.inferenceId != null) {
+			generator.writeKey("inference_id");
+			generator.write(this.inferenceId);
+
+		}
+		if (this.searchInferenceId != null) {
+			generator.writeKey("search_inference_id");
+			generator.write(this.searchInferenceId);
+
+		}
 
 	}
 
@@ -146,7 +178,11 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		@Nullable
 		private Map<String, String> meta;
 
+		@Nullable
 		private String inferenceId;
+
+		@Nullable
+		private String searchInferenceId;
 
 		/**
 		 * API name: {@code meta}
@@ -169,10 +205,28 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Required - API name: {@code inference_id}
+		 * Inference endpoint that will be used to generate embeddings for the field.
+		 * This parameter cannot be updated. Use the Create inference API to create the
+		 * endpoint. If <code>search_inference_id</code> is specified, the inference
+		 * endpoint will only be used at index time.
+		 * <p>
+		 * API name: {@code inference_id}
 		 */
-		public final Builder inferenceId(String value) {
+		public final Builder inferenceId(@Nullable String value) {
 			this.inferenceId = value;
+			return this;
+		}
+
+		/**
+		 * Inference endpoint that will be used to generate embeddings at query time.
+		 * You can update this parameter by using the Update mapping API. Use the Create
+		 * inference API to create the endpoint. If not specified, the inference
+		 * endpoint defined by inference_id will be used at both index and query time.
+		 * <p>
+		 * API name: {@code search_inference_id}
+		 */
+		public final Builder searchInferenceId(@Nullable String value) {
+			this.searchInferenceId = value;
 			return this;
 		}
 
@@ -206,6 +260,7 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "meta");
 		op.add(Builder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
+		op.add(Builder::searchInferenceId, JsonpDeserializer.stringDeserializer(), "search_inference_id");
 
 		op.ignore("type");
 	}

@@ -25,9 +25,11 @@ import co.elastic.clients.elasticsearch.ml.TransformAuthorization;
 import co.elastic.clients.elasticsearch.transform.Latest;
 import co.elastic.clients.elasticsearch.transform.Pivot;
 import co.elastic.clients.elasticsearch.transform.RetentionPolicy;
+import co.elastic.clients.elasticsearch.transform.RetentionPolicyVariant;
 import co.elastic.clients.elasticsearch.transform.Settings;
 import co.elastic.clients.elasticsearch.transform.Source;
 import co.elastic.clients.elasticsearch.transform.Sync;
+import co.elastic.clients.elasticsearch.transform.SyncVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -535,6 +537,14 @@ public class TransformSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(RetentionPolicyVariant value) {
+			this.retentionPolicy = value._toRetentionPolicy();
+			return this;
+		}
+
+		/**
 		 * Defines optional transform settings.
 		 * <p>
 		 * API name: {@code settings}
@@ -589,6 +599,16 @@ public class TransformSummary implements JsonpSerializable {
 		 */
 		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
 			return this.sync(fn.apply(new Sync.Builder()).build());
+		}
+
+		/**
+		 * Defines the properties transforms require to run continuously.
+		 * <p>
+		 * API name: {@code sync}
+		 */
+		public final Builder sync(SyncVariant value) {
+			this.sync = value._toSync();
+			return this;
 		}
 
 		/**

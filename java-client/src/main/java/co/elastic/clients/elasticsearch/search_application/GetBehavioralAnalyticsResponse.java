@@ -63,13 +63,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetBehavioralAnalyticsResponse implements JsonpSerializable {
-	private final Map<String, AnalyticsCollection> result;
+	private final Map<String, AnalyticsCollection> analytics;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetBehavioralAnalyticsResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.analytics = ApiTypeHelper.unmodifiableRequired(builder.analytics, this, "analytics");
 
 	}
 
@@ -81,15 +81,15 @@ public class GetBehavioralAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, AnalyticsCollection> result() {
-		return this.result;
+	public final Map<String, AnalyticsCollection> analytics() {
+		return this.analytics;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code analytics}.
 	 */
 	public final @Nullable AnalyticsCollection get(String key) {
-		return this.result.get(key);
+		return this.analytics.get(key);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class GetBehavioralAnalyticsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, AnalyticsCollection> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, AnalyticsCollection> item0 : this.analytics.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -120,36 +120,36 @@ public class GetBehavioralAnalyticsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetBehavioralAnalyticsResponse> {
-		private Map<String, AnalyticsCollection> result = new HashMap<>();
+		private Map<String, AnalyticsCollection> analytics = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>analytics</code>.
 		 */
-		public final Builder result(Map<String, AnalyticsCollection> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder analytics(Map<String, AnalyticsCollection> map) {
+			this.analytics = _mapPutAll(this.analytics, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>analytics</code>.
 		 */
-		public final Builder result(String key, AnalyticsCollection value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder analytics(String key, AnalyticsCollection value) {
+			this.analytics = _mapPut(this.analytics, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>analytics</code> using a builder lambda.
 		 */
-		public final Builder result(String key,
+		public final Builder analytics(String key,
 				Function<AnalyticsCollection.Builder, ObjectBuilder<AnalyticsCollection>> fn) {
-			return result(key, fn.apply(new AnalyticsCollection.Builder()).build());
+			return analytics(key, fn.apply(new AnalyticsCollection.Builder()).build());
 		}
 
 		@Override
@@ -158,7 +158,7 @@ public class GetBehavioralAnalyticsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, AnalyticsCollection> value = (Map<String, AnalyticsCollection>) JsonpDeserializer
 					.stringMapDeserializer(AnalyticsCollection._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.analytics(value);
 		}
 
 		@Override
@@ -186,7 +186,7 @@ public class GetBehavioralAnalyticsResponse implements JsonpSerializable {
 				.stringMapDeserializer(AnalyticsCollection._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.analytics(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

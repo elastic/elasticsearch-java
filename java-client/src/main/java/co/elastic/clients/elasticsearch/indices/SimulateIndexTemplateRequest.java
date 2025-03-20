@@ -67,6 +67,12 @@ import javax.annotation.Nullable;
 
 public class SimulateIndexTemplateRequest extends RequestBase {
 	@Nullable
+	private final String cause;
+
+	@Nullable
+	private final Boolean create;
+
+	@Nullable
 	private final Boolean includeDefaults;
 
 	@Nullable
@@ -78,6 +84,8 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 
 	private SimulateIndexTemplateRequest(Builder builder) {
 
+		this.cause = builder.cause;
+		this.create = builder.create;
 		this.includeDefaults = builder.includeDefaults;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
@@ -86,6 +94,28 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 
 	public static SimulateIndexTemplateRequest of(Function<Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * User defined reason for dry-run creating the new template for simulation
+	 * purposes
+	 * <p>
+	 * API name: {@code cause}
+	 */
+	@Nullable
+	public final String cause() {
+		return this.cause;
+	}
+
+	/**
+	 * Whether the index template we optionally defined in the body should only be
+	 * dry-run added if new or can also replace an existing one
+	 * <p>
+	 * API name: {@code create}
+	 */
+	@Nullable
+	public final Boolean create() {
+		return this.create;
 	}
 
 	/**
@@ -128,12 +158,40 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 			implements
 				ObjectBuilder<SimulateIndexTemplateRequest> {
 		@Nullable
+		private String cause;
+
+		@Nullable
+		private Boolean create;
+
+		@Nullable
 		private Boolean includeDefaults;
 
 		@Nullable
 		private Time masterTimeout;
 
 		private String name;
+
+		/**
+		 * User defined reason for dry-run creating the new template for simulation
+		 * purposes
+		 * <p>
+		 * API name: {@code cause}
+		 */
+		public final Builder cause(@Nullable String value) {
+			this.cause = value;
+			return this;
+		}
+
+		/**
+		 * Whether the index template we optionally defined in the body should only be
+		 * dry-run added if new or can also replace an existing one
+		 * <p>
+		 * API name: {@code create}
+		 */
+		public final Builder create(@Nullable Boolean value) {
+			this.create = value;
+			return this;
+		}
 
 		/**
 		 * If true, returns all relevant default configurations for the index template.
@@ -248,6 +306,12 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
+				}
+				if (request.cause != null) {
+					params.put("cause", request.cause);
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));

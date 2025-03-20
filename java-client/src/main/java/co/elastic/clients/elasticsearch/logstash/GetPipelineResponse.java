@@ -62,13 +62,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetPipelineResponse implements JsonpSerializable {
-	private final Map<String, Pipeline> result;
+	private final Map<String, Pipeline> pipelines;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetPipelineResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.pipelines = ApiTypeHelper.unmodifiableRequired(builder.pipelines, this, "pipelines");
 
 	}
 
@@ -79,15 +79,15 @@ public class GetPipelineResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, Pipeline> result() {
-		return this.result;
+	public final Map<String, Pipeline> pipelines() {
+		return this.pipelines;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code pipelines}.
 	 */
 	public final @Nullable Pipeline get(String key) {
-		return this.result.get(key);
+		return this.pipelines.get(key);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class GetPipelineResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, Pipeline> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, Pipeline> item0 : this.pipelines.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -118,35 +118,35 @@ public class GetPipelineResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetPipelineResponse> {
-		private Map<String, Pipeline> result = new HashMap<>();
+		private Map<String, Pipeline> pipelines = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>pipelines</code>.
 		 */
-		public final Builder result(Map<String, Pipeline> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder pipelines(Map<String, Pipeline> map) {
+			this.pipelines = _mapPutAll(this.pipelines, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>pipelines</code>.
 		 */
-		public final Builder result(String key, Pipeline value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder pipelines(String key, Pipeline value) {
+			this.pipelines = _mapPut(this.pipelines, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>pipelines</code> using a builder lambda.
 		 */
-		public final Builder result(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-			return result(key, fn.apply(new Pipeline.Builder()).build());
+		public final Builder pipelines(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return pipelines(key, fn.apply(new Pipeline.Builder()).build());
 		}
 
 		@Override
@@ -155,7 +155,7 @@ public class GetPipelineResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, Pipeline> value = (Map<String, Pipeline>) JsonpDeserializer
 					.stringMapDeserializer(Pipeline._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.pipelines(value);
 		}
 
 		@Override
@@ -183,7 +183,7 @@ public class GetPipelineResponse implements JsonpSerializable {
 				.stringMapDeserializer(Pipeline._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.pipelines(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

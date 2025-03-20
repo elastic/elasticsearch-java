@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.Transform;
+import co.elastic.clients.elasticsearch._types.TransformVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -317,6 +318,14 @@ public class Watch implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code condition}
+		 */
+		public final Builder condition(ConditionVariant value) {
+			this.condition = value._toCondition();
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code input}
 		 */
 		public final Builder input(Input value) {
@@ -329,6 +338,14 @@ public class Watch implements JsonpSerializable {
 		 */
 		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code input}
+		 */
+		public final Builder input(InputVariant value) {
+			this.input = value._toInput();
+			return this;
 		}
 
 		/**
@@ -405,6 +422,14 @@ public class Watch implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(TransformVariant value) {
+			this.transform = value._toTransform();
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code trigger}
 		 */
 		public final Builder trigger(Trigger value) {
@@ -417,6 +442,14 @@ public class Watch implements JsonpSerializable {
 		 */
 		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code trigger}
+		 */
+		public final Builder trigger(TriggerVariant value) {
+			this.trigger = value._toTrigger();
+			return this;
 		}
 
 		@Override

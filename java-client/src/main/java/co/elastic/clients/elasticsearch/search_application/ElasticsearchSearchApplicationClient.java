@@ -477,6 +477,29 @@ public class ElasticsearchSearchApplicationClient
 	}
 
 	/**
+	 * Overload of {@link #search(SearchApplicationSearchRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public SearchApplicationSearchResponse<Void> search(SearchApplicationSearchRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchApplicationSearchRequest, SearchApplicationSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<SearchApplicationSearchRequest, SearchApplicationSearchResponse<Void>, ErrorResponse>) SearchApplicationSearchRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #search(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final SearchApplicationSearchResponse<Void> search(
+			Function<SearchApplicationSearchRequest.Builder, ObjectBuilder<SearchApplicationSearchRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return search(fn.apply(new SearchApplicationSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Run a search application search. Generate and run an Elasticsearch query that
 	 * uses the specified query parameteter and the search template associated with
 	 * the search application or default template. Unspecified template parameters

@@ -132,6 +132,46 @@ public class CompositeBucket extends MultiBucketBase {
 		/**
 		 * Required - API name: {@code key}
 		 * <p>
+		 * Adds an entry to <code>key</code>.
+		 */
+		public final Builder key(String key, String value) {
+			this.key = _mapPut(this.key, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds an entry to <code>key</code>.
+		 */
+		public final Builder key(String key, long value) {
+			this.key = _mapPut(this.key, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds an entry to <code>key</code>.
+		 */
+		public final Builder key(String key, double value) {
+			this.key = _mapPut(this.key, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds an entry to <code>key</code>.
+		 */
+		public final Builder key(String key, boolean value) {
+			this.key = _mapPut(this.key, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
 		 * Adds an entry to <code>key</code> using a builder lambda.
 		 */
 		public final Builder key(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {

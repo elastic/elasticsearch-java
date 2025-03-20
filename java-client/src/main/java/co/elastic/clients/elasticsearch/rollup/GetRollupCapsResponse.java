@@ -63,13 +63,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetRollupCapsResponse implements JsonpSerializable {
-	private final Map<String, RollupCapabilities> result;
+	private final Map<String, RollupCapabilities> capabilities;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRollupCapsResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.capabilities = ApiTypeHelper.unmodifiableRequired(builder.capabilities, this, "capabilities");
 
 	}
 
@@ -80,15 +80,15 @@ public class GetRollupCapsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, RollupCapabilities> result() {
-		return this.result;
+	public final Map<String, RollupCapabilities> capabilities() {
+		return this.capabilities;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code capabilities}.
 	 */
 	public final @Nullable RollupCapabilities get(String key) {
-		return this.result.get(key);
+		return this.capabilities.get(key);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class GetRollupCapsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, RollupCapabilities> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, RollupCapabilities> item0 : this.capabilities.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -119,36 +119,36 @@ public class GetRollupCapsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRollupCapsResponse> {
-		private Map<String, RollupCapabilities> result = new HashMap<>();
+		private Map<String, RollupCapabilities> capabilities = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>capabilities</code>.
 		 */
-		public final Builder result(Map<String, RollupCapabilities> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder capabilities(Map<String, RollupCapabilities> map) {
+			this.capabilities = _mapPutAll(this.capabilities, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>capabilities</code>.
 		 */
-		public final Builder result(String key, RollupCapabilities value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder capabilities(String key, RollupCapabilities value) {
+			this.capabilities = _mapPut(this.capabilities, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>capabilities</code> using a builder lambda.
 		 */
-		public final Builder result(String key,
+		public final Builder capabilities(String key,
 				Function<RollupCapabilities.Builder, ObjectBuilder<RollupCapabilities>> fn) {
-			return result(key, fn.apply(new RollupCapabilities.Builder()).build());
+			return capabilities(key, fn.apply(new RollupCapabilities.Builder()).build());
 		}
 
 		@Override
@@ -157,7 +157,7 @@ public class GetRollupCapsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, RollupCapabilities> value = (Map<String, RollupCapabilities>) JsonpDeserializer
 					.stringMapDeserializer(RollupCapabilities._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.capabilities(value);
 		}
 
 		@Override
@@ -185,7 +185,7 @@ public class GetRollupCapsResponse implements JsonpSerializable {
 				.stringMapDeserializer(RollupCapabilities._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.capabilities(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

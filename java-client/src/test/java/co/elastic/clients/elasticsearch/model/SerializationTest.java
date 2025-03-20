@@ -101,7 +101,7 @@ public class SerializationTest extends ModelTestCase {
     public void testGenericValueBody() {
 
         GetSourceResponse<String> r = GetSourceResponse.of(_0 -> _0
-            .valueBody("The value")
+            .source("The value")
         );
 
         String json = toJson(r);
@@ -112,7 +112,7 @@ public class SerializationTest extends ModelTestCase {
 
         r = deserializer.deserialize(mapper.jsonProvider().createParser(new StringReader(json)), mapper);
 
-        assertEquals("The value", r.valueBody());
+        assertEquals("The value", r.source());
 
     }
 

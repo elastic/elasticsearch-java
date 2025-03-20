@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
-	private final List<TDocument> valueBody;
+	private final List<TDocument> documents;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -72,7 +72,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	private PreviewDatafeedResponse(Builder<TDocument> builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.documents = ApiTypeHelper.unmodifiableRequired(builder.documents, this, "documents");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -85,8 +85,8 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<TDocument> valueBody() {
-		return this.valueBody;
+	public final List<TDocument> documents() {
+		return this.documents;
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TDocument item0 : this.valueBody) {
+		for (TDocument item0 : this.documents) {
 			JsonpUtils.serialize(item0, generator, tDocumentSerializer, mapper);
 
 		}
@@ -116,7 +116,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<PreviewDatafeedResponse<TDocument>> {
-		private List<TDocument> valueBody;
+		private List<TDocument> documents;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -124,20 +124,20 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>documents</code>.
 		 */
-		public final Builder<TDocument> valueBody(List<TDocument> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder<TDocument> documents(List<TDocument> list) {
+			this.documents = _listAddAll(this.documents, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>documents</code>.
 		 */
-		public final Builder<TDocument> valueBody(TDocument value, TDocument... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder<TDocument> documents(TDocument value, TDocument... values) {
+			this.documents = _listAdd(this.documents, value, values);
 			return this;
 		}
 
@@ -157,7 +157,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<TDocument> value = (List<TDocument>) JsonpDeserializer.arrayDeserializer(tDocumentDeserializer)
 					.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.documents(value);
 		}
 
 		@Override
@@ -193,7 +193,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
 				(parser, mapper, event) -> new Builder<TDocument>()
-						.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+						.documents(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

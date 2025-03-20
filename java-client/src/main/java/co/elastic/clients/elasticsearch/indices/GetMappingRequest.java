@@ -155,7 +155,11 @@ public class GetMappingRequest extends RequestBase {
 	 * only.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 7.8.0 This parameter is a no-op and field mappings are always
+	 *             retrieved locally.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -290,7 +294,11 @@ public class GetMappingRequest extends RequestBase {
 		 * only.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 7.8.0 This parameter is a no-op and field mappings are always
+		 *             retrieved locally.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;

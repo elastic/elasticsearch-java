@@ -17,7 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.security;
+package co.elastic.clients.elasticsearch.inference.put_openai;
+
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -35,14 +39,31 @@ package co.elastic.clients.elasticsearch.security;
 //----------------------------------------------------------------
 
 /**
- * Base interface for {@link FieldRule} variants.
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_openai.OpenAITaskType">API
+ *      specification</a>
  */
-public interface FieldRuleVariant {
+@JsonpDeserializable
+public enum OpenAITaskType implements JsonEnum {
+	ChatCompletion("chat_completion"),
 
-	FieldRule.Kind _fieldRuleKind();
+	Completion("completion"),
 
-	default FieldRule _toFieldRule() {
-		return new FieldRule(this);
+	TextEmbedding("text_embedding"),
+
+	;
+
+	private final String jsonValue;
+
+	OpenAITaskType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<OpenAITaskType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			OpenAITaskType.values());
 }

@@ -108,6 +108,9 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	private final Boolean preserveExisting;
 
 	@Nullable
+	private final Boolean reopen;
+
+	@Nullable
 	private final Time timeout;
 
 	private final IndexSettings settings;
@@ -123,6 +126,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.masterTimeout = builder.masterTimeout;
 		this.preserveExisting = builder.preserveExisting;
+		this.reopen = builder.reopen;
 		this.timeout = builder.timeout;
 		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
@@ -212,6 +216,18 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
+	 * Whether to close and reopen the index to apply non-dynamic settings. If set
+	 * to <code>true</code> the indices to which the settings are being applied will
+	 * be closed temporarily and then reopened in order to apply the changes.
+	 * <p>
+	 * API name: {@code reopen}
+	 */
+	@Nullable
+	public final Boolean reopen() {
+		return this.reopen;
+	}
+
+	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
 	 * <p>
@@ -266,6 +282,9 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 		@Nullable
 		private Boolean preserveExisting;
+
+		@Nullable
+		private Boolean reopen;
 
 		@Nullable
 		private Time timeout;
@@ -393,6 +412,18 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 */
 		public final Builder preserveExisting(@Nullable Boolean value) {
 			this.preserveExisting = value;
+			return this;
+		}
+
+		/**
+		 * Whether to close and reopen the index to apply non-dynamic settings. If set
+		 * to <code>true</code> the indices to which the settings are being applied will
+		 * be closed temporarily and then reopened in order to apply the changes.
+		 * <p>
+		 * API name: {@code reopen}
+		 */
+		public final Builder reopen(@Nullable Boolean value) {
+			this.reopen = value;
 			return this;
 		}
 
@@ -542,6 +573,9 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.reopen != null) {
+					params.put("reopen", String.valueOf(request.reopen));
 				}
 				if (request.preserveExisting != null) {
 					params.put("preserve_existing", String.valueOf(request.preserveExisting));
