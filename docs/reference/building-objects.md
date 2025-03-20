@@ -55,7 +55,7 @@ CreateIndexResponse createResponse = client.indices()
     );
 ```
 
-Builder lambdas become particularly useful with complex nested queries like the one below, taken from the [intervals query API documentation](elasticsearch://reference/query-languages/query-dsl-intervals-query.md).
+Builder lambdas become particularly useful with complex nested queries like the one below, taken from the [intervals query API documentation](elasticsearch://reference/query-languages/query-dsl/query-dsl-intervals-query.md).
 
 This example also highlights a useful naming convention for builder parameters in deeply nested structures. For lambda expressions with a single argument, Kotlin provides the implicit `it` parameter and Scala allows use of `_`. This can be approximated in Java by using an underscore or a single letter prefix followed by a number representing the depth level (i.e. `_0`, `_1`, or `b0`, `b1` and so on). Not only does this remove the need to create throw-away variable names, but it also improves code readability. Correct indentation also allows the structure of the query to stand out.
 
