@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetSourceResponse<TDocument> implements JsonpSerializable {
-	private final TDocument valueBody;
+	private final TDocument source;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -71,7 +71,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	private GetSourceResponse(Builder<TDocument> builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -84,15 +84,15 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final TDocument valueBody() {
-		return this.valueBody;
+	public final TDocument source() {
+		return this.source;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		JsonpUtils.serialize(this.valueBody, generator, tDocumentSerializer, mapper);
+		JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 	}
 
@@ -110,7 +110,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<GetSourceResponse<TDocument>> {
-		private TDocument valueBody;
+		private TDocument source;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -118,8 +118,8 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder<TDocument> valueBody(TDocument value) {
-			this.valueBody = value;
+		public final Builder<TDocument> source(TDocument value) {
+			this.source = value;
 			return this;
 		}
 
@@ -138,7 +138,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 			@SuppressWarnings("unchecked")
 			TDocument value = (TDocument) tDocumentDeserializer.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.source(value);
 		}
 
 		@Override
@@ -173,7 +173,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
 				(parser, mapper, event) -> new Builder<TDocument>()
-						.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+						.source(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

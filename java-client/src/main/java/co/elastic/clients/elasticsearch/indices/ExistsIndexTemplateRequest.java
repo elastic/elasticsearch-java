@@ -33,6 +33,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +70,12 @@ import javax.annotation.Nullable;
 
 public class ExistsIndexTemplateRequest extends RequestBase {
 	@Nullable
+	private final Boolean flatSettings;
+
+	@Nullable
+	private final Boolean local;
+
+	@Nullable
 	private final Time masterTimeout;
 
 	private final String name;
@@ -77,6 +84,8 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 
 	private ExistsIndexTemplateRequest(Builder builder) {
 
+		this.flatSettings = builder.flatSettings;
+		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
@@ -84,6 +93,27 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 
 	public static ExistsIndexTemplateRequest of(Function<Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If true, returns settings in flat format.
+	 * <p>
+	 * API name: {@code flat_settings}
+	 */
+	@Nullable
+	public final Boolean flatSettings() {
+		return this.flatSettings;
+	}
+
+	/**
+	 * If true, the request retrieves information from the local node only. Defaults
+	 * to false, which means information is retrieved from the master node.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public final Boolean local() {
+		return this.local;
 	}
 
 	/**
@@ -117,9 +147,36 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 			implements
 				ObjectBuilder<ExistsIndexTemplateRequest> {
 		@Nullable
+		private Boolean flatSettings;
+
+		@Nullable
+		private Boolean local;
+
+		@Nullable
 		private Time masterTimeout;
 
 		private String name;
+
+		/**
+		 * If true, returns settings in flat format.
+		 * <p>
+		 * API name: {@code flat_settings}
+		 */
+		public final Builder flatSettings(@Nullable Boolean value) {
+			this.flatSettings = value;
+			return this;
+		}
+
+		/**
+		 * If true, the request retrieves information from the local node only. Defaults
+		 * to false, which means information is retrieved from the master node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
 
 		/**
 		 * Period to wait for a connection to the master node. If no response is
@@ -224,6 +281,12 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

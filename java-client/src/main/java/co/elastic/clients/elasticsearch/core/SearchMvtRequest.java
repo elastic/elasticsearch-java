@@ -23,8 +23,10 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridAggregationType;
 import co.elastic.clients.elasticsearch.core.search_mvt.GridType;
@@ -1004,6 +1006,37 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code aggs}
 		 * <p>
+		 * Adds an entry to <code>aggs</code>.
+		 */
+		public final Builder aggs(String key, AggregationVariant value) {
+			this.aggs = _mapPut(this.aggs, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * Sub-aggregations for the geotile_grid.
+		 * <p>
+		 * It supports the following aggregation types:
+		 * <ul>
+		 * <li><code>avg</code></li>
+		 * <li><code>boxplot</code></li>
+		 * <li><code>cardinality</code></li>
+		 * <li><code>extended stats</code></li>
+		 * <li><code>max</code></li>
+		 * <li><code>median absolute deviation</code></li>
+		 * <li><code>min</code></li>
+		 * <li><code>percentile</code></li>
+		 * <li><code>percentile-rank</code></li>
+		 * <li><code>stats</code></li>
+		 * <li><code>sum</code></li>
+		 * <li><code>value count</code></li>
+		 * </ul>
+		 * <p>
+		 * The aggregation names can't start with <code>_mvt_</code>. The
+		 * <code>_mvt_</code> prefix is reserved for internal aggregations.
+		 * <p>
+		 * API name: {@code aggs}
+		 * <p>
 		 * Adds an entry to <code>aggs</code> using a builder lambda.
 		 */
 		public final Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -1166,6 +1199,16 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * The query DSL used to filter documents for the search.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		/**

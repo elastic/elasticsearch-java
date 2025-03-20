@@ -35,14 +35,14 @@ package co.elastic.clients.elasticsearch.inference;
 //----------------------------------------------------------------
 
 /**
- * Base interface for {@link InferenceResult} variants.
+ * Base interface for {@link TextEmbeddingInferenceResult} variants.
  */
-public interface InferenceResultVariant {
+public interface TextEmbeddingInferenceResultVariant {
 
-	InferenceResult.Kind _inferenceResultKind();
+	TextEmbeddingInferenceResult.Kind _textEmbeddingInferenceResultKind();
 
-	default InferenceResult _toInferenceResult() {
-		return new InferenceResult(this);
+	default TextEmbeddingInferenceResult _toTextEmbeddingInferenceResult() {
+		return new TextEmbeddingInferenceResult(this);
 	}
 
 }

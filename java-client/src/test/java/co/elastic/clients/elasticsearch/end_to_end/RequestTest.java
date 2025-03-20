@@ -102,7 +102,7 @@ public class RequestTest extends Assertions {
         CompletableFuture<GetIndexResponse> futureResponse = asyncClient.indices().get(b -> b.index("my-index"));
         GetIndexResponse response = futureResponse.get(10, TimeUnit.SECONDS);
 
-        Map<String, IndexState> indices = response.result();
+        Map<String, IndexState> indices = response.indices();
 
         assertEquals(1, indices.size());
         assertNotNull(indices.get("my-index"));
@@ -424,8 +424,8 @@ public class RequestTest extends Assertions {
 
         GetMappingResponse mr = client.indices().getMapping(mrb -> mrb.index(index));
 
-        assertNotNull(mr.result().get(index));
-        assertNotNull(mr.result().get(index).mappings().properties().get("name").object());
+        assertNotNull(mr.mappings().get(index));
+        assertNotNull(mr.mappings().get(index).mappings().properties().get("name").object());
     }
 
     @Test
@@ -451,7 +451,7 @@ public class RequestTest extends Assertions {
             .runExpensiveTasks(true)
         );
 
-        assertNotNull(resp.valueBody().toJson().asJsonObject().get("_shards"));
+        assertNotNull(resp.diskUsage().toJson().asJsonObject().get("_shards"));
     }
 
     public static class AppData {

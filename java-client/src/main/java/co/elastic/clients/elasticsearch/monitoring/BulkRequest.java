@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
+import co.elastic.clients.elasticsearch.core.bulk.BulkOperationVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -248,6 +249,19 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 */
 		public final Builder operations(BulkOperation value, BulkOperation... values) {
 			this.operations = _listAdd(this.operations, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - Request body.
+		 * <p>
+		 * Adds one or more values to <code>operations</code>.
+		 */
+		public final Builder operations(BulkOperationVariant value, BulkOperationVariant... values) {
+			this.operations = _listAdd(this.operations, value._toBulkOperation());
+			for (BulkOperationVariant v : values) {
+				_listAdd(this.operations, v._toBulkOperation());
+			}
 			return this;
 		}
 

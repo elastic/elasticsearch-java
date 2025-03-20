@@ -76,31 +76,22 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class OidcLogoutRequest extends RequestBase implements JsonpSerializable {
-	private final String accessToken;
-
 	@Nullable
 	private final String refreshToken;
+
+	private final String token;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private OidcLogoutRequest(Builder builder) {
 
-		this.accessToken = ApiTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
 		this.refreshToken = builder.refreshToken;
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 
 	public static OidcLogoutRequest of(Function<Builder, ObjectBuilder<OidcLogoutRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - The access token to be invalidated.
-	 * <p>
-	 * API name: {@code access_token}
-	 */
-	public final String accessToken() {
-		return this.accessToken;
 	}
 
 	/**
@@ -114,6 +105,15 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
+	 * Required - The access token to be invalidated.
+	 * <p>
+	 * API name: {@code token}
+	 */
+	public final String token() {
+		return this.token;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -124,14 +124,13 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("access_token");
-		generator.write(this.accessToken);
-
 		if (this.refreshToken != null) {
 			generator.writeKey("refresh_token");
 			generator.write(this.refreshToken);
 
 		}
+		generator.writeKey("token");
+		generator.write(this.token);
 
 	}
 
@@ -144,20 +143,10 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<OidcLogoutRequest> {
-		private String accessToken;
-
 		@Nullable
 		private String refreshToken;
 
-		/**
-		 * Required - The access token to be invalidated.
-		 * <p>
-		 * API name: {@code access_token}
-		 */
-		public final Builder accessToken(String value) {
-			this.accessToken = value;
-			return this;
-		}
+		private String token;
 
 		/**
 		 * The refresh token to be invalidated.
@@ -166,6 +155,16 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public final Builder refreshToken(@Nullable String value) {
 			this.refreshToken = value;
+			return this;
+		}
+
+		/**
+		 * Required - The access token to be invalidated.
+		 * <p>
+		 * API name: {@code token}
+		 */
+		public final Builder token(String value) {
+			this.token = value;
 			return this;
 		}
 
@@ -197,8 +196,8 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 
 	protected static void setupOidcLogoutRequestDeserializer(ObjectDeserializer<OidcLogoutRequest.Builder> op) {
 
-		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 
 	}
 

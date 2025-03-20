@@ -29,14 +29,17 @@ import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch.core.search.Rescore;
+import co.elastic.clients.elasticsearch.core.search.RescoreVariant;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.elasticsearch.core.search.Suggester;
 import co.elastic.clients.elasticsearch.core.search.TrackHits;
@@ -57,7 +60,6 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1251,6 +1253,16 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, AggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -1616,6 +1628,14 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * API name: {@code post_filter}
+		 */
+		public final Builder postFilter(QueryVariant value) {
+			this.postFilter = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * API name: {@code pre_filter_shard_size}
 		 */
 		public final Builder preFilterShardSize(@Nullable Long value) {
@@ -1667,6 +1687,16 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * API name: {@code request_cache}
 		 */
 		public final Builder requestCache(@Nullable Boolean value) {
@@ -1691,6 +1721,19 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder rescore(Rescore value, Rescore... values) {
 			this.rescore = _listAdd(this.rescore, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code rescore}
+		 * <p>
+		 * Adds one or more values to <code>rescore</code>.
+		 */
+		public final Builder rescore(RescoreVariant value, RescoreVariant... values) {
+			this.rescore = _listAdd(this.rescore, value._toRescore());
+			for (RescoreVariant v : values) {
+				_listAdd(this.rescore, v._toRescore());
+			}
 			return this;
 		}
 
@@ -1823,60 +1866,52 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(String value, String... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
 		/**
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(long value, long... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
 		/**
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(double value, double... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 
 		/**
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all passed values to <code>searchAfter</code>.
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
 		public final Builder searchAfter(boolean value, boolean... values) {
 			this.searchAfter = _listAdd(this.searchAfter, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.searchAfter, FieldValue.of(v));
 			}
-			this.searchAfter = _listAddAll(this.searchAfter, fieldValues);
 			return this;
 		}
 

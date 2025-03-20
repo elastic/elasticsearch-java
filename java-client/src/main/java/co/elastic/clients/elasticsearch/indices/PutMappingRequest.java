@@ -40,6 +40,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -133,7 +134,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	private final List<String> dynamicDateFormats;
 
-	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
+	private final List<NamedValue<DynamicTemplate>> dynamicTemplates;
 
 	private final List<ExpandWildcard> expandWildcards;
 
@@ -277,7 +278,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code dynamic_templates}
 	 */
-	public final List<Map<String, DynamicTemplate>> dynamicTemplates() {
+	public final List<NamedValue<DynamicTemplate>> dynamicTemplates() {
 		return this.dynamicTemplates;
 	}
 
@@ -442,15 +443,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartArray();
-			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
+			for (NamedValue<DynamicTemplate> item0 : this.dynamicTemplates) {
 				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, DynamicTemplate> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						item1.getValue().serialize(generator, mapper);
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
 
-					}
-				}
 				generator.writeEnd();
 
 			}
@@ -521,7 +518,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		private List<String> dynamicDateFormats;
 
 		@Nullable
-		private List<Map<String, DynamicTemplate>> dynamicTemplates;
+		private List<NamedValue<DynamicTemplate>> dynamicTemplates;
 
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
@@ -702,7 +699,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
 		 */
-		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
+		public final Builder dynamicTemplates(List<NamedValue<DynamicTemplate>> list) {
 			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
 			return this;
 		}
@@ -714,8 +711,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * Adds one or more values to <code>dynamicTemplates</code>.
 		 */
-		public final Builder dynamicTemplates(Map<String, DynamicTemplate> value,
-				Map<String, DynamicTemplate>... values) {
+		public final Builder dynamicTemplates(NamedValue<DynamicTemplate> value,
+				NamedValue<DynamicTemplate>... values) {
 			this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);
 			return this;
 		}
@@ -977,8 +974,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		op.add(Builder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
-		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
+		op.add(Builder::dynamicTemplates,
+				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> DynamicTemplate._DESERIALIZER)),
+				"dynamic_templates");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
 		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");

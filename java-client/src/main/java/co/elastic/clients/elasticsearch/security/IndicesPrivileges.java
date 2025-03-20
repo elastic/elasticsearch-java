@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -321,6 +322,20 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * A search query that defines the documents the owners of the role have access
+		 * to. A document within the specified indices must match this query for it to
+		 * be accessible by the owners of the role. Use a custom query of type
+		 * (<code>&quot;template&quot;</code>, <code>RoleTemplateScript</code>) for
+		 * templated queries
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		/**

@@ -290,6 +290,14 @@ public class RoleMapping implements JsonpSerializable {
 			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
+		/**
+		 * Required - API name: {@code rules}
+		 */
+		public final Builder rules(RoleMappingRuleVariant value) {
+			this.rules = value._toRoleMappingRule();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

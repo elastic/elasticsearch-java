@@ -322,6 +322,18 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - Query you wish to run on child documents of the <code>type</code>
+		 * field. If a child document matches the search, the query returns the parent
+		 * document.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Indicates how scores for matching child documents affect the root parent
 		 * document’s relevance score.
 		 * <p>

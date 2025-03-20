@@ -231,6 +231,16 @@ public class RuleRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
+		 * Required - The retriever whose results rules should be applied to.
+		 * <p>
+		 * API name: {@code retriever}
+		 */
+		public final Builder retriever(RetrieverVariant value) {
+			this.retriever = value._toRetriever();
+			return this;
+		}
+
+		/**
 		 * This value determines the size of the individual result set.
 		 * <p>
 		 * API name: {@code rank_window_size}

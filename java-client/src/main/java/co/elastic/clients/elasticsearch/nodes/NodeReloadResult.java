@@ -19,20 +19,19 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
-import co.elastic.clients.util.TaggedUnion;
-import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,35 +59,18 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Object>, JsonpSerializable {
+public class NodeReloadResult implements JsonpSerializable {
+	private final String name;
 
-	public enum Kind {
-		Error, Stats
+	@Nullable
+	private final ErrorCause reloadException;
 
-	}
-
-	private final Kind _kind;
-	private final Object _value;
-
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
-
-	@Override
-	public final Object _get() {
-		return _value;
-	}
-
-	private NodeReloadResult(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+	// ---------------------------------------------------------------------------------------------
 
 	private NodeReloadResult(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.reloadException = builder.reloadException;
 
 	}
 
@@ -97,43 +79,38 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 	}
 
 	/**
-	 * Is this variant instance of kind {@code error}?
+	 * Required - API name: {@code name}
 	 */
-	public boolean isError() {
-		return _kind == Kind.Error;
+	public final String name() {
+		return this.name;
 	}
 
 	/**
-	 * Get the {@code error} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code error} kind.
+	 * API name: {@code reload_exception}
 	 */
-	public NodeReloadError error() {
-		return TaggedUnionUtils.get(this, Kind.Error);
+	@Nullable
+	public final ErrorCause reloadException() {
+		return this.reloadException;
 	}
 
 	/**
-	 * Is this variant instance of kind {@code stats}?
+	 * Serialize this object to JSON.
 	 */
-	public boolean isStats() {
-		return _kind == Kind.Stats;
-	}
-
-	/**
-	 * Get the {@code stats} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code stats} kind.
-	 */
-	public Stats stats() {
-		return TaggedUnionUtils.get(this, Kind.Stats);
-	}
-
-	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		if (this.reloadException != null) {
+			generator.writeKey("reload_exception");
+			this.reloadException.serialize(generator, mapper);
+
 		}
 
 	}
@@ -143,44 +120,72 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 		return JsonpUtils.toString(this);
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadResult> {
-		private Kind _kind;
-		private Object _value;
+	// ---------------------------------------------------------------------------------------------
 
-		public ObjectBuilder<NodeReloadResult> error(NodeReloadError v) {
-			this._kind = Kind.Error;
-			this._value = v;
+	/**
+	 * Builder for {@link NodeReloadResult}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeReloadResult> {
+		private String name;
+
+		@Nullable
+		private ErrorCause reloadException;
+
+		/**
+		 * Required - API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
-		public ObjectBuilder<NodeReloadResult> error(
-				Function<NodeReloadError.Builder, ObjectBuilder<NodeReloadError>> fn) {
-			return this.error(fn.apply(new NodeReloadError.Builder()).build());
-		}
-
-		public ObjectBuilder<NodeReloadResult> stats(Stats v) {
-			this._kind = Kind.Stats;
-			this._value = v;
+		/**
+		 * API name: {@code reload_exception}
+		 */
+		public final Builder reloadException(@Nullable ErrorCause value) {
+			this.reloadException = value;
 			return this;
 		}
 
-		public ObjectBuilder<NodeReloadResult> stats(Function<Stats.Builder, ObjectBuilder<Stats>> fn) {
-			return this.stats(fn.apply(new Stats.Builder()).build());
+		/**
+		 * API name: {@code reload_exception}
+		 */
+		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
 		}
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link NodeReloadResult}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
 		public NodeReloadResult build() {
 			_checkSingleUse();
+
 			return new NodeReloadResult(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link NodeReloadResult}
+	 */
+	public static final JsonpDeserializer<NodeReloadResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeReloadResult::setupNodeReloadResultDeserializer);
+
+	protected static void setupNodeReloadResultDeserializer(ObjectDeserializer<NodeReloadResult.Builder> op) {
+
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::reloadException, ErrorCause._DESERIALIZER, "reload_exception");
 
 	}
 
-	private static JsonpDeserializer<NodeReloadResult> buildNodeReloadResultDeserializer() {
-		return new UnionDeserializer.Builder<NodeReloadResult, Kind, Object>(NodeReloadResult::new, false)
-				.addMember(Kind.Error, NodeReloadError._DESERIALIZER).addMember(Kind.Stats, Stats._DESERIALIZER)
-				.build();
-	}
-
-	public static final JsonpDeserializer<NodeReloadResult> _DESERIALIZER = JsonpDeserializer
-			.lazy(NodeReloadResult::buildNodeReloadResultDeserializer);
 }

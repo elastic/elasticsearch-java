@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes;
+package co.elastic.clients.elasticsearch.inference.put_openai;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -38,26 +39,31 @@ import java.util.function.Function;
 //----------------------------------------------------------------
 
 /**
- * Builders for {@link NodeReloadResult} variants.
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_openai.OpenAITaskType">API
+ *      specification</a>
  */
-public class NodeReloadResultBuilders {
-	private NodeReloadResultBuilders() {
+@JsonpDeserializable
+public enum OpenAITaskType implements JsonEnum {
+	ChatCompletion("chat_completion"),
+
+	Completion("completion"),
+
+	TextEmbedding("text_embedding"),
+
+	;
+
+	private final String jsonValue;
+
+	OpenAITaskType(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	/**
-	 * Creates a builder for the {@link NodeReloadError error}
-	 * {@code NodeReloadResult} variant.
-	 */
-	public static NodeReloadError.Builder error() {
-		return new NodeReloadError.Builder();
+	public String jsonValue() {
+		return this.jsonValue;
 	}
 
-	/**
-	 * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
-	 * variant.
-	 */
-	public static Stats.Builder stats() {
-		return new Stats.Builder();
-	}
-
+	public static final JsonEnum.Deserializer<OpenAITaskType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			OpenAITaskType.values());
 }
