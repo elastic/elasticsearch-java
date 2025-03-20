@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.Transform;
+import co.elastic.clients.elasticsearch._types.TransformVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -402,6 +403,14 @@ public class Action implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code condition}
+		 */
+		public final Builder condition(ConditionVariant value) {
+			this.condition = value._toCondition();
+			return this;
+		}
+
+		/**
 		 * API name: {@code foreach}
 		 */
 		public final Builder foreach(@Nullable String value) {
@@ -461,6 +470,14 @@ public class Action implements JsonpSerializable {
 		 */
 		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
 			return this.transform(fn.apply(new Transform.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(TransformVariant value) {
+			this.transform = value._toTransform();
+			return this;
 		}
 
 		/**

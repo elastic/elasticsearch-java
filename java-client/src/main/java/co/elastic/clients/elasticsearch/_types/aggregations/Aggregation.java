@@ -1746,6 +1746,18 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, AggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -2645,6 +2657,18 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			 */
 			public final ContainerBuilder aggregations(String key, Aggregation value) {
 				Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value);
+				return this;
+			}
+
+			/**
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds an entry to <code>aggregations</code>.
+			 */
+			public final ContainerBuilder aggregations(String key, AggregationVariant value) {
+				Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value._toAggregation());
 				return this;
 			}
 

@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -39,7 +40,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -75,6 +75,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final Boolean allowPartialResults;
+
+	@Nullable
 	private final Boolean columnar;
 
 	@Nullable
@@ -108,6 +111,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	private QueryRequest(Builder builder) {
 
+		this.allowPartialResults = builder.allowPartialResults;
 		this.columnar = builder.columnar;
 		this.delimiter = builder.delimiter;
 		this.dropNullColumns = builder.dropNullColumns;
@@ -124,6 +128,17 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	public static QueryRequest of(Function<Builder, ObjectBuilder<QueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>true</code>, partial results will be returned if there are shard
+	 * failures, but the query can continue to execute on other clusters and shards.
+	 * <p>
+	 * API name: {@code allow_partial_results}
+	 */
+	@Nullable
+	public final Boolean allowPartialResults() {
+		return this.allowPartialResults;
 	}
 
 	/**
@@ -329,6 +344,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<QueryRequest> {
 		@Nullable
+		private Boolean allowPartialResults;
+
+		@Nullable
 		private Boolean columnar;
 
 		@Nullable
@@ -359,6 +377,17 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, Map<String, TableValues>> tables;
+
+		/**
+		 * If <code>true</code>, partial results will be returned if there are shard
+		 * failures, but the query can continue to execute on other clusters and shards.
+		 * <p>
+		 * API name: {@code allow_partial_results}
+		 */
+		public final Builder allowPartialResults(@Nullable Boolean value) {
+			this.allowPartialResults = value;
+			return this;
+		}
 
 		/**
 		 * By default, ES|QL returns results as rows. For example, FROM returns each
@@ -417,6 +446,17 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Specify a Query DSL query in the filter parameter to filter the set of
+		 * documents that an ES|QL query runs on.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(QueryVariant value) {
+			this.filter = value._toQuery();
+			return this;
 		}
 
 		/**
@@ -485,15 +525,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(String value, String... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (String v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -504,15 +542,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(long value, long... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (long v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -523,15 +559,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(double value, double... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (double v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -542,15 +576,13 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all passed values to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
 		public final Builder params(boolean value, boolean... values) {
 			this.params = _listAdd(this.params, FieldValue.of(value));
-			List<FieldValue> fieldValues = new ArrayList<>();
 			for (boolean v : values) {
-				fieldValues.add(FieldValue.of(v));
+				_listAdd(this.params, FieldValue.of(v));
 			}
-			this.params = _listAddAll(this.params, fieldValues);
 			return this;
 		}
 
@@ -690,6 +722,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.format != null) {
 					params.put("format", request.format.jsonValue());
+				}
+				if (request.allowPartialResults != null) {
+					params.put("allow_partial_results", String.valueOf(request.allowPartialResults));
 				}
 				if (request.dropNullColumns != null) {
 					params.put("drop_null_columns", String.valueOf(request.dropNullColumns));

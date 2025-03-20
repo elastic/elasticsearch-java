@@ -550,6 +550,27 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	}
 
 	/**
+	 * Overload of {@link #rollupSearch(RollupSearchRequest, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public CompletableFuture<RollupSearchResponse<Void>> rollupSearch(RollupSearchRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<Void>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #rollupSearch(Function, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public final CompletableFuture<RollupSearchResponse<Void>> rollupSearch(
+			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn) {
+		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Search rolled-up data. The rollup search endpoint is needed because,
 	 * internally, rolled-up documents utilize a different document structure than
 	 * the original data. It rewrites standard Query DSL into a format that matches

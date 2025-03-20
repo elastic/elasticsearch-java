@@ -141,6 +141,27 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
+	 * Overload of {@link #get(EqlGetRequest, Class)}, where Class is defined as
+	 * Void, meaning the documents will not be deserialized.
+	 */
+
+	public EqlGetResponse<Void> get(EqlGetRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EqlGetRequest, EqlGetResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<EqlGetRequest, EqlGetResponse<Void>, ErrorResponse>) EqlGetRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #get(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final EqlGetResponse<Void> get(Function<EqlGetRequest.Builder, ObjectBuilder<EqlGetRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return get(fn.apply(new EqlGetRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Get async EQL search results. Get the current status and available results
 	 * for an async EQL search or a stored synchronous EQL search.
 	 * 
@@ -251,6 +272,27 @@ public class ElasticsearchEqlClient extends ApiClient<ElasticsearchTransport, El
 			Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn, Class<TEvent> tEventClass)
 			throws IOException, ElasticsearchException {
 		return search(fn.apply(new EqlSearchRequest.Builder()).build(), tEventClass);
+	}
+
+	/**
+	 * Overload of {@link #search(EqlSearchRequest, Class)}, where Class is defined
+	 * as Void, meaning the documents will not be deserialized.
+	 */
+
+	public EqlSearchResponse<Void> search(EqlSearchRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EqlSearchRequest, EqlSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<EqlSearchRequest, EqlSearchResponse<Void>, ErrorResponse>) EqlSearchRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #search(Function, Class)}, where Class is defined as Void,
+	 * meaning the documents will not be deserialized.
+	 */
+
+	public final EqlSearchResponse<Void> search(Function<EqlSearchRequest.Builder, ObjectBuilder<EqlSearchRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return search(fn.apply(new EqlSearchRequest.Builder()).build(), Void.class);
 	}
 
 	/**

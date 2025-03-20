@@ -20,9 +20,11 @@
 package co.elastic.clients.elasticsearch.watcher.execute_watch;
 
 import co.elastic.clients.elasticsearch.watcher.Condition;
+import co.elastic.clients.elasticsearch.watcher.ConditionVariant;
 import co.elastic.clients.elasticsearch.watcher.ExecutionResult;
 import co.elastic.clients.elasticsearch.watcher.ExecutionStatus;
 import co.elastic.clients.elasticsearch.watcher.Input;
+import co.elastic.clients.elasticsearch.watcher.InputVariant;
 import co.elastic.clients.elasticsearch.watcher.TriggerEventResult;
 import co.elastic.clients.elasticsearch.watcher.WatchStatus;
 import co.elastic.clients.json.JsonData;
@@ -307,6 +309,14 @@ public class WatchRecord implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code condition}
+		 */
+		public final Builder condition(ConditionVariant value) {
+			this.condition = value._toCondition();
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code input}
 		 */
 		public final Builder input(Input value) {
@@ -319,6 +329,14 @@ public class WatchRecord implements JsonpSerializable {
 		 */
 		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code input}
+		 */
+		public final Builder input(InputVariant value) {
+			this.input = value._toInput();
+			return this;
 		}
 
 		/**

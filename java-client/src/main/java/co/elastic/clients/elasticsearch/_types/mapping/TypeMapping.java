@@ -28,6 +28,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -74,7 +75,7 @@ public class TypeMapping implements JsonpSerializable {
 
 	private final List<String> dynamicDateFormats;
 
-	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
+	private final List<NamedValue<DynamicTemplate>> dynamicTemplates;
 
 	@Nullable
 	private final FieldNamesField fieldNames;
@@ -171,7 +172,7 @@ public class TypeMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code dynamic_templates}
 	 */
-	public final List<Map<String, DynamicTemplate>> dynamicTemplates() {
+	public final List<NamedValue<DynamicTemplate>> dynamicTemplates() {
 		return this.dynamicTemplates;
 	}
 
@@ -306,15 +307,11 @@ public class TypeMapping implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartArray();
-			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
+			for (NamedValue<DynamicTemplate> item0 : this.dynamicTemplates) {
 				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, DynamicTemplate> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						item1.getValue().serialize(generator, mapper);
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
 
-					}
-				}
 				generator.writeEnd();
 
 			}
@@ -426,7 +423,7 @@ public class TypeMapping implements JsonpSerializable {
 		private List<String> dynamicDateFormats;
 
 		@Nullable
-		private List<Map<String, DynamicTemplate>> dynamicTemplates;
+		private List<NamedValue<DynamicTemplate>> dynamicTemplates;
 
 		@Nullable
 		private FieldNamesField fieldNames;
@@ -520,7 +517,7 @@ public class TypeMapping implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
 		 */
-		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
+		public final Builder dynamicTemplates(List<NamedValue<DynamicTemplate>> list) {
 			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
 			return this;
 		}
@@ -530,8 +527,8 @@ public class TypeMapping implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>dynamicTemplates</code>.
 		 */
-		public final Builder dynamicTemplates(Map<String, DynamicTemplate> value,
-				Map<String, DynamicTemplate>... values) {
+		public final Builder dynamicTemplates(NamedValue<DynamicTemplate> value,
+				NamedValue<DynamicTemplate>... values) {
 			this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);
 			return this;
 		}
@@ -762,8 +759,9 @@ public class TypeMapping implements JsonpSerializable {
 		op.add(Builder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
-		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
+		op.add(Builder::dynamicTemplates,
+				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> DynamicTemplate._DESERIALIZER)),
+				"dynamic_templates");
 		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
 		op.add(Builder::indexField, IndexField._DESERIALIZER, "index_field");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");

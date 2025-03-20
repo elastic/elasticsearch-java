@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes;
+package co.elastic.clients.elasticsearch.inference.chat_completion_unified;
 
-import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,46 +50,38 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes._types.NodeReloadError
+// typedef: inference.chat_completion_unified.CompletionToolChoiceFunction
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#nodes._types.NodeReloadError">API
+ * The tool choice function.
+ * 
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.chat_completion_unified.CompletionToolChoiceFunction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeReloadError implements JsonpSerializable {
+public class CompletionToolChoiceFunction implements JsonpSerializable {
 	private final String name;
-
-	@Nullable
-	private final ErrorCause reloadException;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeReloadError(Builder builder) {
+	private CompletionToolChoiceFunction(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.reloadException = builder.reloadException;
 
 	}
 
-	public static NodeReloadError of(Function<Builder, ObjectBuilder<NodeReloadError>> fn) {
+	public static CompletionToolChoiceFunction of(Function<Builder, ObjectBuilder<CompletionToolChoiceFunction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - The name of the function to call.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
-	}
-
-	/**
-	 * API name: {@code reload_exception}
-	 */
-	@Nullable
-	public final ErrorCause reloadException() {
-		return this.reloadException;
 	}
 
 	/**
@@ -107,12 +98,6 @@ public class NodeReloadError implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (this.reloadException != null) {
-			generator.writeKey("reload_exception");
-			this.reloadException.serialize(generator, mapper);
-
-		}
-
 	}
 
 	@Override
@@ -123,36 +108,22 @@ public class NodeReloadError implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeReloadError}.
+	 * Builder for {@link CompletionToolChoiceFunction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeReloadError> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CompletionToolChoiceFunction> {
 		private String name;
 
-		@Nullable
-		private ErrorCause reloadException;
-
 		/**
-		 * Required - API name: {@code name}
+		 * Required - The name of the function to call.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code reload_exception}
-		 */
-		public final Builder reloadException(@Nullable ErrorCause value) {
-			this.reloadException = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code reload_exception}
-		 */
-		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		@Override
@@ -161,30 +132,30 @@ public class NodeReloadError implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link NodeReloadError}.
+		 * Builds a {@link CompletionToolChoiceFunction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeReloadError build() {
+		public CompletionToolChoiceFunction build() {
 			_checkSingleUse();
 
-			return new NodeReloadError(this);
+			return new CompletionToolChoiceFunction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeReloadError}
+	 * Json deserializer for {@link CompletionToolChoiceFunction}
 	 */
-	public static final JsonpDeserializer<NodeReloadError> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeReloadError::setupNodeReloadErrorDeserializer);
+	public static final JsonpDeserializer<CompletionToolChoiceFunction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CompletionToolChoiceFunction::setupCompletionToolChoiceFunctionDeserializer);
 
-	protected static void setupNodeReloadErrorDeserializer(ObjectDeserializer<NodeReloadError.Builder> op) {
+	protected static void setupCompletionToolChoiceFunctionDeserializer(
+			ObjectDeserializer<CompletionToolChoiceFunction.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::reloadException, ErrorCause._DESERIALIZER, "reload_exception");
 
 	}
 

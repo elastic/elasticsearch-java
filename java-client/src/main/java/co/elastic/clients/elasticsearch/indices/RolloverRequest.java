@@ -131,6 +131,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean dryRun;
 
 	@Nullable
+	private final Boolean lazy;
+
+	@Nullable
 	private final TypeMapping mappings;
 
 	@Nullable
@@ -155,6 +158,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.conditions = builder.conditions;
 		this.dryRun = builder.dryRun;
+		this.lazy = builder.lazy;
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
 		this.newIndex = builder.newIndex;
@@ -210,6 +214,18 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean dryRun() {
 		return this.dryRun;
+	}
+
+	/**
+	 * If set to true, the rollover action will only mark a data stream to signal
+	 * that it needs to be rolled over at the next write. Only allowed on data
+	 * streams.
+	 * <p>
+	 * API name: {@code lazy}
+	 */
+	@Nullable
+	public final Boolean lazy() {
+		return this.lazy;
 	}
 
 	/**
@@ -343,6 +359,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		private Boolean dryRun;
 
 		@Nullable
+		private Boolean lazy;
+
+		@Nullable
 		private TypeMapping mappings;
 
 		@Nullable
@@ -442,6 +461,18 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder dryRun(@Nullable Boolean value) {
 			this.dryRun = value;
+			return this;
+		}
+
+		/**
+		 * If set to true, the rollover action will only mark a data stream to signal
+		 * that it needs to be rolled over at the next write. Only allowed on data
+		 * streams.
+		 * <p>
+		 * API name: {@code lazy}
+		 */
+		public final Builder lazy(@Nullable Boolean value) {
+			this.lazy = value;
 			return this;
 		}
 
@@ -676,6 +707,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.lazy != null) {
+					params.put("lazy", String.valueOf(request.lazy));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());

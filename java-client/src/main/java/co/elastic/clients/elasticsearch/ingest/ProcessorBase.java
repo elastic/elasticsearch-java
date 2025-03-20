@@ -264,6 +264,21 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
+		 * Adds one or more values to <code>onFailure</code>.
+		 */
+		public final BuilderT onFailure(ProcessorVariant value, ProcessorVariant... values) {
+			this.onFailure = _listAdd(this.onFailure, value._toProcessor());
+			for (ProcessorVariant v : values) {
+				_listAdd(this.onFailure, v._toProcessor());
+			}
+			return self();
+		}
+
+		/**
+		 * Handle failures for the processor.
+		 * <p>
+		 * API name: {@code on_failure}
+		 * <p>
 		 * Adds a value to <code>onFailure</code> using a builder lambda.
 		 */
 		public final BuilderT onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {

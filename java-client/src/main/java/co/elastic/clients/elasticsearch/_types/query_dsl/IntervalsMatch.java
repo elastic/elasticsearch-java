@@ -317,6 +317,16 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
 		}
 
+		/**
+		 * An optional interval filter.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(IntervalsFilterVariant value) {
+			this.filter = value._toIntervalsFilter();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

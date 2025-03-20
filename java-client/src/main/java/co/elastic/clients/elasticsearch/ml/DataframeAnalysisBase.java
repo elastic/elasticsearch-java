@@ -723,6 +723,30 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_processors}
 		 * <p>
+		 * Adds one or more values to <code>featureProcessors</code>.
+		 */
+		public final BuilderT featureProcessors(DataframeAnalysisFeatureProcessorVariant value,
+				DataframeAnalysisFeatureProcessorVariant... values) {
+			this.featureProcessors = _listAdd(this.featureProcessors, value._toDataframeAnalysisFeatureProcessor());
+			for (DataframeAnalysisFeatureProcessorVariant v : values) {
+				_listAdd(this.featureProcessors, v._toDataframeAnalysisFeatureProcessor());
+			}
+			return self();
+		}
+
+		/**
+		 * Advanced configuration option. A collection of feature preprocessors that
+		 * modify one or more included fields. The analysis uses the resulting one or
+		 * more features instead of the original document field. However, these features
+		 * are ephemeral; they are not stored in the destination index. Multiple
+		 * <code>feature_processors</code> entries can refer to the same document
+		 * fields. Automatic categorical feature encoding still occurs for the fields
+		 * that are unprocessed by a custom processor or that have categorical values.
+		 * Use this property only if you want to override the automatic feature encoding
+		 * of the specified fields.
+		 * <p>
+		 * API name: {@code feature_processors}
+		 * <p>
 		 * Adds a value to <code>featureProcessors</code> using a builder lambda.
 		 */
 		public final BuilderT featureProcessors(

@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.Transform;
+import co.elastic.clients.elasticsearch._types.TransformVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -459,6 +460,16 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The condition that defines if the actions should be run.
+		 * <p>
+		 * API name: {@code condition}
+		 */
+		public final Builder condition(ConditionVariant value) {
+			this.condition = value._toCondition();
+			return this;
+		}
+
+		/**
 		 * Required - The identifier for the watch.
 		 * <p>
 		 * API name: {@code id}
@@ -507,6 +518,16 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
+		}
+
+		/**
+		 * The input that defines the input that loads the data for the watch.
+		 * <p>
+		 * API name: {@code input}
+		 */
+		public final Builder input(InputVariant value) {
+			this.input = value._toInput();
+			return this;
 		}
 
 		/**
@@ -594,6 +615,17 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The transform that processes the watch payload to prepare it for the watch
+		 * actions.
+		 * <p>
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(TransformVariant value) {
+			this.transform = value._toTransform();
+			return this;
+		}
+
+		/**
 		 * The trigger that defines when the watch should run.
 		 * <p>
 		 * API name: {@code trigger}
@@ -610,6 +642,16 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
+		}
+
+		/**
+		 * The trigger that defines when the watch should run.
+		 * <p>
+		 * API name: {@code trigger}
+		 */
+		public final Builder trigger(TriggerVariant value) {
+			this.trigger = value._toTrigger();
+			return this;
 		}
 
 		/**

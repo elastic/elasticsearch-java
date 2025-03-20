@@ -160,6 +160,16 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
+		/**
+		 * Contains the inference type and its options.
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public final Builder inferenceConfig(InferenceConfigVariant value) {
+			this.inferenceConfig = value._toInferenceConfig();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

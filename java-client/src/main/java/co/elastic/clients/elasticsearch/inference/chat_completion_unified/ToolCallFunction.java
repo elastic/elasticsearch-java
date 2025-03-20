@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.inference.chat_completion_unified;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,7 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,41 +50,68 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.inference.Response
+// typedef: inference.chat_completion_unified.ToolCallFunction
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#inference.inference.Response">API
+ * The function that the model called.
+ * 
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.chat_completion_unified.ToolCallFunction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferenceResponse implements JsonpSerializable {
-	private final InferenceResult valueBody;
+public class ToolCallFunction implements JsonpSerializable {
+	private final String arguments;
+
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private InferenceResponse(Builder builder) {
+	private ToolCallFunction(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.arguments = ApiTypeHelper.requireNonNull(builder.arguments, this, "arguments");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static InferenceResponse of(Function<Builder, ObjectBuilder<InferenceResponse>> fn) {
+	public static ToolCallFunction of(Function<Builder, ObjectBuilder<ToolCallFunction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Response value.
+	 * Required - The arguments to call the function with in JSON format.
+	 * <p>
+	 * API name: {@code arguments}
 	 */
-	public final InferenceResult valueBody() {
-		return this.valueBody;
+	public final String arguments() {
+		return this.arguments;
 	}
 
 	/**
-	 * Serialize this value to JSON.
+	 * Required - The name of the function to call.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("arguments");
+		generator.write(this.arguments);
+
+		generator.writeKey("name");
+		generator.write(this.name);
 
 	}
 
@@ -96,33 +123,32 @@ public class InferenceResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link InferenceResponse}.
+	 * Builder for {@link ToolCallFunction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InferenceResponse> {
-		private InferenceResult valueBody;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ToolCallFunction> {
+		private String arguments;
+
+		private String name;
 
 		/**
-		 * Required - Response value.
+		 * Required - The arguments to call the function with in JSON format.
+		 * <p>
+		 * API name: {@code arguments}
 		 */
-		public final Builder valueBody(InferenceResult value) {
-			this.valueBody = value;
+		public final Builder arguments(String value) {
+			this.arguments = value;
 			return this;
 		}
 
 		/**
-		 * Required - Response value.
+		 * Required - The name of the function to call.
+		 * <p>
+		 * API name: {@code name}
 		 */
-		public final Builder valueBody(Function<InferenceResult.Builder, ObjectBuilder<InferenceResult>> fn) {
-			return this.valueBody(fn.apply(new InferenceResult.Builder()).build());
-		}
-
-		@Override
-		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
-
-			@SuppressWarnings("unchecked")
-			InferenceResult value = (InferenceResult) InferenceResult._DESERIALIZER.deserialize(parser, mapper);
-			return this.valueBody(value);
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
 		}
 
 		@Override
@@ -131,25 +157,31 @@ public class InferenceResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link InferenceResponse}.
+		 * Builds a {@link ToolCallFunction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public InferenceResponse build() {
+		public ToolCallFunction build() {
 			_checkSingleUse();
 
-			return new InferenceResponse(this);
+			return new ToolCallFunction(this);
 		}
 	}
 
-	public static final JsonpDeserializer<InferenceResponse> _DESERIALIZER = createInferenceResponseDeserializer();
-	protected static JsonpDeserializer<InferenceResponse> createInferenceResponseDeserializer() {
+	// ---------------------------------------------------------------------------------------------
 
-		JsonpDeserializer<InferenceResult> valueDeserializer = InferenceResult._DESERIALIZER;
+	/**
+	 * Json deserializer for {@link ToolCallFunction}
+	 */
+	public static final JsonpDeserializer<ToolCallFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ToolCallFunction::setupToolCallFunctionDeserializer);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+	protected static void setupToolCallFunctionDeserializer(ObjectDeserializer<ToolCallFunction.Builder> op) {
+
+		op.add(Builder::arguments, JsonpDeserializer.stringDeserializer(), "arguments");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+
 	}
 
 }
