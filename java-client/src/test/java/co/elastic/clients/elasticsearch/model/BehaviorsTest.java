@@ -40,6 +40,7 @@ import co.elastic.clients.json.LazyDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
+import jakarta.json.stream.JsonParsingException;
 import org.junit.jupiter.api.Test;
 
 import static co.elastic.clients.elasticsearch._types.query_dsl.Query.Kind.MatchAll;
@@ -331,8 +332,7 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals(MatchAll, fsq.query().functionScore().query()._kind());
 
         // should not work, shortcut for function score query is currently not supported
-        fsq = fromJson(shortcut, FunctionScoreQuery.class);
-        assertEquals(0, fsq.functions().size());
+        assertThrows(JsonParsingException.class,() -> fromJson(shortcut, FunctionScoreQuery.class));
     }
 
     @Test
