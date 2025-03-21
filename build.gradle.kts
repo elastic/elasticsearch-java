@@ -100,10 +100,10 @@ tasks.register<Task>(name = "publishForReleaseManager") {
 
         println("Releasing version $version")
 
-        val releaseDir = File(rootProject.buildDir, "release")
+        val releaseDir = File(rootProject.layout.buildDirectory.get().asFile, "release")
         releaseDir.mkdirs()
 
-        File(rootProject.buildDir, "repository/co/elastic/clients").listFiles()?.forEach { artifact ->
+        File(rootProject.layout.buildDirectory.get().asFile, "repository/co/elastic/clients").listFiles()?.forEach { artifact ->
             println("Releasing artifact " + artifact.name)
 
             val versionDir = File(artifact, version)

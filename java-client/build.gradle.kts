@@ -128,7 +128,7 @@ publishing {
 
         maven {
             name = "Build"
-            url = uri("${rootProject.buildDir}/repository")
+            url = uri("${rootProject.layout.buildDirectory.get().asFile}/repository")
         }
     }
 
@@ -275,7 +275,7 @@ dependencies {
 
 
 licenseReport {
-    renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/dependencies.csv")))
+    renderers = arrayOf(SpdxReporter(File(rootProject.layout.buildDirectory.get().asFile, "release/dependencies.csv")))
     excludeGroups = arrayOf("org.elasticsearch.client")
 }
 
